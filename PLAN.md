@@ -325,11 +325,38 @@ Product data and checkout via `WOOCOMMERCE_URL`, `WOOCOMMERCE_KEY`, `WOOCOMMERCE
 
 ---
 
+## Decisions Made (CEO Review, 2026-03-31)
+1. **CMS:** Sanity (locked). GROQ + Content Lake + Management API. Agent-first.
+2. **WooCommerce commerce:** Full cart via WC Store API in Next.js (client component boundary). CommerceProvider abstraction for future swap.
+3. **Agent pipeline:** Separate CLI script, not in Next.js deployment. Sanity Management API token isolated from Vercel env.
+4. **DNS cutover:** Switch domain to Vercel, keep WP alive on legacy subdomain for 30 days.
+5. **Seasonal rotation:** Query-time filter by `season` field in GROQ, not document lifecycle.
+6. **View Transitions:** Spike in Week 1 before committing. Gate, not deferred concern.
+
 ## Open Decisions
-1. **CMS: Storyblok vs Sanity** — both are API-first and agent-friendly. Storyblok has a visual editor (less relevant if agents are the primary updaters). Sanity has GROQ (powerful query language) and better developer ergonomics for custom schemas. Leaning Sanity for agent-first workflow.
-2. **Font selection** — match existing brand or evolve? Need the serif + sans pairing
-3. **HoWA Steward naming** — stays inside Plans until signed off, not in primary nav
-4. **Primary header CTA** — "Start HoWA" vs "Book consultation" (briefs recommend Start HoWA)
-5. **WooCommerce checkout** — redirect to existing WC site, or embed checkout in new site?
-6. **Media hosting** — CMS media library (Sanity/Storyblok CDN) or separate service (Cloudinary)?
-7. **HoWA product app URL** — what domain/subdomain will the product live on?
+1. **Font selection** — match existing brand or evolve? Need the serif + sans pairing
+2. **HoWA Steward naming** — stays inside Plans until signed off, not in primary nav
+3. **Primary header CTA** — "Start HoWA" vs "Book consultation" (briefs recommend Start HoWA)
+4. **Media hosting** — Sanity media library CDN or separate service (Cloudinary)?
+5. **HoWA product app URL** — what domain/subdomain will the product live on?
+
+## Accepted Scope Expansions (CEO Review)
+- Seasonal content rotation via Sanity scheduled publishing + season query filter
+- View Transitions API for smooth cross-page navigation (pending Week 1 spike)
+- Editorial preview mega-menus driven by Sanity Navigation documents
+- Auto-generated OG images (featured image primary, @vercel/og branded fallback)
+- Claude content agent pipeline (standalone CLI with Sanity Management API)
+- Smart 404 page with URL parsing and Levenshtein fuzzy matching
+
+## GSTACK REVIEW REPORT
+
+| Review | Trigger | Why | Runs | Status | Findings |
+|--------|---------|-----|------|--------|----------|
+| CEO Review | `/plan-ceo-review` | Scope & strategy | 1 | CLEAR | 6 proposals, 6 accepted, 0 deferred |
+| Codex Review | `/codex review` | Independent 2nd opinion | 0 | — | — |
+| Eng Review | `/plan-eng-review` | Architecture & tests (required) | 0 | — | — |
+| Design Review | `/plan-design-review` | UI/UX gaps | 0 | — | — |
+
+- **OUTSIDE VOICE:** Claude subagent ran. 8 findings. Key: WC cart session resolved (full Store API), timeline held at 4 weeks, seasonal rotation changed to query-time filter, View Transitions spike promoted to Week 1 gate.
+- **UNRESOLVED:** 0
+- **VERDICT:** CEO CLEARED. Eng review required before implementation.
