@@ -5,7 +5,7 @@ A first-time visitor should be able to say, within five seconds:
 "This is a premium House for design, care and protection, and HoWA is the system that helps me steward my home."
 
 ## Scope
-**Marketing site only.** The HoWA product (dashboard, Companion diagnostic, auth, billing) is being built separately by another team. This plan covers the public-facing website: navigation, homepage, all category/detail pages, journal, shop landing, and utility pages. CTAs that route into the HoWA product will link out to the product app when ready.
+**Marketing site only.** The HoWA product (dashboard, Companion diagnostic, auth, billing) is being built separately. This plan covers the public-facing website: navigation, homepage, all category/detail pages, journal, shop (via WooCommerce API), and utility pages. CTAs that route into the HoWA product will link out to the product app when ready.
 
 ## Decision Rule
 **The House** = the institution for effortless intelligent living.
@@ -18,16 +18,40 @@ Story lives in the House. Decision, configuration, booking, checkout and continu
 
 ### Stack
 - **Framework:** Next.js 15 (App Router, TypeScript, Tailwind CSS)
-- **CMS:** WordPress (headless) via WPGraphQL + ACF Pro — existing content stays in WP
+- **CMS:** Storyblok or Sanity (API-first, agent/bot-updatable) — decision needed
+- **Commerce:** WooCommerce REST API (product listings, cart, checkout) — interim until HoWA Product replaces it
 - **Deployment:** Vercel
 - **Analytics:** Vercel Analytics (+ PostHog if needed for CTA path tracking)
 
-### Content Strategy
-- WordPress remains the CMS for all editorial content (page copy, Journal articles, portfolio images, designer profiles)
-- WPGraphQL + WPGraphQL for ACF exposes all structured content as GraphQL
-- Next.js fetches at build time with ISR (revalidate on publish)
-- Media served from WP media library via next/image optimization
-- Copy that exists on the current willowalexander.co.uk site is migrated via WP, not hardcoded
+### CMS Requirements
+The CMS must be:
+- **API-first** — all content readable and writable via REST or GraphQL
+- **Agent-friendly** — a Claude agent or bot will be the primary content updater, not a human in a GUI
+- **Structured** — rich content types with typed fields, not just WYSIWYG blobs
+- **Webhook-capable** — trigger ISR revalidation on publish
+- **Media-capable** — host images with CDN delivery and transformation
+
+### Content Migration
+All existing content from willowalexander.co.uk (WordPress + ACF Pro) needs migrating to the new CMS:
+- Page copy, structured fields, and ACF data
+- Journal/Hearth articles
+- Designer profiles and portfolio content
+- Service descriptions and package details
+- Product editorial copy (not product data — that stays in WooCommerce)
+- Media assets (images, PDFs)
+
+Migration approach:
+1. Export WP content via REST API or WP Export
+2. Transform to new CMS content model (scripts)
+3. Import via CMS Management API
+4. Verify and QA
+5. Set up agent write access for ongoing updates
+
+### Commerce (WooCommerce — interim)
+- Product listings fetched from WooCommerce REST API
+- Cart and checkout handled via WooCommerce (either embedded or redirect to existing WC checkout)
+- This layer gets replaced when the HoWA Product is built and integrated
+- Keep the commerce integration loosely coupled so it can be swapped out cleanly
 
 ---
 
@@ -78,7 +102,11 @@ src/app/
 │   ├── review/page.tsx             # Home Protection Review
 │   └── insurance/page.tsx          # Insurance by the House
 ├── shop/
-│   └── page.tsx                    # Shop landing
+│   ├── page.tsx                    # Shop landing (editorial merchandising)
+│   ├── [category]/page.tsx         # Category template
+│   ├── product/[slug]/page.tsx     # Product detail (WooCommerce data)
+│   ├── cart/page.tsx               # Cart (WooCommerce)
+│   └── checkout/page.tsx           # Checkout (WooCommerce)
 ├── journal/
 │   ├── page.tsx                    # Journal / The Hearth landing
 │   └── [slug]/page.tsx             # Article template
@@ -96,6 +124,21 @@ src/app/
 
 ### Week 1: Foundations
 
+#### CMS Setup & Content Model
+- [ ] CMS selection (Storyblok vs Sanity — see Open Decisions)
+- [ ] Define content types: Page, Article, Designer, Service, Package, ProofPoint, FAQ, LegalPage
+- [ ] Set up API tokens: read (public), write (agent), management (migration)
+- [ ] Configure webhooks → Vercel ISR revalidation on publish
+- [ ] Media library setup with CDN
+
+#### WooCommerce Integration
+- [ ] WooCommerce REST API client (consumer key + secret)
+- [ ] Product fetching: listings, categories, single product
+- [ ] Cart API: add/remove/update (WC Store API or Cart API)
+- [ ] Checkout: redirect to existing WC checkout or embed
+- [ ] Type definitions for WC product data
+- [ ] Abstract behind a commerce interface so it can be swapped for HoWA Product later
+
 #### Design System & Global Shell
 - [ ] Tailwind config: typography scale, color tokens (House navy, warm cream, HoWA teal accents), spacing scale
 - [ ] Font setup — match existing brand (premium serif + clean sans)
@@ -103,13 +146,6 @@ src/app/
 - [ ] `<Footer />` — House wordmark, full nav links, contact info, legal links, social
 - [ ] `<MobileMenu />` — slide-out drawer with pinned CTA order from spec
 - [ ] Base components: `<Button />`, `<Card />`, `<SectionHeader />`, `<ProofStrip />`, `<PackageCard />`, `<ActionRail />`
-
-#### WordPress Integration
-- [ ] GraphQL client setup (graphql-request)
-- [ ] Content fetching helpers with ISR
-- [ ] ACF field type mappings for structured page content
-- [ ] next/image loader config for WP media URLs
-- [ ] Type generation from WP GraphQL schema
 
 ### Week 2: Homepage + Brand & Product Pages
 
@@ -146,7 +182,7 @@ src/app/
 - FAQ
 - CTA: links to product app sign-up flow
 
-### Week 3: Commercial Pages + Utility
+### Week 3: Commercial Pages + Shop + Utility
 
 #### Design Landing + Interiors + Gardens
 - **Design landing:** editorial overview, routes to interiors and gardens
@@ -163,10 +199,12 @@ src/app/
 - **Home Protection Review:** what we look at, how it works, recorded in HoWA, book a review CTA
 - **Insurance by the House:** coverage families (home, garden, boundaries, pets), why it feels different, register interest
 
-#### Shop Landing
-- Editorial merchandising: seasonal edit, by room, by garden, gifts
-- House Approved framing
-- Links to existing WooCommerce shop (or placeholder cards if migrating later)
+#### Shop (WooCommerce-powered)
+- **Shop landing:** editorial merchandising (seasonal edit, by room, by garden, gifts), House Approved framing
+- **Category pages:** filtered product grids from WooCommerce categories
+- **Product detail:** WooCommerce product data rendered in House brand treatment (images, description, care notes, price, add to cart)
+- **Cart:** WooCommerce cart state, update quantities, proceed to checkout
+- **Checkout:** WooCommerce checkout (embedded or redirect to existing WC checkout on willowalexander.co.uk)
 
 #### Journal Landing + Article Template
 - Journal as nav label, The Hearth as editorial brand
@@ -180,6 +218,25 @@ src/app/
 - **Contact:** phone, email, location
 - **Legal:** policy hub with secondary nav
 - **404:** brand-safe recovery with redirect options
+
+### Week 4: Content Migration + QA
+
+#### WP → CMS Migration
+- [ ] Write migration scripts: WP REST API → transform → CMS Management API
+- [ ] Migrate page content and ACF structured fields
+- [ ] Migrate Journal/Hearth articles with categories and metadata
+- [ ] Migrate designer profiles, service descriptions, package details
+- [ ] Migrate media assets to CMS media library
+- [ ] Verify all content renders correctly on the new site
+- [ ] Set up agent write access and test bot-driven content updates
+
+#### QA & Launch Prep
+- [ ] Cross-device testing (desktop, tablet, mobile)
+- [ ] Redirect map implementation (old WP URLs → new routes)
+- [ ] SEO: meta tags, Open Graph, structured data, sitemap
+- [ ] Performance audit (Core Web Vitals)
+- [ ] Analytics setup and CTA event tracking
+- [ ] DNS cutover plan
 
 ---
 
@@ -203,9 +260,11 @@ Every commercial landing page follows a 3-layer pattern:
 7. **Commercial Landing** — editorial top, package middle, HoWA bottom
 8. **Design Detail** — portfolio proof, packages, intake CTA
 9. **Protect Detail** — calm prevention, plan options, evidence, register interest
-10. **Journal Landing** — featured story, categories, latest
-11. **Article Template** — long-form reading, pull quote, next story, CTA
-12. **Utility** — search, form, legal text layouts
+10. **Shop Landing** — editorial merchandising, WooCommerce product grid
+11. **Product Detail** — WooCommerce product in House brand treatment
+12. **Journal Landing** — featured story, categories, latest
+13. **Article Template** — long-form reading, pull quote, next story, CTA
+14. **Utility** — search, form, legal text layouts
 
 ---
 
@@ -226,18 +285,24 @@ Every commercial landing page follows a 3-layer pattern:
 
 ---
 
-## Integration Points with HoWA Product
+## Integration Points
 
-These CTAs and links will point to the separately-built HoWA product app:
-- **Start HoWA** (header, homepage, multiple pages) → product app onboarding
-- **Sign in** → product app auth
-- **Start with the Companion** → product app diagnostic flow
-- **Book / Pay Now** on design packages → product app checkout
-- **Configure your plan** on House Plans → product app plan configuration
-- **Book a review** on Protect → product app booking
-- **Register interest** on Insurance → product app waitlist
+### HoWA Product App (external, built separately)
+CTAs that route into the HoWA product link to `NEXT_PUBLIC_HOWA_APP_URL`:
+- Start HoWA → product app onboarding
+- Sign in → product app auth
+- Start with the Companion → product app diagnostic flow
+- Book / Pay Now on design packages → product app checkout
+- Configure your plan → product app plan configuration
+- Book a review → product app booking
+- Register interest → product app waitlist
 
-These should be configured as environment variables so the product app URL can be updated without code changes.
+### WooCommerce (interim, will be replaced)
+Product data and checkout via `WOOCOMMERCE_URL`, `WOOCOMMERCE_KEY`, `WOOCOMMERCE_SECRET`:
+- Product listings and categories via WC REST API
+- Cart state via WC Store API
+- Checkout via WC (redirect or embedded)
+- Abstract behind a `CommerceProvider` interface so the WooCommerce implementation can be swapped for HoWA Product when ready
 
 ---
 
@@ -255,14 +320,16 @@ These should be configured as environment variables so the product app URL can b
 - Conversion from category page to structured journey (click to product app)
 - Bounce rate from header and mobile menu
 - Journal engagement: read depth, next-article clicks
+- Shop: product views, add-to-cart rate, checkout starts
 - Search usage and top queries
 
 ---
 
 ## Open Decisions
-1. **Font selection** — match existing brand or evolve? Need the serif + sans pairing
-2. **HoWA Steward naming** — stays inside Plans until signed off, not in primary nav
-3. **Primary header CTA** — "Start HoWA" vs "Book consultation" (briefs recommend Start HoWA)
-4. **Shop backend** — link to existing WooCommerce, or headless WooCommerce, or placeholder?
-5. **Media hosting** — keep serving from WP media library or set up Cloudinary/Vercel Blob?
-6. **HoWA product app URL** — what domain/subdomain will the product live on?
+1. **CMS: Storyblok vs Sanity** — both are API-first and agent-friendly. Storyblok has a visual editor (less relevant if agents are the primary updaters). Sanity has GROQ (powerful query language) and better developer ergonomics for custom schemas. Leaning Sanity for agent-first workflow.
+2. **Font selection** — match existing brand or evolve? Need the serif + sans pairing
+3. **HoWA Steward naming** — stays inside Plans until signed off, not in primary nav
+4. **Primary header CTA** — "Start HoWA" vs "Book consultation" (briefs recommend Start HoWA)
+5. **WooCommerce checkout** — redirect to existing WC site, or embed checkout in new site?
+6. **Media hosting** — CMS media library (Sanity/Storyblok CDN) or separate service (Cloudinary)?
+7. **HoWA product app URL** — what domain/subdomain will the product live on?
