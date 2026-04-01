@@ -18,8 +18,8 @@ Story lives in the House. Decision, configuration, booking, checkout and continu
 
 ### Stack
 - **Framework:** Next.js 15 (App Router, TypeScript, Tailwind CSS)
-- **CMS:** Storyblok or Sanity (API-first, agent/bot-updatable) — decision needed
-- **Commerce:** WooCommerce REST API (product listings, cart, checkout) — interim until HoWA Product replaces it
+- **CMS:** Sanity v3 (Content Lake API for reads, Management API for agent writes, GROQ queries)
+- **Commerce:** WooCommerce Store API (products via REST API server-side, cart via /api/cart proxy) — interim until HoWA Product replaces it
 - **Deployment:** Vercel
 - **Analytics:** Vercel Analytics (+ PostHog if needed for CTA path tracking)
 
@@ -124,20 +124,27 @@ src/app/
 
 ### Week 1: Foundations
 
+#### Day 1: WP Content Sample Export
+- [ ] Export 5-10 representative pages from WP REST API (homepage, 1 design page, 1 service, 1 journal article, 1 product)
+- [ ] Inspect ACF field structures to inform Sanity content model design
+- [ ] View Transitions API spike: test with Next.js 15 App Router + streaming. If incompatible, fall back to CSS transitions.
+
 #### CMS Setup & Content Model
-- [ ] CMS selection (Storyblok vs Sanity — see Open Decisions)
-- [ ] Define content types: Page, Article, Designer, Service, Package, ProofPoint, FAQ, LegalPage
+- [ ] Create Sanity v3 project + dataset
+- [ ] Define content types: Page, Article, Designer, Service, Package, ProofPoint, FAQ, LegalPage, Navigation, SiteSettings
 - [ ] Set up API tokens: read (public), write (agent), management (migration)
 - [ ] Configure webhooks → Vercel ISR revalidation on publish
 - [ ] Media library setup with CDN
 
 #### WooCommerce Integration
-- [ ] WooCommerce REST API client (consumer key + secret)
-- [ ] Product fetching: listings, categories, single product
-- [ ] Cart API: add/remove/update (WC Store API or Cart API)
-- [ ] Checkout: redirect to existing WC checkout or embed
+- [ ] WooCommerce REST API client (consumer key + secret, server-side only)
+- [ ] Product fetching: listings, categories, single product (RSC, cached 5min)
+- [ ] `/api/cart` proxy route: proxies WC Store API calls, avoids cross-domain cookie issues
+- [ ] Cart operations: add/remove/update via proxy (client components)
+- [ ] Checkout: redirect to existing WC checkout on willowalexander.co.uk
 - [ ] Type definitions for WC product data
-- [ ] Abstract behind a commerce interface so it can be swapped for HoWA Product later
+- [ ] CommerceProvider interface: `getProducts()`, `getProduct()`, `addToCart()`, `removeFromCart()`, `getCart()`, `getCheckoutUrl()` — designed around generic commerce semantics, not WC-specific shapes
+- [ ] WP-side: ensure CORS headers allow requests from Vercel domain (for Store API proxy)
 
 #### Design System & Global Shell
 - [ ] Tailwind config: typography scale, color tokens (House navy, warm cream, HoWA teal accents), spacing scale
@@ -228,7 +235,8 @@ src/app/
 - [ ] Migrate designer profiles, service descriptions, package details
 - [ ] Migrate media assets to CMS media library
 - [ ] Verify all content renders correctly on the new site
-- [ ] Set up agent write access and test bot-driven content updates
+- [ ] Set up agent write access (draft-only, human publishes via Sanity Studio)
+- [ ] Test bot-driven content updates (create draft article, verify in Studio)
 
 #### QA & Launch Prep
 - [ ] Cross-device testing (desktop, tablet, mobile)
@@ -354,9 +362,10 @@ Product data and checkout via `WOOCOMMERCE_URL`, `WOOCOMMERCE_KEY`, `WOOCOMMERCE
 |--------|---------|-----|------|--------|----------|
 | CEO Review | `/plan-ceo-review` | Scope & strategy | 1 | CLEAR | 6 proposals, 6 accepted, 0 deferred |
 | Codex Review | `/codex review` | Independent 2nd opinion | 0 | — | — |
-| Eng Review | `/plan-eng-review` | Architecture & tests (required) | 0 | — | — |
+| Eng Review | `/plan-eng-review` | Architecture & tests (required) | 1 | CLEAR | 6 issues, 3 critical gaps |
 | Design Review | `/plan-design-review` | UI/UX gaps | 0 | — | — |
 
-- **OUTSIDE VOICE:** Claude subagent ran. 8 findings. Key: WC cart session resolved (full Store API), timeline held at 4 weeks, seasonal rotation changed to query-time filter, View Transitions spike promoted to Week 1 gate.
+- **OUTSIDE VOICE (CEO):** 8 findings. WC cart resolved, timeline held, seasonal rotation fixed, VT spike promoted.
+- **OUTSIDE VOICE (ENG):** 11 findings. Content migration resequenced, agent draft-only workflow, env var inventory needed, Navigation content type added, CI pipeline to TODOS.
 - **UNRESOLVED:** 0
-- **VERDICT:** CEO CLEARED. Eng review required before implementation.
+- **VERDICT:** CEO + ENG CLEARED. Ready to implement. Design review recommended for this UI-heavy project.

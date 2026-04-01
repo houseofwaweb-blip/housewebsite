@@ -7,8 +7,8 @@ The public marketing website for House of Willow Alexander. A premium home stewa
 
 ## Stack
 - Next.js 15 (App Router, TypeScript, Tailwind CSS)
-- Storyblok or Sanity (API-first headless CMS — agent/bot is primary content updater)
-- WooCommerce REST API (interim commerce — product listings, cart, checkout)
+- Sanity v3 (Content Lake API for reads, Management API for agent writes, GROQ queries)
+- WooCommerce Store API (products server-side via REST, cart via /api/cart proxy)
 - Vercel (hosting)
 
 ## Commands
