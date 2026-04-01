@@ -341,12 +341,22 @@ Product data and checkout via `WOOCOMMERCE_URL`, `WOOCOMMERCE_KEY`, `WOOCOMMERCE
 5. **Seasonal rotation:** Query-time filter by `season` field in GROQ, not document lifecycle.
 6. **View Transitions:** Spike in Week 1 before committing. Gate, not deferred concern.
 
+## Decisions Made (Design Review, 2026-04-01)
+7. **Fonts:** Didot LT Pro Bold (serif headlines) + Effra Std Regular (sans body/nav/CTAs). Files in brand-assets.
+8. **Mega-menu:** Flat, one level of links + editorial preview image per nav item. Not grouped.
+9. **House-to-HoWA transition:** Full visual shift when page moves from editorial to structured: background cream→white, headlines Didot→Effra, spacing tightens ~20%, CTAs outlined→filled gold, cards gain borders.
+10. **Buttons:** Sharp corners (0px border-radius). Heritage/institutional tone.
+11. **Article reading width:** 680px max-width. Optimal for Effra at 18px body.
+12. **Product card images:** 3:4 portrait ratio.
+13. **Breakpoints:** Mobile 0-767px, Tablet 768-1023px, Desktop 1024px+.
+14. **Interaction states:** Skeleton loaders for async content. Warm empty states with primary actions. Graceful error fallbacks (ISR cache or message). Mega-menu degrades to plain link list if Sanity data missing.
+
 ## Open Decisions
-1. **Font selection** — match existing brand or evolve? Need the serif + sans pairing
-2. **HoWA Steward naming** — stays inside Plans until signed off, not in primary nav
-3. **Primary header CTA** — "Start HoWA" vs "Book consultation" (briefs recommend Start HoWA)
-4. **Media hosting** — Sanity media library CDN or separate service (Cloudinary)?
-5. **HoWA product app URL** — what domain/subdomain will the product live on?
+1. **HoWA Steward naming** — stays inside Plans until signed off, not in primary nav
+2. **Primary header CTA** — "Start HoWA" vs "Book consultation" (briefs recommend Start HoWA)
+3. **Media hosting** — Sanity media library CDN or separate service (Cloudinary)?
+4. **HoWA product app URL** — what domain/subdomain will the product live on?
+5. **Homepage hero photography** — needs commissioning or sourcing. Stock kills the brand.
 
 ## Accepted Scope Expansions (CEO Review)
 - Seasonal content rotation via Sanity scheduled publishing + season query filter
@@ -363,9 +373,9 @@ Product data and checkout via `WOOCOMMERCE_URL`, `WOOCOMMERCE_KEY`, `WOOCOMMERCE
 | CEO Review | `/plan-ceo-review` | Scope & strategy | 1 | CLEAR | 6 proposals, 6 accepted, 0 deferred |
 | Codex Review | `/codex review` | Independent 2nd opinion | 0 | — | — |
 | Eng Review | `/plan-eng-review` | Architecture & tests (required) | 1 | CLEAR | 6 issues, 3 critical gaps |
-| Design Review | `/plan-design-review` | UI/UX gaps | 0 | — | — |
+| Design Review | `/plan-design-review` | UI/UX gaps | 1 | CLEAR | score: 5/10 → 8/10, 8 decisions |
 
 - **OUTSIDE VOICE (CEO):** 8 findings. WC cart resolved, timeline held, seasonal rotation fixed, VT spike promoted.
 - **OUTSIDE VOICE (ENG):** 11 findings. Content migration resequenced, agent draft-only workflow, env var inventory needed, Navigation content type added, CI pipeline to TODOS.
 - **UNRESOLVED:** 0
-- **VERDICT:** CEO + ENG CLEARED. Ready to implement. Design review recommended for this UI-heavy project.
+- **VERDICT:** CEO + ENG + DESIGN CLEARED. Ready to implement.
