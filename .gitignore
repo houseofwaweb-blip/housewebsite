@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Allow the example env file to be committed as a reference template
+!.env.local.example
+mockups.zip
+*.pdf
+brand-assets/style guide/

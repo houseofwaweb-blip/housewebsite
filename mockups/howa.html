@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HoWA — The Living Record of the Home</title>
+<style>
+  @font-face { font-family: 'Didot LT Pro'; src: url('fonts/DidotLTPro-Bold.woff2') format('woff2'), url('fonts/DidotLTPro-Bold.woff') format('woff'); font-weight: 700; font-display: swap; }
+  @font-face { font-family: 'Effra'; src: url('fonts/effra_std_rg-webfont.woff2') format('woff2'), url('fonts/effra_std_rg-webfont.woff') format('woff'); font-weight: 400; font-display: swap; }
+
+  :root {
+    --house-brown: #30231c; --house-gold: #b8943e; --house-gold-light: #d4af5a;
+    --house-cream: #f5f0e8; --house-cream-dark: #ebe4d6; --house-white: #faf8f4;
+    --house-stone: #a09885; --house-moss: #5a6b4a; --house-black: #1d1d1b;
+    --howa-navy: #1e2a3a; --howa-teal: #3a7d7e; --howa-light: #f0f4f3;
+    --font-serif: 'Didot LT Pro', 'Georgia', serif;
+    --font-sans: 'Effra', 'Helvetica Neue', sans-serif;
+    --max-width: 1200px; --nav-height: 72px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--font-sans); color: var(--house-brown); background: var(--house-white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+  /* Buttons */
+  .btn { display: inline-block; font-family: var(--font-sans); font-size: 14px; letter-spacing: 0.05em; padding: 10px 24px; border: none; cursor: pointer; text-decoration: none; border-radius: 0; transition: all 0.2s ease-out; }
+  .btn-gold { background: var(--house-gold); color: #ffffff; }
+  .btn-gold:hover { background: var(--house-gold-light); transform: translateY(-1px); }
+  .btn-outline { background: transparent; border: 1px solid var(--house-brown); color: var(--house-brown); }
+  .btn-outline:hover { background: var(--house-brown); color: var(--house-cream); }
+  .btn-outline-light { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: var(--house-cream); }
+  .btn-outline-light:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.6); }
+  .btn-teal { background: var(--howa-teal); color: white; }
+  .btn-teal:hover { background: #458f90; transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--house-gold); padding: 10px 0; border: none; text-decoration: underline; text-decoration-style: solid; text-underline-offset: 4px; text-decoration-thickness: 1px; font-size: 14px; letter-spacing: 0.05em; transition: text-decoration-style 0.3s, color 0.2s; cursor: pointer; }
+  .btn-ghost:hover { text-decoration-style: dotted; color: var(--house-gold-light); }
+
+  /* Header */
+  header { position: sticky; top: 0; z-index: 100; background: var(--house-white); border-bottom: 1px solid var(--house-cream-dark); height: var(--nav-height); display: flex; align-items: center; padding: 0 40px; }
+  .header-inner { max-width: var(--max-width); margin: 0 auto; width: 100%; display: flex; align-items: center; justify-content: space-between; }
+  .logo { display: flex; align-items: center; gap: 16px; text-decoration: none; color: var(--house-brown); }
+  .logo img { height: 36px; width: auto; }
+  nav { display: flex; align-items: center; gap: 40px; }
+  nav a { font-size: 14px; color: var(--house-brown); text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+  nav a:hover { color: var(--house-gold); }
+  nav a.active { color: var(--house-gold); }
+  .header-utility { display: flex; align-items: center; gap: 24px; }
+  .header-utility > a:not(.btn) { font-size: 14px; color: var(--house-stone); text-decoration: none; transition: color 0.2s; }
+  .header-utility > a:not(.btn):hover { color: var(--house-gold); }
+
+  /* ====== HERO (HoWA territory: navy, Effra, structured) ====== */
+  .howa-hero {
+    background: var(--howa-navy); color: var(--house-cream);
+    padding: 128px 40px; position: relative; overflow: hidden;
+  }
+  .howa-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: url('pattern-white.png'); background-size: 1400px; background-repeat: repeat;
+    opacity: 0.04;
+  }
+  .howa-hero > * { position: relative; z-index: 1; }
+  .howa-hero-inner {
+    max-width: var(--max-width); margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: center;
+  }
+  .howa-hero .eyebrow { font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--howa-teal); margin-bottom: 24px; }
+  .howa-hero h1 { font-family: var(--font-serif); font-size: 44px; line-height: 1.15; margin-bottom: 24px; }
+  .howa-hero p { font-size: 18px; line-height: 1.7; opacity: 0.7; margin-bottom: 40px; max-width: 480px; }
+  .howa-hero-ctas { display: flex; gap: 16px; align-items: center; }
+
+  /* Dashboard preview */
+  .dashboard-preview {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    padding: 32px;
+  }
+  .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .dash-logo { font-family: var(--font-sans); font-size: 14px; letter-spacing: 0.08em; opacity: 0.5; }
+  .dash-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 24px; }
+  .dash-stat-value { font-family: var(--font-serif); font-size: 28px; margin-bottom: 4px; }
+  .dash-stat-label { font-size: 12px; opacity: 0.4; letter-spacing: 0.05em; }
+  .dash-items { }
+  .dash-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 14px; }
+  .dash-item-label { opacity: 0.6; }
+  .dash-item-value { font-size: 12px; opacity: 0.35; }
+
+  /* ====== WHAT HOWA DOES (3-column, HoWA territory) ====== */
+  .what-howa {
+    background: var(--house-white); padding: 128px 40px;
+  }
+  .what-howa-inner { max-width: var(--max-width); margin: 0 auto; }
+  .what-howa-header { margin-bottom: 96px; }
+  .what-howa-header h2 { font-family: var(--font-sans); font-size: 20px; margin-bottom: 16px; }
+  .what-howa-header p { font-size: 18px; color: var(--house-stone); max-width: 520px; line-height: 1.7; }
+  .what-howa-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 64px; }
+  .what-howa-item { border-top: 2px solid var(--howa-teal); padding-top: 24px; }
+  .what-howa-item h3 { font-family: var(--font-sans); font-size: 18px; margin-bottom: 12px; }
+  .what-howa-item p { font-size: 14px; color: var(--house-stone); line-height: 1.6; }
+
+  /* ====== HOW IT WORKS (3 steps) ====== */
+  .how-it-works {
+    background: var(--house-cream); padding: 128px 40px;
+    position: relative; overflow: hidden;
+  }
+  .how-it-works::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: url('pattern-white.png'); background-size: 1400px; background-repeat: repeat;
+    opacity: 0.5; mix-blend-mode: soft-light;
+  }
+  .how-it-works > * { position: relative; z-index: 1; }
+  .how-inner { max-width: var(--max-width); margin: 0 auto; }
+  .how-header { text-align: center; margin-bottom: 96px; }
+  .how-header h2 { font-family: var(--font-serif); font-size: 32px; margin-bottom: 16px; }
+  .how-header p { font-size: 18px; color: var(--house-stone); max-width: 500px; margin: 0 auto; }
+  .how-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 64px; }
+  .how-step { position: relative; }
+  .how-step-number {
+    font-family: var(--font-serif); font-size: 72px;
+    color: var(--house-cream-dark); line-height: 1; margin-bottom: 16px;
+  }
+  .how-step h3 { font-family: var(--font-serif); font-size: 20px; margin-bottom: 12px; }
+  .how-step p { font-size: 14px; color: var(--house-stone); line-height: 1.6; }
+
+  /* ====== PLANS PREVIEW (transition to HoWA structured) ====== */
+  .plans-preview {
+    background: var(--house-white); padding: 128px 40px;
+  }
+  .plans-inner { max-width: var(--max-width); margin: 0 auto; }
+  .plans-header { text-align: center; margin-bottom: 96px; }
+  /* HoWA territory: Effra headlines, tighter */
+  .plans-header .eyebrow { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--howa-teal); margin-bottom: 16px; }
+  .plans-header h2 { font-family: var(--font-sans); font-size: 24px; margin-bottom: 16px; }
+  .plans-header p { font-size: 16px; color: var(--house-stone); max-width: 500px; margin: 0 auto; }
+  .plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .plan-card {
+    padding: 48px 40px; border: 1px solid var(--house-cream-dark);
+    margin-left: -1px; /* collapse borders */
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .plan-card:first-child { margin-left: 0; }
+  .plan-card:hover { box-shadow: 0 8px 30px rgba(48,35,28,0.08); transform: translateY(-2px); z-index: 1; position: relative; }
+  .plan-card.featured {
+    background: var(--howa-navy); color: var(--house-cream); border-color: var(--howa-navy);
+  }
+  .plan-card .plan-name { font-family: var(--font-sans); font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; opacity: 0.6; }
+  .plan-card .plan-title { font-family: var(--font-serif); font-size: 24px; margin-bottom: 16px; }
+  .plan-card .plan-desc { font-size: 14px; opacity: 0.7; line-height: 1.6; margin-bottom: 32px; }
+  .plan-card ul { list-style: none; margin-bottom: 32px; }
+  .plan-card li { font-size: 14px; padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.06); opacity: 0.8; }
+  .plan-card.featured li { border-bottom-color: rgba(255,255,255,0.08); }
+
+  /* ====== CLOSING CTA ====== */
+  .closing-cta {
+    background: var(--house-brown); color: var(--house-cream);
+    padding: 128px 40px; text-align: center; position: relative; overflow: hidden;
+  }
+  .closing-cta::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: url('pattern-gold.png'); background-size: 1750px; background-repeat: repeat;
+    opacity: 0.15;
+  }
+  .closing-cta > * { position: relative; z-index: 1; }
+  .closing-cta h2 { font-family: var(--font-serif); font-size: 32px; max-width: 600px; margin: 0 auto 24px; line-height: 1.3; }
+  .closing-cta p { font-size: 18px; opacity: 0.7; max-width: 500px; margin: 0 auto 40px; }
+
+  /* Footer */
+  footer { background: var(--house-brown); color: var(--house-cream); padding: 96px 40px 40px; position: relative; overflow: hidden; }
+  footer::before { content: ''; position: absolute; inset: 0; background-image: url('pattern-gold.png'); background-size: 1750px; background-repeat: repeat; opacity: 0.06; }
+  footer > * { position: relative; z-index: 1; }
+  .footer-inner { max-width: var(--max-width); margin: 0 auto; display: grid; grid-template-columns: 2fr repeat(4, 1fr); gap: 64px; }
+  .footer-brand p { font-size: 14px; opacity: 0.6; margin-top: 16px; line-height: 1.6; }
+  .footer-col h4 { font-family: var(--font-serif); font-size: 16px; margin-bottom: 16px; }
+  .footer-col a { display: block; color: var(--house-cream); opacity: 0.5; text-decoration: none; font-size: 14px; padding: 3px 0; transition: opacity 0.2s; }
+  .footer-col a:hover { opacity: 1; }
+  .footer-bottom { max-width: var(--max-width); margin: 64px auto 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; font-size: 12px; opacity: 0.4; }
+
+  /* Responsive */
+  @media (max-width: 1023px) {
+    .howa-hero-inner { grid-template-columns: 1fr; gap: 48px; }
+    .dashboard-preview { display: none; }
+    .what-howa-grid { grid-template-columns: 1fr; gap: 40px; }
+    .how-steps { grid-template-columns: 1fr; gap: 40px; }
+    .plans-grid { grid-template-columns: 1fr; }
+    .plan-card { margin-left: 0; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 40px; }
+    nav { display: none; }
+  }
+  @media (max-width: 767px) {
+    .howa-hero { padding: 64px 24px; }
+    .howa-hero h1 { font-size: 32px; }
+    .what-howa, .how-it-works, .plans-preview, .closing-cta { padding: 64px 24px; }
+    .how-header, .plans-header { margin-bottom: 48px; }
+    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo"><img src="logo.svg" alt="House of Willow Alexander"></a>
+    <nav>
+      <a href="/the-house">The House</a>
+      <a href="howa.html" class="active">HoWA</a>
+      <a href="/design">Design</a>
+      <a href="/services">Services</a>
+      <a href="/protect">Protect</a>
+      <a href="/shop">Shop</a>
+      <a href="/journal">Journal</a>
+    </nav>
+    <div class="header-utility">
+      <a href="/search">Search</a>
+      <a href="#">Sign in</a>
+      <a href="#" class="btn btn-gold">Start HoWA</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="howa-hero">
+  <div class="howa-hero-inner">
+    <div>
+      <div class="eyebrow">The stewardship system</div>
+      <h1>The living record of the home</h1>
+      <p>HoWA quietly remembers your home, guides the next right action, and keeps services, protection, design, and records joined up in one place.</p>
+      <div class="howa-hero-ctas">
+        <a href="#" class="btn btn-gold">Start HoWA</a>
+        <a href="#plans" class="btn btn-outline-light">View plans</a>
+      </div>
+    </div>
+    <div class="dashboard-preview">
+      <div class="dash-header">
+        <div class="dash-logo">HoWA</div>
+        <div style="font-size: 12px; opacity: 0.35;">Stewardship dashboard</div>
+      </div>
+      <div class="dash-stats">
+        <div><div class="dash-stat-value">128</div><div class="dash-stat-label">Home records</div></div>
+        <div><div class="dash-stat-value">6</div><div class="dash-stat-label">Alerts</div></div>
+        <div><div class="dash-stat-value">17</div><div class="dash-stat-label">Active tasks</div></div>
+      </div>
+      <div class="dash-items">
+        <div class="dash-item"><span class="dash-item-label">Window cleaning</span><span class="dash-item-value">Scheduled: 14 Apr</span></div>
+        <div class="dash-item"><span class="dash-item-label">Boiler service</span><span class="dash-item-value">Due: 28 Apr</span></div>
+        <div class="dash-item"><span class="dash-item-label">Garden maintenance</span><span class="dash-item-value">Weekly, Thursdays</span></div>
+        <div class="dash-item"><span class="dash-item-label">Home insurance renewal</span><span class="dash-item-value">Review by: 1 May</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT HOWA DOES -->
+<section class="what-howa">
+  <div class="what-howa-inner">
+    <div class="what-howa-header">
+      <h2>What HoWA does</h2>
+      <p>Three capabilities that work together. Remembering is the foundation. Guiding is the intelligence. Protecting is the promise.</p>
+    </div>
+    <div class="what-howa-grid">
+      <div class="what-howa-item">
+        <h3>Remembers</h3>
+        <p>Your home's records, warranties, maintenance history, seasonal rhythms, provider relationships, and the preferences that make your household yours.</p>
+      </div>
+      <div class="what-howa-item">
+        <h3>Guides</h3>
+        <p>Recommendations, service scheduling, design direction, and seasonal prompts. Not reminders. Guidance that learns from how your home actually lives.</p>
+      </div>
+      <div class="what-howa-item">
+        <h3>Protects</h3>
+        <p>Risk review, insurance connected to real care history, evidence and verification, and a protection record that grows over time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works">
+  <div class="how-inner">
+    <div class="how-header">
+      <h2>Three calm steps</h2>
+      <p>Start with the Companion. Receive a plan. Enter HoWA.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="how-step-number">01</div>
+        <h3>Understand the home</h3>
+        <p>The Companion asks about your home, garden, lifestyle, priorities, and taste. It builds a profile, not a form.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-number">02</div>
+        <h3>Set priorities</h3>
+        <p>Household data becomes a clear set of recommendations: services, protection, design direction, and seasonal actions.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-number">03</div>
+        <h3>Build the first plan</h3>
+        <p>Recommendations, first actions, and a living record. HoWA grows with the home from here.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANS PREVIEW -->
+<section class="plans-preview" id="plans">
+  <div class="plans-inner">
+    <div class="plans-header">
+      <div class="eyebrow">Choose your level</div>
+      <h2>Choose the level of stewardship that fits your home</h2>
+      <p>Hold the paid architecture here and keep HoWA Steward as the premium tier.</p>
+    </div>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-name">Core</div>
+        <div class="plan-title">HoWA</div>
+        <div class="plan-desc">Free records, reminders, and trusted care coordination.</div>
+        <ul>
+          <li>Home record and history</li>
+          <li>Service reminders</li>
+          <li>Basic seasonal prompts</li>
+          <li>Access to House services</li>
+        </ul>
+        <a href="#" class="btn btn-outline">Start free</a>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-name">Recommended</div>
+        <div class="plan-title">Steward</div>
+        <div class="plan-desc">Premium stewardship with deeper oversight, protection, and priority care.</div>
+        <ul>
+          <li>Everything in Core</li>
+          <li>Deeper guidance and AI recommendations</li>
+          <li>Priority scheduling</li>
+          <li>Protection review and evidence</li>
+          <li>10% off all services and shop</li>
+        </ul>
+        <a href="#" class="btn btn-gold">Start Steward</a>
+      </div>
+      <div class="plan-card">
+        <div class="plan-name">Estate</div>
+        <div class="plan-title">Estate</div>
+        <div class="plan-desc">For larger homes or more complex households with higher-touch needs.</div>
+        <ul>
+          <li>Everything in Steward</li>
+          <li>Dedicated account contact</li>
+          <li>Multi-property support</li>
+          <li>Custom service rhythm</li>
+        </ul>
+        <a href="#" class="btn btn-outline">Contact us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING CTA -->
+<section class="closing-cta">
+  <h2>Your home already knows what it needs. HoWA helps you listen.</h2>
+  <p>Start with the Companion. Build the record. Let the House take care of the rest.</p>
+  <a href="#" class="btn btn-gold">Start HoWA</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="logo.svg" alt="House of Willow Alexander" style="height: 32px; filter: brightness(0) invert(1);">
+      <p>The institution for effortless intelligent living. HoWA is the stewardship system behind it.</p>
+    </div>
+    <div class="footer-col"><h4>The House</h4><a href="#">Philosophy</a><a href="#">Standards</a><a href="#">Sustainability</a><a href="#">About</a></div>
+    <div class="footer-col"><h4>Services</h4><a href="#">Design</a><a href="#">House Plans</a><a href="#">Protect</a><a href="#">Shop</a></div>
+    <div class="footer-col"><h4>HoWA</h4><a href="#">What is HoWA</a><a href="#">Companion</a><a href="#">Plans</a><a href="#">Sign in</a></div>
+    <div class="footer-col"><h4>Contact</h4><a href="tel:08000478738">0800 047 8738</a><a href="#">Book consultation</a><a href="#">Contact</a><a href="#">Legal</a></div>
+  </div>
+  <div class="footer-bottom"><span>&copy; 2026 House of Willow Alexander</span><span>Privacy &middot; Terms &middot; Cookies</span></div>
+</footer>
+
+</body>
+</html>

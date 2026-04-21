@@ -3,15 +3,37 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 4000",
     "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "start": "next start -p 4000",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "sanity:dev": "sanity dev",
+    "sanity:deploy": "sanity deploy",
+    "sanity:schema": "sanity schema extract"
   },
   "dependencies": {
-    "next": "16.2.1",
+    "@hookform/resolvers": "^5.2.2",
+    "@marsidev/react-turnstile": "^1.5.0",
+    "@portabletext/react": "^6.0.3",
+    "@sanity/block-tools": "^3.70.0",
+    "@sanity/client": "^7.21.0",
+    "@sanity/image-url": "^2.1.1",
+    "@sanity/vision": "^5.21.0",
+    "@supabase/supabase-js": "^2.103.2",
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.37.0",
+    "clsx": "^2.1.1",
+    "jsdom": "^29.0.2",
+    "next": "^16.2.3",
+    "next-sanity": "^12.2.2",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "react-hook-form": "^7.72.1",
+    "sanity": "^5.21.0",
+    "server-only": "^0.0.1",
+    "tailwind-merge": "^3.5.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

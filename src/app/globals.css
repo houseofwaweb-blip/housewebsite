@@ -1,26 +1,495 @@
+/*
+ * House of Willow Alexander × HoWA — Global styles
+ *
+ * Single source of truth: DESIGN.md v2
+ * Tailwind 4 CSS-first config via @theme.
+ * No border-radius anywhere (heritage/institutional).
+ */
+
 @import "tailwindcss";
 
+/* ============================================================================
+ * DESIGN TOKENS
+ * Exposed both as CSS vars (direct use) and Tailwind theme (utilities).
+ * ============================================================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* House palette */
+  --house-brown: #30231c;
+  --house-gold: #b8943e;
+  --house-gold-light: #d4af5a;
+  --house-cream: #f5f0e8;
+  --house-cream-dark: #ebe4d6;
+  --house-white: #faf8f4;
+  --house-stone: #a09885;
+  --house-moss: #5a6b4a;
+  --house-black: #1d1d1b;
+
+  /* HoWA palette */
+  --howa-navy: #1e2a3a;
+  --howa-navy-deep: #151e2b;
+  --howa-teal: #3a7d7e;
+  --howa-paper: #f4efe4;
+  --howa-light: #f0f4f3;
+
+  /* Semantic */
+  --success: #5a6b4a;
+  --warning: #c4922a;
+  --error: #8b3a3a;
+  --info: #3a7d7e;
+
+  /* Timings — approved 2026-04-15 from Playground */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-settle: cubic-bezier(0.34, 1.28, 0.64, 1);
+  --t-fast: 300ms;
+  --t-base: 350ms;
+  --t-med: 450ms;
+  --t-slow: 550ms;
+  --t-xslow: 750ms;
+
+  /* Max widths — DESIGN.md Part A */
+  --w-content: 1200px;
+  --w-editorial: 1400px;
+  --w-longform: 1100px;
+  --w-article: 680px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Tailwind 4 theme — tokens exposed as utilities */
+@theme {
+  /* Colour */
+  --color-house-brown: #30231c;
+  --color-house-gold: #b8943e;
+  --color-house-gold-light: #d4af5a;
+  --color-house-cream: #f5f0e8;
+  --color-house-cream-dark: #ebe4d6;
+  --color-house-white: #faf8f4;
+  --color-house-stone: #a09885;
+  --color-house-moss: #5a6b4a;
+  --color-house-black: #1d1d1b;
+
+  --color-howa-navy: #1e2a3a;
+  --color-howa-navy-deep: #151e2b;
+  --color-howa-teal: #3a7d7e;
+  --color-howa-paper: #f4efe4;
+  --color-howa-light: #f0f4f3;
+
+  --color-success: #5a6b4a;
+  --color-warning: #c4922a;
+  --color-error: #8b3a3a;
+  --color-info: #3a7d7e;
+
+  /* Typography — Didot for display, Effra for body (House-wide).
+   * Cormorant is NOT in the fallback chain: it's loaded only for the
+   * Hearth magazine, and we don't want the font-matcher picking it up
+   * when Didot can't serve a specific weight or italic. */
+  --font-display: "Didot LT Pro", Didot, "Playfair Display", Georgia, serif;
+  --font-sans: "Effra Std", Inter, system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, Menlo, monospace;
+
+  /* Typography — Cormorant Garamond + Jost (Hearth-only, magazine voice).
+   * Matches the @font-face declarations emitted by next/font/google, so the
+   * Google-loaded faces register and browsers pick them up by name without
+   * us having to indirect through --font-cormorant / --font-jost. */
+  --font-hearth-serif: "Cormorant Garamond", Georgia, serif;
+  --font-hearth-sans: "Jost", Inter, system-ui, sans-serif;
+
+  /* Spacing — standard 4px base */
+  --spacing: 0.25rem;
+
+  /* Radii — zero everywhere */
+  --radius-none: 0;
+
+  /* Shadows */
+  --shadow-card: 0 16px 48px rgba(48, 35, 28, 0.10);
+  --shadow-featured: 0 24px 60px rgba(48, 35, 28, 0.15);
+  --shadow-steward: 0 24px 60px rgba(30, 42, 58, 0.20);
+
+  /* Easings — exposed as .ease-out / .ease-settle utilities.
+   * Matches the approved Playground curves (2026-04-15).
+   * Durations stay as --t-* vars in :root (above) — referenced in
+   * component classes via the `duration-[var(--t-slow)]` arbitrary form. */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-settle: cubic-bezier(0.34, 1.28, 0.64, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ============================================================================
+ * BASE
+ * ============================================================================ */
+
+*, *::before, *::after {
+  border-radius: 0 !important; /* heritage/institutional — zero by default */
+}
+
+/* Opt-in exception: radios, the cart-icon count bubble, and anything that
+ * must be a true circle. Apply `.is-round` to the element + its ::before/::after
+ * as needed. Use sparingly — the default is zero. */
+.is-round,
+.is-round::before,
+.is-round::after { border-radius: 9999px !important; }
+
+html {
+  font-size: 16px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+    animation-iteration-count: 1 !important;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--house-cream);
+  color: var(--house-brown);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  line-height: 1.5;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  /* Didot LT Pro has no real italic outlines — tell browsers to synthesize
+   * slant from the upright Bold when font-style: italic is requested. */
+  font-synthesis: style;
 }
+
+/* Focus ring — gold, offset, visible on all keyboard-reachable elements */
+*:focus-visible {
+  outline: 2px solid var(--house-gold);
+  outline-offset: 2px;
+  transition: outline-offset var(--t-fast) var(--ease-out);
+}
+
+/* ============================================================================
+ * SIGNATURE TYPOGRAPHY HELPERS
+ * Any italicised `em` inside an `em-accent` heading is the signature accent.
+ * ============================================================================ */
+
+.em-accent em { font-style: italic; font-weight: 400; }
+
+/* ============================================================================
+ * SHARED KEYFRAMES — ported from /ux/09-interactions/playground.html
+ * Use via Tailwind's `animate-[...]` arbitrary value or inline `animation` style.
+ * ============================================================================ */
+
+/* Cart count bump — settle overshoot */
+@keyframes howa-bump {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+/* Checkbox check-in — zoom + overshoot to settled 1.0 */
+@keyframes howa-check-settle {
+  0%   { transform: scale(0); opacity: 0; }
+  60%  { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Radio dot-in — slightly larger overshoot than checkbox */
+@keyframes howa-dot-settle {
+  0%   { transform: scale(0); opacity: 0; }
+  60%  { transform: scale(1.25); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Slide up + fade in (toast, success state) */
+@keyframes howa-slide-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Staggered list entry (search results, mega panel children) */
+@keyframes howa-slide-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Spinner for loading states */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================================================
+ * HoWA LANDING — ported from /ux/02-howa-landing/variant-D.html + _shared.css
+ * Variant D tier showcase (3 tiers: HoWA / HoWA+ / Steward)
+ * ============================================================================ */
+
+/* Grid backdrop — hero band + Steward tier */
+.howa-grid-bg { position: relative; }
+.howa-grid-bg::before {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 39px, rgba(184,148,62,0.04) 39px 40px),
+    repeating-linear-gradient(90deg, transparent 0 39px, rgba(184,148,62,0.04) 39px 40px);
+  pointer-events: none;
+}
+.howa-grid-bg > * { position: relative; z-index: 1; }
+
+/* --- TIER: HoWA (free, paper-cream) --- */
+.tier-howa {
+  background: var(--howa-paper);
+  border: 1px solid rgba(48,35,28,0.22);
+  padding: 44px 30px 42px;
+  color: var(--house-brown);
+  min-height: 580px;
+  position: relative;
+  display: flex; flex-direction: column;
+}
+.tier-howa::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(0deg, transparent 0 31px, rgba(48,35,28,0.04) 31px 32px);
+  pointer-events: none;
+}
+.tier-howa > * { position: relative; z-index: 1; }
+.tier-howa .tier-roman,
+.tier-howaplus .tier-roman,
+.tier-steward .tier-roman {
+  font-family: var(--font-hearth-serif); font-style: italic;
+  font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.tier-howa .tier-roman { color: var(--house-gold); }
+.tier-howa .tier-name {
+  font-family: var(--font-hearth-sans); font-size: 24px; font-weight: 400;
+  letter-spacing: -0.005em; color: var(--house-brown);
+}
+.tier-howa .tier-price-label {
+  font-family: var(--font-hearth-sans); font-size: 13px;
+  color: var(--house-stone); margin-top: 2px; margin-bottom: 20px;
+}
+.tier-howa .tier-preview {
+  background: #fff; border: 1px solid rgba(48,35,28,0.18);
+  padding: 14px; margin-bottom: 22px; min-height: 150px;
+}
+.tier-howa .tier-preview .pp-title {
+  font-family: var(--font-hearth-serif); font-size: 12px; font-style: italic;
+  color: var(--house-stone); margin-bottom: 8px; letter-spacing: 0.04em;
+}
+.tier-howa .tier-preview .pp-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 6px 0; border-bottom: 1px dashed rgba(48,35,28,0.18);
+  font-family: var(--font-hearth-sans); font-size: 12px; color: var(--house-brown);
+}
+.tier-howa .tier-preview .pp-row:last-child { border-bottom: none; }
+.tier-howa .tier-preview .pp-row em {
+  font-style: italic; color: var(--house-stone); font-size: 11px;
+}
+.tier-howa .tier-preview .pp-dot {
+  display: inline-block; width: 6px; height: 6px; border-radius: 50% !important;
+  background: var(--house-gold); margin-right: 8px; vertical-align: middle;
+}
+.tier-howa ul, .tier-howaplus ul, .tier-steward ul {
+  list-style: none; font-size: 13px; line-height: 1.8; padding-left: 16px; flex: 1;
+}
+.tier-howa ul { color: var(--house-brown); }
+.tier-howa ul li, .tier-howaplus ul li, .tier-steward ul li {
+  position: relative; padding: 2px 0;
+}
+.tier-howa ul li::before, .tier-howaplus ul li::before {
+  content: '—'; position: absolute; left: -16px; color: var(--house-gold);
+}
+.tier-howa .tier-cta-row, .tier-howaplus .tier-cta-row, .tier-steward .tier-cta-row {
+  margin-top: 22px;
+}
+.tier-howa .tier-cta {
+  display: inline-block; font-family: var(--font-hearth-sans);
+  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  border: 1px solid rgba(48,35,28,0.5); padding: 10px 20px;
+  color: var(--house-brown); text-decoration: none; background: transparent;
+  transition: background var(--t-base) var(--ease-out), color var(--t-base) var(--ease-out);
+}
+.tier-howa .tier-cta:hover { background: var(--house-brown); color: var(--house-cream); }
+
+/* --- TIER: HoWA+ (recommended, cream brand + gold, lifted) --- */
+.tier-howaplus {
+  background: var(--house-cream);
+  border: 1px solid var(--house-gold);
+  padding: 44px 30px 42px;
+  color: var(--house-brown);
+  min-height: 580px;
+  position: relative;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+  transform: translateY(-20px);
+  z-index: 2;
+  display: flex; flex-direction: column;
+}
+.tier-howaplus::before {
+  content: 'RECOMMENDED'; position: absolute; top: -10px; left: 50%;
+  transform: translateX(-50%); background: var(--house-gold); color: #fff;
+  font-family: var(--font-hearth-sans); font-size: 10px;
+  letter-spacing: 0.22em; padding: 5px 14px; z-index: 3;
+}
+.tier-howaplus .tier-roman { color: var(--house-gold); }
+.tier-howaplus .tier-name {
+  font-family: var(--font-hearth-sans); font-size: 26px; font-weight: 500;
+  color: var(--house-brown); letter-spacing: -0.005em;
+}
+.tier-howaplus .tier-price-label {
+  font-family: var(--font-hearth-sans); font-size: 14px;
+  color: var(--house-brown); margin-bottom: 22px;
+}
+.tier-howaplus .tier-price-label strong {
+  font-size: 22px; font-weight: 500; color: var(--house-gold); letter-spacing: 0;
+}
+.tier-howaplus .tier-preview {
+  background: #fff; border: 1px solid rgba(48,35,28,0.15);
+  padding: 0; margin-bottom: 22px; overflow: hidden; min-height: 150px;
+}
+.tier-howaplus .tier-preview .greeting {
+  padding: 11px 14px 2px; font-family: var(--font-hearth-sans);
+  font-size: 11px; color: var(--house-stone);
+}
+.tier-howaplus .tier-preview .greeting strong {
+  color: var(--house-brown); font-weight: 500;
+}
+.tier-howaplus .tier-preview .status {
+  padding: 0 14px 10px; font-family: var(--font-hearth-sans);
+  font-size: 11.5px; color: var(--house-brown);
+}
+.tier-howaplus .tier-preview .photo-tile {
+  height: 72px; background-size: cover; background-position: center 40%;
+  background-image: url('/home/hero-georgian.png'); filter: saturate(0.92);
+}
+.tier-howaplus .tier-preview .attn-row {
+  padding: 9px 14px; font-family: var(--font-hearth-sans); font-size: 11px;
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid rgba(48,35,28,0.08); color: var(--house-brown);
+}
+.tier-howaplus .tier-preview .attn-row em {
+  color: var(--house-gold); font-style: normal; font-weight: 500; font-size: 10px;
+  padding: 2px 8px; border: 1px solid var(--house-gold);
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+.tier-howaplus ul { color: var(--house-brown); }
+.tier-howaplus .tier-cta {
+  display: inline-block; font-family: var(--font-hearth-sans);
+  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  background: var(--house-gold); color: #fff; border: 1px solid var(--house-gold);
+  padding: 11px 22px; text-decoration: none;
+  transition: background var(--t-base) var(--ease-out);
+}
+.tier-howaplus .tier-cta:hover {
+  background: var(--house-gold-light); border-color: var(--house-gold-light);
+}
+
+/* --- TIER: Steward (coming-soon, navy blueprint) --- */
+.tier-steward {
+  background: var(--howa-navy-deep);
+  border: 1px solid rgba(184,148,62,0.35);
+  padding: 44px 30px 42px;
+  color: var(--house-cream);
+  min-height: 580px;
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.tier-steward::before {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 39px, rgba(184,148,62,0.06) 39px 40px),
+    repeating-linear-gradient(90deg, transparent 0 39px, rgba(184,148,62,0.06) 39px 40px);
+  pointer-events: none;
+}
+.tier-steward > * { position: relative; z-index: 1; }
+.tier-steward .tier-roman { color: var(--house-gold-light); }
+.tier-steward .tier-name {
+  font-family: var(--font-hearth-sans); font-size: 24px; font-weight: 400;
+  color: var(--house-cream); letter-spacing: -0.005em;
+}
+.tier-steward .tier-price-label {
+  font-family: var(--font-hearth-sans); font-size: 11px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(245,240,232,0.55); margin-top: 2px; margin-bottom: 20px;
+}
+.tier-steward .soon-badge {
+  position: absolute; top: 18px; right: 18px; z-index: 2;
+  font-family: var(--font-hearth-sans); font-size: 9px; letter-spacing: 0.24em;
+  padding: 3px 8px; background: rgba(184,148,62,0.15);
+  color: var(--house-gold-light); border: 1px solid rgba(184,148,62,0.35);
+}
+.tier-steward .tier-preview {
+  background: rgba(0,0,0,0.28); border: 1px solid rgba(184,148,62,0.35);
+  padding: 14px; margin-bottom: 22px;
+  display: flex; align-items: center; justify-content: center; min-height: 150px;
+}
+.tier-steward .gauge-wrap {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.tier-steward .gauge-label {
+  font-family: var(--font-hearth-serif); font-size: 11px; font-style: italic;
+  letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,240,232,0.65);
+}
+.tier-steward .gauge {
+  width: 86px; height: 86px; border-radius: 50% !important;
+  border: 1.5px solid rgba(184,148,62,0.35);
+  position: relative; display: flex; align-items: center; justify-content: center;
+}
+.tier-steward .gauge::before {
+  content: ''; position: absolute; inset: 8px; border-radius: 50% !important;
+  border: 1px solid rgba(184,148,62,0.2);
+}
+.tier-steward .gauge::after {
+  content: ''; position: absolute; inset: -3px; border-radius: 50% !important;
+  border: 2px solid var(--house-gold);
+  border-right-color: transparent; border-bottom-color: transparent;
+  transform: rotate(45deg);
+}
+.tier-steward .gauge-num {
+  font-family: var(--font-hearth-serif); font-size: 26px; font-weight: 500;
+  color: var(--house-gold-light); position: relative; z-index: 1;
+}
+.tier-steward .gauge-axes {
+  font-family: var(--font-hearth-sans); font-size: 9px;
+  color: rgba(245,240,232,0.5); letter-spacing: 0.14em;
+  text-transform: uppercase; text-align: center;
+}
+.tier-steward ul { color: rgba(245,240,232,0.78); }
+.tier-steward ul li::before {
+  content: '—'; position: absolute; left: -16px; color: var(--house-gold-light);
+}
+.tier-steward .tier-cta {
+  display: inline-block; font-family: var(--font-hearth-sans);
+  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  border: 1px solid rgba(245,240,232,0.45); padding: 10px 20px;
+  color: var(--house-cream); text-decoration: none;
+  transition: background var(--t-base) var(--ease-out);
+}
+.tier-steward .tier-cta:hover { background: rgba(245,240,232,0.08); }
+
+/* ============================================================================
+ * ACCESSIBILITY
+ * ============================================================================ */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 12px 16px;
+  background: var(--house-brown);
+  color: var(--house-cream);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transform: translateY(-100%);
+  transition: transform var(--t-base) var(--ease-out);
+  z-index: 9999;
+}
+.skip-link:focus { transform: translateY(0); }

@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>House of Willow Alexander — Homepage</title>
+<style>
+  @font-face {
+    font-family: 'Didot LT Pro';
+    src: url('fonts/DidotLTPro-Bold.woff2') format('woff2'),
+         url('fonts/DidotLTPro-Bold.woff') format('woff');
+    font-weight: 700;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Effra';
+    src: url('fonts/effra_std_rg-webfont.woff2') format('woff2'),
+         url('fonts/effra_std_rg-webfont.woff') format('woff');
+    font-weight: 400;
+    font-display: swap;
+  }
+
+  :root {
+    --house-brown: #30231c;
+    --house-gold: #b8943e;
+    --house-gold-light: #d4af5a;
+    --house-cream: #f5f0e8;
+    --house-cream-dark: #ebe4d6;
+    --house-white: #faf8f4;
+    --house-stone: #a09885;
+    --house-moss: #5a6b4a;
+    --house-black: #1d1d1b;
+    --howa-navy: #1e2a3a;
+    --howa-teal: #3a7d7e;
+    --howa-light: #f0f4f3;
+    --font-serif: 'Didot LT Pro', 'Georgia', serif;
+    --font-sans: 'Effra', 'Helvetica Neue', sans-serif;
+    --max-width: 1200px;
+    --nav-height: 72px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--font-sans); color: var(--house-brown); background: var(--house-white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+  /* ====== BUTTONS (design system) ====== */
+  .btn {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    padding: 10px 24px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 0;
+    transition: all 0.2s ease-out;
+  }
+  .btn-gold { background: var(--house-gold); color: #ffffff; }
+  .btn-gold:hover { background: var(--house-gold-light); transform: translateY(-1px); }
+  .btn-outline { background: transparent; border: 1px solid var(--house-brown); color: var(--house-brown); }
+  .btn-outline:hover { background: var(--house-brown); color: var(--house-cream); }
+  .btn-teal { background: var(--howa-teal); color: white; }
+  .btn-teal:hover { background: #458f90; transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent; color: var(--house-gold); padding: 10px 0; border: none;
+    text-decoration: underline; text-decoration-style: solid; text-underline-offset: 4px;
+    text-decoration-thickness: 1px; font-size: 14px; letter-spacing: 0.05em;
+    transition: text-decoration-style 0.3s, color 0.2s; cursor: pointer;
+  }
+  .btn-ghost:hover { text-decoration-style: dotted; color: var(--house-gold-light); }
+
+  /* ====== HEADER ====== */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--house-white);
+    border-bottom: 1px solid var(--house-cream-dark);
+    height: var(--nav-height);
+    display: flex; align-items: center; padding: 0 40px;
+  }
+  .header-inner { max-width: var(--max-width); margin: 0 auto; width: 100%; display: flex; align-items: center; justify-content: space-between; }
+  .logo { display: flex; align-items: center; gap: 16px; text-decoration: none; color: var(--house-brown); }
+  .logo img { height: 36px; width: auto; }
+  nav { display: flex; align-items: center; gap: 40px; }
+  nav a { font-size: 14px; color: var(--house-brown); text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+  nav a:hover { color: var(--house-gold); }
+  .header-utility { display: flex; align-items: center; gap: 24px; }
+  .header-utility > a:not(.btn) { font-size: 14px; color: var(--house-stone); text-decoration: none; transition: color 0.2s; }
+  .header-utility > a:hover { color: var(--house-gold); }
+
+  /* ====== HERO ====== */
+  .hero {
+    min-height: 85vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    background: var(--house-cream); overflow: hidden;
+  }
+  .hero-image {
+    background: linear-gradient(135deg, var(--house-cream-dark) 0%, var(--house-stone) 100%);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--house-stone); font-size: 18px; font-style: italic; min-height: 85vh;
+  }
+  .hero-content {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 128px 96px 128px 40px; max-width: 600px;
+  }
+  .hero-eyebrow {
+    font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--house-gold); margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-family: var(--font-serif); font-size: 56px; font-weight: 700;
+    line-height: 1.1; color: var(--house-brown); margin-bottom: 24px;
+  }
+  .hero p {
+    font-size: 18px; color: var(--house-brown); max-width: 480px;
+    margin-bottom: 40px; line-height: 1.7; opacity: 0.85;
+  }
+  .hero-ctas { display: flex; gap: 16px; align-items: center; }
+
+  /* ====== ACTION RAIL ====== */
+  .action-rail { background: var(--house-white); padding: 96px 40px; }
+  .action-rail-inner { max-width: var(--max-width); margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+  .action-card {
+    padding: 0; border: none; cursor: pointer; text-decoration: none; color: var(--house-brown); display: block;
+    border-top: 2px solid var(--house-cream-dark); padding-top: 24px;
+    transition: border-color 0.2s;
+  }
+  .action-card:hover { border-top-color: var(--house-gold); }
+  .action-card h3 { font-family: var(--font-serif); font-size: 20px; margin-bottom: 8px; transition: color 0.2s; }
+  .action-card:hover h3 { color: var(--house-gold); }
+  .action-card p { font-size: 14px; color: var(--house-stone); line-height: 1.5; }
+
+  /* ====== HOUSE / HOWA SPLIT ====== */
+  .split-section {
+    background: var(--house-cream); padding: 128px 40px; position: relative; overflow: hidden;
+  }
+  .split-section::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: url('pattern-white.png'); background-size: 1400px; background-repeat: repeat;
+    opacity: 0.5; mix-blend-mode: soft-light;
+  }
+  .split-section > * { position: relative; z-index: 1; }
+  .split-inner { max-width: var(--max-width); margin: 0 auto; }
+  .split-header { text-align: center; margin-bottom: 96px; }
+  .split-header h2 { font-family: var(--font-serif); font-size: 32px; margin-bottom: 16px; }
+  .split-header p { font-size: 18px; color: var(--house-stone); max-width: 600px; margin: 0 auto; }
+  .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+  .split-card { padding: 64px; }
+  .split-card.house-card { background: var(--house-white); border: 1px solid var(--house-cream-dark); }
+  .split-card.howa-card {
+    background: var(--howa-navy); color: var(--house-cream);
+    position: relative; overflow: hidden;
+  }
+  .split-card.howa-card::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: url('pattern-white.png'); background-size: 1050px; background-repeat: repeat;
+    opacity: 0.04;
+  }
+  .split-card.howa-card > * { position: relative; z-index: 1; }
+  .split-card .subtitle { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.5; margin-bottom: 24px; }
+  .split-card h3 { font-family: var(--font-serif); font-size: 24px; margin-bottom: 16px; }
+  .split-card ul { list-style: none; padding: 0; }
+  .split-card li { font-size: 16px; padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.06); }
+  .howa-card li { border-bottom-color: rgba(255,255,255,0.08); }
+
+  /* ====== DESIGN & CARE (editorial cards) ====== */
+  .design-care { padding: 128px 40px; background: var(--house-white); }
+  .design-care-inner { max-width: var(--max-width); margin: 0 auto; }
+  .design-care-header { margin-bottom: 96px; }
+  .design-care-header h2 { font-family: var(--font-serif); font-size: 32px; margin-bottom: 16px; }
+  .design-care-header p { font-size: 18px; color: var(--house-stone); max-width: 520px; }
+  .design-care-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+  .dc-card { cursor: pointer; }
+  .dc-card-image {
+    height: 320px;
+    background: linear-gradient(135deg, var(--house-cream-dark), var(--house-moss));
+    display: flex; align-items: center; justify-content: center;
+    color: var(--house-white); font-style: italic; font-size: 16px;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  }
+  .dc-card:hover .dc-card-image {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(48,35,28,0.1);
+  }
+  .dc-card-body {
+    padding: 24px 0 0 0;
+    border-top: 2px solid var(--house-gold);
+    margin-top: 20px;
+  }
+  .dc-card-body h3 { font-family: var(--font-serif); font-size: 24px; margin-bottom: 8px; transition: color 0.2s; }
+  .dc-card:hover .dc-card-body h3 { color: var(--house-gold); }
+  .dc-card-body p { font-size: 16px; color: var(--house-stone); margin-bottom: 24px; line-height: 1.6; }
+
+  /* ====== PROTECT ====== */
+  .protect {
+    background: var(--house-cream); padding: 128px 40px; position: relative; overflow: hidden;
+  }
+  .protect::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: url('pattern-white.png'); background-size: 1400px; background-repeat: repeat;
+    opacity: 0.5; mix-blend-mode: soft-light;
+  }
+  .protect > * { position: relative; z-index: 1; }
+  .protect-inner { max-width: var(--max-width); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .protect h2 { font-family: var(--font-serif); font-size: 32px; margin-bottom: 16px; }
+  .protect p { font-size: 18px; color: var(--house-stone); margin-bottom: 24px; line-height: 1.7; }
+  .protect-image {
+    height: 400px;
+    background: linear-gradient(135deg, var(--house-cream-dark), var(--house-stone));
+    display: flex; align-items: center; justify-content: center;
+    color: var(--house-stone); font-style: italic;
+  }
+
+  /* ====== SHOP & JOURNAL (editorial cards) ====== */
+  .shop-journal { padding: 128px 40px; background: var(--house-white); }
+  .shop-journal-inner { max-width: var(--max-width); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+  .sj-block { cursor: pointer; }
+  .sj-image {
+    height: 240px;
+    background: linear-gradient(135deg, var(--house-cream), var(--house-cream-dark));
+    margin-bottom: 0; display: flex; align-items: center; justify-content: center;
+    font-style: italic; color: var(--house-stone); font-size: 14px;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  }
+  .sj-block:hover .sj-image {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(48,35,28,0.08);
+  }
+  .sj-text {
+    padding: 24px 0 0 0;
+    border-top: 2px solid var(--house-gold);
+    margin-top: 20px;
+  }
+  .sj-text h3 { font-family: var(--font-serif); font-size: 24px; margin-bottom: 8px; transition: color 0.2s; }
+  .sj-block:hover .sj-text h3 { color: var(--house-gold); }
+  .sj-text p { font-size: 16px; color: var(--house-stone); margin-bottom: 24px; }
+
+  /* ====== PROOF STRIP ====== */
+  .proof-strip {
+    background: var(--house-cream); padding: 64px 40px;
+    border-top: 1px solid var(--house-cream-dark); border-bottom: 1px solid var(--house-cream-dark);
+    position: relative; overflow: hidden;
+  }
+  .proof-strip::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: url('pattern-white.png'); background-size: 1400px; background-repeat: repeat;
+    opacity: 0.5; mix-blend-mode: soft-light;
+  }
+  .proof-strip > * { position: relative; z-index: 1; }
+  .proof-inner { max-width: var(--max-width); margin: 0 auto; display: flex; justify-content: center; gap: 96px; align-items: center; }
+  .proof-item { text-align: center; font-size: 14px; color: var(--house-stone); letter-spacing: 0.05em; }
+
+  /* ====== CLOSING CTA ====== */
+  .closing-cta {
+    background: var(--house-brown); color: var(--house-cream);
+    padding: 128px 40px; text-align: center; position: relative; overflow: hidden;
+  }
+  .closing-cta::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: url('pattern-gold.png'); background-size: 1750px; background-repeat: repeat;
+    opacity: 0.15;
+  }
+  .closing-cta > * { position: relative; z-index: 1; }
+  .closing-cta h2 { font-family: var(--font-serif); font-size: 32px; max-width: 600px; margin: 0 auto 24px; line-height: 1.3; }
+  .closing-cta p { font-size: 18px; opacity: 0.7; max-width: 500px; margin: 0 auto 40px; }
+
+  /* ====== FOOTER ====== */
+  footer {
+    background: var(--house-brown); color: var(--house-cream);
+    padding: 96px 40px 40px; position: relative; overflow: hidden;
+  }
+  footer::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: url('pattern-gold.png'); background-size: 1750px; background-repeat: repeat;
+    opacity: 0.06;
+  }
+  footer > * { position: relative; z-index: 1; }
+  .footer-inner { max-width: var(--max-width); margin: 0 auto; display: grid; grid-template-columns: 2fr repeat(4, 1fr); gap: 64px; }
+  .footer-brand p { font-size: 14px; opacity: 0.6; margin-top: 16px; line-height: 1.6; }
+  .footer-col h4 { font-family: var(--font-serif); font-size: 16px; margin-bottom: 16px; }
+  .footer-col a { display: block; color: var(--house-cream); opacity: 0.5; text-decoration: none; font-size: 14px; padding: 3px 0; transition: opacity 0.2s; }
+  .footer-col a:hover { opacity: 1; }
+  .footer-bottom {
+    max-width: var(--max-width); margin: 64px auto 0; padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex; justify-content: space-between; font-size: 12px; opacity: 0.4;
+  }
+
+  /* ====== RESPONSIVE ====== */
+  @media (max-width: 1023px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-image { display: none; }
+    .hero-content { padding: 96px 40px; max-width: 100%; }
+    .hero h1 { font-size: 40px; }
+    .action-rail-inner { grid-template-columns: 1fr 1fr; gap: 24px; }
+    .split-grid { grid-template-columns: 1fr; gap: 32px; }
+    .split-card { padding: 40px; }
+    .design-care-grid { grid-template-columns: 1fr; gap: 48px; }
+    .protect-inner { grid-template-columns: 1fr; gap: 48px; }
+    .shop-journal-inner { grid-template-columns: 1fr; gap: 48px; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 40px; }
+    nav { display: none; }
+  }
+  @media (max-width: 767px) {
+    .hero h1 { font-size: 32px; }
+    .hero-content { padding: 64px 24px; }
+    .action-rail { padding: 64px 24px; }
+    .action-rail-inner { grid-template-columns: 1fr; gap: 0; }
+    .action-card { border-top-width: 1px; padding-top: 20px; padding-bottom: 20px; }
+    .split-section, .design-care, .protect, .shop-journal, .closing-cta { padding: 64px 24px; }
+    .split-header { margin-bottom: 48px; }
+    .proof-inner { flex-direction: column; gap: 16px; }
+    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <img src="logo.svg" alt="House of Willow Alexander">
+    </a>
+    <nav>
+      <a href="/the-house">The House</a>
+      <a href="/howa">HoWA</a>
+      <a href="/design">Design</a>
+      <a href="/services">Services</a>
+      <a href="/protect">Protect</a>
+      <a href="/shop">Shop</a>
+      <a href="/journal">Journal</a>
+    </nav>
+    <div class="header-utility">
+      <a href="/search">Search</a>
+      <a href="#">Sign in</a>
+      <a href="#" class="btn btn-gold">Start HoWA</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">For homes with soul</div>
+    <h1>Beautiful living, intelligently stewarded.</h1>
+    <p>The House brings design, care, protection, and considered commerce into one clear world. HoWA is the stewardship system behind it.</p>
+    <div class="hero-ctas">
+      <a href="#" class="btn btn-gold">Start HoWA</a>
+      <a href="/the-house" class="btn btn-outline">Explore the House</a>
+    </div>
+  </div>
+  <div class="hero-image">Hero photography: warm British home with garden</div>
+</section>
+
+<!-- ACTION RAIL -->
+<section class="action-rail">
+  <div class="action-rail-inner">
+    <a href="/howa" class="action-card">
+      <h3>Use HoWA</h3>
+      <p>Start with the living record of the home</p>
+    </a>
+    <a href="/design" class="action-card">
+      <h3>Design a space</h3>
+      <p>Interiors and gardens by the House</p>
+    </a>
+    <a href="/services" class="action-card">
+      <h3>Book care</h3>
+      <p>Plans and one-off services</p>
+    </a>
+    <a href="/protect" class="action-card">
+      <h3>Protect the home</h3>
+      <p>Risk review and insurance</p>
+    </a>
+  </div>
+</section>
+
+<!-- HOUSE / HOWA SPLIT -->
+<section class="split-section">
+  <div class="split-inner">
+    <div class="split-header">
+      <h2>A clear hierarchy for scale</h2>
+      <p>One institution. One operating system. Everything else sits beneath them as a commercial expression.</p>
+    </div>
+    <div class="split-grid">
+      <div class="split-card house-card">
+        <div class="subtitle">The Institution</div>
+        <h3>The House</h3>
+        <ul>
+          <li>Taste, trust, editorial aspiration</li>
+          <li>Brand, standards, sustainability</li>
+          <li>Cultural authority and proof</li>
+        </ul>
+      </div>
+      <div class="split-card howa-card">
+        <div class="subtitle">The Operating System</div>
+        <h3>HoWA</h3>
+        <ul>
+          <li>The living record of the home</li>
+          <li>Dashboard, memory, continuity</li>
+          <li>Guides, protects, coordinates</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN & CARE -->
+<section class="design-care">
+  <div class="design-care-inner">
+    <div class="design-care-header">
+      <h2>Design and care, under one roof</h2>
+      <p>From interiors and gardens to weekly care plans, the House standard runs through every service.</p>
+    </div>
+    <div class="design-care-grid">
+      <div class="dc-card">
+        <div class="dc-card-image">Interior design photography</div>
+        <div class="dc-card-body">
+          <h3>Design</h3>
+          <p>Interior and garden projects shaped by taste, craft, and intention.</p>
+          <a href="/design" class="btn btn-ghost">See design</a>
+        </div>
+      </div>
+      <div class="dc-card">
+        <div class="dc-card-image">Home care photography</div>
+        <div class="dc-card-body">
+          <h3>Services</h3>
+          <p>Recurring and one-off care plans for homes and gardens.</p>
+          <a href="/services" class="btn btn-ghost">Book care</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROTECT -->
+<section class="protect">
+  <div class="protect-inner">
+    <div>
+      <h2>Protection as stewardship, not alarm</h2>
+      <p>A calm preventative layer for households who prefer prevention over repair. Risk review, ongoing protection, and insurance connected through HoWA.</p>
+      <a href="/protect" class="btn btn-outline">Protect home</a>
+    </div>
+    <div class="protect-image">Home protection photography</div>
+  </div>
+</section>
+
+<!-- SHOP & JOURNAL -->
+<section class="shop-journal">
+  <div class="shop-journal-inner">
+    <div class="sj-block">
+      <div class="sj-image">House Approved product photography</div>
+      <div class="sj-text">
+        <h3>Shop</h3>
+        <p>House Approved objects for home and garden, curated through House taste.</p>
+        <a href="/shop" class="btn btn-ghost">Shop the edit</a>
+      </div>
+    </div>
+    <div class="sj-block">
+      <div class="sj-image">Journal editorial photography</div>
+      <div class="sj-text">
+        <h3>Journal</h3>
+        <p>Stories, guidance, and seasonal intelligence for the home. The Hearth, by the House.</p>
+        <a href="/journal" class="btn btn-ghost">Read the Journal</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF STRIP -->
+<section class="proof-strip">
+  <div class="proof-inner">
+    <div class="proof-item">House Standards</div>
+    <div class="proof-item">Trusted Partners</div>
+    <div class="proof-item">Carbon Offset</div>
+    <div class="proof-item">Sustainably Led</div>
+    <div class="proof-item">Real Households</div>
+  </div>
+</section>
+
+<!-- CLOSING CTA -->
+<section class="closing-cta">
+  <h2>For homes with soul, proper care should never be left to memory alone.</h2>
+  <p>HoWA remembers, guides, and protects. Start with the living record of the home.</p>
+  <a href="#" class="btn btn-gold">Start HoWA</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="logo.svg" alt="House of Willow Alexander" style="height: 32px; filter: brightness(0) invert(1);">
+      <p>The institution for effortless intelligent living. HoWA is the stewardship system behind it.</p>
+    </div>
+    <div class="footer-col">
+      <h4>The House</h4>
+      <a href="/the-house">Philosophy</a>
+      <a href="/the-house">Standards</a>
+      <a href="/the-house">Sustainability</a>
+      <a href="/the-house">About</a>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="/design">Design</a>
+      <a href="/services">House Plans</a>
+      <a href="/protect">Protect</a>
+      <a href="/shop">Shop</a>
+    </div>
+    <div class="footer-col">
+      <h4>HoWA</h4>
+      <a href="/howa">What is HoWA</a>
+      <a href="/howa/companion">Companion</a>
+      <a href="/howa/plans">Plans</a>
+      <a href="#">Sign in</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="tel:08000478738">0800 047 8738</a>
+      <a href="/book-consultation">Book consultation</a>
+      <a href="/contact">Contact</a>
+      <a href="/legal">Legal</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 House of Willow Alexander</span>
+    <span>Privacy &middot; Terms &middot; Cookies</span>
+  </div>
+</footer>
+
+</body>
+</html>

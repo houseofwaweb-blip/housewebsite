@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Rituals of a Well-Kept Home — Journal</title>
+<style>
+  @font-face { font-family: 'Didot LT Pro'; src: url('fonts/DidotLTPro-Bold.woff2') format('woff2'), url('fonts/DidotLTPro-Bold.woff') format('woff'); font-weight: 700; font-display: swap; }
+  @font-face { font-family: 'Effra'; src: url('fonts/effra_std_rg-webfont.woff2') format('woff2'), url('fonts/effra_std_rg-webfont.woff') format('woff'); font-weight: 400; font-display: swap; }
+
+  :root {
+    --house-brown: #30231c; --house-gold: #b8943e; --house-gold-light: #d4af5a;
+    --house-cream: #f5f0e8; --house-cream-dark: #ebe4d6; --house-white: #faf8f4;
+    --house-stone: #a09885; --house-moss: #5a6b4a; --house-black: #1d1d1b;
+    --howa-navy: #1e2a3a; --howa-teal: #3a7d7e;
+    --font-serif: 'Didot LT Pro', 'Georgia', serif;
+    --font-sans: 'Effra', 'Helvetica Neue', sans-serif;
+    --max-width: 1200px; --nav-height: 72px;
+    --article-width: 680px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--font-sans); color: var(--house-brown); background: var(--house-white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+  /* Buttons */
+  .btn { display: inline-block; font-family: var(--font-sans); font-size: 14px; letter-spacing: 0.05em; padding: 10px 24px; border: none; cursor: pointer; text-decoration: none; border-radius: 0; transition: all 0.2s ease-out; }
+  .btn-gold { background: var(--house-gold); color: #ffffff; }
+  .btn-gold:hover { background: var(--house-gold-light); transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--house-gold); padding: 10px 0; border: none; text-decoration: underline; text-decoration-style: solid; text-underline-offset: 4px; text-decoration-thickness: 1px; font-size: 14px; letter-spacing: 0.05em; transition: text-decoration-style 0.3s, color 0.2s; cursor: pointer; }
+  .btn-ghost:hover { text-decoration-style: dotted; color: var(--house-gold-light); }
+
+  /* Header */
+  header { position: sticky; top: 0; z-index: 100; background: var(--house-white); border-bottom: 1px solid var(--house-cream-dark); height: var(--nav-height); display: flex; align-items: center; padding: 0 40px; }
+  .header-inner { max-width: var(--max-width); margin: 0 auto; width: 100%; display: flex; align-items: center; justify-content: space-between; }
+  .logo { display: flex; align-items: center; gap: 16px; text-decoration: none; color: var(--house-brown); }
+  .logo img { height: 36px; width: auto; }
+  nav { display: flex; align-items: center; gap: 40px; }
+  nav a { font-size: 14px; color: var(--house-brown); text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+  nav a:hover { color: var(--house-gold); }
+  nav a.active { color: var(--house-gold); }
+  .header-utility { display: flex; align-items: center; gap: 24px; }
+  .header-utility > a:not(.btn) { font-size: 14px; color: var(--house-stone); text-decoration: none; transition: color 0.2s; }
+  .header-utility > a:not(.btn):hover { color: var(--house-gold); }
+
+  /* ====== ARTICLE HERO ====== */
+  .article-hero {
+    background: var(--house-cream); position: relative; overflow: hidden;
+  }
+  .article-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: url('pattern-white.png'); background-size: 1400px; background-repeat: repeat;
+    opacity: 0.5; mix-blend-mode: soft-light;
+  }
+  .article-hero > * { position: relative; z-index: 1; }
+  .article-hero-inner {
+    max-width: var(--article-width); margin: 0 auto; padding: 96px 24px 64px;
+    text-align: center;
+  }
+  .article-meta {
+    display: flex; justify-content: center; gap: 24px; align-items: center;
+    font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--house-stone);
+    margin-bottom: 32px;
+  }
+  .article-meta .category { color: var(--house-gold); }
+  .article-meta .divider { width: 1px; height: 12px; background: var(--house-cream-dark); }
+  .article-hero h1 {
+    font-family: var(--font-serif); font-size: 44px; line-height: 1.15;
+    margin-bottom: 24px;
+  }
+  .article-hero .standfirst {
+    font-size: 18px; color: var(--house-stone); line-height: 1.7; max-width: 560px; margin: 0 auto;
+  }
+
+  /* ====== ARTICLE IMAGE ====== */
+  .article-image {
+    max-width: 960px; margin: 0 auto;
+    height: 480px;
+    background: linear-gradient(135deg, var(--house-cream-dark), var(--house-moss));
+    display: flex; align-items: center; justify-content: center;
+    color: var(--house-white); font-style: italic; font-size: 16px;
+  }
+
+  /* ====== ARTICLE BODY ====== */
+  .article-body {
+    max-width: var(--article-width); margin: 0 auto; padding: 64px 24px 128px;
+  }
+  .article-body p {
+    font-size: 18px; line-height: 1.8; margin-bottom: 32px; color: var(--house-brown);
+  }
+  .article-body h2 {
+    font-family: var(--font-serif); font-size: 28px; line-height: 1.25;
+    margin: 64px 0 24px;
+  }
+  .article-body h3 {
+    font-family: var(--font-serif); font-size: 22px; line-height: 1.3;
+    margin: 48px 0 16px;
+  }
+
+  /* Pull quote */
+  .pull-quote {
+    border-left: 2px solid var(--house-gold);
+    padding: 8px 0 8px 32px;
+    margin: 64px 0;
+  }
+  .pull-quote p {
+    font-family: var(--font-serif); font-size: 24px; line-height: 1.4;
+    color: var(--house-brown); margin-bottom: 12px;
+  }
+  .pull-quote cite {
+    font-style: normal; font-size: 13px; color: var(--house-stone);
+    letter-spacing: 0.05em;
+  }
+
+  /* Inline image (wider than text) */
+  .article-inline-image {
+    margin: 64px -80px;
+    height: 360px;
+    background: linear-gradient(135deg, var(--house-cream), var(--house-stone));
+    display: flex; align-items: center; justify-content: center;
+    color: var(--house-stone); font-style: italic; font-size: 14px;
+  }
+
+  /* Reading progress */
+  .reading-progress {
+    position: fixed; top: var(--nav-height); left: 0; width: 0; height: 2px;
+    background: var(--house-gold); z-index: 99; transition: width 0.1s;
+  }
+
+  /* ====== ARTICLE FOOTER (soft CTA) ====== */
+  .article-footer {
+    max-width: var(--article-width); margin: 0 auto; padding: 0 24px 64px;
+    border-top: 1px solid var(--house-cream-dark); padding-top: 48px;
+  }
+  .article-tags {
+    display: flex; gap: 8px; margin-bottom: 48px; flex-wrap: wrap;
+  }
+  .article-tag {
+    font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--house-stone); border: 1px solid var(--house-cream-dark);
+    padding: 6px 16px; text-decoration: none; transition: all 0.2s;
+  }
+  .article-tag:hover { border-color: var(--house-gold); color: var(--house-gold); }
+
+  .article-cta {
+    background: var(--house-cream); padding: 48px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .article-cta::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: url('pattern-white.png'); background-size: 1400px; background-repeat: repeat;
+    opacity: 0.5; mix-blend-mode: soft-light;
+  }
+  .article-cta > * { position: relative; z-index: 1; }
+  .article-cta h3 { font-family: var(--font-serif); font-size: 24px; margin-bottom: 12px; }
+  .article-cta p { font-size: 16px; color: var(--house-stone); margin-bottom: 24px; max-width: 400px; margin-left: auto; margin-right: auto; }
+
+  /* ====== RELATED ARTICLES ====== */
+  .related {
+    background: var(--house-white); padding: 96px 40px; border-top: 1px solid var(--house-cream-dark);
+  }
+  .related-inner { max-width: var(--max-width); margin: 0 auto; }
+  .related-header { margin-bottom: 64px; }
+  .related-header h2 { font-family: var(--font-serif); font-size: 28px; }
+  .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 64px; }
+  .related-card { cursor: pointer; }
+  .related-card-image {
+    height: 200px;
+    background: linear-gradient(135deg, var(--house-cream-dark), var(--house-stone));
+    display: flex; align-items: center; justify-content: center;
+    color: var(--house-stone); font-style: italic; font-size: 13px;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  }
+  .related-card:hover .related-card-image {
+    transform: translateY(-4px); box-shadow: 0 12px 40px rgba(48,35,28,0.1);
+  }
+  .related-card-body {
+    padding: 20px 0 0 0; border-top: 2px solid var(--house-gold); margin-top: 16px;
+  }
+  .related-card-body .card-cat { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--house-gold); margin-bottom: 8px; }
+  .related-card-body h3 { font-family: var(--font-serif); font-size: 20px; margin-bottom: 8px; transition: color 0.2s; }
+  .related-card:hover .related-card-body h3 { color: var(--house-gold); }
+  .related-card-body p { font-size: 14px; color: var(--house-stone); line-height: 1.5; }
+
+  /* Footer */
+  footer { background: var(--house-brown); color: var(--house-cream); padding: 96px 40px 40px; position: relative; overflow: hidden; }
+  footer::before { content: ''; position: absolute; inset: 0; background-image: url('pattern-gold.png'); background-size: 1750px; background-repeat: repeat; opacity: 0.06; }
+  footer > * { position: relative; z-index: 1; }
+  .footer-inner { max-width: var(--max-width); margin: 0 auto; display: grid; grid-template-columns: 2fr repeat(4, 1fr); gap: 64px; }
+  .footer-brand p { font-size: 14px; opacity: 0.6; margin-top: 16px; line-height: 1.6; }
+  .footer-col h4 { font-family: var(--font-serif); font-size: 16px; margin-bottom: 16px; }
+  .footer-col a { display: block; color: var(--house-cream); opacity: 0.5; text-decoration: none; font-size: 14px; padding: 3px 0; transition: opacity 0.2s; }
+  .footer-col a:hover { opacity: 1; }
+  .footer-bottom { max-width: var(--max-width); margin: 64px auto 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; font-size: 12px; opacity: 0.4; }
+
+  /* Responsive */
+  @media (max-width: 1023px) {
+    .related-grid { grid-template-columns: 1fr; gap: 48px; }
+    .article-inline-image { margin: 48px 0; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 40px; }
+    nav { display: none; }
+  }
+  @media (max-width: 767px) {
+    .article-hero-inner { padding: 64px 24px 48px; }
+    .article-hero h1 { font-size: 32px; }
+    .article-image { height: 280px; }
+    .article-body { padding: 48px 24px 96px; }
+    .article-body p { font-size: 17px; }
+    .article-inline-image { margin: 32px -24px; height: 240px; }
+    .pull-quote p { font-size: 20px; }
+    .related { padding: 64px 24px; }
+    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Reading progress bar -->
+<div class="reading-progress" id="progress"></div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo"><img src="logo.svg" alt="House of Willow Alexander"></a>
+    <nav>
+      <a href="/the-house">The House</a>
+      <a href="howa.html">HoWA</a>
+      <a href="/design">Design</a>
+      <a href="/services">Services</a>
+      <a href="/protect">Protect</a>
+      <a href="/shop">Shop</a>
+      <a href="/journal" class="active">Journal</a>
+    </nav>
+    <div class="header-utility">
+      <a href="/search">Search</a>
+      <a href="#">Sign in</a>
+      <a href="#" class="btn btn-gold">Start HoWA</a>
+    </div>
+  </div>
+</header>
+
+<!-- ARTICLE HERO -->
+<section class="article-hero">
+  <div class="article-hero-inner">
+    <div class="article-meta">
+      <span class="category">Interiors &amp; Styling</span>
+      <span class="divider"></span>
+      <span>8 min read</span>
+      <span class="divider"></span>
+      <span>Spring 2026</span>
+    </div>
+    <h1>The Rituals of a Well-Kept Home</h1>
+    <p class="standfirst">On the quiet discipline of domestic care, and why the smallest routines carry the deepest meaning.</p>
+  </div>
+</section>
+
+<!-- HERO IMAGE -->
+<div class="article-image">Article hero photography: morning light in a living room</div>
+
+<!-- ARTICLE BODY -->
+<article class="article-body">
+  <p>There is a particular quality to a home that is looked after well. Not the showroom polish of a place arranged for visitors, but the quieter radiance of rooms that are tended with regularity and affection. A certain softness in the way light meets a cleaned window. The scent of freshly laundered linen folded into a drawer that closes without effort.</p>
+
+  <p>These are not luxuries. They are rituals. And like all meaningful rituals, they work because they are repeated, not because they are grand.</p>
+
+  <h2>The morning sweep</h2>
+
+  <p>In many traditional British households, the day began with what was simply called "the sweep." Not a deep clean. Not a reorganisation. Just a calm pass through the ground floor, setting things straight, opening a window, running a cloth along a surface that had gathered overnight dust.</p>
+
+  <p>The sweep was not about hygiene. It was about attention. A daily acknowledgement that this home, these rooms, these objects, were worth noticing. Worth maintaining. Worth caring for before the day pulled everyone outward.</p>
+
+  <div class="pull-quote">
+    <p>A home that is well kept is not a home that never gets messy. It is a home that knows how to return to itself.</p>
+    <cite>House of Willow Alexander, The Hearth</cite>
+  </div>
+
+  <p>The modern equivalent of the sweep is not a Roomba. It is a decision, made quietly each morning, that the space you live in deserves a moment of your presence before you leave it.</p>
+
+  <h2>Seasonal care as stewardship</h2>
+
+  <p>The Victorians understood something we have largely forgotten: that a home moves through seasons, and each season asks something different of the people who live there. Spring demanded the clearing of soot and the airing of rooms sealed through winter. Autumn required the inspection of gutters, the treatment of window frames, the quiet preparation for cold.</p>
+
+  <div class="article-inline-image">Photography: a gardener tending borders in late afternoon light</div>
+
+  <p>This is not nostalgia. It is physics. Materials expand and contract. Moisture moves through walls. Gardens grow whether or not you are watching. A home that is seasonally maintained is not simply cleaner. It is structurally sounder, more efficient, and more comfortable to live in.</p>
+
+  <h3>What spring asks of the home</h3>
+
+  <p>Windows opened properly for the first time in months. Gutters cleared of winter debris. Garden borders prepared. The heating system given its annual rest. A fresh inventory of what needs replacing, mending, or releasing.</p>
+
+  <p>None of this requires expertise. It requires memory. And this is where the modern household most often fails, not through carelessness, but through the quiet accumulation of things forgotten.</p>
+
+  <h2>Memory as a service</h2>
+
+  <p>HoWA exists because memory should not be a burden. A home's needs are predictable, seasonal, and specific. When they are recorded, tracked, and gently prompted, care becomes effortless. When they are left to memory alone, they become a source of anxiety, guilt, and eventual cost.</p>
+
+  <p>The rituals of a well-kept home are not complicated. They are simply hard to remember. And the cost of forgetting is always higher than the cost of care.</p>
+</article>
+
+<!-- ARTICLE FOOTER -->
+<div class="article-footer">
+  <div class="article-tags">
+    <a href="#" class="article-tag">Interiors</a>
+    <a href="#" class="article-tag">Seasonal care</a>
+    <a href="#" class="article-tag">Heritage</a>
+    <a href="#" class="article-tag">Stewardship</a>
+  </div>
+
+  <div class="article-cta">
+    <h3>Care, remembered</h3>
+    <p>HoWA keeps the living record of your home so the rituals that matter never slip through the seasons.</p>
+    <a href="#" class="btn btn-gold">Start HoWA</a>
+  </div>
+</div>
+
+<!-- RELATED ARTICLES -->
+<section class="related">
+  <div class="related-inner">
+    <div class="related-header">
+      <h2>Continue reading</h2>
+    </div>
+    <div class="related-grid">
+      <a href="#" class="related-card">
+        <div class="related-card-image">Garden photography</div>
+        <div class="related-card-body">
+          <div class="card-cat">Gardens &amp; Exteriors</div>
+          <h3>Spring borders: what to plant, what to move</h3>
+          <p>A guide to the quiet reshuffling that makes a garden feel considered.</p>
+        </div>
+      </a>
+      <a href="#" class="related-card">
+        <div class="related-card-image">Interior photography</div>
+        <div class="related-card-body">
+          <div class="card-cat">Design &amp; Architecture</div>
+          <h3>The case for natural materials</h3>
+          <p>Why stone, timber, and linen outlast every interior trend.</p>
+        </div>
+      </a>
+      <a href="#" class="related-card">
+        <div class="related-card-image">Heritage photography</div>
+        <div class="related-card-body">
+          <div class="card-cat">Heritage &amp; Culture</div>
+          <h3>Mrs Beeton and the art of household management</h3>
+          <p>What the Victorian matriarch still teaches us about care, craft, and ceremony.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="logo.svg" alt="House of Willow Alexander" style="height: 32px; filter: brightness(0) invert(1);">
+      <p>The institution for effortless intelligent living. HoWA is the stewardship system behind it.</p>
+    </div>
+    <div class="footer-col"><h4>The House</h4><a href="#">Philosophy</a><a href="#">Standards</a><a href="#">Sustainability</a><a href="#">About</a></div>
+    <div class="footer-col"><h4>Services</h4><a href="#">Design</a><a href="#">House Plans</a><a href="#">Protect</a><a href="#">Shop</a></div>
+    <div class="footer-col"><h4>HoWA</h4><a href="#">What is HoWA</a><a href="#">Companion</a><a href="#">Plans</a><a href="#">Sign in</a></div>
+    <div class="footer-col"><h4>Contact</h4><a href="tel:08000478738">0800 047 8738</a><a href="#">Book consultation</a><a href="#">Contact</a><a href="#">Legal</a></div>
+  </div>
+  <div class="footer-bottom"><span>&copy; 2026 House of Willow Alexander</span><span>Privacy &middot; Terms &middot; Cookies</span></div>
+</footer>
+
+<script>
+  // Reading progress bar
+  window.addEventListener('scroll', () => {
+    const article = document.querySelector('.article-body');
+    if (!article) return;
+    const rect = article.getBoundingClientRect();
+    const start = article.offsetTop - window.innerHeight;
+    const end = article.offsetTop + article.offsetHeight;
+    const progress = Math.min(Math.max((window.scrollY - start) / (end - start), 0), 1);
+    document.getElementById('progress').style.width = (progress * 100) + '%';
+  });
+</script>
+
+</body>
+</html>
