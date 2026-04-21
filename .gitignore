@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /.pnp
@@ -22,6 +20,7 @@
 
 # misc
 .DS_Store
+Thumbs.db
 *.pem
 
 # debug
@@ -30,8 +29,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files
 .env*
+!.env.local.example
 
 # vercel
 .vercel
@@ -40,8 +40,37 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Allow the example env file to be committed as a reference template
-!.env.local.example
-mockups.zip
+# commercial font files (Didot LT Pro, Effra Std — licensed, do not distribute)
+**/*.woff
+**/*.woff2
+**/*.otf
+**/*.ttf
+
+# large binary assets
+*.zip
 *.pdf
+*.psd
+*.ai
+*.sketch
+
+# brand assets — keep SVG logos, ignore everything else
+brand-assets/patterns/
 brand-assets/style guide/
+brand-assets/almanac/
+
+# mockup patterns (large PNGs)
+mockups/pattern-*.png
+mockups/fonts/
+
+# WP migration raw data
+src/lib/hearth-data/wp-import/articles.raw.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Sentry
+.sentryclirc
