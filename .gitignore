@@ -76,3 +76,5 @@ src/lib/hearth-data/wp-import/articles.raw.json
 
 # Sentry
 .sentryclirc
+.sanity/
+dist/
