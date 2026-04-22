@@ -1,4 +1,5 @@
 import { EditorialPage } from "@/components/marketing/EditorialPage";
+import { getLegalPage } from "@/lib/cms/legal";
 
 export const metadata = {
   title: "Privacy",
@@ -6,11 +7,13 @@ export const metadata = {
     "How House of Willow Alexander collects, uses, and protects your personal data.",
 };
 
-export default function PrivacyPage() {
+export default async function PrivacyPage() {
+  const sanityPage = await getLegalPage("privacy");
+
   return (
     <EditorialPage
       eyebrow="Legal · Privacy"
-      title="How we handle your data."
+      title={sanityPage?.title ?? "How we handle your data."}
       lede="Plain-English summary first; the formal policy follows. If anything isn't clear, write to us and we'll answer in the same plain English."
       sections={[
         {
@@ -48,7 +51,7 @@ You can complain to the ICO if you're unhappy with how we've handled your data. 
           body: `The text above is a working summary. A full, legally reviewed privacy policy will replace it before public launch. If you need the current policy in its most precise form before we publish it, write to privacy@willowalexander.co.uk.`,
         },
       ]}
-      updatedAt="16 April 2026 (draft)"
+      updatedAt={sanityPage?.lastUpdated ?? "16 April 2026 (draft)"}
     />
   );
 }

@@ -3,44 +3,178 @@
  * Keep each query narrow and tag-scoped so revalidate works precisely.
  */
 
+// ─── Site settings ─────────────────────────────────────────────────────────
 export const siteSettingsQuery = /* groq */ `*[_type == "siteSettings"][0]{
   title, phone, contactEmail,
   headerCtaLabelLive, headerCtaLabelFallback,
   footerCopy, socialHandles, defaultSeo
 }`;
 
+// ─── Navigation ────────────────────────────────────────────────────────────
 export const navigationQuery = /* groq */ `*[_type == "navigation"][0]{
   headerItems[]{label, href, external},
   footerGroups[]{heading, items[]{label, href, external}},
   mobileOrder[]{label, href, external}
 }`;
 
+// ─── Pages ─────────────────────────────────────────────────────────────────
 export const pageBySlugQuery = /* groq */ `*[_type == "page" && slug.current == $slug][0]{
   title, section, hero, body, seo
 }`;
 
-export const partnerBySlugQuery = /* groq */ `*[_type == "partner" && slug.current == $slug][0]{
-  name, type, shortBio, longBio,
-  founderPortrait, heroImage, portfolio,
-  specialties, serviceAreas, website, instagram,
-  contactRoute, houseApprovedSeal, featured, seo
-}`;
-
-export const featuredPartnersQuery = /* groq */ `*[_type == "partner" && featured == true] | order(order asc){
-  _id, name, "slug": slug.current, type, shortBio, founderPortrait, heroImage, houseApprovedSeal
+// ─── Services ──────────────────────────────────────────────────────────────
+export const allServicesQuery = /* groq */ `*[_type == "service"] | order(order asc){
+  _id,
+  "slug": slug.current,
+  name,
+  category,
+  lede,
+  hero,
+  headline,
+  eyebrow,
+  recurring,
+  availableAreas,
+  included,
+  howItWorks,
+  order
 }`;
 
 export const serviceBySlugQuery = /* groq */ `*[_type == "service" && slug.current == $slug][0]{
-  name, category, lede, hero, sections,
-  recurring, availableAreas,
-  "linkedPackages": linkedPackages[]->{_id, name, "slug": slug.current, tier, price, inclusions, bestFor, cta},
+  _id,
+  name,
+  "slug": slug.current,
+  category,
+  lede,
+  headline,
+  eyebrow,
+  hero,
+  recurring,
+  availableAreas,
+  included,
+  howItWorks,
+  sections,
+  order,
   seo
 }`;
 
-export const allServicesQuery = /* groq */ `*[_type == "service"]{
-  _id, name, "slug": slug.current, category, lede, hero
+export const servicePackagesQuery = /* groq */ `*[_type == "servicePackage" && service._ref == $serviceId] | order(order asc){
+  _id,
+  title,
+  "slug": slug.current,
+  tier,
+  price,
+  bestFor,
+  inclusions,
+  order
 }`;
 
+export const allServicePackagesQuery = /* groq */ `*[_type == "servicePackage" && defined(service)] | order(order asc){
+  _id,
+  title,
+  "slug": slug.current,
+  "serviceSlug": service->slug.current,
+  tier,
+  price,
+  bestFor,
+  inclusions,
+  order
+}`;
+
+// ─── Partners ──────────────────────────────────────────────────────────────
+export const allPartnersQuery = /* groq */ `*[_type == "partner"] | order(order asc){
+  _id,
+  name,
+  "slug": slug.current,
+  partnerType,
+  typeLabel,
+  shortBio,
+  heroEyebrow,
+  heroHeadline,
+  heroSub,
+  role,
+  specialties,
+  serviceAreas,
+  instagram,
+  houseApprovedSeal,
+  order
+}`;
+
+export const partnerBySlugQuery = /* groq */ `*[_type == "partner" && slug.current == $slug][0]{
+  _id,
+  name,
+  "slug": slug.current,
+  partnerType,
+  typeLabel,
+  shortBio,
+  bio,
+  heroEyebrow,
+  heroHeadline,
+  heroSub,
+  role,
+  founded,
+  basedIn,
+  founderPortrait,
+  heroImage,
+  portfolio,
+  specialties,
+  serviceAreas,
+  website,
+  instagram,
+  houseApprovedSeal,
+  order,
+  seo
+}`;
+
+export const featuredPartnersQuery = /* groq */ `*[_type == "partner" && featured == true] | order(order asc){
+  _id,
+  name,
+  "slug": slug.current,
+  partnerType,
+  shortBio,
+  founderPortrait,
+  heroImage,
+  houseApprovedSeal
+}`;
+
+// ─── Steward Plans ─────────────────────────────────────────────────────────
+export const stewardPlansQuery = /* groq */ `*[_type == "servicePackage" && _id match "stewardPlan.*"] | order(order asc){
+  _id,
+  title,
+  "slug": slug.current,
+  tier,
+  price,
+  bestFor,
+  inclusions,
+  category,
+  featured,
+  order
+}`;
+
+// ─── FAQs ──────────────────────────────────────────────────────────────────
+export const faqsByCategoryQuery = /* groq */ `*[_type == "faq" && category == $category]{
+  _id,
+  question,
+  answer
+}`;
+
+export const faqsForPageQuery = /* groq */ `*[_type == "faq" && $slug in pages]{
+  _id, question, answer
+}`;
+
+// ─── Legal ─────────────────────────────────────────────────────────────────
+export const legalPageBySlugQuery = /* groq */ `*[_type == "legalPage" && slug.current == $slug][0]{
+  title,
+  "slug": slug.current,
+  body,
+  lastUpdated
+}`;
+
+export const allLegalPagesQuery = /* groq */ `*[_type == "legalPage"]{
+  title,
+  "slug": slug.current
+}`;
+
+// ─── Articles (Hearth) ────────────────────────────────────────────────────
 export const articleBySlugQuery = /* groq */ `*[_type == "article" && slug.current == $slug][0]{
   title, lede, hero, body,
   "category": category->{name, "slug": slug.current},
@@ -52,8 +186,22 @@ export const recentArticlesQuery = /* groq */ `*[_type == "article"] | order(pub
   "category": category->{name, "slug": slug.current}
 }`;
 
-export const redirectsQuery = /* groq */ `*[_type == "redirect"]{from, to, status}`;
-
-export const faqsForPageQuery = /* groq */ `*[_type == "faq" && $slug in pages]{
-  _id, question, answer
+// ─── News & Musings ────────────────────────────────────────────────────────
+export const allNewsQuery = /* groq */ `*[_type == "newsItem"] | order(publishedAt desc){
+  _id, title, "slug": slug.current, lede, body, publishedAt, hero
 }`;
+
+export const newsBySlugQuery = /* groq */ `*[_type == "newsItem" && slug.current == $slug][0]{
+  title, "slug": slug.current, lede, body, publishedAt, hero, seo
+}`;
+
+export const allMusingsQuery = /* groq */ `*[_type == "musing"] | order(publishedAt desc){
+  _id, title, "slug": slug.current, lede, body, publishedAt, hero
+}`;
+
+export const musingBySlugQuery = /* groq */ `*[_type == "musing" && slug.current == $slug][0]{
+  title, "slug": slug.current, lede, body, publishedAt, hero, seo
+}`;
+
+// ─── Redirects ─────────────────────────────────────────────────────────────
+export const redirectsQuery = /* groq */ `*[_type == "redirect"]{from, to, status}`;

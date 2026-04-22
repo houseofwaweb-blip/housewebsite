@@ -1,11 +1,13 @@
 import { EditorialPage } from "@/components/marketing/EditorialPage";
+import { getLegalPage } from "@/lib/cms/legal";
 
 export const metadata = {
   title: "Cookies",
   description: "What cookies and similar tech the House site uses, and why.",
 };
 
-export default function CookiesPage() {
+export default async function CookiesPage() {
+  const sanityPage = await getLegalPage("cookies");
   return (
     <EditorialPage
       eyebrow="Legal · Cookies"
@@ -35,7 +37,7 @@ This page will link to a cookie preferences centre once the full privacy banner 
           body: `The list above is accurate for the site's current scope. A full cookie table with names, durations, and vendors will replace it before public launch, alongside a preference centre.`,
         },
       ]}
-      updatedAt="16 April 2026 (draft)"
+      updatedAt={sanityPage?.lastUpdated ?? "16 April 2026 (draft)"}
     />
   );
 }

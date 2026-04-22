@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { StateBadge } from "@/components/primitives/StateBadge";
-import { LAUNCH_PARTNERS, PARTNER_ORDER } from "@/lib/partners-data";
+import { getAllPartners } from "@/lib/cms/partners";
 
 export const metadata = {
   title: "Partners",
@@ -9,7 +9,9 @@ export const metadata = {
     "The four launch partner studios of House of Willow Alexander. Each profile is reviewed annually.",
 };
 
-export default function PartnersLanding() {
+export default async function PartnersLanding() {
+  const partners = await getAllPartners();
+
   return (
     <article className="bg-house-cream text-house-brown">
       <section className="px-[5vw] pt-[12vh] pb-10">
@@ -28,12 +30,11 @@ export default function PartnersLanding() {
 
       <section className="px-[5vw] pb-16">
         <div className="max-w-[1080px] mx-auto grid md:grid-cols-2 gap-6">
-          {PARTNER_ORDER.map((slug) => {
-            const p = LAUNCH_PARTNERS[slug];
+          {partners.map((p) => {
             return (
               <Link
-                key={slug}
-                href={`/partners/${slug}`}
+                key={p.slug}
+                href={`/partners/${p.slug}`}
                 className="group relative block bg-white border border-house-brown/10 p-8 no-underline transition-all duration-[var(--t-slow)] ease-out hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(48,35,28,0.1)] hover:border-house-gold"
               >
                 <div className="flex items-center justify-between mb-3">

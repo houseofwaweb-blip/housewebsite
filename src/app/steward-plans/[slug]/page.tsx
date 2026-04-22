@@ -6,6 +6,7 @@ import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { GhostLink } from "@/components/primitives/GhostLink";
 import { Accordion } from "@/components/primitives/Accordion";
 import { PLANS, findPlan } from "@/lib/steward-data";
+import { getStewardPlans } from "@/lib/cms/steward-plans";
 
 export async function generateMetadata({
   params,
@@ -196,6 +197,7 @@ export default async function PlanDetailPage({
   );
 }
 
-export function generateStaticParams() {
-  return PLANS.map((p) => ({ slug: p.slug }));
+export async function generateStaticParams() {
+  const plans = await getStewardPlans();
+  return plans.map((p) => ({ slug: p.slug }));
 }

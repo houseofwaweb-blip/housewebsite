@@ -1,11 +1,13 @@
 import { EditorialPage } from "@/components/marketing/EditorialPage";
+import { getLegalPage } from "@/lib/cms/legal";
 
 export const metadata = {
   title: "Terms",
   description: "Terms of use for the House of Willow Alexander website, products, and services.",
 };
 
-export default function TermsPage() {
+export default async function TermsPage() {
+  const sanityPage = await getLegalPage("terms");
   return (
     <EditorialPage
       eyebrow="Legal · Terms"
@@ -41,7 +43,7 @@ For things we can limit: our liability for loss arising from the site itself is 
           body: `The text above is a working summary for design and review. A full, legally reviewed terms of service will replace it before public launch.`,
         },
       ]}
-      updatedAt="16 April 2026 (draft)"
+      updatedAt={sanityPage?.lastUpdated ?? "16 April 2026 (draft)"}
     />
   );
 }

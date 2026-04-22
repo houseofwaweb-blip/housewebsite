@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
-import { HOME_GARDEN_PLANS, APARTMENT_PLANS } from "@/lib/steward-data";
+import { getHomeGardenPlans, getApartmentPlans } from "@/lib/cms/steward-plans";
 import { StewardPlanLadder } from "./StewardPlanLadder";
 import { StewardCalculator } from "./StewardCalculator";
 
@@ -32,7 +32,10 @@ export const metadata = {
     "Bundle your home services into a single monthly Steward Plan. Gardening, cleaning, windows, gutters — managed through HoWA. Available to House Steward members.",
 };
 
-export default function StewardPlansPage() {
+export default async function StewardPlansPage() {
+  const homeGardenPlans = await getHomeGardenPlans();
+  const apartmentPlans = await getApartmentPlans();
+
   return (
     <article className="bg-house-cream text-house-brown">
       {/* 1. HERO — lifestyle image with navy overlay */}
@@ -133,8 +136,8 @@ export default function StewardPlansPage() {
           </p>
         </div>
         <StewardPlanLadder
-          homeGardenPlans={HOME_GARDEN_PLANS}
-          apartmentPlans={APARTMENT_PLANS}
+          homeGardenPlans={homeGardenPlans}
+          apartmentPlans={apartmentPlans}
         />
       </section>
 

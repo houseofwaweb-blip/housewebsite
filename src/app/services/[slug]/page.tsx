@@ -6,6 +6,7 @@ import { sanityFetch } from "@/lib/cms/fetch";
 import { serviceBySlugQuery } from "@/lib/cms/queries";
 import { urlFor } from "@/lib/cms/image";
 import { SERVICES, SERVICE_ORDER, type ServiceSlug } from "@/lib/services-data";
+import { getAllServices } from "@/lib/cms/services";
 import { ServiceDetail } from "@/components/marketing/ServiceDetail";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { StateBadge } from "@/components/primitives/StateBadge";
@@ -270,6 +271,7 @@ export default async function ServicePage({
   );
 }
 
-export function generateStaticParams() {
-  return SERVICE_ORDER.map((slug) => ({ slug }));
+export async function generateStaticParams() {
+  const services = await getAllServices();
+  return services.map((s) => ({ slug: s.slug }));
 }
