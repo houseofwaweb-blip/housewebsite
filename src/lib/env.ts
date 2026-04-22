@@ -31,7 +31,7 @@ const schema = z.object({
   SANITY_DATASET: z.string().default("production"),
   NEXT_PUBLIC_SANITY_DATASET: z.string().optional(),
   SANITY_READ_TOKEN: z.string().optional(),
-  NEXT_PUBLIC_SANITY_PREVIEW_SECRET: z.string().optional(),
+  SANITY_PREVIEW_SECRET: z.string().optional(),
   SANITY_WEBHOOK_SECRET: z.string().optional(),
 
   // Shopify

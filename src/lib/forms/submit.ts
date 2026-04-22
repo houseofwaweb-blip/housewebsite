@@ -4,7 +4,7 @@ import { ZodError } from "zod";
 import { formRegistry, type FormType } from "./schemas";
 import { verifyTurnstileToken } from "./turnstile";
 import { checkFormRateLimit } from "@/lib/rate-limit";
-import { getSupabaseServerClient } from "@/lib/supabase/server";
+import { getSupabaseAnonClient } from "@/lib/supabase/server";
 
 /**
  * Shared form submission handler.
@@ -85,7 +85,7 @@ export async function handleFormSubmission(
     delete row.preferredDates;
   }
 
-  const supabase = getSupabaseServerClient();
+  const supabase = getSupabaseAnonClient();
   const { error } = await supabase.from(entry.table).insert(row);
   if (error) {
     // Unique violation on newsletter is fine (already subscribed).

@@ -8,9 +8,10 @@
 
 const PROJECT_ID = process.env.SANITY_PROJECT_ID || "a9t8u8nh";
 const DATASET = process.env.SANITY_DATASET || "production";
-const TOKEN = process.env.SANITY_TOKEN || process.env.SANITY_READ_TOKEN;
+const TOKEN = process.env.SANITY_MANAGEMENT_TOKEN || process.env.SANITY_TOKEN;
 if (!TOKEN) {
-  console.error("Missing SANITY_TOKEN or SANITY_READ_TOKEN env var. Set it before running.");
+  console.error("Missing SANITY_MANAGEMENT_TOKEN env var. This script needs write access.");
+  console.error("Set it in .env.local or pass via: SANITY_MANAGEMENT_TOKEN=sk... node scripts/import-all-to-sanity.mjs");
   process.exit(1);
 }
 const API = `https://${PROJECT_ID}.api.sanity.io/v2024-01-01/data/mutate/${DATASET}`;

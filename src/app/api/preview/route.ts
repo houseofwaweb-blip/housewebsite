@@ -13,10 +13,13 @@ export async function GET(req: NextRequest) {
   const secret = req.nextUrl.searchParams.get("secret");
   const slug = req.nextUrl.searchParams.get("slug") ?? "/";
   if (
-    !env.NEXT_PUBLIC_SANITY_PREVIEW_SECRET ||
-    secret !== env.NEXT_PUBLIC_SANITY_PREVIEW_SECRET
+    !env.SANITY_PREVIEW_SECRET ||
+    secret !== env.SANITY_PREVIEW_SECRET
   ) {
     return new NextResponse("Unauthorized", { status: 401 });
+  }
+  if (!slug.startsWith("/") || slug.startsWith("//") || slug.includes("://")) {
+    return new NextResponse("Invalid slug", { status: 400 });
   }
   const draft = await draftMode();
   draft.enable();

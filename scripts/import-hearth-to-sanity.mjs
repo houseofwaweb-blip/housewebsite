@@ -21,7 +21,7 @@
  * Env required (loaded from platform/.env.local):
  *   SANITY_PROJECT_ID
  *   SANITY_DATASET (default: production)
- *   SANITY_READ_TOKEN (confirmed has write scope)
+ *   SANITY_MANAGEMENT_TOKEN (editor-level write access)
  *
  * Run from platform/:  node scripts/import-hearth-to-sanity.mjs
  *                      node scripts/import-hearth-to-sanity.mjs --limit=5
@@ -50,10 +50,10 @@ if (fs.existsSync(envFile)) {
 
 const PROJECT_ID = process.env.SANITY_PROJECT_ID;
 const DATASET = process.env.SANITY_DATASET || "production";
-const TOKEN = process.env.SANITY_MANAGEMENT_TOKEN || process.env.SANITY_READ_TOKEN;
+const TOKEN = process.env.SANITY_MANAGEMENT_TOKEN || process.env.SANITY_TOKEN;
 
 if (!PROJECT_ID || !TOKEN) {
-  console.error("Missing SANITY_PROJECT_ID or a Sanity token in .env.local");
+  console.error("Missing SANITY_PROJECT_ID or SANITY_MANAGEMENT_TOKEN in .env.local");
   process.exit(1);
 }
 

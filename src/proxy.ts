@@ -63,12 +63,24 @@ export function proxy(request: NextRequest) {
     return NextResponse.redirect(url, 302);
   }
 
-  // ── 3. Security headers ───────────────────────────────────────────────
-  // CSP with nonce is deferred until Next.js 16 nonce propagation is
-  // confirmed working on Vercel. For now, permissive policy.
+  // ── 3. Security headers + CSP ─────────────────────────────────────────
   const response = NextResponse.next();
 
-  // Additional security headers
+  const csp = [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    "img-src 'self' data: blob: https://cdn.sanity.io https://cdn.shopify.com https://willowalexander.co.uk",
+    "font-src 'self' data: https://fonts.gstatic.com",
+    "connect-src 'self' https://*.supabase.co https://*.sanity.io https://cdn.sanity.io https://*.upstash.io https://challenges.cloudflare.com https://*.sentry.io",
+    "frame-src 'self' https://challenges.cloudflare.com",
+    "frame-ancestors 'none'",
+    "form-action 'self'",
+    "base-uri 'self'",
+    "object-src 'none'",
+  ].join("; ");
+
+  response.headers.set("content-security-policy-report-only", csp);
   response.headers.set("x-content-type-options", "nosniff");
   response.headers.set("x-frame-options", "DENY");
   response.headers.set("referrer-policy", "strict-origin-when-cross-origin");

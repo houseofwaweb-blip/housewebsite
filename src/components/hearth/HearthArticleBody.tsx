@@ -1,13 +1,26 @@
+import sanitizeHtml from "sanitize-html";
 import { cn } from "@/lib/cn";
 
-/**
- * HearthArticleBody — renders raw WordPress HTML inside a prose container
- * styled for the Hearth: Cormorant body, Jost small-caps h4 labels.
- *
- * HTML comes from our own WP (trusted), so dangerouslySetInnerHTML is the
- * right choice. When we migrate to Sanity this component gets replaced by
- * the existing PortableText renderer.
- */
+const ALLOWED_TAGS = [
+  "p", "h2", "h3", "h4", "a", "img", "ul", "ol", "li",
+  "em", "strong", "blockquote", "figure", "figcaption", "hr",
+  "br", "span", "div", "table", "thead", "tbody", "tr", "th", "td",
+];
+
+const ALLOWED_ATTRIBUTES: Record<string, string[]> = {
+  a: ["href", "title", "target", "rel"],
+  img: ["src", "alt", "width", "height", "loading"],
+  "*": ["class"],
+};
+
+function sanitise(html: string): string {
+  return sanitizeHtml(html, {
+    allowedTags: ALLOWED_TAGS,
+    allowedAttributes: ALLOWED_ATTRIBUTES,
+    allowedSchemes: ["http", "https", "mailto"],
+  });
+}
+
 export function HearthArticleBody({
   html,
   className,
@@ -36,7 +49,7 @@ export function HearthArticleBody({
         "[&_hr]:my-10 [&_hr]:border-0 [&_hr]:border-t [&_hr]:border-house-brown/15",
         className,
       )}
-      dangerouslySetInnerHTML={{ __html: html }}
+      dangerouslySetInnerHTML={{ __html: sanitise(html) }}
     />
   );
 }

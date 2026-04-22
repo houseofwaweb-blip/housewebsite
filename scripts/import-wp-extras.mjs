@@ -34,9 +34,9 @@ if (fs.existsSync(envFile)) {
 }
 const PROJECT_ID = process.env.SANITY_PROJECT_ID;
 const DATASET = process.env.SANITY_DATASET || "production";
-const TOKEN = process.env.SANITY_MANAGEMENT_TOKEN || process.env.SANITY_READ_TOKEN;
+const TOKEN = process.env.SANITY_MANAGEMENT_TOKEN || process.env.SANITY_TOKEN;
 if (!PROJECT_ID || !TOKEN) {
-  console.error("Missing SANITY_PROJECT_ID or Sanity token in .env.local");
+  console.error("Missing SANITY_PROJECT_ID or SANITY_MANAGEMENT_TOKEN in .env.local");
   process.exit(1);
 }
 
