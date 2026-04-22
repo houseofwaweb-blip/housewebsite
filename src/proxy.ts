@@ -63,52 +63,10 @@ export function proxy(request: NextRequest) {
     return NextResponse.redirect(url, 302);
   }
 
-  // ── 3. Content Security Policy ───────────────────────────────────────────
-  // Per Next.js 16 docs: per-request nonce, strict-dynamic.
-  const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
-
-  // Whitelist of origins we actually call
-  const cspDirectives = [
-    `default-src 'self'`,
-    `img-src 'self' data: blob: https://cdn.sanity.io https://cdn.shopify.com`,
-    `font-src 'self' data:`,
-    // script-src: nonce + strict-dynamic allows child-of-nonce scripts
-    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://challenges.cloudflare.com`,
-    `style-src 'self' 'unsafe-inline'`,
-    `connect-src 'self' https://*.supabase.co https://*.myshopify.com https://*.sanity.io https://cdn.sanity.io https://*.upstash.io https://challenges.cloudflare.com https://*.sentry.io`,
-    `frame-src 'self' https://challenges.cloudflare.com`,
-    `frame-ancestors 'none'`,
-    `form-action 'self'`,
-    `base-uri 'self'`,
-    `object-src 'none'`,
-    `upgrade-insecure-requests`,
-  ];
-  // Report-only mode for dev; enforce in prod
-  const cspHeader = cspDirectives.join("; ");
-
-  const response = NextResponse.next({
-    request: {
-      headers: (() => {
-        const h = new Headers(request.headers);
-        h.set("x-nonce", nonce);
-        h.set(
-          process.env.NODE_ENV === "production"
-            ? "content-security-policy"
-            : "content-security-policy-report-only",
-          cspHeader,
-        );
-        return h;
-      })(),
-    },
-  });
-
-  // Also set on the outgoing response so browsers enforce it
-  response.headers.set(
-    process.env.NODE_ENV === "production"
-      ? "content-security-policy"
-      : "content-security-policy-report-only",
-    cspHeader,
-  );
+  // ── 3. Security headers ───────────────────────────────────────────────
+  // CSP with nonce is deferred until Next.js 16 nonce propagation is
+  // confirmed working on Vercel. For now, permissive policy.
+  const response = NextResponse.next();
 
   // Additional security headers
   response.headers.set("x-content-type-options", "nosniff");
