@@ -33,6 +33,18 @@ const TABS = [
 ];
 
 export default function SearchPage() {
+  return (
+    <React.Suspense fallback={
+      <div className="bg-house-cream min-h-screen flex items-center justify-center">
+        <p className="font-display italic text-[15px] text-house-brown/40">Loading search&hellip;</p>
+      </div>
+    }>
+      <SearchContent />
+    </React.Suspense>
+  );
+}
+
+function SearchContent() {
   const searchParams = useSearchParams();
   const initialQuery = searchParams.get("q") ?? "";
 
