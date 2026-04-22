@@ -203,5 +203,26 @@ export const musingBySlugQuery = /* groq */ `*[_type == "musing" && slug.current
   title, "slug": slug.current, lede, body, publishedAt, hero, seo
 }`;
 
+// ─── Search (unified cross-content) ───────────────────────────────────────
+// GROQ `match` is word-prefix matching. Append `*` for partial match.
+export const unifiedSearchQuery = /* groq */ `{
+  "services": *[_type == "service" && (name match $q || lede match $q)] | order(order asc)[0...10]{
+    _id, name, "slug": slug.current, lede, "type": "Service"
+  },
+  "partners": *[_type == "partner" && (name match $q || shortBio match $q)] | order(order asc)[0...10]{
+    _id, name, "slug": slug.current, shortBio, "type": "Partner"
+  },
+  "articles": *[_type == "article" && (title match $q || lede match $q)] | order(publishedAt desc)[0...10]{
+    _id, title, "slug": slug.current, lede, isPremium, "type": "Journal",
+    "category": category->{name, "slug": slug.current}
+  },
+  "news": *[_type == "newsItem" && (title match $q || lede match $q)] | order(publishedAt desc)[0...5]{
+    _id, title, "slug": slug.current, lede, "type": "The House"
+  },
+  "musings": *[_type == "musing" && (title match $q || lede match $q)] | order(publishedAt desc)[0...5]{
+    _id, title, "slug": slug.current, lede, "type": "The House"
+  }
+}`;
+
 // ─── Redirects ─────────────────────────────────────────────────────────────
 export const redirectsQuery = /* groq */ `*[_type == "redirect"]{from, to, status}`;

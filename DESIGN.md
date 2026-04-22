@@ -66,7 +66,7 @@ Where it lives: homepage aspirational sections, `/the-house` and children, `/jou
 | **Pattern** | White on navy 4%, or none |
 | **CTAs** | Filled gold (primary) · teal ghost (secondary) |
 
-Where it lives: `/howa` landing and children, packages and tier cards, Companion explainer, account shell, any surface where the user is configuring or deciding.
+Where it lives: `/howa` landing page and children (except `/howa/steward`), packages and tier cards (HoWA and HoWA+ cards), Companion explainer, account shell, any surface where the user is configuring or deciding.
 
 ### Steward mode *(blueprint)*
 
@@ -80,7 +80,7 @@ Where it lives: `/howa` landing and children, packages and tier cards, Companion
 | **Tone** | Control, monitoring, telemetry |
 | **CTAs** | Outlined cream on navy, or filled gold |
 
-Where it lives: HoWA Steward surfaces only. Predictive maintenance, device integration, insurer-adjacent views. **Never** on public pages outside of a Steward preview.
+Where it lives: `/howa/steward` landing page, HoWA Steward surfaces only. Predictive maintenance, device integration, insurer-adjacent views. **Never** on public pages outside of `/howa/steward` or a Steward tier card preview.
 
 ## The transition moment *(the signature UX pattern)*
 
@@ -137,12 +137,13 @@ Restrained. Gold is the only accent. Colour is rare and meaningful.
 | Token | Hex | Usage |
 |---|---|---|
 | `house-brown` | `#30231c` | Primary text, dark backgrounds, footer |
-| `house-gold` | `#b8943e` | Primary accent, CTAs, pattern, links, gold rules |
-| `house-gold-light` | `#d4af5a` | Hover state for gold elements, Steward accent |
+| `house-gold` | `#b8943e` | Decorative gold only: pattern, thin rules, ornamental borders. Never for text <18px or filled button backgrounds (fails AA at 2.7:1 on light bgs) |
+| `house-gold-dark` | `#8a6f2e` | Accessible gold for text, filled button backgrounds (`btn-gold`), links. 5.16:1 on white, 4.82:1 on cream — passes AA |
+| `house-gold-light` | `#d4af5a` | Hover state for gold elements, Steward accent on navy |
 | `house-cream` | `#f5f0e8` | House section backgrounds |
 | `house-cream-dark` | `#ebe4d6` | Borders, dividers, subtle backgrounds |
 | `house-white` | `#faf8f4` | Page background, HoWA section backgrounds |
-| `house-stone` | `#a09885` | Secondary text, captions, metadata |
+| `house-stone` | `#a09885` | Decorative separators and borders only. NEVER for body text at any size (2.7:1 on light bgs — fails AA). For muted body text, use `house-brown` at 70% opacity instead |
 | `house-moss` | `#5a6b4a` | Garden accents, `live` state |
 | `house-black` | `#1d1d1b` | Maximum contrast (Hearth masthead) |
 
@@ -152,7 +153,8 @@ Restrained. Gold is the only accent. Colour is rare and meaningful.
 |---|---|---|
 | `howa-navy` | `#1e2a3a` | HoWA hero backgrounds, featured plan cards |
 | `howa-navy-deep` | `#151e2b` | Steward blueprint mode |
-| `howa-teal` | `#3a7d7e` | HoWA links, secondary accent, eyebrows |
+| `howa-teal` | `#3a7d7e` | HoWA links and accents at ≥18px only. At <18px on light backgrounds, use `howa-teal-dark` instead (4.48:1 fails AA normal text) |
+| `howa-teal-dark` | `#2d6364` | Accessible teal for eyebrows, small text (<18px). 5.8:1 on white — passes AA |
 | `howa-paper` | `#f4efe4` | Tracing-layer parchment backgrounds |
 | `howa-light` | `#f0f4f3` | Optional HoWA light backgrounds |
 
@@ -340,7 +342,7 @@ Every reusable piece of the site. Built once, used everywhere.
 
 | Variant | Style | Use |
 |---|---|---|
-| `btn-gold` | Filled `house-gold`, white text | Primary CTA in HoWA territory |
+| `btn-gold` | Filled `house-gold-dark` (#8a6f2e), white text | Primary CTA in HoWA territory. Uses accessible gold (5.16:1 contrast) |
 | `btn-outline` | Transparent, brown border, brown text | Primary CTA in House territory |
 | `btn-outline-light` | Transparent, cream border | On navy/dark backgrounds |
 | `btn-navy` | Filled `howa-navy`, cream text | Rare — HoWA featured actions |
@@ -378,7 +380,7 @@ Small-caps sans label that sits above a headline.
 |---|---|
 | Font | Jost 11px, weight 400 |
 | Letter-spacing | 0.22em |
-| Colour | Context-dependent — `house-gold` for editorial, `howa-teal` for HoWA sections, `house-stone` for metadata |
+| Colour | Context-dependent — `house-gold-dark` for editorial, `howa-teal-dark` for HoWA sections, `house-brown` at 70% opacity for metadata. Never `house-stone` (fails AA) |
 | Spacing | 14–24px below, never less than headline it labels |
 
 ## Navigation components
@@ -1010,14 +1012,40 @@ Minimums (WCAG AA):
 - Large text (18px+ or 14px+ bold) ≥ 3:1
 - UI components (borders, focus rings) ≥ 3:1
 
-Specific checks passed:
-- `house-brown #30231c` on `house-cream #f5f0e8`: 12.3:1 ✓
-- `house-stone #a09885` on `house-cream`: 3.1:1 — large text only, never body
-- `house-gold #b8943e` on `house-cream`: 4.4:1 ✓ body, for links/emphasis
-- `house-cream` on `house-brown`: 12.3:1 ✓ inverted
-- `howa-teal #3a7d7e` on `house-cream`: 4.6:1 ✓
+### Passing combinations
 
-Never use `house-stone` on `house-cream` for body copy — promote to `house-brown`.
+| Foreground | Background | Ratio | Use |
+|---|---|---|---|
+| `house-brown #30231c` | `house-cream #f5f0e8` | 13.4:1 ✓ | Primary text on cream |
+| `house-brown #30231c` | `house-white #faf8f4` | 14.3:1 ✓ | Primary text on white |
+| `house-brown #30231c` | `howa-paper #f4efe4` | 13.2:1 ✓ | Primary text on parchment |
+| `house-brown` 70% opacity | `house-white` | ~5.5:1 ✓ | Muted body text (replaces `house-stone`) |
+| `house-cream #f5f0e8` | `house-brown #30231c` | 13.4:1 ✓ | Inverted text |
+| `house-cream #f5f0e8` | `howa-navy-deep #151e2b` | 14.8:1 ✓ | Body text on Steward surfaces |
+| `house-gold-dark #8a6f2e` | `house-white` | 5.2:1 ✓ | Gold text, links, button bg |
+| `house-gold-dark #8a6f2e` | `house-cream` | 4.8:1 ✓ | Gold text on cream |
+| `white #ffffff` | `house-gold-dark #8a6f2e` | 5.2:1 ✓ | Button text on accessible gold |
+| `house-gold-light #d4af5a` | `howa-navy-deep` | 8.1:1 ✓ | Gold accent on navy |
+| `house-gold #b8943e` | `howa-navy-deep` | 5.9:1 ✓ | Gold on navy (passes at any size) |
+| `howa-teal-dark #2d6364` | `house-white` | 5.8:1 ✓ | Teal eyebrows, small text |
+| `howa-teal #3a7d7e` | `house-white` | 4.5:1 ✓ | Teal links at ≥18px only |
+
+### Failing combinations (do not use)
+
+| Foreground | Background | Ratio | Why it fails |
+|---|---|---|---|
+| `house-stone #a09885` | any light bg | 2.5–2.7:1 | Fails AA entirely. Never for text. |
+| `house-gold #b8943e` | any light bg | 2.5–2.7:1 | Fails AA entirely. Decorative only. |
+| `white #ffffff` | `house-gold #b8943e` | 2.9:1 | Fails AA. Use `house-gold-dark` for buttons. |
+| `howa-teal #3a7d7e` | any light bg | 4.2–4.5:1 | Fails normal text (<18px). Use `howa-teal-dark`. |
+
+### Rules
+
+- Never use `house-stone` for text at any size — use `house-brown` at 70% opacity for muted text
+- Never use `house-gold` for text or filled buttons — use `house-gold-dark`
+- `house-gold` is for decorative elements only: pattern overlays, thin rules, ornamental borders
+- Teal text below 18px must use `howa-teal-dark` (#2d6364), not `howa-teal`
+- Minimum font size for any text: 11px. Steward gauge axis text must be ≥11px (not 9px)
 
 ## Motion preferences
 
@@ -1211,6 +1239,13 @@ Append-only. Every decision with date + rationale.
 | 2026-04-15 | Article gating enum locked | `gating.type: public / preview / members` + `previewParagraphs: number`. Default: preview/3 |
 | 2026-04-15 | Image alt format enforced | Content: "Subject, treatment, location" format. Required field in Sanity schema. Decorative: `alt=""` |
 | 2026-04-15 | `house-stone` body restriction | Only use at ≥18px (large-text AA pass at 3.1:1). For <18px, use `house-brown` at 70% opacity (≥4.5:1 AA). Lint rule enforces |
+| 2026-04-22 | WCAG audit: `house-gold-dark` token added | `#8a6f2e` — accessible gold for text and filled buttons. Original `house-gold` (#b8943e) demoted to decorative-only (2.7:1 on light bgs fails AA) |
+| 2026-04-22 | WCAG audit: `howa-teal-dark` token added | `#2d6364` — accessible teal for eyebrows and text <18px. Original `howa-teal` (#3a7d7e) restricted to ≥18px (4.48:1 fails normal text AA) |
+| 2026-04-22 | WCAG audit: `house-stone` banned from all text | Full audit confirmed 2.5–2.7:1 on all light backgrounds — fails even large-text AA. Use `house-brown` at 70% opacity instead |
+| 2026-04-22 | WCAG audit: white on gold buttons fixed | White on `house-gold` was 2.86:1 (fails). `btn-gold` now uses `house-gold-dark` (#8a6f2e) as background — white on dark gold = 5.16:1 (passes) |
+| 2026-04-22 | WCAG audit: minimum font size 11px | Steward gauge axis text was 9px — bumped to 11px minimum across all surfaces |
+| 2026-04-22 | `/howa` reworked from Steward mode to HoWA mode | Variant D used `howa-navy-deep` as body bg — violates DESIGN.md rule that navy-deep is Steward-only. Page now uses `house-white`/`howa-paper` with tier cards carrying their own modes |
+| 2026-04-22 | `/howa/steward` landing page created | Dedicated Steward page at `/howa/steward` (not top-level nav). Full blueprint mode. Campaign imagery, House Health gauge, register-interest CTA. Nested under HoWA per nav spec |
 
 ---
 
@@ -1377,6 +1412,7 @@ Working HTML mockups by page (design artefacts, not production code):
 - `/services`: `~/.gstack/projects/platform/designs/services-landing-20260415/`
 - `/the-house`: `~/.gstack/projects/platform/designs/the-house-20260415/`
 - `/protect` v2: `~/.gstack/projects/platform/designs/protect-landing-v2-20260415/`
+- `/howa/steward`: `~/.gstack/projects/platform/designs/howa-steward-20260422/`
 - `/journal` (The Hearth) — **locked**: `~/.gstack/projects/platform/designs/hearth-magazine-20260415/` (Variant A)
 
 ## Archive

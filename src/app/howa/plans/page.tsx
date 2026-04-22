@@ -24,19 +24,23 @@ export const metadata = {
 };
 
 const HOWAPLUS_INCLUSIONS = [
-  "Your home's living record — Companion diagnostic, documents, maintenance log",
+  "Full dashboard continuity — tasks, reminders, documents, and the complete home logbook",
+  "Companion diagnostic with AI repair scan and design suggestions",
   "Priority access to House-approved designers, craftsmen, and services",
-  "Discounted rates on Gardening, Window Cleaning, Cleaning, and Gutter Cleaning",
-  "Members-only Hearth Collection — long-form writing, photo essays, house notes",
+  "Service discounts and member pricing across Gardening, Cleaning, Windows, and Gutters",
+  "Full Hearth editorial access — long-form writing, photo essays, house notes",
+  "Saved guides, seasonal maintenance prompts, and proactive reminders",
   "Protect Review early access and Provenance insurance introductions",
 ];
 
 const STEWARD_INCLUSIONS = [
-  "Everything in HoWA+",
-  "Recurring Steward Plans — seasonal garden, window, cleaning, gutter schedules",
-  "A dedicated House contact and quarterly reviews",
-  "Predictable monthly billing, one invoice across every trade",
-  "Priority response for urgent work",
+  "Everything in HoWA+, plus",
+  "Live utilities and device integration — climate, energy, humidity, security",
+  "Anomaly alerts and predictive maintenance — the system acts before you notice",
+  "Managed recurring care — qualified through HoWA, not a public catalogue",
+  "Delegated permissions — scoped access for partners, contractors, household members",
+  "Insurance prefill and insurer-grade evidence from the living record",
+  "One dedicated House contact and quarterly home reviews",
 ];
 
 const FAQ_ITEMS = [
@@ -109,10 +113,8 @@ export default function PlansPage() {
           <h1 className="em-accent font-display font-medium text-[clamp(44px,6vw,80px)] leading-[1.05] tracking-[-0.01em] mt-4">
             Two ways to be <em>stewarded</em>.
           </h1>
-          <p className="font-sans text-[19px] leading-[1.6] text-house-brown/75 max-w-[58ch] mx-auto mt-6">
-            HoWA+ is the single connected membership: one record of the home,
-            priority across the House, members-only writing. Steward is the
-            recurring managed-care layer for those who want us to do more of it.
+          <p className="font-sans text-[19px] leading-[1.6] text-house-brown/70 max-w-[58ch] mx-auto mt-6">
+            The tier system feels like one app with additive entitlements. Upgrading preserves the same home-linked record. HoWA+ is the connected membership. Steward is the premium managed-care layer for homes that want the House to do more of it.
           </p>
         </div>
       </section>
@@ -128,12 +130,12 @@ export default function PlansPage() {
             <h2 className="em-accent font-display font-medium text-[34px] leading-[1.15] mb-2">
               HoWA<em>+</em>
             </h2>
-            <p className="font-sans italic text-[17px] text-house-stone leading-[1.5] mb-6">
+            <p className="font-sans italic text-[17px] text-house-brown/70 leading-[1.5] mb-6">
               The connected membership for a home you mean to keep.
             </p>
             <div className="flex items-baseline gap-2 mb-6">
               <span className="font-display font-medium text-[44px] leading-none">£16.99</span>
-              <span className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-stone">
+              <span className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown/70">
                 / month
               </span>
             </div>
@@ -141,7 +143,7 @@ export default function PlansPage() {
               {HOWAPLUS_INCLUSIONS.map((inc) => (
                 <li
                   key={inc}
-                  className="relative pl-5 font-sans text-[16px] leading-[1.55] text-house-brown/90 before:content-['—'] before:absolute before:left-0 before:text-house-gold"
+                  className="relative pl-5 font-sans text-[16px] leading-[1.55] text-house-brown/90 before:content-['—'] before:absolute before:left-0 before:text-[var(--house-gold-dark)]"
                 >
                   {inc}
                 </li>
@@ -150,7 +152,7 @@ export default function PlansPage() {
             <div className="mt-auto flex flex-col gap-3">
               <Link
                 href="/api/howa-bounce?source=plans-howaplus"
-                className="inline-block text-center font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold px-6 py-3.5 no-underline transition-colors duration-[var(--t-slow)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
+                className="inline-block text-center font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-6 py-3.5 no-underline transition-colors duration-[var(--t-slow)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
               >
                 Start HoWA+
               </Link>
@@ -181,7 +183,7 @@ export default function PlansPage() {
               {STEWARD_INCLUSIONS.map((inc) => (
                 <li
                   key={inc}
-                  className="relative pl-5 font-sans text-[15px] leading-[1.55] text-house-cream/85 before:content-['—'] before:absolute before:left-0 before:text-house-gold-light"
+                  className="relative pl-5 font-sans text-[15px] leading-[1.55] text-house-cream/85 before:content-['—'] before:absolute before:left-0 before:text-[var(--house-gold-dark)]-light"
                 >
                   {inc}
                 </li>
@@ -199,7 +201,7 @@ export default function PlansPage() {
           </div>
         </div>
 
-        <p className="max-w-[640px] mx-auto text-center mt-10 font-sans italic text-[14px] text-house-stone">
+        <p className="max-w-[640px] mx-auto text-center mt-10 font-sans italic text-[14px] text-house-brown/70">
           Prices are VAT-inclusive for UK residents. Cancel any time. The record
           of your home stays yours either way.
         </p>
@@ -227,7 +229,7 @@ export default function PlansPage() {
             What you&apos;d <em>probably</em> ask.
           </h2>
           <Accordion items={FAQ_ITEMS} />
-          <p className="mt-8 font-sans italic text-[14px] text-house-stone text-center">
+          <p className="mt-8 font-sans italic text-[14px] text-house-brown/70 text-center">
             Still wondering?{" "}
             <Link
               href="/contact"

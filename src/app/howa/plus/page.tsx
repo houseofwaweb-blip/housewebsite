@@ -15,33 +15,33 @@ export const metadata = {
 const FEATURES = [
   {
     title: "The Living Record",
-    description: "Every service, review, booking, and purchase filed to one record that grows with the home and stays with the property.",
+    description: "Full dashboard continuity. Tasks, reminders, documents, the maintenance logbook, and seasonal prompts. Every service, review, booking, and purchase filed to one record that grows with the home and stays with the property. No meaningful journey ends as an orphan enquiry.",
     linkHref: "/howa/how-it-works",
     linkLabel: "How it works →",
   },
   {
     title: "Companion Diagnostic",
-    description: "Photograph a crack, a damp patch, or something you're not sure about. The Companion tells you what it probably is and what to do next.",
+    description: "Photograph a crack, a damp patch, or something you're not sure about. The Companion captures your home type, rooms, priorities, style, budget, and household context. Then it recommends the next best route: provider, package, review, consultation, or quote.",
     linkHref: "/howa/companion",
     linkLabel: "See the Companion →",
   },
   {
-    title: "Task & Reminders",
-    description: "Boiler service due. Gutters need clearing before winter. HoWA tracks what matters and surfaces it before it becomes a problem.",
+    title: "Task Centre & Reminders",
+    description: "Boiler service due. Gutters need clearing before winter. Seasonal prompts for spring preparation. HoWA tracks what matters and surfaces it before it becomes a problem. Saved guides for every discipline.",
   },
   {
-    title: "Member Pricing",
-    description: "Discounted rates on all House services. Typically 10-15% less than booking direct. Plus 10% off everything in the shop.",
+    title: "Service Discounts & Member Pricing",
+    description: "Discounted rates on all House services: Gardening, Window Cleaning, Cleaning, and Gutter Cleaning. Typically 10-15% less than booking direct. Plus member pricing across the shop.",
   },
   {
     title: "The Hearth",
-    description: "Members-only writing on homes, gardens, design, and the craft of looking after a place properly. Published weekly.",
+    description: "Full editorial access to The Hearth. Members-only long-form writing on homes, gardens, design, and the craft of looking after a place properly. Photo essays, house notes, seasonal features. Published weekly.",
     linkHref: "/journal",
     linkLabel: "Browse the Hearth →",
   },
   {
-    title: "Priority Access",
-    description: "Early access to Protect Reviews, insurance introductions, new collections in the shop, and House-approved designer availability.",
+    title: "Priority Access & Protection",
+    description: "Early access to Protect Reviews, Provenance insurance introductions, new collections in the shop, and House-approved designer availability. Everything writes back to the living record.",
   },
 ];
 
@@ -79,13 +79,13 @@ export default function HowaPlusPage() {
           <div className="mt-8 flex items-center gap-4 flex-wrap">
             <Link
               href="/api/howa-bounce?source=plus-hero"
-              className="inline-block px-8 py-4 font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
+              className="inline-block px-8 py-4 font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
             >
               Start HoWA+ — £16.99/month
             </Link>
             <GhostLink href="/howa/companion">Try the Companion first</GhostLink>
           </div>
-          <p className="font-sans text-[12px] text-house-stone mt-4">
+          <p className="font-sans text-[12px] text-house-brown/70 mt-4">
             Cancel anytime. Your record stays with you.
           </p>
         </div>
@@ -98,7 +98,7 @@ export default function HowaPlusPage() {
       >
         <span aria-hidden="true" className="block w-[120px] h-px mx-auto mb-[14px] bg-house-gold opacity-60" />
         <span aria-hidden="true" className="absolute top-[34px] left-1/2 -translate-x-1/2 font-display text-house-gold text-[18px] leading-none">·</span>
-        <p className="font-sans italic text-[15px] text-house-stone tracking-[0.04em]">
+        <p className="font-sans italic text-[15px] text-house-brown/70 tracking-[0.04em]">
           The House introduces.
           <span className="not-italic font-sans text-[11px] tracking-[0.08em] uppercase text-howa-teal ml-2.5 pl-2.5 border-l border-house-brown/20">
             HoWA+ connects
@@ -159,7 +159,7 @@ export default function HowaPlusPage() {
           </p>
           <Link
             href="/api/howa-bounce?source=plus-footer"
-            className="inline-block px-10 py-4 font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
+            className="inline-block px-10 py-4 font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
           >
             Start HoWA+ — £16.99/month
           </Link>
@@ -173,7 +173,7 @@ export default function HowaPlusPage() {
 
       {/* Tagline */}
       <div className="text-center border-t border-house-brown/10 bg-house-cream px-5 py-6">
-        <p className="font-display italic text-[14px] text-house-stone tracking-[0.04em]">
+        <p className="font-display italic text-[14px] text-house-brown/70 tracking-[0.04em]">
           Ownership is passive. Stewardship is intentional.
         </p>
       </div>

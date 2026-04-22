@@ -167,6 +167,18 @@ export const shopifyProvider: CommerceProvider = {
     return data.products.nodes.map(mapProduct);
   },
 
+  async searchProducts(query: string, limit = 10) {
+    const data = await storefront<{ products: { nodes: ShopifyProductNode[] } }>(
+      `${PRODUCT_FRAGMENT}
+      query ($query: String!, $limit: Int!) {
+        products(first: $limit, query: $query) { nodes { ...ProductFields } }
+      }`,
+      { query, limit },
+      ["products:search"],
+    );
+    return data.products.nodes.map(mapProduct);
+  },
+
   // Cart mutations — implement lazily. Throw until wired up.
   async createCart(): Promise<CommerceCart> {
     throw new Error("createCart not yet implemented");

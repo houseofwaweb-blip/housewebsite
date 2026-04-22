@@ -29,8 +29,13 @@
   --howa-navy: #1e2a3a;
   --howa-navy-deep: #151e2b;
   --howa-teal: #3a7d7e;
+  --howa-teal-dark: #2d6364;
   --howa-paper: #f4efe4;
   --howa-light: #f0f4f3;
+
+  /* Accessible alternatives — WCAG AA compliant (2026-04-22 audit) */
+  --house-gold-dark: #8a6f2e;  /* 5.16:1 on white — text and filled buttons */
+  --text-muted: rgba(48,35,28,0.7); /* ~5.5:1 on white — replaces house-stone for body */
 
   /* Semantic */
   --success: #5a6b4a;
@@ -70,8 +75,11 @@
   --color-howa-navy: #1e2a3a;
   --color-howa-navy-deep: #151e2b;
   --color-howa-teal: #3a7d7e;
+  --color-howa-teal-dark: #2d6364;
   --color-howa-paper: #f4efe4;
   --color-howa-light: #f0f4f3;
+
+  --color-house-gold-dark: #8a6f2e;
 
   --color-success: #5a6b4a;
   --color-warning: #c4922a;
@@ -253,14 +261,14 @@ body {
   font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
   margin-bottom: 6px;
 }
-.tier-howa .tier-roman { color: var(--house-gold); }
+.tier-howa .tier-roman { color: var(--house-gold-dark); }
 .tier-howa .tier-name {
   font-family: var(--font-hearth-sans); font-size: 24px; font-weight: 400;
   letter-spacing: -0.005em; color: var(--house-brown);
 }
 .tier-howa .tier-price-label {
   font-family: var(--font-hearth-sans); font-size: 13px;
-  color: var(--house-stone); margin-top: 2px; margin-bottom: 20px;
+  color: var(--text-muted); margin-top: 2px; margin-bottom: 20px;
 }
 .tier-howa .tier-preview {
   background: #fff; border: 1px solid rgba(48,35,28,0.18);
@@ -268,7 +276,7 @@ body {
 }
 .tier-howa .tier-preview .pp-title {
   font-family: var(--font-hearth-serif); font-size: 12px; font-style: italic;
-  color: var(--house-stone); margin-bottom: 8px; letter-spacing: 0.04em;
+  color: var(--text-muted); margin-bottom: 8px; letter-spacing: 0.04em;
 }
 .tier-howa .tier-preview .pp-row {
   display: flex; justify-content: space-between; align-items: center;
@@ -277,11 +285,11 @@ body {
 }
 .tier-howa .tier-preview .pp-row:last-child { border-bottom: none; }
 .tier-howa .tier-preview .pp-row em {
-  font-style: italic; color: var(--house-stone); font-size: 11px;
+  font-style: italic; color: var(--text-muted); font-size: 11px;
 }
 .tier-howa .tier-preview .pp-dot {
   display: inline-block; width: 6px; height: 6px; border-radius: 50% !important;
-  background: var(--house-gold); margin-right: 8px; vertical-align: middle;
+  background: var(--house-gold-dark); margin-right: 8px; vertical-align: middle;
 }
 .tier-howa ul, .tier-howaplus ul, .tier-steward ul {
   list-style: none; font-size: 13px; line-height: 1.8; padding-left: 16px; flex: 1;
@@ -291,7 +299,7 @@ body {
   position: relative; padding: 2px 0;
 }
 .tier-howa ul li::before, .tier-howaplus ul li::before {
-  content: '—'; position: absolute; left: -16px; color: var(--house-gold);
+  content: '—'; position: absolute; left: -16px; color: var(--house-gold-dark);
 }
 .tier-howa .tier-cta-row, .tier-howaplus .tier-cta-row, .tier-steward .tier-cta-row {
   margin-top: 22px;
@@ -320,11 +328,11 @@ body {
 }
 .tier-howaplus::before {
   content: 'RECOMMENDED'; position: absolute; top: -10px; left: 50%;
-  transform: translateX(-50%); background: var(--house-gold); color: #fff;
-  font-family: var(--font-hearth-sans); font-size: 10px;
+  transform: translateX(-50%); background: var(--house-gold-dark); color: #fff;
+  font-family: var(--font-hearth-sans); font-size: 11px;
   letter-spacing: 0.22em; padding: 5px 14px; z-index: 3;
 }
-.tier-howaplus .tier-roman { color: var(--house-gold); }
+.tier-howaplus .tier-roman { color: var(--house-gold-dark); }
 .tier-howaplus .tier-name {
   font-family: var(--font-hearth-sans); font-size: 26px; font-weight: 500;
   color: var(--house-brown); letter-spacing: -0.005em;
@@ -334,7 +342,7 @@ body {
   color: var(--house-brown); margin-bottom: 22px;
 }
 .tier-howaplus .tier-price-label strong {
-  font-size: 22px; font-weight: 500; color: var(--house-gold); letter-spacing: 0;
+  font-size: 22px; font-weight: 500; color: var(--house-gold-dark); letter-spacing: 0;
 }
 .tier-howaplus .tier-preview {
   background: #fff; border: 1px solid rgba(48,35,28,0.15);
@@ -342,7 +350,7 @@ body {
 }
 .tier-howaplus .tier-preview .greeting {
   padding: 11px 14px 2px; font-family: var(--font-hearth-sans);
-  font-size: 11px; color: var(--house-stone);
+  font-size: 11px; color: var(--text-muted);
 }
 .tier-howaplus .tier-preview .greeting strong {
   color: var(--house-brown); font-weight: 500;
@@ -361,20 +369,20 @@ body {
   border-top: 1px solid rgba(48,35,28,0.08); color: var(--house-brown);
 }
 .tier-howaplus .tier-preview .attn-row em {
-  color: var(--house-gold); font-style: normal; font-weight: 500; font-size: 10px;
-  padding: 2px 8px; border: 1px solid var(--house-gold);
+  color: var(--house-gold-dark); font-style: normal; font-weight: 500; font-size: 11px;
+  padding: 2px 8px; border: 1px solid var(--house-gold-dark);
   letter-spacing: 0.08em; text-transform: uppercase;
 }
 .tier-howaplus ul { color: var(--house-brown); }
 .tier-howaplus .tier-cta {
   display: inline-block; font-family: var(--font-hearth-sans);
   font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
-  background: var(--house-gold); color: #fff; border: 1px solid var(--house-gold);
+  background: var(--house-gold-dark); color: #fff; border: 1px solid var(--house-gold-dark);
   padding: 11px 22px; text-decoration: none;
   transition: background var(--t-base) var(--ease-out);
 }
 .tier-howaplus .tier-cta:hover {
-  background: var(--house-gold-light); border-color: var(--house-gold-light);
+  background: var(--house-gold); border-color: var(--house-gold);
 }
 
 /* --- TIER: Steward (coming-soon, navy blueprint) --- */
@@ -403,12 +411,12 @@ body {
 .tier-steward .tier-price-label {
   font-family: var(--font-hearth-sans); font-size: 11px;
   letter-spacing: 0.18em; text-transform: uppercase;
-  color: rgba(245,240,232,0.55); margin-top: 2px; margin-bottom: 20px;
+  color: rgba(245,240,232,0.65); margin-top: 2px; margin-bottom: 20px;
 }
 .tier-steward .soon-badge {
   position: absolute; top: 18px; right: 18px; z-index: 2;
-  font-family: var(--font-hearth-sans); font-size: 9px; letter-spacing: 0.24em;
-  padding: 3px 8px; background: rgba(184,148,62,0.15);
+  font-family: var(--font-hearth-sans); font-size: 11px; letter-spacing: 0.2em;
+  padding: 4px 10px; background: rgba(184,148,62,0.15);
   color: var(--house-gold-light); border: 1px solid rgba(184,148,62,0.35);
 }
 .tier-steward .tier-preview {
@@ -443,8 +451,8 @@ body {
   color: var(--house-gold-light); position: relative; z-index: 1;
 }
 .tier-steward .gauge-axes {
-  font-family: var(--font-hearth-sans); font-size: 9px;
-  color: rgba(245,240,232,0.5); letter-spacing: 0.14em;
+  font-family: var(--font-hearth-sans); font-size: 11px;
+  color: rgba(245,240,232,0.55); letter-spacing: 0.14em;
   text-transform: uppercase; text-align: center;
 }
 .tier-steward ul { color: rgba(245,240,232,0.78); }

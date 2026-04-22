@@ -11,10 +11,10 @@ export const metadata = {
 };
 
 const STEPS = [
-  { n: "01", title: "Notice something", body: "A crack above a door frame. A patch where the paint is coming away. A smell you can\u2019t place. Take a photo." },
-  { n: "02", title: "Describe it", body: "A few lines to the Companion. Where it is, when you first noticed it, anything relevant about the house." },
-  { n: "03", title: "Get an answer", body: "What it probably is, whether it\u2019s urgent, what a fair price looks like, and whether it\u2019s worth having someone out." },
-  { n: "04", title: "Act on it, or don\u2019t", body: "Book a trade through HoWA at the House rate, or save the note to your record and look again in six weeks." },
+  { n: "01", title: "Capture the home", body: "Property type, systems, rooms, garden zones, preferences. The Companion captures the home once, then routes intelligently into Design, Services, Protect, and ongoing care." },
+  { n: "02", title: "Understand priorities", body: "Style, budget, urgency, ambition, household context. The Companion prompts for what matters and builds a home profile draft and brief." },
+  { n: "03", title: "Recommend the route", body: "HoWA proposes the next best route: provider, package, review, consultation, or quote-entry. Ranked options, not a blank search." },
+  { n: "04", title: "Save to the record", body: "Everything writes to the home-linked record, even before purchase. Partially completed sessions save. Come back and the Companion picks up where you left off." },
 ];
 
 const EXAMPLES = [
@@ -36,16 +36,16 @@ export default function CompanionPage() {
           <h1 className="em-accent font-display font-medium text-[clamp(44px,6vw,76px)] leading-[1.05] tracking-[-0.01em] mt-4">
             The question you&apos;d ask <em>a surveyor</em>, answered.
           </h1>
-          <p className="font-sans text-[19px] leading-[1.6] text-house-brown/75 mt-6 max-w-[60ch]">
-            Not another chatbot. A diagnostic built specifically for British homes, trained on decades of survey notes, trade call-outs, and the patterns we see again and again. Calm, specific, honest about what it doesn&apos;t know.
+          <p className="font-sans text-[19px] leading-[1.6] text-house-brown/70 mt-6 max-w-[60ch]">
+            The Companion is the root diagnostic and intake layer. It captures the home once, then routes intelligently into Design, Services, Protect, and ongoing care. Calm, specific, honest about what it doesn&apos;t know.
           </p>
-          <p className="font-sans text-[16px] leading-[1.6] text-house-stone mt-4 max-w-[56ch]">
-            Useful for the 80% of home issues that recur across British housing stock. Not a replacement for qualified surveyors or trades &mdash; it&apos;s the layer between noticing a problem and acting on it.
+          <p className="font-sans text-[16px] leading-[1.6] text-house-brown/70 mt-4 max-w-[56ch]">
+            Not another chatbot. A diagnostic built for British homes. The output saves to the home record even before purchase. Insight first, action second. Guidance before transaction.
           </p>
           <div className="mt-8 flex items-center gap-4">
             <Link
               href="/api/howa-bounce?source=companion"
-              className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold px-6 py-3.5 no-underline transition-colors duration-[var(--t-slow)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
+              className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-6 py-3.5 no-underline transition-colors duration-[var(--t-slow)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
             >
               Try the Companion
             </Link>
@@ -66,7 +66,7 @@ export default function CompanionPage() {
               <div key={step.n} className="flex flex-col gap-3 border-t border-house-gold pt-5">
                 <div className="font-sans text-[10px] tracking-[0.22em] uppercase text-house-gold">{step.n}</div>
                 <h3 className="font-display font-medium text-[22px] leading-[1.2]">{step.title}</h3>
-                <p className="font-sans text-[15px] leading-[1.6] text-house-stone">{step.body}</p>
+                <p className="font-sans text-[15px] leading-[1.6] text-house-brown/70">{step.body}</p>
               </div>
             ))}
           </div>
@@ -90,13 +90,13 @@ export default function CompanionPage() {
                   </div>
                   <div>
                     <div className="font-sans text-[10px] tracking-[0.22em] uppercase text-howa-teal mb-1">The Companion</div>
-                    <p className="font-sans italic text-[15px] leading-[1.6] text-house-stone">{ex.answer}</p>
+                    <p className="font-sans italic text-[15px] leading-[1.6] text-house-brown/70">{ex.answer}</p>
                   </div>
                 </div>
                 {ex.next ? (
                   <div className="mt-3 ml-0 md:ml-[calc(41.67%+12px)] bg-house-white border border-house-brown/6 px-4 py-2.5">
                     <span className="font-sans text-[9px] tracking-[0.2em] uppercase text-house-gold mr-2">What happened next</span>
-                    <span className="font-sans text-[13px] text-house-stone">{ex.next}</span>
+                    <span className="font-sans text-[13px] text-house-brown/70">{ex.next}</span>
                   </div>
                 ) : null}
               </li>
@@ -111,7 +111,7 @@ export default function CompanionPage() {
           <p className="font-sans italic text-[17px] leading-[1.55] text-house-brown/80">
             &ldquo;I photograph everything now. The Companion told me the crack above the kitchen door was settlement, not structural. Saved me a surveyor&apos;s call-out fee and a week of worry.&rdquo;
           </p>
-          <p className="font-sans text-[12px] text-house-stone mt-3">David R. &middot; 2-bed cottage, Oxfordshire</p>
+          <p className="font-sans text-[12px] text-house-brown/70 mt-3">David R. &middot; 2-bed cottage, Oxfordshire</p>
         </div>
       </section>
 
@@ -123,7 +123,7 @@ export default function CompanionPage() {
       {/* Closing */}
       <section className="px-[5vw] py-14 border-t border-house-brown/10">
         <div className="max-w-[640px] mx-auto text-center">
-          <p className="font-sans italic text-[14px] text-house-stone leading-[1.6] mb-5">
+          <p className="font-sans italic text-[14px] text-house-brown/70 leading-[1.6] mb-5">
             The Companion is part of HoWA+. Your photos and notes are stored in your private record &mdash; encrypted, never shared, never used to train public models.
           </p>
           <GhostLink href="/howa/plus">HoWA+ is &pound;16.99 a month &rarr;</GhostLink>

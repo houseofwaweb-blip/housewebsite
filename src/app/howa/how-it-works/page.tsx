@@ -61,8 +61,8 @@ export default function HowItWorksPage() {
           <h1 className="em-accent font-display font-medium text-[clamp(44px,6vw,76px)] leading-[1.05] tracking-[-0.01em] mt-4">
             Four quiet jobs. Every home, <em>every day.</em>
           </h1>
-          <p className="font-sans text-[19px] leading-[1.6] text-house-brown/75 mt-6 max-w-[60ch]">
-            Whatever your tier, HoWA does the same four things. It understands the home, recommends the next right action, connects you to the right person, and remembers everything. The record compounds. The home gets better.
+          <p className="font-sans text-[19px] leading-[1.6] text-house-brown/70 mt-6 max-w-[60ch]">
+            Whatever the tier, HoWA does the same four things. Story lives on the House. Decision, configuration, booking, payment, and continuity live in HoWA. No meaningful journey ends as an orphan enquiry. The record compounds. The home gets better.
           </p>
         </div>
       </section>
@@ -96,14 +96,14 @@ export default function HowItWorksPage() {
                     <span className="flex-shrink-0 font-display italic text-[13px] text-house-gold mt-0.5">
                       {j + 1}.
                     </span>
-                    <p className="font-sans text-[14px] leading-[1.6] text-house-stone">
+                    <p className="font-sans text-[14px] leading-[1.6] text-house-brown/70">
                       {ex}
                     </p>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className={`w-full aspect-[4/5] bg-house-cream-dark flex items-center justify-center font-sans text-[11px] tracking-[0.14em] uppercase text-house-stone ${i % 2 !== 0 ? "md:order-1" : ""}`}>
+            <div className={`w-full aspect-[4/5] bg-house-cream-dark flex items-center justify-center font-sans text-[11px] tracking-[0.14em] uppercase text-house-brown/70 ${i % 2 !== 0 ? "md:order-1" : ""}`}>
               {v.verb} illustration
             </div>
           </div>
@@ -135,7 +135,7 @@ export default function HowItWorksPage() {
         </p>
         <Link
           href="/api/howa-bounce?source=how-it-works"
-          className="inline-block px-10 py-4 font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
+          className="inline-block px-10 py-4 font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
         >
           Start HoWA — Free
         </Link>
@@ -143,7 +143,7 @@ export default function HowItWorksPage() {
 
       {/* Tagline */}
       <div className="text-center border-t border-house-brown/10 bg-house-cream px-5 py-6">
-        <p className="font-display italic text-[14px] text-house-stone tracking-[0.04em]">
+        <p className="font-display italic text-[14px] text-house-brown/70 tracking-[0.04em]">
           Ownership is passive. Stewardship is intentional.
         </p>
       </div>

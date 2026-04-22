@@ -36,9 +36,9 @@ export function Header({
   dark: darkProp,
 }: HeaderProps) {
   const pathname = usePathname() ?? "";
-  // Routes that run on a dark HoWA navy surface. The /howa overview is
-  // the canonical dark page (Variant D); extend this list if others go dark.
-  const DARK_ROUTES = new Set(["/howa"]);
+  // Routes that run on a dark navy surface. /howa/steward is blueprint mode;
+  // the /howa landing is now HoWA mode (light) per 2026-04-22 audit.
+  const DARK_ROUTES = new Set(["/howa/steward"]);
   const dark = darkProp ?? DARK_ROUTES.has(pathname);
 
   const { openDrawer } = useCart();

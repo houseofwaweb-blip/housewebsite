@@ -23,6 +23,7 @@ export interface SearchResult {
   title: string;
   excerpt?: string;
   href: string;
+  image?: string;
 }
 
 interface SearchModalProps {
@@ -30,50 +31,27 @@ interface SearchModalProps {
   onClose: () => void;
 }
 
-// Placeholder results — drawn from existing site content so the UI feels real.
-const ALL_RESULTS: SearchResult[] = [
-  { id: "s1", type: "Service", title: "Gardening", excerpt: "Seasonal planting, pruning, and the patience of a calendar.", href: "/services/gardening" },
-  { id: "s2", type: "Service", title: "Window Cleaning", excerpt: "Pure-water pole cleans up to four storeys.", href: "/services/window-cleaning" },
-  { id: "s3", type: "Service", title: "Cleaning", excerpt: "Weekly domestic care, or deep seasonal resets.", href: "/services/cleaning" },
-  { id: "s4", type: "Service", title: "Gutter Cleaning", excerpt: "Cleared before the storm, checked before the season.", href: "/services/gutter-cleaning" },
-  { id: "p1", type: "Partner", title: "Delve Interiors", excerpt: "Considered schemes, quiet palettes, careful detailing.", href: "/partners/delve-interiors" },
-  { id: "p2", type: "Partner", title: "Jessica Durling-McMahon", excerpt: "Layered rooms with confident colour and a love of textile.", href: "/partners/jessica-durling-mcmahon" },
-  { id: "p3", type: "Partner", title: "Willow Alexander Gardens", excerpt: "Planting schemes rooted in the garden's existing character.", href: "/partners/willow-alexander-gardens" },
-  { id: "d1", type: "Design", title: "Interiors", excerpt: "Whole-house renovations and single-room reads.", href: "/design/interiors" },
-  { id: "d2", type: "Design", title: "Gardens", excerpt: "Landscape work led by Willow Alexander Gardens.", href: "/design/gardens" },
-  { id: "h1", type: "HoWA", title: "Plans & Pricing", excerpt: "HoWA+ at £16.99/mo. Steward plans coming soon.", href: "/howa/plans" },
-  { id: "h2", type: "The Hearth", title: "The case for a long-kept house", excerpt: "Why the homes we return to are the ones we do not redo every five years.", href: "/journal/the-case-for-a-long-house" },
-  { id: "h3", type: "The Hearth", title: "Colour, by daylight", excerpt: "The trouble with picking paint on a screen.", href: "/journal/colour-by-daylight" },
-  { id: "sh1", type: "Shop", title: "Heritage Secateurs", excerpt: "Japanese carbon steel, walnut handles. £48.", href: "/shop/heritage-secateurs" },
-  { id: "sh2", type: "Shop", title: "Copper Watering Can", excerpt: "Solid copper, brass rose. £125.", href: "/shop/copper-watering-can" },
-  { id: "sh3", type: "Shop", title: "Waxed Stockman Coat", excerpt: "Full-length waxed cotton. £295.", href: "/shop/waxed-stockman-coat" },
-  { id: "i1", type: "Protect", title: "House Approved Insurance", excerpt: "Cover that understands period homes and collections.", href: "/insurance" },
-  { id: "t1", type: "The House", title: "Philosophy", excerpt: "What a house is actually for.", href: "/the-house/philosophy" },
-  { id: "t2", type: "The House", title: "Standards", excerpt: "How we work, and what House Approved means.", href: "/the-house/standards" },
-];
-
 const TABS = [
   { id: "all", label: "All" },
   { id: "service", label: "Services" },
   { id: "shop", label: "Shop" },
   { id: "design", label: "Design" },
-  { id: "the hearth", label: "Journal" },
+  { id: "journal", label: "Journal" },
   { id: "the house", label: "The House" },
+  { id: "howa", label: "HoWA" },
 ];
 
-function filterResults(query: string, tab: string): SearchResult[] {
-  const q = query.toLowerCase().trim();
-  let pool = ALL_RESULTS;
-  if (tab !== "all") {
-    pool = pool.filter((r) => r.type.toLowerCase().includes(tab));
+async function fetchResults(query: string, tab: string): Promise<SearchResult[]> {
+  if (!query.trim()) return [];
+  try {
+    const params = new URLSearchParams({ q: query, tab });
+    const res = await fetch(`/api/search?${params}`);
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.results ?? [];
+  } catch {
+    return [];
   }
-  if (!q) return pool.slice(0, 8);
-  return pool.filter(
-    (r) =>
-      r.title.toLowerCase().includes(q) ||
-      r.type.toLowerCase().includes(q) ||
-      (r.excerpt && r.excerpt.toLowerCase().includes(q)),
-  );
 }
 
 export function SearchModal({ open, onClose }: SearchModalProps) {
@@ -84,12 +62,14 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const debounceRef = React.useRef<number | null>(null);
 
+  const [loading, setLoading] = React.useState(false);
+
   // Focus input when modal opens
   React.useEffect(() => {
     if (open) {
       setQuery("");
       setTab("all");
-      setResults(filterResults("", "all"));
+      setResults([]);
       setRefreshKey((k) => k + 1);
       setTimeout(() => inputRef.current?.focus(), 100);
     }
@@ -118,9 +98,12 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
   const scheduleSearch = React.useCallback(
     (q: string, t: string) => {
       if (debounceRef.current) window.clearTimeout(debounceRef.current);
-      debounceRef.current = window.setTimeout(() => {
-        setResults(filterResults(q, t));
+      debounceRef.current = window.setTimeout(async () => {
+        setLoading(true);
+        const hits = await fetchResults(q, t);
+        setResults(hits);
         setRefreshKey((k) => k + 1);
+        setLoading(false);
       }, 300);
     },
     [],
@@ -155,7 +138,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
           <div className="flex items-center gap-[14px] pb-[8px] border-b-2 border-house-brown">
             <svg
               aria-hidden="true"
-              className="w-[28px] h-[28px] text-house-stone shrink-0"
+              className="w-[28px] h-[28px] text-house-brown/60 shrink-0"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -177,7 +160,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
               className={cn(
                 "flex-1 bg-transparent border-0 min-w-0",
                 "font-display font-normal italic text-[clamp(24px,3.5vw,32px)] text-house-brown",
-                "placeholder:font-normal placeholder:text-house-stone placeholder:opacity-50",
+                "placeholder:font-normal placeholder:text-house-brown/60 placeholder:opacity-50",
                 "placeholder:transition-opacity placeholder:duration-[var(--t-slow)] placeholder:ease-out",
                 "focus:placeholder:opacity-20",
                 "[&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden",
@@ -238,12 +221,16 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
         ) : null}
 
         <div key={refreshKey} className="flex flex-col">
-          {results.length === 0 && query.length > 0 ? (
-            <p className="font-display italic text-[17px] text-house-stone py-[40px] text-center">
-              No matches for &ldquo;{query}&rdquo;.
+          {loading ? (
+            <p className="font-display italic text-[15px] text-house-brown/50 py-[40px] text-center">
+              Searching&hellip;
+            </p>
+          ) : results.length === 0 && query.length > 0 ? (
+            <p className="font-display italic text-[17px] text-house-brown/50 py-[40px] text-center">
+              Nothing quite like &ldquo;{query}&rdquo; yet. Try different terms.
             </p>
           ) : results.length === 0 ? (
-            <p className="font-display italic text-[15px] text-house-stone py-[40px] text-center">
+            <p className="font-display italic text-[15px] text-house-brown/50 py-[40px] text-center">
               Start typing to search across the House.
             </p>
           ) : (
@@ -254,25 +241,32 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
                 onClick={onClose}
                 style={{ animationDelay: `${Math.min(i, 10) * 60}ms` }}
                 className={cn(
-                  "block py-[14px] border-b border-house-brown/8 no-underline",
-                  /* Hover: cream bg + padding slide (Playground pattern) */
+                  "flex items-start gap-4 py-[14px] border-b border-house-brown/8 no-underline",
                   "transition-[background-color,padding] duration-[var(--t-slow)] ease-out",
                   "hover:bg-house-cream-dark hover:px-[12px]",
-                  /* Staggered entry animation */
                   "opacity-0 [animation:howa-slide-in_var(--t-xslow)_var(--ease-out)_forwards]",
                 )}
               >
-                <div className="font-sans text-[10px] tracking-[0.22em] uppercase text-house-stone mb-[4px]">
-                  {r.type}
-                </div>
-                <h5 className="font-display text-[20px] font-medium text-house-brown mb-[4px] transition-colors duration-[var(--t-base)] ease-out group-hover:text-house-gold">
-                  {r.title}
-                </h5>
-                {r.excerpt ? (
-                  <p className="font-sans text-[14px] text-house-stone leading-[1.5]">
-                    {r.excerpt}
-                  </p>
+                {r.image ? (
+                  <img
+                    src={r.image}
+                    alt=""
+                    className="w-[56px] h-[56px] object-cover shrink-0 mt-1 bg-house-cream-dark"
+                  />
                 ) : null}
+                <div className="min-w-0">
+                  <div className="font-sans text-[10px] tracking-[0.22em] uppercase text-house-brown/60 mb-[4px]">
+                    {r.type}
+                  </div>
+                  <h5 className="font-display text-[20px] font-medium text-house-brown mb-[4px]">
+                    {r.title}
+                  </h5>
+                  {r.excerpt ? (
+                    <p className="font-sans text-[14px] text-house-brown/60 leading-[1.5]">
+                      {r.excerpt}
+                    </p>
+                  ) : null}
+                </div>
               </Link>
             ))
           )}
