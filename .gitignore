@@ -40,11 +40,13 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# commercial font files (Didot LT Pro, Effra Std — licensed, do not distribute)
+# commercial font files — ignore globally, allow the ones the app needs
 **/*.woff
 **/*.woff2
 **/*.otf
 **/*.ttf
+!public/fonts/*.woff
+!public/fonts/*.woff2
 
 # large binary assets
 *.zip
