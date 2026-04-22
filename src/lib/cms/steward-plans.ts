@@ -1,7 +1,17 @@
 import { sanityFetch } from "./fetch";
+import { sanityClient } from "./client";
 import { stewardPlansQuery } from "./queries";
 import { servicesReady } from "@/lib/env";
 import { PLANS, HOME_GARDEN_PLANS, APARTMENT_PLANS, type StewardPlan } from "@/lib/steward-data";
+
+export async function getAllPlanSlugs(): Promise<string[]> {
+  if (servicesReady.sanity) {
+    try {
+      return await sanityClient.fetch<string[]>(`*[_type == "servicePackage" && _id match "stewardPlan.*"].slug.current`);
+    } catch (e) { console.error("[cms/steward-plans]", e); }
+  }
+  return PLANS.map(p => p.slug);
+}
 
 interface SanityPlan {
   _id: string;

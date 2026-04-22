@@ -15,7 +15,7 @@ import {
   type LaunchPartner,
   type PartnerSlug,
 } from "@/lib/partners-data";
-import { getPartnerBySlug, getAllPartners } from "@/lib/cms/partners";
+import { getPartnerBySlug, getAllPartners, getAllPartnerSlugs } from "@/lib/cms/partners";
 
 /**
  * /partners/[slug] — Editorial Cover template (variant A).
@@ -611,6 +611,6 @@ function SanityPartnerPage({ partner }: { partner: SanityPartnerDoc }) {
 }
 
 export async function generateStaticParams() {
-  const partners = await getAllPartners();
-  return partners.map((p) => ({ slug: p.slug }));
+  const slugs = await getAllPartnerSlugs();
+  return slugs.map((slug) => ({ slug }));
 }

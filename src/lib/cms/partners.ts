@@ -1,7 +1,17 @@
 import { sanityFetch } from "./fetch";
+import { sanityClient } from "./client";
 import { allPartnersQuery, partnerBySlugQuery } from "./queries";
 import { servicesReady } from "@/lib/env";
 import { LAUNCH_PARTNERS, PARTNER_ORDER, type LaunchPartner, type PartnerSlug } from "@/lib/partners-data";
+
+export async function getAllPartnerSlugs(): Promise<string[]> {
+  if (servicesReady.sanity) {
+    try {
+      return await sanityClient.fetch<string[]>(`*[_type == "partner"].slug.current`);
+    } catch (e) { console.error("[cms/partners]", e); }
+  }
+  return [...PARTNER_ORDER];
+}
 
 interface SanityPartner {
   _id: string;

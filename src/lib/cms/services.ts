@@ -1,4 +1,5 @@
 import { sanityFetch } from "./fetch";
+import { sanityClient } from "./client";
 import { allServicesQuery, serviceBySlugQuery, servicePackagesQuery } from "./queries";
 import { servicesReady } from "@/lib/env";
 import { SERVICES, SERVICE_ORDER, type Service, type ServiceSlug } from "@/lib/services-data";
@@ -93,4 +94,13 @@ function sanityToService(doc: SanityService, packages?: SanityPackage[]): Servic
     faq: fallback?.faq || [],
     trustBadges: fallback?.trustBadges || [],
   };
+}
+
+export async function getAllServiceSlugs(): Promise<string[]> {
+  if (servicesReady.sanity) {
+    try {
+      return await sanityClient.fetch<string[]>(`*[_type == "service"].slug.current`);
+    } catch (e) { console.error("[cms/services]", e); }
+  }
+  return SERVICE_ORDER;
 }
