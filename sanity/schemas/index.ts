@@ -16,6 +16,8 @@ import { proofPoint } from "./proofPoint";
 import { faq } from "./faq";
 import { legalPage } from "./legalPage";
 import { redirect } from "./redirect";
+import testimonial from "./testimonial";
+import howaFeature from "./howaFeature";
 
 import { seo } from "./objects/seo";
 import { cta } from "./objects/cta";
@@ -48,6 +50,8 @@ export const schemaTypes = [
   faq,
   legalPage,
   redirect,
+  testimonial,
+  howaFeature,
   seo,
   cta,
   heroBlock,
