@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 /**
  * Global footer.
@@ -81,9 +82,15 @@ export function Footer() {
         </div>
 
         <div className="pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-          <div className="font-display font-medium text-[14px] tracking-[0.14em] uppercase">
-            House of Willow Alexander
-          </div>
+          <Link href="/" aria-label="House of Willow Alexander, home">
+            <Image
+              src="/brand/wordmark-white.svg"
+              alt="House of Willow Alexander"
+              width={296}
+              height={125}
+              className="h-[48px] w-auto opacity-90"
+            />
+          </Link>
           <div className="font-sans italic text-[14px] text-house-cream/70">
             Ownership is passive. Stewardship is intentional.
           </div>
