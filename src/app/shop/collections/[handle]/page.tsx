@@ -3,7 +3,10 @@ import { notFound } from "next/navigation";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { GhostLink } from "@/components/primitives/GhostLink";
 import { ProductCard } from "@/components/commerce/ProductCard";
-import { COLLECTIONS, findCollection, findProduct } from "@/lib/shop-data";
+import {
+  CATALOGUE_COLLECTIONS,
+  getCatalogueCollection,
+} from "@/lib/shop-data/catalogue";
 
 export async function generateMetadata({
   params,
@@ -11,11 +14,10 @@ export async function generateMetadata({
   params: Promise<{ handle: string }>;
 }) {
   const { handle } = await params;
-  const collection = findCollection(handle);
+  const collection = CATALOGUE_COLLECTIONS.find((c) => c.handle === handle);
   if (!collection) return { title: "Collection not found" };
   return {
     title: `${collection.title} — Shop`,
-    description: collection.description,
   };
 }
 
@@ -25,12 +27,10 @@ export default async function CollectionPage({
   params: Promise<{ handle: string }>;
 }) {
   const { handle } = await params;
-  const collection = findCollection(handle);
+  const collection = CATALOGUE_COLLECTIONS.find((c) => c.handle === handle);
   if (!collection) notFound();
 
-  const products = collection.productHandles
-    .map((h) => findProduct(h))
-    .filter(Boolean);
+  const products = getCatalogueCollection(handle);
 
   return (
     <article className="bg-house-white text-house-brown">
@@ -50,9 +50,6 @@ export default async function CollectionPage({
           <h1 className="em-accent font-display font-medium text-[clamp(44px,6vw,76px)] leading-[1.05] tracking-[-0.01em]">
             {collection.title}.
           </h1>
-          <p className="font-sans text-[18px] leading-[1.6] text-house-brown/70 mt-5 max-w-[56ch] mx-auto">
-            {collection.description}
-          </p>
           <p className="mt-4 font-sans text-[11px] tracking-[0.18em] uppercase text-house-stone">
             {products.length} {products.length === 1 ? "piece" : "pieces"}
           </p>
@@ -64,7 +61,7 @@ export default async function CollectionPage({
         <div className="max-w-[1320px] mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-10">
             {products.map((p) => (
-              <ProductCard key={p!.handle} product={p!} />
+              <ProductCard key={p.handle} product={p} />
             ))}
           </div>
         </div>
@@ -78,15 +75,17 @@ export default async function CollectionPage({
             <GhostLink href="/shop">All products</GhostLink>
           </div>
           <div className="flex flex-wrap gap-4">
-            {COLLECTIONS.filter((c) => c.handle !== handle).map((c) => (
-              <Link
-                key={c.handle}
-                href={`/shop/collections/${c.handle}`}
-                className="font-sans text-[11px] tracking-[0.2em] uppercase no-underline text-house-brown border border-house-brown/20 px-5 py-2.5 transition-all duration-[var(--t-base)] ease-out hover:border-house-gold hover:text-house-gold"
-              >
-                {c.title}
-              </Link>
-            ))}
+            {CATALOGUE_COLLECTIONS.filter((c) => c.handle !== handle)
+              .slice(0, 8)
+              .map((c) => (
+                <Link
+                  key={c.handle}
+                  href={`/shop/collections/${c.handle}`}
+                  className="font-sans text-[11px] tracking-[0.2em] uppercase no-underline text-house-brown border border-house-brown/20 px-5 py-2.5 transition-all duration-[var(--t-base)] ease-out hover:border-house-gold hover:text-house-gold"
+                >
+                  {c.title}
+                </Link>
+              ))}
           </div>
         </div>
       </section>
@@ -95,5 +94,5 @@ export default async function CollectionPage({
 }
 
 export function generateStaticParams() {
-  return COLLECTIONS.map((c) => ({ handle: c.handle }));
+  return CATALOGUE_COLLECTIONS.map((c) => ({ handle: c.handle }));
 }

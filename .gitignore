@@ -78,3 +78,4 @@ src/lib/hearth-data/wp-import/articles.raw.json
 .sentryclirc
 .sanity/
 dist/
+scripts/woo-products.json

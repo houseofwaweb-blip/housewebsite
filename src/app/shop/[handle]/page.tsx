@@ -6,6 +6,7 @@ import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { GhostLink } from "@/components/primitives/GhostLink";
 import { ProductCard } from "@/components/commerce/ProductCard";
 import { PRODUCTS, findProduct, getRelatedProducts } from "@/lib/shop-data";
+import { CATALOGUE_PRODUCTS, findCatalogueProduct } from "@/lib/shop-data/catalogue";
 import { ProductGallery } from "./ProductGallery";
 import { ProductCopy } from "./ProductCopy";
 import { AddToBasketButton } from "./AddToBasketButton";
@@ -24,13 +25,28 @@ import { AddToBasketButton } from "./AddToBasketButton";
  *   5. Related products
  */
 
+function resolveProduct(handle: string) {
+  const local = findProduct(handle);
+  if (local) return local;
+  const cat = findCatalogueProduct(handle);
+  if (!cat) return null;
+  return {
+    ...cat,
+    relatedHandles: [] as string[],
+    careNotes: undefined,
+    materials: undefined,
+    dimensions: undefined,
+    delivery: undefined,
+  };
+}
+
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ handle: string }>;
 }): Promise<Metadata> {
   const { handle } = await params;
-  const p = findProduct(handle);
+  const p = resolveProduct(handle);
   if (!p) return { title: "Product not found" };
   return {
     title: `${p.title} — Shop`,
@@ -50,7 +66,7 @@ export default async function ProductPage({
   params: Promise<{ handle: string }>;
 }) {
   const { handle } = await params;
-  const product = findProduct(handle);
+  const product = resolveProduct(handle);
   if (!product) notFound();
 
   const related = getRelatedProducts(product.relatedHandles ?? []);
@@ -166,5 +182,8 @@ export default async function ProductPage({
 }
 
 export function generateStaticParams() {
-  return PRODUCTS.map((p) => ({ handle: p.handle }));
+  const localHandles = PRODUCTS.map((p) => p.handle);
+  const catHandles = CATALOGUE_PRODUCTS.map((p) => p.handle);
+  const all = [...new Set([...localHandles, ...catHandles])];
+  return all.map((handle) => ({ handle }));
 }

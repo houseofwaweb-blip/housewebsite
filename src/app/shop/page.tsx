@@ -2,23 +2,7 @@ import Link from "next/link";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { GhostLink } from "@/components/primitives/GhostLink";
 import { ProductCard } from "@/components/commerce/ProductCard";
-import { PRODUCTS, COLLECTIONS } from "@/lib/shop-data";
-
-/**
- * /shop — the House store.
- *
- * Design: Aesop meets Net-a-Porter. Big images, slow scroll, zero noise.
- * No star ratings, no "X in stock" urgency, no "customers also bought".
- * The CTA is the card itself. The trust signal is "House Approved".
- *
- * Structure:
- *   1. Hero — editorial headline + sub + collection strip
- *   2. Featured collection band ("House Approved")
- *   3. Full product grid
- *   4. Collections cross-nav
- *   5. Editorial band (House voice, link to Hearth)
- *   6. Closing
- */
+import { CATALOGUE_PRODUCTS, CATALOGUE_COLLECTIONS } from "@/lib/shop-data/catalogue";
 
 export const metadata = {
   title: "Shop",
@@ -26,9 +10,13 @@ export const metadata = {
     "Curated objects from the House of Willow Alexander. Tools, home, and wear — each House Approved for craft, provenance, and lasting use.",
 };
 
+const FEATURED_LIMIT = 8;
+const GRID_LIMIT = 24;
+
 export default function ShopPage() {
-  const featured = PRODUCTS.filter((p) => p.houseApproved);
-  const allProducts = PRODUCTS;
+  const featured = CATALOGUE_PRODUCTS.filter((p) => p.houseApproved).slice(0, FEATURED_LIMIT);
+  const allProducts = CATALOGUE_PRODUCTS.slice(0, GRID_LIMIT);
+  const topCollections = CATALOGUE_COLLECTIONS.slice(0, 8);
 
   return (
     <article className="bg-house-white text-house-brown">
@@ -54,7 +42,7 @@ export default function ShopPage() {
           >
             All
           </Link>
-          {COLLECTIONS.map((c) => (
+          {topCollections.map((c) => (
             <Link
               key={c.handle}
               href={`/shop/collections/${c.handle}`}
@@ -67,39 +55,55 @@ export default function ShopPage() {
       </section>
 
       {/* 2. Featured — House Approved */}
-      <section className="px-[5vw] py-16 border-t border-house-brown/10">
-        <div className="max-w-[1320px] mx-auto">
-          <div className="flex items-baseline justify-between mb-8 gap-4">
-            <div>
-              <Eyebrow>House Approved</Eyebrow>
-              <h2 className="font-display font-medium text-[clamp(28px,3.6vw,42px)] leading-[1.15] mt-2">
-                The mark of the House.
-              </h2>
+      {featured.length > 0 ? (
+        <section className="px-[5vw] py-16 border-t border-house-brown/10">
+          <div className="max-w-[1320px] mx-auto">
+            <div className="flex items-baseline justify-between mb-8 gap-4">
+              <div>
+                <Eyebrow>House Approved</Eyebrow>
+                <h2 className="font-display font-medium text-[clamp(28px,3.6vw,42px)] leading-[1.15] mt-2">
+                  The mark of the House.
+                </h2>
+              </div>
             </div>
-            <GhostLink href="/shop/collections/house-approved">
-              See all
-            </GhostLink>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-10">
+              {featured.map((p) => (
+                <ProductCard key={p.handle} product={p} />
+              ))}
+            </div>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-10">
-            {featured.map((p) => (
-              <ProductCard key={p.handle} product={p} />
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
       {/* 3. Full grid */}
       <section className="px-[5vw] py-16 bg-house-cream border-t border-house-brown/10">
         <div className="max-w-[1320px] mx-auto">
-          <Eyebrow>Everything</Eyebrow>
-          <h2 className="font-display font-medium text-[clamp(28px,3.6vw,42px)] leading-[1.15] mt-2 mb-10">
-            The full collection.
-          </h2>
+          <div className="flex items-baseline justify-between mb-10 gap-4">
+            <div>
+              <Eyebrow>Everything</Eyebrow>
+              <h2 className="font-display font-medium text-[clamp(28px,3.6vw,42px)] leading-[1.15] mt-2">
+                The full collection.
+              </h2>
+            </div>
+            <span className="font-sans text-[11px] tracking-[0.18em] uppercase text-house-stone">
+              {CATALOGUE_PRODUCTS.length} pieces
+            </span>
+          </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-10">
             {allProducts.map((p) => (
               <ProductCard key={p.handle} product={p} />
             ))}
           </div>
+          {CATALOGUE_PRODUCTS.length > GRID_LIMIT ? (
+            <div className="text-center mt-12">
+              <Link
+                href="/shop/collections/home-accessories"
+                className="inline-block px-8 py-3.5 font-sans text-[11px] tracking-[0.18em] uppercase text-house-brown border border-house-brown/30 no-underline transition-all duration-[var(--t-base)] ease-out hover:border-house-gold hover:text-house-gold"
+              >
+                Browse all {CATALOGUE_PRODUCTS.length} pieces →
+              </Link>
+            </div>
+          ) : null}
         </div>
       </section>
 
@@ -108,21 +112,18 @@ export default function ShopPage() {
         <div className="max-w-[1200px] mx-auto">
           <Eyebrow>Collections</Eyebrow>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-8">
-            {COLLECTIONS.map((c) => (
+            {topCollections.map((c) => (
               <Link
                 key={c.handle}
                 href={`/shop/collections/${c.handle}`}
                 className="group flex flex-col bg-house-cream border border-house-brown/10 p-7 no-underline transition-all duration-[var(--t-slow)] ease-out hover:-translate-y-0.5 hover:border-house-gold"
               >
                 <span className="font-sans text-[10px] tracking-[0.22em] uppercase text-house-gold mb-2">
-                  {c.productHandles.length} {c.productHandles.length === 1 ? "piece" : "pieces"}
+                  {c.productCount} {c.productCount === 1 ? "piece" : "pieces"}
                 </span>
-                <h3 className="font-display font-medium text-[24px] leading-[1.2] text-house-brown group-hover:text-house-gold transition-colors duration-[var(--t-slow)] ease-out mb-2">
+                <h3 className="font-display font-medium text-[24px] leading-[1.2] text-house-brown group-hover:text-house-gold transition-colors duration-[var(--t-slow)] ease-out">
                   {c.title}
                 </h3>
-                <p className="font-sans text-[14px] leading-[1.55] text-house-stone">
-                  {c.description}
-                </p>
               </Link>
             ))}
           </div>
