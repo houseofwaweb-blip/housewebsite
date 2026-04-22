@@ -18,6 +18,7 @@ export interface CatalogueProduct {
   houseApproved: boolean;
   lede: string;
   body: string;
+  brand: string;
   sku: string;
   inStock: boolean;
   onSale: boolean;
@@ -29,13 +30,20 @@ export interface CatalogueCollection {
   productCount: number;
 }
 
+export interface CatalogueBrand {
+  name: string;
+  count: number;
+}
+
 const data = catalogueData as {
   products: CatalogueProduct[];
   collections: CatalogueCollection[];
+  brands: CatalogueBrand[];
 };
 
 export const CATALOGUE_PRODUCTS = data.products;
 export const CATALOGUE_COLLECTIONS = data.collections;
+export const CATALOGUE_BRANDS = data.brands;
 
 export function findCatalogueProduct(handle: string): CatalogueProduct | undefined {
   return CATALOGUE_PRODUCTS.find((p) => p.handle === handle);

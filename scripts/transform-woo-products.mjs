@@ -64,6 +64,7 @@ const products = raw
     houseApproved: isHouseApproved(p),
     lede: stripHtml(p.short_description) || stripHtml(p.name),
     body: stripHtml(p.description),
+    brand: (p.brands || []).map((b) => b.name.replace(/&amp;/g, "&"))[0] || "",
     sku: p.sku || "",
     inStock: p.stock_status === "instock",
     onSale: p.on_sale || false,
@@ -82,10 +83,20 @@ for (const p of products) {
   collections[p.collection].productCount++;
 }
 
+const brands = {};
+for (const p of products) {
+  if (p.brand) {
+    brands[p.brand] = (brands[p.brand] || 0) + 1;
+  }
+}
+
 const output = {
   generatedAt: new Date().toISOString(),
   totalProducts: products.length,
   collections: Object.values(collections).sort((a, b) => b.productCount - a.productCount),
+  brands: Object.entries(brands)
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count),
   products,
 };
 

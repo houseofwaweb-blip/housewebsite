@@ -53,19 +53,6 @@ export function ProductCopy({ product: p }: { product: ShopProduct }) {
         </p>
       ) : null}
 
-      <div className="bg-house-cream border border-house-gold/25 px-[18px] py-[14px] mb-[24px]">
-        <p className="font-sans text-[13px] text-house-brown">
-          <span className="font-medium text-house-gold">HoWA+ members</span>{" "}
-          save 10% on every order.{" "}
-          <Link
-            href="/howa/plans"
-            className="underline decoration-house-gold underline-offset-[3px] hover:text-house-gold transition-colors"
-          >
-            Join for £16.99/mo
-          </Link>
-        </p>
-      </div>
-
       {details.length > 0 ? <Accordion items={details} /> : null}
 
       <div className="mt-[28px] pt-[24px] border-t border-house-brown/10">
@@ -74,11 +61,14 @@ export function ProductCopy({ product: p }: { product: ShopProduct }) {
         </div>
         <button
           type="button"
-          onClick={handleAdd}
-          className="w-full max-w-[360px] py-[16px] font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light cursor-pointer"
+          disabled
+          className="w-full max-w-[360px] py-[16px] font-sans text-[12px] tracking-[0.18em] uppercase text-house-stone/60 bg-house-cream-dark border border-house-brown/10 cursor-not-allowed"
         >
-          Add to basket
+          Coming soon
         </button>
+        <p className="font-sans italic text-[12px] text-house-stone mt-3 max-w-[360px]">
+          Our curation is undergoing some renovations. You&apos;ll be able to order from us again soon.
+        </p>
       </div>
     </div>
   );

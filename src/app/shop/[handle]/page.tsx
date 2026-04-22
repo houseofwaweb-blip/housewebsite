@@ -138,10 +138,9 @@ export default async function ProductPage({
             product.price
           )}
         </span>
-        <AddToBasketButton
-          product={product}
-          className="max-md:w-full max-md:order-3 inline-block text-center px-8 py-3.5 font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold cursor-pointer transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
-        />
+        <span className="max-md:w-full max-md:order-3 inline-block text-center px-8 py-3.5 font-sans text-[12px] tracking-[0.18em] uppercase text-house-stone/60 bg-house-cream-dark border border-house-brown/10 cursor-not-allowed">
+          Coming soon
+        </span>
       </div>
 
       {/* 3. Story split — sticky copy left + scrolling gallery right */}
