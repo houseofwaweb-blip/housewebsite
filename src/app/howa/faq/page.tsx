@@ -146,6 +146,55 @@ const SECTIONS: {
     ],
   },
   {
+    heading: "Your home & account",
+    items: [
+      {
+        id: "multiple-homes",
+        summary: "Can I use HoWA for more than one home?",
+        body: (
+          <p>
+            At launch, HoWA supports one home per account. Multiple homes
+            are on the Steward roadmap. If you have a second property now,
+            register interest and we&apos;ll prioritise you when it opens.
+          </p>
+        ),
+      },
+      {
+        id: "family",
+        summary: "Can my partner or family access HoWA?",
+        body: (
+          <p>
+            Yes. You can invite collaborators to your home record at no extra
+            cost. Each person gets their own login but sees the same record.
+          </p>
+        ),
+      },
+      {
+        id: "selling",
+        summary: "What happens if I sell my home?",
+        body: (
+          <p>
+            The record belongs to you, not the house. You can export it as a
+            PDF or hand it to the buyer as a provenance document. If the buyer
+            joins HoWA, we can transfer the record to their account with your
+            permission.
+          </p>
+        ),
+      },
+      {
+        id: "downgrade",
+        summary: "If I cancel HoWA+, do I lose my data?",
+        body: (
+          <p>
+            No. Your record stays with you on the free tier. You lose access
+            to the Companion, member pricing, and The Hearth, but the record
+            of everything done to your home is yours to keep or export.
+          </p>
+        ),
+      },
+    ],
+  },
+  {
     heading: "Privacy & data",
     items: [
       {
@@ -163,6 +212,61 @@ const SECTIONS: {
               privacy page
             </Link>{" "}
             has the detail.
+          </p>
+        ),
+      },
+      {
+        id: "photos",
+        summary: "What happens to the photos I upload?",
+        body: (
+          <p>
+            Stored encrypted in your private record. We don&apos;t sell, share,
+            or train public models on them. Used only to generate your Companion
+            answer and kept for reference unless you delete them.
+          </p>
+        ),
+      },
+      {
+        id: "export",
+        summary: "Can I export my data?",
+        body: (
+          <p>
+            Yes. You can export your full home record as a PDF or structured
+            JSON at any time from your account settings. The record is yours.
+          </p>
+        ),
+      },
+    ],
+  },
+  {
+    heading: "Member pricing & services",
+    items: [
+      {
+        id: "savings",
+        summary: "How much do HoWA+ members save?",
+        body: (
+          <p>
+            Typically 10-15% off service bookings vs. calling direct, plus
+            10% off everything in the House shop. A single gutter clear
+            and window clean often covers the monthly fee.
+          </p>
+        ),
+      },
+      {
+        id: "hearth",
+        summary: "What is The Hearth?",
+        body: (
+          <p>
+            The Hearth is our editorial publication for HoWA+ members.
+            Weekly writing on homes, gardens, design, seasonal care, and
+            the craft of looking after a place properly. Published at{" "}
+            <Link
+              href="/journal"
+              className="text-house-brown underline decoration-house-gold underline-offset-4"
+            >
+              /journal
+            </Link>
+            .
           </p>
         ),
       },
