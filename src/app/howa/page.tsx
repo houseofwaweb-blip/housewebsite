@@ -38,6 +38,27 @@ export default function HowaLandingPage() {
         </p>
       </section>
 
+      {/* 1b. The problem — emotional narrative */}
+      <section className="howa-grid-bg px-[5vw] pb-14 text-center">
+        <div className="mx-auto max-w-[680px]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            {[
+              { title: "Homes decay silently.", body: "The boiler ages. The gutters fill. The flat roof cracks. Nothing announces itself until it's expensive." },
+              { title: "You only call when it breaks.", body: "No one is watching the whole picture. No one remembers what was done, or when, or by whom." },
+              { title: "There is no record.", body: "Every trade starts from scratch. Every insurer asks the same questions. The home has no memory." },
+            ].map((p) => (
+              <div key={p.title} className="text-left">
+                <h3 className="font-hearth-sans font-medium text-[15px] text-house-cream mb-2">{p.title}</h3>
+                <p className="font-hearth-sans text-[13px] leading-[1.55] text-house-cream/50">{p.body}</p>
+              </div>
+            ))}
+          </div>
+          <p className="font-hearth-sans italic text-[17px] text-house-gold-light leading-[1.5]">
+            HoWA is the system that changes this. It understands the home, recommends what to do, connects you to the right hands, and remembers everything. The record compounds. The home gets better.
+          </p>
+        </div>
+      </section>
+
       {/* 2. Three-tier showcase */}
       <section className="px-[5vw] pt-8 pb-[72px] relative z-10">
         <div className="mx-auto max-w-[1200px] grid grid-cols-1 md:grid-cols-[1fr_1.05fr_1fr] items-stretch">
@@ -89,6 +110,11 @@ export default function HowaLandingPage() {
                 Begin free
               </Link>
             </div>
+            <div className="mt-3 text-center">
+              <Link href="/howa/companion" className="font-hearth-sans text-[10px] tracking-[0.16em] uppercase text-howa-teal no-underline border-b border-dotted border-howa-teal pb-px hover:border-solid transition-all">
+                See the Companion →
+              </Link>
+            </div>
           </div>
 
           {/* HoWA+ — recommended, lifted */}
@@ -128,6 +154,11 @@ export default function HowaLandingPage() {
                 Join HoWA+
               </Link>
             </div>
+            <div className="mt-3 text-center">
+              <Link href="/howa/plus" className="font-hearth-sans text-[10px] tracking-[0.16em] uppercase text-house-gold-light no-underline border-b border-dotted border-house-gold-light/50 pb-px hover:border-solid transition-all">
+                Everything in HoWA+ →
+              </Link>
+            </div>
           </div>
 
           {/* Steward — coming soon */}
@@ -157,8 +188,13 @@ export default function HowaLandingPage() {
               <li>Insurer-grade evidence</li>
             </ul>
             <div className="tier-cta-row">
-              <Link href="/protect#insurance" className="tier-cta">
+              <Link href="/howa/steward" className="tier-cta">
                 Register interest
+              </Link>
+            </div>
+            <div className="mt-3 text-center">
+              <Link href="/howa/steward" className="font-hearth-sans text-[10px] tracking-[0.16em] uppercase text-house-gold-light/60 no-underline border-b border-dotted border-house-gold-light/30 pb-px hover:border-solid transition-all">
+                About Steward →
               </Link>
             </div>
           </div>
@@ -217,6 +253,26 @@ export default function HowaLandingPage() {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* 3b. How it works link */}
+      <div className="bg-black/10 text-center px-[5vw] py-4 relative z-10">
+        <Link href="/howa/how-it-works" className="font-hearth-sans text-[10px] tracking-[0.18em] uppercase text-house-gold-light no-underline border-b border-dotted border-house-gold-light/40 pb-px hover:border-solid transition-all">
+          See how each one works →
+        </Link>
+      </div>
+
+      {/* 3c. Social proof */}
+      <section className="relative z-10 bg-black/10 px-[5vw] pb-14 text-center">
+        <span className="block font-hearth-sans text-[10px] tracking-[0.22em] uppercase text-house-gold-light mb-3">Already stewarded</span>
+        <span className="block font-hearth-sans font-light text-[clamp(32px,4vw,48px)] text-house-gold-light mb-1">247</span>
+        <span className="block font-hearth-sans text-[11px] tracking-[0.16em] uppercase text-house-cream/50 mb-8">homes already use HoWA</span>
+        <div className="mx-auto max-w-[700px]">
+          <p className="font-hearth-serif italic text-[17px] leading-[1.5] text-house-cream/70">
+            &ldquo;We used to keep everything in a folder under the stairs. Now HoWA knows what was done, when, and by whom.&rdquo;
+          </p>
+          <p className="font-hearth-sans text-[12px] text-house-cream/40 mt-2">Catherine M. · 4-bed Victorian, Clapham</p>
         </div>
       </section>
 

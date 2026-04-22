@@ -4,6 +4,7 @@ import { StateBadge } from "@/components/primitives/StateBadge";
 import { Accordion } from "@/components/primitives/Accordion";
 import { GhostLink } from "@/components/primitives/GhostLink";
 import { WaitlistMini } from "@/components/marketing/WaitlistMini";
+import { ComparisonTable } from "@/components/marketing/ComparisonTable";
 
 /**
  * /howa/plans — pricing page.
@@ -202,6 +203,20 @@ export default function PlansPage() {
           Prices are VAT-inclusive for UK residents. Cancel any time. The record
           of your home stays yours either way.
         </p>
+      </section>
+
+      {/* Comparison table */}
+      <section className="px-[5vw] py-16 bg-white border-t border-house-brown/10">
+        <div className="max-w-[960px] mx-auto">
+          <Eyebrow colour="teal">Compare</Eyebrow>
+          <h2 className="font-sans font-normal text-[clamp(24px,3vw,36px)] leading-[1.15] text-house-brown mt-3 mb-10">
+            Feature by feature.
+          </h2>
+          <ComparisonTable />
+          <div className="text-center mt-8">
+            <GhostLink href="/howa/plus">See everything in HoWA+ →</GhostLink>
+          </div>
+        </div>
       </section>
 
       {/* FAQ */}
