@@ -47,8 +47,16 @@ export const PRIMARY_NAV: MegaPanel[] = [
         heading: "The Product",
         links: [
           { label: "Overview", href: "/howa", description: "What HoWA does" },
-          { label: "Companion", href: "/howa/companion", description: "Your home's living record" },
-          { label: "Plans & Pricing", href: "/howa/plans", description: "From £16.99 / mo" },
+          { label: "HoWA+", href: "/howa/plus", description: "The membership — £16.99/mo" },
+          { label: "How it works", href: "/howa/how-it-works", description: "Four quiet jobs" },
+          { label: "Companion", href: "/howa/companion", description: "The diagnostic" },
+        ],
+      },
+      {
+        heading: "More",
+        links: [
+          { label: "Plans & Pricing", href: "/howa/plans", description: "Compare tiers" },
+          { label: "Steward", href: "/howa/steward", description: "Managed care — coming soon" },
           { label: "FAQ", href: "/howa/faq" },
         ],
       },
