@@ -182,37 +182,80 @@ export default async function GardensPage() {
         </div>
       </section>
 
-      {/* ─── 2. Garden Plans (moved up — products first) ─── */}
-      <section id="plans" className="relative bg-house-cream px-[5vw] py-[88px] overflow-hidden">
-        <div className="absolute top-0 right-0 w-[280px] h-[280px] opacity-[0.06] pointer-events-none">
-          <Image
-            src="/hearth/pattern-gold.png"
-            alt=""
-            fill
-            className="object-contain object-right-top"
-            sizes="280px"
-          />
-        </div>
+      {/* ─── 2. Our Designers — Dark carousel band ─── */}
+      <PartnerCarousel
+        partners={partnerCards}
+        heading="The collective behind your garden."
+        headingEm="garden."
+        lede="Each studio is selected for their craft, ecology, and aesthetic harmony with the House."
+        dark
+      />
 
-        <div className="relative z-10 max-w-[1320px] mx-auto">
-          <div className="text-center mb-16">
+      {/* ─── 3. Image breath — full-bleed strip ─── */}
+      <section className="relative h-[35vh] md:h-[45vh]">
+        <Image
+          src="/design/gardens/collaboration.jpg"
+          alt="Signature garden collaboration — mature planting, crafted hardscape"
+          fill
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-house-brown/20 to-transparent" />
+      </section>
+
+      {/* ─── 4. Garden Plans — Featured + grid ─── */}
+      <section id="plans" className="bg-house-cream px-[5vw] py-[88px]">
+        <div className="max-w-[1320px] mx-auto">
+          <div className="mb-14">
             <Eyebrow>Garden Plans</Eyebrow>
-            <h2 className="font-display font-medium text-[clamp(28px,3.6vw,46px)] leading-[1.1] mt-4">
+            <h2 className="font-display font-medium text-[clamp(28px,3.6vw,46px)] leading-[1.1] mt-4 max-w-[24ch]">
               Commission a <em className="italic">plan.</em>
             </h2>
-            <p className="font-sans text-[16px] leading-[1.65] text-house-brown/70 mt-4 mx-auto max-w-[52ch]">
-              Six ways into a considered garden — from a single planting scheme
-              to a full bespoke design and build.
-            </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {PLANS.map((plan) => (
+          {/* Featured plan — Concept Plans, hero-scale */}
+          <div className="grid md:grid-cols-[1.3fr_1fr] gap-0 mb-8 bg-white border border-house-brown/10 overflow-hidden">
+            <div className="relative min-h-[360px] md:min-h-0">
+              <Image
+                src={PLANS[2].image}
+                alt={`${PLANS[2].title} — garden design plan`}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 55vw"
+              />
+            </div>
+            <div className="p-10 md:p-12 flex flex-col justify-center">
+              <span className="block font-sans text-[11px] tracking-[0.2em] uppercase mb-3" style={{ color: "var(--house-gold-dark)" }}>
+                Featured
+              </span>
+              <h3 className="font-display font-medium text-[clamp(28px,3vw,38px)] leading-[1.1] text-house-brown mb-2">
+                {PLANS[2].title}
+              </h3>
+              <span className="block font-sans text-[16px] text-house-brown/70 mb-6">
+                {PLANS[2].price}
+              </span>
+              <p className="font-sans text-[15px] leading-[1.6] text-house-brown/70 mb-8 max-w-[440px]">
+                {PLANS[2].description}
+              </p>
+              {PLANS[2].href && (
+                <Link
+                  href={PLANS[2].href}
+                  className="inline-block self-start font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-6 py-3.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
+                >
+                  Enquire
+                </Link>
+              )}
+            </div>
+          </div>
+
+          {/* Remaining plans — grid */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {PLANS.filter((_, i) => i !== 2).map((plan) => (
               <div
                 key={plan.title}
                 className="group bg-white border border-house-brown/10 overflow-hidden flex flex-col"
               >
-                <div className="relative aspect-[3/4] overflow-hidden">
+                <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
                     src={plan.image}
                     alt={`${plan.title} — garden design plan`}
@@ -227,20 +270,18 @@ export default async function GardensPage() {
                   )}
                 </div>
                 <div className="flex flex-col flex-1 p-6">
-                  <h3 className="font-display font-medium text-[22px] leading-[1.2] mb-1">
+                  <h3 className="font-display font-medium text-[20px] leading-[1.2] mb-1">
                     {plan.title}
                   </h3>
                   <p className="font-sans text-[12px] tracking-[0.15em] uppercase text-[var(--house-gold-dark)] mb-3">
                     {plan.price}
                   </p>
-                  <p className="font-sans text-[15px] leading-[1.6] text-house-brown/70 mb-5 flex-1">
+                  <p className="font-sans text-[14px] leading-[1.6] text-house-brown/70 mb-5 flex-1">
                     {plan.description}
                   </p>
                   {plan.href && !plan.comingSoon && (
                     <GhostLink href={plan.href}>
-                      {plan.title === "Full Design & Build"
-                        ? "Visit the studio"
-                        : "Enquire"}
+                      {plan.title === "Full Design & Build" ? "Visit the studio" : "Enquire"}
                     </GhostLink>
                   )}
                 </div>
@@ -249,14 +290,6 @@ export default async function GardensPage() {
           </div>
         </div>
       </section>
-
-      {/* ─── 3. Our Designers — Carousel ─── */}
-      <PartnerCarousel
-        partners={partnerCards}
-        heading="The collective behind your garden."
-        headingEm="garden."
-        lede="Each studio is selected for their craft, ecology, and aesthetic harmony with the House. Browse profiles, see recent work, and start a brief through HoWA."
-      />
 
       {/* ─── 3. Our Projects — Asymmetric masonry gallery ─── */}
       <section className="bg-white px-[5vw] py-[88px] border-t border-house-brown/8">

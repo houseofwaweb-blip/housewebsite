@@ -163,106 +163,132 @@ export default async function InteriorsPage() {
         </div>
       </section>
 
-      {/* ─── 2. Digital Plans (moved up — products first) ─── */}
-      <section id="plans" className="relative bg-house-cream px-[5vw] py-[88px] overflow-hidden">
-        <div className="absolute top-0 right-0 w-[280px] h-[280px] opacity-[0.06] pointer-events-none">
-          <Image
-            src="/hearth/pattern-gold.png"
-            alt=""
-            fill
-            className="object-contain object-right-top"
-            sizes="280px"
-          />
-        </div>
+      {/* ─── 2. Our Designers — Dark carousel band ─── */}
+      <PartnerCarousel
+        partners={partnerCards}
+        heading="The collective behind your home."
+        headingEm="home."
+        lede="Each studio is selected for their craft, ethics, and aesthetic harmony with the House."
+        dark
+      />
 
-        <div className="relative z-10 max-w-[1280px] mx-auto">
-          <div className="text-center mb-16">
+      {/* ─── 3. Image breath — full-bleed project strip ─── */}
+      <section className="relative h-[35vh] md:h-[45vh]">
+        <Image
+          src="/design/interiors/project-detail.webp"
+          alt="Interior detail — layered textiles, brass hardware, natural light"
+          fill
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-house-brown/20 to-transparent" />
+      </section>
+
+      {/* ─── 4. Digital Plans — Featured + grid ─── */}
+      <section id="plans" className="bg-house-cream px-[5vw] py-[88px]">
+        <div className="max-w-[1280px] mx-auto">
+          <div className="mb-14">
             <Eyebrow>Digital Plans</Eyebrow>
-            <h2 className="font-display font-medium text-[clamp(28px,3.6vw,46px)] leading-[1.1] mt-4">
+            <h2 className="font-display font-medium text-[clamp(28px,3.6vw,46px)] leading-[1.1] mt-4 max-w-[20ch]">
               Three ways to <em className="italic">begin.</em>
             </h2>
-            <p className="font-sans text-[16px] leading-[1.65] text-house-brown/70 mt-4 mx-auto max-w-[52ch]">
-              Whether you need a single styling session or a layered
-              transformation across the home, there is an edit for you.
-            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {PLANS.map((plan) => (
+          {/* Featured plan — The House Edit, hero-scale */}
+          <div className="grid md:grid-cols-[1.3fr_1fr] gap-0 mb-8 bg-white border border-house-brown/10 overflow-hidden">
+            <div className="relative min-h-[360px] md:min-h-0">
+              <Image
+                src={PLANS[0].image}
+                alt={`${PLANS[0].name} — interior design plan`}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 55vw"
+              />
+            </div>
+            <div className="p-10 md:p-12 flex flex-col justify-center">
+              <span className="block font-sans text-[11px] tracking-[0.2em] uppercase mb-3" style={{ color: "var(--house-gold-dark)" }}>
+                Featured
+              </span>
+              <h3 className="font-display font-medium text-[clamp(28px,3vw,38px)] leading-[1.1] text-house-brown mb-2">
+                {PLANS[0].name}
+              </h3>
+              <span className="block font-sans text-[16px] text-house-brown/70 mb-6">
+                {PLANS[0].price}
+              </span>
+              <ul className="list-none space-y-2 mb-8">
+                {PLANS[0].inclusions.map((inc) => (
+                  <li key={inc} className="relative pl-4 font-sans text-[15px] leading-[1.6] text-house-brown/70 before:content-['—'] before:absolute before:left-0 before:text-[var(--house-gold-dark)]">
+                    {inc}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/book-consultation?service=design-interiors"
+                className="inline-block self-start font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-6 py-3.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
+              >
+                Book this edit
+              </Link>
+            </div>
+          </div>
+
+          {/* Secondary plans — smaller cards side by side */}
+          <div className="grid md:grid-cols-2 gap-6">
+            {PLANS.slice(1).map((plan) => (
               <div
                 key={plan.name}
-                className="group bg-white border border-house-brown/10 overflow-hidden flex flex-col"
+                className="group bg-white border border-house-brown/10 overflow-hidden flex flex-col sm:flex-row"
               >
-                <div className="relative aspect-[4/3] overflow-hidden">
+                <div className="relative aspect-[4/3] sm:aspect-auto sm:w-[45%] shrink-0 overflow-hidden">
                   <Image
                     src={plan.image}
                     alt={`${plan.name} — interior design plan`}
                     fill
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    sizes="(max-width: 640px) 100vw, 25vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                  <div className="absolute bottom-4 left-5 right-5">
-                    <h3 className="font-display font-medium text-[24px] text-white leading-[1.15]">
-                      {plan.name}
-                    </h3>
-                    <span className="font-sans text-[14px] text-white/80 mt-1 block">
-                      {plan.price}
-                    </span>
-                  </div>
                 </div>
                 <div className="flex-1 p-6 flex flex-col">
-                  <ul className="flex-1 list-none space-y-2">
+                  <h3 className="font-display font-medium text-[22px] leading-[1.15] text-house-brown mb-1">
+                    {plan.name}
+                  </h3>
+                  <span className="block font-sans text-[13px] text-house-brown/60 mb-4">
+                    {plan.price}
+                  </span>
+                  <ul className="flex-1 list-none space-y-1.5 mb-5">
                     {plan.inclusions.map((inc) => (
-                      <li
-                        key={inc}
-                        className="relative pl-4 font-sans text-[14px] leading-[1.6] text-house-brown/70 before:content-['—'] before:absolute before:left-0 before:text-[var(--house-gold-dark)]"
-                      >
+                      <li key={inc} className="relative pl-4 font-sans text-[13px] leading-[1.5] text-house-brown/70 before:content-['—'] before:absolute before:left-0 before:text-[var(--house-gold-dark)]">
                         {inc}
                       </li>
                     ))}
                   </ul>
-                  <div className="mt-6">
-                    <Link
-                      href="/book-consultation?service=design-interiors"
-                      className="inline-block font-sans text-[11px] tracking-[0.18em] uppercase text-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-5 py-3 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-[var(--house-gold-dark)] hover:text-white"
-                    >
-                      Book this edit
-                    </Link>
-                  </div>
+                  <Link
+                    href="/book-consultation?service=design-interiors"
+                    className="inline-block self-start font-sans text-[11px] tracking-[0.18em] uppercase text-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-5 py-2.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-[var(--house-gold-dark)] hover:text-white"
+                  >
+                    Book this edit
+                  </Link>
                 </div>
               </div>
             ))}
           </div>
 
           {/* The Style Diagnostic — Coming Soon */}
-          <div className="mt-10 border border-dashed border-house-brown/20 bg-white/50 p-8 md:p-10 text-center max-w-[680px] mx-auto">
+          <div className="mt-8 border border-dashed border-house-brown/15 bg-white/50 p-8 text-center max-w-[680px] mx-auto">
             <span className="inline-block font-sans text-[10px] tracking-[0.22em] uppercase text-howa-teal-dark bg-howa-teal-dark/8 px-3 py-1 mb-4">
               Coming Soon
             </span>
-            <h3 className="font-display font-medium text-[24px] leading-[1.15] mb-3">
+            <h3 className="font-display font-medium text-[22px] leading-[1.15] mb-2">
               The Style Diagnostic
             </h3>
-            <p className="font-sans text-[15px] leading-[1.65] text-house-brown/70 max-w-[44ch] mx-auto">
-              Every great edit begins with understanding your taste. A guided
-              style journey that reveals your personal home moodboard.
+            <p className="font-sans text-[14px] leading-[1.6] text-house-brown/70 max-w-[44ch] mx-auto mb-4">
+              A guided style journey that reveals your personal home moodboard.
             </p>
-            <div className="mt-5">
-              <GhostLink href="/api/howa-bounce?source=style-diagnostic-waitlist">
-                Register interest
-              </GhostLink>
-            </div>
+            <GhostLink href="/api/howa-bounce?source=style-diagnostic-waitlist">
+              Register interest
+            </GhostLink>
           </div>
         </div>
       </section>
-
-      {/* ─── 3. Our Designers — Carousel ─── */}
-      <PartnerCarousel
-        partners={partnerCards}
-        heading="The collective behind your home."
-        headingEm="home."
-        lede="Each studio is selected for their craft, ethics, and aesthetic harmony with the House. Browse profiles, see recent work, and start a brief through HoWA."
-      />
 
       {/* ─── 4. Our Projects — Asymmetric masonry gallery ─── */}
       <section className="bg-white px-[5vw] py-[88px] border-t border-house-brown/8">
