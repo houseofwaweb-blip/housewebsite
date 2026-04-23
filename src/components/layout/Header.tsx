@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/cn";
-import { MegaMenu } from "@/components/nav/MegaMenu";
+import { MegaMenu, type MegaPanel } from "@/components/nav/MegaMenu";
 import { SearchModal } from "@/components/search/SearchModal";
 import { CartIcon } from "@/components/commerce/CartIcon";
 import { useCart } from "@/components/commerce/CartContext";
