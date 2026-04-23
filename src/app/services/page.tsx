@@ -192,7 +192,7 @@ export default async function ServicesLanding() {
               {/* Dark overlay for text legibility */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-black/5 transition-opacity duration-[var(--t-slow)] group-hover:from-black/60" />
               {/* Didot title */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+              <div className="absolute bottom-0 left-0 p-5">
                 <h3 className="font-display font-medium text-[clamp(24px,2.5vw,34px)] leading-[1.1] text-white whitespace-pre-line tracking-[-0.01em] drop-shadow-[0_2px_12px_rgba(0,0,0,0.3)]">
                   {svc.name}
                 </h3>

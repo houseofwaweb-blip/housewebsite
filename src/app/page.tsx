@@ -5,6 +5,7 @@ import { GhostLink } from "@/components/primitives/GhostLink";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { getNewsletterBlock } from "@/lib/cms/newsletter";
 import { getPageSections, cms } from "@/lib/cms/page-sections";
+import { SubbrandGrid } from "@/components/marketing/SubbrandGrid";
 
 /**
  * Homepage — locked direction: Variant B (Georgian Photography).
@@ -223,6 +224,26 @@ export default async function HomePage() {
                 <GhostLink href="/services">Services</GhostLink>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================
+          4b. SERVICE BRANDS — subbrand grid
+          ================================================================ */}
+      <section className="bg-house-white px-[5vw] py-20 border-t border-house-brown/8">
+        <div className="max-w-[1280px] mx-auto">
+          <div className="mb-10">
+            <span className="block font-sans text-[11px] tracking-[0.22em] uppercase mb-3" style={{ color: "var(--house-gold-dark)" }}>
+              House Services
+            </span>
+            <h2 className="em-accent font-display font-medium text-[clamp(28px,3.6vw,42px)] leading-[1.1] tracking-[-0.01em] text-house-brown">
+              {cms(s("service-brands"), "headline", "Every discipline of")} <em>{cms(s("service-brands"), "headlineEm", "care.")}</em>
+            </h2>
+          </div>
+          <SubbrandGrid />
+          <div className="mt-8">
+            <GhostLink href="/services">See all services</GhostLink>
           </div>
         </div>
       </section>

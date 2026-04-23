@@ -35,6 +35,7 @@ const CATEGORIES = [
     types: ["gardener", "cleaner", "window-cleaner", "handyman"],
     directoryHref: "/partners/directory/services",
     image: "/services/gardening.png",
+    subbrandGrid: true,
   },
   {
     id: "marketplace",
@@ -46,6 +47,17 @@ const CATEGORIES = [
     directoryHref: "/partners/directory/marketplace",
     image: "/services/cleaning.png",
   },
+];
+
+const SUBBRAND_TILES = [
+  { slug: "gardeners", name: "Gardeners", image: "/services/subbrands/gardeners.jpg", href: "/services/gardening" },
+  { slug: "cleaners", name: "Cleaners", image: "/services/subbrands/cleaners.jpg", href: "/services/cleaning" },
+  { slug: "window-cleaners", name: "Window\nCleaners", image: "/services/subbrands/window-cleaner.jpg", href: "/services/window-cleaning" },
+  { slug: "handyman", name: "Handyman", image: "/services/subbrands/handyman.jpg", href: "/services/gardening" },
+  { slug: "housekeeping", name: "Housekeeping", image: "/services/subbrands/housekeeping.jpg", href: "/services/cleaning" },
+  { slug: "removals", name: "Removals", image: "/services/subbrands/removals.jpg", href: "/services/gardening" },
+  { slug: "electrical", name: "Electrical", image: "/services/subbrands/electrical.jpg", href: "/services/gardening" },
+  { slug: "dog-walking", name: "Dog\nWalking", image: "/services/subbrands/dog-walking.jpg", href: "/services/gardening" },
 ];
 
 export default async function PartnersHub() {
@@ -117,55 +129,89 @@ export default async function PartnersHub() {
 
         return (
           <div key={cat.id}>
-            {/* Category hero band with image */}
+            {/* Category header */}
             <section className={`${i % 2 === 0 ? "bg-house-cream" : "bg-house-white"} px-[5vw] py-20`}>
-              <div className="max-w-[1200px] mx-auto grid md:grid-cols-[1fr_1.1fr] gap-12 items-center">
-                <div className={i % 2 !== 0 ? "md:order-2" : ""}>
-                  <span
-                    className="block font-sans text-[11px] tracking-[0.22em] uppercase mb-4"
-                    style={{ color: "var(--house-gold-dark)" }}
-                  >
-                    {cat.eyebrow}
-                  </span>
-                  <h2 className="em-accent font-display font-medium text-[clamp(32px,4vw,48px)] leading-[1.1] tracking-[-0.01em] text-house-brown mb-4">
-                    {cat.title.replace(cat.titleEm, "")}<em className="italic">{cat.titleEm}</em>
-                  </h2>
-                  <p className="font-sans text-[16px] leading-[1.65] text-house-brown/70 mb-8 max-w-[440px]">
-                    {cat.lede}
-                  </p>
-                  <div className="flex flex-wrap gap-4">
-                    <Link
-                      href={cat.directoryHref}
-                      className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-6 py-3 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
-                    >
-                      Browse all
-                    </Link>
-                    {cat.id === "design" && (
-                      <GhostLink href="/design/interiors">Interior design</GhostLink>
-                    )}
-                    {cat.id === "services" && (
+              <div className="max-w-[1200px] mx-auto">
+                {cat.subbrandGrid ? (
+                  /* Services: subbrand image grid */
+                  <>
+                    <div className="mb-12">
+                      <span className="block font-sans text-[11px] tracking-[0.22em] uppercase mb-4" style={{ color: "var(--house-gold-dark)" }}>
+                        {cat.eyebrow}
+                      </span>
+                      <h2 className="em-accent font-display font-medium text-[clamp(32px,4vw,48px)] leading-[1.1] tracking-[-0.01em] text-house-brown mb-4">
+                        {cat.title.replace(cat.titleEm, "")}<em className="italic">{cat.titleEm}</em>
+                      </h2>
+                      <p className="font-sans text-[16px] leading-[1.65] text-house-brown/70 max-w-[440px]">
+                        {cat.lede}
+                      </p>
+                    </div>
+                    {/* Desktop grid */}
+                    <div className="hidden sm:grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                      {SUBBRAND_TILES.map((svc) => (
+                        <Link key={svc.slug} href={svc.href} className="group relative block aspect-[3/4] overflow-hidden no-underline">
+                          <Image src={svc.image} alt={svc.name.replace("\n", " ")} fill sizes="(min-width: 1024px) 25vw, 50vw" className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-black/5 group-hover:from-black/60 transition-opacity duration-[var(--t-slow)]" />
+                          <div className="absolute bottom-0 left-0 p-5">
+                            <h3 className="font-display font-medium text-[clamp(22px,2.2vw,30px)] leading-[1.1] text-white whitespace-pre-line tracking-[-0.01em] drop-shadow-[0_2px_12px_rgba(0,0,0,0.3)]">
+                              {svc.name}
+                            </h3>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                    {/* Mobile carousel */}
+                    <div className="flex sm:hidden gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-[5vw] px-[5vw]" style={{ scrollbarWidth: "none" }}>
+                      {SUBBRAND_TILES.map((svc) => (
+                        <Link key={svc.slug} href={svc.href} className="group relative flex-none w-[70vw] aspect-[3/4] snap-start overflow-hidden no-underline">
+                          <Image src={svc.image} alt={svc.name.replace("\n", " ")} fill sizes="70vw" className="object-cover" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-black/5" />
+                          <div className="absolute bottom-0 left-0 p-5">
+                            <h3 className="font-display font-medium text-[28px] leading-[1.1] text-white whitespace-pre-line tracking-[-0.01em] drop-shadow-[0_2px_12px_rgba(0,0,0,0.3)]">
+                              {svc.name}
+                            </h3>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                    <div className="flex flex-wrap gap-4 mt-6">
+                      <Link href={cat.directoryHref} className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-6 py-3 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light">
+                        Browse all service providers
+                      </Link>
                       <GhostLink href="/services">See services</GhostLink>
-                    )}
-                    {cat.id === "marketplace" && (
-                      <GhostLink href="/shop">Visit the shop</GhostLink>
-                    )}
+                    </div>
+                  </>
+                ) : (
+                  /* Standard: image + copy layout */
+                  <div className="grid md:grid-cols-[1fr_1.1fr] gap-12 items-center">
+                    <div className={i % 2 !== 0 ? "md:order-2" : ""}>
+                      <span className="block font-sans text-[11px] tracking-[0.22em] uppercase mb-4" style={{ color: "var(--house-gold-dark)" }}>
+                        {cat.eyebrow}
+                      </span>
+                      <h2 className="em-accent font-display font-medium text-[clamp(32px,4vw,48px)] leading-[1.1] tracking-[-0.01em] text-house-brown mb-4">
+                        {cat.title.replace(cat.titleEm, "")}<em className="italic">{cat.titleEm}</em>
+                      </h2>
+                      <p className="font-sans text-[16px] leading-[1.65] text-house-brown/70 mb-8 max-w-[440px]">
+                        {cat.lede}
+                      </p>
+                      <div className="flex flex-wrap gap-4">
+                        <Link href={cat.directoryHref} className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-6 py-3 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light">
+                          Browse all
+                        </Link>
+                        {cat.id === "design" && <GhostLink href="/design/interiors">Interior design</GhostLink>}
+                        {cat.id === "marketplace" && <GhostLink href="/shop">Visit the shop</GhostLink>}
+                      </div>
+                    </div>
+                    <div className={`relative aspect-[4/3] overflow-hidden ${i % 2 !== 0 ? "md:order-1" : ""}`}>
+                      <Image src={cat.image} alt={cat.eyebrow} fill className="object-cover" sizes="50vw" />
+                    </div>
                   </div>
-                </div>
-
-                <div className={`relative aspect-[4/3] overflow-hidden ${i % 2 !== 0 ? "md:order-1" : ""}`}>
-                  <Image
-                    src={cat.image}
-                    alt={cat.eyebrow}
-                    fill
-                    className="object-cover"
-                    sizes="50vw"
-                  />
-                </div>
+                )}
               </div>
             </section>
 
-            {/* Partner carousel for this category */}
-            {catPartners.length > 0 && (
+            {/* Partner carousel for this category (skip for subbrand grid) */}
+            {!cat.subbrandGrid && catPartners.length > 0 && (
               <PartnerCarousel
                 partners={catPartners}
                 heading={`Our ${cat.eyebrow.toLowerCase()}`}
