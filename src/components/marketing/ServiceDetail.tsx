@@ -24,14 +24,16 @@ import { SERVICE_AREAS } from "@/lib/services-data/sub-services";
  *   9. Closing CTA
  */
 
+const SANITY_CDN = "https://cdn.sanity.io/images/a9t8u8nh/production";
+
 const PLACEHOLDER_GALLERY: Record<string, GalleryImage[]> = {
   gardening: [
-    { src: "/partners/project-1.jpg", alt: "Garden restoration — before planting", caption: "SW London · 2025" },
-    { src: "/partners/project-2.jpg", alt: "Formal hedging and seasonal beds", caption: "Oxfordshire · 2024" },
-    { src: "/partners/project-3.jpg", alt: "Courtyard garden refresh", caption: "Chelsea · 2024" },
-    { src: "/partners/project-4.jpg", alt: "Lawn laying and border planting", caption: "Hampshire · 2023" },
-    { src: "/partners/project-5.jpg", alt: "Tree work and canopy management", caption: "Islington · 2023" },
-    { src: "/partners/project-6.jpg", alt: "Kitchen garden installation", caption: "Oxfordshire · 2023" },
+    { src: `${SANITY_CDN}/027700c20d7a27faacb0dbdf0786e58a24d410f2-1280x1920.jpg?w=800&auto=format`, alt: "Gardener mowing alongside a beautiful herbaceous border in golden evening light", caption: "London · 2025" },
+    { src: `${SANITY_CDN}/58a9482699c396a1a5aec3c7437289600b44483e-1200x800.jpg?w=800&auto=format`, alt: "Gardener planting in a lush mixed border with topiary and perennials", caption: "SW London · 2025" },
+    { src: `${SANITY_CDN}/1a8ab322bd3023e504522b9adb90dfd4ffa35e9c-1400x933.jpg?w=800&auto=format`, alt: "Two Willow Alexander gardeners with the branded van outside a Tudor home", caption: "Home Counties · 2025" },
+    { src: `${SANITY_CDN}/cef7faeec075e5dec3991ebdb49ec985a4c9b14f-933x1400.jpg?w=800&auto=format`, alt: "Gardener with leaf blower on a large estate lawn under mature trees", caption: "Estate grounds · 2024" },
+    { src: `${SANITY_CDN}/5e7c5edb601a265b8ffaa2524a6077ca154549f1-800x1200.jpg?w=800&auto=format`, alt: "Gardener trimming hedges with professional equipment in dappled light", caption: "London · 2024" },
+    { src: `${SANITY_CDN}/af45facea4d6320a56b52c75b39083cc92191ee9-959x1200.jpg?w=800&auto=format`, alt: "Autumn garden clearance — collecting leaves on a pristine lawn with hydrangeas", caption: "London · Autumn 2024" },
   ],
   "window-cleaning": [
     { src: "/partners/project-1.jpg", alt: "Georgian sash restoration clean", caption: "Notting Hill · 2025" },
@@ -83,33 +85,70 @@ export function ServiceDetail({ service: s }: { service: Service }) {
 
   return (
     <article className="bg-house-cream text-house-brown">
-      {/* 1. Hero */}
-      <section className="px-[5vw] pt-[12vh] pb-14">
-        <div className="max-w-[980px] mx-auto">
-          <Eyebrow>{s.eyebrow}</Eyebrow>
-          <h1 className="em-accent font-display font-medium text-[clamp(44px,6vw,80px)] leading-[1.05] tracking-[-0.01em] mt-4">
-            {s.headline}
-          </h1>
-          <p className="font-sans text-[19px] leading-[1.6] text-house-brown/75 mt-6 max-w-[58ch]">
-            {s.lede}
-          </p>
-          <div className="mt-8 flex items-center gap-4 flex-wrap">
-            <Link
-              href={`/book-consultation?service=${s.slug}`}
-              className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold px-6 py-3.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
-            >
-              Book {s.name.toLowerCase()}
-            </Link>
-            <Link
-              href="/api/howa-bounce?source=service-hero"
-              className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown border border-house-brown px-6 py-3.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-brown hover:text-house-cream"
-            >
-              Start a plan
-            </Link>
-            {s.recurring ? <StateBadge state="live">Steward-ready</StateBadge> : null}
+      {/* 1. Hero — full-bleed if heroImage, text-only otherwise */}
+      {s.heroImage ? (
+        <section className="relative min-h-[85vh] flex items-end">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={s.heroImage}
+            alt={s.headline}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+          <div className="relative z-10 px-[5vw] pb-[8vh] max-w-[880px]">
+            <span className="block mb-4 font-sans text-[11px] tracking-[0.22em] uppercase text-white/70">
+              {s.eyebrow}
+            </span>
+            <h1 className="font-display font-medium text-[clamp(44px,7vw,84px)] leading-[1.02] tracking-[-0.015em] text-white">
+              {s.headline}
+            </h1>
+            <p className="font-sans text-[17px] leading-[1.65] text-white/80 mt-6 max-w-[56ch]">
+              {s.lede}
+            </p>
+            <div className="mt-8 flex items-center gap-4 flex-wrap">
+              <Link
+                href={`/book-consultation?service=${s.slug}`}
+                className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-6 py-3.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
+              >
+                Book {s.name.toLowerCase()}
+              </Link>
+              <Link
+                href="/api/howa-bounce?source=service-hero"
+                className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white border border-white/50 px-6 py-3.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-white hover:text-house-brown"
+              >
+                Start a plan
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : (
+        <section className="px-[5vw] pt-[12vh] pb-14">
+          <div className="max-w-[980px] mx-auto">
+            <Eyebrow>{s.eyebrow}</Eyebrow>
+            <h1 className="em-accent font-display font-medium text-[clamp(44px,6vw,80px)] leading-[1.05] tracking-[-0.01em] mt-4">
+              {s.headline}
+            </h1>
+            <p className="font-sans text-[19px] leading-[1.6] text-house-brown/75 mt-6 max-w-[58ch]">
+              {s.lede}
+            </p>
+            <div className="mt-8 flex items-center gap-4 flex-wrap">
+              <Link
+                href={`/book-consultation?service=${s.slug}`}
+                className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-6 py-3.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
+              >
+                Book {s.name.toLowerCase()}
+              </Link>
+              <Link
+                href="/api/howa-bounce?source=service-hero"
+                className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown border border-house-brown px-6 py-3.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-brown hover:text-house-cream"
+              >
+                Start a plan
+              </Link>
+              {s.recurring ? <StateBadge state="live">Steward-ready</StateBadge> : null}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* 2. Trust strip */}
       {s.trustBadges.length > 0 ? (

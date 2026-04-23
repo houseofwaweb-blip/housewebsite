@@ -51,6 +51,8 @@ export interface Service {
   faq: Array<{ q: string; a: string }>;
   /** Trust/accreditation badges. */
   trustBadges: string[];
+  /** Optional full-bleed hero image. */
+  heroImage?: string;
 }
 
 import {
@@ -68,6 +70,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
     name: "Gardening",
     lede: "Planting, maintenance, and seasonal care by gardeners who know the difference between a bay and a laurel.",
     eyebrow: "Services · Gardening",
+    heroImage: "https://cdn.sanity.io/images/a9t8u8nh/production/027700c20d7a27faacb0dbdf0786e58a24d410f2-1280x1920.jpg?w=1920&auto=format",
     headline: "A garden you meant to have.",
     sections: {
       included: [
