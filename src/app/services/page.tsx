@@ -24,51 +24,15 @@ export const metadata = {
     "Four disciplines of home care — gardening, window cleaning, cleaning, gutter cleaning — to one House standard. One-off or on a Steward plan.",
 };
 
-const DISCIPLINES = [
-  {
-    numeral: "I.",
-    slug: "gardening",
-    name: "Gardening",
-    image: "/services/gardening.png",
-    imagePosition: "center 60%",
-    promise:
-      "A garden kept to its season. Planting, pruning, and the patience of a calendar.",
-    priceFrom: "£72",
-    rhythm: "Weekly · seasonal",
-  },
-  {
-    numeral: "II.",
-    slug: "window-cleaning",
-    name: "Window Cleaning",
-    image: "/services/window-cleaning.png",
-    imagePosition: "center center",
-    promise:
-      "Clarity and light, externally restored. Sashes, panes, sills — monthly or quarterly.",
-    priceFrom: "£48",
-    rhythm: "Monthly · quarterly",
-  },
-  {
-    numeral: "III.",
-    slug: "cleaning",
-    name: "Cleaning",
-    image: "/services/cleaning.png",
-    imagePosition: "center 30%",
-    promise:
-      "The discipline of order. Weekly domestic care, or deep seasonal resets.",
-    priceFrom: "£96",
-    rhythm: "Weekly · fortnightly",
-  },
-  {
-    numeral: "IV.",
-    slug: "gutter-cleaning",
-    name: "Gutter Cleaning",
-    image: "/services/gutter-cleaning.png",
-    imagePosition: "center 10%",
-    promise:
-      "Quiet prevention. Cleared before the storm, checked before the season.",
-    priceFrom: "£140",
-    rhythm: "Spring · autumn",
-  },
+const SERVICES_GRID = [
+  { slug: "gardening", name: "Gardeners", image: "/services/subbrands/gardeners.jpg", href: "/services/gardening" },
+  { slug: "cleaning", name: "Cleaners", image: "/services/subbrands/cleaners.jpg", href: "/services/cleaning" },
+  { slug: "window-cleaning", name: "Window\nCleaners", image: "/services/subbrands/window-cleaner.jpg", href: "/services/window-cleaning" },
+  { slug: "handyman", name: "Handyman", image: "/services/subbrands/handyman.jpg", href: "/services/gardening" },
+  { slug: "housekeeping", name: "Housekeeping", image: "/services/subbrands/housekeeping.jpg", href: "/services/cleaning" },
+  { slug: "removals", name: "Removals", image: "/services/subbrands/removals.jpg", href: "/services/gardening" },
+  { slug: "electrical", name: "Electrical", image: "/services/subbrands/electrical.jpg", href: "/services/gardening" },
+  { slug: "dog-walking", name: "Dog\nWalking", image: "/services/subbrands/dog-walking.jpg", href: "/services/gardening" },
 ];
 
 const PLANS = [
@@ -189,8 +153,8 @@ export default async function ServicesLanding() {
           The quiet standard <em>of care.</em>
         </h1>
         <p className="mx-auto max-w-[620px] mb-9 font-sans italic text-[22px] leading-[1.55] text-house-stone">
-          Four disciplines, kept to one House standard. Book as one-off, or
-          let HoWA plan the rhythm.
+          Every discipline of home care, kept to one House standard. Book
+          one-off, or let HoWA plan the rhythm.
         </p>
         <div className="flex gap-3 justify-center flex-wrap">
           <Link
@@ -208,53 +172,60 @@ export default async function ServicesLanding() {
         </div>
       </section>
 
-      {/* 2. Four-discipline grid */}
+      {/* 2. Services grid (desktop) / carousel (mobile) */}
       <section className="bg-house-cream px-[5vw] pt-6 pb-20">
-        <div className="mx-auto max-w-[1280px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {DISCIPLINES.map((d) => (
-            <article
-              key={d.slug}
-              className="flex flex-col bg-white border border-house-brown/12 transition-all duration-[var(--t-base)] ease-out hover:-translate-y-0.5"
+        {/* Desktop: 4-column grid */}
+        <div className="hidden sm:grid mx-auto max-w-[1280px] grid-cols-2 lg:grid-cols-4 gap-4">
+          {SERVICES_GRID.map((svc) => (
+            <Link
+              key={svc.slug}
+              href={svc.href}
+              className="group relative block aspect-[3/4] overflow-hidden no-underline"
             >
-              <div className="relative w-full aspect-[4/5] overflow-hidden">
-                <Image
-                  src={d.image}
-                  alt={d.name}
-                  fill
-                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                  style={{ objectPosition: d.imagePosition }}
-                  className="object-cover"
-                />
-              </div>
-              <div className="flex flex-col flex-1 px-5 pt-[22px] pb-6">
-                <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-house-gold mb-2">
-                  {d.numeral} {d.name}
-                </span>
-                <h3 className="font-display font-medium text-[28px] tracking-[-0.005em] text-house-brown mb-2">
-                  {d.name}
+              <Image
+                src={svc.image}
+                alt={svc.name.replace("\n", " ")}
+                fill
+                sizes="(min-width: 1024px) 25vw, 50vw"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+              />
+              {/* Dark overlay for text legibility */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-black/5 transition-opacity duration-[var(--t-slow)] group-hover:from-black/60" />
+              {/* Didot title */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+                <h3 className="font-display font-medium text-[clamp(24px,2.5vw,34px)] leading-[1.1] text-white whitespace-pre-line tracking-[-0.01em] drop-shadow-[0_2px_12px_rgba(0,0,0,0.3)]">
+                  {svc.name}
                 </h3>
-                <p className="font-sans italic text-[16px] leading-[1.45] text-house-stone mb-[14px]">
-                  {d.promise}
-                </p>
-                <div className="mt-auto flex justify-between border-t border-house-brown/10 pt-3 font-sans text-[11px] text-house-stone">
-                  <span>
-                    Visits from{" "}
-                    <strong className="font-medium text-house-brown">
-                      {d.priceFrom}
-                    </strong>
-                  </span>
-                  <span>{d.rhythm}</span>
-                </div>
-                <div className="mt-4">
-                  <Link
-                    href={`/services/${d.slug}`}
-                    className="inline-block font-sans text-[11px] tracking-[0.16em] uppercase text-house-brown no-underline border-b border-house-gold pb-[2px]"
-                  >
-                    Book {d.name.toLowerCase().split(" ")[0]} →
-                  </Link>
-                </div>
               </div>
-            </article>
+            </Link>
+          ))}
+        </div>
+
+        {/* Mobile: horizontal scroll carousel */}
+        <div
+          className="flex sm:hidden gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-[5vw] px-[5vw]"
+          style={{ scrollbarWidth: "none" }}
+        >
+          {SERVICES_GRID.map((svc) => (
+            <Link
+              key={svc.slug}
+              href={svc.href}
+              className="group relative flex-none w-[70vw] aspect-[3/4] snap-start overflow-hidden no-underline"
+            >
+              <Image
+                src={svc.image}
+                alt={svc.name.replace("\n", " ")}
+                fill
+                sizes="70vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-black/5" />
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+                <h3 className="font-display font-medium text-[28px] leading-[1.1] text-white whitespace-pre-line tracking-[-0.01em] drop-shadow-[0_2px_12px_rgba(0,0,0,0.3)]">
+                  {svc.name}
+                </h3>
+              </div>
+            </Link>
           ))}
         </div>
       </section>
