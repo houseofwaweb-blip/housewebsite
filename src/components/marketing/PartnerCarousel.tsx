@@ -169,7 +169,7 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, dark = fal
           ))}
 
           {/* Ghost tile */}
-          <div className={cn(
+          <div key="__ghost" className={cn(
             "flex-none w-[85vw] sm:w-[320px] snap-start border border-dashed p-8 flex flex-col items-center justify-center text-center",
             dark ? "border-house-cream/20" : "border-house-brown/15"
           )}>
