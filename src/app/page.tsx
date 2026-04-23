@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { GhostLink } from "@/components/primitives/GhostLink";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
+import { getNewsletterBlock } from "@/lib/cms/newsletter";
 
 /**
  * Homepage — locked direction: Variant B (Georgian Photography).
@@ -15,7 +16,9 @@ import { NewsletterInline } from "@/components/marketing/NewsletterInline";
  * 8 sections per direction guide homepage spec.
  * "Orient first, invite second, explain third."
  */
-export default function HomePage() {
+export default async function HomePage() {
+  const nlBlock = await getNewsletterBlock("homepage");
+
   return (
     <>
       {/* ================================================================
@@ -374,10 +377,16 @@ export default function HomePage() {
           8. NEWSLETTER — Dark band, The Hearth.
           ================================================================ */}
       <NewsletterInline
-        variant="dark"
+        variant={nlBlock?.variant ?? "dark"}
         sourcePage="/"
-        headline="Seasonal notes on home and garden."
-        body="A single letter from the editors of The Hearth. Every Friday. Unsubscribe at any time."
+        eyebrow={nlBlock?.eyebrow}
+        headline={nlBlock?.headline ?? "Seasonal notes on home and garden."}
+        body={nlBlock?.body ?? "A single letter from the editors of The Hearth. Every Friday. Unsubscribe at any time."}
+        namePlaceholder={nlBlock?.namePlaceholder}
+        emailPlaceholder={nlBlock?.emailPlaceholder}
+        buttonLabel={nlBlock?.buttonLabel}
+        successMessage={nlBlock?.successMessage}
+        legalNote={nlBlock?.legalNote}
       />
 
       {/* ================================================================

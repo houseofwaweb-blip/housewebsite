@@ -203,6 +203,12 @@ export const musingBySlugQuery = /* groq */ `*[_type == "musing" && slug.current
   title, "slug": slug.current, lede, body, publishedAt, hero, seo
 }`;
 
+// ─── Newsletter blocks ────────────────────────────────────────────────────
+export const newsletterBlockByPlacementQuery = /* groq */ `*[_type == "newsletterBlock" && placement == $placement][0]{
+  placement, variant, eyebrow, headline, body,
+  namePlaceholder, emailPlaceholder, buttonLabel, successMessage, legalNote
+}`;
+
 // ─── Search (unified cross-content) ───────────────────────────────────────
 // GROQ `match` is word-prefix matching. Append `*` for partial match.
 export const unifiedSearchQuery = /* groq */ `{

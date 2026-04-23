@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CompanionPreview } from "@/components/marketing/CompanionPreview";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
+import { getNewsletterBlock } from "@/lib/cms/newsletter";
 
 /**
  * /howa — HoWA landing page. Light mode (HoWA mode).
@@ -26,7 +27,8 @@ export const metadata = {
     "HoWA — the installed-per-home intelligence layer that gives the house memory, gives the homeowner calm judgement, and keeps every meaningful action tied to one living home record.",
 };
 
-export default function HowaLandingPage() {
+export default async function HowaLandingPage() {
+  const nlBlock = await getNewsletterBlock("howa");
   return (
     <div className="bg-house-white text-house-brown">
 
@@ -510,7 +512,11 @@ export default function HowaLandingPage() {
       </section>
 
       {/* ── 9. Newsletter ── */}
-      <NewsletterInline variant="paper" sourcePage="/howa" />
+      <NewsletterInline
+        variant={nlBlock?.variant ?? "paper"}
+        sourcePage="/howa"
+        {...(nlBlock ?? {})}
+      />
 
       {/* ── 10. Tagline ── */}
       <div className="bg-howa-paper border-t border-house-brown/8 text-center px-5 py-6">

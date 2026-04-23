@@ -6,36 +6,46 @@ import { cn } from "@/lib/cn";
 import { submitForm } from "@/components/forms/submitForm";
 
 /**
- * NewsletterInline — versatile newsletter signup.
+ * NewsletterInline — versatile newsletter signup with name + email.
  *
- * Three variants:
- *   "cream"  — House cream background, brown text. For light pages.
- *   "dark"   — House brown background, cream text. For dark bands.
- *   "paper"  — Parchment background with tracing lines. For HoWA sections.
+ * All copy props can come from Sanity (via newsletterBlock query) or
+ * from hardcoded fallbacks passed by the parent page.
  *
- * Per DESIGN.md: newsletter gets "a proper band, not an ambush."
- * No popup. No modal. A calm, branded inline form.
+ * Three visual variants: cream, dark, paper.
  */
 
-interface NewsletterInlineProps {
-  /** Visual variant */
+export interface NewsletterBlockContent {
+  placement?: string;
   variant?: "cream" | "dark" | "paper";
-  /** Source page for analytics */
-  sourcePage?: string;
-  /** Override headline */
+  eyebrow?: string;
   headline?: string;
-  /** Override body text */
   body?: string;
+  namePlaceholder?: string;
+  emailPlaceholder?: string;
+  buttonLabel?: string;
+  successMessage?: string;
+  legalNote?: string;
+}
+
+interface NewsletterInlineProps extends NewsletterBlockContent {
+  sourcePage?: string;
   className?: string;
 }
 
 export function NewsletterInline({
   variant = "cream",
   sourcePage = "/",
+  eyebrow,
   headline,
   body,
+  namePlaceholder = "Your name",
+  emailPlaceholder = "your@email.co.uk",
+  buttonLabel = "Subscribe",
+  successMessage,
+  legalNote,
   className,
 }: NewsletterInlineProps) {
+  const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [state, setState] = React.useState<"idle" | "submitting" | "success" | "error">("idle");
   const honeyRef = React.useRef<HTMLInputElement>(null);
@@ -44,6 +54,7 @@ export function NewsletterInline({
     e.preventDefault();
     setState("submitting");
     const result = await submitForm("newsletter", {
+      name: name || undefined,
       email,
       sourcePage,
       honey: honeyRef.current?.value ?? "",
@@ -55,13 +66,13 @@ export function NewsletterInline({
   const isDark = variant === "dark";
   const isPaper = variant === "paper";
 
-  const defaultHeadline = isDark
-    ? "Seasonal notes on home and garden."
-    : "Stay close to the House.";
-
-  const defaultBody = isDark
+  const defaultEyebrow = eyebrow ?? "The Hearth";
+  const defaultHeadline = headline ?? (isDark ? "Seasonal notes on home and garden." : "Stay close to the House.");
+  const defaultBody = body ?? (isDark
     ? "A single letter from the editors of The Hearth. Every Friday. Unsubscribe at any time."
-    : "A weekly letter from The Hearth: seasonal notes on homes, gardens, design, and the craft of looking after a place properly.";
+    : "A weekly letter from The Hearth: seasonal notes on homes, gardens, design, and the craft of looking after a place properly.");
+  const defaultSuccess = successMessage ?? "Welcome to The Hearth. The first letter arrives Friday.";
+  const defaultLegal = legalNote ?? "Free \u00b7 GDPR compliant";
 
   return (
     <div
@@ -73,7 +84,6 @@ export function NewsletterInline({
         className,
       )}
     >
-      {/* Tracing lines for paper variant */}
       {isPaper && (
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.04]"
@@ -93,7 +103,7 @@ export function NewsletterInline({
             isDark ? "text-house-gold-light" : "text-[var(--house-gold-dark)]",
           )}
         >
-          The Hearth
+          {defaultEyebrow}
         </span>
 
         <h3
@@ -102,7 +112,7 @@ export function NewsletterInline({
             isDark ? "text-house-cream" : "text-house-brown",
           )}
         >
-          {headline || defaultHeadline}
+          {defaultHeadline}
         </h3>
 
         <p
@@ -111,7 +121,7 @@ export function NewsletterInline({
             isDark ? "text-house-cream/70" : "text-house-brown/70",
           )}
         >
-          {body || defaultBody}
+          {defaultBody}
         </p>
 
         {state === "success" ? (
@@ -121,41 +131,60 @@ export function NewsletterInline({
               isDark ? "text-house-gold-light" : "text-[var(--house-gold-dark)]",
             )}
           >
-            Welcome to The Hearth. The first letter arrives Friday.
+            {defaultSuccess}
           </p>
         ) : (
           <>
             <form
               onSubmit={handle}
-              className={cn(
-                "flex max-w-[420px] mx-auto",
-                isDark
-                  ? "bg-house-white border border-house-white"
-                  : "bg-house-white border border-house-brown/15",
-              )}
+              className="max-w-[460px] mx-auto"
               noValidate
             >
               <div aria-hidden="true" className="absolute -left-[9999px] w-px h-px overflow-hidden">
                 <input ref={honeyRef} type="text" tabIndex={-1} autoComplete="off" />
               </div>
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="your@email.co.uk"
-                autoComplete="email"
-                aria-label="Your email"
-                className="flex-1 bg-transparent border-0 outline-none min-w-0 font-sans text-[14px] px-4 py-3.5 text-house-brown placeholder:italic placeholder:font-display placeholder:text-house-brown/35"
-              />
-              <button
-                type="submit"
-                disabled={state === "submitting"}
-                className="shrink-0 text-house-cream font-sans text-[11px] tracking-[0.18em] uppercase px-5 py-3.5 border-0 cursor-pointer disabled:opacity-60 transition-colors duration-[var(--t-base)]"
-                style={{ background: "var(--house-gold-dark)" }}
+
+              {/* Name + Email row */}
+              <div
+                className={cn(
+                  "flex flex-col sm:flex-row gap-0",
+                  isDark
+                    ? "bg-house-white border border-house-white"
+                    : "bg-house-white border border-house-brown/15",
+                )}
               >
-                {state === "submitting" ? "\u2026" : "Subscribe"}
-              </button>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder={namePlaceholder}
+                  autoComplete="given-name"
+                  aria-label="Your name"
+                  className={cn(
+                    "bg-transparent border-0 outline-none min-w-0 font-sans text-[14px] px-4 py-3.5 text-house-brown",
+                    "placeholder:italic placeholder:font-display placeholder:text-house-brown/35",
+                    "sm:w-[38%] sm:border-r border-house-brown/10",
+                  )}
+                />
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder={emailPlaceholder}
+                  autoComplete="email"
+                  aria-label="Your email"
+                  className="flex-1 bg-transparent border-0 outline-none min-w-0 font-sans text-[14px] px-4 py-3.5 text-house-brown placeholder:italic placeholder:font-display placeholder:text-house-brown/35"
+                />
+                <button
+                  type="submit"
+                  disabled={state === "submitting"}
+                  className="shrink-0 text-house-cream font-sans text-[11px] tracking-[0.18em] uppercase px-5 py-3.5 border-0 cursor-pointer disabled:opacity-60 transition-colors duration-[var(--t-base)]"
+                  style={{ background: "var(--house-gold-dark)" }}
+                >
+                  {state === "submitting" ? "\u2026" : buttonLabel}
+                </button>
+              </div>
             </form>
 
             <p
@@ -164,7 +193,7 @@ export function NewsletterInline({
                 isDark ? "text-house-cream/40" : "text-house-brown/40",
               )}
             >
-              Free &middot; GDPR compliant &middot;{" "}
+              {defaultLegal} &middot;{" "}
               <Link
                 href="/legal/privacy"
                 className={cn(

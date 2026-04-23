@@ -123,7 +123,15 @@ export type ContactSubmissionOutput = z.output<typeof contactSubmissionSchema>;
 // ---------------------------------------------------------------------------
 // Newsletter
 // ---------------------------------------------------------------------------
+const optionalName = z
+  .string()
+  .trim()
+  .max(120)
+  .optional()
+  .or(z.literal("").transform(() => undefined));
+
 export const newsletterSchema = z.object({
+  name: optionalName,
   email,
   sourcePage,
   turnstileToken,

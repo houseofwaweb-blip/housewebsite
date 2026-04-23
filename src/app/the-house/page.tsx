@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { GhostLink } from "@/components/primitives/GhostLink";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
+import { getNewsletterBlock } from "@/lib/cms/newsletter";
 import { TheHouseNav } from "./TheHouseNav";
 
 export const metadata = {
@@ -61,7 +62,8 @@ const SECTIONS = [
   },
 ];
 
-export default function TheHousePage() {
+export default async function TheHousePage() {
+  const nlBlock = await getNewsletterBlock("the-house");
   return (
     <article className="bg-house-cream text-house-brown">
       <TheHouseNav />
@@ -207,10 +209,11 @@ export default function TheHousePage() {
 
       {/* Newsletter */}
       <NewsletterInline
-        variant="dark"
+        variant={nlBlock?.variant ?? "dark"}
         sourcePage="/the-house"
-        headline="Letters from the House."
-        body="A weekly note from The Hearth: seasonal reflections on homes, gardens, and the quiet art of looking after a place properly."
+        headline={nlBlock?.headline ?? "Letters from the House."}
+        body={nlBlock?.body ?? "A weekly note from The Hearth: seasonal reflections on homes, gardens, and the quiet art of looking after a place properly."}
+        {...(nlBlock ?? {})}
       />
 
       {/* Tagline */}

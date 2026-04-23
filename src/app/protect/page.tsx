@@ -4,6 +4,7 @@ import { StateBadge } from "@/components/primitives/StateBadge";
 import { WaitlistMini } from "@/components/marketing/WaitlistMini";
 import { env } from "@/lib/env";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
+import { getNewsletterBlock } from "@/lib/cms/newsletter";
 
 export const metadata = {
   title: "Protect",
@@ -11,7 +12,8 @@ export const metadata = {
     "Protect Review and House Approved Insurance — calm prevention, evidence, and proper cover for the home.",
 };
 
-export default function ProtectPage() {
+export default async function ProtectPage() {
+  const nlBlock = await getNewsletterBlock("protect");
   return (
     <article className="bg-house-cream text-house-brown">
       {/* Hero */}
@@ -145,10 +147,11 @@ export default function ProtectPage() {
       </section>
       {/* Newsletter */}
       <NewsletterInline
-        variant="cream"
+        variant={nlBlock?.variant ?? "cream"}
         sourcePage="/protect"
-        headline="Prevention starts with awareness."
-        body="The Hearth publishes weekly on homes, gardens, and the quiet discipline of looking after a place. Seasonal notes that help you stay ahead."
+        headline={nlBlock?.headline ?? "Prevention starts with awareness."}
+        body={nlBlock?.body ?? "The Hearth publishes weekly on homes, gardens, and the quiet discipline of looking after a place. Seasonal notes that help you stay ahead."}
+        {...(nlBlock ?? {})}
       />
     </article>
   );

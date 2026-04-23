@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { GhostLink } from "@/components/primitives/GhostLink";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
+import { getNewsletterBlock } from "@/lib/cms/newsletter";
 import { FeatureGrid } from "@/components/marketing/FeatureGrid";
 import { MonthTimeline } from "@/components/marketing/MonthTimeline";
 import { TestimonialBand } from "@/components/marketing/TestimonialCard";
@@ -64,7 +65,8 @@ const TESTIMONIALS = [
   },
 ];
 
-export default function HowaPlusPage() {
+export default async function HowaPlusPage() {
+  const nlBlock = await getNewsletterBlock("howa-plus");
   return (
     <article className="text-house-brown">
       {/* 1. Hero — House editorial zone */}
@@ -154,10 +156,11 @@ export default function HowaPlusPage() {
 
       {/* 7. Newsletter */}
       <NewsletterInline
-        variant="cream"
+        variant={nlBlock?.variant ?? "cream"}
         sourcePage="/howa/plus"
-        headline="The Hearth is part of HoWA+."
-        body="Members get full editorial access. But the weekly letter is free for everyone. Seasonal notes on homes, gardens, and the craft of proper care."
+        headline={nlBlock?.headline ?? "The Hearth is part of HoWA+."}
+        body={nlBlock?.body ?? "Members get full editorial access. But the weekly letter is free for everyone. Seasonal notes on homes, gardens, and the craft of proper care."}
+        {...(nlBlock ?? {})}
       />
 
       {/* 8. Bottom CTA */}

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
+import { getNewsletterBlock } from "@/lib/cms/newsletter";
 
 /**
  * /services — landing page, locked variant: A. Four Disciplines.
@@ -175,7 +176,8 @@ const FAQ = [
   },
 ];
 
-export default function ServicesLanding() {
+export default async function ServicesLanding() {
+  const nlBlock = await getNewsletterBlock("services");
   return (
     <>
       {/* 1. Hero A */}
@@ -485,7 +487,7 @@ export default function ServicesLanding() {
       </section>
 
       {/* 8. Newsletter */}
-      <NewsletterInline variant="cream" sourcePage="/services" />
+      <NewsletterInline variant={nlBlock?.variant ?? "cream"} sourcePage="/services" {...(nlBlock ?? {})} />
 
       {/* 9. Italic tagline */}
       <div className="text-center border-t border-house-brown/10 bg-house-cream px-5 py-6">
