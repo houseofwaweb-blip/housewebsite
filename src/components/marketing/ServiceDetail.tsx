@@ -4,7 +4,7 @@ import { StateBadge } from "@/components/primitives/StateBadge";
 import { GhostLink } from "@/components/primitives/GhostLink";
 import { Accordion } from "@/components/primitives/Accordion";
 import { Gallery, type GalleryImage } from "@/components/primitives/Gallery";
-import { PartnerCarousel, type PartnerTile } from "./PartnerCarousel";
+import { PartnerCarousel, type PartnerCardData } from "./PartnerCarousel";
 import type { Service } from "@/lib/services-data";
 import { SERVICE_AREAS } from "@/lib/services-data/sub-services";
 
@@ -66,26 +66,26 @@ const PLACEHOLDER_GALLERY: Record<string, GalleryImage[]> = {
   ],
 };
 
-const PLACEHOLDER_PARTNERS: Record<string, PartnerTile[]> = {
+const PLACEHOLDER_PARTNERS: Record<string, PartnerCardData[]> = {
   gardening: [
-    { name: "Willow Alexander Gardens", subtitle: "London & Home Counties", houseApproved: true, href: "/partners/willow-alexander-gardens" },
-    { name: "GreenThumb London", subtitle: "Lawn & hedge specialists" },
-    { name: "Heritage Tree Care", subtitle: "Arboriculture" },
-    { name: "The Plant People", subtitle: "Seasonal planting" },
+    { slug: "willow-alexander-gardens", name: "Willow Alexander Gardens", type: "design-studio", shortBio: "Planting schemes and landscapes rooted in the garden's existing character.", specialties: ["Naturalistic planting", "Seasonal plans"], houseApprovedSeal: true },
+    { slug: "greenthumb-london", name: "GreenThumb London", type: "craftsman", shortBio: "Lawn and hedge specialists. Weekly and seasonal.", specialties: ["Lawn care", "Hedging"] },
+    { slug: "heritage-tree-care", name: "Heritage Tree Care", type: "craftsman", shortBio: "Arboriculture and canopy management.", specialties: ["Tree surgery", "Crown reduction"] },
+    { slug: "the-plant-people", name: "The Plant People", type: "craftsman", shortBio: "Seasonal planting and container schemes.", specialties: ["Planting", "Containers"] },
   ],
   "window-cleaning": [
-    { name: "ClearView London", subtitle: "Pure-water pole specialists" },
-    { name: "Federation-certified", subtitle: "FWC members" },
-    { name: "Shine Brigade", subtitle: "Residential & commercial" },
+    { slug: "clearview-london", name: "ClearView London", type: "craftsman", shortBio: "Pure-water pole specialists. Up to four storeys.", specialties: ["Residential", "Commercial"] },
+    { slug: "federation-certified", name: "Federation-certified", type: "craftsman", shortBio: "FWC members. Insured and vetted.", specialties: ["FWC"] },
+    { slug: "shine-brigade", name: "Shine Brigade", type: "craftsman", shortBio: "Residential and commercial window care.", specialties: ["Interior", "Exterior"] },
   ],
   cleaning: [
-    { name: "House Standard Cleaning", subtitle: "Weekly & fortnightly" },
-    { name: "Pristine London", subtitle: "Deep clean specialists" },
-    { name: "Green Clean Co.", subtitle: "Eco-friendly products" },
+    { slug: "house-standard-cleaning", name: "House Standard Cleaning", type: "craftsman", shortBio: "Weekly and fortnightly domestic care.", specialties: ["Domestic", "Weekly"] },
+    { slug: "pristine-london", name: "Pristine London", type: "craftsman", shortBio: "Deep clean specialists. End-of-tenancy and seasonal.", specialties: ["Deep clean"] },
+    { slug: "green-clean-co", name: "Green Clean Co.", type: "craftsman", shortBio: "Eco-friendly products and methods.", specialties: ["Eco-friendly"] },
   ],
   "gutter-cleaning": [
-    { name: "TopDown Maintenance", subtitle: "Vacuum-pole gutter care" },
-    { name: "Roofline Pro", subtitle: "Gutters, fascias, soffits" },
+    { slug: "topdown-maintenance", name: "TopDown Maintenance", type: "craftsman", shortBio: "Vacuum-pole gutter care and inspection.", specialties: ["Vacuum-pole"] },
+    { slug: "roofline-pro", name: "Roofline Pro", type: "craftsman", shortBio: "Gutters, fascias, and soffits.", specialties: ["Fascias", "Soffits"] },
   ],
 };
 
