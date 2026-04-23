@@ -79,3 +79,4 @@ src/lib/hearth-data/wp-import/articles.raw.json
 .sanity/
 dist/
 scripts/woo-products.json
+.gstack/
