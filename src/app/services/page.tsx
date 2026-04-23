@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 
 /**
  * /services — landing page, locked variant: A. Four Disciplines.
@@ -483,7 +484,10 @@ export default function ServicesLanding() {
         </Link>
       </section>
 
-      {/* 8. Italic tagline */}
+      {/* 8. Newsletter */}
+      <NewsletterInline variant="cream" sourcePage="/services" />
+
+      {/* 9. Italic tagline */}
       <div className="text-center border-t border-house-brown/10 bg-house-cream px-5 py-6">
         <p className="font-sans italic text-[14px] text-house-stone tracking-[0.04em]">
           Ownership is passive. Stewardship is intentional.

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { GhostLink } from "@/components/primitives/GhostLink";
+import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 
 /**
  * Homepage — locked direction: Variant B (Georgian Photography).
@@ -370,7 +371,17 @@ export default function HomePage() {
       </section>
 
       {/* ================================================================
-          8. CLOSING CTA — Pattern-framed, full-bleed cream.
+          8. NEWSLETTER — Dark band, The Hearth.
+          ================================================================ */}
+      <NewsletterInline
+        variant="dark"
+        sourcePage="/"
+        headline="Seasonal notes on home and garden."
+        body="A single letter from the editors of The Hearth. Every Friday. Unsubscribe at any time."
+      />
+
+      {/* ================================================================
+          9. CLOSING CTA — Pattern-framed, full-bleed cream.
           "For homes with soul, proper care should never be left to
           memory alone."
           ================================================================ */}

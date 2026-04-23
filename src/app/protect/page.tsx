@@ -3,6 +3,7 @@ import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { StateBadge } from "@/components/primitives/StateBadge";
 import { WaitlistMini } from "@/components/marketing/WaitlistMini";
 import { env } from "@/lib/env";
+import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 
 export const metadata = {
   title: "Protect",
@@ -142,6 +143,13 @@ export default function ProtectPage() {
           </p>
         </div>
       </section>
+      {/* Newsletter */}
+      <NewsletterInline
+        variant="cream"
+        sourcePage="/protect"
+        headline="Prevention starts with awareness."
+        body="The Hearth publishes weekly on homes, gardens, and the quiet discipline of looking after a place. Seasonal notes that help you stay ahead."
+      />
     </article>
   );
 }

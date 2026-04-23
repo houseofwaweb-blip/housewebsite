@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { GhostLink } from "@/components/primitives/GhostLink";
+import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { FeatureGrid } from "@/components/marketing/FeatureGrid";
 import { MonthTimeline } from "@/components/marketing/MonthTimeline";
 import { TestimonialBand } from "@/components/marketing/TestimonialCard";
@@ -151,7 +152,15 @@ export default function HowaPlusPage() {
         </div>
       </section>
 
-      {/* 7. Bottom CTA */}
+      {/* 7. Newsletter */}
+      <NewsletterInline
+        variant="cream"
+        sourcePage="/howa/plus"
+        headline="The Hearth is part of HoWA+."
+        body="Members get full editorial access. But the weekly letter is free for everyone. Seasonal notes on homes, gardens, and the craft of proper care."
+      />
+
+      {/* 8. Bottom CTA */}
       <section className="bg-howa-navy text-house-cream px-[5vw] py-20">
         <div className="max-w-[720px] mx-auto text-center">
           <p className="font-display italic text-[clamp(20px,2.8vw,28px)] leading-[1.35] text-house-cream/80 mb-8">

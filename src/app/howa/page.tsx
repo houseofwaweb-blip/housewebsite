@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CompanionPreview } from "@/components/marketing/CompanionPreview";
+import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 
 /**
  * /howa — HoWA landing page. Light mode (HoWA mode).
@@ -508,7 +509,10 @@ export default function HowaLandingPage() {
         </Link>
       </section>
 
-      {/* ── 9. Tagline ── */}
+      {/* ── 9. Newsletter ── */}
+      <NewsletterInline variant="paper" sourcePage="/howa" />
+
+      {/* ── 10. Tagline ── */}
       <div className="bg-howa-paper border-t border-house-brown/8 text-center px-5 py-6">
         <p className="font-hearth-serif italic text-[14px] text-house-brown/50 tracking-[0.04em]">
           Ownership is passive. Stewardship is intentional.

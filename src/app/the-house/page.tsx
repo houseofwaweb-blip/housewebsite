@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { GhostLink } from "@/components/primitives/GhostLink";
+import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { TheHouseNav } from "./TheHouseNav";
 
 export const metadata = {
@@ -204,9 +205,17 @@ export default function TheHousePage() {
         </Link>
       </section>
 
+      {/* Newsletter */}
+      <NewsletterInline
+        variant="dark"
+        sourcePage="/the-house"
+        headline="Letters from the House."
+        body="A weekly note from The Hearth: seasonal reflections on homes, gardens, and the quiet art of looking after a place properly."
+      />
+
       {/* Tagline */}
       <div className="text-center border-t border-house-brown/10 bg-house-cream px-5 py-6">
-        <p className="font-display italic text-[14px] text-house-stone tracking-[0.04em]">
+        <p className="font-display italic text-[14px] text-house-brown/50 tracking-[0.04em]">
           Ownership is passive. Stewardship is intentional.
         </p>
       </div>
