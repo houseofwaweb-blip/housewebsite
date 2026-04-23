@@ -20,19 +20,9 @@ export const PRIMARY_NAV: MegaPanel[] = [
         ],
       },
       {
-        heading: "The people",
+        heading: "Reading",
         links: [
-          { label: "About", href: "/the-house/about", description: "The team behind the House" },
-          { label: "Proof", href: "/the-house/proof", description: "Press, awards, testimony" },
-        ],
-      },
-      {
-        heading: "The Hearth Magazine",
-        links: [
-          { label: "Latest", href: "/journal", description: "Editorial writing" },
-          { label: "Hearth Collection", href: "/journal/collection", description: "Long-form features" },
-          { label: "Musings", href: "/musings", description: "Notes & practical advice" },
-          { label: "News", href: "/news", description: "Press & announcements" },
+          { label: "The Hearth Magazine", href: "/journal", description: "Editorial writing on homes & gardens" },
         ],
       },
     ],
@@ -180,6 +170,13 @@ export const PRIMARY_NAV: MegaPanel[] = [
         links: [
           { label: "Musings", href: "/musings", description: "Notes & practical advice" },
           { label: "News", href: "/news", description: "Press & announcements" },
+        ],
+      },
+      {
+        heading: "The House",
+        links: [
+          { label: "About", href: "/the-house/about", description: "The team behind the House" },
+          { label: "Proof", href: "/the-house/proof", description: "Press, awards, testimony" },
         ],
       },
     ],
