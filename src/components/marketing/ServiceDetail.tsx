@@ -26,6 +26,20 @@ import { SERVICE_AREAS } from "@/lib/services-data/sub-services";
 
 const SANITY_CDN = "https://cdn.sanity.io/images/a9t8u8nh/production";
 
+/** Map sub-service keys to Sanity CDN image URLs */
+const SUB_SERVICE_IMAGES: Record<string, string> = {
+  "gardening/lawn-care": `${SANITY_CDN}/027700c20d7a27faacb0dbdf0786e58a24d410f2-1280x1920.jpg?w=680&h=510&fit=crop&auto=format`,
+  "gardening/hedge-trimming": `${SANITY_CDN}/5e7c5edb601a265b8ffaa2524a6077ca154549f1-800x1200.jpg?w=680&h=510&fit=crop&auto=format`,
+  "gardening/planting": `${SANITY_CDN}/58a9482699c396a1a5aec3c7437289600b44483e-1200x800.jpg?w=680&h=510&fit=crop&auto=format`,
+  "gardening/seasonal-care": `${SANITY_CDN}/af45facea4d6320a56b52c75b39083cc92191ee9-959x1200.jpg?w=680&h=510&fit=crop&auto=format`,
+  "gardening/garden-clearance": `${SANITY_CDN}/af45facea4d6320a56b52c75b39083cc92191ee9-959x1200.jpg?w=680&h=510&fit=crop&auto=format`,
+  "gardening/lawn-treatment": `${SANITY_CDN}/cef7faeec075e5dec3991ebdb49ec985a4c9b14f-933x1400.jpg?w=680&h=510&fit=crop&auto=format`,
+  "gardening/turfing": `${SANITY_CDN}/cef7faeec075e5dec3991ebdb49ec985a4c9b14f-933x1400.jpg?w=680&h=510&fit=crop&auto=format`,
+  "gardening/tree-surgery": `${SANITY_CDN}/5e7c5edb601a265b8ffaa2524a6077ca154549f1-800x1200.jpg?w=680&h=510&fit=crop&auto=format`,
+  "gardening/pressure-washing": `${SANITY_CDN}/1a8ab322bd3023e504522b9adb90dfd4ffa35e9c-1400x933.jpg?w=680&h=510&fit=crop&auto=format`,
+  "gardening/fencing": `${SANITY_CDN}/1a8ab322bd3023e504522b9adb90dfd4ffa35e9c-1400x933.jpg?w=680&h=510&fit=crop&auto=format`,
+};
+
 const PLACEHOLDER_GALLERY: Record<string, GalleryImage[]> = {
   gardening: [
     { src: `${SANITY_CDN}/027700c20d7a27faacb0dbdf0786e58a24d410f2-1280x1920.jpg?w=800&auto=format`, alt: "Gardener mowing alongside a beautiful herbaceous border in golden evening light", caption: "London · 2025" },
@@ -157,7 +171,7 @@ export function ServiceDetail({ service: s }: { service: Service }) {
             {s.trustBadges.map((badge) => (
               <span
                 key={badge}
-                className="font-sans text-[10px] tracking-[0.2em] uppercase text-house-stone"
+                className="font-sans text-[10px] tracking-[0.2em] uppercase text-house-brown/50"
               >
                 {badge}
               </span>
@@ -165,6 +179,15 @@ export function ServiceDetail({ service: s }: { service: Service }) {
           </div>
         </section>
       ) : null}
+
+      {/* 2b. Partners — moved up, dark band */}
+      <PartnerCarousel
+        heading={`Meet our ${partnerName}.`}
+        headingEm={partnerName + "."}
+        lede={`Every ${partnerName.slice(0, -1)} who works through the House has been vetted, insured, and meets the standard we'd hold ourselves to.`}
+        partners={PLACEHOLDER_PARTNERS[s.slug] ?? []}
+        dark
+      />
 
       {/* 3. What we do */}
       <section className="px-[5vw] py-16 bg-white border-b border-house-brown/10">
@@ -206,7 +229,7 @@ export function ServiceDetail({ service: s }: { service: Service }) {
         </div>
       </section>
 
-      {/* 4. Sub-services grid */}
+      {/* 4. Sub-services — horizontal scroll carousel with images */}
       {s.subServices.length > 0 ? (
         <section className="px-[5vw] py-20">
           <div className="max-w-[1280px] mx-auto">
@@ -214,25 +237,48 @@ export function ServiceDetail({ service: s }: { service: Service }) {
             <h2 className="em-accent font-display font-medium text-[clamp(28px,3.6vw,42px)] leading-[1.15] mt-3 mb-10 max-w-[24ch]">
               Everything under <em>{s.name.toLowerCase()}</em>.
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {s.subServices.map((sub) => (
+          </div>
+          <div
+            className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-[5vw] px-[5vw]"
+            style={{ scrollbarWidth: "none" }}
+          >
+            {s.subServices.map((sub) => {
+              const img = SUB_SERVICE_IMAGES[`${s.slug}/${sub.slug}`];
+              return (
                 <Link
                   key={sub.slug}
                   href={`/services/${s.slug}/${sub.slug}`}
-                  className="group flex flex-col bg-white border border-house-brown/12 p-6 no-underline transition-all duration-[var(--t-slow)] ease-out hover:-translate-y-0.5 hover:border-house-gold"
+                  className="group flex-none w-[80vw] sm:w-[340px] snap-start bg-white border border-house-brown/10 overflow-hidden no-underline flex flex-col transition-all duration-[var(--t-slow)] ease-out hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(48,35,28,0.08)] hover:border-[var(--house-gold-dark)]"
                 >
-                  <h3 className="font-display font-medium text-[22px] leading-[1.2] text-house-brown group-hover:text-house-gold transition-colors duration-[var(--t-slow)] ease-out mb-2">
-                    {sub.name}
-                  </h3>
-                  <p className="font-sans italic text-[15px] leading-[1.55] text-house-stone">
-                    {sub.lede}
-                  </p>
-                  <span className="mt-auto pt-4 font-sans text-[11px] tracking-[0.16em] uppercase text-house-gold">
-                    See detail →
-                  </span>
+                  {img ? (
+                    <div className="relative aspect-[4/3] overflow-hidden">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={img}
+                        alt={sub.name}
+                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                      />
+                    </div>
+                  ) : (
+                    <div className="aspect-[4/3] bg-howa-paper flex items-center justify-center">
+                      <span className="font-sans text-[11px] tracking-[0.14em] uppercase text-house-brown/25">{sub.name}</span>
+                    </div>
+                  )}
+                  <div className="p-6 flex flex-col flex-1">
+                    <h3 className="font-display font-medium text-[22px] leading-[1.2] text-house-brown mb-2 transition-colors duration-[var(--t-slow)] group-hover:text-[var(--house-gold-dark)]">
+                      {sub.name}
+                    </h3>
+                    <p className="font-sans text-[14px] leading-[1.55] text-house-brown/70 flex-1">
+                      {sub.lede}
+                    </p>
+                    <span className="mt-4 inline-flex items-center gap-2 font-sans text-[11px] tracking-[0.16em] uppercase" style={{ color: "var(--house-gold-dark)" }}>
+                      See detail
+                      <span className="inline-block transition-transform duration-[var(--t-slow)] ease-out group-hover:translate-x-2">&rarr;</span>
+                    </span>
+                  </div>
                 </Link>
-              ))}
-            </div>
+              );
+            })}
           </div>
         </section>
       ) : null}
@@ -252,97 +298,49 @@ export function ServiceDetail({ service: s }: { service: Service }) {
         </div>
       </section>
 
-      {/* 5. Meet our partners */}
-      <PartnerCarousel
-        heading={`Meet our ${partnerName}.`}
-        headingEm="House Approved and vetted."
-        lede={`Every ${partnerName.slice(0, -1)} who works through the House has been vetted, insured, and meets the standard we\u2019d hold ourselves to. The marketplace is growing.`}
-        partners={PLACEHOLDER_PARTNERS[s.slug] ?? []}
-      />
-
-      {/* 6. Packages */}
+      {/* 5. Booking — two-block CTA (replaces old packages grid) */}
       <section className="px-[5vw] py-20 border-t border-house-brown/10">
-        <div className="max-w-[1200px] mx-auto">
-          <Eyebrow>Packages</Eyebrow>
-          <h2 className="em-accent font-display font-medium text-[clamp(28px,3.8vw,42px)] leading-[1.15] mt-3 mb-10 max-w-[24ch]">
-            How we price <em>{s.name.toLowerCase()}</em>.
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {s.packages.map((pkg) => (
-              <div
-                key={pkg.slug}
-                className={`relative border p-8 flex flex-col ${
-                  pkg.tier === "steward"
-                    ? "bg-howa-navy text-house-cream border-house-gold/30"
-                    : "bg-white border-house-brown/10"
-                }`}
-              >
-                <div
-                  className={`font-sans text-[10px] tracking-[0.22em] uppercase mb-2 ${
-                    pkg.tier === "steward" ? "text-house-gold-light" : "text-house-gold"
-                  }`}
-                >
-                  {pkg.tier === "steward"
-                    ? "Steward plan"
-                    : pkg.tier === "care"
-                      ? "Care plan"
-                      : "One-off"}
-                </div>
-                <h3
-                  className={`font-display font-medium text-[24px] leading-[1.2] mb-1 ${
-                    pkg.tier === "steward" ? "text-house-cream" : "text-house-brown"
-                  }`}
-                >
-                  {pkg.name}
-                </h3>
-                <div
-                  className={`font-display text-[22px] mb-4 ${
-                    pkg.tier === "steward" ? "text-house-cream/85" : "text-house-brown/85"
-                  }`}
-                >
-                  {pkg.price}
-                </div>
-                {pkg.bestFor ? (
-                  <p
-                    className={`font-sans italic text-[14px] leading-[1.5] mb-4 ${
-                      pkg.tier === "steward" ? "text-house-cream/65" : "text-house-stone"
-                    }`}
-                  >
-                    Best for {pkg.bestFor}.
-                  </p>
-                ) : null}
-                <ul className="flex flex-col gap-2 flex-1 mb-6">
-                  {pkg.inclusions.map((inc) => (
-                    <li
-                      key={inc}
-                      className={`relative pl-4 font-sans text-[14px] leading-[1.55] before:content-['—'] before:absolute before:left-0 ${
-                        pkg.tier === "steward"
-                          ? "text-house-cream/85 before:text-house-gold-light"
-                          : "text-house-brown/90 before:text-house-gold"
-                      }`}
-                    >
-                      {inc}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-auto">
-                  {pkg.cta === "waitlist" ? (
-                    <StateBadge state="interest">Register interest</StateBadge>
-                  ) : (
-                    <Link
-                      href={`/book-consultation?service=${s.slug}&package=${pkg.slug}`}
-                      className={`inline-block font-sans text-[11px] tracking-[0.18em] uppercase px-5 py-3 no-underline transition-all duration-[var(--t-base)] ease-out ${
-                        pkg.tier === "steward"
-                          ? "text-house-cream border border-house-cream/45 hover:bg-house-cream hover:text-house-brown"
-                          : "text-house-brown border border-house-brown/80 hover:bg-house-brown hover:text-house-cream"
-                      }`}
-                    >
-                      {pkg.cta === "quoteEntry" ? "Get a quote" : "Book now"}
-                    </Link>
-                  )}
-                </div>
-              </div>
-            ))}
+        <div className="max-w-[1100px] mx-auto grid md:grid-cols-2 gap-6">
+          {/* One-off booking via HoWA */}
+          <div className="bg-white border border-house-brown/10 p-10 flex flex-col">
+            <span className="block font-sans text-[11px] tracking-[0.2em] uppercase mb-4" style={{ color: "var(--house-gold-dark)" }}>
+              One-off &amp; pay-as-you-go
+            </span>
+            <h3 className="font-display font-medium text-[clamp(24px,3vw,32px)] leading-[1.15] text-house-brown mb-4">
+              Book one-off care through HoWA.
+            </h3>
+            <p className="font-sans text-[15px] leading-[1.6] text-house-brown/70 mb-8 flex-1">
+              Single visits, seasonal jobs, or a one-off tidy. Book through HoWA and the work is logged to your home record. No subscription required.
+            </p>
+            <Link
+              href={`/book-consultation?service=${s.slug}`}
+              className="inline-block self-start font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-6 py-3.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
+            >
+              Book {s.name.toLowerCase()}
+            </Link>
+          </div>
+
+          {/* Subscriptions via Steward */}
+          <div className="bg-howa-navy text-house-cream border border-house-gold/30 p-10 flex flex-col"
+            style={{
+              backgroundImage: "repeating-linear-gradient(0deg, transparent 0 39px, rgba(184,148,62,0.04) 39px 40px), repeating-linear-gradient(90deg, transparent 0 39px, rgba(184,148,62,0.04) 39px 40px)",
+            }}
+          >
+            <span className="block font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-light mb-4">
+              Recurring care
+            </span>
+            <h3 className="font-display font-medium text-[clamp(24px,3vw,32px)] leading-[1.15] text-house-cream mb-4">
+              Subscriptions only available through Steward.
+            </h3>
+            <p className="font-sans text-[15px] leading-[1.6] text-house-cream/70 mb-8 flex-1">
+              Weekly, fortnightly, or seasonal {s.name.toLowerCase()} plans are managed through HoWA Steward. One invoice, one contact, one system that remembers.
+            </p>
+            <Link
+              href="/howa/steward"
+              className="inline-block self-start font-sans text-[12px] tracking-[0.18em] uppercase text-house-cream border border-house-cream/45 px-6 py-3.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-cream hover:text-house-brown"
+            >
+              Learn about Steward
+            </Link>
           </div>
         </div>
       </section>
