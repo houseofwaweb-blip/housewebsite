@@ -28,6 +28,9 @@ import { navItem } from "./objects/navItem";
 import { navGroup } from "./objects/navGroup";
 import { portfolioItem } from "./objects/portfolioItem";
 import { serviceSection } from "./objects/serviceSection";
+import { megaLink } from "./objects/megaLink";
+import { megaGroup } from "./objects/megaGroup";
+import { megaPanel } from "./objects/megaPanel";
 
 import { portableText } from "./blocks/portableText";
 import { pullQuote } from "./blocks/pullQuote";
@@ -63,6 +66,9 @@ export const schemaTypes = [
   navGroup,
   portfolioItem,
   serviceSection,
+  megaLink,
+  megaGroup,
+  megaPanel,
   portableText,
   pullQuote,
   dropCapPara,

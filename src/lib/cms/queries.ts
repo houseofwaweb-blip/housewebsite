@@ -12,7 +12,16 @@ export const siteSettingsQuery = /* groq */ `*[_type == "siteSettings"][0]{
 
 // ─── Navigation ────────────────────────────────────────────────────────────
 export const navigationQuery = /* groq */ `*[_type == "navigation"][0]{
-  headerItems[]{label, href, external},
+  primaryNav[]{
+    trigger, triggerHref,
+    groups[]{
+      heading,
+      links[]{label, href, description, external}
+    },
+    "previewImage": previewImage.asset->url,
+    "previewAlt": previewImage.alt,
+    previewTag, previewHeading, previewHref
+  },
   footerGroups[]{heading, items[]{label, href, external}},
   mobileOrder[]{label, href, external}
 }`;

@@ -28,13 +28,17 @@ export interface HeaderProps {
   ctaHref?: string;
   /** Dark variant for navy stages (Steward, HoWA app bounce). */
   dark?: boolean;
+  /** Navigation panels from Sanity. Falls back to PRIMARY_NAV. */
+  nav?: MegaPanel[];
 }
 
 export function Header({
   ctaLabel = "Start HoWA",
   ctaHref = "/api/howa-bounce",
   dark: darkProp,
+  nav,
 }: HeaderProps) {
+  const navPanels = nav ?? PRIMARY_NAV;
   const pathname = usePathname() ?? "";
   // Routes that run on a dark navy surface. /howa/steward is blueprint mode;
   // the /howa landing is now HoWA mode (light) per 2026-04-22 audit.
@@ -75,7 +79,7 @@ export function Header({
 
       {/* Desktop MegaMenu */}
       <div className="hidden lg:block flex-1 px-10">
-        <MegaMenu panels={PRIMARY_NAV} dark={dark} />
+        <MegaMenu panels={navPanels} dark={dark} />
       </div>
 
       {/* Utility right */}
@@ -167,7 +171,7 @@ export function Header({
               {ctaLabel}
             </Link>
 
-            {PRIMARY_NAV.map((panel) => {
+            {navPanels.map((panel) => {
               const expanded = mobileExpanded === panel.id;
               const firstGroup = panel.groups[0];
               return (

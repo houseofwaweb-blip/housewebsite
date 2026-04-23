@@ -3,6 +3,7 @@ import { didot, effra, cormorant, jost } from "@/lib/fonts";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/lib/seo/jsonLd";
 import { env } from "@/lib/env";
 import { Header } from "@/components/layout/Header";
+import { getNavigation } from "@/lib/cms/navigation";
 import { Footer } from "@/components/layout/Footer";
 import { CartProvider } from "@/components/commerce/CartContext";
 import { CartToast } from "@/components/commerce/CartToast";
@@ -58,9 +59,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const nav = await getNavigation();
   return (
     <html
       lang="en-GB"
@@ -75,7 +77,7 @@ export default function RootLayout({
           <a href="#main" className="skip-link">
             Skip to content
           </a>
-          <Header ctaLabel={ctaLabel} ctaHref={ctaHref} />
+          <Header ctaLabel={ctaLabel} ctaHref={ctaHref} nav={nav} />
           <main id="main">{children}</main>
           <Footer />
           <CartToast />
