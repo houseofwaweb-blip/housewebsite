@@ -196,11 +196,11 @@ function LocalPartnerPage({ partner: p }: { partner: LaunchPartner }) {
         </div>
         <div>
           <div className="flex items-center gap-3.5 mb-5 flex-wrap">
-            <span className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold">
+            <span className="font-sans text-[11px] tracking-[0.22em] uppercase text-[var(--house-gold-dark)]">
               {p.houseApprovedSeal ? "House Approved Designer" : p.typeLabel}
             </span>
             {p.houseApprovedSeal ? (
-              <span className="inline-flex items-center gap-1.5 font-sans text-[10px] tracking-[0.2em] uppercase text-house-gold border border-house-gold px-2.5 py-[3px]">
+              <span className="inline-flex items-center gap-1.5 font-sans text-[10px] tracking-[0.2em] uppercase text-[var(--house-gold-dark)] border border-house-gold px-2.5 py-[3px]">
                 ■ House Approved
               </span>
             ) : null}
@@ -208,14 +208,14 @@ function LocalPartnerPage({ partner: p }: { partner: LaunchPartner }) {
           <h2 className="em-accent font-display font-medium text-[clamp(32px,3.6vw,46px)] leading-[1.1] tracking-[-0.005em] text-house-brown mb-3.5">
             {p.name}.
           </h2>
-          <div className="font-sans italic text-[16px] text-house-stone mb-5">
+          <div className="font-sans italic text-[16px] text-house-brown/70 mb-5">
             {p.role}
           </div>
           {p.longBio.map((para, i) => (
             <p
               key={i}
               className={`font-display text-house-brown leading-[1.6] max-w-[520px] mb-5 ${
-                i === 0 ? "text-[20px]" : "text-[16px] text-house-stone"
+                i === 0 ? "text-[20px]" : "text-[16px] text-house-brown/70"
               }`}
             >
               {para}
@@ -229,7 +229,40 @@ function LocalPartnerPage({ partner: p }: { partner: LaunchPartner }) {
         </div>
       </section>
 
-      {/* 3. Transition band */}
+      {/* 3. Services Provided */}
+      {p.services && p.services.length > 0 && (
+        <section className="bg-house-white px-[5vw] py-20 border-t border-house-brown/8">
+          <div className="max-w-[1180px] mx-auto">
+            <Eyebrow colour="teal">Services provided</Eyebrow>
+            <h2 className="font-display font-medium text-[clamp(28px,3.6vw,42px)] leading-[1.12] tracking-[-0.01em] text-house-brown mt-4 mb-12">
+              What {p.name.split(" ")[0]} <em className="italic font-normal">offers.</em>
+            </h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {p.services.map((svc) => (
+                <div
+                  key={svc.name}
+                  className="border border-house-brown/10 bg-house-cream/50 p-6 flex flex-col"
+                >
+                  <h3 className="font-display font-medium text-[20px] leading-[1.2] text-house-brown mb-1">
+                    {svc.name}
+                  </h3>
+                  <span
+                    className="block font-sans text-[12px] tracking-[0.14em] uppercase mb-4"
+                    style={{ color: "var(--house-gold-dark)" }}
+                  >
+                    {svc.price}
+                  </span>
+                  <p className="font-sans text-[14px] leading-[1.6] text-house-brown/70 flex-1">
+                    {svc.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 4. Transition band */}
       <div
         className="relative text-center px-[5vw] py-[42px] border-t border-house-brown/10 border-b border-house-brown/8"
         style={{
@@ -243,11 +276,11 @@ function LocalPartnerPage({ partner: p }: { partner: LaunchPartner }) {
         />
         <span
           aria-hidden="true"
-          className="absolute top-[34px] left-1/2 -translate-x-1/2 font-display text-house-gold text-[18px] leading-none"
+          className="absolute top-[34px] left-1/2 -translate-x-1/2 font-display text-[var(--house-gold-dark)] text-[18px] leading-none"
         >
           ·
         </span>
-        <p className="font-sans italic text-[15px] text-house-stone tracking-[0.04em]">
+        <p className="font-sans italic text-[15px] text-house-brown/70 tracking-[0.04em]">
           The House introduces.{" "}
           <em className="not-italic font-sans text-[11px] tracking-[0.08em] uppercase text-howa-teal ml-2 pl-[10px] border-l border-house-brown/20">
             HoWA configures
@@ -293,7 +326,7 @@ function LocalPartnerPage({ partner: p }: { partner: LaunchPartner }) {
                   className={
                     isFeat
                       ? "font-sans text-[10px] tracking-[0.22em] uppercase text-house-gold-light mb-3.5"
-                      : "font-sans text-[10px] tracking-[0.22em] uppercase text-house-gold mb-3.5"
+                      : "font-sans text-[10px] tracking-[0.22em] uppercase text-[var(--house-gold-dark)] mb-3.5"
                   }
                 >
                   {pkg.tier}
@@ -307,7 +340,7 @@ function LocalPartnerPage({ partner: p }: { partner: LaunchPartner }) {
                 </h4>
                 <div
                   className={`font-sans text-[13px] mb-5 ${
-                    isFeat ? "text-house-cream/65" : "text-house-stone"
+                    isFeat ? "text-house-cream/65" : "text-house-brown/70"
                   }`}
                 >
                   from{" "}
@@ -324,7 +357,7 @@ function LocalPartnerPage({ partner: p }: { partner: LaunchPartner }) {
                   className={`font-sans italic text-[15px] py-3 mb-5 border-t border-b ${
                     isFeat
                       ? "text-house-cream/70 border-house-cream/15"
-                      : "text-house-stone border-house-brown/12"
+                      : "text-house-brown/70 border-house-brown/12"
                   }`}
                 >
                   {pkg.bestFor}
@@ -340,7 +373,7 @@ function LocalPartnerPage({ partner: p }: { partner: LaunchPartner }) {
                       className={`relative py-[2px] before:content-['—'] before:absolute before:-left-4 ${
                         isFeat
                           ? "before:text-house-gold-light"
-                          : "before:text-house-gold"
+                          : "before:text-[var(--house-gold-dark)]"
                       }`}
                     >
                       {inc}
@@ -444,11 +477,11 @@ function LocalPartnerPage({ partner: p }: { partner: LaunchPartner }) {
                   : "border-b border-dashed border-house-brown/20"
               }`}
             >
-              <span className="min-w-[20px] font-sans italic text-[16px] text-house-gold">
+              <span className="min-w-[20px] font-sans italic text-[16px] text-[var(--house-gold-dark)]">
                 {s.num}
               </span>
               <div>
-                <div className="mb-1 font-sans text-[10px] tracking-[0.18em] uppercase text-house-stone">
+                <div className="mb-1 font-sans text-[10px] tracking-[0.18em] uppercase text-house-brown/70">
                   {s.label}
                 </div>
                 <div className="font-sans text-[17px] leading-[1.3] text-house-brown">
@@ -463,7 +496,7 @@ function LocalPartnerPage({ partner: p }: { partner: LaunchPartner }) {
       {/* 6. Projects grid */}
       <section className="bg-house-cream border-t border-house-brown/8 px-[5vw] pt-20 pb-24">
         <div className="text-center mb-12">
-          <span className="block mb-3.5 font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold">
+          <span className="block mb-3.5 font-sans text-[11px] tracking-[0.22em] uppercase text-[var(--house-gold-dark)]">
             Recent Work
           </span>
           <h2 className="em-accent font-display font-medium text-[42px] leading-[1.1] tracking-[-0.005em] text-house-brown">
@@ -488,13 +521,13 @@ function LocalPartnerPage({ partner: p }: { partner: LaunchPartner }) {
                   className="object-cover"
                 />
               </div>
-              <div className="font-sans text-[10px] tracking-[0.2em] uppercase text-house-gold mb-1">
+              <div className="font-sans text-[10px] tracking-[0.2em] uppercase text-[var(--house-gold-dark)] mb-1">
                 {proj.caption}
               </div>
               <div className="font-display font-medium text-[18px] text-house-brown">
                 {proj.title}
               </div>
-              <div className="font-sans text-[12px] text-house-stone mt-0.5">
+              <div className="font-sans text-[12px] text-house-brown/70 mt-0.5">
                 {proj.meta}
               </div>
             </article>
@@ -521,7 +554,7 @@ function LocalPartnerPage({ partner: p }: { partner: LaunchPartner }) {
               <div className="flex-1 font-sans text-[20px] text-house-brown">
                 {f.q}
               </div>
-              <div className="max-w-[260px] font-sans text-[13px] leading-[1.6] text-house-stone">
+              <div className="max-w-[260px] font-sans text-[13px] leading-[1.6] text-house-brown/70">
                 {f.a}
               </div>
             </div>
@@ -544,7 +577,7 @@ function LocalPartnerPage({ partner: p }: { partner: LaunchPartner }) {
 
       {/* 9. Tagline */}
       <div className="text-center border-t border-house-brown/10 bg-house-cream px-5 py-6">
-        <p className="font-sans italic text-[14px] text-house-stone tracking-[0.04em]">
+        <p className="font-sans italic text-[14px] text-house-brown/70 tracking-[0.04em]">
           Ownership is passive. Stewardship is intentional.
         </p>
       </div>
@@ -555,7 +588,7 @@ function LocalPartnerPage({ partner: p }: { partner: LaunchPartner }) {
 function Meta({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col">
-      <span className="mb-1 font-sans text-[10px] tracking-[0.18em] uppercase text-house-stone">
+      <span className="mb-1 font-sans text-[10px] tracking-[0.18em] uppercase text-house-brown/70">
         {label}
       </span>
       <span className="font-sans text-[17px] text-house-brown">{value}</span>

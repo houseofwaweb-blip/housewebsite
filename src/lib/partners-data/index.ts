@@ -75,6 +75,13 @@ export interface LaunchPartner {
   instagram?: string;
   houseApprovedSeal: boolean;
   awaitingAssets?: boolean;
+
+  // Services provided by this partner
+  services?: Array<{
+    name: string;
+    price: string;
+    description: string;
+  }>;
 }
 
 // Default project placeholder set — shared until partners provide real imagery.
@@ -191,28 +198,28 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
   "delve-interiors": {
     slug: "delve-interiors",
     name: "Delve Interiors",
-    type: "design-studio",
-    typeLabel: "Design studio",
+    type: "interior-designer",
+    typeLabel: "Interior Designer",
 
-    heroEyebrow: "Design · Interiors by the House",
-    heroHeadline: "Rooms that take their time.",
-    heroHeadlineEm: "take their time",
+    heroEyebrow: "Design \u00b7 Interiors by the House",
+    heroHeadline: "Consciously designed interiors.",
+    heroHeadlineEm: "designed interiors.",
     heroSub:
-      "A London studio on joinery, quiet palettes, and the detail work most studios don\u2019t bother with. Commissioned through the House and held in HoWA.",
-    heroImage: "/partners/hero.png",
-    heroCaption: "Notting Hill drawing room \u00b7 Delve Interiors",
+      "At the House of Willow Alexander, we believe that interiors are living expressions of the people who inhabit them. Beauty, balance, and intention \u2014 curated by Alana Miller and THE HOUSE EDIT.",
+    heroImage: "/design/interiors/project-tunbridge-1.webp",
+    heroCaption: "Tunbridge Wells \u00b7 Delve Interiors",
 
-    role: "Design studio \u00b7 London & the South East",
+    role: "Alana Miller \u00b7 Founder, THE HOUSE EDIT",
     shortBio:
-      "Considered schemes, quiet palettes, careful detailing. London and the South East.",
+      "Timeless design with heritage charm and modern ease. Layered interiors that feel both elegant and effortless.",
     longBio: [
-      "Delve is a London interiors studio run on the belief that a room gets better the more you can take out of it. They work across whole-house renovations, single-room reads, and the detail work that most studios don't bother with \u2014 joinery schedules, paint sequencing, light by light.",
-      "Every Delve project is photographed properly and filed to the client's HoWA record so future trades \u2014 decorators, electricians, cleaners \u2014 arrive knowing what they're looking at.",
+      "With a refined eye for timeless design, Alana Miller is the creative force behind THE HOUSE EDIT. Trained at the KLC School of Design, she blends heritage charm with modern ease, curating layered interiors that feel both elegant and effortless.",
+      "Her signature style embraces tactile warmth, sustainable finds, and an intuitive sense of flow \u2014 spaces that tell a story and invite you to live beautifully. Guided by collaboration and care, Alana crafts homes that are as soulful as they are functional, always one-of-a-kind \u2014 whether restoring an Edwardian cottage or reimagining a family home.",
     ],
-    portraitImage: "/partners/portrait.png",
+    portraitImage: "/design/interiors/designer-portrait.jpg",
     founded: "2018",
-    basedIn: "London",
-    recent: "Notting Hill \u00b7 Oxfordshire",
+    basedIn: "London & Home Counties",
+    recent: "Hertfordshire \u00b7 Buckinghamshire \u00b7 Tunbridge Wells",
 
     packagesHeading: "Three ways to commission.",
     packagesHeadingEm: "One living record.",
@@ -222,19 +229,38 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
 
     projectsHeading: "From the studio.",
     projectsHeadingEm: "Recent commissions.",
-    projects: PLACEHOLDER_PROJECTS,
+    projects: [
+      { title: "Hertfordshire Living Room", caption: "Interiors \u00b7 2025", meta: "Full house edit", image: "/design/interiors/project-living-room.webp" },
+      { title: "Buckinghamshire Bedroom", caption: "Interiors \u00b7 2025", meta: "Room edit", image: "/design/interiors/project-bedroom.webp" },
+      { title: "Hertfordshire Dining Room", caption: "Interiors \u00b7 2024", meta: "Full house edit", image: "/design/interiors/project-dining.webp" },
+      { title: "Tunbridge Wells Drawing Room", caption: "Interiors \u00b7 2024", meta: "Period restoration", image: "/design/interiors/project-tunbridge-1.webp" },
+      { title: "Tunbridge Wells Study", caption: "Interiors \u00b7 2024", meta: "Period restoration", image: "/design/interiors/project-tunbridge-2.webp" },
+      { title: "Tunbridge Wells Detail", caption: "Interiors \u00b7 2024", meta: "Finishing touches", image: "/design/interiors/project-detail.webp" },
+    ],
 
-    faq: DEFAULT_FAQ,
+    faq: [
+      { q: "What is THE HOUSE EDIT?", a: "A 90-minute one-to-one online styling session with Alana. Thoughtful guidance on palette, layout, and sourcing, delivered as a personalised PDF moodboard." },
+      { q: "Can I upgrade from a House Edit to a Full House Edit?", a: "Yes. Your initial edit applies as credit toward the full package. Nothing is wasted." },
+      { q: "Do you work outside London?", a: "Yes. Alana works across London, the Home Counties, and the South East. Video consultations available for further afield." },
+      { q: "Does everything save to HoWA?", a: "Every meaningful decision. Moodboards, sourcing lists, material packs, and project notes all write to your living record." },
+    ],
     closingLine:
-      "For a room worth living in \u2014 commission once, and steward over time.",
-    closingLineEm: "commission once, and steward over time.",
+      "Every space should feel intentional \u2014 shaped by thoughtful choices and natural materials.",
+    closingLineEm: "shaped by thoughtful choices and natural materials.",
 
-    specialties: ["Georgian & Victorian terraces", "Joinery-led schemes", "Listed buildings"],
-    serviceAreas: ["London", "Oxfordshire", "West Sussex"],
-    website: "https://delveinteriors.example",
-    instagram: "@delveinteriors",
+    specialties: ["Layered interiors", "Heritage restoration", "Sustainable sourcing", "Textile-forward schemes"],
+    serviceAreas: ["London", "Home Counties", "South East"],
+    instagram: "@thehouseedit",
     houseApprovedSeal: true,
-    awaitingAssets: true,
+
+    services: [
+      { name: "The House Edit", price: "\u00a3295", description: "A 90-minute one-to-one online styling session. Personalised PDF moodboard with curated links. 10% House Store discount." },
+      { name: "Additions to Your Edit", price: "from \u00a3195", description: "Shoppable moodboard, sourcing per room, material pack (swatches, samples, scents), 30-minute follow-up call." },
+      { name: "The Full House Edit", price: "from \u00a3795", description: "Initial 90-minute consultation, moodboards for up to three rooms, sourcing for two rooms, a tactile material pack, 30-minute follow-up, 15% House Store discount." },
+      { name: "Room Edit", price: "from \u00a32,400", description: "A single-room refresh with full scheme, colour, fabric, light, and sourcing via House Approved." },
+      { name: "Full House Edit (Studio)", price: "from \u00a312,000", description: "A coherent language across every room. Full architectural scheme, room-by-room sourcing, site visits, install coordination, aftercare." },
+      { name: "The Style Diagnostic", price: "Coming Soon", description: "A guided style journey that reveals your personal home moodboard. Free mini style summary, shoppable digital moodboard, AI & designer session upgrade." },
+    ],
   },
 
   "jessica-durling-mcmahon": {
