@@ -122,7 +122,7 @@ export default function StewardPage() {
               Register interest
             </Link>
             <GhostLink href="/howa/plans" dark>
-              See all HoWA plans &rarr;
+              See all HoWA plans
             </GhostLink>
           </div>
         </div>
@@ -397,7 +397,7 @@ export default function StewardPage() {
                 decide what to book and when. HoWA+ gives you the tools and the
                 member pricing. You drive.
               </p>
-              <GhostLink href="/howa/plus">See HoWA+ &rarr;</GhostLink>
+              <GhostLink href="/howa/plus">See HoWA+</GhostLink>
             </div>
 
             {/* Steward */}
@@ -456,7 +456,7 @@ export default function StewardPage() {
           />
 
           <div className="mt-8">
-            <GhostLink href="/howa/plans" dark>
+            <GhostLink href="/howa/plans" dark arrow={false}>
               &larr; Back to all HoWA plans
             </GhostLink>
           </div>

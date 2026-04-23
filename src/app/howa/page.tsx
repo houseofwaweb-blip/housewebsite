@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CompanionPreview } from "@/components/marketing/CompanionPreview";
 
 /**
  * /howa — HoWA landing page. Light mode (HoWA mode).
@@ -158,45 +159,8 @@ export default function HowaLandingPage() {
             </div>
           </div>
 
-          {/* Right — live Companion step widget preview */}
-          <div className="bg-house-white rounded-[8px] border border-house-brown/10 p-6 shadow-sm max-w-[400px] mx-auto md:mx-0 md:ml-auto">
-            <div className="flex items-center justify-between mb-5">
-              <span className="font-hearth-sans text-[11px] tracking-[0.16em] uppercase text-howa-teal-dark">
-                Companion
-              </span>
-              <span className="font-hearth-sans text-[11px] text-house-brown/50">
-                Step 2 of 5
-              </span>
-            </div>
-            <div className="w-full h-[3px] bg-house-brown/8 rounded-full mb-6">
-              <div className="h-full w-[40%] rounded-full" style={{ background: "var(--house-gold-dark)" }} />
-            </div>
-            <h3 className="font-hearth-sans font-medium text-[17px] text-house-brown mb-5 leading-[1.35]">
-              What matters most for this home right now?
-            </h3>
-            <div className="grid grid-cols-2 gap-2 mb-6">
-              {["Design", "Care", "Protection", "Everything"].map((opt, i) => (
-                <div
-                  key={opt}
-                  className={
-                    "rounded-[6px] border px-4 py-3 text-center font-hearth-sans text-[13px] cursor-default transition-colors " +
-                    (i === 1
-                      ? "border-[var(--house-gold-dark)] text-house-brown bg-[var(--house-gold-dark)]/5"
-                      : "border-house-brown/12 text-house-brown/70")
-                  }
-                >
-                  {opt}
-                </div>
-              ))}
-            </div>
-            <button
-              type="button"
-              className="w-full py-3 rounded-[6px] font-hearth-sans text-[13px] tracking-[0.12em] uppercase text-white cursor-default"
-              style={{ background: "var(--house-gold-dark)" }}
-            >
-              Continue
-            </button>
-          </div>
+          {/* Right — interactive Companion step widget */}
+          <CompanionPreview />
         </div>
       </section>
 
@@ -256,12 +220,19 @@ export default function HowaLandingPage() {
             </div>
           </div>
 
-          {/* Right — placeholder image area */}
+          {/* Right — annotated home image (placeholder until real imagery) */}
           <div className="flex items-center justify-center">
-            <div className="w-full aspect-[4/3] rounded-[8px] bg-howa-paper border border-house-brown/8 flex items-center justify-center">
-              <span className="font-hearth-sans text-[12px] tracking-[0.12em] uppercase text-house-brown/30">
-                Dashboard preview
-              </span>
+            <div className="relative w-full aspect-[4/3] bg-howa-paper border border-house-brown/8 overflow-hidden">
+              <img
+                src="/home/hero-georgian.png"
+                alt="A Georgian townhouse representing the home record"
+                className="w-full h-full object-cover opacity-60"
+              />
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                <span className="font-hearth-sans text-[11px] tracking-[0.18em] uppercase text-house-brown/70 bg-house-white/80 px-3 py-1.5">
+                  The living record
+                </span>
+              </div>
             </div>
           </div>
         </div>

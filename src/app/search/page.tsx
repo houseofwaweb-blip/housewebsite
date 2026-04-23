@@ -51,7 +51,7 @@ function SearchContent() {
   const [query, setQuery] = React.useState(initialQuery);
   const [tab, setTab] = React.useState("all");
   const [results, setResults] = React.useState<SearchResult[]>([]);
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(!!initialQuery);
   const [hasSearched, setHasSearched] = React.useState(false);
   const inputRef = React.useRef<HTMLInputElement>(null);
   const debounceRef = React.useRef<number | null>(null);

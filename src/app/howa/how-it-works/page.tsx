@@ -103,8 +103,9 @@ export default function HowItWorksPage() {
                 ))}
               </ul>
             </div>
-            <div className={`w-full aspect-[4/5] bg-house-cream-dark flex items-center justify-center font-sans text-[11px] tracking-[0.14em] uppercase text-house-brown/70 ${i % 2 !== 0 ? "md:order-1" : ""}`}>
-              {v.verb} illustration
+            <div className={`w-full aspect-[4/5] bg-howa-paper border border-house-brown/6 flex flex-col items-center justify-center gap-3 ${i % 2 !== 0 ? "md:order-1" : ""}`}>
+              <span className="font-hearth-serif italic text-[48px] text-house-brown/8 leading-none select-none">{v.numeral}</span>
+              <span className="font-hearth-sans text-[11px] tracking-[0.16em] uppercase text-house-brown/25">{v.verb}</span>
             </div>
           </div>
         </section>
