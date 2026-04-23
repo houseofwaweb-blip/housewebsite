@@ -4,6 +4,8 @@ import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { GhostLink } from "@/components/primitives/GhostLink";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { getNewsletterBlock } from "@/lib/cms/newsletter";
+import { getPartnersByDiscipline, type DesignPartner } from "@/lib/cms/partners";
+import { LAUNCH_PARTNERS } from "@/lib/partners-data";
 
 export const metadata = {
   title: "Design · Interiors",
@@ -87,11 +89,50 @@ const PLANS = [
   },
 ];
 
+/* ── Fallback partners when Sanity is empty ── */
+const INTERIORS_FALLBACK = [
+  LAUNCH_PARTNERS["delve-interiors"],
+  LAUNCH_PARTNERS["jessica-durling-mcmahon"],
+];
+
 export default async function InteriorsPage() {
-  const nlBlock = await getNewsletterBlock("design-interiors");
+  const [nlBlock, sanityPartners] = await Promise.all([
+    getNewsletterBlock("design-interiors"),
+    getPartnersByDiscipline("interiors"),
+  ]);
+
+  /* Build the partner list: Sanity first, hardcoded fallback second */
+  const partners: Array<{
+    name: string;
+    slug: string;
+    typeLabel: string;
+    shortBio: string;
+    specialties: string[];
+    houseApprovedSeal: boolean;
+    portrait: string;
+  }> = sanityPartners.length > 0
+    ? sanityPartners.map((p: DesignPartner) => ({
+        name: p.name,
+        slug: p.slug,
+        typeLabel: p.type ?? "Design Studio",
+        shortBio: p.shortBio,
+        specialties: p.specialties ?? [],
+        houseApprovedSeal: p.houseApprovedSeal ?? false,
+        portrait: "/partners/portrait.png",
+      }))
+    : INTERIORS_FALLBACK.map((p) => ({
+        name: p.name,
+        slug: p.slug,
+        typeLabel: p.typeLabel,
+        shortBio: p.shortBio,
+        specialties: p.specialties,
+        houseApprovedSeal: p.houseApprovedSeal,
+        portrait: "/partners/portrait.png",
+      }));
+
   return (
     <>
-      {/* 1. Hero — full-bleed interior photograph */}
+      {/* ─── 1. Hero ─── */}
       <section className="relative min-h-[85vh] flex items-end">
         <Image
           src="/design/interiors/project-tunbridge-1.webp"
@@ -131,47 +172,76 @@ export default async function InteriorsPage() {
         </div>
       </section>
 
-      {/* 2. Your House Designer — Two-column portrait + bio */}
+      {/* ─── 2. Our Designers — Dynamic partner grid ─── */}
       <section className="bg-house-cream px-[5vw] py-[88px]">
-        <div className="max-w-[1180px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-20 items-center">
-          <div className="relative aspect-[3/4] overflow-hidden">
-            <Image
-              src="/design/interiors/designer-portrait.jpg"
-              alt="Alana Miller — founder of THE HOUSE EDIT"
-              fill
-              className="object-cover object-top"
-              sizes="(max-width: 1024px) 100vw, 45vw"
-            />
-          </div>
-          <div>
-            <Eyebrow>Your House Designer</Eyebrow>
-            <h2 className="font-display font-medium text-[clamp(32px,4vw,52px)] leading-[1.08] tracking-[-0.01em] mt-4 mb-2">
-              Alana Miller
+        <div className="max-w-[1280px] mx-auto">
+          <div className="text-center mb-14">
+            <Eyebrow>Our Designers</Eyebrow>
+            <h2 className="font-display font-medium text-[clamp(28px,3.6vw,46px)] leading-[1.1] mt-4">
+              The collective behind your <em className="italic">home.</em>
             </h2>
-            <p className="font-sans text-[11px] tracking-[0.22em] uppercase text-[var(--house-gold-dark)] mb-6">
-              THE HOUSE EDIT
-            </p>
-            <p className="font-sans text-[17px] leading-[1.7] text-house-brown/70 max-w-[52ch]">
-              With a refined eye for timeless design, Alana Miller is the
-              creative force behind THE HOUSE EDIT. Trained at the KLC School of
-              Design, she blends heritage charm with modern ease, curating
-              layered interiors that feel both elegant and effortless.
-            </p>
-            <p className="font-sans text-[17px] leading-[1.7] text-house-brown/70 max-w-[52ch] mt-4">
-              Her signature style embraces tactile warmth, sustainable finds, and
-              an intuitive sense of flow — spaces that tell a story and invite
-              you to live beautifully.
-            </p>
-            <div className="mt-8">
-              <GhostLink href="/book-consultation?service=design-interiors">
-                Work with Alana
-              </GhostLink>
-            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            {partners.map((partner) => (
+              <div
+                key={partner.slug}
+                className="bg-white border border-house-brown/10 overflow-hidden flex flex-col sm:flex-row"
+              >
+                {/* Portrait */}
+                <div className="relative aspect-[3/4] sm:w-[200px] lg:w-[240px] shrink-0 overflow-hidden">
+                  <Image
+                    src={partner.portrait}
+                    alt={`${partner.name} — portrait`}
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 640px) 100vw, 240px"
+                  />
+                </div>
+                {/* Card body */}
+                <div className="flex-1 p-6 flex flex-col">
+                  <p className="font-sans text-[10px] tracking-[0.22em] uppercase text-[var(--house-gold-dark)] mb-2">
+                    {partner.typeLabel}
+                  </p>
+                  <h3 className="font-display font-medium text-[24px] leading-[1.15] mb-3">
+                    {partner.name}
+                  </h3>
+                  <p className="font-sans text-[15px] leading-[1.65] text-house-brown/70 mb-4 flex-1">
+                    {partner.shortBio}
+                  </p>
+
+                  {/* Specialties */}
+                  {partner.specialties.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {partner.specialties.map((s) => (
+                        <span
+                          key={s}
+                          className="inline-block font-sans text-[10px] tracking-[0.08em] text-house-brown/70 border border-house-brown/20 px-2 py-0.5"
+                        >
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* House Approved badge */}
+                  {partner.houseApprovedSeal && (
+                    <p className="font-sans text-[10px] tracking-[0.18em] uppercase text-[var(--house-gold-dark)] mb-4">
+                      House Approved
+                    </p>
+                  )}
+
+                  <GhostLink href={`/partners/${partner.slug}`}>
+                    View profile
+                  </GhostLink>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 3. Our Projects — Asymmetric masonry gallery */}
+      {/* ─── 3. Our Projects — Asymmetric masonry gallery ─── */}
       <section className="bg-white px-[5vw] py-[88px] border-t border-house-brown/8">
         <div className="max-w-[1280px] mx-auto">
           <div className="text-center mb-14">
@@ -203,7 +273,7 @@ export default async function InteriorsPage() {
         </div>
       </section>
 
-      {/* Interstitial — full-width image band */}
+      {/* ─── 4. Interstitial — full-width image band ─── */}
       <section className="relative h-[40vh] md:h-[50vh]">
         <Image
           src="/partners/hero.png"
@@ -221,9 +291,8 @@ export default async function InteriorsPage() {
         </div>
       </section>
 
-      {/* 4. Digital Plans — Rich cards with images */}
+      {/* ─── 5. Digital Plans ─── */}
       <section id="plans" className="relative bg-house-cream px-[5vw] py-[88px] overflow-hidden">
-        {/* Floral accent — subtle corner decoration */}
         <div className="absolute top-0 right-0 w-[280px] h-[280px] opacity-[0.06] pointer-events-none">
           <Image
             src="/hearth/pattern-gold.png"
@@ -315,7 +384,7 @@ export default async function InteriorsPage() {
         </div>
       </section>
 
-      {/* 5. Companion / HoWA section */}
+      {/* ─── 6. Companion / HoWA ─── */}
       <section className="bg-house-white px-[5vw] py-[80px] border-t border-house-brown/8">
         <div className="max-w-[1080px] mx-auto grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-14 items-center">
           <div>
@@ -356,14 +425,14 @@ export default async function InteriorsPage() {
         </div>
       </section>
 
-      {/* 6. Newsletter */}
+      {/* ─── 7. Newsletter ─── */}
       <NewsletterInline
         variant={nlBlock?.variant ?? "cream"}
         sourcePage="/design/interiors"
         {...(nlBlock ?? {})}
       />
 
-      {/* 7. Tagline */}
+      {/* ─── 8. Tagline ─── */}
       <div className="text-center border-t border-house-brown/10 bg-house-cream px-5 py-6">
         <p className="font-sans italic text-[14px] text-house-brown/70 tracking-[0.04em]">
           Beauty, balance, and intention.

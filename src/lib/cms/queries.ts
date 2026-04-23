@@ -125,6 +125,21 @@ export const partnerBySlugQuery = /* groq */ `*[_type == "partner" && slug.curre
   seo
 }`;
 
+// Partners by design discipline (interiors / gardens)
+export const partnersByDisciplineQuery = /* groq */ `*[_type == "partner" && $discipline in designDisciplines] | order(order asc){
+  _id,
+  name,
+  "slug": slug.current,
+  type,
+  shortBio,
+  founderPortrait,
+  heroImage,
+  specialties,
+  serviceAreas,
+  houseApprovedSeal,
+  order
+}`;
+
 export const featuredPartnersQuery = /* groq */ `*[_type == "partner" && featured == true] | order(order asc){
   _id,
   name,

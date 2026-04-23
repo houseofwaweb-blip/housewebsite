@@ -4,6 +4,8 @@ import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { GhostLink } from "@/components/primitives/GhostLink";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { getNewsletterBlock } from "@/lib/cms/newsletter";
+import { getPartnersByDiscipline, type DesignPartner } from "@/lib/cms/partners";
+import { LAUNCH_PARTNERS } from "@/lib/partners-data";
 
 export const metadata = {
   title: "Design · Gardens",
@@ -11,7 +13,54 @@ export const metadata = {
     "Landscape design, planting plans, and bespoke garden commissions from the House of Willow Alexander design collective.",
 };
 
-const PLANS = [
+const PROJECTS = [
+  {
+    src: "/design/gardens/hand-drawn.jpg",
+    alt: "Hand-drawn garden plans — pencil sketches with planting annotations",
+    caption: "Hand-Drawn Plans",
+    span: "col-span-2 row-span-2",
+    aspect: "aspect-[4/5]",
+  },
+  {
+    src: "/design/gardens/planting-plans.jpg",
+    alt: "Planting plan — detailed layout with seasonal palette",
+    caption: "Planting Plans",
+    span: "col-span-1 row-span-1",
+    aspect: "aspect-[3/4]",
+  },
+  {
+    src: "/design/gardens/lighting-plans.jpg",
+    alt: "Garden lighting plan — fixture map and circuit guide",
+    caption: "Lighting Plans",
+    span: "col-span-1 row-span-1",
+    aspect: "aspect-[3/4]",
+  },
+  {
+    src: "/design/gardens/concept-plans.jpg",
+    alt: "Concept plan — layout, materials palette, and planting inspiration",
+    caption: "Concept Plans",
+    span: "col-span-1 row-span-1",
+    aspect: "aspect-[4/5]",
+  },
+  {
+    src: "/design/gardens/collaboration.jpg",
+    alt: "Design collaboration — creative partnership from concept to build",
+    caption: "Signature Collaboration",
+    span: "col-span-2 row-span-1",
+    aspect: "aspect-[16/9]",
+  },
+];
+
+interface GardenPlan {
+  title: string;
+  price: string;
+  image: string;
+  description: string;
+  href?: string;
+  comingSoon?: boolean;
+}
+
+const PLANS: GardenPlan[] = [
   {
     title: "Planting Plans",
     price: "From £495",
@@ -60,15 +109,50 @@ const PLANS = [
       "Commission a full bespoke design, with on-site consultation and build management. Visit our flagship studio at Willow Alexander Gardens.",
     href: "/partners/willow-alexander-gardens",
   },
-] as const;
+];
+
+/* ── Fallback partners when Sanity is empty ── */
+const GARDENS_FALLBACK = [LAUNCH_PARTNERS["willow-alexander-gardens"]];
 
 export default async function GardensPage() {
-  const nlBlock = await getNewsletterBlock("design-gardens");
+  const [nlBlock, sanityPartners] = await Promise.all([
+    getNewsletterBlock("design-gardens"),
+    getPartnersByDiscipline("gardens"),
+  ]);
+
+  /* Build the partner list: Sanity first, hardcoded fallback second */
+  const partners: Array<{
+    name: string;
+    slug: string;
+    typeLabel: string;
+    shortBio: string;
+    specialties: string[];
+    houseApprovedSeal: boolean;
+    portrait: string;
+  }> = sanityPartners.length > 0
+    ? sanityPartners.map((p: DesignPartner) => ({
+        name: p.name,
+        slug: p.slug,
+        typeLabel: p.type ?? "Garden Design",
+        shortBio: p.shortBio,
+        specialties: p.specialties ?? [],
+        houseApprovedSeal: p.houseApprovedSeal ?? false,
+        portrait: "/partners/portrait.png",
+      }))
+    : GARDENS_FALLBACK.map((p) => ({
+        name: p.name,
+        slug: p.slug,
+        typeLabel: p.typeLabel,
+        shortBio: p.shortBio,
+        specialties: p.specialties,
+        houseApprovedSeal: p.houseApprovedSeal,
+        portrait: "/partners/portrait.png",
+      }));
 
   return (
-    <article className="bg-house-cream text-house-brown">
-      {/* ─── Hero ─── */}
-      <section className="relative min-h-[85vh] flex items-end overflow-hidden">
+    <>
+      {/* ─── 1. Hero ─── */}
+      <section className="relative min-h-[85vh] flex items-end">
         <Image
           src="/design/gardens/hero.jpg"
           alt="Estate grounds and landscape overview"
@@ -77,35 +161,16 @@ export default async function GardensPage() {
           className="object-cover object-center"
           sizes="100vw"
         />
-        {/* Gradient overlay */}
-        <div
-          className="absolute inset-0 bg-gradient-to-t from-house-brown/80 via-house-brown/25 to-transparent"
-          aria-hidden="true"
-        />
-        {/* Floral accent — top-right corner */}
-        <div
-          className="pointer-events-none absolute top-0 right-0 w-[400px] h-[400px] opacity-[0.04] mix-blend-multiply"
-          aria-hidden="true"
-        >
-          <Image
-            src="/hearth/pattern-gold.png"
-            alt=""
-            fill
-            className="object-contain object-top-right"
-            sizes="400px"
-          />
-        </div>
-        <div className="relative z-10 px-[5vw] pb-16 pt-32 max-w-[880px]">
-          <Eyebrow colour="cream" className="mb-4">
-            Design · Gardens
-          </Eyebrow>
-          <h1 className="font-display font-medium text-[clamp(48px,7vw,84px)] leading-[1.02] tracking-[-0.015em] text-house-cream">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+        <div className="relative z-10 px-[5vw] pb-[8vh] max-w-[880px]">
+          <Eyebrow className="text-white/70">Design · Gardens</Eyebrow>
+          <h1 className="font-display font-medium text-[clamp(44px,7vw,84px)] leading-[1.02] tracking-[-0.015em] text-white mt-4">
             Garden Design
           </h1>
-          <p className="font-display italic text-[clamp(22px,3vw,32px)] leading-[1.3] text-house-cream/85 mt-3">
-            A collective of creativity
+          <p className="font-display italic text-[clamp(20px,2.4vw,30px)] leading-[1.3] text-white/85 mt-3">
+            A Collective of Creativity
           </p>
-          <p className="font-sans text-[17px] leading-[1.7] text-house-cream/75 mt-6 max-w-[54ch]">
+          <p className="font-sans text-[17px] leading-[1.65] text-white/75 mt-6 max-w-[56ch]">
             The House of Willow Alexander has always been devoted to the art of
             living beautifully, inside and out. Our love of design, and our
             respect for the natural world, have led us to bring together a
@@ -115,95 +180,169 @@ export default async function GardensPage() {
           <div className="mt-8 flex items-center gap-4 flex-wrap">
             <Link
               href="/book-consultation?service=design-gardens"
-              className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-6 py-3.5 no-underline transition-colors duration-[var(--t-slow)] ease-out hover:bg-house-gold hover:border-house-gold"
+              className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-6 py-3.5 no-underline transition-colors duration-[var(--t-slow)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
             >
               Start a consultation
             </Link>
-            <GhostLink href="/partners/willow-alexander-gardens" dark>
-              See Willow Alexander Gardens
+            <GhostLink href="#plans" className="text-white border-white/40 hover:border-white">
+              View plans
             </GhostLink>
           </div>
         </div>
       </section>
 
-      {/* ─── Meet Your Designers ─── */}
-      <section className="px-[5vw] py-20 border-t border-house-brown/10">
-        <div className="max-w-[1200px] mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <div>
-            <Eyebrow colour="teal" className="mb-4">
-              Meet Your Designers
-            </Eyebrow>
-            <h2 className="font-display font-medium text-[clamp(28px,3.6vw,42px)] leading-[1.15] mb-6 max-w-[20ch]">
-              A garden deserves a mind, not just a hand.
+      {/* ─── 2. Our Designers — Dynamic partner grid ─── */}
+      <section className="bg-house-cream px-[5vw] py-[88px]">
+        <div className="max-w-[1280px] mx-auto">
+          <div className="text-center mb-14">
+            <Eyebrow>Our Designers</Eyebrow>
+            <h2 className="font-display font-medium text-[clamp(28px,3.6vw,46px)] leading-[1.1] mt-4">
+              The collective behind your <em className="italic">garden.</em>
             </h2>
-            <p className="font-sans text-[17px] leading-[1.7] text-house-brown/70 mb-4 max-w-[48ch]">
-              Our design collective represents the finest minds in landscape and
-              garden design, each selected for their craft, ethics, and
-              aesthetic harmony with the House.
-            </p>
-            <p className="font-sans text-[17px] leading-[1.7] text-house-brown/70 mb-8 max-w-[48ch]">
-              Willow Alexander Gardens is the founding studio &mdash; the
-              practice that began everything. Their work is rooted in the
-              English landscape tradition, with an eye for the contemporary
-              and an instinct for place.
-            </p>
-            <GhostLink href="/partners/willow-alexander-gardens">
-              Visit Willow Alexander Gardens
-            </GhostLink>
           </div>
-          <div className="relative aspect-[4/5] overflow-hidden">
-            <Image
-              src="/design/gardens/hand-drawn.jpg"
-              alt="Hand-drawn garden plans from Willow Alexander Gardens"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 90vw, 50vw"
-            />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            {partners.map((partner) => (
+              <div
+                key={partner.slug}
+                className="bg-white border border-house-brown/10 overflow-hidden flex flex-col sm:flex-row"
+              >
+                {/* Portrait */}
+                <div className="relative aspect-[3/4] sm:w-[200px] lg:w-[240px] shrink-0 overflow-hidden">
+                  <Image
+                    src={partner.portrait}
+                    alt={`${partner.name} — portrait`}
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 640px) 100vw, 240px"
+                  />
+                </div>
+                {/* Card body */}
+                <div className="flex-1 p-6 flex flex-col">
+                  <p className="font-sans text-[10px] tracking-[0.22em] uppercase text-[var(--house-gold-dark)] mb-2">
+                    {partner.typeLabel}
+                  </p>
+                  <h3 className="font-display font-medium text-[24px] leading-[1.15] mb-3">
+                    {partner.name}
+                  </h3>
+                  <p className="font-sans text-[15px] leading-[1.65] text-house-brown/70 mb-4 flex-1">
+                    {partner.shortBio}
+                  </p>
+
+                  {/* Specialties */}
+                  {partner.specialties.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {partner.specialties.map((s) => (
+                        <span
+                          key={s}
+                          className="inline-block font-sans text-[10px] tracking-[0.08em] text-house-brown/70 border border-house-brown/20 px-2 py-0.5"
+                        >
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* House Approved badge */}
+                  {partner.houseApprovedSeal && (
+                    <p className="font-sans text-[10px] tracking-[0.18em] uppercase text-[var(--house-gold-dark)] mb-4">
+                      House Approved
+                    </p>
+                  )}
+
+                  <GhostLink href={`/partners/${partner.slug}`}>
+                    View profile
+                  </GhostLink>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ─── Digital Plans Grid ─── */}
-      <section className="relative px-[5vw] py-20 bg-white border-t border-house-brown/10 overflow-hidden">
-        {/* Floral accent — bottom-left */}
-        <div
-          className="pointer-events-none absolute bottom-0 left-0 w-[360px] h-[360px] opacity-[0.03] mix-blend-multiply rotate-180"
-          aria-hidden="true"
-        >
+      {/* ─── 3. Our Projects — Asymmetric masonry gallery ─── */}
+      <section className="bg-white px-[5vw] py-[88px] border-t border-house-brown/8">
+        <div className="max-w-[1280px] mx-auto">
+          <div className="text-center mb-14">
+            <Eyebrow>Our Projects</Eyebrow>
+            <h2 className="font-display font-medium text-[clamp(28px,3.6vw,46px)] leading-[1.1] mt-4">
+              Gardens that <em className="italic">grow</em> with their people.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+            {PROJECTS.map((p) => (
+              <div key={p.src} className={`group relative overflow-hidden ${p.span}`}>
+                <div className={`relative w-full h-full ${p.aspect}`}>
+                  <Image
+                    src={p.src}
+                    alt={p.alt}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                    sizes="(max-width: 768px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <span className="absolute bottom-0 left-0 right-0 px-4 py-3 font-sans text-[12px] tracking-[0.12em] uppercase text-white translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                    {p.caption}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 4. Interstitial — full-width image band ─── */}
+      <section className="relative h-[40vh] md:h-[50vh]">
+        <Image
+          src="/design/gardens/hand-drawn.jpg"
+          alt="Hand-drawn garden plans — pencil detail"
+          fill
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <p className="font-display italic text-[clamp(22px,3vw,36px)] text-white text-center leading-[1.3] px-6 max-w-[36ch]">
+            &ldquo;A garden deserves a mood, not just a hand.&rdquo;
+          </p>
+        </div>
+      </section>
+
+      {/* ─── 5. Digital Plans ─── */}
+      <section id="plans" className="relative bg-house-cream px-[5vw] py-[88px] overflow-hidden">
+        <div className="absolute top-0 right-0 w-[280px] h-[280px] opacity-[0.06] pointer-events-none">
           <Image
             src="/hearth/pattern-gold.png"
             alt=""
             fill
-            className="object-contain"
-            sizes="360px"
+            className="object-contain object-right-top"
+            sizes="280px"
           />
         </div>
 
         <div className="relative z-10 max-w-[1320px] mx-auto">
-          <div className="text-center mb-14">
-            <Eyebrow colour="gold" className="mb-4">
-              Garden Plans
-            </Eyebrow>
-            <h2 className="font-display font-medium text-[clamp(28px,3.6vw,42px)] leading-[1.15] mb-4">
-              Commission a plan.
+          <div className="text-center mb-16">
+            <Eyebrow>Garden Plans</Eyebrow>
+            <h2 className="font-display font-medium text-[clamp(28px,3.6vw,46px)] leading-[1.1] mt-4">
+              Commission a <em className="italic">plan.</em>
             </h2>
-            <p className="font-sans text-[16px] leading-[1.6] text-house-brown/70 max-w-[52ch] mx-auto">
-              Six ways into a considered garden &mdash; from a single planting
-              scheme to a full bespoke design and build.
+            <p className="font-sans text-[16px] leading-[1.65] text-house-brown/70 mt-4 mx-auto max-w-[52ch]">
+              Six ways into a considered garden — from a single planting scheme
+              to a full bespoke design and build.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {PLANS.map((plan) => (
               <div
                 key={plan.title}
-                className="group flex flex-col bg-house-cream border border-house-brown/8 overflow-hidden"
+                className="group bg-white border border-house-brown/10 overflow-hidden flex flex-col"
               >
-                {/* Card image */}
                 <div className="relative aspect-[3/4] overflow-hidden">
                   <Image
                     src={plan.image}
-                    alt={plan.title}
+                    alt={`${plan.title} — garden design plan`}
                     fill
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                     sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
@@ -214,7 +353,6 @@ export default async function GardensPage() {
                     </div>
                   )}
                 </div>
-                {/* Card body */}
                 <div className="flex flex-col flex-1 p-6">
                   <h3 className="font-display font-medium text-[22px] leading-[1.2] mb-1">
                     {plan.title}
@@ -239,50 +377,49 @@ export default async function GardensPage() {
         </div>
       </section>
 
-      {/* ─── Companion / HoWA ─── */}
-      <section className="px-[5vw] py-20 border-t border-house-brown/10">
-        <div className="max-w-[1200px] mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <div className="relative aspect-[4/3] overflow-hidden lg:order-2">
+      {/* ─── 6. Companion / HoWA ─── */}
+      <section className="bg-house-white px-[5vw] py-[80px] border-t border-house-brown/8">
+        <div className="max-w-[1080px] mx-auto grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-14 items-center">
+          <div>
+            <span className="block mb-5 font-sans text-[11px] tracking-[0.22em] uppercase text-howa-teal-dark">
+              HoWA · Companion
+            </span>
+            <h2 className="font-sans font-normal text-[clamp(28px,3.2vw,42px)] leading-[1.12] tracking-[-0.015em] text-house-brown mb-[14px]">
+              Start with the{" "}
+              <em className="italic font-light text-howa-teal-dark">
+                Companion.
+              </em>
+            </h2>
+            <p className="max-w-[480px] mb-[10px] font-sans text-[16px] leading-[1.65] text-house-brown/70">
+              Capture your garden&apos;s light, soil, aspect, maintenance
+              appetite, and budget. The Companion builds a brief that any
+              designer in the collective can work from — or you can take it to
+              your own.
+            </p>
+            <p className="max-w-[480px] mb-[26px] font-sans text-[15px] leading-[1.65] text-house-brown/70 italic">
+              Available to all HoWA members.
+            </p>
+            <Link
+              href="/api/howa-bounce?source=gardens-companion"
+              className="inline-block px-[26px] py-[13px] font-sans text-[12px] tracking-[0.16em] uppercase no-underline bg-[var(--house-gold-dark)] text-white border border-[var(--house-gold-dark)] transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
+            >
+              Start the Companion
+            </Link>
+          </div>
+
+          <div className="relative aspect-[4/3] overflow-hidden">
             <Image
-              src="/partners/hero.png"
-              alt="Drawing room with garden views"
+              src="/design/gardens/concept-plans.jpg"
+              alt="Garden concept plan — the kind of brief the Companion helps you build"
               fill
               className="object-cover"
-              sizes="(max-width: 1024px) 90vw, 50vw"
+              sizes="(max-width: 1024px) 100vw, 50vw"
             />
-          </div>
-          <div className="lg:order-1">
-            <Eyebrow colour="teal" className="mb-4">
-              The Companion
-            </Eyebrow>
-            <h2 className="font-display font-medium text-[clamp(28px,3.6vw,42px)] leading-[1.15] mb-6 max-w-[22ch]">
-              Start with what you know.
-            </h2>
-            <p className="font-sans text-[17px] leading-[1.7] text-house-brown/70 mb-4 max-w-[48ch]">
-              The HoWA Companion can help create your plan with the right
-              designer. Start with the Companion to capture your garden&apos;s
-              context &mdash; light, soil, aspect, maintenance appetite, budget.
-            </p>
-            <p className="font-sans text-[17px] leading-[1.7] text-house-brown/70 mb-8 max-w-[48ch]">
-              It builds a brief that any designer in the collective can work
-              from &mdash; or you can take it to your own.
-            </p>
-            <div className="flex items-center gap-4 flex-wrap">
-              <Link
-                href={`${process.env.NEXT_PUBLIC_HOWA_APP_URL ?? "/howa/coming-soon"}/companion`}
-                className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-6 py-3.5 no-underline transition-colors duration-[var(--t-slow)] ease-out hover:bg-house-gold hover:border-house-gold"
-              >
-                Start with the Companion
-              </Link>
-              <GhostLink href="/howa/companion">
-                How it works
-              </GhostLink>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* ─── Newsletter ─── */}
+      {/* ─── 7. Newsletter ─── */}
       <NewsletterInline
         variant={nlBlock?.variant ?? "dark"}
         sourcePage="/design/gardens"
@@ -295,12 +432,12 @@ export default async function GardensPage() {
         {...(nlBlock ?? {})}
       />
 
-      {/* ─── Tagline ─── */}
+      {/* ─── 8. Tagline ─── */}
       <div className="text-center border-t border-house-brown/10 bg-house-cream px-5 py-6">
-        <p className="font-display italic text-[14px] text-house-brown/50 tracking-[0.04em]">
+        <p className="font-sans italic text-[14px] text-house-brown/70 tracking-[0.04em]">
           A garden is not a project. It is a relationship with the land.
         </p>
       </div>
-    </article>
+    </>
   );
 }

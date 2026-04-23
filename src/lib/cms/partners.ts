@@ -1,6 +1,6 @@
 import { sanityFetch } from "./fetch";
 import { sanityClient } from "./client";
-import { allPartnersQuery, partnerBySlugQuery } from "./queries";
+import { allPartnersQuery, partnerBySlugQuery, partnersByDisciplineQuery } from "./queries";
 import { servicesReady } from "@/lib/env";
 import { LAUNCH_PARTNERS, PARTNER_ORDER, type LaunchPartner, type PartnerSlug } from "@/lib/partners-data";
 
@@ -62,6 +62,32 @@ export async function getPartnerBySlug(slug: string): Promise<LaunchPartner | un
     } catch (e) { console.error("[cms/partners]", e); }
   }
   return LAUNCH_PARTNERS[slug as PartnerSlug];
+}
+
+export interface DesignPartner {
+  _id: string;
+  name: string;
+  slug: string;
+  type: string;
+  shortBio: string;
+  founderPortrait?: { asset: { _ref: string }; alt: string };
+  heroImage?: { asset: { _ref: string }; alt: string };
+  specialties?: string[];
+  serviceAreas?: string[];
+  houseApprovedSeal?: boolean;
+}
+
+export async function getPartnersByDiscipline(discipline: "interiors" | "gardens"): Promise<DesignPartner[]> {
+  if (servicesReady.sanity) {
+    try {
+      return await sanityFetch<DesignPartner[]>({
+        query: partnersByDisciplineQuery,
+        params: { discipline },
+        tags: ["partner"],
+      });
+    } catch (e) { console.error("[cms/partners]", e); }
+  }
+  return [];
 }
 
 function sanityToPartner(doc: SanityPartner): LaunchPartner {

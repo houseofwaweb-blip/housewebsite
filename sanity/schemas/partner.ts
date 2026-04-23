@@ -67,6 +67,19 @@ export const partner = defineType({
       initialValue: "consultation",
     }),
     defineField({
+      name: "designDisciplines",
+      title: "Design disciplines",
+      type: "array",
+      of: [{ type: "string" }],
+      options: {
+        list: [
+          { title: "Interior design", value: "interiors" },
+          { title: "Garden design", value: "gardens" },
+        ],
+      },
+      description: "Tick which design pages this partner should appear on.",
+    }),
+    defineField({
       name: "houseApprovedSeal",
       type: "boolean",
       description: "Display House Approved seal on profile.",
