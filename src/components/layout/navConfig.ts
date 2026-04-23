@@ -2,10 +2,8 @@ import type { MegaPanel } from "@/components/nav/MegaMenu";
 
 /**
  * Primary navigation configuration.
- * Each top-level nav item has a mega panel with link groups + optional preview.
  *
- * Content here is hardcoded for launch; once Sanity's `navigation` doc is
- * populated we'll swap to a GROQ-backed loader that returns the same shape.
+ * Order: The House · HoWA · Protect · Design · Services · Marketplace · Journal
  */
 export const PRIMARY_NAV: MegaPanel[] = [
   {
@@ -26,6 +24,15 @@ export const PRIMARY_NAV: MegaPanel[] = [
         links: [
           { label: "About", href: "/the-house/about", description: "The team behind the House" },
           { label: "Proof", href: "/the-house/proof", description: "Press, awards, testimony" },
+        ],
+      },
+      {
+        heading: "The Hearth Magazine",
+        links: [
+          { label: "Latest", href: "/journal", description: "Editorial writing" },
+          { label: "Hearth Collection", href: "/journal/collection", description: "Long-form features" },
+          { label: "Musings", href: "/musings", description: "Notes & practical advice" },
+          { label: "News", href: "/news", description: "Press & announcements" },
         ],
       },
     ],
@@ -68,6 +75,21 @@ export const PRIMARY_NAV: MegaPanel[] = [
       heading: "A single place for the House to reach you.",
       href: "/howa/coming-soon",
     },
+  },
+
+  {
+    id: "protect",
+    trigger: "Protect",
+    triggerHref: "/protect",
+    groups: [
+      {
+        heading: "Protection",
+        links: [
+          { label: "Protect Review", href: "/protect#review", description: "Coming soon" },
+          { label: "House Approved Insurance", href: "/insurance", description: "Register interest" },
+        ],
+      },
+    ],
   },
 
   {
@@ -126,23 +148,8 @@ export const PRIMARY_NAV: MegaPanel[] = [
   },
 
   {
-    id: "protect",
-    trigger: "Protect",
-    triggerHref: "/protect",
-    groups: [
-      {
-        heading: "Protection",
-        links: [
-          { label: "Protect Review", href: "/protect#review", description: "Coming soon" },
-          { label: "House Approved Insurance", href: "/insurance", description: "Register interest" },
-        ],
-      },
-    ],
-  },
-
-  {
-    id: "shop",
-    trigger: "Shop",
+    id: "marketplace",
+    trigger: "Marketplace",
     triggerHref: "/shop",
     groups: [
       {
