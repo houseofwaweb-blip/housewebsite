@@ -149,6 +149,21 @@ export const partnersByDisciplineQuery = /* groq */ `*[_type == "partner" && $di
   order
 }`;
 
+// Partners by type(s)
+export const partnersByTypeQuery = /* groq */ `*[_type == "partner" && type in $types] | order(order asc){
+  _id,
+  name,
+  "slug": slug.current,
+  type,
+  shortBio,
+  founderPortrait,
+  heroImage,
+  specialties,
+  serviceAreas,
+  houseApprovedSeal,
+  order
+}`;
+
 export const featuredPartnersQuery = /* groq */ `*[_type == "partner" && featured == true] | order(order asc){
   _id,
   name,

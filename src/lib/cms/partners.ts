@@ -1,6 +1,6 @@
 import { sanityFetch } from "./fetch";
 import { sanityClient } from "./client";
-import { allPartnersQuery, partnerBySlugQuery, partnersByDisciplineQuery } from "./queries";
+import { allPartnersQuery, partnerBySlugQuery, partnersByDisciplineQuery, partnersByTypeQuery } from "./queries";
 import { servicesReady } from "@/lib/env";
 import { LAUNCH_PARTNERS, PARTNER_ORDER, type LaunchPartner, type PartnerSlug } from "@/lib/partners-data";
 
@@ -83,6 +83,19 @@ export async function getPartnersByDiscipline(discipline: "interiors" | "gardens
       return await sanityFetch<DesignPartner[]>({
         query: partnersByDisciplineQuery,
         params: { discipline },
+        tags: ["partner"],
+      });
+    } catch (e) { console.error("[cms/partners]", e); }
+  }
+  return [];
+}
+
+export async function getPartnersByType(types: string[]): Promise<DesignPartner[]> {
+  if (servicesReady.sanity) {
+    try {
+      return await sanityFetch<DesignPartner[]>({
+        query: partnersByTypeQuery,
+        params: { types },
         tags: ["partner"],
       });
     } catch (e) { console.error("[cms/partners]", e); }
