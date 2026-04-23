@@ -182,64 +182,7 @@ export default async function GardensPage() {
         </div>
       </section>
 
-      {/* ─── 2. Our Designers — Carousel ─── */}
-      <PartnerCarousel
-        partners={partnerCards}
-        heading="The collective behind your garden."
-        headingEm="garden."
-        lede="Each studio is selected for their craft, ecology, and aesthetic harmony with the House. Browse profiles, see recent work, and start a brief through HoWA."
-      />
-
-      {/* ─── 3. Our Projects — Asymmetric masonry gallery ─── */}
-      <section className="bg-white px-[5vw] py-[88px] border-t border-house-brown/8">
-        <div className="max-w-[1280px] mx-auto">
-          <div className="text-center mb-14">
-            <Eyebrow>Our Projects</Eyebrow>
-            <h2 className="font-display font-medium text-[clamp(28px,3.6vw,46px)] leading-[1.1] mt-4">
-              Gardens that <em className="italic">grow</em> with their people.
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-            {PROJECTS.map((p) => (
-              <div key={p.src} className={`group relative overflow-hidden ${p.span}`}>
-                <div className={`relative w-full h-full ${p.aspect}`}>
-                  <Image
-                    src={p.src}
-                    alt={p.alt}
-                    fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    sizes="(max-width: 768px) 50vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <span className="absolute bottom-0 left-0 right-0 px-4 py-3 font-sans text-[12px] tracking-[0.12em] uppercase text-white translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                    {p.caption}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── 4. Interstitial — full-width image band ─── */}
-      <section className="relative h-[40vh] md:h-[50vh]">
-        <Image
-          src="/design/gardens/hand-drawn.jpg"
-          alt="Hand-drawn garden plans — pencil detail"
-          fill
-          className="object-cover object-center"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-black/20" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <p className="font-display italic text-[clamp(22px,3vw,36px)] text-white text-center leading-[1.3] px-6 max-w-[36ch]">
-            &ldquo;A garden deserves a mood, not just a hand.&rdquo;
-          </p>
-        </div>
-      </section>
-
-      {/* ─── 5. Digital Plans ─── */}
+      {/* ─── 2. Garden Plans (moved up — products first) ─── */}
       <section id="plans" className="relative bg-house-cream px-[5vw] py-[88px] overflow-hidden">
         <div className="absolute top-0 right-0 w-[280px] h-[280px] opacity-[0.06] pointer-events-none">
           <Image
@@ -307,7 +250,64 @@ export default async function GardensPage() {
         </div>
       </section>
 
-      {/* ─── 6. Companion / HoWA ─── */}
+      {/* ─── 3. Our Designers — Carousel ─── */}
+      <PartnerCarousel
+        partners={partnerCards}
+        heading="The collective behind your garden."
+        headingEm="garden."
+        lede="Each studio is selected for their craft, ecology, and aesthetic harmony with the House. Browse profiles, see recent work, and start a brief through HoWA."
+      />
+
+      {/* ─── 3. Our Projects — Asymmetric masonry gallery ─── */}
+      <section className="bg-white px-[5vw] py-[88px] border-t border-house-brown/8">
+        <div className="max-w-[1280px] mx-auto">
+          <div className="text-center mb-14">
+            <Eyebrow>Our Projects</Eyebrow>
+            <h2 className="font-display font-medium text-[clamp(28px,3.6vw,46px)] leading-[1.1] mt-4">
+              Gardens that <em className="italic">grow</em> with their people.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+            {PROJECTS.map((p) => (
+              <div key={p.src} className={`group relative overflow-hidden ${p.span}`}>
+                <div className={`relative w-full h-full ${p.aspect}`}>
+                  <Image
+                    src={p.src}
+                    alt={p.alt}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                    sizes="(max-width: 768px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <span className="absolute bottom-0 left-0 right-0 px-4 py-3 font-sans text-[12px] tracking-[0.12em] uppercase text-white translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                    {p.caption}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 4. Interstitial — full-width image band ─── */}
+      <section className="relative h-[40vh] md:h-[50vh]">
+        <Image
+          src="/design/gardens/hand-drawn.jpg"
+          alt="Hand-drawn garden plans — pencil detail"
+          fill
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <p className="font-display italic text-[clamp(22px,3vw,36px)] text-white text-center leading-[1.3] px-6 max-w-[36ch]">
+            &ldquo;A garden deserves a mood, not just a hand.&rdquo;
+          </p>
+        </div>
+      </section>
+
+      {/* ─── 5. Companion / HoWA ─── */}
       <section className="bg-house-white px-[5vw] py-[80px] border-t border-house-brown/8">
         <div className="max-w-[1080px] mx-auto grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-14 items-center">
           <div>
