@@ -21,6 +21,7 @@ const FEATURES: Feature[] = [
   { label: "The Hearth magazine", free: "Preview", plus: "Full access", steward: "Full access" },
   { label: "Saved guides & seasonal prompts", free: "—", plus: "✓", steward: "✓" },
   { label: "Priority booking", free: "—", plus: "✓", steward: "✓" },
+  { label: "Early access to new features", free: "—", plus: "✓", steward: "✓" },
   { label: "House events & drops", free: "—", plus: "✓", steward: "✓" },
   { label: "Steward Plans (recurring care)", free: "—", plus: "—", steward: "✓ Gated" },
   { label: "Smart-home controller", free: "—", plus: "—", steward: "✓ Phase 2" },

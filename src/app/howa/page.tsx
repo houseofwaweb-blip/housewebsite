@@ -103,7 +103,7 @@ export default function HowaLandingPage() {
               System. Memory. Continuity.
             </h2>
             <p className="font-hearth-sans text-[15px] leading-[1.7] text-house-brown/70 mb-6">
-              HoWA is the operational layer — the system that captures the home, understands its needs, recommends actions, connects the right hands, and remembers everything. One living record that compounds over time.
+              HoWA is not a marketplace. It is the system that decides what should happen, when, why, and who should do it. It captures the home, recommends the right next action, connects the right hands, and remembers everything. One living record that compounds over time.
             </p>
             <ul className="space-y-2">
               {["Home intelligence & diagnostics", "Context-aware recommendations", "Living record & continuity", "Service routing & care management"].map((pt) => (
@@ -295,13 +295,14 @@ export default function HowaLandingPage() {
               </div>
             </div>
             <ul>
-              <li>One home record</li>
-              <li>Companion diagnostic</li>
-              <li>AI repair scan</li>
-              <li>AI design suggestions</li>
-              <li>Quotes &amp; service bookings</li>
-              <li>Carbon estimate &amp; offsetting</li>
-              <li>Starter dashboard</li>
+              <li>One home address record</li>
+              <li>Companion diagnostics (entry level)</li>
+              <li>AI repair scan &amp; instant quote</li>
+              <li>AI design moodboard suggestions</li>
+              <li>Service booking (pay-as-you-go)</li>
+              <li>Carbon estimate &amp; offsetting entry</li>
+              <li>The Hearth — editorial preview</li>
+              <li>Basic saved dashboard state</li>
             </ul>
             <div className="tier-cta-row">
               <Link href="/api/howa-bounce?source=howa-tier-free" className="tier-cta">
@@ -346,12 +347,15 @@ export default function HowaLandingPage() {
             </div>
             <ul>
               <li>Everything in HoWA, plus</li>
-              <li>Full dashboard continuity</li>
-              <li>Task centre &amp; plan management</li>
-              <li>Reminders, documents &amp; logbook</li>
-              <li>Saved guides &amp; seasonal prompts</li>
-              <li>Full Hearth editorial access</li>
-              <li>Service discounts &amp; member pricing</li>
+              <li>10% off all House services</li>
+              <li>Full dashboard continuity &amp; task centre</li>
+              <li>Richer documents &amp; home logbook</li>
+              <li>Priority booking across House services</li>
+              <li>Full access to The Hearth magazine</li>
+              <li>Personal carbon offset fund</li>
+              <li>Saved guides &amp; seasonal reminders</li>
+              <li>Early access to new HoWA features</li>
+              <li>Exclusive House events &amp; drops</li>
             </ul>
             <div className="tier-cta-row">
               <Link href="/api/howa-bounce?source=howa-tier-plus" className="tier-cta">
@@ -390,11 +394,15 @@ export default function HowaLandingPage() {
             </div>
             <ul>
               <li>Everything in HoWA+, plus</li>
-              <li>Live utilities &amp; device integration</li>
-              <li>Anomaly alerts &amp; predictive care</li>
-              <li>Delegated permissions</li>
-              <li>Insurance prefill &amp; evidence</li>
-              <li>Managed recurring care access</li>
+              <li>Access to Steward Plans (gated)</li>
+              <li>Smart-home controller &amp; devices</li>
+              <li>Anomaly alerts &amp; predictive maintenance</li>
+              <li>Automated seasonal care scheduling</li>
+              <li>Live utility &amp; energy monitoring</li>
+              <li>Delegated helper / household permissions</li>
+              <li>Insurance prefill &amp; risk score</li>
+              <li>Home Protection Review (when live)</li>
+              <li>Priority HoWA support channel</li>
             </ul>
             <div className="tier-cta-row">
               <Link href="/howa/steward" className="tier-cta">

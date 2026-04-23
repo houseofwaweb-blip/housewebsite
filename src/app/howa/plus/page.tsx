@@ -14,34 +14,34 @@ export const metadata = {
 
 const FEATURES = [
   {
-    title: "The Living Record",
-    description: "Full dashboard continuity. Tasks, reminders, documents, the maintenance logbook, and seasonal prompts. Every service, review, booking, and purchase filed to one record that grows with the home and stays with the property. No meaningful journey ends as an orphan enquiry.",
+    title: "10% Off All House Services",
+    description: "Auto-applied at checkout. Gardening, cleaning, windows, gutters, design packages, and product bundles. This is a benefit of HoWA+, but it is not the purpose. The purpose is intelligence.",
+  },
+  {
+    title: "Full Dashboard Continuity & Task Centre",
+    description: "Every service, review, booking, and purchase filed to one record that grows with the home. Tasks, seasonal prompts, and reminders surface what matters before it becomes a problem. No meaningful journey ends as an orphan enquiry.",
     linkHref: "/howa/how-it-works",
     linkLabel: "How it works →",
   },
   {
-    title: "Companion Diagnostic",
-    description: "Photograph a crack, a damp patch, or something you're not sure about. The Companion captures your home type, rooms, priorities, style, budget, and household context. Then it recommends the next best route: provider, package, review, consultation, or quote.",
+    title: "Companion Diagnostic (Full)",
+    description: "The full Companion. Capture home type, rooms, priorities, style, budget, and household context. AI repair scan and instant quote. AI design moodboards. Every result saves to the home record, even before purchase.",
     linkHref: "/howa/companion",
     linkLabel: "See the Companion →",
   },
   {
-    title: "Task Centre & Reminders",
-    description: "Boiler service due. Gutters need clearing before winter. Seasonal prompts for spring preparation. HoWA tracks what matters and surfaces it before it becomes a problem. Saved guides for every discipline.",
+    title: "Richer Documents & Home Logbook",
+    description: "Invoices, certificates, photos, contractor notes, paint colours, appliance details. The home logbook that every trade can reference. Saved guides and seasonal reminders you can action or defer.",
   },
   {
-    title: "Service Discounts & Member Pricing",
-    description: "Discounted rates on all House services: Gardening, Window Cleaning, Cleaning, and Gutter Cleaning. Typically 10-15% less than booking direct. Plus member pricing across the shop.",
-  },
-  {
-    title: "The Hearth",
-    description: "Full editorial access to The Hearth. Members-only long-form writing on homes, gardens, design, and the craft of looking after a place properly. Photo essays, house notes, seasonal features. Published weekly.",
+    title: "Priority Booking & The Hearth",
+    description: "Priority booking across all House services and approved partners. Full editorial access to The Hearth magazine: long-form writing on homes, gardens, design, and the craft of looking after a place properly.",
     linkHref: "/journal",
     linkLabel: "Browse the Hearth →",
   },
   {
-    title: "Priority Access & Protection",
-    description: "Early access to Protect Reviews, Provenance insurance introductions, new collections in the shop, and House-approved designer availability. Everything writes back to the living record.",
+    title: "Carbon Offset Fund & Early Access",
+    description: "A personal carbon offset fund tracked against your household. Early access to new HoWA features, exclusive House events and drops, and Protect Review introductions via Provenance.",
   },
 ];
 
@@ -74,7 +74,7 @@ export default function HowaPlusPage() {
             The membership for a home you <em>mean to keep.</em>
           </h1>
           <p className="font-sans text-[19px] leading-[1.6] text-house-brown/75 mt-6 max-w-[60ch]">
-            HoWA+ connects your home to the House. A living record that remembers what was done. A Companion that catches problems early. Member pricing that makes good maintenance cost less than bad surprises.
+            HoWA+ is the paid continuity layer. Full dashboard, full Companion, full Hearth editorial access. A living record that remembers what was done, a task centre that tracks what is due, and priority booking across every House service. The intelligence case first. The savings follow.
           </p>
           <div className="mt-8 flex items-center gap-4 flex-wrap">
             <Link

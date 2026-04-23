@@ -11,10 +11,10 @@ export const metadata = {
 };
 
 const STEPS = [
-  { n: "01", title: "Capture the home", body: "Property type, systems, rooms, garden zones, preferences. The Companion captures the home once, then routes intelligently into Design, Services, Protect, and ongoing care." },
-  { n: "02", title: "Understand priorities", body: "Style, budget, urgency, ambition, household context. The Companion prompts for what matters and builds a home profile draft and brief." },
-  { n: "03", title: "Recommend the route", body: "HoWA proposes the next best route: provider, package, review, consultation, or quote-entry. Ranked options, not a blank search." },
-  { n: "04", title: "Save to the record", body: "Everything writes to the home-linked record, even before purchase. Partially completed sessions save. Come back and the Companion picks up where you left off." },
+  { n: "01", title: "Understand", body: "Capture the home. Property type, systems, rooms, garden zones, preferences, condition. The Companion builds a home profile from what you know. Intent preselection: design, services, protect, or stewardship." },
+  { n: "02", title: "Recommend", body: "The next best route. Based on your home profile, HoWA proposes providers, packages, reviews, consultations, or quotes. Ranked options, not a blank search." },
+  { n: "03", title: "Connect", body: "Handoff into action. Select a designer, book a service, start a protection review, or configure a care plan. Everything passes into HoWA with context." },
+  { n: "04", title: "Remember", body: "Save to the record. Every answer, every action, every outcome. Partially completed sessions save automatically. The record compounds. The home gets better." },
 ];
 
 const EXAMPLES = [

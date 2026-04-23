@@ -24,23 +24,28 @@ export const metadata = {
 };
 
 const HOWAPLUS_INCLUSIONS = [
-  "Full dashboard continuity — tasks, reminders, documents, and the complete home logbook",
-  "Companion diagnostic with AI repair scan and design suggestions",
-  "Priority access to House-approved designers, craftsmen, and services",
-  "Service discounts and member pricing across Gardening, Cleaning, Windows, and Gutters",
-  "Full Hearth editorial access — long-form writing, photo essays, house notes",
-  "Saved guides, seasonal maintenance prompts, and proactive reminders",
-  "Protect Review early access and Provenance insurance introductions",
+  "10% off all House services — auto-applied at checkout",
+  "Full dashboard continuity and task centre with seasonal prompts",
+  "Richer document and home logbook history",
+  "Priority booking across House services",
+  "Full access to The Hearth magazine",
+  "Personal carbon offset fund",
+  "Saved guides and seasonal reminders",
+  "Early access to new HoWA features",
+  "Exclusive House events and drops",
 ];
 
 const STEWARD_INCLUSIONS = [
   "Everything in HoWA+, plus",
-  "Live utilities and device integration — climate, energy, humidity, security",
-  "Anomaly alerts and predictive maintenance — the system acts before you notice",
-  "Managed recurring care — qualified through HoWA, not a public catalogue",
-  "Delegated permissions — scoped access for partners, contractors, household members",
-  "Insurance prefill and insurer-grade evidence from the living record",
-  "One dedicated House contact and quarterly home reviews",
+  "Access to Steward Plans — bespoke recurring service subscriptions",
+  "Smart-home controller with live device integrations",
+  "Anomaly alerts and predictive maintenance",
+  "Automated seasonal care scheduling",
+  "Live utility and energy monitoring",
+  "Delegated helper and household permissions",
+  "Insurance prefill and risk score integration",
+  "Home Protection Review (when live)",
+  "Priority HoWA support channel",
 ];
 
 const FAQ_ITEMS = [
@@ -114,7 +119,7 @@ export default function PlansPage() {
             Two ways to be <em>stewarded</em>.
           </h1>
           <p className="font-sans text-[19px] leading-[1.6] text-house-brown/70 max-w-[58ch] mx-auto mt-6">
-            The tier system feels like one app with additive entitlements. Upgrading preserves the same home-linked record. HoWA+ is the connected membership. Steward is the premium managed-care layer for homes that want the House to do more of it.
+            One platform. Three entitlement levels. Upgrading always preserves the same home record. HoWA+ is the paid continuity and savings layer. Steward is the premium control and managed-care layer. Entitlements are additive. The highest valid entitlement governs what the system can do.
           </p>
         </div>
       </section>
