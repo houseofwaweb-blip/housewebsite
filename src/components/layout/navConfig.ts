@@ -162,7 +162,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
         heading: "The Hearth",
         links: [
           { label: "Latest", href: "/journal", description: "Editorial writing" },
-          { label: "Hearth Collection", href: "/journal/collection", description: "Long-form features" },
+          { label: "The Hearth Magazine", href: "/journal", description: "Long-form features" },
         ],
       },
       {
