@@ -15,6 +15,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
         heading: "What we stand for",
         links: [
           { label: "Philosophy", href: "/the-house/philosophy", description: "Our founding idea" },
+          { label: "The Artwork of the House", href: "/the-house/artwork", description: "Heritage, craft, colour" },
           { label: "Standards", href: "/the-house/standards", description: "How we work" },
           { label: "Sustainability", href: "/the-house/sustainability", description: "Our commitments" },
         ],
