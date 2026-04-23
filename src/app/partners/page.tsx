@@ -38,7 +38,7 @@ export default async function PartnersLanding() {
                 className="group relative block bg-white border border-house-brown/10 p-8 no-underline transition-all duration-[var(--t-slow)] ease-out hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(48,35,28,0.1)] hover:border-house-gold"
               >
                 <div className="flex items-center justify-between mb-3">
-                  <div className="font-sans text-[10px] tracking-[0.22em] uppercase text-house-gold">
+                  <div className="font-sans text-[10px] tracking-[0.22em] uppercase text-[var(--house-gold-dark)]">
                     {p.typeLabel}
                   </div>
                   {p.houseApprovedSeal ? (
@@ -48,10 +48,10 @@ export default async function PartnersLanding() {
                 <h2 className="font-display font-medium text-[28px] leading-[1.2] text-house-brown mb-3 pb-3 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-px after:bg-house-gold after:w-[28px] after:transition-[width] after:duration-[var(--t-slow)] after:ease-out group-hover:after:w-[72px]">
                   {p.name}
                 </h2>
-                <p className="font-sans italic text-[16px] leading-[1.6] text-house-stone">
+                <p className="font-sans italic text-[16px] leading-[1.6] text-house-brown/70">
                   {p.shortBio}
                 </p>
-                <div className="mt-4 font-sans text-[11px] tracking-[0.16em] uppercase text-house-gold">
+                <div className="mt-4 font-sans text-[11px] tracking-[0.16em] uppercase text-[var(--house-gold-dark)]">
                   Read profile →
                 </div>
               </Link>

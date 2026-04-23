@@ -4,8 +4,9 @@ import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { GhostLink } from "@/components/primitives/GhostLink";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { getNewsletterBlock } from "@/lib/cms/newsletter";
-import { getPartnersByDiscipline, type DesignPartner } from "@/lib/cms/partners";
+import { getPartnersByDiscipline } from "@/lib/cms/partners";
 import { LAUNCH_PARTNERS } from "@/lib/partners-data";
+import { PartnerCarousel, type PartnerCardData } from "@/components/marketing/PartnerCarousel";
 
 export const metadata = {
   title: "Design · Interiors",
@@ -101,33 +102,23 @@ export default async function InteriorsPage() {
     getPartnersByDiscipline("interiors"),
   ]);
 
-  /* Build the partner list: Sanity first, hardcoded fallback second */
-  const partners: Array<{
-    name: string;
-    slug: string;
-    typeLabel: string;
-    shortBio: string;
-    specialties: string[];
-    houseApprovedSeal: boolean;
-    portrait: string;
-  }> = sanityPartners.length > 0
-    ? sanityPartners.map((p: DesignPartner) => ({
-        name: p.name,
+  /* Build partner card data for the carousel */
+  const partnerCards: PartnerCardData[] = sanityPartners.length > 0
+    ? sanityPartners.map((p) => ({
         slug: p.slug,
-        typeLabel: p.type ?? "Design Studio",
+        name: p.name,
+        type: p.type ?? "design-studio",
         shortBio: p.shortBio,
         specialties: p.specialties ?? [],
         houseApprovedSeal: p.houseApprovedSeal ?? false,
-        portrait: "/partners/portrait.png",
       }))
     : INTERIORS_FALLBACK.map((p) => ({
-        name: p.name,
         slug: p.slug,
-        typeLabel: p.typeLabel,
+        name: p.name,
+        type: p.type,
         shortBio: p.shortBio,
         specialties: p.specialties,
         houseApprovedSeal: p.houseApprovedSeal,
-        portrait: "/partners/portrait.png",
       }));
 
   return (
@@ -172,74 +163,13 @@ export default async function InteriorsPage() {
         </div>
       </section>
 
-      {/* ─── 2. Our Designers — Dynamic partner grid ─── */}
-      <section className="bg-house-cream px-[5vw] py-[88px]">
-        <div className="max-w-[1280px] mx-auto">
-          <div className="text-center mb-14">
-            <Eyebrow>Our Designers</Eyebrow>
-            <h2 className="font-display font-medium text-[clamp(28px,3.6vw,46px)] leading-[1.1] mt-4">
-              The collective behind your <em className="italic">home.</em>
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-            {partners.map((partner) => (
-              <div
-                key={partner.slug}
-                className="bg-white border border-house-brown/10 overflow-hidden flex flex-col sm:flex-row"
-              >
-                {/* Portrait */}
-                <div className="relative aspect-[3/4] sm:w-[200px] lg:w-[240px] shrink-0 overflow-hidden">
-                  <Image
-                    src={partner.portrait}
-                    alt={`${partner.name} — portrait`}
-                    fill
-                    className="object-cover object-top"
-                    sizes="(max-width: 640px) 100vw, 240px"
-                  />
-                </div>
-                {/* Card body */}
-                <div className="flex-1 p-6 flex flex-col">
-                  <p className="font-sans text-[10px] tracking-[0.22em] uppercase text-[var(--house-gold-dark)] mb-2">
-                    {partner.typeLabel}
-                  </p>
-                  <h3 className="font-display font-medium text-[24px] leading-[1.15] mb-3">
-                    {partner.name}
-                  </h3>
-                  <p className="font-sans text-[15px] leading-[1.65] text-house-brown/70 mb-4 flex-1">
-                    {partner.shortBio}
-                  </p>
-
-                  {/* Specialties */}
-                  {partner.specialties.length > 0 && (
-                    <div className="flex flex-wrap gap-1.5 mb-4">
-                      {partner.specialties.map((s) => (
-                        <span
-                          key={s}
-                          className="inline-block font-sans text-[10px] tracking-[0.08em] text-house-brown/70 border border-house-brown/20 px-2 py-0.5"
-                        >
-                          {s}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* House Approved badge */}
-                  {partner.houseApprovedSeal && (
-                    <p className="font-sans text-[10px] tracking-[0.18em] uppercase text-[var(--house-gold-dark)] mb-4">
-                      House Approved
-                    </p>
-                  )}
-
-                  <GhostLink href={`/partners/${partner.slug}`}>
-                    View profile
-                  </GhostLink>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ─── 2. Our Designers — Carousel ─── */}
+      <PartnerCarousel
+        partners={partnerCards}
+        heading="The collective behind your home."
+        headingEm="home."
+        lede="Each studio is selected for their craft, ethics, and aesthetic harmony with the House. Browse profiles, see recent work, and start a brief through HoWA."
+      />
 
       {/* ─── 3. Our Projects — Asymmetric masonry gallery ─── */}
       <section className="bg-white px-[5vw] py-[88px] border-t border-house-brown/8">

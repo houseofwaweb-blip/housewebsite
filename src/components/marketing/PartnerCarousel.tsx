@@ -1,130 +1,191 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/cn";
-import { Eyebrow } from "@/components/primitives/Eyebrow";
 
 /**
- * PartnerCarousel — "Meet our [Gardeners / Cleaners / etc.]" section.
- * Designed for the service marketplace model: a horizontal scrollable strip
- * of partner/supplier tiles, each with a logo + name + short line.
+ * PartnerCarousel — horizontal scroll carousel of partner cards.
  *
- * For launch we show placeholder tiles. Once real suppliers onboard, swap in
- * logo images + detail hrefs. Scroll is native (no JS carousel library).
+ * Scroll-snap on mobile (swipe), arrow buttons on desktop.
+ * Each card: type label, name, bio, specialty tags, House Approved badge,
+ * "View profile →" link. Cards are 85vw on mobile, 380px on desktop.
  *
- * Overscroll hint: the container clips and the last card peeks, signalling
- * more content to the right.
+ * Ends with a "More partners joining" ghost tile + "Become a partner" link.
+ * "See all House Approved partners" link below the carousel.
+ *
+ * Scales to any number of partners. Designed for the design marketplace.
  */
 
-export interface PartnerTile {
+export interface PartnerCardData {
+  slug: string;
   name: string;
-  href?: string;
-  logo?: string;
-  subtitle?: string;
-  houseApproved?: boolean;
+  type: string;
+  shortBio: string;
+  specialties?: string[];
+  houseApprovedSeal?: boolean;
 }
 
-export interface PartnerCarouselProps {
+interface Props {
+  partners: PartnerCardData[];
   heading: string;
   headingEm?: string;
   lede?: string;
-  partners: PartnerTile[];
   className?: string;
 }
 
-export function PartnerCarousel({
-  heading,
-  headingEm,
-  lede,
-  partners,
-  className,
-}: PartnerCarouselProps) {
+function typeLabel(t: string): string {
+  switch (t) {
+    case "design-studio": return "Design Studio";
+    case "interior-designer": return "Interior Designer";
+    case "craftsman": return "Craftsman";
+    case "brand-partner": return "Partner";
+    default: return "Partner";
+  }
+}
+
+export function PartnerCarousel({ partners, heading, headingEm, lede, className }: Props) {
+  const scrollRef = React.useRef<HTMLDivElement>(null);
+  const [canLeft, setCanLeft] = React.useState(false);
+  const [canRight, setCanRight] = React.useState(true);
+
+  const check = React.useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanLeft(el.scrollLeft > 10);
+    setCanRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
+  }, []);
+
+  React.useEffect(() => {
+    check();
+    const el = scrollRef.current;
+    if (!el) return;
+    el.addEventListener("scroll", check, { passive: true });
+    window.addEventListener("resize", check);
+    return () => { el.removeEventListener("scroll", check); window.removeEventListener("resize", check); };
+  }, [check]);
+
+  const scroll = (dir: "left" | "right") => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const w = el.querySelector("[data-card]")?.clientWidth ?? 380;
+    el.scrollBy({ left: dir === "right" ? w + 24 : -(w + 24), behavior: "smooth" });
+  };
+
   return (
-    <section className={cn("bg-house-white px-[5vw] py-20 border-t border-house-brown/10", className)}>
+    <section className={cn("bg-house-cream px-[5vw] py-[88px]", className)}>
       <div className="max-w-[1280px] mx-auto">
-        <div className="mb-10">
-          <Eyebrow>Our partners</Eyebrow>
-          <h2 className="em-accent font-display font-medium text-[clamp(28px,3.6vw,44px)] leading-[1.15] mt-3">
-            {heading}
-            {headingEm ? (
-              <>
-                {" "}
-                <em className="italic font-normal">{headingEm}</em>
-              </>
-            ) : null}
-          </h2>
-          {lede ? (
-            <p className="font-sans italic text-[16px] leading-[1.55] text-house-stone mt-3 max-w-[60ch]">
-              {lede}
-            </p>
-          ) : null}
+        {/* Header */}
+        <div className="flex items-end justify-between mb-10 gap-6 flex-wrap">
+          <div>
+            <span className="block font-sans text-[11px] tracking-[0.22em] uppercase mb-3" style={{ color: "var(--house-gold-dark)" }}>
+              Our designers
+            </span>
+            <h2 className="font-display font-medium text-[clamp(28px,3.6vw,46px)] leading-[1.1] tracking-[-0.01em]">
+              {headingEm ? (
+                <>{heading.split(headingEm)[0]}<em className="italic">{headingEm}</em>{heading.split(headingEm)[1] ?? ""}</>
+              ) : heading}
+            </h2>
+            {lede && (
+              <p className="font-sans text-[16px] leading-[1.65] text-house-brown/70 mt-3 max-w-[52ch]">{lede}</p>
+            )}
+          </div>
+          {/* Scroll arrows (desktop) */}
+          <div className="hidden md:flex items-center gap-2">
+            <button type="button" onClick={() => scroll("left")} disabled={!canLeft} aria-label="Scroll left"
+              className={cn("w-10 h-10 flex items-center justify-center border text-[18px] transition-all duration-[var(--t-base)]",
+                canLeft ? "border-house-brown/20 text-house-brown hover:border-house-brown cursor-pointer" : "border-house-brown/8 text-house-brown/20 cursor-default"
+              )}>
+              &larr;
+            </button>
+            <button type="button" onClick={() => scroll("right")} disabled={!canRight} aria-label="Scroll right"
+              className={cn("w-10 h-10 flex items-center justify-center border text-[18px] transition-all duration-[var(--t-base)]",
+                canRight ? "border-house-brown/20 text-house-brown hover:border-house-brown cursor-pointer" : "border-house-brown/8 text-house-brown/20 cursor-default"
+              )}>
+              &rarr;
+            </button>
+          </div>
         </div>
 
-        <div className="flex gap-4 overflow-x-auto pb-4 -mx-[5vw] px-[5vw] snap-x snap-mandatory scrollbar-thin scrollbar-track-transparent scrollbar-thumb-house-brown/15">
-          {partners.map((p) => {
-            const content = (
-              <div
-                className={cn(
-                  "shrink-0 w-[260px] snap-start border border-house-brown/12 p-6 flex flex-col items-center text-center",
-                  "transition-all duration-[var(--t-slow)] ease-out",
-                  p.href && "hover:-translate-y-0.5 hover:border-house-gold cursor-pointer",
-                )}
-              >
-                {p.logo ? (
-                  <div className="relative w-[120px] h-[60px] mb-4">
-                    <Image
-                      src={p.logo}
-                      alt={`${p.name} logo`}
-                      fill
-                      sizes="120px"
-                      className="object-contain"
-                    />
-                  </div>
-                ) : (
-                  <div className="w-[120px] h-[60px] mb-4 bg-house-cream border border-house-brown/8 flex items-center justify-center">
-                    <span className="font-sans text-[14px] text-house-brown/40">Logo</span>
-                  </div>
-                )}
-                <h3 className="font-display font-medium text-[18px] leading-[1.2] text-house-brown mb-1">
-                  {p.name}
-                </h3>
-                {p.subtitle ? (
-                  <p className="font-sans italic text-[13px] text-house-stone">
-                    {p.subtitle}
-                  </p>
-                ) : null}
-                {p.houseApproved ? (
-                  <span className="mt-3 font-sans text-[9px] tracking-[0.22em] uppercase text-house-gold border border-house-gold px-2 py-[2px]">
+        {/* Card strip */}
+        <div
+          ref={scrollRef}
+          className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 -mx-[5vw] px-[5vw] md:mx-0 md:px-0"
+          style={{ scrollbarWidth: "none" }}
+        >
+          {partners.map((p) => (
+            <Link
+              key={p.slug}
+              href={`/partners/${p.slug}`}
+              data-card
+              className="group flex-none w-[85vw] sm:w-[380px] snap-start bg-house-white border border-house-brown/10 p-8 no-underline flex flex-col transition-all duration-[var(--t-slow)] ease-out hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(48,35,28,0.08)] hover:border-[var(--house-gold-dark)]"
+            >
+              {/* Type + seal */}
+              <div className="flex items-center justify-between mb-4">
+                <span className="font-sans text-[11px] tracking-[0.2em] uppercase" style={{ color: "var(--house-gold-dark)" }}>
+                  {typeLabel(p.type)}
+                </span>
+                {p.houseApprovedSeal && (
+                  <span className="font-sans text-[9px] tracking-[0.16em] uppercase text-house-moss border border-house-moss/30 px-2 py-0.5">
                     House Approved
                   </span>
-                ) : null}
+                )}
               </div>
-            );
 
-            if (p.href) {
-              return (
-                <Link key={p.name} href={p.href} className="no-underline shrink-0">
-                  {content}
-                </Link>
-              );
-            }
-            return <div key={p.name} className="shrink-0">{content}</div>;
-          })}
+              {/* Name + gold rule */}
+              <h3 className="font-display font-medium text-[26px] leading-[1.15] text-house-brown mb-1">
+                {p.name}
+              </h3>
+              <div className="h-px w-7 mb-4 transition-[width] duration-[var(--t-slow)] ease-out group-hover:w-16" style={{ background: "var(--house-gold-dark)" }} />
 
-          {/* "More coming" ghost tile */}
-          <div className="shrink-0 w-[260px] snap-start border border-dashed border-house-brown/15 p-6 flex flex-col items-center justify-center text-center opacity-60">
-            <span className="font-sans italic text-[15px] text-house-stone">
+              {/* Bio */}
+              <p className="font-sans text-[15px] leading-[1.6] text-house-brown/70 mb-5 flex-1">
+                {p.shortBio}
+              </p>
+
+              {/* Tags */}
+              {p.specialties && p.specialties.length > 0 && (
+                <div className="flex flex-wrap gap-1.5 mb-5">
+                  {p.specialties.slice(0, 4).map((s) => (
+                    <span key={s} className="font-sans text-[10px] tracking-[0.06em] text-house-brown/55 border border-house-brown/12 px-2 py-0.5">
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              {/* CTA */}
+              <span className="inline-flex items-center gap-2 font-sans text-[12px] tracking-[0.16em] uppercase" style={{ color: "var(--house-gold-dark)" }}>
+                View profile
+                <span className="inline-block transition-transform duration-[var(--t-slow)] ease-out group-hover:translate-x-2">&rarr;</span>
+              </span>
+            </Link>
+          ))}
+
+          {/* Ghost tile */}
+          <div className="flex-none w-[85vw] sm:w-[320px] snap-start border border-dashed border-house-brown/15 p-8 flex flex-col items-center justify-center text-center">
+            <p className="font-display italic text-[17px] text-house-brown/40 mb-3">
               More partners joining soon.
-            </span>
+            </p>
             <Link
               href="/contact"
-              className="mt-3 font-sans text-[10px] tracking-[0.18em] uppercase text-house-gold no-underline border-b border-house-gold pb-[1px]"
+              className="font-sans text-[11px] tracking-[0.16em] uppercase no-underline pb-px border-b border-house-brown/30 text-house-brown/50 hover:text-house-brown transition-colors"
             >
-              Become a partner →
+              Become a partner &rarr;
             </Link>
           </div>
+        </div>
+
+        {/* See all link */}
+        <div className="mt-8 text-center">
+          <Link
+            href="/partners"
+            className="inline-flex items-center gap-2 font-sans text-[12px] tracking-[0.18em] uppercase no-underline pb-1 border-b transition-[color,border-style] duration-[var(--t-slow)] ease-out hover:border-dotted"
+            style={{ color: "var(--house-gold-dark)", borderColor: "var(--house-gold-dark)" }}
+          >
+            See all House Approved partners
+            <span>&rarr;</span>
+          </Link>
         </div>
       </div>
     </section>
