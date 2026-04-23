@@ -183,15 +183,16 @@ function LocalPartnerPage({ partner: p }: { partner: LaunchPartner }) {
       {/* 2. Designer block */}
       <section
         id="designer-block"
-        className="bg-house-cream grid grid-cols-1 md:grid-cols-[1fr_1.1fr] gap-14 items-center px-[5vw] py-20"
+        className="bg-house-cream px-[5vw] py-20"
       >
-        <div className="relative aspect-[4/5] w-full bg-house-cream-dark border border-house-brown/8 overflow-hidden">
+        <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-[280px_1fr] gap-10 lg:gap-14 items-start">
+        <div className="relative aspect-[3/4] w-full max-w-[280px] bg-house-cream-dark border border-house-brown/8 overflow-hidden">
           <Image
             src={p.portraitImage}
             alt={`${p.name} portrait`}
             fill
-            sizes="(min-width: 768px) 45vw, 100vw"
-            className="object-cover"
+            sizes="280px"
+            className="object-cover object-top"
           />
         </div>
         <div>
@@ -226,6 +227,7 @@ function LocalPartnerPage({ partner: p }: { partner: LaunchPartner }) {
             <Meta label="Based" value={p.basedIn} />
             <Meta label="Recent" value={p.recent} />
           </div>
+        </div>
         </div>
       </section>
 
