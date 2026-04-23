@@ -7,6 +7,7 @@ import { FeatureGrid } from "@/components/marketing/FeatureGrid";
 import { MonthTimeline } from "@/components/marketing/MonthTimeline";
 import { TestimonialBand } from "@/components/marketing/TestimonialCard";
 import { ComparisonTable } from "@/components/marketing/ComparisonTable";
+import { getPageSections, cms } from "@/lib/cms/page-sections";
 
 export const metadata = {
   title: "HoWA+",
@@ -66,7 +67,12 @@ const TESTIMONIALS = [
 ];
 
 export default async function HowaPlusPage() {
-  const nlBlock = await getNewsletterBlock("howa-plus");
+  const [nlBlock, sections] = await Promise.all([
+    getNewsletterBlock("howa-plus"),
+    getPageSections("howa-plus"),
+  ]);
+  const s = (name: string) => sections.get(name);
+
   return (
     <article className="text-house-brown">
       {/* 1. Hero — House editorial zone */}
@@ -74,10 +80,10 @@ export default async function HowaPlusPage() {
         <div className="max-w-[880px] mx-auto">
           <Eyebrow>HoWA+</Eyebrow>
           <h1 className="em-accent font-display font-medium text-[clamp(44px,6vw,76px)] leading-[1.05] tracking-[-0.01em] mt-4">
-            The membership for a home you <em>mean to keep.</em>
+            {cms(s("hero"), "headline", "The membership for a home you")} <em>{cms(s("hero"), "headlineEm", "mean to keep.")}</em>
           </h1>
           <p className="font-sans text-[19px] leading-[1.6] text-house-brown/75 mt-6 max-w-[60ch]">
-            HoWA+ is the paid continuity layer. Full dashboard, full Companion, full Hearth editorial access. A living record that remembers what was done, a task centre that tracks what is due, and priority booking across every House service. The intelligence case first. The savings follow.
+            {cms(s("hero"), "body", "HoWA+ is the paid continuity layer. Full dashboard, full Companion, full Hearth editorial access. A living record that remembers what was done, a task centre that tracks what is due, and priority booking across every House service. The intelligence case first. The savings follow.")}
           </p>
           <div className="mt-8 flex items-center gap-4 flex-wrap">
             <Link

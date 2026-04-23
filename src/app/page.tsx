@@ -4,6 +4,7 @@ import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { GhostLink } from "@/components/primitives/GhostLink";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { getNewsletterBlock } from "@/lib/cms/newsletter";
+import { getPageSections, cms } from "@/lib/cms/page-sections";
 
 /**
  * Homepage — locked direction: Variant B (Georgian Photography).
@@ -17,7 +18,11 @@ import { getNewsletterBlock } from "@/lib/cms/newsletter";
  * "Orient first, invite second, explain third."
  */
 export default async function HomePage() {
-  const nlBlock = await getNewsletterBlock("homepage");
+  const [nlBlock, sections] = await Promise.all([
+    getNewsletterBlock("homepage"),
+    getPageSections("homepage"),
+  ]);
+  const s = (name: string) => sections.get(name);
 
   return (
     <>
@@ -43,20 +48,18 @@ export default async function HomePage() {
 
         <div className="relative z-10 max-w-[780px] px-6 text-house-cream">
           <span className="block mb-7 font-sans text-[11px] tracking-[0.22em] uppercase text-house-cream/75">
-            For homes with soul
+            {cms(s("hero"), "eyebrow", "For homes with soul")}
           </span>
           <h1
             className="em-accent font-display font-medium leading-[1.02] tracking-[-0.01em] mb-6 text-house-cream drop-shadow-[0_2px_28px_rgba(29,29,27,0.35)]"
             style={{ fontSize: "clamp(52px, 7vw, 96px)" }}
           >
-            Beautiful living,
+            {cms(s("hero"), "headline", "Beautiful living,")}
             <br />
-            <em>intelligently</em> stewarded.
+            <em>{cms(s("hero"), "headlineEm", "intelligently")}</em> {cms(s("hero"), "subheadline", "stewarded.")}
           </h1>
           <p className="mx-auto max-w-[580px] text-[18px] leading-[1.65] text-house-cream/88 drop-shadow-[0_1px_14px_rgba(29,29,27,0.3)] mb-10">
-            The House of Willow Alexander brings design, care, protection, and
-            trusted services into one clear world. HoWA is the stewardship system
-            behind it.
+            {cms(s("hero"), "body", "The House of Willow Alexander brings design, care, protection, and trusted services into one clear world. HoWA is the stewardship system behind it.")}
           </p>
 
           <div className="flex flex-wrap gap-3 justify-center">
@@ -137,20 +140,15 @@ export default async function HomePage() {
               className="em-accent font-display font-medium leading-[1.08] tracking-[-0.01em] text-house-brown mt-5 mb-6"
               style={{ fontSize: "clamp(32px, 4vw, 48px)" }}
             >
-              The House is the world.
+              {cms(s("system-split"), "headline", "The House is the world.")}
               <br />
-              HoWA is the <em>system.</em>
+              {cms(s("system-split"), "subheadline", "HoWA is the")} <em>{cms(s("system-split"), "headlineEm", "system.")}</em>
             </h2>
             <p className="font-sans text-[16px] leading-[1.65] text-house-brown/70 mb-6 max-w-[440px]">
-              The House defines what good looks like: the taste, the standards,
-              the editorial eye. HoWA is the intelligence beneath it: the
-              Companion that captures the home, the system that recommends,
-              connects, and remembers.
+              {cms(s("system-split"), "body", "The House defines what good looks like: the taste, the standards, the editorial eye. HoWA is the intelligence beneath it: the Companion that captures the home, the system that recommends, connects, and remembers.")}
             </p>
             <p className="font-sans text-[15px] leading-[1.6] text-house-brown/70 mb-8 max-w-[440px]">
-              Story lives on the House. Decision, configuration, booking, and
-              continuity live in HoWA. Fulfilment runs through the ecosystem.
-              Everything writes back to the record.
+              {cms(s("system-split"), "body2", "Story lives on the House. Decision, configuration, booking, and continuity live in HoWA. Fulfilment runs through the ecosystem. Everything writes back to the record.")}
             </p>
             <GhostLink href="/howa">See how HoWA works</GhostLink>
           </div>
@@ -202,13 +200,10 @@ export default async function HomePage() {
             <div className="md:pl-6">
               <Eyebrow>Design &amp; Care</Eyebrow>
               <h2 className="em-accent font-display font-medium text-[clamp(32px, 4.5vw, 48px)] leading-[1.1] tracking-[-0.01em] text-house-brown mt-4 mb-5">
-                Spaces shaped by taste. Homes kept by <em>discipline.</em>
+                {cms(s("design-care"), "headline", "Spaces shaped by taste. Homes kept by")} <em>{cms(s("design-care"), "headlineEm", "discipline.")}</em>
               </h2>
               <p className="font-sans text-[16px] leading-[1.65] text-house-brown/70 mb-8">
-                Interior and garden design by House-approved studios.
-                Recurring care by House teams. Browse portfolios, start a
-                brief through the Companion, or let HoWA match you to the
-                right hands.
+                {cms(s("design-care"), "body", "Interior and garden design by House-approved studios. Recurring care by House teams. Browse portfolios, start a brief through the Companion, or let HoWA match you to the right hands.")}
               </p>
 
               <div className="space-y-5 mb-8">
@@ -266,12 +261,10 @@ export default async function HomePage() {
                 Protect
               </span>
               <h2 className="em-accent font-display font-medium text-[clamp(32px,4vw,48px)] leading-[1.1] tracking-[-0.01em] text-house-cream mt-1 mb-6">
-                Care recorded is <em>risk reduced.</em>
+                {cms(s("protect"), "headline", "Care recorded is")} <em>{cms(s("protect"), "headlineEm", "risk reduced.")}</em>
               </h2>
               <p className="font-sans text-[16px] leading-[1.65] text-house-cream/75 mb-6 max-w-[440px]">
-                A maintained, documented home is a cheaper home to insure. HoWA
-                holds the evidence. Home Protection Review, ongoing care plans,
-                and insurance via Provenance. No other platform does this.
+                {cms(s("protect"), "body", "A maintained, documented home is a cheaper home to insure. HoWA holds the evidence. Home Protection Review, ongoing care plans, and insurance via Provenance. No other platform does this.")}
               </p>
               <Link
                 href="/protect"
@@ -419,13 +412,13 @@ export default async function HomePage() {
 
         <div className="relative z-10 max-w-[640px] mx-auto px-[5vw] py-28 text-center">
           <p className="font-display italic text-[clamp(24px,3.5vw,34px)] leading-[1.35] text-house-brown mb-5">
-            For homes with soul, proper care should never be left to memory alone.
+            {cms(s("closing-cta"), "headline", "For homes with soul, proper care should never be left to memory alone.")}
           </p>
           <p className="font-sans text-[15px] text-house-brown/70 mb-10">
-            The House defines what good looks like.{" "}
-            <span style={{ color: "var(--house-gold-dark)" }}>HoWA ensures it happens.</span>
+            {cms(s("closing-cta"), "body", "The House defines what good looks like.")}{" "}
+            <span style={{ color: "var(--house-gold-dark)" }}>{cms(s("closing-cta"), "subheadline", "HoWA ensures it happens.")}</span>
             <br />
-            One House. One standard. One system of care.
+            {cms(s("closing-cta"), "body2", "One House. One standard. One system of care.")}
           </p>
           <Link
             href="/api/howa-bounce?source=homepage-footer"

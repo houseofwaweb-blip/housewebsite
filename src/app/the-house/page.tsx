@@ -3,6 +3,7 @@ import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { GhostLink } from "@/components/primitives/GhostLink";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { getNewsletterBlock } from "@/lib/cms/newsletter";
+import { getPageSections, cms } from "@/lib/cms/page-sections";
 import { TheHouseNav } from "./TheHouseNav";
 
 export const metadata = {
@@ -63,7 +64,11 @@ const SECTIONS = [
 ];
 
 export default async function TheHousePage() {
-  const nlBlock = await getNewsletterBlock("the-house");
+  const [nlBlock, sections] = await Promise.all([
+    getNewsletterBlock("the-house"),
+    getPageSections("the-house"),
+  ]);
+  const s = (name: string) => sections.get(name);
   return (
     <article className="bg-house-cream text-house-brown">
       <TheHouseNav />
@@ -72,10 +77,10 @@ export default async function TheHousePage() {
       <section className="px-[5vw] pt-[clamp(80px,12vh,140px)] pb-20 max-w-[880px] mx-auto" id="premise">
         <Eyebrow>The House</Eyebrow>
         <h1 className="em-accent font-display font-medium text-[clamp(44px,6vw,80px)] leading-[1.05] tracking-[-0.01em] mt-4">
-          A modern British <em>institution.</em>
+          {cms(s("hero"), "headline", "A modern British institution.")}
         </h1>
         <p className="font-display italic text-[clamp(18px,2.5vw,24px)] leading-[1.45] text-house-stone max-w-[600px] mt-4 mb-5">
-          We think homes deserve the same kind of quiet institution that schools, clubs, and estates have always had. Somewhere to belong. Somewhere to ask. Somewhere that remembers.
+          {cms(s("hero"), "body", "We think homes deserve the same kind of quiet institution that schools, clubs, and estates have always had. Somewhere to belong. Somewhere to ask. Somewhere that remembers.")}
         </p>
         <p className="font-sans text-[16px] leading-[1.65] text-house-stone max-w-[540px]">
           House of Willow Alexander exists for the people who care about their homes enough to want them looked after properly. Not just maintained. Stewarded. That means design, care, protection, and the things worth keeping, all connected by one living record.

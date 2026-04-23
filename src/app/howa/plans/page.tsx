@@ -5,6 +5,7 @@ import { Accordion } from "@/components/primitives/Accordion";
 import { GhostLink } from "@/components/primitives/GhostLink";
 import { WaitlistMini } from "@/components/marketing/WaitlistMini";
 import { ComparisonTable } from "@/components/marketing/ComparisonTable";
+import { getPageSections, cms } from "@/lib/cms/page-sections";
 
 /**
  * /howa/plans — pricing page.
@@ -108,7 +109,10 @@ const FAQ_ITEMS = [
   },
 ];
 
-export default function PlansPage() {
+export default async function PlansPage() {
+  const sections = await getPageSections("howa-plans");
+  const s = (name: string) => sections.get(name);
+
   return (
     <article className="bg-house-cream text-house-brown">
       {/* Header */}
@@ -116,10 +120,10 @@ export default function PlansPage() {
         <div className="max-w-[880px] mx-auto text-center">
           <Eyebrow>Plans & Pricing</Eyebrow>
           <h1 className="em-accent font-display font-medium text-[clamp(44px,6vw,80px)] leading-[1.05] tracking-[-0.01em] mt-4">
-            Two ways to be <em>stewarded</em>.
+            {cms(s("hero"), "headline", "Two ways to be")} <em>{cms(s("hero"), "headlineEm", "stewarded")}</em>.
           </h1>
           <p className="font-sans text-[19px] leading-[1.6] text-house-brown/70 max-w-[58ch] mx-auto mt-6">
-            One platform. Three entitlement levels. Upgrading always preserves the same home record. HoWA+ is the paid continuity and savings layer. Steward is the premium control and managed-care layer. Entitlements are additive. The highest valid entitlement governs what the system can do.
+            {cms(s("hero"), "body", "One platform. Three entitlement levels. Upgrading always preserves the same home record. HoWA+ is the paid continuity and savings layer. Steward is the premium control and managed-care layer. Entitlements are additive. The highest valid entitlement governs what the system can do.")}
           </p>
         </div>
       </section>

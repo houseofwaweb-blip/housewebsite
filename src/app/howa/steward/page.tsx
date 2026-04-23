@@ -3,6 +3,7 @@ import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { StateBadge } from "@/components/primitives/StateBadge";
 import { GhostLink } from "@/components/primitives/GhostLink";
 import { WaitlistMini } from "@/components/marketing/WaitlistMini";
+import { getPageSections, cms } from "@/lib/cms/page-sections";
 
 export const metadata = {
   title: "HoWA Steward — Managed Home Intelligence",
@@ -83,7 +84,10 @@ const blueprintGrid =
 /*  Page                                                               */
 /* ------------------------------------------------------------------ */
 
-export default function StewardPage() {
+export default async function StewardPage() {
+  const sections = await getPageSections("howa-steward");
+  const s = (name: string) => sections.get(name);
+
   return (
     <article>
       {/* ============================================================
@@ -103,14 +107,12 @@ export default function StewardPage() {
           </span>
 
           <h1 className="font-hearth-sans font-light text-[clamp(48px,6.5vw,84px)] leading-[1.02] tracking-[-0.02em] text-house-cream">
-            The home,{" "}
-            <em className="italic text-house-gold-light">managed.</em>
+            {cms(s("hero"), "headline", "The home,")}{" "}
+            <em className="italic text-house-gold-light">{cms(s("hero"), "headlineEm", "managed.")}</em>
           </h1>
 
           <p className="font-hearth-sans text-[19px] leading-[1.6] text-house-cream/70 mt-7 max-w-[56ch]">
-            Everything in HoWA+, plus managed recurring care. A dedicated House
-            contact, quarterly reviews, predictive maintenance, and one monthly
-            invoice across all services. The home gets better every season.
+            {cms(s("hero"), "body", "Everything in HoWA+, plus managed recurring care. A dedicated House contact, quarterly reviews, predictive maintenance, and one monthly invoice across all services. The home gets better every season.")}
           </p>
 
           <div className="flex flex-wrap items-center gap-4 mt-10">
@@ -141,13 +143,11 @@ export default function StewardPage() {
           </span>
 
           <h2 className="font-hearth-sans font-light text-[clamp(28px,3.6vw,44px)] leading-[1.1] tracking-[-0.01em] text-house-cream mb-6 max-w-[20ch]">
-            The home is the only major asset without an operating system.
+            {cms(s("problem-section"), "headline", "The home is the only major asset without an operating system.")}
           </h2>
 
           <p className="font-hearth-sans text-[16px] leading-[1.65] text-house-cream/68 mb-10 max-w-[54ch]">
-            It is valuable, complex, and deeply personal. Yet managed through
-            fragmentation, memory, and reaction. Cars have service schedules.
-            Buildings have facilities management. The home runs on guesswork.
+            {cms(s("problem-section"), "body", "It is valuable, complex, and deeply personal. Yet managed through fragmentation, memory, and reaction. Cars have service schedules. Buildings have facilities management. The home runs on guesswork.")}
           </p>
 
           <div className="grid sm:grid-cols-2 gap-4">
@@ -186,7 +186,7 @@ export default function StewardPage() {
           </span>
 
           <h2 className="font-hearth-sans font-light text-[clamp(28px,3.6vw,44px)] leading-[1.1] tracking-[-0.01em] text-house-cream mb-16">
-            One score. Complete clarity.
+            {cms(s("gauge-section"), "headline", "One score. Complete clarity.")}
           </h2>
 
           {/* Gauge */}
@@ -242,9 +242,7 @@ export default function StewardPage() {
           </div>
 
           <p className="font-hearth-sans text-[15px] leading-[1.65] text-house-cream/65 max-w-[48ch] mx-auto">
-            Four axes, monitored continuously. Climate, energy, maintenance, and
-            protection combine into a single score. When something shifts, the
-            system knows first.
+            {cms(s("gauge-section"), "body", "Four axes, monitored continuously. Climate, energy, maintenance, and protection combine into a single score. When something shifts, the system knows first.")}
           </p>
         </div>
       </section>
@@ -438,13 +436,11 @@ export default function StewardPage() {
           </span>
 
           <h2 className="font-hearth-sans font-light text-[clamp(28px,3.6vw,40px)] leading-[1.1] text-house-cream mb-4">
-            Register your interest.
+            {cms(s("register-section"), "headline", "Register your interest.")}
           </h2>
 
           <p className="font-hearth-sans text-[15px] leading-[1.6] text-house-cream/65 mb-10">
-            Steward capacity is limited by geography and team size. We&apos;re
-            onboarding waitlist members first. We&apos;ll write when it opens in
-            your area.
+            {cms(s("register-section"), "body", "Steward capacity is limited by geography and team size. We\u2019re onboarding waitlist members first. We\u2019ll write when it opens in your area.")}
           </p>
 
           <WaitlistMini

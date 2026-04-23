@@ -4,6 +4,7 @@ import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { GhostLink } from "@/components/primitives/GhostLink";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { getNewsletterBlock } from "@/lib/cms/newsletter";
+import { getPageSections, cms } from "@/lib/cms/page-sections";
 import { getPartnersByDiscipline } from "@/lib/cms/partners";
 import { LAUNCH_PARTNERS } from "@/lib/partners-data";
 import { PartnerCarousel, type PartnerCardData } from "@/components/marketing/PartnerCarousel";
@@ -116,10 +117,12 @@ const PLANS: GardenPlan[] = [
 const GARDENS_FALLBACK = [LAUNCH_PARTNERS["willow-alexander-gardens"]];
 
 export default async function GardensPage() {
-  const [nlBlock, sanityPartners] = await Promise.all([
+  const [nlBlock, sanityPartners, sections] = await Promise.all([
     getNewsletterBlock("design-gardens"),
     getPartnersByDiscipline("gardens"),
+    getPageSections("design-gardens"),
   ]);
+  const s = (name: string) => sections.get(name);
 
   /* Build partner card data for the carousel */
   const partnerCards: PartnerCardData[] = sanityPartners.length > 0
@@ -156,17 +159,13 @@ export default async function GardensPage() {
         <div className="relative z-10 px-[5vw] pb-[8vh] max-w-[880px]">
           <Eyebrow className="text-white/70">Design · Gardens</Eyebrow>
           <h1 className="font-display font-medium text-[clamp(44px,7vw,84px)] leading-[1.02] tracking-[-0.015em] text-white mt-4">
-            Garden Design
+            {cms(s("hero"), "headline", "Garden Design")}
           </h1>
           <p className="font-display italic text-[clamp(20px,2.4vw,30px)] leading-[1.3] text-white/85 mt-3">
-            A Collective of Creativity
+            {cms(s("hero"), "subheadline", "A Collective of Creativity")}
           </p>
           <p className="font-sans text-[17px] leading-[1.65] text-white/75 mt-6 max-w-[56ch]">
-            The House of Willow Alexander has always been devoted to the art of
-            living beautifully, inside and out. Our love of design, and our
-            respect for the natural world, have led us to bring together a
-            collective of exceptional landscape designers and studios under one
-            roof.
+            {cms(s("hero"), "body", "The House of Willow Alexander has always been devoted to the art of living beautifully, inside and out. Our love of design, and our respect for the natural world, have led us to bring together a collective of exceptional landscape designers and studios under one roof.")}
           </p>
           <div className="mt-8 flex items-center gap-4 flex-wrap">
             <Link
@@ -209,7 +208,7 @@ export default async function GardensPage() {
           <div className="mb-14">
             <Eyebrow>Garden Plans</Eyebrow>
             <h2 className="font-display font-medium text-[clamp(28px,3.6vw,46px)] leading-[1.1] mt-4 max-w-[24ch]">
-              Commission a <em className="italic">plan.</em>
+              {cms(s("plans"), "headline", "Commission a plan.")}
             </h2>
           </div>
 

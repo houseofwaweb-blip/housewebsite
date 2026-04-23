@@ -2,6 +2,7 @@ import Link from "next/link";
 import { CompanionPreview } from "@/components/marketing/CompanionPreview";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { getNewsletterBlock } from "@/lib/cms/newsletter";
+import { getPageSections, cms } from "@/lib/cms/page-sections";
 
 /**
  * /howa — HoWA landing page. Light mode (HoWA mode).
@@ -28,7 +29,11 @@ export const metadata = {
 };
 
 export default async function HowaLandingPage() {
-  const nlBlock = await getNewsletterBlock("howa");
+  const [nlBlock, sections] = await Promise.all([
+    getNewsletterBlock("howa"),
+    getPageSections("howa"),
+  ]);
+  const s = (name: string) => sections.get(name);
   return (
     <div className="bg-house-white text-house-brown">
 
@@ -46,15 +51,15 @@ export default async function HowaLandingPage() {
         />
 
         <span className="relative z-10 block mb-6 font-hearth-sans text-[11px] tracking-[0.22em] uppercase text-howa-teal-dark">
-          HoWA &middot; The Stewardship System
+          {cms(s("hero"), "eyebrow", "HoWA \u00b7 The Stewardship System")}
         </span>
 
         <h1 className="relative z-10 mx-auto max-w-[1000px] mb-[18px] font-hearth-sans font-light text-[clamp(48px,6vw,84px)] leading-[1.06] tracking-[-0.015em] text-house-brown">
-          The home, <em className="italic font-light text-howa-teal-dark">finally</em> known.
+          {cms(s("hero"), "headline", "The home,")} <em className="italic font-light text-howa-teal-dark">{cms(s("hero"), "headlineEm", "finally")}</em> {cms(s("hero"), "subheadline", "known.")}
         </h1>
 
         <p className="relative z-10 mx-auto max-w-[660px] mb-8 font-hearth-sans text-[17px] leading-[1.65] text-house-brown/70">
-          HoWA is the installed-per-home intelligence layer that gives the house memory, gives the homeowner calm judgement about what matters, and keeps every meaningful action tied to one living home record.
+          {cms(s("hero"), "body", "HoWA is the installed-per-home intelligence layer that gives the house memory, gives the homeowner calm judgement about what matters, and keeps every meaningful action tied to one living home record.")}
         </p>
 
         <div className="relative z-10 flex flex-wrap justify-center gap-4">
@@ -82,10 +87,10 @@ export default async function HowaLandingPage() {
               The House
             </span>
             <h2 className="font-hearth-sans font-light text-[32px] leading-[1.15] tracking-[-0.01em] text-house-brown mb-4">
-              Institution. Taste. Trust.
+              {cms(s("system-split"), "headline", "Institution. Taste. Trust.")}
             </h2>
             <p className="font-hearth-sans text-[15px] leading-[1.7] text-house-brown/70 mb-6">
-              The House is the cultural authority — the editorial eye, the curatorial standard, the voice that defines what good looks like for a British home. It introduces the designers, the services, the products, the language.
+              {cms(s("system-split"), "body", "The House is the cultural authority \u2014 the editorial eye, the curatorial standard, the voice that defines what good looks like for a British home. It introduces the designers, the services, the products, the language.")}
             </p>
             <ul className="space-y-2">
               {["Brand & editorial authority", "Curated partners & services", "Design philosophy & taste", "Trust architecture"].map((pt) => (
@@ -103,10 +108,10 @@ export default async function HowaLandingPage() {
               HoWA
             </span>
             <h2 className="font-hearth-sans font-light text-[32px] leading-[1.15] tracking-[-0.01em] text-house-brown mb-4">
-              System. Memory. Continuity.
+              {cms(s("system-split"), "subheadline", "System. Memory. Continuity.")}
             </h2>
             <p className="font-hearth-sans text-[15px] leading-[1.7] text-house-brown/70 mb-6">
-              HoWA is not a marketplace. It is the system that decides what should happen, when, why, and who should do it. It captures the home, recommends the right next action, connects the right hands, and remembers everything. One living record that compounds over time.
+              {cms(s("system-split"), "body2", "HoWA is not a marketplace. It is the system that decides what should happen, when, why, and who should do it. It captures the home, recommends the right next action, connects the right hands, and remembers everything. One living record that compounds over time.")}
             </p>
             <ul className="space-y-2">
               {["Home intelligence & diagnostics", "Context-aware recommendations", "Living record & continuity", "Service routing & care management"].map((pt) => (
@@ -140,7 +145,7 @@ export default async function HowaLandingPage() {
               The Companion
             </span>
             <h2 className="font-hearth-sans font-light text-[32px] leading-[1.15] tracking-[-0.01em] text-house-brown mb-5">
-              Four steps. One living record.
+              {cms(s("companion-teaser"), "headline", "Four steps. One living record.")}
             </h2>
             <div className="space-y-5">
               {[
@@ -176,10 +181,10 @@ export default async function HowaLandingPage() {
               The Dashboard
             </span>
             <h2 className="font-hearth-sans font-light text-[32px] leading-[1.15] tracking-[-0.01em] text-house-brown mb-5">
-              Everything the home knows, in one place.
+              {cms(s("dashboard"), "headline", "Everything the home knows, in one place.")}
             </h2>
             <p className="font-hearth-sans text-[15px] leading-[1.7] text-house-brown/70 mb-6">
-              A living record of what the home needs, what has been done, and what is coming next. No more folders under the stairs.
+              {cms(s("dashboard"), "body", "A living record of what the home needs, what has been done, and what is coming next. No more folders under the stairs.")}
             </p>
             <div className="border border-house-brown/10 rounded-[8px] overflow-hidden">
               <div className="px-4 py-3 border-b border-house-brown/8 bg-howa-paper/60">
@@ -244,7 +249,7 @@ export default async function HowaLandingPage() {
       {/* ── 5. Transition band ── */}
       <section className="bg-howa-paper text-center px-[5vw] py-14">
         <p className="mx-auto max-w-[600px] font-hearth-serif italic text-[22px] leading-[1.4] text-house-brown mb-4">
-          The House introduces. HoWA configures.
+          {cms(s("transition-band"), "body", "The House introduces. HoWA configures.")}
         </p>
         <div className="mx-auto w-[60px] h-[2px]" style={{ background: "var(--house-gold-dark)" }} />
       </section>
@@ -496,11 +501,11 @@ export default async function HowaLandingPage() {
       {/* ── 8. Closing CTA ── */}
       <section className="bg-house-white text-center px-[5vw] py-[72px]">
         <p className="mx-auto max-w-[640px] mb-4 font-hearth-serif italic text-[22px] leading-[1.45] text-house-brown">
-          For homes with soul, proper care should never be left to memory alone.
+          {cms(s("closing-cta"), "headline", "For homes with soul, proper care should never be left to memory alone.")}
         </p>
         <p className="mx-auto max-w-[640px] mb-8 font-hearth-sans text-[15px] text-house-brown/70">
-          The House defines what good looks like.{" "}
-          <span style={{ color: "var(--house-gold-dark)" }}>HoWA ensures it happens.</span>
+          {cms(s("closing-cta"), "body", "The House defines what good looks like.")}{" "}
+          <span style={{ color: "var(--house-gold-dark)" }}>{cms(s("closing-cta"), "body2", "HoWA ensures it happens.")}</span>
         </p>
         <Link
           href="/api/howa-bounce?source=howa-footer"

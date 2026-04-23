@@ -3,6 +3,7 @@ import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { StateBadge } from "@/components/primitives/StateBadge";
 import { GhostLink } from "@/components/primitives/GhostLink";
 import { CompanionTry } from "@/components/marketing/CompanionTry";
+import { getPageSections, cms } from "@/lib/cms/page-sections";
 
 export const metadata = {
   title: "The Companion",
@@ -26,7 +27,10 @@ const EXAMPLES = [
   { issue: "Small round holes in a roof beam", answer: "Likely woodworm exit holes (common furniture beetle). If the holes have fresh dust (frass), the infestation is active. Typical treatment: \u00a3200\u2013400 per room.", next: "Fresh frass confirmed. Specialist booked at member rate. Treatment done, certificate filed to the record." },
 ];
 
-export default function CompanionPage() {
+export default async function CompanionPage() {
+  const sections = await getPageSections("howa-companion");
+  const s = (name: string) => sections.get(name);
+
   return (
     <article className="bg-house-cream text-house-brown">
       {/* Hero */}
@@ -34,10 +38,10 @@ export default function CompanionPage() {
         <div className="max-w-[880px] mx-auto">
           <Eyebrow>HoWA \u00b7 The Companion</Eyebrow>
           <h1 className="em-accent font-display font-medium text-[clamp(44px,6vw,76px)] leading-[1.05] tracking-[-0.01em] mt-4">
-            The question you&apos;d ask <em>a surveyor</em>, answered.
+            {cms(s("hero"), "headline", "The question you\u2019d ask")} <em>{cms(s("hero"), "headlineEm", "a surveyor")}</em>{cms(s("hero"), "subheadline", ", answered.")}
           </h1>
           <p className="font-sans text-[19px] leading-[1.6] text-house-brown/70 mt-6 max-w-[60ch]">
-            The Companion is the root diagnostic and intake layer. It captures the home once, then routes intelligently into Design, Services, Protect, and ongoing care. Calm, specific, honest about what it doesn&apos;t know.
+            {cms(s("hero"), "body", "The Companion is the root diagnostic and intake layer. It captures the home once, then routes intelligently into Design, Services, Protect, and ongoing care. Calm, specific, honest about what it doesn\u2019t know.")}
           </p>
           <p className="font-sans text-[16px] leading-[1.6] text-house-brown/70 mt-4 max-w-[56ch]">
             Not another chatbot. A diagnostic built for British homes. The output saves to the home record even before purchase. Insight first, action second. Guidance before transaction.

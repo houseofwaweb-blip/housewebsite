@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { GhostLink } from "@/components/primitives/GhostLink";
+import { getPageSections, cms } from "@/lib/cms/page-sections";
 
 /**
  * /the-house/artwork — The Artwork of the House.
@@ -119,7 +120,10 @@ const INTERSTITIALS: Array<{ src: string; alt: string; after: number; tall?: boo
   { src: `${SANITY_CDN}/18c9c9c68b82697b3a4c73a8d20c1a762c435ff5-2640x1073.png?w=1400&auto=format`, alt: "Hand-drawn icons from the early brand archive", after: 6 },
 ];
 
-export default function ArtworkPage() {
+export default async function ArtworkPage() {
+  const sections = await getPageSections("the-house-artwork");
+  const s = (name: string) => sections.get(name);
+
   return (
     <article>
       {/* Hero — full-bleed, pattern-backed */}
@@ -143,16 +147,14 @@ export default function ArtworkPage() {
             className="font-display font-medium leading-[1.04] tracking-[-0.015em] text-house-cream mb-8"
             style={{ fontSize: "clamp(44px, 6vw, 72px)" }}
           >
-            The Artwork of the House
+            {cms(s("hero"), "headline", "The Artwork of the House")}
           </h1>
           <p className="font-display italic text-[clamp(18px,2.2vw,24px)] leading-[1.5] text-house-cream/80 mb-6">
             A design-led story of heritage, craft, colour, and British domestic beauty.
           </p>
           <div className="w-16 h-px mx-auto bg-house-gold-light/50" />
           <p className="font-sans text-[15px] leading-[1.7] text-house-cream/65 mt-8 max-w-[52ch] mx-auto">
-            The House of Willow Alexander was not branded — it was cultivated.
-            Rooted in family, shaped by literature, inspired by botanical craft,
-            and carried through colour, pattern, and story.
+            {cms(s("hero"), "body", "The House of Willow Alexander was not branded — it was cultivated. Rooted in family, shaped by literature, inspired by botanical craft, and carried through colour, pattern, and story.")}
           </p>
         </div>
       </section>

@@ -4,6 +4,7 @@ import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { GhostLink } from "@/components/primitives/GhostLink";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { getNewsletterBlock } from "@/lib/cms/newsletter";
+import { getPageSections, cms } from "@/lib/cms/page-sections";
 import { getPartnersByDiscipline } from "@/lib/cms/partners";
 import { LAUNCH_PARTNERS } from "@/lib/partners-data";
 import { PartnerCarousel, type PartnerCardData } from "@/components/marketing/PartnerCarousel";
@@ -97,10 +98,12 @@ const INTERIORS_FALLBACK = [
 ];
 
 export default async function InteriorsPage() {
-  const [nlBlock, sanityPartners] = await Promise.all([
+  const [nlBlock, sanityPartners, sections] = await Promise.all([
     getNewsletterBlock("design-interiors"),
     getPartnersByDiscipline("interiors"),
+    getPageSections("design-interiors"),
   ]);
+  const s = (name: string) => sections.get(name);
 
   /* Build partner card data for the carousel */
   const partnerCards: PartnerCardData[] = sanityPartners.length > 0
@@ -137,17 +140,13 @@ export default async function InteriorsPage() {
         <div className="relative z-10 px-[5vw] pb-[8vh] max-w-[880px]">
           <Eyebrow className="text-white/70">Design · Interiors</Eyebrow>
           <h1 className="font-display font-medium text-[clamp(44px,7vw,84px)] leading-[1.02] tracking-[-0.015em] text-white mt-4">
-            Interior Design
+            {cms(s("hero"), "headline", "Interior Design")}
           </h1>
           <p className="font-display italic text-[clamp(20px,2.4vw,30px)] leading-[1.3] text-white/85 mt-3">
-            Consciously Designed Interiors
+            {cms(s("hero"), "subheadline", "Consciously Designed Interiors")}
           </p>
           <p className="font-sans text-[17px] leading-[1.65] text-white/75 mt-6 max-w-[56ch]">
-            At the House of Willow Alexander, we believe that interiors are
-            living expressions of the people who inhabit them. Our love of
-            design — and our devotion to craftsmanship — has led us to bring
-            together a collective of interior designers and makers who share a
-            single philosophy: beauty, balance, and intention.
+            {cms(s("hero"), "body", "At the House of Willow Alexander, we believe that interiors are living expressions of the people who inhabit them. Our love of design — and our devotion to craftsmanship — has led us to bring together a collective of interior designers and makers who share a single philosophy: beauty, balance, and intention.")}
           </p>
           <div className="mt-8 flex items-center gap-4 flex-wrap">
             <Link
@@ -190,7 +189,7 @@ export default async function InteriorsPage() {
           <div className="mb-14">
             <Eyebrow>Digital Plans</Eyebrow>
             <h2 className="font-display font-medium text-[clamp(28px,3.6vw,46px)] leading-[1.1] mt-4 max-w-[20ch]">
-              Three ways to <em className="italic">begin.</em>
+              {cms(s("plans"), "headline", "Three ways to begin.")}
             </h2>
           </div>
 

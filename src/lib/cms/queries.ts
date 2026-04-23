@@ -218,6 +218,21 @@ export const musingBySlugQuery = /* groq */ `*[_type == "musing" && slug.current
   title, "slug": slug.current, lede, body, publishedAt, hero, seo
 }`;
 
+// ─── Page sections (CMS-controlled content blocks) ───────────────────────
+export const pageSectionsQuery = /* groq */ `*[_type == "pageSection" && page == $page]{
+  section, eyebrow, headline, headlineEm, subheadline, body, body2,
+  items, ctaLabel, ctaHref, cta2Label, cta2Href, caption,
+  "imageUrl": image.asset->url,
+  "imageAlt": image.alt
+}`;
+
+export const pageSectionQuery = /* groq */ `*[_type == "pageSection" && page == $page && section == $section][0]{
+  section, eyebrow, headline, headlineEm, subheadline, body, body2,
+  items, ctaLabel, ctaHref, cta2Label, cta2Href, caption,
+  "imageUrl": image.asset->url,
+  "imageAlt": image.alt
+}`;
+
 // ─── Newsletter blocks ────────────────────────────────────────────────────
 export const newsletterBlockByPlacementQuery = /* groq */ `*[_type == "newsletterBlock" && placement == $placement][0]{
   placement, variant, eyebrow, headline, body,

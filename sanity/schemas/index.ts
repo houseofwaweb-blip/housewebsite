@@ -19,6 +19,7 @@ import { redirect } from "./redirect";
 import testimonial from "./testimonial";
 import howaFeature from "./howaFeature";
 import { newsletterBlock } from "./newsletterBlock";
+import { pageSection } from "./pageSection";
 
 import { seo } from "./objects/seo";
 import { cta } from "./objects/cta";
@@ -54,6 +55,7 @@ export const schemaTypes = [
   testimonial,
   howaFeature,
   newsletterBlock,
+  pageSection,
   seo,
   cta,
   heroBlock,

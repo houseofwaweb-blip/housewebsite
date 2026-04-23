@@ -5,6 +5,7 @@ import { WaitlistMini } from "@/components/marketing/WaitlistMini";
 import { env } from "@/lib/env";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { getNewsletterBlock } from "@/lib/cms/newsletter";
+import { getPageSections, cms } from "@/lib/cms/page-sections";
 
 export const metadata = {
   title: "Protect",
@@ -13,7 +14,11 @@ export const metadata = {
 };
 
 export default async function ProtectPage() {
-  const nlBlock = await getNewsletterBlock("protect");
+  const [nlBlock, sections] = await Promise.all([
+    getNewsletterBlock("protect"),
+    getPageSections("protect"),
+  ]);
+  const s = (name: string) => sections.get(name);
   return (
     <article className="bg-house-cream text-house-brown">
       {/* Hero */}
@@ -21,13 +26,10 @@ export default async function ProtectPage() {
         <div className="max-w-[880px] mx-auto">
           <Eyebrow>Protect</Eyebrow>
           <h1 className="em-accent font-display font-medium text-[clamp(44px,6vw,80px)] leading-[1.05] tracking-[-0.01em] mt-4">
-            Calm <em>prevention</em>. Proper cover.
+            {cms(s("hero"), "headline", "Calm prevention. Proper cover.")}
           </h1>
           <p className="font-sans text-[19px] leading-[1.6] text-house-brown/75 mt-6 max-w-[60ch]">
-            Two things the House takes seriously. A Protect Review that
-            documents the state of your home and flags what it quietly needs.
-            A Provenance insurance introduction for homes and collections the
-            high-street products don&apos;t quite fit.
+            {cms(s("hero"), "body", "Two things the House takes seriously. A Protect Review that documents the state of your home and flags what it quietly needs. A Provenance insurance introduction for homes and collections the high-street products don\u2019t quite fit.")}
           </p>
         </div>
       </section>
