@@ -5,9 +5,17 @@ import Image from "next/image";
  * Global footer.
  * Spec: DESIGN.md Part C · "<Footer />"
  * Carries: wordmark, nav links, contact, legal, tagline.
+ *
+ * Link columns can be overridden from Sanity via the `columns` prop.
+ * Falls back to the hardcoded COLS when no Sanity data is passed.
  */
 
-const COLS = [
+export interface FooterColumn {
+  heading: string;
+  links: Array<{ label: string; href: string }>;
+}
+
+const COLS: FooterColumn[] = [
   {
     heading: "The House",
     links: [
