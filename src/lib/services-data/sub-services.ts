@@ -188,6 +188,135 @@ export const CLEANING_SUBS: SubService[] = [
 
 export const GUTTER_CLEANING_SUBS: SubService[] = [];
 
+export const HANDYMAN_SUBS: SubService[] = [
+  {
+    slug: "furniture-assembly",
+    name: "Furniture assembly",
+    lede: "Flat-pack, beds, wardrobes, desks. Assembled properly, in the right room, packaging removed.",
+    body: "From a single bookcase to a full house of flat-pack, our handypeople arrive with the tools and patience to assemble everything correctly. We check every fitting, anchor anything that should be wall-fixed, and remove all packaging when we leave. If the instructions are missing, we don't need them.",
+    whyChoose: [
+      "Experienced with every major flat-pack brand",
+      "Wall-anchoring for heavy or tall items as standard",
+      "Packaging removed and recycled",
+      "Usually same-week availability",
+    ],
+    included: [
+      "Assembly of all flat-pack and part-assembled furniture",
+      "Wall-anchoring where safety requires it",
+      "Packaging removal and recycling",
+      "Logged in your HoWA record",
+    ],
+    faq: [
+      { q: "Can you assemble furniture I've already started?", a: "Yes. We'll assess what's been done and finish it properly." },
+      { q: "Do you supply the furniture?", a: "No, but we can collect large items from shops and assemble on the same visit." },
+    ],
+  },
+  {
+    slug: "picture-hanging",
+    name: "Picture hanging & mirror mounting",
+    lede: "Hung level, at the right height, into the right fixing. Heavy mirrors and gallery walls included.",
+    body: "Whether it's a single frame or a full gallery wall, we measure, mark, and hang with the correct fixings for the wall type. Heavy mirrors and artwork are anchored securely. We bring a laser level, a range of fixings, and the experience to know what belongs where.",
+    whyChoose: [
+      "Laser-levelled hanging for perfect alignment",
+      "Correct fixings for plasterboard, brick, or stud walls",
+      "Heavy mirrors and oversized art handled safely",
+      "Gallery wall layout service available",
+    ],
+    included: [
+      "Measuring, marking, and levelling",
+      "All fixings supplied (standard sizes)",
+      "Hanging and adjustment",
+      "Wall-type assessment for correct anchoring",
+    ],
+  },
+  {
+    slug: "shelving-installation",
+    name: "Shelving installation",
+    lede: "Floating shelves, bracketed shelves, and storage units. Level, secure, and rated for what you'll put on them.",
+  },
+  {
+    slug: "painting-and-decorating",
+    name: "Painting & decorating",
+    lede: "Touch-ups, single rooms, and feature walls. Clean edges, proper prep, dust sheets down.",
+  },
+  {
+    slug: "tv-wall-mounting",
+    name: "TV wall mounting",
+    lede: "Secure bracket fitting, cable management, and tidy finish. All screen sizes, all wall types.",
+  },
+  {
+    slug: "door-hanging",
+    name: "Door hanging & lock changes",
+    lede: "Internal doors hung, external locks changed, handles replaced. Measured, fitted, and finished.",
+  },
+  {
+    slug: "general-repairs",
+    name: "General repairs",
+    lede: "Cupboard doors, toilet seats, shower screens, window handles, and the jobs that pile up. One visit, all done.",
+  },
+  {
+    slug: "baby-proofing",
+    name: "Baby-proofing",
+    lede: "Stair gates, corner guards, socket covers, and furniture anchoring. A safe home before the crawling starts.",
+  },
+  {
+    slug: "jet-washing",
+    name: "Jet washing",
+    lede: "Paths, patios, driveways, and decking. Professional equipment, controlled pressure, no surface damage.",
+  },
+];
+
+export const REMOVALS_SUBS: SubService[] = [
+  {
+    slug: "small-house-move",
+    name: "Small house move",
+    lede: "Flats, studios, and one-bed moves. Load, transport, unload. Blanket-wrapped, fully insured.",
+    body: "Our small move service covers everything from a studio flat to a one-bedroom home. A two-person team loads, transports, and unloads your belongings with blanket wrapping for all furniture. Beds and tables are dismantled and reassembled. Everything is insured in transit. We arrive on time, in uniform, and leave the new place ready to live in.",
+    whyChoose: [
+      "Two-person team with a clean, carbon-neutral van",
+      "Blanket wrapping and furniture protection included",
+      "Dismantling and reassembly of beds and tables",
+      "Fully insured in transit with certification on request",
+    ],
+    included: [
+      "Full load and unload at both ends",
+      "Blanket wrapping for all furniture",
+      "Dismantling and reassembly of key items",
+      "Transit insurance for all items",
+      "Logged in your HoWA record",
+    ],
+    faq: [
+      { q: "How long does a small move take?", a: "Most small moves are completed in half a day. We'll confirm timing at quoting stage based on volume and distance." },
+      { q: "Can I add packing to a small move?", a: "Yes. Let us know which items you'd like us to pack and we'll include it in the quote." },
+    ],
+  },
+  {
+    slug: "large-item-collection",
+    name: "Large item shop collection",
+    lede: "We collect from the shop and deliver to your door. Sofas, appliances, and anything that won't fit in the car.",
+  },
+  {
+    slug: "local-pick-up-drop-off",
+    name: "Local pick-up & drop-off",
+    lede: "Single items or small loads moved across London and Kent. Flexible scheduling, same-week availability.",
+  },
+  {
+    slug: "moving-to-storage",
+    name: "Moving items to storage",
+    lede: "We load, transport, and place your items in storage. Coordination with your facility included.",
+  },
+  {
+    slug: "home-organising",
+    name: "Home organising",
+    lede: "Pre-move declutter or post-move setup. Lofts, garages, wardrobes, and the rooms that need thinking through.",
+  },
+  {
+    slug: "packing-service",
+    name: "Packing service",
+    lede: "Full or partial packing by our team. Boxes, wrapping, labelling, and careful handling of fragile items.",
+  },
+];
+
 export const SERVICE_TRUST_BADGES = [
   "House & Garden 'The List'",
   "Guild of Master Craftsmen",

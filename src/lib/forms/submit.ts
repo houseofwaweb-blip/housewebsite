@@ -86,7 +86,15 @@ export async function handleFormSubmission(
   }
 
   const supabase = getSupabaseAnonClient();
-  const { error } = await supabase.from(entry.table).insert(row);
+  let { error } = await supabase.from(entry.table).insert(row);
+
+  // If name column doesn't exist yet, retry without it
+  if (error && entry.table === "newsletter_subscribers" && error.code === "PGRST204") {
+    delete row.name;
+    const retry = await supabase.from(entry.table).insert(row);
+    error = retry.error;
+  }
+
   if (error) {
     // Unique violation on newsletter is fine (already subscribed).
     if (entry.table === "newsletter_subscribers" && error.code === "23505") {

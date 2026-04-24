@@ -90,12 +90,14 @@ const PLACEHOLDER_PARTNERS: Record<string, PartnerCardData[]> = {
 };
 
 export function ServiceDetail({ service: s }: { service: Service }) {
-  const partnerName = {
+  const partnerName = ({
     gardening: "gardeners",
     "window-cleaning": "window cleaners",
     cleaning: "cleaners",
     "gutter-cleaning": "gutter specialists",
-  }[s.slug] ?? "partners";
+    handyman: "handypeople",
+    removals: "movers",
+  } as Record<string, string>)[s.slug] ?? "partners";
 
   return (
     <article className="bg-house-cream text-house-brown">
