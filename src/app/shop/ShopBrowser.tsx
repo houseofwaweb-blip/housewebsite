@@ -117,6 +117,7 @@ export function ShopBrowser({
   const [inStockOnly, setInStockOnly] = React.useState(false);
   const [approvedOnly, setApprovedOnly] = React.useState(false);
   const [transitioning, setTransitioning] = React.useState(false);
+  const [gridView, setGridView] = React.useState<"standard" | "3x3" | "4x4">("standard");
   const prevFilterRef = React.useRef("");
 
   function toggleSet<T>(set: Set<T>, value: T): Set<T> {
@@ -328,15 +329,41 @@ export function ShopBrowser({
               </button>
             ) : null}
           </span>
-          <select
-            value={sortIdx}
-            onChange={(e) => setSortIdx(Number(e.target.value))}
-            className="font-sans text-[11px] tracking-[0.1em] uppercase text-house-stone bg-transparent border-0 cursor-pointer focus:outline-none"
-          >
-            {SORT_OPTIONS.map((o, i) => (
-              <option key={o.label} value={i}>{o.label}</option>
-            ))}
-          </select>
+          <div className="flex items-center gap-4">
+            {/* View picker */}
+            <div className="hidden lg:flex items-center gap-1.5">
+              {([
+                { id: "standard" as const, label: "Standard", icon: "▦" },
+                { id: "3x3" as const, label: "3×3", icon: "▣" },
+                { id: "4x4" as const, label: "4×4", icon: "⊞" },
+              ]).map((v) => (
+                <button
+                  key={v.id}
+                  type="button"
+                  onClick={() => setGridView(v.id)}
+                  title={v.label}
+                  className={cn(
+                    "w-7 h-7 flex items-center justify-center text-[14px] border transition-all duration-[var(--t-base)] cursor-pointer",
+                    gridView === v.id
+                      ? "border-[var(--house-gold-dark)] text-[var(--house-gold-dark)] bg-[var(--house-gold-dark)]/5"
+                      : "border-house-brown/10 text-house-brown/35 hover:border-house-brown/25 hover:text-house-brown/55 bg-transparent",
+                  )}
+                >
+                  {v.icon}
+                </button>
+              ))}
+            </div>
+
+            <select
+              value={sortIdx}
+              onChange={(e) => setSortIdx(Number(e.target.value))}
+              className="font-sans text-[11px] tracking-[0.1em] uppercase text-house-brown/70 bg-transparent border-0 cursor-pointer focus:outline-none"
+            >
+              {SORT_OPTIONS.map((o, i) => (
+                <option key={o.label} value={i}>{o.label}</option>
+              ))}
+            </select>
+          </div>
         </div>
 
         {/* Products */}
@@ -356,7 +383,11 @@ export function ShopBrowser({
         ) : (
           <div
             className={cn(
-              "grid grid-cols-2 lg:grid-cols-3 gap-5 transition-opacity duration-[var(--t-base)] ease-out",
+              "grid gap-5 transition-all duration-[var(--t-base)] ease-out",
+              gridView === "4x4" ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4" :
+              gridView === "3x3" ? "grid-cols-2 lg:grid-cols-3" :
+              "grid-cols-2 lg:grid-cols-3",
+              gridView === "4x4" && "gap-3",
               transitioning ? "opacity-0" : "opacity-100",
             )}
           >
@@ -369,13 +400,13 @@ export function ShopBrowser({
                   "transition-all duration-[var(--t-slow)] ease-out",
                   "hover:border-house-gold hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(48,35,28,0.08)]",
                   "[animation:howa-slide-in_var(--t-xslow)_var(--ease-out)_both]",
-                  i === 0 && !search && activeCollections.size === 0 && activeBrands.size === 0 && "lg:col-span-2",
+                  i === 0 && gridView === "standard" && !search && activeCollections.size === 0 && activeBrands.size === 0 && "lg:col-span-2",
                 )}
                 style={{ animationDelay: `${Math.min(i * 40, 400)}ms` }}
               >
                 <div className={cn(
                   "relative overflow-hidden bg-house-cream",
-                  i === 0 && !search && activeCollections.size === 0 && activeBrands.size === 0 ? "aspect-[8/5]" : "aspect-[4/5]",
+                  i === 0 && gridView === "standard" && !search && activeCollections.size === 0 && activeBrands.size === 0 ? "aspect-[8/5]" : gridView === "4x4" ? "aspect-square" : "aspect-[4/5]",
                 )}>
                   <Image
                     src={p.image}
@@ -395,11 +426,11 @@ export function ShopBrowser({
                     </span>
                   ) : null}
                 </div>
-                <div className="px-4 py-3.5">
-                  <div className="font-sans text-[9px] tracking-[0.18em] uppercase text-house-gold mb-0.5">
+                <div className={cn("px-4 py-3.5", gridView === "4x4" && "px-3 py-2.5")}>
+                  <div className={cn("font-sans tracking-[0.18em] uppercase mb-0.5", gridView === "4x4" ? "text-[8px] text-house-brown/50" : "text-[9px] text-[var(--house-gold-dark)]")}>
                     {p.collection}
                   </div>
-                  <div className="font-display font-medium text-[15px] text-house-brown group-hover:text-house-gold transition-colors duration-[var(--t-base)] mb-0.5">
+                  <div className={cn("font-display font-medium text-house-brown group-hover:text-[var(--house-gold-dark)] transition-colors duration-[var(--t-base)] mb-0.5", gridView === "4x4" ? "text-[13px]" : "text-[15px]")}>
                     {p.title}
                   </div>
                   {p.brand ? (
