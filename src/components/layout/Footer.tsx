@@ -63,12 +63,20 @@ const COLS: FooterColumn[] = [
   },
 ];
 
-export function Footer() {
+export interface FooterProps {
+  columns?: FooterColumn[];
+  tagline?: string;
+}
+
+export function Footer({ columns, tagline }: FooterProps) {
+  const cols = columns && columns.length > 0 ? columns : COLS;
+  const tag = tagline || "Ownership is passive. Stewardship is intentional.";
+
   return (
     <footer className="bg-house-brown text-house-cream px-[5vw] py-16 mt-auto">
       <div className="max-w-[1280px] mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 pb-12 border-b border-[rgba(245,240,232,0.12)]">
-          {COLS.map((col) => (
+          {cols.map((col) => (
             <div key={col.heading}>
               <h4 className="font-sans text-[10px] tracking-[0.24em] uppercase text-house-gold-light mb-4">
                 {col.heading}
@@ -100,7 +108,7 @@ export function Footer() {
             />
           </Link>
           <div className="font-sans italic text-[14px] text-house-cream/70">
-            Ownership is passive. Stewardship is intentional.
+            {tag}
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@ import { didot, effra, cormorant, jost } from "@/lib/fonts";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/lib/seo/jsonLd";
 import { env } from "@/lib/env";
 import { Header } from "@/components/layout/Header";
-import { getNavigation } from "@/lib/cms/navigation";
+import { getNavigation, getFooterColumns } from "@/lib/cms/navigation";
 import { Footer } from "@/components/layout/Footer";
 import { CartProvider } from "@/components/commerce/CartContext";
 import { CartToast } from "@/components/commerce/CartToast";
@@ -62,7 +62,10 @@ export const metadata: Metadata = {
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const nav = await getNavigation();
+  const [nav, footerCols] = await Promise.all([
+    getNavigation(),
+    getFooterColumns(),
+  ]);
   return (
     <html
       lang="en-GB"
@@ -79,7 +82,7 @@ export default async function RootLayout({
           </a>
           <Header ctaLabel={ctaLabel} ctaHref={ctaHref} nav={nav} />
           <main id="main">{children}</main>
-          <Footer />
+          <Footer columns={footerCols} />
           <CartToast />
           <CartDrawer />
         </CartProvider>

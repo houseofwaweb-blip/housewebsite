@@ -2,6 +2,7 @@ import { sanityFetch } from "./fetch";
 import { navigationQuery } from "./queries";
 import { PRIMARY_NAV } from "@/components/layout/navConfig";
 import type { MegaPanel } from "@/components/nav/MegaMenu";
+import type { FooterColumn } from "@/components/layout/Footer";
 
 interface SanityNavPanel {
   trigger: string;
@@ -24,6 +25,10 @@ interface SanityNavPanel {
 
 interface SanityNav {
   primaryNav?: SanityNavPanel[];
+  footerGroups?: Array<{
+    heading?: string;
+    items?: Array<{ label: string; href: string }>;
+  }>;
 }
 
 /**
@@ -64,5 +69,25 @@ export async function getNavigation(): Promise<MegaPanel[]> {
     }));
   } catch {
     return PRIMARY_NAV;
+  }
+}
+
+/**
+ * Fetch footer columns from Sanity. Returns undefined if no data
+ * (Footer component uses hardcoded fallback).
+ */
+export async function getFooterColumns(): Promise<FooterColumn[] | undefined> {
+  try {
+    const data = await sanityFetch<SanityNav | null>({
+      query: navigationQuery,
+      tags: ["navigation"],
+    });
+    if (!data?.footerGroups?.length) return undefined;
+    return data.footerGroups.map((g) => ({
+      heading: g.heading ?? "",
+      links: (g.items ?? []).map((l) => ({ label: l.label, href: l.href })),
+    }));
+  } catch {
+    return undefined;
   }
 }
