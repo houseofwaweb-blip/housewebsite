@@ -50,19 +50,19 @@ const PLACEHOLDER_GALLERY: Record<string, GalleryImage[]> = {
     { src: `${SANITY_CDN}/af45facea4d6320a56b52c75b39083cc92191ee9-959x1200.jpg?w=800&auto=format`, alt: "Autumn garden clearance — collecting leaves on a pristine lawn with hydrangeas", caption: "London · Autumn 2024" },
   ],
   "window-cleaning": [
-    { src: "/partners/project-1.jpg", alt: "Georgian sash restoration clean", caption: "Notting Hill · 2025" },
-    { src: "/partners/project-3.jpg", alt: "Full-house exterior clean", caption: "Chelsea · 2024" },
-    { src: "/partners/project-5.jpg", alt: "Commercial frontage clean", caption: "Fulham · 2024" },
+    { src: "/services/photos/window-cleaning.jpg", alt: "Pure water window cleaning in London — streak-free finish", caption: "London · 2025" },
+    { src: "/services/photos/window-cleaner-van.jpg", alt: "Willow Alexander window cleaner with branded electric van", caption: "London · 2025" },
+    { src: "/services/subbrands/window-cleaner.jpg", alt: "Professional window cleaning equipment — spray bottle and squeegee", caption: "Brand · 2025" },
   ],
   cleaning: [
-    { src: "/partners/project-2.jpg", alt: "End-of-tenancy deep clean", caption: "Kensington · 2025" },
-    { src: "/partners/project-4.jpg", alt: "Post-renovation dust removal", caption: "Hampstead · 2024" },
-    { src: "/partners/project-6.jpg", alt: "Seasonal spring clean", caption: "Dulwich · 2024" },
+    { src: "/services/photos/cleaner-shower.jpg", alt: "Professional cleaner at work — bathroom cleaning", caption: "London · 2025" },
+    { src: "/services/photos/cleaner-team.jpg", alt: "Willow Alexander cleaning team on site", caption: "London · 2025" },
+    { src: "/services/subbrands/cleaners.jpg", alt: "House-approved cleaning products — brush, cloth, spray", caption: "Brand · 2025" },
   ],
   "gutter-cleaning": [
-    { src: "/partners/project-1.jpg", alt: "Vacuum-pole gutter clear", caption: "Bromley · 2025" },
-    { src: "/partners/project-5.jpg", alt: "Before and after — fascia and gutter", caption: "Blackheath · 2024" },
-    { src: "/partners/project-3.jpg", alt: "Downpipe inspection", caption: "Greenwich · 2024" },
+    { src: "/services/photos/gutter-cleaning-skyvac.jpg", alt: "SkyVac gutter cleaning on a two-storey house — ladder-free", caption: "London · 2025" },
+    { src: "/services/photos/skyvac-kit.jpg", alt: "SkyVac professional gutter vacuum equipment", caption: "London · 2025" },
+    { src: "/services/photos/window-cleaner-van.jpg", alt: "Willow Alexander exterior cleaning team", caption: "London · 2025" },
   ],
 };
 
