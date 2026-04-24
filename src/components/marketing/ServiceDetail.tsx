@@ -50,9 +50,11 @@ const PLACEHOLDER_GALLERY: Record<string, GalleryImage[]> = {
     { src: `${SANITY_CDN}/af45facea4d6320a56b52c75b39083cc92191ee9-959x1200.jpg?w=800&auto=format`, alt: "Autumn garden clearance — collecting leaves on a pristine lawn with hydrangeas", caption: "London · Autumn 2024" },
   ],
   "window-cleaning": [
-    { src: "/services/photos/window-cleaning.jpg", alt: "Pure water window cleaning in London — streak-free finish", caption: "London · 2025" },
-    { src: "/services/photos/window-cleaner-van.jpg", alt: "Willow Alexander window cleaner with branded electric van", caption: "London · 2025" },
-    { src: "/services/subbrands/window-cleaner.jpg", alt: "Professional window cleaning equipment — spray bottle and squeegee", caption: "Brand · 2025" },
+    { src: `${SANITY_CDN}/dd4a81d0c429f7d842cf381c90924a468e4f7442-673x1200.jpg?w=800&auto=format`, alt: "Window cleaner using pole and reach pure water system on upper floor windows", caption: "London · 2025" },
+    { src: `${SANITY_CDN}/d8243533e772e70fe271bfc38a203b5b3c7104c7-673x1200.jpg?w=800&auto=format`, alt: "Close-up window cleaning with pure water brush on sash window", caption: "London · 2025" },
+    { src: `${SANITY_CDN}/8ce7f0db8225de466e1a115c0b3f9260cbad5d6c-1200x675.jpg?w=800&auto=format`, alt: "Cleaning upper floor windows from the ground with extended pole", caption: "London · 2025" },
+    { src: `${SANITY_CDN}/5e7cf91c45e86f2238d51e235387fcc87e8ae292-1200x675.jpg?w=800&auto=format`, alt: "Sash window cleaning detail — period property", caption: "London · 2025" },
+    { src: `${SANITY_CDN}/fb67ee8c708b1c83fde8f78c6ff9b9cee1432014-1200x673.jpg?w=800&auto=format`, alt: "Window cleaning equipment and technique detail", caption: "London · 2025" },
   ],
   cleaning: [
     { src: "/services/photos/cleaner-shower.jpg", alt: "Professional cleaner at work — bathroom cleaning", caption: "London · 2025" },
@@ -60,9 +62,11 @@ const PLACEHOLDER_GALLERY: Record<string, GalleryImage[]> = {
     { src: "/services/subbrands/cleaners.jpg", alt: "House-approved cleaning products — brush, cloth, spray", caption: "Brand · 2025" },
   ],
   "gutter-cleaning": [
-    { src: "/services/photos/gutter-cleaning-skyvac.jpg", alt: "SkyVac gutter cleaning on a two-storey house — ladder-free", caption: "London · 2025" },
-    { src: "/services/photos/skyvac-kit.jpg", alt: "SkyVac professional gutter vacuum equipment", caption: "London · 2025" },
-    { src: "/services/photos/window-cleaner-van.jpg", alt: "Willow Alexander exterior cleaning team", caption: "London · 2025" },
+    { src: `${SANITY_CDN}/fde93d8c1e388b58d0dd95a85932d7f3bad83259-960x1200.jpg?w=800&auto=format`, alt: "Gutter cleaning with extended SkyVac pole — reaching the gutterline from ground level", caption: "London · 2025" },
+    { src: `${SANITY_CDN}/69028fc7840329f2d13173c7f705fbdef782f07f-960x1200.jpg?w=800&auto=format`, alt: "Clearing downpipe and drainpipe with SkyVac equipment", caption: "London · 2025" },
+    { src: `${SANITY_CDN}/3426645b6d109b9edf1f73381aa0dc6d10ff4dbd-1200x675.jpg?w=800&auto=format`, alt: "Gutter cleaning specialist with equipment — portrait", caption: "London · 2025" },
+    { src: `${SANITY_CDN}/d368d318d28d29dd61b4117cda2bd3f02d0f3ca2-1200x675.jpg?w=800&auto=format`, alt: "Gutter vacuum in action — safe ground-level clearing", caption: "London · 2025" },
+    { src: `${SANITY_CDN}/499109536f10f52e8b6e94d03909243575e30b87-673x1200.jpg?w=800&auto=format`, alt: "Gutter clearing on a two-storey property", caption: "London · 2025" },
   ],
 };
 

@@ -152,7 +152,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
     name: "Window cleaning",
     lede: "Pole and reach pure water system, powered by our carbon-neutral electric fleet. No ladders, no squeegees, no streaks. Federation of Window Cleaners certified.",
     eyebrow: "Services · Window cleaning",
-    heroImage: "/services/photos/window-cleaning.jpg",
+    heroImage: "https://cdn.sanity.io/images/a9t8u8nh/production/1ff50883ce4a22b5a283e0808c5c324aaa45610d-960x1200.jpg?w=1920&auto=format",
     headline: "Light, properly let in.",
     sections: {
       included: [
@@ -291,7 +291,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
     name: "Gutter cleaning",
     lede: "SkyVac gutter cleaning system with camera-guided inspection. Clears blockages, debris, leaves, moss, and bird mess. Safe and ladder-free from the ground.",
     eyebrow: "Services · Gutter cleaning",
-    heroImage: "/services/photos/gutter-cleaning-skyvac.jpg",
+    heroImage: "https://cdn.sanity.io/images/a9t8u8nh/production/fde93d8c1e388b58d0dd95a85932d7f3bad83259-960x1200.jpg?w=1920&auto=format",
     headline: "A small job that saves a large one.",
     sections: {
       included: [
