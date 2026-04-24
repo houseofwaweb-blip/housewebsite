@@ -69,6 +69,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en-GB"
+      data-scroll-behavior="smooth"
       className={`${didot.variable} ${effra.variable} ${cormorant.variable} ${jost.variable}`}
     >
       <head>

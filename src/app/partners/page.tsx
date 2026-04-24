@@ -53,11 +53,11 @@ const SUBBRAND_TILES = [
   { slug: "gardeners", name: "Gardeners", image: "/services/subbrands/gardeners.jpg", href: "/services/gardening" },
   { slug: "cleaners", name: "Cleaners", image: "/services/subbrands/cleaners.jpg", href: "/services/cleaning" },
   { slug: "window-cleaners", name: "Window\nCleaners", image: "/services/subbrands/window-cleaner.jpg", href: "/services/window-cleaning" },
-  { slug: "handyman", name: "Handyman", image: "/services/subbrands/handyman.jpg", href: "/services/gardening" },
-  { slug: "housekeeping", name: "Housekeeping", image: "/services/subbrands/housekeeping.jpg", href: "/services/cleaning" },
-  { slug: "removals", name: "Removals", image: "/services/subbrands/removals.jpg", href: "/services/gardening" },
-  { slug: "electrical", name: "Electrical", image: "/services/subbrands/electrical.jpg", href: "/services/gardening" },
-  { slug: "dog-walking", name: "Dog\nWalking", image: "/services/subbrands/dog-walking.jpg", href: "/services/gardening" },
+  { slug: "handyman", name: "Handyman", image: "/services/subbrands/handyman.jpg", href: "/services/handyman" },
+  { slug: "housekeeping", name: "Housekeeping", image: "/services/subbrands/housekeeping.jpg", href: "/services" },
+  { slug: "removals", name: "Removals", image: "/services/subbrands/removals.jpg", href: "/services/removals" },
+  { slug: "electrical", name: "Electrical", image: "/services/subbrands/electrical.jpg", href: "/services" },
+  { slug: "dog-walking", name: "Dog\nWalking", image: "/services/subbrands/dog-walking.jpg", href: "/services" },
 ];
 
 export default async function PartnersHub() {

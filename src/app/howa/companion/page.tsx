@@ -36,7 +36,7 @@ export default async function CompanionPage() {
       {/* Hero */}
       <section className="px-[5vw] pt-[12vh] pb-16">
         <div className="max-w-[880px] mx-auto">
-          <Eyebrow>HoWA \u00b7 The Companion</Eyebrow>
+          <Eyebrow>HoWA &middot; The Companion</Eyebrow>
           <h1 className="em-accent font-display font-medium text-[clamp(44px,6vw,76px)] leading-[1.05] tracking-[-0.01em] mt-4">
             {cms(s("hero"), "headline", "The question you\u2019d ask")} <em>{cms(s("hero"), "headlineEm", "a surveyor")}</em>{cms(s("hero"), "subheadline", ", answered.")}
           </h1>
