@@ -80,7 +80,7 @@ export type ConsultationBookingInput = z.input<typeof consultationBookingSchema>
 export type ConsultationBookingOutput = z.output<typeof consultationBookingSchema>;
 
 // ---------------------------------------------------------------------------
-// Waitlist (Steward / Protect Review / Insurance / HoWA app / other)
+// Waitlist (Steward / Home Protection Review / Insurance / HoWA app / other)
 // ---------------------------------------------------------------------------
 export const waitlistInterestSchema = z.object({
   email,

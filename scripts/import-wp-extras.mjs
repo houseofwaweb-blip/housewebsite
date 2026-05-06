@@ -1,17 +1,19 @@
 #!/usr/bin/env node
 /**
- * WP → Sanity importer for News + Musings.
+ * WP → Sanity importer for News + Musings + Recipes.
  *
  *   News    = WP posts filtered by category "News"  → Sanity `newsItem`
  *   Musings = WP CPT "advice"                        → Sanity `musing`
+ *   Recipes = WP CPT "recipe"                        → Sanity `recipe`
  *
  * Reuses the same HTML → Portable Text converter, image upload, and
  * idempotent ID strategy as the Hearth importer.
  *
  * Run from platform/:
- *   node scripts/import-wp-extras.mjs             # both
+ *   node scripts/import-wp-extras.mjs             # all
  *   node scripts/import-wp-extras.mjs --news      # news only
  *   node scripts/import-wp-extras.mjs --musings   # musings only
+ *   node scripts/import-wp-extras.mjs --recipes   # recipes only
  *   node scripts/import-wp-extras.mjs --dry-run
  */
 
@@ -35,25 +37,30 @@ if (fs.existsSync(envFile)) {
 const PROJECT_ID = process.env.SANITY_PROJECT_ID;
 const DATASET = process.env.SANITY_DATASET || "production";
 const TOKEN = process.env.SANITY_MANAGEMENT_TOKEN || process.env.SANITY_TOKEN;
-if (!PROJECT_ID || !TOKEN) {
-  console.error("Missing SANITY_PROJECT_ID or SANITY_MANAGEMENT_TOKEN in .env.local");
-  process.exit(1);
-}
 
 // --- flags -----------------------------------------------------------------
 const args = new Set(process.argv.slice(2));
 const DRY = args.has("--dry-run");
 const ONLY_NEWS = args.has("--news");
 const ONLY_MUSINGS = args.has("--musings");
+const ONLY_RECIPES = args.has("--recipes");
+
+if (!DRY && (!PROJECT_ID || !TOKEN)) {
+  console.error("Missing SANITY_PROJECT_ID or SANITY_MANAGEMENT_TOKEN in .env.local");
+  console.error("(Use --dry-run to preview without writes.)");
+  process.exit(1);
+}
 
 // --- Sanity client ---------------------------------------------------------
-const client = createClient({
-  projectId: PROJECT_ID,
-  dataset: DATASET,
-  apiVersion: "2024-01-01",
-  token: TOKEN,
-  useCdn: false,
-});
+const client = PROJECT_ID && TOKEN
+  ? createClient({
+      projectId: PROJECT_ID,
+      dataset: DATASET,
+      apiVersion: "2024-01-01",
+      token: TOKEN,
+      useCdn: false,
+    })
+  : null;
 
 // --- HTML decoders ---------------------------------------------------------
 const decode = (s) =>
@@ -181,6 +188,7 @@ function htmlToPortableText(html) {
 // --- image upload ----------------------------------------------------------
 async function uploadImage(url) {
   if (!url || !/^https?:\/\//i.test(url)) return null;
+  if (!client) return null;
   const existing = await client.fetch(
     '*[_type == "sanity.imageAsset" && source.name == "wp" && source.id == $url][0]',
     { url },
@@ -313,14 +321,68 @@ async function importMusings() {
   }
 }
 
+// --- RECIPES pipeline (recipe CPT) ----------------------------------------
+// Seasonal inference from publication month (UK seasons).
+const MONTH_TO_SEASON = {
+  0: "Winter", 1: "Winter", 2: "Spring", 3: "Spring", 4: "Spring",
+  5: "Summer", 6: "Summer", 7: "Summer", 8: "Autumn", 9: "Autumn",
+  10: "Autumn", 11: "Winter",
+};
+
+async function importRecipes() {
+  console.log("\n=== Recipes ===");
+  const wpItems = await fetchAll("recipe");
+  for (const wp of wpItems) {
+    const f = commonFields(wp);
+    const assetId = !DRY ? await uploadImage(f.imageUrl) : null;
+    const body = htmlToPortableText(f.body);
+
+    // Pull recipe-category taxonomy terms as tags.
+    const recipeTerms = (wp._embedded?.["wp:term"] || [])
+      .flat()
+      .filter((t) => t.taxonomy === "recipe-category")
+      .map((t) => decode(t.name));
+
+    const season = MONTH_TO_SEASON[new Date(wp.date).getMonth()] || "Year-round";
+
+    const doc = {
+      _id: `recipe.${f.slug}`,
+      _type: "recipe",
+      title: f.title,
+      slug: { _type: "slug", current: f.slug },
+      lede: f.lede,
+      hero: assetId
+        ? {
+            _type: "image",
+            asset: { _type: "reference", _ref: assetId },
+            alt: f.imageAlt || f.title,
+          }
+        : undefined,
+      body,
+      author: "House of Willow Alexander",
+      tags: recipeTerms,
+      season,
+      publishedAt: f.publishedAt,
+    };
+    if (DRY) {
+      console.log(`  [dry] ${f.slug} (blocks: ${body.length}, tags: ${recipeTerms.join(", ")})`);
+      continue;
+    }
+    await client.createOrReplace(doc);
+    console.log(`  ✓ ${f.slug}  (blocks: ${body.length})`);
+  }
+}
+
 // --- main ------------------------------------------------------------------
 async function main() {
   console.log(`Target: ${PROJECT_ID}/${DATASET}${DRY ? " [dry-run]" : ""}`);
   if (ONLY_NEWS) await importNews();
   else if (ONLY_MUSINGS) await importMusings();
+  else if (ONLY_RECIPES) await importRecipes();
   else {
     await importNews();
     await importMusings();
+    await importRecipes();
   }
   console.log("\nDone.");
 }

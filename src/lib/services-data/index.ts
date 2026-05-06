@@ -10,7 +10,9 @@ export type ServiceSlug =
   | "cleaning"
   | "gutter-cleaning"
   | "handyman"
-  | "removals";
+  | "removals"
+  | "energy"
+  | "pet-care";
 
 export interface ServicePackage {
   slug: string;
@@ -64,6 +66,8 @@ import {
   GUTTER_CLEANING_SUBS,
   HANDYMAN_SUBS,
   REMOVALS_SUBS,
+  ENERGY_SUBS,
+  PET_CARE_SUBS,
   SERVICE_TRUST_BADGES,
   SERVICE_FAQ_SHARED,
 } from "./sub-services";
@@ -505,6 +509,164 @@ export const SERVICES: Record<ServiceSlug, Service> = {
     ],
     trustBadges: SERVICE_TRUST_BADGES,
   },
+
+  energy: {
+    slug: "energy",
+    name: "Energy & Electrical",
+    lede: "Solar installation, EV charging, electrical repairs, and safety inspections. NICEIC-registered, fully certified, carbon-neutral fleet.",
+    eyebrow: "Services \u00b7 Energy & Electrical",
+    headline: "Power that works for the home.",
+    sections: {
+      included: [
+        "Domestic and commercial electrical installation",
+        "Solar panel installation and battery storage",
+        "EV charger installation (all major brands)",
+        "Full and partial rewires",
+        "Electrical testing, inspection, and certification (EICR)",
+        "Fault finding and emergency repairs",
+      ],
+      how: [
+        "Describe the job or send photos \u2014 we\u2019ll scope it remotely where possible",
+        "Detailed quote within 48 hours, fully itemised",
+        "NICEIC-registered electrician assigned to the job",
+        "Certification and paperwork filed to your HoWA record",
+      ],
+    },
+    recurring: false,
+    availableAreas: ["SW", "W", "KT", "SE", "BR", "DA", "TN"],
+    packages: [
+      {
+        slug: "electrical-callout",
+        name: "Call-out & repair",
+        tier: "one-off",
+        price: "from \u00a3120",
+        bestFor: "faults, outages, and urgent fixes",
+        inclusions: [
+          "Diagnostic and repair in one visit where possible",
+          "All parts and labour included in quote",
+          "Emergency same-day availability",
+          "Certification issued for all notifiable work",
+        ],
+        cta: "bookNow",
+      },
+      {
+        slug: "electrical-project",
+        name: "Project work",
+        tier: "one-off",
+        price: "from quote",
+        bestFor: "installations, rewires, and new builds",
+        inclusions: [
+          "Full project scoping and design",
+          "NICEIC-registered installation",
+          "Building control notification handled",
+          "Completion certificate and HoWA record update",
+        ],
+        cta: "quoteEntry",
+      },
+      {
+        slug: "eicr-testing",
+        name: "Testing & inspection",
+        tier: "one-off",
+        price: "from \u00a3180",
+        bestFor: "landlords, buyers, and five-year compliance",
+        inclusions: [
+          "Full EICR (Electrical Installation Condition Report)",
+          "Portable appliance testing available",
+          "Written report with recommendations",
+          "Filed to HoWA for future reference",
+        ],
+        cta: "bookNow",
+      },
+    ],
+    subServices: ENERGY_SUBS,
+    faq: [
+      { q: "Are your electricians qualified?", a: "Yes. Every electrician is NICEIC-registered and fully insured. Certification is issued for all notifiable work." },
+      { q: "Can you install solar panels?", a: "Yes. We handle the full process: survey, design, installation, DNO notification, and MCS certification." },
+      { q: "Do I need an EICR?", a: "Landlords must have a valid EICR every five years. Homeowners should test every ten years or when buying a property." },
+      { q: "Can you install an EV charger?", a: "Yes. We install all major brands (Ohme, Pod Point, Wallbox, Tesla) and handle the OZEV grant application where eligible." },
+      ...SERVICE_FAQ_SHARED.slice(1),
+    ],
+    trustBadges: SERVICE_TRUST_BADGES,
+  },
+
+  "pet-care": {
+    slug: "pet-care",
+    name: "Pet Care",
+    lede: "Trusted, insured dog walking and pet sitting by experienced handlers. GPS-tracked walks, photo updates, and visit notes filed to your HoWA record.",
+    eyebrow: "Services \u00b7 Pet Care",
+    headline: "Because the dog is part of the house.",
+    sections: {
+      included: [
+        "Daily, weekly, or ad-hoc dog walking",
+        "Pet sitting \u2014 in your home or in the sitter\u2019s",
+        "GPS-tracked walks with live route sharing",
+        "Photo and behaviour updates after every visit",
+        "Feeding, medication, and routine care as instructed",
+        "All handlers DBS-checked, insured, and experienced",
+      ],
+      how: [
+        "Tell us about your pet \u2014 breed, temperament, routine",
+        "We match you with a handler based on fit, not just location",
+        "A meet-and-greet before the first walk or sit",
+        "Book through HoWA \u2014 single visits or a recurring rhythm",
+      ],
+    },
+    recurring: true,
+    availableAreas: ["SW", "W", "KT", "SE", "BR"],
+    packages: [
+      {
+        slug: "dog-walk-single",
+        name: "Single walk",
+        tier: "one-off",
+        price: "from \u00a318",
+        bestFor: "occasional days out or late meetings",
+        inclusions: [
+          "30- or 60-minute walk",
+          "GPS-tracked route",
+          "Photo and behaviour update",
+          "Logged in HoWA",
+        ],
+        cta: "bookNow",
+      },
+      {
+        slug: "dog-walk-weekly",
+        name: "Weekly walking",
+        tier: "care",
+        price: "from \u00a375 / week",
+        bestFor: "working households with a regular schedule",
+        inclusions: [
+          "Five walks per week, same handler",
+          "Consistent time slot and route",
+          "Key access through HoWA",
+          "Monthly report filed to record",
+        ],
+        cta: "bookNow",
+      },
+      {
+        slug: "pet-sitting",
+        name: "Pet sitting",
+        tier: "one-off",
+        price: "from \u00a345 / day",
+        bestFor: "holidays, weekends away, emergencies",
+        inclusions: [
+          "In-home care (yours or the sitter\u2019s)",
+          "Feeding, walks, and medication as directed",
+          "Daily photo and status update",
+          "Meet-and-greet beforehand",
+        ],
+        cta: "bookNow",
+      },
+    ],
+    subServices: PET_CARE_SUBS,
+    faq: [
+      { q: "Are your handlers insured?", a: "Yes. Every handler carries public liability insurance and is DBS-checked. Proof available on request." },
+      { q: "Can you walk reactive dogs?", a: "In some cases, yes. We\u2019ll assess during the meet-and-greet and match you with a handler experienced in reactive behaviour." },
+      { q: "What happens if my dog is unwell?", a: "The handler contacts you immediately. If they can\u2019t reach you, they follow your emergency vet instructions on file in HoWA." },
+      { q: "Do you walk in groups?", a: "Solo walks only, unless you specifically request a group walk with a known companion dog." },
+      ...SERVICE_FAQ_SHARED.slice(2),
+    ],
+    trustBadges: SERVICE_TRUST_BADGES,
+  },
 };
 
 export const SERVICE_ORDER: ServiceSlug[] = [
@@ -514,4 +676,6 @@ export const SERVICE_ORDER: ServiceSlug[] = [
   "gutter-cleaning",
   "handyman",
   "removals",
+  "energy",
+  "pet-care",
 ];

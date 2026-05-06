@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>HoWA — Variant D · The Briefing Pack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--cream:#f5f0e8;--paper:#fbf6ec;--card:#fbf8f1;--brown:#30231c;--gold:#b8983e;--gold-dark:#7a6028;--gold-light:#d4b87a}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--cream);color:var(--brown);font-family:Inter,system-ui,sans-serif;font-size:15px;line-height:1.6}
+
+  .nav{position:sticky;top:0;z-index:50;background:rgba(245,240,232,0.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(48,35,28,0.08);padding:14px 32px;display:flex;justify-content:space-between;align-items:center}
+  .nav .logo{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px}
+  .nav .links{display:flex;gap:28px;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(48,35,28,0.7)}
+  .nav .cta{background:var(--brown);color:var(--cream);padding:9px 18px;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none}
+
+  .pack{max-width:1080px;margin:0 auto;padding:48px 32px 96px;display:flex;flex-direction:column;gap:24px}
+
+  /* Card chrome */
+  .card{background:var(--card);border:1px solid rgba(48,35,28,0.1);position:relative;padding:48px 56px;box-shadow:0 18px 40px rgba(48,35,28,0.04)}
+  .card::before,.card::after{content:"";position:absolute;width:18px;height:18px;border:1px solid var(--gold-dark);pointer-events:none}
+  .card::before{top:14px;left:14px;border-right:0;border-bottom:0}
+  .card::after{bottom:14px;right:14px;border-left:0;border-top:0}
+  .card .num{position:absolute;top:18px;right:24px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--gold-dark);letter-spacing:0.05em}
+  .card .ey{font-size:11px;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold-dark);margin:0 0 16px}
+  .card h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(34px,3.6vw,52px);line-height:1.1;margin:0 0 16px;letter-spacing:-0.005em}
+  .card h2 em{font-style:italic;color:var(--gold-dark)}
+  .card p{font-size:16px;line-height:1.7;color:rgba(48,35,28,0.78);max-width:620px}
+
+  .ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+  .btn{display:inline-block;padding:13px 24px;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;border:1px solid var(--brown);transition:all .25s ease}
+  .btn.fill{background:var(--brown);color:var(--cream)}
+  .btn.ghost{color:var(--brown)}
+  .btn:hover{transform:translateY(-1px)}
+
+  /* Card 01 — Hero with cross-section */
+  .heroCard{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+  .heroCard .crossSection{position:relative;background:var(--paper);border:1px dashed rgba(48,35,28,0.18);padding:24px;aspect-ratio:1.05}
+  .heroCard svg{width:100%;height:100%;display:block;opacity:0.55}
+  .heroCard .annot{position:absolute;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(48,35,28,0.7);background:rgba(251,246,236,0.85);border:1px solid rgba(48,35,28,0.15);padding:5px 9px}
+  .heroCard .annot strong{display:block;color:var(--brown);font-weight:500}
+  .heroCard .annot small{font-size:9px;color:rgba(48,35,28,0.55)}
+  .heroCard .annot.tl{top:18%;left:8%}
+  .heroCard .annot.tr{top:18%;right:8%}
+  .heroCard .annot.bl{bottom:24%;left:8%}
+  .heroCard .annot.br{bottom:24%;right:8%}
+
+  /* Card 02 — Companion */
+  .compCard .compFrame{margin-top:24px;background:#fff;border:1px solid rgba(48,35,28,0.12);padding:30px 28px;max-width:680px}
+  .compCard .head{display:flex;gap:10px;align-items:center;border-bottom:1px solid rgba(48,35,28,0.08);padding-bottom:14px;margin-bottom:18px}
+  .compCard .mark{width:28px;height:28px;border-radius:50%;background:var(--cream);color:var(--gold-dark);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px}
+  .compCard .lbl{font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(48,35,28,0.55)}
+  .compCard .q{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:23px;line-height:1.35;margin:0 0 18px}
+  .compCard .chips{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:20px;align-items:baseline}
+  .compCard .chip{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--brown);text-decoration:underline;text-decoration-color:rgba(122,96,40,0.4);text-underline-offset:4px}
+  .compCard .chipSep{color:rgba(48,35,28,0.35)}
+
+  /* Card 03 — Dashboard */
+  .dashCard .dashGrid{margin-top:24px;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:14px}
+  .dashTile{background:#fff;border:1px solid rgba(48,35,28,0.1);padding:18px 20px}
+  .dashTile h4{margin:0 0 8px;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(48,35,28,0.55);font-weight:500}
+  .dashTile .big{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:34px;line-height:1.05;margin:0;color:var(--brown)}
+  .dashTile .sub{font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(48,35,28,0.55);margin-top:4px}
+  .dashTile ul{margin:8px 0 0;padding:0;list-style:none;font-size:13px;line-height:1.55}
+  .dashTile li{padding:6px 0;border-bottom:1px solid rgba(48,35,28,0.06);display:flex;justify-content:space-between}
+  .dashTile li:last-child{border-bottom:0}
+  .dashTile li small{color:rgba(48,35,28,0.55);font-size:11px}
+
+  /* Card 04 — Workflow */
+  .flowCard .flow{margin-top:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:#fff;border:1px solid rgba(48,35,28,0.1)}
+  .flowStep{padding:24px 20px;border-right:1px solid rgba(48,35,28,0.08);position:relative}
+  .flowStep:last-child{border-right:0}
+  .flowStep .n{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(48,35,28,0.5)}
+  .flowStep h4{margin:8px 0 4px;font-size:13px;font-weight:500;color:var(--brown)}
+  .flowStep p{font-size:12px;color:rgba(48,35,28,0.7);margin:0}
+  .flowStep p em{color:var(--gold-dark);font-style:normal;font-weight:500}
+  .flowStep::after{content:"→";position:absolute;right:-9px;top:50%;transform:translateY(-50%);background:var(--card);color:var(--gold-dark);font-size:14px;line-height:1;padding:2px}
+  .flowStep:last-child::after{display:none}
+
+  /* Card 05 — Tier ladder */
+  .tierCard .tiers{margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .tier{background:#fff;border:1px solid rgba(48,35,28,0.1);padding:26px 22px;display:flex;flex-direction:column}
+  .tier .num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(48,35,28,0.5)}
+  .tier h3{font-size:11px;letter-spacing:0.32em;text-transform:uppercase;font-weight:500;margin:6px 0 10px}
+  .tier .price{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:26px;margin:0 0 10px;line-height:1.1}
+  .tier .price small{font-size:13px;color:rgba(48,35,28,0.55);letter-spacing:0.06em}
+  .tier ul{list-style:none;padding:0;margin:14px 0;font-size:13px;line-height:1.55;color:rgba(48,35,28,0.72);flex:1}
+  .tier ul li{padding:6px 0;border-bottom:1px dotted rgba(48,35,28,0.12)}
+  .tier ul li:last-child{border-bottom:0}
+  .tier .cta{display:inline-block;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-dark);border-bottom:1px solid var(--gold);align-self:flex-start;padding-bottom:2px;margin-top:6px}
+  .tier.steward{background:#1a253a;color:#f5f0e8;border-color:#1a253a}
+  .tier.steward .num,.tier.steward h3,.tier.steward .price,.tier.steward ul,.tier.steward .cta{color:rgba(245,240,232,0.92)}
+  .tier.steward ul li{border-bottom-color:rgba(245,240,232,0.15)}
+
+  /* Card 06 — Reviews */
+  .reviewCard .reviews{margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .review{background:#fff;border:1px solid rgba(48,35,28,0.1);padding:22px 20px}
+  .review .stars{color:var(--gold-dark);letter-spacing:0.04em;font-size:13px}
+  .review .quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;line-height:1.45;margin:12px 0;color:var(--brown)}
+  .review .attr{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(48,35,28,0.55);margin:0}
+
+  /* Card 07 — Accreditations */
+  .accredCard .accredRow{margin-top:24px;display:flex;justify-content:space-around;flex-wrap:wrap;gap:24px 20px}
+  .accredItem{display:flex;flex-direction:column;align-items:center;gap:10px;max-width:120px;text-align:center}
+  .circle{width:74px;height:74px;border-radius:50%;border:1px dashed rgba(48,35,28,0.28);background:rgba(48,35,28,0.025);display:flex;align-items:center;justify-content:center;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(48,35,28,0.32)}
+  .accredItem p{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(48,35,28,0.7);margin:0;line-height:1.4}
+
+  /* Card 08 — FAQ */
+  .faqCard .faqList{margin-top:24px}
+  .faqItem{border-top:1px solid rgba(48,35,28,0.12);padding:18px 0}
+  .faqItem:last-child{border-bottom:1px solid rgba(48,35,28,0.12)}
+  .faqItem h4{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:21px;margin:0 0 6px;color:var(--brown)}
+  .faqItem p{font-size:14px;color:rgba(48,35,28,0.72);margin:0}
+
+  /* Card 09 — Final CTA */
+  .finalCard{text-align:center}
+  .finalCard h2{margin:0 auto 8px}
+  .finalCard p{margin:0 auto 6px;text-align:center}
+  .finalCard .ctas{justify-content:center;margin-top:30px}
+
+  /* Sticky CTA */
+  .stickyCta{position:fixed;bottom:24px;right:24px;background:var(--brown);color:var(--cream);padding:13px 24px;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;border:1px solid var(--brown);box-shadow:0 12px 36px rgba(48,35,28,0.18);opacity:0;transform:translateY(20px);transition:all .35s ease;z-index:40;pointer-events:none}
+  .stickyCta.on{opacity:1;transform:none;pointer-events:auto}
+
+  @media (max-width: 900px){
+    .heroCard{grid-template-columns:1fr}
+    .dashCard .dashGrid,.tierCard .tiers,.reviewCard .reviews{grid-template-columns:1fr}
+    .flowCard .flow{grid-template-columns:repeat(2,1fr)}
+    .card{padding:36px 26px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="logo">HoWA</div>
+  <div class="links"><span>Companion</span><span>Plans</span><span>Help</span></div>
+  <a class="cta" href="#cta">Start HoWA</a>
+</nav>
+
+<div class="pack">
+
+  <!-- 01 Hero -->
+  <article class="card heroCard" id="c1">
+    <span class="num">01 / 09</span>
+    <div>
+      <p class="ey">For homes with soul · House № 1892</p>
+      <h2>Your home, <em>finally understood.</em></h2>
+      <p>HoWA is the operating system for your home. It observes what matters, books what needs doing, and keeps a living record so nothing is missed, delayed, or forgotten.</p>
+      <div class="ctas">
+        <a class="btn fill" href="#">Start HoWA</a>
+        <a class="btn ghost" href="#">See how it works</a>
+      </div>
+    </div>
+    <div class="crossSection">
+      <div class="annot tl"><strong>Roof</strong><small>8 yrs</small></div>
+      <div class="annot tr"><strong>Structure</strong><small>normal</small></div>
+      <div class="annot bl"><strong>Boiler</strong><small>service · 14d</small></div>
+      <div class="annot br"><strong>Risk</strong><small>none</small></div>
+      <svg viewBox="0 0 240 220" stroke="#30231c" stroke-width="0.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20,90 120,30 220,90"/>
+        <rect x="40" y="90" width="160" height="120"/>
+        <line x1="40" y1="130" x2="200" y2="130"/>
+        <line x1="40" y1="170" x2="200" y2="170"/>
+        <line x1="120" y1="90" x2="120" y2="210"/>
+        <rect x="55" y="100" width="20" height="20"/>
+        <rect x="160" y="100" width="20" height="20"/>
+        <rect x="55" y="140" width="20" height="20"/>
+        <rect x="160" y="140" width="20" height="20"/>
+        <rect x="108" y="180" width="24" height="30"/>
+      </svg>
+    </div>
+  </article>
+
+  <!-- 02 Companion -->
+  <article class="card compCard">
+    <span class="num">02 / 09</span>
+    <p class="ey">The Companion · Step one</p>
+    <h2>Begin with a <em>conversation.</em></h2>
+    <p>The Companion asks a few quiet questions, builds your home record, and points to what matters first. Two minutes. No account needed to start.</p>
+    <div class="compFrame">
+      <div class="head"><span class="mark">C</span><span class="lbl">Companion · first question</span></div>
+      <p class="q">What's the one thing about your home you wish you understood better?</p>
+      <div class="chips">
+        <span class="chip">the roof</span><span class="chipSep">·</span>
+        <span class="chip">the boiler</span><span class="chipSep">·</span>
+        <span class="chip">the history</span><span class="chipSep">·</span>
+        <span class="chip">the garden</span>
+      </div>
+      <a class="btn fill" href="#">Launch the Companion →</a>
+    </div>
+  </article>
+
+  <!-- 03 Dashboard -->
+  <article class="card dashCard">
+    <span class="num">03 / 09</span>
+    <p class="ey">The living record</p>
+    <h2>Everything your home <em>remembers.</em></h2>
+    <p>Tasks, alerts, design projects, protection records, service history — one calm shell. Free is a real product, not a teaser.</p>
+    <div class="dashGrid">
+      <div class="dashTile">
+        <h4>This week</h4>
+        <ul>
+          <li>Boiler service · Friday<small>booked</small></li>
+          <li>Gutters cleared · 7 May<small>scheduled</small></li>
+          <li>Roof inspection<small>quote received</small></li>
+        </ul>
+      </div>
+      <div class="dashTile">
+        <h4>House Health</h4>
+        <p class="big">A−</p>
+        <p class="sub">2 open alerts</p>
+      </div>
+      <div class="dashTile">
+        <h4>Records · 30d</h4>
+        <ul>
+          <li>Boiler service<small>06 Apr</small></li>
+          <li>Spring planting<small>14 Apr</small></li>
+          <li>Insurance saved<small>21 Apr</small></li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- 04 Workflow -->
+  <article class="card flowCard">
+    <span class="num">04 / 09</span>
+    <p class="ey">Prevention, recorded</p>
+    <h2>Boiler failure predicted, <em>cost reduced 42%.</em></h2>
+    <p>One end-to-end flow. Caught at Stage 1. Estimated saving vs. failure-replacement: £1,840.</p>
+    <div class="flow">
+      <div class="flowStep"><p class="n">I.</p><h4>Predicted</h4><p><em>14 days</em> early</p></div>
+      <div class="flowStep"><p class="n">II.</p><h4>Booked</h4><p>Approved partner</p></div>
+      <div class="flowStep"><p class="n">III.</p><h4>Done</h4><p>Caught at <em>Stage 1</em></p></div>
+      <div class="flowStep"><p class="n">IV.</p><h4>Recorded</h4><p>Held in evidence</p></div>
+    </div>
+  </article>
+
+  <!-- 05 Tiers -->
+  <article class="card tierCard">
+    <span class="num">05 / 09</span>
+    <p class="ey">Plans · Free · Paid · Premium</p>
+    <h2>Three ways to <em>begin.</em></h2>
+    <p>Free is a real product. HoWA+ adds continuity and discounts. Steward is by application — for homes that want delegated, predictive care.</p>
+    <div class="tiers">
+      <div class="tier">
+        <p class="num">I.</p>
+        <h3>HoWA</h3>
+        <p class="price">Free<small> · forever</small></p>
+        <ul><li>One home record</li><li>The Companion</li><li>Entry repair scan</li><li>Saved dashboard</li></ul>
+        <a class="cta" href="#">Start free →</a>
+      </div>
+      <div class="tier">
+        <p class="num">II.</p>
+        <h3>HoWA+</h3>
+        <p class="price">£16.99<small> /month</small></p>
+        <ul><li>Full task centre</li><li>Document logbook</li><li>Editorial access</li><li>Service discounts</li></ul>
+        <a class="cta" href="#">Start HoWA+ →</a>
+      </div>
+      <div class="tier steward">
+        <p class="num">III.</p>
+        <h3>Steward</h3>
+        <p class="price">By application</p>
+        <ul><li>Predictive maintenance</li><li>Device integrations</li><li>Delegated access</li><li>Managed recurring care</li></ul>
+        <a class="cta" href="#">Register interest →</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- 06 Reviews -->
+  <article class="card reviewCard">
+    <span class="num">06 / 09</span>
+    <p class="ey">What households say</p>
+    <h2>Quiet, on time, <em>recorded.</em></h2>
+    <div class="reviews">
+      <div class="review">
+        <div class="stars">★ ★ ★ ★ ★</div>
+        <p class="quote">"They turned up when they said they would, did the work properly, and left the place spotless. Rare."</p>
+        <p class="attr">S. Patel · Tunbridge Wells</p>
+      </div>
+      <div class="review">
+        <div class="stars">★ ★ ★ ★ ★</div>
+        <p class="quote">"I finally have one place to see everything that's been done to the house. It's quietly brilliant."</p>
+        <p class="attr">M. Harrison · Sevenoaks</p>
+      </div>
+      <div class="review">
+        <div class="stars">★ ★ ★ ★ ★</div>
+        <p class="quote">"The Companion suggested gutter clearance before the storms. Saved us a flood."</p>
+        <p class="attr">A. Lloyd · Kent</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- 07 Accreditations -->
+  <article class="card accredCard">
+    <span class="num">07 / 09</span>
+    <p class="ey">Accredited &amp; certified</p>
+    <h2>Trusted by the <em>standards that matter.</em></h2>
+    <div class="accredRow">
+      <div class="accredItem"><div class="circle">logo</div><p>The List</p></div>
+      <div class="accredItem"><div class="circle">logo</div><p>Guild of Master Craftsmen</p></div>
+      <div class="accredItem"><div class="circle">logo</div><p>Carbon Neutral</p></div>
+      <div class="accredItem"><div class="circle">logo</div><p>Federation of Window Cleaners</p></div>
+      <div class="accredItem"><div class="circle">logo</div><p>CHAS</p></div>
+      <div class="accredItem"><div class="circle">logo</div><p>SafeContractor</p></div>
+    </div>
+  </article>
+
+  <!-- 08 FAQ -->
+  <article class="card faqCard">
+    <span class="num">08 / 09</span>
+    <p class="ey">Questions, asked and answered</p>
+    <h2>Before you <em>begin.</em></h2>
+    <div class="faqList">
+      <div class="faqItem"><h4>Can I cancel HoWA+ anytime?</h4><p>Yes. Your home record stays with you, on the free tier. No data is held hostage.</p></div>
+      <div class="faqItem"><h4>How long does setup take?</h4><p>Roughly two minutes for the Companion intake. The record builds itself from there.</p></div>
+      <div class="faqItem"><h4>What if my home doesn't fit a category?</h4><p>HoWA learns one home at a time. Type, period, layout, garden — all configurable.</p></div>
+      <div class="faqItem"><h4>Where does my data live?</h4><p>UK servers, encrypted at rest, never sold. Export at any time.</p></div>
+      <div class="faqItem"><h4>Do I have to use the booked services?</h4><p>No. The marketplace is optional. You can use HoWA purely as a record.</p></div>
+      <div class="faqItem"><h4>What happens if I move?</h4><p>The record transfers to the new home, or stays with the property — your call at the time.</p></div>
+    </div>
+  </article>
+
+  <!-- 09 Final -->
+  <article class="card finalCard" id="cta">
+    <span class="num">09 / 09</span>
+    <p class="ey">Ready when you are</p>
+    <h2>Step into <em>stewardship.</em></h2>
+    <p>Two minutes to begin. A lifetime of looking after.</p>
+    <div class="ctas">
+      <a class="btn fill" href="#">Start HoWA</a>
+      <a class="btn ghost" href="#">Book a consultation</a>
+    </div>
+  </article>
+
+</div>
+
+<a class="stickyCta" href="#cta" id="sticky">Start HoWA →</a>
+
+<script>
+  const sticky = document.getElementById('sticky');
+  const hero = document.getElementById('c1');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => sticky.classList.toggle('on', !e.isIntersecting));
+  }, { threshold: 0.2 });
+  obs.observe(hero);
+</script>
+</body>
+</html>

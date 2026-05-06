@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>HoWA — Variant B · The Logbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{--cream:#f5f0e8;--paper:#fbf6ec;--paper-2:#f4ead4;--brown:#30231c;--gold:#b8983e;--gold-dark:#7a6028;--gold-light:#d4b87a}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--paper);color:var(--brown);font-family:Inter,system-ui,sans-serif;font-size:15px;line-height:1.65}
+  /* Paper texture: subtle horizontal rule lines like a journal page */
+  body{background-image:repeating-linear-gradient(0deg, transparent 0, transparent 31px, rgba(48,35,28,0.04) 32px),radial-gradient(ellipse at 0% 0%, rgba(184,152,62,0.05), transparent 60%);background-attachment:fixed}
+
+  .nav{position:sticky;top:0;z-index:50;background:rgba(251,246,236,0.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(48,35,28,0.1);padding:14px 32px;display:flex;justify-content:space-between;align-items:center}
+  .nav .logo{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px}
+  .nav .links{display:flex;gap:28px;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(48,35,28,0.7)}
+  .nav .cta{background:var(--brown);color:var(--cream);padding:9px 18px;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none}
+
+  .wrap{max-width:980px;margin:0 auto;padding:64px 56px 96px;position:relative}
+
+  /* Each entry has a date, paperclip, and content */
+  .entry{position:relative;margin-bottom:64px;padding-top:36px;border-top:1px solid rgba(48,35,28,0.18)}
+  .entry::before{content:"";position:absolute;left:50%;top:-1px;transform:translateX(-50%);width:48px;height:1px;background:var(--gold)}
+  .entry .date{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(48,35,28,0.5);text-align:center;margin-bottom:24px}
+  .entry h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(36px,4vw,52px);line-height:1.1;margin:0 0 14px;letter-spacing:-0.005em;text-align:center}
+  .entry h2 em{font-style:italic;color:var(--gold-dark)}
+  .entry .lede{font-size:16px;color:rgba(48,35,28,0.78);max-width:580px;margin:0 auto;text-align:center}
+
+  .clip{position:absolute;top:-22px;color:var(--gold-dark);transform:rotate(-12deg);font-size:32px;line-height:1}
+  .clip.r{right:8%;transform:rotate(8deg)}
+  .clip.l{left:6%}
+
+  .stamp{display:inline-block;border:2px solid var(--gold-dark);color:var(--gold-dark);padding:6px 14px;font-size:11px;letter-spacing:0.32em;text-transform:uppercase;transform:rotate(-3deg);font-weight:500}
+  .center{text-align:center}
+
+  /* Paste-in cross-section */
+  .photo{display:block;margin:32px auto 0;width:80%;max-width:620px;background:#f0e7cf;padding:18px;border:1px solid rgba(48,35,28,0.12);position:relative;box-shadow:0 18px 32px rgba(48,35,28,0.08)}
+  .photo svg{width:100%;height:auto;display:block}
+  .photo .caption{font-family:'Caveat',cursive;font-size:18px;color:rgba(48,35,28,0.75);text-align:center;margin-top:10px;font-weight:500}
+  .photoTape{position:absolute;top:-12px;left:50%;transform:translateX(-50%) rotate(-2deg);width:90px;height:22px;background:rgba(245,228,189,0.7);border:1px solid rgba(184,152,62,0.3)}
+
+  /* Margin notes */
+  .marg{font-family:'Caveat',cursive;color:var(--gold-dark);font-size:21px;line-height:1.3;font-weight:500;position:absolute}
+  .marg.top{top:24px}
+  .marg.right{right:-20px;width:160px;text-align:left}
+  .marg.left{left:-20px;width:160px;text-align:right}
+
+  /* Companion entry */
+  .compEntry .compForm{margin-top:32px;background:rgba(251,246,236,0.7);border:1px solid rgba(48,35,28,0.18);padding:32px 30px;max-width:680px;margin-left:auto;margin-right:auto}
+  .compEntry .compForm .head{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+  .compEntry .compForm .mark{width:30px;height:30px;border-radius:50%;background:var(--paper-2);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--gold-dark)}
+  .compEntry .compForm .label{font-size:11px;letter-spacing:0.32em;text-transform:uppercase;color:rgba(48,35,28,0.5)}
+  .compEntry .compForm .q{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:23px;line-height:1.35;margin:0 0 18px}
+  .compEntry .compForm .chips{display:flex;gap:18px;flex-wrap:wrap;margin:0 0 20px}
+  .compEntry .compForm .chip{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--brown);text-decoration:underline;text-decoration-color:rgba(122,96,40,0.4);text-underline-offset:4px}
+  .compEntry .compForm .btn{display:inline-block;padding:12px 24px;background:var(--brown);color:var(--cream);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none}
+
+  /* Workflow as dated diary entries */
+  .diary{margin-top:40px;display:flex;flex-direction:column;gap:18px;max-width:720px;margin-left:auto;margin-right:auto}
+  .diaryEntry{display:grid;grid-template-columns:120px 1fr;gap:24px;padding-bottom:14px;border-bottom:1px dashed rgba(48,35,28,0.16)}
+  .diaryEntry .d{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:rgba(48,35,28,0.55);text-align:right;padding-top:2px}
+  .diaryEntry .body{font-size:15px;line-height:1.55}
+  .diaryEntry .body strong{color:var(--brown);font-weight:500}
+
+  /* Dashboard preview as paste-in screenshot */
+  .dashShot{margin:32px auto 0;max-width:760px;background:#fff;border:1px solid rgba(48,35,28,0.12);box-shadow:0 18px 32px rgba(48,35,28,0.08);position:relative}
+  .dashShot::before{content:"";position:absolute;top:-12px;left:36px;width:90px;height:22px;background:rgba(245,228,189,0.7);border:1px solid rgba(184,152,62,0.3);transform:rotate(-1deg)}
+  .dashShot .top{padding:22px 26px;border-bottom:1px solid rgba(48,35,28,0.08);display:flex;justify-content:space-between;align-items:center}
+  .dashShot .top h3{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;margin:0}
+  .dashShot .top small{font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(48,35,28,0.5)}
+  .dashShot .grid{display:grid;grid-template-columns:1.4fr 1fr;gap:0}
+  .dashShot .grid > div{padding:22px 26px;border-right:1px solid rgba(48,35,28,0.08)}
+  .dashShot .grid > div:last-child{border-right:0}
+  .dashShot h4{font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(48,35,28,0.55);margin:0 0 12px;font-weight:500}
+  .dashShot ul{list-style:none;padding:0;margin:0;font-size:13px}
+  .dashShot li{padding:8px 0;border-bottom:1px solid rgba(48,35,28,0.06);display:flex;justify-content:space-between}
+  .dashShot li:last-child{border-bottom:0}
+  .dashShot li small{color:rgba(48,35,28,0.55);font-size:11px}
+  .dashShot .health{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:48px;line-height:1;margin:6px 0}
+
+  /* Tier ladder as 3 paste-in cards */
+  .tiers{margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;position:relative}
+  .tier{background:#fff;border:1px solid rgba(48,35,28,0.12);padding:28px 24px;position:relative;box-shadow:0 12px 24px rgba(48,35,28,0.06)}
+  .tier::before{content:"";position:absolute;top:-10px;left:50%;transform:translateX(-50%) rotate(-2deg);width:54px;height:18px;background:rgba(245,228,189,0.7);border:1px solid rgba(184,152,62,0.3)}
+  .tier .num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(48,35,28,0.5)}
+  .tier h3{font-size:11px;letter-spacing:0.32em;text-transform:uppercase;font-weight:500;margin:6px 0 10px}
+  .tier .price{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:26px;margin:0 0 12px}
+  .tier .price small{font-size:12px;color:rgba(48,35,28,0.55);letter-spacing:0.1em}
+  .tier ul{list-style:none;padding:0;margin:14px 0 0;font-size:12px;line-height:1.55;color:rgba(48,35,28,0.72)}
+  .tier ul li{padding:5px 0;border-bottom:1px dotted rgba(48,35,28,0.12)}
+  .tier ul li:last-child{border-bottom:0}
+  .tier .cta{display:inline-block;margin-top:14px;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-dark);border-bottom:1px solid var(--gold)}
+  .tier.steward{background:#1a253a;color:#f5f0e8;border-color:#1a253a}
+  .tier.steward .num,.tier.steward h3,.tier.steward .price,.tier.steward ul,.tier.steward .cta{color:rgba(245,240,232,0.92)}
+  .tier.steward ul li{border-bottom-color:rgba(245,240,232,0.15)}
+
+  /* FAQ as marginalia accordion */
+  .faqList{margin-top:30px;max-width:720px;margin-left:auto;margin-right:auto}
+  .faqItem{border-bottom:1px solid rgba(48,35,28,0.15);padding:18px 0}
+  .faqItem h4{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:21px;margin:0 0 6px;color:var(--brown)}
+  .faqItem p{font-size:14px;color:rgba(48,35,28,0.7);margin:0;line-height:1.65}
+
+  /* Final CTA stamped */
+  .finalCta{text-align:center;margin-top:40px}
+  .finalCta .btn{display:inline-block;background:var(--brown);color:var(--cream);padding:16px 32px;font-size:11px;letter-spacing:0.32em;text-transform:uppercase;text-decoration:none;margin:18px 6px 0}
+  .finalCta .btn.ghost{background:transparent;color:var(--brown);border:1px solid var(--brown)}
+
+  @media (max-width: 800px){
+    .tiers{grid-template-columns:1fr}
+    .dashShot .grid{grid-template-columns:1fr}
+    .dashShot .grid > div{border-right:0;border-bottom:1px solid rgba(48,35,28,0.08)}
+    .marg{display:none}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="logo">HoWA</div>
+  <div class="links"><span>Companion</span><span>Plans</span><span>Help</span></div>
+  <a class="cta" href="#cta">Start HoWA</a>
+</nav>
+
+<div class="wrap">
+
+  <article class="entry">
+    <span class="clip l">⌘</span>
+    <span class="clip r">⌘</span>
+    <p class="date">Day 01 · 30 April 2026</p>
+    <h2>Welcome to <em>HoWA.</em></h2>
+    <p class="lede">A quiet operating system for your home. Today we'll build your record. Tomorrow it remembers for you. Five years from now, it tells you what your house has been trying to say.</p>
+    <div class="photo">
+      <span class="photoTape"></span>
+      <svg viewBox="0 0 240 220" stroke="#30231c" stroke-width="0.5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.55">
+        <polyline points="20,90 120,30 220,90"/>
+        <rect x="40" y="90" width="160" height="120"/>
+        <line x1="40" y1="130" x2="200" y2="130"/>
+        <line x1="40" y1="170" x2="200" y2="170"/>
+        <line x1="120" y1="90" x2="120" y2="210"/>
+        <rect x="55" y="100" width="20" height="20"/>
+        <rect x="160" y="100" width="20" height="20"/>
+        <rect x="55" y="140" width="20" height="20"/>
+        <rect x="160" y="140" width="20" height="20"/>
+        <rect x="108" y="180" width="24" height="30"/>
+      </svg>
+      <p class="caption">House № 1892 · cross-section, 2026</p>
+    </div>
+    <div class="center" style="margin-top:28px"><span class="stamp">Member</span></div>
+  </article>
+
+  <article class="entry compEntry">
+    <p class="date">Day 01, evening · A first conversation</p>
+    <h2>Not sure where to start? <em>The Companion will help.</em></h2>
+    <p class="lede">It asks a few quiet questions, then begins your record.</p>
+    <div class="compForm">
+      <div class="head"><span class="mark">C</span><span class="label">Companion · first question</span></div>
+      <p class="q">What's the one thing about your home you wish you understood better?</p>
+      <div class="chips">
+        <span class="chip">the roof</span>
+        <span class="chip">the boiler</span>
+        <span class="chip">the history</span>
+        <span class="chip">the garden</span>
+      </div>
+      <a class="btn" href="#">Launch the Companion →</a>
+    </div>
+  </article>
+
+  <article class="entry">
+    <p class="date">Day 14 · The record begins to thicken</p>
+    <h2>Everything your home <em>remembers.</em></h2>
+    <p class="lede">Tasks. Alerts. Designs in progress. Protection records. Service history. One calm shell, all on your terms.</p>
+    <div class="dashShot">
+      <div class="top">
+        <h3>House № 1892</h3>
+        <small>synced today</small>
+      </div>
+      <div class="grid">
+        <div>
+          <h4>This week</h4>
+          <ul>
+            <li>Boiler service · Friday 09:00 <small>booked</small></li>
+            <li>Gutters · 7 May <small>scheduled</small></li>
+            <li>Roof inspection <small>quote received</small></li>
+          </ul>
+          <h4 style="margin-top:18px">Records · last 30 days</h4>
+          <ul>
+            <li>Boiler — annual service <small>06 Apr</small></li>
+            <li>Garden — spring planting <small>14 Apr</small></li>
+            <li>Insurance — renewal saved <small>21 Apr</small></li>
+          </ul>
+        </div>
+        <div>
+          <h4>House Health</h4>
+          <p class="health">A−</p>
+          <small style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(48,35,28,0.55)">2 open alerts</small>
+          <h4 style="margin-top:22px">Open alerts</h4>
+          <ul>
+            <li>Boiler · 14 days <small>plan</small></li>
+            <li>Roof · seasonal <small>review</small></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article class="entry">
+    <p class="date">Day 28 · Quiet wins, in order</p>
+    <h2>Small things, on time. <em>Cost, halved.</em></h2>
+    <p class="lede">A diary of one boiler that didn't break.</p>
+    <div class="diary">
+      <div class="diaryEntry"><div class="d">23 Mar</div><div class="body"><strong>Boiler service flagged.</strong> Companion noticed the pressure drift, scheduled a check.</div></div>
+      <div class="diaryEntry"><div class="d">27 Mar</div><div class="body"><strong>Engineer booked</strong> for Friday morning. Approved partner. £42 above the lowest quote, fully insured, no upsell.</div></div>
+      <div class="diaryEntry"><div class="d">29 Mar</div><div class="body"><strong>Service complete.</strong> Logged to record. Issue caught at <em>Stage 1.</em> Estimated saving vs. failure-replacement: <strong>£1,840.</strong></div></div>
+      <div class="diaryEntry"><div class="d">30 Mar</div><div class="body"><strong>No disruption</strong> to anything else. The point.</div></div>
+    </div>
+  </article>
+
+  <article class="entry">
+    <p class="date">Day 30 · Choosing a way to belong</p>
+    <h2>Three ways to <em>begin.</em></h2>
+    <p class="lede">Free is a real product, not a trial. HoWA+ adds continuity. Steward is by application — for homes that want delegated, predictive care.</p>
+    <div class="tiers">
+      <div class="tier">
+        <p class="num">I.</p>
+        <h3>HoWA</h3>
+        <p class="price">Free<small> · forever</small></p>
+        <ul><li>One home record</li><li>The Companion</li><li>Entry repair scan</li><li>Saved dashboard</li></ul>
+        <a class="cta" href="#">Start free →</a>
+      </div>
+      <div class="tier">
+        <p class="num">II.</p>
+        <h3>HoWA+</h3>
+        <p class="price">£16.99<small> /month</small></p>
+        <ul><li>Full task centre</li><li>Document logbook</li><li>Editorial access</li><li>Service discounts</li></ul>
+        <a class="cta" href="#">Start HoWA+ →</a>
+      </div>
+      <div class="tier steward">
+        <p class="num">III.</p>
+        <h3>Steward</h3>
+        <p class="price">By application</p>
+        <ul><li>Predictive maintenance</li><li>Device integrations</li><li>Delegated access</li><li>Managed recurring care</li></ul>
+        <a class="cta" href="#">Register interest →</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="entry">
+    <p class="date">Notes from the margins</p>
+    <h2>Questions, <em>asked and answered.</em></h2>
+    <div class="faqList">
+      <div class="faqItem"><h4>Can I cancel HoWA+ anytime?</h4><p>Yes. Your home record stays with you, on the free tier. No data is held hostage.</p></div>
+      <div class="faqItem"><h4>How long does setup take?</h4><p>Roughly two minutes for the Companion intake. The record builds itself from there.</p></div>
+      <div class="faqItem"><h4>What if my home doesn't fit a category?</h4><p>HoWA learns one home at a time. Type, period, layout, garden — all configurable.</p></div>
+      <div class="faqItem"><h4>Where does my data live?</h4><p>UK servers, encrypted at rest, never sold. Export at any time.</p></div>
+      <div class="faqItem"><h4>Do I have to use the booked services?</h4><p>No. The marketplace is optional. You can use HoWA purely as a record.</p></div>
+      <div class="faqItem"><h4>What happens if I move?</h4><p>The record transfers to the new home, or stays with the property — your call at the time.</p></div>
+    </div>
+  </article>
+
+  <article class="entry finalCta" id="cta">
+    <p class="date">Day ∞ · Today, if you like</p>
+    <h2>Step into <em>stewardship.</em></h2>
+    <p class="lede">Two minutes to begin. A lifetime of looking after.</p>
+    <div>
+      <a class="btn" href="#">Start HoWA</a>
+      <a class="btn ghost" href="#">Book a consultation</a>
+    </div>
+  </article>
+
+</div>
+</body>
+</html>

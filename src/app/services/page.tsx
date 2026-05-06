@@ -31,8 +31,8 @@ const SERVICES_GRID = [
   { slug: "handyman", name: "Handyman", image: "/services/subbrands/handyman.jpg", href: "/services/handyman" },
   { slug: "housekeeping", name: "Housekeeping", image: "/services/subbrands/housekeeping.jpg", href: "/services" },
   { slug: "removals", name: "Removals", image: "/services/subbrands/removals.jpg", href: "/services/removals" },
-  { slug: "electrical", name: "Electrical", image: "/services/subbrands/electrical.jpg", href: "/services" },
-  { slug: "dog-walking", name: "Dog\nWalking", image: "/services/subbrands/dog-walking.jpg", href: "/services" },
+  { slug: "energy", name: "Energy &\nElectrical", image: "/services/subbrands/electrical.jpg", href: "/services/energy" },
+  { slug: "pet-care", name: "Pet\nCare", image: "/services/subbrands/dog-walking.jpg", href: "/services/pet-care" },
 ];
 
 const PLANS = [

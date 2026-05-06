@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>HoWA v2 — variants</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f5f0e8; --cream-dark:#ece4d4; --brown:#30231c;
+    --gold:#b8983e; --gold-dark:#7a6028; --gold-light:#d4b87a;
+    --paper:#fbf6ec;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--cream);color:var(--brown);font-family:Inter,system-ui,sans-serif;font-size:15px;line-height:1.6;padding:64px 32px;min-height:100vh}
+  .wrap{max-width:1100px;margin:0 auto}
+  h1{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:48px;line-height:1.1;margin:0 0 12px;letter-spacing:-0.005em}
+  .eyebrow{font-size:11px;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold-dark);margin:0 0 18px}
+  .lede{font-size:17px;color:rgba(48,35,28,0.78);max-width:720px;margin:0 0 56px}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  a.card{display:block;background:#fff;border:1px solid rgba(48,35,28,0.1);text-decoration:none;color:var(--brown);padding:32px 28px 28px;transition:all .25s ease;position:relative}
+  a.card:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 24px 60px rgba(48,35,28,0.06)}
+  a.card .num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--gold-dark);position:absolute;top:18px;right:24px}
+  a.card h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:30px;line-height:1.15;margin:0 0 6px;letter-spacing:-0.005em}
+  a.card .name{font-size:11px;letter-spacing:0.32em;text-transform:uppercase;color:rgba(48,35,28,0.55);margin:0 0 14px;font-weight:500}
+  a.card p{font-size:14px;line-height:1.55;color:rgba(48,35,28,0.72);margin:0 0 14px}
+  a.card .meta{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-dark);border-top:1px solid rgba(48,35,28,0.08);padding-top:14px;display:flex;justify-content:space-between}
+  .footer{margin-top:64px;font-size:13px;color:rgba(48,35,28,0.55);max-width:760px}
+  .footer code{background:var(--cream-dark);padding:2px 6px;font-family:ui-monospace,monospace;font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">Design shotgun · 30 Apr 2026</p>
+  <h1>HoWA Landing — four <em>directions</em></h1>
+  <p class="lede">Four mechanical rebuilds of <code>/preview/howa-v2</code>, each landing the same brief blocks (Companion teaser, dashboard preview, plans &amp; pricing, proof, FAQ) through a different layout mechanic. Pick one and it gets built into the real route.</p>
+
+  <div class="grid">
+    <a class="card" href="./variant-a.html">
+      <span class="num">01 / 04</span>
+      <p class="name">Variant A</p>
+      <h2>The <em>Split Folio</em></h2>
+      <p>Sticky parchment dossier on the left mutates as visitor scrolls; editorial pages run down the right.</p>
+      <div class="meta"><span>Mechanic · split-sticky</span><span>Sticky CTA · yes</span></div>
+    </a>
+    <a class="card" href="./variant-b.html">
+      <span class="num">02 / 04</span>
+      <p class="name">Variant B</p>
+      <h2>The <em>Logbook</em></h2>
+      <p>The page is an open HoWA journal — dated entries, paste-in photos, gold paperclips, margin notes.</p>
+      <div class="meta"><span>Mechanic · notebook / scrapbook</span><span>Sticky CTA · no</span></div>
+    </a>
+    <a class="card" href="./variant-c.html">
+      <span class="num">03 / 04</span>
+      <p class="name">Variant C</p>
+      <h2>The <em>Specimen Sheet</em></h2>
+      <p>One continuous technical drawing of HoWA. Linework, callouts, labels, ascent diagram for tiers.</p>
+      <div class="meta"><span>Mechanic · diagrammatic</span><span>Sticky CTA · yes</span></div>
+    </a>
+    <a class="card" href="./variant-d.html">
+      <span class="num">04 / 04</span>
+      <p class="name">Variant D</p>
+      <h2>The <em>Briefing Pack</em></h2>
+      <p>Ten oversized cards, each a single decision moment, with a discrete card counter.</p>
+      <div class="meta"><span>Mechanic · card-stack / deck</span><span>Sticky CTA · yes</span></div>
+    </a>
+  </div>
+
+  <p class="footer">Mockups are static HTML — they show the mechanic and feel, not production fidelity. Real build will use Sanity-driven copy, real next/image, and the platform's brand tokens. Once you pick a direction (or hybrid), I'll port it into the React route.</p>
+</div>
+</body>
+</html>

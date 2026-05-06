@@ -25,7 +25,7 @@ const VERBS = [
     headline: "Then it tells you what matters next.",
     examples: [
       "Gutters haven't been cleared since March. Autumn leaves are three weeks away. HoWA suggests booking now, before the rush.",
-      "Your Protect Review flagged the flat roof as a priority. HoWA routes that to your insurance record and recommends a surveyor quote before renewal.",
+      "Your Home Protection Review flagged the flat roof as a priority. HoWA routes that to your insurance record and recommends a surveyor quote before renewal.",
       "The cleaning team noted limescale buildup on the bathroom glass. HoWA recommends a descale visit and adjusts the quarterly schedule.",
     ],
   },
@@ -46,7 +46,7 @@ const VERBS = [
     examples: [
       "When you sell the house, the buyer inherits a complete record: every service, every repair, every improvement, every plan. That's provenance.",
       "Your decorator arrives and checks HoWA before starting. Paint colours, finish types, last painted date — all there. No guessing.",
-      "Insurance renewal is in 42 days. HoWA surfaces the Protect Review evidence pack, the maintenance log, and the claims history. Ready to go.",
+      "Insurance renewal is in 42 days. HoWA surfaces the Home Protection Review evidence pack, the maintenance log, and the claims history. Ready to go.",
     ],
   },
 ];

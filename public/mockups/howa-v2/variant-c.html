@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>HoWA — Variant C · The Specimen Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#fbf9f3;--bg:#f7f4ec;--brown:#30231c;--ink:#1d1b18;--gold:#b8983e;--gold-dark:#7a6028;--gold-light:#d4b87a;--rule:rgba(29,27,24,0.18)}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,sans-serif;font-size:14px;line-height:1.55}
+  body{background-image:linear-gradient(0deg, transparent 95%, rgba(29,27,24,0.04) 96%, transparent 97%),linear-gradient(90deg, transparent 95%, rgba(29,27,24,0.04) 96%, transparent 97%);background-size:36px 36px}
+
+  .nav{position:sticky;top:0;z-index:50;background:rgba(251,249,243,0.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule);padding:14px 32px;display:flex;justify-content:space-between;align-items:center}
+  .nav .logo{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:0.32em;text-transform:uppercase}
+  .nav .links{display:flex;gap:24px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(48,35,28,0.7)}
+  .nav .cta{background:var(--ink);color:var(--paper);padding:9px 18px;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;font-family:'JetBrains Mono',monospace}
+
+  /* Sheet borders */
+  .sheet{max-width:1320px;margin:0 auto;padding:36px 36px 96px;position:relative}
+  .sheet::before{content:"";position:absolute;left:36px;right:36px;top:36px;bottom:36px;border:1px solid var(--rule);pointer-events:none}
+  .titleblock{display:grid;grid-template-columns:1fr auto;gap:24px;padding:24px 28px 22px;border-bottom:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(29,27,24,0.7)}
+  .titleblock h1{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:36px;line-height:1.05;letter-spacing:-0.005em;color:var(--ink);margin:0;text-transform:none}
+  .titleblock .meta{display:flex;gap:24px;flex-wrap:wrap}
+  .titleblock .meta div span{display:block;color:var(--ink);font-weight:500}
+
+  /* Hero diagram block */
+  .heroDiag{position:relative;padding:36px 28px;border-bottom:1px solid var(--rule)}
+  .heroDiag .lead{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+  .heroDiag h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(38px,4vw,58px);line-height:1.05;margin:0 0 14px;letter-spacing:-0.005em;color:var(--ink)}
+  .heroDiag h2 em{color:var(--gold-dark)}
+  .heroDiag p{font-size:16px;line-height:1.65;color:rgba(29,27,24,0.78);max-width:480px}
+  .ctas{display:flex;gap:12px;margin-top:24px}
+  .btn{display:inline-block;padding:12px 22px;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;font-family:'JetBrains Mono',monospace}
+  .btn.fill{background:var(--ink);color:var(--paper);border:1px solid var(--ink)}
+  .btn.ghost{color:var(--ink);border:1px solid var(--ink)}
+
+  .systemDiag{aspect-ratio:1;background:#fff;border:1px solid var(--rule);position:relative;padding:18px}
+  .systemDiag svg{width:100%;height:100%;display:block}
+
+  /* Section pattern */
+  .sec{padding:36px 28px;border-bottom:1px solid var(--rule);position:relative}
+  .sec .lbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold-dark);margin:0 0 12px}
+  .sec h3{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:32px;line-height:1.15;margin:0 0 14px;letter-spacing:-0.005em}
+  .sec h3 em{color:var(--gold-dark)}
+  .sec p{font-size:15px;line-height:1.65;color:rgba(29,27,24,0.75);max-width:620px}
+
+  /* Companion block */
+  .compRow{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center;margin-top:24px}
+  .compFlow{background:#fff;border:1px solid var(--rule);padding:24px}
+  .compFlow svg{width:100%;height:auto;display:block}
+  .compCard{background:#fff;border:1px solid var(--rule);padding:22px}
+  .compCard .head{display:flex;gap:10px;align-items:center;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.32em;text-transform:uppercase;color:rgba(29,27,24,0.55)}
+  .compCard .head .mark{width:24px;height:24px;border:1px solid var(--ink);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px}
+  .compCard .q{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;line-height:1.35;margin:0 0 14px;color:var(--ink)}
+  .compCard .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+  .compCard .chip{padding:7px 12px;border:1px solid var(--rule);font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:0.06em}
+
+  /* Dashboard module diagram */
+  .dashDiag{margin-top:24px;background:#fff;border:1px solid var(--rule);padding:28px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+  .dashDiag .module{padding:18px 14px;border-right:1px dashed var(--rule);position:relative}
+  .dashDiag .module:last-child{border-right:0}
+  .dashDiag .module .num{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.32em;color:var(--gold-dark)}
+  .dashDiag .module h4{font-size:11px;letter-spacing:0.32em;text-transform:uppercase;font-weight:500;color:var(--ink);margin:6px 0 10px}
+  .dashDiag .module p{font-size:12px;line-height:1.5;color:rgba(29,27,24,0.7);margin:0 0 10px;max-width:none}
+  .dashDiag .module .out{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--gold-dark);border-top:1px dotted var(--rule);padding-top:8px;margin-top:10px}
+
+  /* Workflow steps */
+  .flow{margin-top:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:#fff;border:1px solid var(--rule)}
+  .flowStep{padding:24px 18px;border-right:1px solid var(--rule);position:relative}
+  .flowStep:last-child{border-right:0}
+  .flowStep .n{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.32em;color:var(--gold-dark)}
+  .flowStep h4{margin:8px 0 4px;font-size:13px;font-weight:500;color:var(--ink)}
+  .flowStep p{font-size:12px;color:rgba(29,27,24,0.7);margin:0}
+  .flowStep::after{content:"→";position:absolute;right:-9px;top:50%;transform:translateY(-50%);background:var(--paper);color:var(--gold-dark);font-size:14px;line-height:1;padding:2px}
+  .flowStep:last-child::after{display:none}
+
+  /* Tiers — vertical ascent diagram */
+  .ascent{margin-top:24px;display:grid;grid-template-columns:1fr 280px;gap:32px;align-items:flex-start}
+  .ascentSvg{background:#fff;border:1px solid var(--rule);padding:24px;aspect-ratio:1.3}
+  .ascentSvg svg{width:100%;height:100%;display:block}
+  .tierList{display:flex;flex-direction:column;gap:12px}
+  .tierItem{background:#fff;border:1px solid var(--rule);padding:16px 16px 16px 18px;border-left:3px solid var(--gold-light)}
+  .tierItem.t2{border-left-color:var(--gold)}
+  .tierItem.t3{border-left-color:#1a253a;background:#1a253a;color:var(--paper)}
+  .tierItem .row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+  .tierItem h4{margin:0;font-size:11px;letter-spacing:0.32em;text-transform:uppercase;font-weight:500}
+  .tierItem .price{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px}
+  .tierItem.t3 .price{color:rgba(245,240,232,0.85)}
+  .tierItem ul{list-style:none;padding:0;margin:8px 0 0;font-size:11px;line-height:1.55;color:rgba(29,27,24,0.7);font-family:'JetBrains Mono',monospace;letter-spacing:0.04em}
+  .tierItem.t3 ul{color:rgba(245,240,232,0.7)}
+
+  /* Spec tables */
+  .twoUp{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
+  .specTable{background:#fff;border:1px solid var(--rule);padding:0}
+  .specTable h4{margin:0;padding:14px 18px;border-bottom:1px solid var(--rule);font-size:11px;letter-spacing:0.32em;text-transform:uppercase;font-weight:500;color:var(--ink)}
+  .specTable .row{display:grid;grid-template-columns:1fr auto;gap:14px;padding:11px 18px;border-bottom:1px solid var(--rule);font-size:13px}
+  .specTable .row:last-child{border-bottom:0}
+  .specTable .row .v{color:var(--gold-dark);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.06em}
+
+  /* Final */
+  .finalCta{padding:48px 28px;text-align:center}
+  .finalCta h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(36px,3.6vw,52px);margin:0 0 8px;letter-spacing:-0.005em}
+  .finalCta h2 em{color:var(--gold-dark)}
+  .finalCta p{font-size:14px;color:rgba(29,27,24,0.7);max-width:540px;margin:0 auto 22px}
+
+  /* Sticky CTA */
+  .stickyCta{position:fixed;bottom:24px;right:24px;background:var(--ink);color:var(--paper);padding:13px 22px;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;font-family:'JetBrains Mono',monospace;border:1px solid var(--ink);box-shadow:0 12px 36px rgba(29,27,24,0.18);z-index:40}
+
+  @media (max-width: 980px){
+    .heroDiag .lead{grid-template-columns:1fr}
+    .compRow,.ascent{grid-template-columns:1fr}
+    .flow,.dashDiag{grid-template-columns:repeat(2,1fr)}
+    .twoUp{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="logo">HoWA · /howa</div>
+  <div class="links"><span>System</span><span>Plans</span><span>Help</span></div>
+  <a class="cta" href="#cta">Start HoWA</a>
+</nav>
+
+<div class="sheet">
+  <header class="titleblock">
+    <h1>HoWA — <em>system specification</em></h1>
+    <div class="meta">
+      <div>Sheet<span>01 / 01</span></div>
+      <div>Issued<span>30 Apr 2026</span></div>
+      <div>Issue<span>v 2.0</span></div>
+      <div>Scale<span>1 home</span></div>
+    </div>
+  </header>
+
+  <section class="heroDiag">
+    <div class="lead">
+      <div>
+        <p class="lbl" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold-dark);margin:0 0 12px">For homes with soul · House № 1892</p>
+        <h2>The home, <em>finally understood.</em></h2>
+        <p>HoWA is the operating layer between The House (story, taste, standards) and the home itself. It observes, remembers, recommends, and records — so nothing slips, nothing is forgotten, and every action holds value.</p>
+        <div class="ctas">
+          <a class="btn fill" href="#">Start HoWA</a>
+          <a class="btn ghost" href="#">Explore the House</a>
+        </div>
+      </div>
+      <div class="systemDiag">
+        <svg viewBox="0 0 280 280" stroke="#1d1b18" stroke-width="0.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <!-- The House (left) -->
+          <rect x="14" y="100" width="60" height="80"/>
+          <text x="44" y="92" font-family="JetBrains Mono" font-size="6" text-anchor="middle" fill="#7a6028" letter-spacing="0.5">THE HOUSE</text>
+          <text x="44" y="142" font-family="Cormorant Garamond" font-style="italic" font-size="9" text-anchor="middle" fill="#1d1b18">story</text>
+          <text x="44" y="156" font-family="Cormorant Garamond" font-style="italic" font-size="9" text-anchor="middle" fill="#1d1b18">taste</text>
+          <text x="44" y="170" font-family="Cormorant Garamond" font-style="italic" font-size="9" text-anchor="middle" fill="#1d1b18">standards</text>
+
+          <!-- HoWA centre core -->
+          <circle cx="140" cy="140" r="44" stroke="#7a6028"/>
+          <circle cx="140" cy="140" r="30" stroke-dasharray="2 2"/>
+          <text x="140" y="138" font-family="Cormorant Garamond" font-style="italic" font-size="13" text-anchor="middle" fill="#1d1b18">HoWA</text>
+          <text x="140" y="152" font-family="JetBrains Mono" font-size="5" text-anchor="middle" fill="#7a6028" letter-spacing="0.5">OPERATING LAYER</text>
+
+          <!-- The home (right) -->
+          <polyline points="200,120 230,90 260,120"/>
+          <rect x="200" y="120" width="60" height="60"/>
+          <line x1="200" y1="150" x2="260" y2="150"/>
+          <line x1="230" y1="120" x2="230" y2="180"/>
+          <text x="230" y="200" font-family="JetBrains Mono" font-size="6" text-anchor="middle" fill="#7a6028" letter-spacing="0.5">THE HOME</text>
+
+          <!-- Connection lines -->
+          <line x1="74" y1="140" x2="96" y2="140" stroke-dasharray="3 2"/>
+          <line x1="184" y1="140" x2="200" y2="140" stroke-dasharray="3 2"/>
+
+          <!-- Annotations -->
+          <text x="86" y="134" font-family="JetBrains Mono" font-size="5" fill="#7a6028" letter-spacing="0.5">guides</text>
+          <text x="190" y="134" font-family="JetBrains Mono" font-size="5" fill="#7a6028" letter-spacing="0.5">acts</text>
+
+          <!-- Outer frame -->
+          <rect x="6" y="46" width="268" height="190" stroke-dasharray="1 3" stroke="#1d1b18" opacity="0.4"/>
+          <text x="14" y="42" font-family="JetBrains Mono" font-size="6" fill="#7a6028" letter-spacing="0.5">Fig 01 · System overview</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <p class="lbl">Fig 02 · Intake</p>
+    <h3>The Companion is the <em>way in.</em></h3>
+    <p>A short, structured conversation that captures home type, rooms, priorities, and household context — and writes the record from the answers.</p>
+    <div class="compRow">
+      <div class="compFlow">
+        <svg viewBox="0 0 320 120" stroke="#1d1b18" stroke-width="0.7" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="40" cy="60" r="22"/>
+          <circle cx="120" cy="60" r="22"/>
+          <circle cx="200" cy="60" r="22"/>
+          <circle cx="280" cy="60" r="22"/>
+          <line x1="62" y1="60" x2="98" y2="60" stroke-dasharray="2 2"/>
+          <line x1="142" y1="60" x2="178" y2="60" stroke-dasharray="2 2"/>
+          <line x1="222" y1="60" x2="258" y2="60" stroke-dasharray="2 2"/>
+          <text x="40" y="62" font-family="JetBrains Mono" font-size="6" text-anchor="middle" fill="#1d1b18" letter-spacing="0.5">UNDERSTAND</text>
+          <text x="120" y="62" font-family="JetBrains Mono" font-size="6" text-anchor="middle" fill="#1d1b18" letter-spacing="0.5">RECOMMEND</text>
+          <text x="200" y="62" font-family="JetBrains Mono" font-size="6" text-anchor="middle" fill="#1d1b18" letter-spacing="0.5">CONNECT</text>
+          <text x="280" y="62" font-family="JetBrains Mono" font-size="6" text-anchor="middle" fill="#1d1b18" letter-spacing="0.5">REMEMBER</text>
+          <text x="40" y="100" font-family="Cormorant Garamond" font-style="italic" font-size="9" text-anchor="middle" fill="#7a6028">questions</text>
+          <text x="120" y="100" font-family="Cormorant Garamond" font-style="italic" font-size="9" text-anchor="middle" fill="#7a6028">priorities</text>
+          <text x="200" y="100" font-family="Cormorant Garamond" font-style="italic" font-size="9" text-anchor="middle" fill="#7a6028">services</text>
+          <text x="280" y="100" font-family="Cormorant Garamond" font-style="italic" font-size="9" text-anchor="middle" fill="#7a6028">record</text>
+        </svg>
+      </div>
+      <div class="compCard">
+        <div class="head"><span class="mark">C</span><span>Companion · q.01</span></div>
+        <p class="q">What's the one thing about your home you wish you understood better?</p>
+        <div class="chips"><span class="chip">the roof</span><span class="chip">the boiler</span><span class="chip">the history</span><span class="chip">+ else</span></div>
+        <a class="btn fill" style="margin-top:6px" href="#">Launch →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <p class="lbl">Fig 03 · Modules</p>
+    <h3>Four operating <em>modules.</em></h3>
+    <p>One shell. Free, paid, and premium tiers see the same modules — entitlements stack additively.</p>
+    <div class="dashDiag">
+      <div class="module"><span class="num">M.01</span><h4>Tasks</h4><p>What to do. Scheduled. Booked. Reminded.</p><p class="out">— this week: 3</p></div>
+      <div class="module"><span class="num">M.02</span><h4>Records</h4><p>What happened. Documents, dates, outcomes.</p><p class="out">— last 30d: 6 entries</p></div>
+      <div class="module"><span class="num">M.03</span><h4>Alerts</h4><p>What's changing. Predictive, never alarmist.</p><p class="out">— open: 2</p></div>
+      <div class="module"><span class="num">M.04</span><h4>Protect</h4><p>What's covered. Insurance, reviews, evidence.</p><p class="out">— under review</p></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <p class="lbl">Fig 04 · Flow · prevention</p>
+    <h3>Boiler service flagged 14 days early. <em>Cost reduced 42%.</em></h3>
+    <p>One end-to-end flow, recorded.</p>
+    <div class="flow">
+      <div class="flowStep"><span class="n">01</span><h4>Predicted</h4><p>14 days early</p></div>
+      <div class="flowStep"><span class="n">02</span><h4>Booked</h4><p>Approved partner</p></div>
+      <div class="flowStep"><span class="n">03</span><h4>Done</h4><p>Issue caught at Stage 1</p></div>
+      <div class="flowStep"><span class="n">04</span><h4>Recorded</h4><p>Held in evidence</p></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <p class="lbl">Fig 05 · Tier ascent</p>
+    <h3>Three ways to <em>access the system.</em></h3>
+    <p>Free is a real product, not a teaser. HoWA+ adds continuity. Steward is by application.</p>
+    <div class="ascent">
+      <div class="ascentSvg">
+        <svg viewBox="0 0 240 200" stroke="#1d1b18" stroke-width="0.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <!-- ascent triangle -->
+          <line x1="20" y1="170" x2="220" y2="30" stroke-dasharray="3 3"/>
+          <line x1="20" y1="170" x2="220" y2="170"/>
+          <!-- markers -->
+          <circle cx="60" cy="142" r="6" fill="#fff" stroke="#d4b87a" stroke-width="1.4"/>
+          <circle cx="130" cy="92" r="6" fill="#fff" stroke="#b8983e" stroke-width="1.4"/>
+          <circle cx="200" cy="42" r="6" fill="#1a253a" stroke="#1a253a"/>
+          <text x="56" y="160" font-family="JetBrains Mono" font-size="6" fill="#7a6028" letter-spacing="0.4">FREE</text>
+          <text x="116" y="80" font-family="JetBrains Mono" font-size="6" fill="#7a6028" letter-spacing="0.4">£16.99/M</text>
+          <text x="186" y="32" font-family="JetBrains Mono" font-size="6" fill="#1a253a" letter-spacing="0.4">BY APPLICATION</text>
+          <text x="60" y="178" font-family="Cormorant Garamond" font-style="italic" font-size="10" fill="#1d1b18" text-anchor="middle">HoWA</text>
+          <text x="130" y="80" font-family="Cormorant Garamond" font-style="italic" font-size="10" fill="#1d1b18" text-anchor="middle" dy="-12">HoWA+</text>
+          <text x="200" y="32" font-family="Cormorant Garamond" font-style="italic" font-size="10" fill="#1d1b18" text-anchor="middle" dy="-12">Steward</text>
+          <text x="14" y="22" font-family="JetBrains Mono" font-size="6" fill="#7a6028" letter-spacing="0.5">Fig 05 · Ascent</text>
+        </svg>
+      </div>
+      <div class="tierList">
+        <div class="tierItem t1"><div class="row"><h4>HoWA</h4><span class="price">Free</span></div><ul><li>· one home record</li><li>· companion</li><li>· entry repair scan</li></ul></div>
+        <div class="tierItem t2"><div class="row"><h4>HoWA+</h4><span class="price">£16.99/m</span></div><ul><li>· task centre</li><li>· logbook</li><li>· editorial</li><li>· service discounts</li></ul></div>
+        <div class="tierItem t3"><div class="row"><h4>Steward</h4><span class="price">By app.</span></div><ul><li>· predictive</li><li>· device int.</li><li>· delegated access</li><li>· managed care</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <p class="lbl">Fig 06 · Specifications</p>
+    <h3>What it does. <em>Plainly.</em></h3>
+    <div class="twoUp">
+      <div class="specTable">
+        <h4>Capabilities · all tiers</h4>
+        <div class="row"><span>Home record</span><span class="v">YES</span></div>
+        <div class="row"><span>Companion intake</span><span class="v">YES</span></div>
+        <div class="row"><span>Repair scan (entry)</span><span class="v">YES</span></div>
+        <div class="row"><span>Task scheduling</span><span class="v">+ &amp; UP</span></div>
+        <div class="row"><span>Document logbook</span><span class="v">+ &amp; UP</span></div>
+        <div class="row"><span>Predictive maintenance</span><span class="v">STEWARD</span></div>
+      </div>
+      <div class="specTable">
+        <h4>Trust · accreditations</h4>
+        <div class="row"><span>The List</span><span class="v">○</span></div>
+        <div class="row"><span>Guild of Master Craftsmen</span><span class="v">○</span></div>
+        <div class="row"><span>Carbon Neutral</span><span class="v">○</span></div>
+        <div class="row"><span>Federation of Window Cleaners</span><span class="v">○</span></div>
+        <div class="row"><span>CHAS</span><span class="v">○</span></div>
+        <div class="row"><span>SafeContractor</span><span class="v">○</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <p class="lbl">Fig 07 · Edge cases</p>
+    <h3>Questions, <em>asked and answered.</em></h3>
+    <div class="twoUp">
+      <div class="specTable">
+        <div class="row"><span>Can I cancel HoWA+ anytime?</span><span class="v">YES</span></div>
+        <div class="row"><span>Setup time?</span><span class="v">~ 2 MIN</span></div>
+        <div class="row"><span>Where does my data live?</span><span class="v">UK · ENC</span></div>
+      </div>
+      <div class="specTable">
+        <div class="row"><span>Forced upgrade?</span><span class="v">NO</span></div>
+        <div class="row"><span>Marketplace mandatory?</span><span class="v">NO</span></div>
+        <div class="row"><span>Move home?</span><span class="v">PORTABLE</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="finalCta" id="cta">
+    <h2>Step into <em>stewardship.</em></h2>
+    <p>Two minutes to begin. A lifetime of looking after.</p>
+    <div class="ctas" style="justify-content:center">
+      <a class="btn fill" href="#">Start HoWA</a>
+      <a class="btn ghost" href="#">Book a consultation</a>
+    </div>
+  </section>
+</div>
+
+<a class="stickyCta" href="#cta">Start HoWA →</a>
+</body>
+</html>

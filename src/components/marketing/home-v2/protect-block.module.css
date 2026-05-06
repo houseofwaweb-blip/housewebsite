@@ -1,0 +1,234 @@
+/* "Care that pre-empts" carousel.
+   Single horizontal scroll-snap track with Insurance (lead, wider) +
+   Protect + 4 services. Cards extend off the right edge so users know
+   there's more to swipe to. */
+
+.protect {
+  background: var(--color-house-cream);
+  padding: 36px 0 44px;
+}
+
+/* Header — title left, controls right, sits inside max-width container */
+.head {
+  max-width: 1280px;
+  margin: 0 auto 22px;
+  padding: 0 4vw;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #7a6028;
+  margin-bottom: 8px;
+}
+.title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--color-house-brown);
+  margin: 0;
+  letter-spacing: -0.005em;
+}
+.sub {
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(48, 35, 28, 0.72);
+  max-width: 520px;
+  margin: 8px 0 0;
+}
+.controls {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.controlBtn {
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(48, 35, 28, 0.25);
+  background: transparent;
+  color: var(--color-house-brown);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.controlBtn:hover:not(:disabled) {
+  border-color: var(--color-house-gold);
+  color: #7a6028;
+}
+.controlBtn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Track — extends edge-to-edge of the viewport so cards spill off the right.
+   Left padding aligns the first card with the title's left edge. */
+.track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding: 4px max(4vw, calc((100vw - 1280px) / 2 + 4vw)) 4px max(4vw, calc((100vw - 1280px) / 2));
+  scroll-padding-left: max(4vw, calc((100vw - 1280px) / 2));
+}
+.track::-webkit-scrollbar { display: none; }
+
+/* Card base — image top, copy below */
+.card {
+  flex: 0 0 320px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-house-white);
+  border: 1px solid rgba(48, 35, 28, 0.08);
+  overflow: hidden;
+}
+.cardImg {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: var(--color-house-cream-dark);
+}
+.cardImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.cardCopy {
+  padding: 22px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.cardLabel {
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #7a6028;
+  margin-bottom: 12px;
+}
+.cardHeadline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-house-brown);
+  margin: 0 0 12px;
+  letter-spacing: -0.005em;
+}
+.cardBody {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(48, 35, 28, 0.75);
+  margin: 0 0 18px;
+}
+.cardCtaPrimary {
+  margin-top: auto;
+  align-self: flex-start;
+  display: inline-block;
+  background: #7a6028;
+  color: var(--color-house-cream);
+  padding: 12px 24px;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.cardCtaSecondary {
+  margin-top: auto;
+  align-self: flex-start;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #7a6028;
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-house-gold);
+  padding-bottom: 2px;
+}
+
+/* Lead variant — Insurance gets nearly 2x the width and a gold border */
+.cardLead {
+  flex: 0 0 580px;
+  border-color: var(--color-house-gold);
+  box-shadow: 0 18px 44px rgba(48, 35, 28, 0.08);
+}
+/* Match the height of the service-card images (320px wide × 3:4 = 427px tall).
+   Lead card is 580px wide, so 580/427 = ~1.36 gives an identical image height
+   so the carousel reads as one consistent strip. */
+.cardLead .cardImg {
+  aspect-ratio: 580 / 427;
+}
+.cardLead .cardCopy {
+  padding: 28px 32px 30px;
+}
+.cardLead .cardHeadline {
+  font-size: 28px;
+}
+.cardLead .cardBody {
+  font-size: 14px;
+}
+
+/* Footer — dots left, View all link right */
+.foot {
+  max-width: 1280px;
+  margin: 24px auto 0;
+  padding: 0 4vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.dots {
+  display: flex;
+  gap: 6px;
+}
+.dot {
+  width: 22px;
+  height: 2px;
+  background: rgba(48, 35, 28, 0.18);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+.dotActive {
+  background: #7a6028;
+}
+.viewAll {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #7a6028;
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-house-gold);
+  padding-bottom: 2px;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  .head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .card {
+    flex: 0 0 78vw;
+  }
+  .cardLead {
+    flex: 0 0 78vw;
+  }
+  /* On mobile both cards are the same width so the same aspect ratio
+     gives them the same image height. */
+  .cardLead .cardImg {
+    aspect-ratio: 3/4;
+  }
+}

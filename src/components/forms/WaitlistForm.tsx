@@ -16,7 +16,7 @@ import {
 } from "@/lib/forms/schemas";
 
 /**
- * WaitlistForm — register-interest on Steward / Protect Review / Insurance / HoWA app.
+ * WaitlistForm — register-interest on Steward / Home Protection Review / Insurance / HoWA app.
  * Product is set by the parent (each coming-soon surface embeds its own WaitlistForm).
  */
 export interface WaitlistFormProps {

@@ -1,0 +1,152 @@
+/* Proof strip — accreditations row + 3 review cards.
+   Sits between Powered-by and Final CTA so the closing CTA has weight
+   behind it. Cream background, restrained palette. */
+
+.section {
+  background: var(--color-house-cream);
+  padding: 56px 4vw 64px;
+  border-top: 1px solid rgba(48, 35, 28, 0.08);
+}
+.inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* ---- Accreditations row ---- */
+.accreditHead {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.accreditTitle {
+  font-size: 11px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: rgba(48, 35, 28, 0.6);
+  margin: 0;
+}
+.accreditTitle::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--color-house-gold);
+  margin: 16px auto 0;
+  opacity: 0.6;
+}
+
+.accreditRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 28px 44px;
+  margin-bottom: 56px;
+}
+.accreditItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  max-width: 110px;
+  text-align: center;
+}
+.accreditCircle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 1px dashed rgba(48, 35, 28, 0.28);
+  background: rgba(48, 35, 28, 0.025);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: rgba(48, 35, 28, 0.28);
+  line-height: 1;
+}
+.accreditLabel {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(48, 35, 28, 0.7);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ---- Reviews ---- */
+.reviewsHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  margin-bottom: 24px;
+  padding-top: 36px;
+  border-top: 1px solid rgba(48, 35, 28, 0.08);
+}
+.reviewsTitle {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.2;
+  color: var(--color-house-brown);
+  margin: 0;
+  letter-spacing: -0.005em;
+}
+.reviewsMeta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: rgba(48, 35, 28, 0.6);
+}
+.reviewsMeta strong {
+  color: var(--color-house-brown);
+  font-weight: 500;
+}
+.stars {
+  display: inline-flex;
+  gap: 1px;
+  color: #7a6028;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+.reviewGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.review {
+  background: var(--color-house-white);
+  border: 1px solid rgba(48, 35, 28, 0.08);
+  padding: 24px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.reviewStars {
+  color: #7a6028;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+.reviewQuote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--color-house-brown);
+  margin: 0;
+  flex: 1;
+}
+.reviewAttr {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(48, 35, 28, 0.6);
+  margin: 0;
+}
+
+@media (max-width: 880px) {
+  .reviewGrid { grid-template-columns: 1fr; }
+  .reviewsHead { flex-direction: column; align-items: flex-start; }
+}

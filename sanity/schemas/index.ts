@@ -12,6 +12,10 @@ import { article } from "./article";
 import { articleCategory } from "./articleCategory";
 import { newsItem } from "./newsItem";
 import { musing } from "./musing";
+import { recipe } from "./recipe";
+import { homepageV2 } from "./homepageV2";
+import { howaLanderV2 } from "./howaLanderV2";
+import { homepageV3 } from "./homepageV3";
 import { proofPoint } from "./proofPoint";
 import { faq } from "./faq";
 import { legalPage } from "./legalPage";
@@ -52,6 +56,10 @@ export const schemaTypes = [
   articleCategory,
   newsItem,
   musing,
+  recipe,
+  homepageV2,
+  howaLanderV2,
+  homepageV3,
   proofPoint,
   faq,
   legalPage,

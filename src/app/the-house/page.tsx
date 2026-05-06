@@ -32,7 +32,7 @@ const SECTIONS = [
     title: "Protection that",
     titleEm: "understands.",
     hook: "Insurance, condition reviews, and the paper trail that proves the care was done.",
-    body: "A Protect Review surveys the property. The evidence feeds your insurance introduction. House Approved underwriters who know the difference between a sash window and a uPVC frame. Everything filed, everything connected.",
+    body: "A Home Protection Review surveys the property. The evidence feeds your insurance introduction. House Approved underwriters who know the difference between a sash window and a uPVC frame. Everything filed, everything connected.",
     link: "/protect",
     linkLabel: "See Protect →",
     imagePlaceholder: "Period home details",

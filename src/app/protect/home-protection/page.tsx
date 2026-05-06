@@ -6,13 +6,13 @@ import { WaitlistMini } from "@/components/marketing/WaitlistMini";
 import { getPageSections, cms } from "@/lib/cms/page-sections";
 
 export const metadata = {
-  title: "Protect Review",
+  title: "Home Protection",
   description:
     "A one-day in-person review by House-vetted specialists. Condition survey, evidence pack, and insurance-ready documentation for your home.",
 };
 
-export default async function ProtectReviewPage() {
-  const sections = await getPageSections("protect-review");
+export default async function HomeProtectionPage() {
+  const sections = await getPageSections("protect-home-protection");
   const s = (name: string) => sections.get(name);
 
   return (
@@ -150,15 +150,15 @@ export default async function ProtectReviewPage() {
             {cms(
               s("waitlist"),
               "body",
-              "Leave your email and we\u2019ll write when the Protect Review opens. HoWA+ members go to the front of the list.",
+              "Leave your email and we\u2019ll write when Home Protection opens. HoWA+ members go to the front of the list.",
             )}
           </p>
           <WaitlistMini
             product="protect_review"
-            sourcePage="/protect/review"
+            sourcePage="/protect/home-protection"
             placeholder="Your email"
             buttonLabel="Register interest"
-            successMessage="Thank you. We'll write when the Protect Review opens."
+            successMessage="Thank you. We'll write when Home Protection opens."
           />
         </div>
       </section>
@@ -186,7 +186,7 @@ export default async function ProtectReviewPage() {
               The living record
             </h3>
             <p className="font-sans text-[15px] leading-[1.6] text-house-brown/70 mb-5">
-              Your Protect Review evidence feeds directly into the insurance
+              Your Home Protection evidence feeds directly into the insurance
               introduction. One conversation, one record, no starting from
               scratch.
             </p>

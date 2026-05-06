@@ -138,6 +138,31 @@ export const WINDOW_CLEANING_SUBS: SubService[] = [
     name: "Softwashing",
     lede: "Low-pressure exterior cleaning for render, cladding, and delicate stonework. No jet-wash damage.",
   },
+  {
+    slug: "jet-washing",
+    name: "Jet washing",
+    lede: "Paths, patios, driveways, and decking. Professional pressure washing with controlled technique. No surface damage.",
+  },
+  {
+    slug: "commercial-window-cleaning",
+    name: "Commercial window cleaning",
+    lede: "Offices, retail, and multi-unit buildings. Scheduled contracts, access equipment, and insurance documentation provided.",
+  },
+  {
+    slug: "commercial-gutter-cleaning",
+    name: "Commercial gutter cleaning",
+    lede: "Industrial SkyVac systems for commercial properties. Scheduled maintenance contracts with photographic reporting.",
+  },
+  {
+    slug: "commercial-softwashing",
+    name: "Commercial softwashing",
+    lede: "Low-pressure exterior cleaning for commercial facades, render, and cladding. Planned maintenance or one-off restoration.",
+  },
+  {
+    slug: "commercial-exterior-maintenance",
+    name: "Commercial exterior maintenance",
+    lede: "Full exterior care packages for businesses. Windows, gutters, fascias, and pressure washing on a managed schedule.",
+  },
 ];
 
 export const CLEANING_SUBS: SubService[] = [
@@ -264,6 +289,31 @@ export const HANDYMAN_SUBS: SubService[] = [
     name: "Jet washing",
     lede: "Paths, patios, driveways, and decking. Professional equipment, controlled pressure, no surface damage.",
   },
+  {
+    slug: "alarm-installation",
+    name: "Alarm installation",
+    lede: "Wired and wireless alarm systems installed, tested, and configured. Sensors, keypads, and app setup included.",
+  },
+  {
+    slug: "bed-assembly",
+    name: "Bed assembly",
+    lede: "Divan, frame, bunk, and cabin beds assembled on site. Headboards mounted, slats set, mattress placed.",
+  },
+  {
+    slug: "cat-flap-installation",
+    name: "Cat flap installation",
+    lede: "Fitted into timber, UPVC, or glass doors. Microchip flaps wired and programmed to your cat.",
+  },
+  {
+    slug: "christmas-lights",
+    name: "Christmas light installation & removal",
+    lede: "Exterior and interior lighting installed safely. Timers set, cabling secured, removal booked for January.",
+  },
+  {
+    slug: "loft-organisation",
+    name: "Loft organisation",
+    lede: "Boarding, shelving, lighting, and labelling. Turn unused roof space into accessible, organised storage.",
+  },
 ];
 
 export const REMOVALS_SUBS: SubService[] = [
@@ -314,6 +364,120 @@ export const REMOVALS_SUBS: SubService[] = [
     slug: "packing-service",
     name: "Packing service",
     lede: "Full or partial packing by our team. Boxes, wrapping, labelling, and careful handling of fragile items.",
+  },
+];
+
+export const ENERGY_SUBS: SubService[] = [
+  {
+    slug: "solar-installation",
+    name: "Solar installation",
+    lede: "Roof-mounted and in-roof solar panel systems. Full survey, design, installation, and MCS certification.",
+    body: "We handle the complete solar journey: structural survey, panel layout design, scaffolding, installation, DNO grid connection application, and MCS certification. Battery storage systems (Tesla Powerwall, GivEnergy, Fox ESS) can be added at install or retrofitted later. Every system is designed for the specific property, not a generic template.",
+    whyChoose: [
+      "MCS-certified installation — qualifies for Smart Export Guarantee payments",
+      "Full structural and electrical survey before any work begins",
+      "Battery storage integration available at install or later",
+      "DNO application and grid connection handled for you",
+    ],
+    included: [
+      "Site survey and system design",
+      "Scaffolding and installation",
+      "Inverter, mounting, and all electrical work",
+      "DNO notification and MCS certification",
+      "System monitoring setup and handover",
+    ],
+    faq: [
+      { q: "How long does installation take?", a: "Most residential installations take 2-3 days. Larger systems or battery additions may take an extra day." },
+      { q: "Will I need planning permission?", a: "Most domestic solar installations are permitted development. We check and advise before quoting." },
+    ],
+  },
+  {
+    slug: "ev-charging",
+    name: "EV charger installation",
+    lede: "Home and workplace EV charger installation. All major brands, OZEV grant applications handled where eligible.",
+    body: "We install Ohme, Pod Point, Wallbox, Tesla, Zappi, and other leading chargers. Installation includes dedicated circuit, consumer unit upgrade if needed, and full testing. We handle the OZEV grant application where your property qualifies, reducing the cost by up to £350.",
+    whyChoose: [
+      "All major charger brands installed and supported",
+      "OZEV grant application handled where eligible",
+      "Dedicated circuit with RCD protection as standard",
+      "Load balancing available for multi-charger properties",
+    ],
+    included: [
+      "Charger supply and installation",
+      "Dedicated circuit from consumer unit",
+      "Full electrical testing and certification",
+      "App setup and smart scheduling walkthrough",
+      "OZEV grant application (if eligible)",
+    ],
+  },
+  {
+    slug: "electrical-repairs",
+    name: "Electrical repairs",
+    lede: "Fault finding, socket and switch replacement, circuit repairs, and emergency call-outs. Same-day availability.",
+  },
+  {
+    slug: "commercial-electrical",
+    name: "Commercial electrical services",
+    lede: "Office fit-outs, retail lighting, three-phase installations, and commercial maintenance contracts.",
+  },
+  {
+    slug: "new-builds-renovations",
+    name: "New builds & renovations",
+    lede: "First and second fix electrical for new builds, extensions, and full renovations. Building control sign-off included.",
+  },
+  {
+    slug: "electrical-testing",
+    name: "Electrical testing & inspections",
+    lede: "EICR reports, PAT testing, and pre-purchase electrical surveys. Certification filed to your HoWA record.",
+  },
+];
+
+export const PET_CARE_SUBS: SubService[] = [
+  {
+    slug: "dog-walking",
+    name: "Dog walking",
+    lede: "Solo walks by experienced, insured handlers. GPS-tracked routes, photo updates, and behaviour notes after every visit.",
+    body: "Every walk is solo unless you request otherwise. Your handler learns the dog's temperament, favourite routes, and recall level. Walks are GPS-tracked with a live map you can check from your phone. After each walk, you receive a photo, a route summary, and a short behaviour note — all filed to your HoWA record.",
+    whyChoose: [
+      "Solo walks — your dog gets full attention, every time",
+      "GPS-tracked with live route sharing",
+      "Same handler wherever possible for consistency",
+      "All handlers DBS-checked and fully insured",
+    ],
+    included: [
+      "30-minute or 60-minute solo walk",
+      "GPS route tracking and live map",
+      "Photo and behaviour update after each walk",
+      "Key access managed through HoWA",
+      "Logged in your HoWA record",
+    ],
+    faq: [
+      { q: "Can I track the walk live?", a: "Yes. You'll receive a live GPS link at the start of each walk." },
+      { q: "What if my dog doesn't get on with the handler?", a: "We'll reassign to a different handler. The meet-and-greet is designed to catch this before regular walks begin." },
+    ],
+  },
+  {
+    slug: "dog-sitting",
+    name: "Dog sitting",
+    lede: "In-home care while you're away. Feeding, walks, medication, and daily updates. Your home or the sitter's.",
+    body: "Our sitters stay in your home or host your dog in theirs — whichever suits the dog's temperament. They follow your instructions for feeding, medication, exercise, and bedtime routine. You receive daily photo updates and can message the sitter directly through the platform. Emergency vet details are held on file.",
+    whyChoose: [
+      "In-home care — your dog stays in familiar surroundings",
+      "Feeding, medication, and routine followed exactly",
+      "Daily photo and status updates",
+      "Emergency vet instructions on file in HoWA",
+    ],
+    included: [
+      "Overnight or daytime care",
+      "All walks, feeds, and medication as directed",
+      "Daily photo and behaviour update",
+      "Meet-and-greet before the first sit",
+      "Emergency vet protocol on file",
+    ],
+    faq: [
+      { q: "Can the sitter stay at my house?", a: "Yes. Most clients prefer in-home sitting so the dog stays in familiar surroundings. We can also host at the sitter's home if you prefer." },
+      { q: "What about cats or other pets?", a: "We can arrange care for cats and small animals alongside dogs. Let us know during booking." },
+    ],
   },
 ];
 

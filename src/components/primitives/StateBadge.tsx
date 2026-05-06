@@ -5,7 +5,7 @@ import { cn } from "@/lib/cn";
  * State badge — reusable primitive for product state + tier flags.
  * Spec: /ux/09-interactions/playground.html (badges section).
  *
- *  coming   (gold)   — Coming soon (Protect Review, Steward, future launches)
+ *  coming   (gold)   — Coming soon (Home Protection Review, Steward, future launches)
  *  live     (moss)   — Live now
  *  interest (teal)   — Register interest (Insurance, Steward waitlist)
  *  soon     (stone)  — muted coming-soon for tier cards

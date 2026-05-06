@@ -3,7 +3,7 @@ import type { MegaPanel } from "@/components/nav/MegaMenu";
 /**
  * Primary navigation configuration.
  *
- * Order: The House · HoWA · Protect · Design · Services · Marketplace · Journal
+ * Order: The House · HoWA · Protect · Design · Services · Shop · The Hearth
  */
 export const PRIMARY_NAV: MegaPanel[] = [
   {
@@ -21,9 +21,11 @@ export const PRIMARY_NAV: MegaPanel[] = [
         ],
       },
       {
-        heading: "Reading",
+        heading: "From the House",
         links: [
-          { label: "The Hearth Magazine", href: "/journal", description: "Editorial writing on homes & gardens" },
+          { label: "News", href: "/news", description: "Press, awards & announcements" },
+          { label: "Musings", href: "/musings", description: "Notes & practical advice" },
+          { label: "About", href: "/the-house/about", description: "The team behind the House" },
         ],
       },
     ],
@@ -76,8 +78,8 @@ export const PRIMARY_NAV: MegaPanel[] = [
       {
         heading: "Protection",
         links: [
-          { label: "Protect Review", href: "/protect#review", description: "Coming soon" },
-          { label: "House Approved Insurance", href: "/insurance", description: "Register interest" },
+          { label: "Home Protection", href: "/protect/home-protection", description: "Coming soon" },
+          { label: "House Approved Insurance", href: "/protect/insurance", description: "Register interest" },
         ],
       },
     ],
@@ -98,6 +100,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
       {
         heading: "Our studios",
         links: [
+          { label: "The Studios", href: "/design/studios", description: "The collective explained" },
           { label: "Partner directory", href: "/partners", description: "Vetted designers & makers" },
           { label: "Delve Interiors", href: "/partners/delve-interiors" },
           { label: "Jessica Durling-McMahon", href: "/partners/jessica-durling-mcmahon" },
@@ -120,18 +123,28 @@ export const PRIMARY_NAV: MegaPanel[] = [
     triggerHref: "/services",
     groups: [
       {
-        heading: "Services at launch",
+        heading: "Home care",
         links: [
           { label: "Gardening", href: "/services/gardening", description: "Seasonal & one-off" },
           { label: "Window cleaning", href: "/services/window-cleaning" },
           { label: "Cleaning", href: "/services/cleaning" },
           { label: "Gutter cleaning", href: "/services/gutter-cleaning" },
+          { label: "Handyman", href: "/services/handyman" },
+          { label: "Removals", href: "/services/removals" },
+        ],
+      },
+      {
+        heading: "Specialist",
+        links: [
+          { label: "Energy & Electrical", href: "/services/energy", description: "Solar, EV, rewires" },
+          { label: "Pet Care", href: "/services/pet-care", description: "Walking & sitting" },
         ],
       },
       {
         heading: "Managed care",
         links: [
           { label: "Steward Plans", href: "/steward-plans", description: "Recurring, intentional" },
+          { label: "House Credit", href: "/house-credit", description: "Interest-free finance" },
           { label: "Book consultation", href: "/book-consultation" },
         ],
       },
@@ -139,8 +152,8 @@ export const PRIMARY_NAV: MegaPanel[] = [
   },
 
   {
-    id: "marketplace",
-    trigger: "Marketplace",
+    id: "shop",
+    trigger: "Shop",
     triggerHref: "/shop",
     groups: [
       {
@@ -149,34 +162,22 @@ export const PRIMARY_NAV: MegaPanel[] = [
           { label: "All products", href: "/shop" },
           { label: "House Approved", href: "/shop/collections/house-approved", description: "Our mark of quality" },
           { label: "Collections", href: "/shop/collections", description: "Curated edits" },
+          { label: "Gift Cards", href: "/gift-cards", description: "Give the gift of care" },
         ],
       },
     ],
   },
 
   {
-    id: "journal",
-    trigger: "Journal",
+    id: "the-hearth",
+    trigger: "The Hearth",
     triggerHref: "/journal",
     groups: [
       {
-        heading: "The Hearth",
+        heading: "The Hearth Magazine",
         links: [
-          { label: "The Hearth Magazine", href: "/journal", description: "Editorial writing" },
-        ],
-      },
-      {
-        heading: "Free reading",
-        links: [
-          { label: "Musings", href: "/musings", description: "Notes & practical advice" },
-          { label: "News", href: "/news", description: "Press & announcements" },
-        ],
-      },
-      {
-        heading: "The House",
-        links: [
-          { label: "About", href: "/the-house/about", description: "The team behind the House" },
-          { label: "Proof", href: "/the-house/proof", description: "Press, awards, testimony" },
+          { label: "Read the magazine", href: "/journal", description: "Editorial writing on homes & gardens" },
+          { label: "Recipes", href: "/recipes", description: "Seasonal cooking" },
         ],
       },
     ],

@@ -65,7 +65,7 @@ const EVERYTHING_IN_PLUS = [
   "Saved guides and seasonal prompts",
   "Full Hearth editorial access",
   "Service discounts and member pricing",
-  "Protect Review early access",
+  "Home Protection Review early access",
 ];
 
 const PROBLEMS = [

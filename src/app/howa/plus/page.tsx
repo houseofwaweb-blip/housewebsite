@@ -44,7 +44,7 @@ const FEATURES = [
   },
   {
     title: "Carbon Offset Fund & Early Access",
-    description: "A personal carbon offset fund tracked against your household. Early access to new HoWA features, exclusive House events and drops, and Protect Review introductions via Provenance.",
+    description: "A personal carbon offset fund tracked against your household. Early access to new HoWA features, exclusive House events and drops, and Home Protection Review introductions via Provenance.",
   },
 ];
 

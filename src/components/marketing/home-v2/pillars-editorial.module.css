@@ -1,0 +1,245 @@
+/* Editorial 4-column pillars — homepage2 style.
+   Roman numeral / name / italic tagline / body / image / CTA.
+   Distinct cream-dark band so it differentiates from the cream sections
+   above and below. Wider container with vertical hairlines between cols. */
+
+.pillars {
+  position: relative;
+  background: var(--color-house-cream-dark);
+  padding: 56px 3vw 68px;
+  overflow: hidden;
+}
+
+/* ---- Hover background stack ---- */
+.bgStack {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.bgLayer {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.bgLayer[data-active="true"] {
+  opacity: 0.6;
+}
+.bgScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(29, 29, 27, 0.35) 0%,
+    rgba(29, 29, 27, 0.55) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.55s ease;
+}
+.pillars[data-hovering="true"] .bgScrim {
+  opacity: 1;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1640px;
+  margin: 0 auto;
+}
+
+/* Centred title at the top of the section */
+.head {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(28px, 3.2vw, 42px);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--color-house-brown);
+  margin: 0;
+  letter-spacing: -0.005em;
+  transition: color 0.55s ease;
+}
+.title::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--color-house-gold);
+  margin: 18px auto 0;
+  transition: background-color 0.55s ease;
+}
+
+/* Subgrid keeps every row aligned horizontally across all 4 columns —
+   numerals line up, names line up, body block sits in the same vertical
+   slot whether the copy is 3 lines or 4, and the images always start at
+   the same y-coordinate. Body row uses 1fr so shorter bodies still leave
+   their image where the longest body's image lands. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto auto 1fr auto auto;
+  column-gap: 0;
+  row-gap: 0;
+}
+
+/* Each column is a subgrid spanning all 6 rows.
+   Internal padding gives breathing room either side of the hairline. */
+.col {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 6;
+  row-gap: 14px;
+  align-items: start;
+  padding: 0 32px;
+  position: relative;
+}
+.col:first-child { padding-left: 0; }
+.col:last-child  { padding-right: 0; }
+/* Vertical hairline between columns (not after the last) */
+.col:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  right: 0;
+  width: 1px;
+  background: rgba(48, 35, 28, 0.14);
+  transition: background-color 0.55s ease;
+}
+
+.numeral {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 13px;
+  color: rgba(48, 35, 28, 0.5);
+  margin: 0;
+  transition: color 0.55s ease;
+}
+.name {
+  font-size: 12px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--color-house-brown);
+  margin: 0;
+  transition: color 0.55s ease;
+}
+.tagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 19px;
+  line-height: 1.25;
+  color: var(--color-house-brown);
+  margin: 0;
+  letter-spacing: -0.005em;
+  transition: color 0.55s ease;
+}
+.body {
+  font-size: 13px;
+  line-height: 1.65;
+  color: rgba(48, 35, 28, 0.72);
+  margin: 0;
+  transition: color 0.55s ease;
+}
+.imgWrap {
+  width: 100%;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  background: rgba(48, 35, 28, 0.06);
+  margin: 8px 0 0;
+}
+.imgWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+.links a {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #7a6028;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(122, 96, 40, 0.4);
+  padding-bottom: 2px;
+  align-self: flex-start;
+  transition: color 0.55s ease, border-color 0.55s ease;
+}
+.cta {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #7a6028;
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-house-gold);
+  padding-bottom: 2px;
+  align-self: flex-start;
+  transition: color 0.55s ease, border-color 0.55s ease;
+}
+
+/* ---- Hover state overrides ---- */
+.pillars[data-hovering="true"] .title {
+  color: var(--color-house-cream);
+}
+.pillars[data-hovering="true"] .title::after {
+  background: var(--color-house-gold-light, #b59855);
+}
+.pillars[data-hovering="true"] .numeral {
+  color: rgba(245, 240, 232, 0.55);
+}
+.pillars[data-hovering="true"] .name,
+.pillars[data-hovering="true"] .tagline {
+  color: var(--color-house-cream);
+}
+.pillars[data-hovering="true"] .body {
+  color: rgba(245, 240, 232, 0.82);
+}
+.pillars[data-hovering="true"] .col:not(:last-child)::after {
+  background: rgba(245, 240, 232, 0.22);
+}
+.pillars[data-hovering="true"] .links a,
+.pillars[data-hovering="true"] .cta {
+  color: var(--color-house-cream);
+  border-bottom-color: rgba(245, 240, 232, 0.6);
+}
+
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: none;
+    column-gap: 0;
+    row-gap: 32px;
+  }
+  .col {
+    display: flex;
+    flex-direction: column;
+    grid-row: auto;
+    padding: 0 24px;
+    row-gap: 0;
+    gap: 14px;
+  }
+  /* Hide vertical lines on mobile — they read as horizontal/awkward */
+  .col::after { display: none; }
+  .col:nth-child(odd) { padding-left: 0; }
+  .col:nth-child(even) { padding-right: 0; }
+}
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .col { padding: 0; }
+}

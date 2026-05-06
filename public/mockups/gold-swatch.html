@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Gold palette swatch · House of Willow Alexander</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f5f0e8; --cream-dark:#ece4d4; --brown:#30231c; --white:#fff;
+    --gold:#b8943e; --gold-light:#d4af5a; --gold-dark:#8a6f2e; --gold-aa:#7a6028;
+    --candidate:#c5a960;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--cream);color:var(--brown);font-family:Inter,system-ui,sans-serif;font-size:14px;line-height:1.55;padding:48px 32px}
+  .wrap{max-width:1280px;margin:0 auto}
+  h1{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:42px;line-height:1.1;margin:0 0 8px;letter-spacing:-0.005em}
+  .ey{font-size:11px;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold-aa);margin:0 0 18px}
+  .lede{font-size:15px;color:rgba(48,35,28,0.72);max-width:700px;margin:0 0 48px}
+
+  .row{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:48px}
+  .swatch{background:#fff;border:1px solid rgba(48,35,28,0.08);padding:18px}
+  .chip{height:90px;width:100%;border-radius:0;margin-bottom:14px;position:relative}
+  .chip code{position:absolute;bottom:8px;left:10px;font-family:ui-monospace,monospace;font-size:11px;color:#fff;background:rgba(0,0,0,0.45);padding:3px 6px;letter-spacing:0.04em}
+  .name{font-size:11px;letter-spacing:0.22em;text-transform:uppercase;font-weight:500;margin:0 0 4px}
+  .role{font-size:11px;color:rgba(48,35,28,0.55);margin:0;line-height:1.45}
+
+  .demoRow{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:32px}
+  .demo{padding:0;border:1px solid rgba(48,35,28,0.08);overflow:hidden}
+  .demo .top{padding:18px 16px;background:var(--cream)}
+  .demo .bot{padding:18px 16px;background:var(--brown);color:var(--cream)}
+  .demo .num{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:36px;line-height:1;margin:0 0 4px}
+  .demo .lbl{font-size:9px;letter-spacing:0.22em;text-transform:uppercase;margin:0;opacity:0.7}
+  .demo .btnLine{display:inline-block;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;border-bottom:1px solid;padding-bottom:2px;margin-top:8px}
+  .demo .rule{height:1px;width:32px;margin:6px 0 0}
+
+  .ratio{display:inline-block;font-family:ui-monospace,monospace;font-size:11px;background:rgba(48,35,28,0.06);padding:2px 6px;margin-right:6px;letter-spacing:0.02em}
+  .pass{color:#2d6364}
+  .fail{color:#8a3a3a}
+
+  .compareCell{padding:32px 26px;display:flex;flex-direction:column;align-items:center;gap:14px}
+  .compareCell.cream{background:var(--cream-dark)}
+  .compareCell.brown{background:var(--brown);color:var(--cream)}
+  .compareGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:1px solid rgba(48,35,28,0.08)}
+  .bigNum{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:54px;line-height:1;letter-spacing:-0.01em}
+  .bigLbl{font-size:9px;letter-spacing:0.28em;text-transform:uppercase;opacity:0.7;text-align:center}
+
+  .footer{margin-top:64px;padding-top:32px;border-top:1px solid rgba(48,35,28,0.1);font-size:13px;color:rgba(48,35,28,0.65)}
+  .footer code{background:var(--cream-dark);padding:2px 6px;font-family:ui-monospace,monospace;font-size:12px}
+  h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:26px;line-height:1.15;margin:48px 0 20px}
+  h2 .sub{font-family:Inter,sans-serif;font-style:normal;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(48,35,28,0.5);margin-left:12px;font-weight:500}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="ey">Palette test · 1 May 2026</p>
+  <h1>Gold palette · current vs. <em>candidate <code style="font-family:ui-monospace;font-size:24px;font-style:normal;background:none">#c5a960</code></em></h1>
+  <p class="lede">Five gold tokens compared. Existing palette plus the proposed <code style="font-family:ui-monospace;background:rgba(48,35,28,0.06);padding:2px 6px">#c5a960</code> candidate. Visual swatches first, then real-context demos (text on cream, text on dark, italic display number), then a side-by-side at scale.</p>
+
+  <h2>Swatches <span class="sub">Hex · role · contrast on cream</span></h2>
+  <div class="row" id="swatches"></div>
+
+  <h2>In context <span class="sub">small-caps button line · hairline rule · italic display number</span></h2>
+  <div class="demoRow" id="demos"></div>
+
+  <h2>Side-by-side at scale <span class="sub">€1,840 stat · cream and dark</span></h2>
+  <div class="compareGrid" id="compare"></div>
+
+  <h2>Verdict</h2>
+  <p style="font-size:15px;line-height:1.7;color:rgba(48,35,28,0.78);max-width:760px">
+    <code>#c5a960</code> sits between <code>--gold</code> (#b8943e) and <code>--gold-light</code> (#d4af5a) in tone — slightly more yellow than the primary gold, slightly darker than the light gold. On cream backgrounds it reads <strong id="cream-verdict"></strong>. On the brown background it reads <strong id="brown-verdict"></strong>. If you want it as a third token (a "gold-mid" for things like the £1,840 figure), it's clean. As a replacement for the primary, it shifts the brand a touch warmer / softer.
+  </p>
+
+  <p class="footer">Test page only. No swatch values are wired into the live build. To adopt <code>#c5a960</code> permanently, add as <code>--color-house-gold-mid</code> in <code>globals.css</code>.</p>
+</div>
+
+<script>
+const TOKENS = [
+  { name:'gold-aa',     hex:'#7a6028', role:'Local AA-on-cream (used in body links/buttons)' },
+  { name:'gold-dark',   hex:'#8a6f2e', role:'Original dark variant (fails AA on cream)' },
+  { name:'gold',        hex:'#b8943e', role:'Primary brand gold' },
+  { name:'candidate',   hex:'#c5a960', role:'PROPOSED — between gold and gold-light' },
+  { name:'gold-light',  hex:'#d4af5a', role:'Light accent (rules, dark-bg text)' },
+];
+
+// Relative luminance → WCAG contrast ratio
+function lum(hex){
+  const c = hex.replace('#','').match(/../g).map(h=>parseInt(h,16)/255);
+  const lin = c.map(v => v <= 0.03928 ? v/12.92 : Math.pow((v+0.055)/1.055, 2.4));
+  return 0.2126*lin[0] + 0.7152*lin[1] + 0.0722*lin[2];
+}
+function ratio(a,b){
+  const la = lum(a), lb = lum(b);
+  return ((Math.max(la,lb)+0.05) / (Math.min(la,lb)+0.05)).toFixed(2);
+}
+const CREAM = '#f5f0e8', BROWN = '#30231c';
+
+const sw = document.getElementById('swatches');
+TOKENS.forEach(t => {
+  const r = ratio(t.hex, CREAM);
+  const passAA = r >= 4.5;
+  const passLg = r >= 3;
+  const cls = t.name === 'candidate' ? 'swatch' : 'swatch';
+  sw.insertAdjacentHTML('beforeend', `
+    <div class="${cls}" ${t.name==='candidate'?'style="border-color:#c5a960;border-width:2px"':''}>
+      <div class="chip" style="background:${t.hex}"><code>${t.hex}</code></div>
+      <p class="name">${t.name}</p>
+      <p class="role">${t.role}</p>
+      <p style="margin:10px 0 0;font-size:11px">
+        <span class="ratio ${passAA?'pass':'fail'}">cream ${r}:1</span>
+        <span style="font-size:10px;color:${passAA?'#2d6364':'#8a3a3a'}">${passAA?'AA body':(passLg?'AA large only':'fail AA')}</span>
+      </p>
+    </div>
+  `);
+});
+
+const demos = document.getElementById('demos');
+TOKENS.forEach(t => {
+  demos.insertAdjacentHTML('beforeend', `
+    <div class="demo">
+      <div class="top">
+        <p class="lbl" style="color:${t.hex}">${t.name.toUpperCase()}</p>
+        <p class="num" style="color:${t.hex}">£1,840</p>
+        <p class="lbl">estimated saved</p>
+        <div class="rule" style="background:${t.hex}"></div>
+        <span class="btnLine" style="color:${t.hex};border-color:${t.hex}">View →</span>
+      </div>
+      <div class="bot">
+        <p class="lbl" style="color:${t.hex}">${t.name.toUpperCase()}</p>
+        <p class="num" style="color:${t.hex}">£1,840</p>
+        <p class="lbl" style="color:rgba(245,240,232,0.72)">estimated saved</p>
+        <div class="rule" style="background:${t.hex}"></div>
+        <span class="btnLine" style="color:${t.hex};border-color:${t.hex}">View →</span>
+      </div>
+    </div>
+  `);
+});
+
+const cmp = document.getElementById('compare');
+TOKENS.forEach(t => {
+  cmp.insertAdjacentHTML('beforeend', `
+    <div class="compareCell cream">
+      <p class="bigNum" style="color:${t.hex}">£1,840</p>
+      <p class="bigLbl">${t.name} · cream</p>
+    </div>
+  `);
+});
+TOKENS.forEach(t => {
+  cmp.insertAdjacentHTML('beforeend', `
+    <div class="compareCell brown">
+      <p class="bigNum" style="color:${t.hex}">£1,840</p>
+      <p class="bigLbl">${t.name} · brown</p>
+    </div>
+  `);
+});
+
+// Verdict
+const candR_cream = ratio('#c5a960', CREAM);
+const candR_brown = ratio('#c5a960', BROWN);
+document.getElementById('cream-verdict').textContent = candR_cream + ':1 — ' + (candR_cream >= 4.5 ? 'passes AA body' : (candR_cream >= 3 ? 'passes AA large text only, fails body' : 'fails AA'));
+document.getElementById('brown-verdict').textContent = candR_brown + ':1 — ' + (candR_brown >= 4.5 ? 'passes AA body' : (candR_brown >= 3 ? 'passes AA large text only' : 'fails AA'));
+</script>
+</body>
+</html>

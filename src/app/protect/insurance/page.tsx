@@ -221,13 +221,13 @@ export default async function ProtectInsurancePage() {
         </div>
       </section>
 
-      {/* Cross-sell: Protect Review */}
+      {/* Cross-sell: Home Protection Review */}
       <section className="px-[5vw] py-16 border-t border-house-brown/10">
         <div className="max-w-[1080px] mx-auto grid md:grid-cols-2 gap-14 items-start">
           <div>
             <Eyebrow>Also from Protect</Eyebrow>
             <h3 className="font-display font-medium text-[28px] leading-[1.2] mt-3 mb-3">
-              Protect Review
+              Home Protection Review
             </h3>
             <p className="font-sans text-[15px] leading-[1.6] text-house-brown/70 mb-5">
               A one-day in-person review of the property by House-vetted
@@ -235,7 +235,7 @@ export default async function ProtectInsurancePage() {
               works list \u2014 all filed to HoWA and ready for the insurance
               conversation.
             </p>
-            <GhostLink href="/protect/review">See Protect Review</GhostLink>
+            <GhostLink href="/protect/home-protection">See Home Protection</GhostLink>
           </div>
           <div>
             <Eyebrow>Connected via HoWA</Eyebrow>
@@ -243,7 +243,7 @@ export default async function ProtectInsurancePage() {
               The living record
             </h3>
             <p className="font-sans text-[15px] leading-[1.6] text-house-brown/70 mb-5">
-              Your Protect Review evidence feeds directly into the insurance
+              Your Home Protection Review evidence feeds directly into the insurance
               introduction. One conversation, one record, no starting from
               scratch.
             </p>

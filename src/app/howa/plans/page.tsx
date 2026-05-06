@@ -14,7 +14,7 @@ import { getPageSections, cms } from "@/lib/cms/page-sections";
  *   HoWA+       £16.99 / month   — live at launch (subject to HOWA_APP_LIVE)
  *   Steward     coming soon       — waitlist
  *
- * House Membership is HoWA+ (no separate product). Protect Review is
+ * House Membership is HoWA+ (no separate product). Home Protection Review is
  * coming-soon and lives on /protect, not here.
  */
 

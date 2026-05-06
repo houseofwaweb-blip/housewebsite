@@ -1,0 +1,221 @@
+/* Tier Ladder — three cards.
+   Tones: quiet (cream) · active (cream + gold border) · premium (sage band). */
+
+.tiers {
+  background: var(--color-house-cream);
+  padding: 36px 4vw 44px;
+}
+.tiersInner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.tiersHead {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.tiersEyebrow {
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #7a6028;
+  margin-bottom: 12px;
+}
+.tiersTitle {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(28px, 3.2vw, 42px);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--color-house-brown);
+  margin: 0 0 14px;
+}
+.tiersSub {
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(48, 35, 28, 0.72);
+  max-width: 520px;
+  margin: 0 auto;
+}
+.tiersGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+/* ---- Card base ---- */
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 28px 28px;
+  border: 1px solid rgba(48, 35, 28, 0.1);
+  background: var(--color-house-white);
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s;
+}
+.card:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-house-gold);
+}
+.cardHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(48, 35, 28, 0.1);
+}
+.cardName {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: var(--color-house-brown);
+  margin: 0;
+}
+.cardPrice {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #7a6028;
+  text-align: right;
+}
+.cardTagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.35;
+  color: var(--color-house-brown);
+  margin: 0 0 12px;
+}
+.cardBody {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(48, 35, 28, 0.72);
+  margin: 0 0 22px;
+}
+.cardList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  display: grid;
+  gap: 10px;
+}
+.cardList li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 10px;
+  align-items: start;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(48, 35, 28, 0.85);
+}
+.cardList li svg {
+  color: #7a6028;
+  margin-top: 4px;
+}
+.cardCta {
+  margin-top: auto;
+  align-self: flex-start;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #7a6028;
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-house-gold);
+  padding-bottom: 2px;
+}
+
+/* ---- Tone variants ---- */
+
+/* quiet (default) — cream/white card, plain border */
+.toneQuiet {}
+
+/* active — the lead tier (HoWA+). Gold border, slight elevation, gold-filled CTA */
+.toneActive {
+  border-color: var(--color-house-gold);
+  box-shadow: 0 18px 44px rgba(48, 35, 28, 0.08);
+  transform: translateY(-6px);
+}
+.toneActive:hover {
+  transform: translateY(-9px);
+}
+.toneActive::before {
+  content: "Most chosen";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-house-gold);
+  color: var(--color-house-brown);
+  padding: 5px 14px;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.toneActive .cardCta {
+  background: #7a6028;
+  color: var(--color-house-cream);
+  border-bottom: 0;
+  padding: 12px 22px;
+  align-self: flex-start;
+}
+
+/* premium — sage band (matches HoWA showcase + final CTA). Cream text, gold-light list ticks */
+.tonePremium {
+  --howa-sage: #4b4b37;
+  --howa-sage-mid: #5d5d46;
+  --howa-sage-deep: #3a3a2a;
+  background: radial-gradient(
+      ellipse 90% 90% at 50% 50%,
+      #5d5d46 0%,
+      #4b4b37 60%,
+      #3a3a2a 100%
+    ),
+    #4b4b37;
+  border-color: transparent;
+  color: var(--color-house-cream);
+}
+.tonePremium:hover {
+  border-color: var(--color-house-gold-light);
+}
+.tonePremium .cardName {
+  color: var(--color-house-cream);
+}
+.tonePremium .cardHead {
+  border-bottom-color: rgba(245, 240, 232, 0.18);
+}
+.tonePremium .cardPrice {
+  color: var(--color-house-gold-light);
+}
+.tonePremium .cardTagline {
+  color: var(--color-house-cream);
+}
+.tonePremium .cardBody {
+  color: rgba(245, 240, 232, 0.78);
+}
+.tonePremium .cardList li {
+  color: rgba(245, 240, 232, 0.92);
+}
+.tonePremium .cardList li svg {
+  color: var(--color-house-gold-light);
+}
+.tonePremium .cardCta {
+  color: var(--color-house-gold-light);
+  border-bottom-color: var(--color-house-gold-light);
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .tiersGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .toneActive {
+    transform: none;
+  }
+  .toneActive:hover {
+    transform: translateY(-3px);
+  }
+}

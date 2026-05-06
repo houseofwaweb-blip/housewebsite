@@ -3,8 +3,8 @@ import { sanityClient } from "./client";
 import type { PortableTextBlock } from "@portabletext/types";
 
 /**
- * News + Musings data layer. Thinner than the Hearth one — no Hearth section
- * split, no categories. Just chronological lists with detail lookups.
+ * News + Musings + Recipes data layer. Thinner than the Hearth one — no Hearth
+ * section split, no categories. Just chronological lists with detail lookups.
  */
 
 export interface NewsListItem {
@@ -121,4 +121,78 @@ export async function getMusingBySlug(slug: string): Promise<MusingDetail | null
 
 export async function getAllMusingSlugs(): Promise<string[]> {
   return sanityClient.fetch<string[]>(allMusingSlugsQuery);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Recipes                                                           */
+/* ------------------------------------------------------------------ */
+
+export interface RecipeListItem {
+  slug: string;
+  title: string;
+  lede: string;
+  image: string | null;
+  publishedAt: string;
+  prepTime?: string;
+  cookTime?: string;
+  serves?: string;
+  season?: string;
+  tags?: string[];
+}
+export interface RecipeDetail extends RecipeListItem {
+  body: PortableTextBlock[];
+  imageAlt?: string;
+  author: string;
+  seo?: { title?: string; description?: string; noindex?: boolean };
+}
+
+const recipeListQuery = /* groq */ `*[_type == "recipe"] | order(publishedAt desc){
+  "slug": slug.current,
+  title,
+  lede,
+  "image": hero.asset->url,
+  publishedAt,
+  prepTime,
+  cookTime,
+  serves,
+  season,
+  tags
+}`;
+
+const recipeBySlugQuery = /* groq */ `*[_type == "recipe" && slug.current == $slug][0]{
+  "slug": slug.current,
+  title,
+  lede,
+  "image": hero.asset->url,
+  "imageAlt": hero.alt,
+  body,
+  author,
+  prepTime,
+  cookTime,
+  serves,
+  season,
+  tags,
+  publishedAt,
+  seo
+}`;
+
+const allRecipeSlugsQuery = /* groq */ `*[_type == "recipe"].slug.current`;
+
+export async function getRecipeList(): Promise<RecipeListItem[]> {
+  return sanityFetch<RecipeListItem[]>({
+    query: recipeListQuery,
+    tags: ["type:recipe"],
+  });
+}
+
+export async function getRecipeBySlug(slug: string): Promise<RecipeDetail | null> {
+  return sanityFetch<RecipeDetail | null>({
+    query: recipeBySlugQuery,
+    params: { slug },
+    tags: [`recipe:${slug}`, "type:recipe"],
+  });
+}
+
+export async function getAllRecipeSlugs(): Promise<string[]> {
+  return sanityClient.fetch<string[]>(allRecipeSlugsQuery);
 }

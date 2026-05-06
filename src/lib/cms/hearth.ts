@@ -175,6 +175,16 @@ export async function getHearthIndex(): Promise<HearthIndexSections> {
   };
 }
 
+export async function getLatestHearthArticles(limit = 3): Promise<HearthArticle[]> {
+  const query = /* groq */ `*[_type == "article"] | order(publishedAt desc)[0...$limit] ${ARTICLE_PROJECTION}`;
+  const raw = await sanityFetch<RawSanityArticle[]>({
+    query,
+    params: { limit },
+    tags: ["type:article"],
+  });
+  return raw.map(toHearthArticle);
+}
+
 export async function getAllArticleSlugs(): Promise<string[]> {
   // Called from generateStaticParams at build time — can't use the
   // draft-aware sanityFetch here because draftMode() isn't available
