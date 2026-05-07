@@ -35,7 +35,7 @@ const STATIC_PAGES: SearchResult[] = [
   { id: "sp-insurance", type: "Protect", title: "Insurance by the House", excerpt: "Cover that understands period homes. Provenance partnership.", href: "/protect/insurance" },
   { id: "sp-philosophy", type: "The House", title: "Philosophy", excerpt: "What a house is actually for.", href: "/the-house/philosophy" },
   { id: "sp-standards", type: "The House", title: "Standards", excerpt: "How we work, and what House Approved means.", href: "/the-house/standards" },
-  { id: "sp-contact", type: "The House", title: "Contact", excerpt: "Write to the House. Book a consultation.", href: "/contact" },
+  { id: "sp-contact", type: "The House", title: "Contact", excerpt: "Write to the House. Book with HoWA.", href: "/contact" },
 ];
 
 function capitalize(s: string): string {

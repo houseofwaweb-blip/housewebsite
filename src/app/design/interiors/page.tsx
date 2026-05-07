@@ -153,7 +153,7 @@ export default async function InteriorsPage() {
               href="/book-consultation?service=design-interiors"
               className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-6 py-3.5 no-underline transition-colors duration-[var(--t-slow)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
             >
-              Book a consultation
+              Book with HoWA
             </Link>
             <GhostLink href="#plans" className="text-white border-white/40 hover:border-white">
               View plans

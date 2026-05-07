@@ -66,14 +66,18 @@ export function proxy(request: NextRequest) {
   // ── 3. Security headers + CSP ─────────────────────────────────────────
   const response = NextResponse.next();
 
+  // ServiceOS booking widget — loaded by /book-consultation. The widget
+  // sets cookies, makes XHR requests, and may iframe checkout.
+  const obfHosts = "https://accounts.willowalexander.co.uk https://willowalexander.serviceos.com https://*.serviceos.com";
+
   const csp = [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com",
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-    "img-src 'self' data: blob: https://cdn.sanity.io https://cdn.shopify.com https://willowalexander.co.uk",
+    `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com ${obfHosts}`,
+    `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com ${obfHosts}`,
+    `img-src 'self' data: blob: https://cdn.sanity.io https://cdn.shopify.com https://willowalexander.co.uk ${obfHosts}`,
     "font-src 'self' data: https://fonts.gstatic.com",
-    "connect-src 'self' https://*.supabase.co https://*.sanity.io https://cdn.sanity.io https://*.upstash.io https://challenges.cloudflare.com https://*.sentry.io",
-    "frame-src 'self' https://challenges.cloudflare.com",
+    `connect-src 'self' https://*.supabase.co https://*.sanity.io https://cdn.sanity.io https://*.upstash.io https://challenges.cloudflare.com https://*.sentry.io ${obfHosts}`,
+    `frame-src 'self' https://challenges.cloudflare.com ${obfHosts}`,
     "frame-ancestors 'none'",
     "form-action 'self'",
     "base-uri 'self'",

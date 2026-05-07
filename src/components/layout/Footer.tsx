@@ -56,7 +56,7 @@ const COLS: FooterColumn[] = [
     heading: "House",
     links: [
       { label: "Contact", href: "/contact" },
-      { label: "Book consultation", href: "/book-consultation" },
+      { label: "Book with HoWA", href: "/book-consultation" },
       { label: "Partners", href: "/partners" },
       { label: "Legal", href: "/legal" },
     ],

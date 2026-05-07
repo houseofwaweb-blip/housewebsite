@@ -197,7 +197,7 @@ export function BookingForm({
           loading={isSubmitting}
           disabled={isSubmitting}
         >
-          Book consultation
+          Book with HoWA
         </Button>
         <FormStatus status={status} dark={dark} />
       </div>

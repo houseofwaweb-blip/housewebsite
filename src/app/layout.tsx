@@ -10,9 +10,9 @@ import { CartToast } from "@/components/commerce/CartToast";
 import { CartDrawer } from "@/components/commerce/CartDrawer";
 import "./globals.css";
 
-// When the HoWA Product app isn't live, header CTA swaps to "Book consultation"
+// When the HoWA Product app isn't live, header CTA swaps to "Book with HoWA"
 // and routes to the in-site consultation form rather than bouncing out.
-const ctaLabel = env.HOWA_APP_LIVE ? "Start HoWA" : "Book consultation";
+const ctaLabel = env.HOWA_APP_LIVE ? "Start HoWA" : "Book with HoWA";
 const ctaHref = env.HOWA_APP_LIVE
   ? env.NEXT_PUBLIC_HOWA_APP_URL ?? "/api/howa-bounce"
   : "/book-consultation";

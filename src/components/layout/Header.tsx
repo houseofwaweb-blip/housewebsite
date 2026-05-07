@@ -18,7 +18,7 @@ import { PRIMARY_NAV } from "./navConfig";
  * Desktop: brand wordmark → MegaMenu (hover panels) → utility (search, sign in, CTA).
  * Mobile:  brand → hamburger → full-screen drawer with accordion-style children.
  *
- * Primary CTA ("Start HoWA" or "Book consultation") is decided upstream by
+ * Primary CTA ("Start HoWA" or "Book with HoWA") is decided upstream by
  * the Provider that reads HOWA_APP_LIVE; this component only renders what
  * it's given.
  */
@@ -96,8 +96,9 @@ export function Header({
         >
           Search
         </button>
-        <Link
-          href="/sign-in"
+        <a
+          href="https://accounts.willowalexander.co.uk/"
+          rel="noopener"
           className={cn(
             "font-sans text-[11px] tracking-[0.16em] uppercase no-underline opacity-[0.55] hover:opacity-100",
             "transition-opacity duration-[var(--t-base)]",
@@ -105,7 +106,7 @@ export function Header({
           )}
         >
           Sign in
-        </Link>
+        </a>
         <CartIcon dark={dark} onClick={openDrawer} />
         <Link
           href={ctaHref}
@@ -243,19 +244,20 @@ export function Header({
               >
                 Search
               </button>
-              <Link
-                href="/sign-in"
+              <a
+                href="https://accounts.willowalexander.co.uk/"
+                rel="noopener"
                 onClick={() => setMobileOpen(false)}
                 className="font-sans text-[11px] tracking-[0.16em] uppercase opacity-60 no-underline"
               >
                 Sign in
-              </Link>
+              </a>
               <Link
                 href="/book-consultation"
                 onClick={() => setMobileOpen(false)}
                 className="font-sans text-[11px] tracking-[0.16em] uppercase opacity-60 no-underline"
               >
-                Book consultation
+                Book with HoWA
               </Link>
             </div>
           </div>

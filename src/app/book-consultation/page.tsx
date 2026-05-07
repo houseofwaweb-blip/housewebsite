@@ -1,31 +1,28 @@
 import { Eyebrow } from "@/components/primitives/Eyebrow";
-import { BookingForm } from "@/components/forms/BookingForm";
-import { env } from "@/lib/env";
+import { BookingWidget } from "@/components/marketing/BookingWidget";
 
 export const metadata = {
-  title: "Book consultation",
+  title: "Book with HoWA",
   description:
-    "Speak with the House about design, services, or care. We'll reply within one working day.",
+    "Book a service or speak with the House. The booking platform is the one we use today, embedded here under the HoWA brand.",
 };
 
 export default function BookConsultationPage() {
   return (
-    <section className="bg-house-cream text-house-brown px-[5vw] py-[14vh]">
-      <div className="max-w-[960px] mx-auto">
-        <Eyebrow>Consultation</Eyebrow>
+    <section className="bg-house-cream text-house-brown px-[5vw] py-[10vh] min-h-[80vh]">
+      <div className="max-w-[1080px] mx-auto">
+        <Eyebrow>Book with HoWA</Eyebrow>
         <h1 className="font-display text-[clamp(40px,5vw,72px)] font-medium leading-[1.08] mt-4">
-          Speak with the House.
+          Speak with the <em>House.</em>
         </h1>
         <p className="font-sans text-[19px] leading-[1.6] text-house-brown/75 mt-6 max-w-[60ch]">
-          Tell us a little about what you're after and one of the House will write back
-          within a working day. Details stay in confidence.
+          Pick the service, the date, the home — and one of the House team will be in
+          touch within a working day. Same booking platform you&apos;ll see across the
+          rest of the network, just under the HoWA brand here.
         </p>
 
-        <div className="mt-12">
-          <BookingForm
-            turnstileSiteKey={env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? ""}
-            sourcePage="/book-consultation"
-          />
+        <div className="mt-12 min-h-[640px]">
+          <BookingWidget />
         </div>
       </div>
     </section>

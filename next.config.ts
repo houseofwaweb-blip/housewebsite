@@ -38,6 +38,8 @@ const nextConfig: NextConfig = {
       { source: "/protect/review", destination: "/protect/home-protection", permanent: true },
       { source: "/insurance", destination: "/protect/insurance", permanent: true },
       { source: "/press", destination: "/news", permanent: true },
+      // Sign-in moved to external accounts subdomain
+      { source: "/sign-in", destination: "https://accounts.willowalexander.co.uk/", permanent: true },
       // WP long-tail SEO catalogue
       ...wpLongTailRedirects,
     ];

@@ -396,7 +396,7 @@ export function ServiceDetail({ service: s }: { service: Service }) {
           href={`/book-consultation?service=${s.slug}`}
           className="inline-block px-[30px] py-[15px] font-sans text-[13px] tracking-[0.16em] uppercase no-underline bg-house-gold text-white border border-house-gold transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
         >
-          Book a consultation
+          Book with HoWA
         </Link>
       </section>
     </article>
