@@ -158,7 +158,7 @@ export default async function ServicesLanding() {
         </p>
         <div className="flex gap-3 justify-center flex-wrap">
           <Link
-            href="/book-consultation"
+            href="#open-booking-form"
             className="inline-block px-[26px] py-[13px] font-sans text-[12px] tracking-[0.16em] uppercase no-underline bg-transparent text-house-brown border border-house-brown transition-all duration-[var(--t-base)] ease-out hover:bg-house-brown hover:text-house-cream"
           >
             Book one-off

@@ -150,7 +150,7 @@ export default async function InteriorsPage() {
           </p>
           <div className="mt-8 flex items-center gap-4 flex-wrap">
             <Link
-              href="/book-consultation?service=design-interiors"
+              href="#open-booking-form"
               className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-6 py-3.5 no-underline transition-colors duration-[var(--t-slow)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
             >
               Book with HoWA
@@ -222,7 +222,7 @@ export default async function InteriorsPage() {
                 ))}
               </ul>
               <Link
-                href="/book-consultation?service=design-interiors"
+                href="#open-booking-form"
                 className="inline-block self-start font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-6 py-3.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
               >
                 Book this edit
@@ -261,7 +261,7 @@ export default async function InteriorsPage() {
                     ))}
                   </ul>
                   <Link
-                    href="/book-consultation?service=design-interiors"
+                    href="#open-booking-form"
                     className="inline-block self-start font-sans text-[11px] tracking-[0.18em] uppercase text-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-5 py-2.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-[var(--house-gold-dark)] hover:text-white"
                   >
                     Book this edit

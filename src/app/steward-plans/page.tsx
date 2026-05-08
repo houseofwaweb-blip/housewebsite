@@ -268,7 +268,7 @@ export default async function StewardPlansPage() {
           ))}
         </div>
         <Link
-          href="/book-consultation"
+          href="#open-booking-form"
           className="inline-block px-[32px] py-[14px] font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
         >
           Become a House Steward
@@ -282,7 +282,7 @@ export default async function StewardPlansPage() {
           <em className="text-house-stone">It&apos;s a rhythm someone else remembers.</em>
         </p>
         <Link
-          href="/book-consultation"
+          href="#open-booking-form"
           className="inline-block px-[32px] py-[14px] font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
         >
           Start your Steward Plan

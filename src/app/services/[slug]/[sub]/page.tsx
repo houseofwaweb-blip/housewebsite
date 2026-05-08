@@ -85,7 +85,7 @@ export default async function SubServicePage({
           </p>
           <div className="mt-8">
             <Link
-              href={`/book-consultation?service=${parent.slug}&sub=${service.slug}`}
+              href="#open-booking-form"
               className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold px-6 py-3.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
             >
               Book now
@@ -285,7 +285,7 @@ export default async function SubServicePage({
           Ready to book {service.name.toLowerCase()}?
         </p>
         <Link
-          href={`/book-consultation?service=${parent.slug}&sub=${service.slug}`}
+          href="#open-booking-form"
           className="inline-block px-[30px] py-[15px] font-sans text-[13px] tracking-[0.16em] uppercase no-underline bg-house-gold text-white border border-house-gold transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
         >
           Book now

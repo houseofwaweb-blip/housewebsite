@@ -127,7 +127,7 @@ export function ServiceDetail({ service: s }: { service: Service }) {
             </p>
             <div className="mt-8 flex items-center gap-4 flex-wrap">
               <Link
-                href={`/book-consultation?service=${s.slug}`}
+                href="#open-booking-form"
                 className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-6 py-3.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
               >
                 Book {s.name.toLowerCase()}
@@ -153,7 +153,7 @@ export function ServiceDetail({ service: s }: { service: Service }) {
             </p>
             <div className="mt-8 flex items-center gap-4 flex-wrap">
               <Link
-                href={`/book-consultation?service=${s.slug}`}
+                href="#open-booking-form"
                 className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-6 py-3.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
               >
                 Book {s.name.toLowerCase()}
@@ -319,7 +319,7 @@ export function ServiceDetail({ service: s }: { service: Service }) {
               Single visits, seasonal jobs, or a one-off tidy. Book through HoWA and the work is logged to your home record. No subscription required.
             </p>
             <Link
-              href={`/book-consultation?service=${s.slug}`}
+              href="#open-booking-form"
               className="inline-block self-start font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-6 py-3.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
             >
               Book {s.name.toLowerCase()}
@@ -393,7 +393,7 @@ export function ServiceDetail({ service: s }: { service: Service }) {
           A well-kept home starts with one conversation.
         </p>
         <Link
-          href={`/book-consultation?service=${s.slug}`}
+          href="#open-booking-form"
           className="inline-block px-[30px] py-[15px] font-sans text-[13px] tracking-[0.16em] uppercase no-underline bg-house-gold text-white border border-house-gold transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
         >
           Book with HoWA

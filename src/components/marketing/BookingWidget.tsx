@@ -4,19 +4,19 @@ import { useEffect } from "react";
 
 /**
  * Embed the ServiceOS Online Booking Form (OBF) as it currently runs on
- * willowalexander.co.uk via the WP plugin. Re-implemented here for Next:
+ * willowalexander.co.uk via the WP plugin.
+ *
  *   1. Set `window.obfOptions` with the same config the WP plugin emits
  *   2. Inject the OBF client script from accounts.willowalexander.co.uk
  *
- * The widget reads `window.obfOptions` on load and mounts itself wherever
- * its own JS decides (typically a fixed-position panel that opens from a
- * trigger). For "init_event: on_load" it appears immediately.
+ * Mount this once at the root layout. The OBF widget binds itself to
+ * any link with `href="#open-booking-form"` (matches the live WP site
+ * pattern) — clicking opens the booking flow in a modal panel.
  *
  * Credentials / theme — sourced from the live WP config (Tools → SOS OBF):
  *   - APP URL:     https://accounts.willowalexander.co.uk/
  *   - API URL:     https://willowalexander.serviceos.com/
  *   - Profile ID:  4
- *   - Key:         9xtc467tfmzdsjj1s1bg50vkmktkdhd9xknslxub3gyex0zls9ttwll14i3hdq9a
  *   - Country:     UK
  *   - Phone:       0800 047 8738
  *   - Primary:     #c2a660 (HoWA gold)
@@ -74,15 +74,16 @@ export function BookingWidget() {
 
     const script = document.createElement("script");
     script.id = "obfAbClient";
+    // Path matches the live WP plugin: /obf/client/client.min.js
     script.src =
-      "https://accounts.willowalexander.co.uk/client/client.min.js?v=" +
+      "https://accounts.willowalexander.co.uk/obf/client/client.min.js?v=" +
       Math.floor(Date.now() / 3_600_000);
     script.async = true;
     script.dataset.queryParamsTemplate = "true";
     document.body.appendChild(script);
   }, []);
 
-  // The widget injects its own DOM nodes; this empty mount is a hint for
-  // the widget to anchor itself if its config supports a target selector.
-  return <div id="obf-mount" data-obf-mount />;
+  // The widget injects its own DOM. No visible markup needed — clicks on
+  // any `href="#open-booking-form"` anchor open the modal.
+  return null;
 }

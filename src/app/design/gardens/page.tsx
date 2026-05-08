@@ -69,7 +69,7 @@ const PLANS: GardenPlan[] = [
     image: "/design/gardens/planting-plans.jpg",
     description:
       "A beautifully detailed planting layout tailored to your garden\u2019s light, soil, and aspect \u2014 with full plant list, placement guide, and seasonal notes.",
-    href: "/book-consultation?service=garden-planting-plan",
+    href: "#open-booking-form",
   },
   {
     title: "Lighting Plans",
@@ -77,7 +77,7 @@ const PLANS: GardenPlan[] = [
     image: "/design/gardens/lighting-plans.jpg",
     description:
       "A professional lighting layout that transforms your garden after dark. Includes fixture map, specification list, and circuit guide.",
-    href: "/book-consultation?service=garden-lighting-plan",
+    href: "#open-booking-form",
   },
   {
     title: "Concept Plans",
@@ -85,7 +85,7 @@ const PLANS: GardenPlan[] = [
     image: "/design/gardens/concept-plans.jpg",
     description:
       "An elevated design blueprint combining layout, materials palette, and planting inspiration. Ideal for small to mid-sized projects.",
-    href: "/book-consultation?service=garden-concept-plan",
+    href: "#open-booking-form",
   },
   {
     title: "2D & 3D Plans",
@@ -93,7 +93,7 @@ const PLANS: GardenPlan[] = [
     image: "/design/gardens/2d-3d-plans.jpg",
     description:
       "A fully visualised plan with dimensional drawings and 3D renders. Perfect for design-led projects ready for construction.",
-    href: "/book-consultation?service=garden-2d-3d-plan",
+    href: "#open-booking-form",
   },
   {
     title: "Signature Collaboration",
@@ -169,7 +169,7 @@ export default async function GardensPage() {
           </p>
           <div className="mt-8 flex items-center gap-4 flex-wrap">
             <Link
-              href="/book-consultation?service=design-gardens"
+              href="#open-booking-form"
               className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-6 py-3.5 no-underline transition-colors duration-[var(--t-slow)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
             >
               Start a consultation

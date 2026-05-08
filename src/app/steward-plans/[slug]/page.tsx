@@ -82,7 +82,7 @@ export default async function PlanDetailPage({
           </div>
 
           <Link
-            href="/book-consultation?plan=steward"
+            href="#open-booking-form"
             className="inline-block px-[32px] py-[16px] font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light mb-[48px]"
           >
             Subscribe to this plan

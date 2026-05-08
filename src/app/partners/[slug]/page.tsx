@@ -167,7 +167,7 @@ function LocalPartnerPage({ partner: p }: { partner: LaunchPartner }) {
               Meet the studio
             </a>
             <Link
-              href={`/book-consultation?partner=${p.slug}`}
+              href="#open-booking-form"
               className="inline-block px-[26px] py-[13px] font-sans text-[12px] tracking-[0.16em] uppercase no-underline text-house-brown bg-house-cream border border-house-cream transition-all duration-[var(--t-base)] ease-out hover:bg-house-cream-dark hover:border-house-cream-dark"
             >
               Start a brief →
@@ -384,7 +384,7 @@ function LocalPartnerPage({ partner: p }: { partner: LaunchPartner }) {
                 </ul>
                 <div className="mt-6">
                   <Link
-                    href={`/book-consultation?partner=${p.slug}&package=${encodeURIComponent(pkg.name)}`}
+                    href="#open-booking-form"
                     className={
                       isFeat
                         ? "inline-block font-sans text-[11px] tracking-[0.16em] uppercase px-5 py-2.5 no-underline text-white bg-house-gold border border-house-gold transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
@@ -570,7 +570,7 @@ function LocalPartnerPage({ partner: p }: { partner: LaunchPartner }) {
           {withEm(p.closingLine, p.closingLineEm)}
         </p>
         <Link
-          href={`/book-consultation?partner=${p.slug}`}
+          href="#open-booking-form"
           className="inline-block px-[30px] py-[15px] font-sans text-[13px] tracking-[0.16em] uppercase no-underline bg-house-gold text-white border border-house-gold transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
         >
           Start a design brief

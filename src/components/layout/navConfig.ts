@@ -145,7 +145,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
         links: [
           { label: "Steward Plans", href: "/steward-plans", description: "Recurring, intentional" },
           { label: "House Credit", href: "/house-credit", description: "Interest-free finance" },
-          { label: "Book with HoWA", href: "/book-consultation" },
+          { label: "Book with HoWA", href: "#open-booking-form" },
         ],
       },
     ],

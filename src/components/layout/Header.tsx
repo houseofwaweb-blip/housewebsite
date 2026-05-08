@@ -253,7 +253,7 @@ export function Header({
                 Sign in
               </a>
               <Link
-                href="/book-consultation"
+                href="#open-booking-form"
                 onClick={() => setMobileOpen(false)}
                 className="font-sans text-[11px] tracking-[0.16em] uppercase opacity-60 no-underline"
               >

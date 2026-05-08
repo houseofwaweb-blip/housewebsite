@@ -131,7 +131,7 @@ export default async function ServicePage({
               {service.lede}
             </p>
             <div className="flex gap-4 mt-10">
-              <Button variant="gold" href={`/book-consultation?service=${slug}`}>
+              <Button variant="gold" href="#open-booking-form">
                 Book this service
               </Button>
               {service.recurring ? <StateBadge state="live">Steward-ready</StateBadge> : null}
@@ -235,7 +235,7 @@ export default async function ServicePage({
                   <div className="mt-8">
                     <Button
                       variant="outline"
-                      href={`/book-consultation?service=${slug}&package=${pkg.slug}`}
+                      href="#open-booking-form"
                     >
                       {CTA_LABEL[pkg.cta]}
                     </Button>

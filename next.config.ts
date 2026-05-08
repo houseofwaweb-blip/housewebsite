@@ -40,6 +40,9 @@ const nextConfig: NextConfig = {
       { source: "/press", destination: "/news", permanent: true },
       // Sign-in moved to external accounts subdomain
       { source: "/sign-in", destination: "https://accounts.willowalexander.co.uk/", permanent: true },
+      // Booking is a modal triggered by `#open-booking-form` from any page;
+      // legacy /book-consultation now redirects to homepage with the trigger.
+      { source: "/book-consultation", destination: "/#open-booking-form", permanent: true },
       // WP long-tail SEO catalogue
       ...wpLongTailRedirects,
     ];

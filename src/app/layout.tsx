@@ -8,14 +8,16 @@ import { Footer } from "@/components/layout/Footer";
 import { CartProvider } from "@/components/commerce/CartContext";
 import { CartToast } from "@/components/commerce/CartToast";
 import { CartDrawer } from "@/components/commerce/CartDrawer";
+import { BookingWidget } from "@/components/marketing/BookingWidget";
 import "./globals.css";
 
-// When the HoWA Product app isn't live, header CTA swaps to "Book with HoWA"
-// and routes to the in-site consultation form rather than bouncing out.
+// When the HoWA Product app isn't live, header CTA swaps to "Book with HoWA".
+// Hash href triggers the OBF booking modal in place rather than navigating
+// to a separate page (matches the WP-plugin pattern on willowalexander.co.uk).
 const ctaLabel = env.HOWA_APP_LIVE ? "Start HoWA" : "Book with HoWA";
 const ctaHref = env.HOWA_APP_LIVE
   ? env.NEXT_PUBLIC_HOWA_APP_URL ?? "/api/howa-bounce"
-  : "/book-consultation";
+  : "#open-booking-form";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL),
@@ -86,6 +88,7 @@ export default async function RootLayout({
           <Footer columns={footerCols} />
           <CartToast />
           <CartDrawer />
+          <BookingWidget />
         </CartProvider>
       </body>
     </html>

@@ -66,8 +66,9 @@ export function proxy(request: NextRequest) {
   // ── 3. Security headers + CSP ─────────────────────────────────────────
   const response = NextResponse.next();
 
-  // ServiceOS booking widget — loaded by /book-consultation. The widget
-  // sets cookies, makes XHR requests, and may iframe checkout.
+  // ServiceOS booking widget — mounted globally in root layout, opens
+  // on click of any `#open-booking-form` anchor. The widget sets cookies,
+  // makes XHR requests to its API, and may iframe checkout.
   const obfHosts = "https://accounts.willowalexander.co.uk https://willowalexander.serviceos.com https://*.serviceos.com";
 
   const csp = [

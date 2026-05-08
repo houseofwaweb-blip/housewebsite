@@ -80,7 +80,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // ---- Utility ----
     { url: `${base}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${base}/book-consultation`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/house-credit`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: `${base}/gift-cards`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
 

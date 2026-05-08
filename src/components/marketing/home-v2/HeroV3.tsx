@@ -41,7 +41,7 @@ export function HeroV3({ data }: { data: HomepageV3 }) {
         </div>
 
         <p className={s.tertiary}>
-          <Link href="/book-consultation">Or book a consultation</Link>
+          <Link href="#open-booking-form">Or book a consultation</Link>
         </p>
       </div>
     </section>

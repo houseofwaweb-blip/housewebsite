@@ -58,7 +58,7 @@ export default function DesignLanding() {
           </p>
           <div className="mt-8 flex items-center gap-4 flex-wrap">
             <Link
-              href="/book-consultation?service=design-interiors"
+              href="#open-booking-form"
               className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold px-6 py-3.5 no-underline transition-colors duration-[var(--t-slow)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
             >
               Commission a space
