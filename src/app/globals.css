@@ -501,3 +501,23 @@ body {
   z-index: 9999;
 }
 .skip-link:focus { transform: translateY(0); }
+
+/* ============================================================
+   ServiceOS booking widget (OBF) — visual touch-up
+   ============================================================
+   The widget adds `data-book-loading="true"` on the clicked button,
+   replaces its innerHTML with a spinner, and locks dimensions. Looks
+   crude by default; this normalises it on a House surface. */
+[data-book-loading="true"] {
+  /* Keep the original button colour while loading; the widget's default
+     swaps to a hard white pill that clashes with the gold/cream header. */
+  background: var(--color-house-gold) !important;
+  color: var(--color-house-cream) !important;
+  cursor: wait;
+  position: relative;
+}
+[data-book-loading="true"] svg,
+[data-book-loading="true"] .obf-loader {
+  width: 14px !important;
+  height: 14px !important;
+}

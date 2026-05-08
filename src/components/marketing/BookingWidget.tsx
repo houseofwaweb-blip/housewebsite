@@ -24,7 +24,10 @@ import { useEffect } from "react";
  *   - Logo:        /brand/howa/howa-black.svg (served from this site)
  */
 
-const OBF_CONFIG = {
+// Static config — dynamic fields (main_url, logo_url) get filled at
+// runtime so the widget's API origin checks match whatever host the page
+// is served from (production / preview / localhost).
+const OBF_BASE_CONFIG = {
   app_url: "https://accounts.willowalexander.co.uk/",
   api_url: "https://willowalexander.serviceos.com/",
   accounts_url: "https://accounts.willowalexander.co.uk/",
@@ -32,15 +35,11 @@ const OBF_CONFIG = {
   hide_phone: false,
   free_quote: false,
   search: false,
-  // Public Vercel URL so the widget (loaded from accounts.willowalexander.co.uk)
-  // can fetch the logo cross-origin. Fallback to a stable absolute URL.
-  logo_url: "https://housewebsite.vercel.app/brand/howa/howa-black.svg",
   init_event: "on_load",
   website_name: "Willow Alexander",
   key: "9xtc467tfmzdsjj1s1bg50vkmktkdhd9xknslxub3gyex0zls9ttwll14i3hdq9a",
   profile_id: "4",
   source_abbr: "GORG",
-  main_url: "https://housewebsite.vercel.app/",
   theme: {
     "primary-color": "#c2a660",
     "primary-color-light": "",
@@ -58,9 +57,14 @@ const OBF_CONFIG = {
   },
 };
 
+interface ObfOptions extends Omit<typeof OBF_BASE_CONFIG, never> {
+  main_url: string;
+  logo_url: string;
+}
+
 declare global {
   interface Window {
-    obfOptions?: typeof OBF_CONFIG;
+    obfOptions?: ObfOptions;
     __obfLoaded?: boolean;
   }
 }
@@ -70,7 +74,16 @@ export function BookingWidget() {
     if (typeof window === "undefined") return;
     if (window.__obfLoaded) return;
     window.__obfLoaded = true;
-    window.obfOptions = OBF_CONFIG;
+
+    // Dynamic — match whatever origin the page is on. ServiceOS uses
+    // main_url for the host-allowlist check, so this must match the
+    // current site rather than be hardcoded.
+    const origin = window.location.origin;
+    window.obfOptions = {
+      ...OBF_BASE_CONFIG,
+      main_url: origin + "/",
+      logo_url: origin + "/brand/howa/howa-black.svg",
+    };
 
     const script = document.createElement("script");
     script.id = "obfAbClient";

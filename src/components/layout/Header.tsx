@@ -111,6 +111,7 @@ export function Header({
         <Link
           href={ctaHref}
           className={cn(
+            "booknow-button",
             "font-sans text-[11px] tracking-[0.16em] uppercase text-white bg-house-gold border border-house-gold px-5 py-2.5 no-underline",
             "transition-colors duration-[var(--t-slow)] ease-out",
             "hover:bg-house-gold-light hover:border-house-gold-light",
@@ -255,7 +256,7 @@ export function Header({
               <Link
                 href="#open-booking-form"
                 onClick={() => setMobileOpen(false)}
-                className="font-sans text-[11px] tracking-[0.16em] uppercase opacity-60 no-underline"
+                className="booknow-button font-sans text-[11px] tracking-[0.16em] uppercase opacity-60 no-underline"
               >
                 Book with HoWA
               </Link>
