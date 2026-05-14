@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { env } from "@/lib/env";
 import wpLongTail from "@/lib/services-data/wp-long-tail.json";
+import { getCmsSitemapEntries } from "@/lib/sitemap-slugs";
 
 /**
  * Sitemap. Static routes + WP long-tail catalogue.
@@ -8,7 +9,7 @@ import wpLongTail from "@/lib/services-data/wp-long-tail.json";
  *
  * Once Sanity + Shopify are wired up, fetch slugs and append:
  *   - partner docs      → /partners/[slug]
- *   - article docs      → /journal/[slug]
+ *   - article docs      → /the-hearth/[slug]
  *   - newsItem docs     → /news/[slug]
  *   - musing docs       → /musings/[slug]
  *   - recipe docs       → /recipes/[slug]
@@ -18,8 +19,12 @@ import wpLongTail from "@/lib/services-data/wp-long-tail.json";
  *   - stewardPlan docs  → /steward-plans/[slug]
  *
  * Split into /sitemap-{type}.xml once any bucket exceeds ~1000 URLs.
+ *
+ * CMS slugs are merged via getCmsSitemapEntries() — that helper is failure-
+ * tolerant, so a Sanity or Shopify outage will degrade the sitemap to
+ * static + WP long-tail rather than 500ing the whole route.
  */
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
   const now = new Date();
 
@@ -70,7 +75,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/shop`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
 
     // ---- The Hearth (Journal + free reading) ----
-    { url: `${base}/journal`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${base}/the-hearth`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/news`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
     { url: `${base}/musings`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
     { url: `${base}/recipes`, lastModified: now, changeFrequency: "weekly", priority: 0.5 },
@@ -100,5 +105,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.4,
   }));
 
-  return [...staticRoutes, ...longTailRoutes];
+  const cmsRoutes = await getCmsSitemapEntries(base);
+
+  return [...staticRoutes, ...longTailRoutes, ...cmsRoutes];
 }

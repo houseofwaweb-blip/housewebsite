@@ -67,7 +67,7 @@ export const COLLECTION = {
   titleEm: "spring",
   body: "Twelve dispatches, one seasonal hand. Essays, photo notes, and a few recipes from the Hearth Collection — published weekly through April and May.",
   ctaLabel: "Explore the Collection",
-  ctaHref: "/journal/collection/spring-2026",
+  ctaHref: "/the-hearth/collection/spring-2026",
   big: ALL_ARTICLES[0]?.image ?? "/hearth/art-lead.png",
   stackA: ALL_ARTICLES[1]?.image ?? "/hearth/art-sanctuary.png",
   stackB: ALL_ARTICLES[2]?.image ?? "/hearth/art-patina.png",

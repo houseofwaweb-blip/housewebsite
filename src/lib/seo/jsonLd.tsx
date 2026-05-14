@@ -12,7 +12,6 @@ function renderLd(data: Record<string, unknown>) {
   return (
     <script
       type="application/ld+json"
-      // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: safe }}
     />
   );
@@ -158,4 +157,98 @@ export function ArticleJsonLd({
   }
 
   return renderLd(article);
+}
+
+/**
+ * Service schema for /services/[slug]. Surfaces the offering in Google's
+ * Service rich result and connects it to the Organization. `areaServed`
+ * defaults to "London" — the audit (PLAN.md §15 finding O11) flagged
+ * geo-coverage as a search-fit driver for the 4 launch services.
+ */
+export function ServiceJsonLd({
+  name,
+  description,
+  url,
+  serviceType,
+  image,
+  priceRange,
+  areaServed = "London",
+}: {
+  name: string;
+  description: string;
+  url: string;
+  /** e.g. "Cleaning", "Gardening" — used for type categorisation. */
+  serviceType: string;
+  image?: string;
+  /** Free-form price hint (e.g. "£90+") for the search result snippet. */
+  priceRange?: string;
+  areaServed?: string;
+}) {
+  const base = env.NEXT_PUBLIC_SITE_URL;
+  return renderLd({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name,
+    description,
+    url,
+    serviceType,
+    provider: { "@id": `${base}#organization` },
+    areaServed: {
+      "@type": "City",
+      name: areaServed,
+    },
+    ...(image ? { image } : {}),
+    ...(priceRange ? { offers: { "@type": "Offer", priceCurrency: "GBP", price: priceRange } } : {}),
+  });
+}
+
+/**
+ * Product schema for /shop/[handle]. Required fields for Google Shopping +
+ * organic product rich results: name, image, offers (price + availability +
+ * currency). `aggregateRating` and `review` are intentionally left to the
+ * caller — we don't fake reviews and Trustpilot import isn't wired yet.
+ */
+export function ProductJsonLd({
+  name,
+  description,
+  image,
+  url,
+  sku,
+  brand = "House of Willow Alexander",
+  price,
+  priceCurrency = "GBP",
+  availability,
+}: {
+  name: string;
+  description: string;
+  /** One or more image URLs. Google prefers at least one square image. */
+  image: string | string[];
+  url: string;
+  sku?: string;
+  brand?: string;
+  /** Numeric price. Pass as a number for accurate decimal handling. */
+  price: number;
+  priceCurrency?: string;
+  /** schema.org availability enum. Map Shopify availableForSale → InStock/OutOfStock. */
+  availability: "InStock" | "OutOfStock" | "PreOrder";
+}) {
+  const base = env.NEXT_PUBLIC_SITE_URL;
+  return renderLd({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name,
+    description,
+    image,
+    url,
+    ...(sku ? { sku } : {}),
+    brand: { "@type": "Brand", name: brand },
+    offers: {
+      "@type": "Offer",
+      url,
+      priceCurrency,
+      price: price.toFixed(2),
+      availability: `https://schema.org/${availability}`,
+      seller: { "@id": `${base}#organization` },
+    },
+  });
 }

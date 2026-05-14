@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { CookiePreferencesLink } from "@/components/consent/CookiePreferencesLink";
 
 /**
  * Global footer.
@@ -47,8 +48,9 @@ const COLS: FooterColumn[] = [
   {
     heading: "Reading",
     links: [
-      { label: "The Hearth", href: "/journal" },
+      { label: "The Hearth", href: "/the-hearth" },
       { label: "Musings", href: "/musings" },
+      { label: "Recipes", href: "/recipes" },
       { label: "News", href: "/news" },
     ],
   },
@@ -107,8 +109,11 @@ export function Footer({ columns, tagline }: FooterProps) {
               className="h-[48px] w-auto opacity-90"
             />
           </Link>
-          <div className="font-sans italic text-[14px] text-house-cream/70">
-            {tag}
+          <div className="flex items-center gap-6">
+            <CookiePreferencesLink />
+            <div className="font-sans italic text-[14px] text-house-cream/70">
+              {tag}
+            </div>
           </div>
         </div>
       </div>

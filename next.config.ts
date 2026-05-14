@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { withSentryConfig } from "@sentry/nextjs";
 import wpLongTail from "./src/lib/services-data/wp-long-tail.json";
 
 interface LongTailEntry {
@@ -52,4 +53,24 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+/**
+ * Sentry wrapper. No-ops at build time when SENTRY_AUTH_TOKEN isn't set
+ * (local dev, contributors without org access). In CI/Vercel with the
+ * token + org/project set, this uploads source maps + injects release
+ * tags so client stack traces map back to readable source.
+ */
+export default withSentryConfig(nextConfig, {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  // Delete source map files from .next/ after uploading them to Sentry, so
+  // they're not served publicly. This is the default in @sentry/nextjs 10+
+  // but we set it explicitly to make the intent obvious.
+  sourcemaps: {
+    deleteSourcemapsAfterUpload: true,
+  },
+  // Silence the noisy build-time progress logs unless we ask for them.
+  silent: !process.env.CI,
+  // No telemetry to Sentry's own usage tracker.
+  telemetry: false,
+});

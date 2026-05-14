@@ -98,7 +98,6 @@ export function Header({
         </button>
         <a
           href="https://accounts.willowalexander.co.uk/"
-          rel="noopener"
           className={cn(
             "font-sans text-[11px] tracking-[0.16em] uppercase no-underline opacity-[0.55] hover:opacity-100",
             "transition-opacity duration-[var(--t-base)]",
@@ -247,7 +246,6 @@ export function Header({
               </button>
               <a
                 href="https://accounts.willowalexander.co.uk/"
-                rel="noopener"
                 onClick={() => setMobileOpen(false)}
                 className="font-sans text-[11px] tracking-[0.16em] uppercase opacity-60 no-underline"
               >

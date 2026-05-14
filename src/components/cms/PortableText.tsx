@@ -253,7 +253,7 @@ const components: PortableTextComponents = {
       if (!ref?._type || !ref.slug?.current) return <>{children}</>;
       const prefix =
         ref._type === "article"
-          ? "/journal"
+          ? "/the-hearth"
           : ref._type === "partner"
             ? "/partners"
             : ref._type === "service"

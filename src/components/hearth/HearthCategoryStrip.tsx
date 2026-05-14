@@ -10,14 +10,14 @@ import { cn } from "@/lib/cn";
  */
 
 const STRIP = [
-  { slug: "all", label: "The Latest", href: "/journal" },
-  { slug: "interiors-styling", label: "Interiors & Styling", href: "/journal/category/interiors-styling" },
-  { slug: "design-architecture", label: "Design & Architecture", href: "/journal/category/design-architecture" },
-  { slug: "gardens-exteriors", label: "Gardens & Exteriors", href: "/journal/category/gardens-exteriors" },
-  { slug: "colour-materials", label: "Colour & Materials", href: "/journal/category/colour-materials" },
-  { slug: "heritage-culture", label: "Heritage & Culture", href: "/journal/category/heritage-culture" },
-  { slug: "trends-inspiration", label: "Trends & Inspiration", href: "/journal/category/trends-inspiration" },
-  { slug: "collection", label: "The Hearth Collection", href: "/journal/collection" },
+  { slug: "all", label: "The Latest", href: "/the-hearth" },
+  { slug: "interiors-styling", label: "Interiors & Styling", href: "/the-hearth/category/interiors-styling" },
+  { slug: "design-architecture", label: "Design & Architecture", href: "/the-hearth/category/design-architecture" },
+  { slug: "gardens-exteriors", label: "Gardens & Exteriors", href: "/the-hearth/category/gardens-exteriors" },
+  { slug: "colour-materials", label: "Colour & Materials", href: "/the-hearth/category/colour-materials" },
+  { slug: "heritage-culture", label: "Heritage & Culture", href: "/the-hearth/category/heritage-culture" },
+  { slug: "trends-inspiration", label: "Trends & Inspiration", href: "/the-hearth/category/trends-inspiration" },
+  { slug: "collection", label: "The Hearth Collection", href: "/the-hearth/collection" },
 ];
 
 export function HearthCategoryStrip({ activeSlug = "all" }: { activeSlug?: string }) {

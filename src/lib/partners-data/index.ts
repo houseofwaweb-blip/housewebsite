@@ -274,7 +274,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
     heroHeadlineEm: "with a memory.",
     heroSub:
       "Layered rooms with confident colour, antiques properly used, and a love of textile. From a single room refresh to a full-house edit, commissioned through the House and coordinated through HoWA.",
-    heroImage: "/partners/hero.png",
+    heroImage: "/design/interiors/project-bedroom.webp",
     heroCaption: "Kensington drawing room \u00b7 Jessica Durling-McMahon",
 
     role: "Founder \u00b7 Durling Interiors, London",
@@ -322,7 +322,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
     heroHeadlineEm: "keep growing.",
     heroSub:
       "Planting schemes and landscapes rooted in the garden\u2019s existing character. Full commissions from concept to install, plus the seasonal care that keeps it looking like it was always there.",
-    heroImage: "/partners/hero.png",
+    heroImage: "/design/gardens/hero.jpg",
     heroCaption: "Country house garden \u00b7 Willow Alexander Gardens",
 
     role: "Design practice \u00b7 London & Home Counties",
@@ -417,7 +417,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
     heroHeadlineEm: "disappears into the architecture.",
     heroSub:
       "Automation, lighting schemes, audio, and heating controls \u2014 designed with our interior studios from the first brief. The brains behind the HoWA Companion as well.",
-    heroImage: "/partners/hero.png",
+    heroImage: "/home-v4/design-portrait.png",
     heroCaption: "Integrated lighting scheme \u00b7 House AI",
 
     role: "Specialist partner \u00b7 UK-wide",

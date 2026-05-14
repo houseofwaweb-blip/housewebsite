@@ -5,6 +5,7 @@ import { formRegistry, type FormType } from "./schemas";
 import { verifyTurnstileToken } from "./turnstile";
 import { checkFormRateLimit } from "@/lib/rate-limit";
 import { getSupabaseAnonClient } from "@/lib/supabase/server";
+import { notifyFormSubmission } from "./notify";
 
 /**
  * Shared form submission handler.
@@ -105,6 +106,13 @@ export async function handleFormSubmission(
       { status: 500 },
     );
   }
+
+  // Fire-and-forget notification. The submission is already persisted, so
+  // a failed email never surfaces as a 500 — we'd rather lose the alert
+  // than fail the user's form. Caller doesn't await.
+  void notifyFormSubmission(type, parsed as Record<string, unknown>).catch(() => {
+    // notify already logs internally
+  });
 
   return NextResponse.json({ ok: true });
 }

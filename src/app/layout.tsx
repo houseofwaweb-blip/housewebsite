@@ -9,6 +9,9 @@ import { CartProvider } from "@/components/commerce/CartContext";
 import { CartToast } from "@/components/commerce/CartToast";
 import { CartDrawer } from "@/components/commerce/CartDrawer";
 import { BookingWidget } from "@/components/marketing/BookingWidget";
+import { ConsentProvider } from "@/components/consent/ConsentProvider";
+import { CookieBanner } from "@/components/consent/CookieBanner";
+import { AnalyticsLoader } from "@/components/consent/AnalyticsLoader";
 import "./globals.css";
 
 // When the HoWA Product app isn't live, header CTA swaps to "Book with HoWA".
@@ -79,17 +82,21 @@ export default async function RootLayout({
         <WebSiteJsonLd />
       </head>
       <body>
-        <CartProvider>
-          <a href="#main" className="skip-link">
-            Skip to content
-          </a>
-          <Header ctaLabel={ctaLabel} ctaHref={ctaHref} nav={nav} />
-          <main id="main">{children}</main>
-          <Footer columns={footerCols} />
-          <CartToast />
-          <CartDrawer />
-          <BookingWidget />
-        </CartProvider>
+        <ConsentProvider>
+          <CartProvider>
+            <a href="#main" className="skip-link">
+              Skip to content
+            </a>
+            <Header ctaLabel={ctaLabel} ctaHref={ctaHref} nav={nav} />
+            <main id="main">{children}</main>
+            <Footer columns={footerCols} />
+            <CartToast />
+            <CartDrawer />
+            <BookingWidget />
+            <CookieBanner />
+            <AnalyticsLoader />
+          </CartProvider>
+        </ConsentProvider>
       </body>
     </html>
   );

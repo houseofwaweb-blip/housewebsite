@@ -3,6 +3,9 @@ import { sanityClient } from "@/lib/cms/client";
 import { unifiedSearchQuery } from "@/lib/cms/queries";
 import { servicesReady } from "@/lib/env";
 import { searchCatalogue } from "@/lib/shop-data/catalogue";
+import { checkSearchRateLimit } from "@/lib/rate-limit";
+
+const MAX_QUERY_LENGTH = 100;
 
 /**
  * GET /api/search?q=...&tab=all
@@ -89,7 +92,7 @@ function mapSanityResults(data: SanitySearchResult): SearchResult[] {
       type: "Journal",
       title: a.title,
       excerpt: a.lede,
-      href: `/journal/${a.slug}`,
+      href: `/the-hearth/${a.slug}`,
     });
   }
 
@@ -123,6 +126,26 @@ export async function GET(request: NextRequest) {
 
   if (!q) {
     return NextResponse.json({ results: [], query: "" });
+  }
+
+  // Length cap — bounds GROQ query payload and prevents abuse.
+  if (q.length > MAX_QUERY_LENGTH) {
+    return NextResponse.json(
+      { error: "query too long", maxLength: MAX_QUERY_LENGTH },
+      { status: 400 },
+    );
+  }
+
+  // Rate limit — 30/min/IP. Read-only so we fail open if Upstash is unreachable.
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim()
+    || request.headers.get("x-real-ip")
+    || "unknown";
+  const rl = await checkSearchRateLimit(`search:${ip}`);
+  if (!rl.ok) {
+    return NextResponse.json(
+      { error: "rate limited", reset: rl.reset },
+      { status: 429, headers: { "Retry-After": String(Math.ceil((rl.reset - Date.now()) / 1000)) } },
+    );
   }
 
   const allResults: SearchResult[] = [];

@@ -13,6 +13,7 @@ import { env } from "@/lib/env";
 
 let _redis: Redis | null = null;
 let _form: Ratelimit | null = null;
+let _search: Ratelimit | null = null;
 
 function getRedis(): Redis | null {
   if (_redis) return _redis;
@@ -38,6 +39,20 @@ function getFormLimiter(): Ratelimit | null {
   return _form;
 }
 
+function getSearchLimiter(): Ratelimit | null {
+  if (_search) return _search;
+  const redis = getRedis();
+  if (!redis) return null;
+  // 30 searches per minute per identifier — generous for normal use, blocks burst abuse.
+  _search = new Ratelimit({
+    redis,
+    limiter: Ratelimit.slidingWindow(30, "1 m"),
+    analytics: true,
+    prefix: "howa:search",
+  });
+  return _search;
+}
+
 export interface RateLimitResult {
   ok: boolean;
   remaining: number;
@@ -54,4 +69,22 @@ export async function checkFormRateLimit(identifier: string): Promise<RateLimitR
   }
   const { success, remaining, reset } = await limiter.limit(identifier);
   return { ok: success, remaining, reset };
+}
+
+/**
+ * Search-route rate limit. Looser than form submissions (30/min vs 5/10m) but
+ * still bounds abuse of /api/search which fans out to Sanity + Shopify.
+ * Fails open on transport errors (read-only endpoint, network blip shouldn't 500).
+ */
+export async function checkSearchRateLimit(identifier: string): Promise<RateLimitResult> {
+  const limiter = getSearchLimiter();
+  if (!limiter) {
+    return { ok: true, remaining: 99, reset: Date.now() + 60_000 };
+  }
+  try {
+    const { success, remaining, reset } = await limiter.limit(identifier);
+    return { ok: success, remaining, reset };
+  } catch {
+    return { ok: true, remaining: 99, reset: Date.now() + 60_000 };
+  }
 }

@@ -1,0 +1,216 @@
+/* Cookie banner — sits at the bottom on desktop, full-bleed bottom sheet on mobile.
+   Cream-on-brown for contrast, gold rule above to mark it as a House element. */
+
+.banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #1d1612;
+  color: var(--color-house-cream, #f3ede1);
+  border-top: 2px solid var(--color-house-gold, #c2a660);
+  padding: 20px 5vw;
+  font-family: var(--font-sans, sans-serif);
+}
+
+.bannerInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.bannerCopy {
+  flex: 1 1 320px;
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0;
+  color: rgba(243, 237, 225, 0.85);
+}
+
+.bannerActions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Shared button styles — kept tight so the three actions read as equals.
+   ICO guidance: "reject" must be no harder to find than "accept". */
+.btnFilled,
+.btnGhost {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 12px 22px;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  font-weight: 500;
+}
+
+.btnFilled {
+  background: var(--color-house-gold, #c2a660);
+  color: #fff;
+  border: 1px solid var(--color-house-gold, #c2a660);
+}
+.btnFilled:hover {
+  background: var(--color-house-gold-light, #d4ba78);
+  border-color: var(--color-house-gold-light, #d4ba78);
+}
+
+.btnGhost {
+  background: transparent;
+  color: var(--color-house-cream, #f3ede1);
+  border: 1px solid rgba(243, 237, 225, 0.4);
+}
+.btnGhost:hover {
+  border-color: var(--color-house-cream, #f3ede1);
+  background: rgba(243, 237, 225, 0.06);
+}
+
+/* Preferences modal */
+
+.modalScrim {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  background: rgba(20, 14, 8, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4vw;
+  backdrop-filter: blur(2px);
+}
+
+.modal {
+  background: var(--color-house-cream, #f3ede1);
+  color: var(--color-house-brown, #30231c);
+  max-width: 640px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: auto;
+  border: 1px solid rgba(48, 35, 28, 0.12);
+  padding: 40px 36px 32px;
+  font-family: var(--font-sans, sans-serif);
+}
+
+.modalHeader {
+  margin-bottom: 28px;
+}
+
+.eyebrow {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(48, 35, 28, 0.55);
+  margin: 0 0 12px;
+}
+
+.modalTitle {
+  font-family: var(--font-hearth-serif, Georgia, serif);
+  font-weight: 500;
+  font-size: clamp(28px, 3.2vw, 36px);
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px 0;
+  border-top: 1px solid rgba(48, 35, 28, 0.1);
+  cursor: pointer;
+}
+.row:last-child {
+  border-bottom: 1px solid rgba(48, 35, 28, 0.1);
+}
+
+.rowText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.rowTitle {
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--color-house-brown, #30231c);
+}
+
+.rowDesc {
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(48, 35, 28, 0.65);
+}
+
+/* Native checkbox styled minimally — keyboard + screen reader friendly. */
+.toggle {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--color-house-gold, #c2a660);
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.toggle:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.modalFooter .btnFilled {
+  background: var(--color-house-brown, #30231c);
+  border-color: var(--color-house-brown, #30231c);
+  color: var(--color-house-cream, #f3ede1);
+}
+.modalFooter .btnFilled:hover {
+  background: #1d1612;
+  border-color: #1d1612;
+}
+
+.modalFooter .btnGhost {
+  color: var(--color-house-brown, #30231c);
+  border-color: rgba(48, 35, 28, 0.3);
+}
+.modalFooter .btnGhost:hover {
+  border-color: var(--color-house-brown, #30231c);
+  background: rgba(48, 35, 28, 0.04);
+}
+
+@media (max-width: 640px) {
+  .bannerInner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  .bannerActions {
+    justify-content: stretch;
+  }
+  .btnFilled,
+  .btnGhost {
+    flex: 1;
+    text-align: center;
+  }
+}

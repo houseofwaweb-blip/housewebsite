@@ -171,12 +171,12 @@ export const PRIMARY_NAV: MegaPanel[] = [
   {
     id: "the-hearth",
     trigger: "The Hearth",
-    triggerHref: "/journal",
+    triggerHref: "/the-hearth",
     groups: [
       {
         heading: "The Hearth Magazine",
         links: [
-          { label: "Read the magazine", href: "/journal", description: "Editorial writing on homes & gardens" },
+          { label: "Read the magazine", href: "/the-hearth", description: "Editorial writing on homes & gardens" },
           { label: "Recipes", href: "/recipes", description: "Seasonal cooking" },
         ],
       },

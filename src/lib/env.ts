@@ -18,8 +18,13 @@ const schema = z.object({
   // Site core
   NEXT_PUBLIC_SITE_URL: z.string().url().default("http://localhost:4000"),
 
-  // HoWA Product app (external)
-  NEXT_PUBLIC_HOWA_APP_URL: z.string().optional(),
+  // HoWA Product app (external). Fed straight into `new URL()` by
+  // /api/howa-bounce, so we validate here to fail at boot, not request time.
+  // Empty string in .env.local is treated as "not set" (Alex wires it later).
+  NEXT_PUBLIC_HOWA_APP_URL: z.preprocess(
+    (v) => (v === "" ? undefined : v),
+    z.string().url().optional(),
+  ),
   HOWA_APP_LIVE: z
     .enum(["true", "false"])
     .default("false")
@@ -52,10 +57,15 @@ const schema = z.object({
   NEXT_PUBLIC_TURNSTILE_SITE_KEY: z.string().optional(),
   TURNSTILE_SECRET_KEY: z.string().optional(),
 
-  // Sentry
+  // Sentry. *_AUTH_TOKEN + ORG + PROJECT are build-time only (consumed by
+  // withSentryConfig in next.config.ts), not loaded into runtime env.ts.
+  // Declaring them here makes the .env.example fully self-documenting and
+  // avoids accidental drift between code that reads env and the schema.
   NEXT_PUBLIC_SENTRY_DSN: z.string().optional(),
   SENTRY_DSN: z.string().optional(),
   SENTRY_RELEASE: z.string().optional(),
+  SENTRY_ORG: z.string().optional(),
+  SENTRY_PROJECT: z.string().optional(),
 
   // Contact routing
   CONTACT_INBOX_DEFAULT: z
@@ -66,6 +76,13 @@ const schema = z.object({
   CONTACT_INBOX_PROTECT: z.string().optional(),
   CONTACT_INBOX_SHOP: z.string().optional(),
   CONTACT_INBOX_PRESS: z.string().optional(),
+
+  // Email (Resend). When unset, sendEmail() is a no-op so dev works without
+  // an account. Production requires RESEND_API_KEY + EMAIL_FROM.
+  RESEND_API_KEY: z.string().optional(),
+  EMAIL_FROM: z
+    .string()
+    .default("House of Willow Alexander <hello@willowalexander.co.uk>"),
 
   // Node
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),

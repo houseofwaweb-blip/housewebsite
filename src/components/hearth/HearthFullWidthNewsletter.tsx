@@ -19,7 +19,7 @@ export function HearthFullWidthNewsletter() {
     setState("submitting");
     const result = await submitForm("newsletter", {
       email,
-      sourcePage: "/journal",
+      sourcePage: "/the-hearth",
       honey: honeyRef.current?.value ?? "",
       turnstileToken: "",
     });

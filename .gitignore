@@ -7,6 +7,9 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+# This repo uses npm (package-lock.json). bun.lock may appear locally if
+# someone runs `bun add` — ignore it so the two lockfiles can't drift.
+bun.lock
 
 # testing
 /coverage

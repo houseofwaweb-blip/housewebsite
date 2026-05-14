@@ -42,7 +42,7 @@ export function HearthFeedSidebar({ popular }: { popular?: PopularItem[] }) {
                   <HearthTitle
                     title={item.title}
                     em={item.titleEm}
-                    href={`/journal/${item.slug}`}
+                    href={`/the-hearth/${item.slug}`}
                   />
                 </h5>
               </div>
@@ -74,7 +74,7 @@ function SidebarNewsletter() {
     setState("submitting");
     const result = await submitForm("newsletter", {
       email,
-      sourcePage: "/journal",
+      sourcePage: "/the-hearth",
       honey: honeyRef.current?.value ?? "",
       turnstileToken: "",
     });

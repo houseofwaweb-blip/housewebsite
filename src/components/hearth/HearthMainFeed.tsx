@@ -12,7 +12,7 @@ export function HearthMainFeed({
   articles,
   heading,
   emText,
-  viewAllHref = "/journal/archive",
+  viewAllHref = "/the-hearth/archive",
 }: {
   articles: HearthArticle[];
   heading: string;
@@ -32,7 +32,7 @@ export function HearthMainFeed({
 }
 
 function FeedArticle({ article }: { article: HearthArticle }) {
-  const href = `/journal/${article.slug}`;
+  const href = `/the-hearth/${article.slug}`;
   return (
     <article className="h-full">
       <Link

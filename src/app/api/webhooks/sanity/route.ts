@@ -9,19 +9,18 @@ export const dynamic = "force-dynamic";
  * Sanity webhook → tag-based revalidation.
  * Spec: PLAN.md §15 Finding E3. Configure in Sanity as a GROQ-powered webhook
  * posting { _type, slug } for create/update/delete on all document types.
+ *
+ * Security: secret is accepted via `x-sanity-secret` header ONLY. Query-string
+ * secrets are rejected because they get logged by every middlebox and proxy.
  */
 interface SanityWebhookBody {
   _type?: string;
   slug?: string;
-  secret?: string;
 }
 
 export async function POST(req: NextRequest) {
   const bodyText = await req.text();
-  const providedSecret =
-    req.headers.get("x-sanity-secret") ??
-    req.nextUrl.searchParams.get("secret") ??
-    "";
+  const providedSecret = req.headers.get("x-sanity-secret") ?? "";
 
   if (!env.SANITY_WEBHOOK_SECRET || providedSecret !== env.SANITY_WEBHOOK_SECRET) {
     return new NextResponse("Unauthorized", { status: 401 });

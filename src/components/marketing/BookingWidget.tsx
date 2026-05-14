@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { useConsentGranted } from "@/components/consent/ConsentProvider";
 
 /**
  * Embed the ServiceOS Online Booking Form (OBF) as it currently runs on
@@ -70,7 +71,14 @@ declare global {
 }
 
 export function BookingWidget() {
+  // ServiceOS sets cookies and runs third-party JS — functional consent required
+  // before we load it. Users who haven't decided yet (or who declined) see the
+  // booking CTA but clicking it does nothing until they grant. The CookieBanner
+  // is non-dismissable until a choice is made, so this isn't a dead-end UX.
+  const functionalGranted = useConsentGranted("functional");
+
   useEffect(() => {
+    if (!functionalGranted) return;
     if (typeof window === "undefined") return;
     if (window.__obfLoaded) return;
     window.__obfLoaded = true;
@@ -88,13 +96,18 @@ export function BookingWidget() {
     const script = document.createElement("script");
     script.id = "obfAbClient";
     // Path matches the live WP plugin: /obf/client/client.min.js
+    // Trust model: SRI is impractical here (ServiceOS updates the bundle
+    // without notice, and the cache-busting query changes hourly). The
+    // CSP script-src allowlist + our ownership of accounts.willowalexander.co.uk
+    // is the security control. Compromise of that subdomain = full XSS,
+    // which is accepted because losing it implies losing the auth provider.
     script.src =
       "https://accounts.willowalexander.co.uk/obf/client/client.min.js?v=" +
       Math.floor(Date.now() / 3_600_000);
     script.async = true;
     script.dataset.queryParamsTemplate = "true";
     document.body.appendChild(script);
-  }, []);
+  }, [functionalGranted]);
 
   // The widget injects its own DOM. No visible markup needed — clicks on
   // any `href="#open-booking-form"` anchor open the modal.

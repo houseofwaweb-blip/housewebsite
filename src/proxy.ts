@@ -12,7 +12,6 @@
  */
 import { NextResponse, type NextRequest } from "next/server";
 
-const HOWA_APP_LIVE = process.env.HOWA_APP_LIVE === "true";
 const SITE_HOST = new URL(
   process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:4000",
 ).host;
@@ -55,15 +54,11 @@ export function proxy(request: NextRequest) {
     return NextResponse.redirect(url, 301);
   }
 
-  // ── 2. HoWA fallback flag ────────────────────────────────────────────────
-  // When product app isn't live, route Start HoWA CTAs to coming-soon.
-  // CTAs will use the path `/api/howa-bounce` which we rewrite here.
-  if (!HOWA_APP_LIVE && nextUrl.pathname.startsWith("/api/howa-bounce")) {
-    url.pathname = "/howa/coming-soon";
-    return NextResponse.redirect(url, 302);
-  }
-
-  // ── 3. Security headers + CSP ─────────────────────────────────────────
+  // ── 2. Security headers + CSP ─────────────────────────────────────────
+  // HoWA fallback is handled by /api/howa-bounce itself (route enforces
+  // source whitelist + env.HOWA_APP_LIVE check), so the proxy doesn't
+  // short-circuit it any more — doing so leaked attacker-controlled
+  // query params past the route's whitelist.
   const response = NextResponse.next();
 
   // ServiceOS booking widget — mounted globally in root layout, opens
@@ -71,9 +66,12 @@ export function proxy(request: NextRequest) {
   // makes XHR requests to its API, and may iframe checkout.
   const obfHosts = "https://accounts.willowalexander.co.uk https://willowalexander.serviceos.com https://*.serviceos.com";
 
+  // CSP — enforced (not report-only). `unsafe-eval` removed; `unsafe-inline`
+  // retained on script-src because Next.js inlines hydration scripts. A nonce
+  // pattern would let us drop unsafe-inline; see PLAN.md §15 S6 for the spec.
   const csp = [
     "default-src 'self'",
-    `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com ${obfHosts}`,
+    `script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com ${obfHosts}`,
     `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com ${obfHosts}`,
     `img-src 'self' data: blob: https://cdn.sanity.io https://cdn.shopify.com https://willowalexander.co.uk ${obfHosts}`,
     "font-src 'self' data: https://fonts.gstatic.com",
@@ -83,9 +81,18 @@ export function proxy(request: NextRequest) {
     "form-action 'self'",
     "base-uri 'self'",
     "object-src 'none'",
+    // Both shapes: legacy report-uri (still respected by most browsers) and
+    // modern report-to (Chrome/Edge). See /api/csp-report/route.ts.
+    "report-uri /api/csp-report",
+    "report-to csp-endpoint",
   ].join("; ");
 
-  response.headers.set("content-security-policy-report-only", csp);
+  response.headers.set("content-security-policy", csp);
+  // Reporting API endpoint group — paired with `report-to csp-endpoint` above.
+  response.headers.set(
+    "reporting-endpoints",
+    'csp-endpoint="/api/csp-report"',
+  );
   response.headers.set("x-content-type-options", "nosniff");
   response.headers.set("x-frame-options", "DENY");
   response.headers.set("referrer-policy", "strict-origin-when-cross-origin");

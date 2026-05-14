@@ -22,7 +22,7 @@ export function HearthSecondaryLeads({ articles }: { articles: HearthArticle[] }
 }
 
 function SecondaryArticle({ article }: { article: HearthArticle }) {
-  const href = `/journal/${article.slug}`;
+  const href = `/the-hearth/${article.slug}`;
   const formattedDate = new Date(article.publishedAt).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "long",

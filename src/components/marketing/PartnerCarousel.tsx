@@ -31,6 +31,8 @@ interface Props {
   heading: string;
   headingEm?: string;
   lede?: string;
+  /** Small-caps eyebrow above the heading. Defaults to "Our partners". */
+  eyebrow?: string;
   /** Render on dark background (brown band). Cards stay white. */
   dark?: boolean;
   className?: string;
@@ -46,7 +48,7 @@ function typeLabel(t: string): string {
   }
 }
 
-export function PartnerCarousel({ partners, heading, headingEm, lede, dark = false, className }: Props) {
+export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = "Our partners", dark = false, className }: Props) {
   const scrollRef = React.useRef<HTMLDivElement>(null);
   const [canLeft, setCanLeft] = React.useState(false);
   const [canRight, setCanRight] = React.useState(true);
@@ -81,7 +83,7 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, dark = fal
         <div className="flex items-end justify-between mb-10 gap-6 flex-wrap">
           <div>
             <span className={cn("block font-sans text-[11px] tracking-[0.22em] uppercase mb-3", dark ? "text-house-gold-light" : "")} style={dark ? undefined : { color: "var(--house-gold-dark)" }}>
-              Our designers
+              {eyebrow}
             </span>
             <h2 className={cn("font-display font-medium text-[clamp(28px,3.6vw,46px)] leading-[1.1] tracking-[-0.01em]", dark && "text-house-cream")}>
               {headingEm ? (

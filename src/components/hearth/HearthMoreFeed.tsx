@@ -13,7 +13,7 @@ export function HearthMoreFeed({
   articles,
   heading = "More",
   emText = "from the studios",
-  viewAllHref = "/journal/archive",
+  viewAllHref = "/the-hearth/archive",
 }: {
   articles: HearthArticle[];
   heading?: string;
@@ -33,7 +33,7 @@ export function HearthMoreFeed({
 }
 
 function MoreArticle({ article }: { article: HearthArticle }) {
-  const href = `/journal/${article.slug}`;
+  const href = `/the-hearth/${article.slug}`;
   const formattedDate = new Date(article.publishedAt).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "long",

@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Sanity Studio's pre-built bundle. ~500KB+ per file, deoptimises Babel
+    // and OOMs Node when linted. These are vendor artefacts, not our source.
+    "dist/**",
   ]),
 ]);
 
