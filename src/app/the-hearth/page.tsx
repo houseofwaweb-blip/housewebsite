@@ -44,7 +44,7 @@ export default async function JournalPage() {
             articles={sections.mainFeed}
             heading="This week"
             emText="in The Hearth"
-            viewAllHref="/journal/archive"
+            viewAllHref="/the-hearth/archive"
           />
           <HearthFeedSidebar popular={sections.popular} />
         </div>

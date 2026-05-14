@@ -38,6 +38,9 @@ const nextConfig: NextConfig = {
       { source: "/protect/review", destination: "/protect/home-protection", permanent: true },
       { source: "/insurance", destination: "/protect/insurance", permanent: true },
       { source: "/press", destination: "/news", permanent: true },
+      // Journal renamed to The Hearth (2026-05-14)
+      { source: "/journal", destination: "/the-hearth", permanent: true },
+      { source: "/journal/:slug*", destination: "/the-hearth/:slug*", permanent: true },
       // Sign-in moved to external accounts subdomain
       { source: "/sign-in", destination: "https://accounts.willowalexander.co.uk/", permanent: true },
       // Booking is a modal triggered by `#open-booking-form` from any page;
