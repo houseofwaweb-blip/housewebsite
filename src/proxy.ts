@@ -54,7 +54,20 @@ export function proxy(request: NextRequest) {
     return NextResponse.redirect(url, 301);
   }
 
-  // ── 2. Security headers + CSP ─────────────────────────────────────────
+  // ── 2. WP legacy URL catch-all ────────────────────────────────────────
+  // The explicit redirect map (next.config.ts → wpLongTailRedirects)
+  // covers the long-tail service-area pages. This handles the URL
+  // *shapes* that WP/WooCommerce produce automatically but we never
+  // explicitly enumerated — category archives, ?p=123 query params,
+  // /wp-admin probes, /feed/ endpoints, etc.
+  //
+  // Preserves SEO equity by 301ing to the closest live page rather
+  // than 404ing. /wp-* admin probes get 404 instead — those are bots,
+  // not real users, and we don't want to confirm WP existence.
+  const legacy = wpLegacyRedirect(url);
+  if (legacy) return legacy;
+
+  // ── 3. Security headers + CSP ─────────────────────────────────────────
   // HoWA fallback is handled by /api/howa-bounce itself (route enforces
   // source whitelist + env.HOWA_APP_LIVE check), so the proxy doesn't
   // short-circuit it any more — doing so leaked attacker-controlled
@@ -105,4 +118,85 @@ export function proxy(request: NextRequest) {
   void SITE_HOST;
 
   return response;
+}
+
+/**
+ * Map a legacy WP URL shape to a 301/404 response, or null if no match.
+ * Shapes covered (in order of specificity):
+ *
+ *   /wp-admin/*, /wp-login.php, /xmlrpc.php, /wp-json/*
+ *       → 404 (these are bot probes; respond with not-found rather than
+ *         redirect, so we don't confirm a WP install ever existed)
+ *   /wp-content/*
+ *       → 301 to homepage (these may be real image hotlinks from old shares)
+ *   /feed, /feed/*, /comments/feed
+ *       → 301 to /the-hearth (RSS, now lives on the Hearth)
+ *   /author/<name>
+ *       → 301 to /the-house/about
+ *   /category/<slug>, /cat/<slug>
+ *       → 301 to /the-hearth (best-guess: most WP categories were editorial)
+ *   /tag/<slug>
+ *       → 301 to /the-hearth (same rationale)
+ *   /?p=<n>, /?page_id=<n>, /?cat=<n>, /?tag=<n>
+ *       → 301 to homepage (ID-based, we can't recover the destination)
+ *
+ * NB: 301s lose POST bodies. Anything POSTing to a WP URL is a bot, so
+ * that's fine.
+ */
+function wpLegacyRedirect(url: URL): NextResponse | null {
+  const { pathname, searchParams } = url;
+  const home = new URL("/", url);
+
+  // Admin / API probes → 404 (don't redirect bots)
+  if (
+    pathname.startsWith("/wp-admin") ||
+    pathname.startsWith("/wp-login") ||
+    pathname === "/xmlrpc.php" ||
+    pathname.startsWith("/wp-json")
+  ) {
+    return new NextResponse(null, { status: 404 });
+  }
+
+  // Hotlinked WP uploads → homepage (broken image is better than 404 for a
+  // user who clicked an old link from somewhere)
+  if (pathname.startsWith("/wp-content/")) {
+    return NextResponse.redirect(home, 301);
+  }
+
+  // Feeds → Hearth
+  if (
+    pathname === "/feed" ||
+    pathname.startsWith("/feed/") ||
+    pathname === "/comments/feed" ||
+    pathname.startsWith("/comments/feed/")
+  ) {
+    return NextResponse.redirect(new URL("/the-hearth", url), 301);
+  }
+
+  // Author archives → About
+  if (pathname.startsWith("/author/")) {
+    return NextResponse.redirect(new URL("/the-house/about", url), 301);
+  }
+
+  // Category / tag archives → Hearth (editorial best-guess)
+  if (
+    pathname.startsWith("/category/") ||
+    pathname.startsWith("/cat/") ||
+    pathname.startsWith("/tag/")
+  ) {
+    return NextResponse.redirect(new URL("/the-hearth", url), 301);
+  }
+
+  // Legacy query-string IDs at root → homepage
+  if (
+    pathname === "/" &&
+    (searchParams.has("p") ||
+      searchParams.has("page_id") ||
+      searchParams.has("cat") ||
+      searchParams.has("tag"))
+  ) {
+    return NextResponse.redirect(home, 301);
+  }
+
+  return null;
 }
