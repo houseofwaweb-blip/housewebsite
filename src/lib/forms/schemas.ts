@@ -130,9 +130,28 @@ const optionalName = z
   .optional()
   .or(z.literal("").transform(() => undefined));
 
+/**
+ * Newsletter signup. `interests` is an array of form-facing surface IDs
+ * that get mapped to Klaviyo `interest` property values by
+ * lib/klaviyo/SURFACE_TO_INTEREST. Keep in sync with that map.
+ *   - "the-house"     → editorial (Hearth, gardens, design notes)
+ *   - "services"      → grouped: cleaners + gardeners + windows
+ *   - "garden-design" → garden design / studios
+ *   - "interior-design" → interior design / studios
+ * Empty array is allowed — still rows into Supabase, just no Klaviyo tags.
+ */
+export const newsletterInterest = z.enum([
+  "the-house",
+  "services",
+  "garden-design",
+  "interior-design",
+]);
+export type NewsletterInterest = z.infer<typeof newsletterInterest>;
+
 export const newsletterSchema = z.object({
   name: optionalName,
   email,
+  interests: z.array(newsletterInterest).max(4).default([]),
   sourcePage,
   turnstileToken,
   honey,

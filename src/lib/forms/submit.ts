@@ -6,6 +6,7 @@ import { verifyTurnstileToken } from "./turnstile";
 import { checkFormRateLimit } from "@/lib/rate-limit";
 import { getSupabaseAnonClient } from "@/lib/supabase/server";
 import { notifyFormSubmission } from "./notify";
+import { subscribeToNewsletter, type InterestSurface } from "@/lib/klaviyo";
 
 /**
  * Shared form submission handler.
@@ -85,6 +86,9 @@ export async function handleFormSubmission(
     row.preferred_dates = row.preferredDates;
     delete row.preferredDates;
   }
+  // `interests` is form-only — used downstream by Klaviyo, not a Supabase
+  // column on `newsletter_subscribers`. Strip before insert.
+  if ("interests" in row) delete row.interests;
 
   const supabase = getSupabaseAnonClient();
   let { error } = await supabase.from(entry.table).insert(row);
@@ -113,6 +117,25 @@ export async function handleFormSubmission(
   void notifyFormSubmission(type, parsed as Record<string, unknown>).catch(() => {
     // notify already logs internally
   });
+
+  // Newsletter signups also push to Klaviyo for interest-based segmentation.
+  // Same fire-and-forget pattern — Supabase row is the source of truth.
+  if (type === "newsletter") {
+    const p = parsed as {
+      email: string;
+      name?: string;
+      interests?: string[];
+      sourcePage?: string;
+    };
+    void subscribeToNewsletter({
+      email: p.email,
+      firstName: p.name,
+      surfaces: (p.interests ?? []) as InterestSurface[],
+      sourcePage: p.sourcePage,
+    }).catch(() => {
+      // klaviyo client already logs internally
+    });
+  }
 
   return NextResponse.json({ ok: true });
 }
