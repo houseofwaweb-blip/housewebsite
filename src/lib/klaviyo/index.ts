@@ -149,3 +149,71 @@ export async function subscribeToNewsletter(
     return { ok: false, error: "network" };
   }
 }
+
+/**
+ * Post a custom Klaviyo event. Klaviyo treats events as metrics that can
+ * trigger flows ("when a profile does X, send a welcome email"). The
+ * interest-led welcome series is configured in the Klaviyo dashboard;
+ * this just fires the trigger.
+ *
+ * We use `Marketing Site Newsletter Signup` as the metric name so Alex
+ * can build per-interest welcome flows in the dashboard against event
+ * properties (e.g., "interest contains design → send Garden Design
+ * welcome flow") without us deploying a code change for each one.
+ *
+ * Fire-and-forget — never throws. The subscribe call is the source of
+ * truth for inclusion; the event is a flow-trigger niceness.
+ */
+export async function trackEvent(input: {
+  email: string;
+  metric: string;
+  properties?: Record<string, unknown>;
+}): Promise<SubscribeResult> {
+  if (!env.KLAVIYO_PRIVATE_KEY) {
+    return { ok: false, skipped: true };
+  }
+
+  const body = {
+    data: {
+      type: "event",
+      attributes: {
+        properties: input.properties ?? {},
+        metric: {
+          data: {
+            type: "metric",
+            attributes: { name: input.metric },
+          },
+        },
+        profile: {
+          data: {
+            type: "profile",
+            attributes: { email: input.email },
+          },
+        },
+      },
+    },
+  };
+
+  try {
+    const res = await fetch("https://a.klaviyo.com/api/events", {
+      method: "POST",
+      headers: {
+        Authorization: `Klaviyo-API-Key ${env.KLAVIYO_PRIVATE_KEY}`,
+        revision: REVISION,
+        "Content-Type": "application/json",
+        accept: "application/vnd.api+json",
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (!res.ok) {
+      const detail = await res.text().catch(() => "<no body>");
+      console.error(`[klaviyo-event:failed] ${res.status} — ${detail.slice(0, 240)}`);
+      return { ok: false, error: `klaviyo-event-${res.status}` };
+    }
+    return { ok: true };
+  } catch (e) {
+    console.error("[klaviyo-event:exception]", e);
+    return { ok: false, error: "network" };
+  }
+}
