@@ -77,12 +77,17 @@ const schema = z.object({
   CONTACT_INBOX_SHOP: z.string().optional(),
   CONTACT_INBOX_PRESS: z.string().optional(),
 
-  // Email (Resend). When unset, sendEmail() is a no-op so dev works without
-  // an account. Production requires RESEND_API_KEY + EMAIL_FROM.
-  RESEND_API_KEY: z.string().optional(),
-  EMAIL_FROM: z
+  // Email (Brevo Transactional). When BREVO_API_KEY is unset, sendEmail()
+  // is a no-op so dev works without an account. Production requires the
+  // key + a verified sender domain in Brevo. The rest of the WA stack
+  // (Call Handler, ServiceOS Agent) uses these same variable names —
+  // keep them aligned for ops consistency.
+  BREVO_API_KEY: z.string().optional(),
+  BREVO_FROM_EMAIL: z
     .string()
-    .default("House of Willow Alexander <hello@willowalexander.co.uk>"),
+    .email()
+    .default("hello@willowalexander.co.uk"),
+  BREVO_FROM_NAME: z.string().default("House of Willow Alexander"),
 
   // Node
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
