@@ -89,6 +89,16 @@ const schema = z.object({
     .default("hello@willowalexander.co.uk"),
   BREVO_FROM_NAME: z.string().default("House of Willow Alexander"),
 
+  // Newsletter (Klaviyo). Newsletter signup writes to Supabase regardless;
+  // Klaviyo subscribe is the secondary side-effect. Optional — when keys
+  // are missing, the subscribe call is skipped (signup still rows).
+  // PUBLIC key is the 6-char site ID; safe to expose to the browser.
+  // PRIVATE key is server-only.
+  // No list ID — the planned interest-led signup picks lists at runtime
+  // based on what the user selects (see lib/klaviyo when it lands).
+  NEXT_PUBLIC_KLAVIYO_PUBLIC_KEY: z.string().optional(),
+  KLAVIYO_PRIVATE_KEY: z.string().optional(),
+
   // Node
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
 });
