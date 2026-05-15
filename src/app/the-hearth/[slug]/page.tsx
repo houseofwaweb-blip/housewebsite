@@ -8,6 +8,7 @@ import { PortableText } from "@/components/cms/PortableText";
 import { HearthMasthead } from "@/components/hearth/HearthMasthead";
 import { HearthPromoStrip } from "@/components/hearth/HearthPromoStrip";
 import { HearthTitle } from "@/components/hearth/HearthTitle";
+import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { HearthPaywall } from "@/components/hearth/HearthPaywall";
 import { ProgressBar } from "@/components/primitives/ProgressBar";
 import { ArticleJsonLd, BreadcrumbJsonLd } from "@/lib/seo/jsonLd";
@@ -179,6 +180,18 @@ export default async function ArticlePage({
             </div>
           </div>
         </article>
+
+        {/* Post-read signup — captures the reader at peak interest. Cream
+            variant matches the Hearth surface; sourcePage carries the slug
+            so Klaviyo properties + the welcome event flow can attribute
+            which article drove the signup. */}
+        <NewsletterInline
+          variant="cream"
+          sourcePage={`/the-hearth/${slug}`}
+          eyebrow="The Hearth"
+          headline="Keep reading the House."
+          body="A weekly letter from the editors — seasonal notes on the home, the garden, and the craft of looking after a place properly."
+        />
 
         {related.length > 0 ? (
           <aside className="px-[5vw] py-16 border-t border-house-brown/12 bg-house-white">

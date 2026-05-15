@@ -6,7 +6,7 @@ import { verifyTurnstileToken } from "./turnstile";
 import { checkFormRateLimit } from "@/lib/rate-limit";
 import { getSupabaseAnonClient } from "@/lib/supabase/server";
 import { notifyFormSubmission } from "./notify";
-import { subscribeToNewsletter, type InterestSurface } from "@/lib/klaviyo";
+import { subscribeToNewsletter, trackEvent, type InterestSurface, SURFACE_TO_INTEREST } from "@/lib/klaviyo";
 
 /**
  * Shared form submission handler.
@@ -127,14 +127,33 @@ export async function handleFormSubmission(
       interests?: string[];
       sourcePage?: string;
     };
+    const surfaces = (p.interests ?? []) as InterestSurface[];
+
     void subscribeToNewsletter({
       email: p.email,
       firstName: p.name,
-      surfaces: (p.interests ?? []) as InterestSurface[],
+      surfaces,
       sourcePage: p.sourcePage,
     }).catch(() => {
       // klaviyo client already logs internally
     });
+
+    // Post a custom event so Alex can build interest-aware welcome flows in
+    // the Klaviyo dashboard ("if event.interest_tags contains 'design',
+    // send Garden Design welcome series"). Without this they'd only have
+    // the list-add trigger, which can't see the interest tags.
+    const interestTags = Array.from(
+      new Set(surfaces.flatMap((s) => SURFACE_TO_INTEREST[s] ?? [])),
+    );
+    void trackEvent({
+      email: p.email,
+      metric: "Marketing Site Newsletter Signup",
+      properties: {
+        surfaces,
+        interest_tags: interestTags,
+        signup_page: p.sourcePage,
+      },
+    }).catch(() => {});
   }
 
   return NextResponse.json({ ok: true });
