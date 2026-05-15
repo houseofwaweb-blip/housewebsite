@@ -1,72 +1,82 @@
 import Link from "next/link";
-import { Eyebrow } from "@/components/primitives/Eyebrow";
-import { StateBadge } from "@/components/primitives/StateBadge";
-import { GhostLink } from "@/components/primitives/GhostLink";
+import fs from "node:fs";
+import path from "node:path";
 import { Accordion } from "@/components/primitives/Accordion";
 import { Gallery, type GalleryImage } from "@/components/primitives/Gallery";
 import { PartnerCarousel, type PartnerCardData } from "./PartnerCarousel";
 import type { Service } from "@/lib/services-data";
 import { SERVICE_AREAS } from "@/lib/services-data/sub-services";
+import s from "./ServiceDetail.module.css";
+
+const PUBLIC = path.join(process.cwd(), "public");
+const PLACEHOLDER_HERO = "/services/photos/placeholders/hero-16x9-v2.jpg";
+const PLACEHOLDER_GALLERY = "/services/photos/placeholders/gallery-4x3-v2.jpg";
+
+function fileOr(localPath: string | undefined, fallback: string) {
+  if (!localPath) return fallback;
+  if (localPath.startsWith("http")) return localPath;
+  const abs = path.join(PUBLIC, localPath.replace(/^\//, ""));
+  try {
+    return fs.existsSync(abs) ? localPath : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+/** Splits a headline at `em` and italicises the tail in the lander-framework
+ *  gold-italic style. If `em` is missing or absent from `text`, renders plain. */
+function withEm(text: string, em?: string) {
+  if (!em || !text.includes(em)) return text;
+  const [head, ...rest] = text.split(em);
+  return (
+    <>
+      {head}
+      <em>{em}</em>
+      {rest.join(em)}
+    </>
+  );
+}
 
 /**
- * ServiceDetail — top-level service page template.
- * Spec: variant-A Four Disciplines + WP /service/{slug}/ content patterns.
+ * ServiceDetail — top-level service page template, lander framework.
  *
- * Sections (in order):
- *   1. Hero — headline + lede + two CTAs
- *   2. Trust strip — accreditation badges
- *   3. What we do — included + how-it-works
- *   4. Sub-services grid — cards to child pages
- *   5. Meet our partners — horizontal carousel
- *   6. Packages — pricing ladder
- *   7. FAQ — accordion
- *   8. Service areas
- *   9. Closing CTA
+ * Section order:
+ *   1. Hero — full-bleed image with scrim OR text-only
+ *   2. Trust strip
+ *   3. Partner carousel (dark)
+ *   4. What's included + How it works (2-column)
+ *   5. Sub-services — horizontal scroll-snap carousel
+ *   6. Gallery — recent work
+ *   7. Booking — two-block CTA (one-off vs Steward)
+ *   8. FAQ — accordion
+ *   9. Service areas — brown band
+ *  10. Closing CTA
  */
 
-const SANITY_CDN = "https://cdn.sanity.io/images/a9t8u8nh/production";
+/** Sub-service tile images on the parent service's horizontal scroller.
+ *  Resolution order: this map → /services/photos/{parent}/{sub}-hero.webp → placeholder. */
+const SUB_SERVICE_IMAGES: Record<string, string> = {};
 
-/** Map sub-service keys to Sanity CDN image URLs */
-const SUB_SERVICE_IMAGES: Record<string, string> = {
-  "gardening/lawn-care": `${SANITY_CDN}/027700c20d7a27faacb0dbdf0786e58a24d410f2-1280x1920.jpg?w=680&h=510&fit=crop&auto=format`,
-  "gardening/hedge-trimming": `${SANITY_CDN}/5e7c5edb601a265b8ffaa2524a6077ca154549f1-800x1200.jpg?w=680&h=510&fit=crop&auto=format`,
-  "gardening/planting": `${SANITY_CDN}/58a9482699c396a1a5aec3c7437289600b44483e-1200x800.jpg?w=680&h=510&fit=crop&auto=format`,
-  "gardening/seasonal-care": `${SANITY_CDN}/af45facea4d6320a56b52c75b39083cc92191ee9-959x1200.jpg?w=680&h=510&fit=crop&auto=format`,
-  "gardening/garden-clearance": `${SANITY_CDN}/af45facea4d6320a56b52c75b39083cc92191ee9-959x1200.jpg?w=680&h=510&fit=crop&auto=format`,
-  "gardening/lawn-treatment": `${SANITY_CDN}/cef7faeec075e5dec3991ebdb49ec985a4c9b14f-933x1400.jpg?w=680&h=510&fit=crop&auto=format`,
-  "gardening/turfing": `${SANITY_CDN}/cef7faeec075e5dec3991ebdb49ec985a4c9b14f-933x1400.jpg?w=680&h=510&fit=crop&auto=format`,
-  "gardening/tree-surgery": `${SANITY_CDN}/5e7c5edb601a265b8ffaa2524a6077ca154549f1-800x1200.jpg?w=680&h=510&fit=crop&auto=format`,
-  "gardening/pressure-washing": `${SANITY_CDN}/1a8ab322bd3023e504522b9adb90dfd4ffa35e9c-1400x933.jpg?w=680&h=510&fit=crop&auto=format`,
-  "gardening/fencing": `${SANITY_CDN}/1a8ab322bd3023e504522b9adb90dfd4ffa35e9c-1400x933.jpg?w=680&h=510&fit=crop&auto=format`,
-};
-
-const PLACEHOLDER_GALLERY: Record<string, GalleryImage[]> = {
+const PLACEHOLDER_GALLERY_BY_SERVICE: Record<string, GalleryImage[]> = {
   gardening: [
-    { src: `${SANITY_CDN}/027700c20d7a27faacb0dbdf0786e58a24d410f2-1280x1920.jpg?w=800&auto=format`, alt: "Gardener mowing alongside a beautiful herbaceous border in golden evening light", caption: "London · 2025" },
-    { src: `${SANITY_CDN}/58a9482699c396a1a5aec3c7437289600b44483e-1200x800.jpg?w=800&auto=format`, alt: "Gardener planting in a lush mixed border with topiary and perennials", caption: "SW London · 2025" },
-    { src: `${SANITY_CDN}/1a8ab322bd3023e504522b9adb90dfd4ffa35e9c-1400x933.jpg?w=800&auto=format`, alt: "Two Willow Alexander gardeners with the branded van outside a Tudor home", caption: "Home Counties · 2025" },
-    { src: `${SANITY_CDN}/cef7faeec075e5dec3991ebdb49ec985a4c9b14f-933x1400.jpg?w=800&auto=format`, alt: "Gardener with leaf blower on a large estate lawn under mature trees", caption: "Estate grounds · 2024" },
-    { src: `${SANITY_CDN}/5e7c5edb601a265b8ffaa2524a6077ca154549f1-800x1200.jpg?w=800&auto=format`, alt: "Gardener trimming hedges with professional equipment in dappled light", caption: "London · 2024" },
-    { src: `${SANITY_CDN}/af45facea4d6320a56b52c75b39083cc92191ee9-959x1200.jpg?w=800&auto=format`, alt: "Autumn garden clearance — collecting leaves on a pristine lawn with hydrangeas", caption: "London · Autumn 2024" },
+    { src: "/services/photos/gardening-gallery-1.webp", alt: "Gardener mowing alongside a herbaceous border in golden evening light", caption: "London · 2025" },
+    { src: "/services/photos/gardening-gallery-2.webp", alt: "Gardener planting in a lush mixed border", caption: "SW London · 2025" },
+    { src: "/services/photos/gardening-gallery-3.webp", alt: "Lawn detail with mature trees", caption: "Home Counties · 2025" },
   ],
   "window-cleaning": [
-    { src: `${SANITY_CDN}/dd4a81d0c429f7d842cf381c90924a468e4f7442-673x1200.jpg?w=800&auto=format`, alt: "Window cleaner using pole and reach pure water system on upper floor windows", caption: "London · 2025" },
-    { src: `${SANITY_CDN}/d8243533e772e70fe271bfc38a203b5b3c7104c7-673x1200.jpg?w=800&auto=format`, alt: "Close-up window cleaning with pure water brush on sash window", caption: "London · 2025" },
-    { src: `${SANITY_CDN}/8ce7f0db8225de466e1a115c0b3f9260cbad5d6c-1200x675.jpg?w=800&auto=format`, alt: "Cleaning upper floor windows from the ground with extended pole", caption: "London · 2025" },
-    { src: `${SANITY_CDN}/5e7cf91c45e86f2238d51e235387fcc87e8ae292-1200x675.jpg?w=800&auto=format`, alt: "Sash window cleaning detail — period property", caption: "London · 2025" },
-    { src: `${SANITY_CDN}/fb67ee8c708b1c83fde8f78c6ff9b9cee1432014-1200x673.jpg?w=800&auto=format`, alt: "Window cleaning equipment and technique detail", caption: "London · 2025" },
+    { src: "/services/photos/window-cleaning-gallery-1.webp", alt: "Pure water pole on sash window", caption: "London · 2025" },
+    { src: "/services/photos/window-cleaning-gallery-2.webp", alt: "Window cleaning detail", caption: "London · 2025" },
+    { src: "/services/photos/window-cleaning-gallery-3.webp", alt: "Upper-floor pole and reach clean", caption: "London · 2025" },
   ],
   cleaning: [
-    { src: "/services/photos/cleaner-shower.jpg", alt: "Professional cleaner at work — bathroom cleaning", caption: "London · 2025" },
-    { src: "/services/photos/cleaner-team.jpg", alt: "Willow Alexander cleaning team on site", caption: "London · 2025" },
-    { src: "/services/subbrands/cleaners.jpg", alt: "House-approved cleaning products — brush, cloth, spray", caption: "Brand · 2025" },
+    { src: "/services/photos/cleaning-gallery-1.webp", alt: "Cleaning team on site", caption: "London · 2025" },
+    { src: "/services/photos/cleaning-gallery-2.webp", alt: "Bathroom detail — surface-appropriate cleaning", caption: "London · 2025" },
+    { src: "/services/photos/cleaning-gallery-3.webp", alt: "House-approved products laid out", caption: "Brand · 2025" },
   ],
   "gutter-cleaning": [
-    { src: `${SANITY_CDN}/fde93d8c1e388b58d0dd95a85932d7f3bad83259-960x1200.jpg?w=800&auto=format`, alt: "Gutter cleaning with extended SkyVac pole — reaching the gutterline from ground level", caption: "London · 2025" },
-    { src: `${SANITY_CDN}/69028fc7840329f2d13173c7f705fbdef782f07f-960x1200.jpg?w=800&auto=format`, alt: "Clearing downpipe and drainpipe with SkyVac equipment", caption: "London · 2025" },
-    { src: `${SANITY_CDN}/3426645b6d109b9edf1f73381aa0dc6d10ff4dbd-1200x675.jpg?w=800&auto=format`, alt: "Gutter cleaning specialist with equipment — portrait", caption: "London · 2025" },
-    { src: `${SANITY_CDN}/d368d318d28d29dd61b4117cda2bd3f02d0f3ca2-1200x675.jpg?w=800&auto=format`, alt: "Gutter vacuum in action — safe ground-level clearing", caption: "London · 2025" },
-    { src: `${SANITY_CDN}/499109536f10f52e8b6e94d03909243575e30b87-673x1200.jpg?w=800&auto=format`, alt: "Gutter clearing on a two-storey property", caption: "London · 2025" },
+    { src: "/services/photos/gutter-cleaning-gallery-1.webp", alt: "SkyVac at the gutterline", caption: "London · 2025" },
+    { src: "/services/photos/gutter-cleaning-gallery-2.webp", alt: "Downpipe inspection and clear", caption: "London · 2025" },
+    { src: "/services/photos/gutter-cleaning-gallery-3.webp", alt: "Gutter line condition report", caption: "London · 2025" },
   ],
 };
 
@@ -93,141 +103,115 @@ const PLACEHOLDER_PARTNERS: Record<string, PartnerCardData[]> = {
   ],
 };
 
-export function ServiceDetail({ service: s }: { service: Service }) {
-  const partnerName = ({
-    gardening: "gardeners",
-    "window-cleaning": "window cleaners",
-    cleaning: "cleaners",
-    "gutter-cleaning": "gutter specialists",
-    handyman: "handypeople",
-    removals: "movers",
-  } as Record<string, string>)[s.slug] ?? "partners";
+export function ServiceDetail({ service }: { service: Service }) {
+  const partners = ({
+    gardening:         { plural: "gardeners",          singular: "gardener" },
+    "window-cleaning": { plural: "window cleaners",    singular: "window cleaner" },
+    cleaning:          { plural: "cleaners",           singular: "cleaner" },
+    "gutter-cleaning": { plural: "gutter specialists", singular: "gutter specialist" },
+    handyman:          { plural: "handypeople",        singular: "handyperson" },
+    removals:          { plural: "movers",             singular: "mover" },
+    energy:            { plural: "electricians",       singular: "electrician" },
+    "pet-care":        { plural: "pet carers",         singular: "pet carer" },
+  } as Record<string, { plural: string; singular: string }>)[service.slug] ?? { plural: "partners", singular: "partner" };
+  const partnerName = partners.plural;
+  const partnerNameSingular = partners.singular;
+
+  const heroImage = fileOr(service.heroImage, PLACEHOLDER_HERO);
+  const galleryRaw =
+    PLACEHOLDER_GALLERY_BY_SERVICE[service.slug] ?? PLACEHOLDER_GALLERY_BY_SERVICE.gardening;
+  const gallery = galleryRaw.map((g) => ({ ...g, src: fileOr(g.src, PLACEHOLDER_GALLERY) }));
 
   return (
-    <article className="bg-house-cream text-house-brown">
-      {/* 1. Hero — full-bleed if heroImage, text-only otherwise */}
-      {s.heroImage ? (
-        <section className="relative min-h-[85vh] flex items-end">
+    <div className={s.page}>
+      {/* 1. Hero */}
+      {service.heroImage ? (
+        <section className={s.heroImageSection}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={s.heroImage}
-            alt={s.headline}
-            className="absolute inset-0 w-full h-full object-cover"
+            src={heroImage}
+            alt={service.headline}
+            className={s.heroImage}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-          <div className="relative z-10 px-[5vw] pb-[8vh] max-w-[880px]">
-            <span className="block mb-4 font-sans text-[11px] tracking-[0.22em] uppercase text-white/70">
-              {s.eyebrow}
-            </span>
-            <h1 className="font-display font-medium text-[clamp(44px,7vw,84px)] leading-[1.02] tracking-[-0.015em] text-white">
-              {s.headline}
+          <div className={s.heroScrim} aria-hidden="true" />
+          <div className={s.heroCopyOnImage}>
+            <p className={s.heroEyLight}>{service.eyebrow}</p>
+            <h1 className={s.heroTitleLight}>
+              {withEm(service.headline, service.headlineEm)}
             </h1>
-            <p className="font-sans text-[17px] leading-[1.65] text-white/80 mt-6 max-w-[56ch]">
-              {s.lede}
-            </p>
-            <div className="mt-8 flex items-center gap-4 flex-wrap">
-              <Link
-                href="#open-booking-form"
-                className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-6 py-3.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
-              >
-                Book {s.name.toLowerCase()}
+            <p className={s.heroLedeLight}>{service.lede}</p>
+            <div className={s.heroCtas}>
+              <Link href="#open-booking-form" className={s.btnFilled}>
+                Book {service.name.toLowerCase()}
               </Link>
-              <Link
-                href="/api/howa-bounce?source=service-hero"
-                className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white border border-white/50 px-6 py-3.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-white hover:text-house-brown"
-              >
+              <Link href="/api/howa-bounce?source=service-hero" className={s.btnGhostLight}>
                 Start a plan
               </Link>
             </div>
           </div>
         </section>
       ) : (
-        <section className="px-[5vw] pt-[12vh] pb-14">
-          <div className="max-w-[980px] mx-auto">
-            <Eyebrow>{s.eyebrow}</Eyebrow>
-            <h1 className="em-accent font-display font-medium text-[clamp(44px,6vw,80px)] leading-[1.05] tracking-[-0.01em] mt-4">
-              {s.headline}
+        <section className={s.heroTextSection}>
+          <div className={s.heroTextInner}>
+            <p className={s.heroEy}>{service.eyebrow}</p>
+            <h1 className={s.heroTitle}>
+              {withEm(service.headline, service.headlineEm)}
             </h1>
-            <p className="font-sans text-[19px] leading-[1.6] text-house-brown/75 mt-6 max-w-[58ch]">
-              {s.lede}
-            </p>
-            <div className="mt-8 flex items-center gap-4 flex-wrap">
-              <Link
-                href="#open-booking-form"
-                className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-6 py-3.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
-              >
-                Book {s.name.toLowerCase()}
+            <p className={s.heroLede}>{service.lede}</p>
+            <div className={s.heroCtas}>
+              <Link href="#open-booking-form" className={s.btnFilled}>
+                Book {service.name.toLowerCase()}
               </Link>
-              <Link
-                href="/api/howa-bounce?source=service-hero"
-                className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown border border-house-brown px-6 py-3.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-brown hover:text-house-cream"
-              >
+              <Link href="/api/howa-bounce?source=service-hero" className={s.btnGhost}>
                 Start a plan
               </Link>
-              {s.recurring ? <StateBadge state="live">Steward-ready</StateBadge> : null}
+              {service.recurring ? (
+                <span className={s.stewardBadge}>Steward-ready</span>
+              ) : null}
             </div>
           </div>
         </section>
       )}
 
       {/* 2. Trust strip */}
-      {s.trustBadges.length > 0 ? (
-        <section className="bg-house-white border-t border-b border-house-brown/10 px-[5vw] py-6">
-          <div className="max-w-[1200px] mx-auto flex flex-wrap items-center justify-center gap-8 text-center">
-            {s.trustBadges.map((badge) => (
-              <span
-                key={badge}
-                className="font-sans text-[10px] tracking-[0.2em] uppercase text-house-brown/50"
-              >
-                {badge}
-              </span>
-            ))}
-          </div>
+      {service.trustBadges.length > 0 ? (
+        <section className={s.trust}>
+          {service.trustBadges.map((badge) => (
+            <span key={badge} className={s.trustItem}>{badge}</span>
+          ))}
         </section>
       ) : null}
 
-      {/* 2b. Partners — moved up, dark band */}
+      {/* 3. Partner carousel — dark band */}
       <PartnerCarousel
+        eyebrow={`Our ${partnerName}`}
         heading={`Meet our ${partnerName}.`}
         headingEm={partnerName + "."}
-        lede={`Every ${partnerName.slice(0, -1)} who works through the House has been vetted, insured, and meets the standard we'd hold ourselves to.`}
-        partners={PLACEHOLDER_PARTNERS[s.slug] ?? []}
+        lede={`Every ${partnerNameSingular} who works through the House has been vetted, insured, and meets the standard we'd hold ourselves to.`}
+        partners={PLACEHOLDER_PARTNERS[service.slug] ?? []}
         dark
       />
 
-      {/* 3. What we do */}
-      <section className="px-[5vw] py-16 bg-white border-b border-house-brown/10">
-        <div className="max-w-[980px] mx-auto grid md:grid-cols-2 gap-12">
-          <div>
-            <Eyebrow>What&apos;s included</Eyebrow>
-            <h2 className="font-display font-medium text-[28px] leading-[1.2] mt-3 mb-6">
-              Every visit.
-            </h2>
-            <ul className="flex flex-col gap-2.5">
-              {s.sections.included.map((inc) => (
-                <li
-                  key={inc}
-                  className="relative pl-5 font-sans text-[16px] leading-[1.55] text-house-brown/90 before:content-['—'] before:absolute before:left-0 before:text-house-gold"
-                >
-                  {inc}
-                </li>
+      {/* 4. What's included + How it works */}
+      <section className={s.what}>
+        <div className={s.whatInner}>
+          <div className={s.whatCol}>
+            <p className={s.whatEy}>What's included</p>
+            <h2 className={s.whatTitle}>Every <em>visit.</em></h2>
+            <ul className={s.whatList}>
+              {service.sections.included.map((inc) => (
+                <li key={inc}>{inc}</li>
               ))}
             </ul>
           </div>
-          <div>
-            <Eyebrow>How it works</Eyebrow>
-            <h2 className="font-display font-medium text-[28px] leading-[1.2] mt-3 mb-6">
-              From first message to first visit.
-            </h2>
-            <ol className="flex flex-col gap-4">
-              {s.sections.how.map((step, i) => (
-                <li key={step} className="grid grid-cols-[auto_1fr] gap-4 items-baseline">
-                  <span className="font-sans text-[10px] tracking-[0.22em] uppercase text-house-gold">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="font-sans text-[16px] leading-[1.55] text-house-brown/90">
-                    {step}
-                  </span>
+          <div className={s.whatCol}>
+            <p className={s.whatEy}>How it works</p>
+            <h2 className={s.whatTitle}>From first message <em>to first visit.</em></h2>
+            <ol className={s.whatSteps}>
+              {service.sections.how.map((step, i) => (
+                <li key={step}>
+                  <span className={s.whatStepN}>{String(i + 1).padStart(2, "0")}</span>
+                  <span>{step}</span>
                 </li>
               ))}
             </ol>
@@ -235,52 +219,36 @@ export function ServiceDetail({ service: s }: { service: Service }) {
         </div>
       </section>
 
-      {/* 4. Sub-services — horizontal scroll carousel with images */}
-      {s.subServices.length > 0 ? (
-        <section className="px-[5vw] py-20">
-          <div className="max-w-[1280px] mx-auto">
-            <Eyebrow>Our {s.name.toLowerCase()} services</Eyebrow>
-            <h2 className="em-accent font-display font-medium text-[clamp(28px,3.6vw,42px)] leading-[1.15] mt-3 mb-10 max-w-[24ch]">
-              Everything under <em>{s.name.toLowerCase()}</em>.
+      {/* 5. Sub-services carousel */}
+      {service.subServices.length > 0 ? (
+        <section className={s.sub}>
+          <header className={s.subHead}>
+            <p className={s.subEy}>Our {service.name.toLowerCase()} services</p>
+            <h2 className={s.subTitle}>
+              Everything under <em>{service.name.toLowerCase()}.</em>
             </h2>
-          </div>
-          <div
-            className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-[5vw] px-[5vw]"
-            style={{ scrollbarWidth: "none" }}
-          >
-            {s.subServices.map((sub) => {
-              const img = SUB_SERVICE_IMAGES[`${s.slug}/${sub.slug}`];
+          </header>
+          <div className={s.subScroller}>
+            {service.subServices.map((sub) => {
+              const requested =
+                SUB_SERVICE_IMAGES[`${service.slug}/${sub.slug}`] ??
+                sub.image ??
+                `/services/photos/${service.slug}/${sub.slug}-hero.webp`;
+              const img = fileOr(requested, PLACEHOLDER_GALLERY);
               return (
                 <Link
                   key={sub.slug}
-                  href={`/services/${s.slug}/${sub.slug}`}
-                  className="group flex-none w-[80vw] sm:w-[340px] snap-start bg-white border border-house-brown/10 overflow-hidden no-underline flex flex-col transition-all duration-[var(--t-slow)] ease-out hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(48,35,28,0.08)] hover:border-[var(--house-gold-dark)]"
+                  href={`/services/${service.slug}/${sub.slug}`}
+                  className={s.subCard}
                 >
-                  {img ? (
-                    <div className="relative aspect-[4/3] overflow-hidden">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={img}
-                        alt={sub.name}
-                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                      />
-                    </div>
-                  ) : (
-                    <div className="aspect-[4/3] bg-howa-paper flex items-center justify-center">
-                      <span className="font-sans text-[11px] tracking-[0.14em] uppercase text-house-brown/25">{sub.name}</span>
-                    </div>
-                  )}
-                  <div className="p-6 flex flex-col flex-1">
-                    <h3 className="font-display font-medium text-[22px] leading-[1.2] text-house-brown mb-2 transition-colors duration-[var(--t-slow)] group-hover:text-[var(--house-gold-dark)]">
-                      {sub.name}
-                    </h3>
-                    <p className="font-sans text-[14px] leading-[1.55] text-house-brown/70 flex-1">
-                      {sub.lede}
-                    </p>
-                    <span className="mt-4 inline-flex items-center gap-2 font-sans text-[11px] tracking-[0.16em] uppercase" style={{ color: "var(--house-gold-dark)" }}>
-                      See detail
-                      <span className="inline-block transition-transform duration-[var(--t-slow)] ease-out group-hover:translate-x-2">&rarr;</span>
-                    </span>
+                  <div className={s.subImage}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={img} alt={sub.name} />
+                  </div>
+                  <div className={s.subBody}>
+                    <h3 className={s.subName}>{sub.name}</h3>
+                    <p className={s.subBlurb}>{sub.lede}</p>
+                    <span className={s.subCta}>See detail →</span>
                   </div>
                 </Link>
               );
@@ -289,78 +257,68 @@ export function ServiceDetail({ service: s }: { service: Service }) {
         </section>
       ) : null}
 
-      {/* 4b. Gallery — recent work */}
-      <section className="px-[5vw] pb-16">
-        <div className="max-w-[1280px] mx-auto">
-          <Eyebrow>Recent work</Eyebrow>
-          <h2 className="em-accent font-display font-medium text-[clamp(28px,3.6vw,42px)] leading-[1.15] mt-3 mb-8">
-            From the <em>field</em>.
+      {/* 6. Gallery */}
+      <section className={s.gallery}>
+        <header className={s.galleryHead}>
+          <p className={s.galleryEy}>Recent work</p>
+          <h2 className={s.galleryTitle}>
+            From the <em>field.</em>
           </h2>
-          <Gallery
-            images={PLACEHOLDER_GALLERY[s.slug] ?? PLACEHOLDER_GALLERY.gardening}
-            columns={3}
-            aspectRatio="4/3"
-          />
-        </div>
+        </header>
+        <Gallery
+          images={gallery}
+          columns={3}
+          aspectRatio="4/3"
+        />
       </section>
 
-      {/* 5. Booking — two-block CTA (replaces old packages grid) */}
-      <section className="px-[5vw] py-20 border-t border-house-brown/10">
-        <div className="max-w-[1100px] mx-auto grid md:grid-cols-2 gap-6">
-          {/* One-off booking via HoWA */}
-          <div className="bg-white border border-house-brown/10 p-10 flex flex-col">
-            <span className="block font-sans text-[11px] tracking-[0.2em] uppercase mb-4" style={{ color: "var(--house-gold-dark)" }}>
-              One-off &amp; pay-as-you-go
-            </span>
-            <h3 className="font-display font-medium text-[clamp(24px,3vw,32px)] leading-[1.15] text-house-brown mb-4">
-              Book one-off care through HoWA.
+      {/* 7. Booking — two-block CTA */}
+      <section className={s.booking}>
+        <div className={s.bookingGrid}>
+          <article className={s.bookingCard}>
+            <p className={s.bookingEy}>One-off &amp; pay-as-you-go</p>
+            <h3 className={s.bookingTitle}>
+              Book one-off care <em>through HoWA.</em>
             </h3>
-            <p className="font-sans text-[15px] leading-[1.6] text-house-brown/70 mb-8 flex-1">
-              Single visits, seasonal jobs, or a one-off tidy. Book through HoWA and the work is logged to your home record. No subscription required.
+            <p className={s.bookingBlurb}>
+              Single visits, seasonal jobs, or a one-off tidy. Book through HoWA
+              and the work is logged to your home record. No subscription
+              required.
             </p>
-            <Link
-              href="#open-booking-form"
-              className="inline-block self-start font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-6 py-3.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
-            >
-              Book {s.name.toLowerCase()}
+            <Link href="#open-booking-form" className={s.btnFilled}>
+              Book {service.name.toLowerCase()}
             </Link>
-          </div>
+          </article>
 
-          {/* Subscriptions via Steward */}
-          <div className="bg-howa-navy text-house-cream border border-house-gold/30 p-10 flex flex-col"
-            style={{
-              backgroundImage: "repeating-linear-gradient(0deg, transparent 0 39px, rgba(184,148,62,0.04) 39px 40px), repeating-linear-gradient(90deg, transparent 0 39px, rgba(184,148,62,0.04) 39px 40px)",
-            }}
-          >
-            <span className="block font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-light mb-4">
-              Recurring care
-            </span>
-            <h3 className="font-display font-medium text-[clamp(24px,3vw,32px)] leading-[1.15] text-house-cream mb-4">
-              Subscriptions only available through Steward.
+          <article className={s.bookingCardNavy}>
+            <p className={s.bookingEyLight}>Recurring care</p>
+            <h3 className={s.bookingTitleLight}>
+              Subscriptions only available <em>through Steward.</em>
             </h3>
-            <p className="font-sans text-[15px] leading-[1.6] text-house-cream/70 mb-8 flex-1">
-              Weekly, fortnightly, or seasonal {s.name.toLowerCase()} plans are managed through HoWA Steward. One invoice, one contact, one system that remembers.
+            <p className={s.bookingBlurbLight}>
+              Weekly, fortnightly, or seasonal {service.name.toLowerCase()} plans
+              are managed through HoWA Steward. One invoice, one contact, one
+              system that remembers.
             </p>
-            <Link
-              href="/howa/steward"
-              className="inline-block self-start font-sans text-[12px] tracking-[0.18em] uppercase text-house-cream border border-house-cream/45 px-6 py-3.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-cream hover:text-house-brown"
-            >
+            <Link href="/howa/steward" className={s.btnGhostLight}>
               Learn about Steward
             </Link>
-          </div>
+          </article>
         </div>
       </section>
 
-      {/* 7. FAQ */}
-      {s.faq.length > 0 ? (
-        <section className="bg-house-white px-[5vw] py-[72px] border-t border-house-brown/10">
-          <div className="max-w-[760px] mx-auto">
-            <Eyebrow>Questions</Eyebrow>
-            <h2 className="em-accent font-display font-medium text-[clamp(28px,3.6vw,42px)] leading-[1.15] mt-3 mb-8">
-              Before you <em>book</em>.
+      {/* 8. FAQ */}
+      {service.faq.length > 0 ? (
+        <section className={s.faq}>
+          <header className={s.faqHead}>
+            <p className={s.faqEy}>Questions</p>
+            <h2 className={s.faqTitle}>
+              Before you <em>book.</em>
             </h2>
+          </header>
+          <div className={s.faqInner}>
             <Accordion
-              items={s.faq.map((f, i) => ({
+              items={service.faq.map((f, i) => ({
                 id: `faq-${i}`,
                 summary: f.q,
                 body: <p>{f.a}</p>,
@@ -370,35 +328,30 @@ export function ServiceDetail({ service: s }: { service: Service }) {
         </section>
       ) : null}
 
-      {/* 8. Service areas */}
-      <section className="px-[5vw] py-14 bg-house-brown text-house-cream">
-        <div className="max-w-[1200px] mx-auto">
-          <div className="text-[10px] tracking-[0.22em] uppercase text-house-gold-light mb-3 font-sans">
-            Where we work
-          </div>
-          <div className="flex flex-wrap gap-x-6 gap-y-2 font-sans text-[16px] text-house-cream/90">
-            {SERVICE_AREAS.map((area) => (
-              <span key={area}>{area}</span>
-            ))}
-          </div>
-          <p className="mt-6 font-sans italic text-[14px] text-house-cream/60">
-            Not listed? <Link href="/contact" className="underline underline-offset-4 decoration-house-gold-light">Write to us.</Link> We're expanding.
-          </p>
+      {/* 9. Service areas — brown band */}
+      <section className={s.areas}>
+        <p className={s.areasEy}>Where we work</p>
+        <div className={s.areasList}>
+          {SERVICE_AREAS.map((area) => (
+            <span key={area}>{area}</span>
+          ))}
         </div>
+        <p className={s.areasFoot}>
+          Not listed?{" "}
+          <Link href="/contact" className={s.areasLink}>Write to us.</Link>{" "}
+          We're expanding.
+        </p>
       </section>
 
-      {/* 9. Closing CTA */}
-      <section className="bg-house-cream px-[5vw] py-[72px] text-center border-t border-house-brown/10">
-        <p className="mx-auto max-w-[640px] mb-7 font-sans italic text-[22px] leading-[1.35] text-house-brown">
-          A well-kept home starts with one conversation.
+      {/* 10. Closing */}
+      <section className={s.closing}>
+        <p className={s.closingStatement}>
+          <em>A well-kept home</em> starts with one conversation.
         </p>
-        <Link
-          href="#open-booking-form"
-          className="inline-block px-[30px] py-[15px] font-sans text-[13px] tracking-[0.16em] uppercase no-underline bg-house-gold text-white border border-house-gold transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
-        >
+        <Link href="#open-booking-form" className={s.btnFilled}>
           Book with HoWA
         </Link>
       </section>
-    </article>
+    </div>
   );
 }

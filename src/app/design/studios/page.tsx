@@ -1,71 +1,88 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Eyebrow } from "@/components/primitives/Eyebrow";
-import { GhostLink } from "@/components/primitives/GhostLink";
-import { StateBadge } from "@/components/primitives/StateBadge";
+import s from "./studios.module.css";
 
 /**
- * /design/studios — the curated partner collective.
+ * /design/studios — lander framework.
  *
- * A deeper editorial layer beneath /design. Where /design lists the four
- * studios as cards, this page explains: who the collective is, how the
- * House selects studios, what the House Approved seal means in design,
- * and how to start a commission via the HoWA Companion.
+ * Section order:
+ *   1. Hero — copy left, 2x2 studio mosaic right
+ *   2. Stats strip
+ *   3. The collective — four studios as editorial cards with image
+ *   4. Selection — three tests, House Approved meaning
+ *   5. How to commission — 4 step process
+ *   6. Closing CTA
  */
+
 export const metadata = {
-  title: "The Studios",
+  title: "The Studios — Four, properly chosen.",
   description:
     "The studios and designers the House works with. How we select, what House Approved means in design, and how to commission a project.",
 };
+
+const STAT_COLS = [
+  { value: "4", label: "Launch studios" },
+  { value: "3", label: "Annual tests" },
+  { value: "1:1", label: "Founder relationship" },
+  { value: "0", label: "Faceless agencies" },
+];
 
 const STUDIOS = [
   {
     slug: "delve-interiors",
     name: "Delve Interiors",
-    typeLabel: "Interiors studio",
+    type: "Interiors studio",
     location: "London & South East",
     blurb:
-      "Considered schemes, quiet palettes, careful detailing. Listed homes, period flats, contemporary pieds-à-terre.",
+      "Considered schemes, quiet palettes, careful detailing. Listed homes, period flats and contemporary pieds-à-terre.",
     signatures: ["Listed-property specialist", "Period detailing", "Quiet colour"],
+    image: "/design/interiors/project-tunbridge-1.webp",
   },
   {
     slug: "jessica-durling-mcmahon",
     name: "Jessica Durling-McMahon",
-    typeLabel: "Interior designer",
+    type: "Interior designer",
     location: "London & Cotswolds",
     blurb:
       "Layered rooms with confident colour, antiques properly used, and a deep love of textile and pattern.",
     signatures: ["Confident colour", "Antiques placement", "Textile-led"],
+    image: "/design/interiors/project-bedroom.webp",
   },
   {
     slug: "willow-alexander-gardens",
     name: "Willow Alexander Gardens",
-    typeLabel: "Garden design",
+    type: "Garden design",
     location: "UK-wide",
     blurb:
       "Planting schemes and landscapes rooted in the garden's existing character. Ecological, seasonal, edible.",
     signatures: ["Planting-led", "Ecological", "Heritage gardens"],
+    image: "/design/gardens/hero.jpg",
   },
   {
     slug: "house-ai",
     name: "House AI",
-    typeLabel: "Specialist partner",
+    type: "Specialist partner",
     location: "UK-wide",
     blurb:
-      "Automation, lighting schemes, and quiet technology that disappears into the architecture rather than dominating it.",
+      "Automation, lighting schemes and quiet technology that disappears into the architecture rather than dominating it.",
     signatures: ["Lighting design", "Automation", "Quiet technology"],
+    image: "/home-v4/design-portrait.png",
   },
 ];
 
 const SELECTION_TESTS = [
   {
+    numeral: "I",
     title: "Living-home test",
     body: "Their work survives the kind of use a real family puts a home through. Not a show home. A lived-in one — with dogs, children, dinner parties, weekends.",
   },
   {
+    numeral: "II",
     title: "Person test",
     body: "We have met them, visited their studio, and would put a friend in their hands. Every studio carries individual responsibility, not a faceless agency front.",
   },
   {
+    numeral: "III",
     title: "Care test",
     body: "Every project comes with care notes — what was specified, where it came from, how to look after it, who to call when something needs attention. The record stays with the home.",
   },
@@ -96,171 +113,180 @@ const COMMISSION_STEPS = [
 
 export default function DesignStudiosPage() {
   return (
-    <article className="bg-house-cream text-house-brown">
-      {/* ============================================================
-          1. Hero
-          ============================================================ */}
-      <section className="px-[5vw] pt-[12vh] pb-20 border-b border-house-brown/10">
-        <div className="max-w-[1080px] mx-auto">
-          <div className="flex items-center gap-3 mb-6">
-            <Eyebrow>The Studios</Eyebrow>
-            <StateBadge state="live">Four at launch</StateBadge>
+    <div className={s.page}>
+      {/* 1. Hero */}
+      <section className={s.hero}>
+        <div className={s.heroCopy}>
+          <div className={s.heroCopyInner}>
+            <p className={s.heroEy}>Design · The Studios</p>
+            <h1 className={s.heroTitle}>
+              A small collective, <em>properly chosen.</em>
+            </h1>
+            <p className={s.heroLede}>
+              Every studio working under the House Approved seal has been
+              visited, interviewed, and put in front of a real project. The
+              collective starts small on purpose — we would rather work with
+              four studios we trust than forty we don't.
+            </p>
+            <div className={s.heroCtas}>
+              <Link href="#studios" className={s.btnFilled}>
+                Meet the studios
+              </Link>
+              <Link href="/the-house/standards" className={s.btnGhost}>
+                Read the standards
+                <span aria-hidden="true" className={s.btnArrow}>→</span>
+              </Link>
+            </div>
           </div>
-          <h1 className="em-accent font-display font-medium text-[clamp(48px,6.4vw,88px)] leading-[1.02] tracking-[-0.012em] mt-2 max-w-[18ch]">
-            A small collective of <em>studios</em>, properly chosen.
-          </h1>
-          <p className="font-display italic text-[clamp(20px,2vw,26px)] leading-[1.45] text-house-brown/80 mt-8 max-w-[44ch]">
-            Every studio working under the House Approved seal has been
-            visited, interviewed, and put in front of a real project.
-          </p>
-          <p className="font-sans text-[16px] leading-[1.7] text-house-brown/72 mt-7 max-w-[58ch]">
-            The collective starts small on purpose. We would rather work with four studios
-            we trust than forty we don&apos;t. The list grows when, and only when, we find
-            the next person we&apos;d quietly recommend to a friend.
-          </p>
+        </div>
+        <div className={s.heroMosaic}>
+          {STUDIOS.map((studio) => (
+            <div key={studio.slug} className={s.heroMosaicCell}>
+              <Image
+                src={studio.image}
+                alt={studio.name}
+                fill
+                sizes="(min-width: 1024px) 28vw, 50vw"
+                style={{ objectFit: "cover", objectPosition: "center" }}
+                priority
+              />
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* ============================================================
-          2. Studios — editorial cards
-          ============================================================ */}
-      <section className="px-[5vw] py-24 md:py-28 bg-white border-b border-house-brown/10">
-        <div className="max-w-[1280px] mx-auto">
-          <header className="text-center max-w-[640px] mx-auto mb-16">
-            <Eyebrow>The collective at launch</Eyebrow>
-            <h2 className="em-accent font-display font-medium text-[clamp(32px,3.6vw,48px)] leading-[1.1] tracking-[-0.005em] mt-5">
-              Four studios. <em>Four ways</em> to begin.
-            </h2>
-          </header>
+      {/* 2. Stats strip */}
+      <section className={s.statsStrip}>
+        <div className={s.statsLede}>
+          <p className={s.statsLedeLine1}>Vetted. Visited. Reviewed annually.</p>
+          <p className={s.statsLedeLine2}>The collective grows only when the right person turns up.</p>
+        </div>
+        {STAT_COLS.map((stat) => (
+          <div key={stat.label} className={s.stat}>
+            <span className={s.statValue}>{stat.value}</span>
+            <span className={s.statLabel}>{stat.label}</span>
+          </div>
+        ))}
+      </section>
 
-          <div className="grid md:grid-cols-2 gap-px bg-house-brown/10">
-            {STUDIOS.map((studio) => (
-              <article key={studio.slug} className="bg-house-cream p-10 lg:p-14">
-                <p className="font-sans text-[11px] tracking-[0.32em] uppercase text-house-gold-dark mb-3">
-                  {studio.typeLabel} · {studio.location}
+      {/* 3. Studios — editorial cards */}
+      <section id="studios" className={s.studios}>
+        <header className={s.studiosHead}>
+          <p className={s.studiosEy}>The collective at launch</p>
+          <h2 className={s.studiosTitle}>
+            Four studios. <em>Four ways to begin.</em>
+          </h2>
+          <p className={s.studiosLede}>
+            Each carries the House Approved seal under the same three tests —
+            and stays in the collective only as long as those tests hold.
+          </p>
+        </header>
+        <div className={s.studiosGrid}>
+          {STUDIOS.map((studio) => (
+            <article key={studio.slug} className={s.studioCard}>
+              <div className={s.studioImage}>
+                <Image
+                  src={studio.image}
+                  alt={studio.name}
+                  width={1024}
+                  height={768}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </div>
+              <div className={s.studioBody}>
+                <p className={s.studioType}>
+                  {studio.type} · {studio.location}
                 </p>
-                <h3 className="em-accent font-display font-medium text-[clamp(28px,2.8vw,38px)] leading-[1.1] mb-5">
-                  {studio.name}
-                </h3>
-                <p className="font-sans text-[16px] leading-[1.65] text-house-brown/78 mb-6">
-                  {studio.blurb}
-                </p>
-                <ul className="flex flex-col gap-2 mb-7 border-t border-house-brown/12 pt-5">
-                  {studio.signatures.map((s) => (
-                    <li
-                      key={s}
-                      className="relative pl-5 font-sans text-[13px] leading-[1.55] text-house-brown/72 before:content-['—'] before:absolute before:left-0 before:text-house-gold"
-                    >
-                      {s}
-                    </li>
+                <h3 className={s.studioName}>{studio.name}</h3>
+                <p className={s.studioBlurb}>{studio.blurb}</p>
+                <ul className={s.studioSignatures}>
+                  {studio.signatures.map((sig) => (
+                    <li key={sig}>{sig}</li>
                   ))}
                 </ul>
                 <Link
                   href={`/partners/${studio.slug}`}
-                  className="inline-block font-sans text-[12px] tracking-[0.22em] uppercase text-house-brown border border-house-brown px-6 py-3 no-underline transition-all duration-200 ease-out hover:bg-house-brown hover:text-house-cream"
+                  className={s.studioCta}
                 >
-                  See the work
+                  See the work →
                 </Link>
-              </article>
-            ))}
-          </div>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
-      {/* ============================================================
-          3. Selection — three tests
-          ============================================================ */}
-      <section className="px-[5vw] py-24 md:py-28 border-b border-house-brown/10">
-        <div className="max-w-[1080px] mx-auto">
-          <header className="max-w-[640px] mb-14">
-            <Eyebrow>What House Approved means in design</Eyebrow>
-            <h2 className="em-accent font-display font-medium text-[clamp(32px,3.6vw,48px)] leading-[1.1] tracking-[-0.005em] mt-5">
-              Three tests, every <em>time.</em>
-            </h2>
-            <p className="font-sans text-[16px] leading-[1.7] text-house-brown/72 mt-6">
-              The House Approved seal isn&apos;t bestowed once and forgotten. Every studio
-              is reviewed annually against the same three tests. If any test fails for two
-              consecutive cycles, the studio leaves the collective.
-            </p>
-          </header>
-          <div className="grid md:grid-cols-3 gap-px bg-house-brown/10">
-            {SELECTION_TESTS.map((t, i) => (
-              <article key={t.title} className="bg-house-cream p-10">
-                <p className="font-display italic text-[14px] text-house-gold-dark mb-3">
-                  {`Test ${["I", "II", "III"][i]}.`}
-                </p>
-                <h3 className="font-sans font-medium text-[12px] tracking-[0.28em] uppercase text-house-brown mb-4">
-                  {t.title}
-                </h3>
-                <p className="font-sans text-[14px] leading-[1.65] text-house-brown/78">
-                  {t.body}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================
-          4. How to commission — 4-step process
-          ============================================================ */}
-      <section className="px-[5vw] py-24 md:py-28 bg-white border-b border-house-brown/10">
-        <div className="max-w-[1080px] mx-auto">
-          <header className="max-w-[640px] mb-14">
-            <Eyebrow>How to commission</Eyebrow>
-            <h2 className="em-accent font-display font-medium text-[clamp(32px,3.6vw,48px)] leading-[1.1] tracking-[-0.005em] mt-5">
-              From a brief to a <em>finished room.</em>
-            </h2>
-            <p className="font-sans text-[16px] leading-[1.7] text-house-brown/72 mt-6">
-              You don&apos;t pick a studio cold. The Companion learns enough to put two
-              or three in front of you that fit, and the design brief lives on your home
-              record from day one.
-            </p>
-          </header>
-          <ol className="grid md:grid-cols-2 gap-px bg-house-brown/10">
-            {COMMISSION_STEPS.map((step) => (
-              <li key={step.n} className="bg-house-cream p-10 lg:p-12 list-none">
-                <p className="font-display italic text-[14px] text-house-gold-dark mb-3">
-                  {step.n}
-                </p>
-                <h3 className="font-sans font-medium text-[12px] tracking-[0.28em] uppercase text-house-brown mb-4">
-                  {step.name}
-                </h3>
-                <p className="font-sans text-[15px] leading-[1.65] text-house-brown/78">
-                  {step.body}
-                </p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      {/* ============================================================
-          5. Final CTA
-          ============================================================ */}
-      <section className="px-[5vw] py-24 md:py-32 bg-house-brown text-house-cream text-center">
-        <div className="max-w-[760px] mx-auto">
-          <p className="font-sans text-[11px] tracking-[0.32em] uppercase text-house-gold-light mb-6">
-            Ready when you are
-          </p>
-          <h2 className="em-accent font-display font-medium text-[clamp(32px,3.8vw,52px)] leading-[1.1] tracking-[-0.005em]">
-            Begin with a <em>conversation.</em>
+      {/* 4. Selection tests */}
+      <section className={s.tests}>
+        <header className={s.testsHead}>
+          <p className={s.testsEy}>What House Approved means in design</p>
+          <h2 className={s.testsTitle}>
+            Three tests, <em>every time.</em>
           </h2>
-          <p className="font-display italic text-[clamp(18px,1.9vw,22px)] leading-[1.5] text-house-cream/85 mt-7 max-w-[56ch] mx-auto">
-            The HoWA Companion takes about two minutes. The studios match to the brief.
-            You only meet the ones we think fit.
+          <p className={s.testsLede}>
+            The seal isn't bestowed once and forgotten. Every studio is
+            reviewed annually against the same three tests. If any test fails
+            for two consecutive cycles, the studio leaves the collective.
           </p>
-          <div className="flex items-center justify-center gap-4 flex-wrap mt-10">
-            <Link
-              href="/howa/companion"
-              className="inline-block font-sans text-[12px] tracking-[0.22em] uppercase text-house-brown bg-house-cream border border-house-cream px-7 py-4 no-underline transition-all duration-200 ease-out hover:bg-house-gold hover:border-house-gold"
-            >
-              Launch the Companion
-            </Link>
-            <GhostLink href="/design">Back to Design</GhostLink>
-          </div>
+        </header>
+        <div className={s.testsGrid}>
+          {SELECTION_TESTS.map((t) => (
+            <article key={t.title} className={s.testCard}>
+              <p className={s.testNumeral}>Test {t.numeral}.</p>
+              <h3 className={s.testName}>{t.title}</h3>
+              <p className={s.testBody}>{t.body}</p>
+            </article>
+          ))}
         </div>
       </section>
-    </article>
+
+      {/* 5. How to commission */}
+      <section className={s.commission}>
+        <header className={s.commissionHead}>
+          <p className={s.commissionEy}>How to commission</p>
+          <h2 className={s.commissionTitle}>
+            From a brief to a <em>finished room.</em>
+          </h2>
+          <p className={s.commissionLede}>
+            You don't pick a studio cold. The Companion learns enough to put
+            two or three in front of you that fit, and the design brief lives
+            on your home record from day one.
+          </p>
+        </header>
+        <ol className={s.commissionList}>
+          {COMMISSION_STEPS.map((step) => (
+            <li key={step.n} className={s.commissionStep}>
+              <span className={s.commissionStepN}>{step.n}</span>
+              <div className={s.commissionStepBody}>
+                <h3 className={s.commissionStepName}>{step.name}</h3>
+                <p className={s.commissionStepCopy}>{step.body}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {/* 6. Closing */}
+      <section className={s.closing}>
+        <p className={s.closingKicker}>Ready when you are</p>
+        <p className={s.closingStatement}>
+          Begin with a <em>conversation.</em>
+        </p>
+        <p className={s.closingLede}>
+          The Companion takes about two minutes. The studios match to the
+          brief. You only meet the ones we think fit.
+        </p>
+        <div className={s.closingCtas}>
+          <Link href="/api/howa-bounce?source=design-studios" className={s.btnFilled}>
+            Launch the Companion
+          </Link>
+          <Link href="/design" className={s.btnGhost}>
+            Back to Design
+            <span aria-hidden="true" className={s.btnArrow}>→</span>
+          </Link>
+        </div>
+      </section>
+    </div>
   );
 }

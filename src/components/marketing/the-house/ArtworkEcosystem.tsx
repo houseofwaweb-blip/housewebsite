@@ -47,7 +47,7 @@ const NODES: Node[] = [
     id: "hearth",
     name: "The Hearth",
     description: "Lifestyle magazine. Where the pattern becomes atmosphere.",
-    href: "/journal",
+    href: "/the-hearth",
     x: 22,
     y: 76,
     tone: "hearth",

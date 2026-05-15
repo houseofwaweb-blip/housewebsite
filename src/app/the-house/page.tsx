@@ -1,232 +1,331 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Eyebrow } from "@/components/primitives/Eyebrow";
-import { GhostLink } from "@/components/primitives/GhostLink";
+import s from "./the-house.module.css";
+import { TheHouseNav } from "./TheHouseNav";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { getNewsletterBlock } from "@/lib/cms/newsletter";
-import { getPageSections, cms } from "@/lib/cms/page-sections";
-import { TheHouseNav } from "./TheHouseNav";
+
+/**
+ * /the-house — the brand institution page.
+ *
+ * Section order:
+ *   1. Hero — dollhouse-on-cabinet scene, copy left, cream/HoWA leaning
+ *   2. Stats strip — the institution at a glance
+ *   3. Premise — editorial pull quote
+ *   4. Four pillars — Care · Protect · Design · Shop
+ *   5. Transition band — House standard / HoWA record
+ *   6. HoWA — cream pillar (HoWA-leaning per Alex)
+ *   7. Steward — navy pillar (reserved for Steward)
+ *   8. Closing
+ *   9. Newsletter
+ */
 
 export const metadata = {
-  title: "The House",
+  title: "The House — A modern British institution.",
   description:
     "What House of Willow Alexander is: care, protection, design, commerce, HoWA, and Steward Plans. A modern British institution for the stewardship of homes.",
 };
 
-const SECTIONS = [
+const STAT_COLS = [
+  { value: "4", label: "Disciplines" },
+  { value: "1", label: "Living Record" },
+  { value: "17", label: "House standards" },
+  { value: "∞", label: "Continuity" },
+];
+
+const PILLARS = [
   {
     id: "care",
-    numeral: "I",
+    numeral: "I.",
     eyebrow: "Care",
-    title: "Quiet, ongoing",
-    titleEm: "care.",
-    hook: "Gardening, cleaning, gutter work, window cleaning. The things that keep a home right, done to a standard.",
-    body: "Steward Plans bring recurring care into one managed schedule. The House coordinates, the partners deliver, and your HoWA record tracks everything. No chasing. No forgetting.",
+    title: "Quiet, ongoing care.",
+    hook:
+      "Gardening, cleaning, gutter work, window cleaning. The things that keep a home right, done to a House standard.",
+    body:
+      "Book one-off through Services, or bundle on a Steward Plan and let HoWA hold the calendar.",
+    image: "/home-v4/plus-benefit-1.png",
+    imageAlt:
+      "A hand cleaning a sash window in golden-hour light, with a plant on the sill inside",
     link: "/services",
-    linkLabel: "See Services →",
-    imagePlaceholder: "Garden maintenance",
+    linkLabel: "See Services",
   },
   {
     id: "protect",
-    numeral: "II",
+    numeral: "II.",
     eyebrow: "Protect",
-    title: "Protection that",
-    titleEm: "understands.",
-    hook: "Insurance, condition reviews, and the paper trail that proves the care was done.",
-    body: "A Home Protection Review surveys the property. The evidence feeds your insurance introduction. House Approved underwriters who know the difference between a sash window and a uPVC frame. Everything filed, everything connected.",
+    title: "Protection that understands.",
+    hook:
+      "Insurance, condition reviews, and the paper trail that proves the care was done.",
+    body:
+      "A Home Protection Review surveys the property. The evidence feeds your insurance introduction. House Approved underwriters who know the difference between a sash window and a uPVC frame.",
+    image: "/home-v4/protect-still-life.png",
+    imageAlt:
+      "Brass padlock, smoke detector, key and chain on a wooden cabinet — the still life of stewardship",
     link: "/protect",
-    linkLabel: "See Protect →",
-    imagePlaceholder: "Period home details",
+    linkLabel: "See Protect",
   },
   {
     id: "design",
-    numeral: "III",
+    numeral: "III.",
     eyebrow: "Design",
-    title: "The design",
-    titleEm: "studio.",
-    hook: "Interiors, gardens, and the spaces between. House-vetted designers who understand period homes.",
-    body: "We connect you with designers who have been through the House approval process. They understand listed buildings, conservation areas, and the kind of property that doesn't fit a template. Every project is filed to your HoWA record.",
+    title: "The design studio.",
+    hook:
+      "Interiors, gardens, and the spaces between. House-vetted designers who understand period homes.",
+    body:
+      "Connected to designers who've been through the House approval process. Listed buildings, conservation areas, the kind of property that doesn't fit a template. Every project filed to your HoWA record.",
+    image: "/home-v4/pillar-1.webp",
+    imageAlt: "A warm parlour interior with marble fireplace and flowers",
     link: "/partners",
-    linkLabel: "Explore design partners →",
-    imagePlaceholder: "Interior design project",
+    linkLabel: "Explore design partners",
   },
   {
     id: "shop",
-    numeral: "IV",
+    numeral: "IV.",
     eyebrow: "Shop",
-    title: "Objects worth",
-    titleEm: "keeping.",
-    hook: "A curated shop of tools, homewares, and garden pieces that carry the House Approved seal.",
-    body: "Every object has been used, tested, and approved. Carbon steel secateurs from Sheffield. Copper watering cans from Kent. Linen from Ireland. Things built to last and worth looking after.",
+    title: "Objects worth keeping.",
+    hook:
+      "A curated shop of tools, homewares and garden pieces that carry the House Approved seal.",
+    body:
+      "Carbon steel secateurs from Sheffield. Copper watering cans from Kent. Linen from Ireland. Things built to last and worth looking after.",
+    image: "/home-v4/plus-benefit-4.png",
+    imageAlt:
+      "A linen-bound folder open on a desk with paint chips, an EICR certificate and a small framed photo",
     link: "/shop",
-    linkLabel: "Browse the shop →",
-    imagePlaceholder: "House Approved products",
+    linkLabel: "Browse the shop",
   },
 ];
 
 export default async function TheHousePage() {
-  const [nlBlock, sections] = await Promise.all([
-    getNewsletterBlock("the-house"),
-    getPageSections("the-house"),
-  ]);
-  const s = (name: string) => sections.get(name);
+  const nlBlock = await getNewsletterBlock("the-house");
+
   return (
-    <article className="bg-house-cream text-house-brown">
+    <div className={s.page}>
       <TheHouseNav />
 
-      {/* Hero */}
-      <section className="px-[5vw] pt-[clamp(80px,12vh,140px)] pb-20 max-w-[880px] mx-auto" id="premise">
-        <Eyebrow>The House</Eyebrow>
-        <h1 className="em-accent font-display font-medium text-[clamp(44px,6vw,80px)] leading-[1.05] tracking-[-0.01em] mt-4">
-          {cms(s("hero"), "headline", "A modern British institution.")}
-        </h1>
-        <p className="font-display italic text-[clamp(18px,2.5vw,24px)] leading-[1.45] text-house-stone max-w-[600px] mt-4 mb-5">
-          {cms(s("hero"), "body", "We think homes deserve the same kind of quiet institution that schools, clubs, and estates have always had. Somewhere to belong. Somewhere to ask. Somewhere that remembers.")}
-        </p>
-        <p className="font-sans text-[16px] leading-[1.65] text-house-stone max-w-[540px]">
-          House of Willow Alexander exists for the people who care about their homes enough to want them looked after properly. Not just maintained. Stewarded. That means design, care, protection, and the things worth keeping, all connected by one living record.
-        </p>
+      {/* 1. Hero */}
+      <section className={s.hero}>
+        <div className={s.heroCopy}>
+          <div className={s.heroCopyInner}>
+            <p className={s.heroEy}>The House</p>
+            <h1 className={s.heroTitle}>
+              A modern British <em>institution.</em>
+            </h1>
+            <p className={s.heroLede}>
+              House of Willow Alexander exists for the people who care about
+              their homes enough to want them looked after properly. Not just
+              maintained. Stewarded — design, care, protection, and the things
+              worth keeping, all connected by one Living Record.
+            </p>
+            <div className={s.heroCtas}>
+              <Link href="/howa" className={s.btnFilled}>
+                Enter HoWA
+              </Link>
+              <Link href="#care" className={s.btnGhost}>
+                What we do
+                <span aria-hidden="true" className={s.btnArrow}>↓</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+        <div className={s.heroVisual}>
+          <Image
+            src="/home-v4/howa-dollhouse-scene.png"
+            alt="A Georgian dollhouse on a wooden cabinet with annotations — Roof, Boiler, Garden — beside a lamp, dried flowers and a House Health widget"
+            fill
+            sizes="(min-width: 1024px) 55vw, 100vw"
+            priority
+            style={{ objectFit: "cover", objectPosition: "right center" }}
+          />
+        </div>
       </section>
 
-      {/* Sections: Care, Protect, Design, Shop */}
-      {SECTIONS.map((s, i) => (
+      {/* 2. Stats strip */}
+      <section className={s.statsStrip}>
+        <div className={s.statsLede}>
+          <p className={s.statsLedeLine1}>Ownership is passive. Stewardship is intentional.</p>
+          <p className={s.statsLedeLine2}>One House. One Standard. One Record.</p>
+        </div>
+        {STAT_COLS.map((stat) => (
+          <div key={stat.label} className={s.stat}>
+            <span className={s.statValue}>{stat.value}</span>
+            <span className={s.statLabel}>{stat.label}</span>
+          </div>
+        ))}
+      </section>
+
+      {/* 3. Premise — two-column with the watercolour illustration */}
+      <section className={s.premise} id="premise">
+        <div className={s.premiseCopy}>
+          <p className={s.premiseEy}>A home that remembers</p>
+          <p className={s.premiseStatement}>
+            Homes deserve the same kind of quiet institution that schools,
+            clubs and estates have always had.{" "}
+            <em>Somewhere to belong. Somewhere to ask. Somewhere that remembers.</em>
+          </p>
+          <p className={s.premiseBody}>
+            The House is built around four ideas — Care, Flow, Order, Trust.
+            Every service, decision and record lands inside that frame, and
+            the home gets quietly better, year after year.
+          </p>
+        </div>
+        <div className={s.premiseImage}>
+          <Image
+            src="/home-v4/house-watercolour.png"
+            alt="A watercolour cross-section of a Georgian cottage labelled 'A home that remembers' — Care, Flow, Order and Trust surfacing alongside Home Record, Next System Check, and Security"
+            width={1024}
+            height={1280}
+            sizes="(min-width: 1024px) 520px, 90vw"
+            style={{ width: "100%", height: "auto", display: "block" }}
+          />
+        </div>
+      </section>
+
+      {/* 4. Four pillars — alternating */}
+      {PILLARS.map((p, i) => (
         <section
-          key={s.id}
-          id={s.id}
-          className={`px-[5vw] py-20 border-t border-house-brown/8 ${i % 2 === 0 ? "bg-house-cream" : "bg-house-white"}`}
+          key={p.id}
+          id={p.id}
+          className={`${s.pillar} ${i % 2 === 1 ? s.pillarAlt : ""}`}
         >
-          <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-            <div className="relative">
-              <span
-                aria-hidden="true"
-                className="absolute top-[-12px] left-[-6px] font-display font-normal text-[clamp(80px,10vw,130px)] leading-[0.85] text-house-brown/5 select-none"
-              >
-                {s.numeral}
-              </span>
-              <Eyebrow>{s.eyebrow}</Eyebrow>
-              <h2 className="em-accent font-display font-medium text-[clamp(28px,3.5vw,42px)] leading-[1.12] mt-2.5 mb-3">
-                {s.title} <em>{s.titleEm}</em>
-              </h2>
-              <p className="font-display italic text-[18px] leading-[1.5] text-house-stone max-w-[460px] mb-4">
-                {s.hook}
-              </p>
-              <p className="font-sans text-[15px] leading-[1.65] text-house-brown/80 max-w-[460px] mb-5">
-                {s.body}
-              </p>
-              <GhostLink href={s.link}>{s.linkLabel}</GhostLink>
-            </div>
-            <div className="w-full aspect-[4/5] bg-house-cream-dark flex items-center justify-center font-sans text-[11px] tracking-[0.14em] uppercase text-house-stone overflow-hidden">
-              {s.imagePlaceholder}
-            </div>
+          <div className={s.pillarImage}>
+            <Image
+              src={p.image}
+              alt={p.imageAlt}
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              style={{ objectFit: "cover", objectPosition: "center" }}
+            />
+          </div>
+          <div className={s.pillarCopy}>
+            <p className={s.pillarMeta}>
+              {p.numeral} <span aria-hidden="true">·</span> {p.eyebrow}
+            </p>
+            <h2 className={s.pillarTitle}>{p.title}</h2>
+            <p className={s.pillarHook}>{p.hook}</p>
+            <p className={s.pillarBody}>{p.body}</p>
+            <Link href={p.link} className={s.pillarLink}>
+              {p.linkLabel} →
+            </Link>
           </div>
         </section>
       ))}
 
-      {/* Transition band */}
-      <div
-        className="relative text-center px-[5vw] py-[42px] border-t border-house-brown/10 border-b border-house-brown/8"
-        style={{ background: "linear-gradient(180deg, var(--house-white) 0%, var(--house-cream) 100%)" }}
-      >
-        <span aria-hidden="true" className="block w-[120px] h-px mx-auto mb-[14px] bg-house-gold opacity-60" />
-        <span aria-hidden="true" className="absolute top-[34px] left-1/2 -translate-x-1/2 font-display text-house-gold text-[18px] leading-none">·</span>
-        <p className="font-sans italic text-[15px] text-house-stone tracking-[0.04em]">
-          The House keeps the standard.
-          <span className="not-italic font-sans text-[11px] tracking-[0.08em] uppercase text-howa-teal ml-2.5 pl-2.5 border-l border-house-brown/20">
-            HoWA keeps the record
-          </span>
+      {/* 5. Transition band */}
+      <section className={s.transition}>
+        <span className={s.transitionRule} aria-hidden="true" />
+        <p className={s.transitionLine}>
+          The House keeps the standard.{" "}
+          <em>HoWA keeps the record.</em>
         </p>
-      </div>
+        <span className={s.transitionRule} aria-hidden="true" />
+      </section>
 
-      {/* HoWA — navy */}
-      <section className="bg-howa-navy text-house-cream px-[5vw] py-[100px]" id="howa">
-        <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          <div className="relative">
-            <span
-              aria-hidden="true"
-              className="absolute top-[-12px] left-[-6px] font-display font-normal text-[clamp(80px,10vw,130px)] leading-[0.85] text-house-cream/[0.04] select-none"
-            >
-              V
-            </span>
-            <span className="block font-sans text-[9px] tracking-[0.22em] uppercase text-house-gold-light mb-2.5">
-              HoWA
-            </span>
-            <h2 className="em-accent font-display font-medium text-[clamp(28px,3.5vw,42px)] leading-[1.12] mb-3">
-              The living <em>record.</em>
-            </h2>
-            <p className="font-display italic text-[18px] leading-[1.5] text-house-cream/60 max-w-[460px] mb-4">
-              HoWA is how the House remembers. Every service, every review, every care visit, every purchase. One record that grows with the home.
-            </p>
-            <p className="font-sans text-[15px] leading-[1.65] text-house-cream/50 max-w-[460px] mb-5">
-              Start with the Companion diagnostic. It maps your home's condition, surfaces what needs doing, and files everything to a record that stays with the property. Not a dashboard. A memory.
-            </p>
-            <Link
-              href="/howa"
-              className="font-sans text-[11px] tracking-[0.16em] uppercase text-house-gold-light no-underline border-b border-house-gold-light pb-0.5 hover:border-dotted transition-all duration-[var(--t-slow)]"
-            >
-              Start HoWA →
+      {/* 6. HoWA — cream (HoWA-leaning) */}
+      <section className={s.howa} id="howa">
+        <div className={s.howaCopy}>
+          <p className={s.howaEy}>V. · HoWA</p>
+          <h2 className={s.howaTitle}>
+            The Living <em>Record.</em>
+          </h2>
+          <p className={s.howaHook}>
+            HoWA is how the House remembers. Every service, every review, every
+            care visit, every purchase. One record that grows with the home.
+          </p>
+          <p className={s.howaBody}>
+            Start with the Companion diagnostic. It maps your home's condition,
+            surfaces what needs doing, and files everything to a record that
+            stays with the property. Not a dashboard. A memory.
+          </p>
+          <div className={s.howaCtas}>
+            <Link href="/howa" className={s.btnFilled}>
+              Enter HoWA
+            </Link>
+            <Link href="/howa/plus" className={s.pillarLink}>
+              See HoWA+ →
             </Link>
           </div>
-          <div className="w-full aspect-[4/5] bg-house-cream/[0.06] flex items-center justify-center font-sans text-[11px] tracking-[0.14em] uppercase text-house-cream/20 overflow-hidden">
-            HoWA interface
+        </div>
+        <div className={s.howaImage}>
+          <Image
+            src="/home-v4/howa-lander-faq-v2.png"
+            alt="The Living Record of Your Home — a leather-bound book, key, vase and HoWA sensor on a wooden cabinet"
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            style={{ objectFit: "contain", objectPosition: "right center" }}
+          />
+        </div>
+      </section>
+
+      {/* 7. Steward — navy (the one moment we go dark) */}
+      <section className={s.steward} id="steward">
+        <div className={s.stewardBg} aria-hidden="true">
+          <Image
+            src="/home-v4/steward-hero-blueprint.png"
+            alt=""
+            fill
+            sizes="100vw"
+            style={{ objectFit: "cover", objectPosition: "right center" }}
+          />
+        </div>
+        <div className={s.stewardCopy}>
+          <p className={s.stewardEy}>VI. · Steward</p>
+          <h2 className={s.stewardTitle}>
+            Care, on a <em>rhythm.</em>
+          </h2>
+          <p className={s.stewardHook}>
+            Bundle the home's services into a single managed plan. The House
+            coordinates. You don't think about it.
+          </p>
+          <p className={s.stewardBody}>
+            Steward Plans combine gardening, cleaning, windows and gutters into
+            one monthly schedule. A named team, a single invoice, every visit
+            logged to your HoWA record. Available to House Steward members.
+          </p>
+          <Link href="/howa/steward" className={s.stewardCta}>
+            See Steward →
+          </Link>
+        </div>
+      </section>
+
+      {/* 8. Closing — peacock library bg, atmospheric */}
+      <section className={s.closing}>
+        <div className={s.closingBg} aria-hidden="true">
+          <Image
+            src="/home-v4/house-library-peacock.png"
+            alt=""
+            fill
+            sizes="100vw"
+            style={{ objectFit: "cover", objectPosition: "center" }}
+          />
+        </div>
+        <div className={s.closingInner}>
+          <p className={s.closingKicker}>One home. One Record. One House.</p>
+          <p className={s.closingStatement}>
+            A well-kept home isn't a pile of bookings.<br />
+            <em>It's a rhythm someone else remembers.</em>
+          </p>
+          <div className={s.closingCtas}>
+            <Link href="/howa" className={s.closingBtnFilled}>
+              Start HoWA
+            </Link>
+            <Link href="/services" className={s.closingBtnGhost}>
+              Book a service →
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Steward */}
-      <section className="bg-house-cream px-[5vw] py-20 border-t border-house-brown/8" id="steward">
-        <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          <div className="relative">
-            <span
-              aria-hidden="true"
-              className="absolute top-[-12px] left-[-6px] font-display font-normal text-[clamp(80px,10vw,130px)] leading-[0.85] text-house-brown/5 select-none"
-            >
-              VI
-            </span>
-            <Eyebrow>Steward</Eyebrow>
-            <h2 className="em-accent font-display font-medium text-[clamp(28px,3.5vw,42px)] leading-[1.12] mt-2.5 mb-3">
-              Care, on a <em>rhythm.</em>
-            </h2>
-            <p className="font-display italic text-[18px] leading-[1.5] text-house-stone max-w-[460px] mb-4">
-              Bundle your home's services into a single managed plan. The House coordinates, you don't think about it.
-            </p>
-            <p className="font-sans text-[15px] leading-[1.65] text-house-brown/80 max-w-[460px] mb-5">
-              Steward Plans combine gardening, cleaning, windows, and gutters into one monthly schedule. A named team, a single invoice, every visit logged to your HoWA record. The home gets better every season. Available to House Steward members.
-            </p>
-            <GhostLink href="/steward-plans">See Steward Plans →</GhostLink>
-          </div>
-          <div className="w-full aspect-[4/5] bg-house-cream-dark flex items-center justify-center font-sans text-[11px] tracking-[0.14em] uppercase text-house-stone overflow-hidden">
-            Steward Plans
-          </div>
-        </div>
-      </section>
-
-      {/* Closing */}
-      <section className="bg-house-cream px-[5vw] py-20 text-center border-t border-house-brown/8">
-        <p className="mx-auto max-w-[600px] mb-7 font-display italic text-[22px] leading-[1.35] text-house-brown">
-          A well-kept home isn&apos;t a pile of bookings. It&apos;s a rhythm someone else remembers.
-        </p>
-        <Link
-          href="/howa"
-          className="inline-block px-10 py-4 font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
-        >
-          Start HoWA
-        </Link>
-      </section>
-
-      {/* Newsletter */}
+      {/* 9. Newsletter (keeps existing component) */}
       <NewsletterInline
-        variant={nlBlock?.variant ?? "dark"}
+        variant={nlBlock?.variant ?? "cream"}
         sourcePage="/the-house"
         headline={nlBlock?.headline ?? "Letters from the House."}
-        body={nlBlock?.body ?? "A weekly note from The Hearth: seasonal reflections on homes, gardens, and the quiet art of looking after a place properly."}
+        body={
+          nlBlock?.body ??
+          "A weekly note from The Hearth: seasonal reflections on homes, gardens, and the quiet art of looking after a place properly."
+        }
         {...(nlBlock ?? {})}
       />
-
-      {/* Tagline */}
-      <div className="text-center border-t border-house-brown/10 bg-house-cream px-5 py-6">
-        <p className="font-display italic text-[14px] text-house-brown/50 tracking-[0.04em]">
-          Ownership is passive. Stewardship is intentional.
-        </p>
-      </div>
-    </article>
+    </div>
   );
 }

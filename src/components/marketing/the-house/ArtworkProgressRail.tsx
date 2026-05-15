@@ -84,9 +84,9 @@ export function ArtworkProgressRail() {
       {/* Right-rail chapter index — desktop only */}
       <nav
         aria-label="Chapter index"
-        className="hidden xl:block fixed right-6 top-1/2 -translate-y-1/2 z-[50] pointer-events-auto"
+        className="hidden xl:block fixed right-7 top-1/2 -translate-y-1/2 z-[50] pointer-events-auto"
       >
-        <ol className="flex flex-col gap-1.5">
+        <ol className="flex flex-col gap-2">
           {ROMAN.map((r) => {
             const isActive = active === r;
             return (
@@ -97,10 +97,10 @@ export function ArtworkProgressRail() {
                 >
                   <span
                     className={
-                      "font-display italic text-[12px] tabular-nums w-5 text-right transition-colors duration-200 " +
+                      "font-display italic text-[14px] tabular-nums w-6 text-right transition-colors duration-200 " +
                       (isActive
                         ? "text-house-gold-dark"
-                        : "text-house-brown/40 group-hover:text-house-brown/70")
+                        : "text-house-brown/45 group-hover:text-house-brown/75")
                     }
                   >
                     {r}.
@@ -110,16 +110,16 @@ export function ArtworkProgressRail() {
                     className={
                       "h-px transition-all duration-300 ease-out " +
                       (isActive
-                        ? "w-12 bg-house-gold-dark"
-                        : "w-4 bg-house-brown/25 group-hover:w-8 group-hover:bg-house-brown/50")
+                        ? "w-10 bg-house-gold-dark"
+                        : "w-5 bg-house-brown/30 group-hover:w-8 group-hover:bg-house-brown/55")
                     }
                   />
                   <span
                     className={
-                      "font-sans text-[10px] tracking-[0.2em] uppercase transition-all duration-200 " +
+                      "font-sans text-[11px] tracking-[0.2em] uppercase transition-colors duration-200 whitespace-nowrap " +
                       (isActive
-                        ? "text-house-brown opacity-100 translate-x-0"
-                        : "text-house-brown/55 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0")
+                        ? "text-house-brown font-medium"
+                        : "text-house-brown/60 group-hover:text-house-brown")
                     }
                   >
                     {CHAPTER_TITLES[r]}

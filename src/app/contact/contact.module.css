@@ -1,0 +1,66 @@
+/* /contact — lander framework */
+
+.page { background: var(--color-house-cream); color: var(--color-house-brown); }
+
+/* Hero */
+.hero {
+  background: var(--color-house-cream);
+  padding: clamp(80px, 9vw, 132px) clamp(40px, 5vw, 88px) clamp(40px, 4vw, 64px);
+  border-bottom: 1px solid rgba(48, 35, 28, 0.08);
+}
+.heroInner {
+  max-width: 880px;
+  margin: 0 auto;
+}
+.heroEy {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-house-gold-dark);
+  margin: 0 0 22px;
+  font-weight: 500;
+  display: flex; align-items: center; gap: 14px;
+}
+.heroEy::before {
+  content: "";
+  width: 36px;
+  height: 1px;
+  background: var(--color-house-gold-dark);
+  opacity: 0.7;
+}
+.heroTitle {
+  font-family: var(--font-hearth-serif);
+  font-weight: 400;
+  font-size: clamp(44px, 6vw, 80px);
+  line-height: 1.04;
+  letter-spacing: -0.018em;
+  color: var(--color-house-brown);
+  margin: 0 0 24px;
+}
+.heroTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.heroLede {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.65;
+  color: rgba(48, 35, 28, 0.72);
+  margin: 0;
+  max-width: 60ch;
+  padding-top: 24px;
+  border-top: 1px solid rgba(48, 35, 28, 0.14);
+}
+
+/* Form */
+.form {
+  background: var(--color-house-cream);
+  padding: clamp(48px, 5vw, 80px) clamp(40px, 5vw, 88px) clamp(80px, 8vw, 120px);
+}
+.formInner {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .hero { padding: 72px 24px 36px; }
+  .form { padding: 36px 24px 72px; }
+}

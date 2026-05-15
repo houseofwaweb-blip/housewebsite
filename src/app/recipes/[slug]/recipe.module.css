@@ -1,0 +1,313 @@
+/* /recipes/[slug] — lander framework, editorial article template + recipe meta */
+
+.page { background: var(--color-house-cream); color: var(--color-house-brown); }
+
+/* Header */
+.head {
+  background: var(--color-house-cream);
+  padding: clamp(80px, 9vw, 132px) clamp(40px, 5vw, 88px) clamp(40px, 4vw, 56px);
+}
+.headInner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-house-gold-dark);
+  margin: 0 0 22px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+.eyebrow::before {
+  content: "";
+  width: 36px;
+  height: 1px;
+  background: var(--color-house-gold-dark);
+  opacity: 0.7;
+}
+.eyebrow:hover { color: var(--color-house-brown); }
+
+.title {
+  font-family: var(--font-hearth-serif);
+  font-weight: 400;
+  font-size: clamp(40px, 5vw, 72px);
+  line-height: 1.05;
+  letter-spacing: -0.018em;
+  color: var(--color-house-brown);
+  margin: 0 0 24px;
+}
+.title em { font-style: italic; color: var(--color-house-gold-dark); }
+
+.lede {
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  font-size: clamp(19px, 2vw, 24px);
+  line-height: 1.5;
+  color: rgba(48, 35, 28, 0.72);
+  margin: 0 0 28px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(48, 35, 28, 0.14);
+}
+
+.byline {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(48, 35, 28, 0.55);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.byline em {
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  font-size: 15px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--color-house-brown);
+  margin-right: 8px;
+  font-weight: 400;
+}
+.bylineSep { margin: 0 10px; color: var(--color-house-gold-dark); opacity: 0.7; }
+
+/* Recipe meta strip */
+.meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0;
+  margin: 0 0 28px;
+  background: var(--color-house-cream-dark);
+  border-top: 1px solid rgba(48, 35, 28, 0.1);
+  border-bottom: 1px solid rgba(48, 35, 28, 0.1);
+}
+.metaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px;
+  border-right: 1px solid rgba(48, 35, 28, 0.08);
+}
+.metaItem:last-child { border-right: none; }
+.metaLabel {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-house-gold-dark);
+  font-weight: 500;
+}
+.metaValue {
+  font-family: var(--font-hearth-serif);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--color-house-brown);
+  letter-spacing: -0.008em;
+}
+
+/* Hero image */
+.heroImageWrap {
+  background: var(--color-house-cream);
+  padding: 0 clamp(40px, 5vw, 88px) clamp(48px, 5vw, 72px);
+}
+.heroImage {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: var(--color-house-cream-dark);
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+
+/* Body */
+.body {
+  background: var(--color-house-cream);
+  padding: clamp(48px, 5vw, 80px) clamp(40px, 5vw, 88px) clamp(80px, 8vw, 120px);
+  border-bottom: 1px solid rgba(48, 35, 28, 0.08);
+}
+.bodyInner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Prose — large-format editorial */
+.prose {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.75;
+  color: rgba(48, 35, 28, 0.88);
+}
+.prose :global(p) { margin: 0 0 20px; }
+.prose :global(p:first-child::first-letter) {
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 0.9;
+  float: left;
+  padding: 8px 12px 0 0;
+  color: var(--color-house-gold-dark);
+}
+.prose :global(h2) {
+  font-family: var(--font-hearth-serif);
+  font-weight: 400;
+  font-size: clamp(26px, 3vw, 36px);
+  line-height: 1.15;
+  letter-spacing: -0.012em;
+  color: var(--color-house-brown);
+  margin: 56px 0 16px;
+}
+.prose :global(h2 em) { font-style: italic; color: var(--color-house-gold-dark); }
+.prose :global(h3) {
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(22px, 2.4vw, 26px);
+  line-height: 1.2;
+  letter-spacing: -0.008em;
+  color: var(--color-house-brown);
+  margin: 40px 0 14px;
+}
+.prose :global(a) {
+  color: var(--color-house-gold-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.25s ease;
+}
+.prose :global(a:hover) { color: var(--color-house-brown); }
+.prose :global(em) { font-style: italic; color: var(--color-house-gold-dark); }
+.prose :global(strong) { font-weight: 500; color: var(--color-house-brown); }
+.prose :global(ul),
+.prose :global(ol) { margin: 20px 0; padding-left: 24px; }
+.prose :global(ul) { list-style: none; padding-left: 0; }
+.prose :global(ul li) {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 8px;
+}
+.prose :global(ul li::before) {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--color-house-gold-dark);
+}
+.prose :global(ol li) { margin-bottom: 8px; padding-left: 8px; }
+.prose :global(ol) { list-style-type: decimal; }
+.prose :global(blockquote) {
+  margin: 36px 0;
+  padding: 8px 0 8px 28px;
+  border-left: 2px solid var(--color-house-gold-dark);
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  font-size: clamp(20px, 2.4vw, 26px);
+  line-height: 1.5;
+  color: rgba(48, 35, 28, 0.74);
+}
+.prose :global(hr) {
+  border: 0;
+  height: 1px;
+  background: rgba(48, 35, 28, 0.1);
+  margin: 48px 0;
+}
+.prose :global(figure) { margin: 36px 0; }
+.prose :global(figure img) { width: 100%; height: auto; }
+.prose :global(figcaption) {
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(48, 35, 28, 0.6);
+  margin-top: 12px;
+  text-align: center;
+}
+
+/* Tags */
+.tags {
+  margin-top: 48px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(48, 35, 28, 0.1);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.tag {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(48, 35, 28, 0.65);
+  border: 1px solid rgba(48, 35, 28, 0.2);
+  padding: 7px 14px;
+  font-weight: 500;
+}
+
+/* Closing */
+.closing {
+  background: var(--color-house-cream-dark);
+  text-align: center;
+  padding: clamp(88px, 8vw, 132px) clamp(24px, 5vw, 64px);
+}
+.closingKicker {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-house-gold-dark);
+  margin: 0 0 18px;
+  font-weight: 500;
+}
+.closingStatement {
+  font-family: var(--font-hearth-serif);
+  font-weight: 400;
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.1;
+  color: var(--color-house-brown);
+  margin: 0 0 32px;
+  letter-spacing: -0.015em;
+}
+.closingStatement em { font-style: italic; color: var(--color-house-gold-dark); }
+.closingCtas {
+  display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+}
+
+/* Buttons */
+.btnFilled, .btnGhost {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 13px 26px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  font-weight: 500;
+}
+.btnFilled {
+  background: var(--color-house-gold-dark);
+  color: var(--color-house-cream);
+  border: 1px solid var(--color-house-gold-dark);
+}
+.btnFilled:hover { background: var(--color-house-gold); border-color: var(--color-house-gold); }
+.btnGhost {
+  background: transparent;
+  color: var(--color-house-brown);
+  border: 1px solid rgba(48, 35, 28, 0.32);
+}
+.btnGhost:hover { border-color: var(--color-house-brown); }
+.btnArrow { margin-left: 4px; transition: transform 0.25s ease; }
+.btnGhost:hover .btnArrow { transform: translateX(3px); }
+
+/* Responsive */
+@media (max-width: 600px) {
+  .head { padding: 72px 24px 36px; }
+  .heroImageWrap { padding: 0 24px 36px; }
+  .body { padding: 36px 24px 72px; }
+  .closing { padding: 80px 24px; }
+  .prose :global(p:first-child::first-letter) { font-size: 52px; padding-right: 8px; }
+}

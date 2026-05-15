@@ -1,47 +1,43 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Eyebrow } from "@/components/primitives/Eyebrow";
-import { Accordion } from "@/components/primitives/Accordion";
+import s from "./faq.module.css";
+import { FaqList } from "@/components/marketing/FaqList";
 
 /**
- * /howa/faq — HoWA frequently asked.
- * Pure Accordion page; questions authored here for launch, migrate to
- * Sanity `faq` docs once content is ready (query `*[_type == "faq" && "howa" in category]`).
+ * /howa/faq — HoWA FAQ.
+ *
+ * Section order:
+ *   1. Hero — book still-life right, copy left, beige tone
+ *   2. Stats strip — what's covered
+ *   3. Topic sections — Getting started · Price & billing · Companion ·
+ *      Steward · Your home & account · Privacy & data · Member pricing
+ *   4. Closing — write to the House
  */
 
 export const metadata = {
-  title: "HoWA FAQ",
+  title: "HoWA FAQ — What people usually ask",
   description:
     "Answers to the things people ask about HoWA+ and Steward — pricing, cancellation, privacy, the Companion.",
 };
 
-const SECTIONS: {
-  heading: string;
-  items: { id: string; summary: React.ReactNode; body: React.ReactNode }[];
-}[] = [
+const STAT_COLS = [
+  { value: "7", label: "Topics covered" },
+  { value: "20+", label: "Common questions" },
+  { value: "0", label: "Hidden detail" },
+  { value: "1", label: "Email away" },
+];
+
+const SECTIONS: { heading: string; items: { q: string; a: string }[] }[] = [
   {
     heading: "Getting started",
     items: [
       {
-        id: "who",
-        summary: "Who is HoWA for?",
-        body: (
-          <p>
-            Anyone who lives in a home they mean to keep. You don&apos;t need
-            to be commissioning a designer or booking a gardener to get value
-            — the record and the Companion work on day one.
-          </p>
-        ),
+        q: "Who is HoWA for?",
+        a: "Anyone who lives in a home they mean to keep. You don't need to be commissioning a designer or booking a gardener to get value — the record and the Companion work on day one.",
       },
       {
-        id: "open",
-        summary: "When does HoWA+ open?",
-        body: (
-          <p>
-            HoWA+ opens alongside the new site. If you arrive before the
-            product app is reachable, &ldquo;Start HoWA&rdquo; routes to a
-            waitlist and we&apos;ll write the moment it opens.
-          </p>
-        ),
+        q: "When does HoWA+ open?",
+        a: "HoWA+ opens alongside the new site. If you arrive before the product app is reachable, “Start HoWA” routes to a waitlist and we'll write the moment it opens.",
       },
     ],
   },
@@ -49,36 +45,16 @@ const SECTIONS: {
     heading: "Price & billing",
     items: [
       {
-        id: "price",
-        summary: "How much is HoWA+?",
-        body: (
-          <p>
-            £16.99 a month, VAT inclusive. No annual contract — cancel at the
-            next billing date. Steward Plans are priced individually and built
-            with you.
-          </p>
-        ),
+        q: "How much is HoWA+?",
+        a: "£16.99 a month, VAT inclusive. No annual contract — cancel at the next billing date. Steward Plans are priced individually and built with you.",
       },
       {
-        id: "cancel",
-        summary: "Can I cancel?",
-        body: (
-          <p>
-            Any time, from your account. The record of your home stays with you
-            either way — export it, or keep a downgraded free account.
-          </p>
-        ),
+        q: "Can I cancel?",
+        a: "Any time, from your account. The record of your home stays with you either way — export it, or keep a downgraded free account.",
       },
       {
-        id: "refund",
-        summary: "Do you offer refunds?",
-        body: (
-          <p>
-            We refund the current month in full if you cancel within the first
-            14 days of a new subscription. After that, cancellations take
-            effect at the next billing date.
-          </p>
-        ),
+        q: "Do you offer refunds?",
+        a: "We refund the current month in full if you cancel within the first 14 days of a new subscription. After that, cancellations take effect at the next billing date.",
       },
     ],
   },
@@ -86,27 +62,12 @@ const SECTIONS: {
     heading: "The Companion",
     items: [
       {
-        id: "accuracy",
-        summary: "How accurate is the Companion?",
-        body: (
-          <p>
-            Useful for the 80% of home issues that recur across British housing
-            stock. It will tell you when it isn&apos;t confident, and route you
-            to a surveyor or trade when it should. It&apos;s a diagnostic, not
-            a replacement for qualified eyes on site.
-          </p>
-        ),
+        q: "How accurate is the Companion?",
+        a: "Useful for the 80% of home issues that recur across British housing stock. It will tell you when it isn't confident, and route you to a surveyor or trade when it should. It's a diagnostic, not a replacement for qualified eyes on site.",
       },
       {
-        id: "privacy",
-        summary: "What happens to the photos I upload?",
-        body: (
-          <p>
-            Stored encrypted in your private record. We don&apos;t sell, share,
-            or train public models on them. Used only to generate your answer
-            and kept for reference in your record unless you delete them.
-          </p>
-        ),
+        q: "What happens to the photos I upload?",
+        a: "Stored encrypted in your private record. We don't sell, share, or train public models on them. Used only to generate your answer and kept for reference in your record unless you delete them.",
       },
     ],
   },
@@ -114,34 +75,12 @@ const SECTIONS: {
     heading: "Steward",
     items: [
       {
-        id: "steward-when",
-        summary: "When do Steward plans open?",
-        body: (
-          <p>
-            Soon after HoWA+. We&apos;re starting with waitlist customers so we
-            can set scheduling and cadence honestly — no overselling the
-            capacity of our trades. Register interest on the{" "}
-            <Link
-              href="/howa/plans"
-              className="text-house-brown underline decoration-house-gold underline-offset-4"
-            >
-              plans page
-            </Link>
-            .
-          </p>
-        ),
+        q: "When do Steward plans open?",
+        a: "Soon after HoWA+. We're starting with waitlist customers so we can set scheduling and cadence honestly — no overselling the capacity of our trades. Register interest on the plans page.",
       },
       {
-        id: "steward-cost",
-        summary: "What will a Steward plan cost?",
-        body: (
-          <p>
-            It depends on the services included and the size of the home — a
-            two-bedroom flat with window and cleaning care looks very
-            different from a five-bedroom Edwardian with gardens. We&apos;ll
-            build a quote with you.
-          </p>
-        ),
+        q: "What will a Steward plan cost?",
+        a: "It depends on the services included and the size of the home — a two-bedroom flat with window and cleaning care looks very different from a five-bedroom Edwardian with gardens. We'll build a quote with you.",
       },
     ],
   },
@@ -149,48 +88,20 @@ const SECTIONS: {
     heading: "Your home & account",
     items: [
       {
-        id: "multiple-homes",
-        summary: "Can I use HoWA for more than one home?",
-        body: (
-          <p>
-            At launch, HoWA supports one home per account. Multiple homes
-            are on the Steward roadmap. If you have a second property now,
-            register interest and we&apos;ll prioritise you when it opens.
-          </p>
-        ),
+        q: "Can I use HoWA for more than one home?",
+        a: "At launch, HoWA supports one home per account. Multiple homes are on the Steward roadmap. If you have a second property now, register interest and we'll prioritise you when it opens.",
       },
       {
-        id: "family",
-        summary: "Can my partner or family access HoWA?",
-        body: (
-          <p>
-            Yes. You can invite collaborators to your home record at no extra
-            cost. Each person gets their own login but sees the same record.
-          </p>
-        ),
+        q: "Can my partner or family access HoWA?",
+        a: "Yes. You can invite collaborators to your home record at no extra cost. Each person gets their own login but sees the same record.",
       },
       {
-        id: "selling",
-        summary: "What happens if I sell my home?",
-        body: (
-          <p>
-            The record belongs to you, not the house. You can export it as a
-            PDF or hand it to the buyer as a provenance document. If the buyer
-            joins HoWA, we can transfer the record to their account with your
-            permission.
-          </p>
-        ),
+        q: "What happens if I sell my home?",
+        a: "The record belongs to you, not the house. You can export it as a PDF or hand it to the buyer as a provenance document. If the buyer joins HoWA, we can transfer the record to their account with your permission.",
       },
       {
-        id: "downgrade",
-        summary: "If I cancel HoWA+, do I lose my data?",
-        body: (
-          <p>
-            No. Your record stays with you on the free tier. You lose access
-            to the Companion, member pricing, and The Hearth, but the record
-            of everything done to your home is yours to keep or export.
-          </p>
-        ),
+        q: "If I cancel HoWA+, do I lose my data?",
+        a: "No. Your record stays with you on the free tier. You lose access to the Companion, member pricing, and The Hearth, but the record of everything done to your home is yours to keep or export.",
       },
     ],
   },
@@ -198,43 +109,16 @@ const SECTIONS: {
     heading: "Privacy & data",
     items: [
       {
-        id: "gdpr",
-        summary: "Where is my data stored?",
-        body: (
-          <p>
-            UK and EU servers, subject to UK GDPR. We minimise what we collect,
-            keep audit trails on who accessed your record, and never sell
-            personal data. Our{" "}
-            <Link
-              href="/legal/privacy"
-              className="text-house-brown underline decoration-house-gold underline-offset-4"
-            >
-              privacy page
-            </Link>{" "}
-            has the detail.
-          </p>
-        ),
+        q: "Where is my data stored?",
+        a: "UK and EU servers, subject to UK GDPR. We minimise what we collect, keep audit trails on who accessed your record, and never sell personal data.",
       },
       {
-        id: "photos",
-        summary: "What happens to the photos I upload?",
-        body: (
-          <p>
-            Stored encrypted in your private record. We don&apos;t sell, share,
-            or train public models on them. Used only to generate your Companion
-            answer and kept for reference unless you delete them.
-          </p>
-        ),
+        q: "What happens to the photos I upload to the Companion?",
+        a: "Stored encrypted in your private record. We don't sell, share, or train public models on them. Used only to generate your Companion answer and kept for reference unless you delete them.",
       },
       {
-        id: "export",
-        summary: "Can I export my data?",
-        body: (
-          <p>
-            Yes. You can export your full home record as a PDF or structured
-            JSON at any time from your account settings. The record is yours.
-          </p>
-        ),
+        q: "Can I export my data?",
+        a: "Yes. You can export your full home record as a PDF or structured JSON at any time from your account settings. The record is yours.",
       },
     ],
   },
@@ -242,33 +126,12 @@ const SECTIONS: {
     heading: "Member pricing & services",
     items: [
       {
-        id: "savings",
-        summary: "How much do HoWA+ members save?",
-        body: (
-          <p>
-            Typically 10-15% off service bookings vs. calling direct, plus
-            10% off everything in the House shop. A single gutter clear
-            and window clean often covers the monthly fee.
-          </p>
-        ),
+        q: "How much do HoWA+ members save?",
+        a: "Typically 10–15% off service bookings vs. calling direct, plus 10% off everything in the House shop. A single gutter clear and window clean often covers the monthly fee.",
       },
       {
-        id: "hearth",
-        summary: "What is The Hearth?",
-        body: (
-          <p>
-            The Hearth is our editorial publication for HoWA+ members.
-            Weekly writing on homes, gardens, design, seasonal care, and
-            the craft of looking after a place properly. Published at{" "}
-            <Link
-              href="/journal"
-              className="text-house-brown underline decoration-house-gold underline-offset-4"
-            >
-              /journal
-            </Link>
-            .
-          </p>
-        ),
+        q: "What is The Hearth?",
+        a: "The Hearth is our editorial publication for HoWA+ members. Weekly writing on homes, gardens, design, seasonal care, and the craft of looking after a place properly.",
       },
     ],
   },
@@ -276,49 +139,83 @@ const SECTIONS: {
 
 export default function FaqPage() {
   return (
-    <article className="bg-house-cream text-house-brown">
-      <section className="px-[5vw] pt-[12vh] pb-10">
-        <div className="max-w-[760px] mx-auto">
-          <Eyebrow>HoWA FAQ</Eyebrow>
-          <h1 className="em-accent font-display font-medium text-[clamp(40px,5.5vw,72px)] leading-[1.05] tracking-[-0.01em] mt-4">
-            What people <em>usually</em> ask.
-          </h1>
-          <p className="font-sans text-[19px] leading-[1.6] text-house-brown/75 mt-6 max-w-[60ch]">
-            Questions grouped by topic. If yours isn&apos;t here, write to us —
-            and if enough people ask the same one, it ends up on this page.
-          </p>
+    <div className={s.page}>
+      {/* 1. Hero */}
+      <section className={s.hero}>
+        <div className={s.heroCopy}>
+          <div className={s.heroCopyInner}>
+            <p className={s.heroEy}>HoWA FAQ</p>
+            <h1 className={s.heroTitle}>
+              What people <em>usually</em> ask.
+            </h1>
+            <p className={s.heroLede}>
+              Questions grouped by topic — pricing, cancellation, privacy, the
+              Companion, the Steward roadmap. If yours isn't here, write to us;
+              and if enough people ask the same one, it ends up on this page.
+            </p>
+          </div>
+        </div>
+        <div className={s.heroVisual}>
+          <Image
+            src="/home-v4/howa-lander-faq-v2.png"
+            alt="The Living Record of Your Home — leather-bound book, vase, brass key and HoWA sensor on a wooden cabinet"
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            priority
+            style={{ objectFit: "cover", objectPosition: "right center" }}
+          />
         </div>
       </section>
 
-      {SECTIONS.map((section) => (
-        <section
-          key={section.heading}
-          className="px-[5vw] py-12 border-t border-house-brown/10 bg-white even:bg-house-cream"
-        >
-          <div className="max-w-[760px] mx-auto">
-            <Eyebrow>{section.heading}</Eyebrow>
-            <div className="mt-6">
-              <Accordion items={section.items} />
+      {/* 2. Stats strip */}
+      <section className={s.statsStrip}>
+        <div className={s.statsLede}>
+          <p className={s.statsLedeLine1}>Direct answers. No throat-clearing.</p>
+          <p className={s.statsLedeLine2}>Everything you'd want to know before you start.</p>
+        </div>
+        {STAT_COLS.map((stat) => (
+          <div key={stat.label} className={s.stat}>
+            <span className={s.statValue}>{stat.value}</span>
+            <span className={s.statLabel}>{stat.label}</span>
+          </div>
+        ))}
+      </section>
+
+      {/* 3. Topic sections */}
+      <div className={s.topics}>
+        {SECTIONS.map((section, i) => (
+          <section
+            key={section.heading}
+            className={`${s.topicSection} ${i % 2 === 1 ? s.topicAlt : ""}`}
+          >
+            <div className={s.topicInner}>
+              <header className={s.topicHead}>
+                <p className={s.topicEy}>0{i + 1}</p>
+                <h2 className={s.topicTitle}>{section.heading}</h2>
+              </header>
+              <div className={s.topicBody}>
+                <FaqList items={section.items} />
+              </div>
             </div>
-          </div>
-        </section>
-      ))}
+          </section>
+        ))}
+      </div>
 
-      <section className="px-[5vw] py-16 bg-house-brown text-house-cream text-center">
-        <div className="max-w-[640px] mx-auto">
-          <p className="font-sans italic text-[19px] leading-[1.5]">
-            Still unsure? Write to the House.
-          </p>
-          <div className="mt-5">
-            <Link
-              href="/contact"
-              className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown bg-house-cream border border-house-cream px-6 py-3.5 no-underline transition-colors duration-[var(--t-slow)] ease-out hover:bg-house-gold-light hover:border-house-gold-light hover:text-white"
-            >
-              Contact us
-            </Link>
-          </div>
+      {/* 4. Closing */}
+      <section className={s.closing}>
+        <p className={s.closingKicker}>Still wondering?</p>
+        <p className={s.closingStatement}>
+          <em>Write to the House.</em>
+        </p>
+        <div className={s.closingCtas}>
+          <Link href="/contact" className={s.closingBtnFilled}>
+            Contact us
+          </Link>
+          <Link href="/howa/plans" className={s.closingBtnGhost}>
+            See plans →
+          </Link>
         </div>
       </section>
-    </article>
+    </div>
   );
 }

@@ -42,6 +42,8 @@ export interface Service {
   lede: string;
   eyebrow: string;
   headline: string;
+  /** Substring of `headline` to italicise as the lander-framework em accent. */
+  headlineEm?: string;
   sections: {
     included: string[];
     how: string[];
@@ -57,6 +59,10 @@ export interface Service {
   trustBadges: string[];
   /** Optional full-bleed hero image. */
   heroImage?: string;
+  /** Beeton-style spine colour. Used by ArtworkVolumesShelf and elsewhere
+   *  that wants to colour-code a service. Optional because not every
+   *  service has a brand volume (e.g. gutter-cleaning, energy). */
+  colour?: string;
 }
 
 import {
@@ -78,8 +84,10 @@ export const SERVICES: Record<ServiceSlug, Service> = {
     name: "Gardening",
     lede: "Planting, maintenance, and seasonal care by gardeners who know the difference between a bay and a laurel.",
     eyebrow: "Services · Gardening",
-    heroImage: "https://cdn.sanity.io/images/a9t8u8nh/production/027700c20d7a27faacb0dbdf0786e58a24d410f2-1280x1920.jpg?w=1920&auto=format",
+    heroImage: "/services/photos/gardening-hero.webp",
     headline: "A garden you meant to have.",
+    headlineEm: "to have.",
+    colour: "#3a4a35",
     sections: {
       included: [
         "Seasonal pruning, weeding, and bed maintenance",
@@ -156,8 +164,10 @@ export const SERVICES: Record<ServiceSlug, Service> = {
     name: "Window cleaning",
     lede: "Pole and reach pure water system, powered by our carbon-neutral electric fleet. No ladders, no squeegees, no streaks. Federation of Window Cleaners certified.",
     eyebrow: "Services · Window cleaning",
-    heroImage: "https://cdn.sanity.io/images/a9t8u8nh/production/1ff50883ce4a22b5a283e0808c5c324aaa45610d-960x1200.jpg?w=1920&auto=format",
+    heroImage: "/services/photos/window-cleaning-hero.webp",
     headline: "Light, properly let in.",
+    headlineEm: "properly let in.",
+    colour: "#3e2649",
     sections: {
       included: [
         "All exterior windows, frames, and sills — front and back elevations",
@@ -217,8 +227,10 @@ export const SERVICES: Record<ServiceSlug, Service> = {
     name: "Cleaning",
     lede: "Trained, uniformed cleaners using organic products that are tough on grime but kind to the environment. Zero-emission fleet, battery-operated tools, fragrance-free on request.",
     eyebrow: "Services · Cleaning",
-    heroImage: "/services/photos/cleaner-shower.jpg",
+    heroImage: "/services/photos/cleaning-hero.webp",
     headline: "A house that feels cared for.",
+    headlineEm: "that feels cared for.",
+    colour: "#2e4055",
     sections: {
       included: [
         "Full-home clean — kitchens, bathrooms, living spaces, bedrooms",
@@ -295,8 +307,9 @@ export const SERVICES: Record<ServiceSlug, Service> = {
     name: "Gutter cleaning",
     lede: "SkyVac gutter cleaning system with camera-guided inspection. Clears blockages, debris, leaves, moss, and bird mess. Safe and ladder-free from the ground.",
     eyebrow: "Services · Gutter cleaning",
-    heroImage: "https://cdn.sanity.io/images/a9t8u8nh/production/fde93d8c1e388b58d0dd95a85932d7f3bad83259-960x1200.jpg?w=1920&auto=format",
+    heroImage: "/services/photos/gutter-cleaning-hero.webp",
     headline: "A small job that saves a large one.",
+    headlineEm: "that saves a large one.",
     sections: {
       included: [
         "Full SkyVac vacuum-pole gutter clear — front and back elevations",
@@ -356,6 +369,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
     lede: "General repairs, furniture assembly, picture hanging, shelf fitting, and the odd jobs a house always needs. Fully insured, carbon-neutral, on time.",
     eyebrow: "Services \u00b7 Handyman",
     headline: "The small fixes that keep a house running.",
+    colour: "#5a2533",
     sections: {
       included: [
         "Furniture assembly \u2014 flat-pack, beds, wardrobes",
@@ -437,6 +451,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
     lede: "Carbon-neutral house moves, packing, and storage coordination. Uniformed teams, fully insured, careful with the things that matter.",
     eyebrow: "Services \u00b7 Removals",
     headline: "Moving, without the dread.",
+    colour: "#7a2540",
     sections: {
       included: [
         "Small and medium house moves across London and Kent",
@@ -595,6 +610,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
     lede: "Trusted, insured dog walking and pet sitting by experienced handlers. GPS-tracked walks, photo updates, and visit notes filed to your HoWA record.",
     eyebrow: "Services \u00b7 Pet Care",
     headline: "Because the dog is part of the house.",
+    colour: "#2a4f54",
     sections: {
       included: [
         "Daily, weekly, or ad-hoc dog walking",

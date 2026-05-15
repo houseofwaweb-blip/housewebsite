@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Eyebrow } from "@/components/primitives/Eyebrow";
-import { GhostLink } from "@/components/primitives/GhostLink";
 import { PortableText } from "@/components/cms/PortableText";
 import { getAllNewsSlugs, getNewsBySlug } from "@/lib/cms/news-musings";
+import s from "./news-item.module.css";
 
 export async function generateMetadata({
   params,
@@ -45,73 +44,78 @@ export default async function NewsItemPage({
   });
 
   return (
-    <article className="bg-house-cream text-house-brown">
-      <header className="px-[5vw] pt-[12vh] pb-8">
-        <div className="max-w-[760px] mx-auto">
-          <Eyebrow>The House · News</Eyebrow>
-          <h1 className="font-display font-medium text-[clamp(36px,4.8vw,64px)] leading-[1.1] tracking-[-0.01em] mt-4">
-            {item.title}
-          </h1>
-          <p className="font-sans text-[11px] tracking-[0.16em] uppercase text-house-stone mt-6">
+    <div className={s.page}>
+      <header className={s.head}>
+        <div className={s.headInner}>
+          <Link href="/news" className={s.eyebrow}>The House · News</Link>
+          <h1 className={s.title}>{item.title}</h1>
+          <p className={s.byline}>
+            <em>{item.author}</em>
+            <span className={s.bylineSep}>·</span>
             <time dateTime={item.publishedAt}>{date}</time>
-            <span className="mx-2">·</span>
-            {item.author}
           </p>
-          {item.lede ? (
-            <p className="font-sans italic text-[19px] leading-[1.55] text-house-stone mt-6 max-w-[60ch]">
-              {item.lede}
-            </p>
-          ) : null}
+          {item.lede ? <p className={s.lede}>{item.lede}</p> : null}
         </div>
       </header>
 
       {item.image ? (
-        <div className="px-[5vw]">
-          <div className="max-w-[1100px] mx-auto">
+        <div className={s.heroImageWrap}>
+          <div className={s.heroImage}>
             <Image
               src={item.image}
               alt={item.imageAlt || item.title}
               width={2200}
               height={1240}
               sizes="(min-width: 1100px) 1100px, 100vw"
-              className="w-full h-auto aspect-[16/9] object-cover"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
               priority
             />
           </div>
         </div>
       ) : null}
 
-      <div className="px-[5vw] py-14">
-        <div className="max-w-[720px] mx-auto">
+      <article className={s.body}>
+        <div className={s.bodyInner}>
           {item.body?.length ? (
-            <div className="font-sans text-[18px] leading-[1.75] text-house-brown/90 [&_p]:mb-5 [&_h2]:font-display [&_h2]:font-medium [&_h2]:text-[clamp(24px,3vw,34px)] [&_h2]:mt-12 [&_h2]:mb-3 [&_h3]:font-display [&_h3]:font-medium [&_h3]:text-[22px] [&_h3]:mt-10 [&_h3]:mb-3 [&_a]:text-house-gold [&_a]:underline [&_a]:underline-offset-[3px] [&_ul]:my-5 [&_ul]:pl-6 [&_ol]:my-5 [&_ol]:pl-6 [&_ol]:list-decimal [&_blockquote]:my-8 [&_blockquote]:pl-6 [&_blockquote]:border-l [&_blockquote]:border-house-gold [&_blockquote]:italic">
+            <div className={s.prose}>
               <PortableText value={item.body} />
             </div>
           ) : (
-            <p className="font-sans italic text-[17px] text-house-stone">
-              Coverage coming soon.
-            </p>
+            <p className={s.placeholderCopy}>Coverage coming soon.</p>
           )}
 
           {item.externalUrl ? (
-            <div className="mt-10 pt-6 border-t border-house-brown/10">
-              <GhostLink href={item.externalUrl} external>
+            <div className={s.external}>
+              <a
+                href={item.externalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={s.externalLink}
+              >
                 Read original coverage
-              </GhostLink>
+                <span aria-hidden="true" className={s.externalArrow}>↗</span>
+              </a>
             </div>
           ) : null}
         </div>
-      </div>
+      </article>
 
-      <div className="px-[5vw] pb-14 text-center border-t border-house-brown/10 pt-10">
-        <Link
-          href="/news"
-          className="font-sans text-[11px] tracking-[0.2em] uppercase no-underline border-b border-house-gold text-house-brown pb-[2px]"
-        >
-          ← All news
-        </Link>
-      </div>
-    </article>
+      <section className={s.closing}>
+        <p className={s.closingKicker}>The House · News</p>
+        <p className={s.closingStatement}>
+          More <em>from the House.</em>
+        </p>
+        <div className={s.closingCtas}>
+          <Link href="/news" className={s.btnFilled}>
+            All news
+          </Link>
+          <Link href="/musings" className={s.btnGhost}>
+            Read our musings
+            <span aria-hidden="true" className={s.btnArrow}>→</span>
+          </Link>
+        </div>
+      </section>
+    </div>
   );
 }
 
