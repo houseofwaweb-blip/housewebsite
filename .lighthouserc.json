@@ -1,0 +1,58 @@
+{
+  "ci": {
+    "collect": {
+      "startServerCommand": "npm run start",
+      "startServerReadyPattern": "Ready",
+      "startServerReadyTimeout": 60000,
+      "url": [
+        "http://localhost:4000/",
+        "http://localhost:4000/the-house",
+        "http://localhost:4000/howa",
+        "http://localhost:4000/howa/plans",
+        "http://localhost:4000/services",
+        "http://localhost:4000/services/cleaning",
+        "http://localhost:4000/shop",
+        "http://localhost:4000/the-hearth",
+        "http://localhost:4000/contact",
+        "http://localhost:4000/legal/privacy"
+      ],
+      "numberOfRuns": 1,
+      "settings": {
+        "preset": "desktop",
+        "throttlingMethod": "devtools",
+        "skipAudits": ["uses-http2"]
+      }
+    },
+    "assert": {
+      "assertions": {
+        "categories:performance": ["warn", { "minScore": 0.85 }],
+        "categories:accessibility": ["error", { "minScore": 0.95 }],
+        "categories:best-practices": ["warn", { "minScore": 0.9 }],
+        "categories:seo": ["error", { "minScore": 0.95 }],
+
+        "largest-contentful-paint": ["warn", { "maxNumericValue": 2500, "aggregationMethod": "median" }],
+        "cumulative-layout-shift": ["error", { "maxNumericValue": 0.1, "aggregationMethod": "median" }],
+        "total-blocking-time": ["warn", { "maxNumericValue": 300, "aggregationMethod": "median" }],
+        "first-contentful-paint": ["warn", { "maxNumericValue": 1800, "aggregationMethod": "median" }],
+
+        "uses-text-compression": ["warn", { "minScore": 1 }],
+        "uses-responsive-images": ["warn", { "minScore": 1 }],
+        "uses-rel-preconnect": "off",
+        "unused-javascript": "off",
+        "unused-css-rules": "off",
+
+        "color-contrast": ["error", { "minScore": 1 }],
+        "image-alt": ["error", { "minScore": 1 }],
+        "label": ["error", { "minScore": 1 }],
+        "link-name": ["error", { "minScore": 1 }],
+        "button-name": ["error", { "minScore": 1 }],
+        "document-title": ["error", { "minScore": 1 }],
+        "html-has-lang": ["error", { "minScore": 1 }],
+        "meta-description": ["warn", { "minScore": 1 }]
+      }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}
