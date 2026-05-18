@@ -152,6 +152,7 @@ export function ContactForm({ turnstileSiteKey, sourcePage }: ContactFormProps) 
 
       {/* Step 2 — reveal once a topic is chosen */}
       {activeTopic ? (
+        // eslint-disable-next-line react-hooks/refs -- react-hook-form's handleSubmit owns its own refs
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
           <div aria-hidden="true" className="absolute -left-[9999px] w-px h-px overflow-hidden">
             <input type="text" tabIndex={-1} autoComplete="off" {...register("honey")} />

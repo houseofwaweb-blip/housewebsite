@@ -38,6 +38,12 @@ const OBF_BASE_CONFIG = {
   search: false,
   init_event: "on_load",
   website_name: "Willow Alexander",
+  // PUBLISHABLE widget key. This identifies the ServiceOS booking profile to
+  // their CDN-served client.min.js and is the same key the WordPress plugin
+  // ships in plain HTML on the live site. It does NOT authorize privileged
+  // API access — booking submissions and account flows go through
+  // accounts.willowalexander.co.uk (our subdomain) which handles real auth.
+  // Treat as public, same status as a Stripe publishable key.
   key: "9xtc467tfmzdsjj1s1bg50vkmktkdhd9xknslxub3gyex0zls9ttwll14i3hdq9a",
   profile_id: "4",
   source_abbr: "GORG",

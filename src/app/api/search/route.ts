@@ -102,7 +102,7 @@ function mapSanityResults(data: SanitySearchResult): SearchResult[] {
       type: "The House",
       title: n.title,
       excerpt: n.lede,
-      href: `/the-house/news/${n.slug}`,
+      href: `/news/${n.slug}`,
     });
   }
 
@@ -112,7 +112,7 @@ function mapSanityResults(data: SanitySearchResult): SearchResult[] {
       type: "The House",
       title: m.title,
       excerpt: m.lede,
-      href: `/the-house/musings/${m.slug}`,
+      href: `/musings/${m.slug}`,
     });
   }
 
@@ -174,7 +174,7 @@ export async function GET(request: NextRequest) {
           type: "Shop",
           title: p.title,
           excerpt: p.description?.slice(0, 120),
-          href: `/shop/product/${p.handle}`,
+          href: `/shop/${p.handle}`,
           image: p.images?.[0]?.url || undefined,
         });
       }
@@ -192,7 +192,7 @@ export async function GET(request: NextRequest) {
         type: "Shop",
         title: p.title,
         excerpt: p.lede?.slice(0, 120),
-        href: `/shop/product/${p.handle}`,
+        href: `/shop/${p.handle}`,
         image: p.image || undefined,
       });
     }

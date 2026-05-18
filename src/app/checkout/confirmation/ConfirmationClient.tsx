@@ -16,6 +16,7 @@ export function ConfirmationClient() {
   // until checkout returns a real order ID from Shopify.
   const [orderRef, setOrderRef] = useState<string | null>(null);
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional: defer client-only ID generation to avoid hydration mismatch. Will be replaced by real order ID from Shopify.
     setOrderRef(`HoWA-${new Date().getFullYear()}-${String(Date.now()).slice(-5)}`);
   }, []);
 

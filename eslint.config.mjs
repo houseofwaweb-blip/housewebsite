@@ -16,6 +16,14 @@ const eslintConfig = defineConfig([
     // and OOMs Node when linted. These are vendor artefacts, not our source.
     "dist/**",
   ]),
+  {
+    // Editorial copy in JSX uses real apostrophes (don't, we're, it's) — the
+    // brand voice is written, not template-engine-escaped. Disable the rule
+    // rather than pepper hundreds of files with &apos; entities.
+    rules: {
+      "react/no-unescaped-entities": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;

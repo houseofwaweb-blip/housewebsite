@@ -69,6 +69,7 @@ export function WaitlistForm({
   };
 
   return (
+    // eslint-disable-next-line react-hooks/refs -- react-hook-form's handleSubmit owns its own refs
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
       <div aria-hidden="true" className="absolute -left-[9999px] w-px h-px overflow-hidden">
         <input type="text" tabIndex={-1} autoComplete="off" {...register("honey")} />

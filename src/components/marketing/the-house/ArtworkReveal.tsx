@@ -17,13 +17,16 @@ export function ArtworkReveal({
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  // Reduced-motion users skip the reveal entirely — start visible.
+  // Check once at mount via a lazy initialiser so the effect doesn't
+  // need to cascade-render.
+  const [visible, setVisible] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  });
 
   useEffect(() => {
-    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setVisible(true);
-      return;
-    }
+    if (visible) return;
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
@@ -37,7 +40,7 @@ export function ArtworkReveal({
     );
     obs.observe(el);
     return () => obs.disconnect();
-  }, []);
+  }, [visible]);
 
   return (
     <div

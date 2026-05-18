@@ -252,11 +252,11 @@ export function Header({
                 Sign in
               </a>
               <Link
-                href="#open-booking-form"
+                href={ctaHref}
                 onClick={() => setMobileOpen(false)}
                 className="booknow-button font-sans text-[11px] tracking-[0.16em] uppercase opacity-60 no-underline"
               >
-                Book with HoWA
+                {ctaLabel}
               </Link>
             </div>
           </div>
