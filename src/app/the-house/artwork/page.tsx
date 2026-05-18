@@ -180,9 +180,9 @@ export default function ArtworkPage() {
 
       {/* ════════════════════════════════════════════════════════════
           CHAPTER I — A name like a dedication
+          (no pullquote — body already lands on the same idea)
           ════════════════════════════════════════════════════════════ */}
       <ChapterCopy chapter={CHAPTERS[0]} bg="cream" first />
-      <PullQuote quote={CHAPTERS[0].pullQuote!} />
 
       {/* ════════════════════════════════════════════════════════════
           CHAPTER II — Garden studio, two artefacts
@@ -269,20 +269,11 @@ export default function ArtworkPage() {
 
       {/* ════════════════════════════════════════════════════════════
           CHAPTER IV — The coloured volumes
-          Text intro, then the composed shelf row (real artwork),
-          then the interactive shelf. Pull quote closes.
+          Text intro, then the interactive shelf (the only volumes moment;
+          the static shelf-row composite was a duplicate of what the
+          interactive shelf already shows).
           ════════════════════════════════════════════════════════════ */}
       <ChapterCopy chapter={CHAPTERS[3]} bg="cream" />
-      <section className={s.shelfRow}>
-        <Image
-          src={`${ART}/volumes-shelf-row.png`}
-          alt="The seven Willow Alexander volumes lined up — gardeners green, cleaners blue, handyman burgundy, window cleaners aubergine, dog walkers teal, removals magenta, and the master Home & Garden gold"
-          width={2400}
-          height={1200}
-          sizes="100vw"
-          className={s.shelfRowImg}
-        />
-      </section>
       <ArtworkVolumesShelf />
       <PullQuote quote={CHAPTERS[3].pullQuote!} dark />
 
@@ -366,7 +357,6 @@ export default function ArtworkPage() {
           ))}
         </ArtworkReveal>
       </section>
-      <PullQuote quote={CHAPTERS[8].pullQuote!} dark />
 
       {/* ════════════════════════════════════════════════════════════
           CHAPTER X — A living story, with the fleet as the closing image

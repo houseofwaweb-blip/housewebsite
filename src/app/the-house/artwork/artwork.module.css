@@ -75,17 +75,17 @@
   overflow: hidden;
   background: var(--color-house-cream);
 }
-/* Subtle pattern texture behind the title. Sits at very low opacity so it
-   feels like watermark, not decoration. */
+/* Pattern texture behind the title. Bigger tile + stronger opacity so it
+   reads as part of the composition, not just a watermark. */
 .heroTexture {
   position: absolute;
   inset: 0;
   background-image: url("/the-house/artwork/pattern-tile-gold-on-cream.webp");
-  background-size: 360px auto;
+  background-size: 560px auto;
   background-repeat: repeat;
-  opacity: 0.12;
-  mask-image: radial-gradient(ellipse at center, black 0%, transparent 80%);
-  -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 80%);
+  opacity: 0.22;
+  mask-image: radial-gradient(ellipse at center, black 10%, transparent 90%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 10%, transparent 90%);
   pointer-events: none;
 }
 .heroInner {
@@ -143,10 +143,11 @@
    ────────────────────────────────────────────────────────── */
 .split {
   display: grid;
-  grid-template-columns: 1.05fr 1fr;
+  /* Visual gets ~58% of the width — image-led split that breathes. */
+  grid-template-columns: 1.4fr 1fr;
   gap: 0;
   align-items: stretch;
-  min-height: clamp(560px, 75vh, 820px);
+  min-height: clamp(640px, 84vh, 920px);
   border-bottom: 1px solid rgba(48, 35, 28, 0.08);
   overflow: hidden;
 }
@@ -177,7 +178,7 @@
    ────────────────────────────────────────────────────────── */
 .cluster {
   position: relative;
-  min-height: clamp(560px, 75vh, 820px);
+  min-height: clamp(640px, 84vh, 920px);
   background: var(--color-house-cream-dark);
   overflow: hidden;
   padding: clamp(32px, 5vw, 80px);
@@ -185,19 +186,19 @@
 .clusterFront,
 .clusterBack {
   position: absolute;
-  width: 58%;
+  width: 76%;
   aspect-ratio: 3 / 4;
 }
 .clusterBack {
-  top: 8%;
-  right: 8%;
-  transform: rotate(4deg);
+  top: 4%;
+  right: 2%;
+  transform: rotate(5deg);
   z-index: 1;
 }
 .clusterFront {
-  bottom: 8%;
-  left: 8%;
-  transform: rotate(-3deg);
+  bottom: 4%;
+  left: 2%;
+  transform: rotate(-4deg);
   z-index: 2;
 }
 .clusterImg {
@@ -213,28 +214,28 @@
    PATTERN REVEAL — Chapter III: the source detail + the pattern
    ────────────────────────────────────────────────────────── */
 .patternReveal {
-  padding: clamp(64px, 8vw, 112px) clamp(28px, 5vw, 88px);
+  padding: clamp(80px, 10vw, 144px) clamp(28px, 5vw, 64px);
   border-bottom: 1px solid rgba(48, 35, 28, 0.08);
 }
 .patternRevealInner {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(24px, 4vw, 64px);
-  max-width: 1280px;
+  gap: clamp(32px, 5vw, 80px);
+  max-width: 1600px;
   margin: 0 auto;
 }
 .patternRevealItem {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 22px;
 }
 .patternRevealImg {
   width: 100%;
   height: auto;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
-  box-shadow: 0 10px 28px -10px rgba(48, 35, 28, 0.28);
+  box-shadow: 0 14px 36px -12px rgba(48, 35, 28, 0.32);
 }
 .patternRevealCap {
   font-family: var(--font-sans);
@@ -250,22 +251,6 @@
   font-style: italic;
   color: var(--color-house-gold-dark);
   font-size: 16px;
-}
-
-/* ──────────────────────────────────────────────────────────
-   SHELF ROW — Chapter IV: the composed volumes shelf row
-   (sits above the interactive ArtworkVolumesShelf below)
-   ────────────────────────────────────────────────────────── */
-.shelfRow {
-  padding: clamp(48px, 6vw, 96px) clamp(28px, 5vw, 88px) 0;
-  background: var(--color-house-cream-dark);
-}
-.shelfRowImg {
-  display: block;
-  width: 100%;
-  max-width: 1360px;
-  height: auto;
-  margin: 0 auto;
 }
 
 /* ──────────────────────────────────────────────────────────
@@ -293,17 +278,20 @@
    ────────────────────────────────────────────────────────── */
 .atmosphere {
   position: relative;
-  padding: clamp(96px, 11vw, 168px) clamp(28px, 5vw, 88px);
+  padding: clamp(120px, 14vw, 200px) clamp(28px, 5vw, 88px);
   overflow: hidden;
   border-bottom: 1px solid rgba(48, 35, 28, 0.08);
 }
 .atmospherePattern {
   position: absolute;
   inset: 0;
-  background-image: url("/the-house/artwork/pattern-tile-gold-on-cream.webp");
-  background-size: 280px auto;
-  background-repeat: repeat;
-  opacity: 0.18;
+  /* Use the full master pattern artwork here (not the tile) so the chapter
+     about the pattern's role is set against the pattern itself at scale. */
+  background-image: url("/the-house/artwork/pattern-master.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.28;
   pointer-events: none;
 }
 
@@ -311,15 +299,15 @@
    ICON GRID — Chapter VII: 8 hand-drawn icons
    ────────────────────────────────────────────────────────── */
 .iconGrid {
-  padding: clamp(48px, 7vw, 112px) clamp(28px, 5vw, 88px) clamp(80px, 9vw, 132px);
+  padding: clamp(56px, 8vw, 128px) clamp(28px, 5vw, 88px) clamp(96px, 11vw, 160px);
   background: var(--color-house-cream-dark);
   border-bottom: 1px solid rgba(48, 35, 28, 0.08);
 }
 .iconGridInner {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: clamp(20px, 3vw, 48px);
-  max-width: 960px;
+  gap: clamp(28px, 4vw, 64px);
+  max-width: 1200px;
   margin: 0 auto;
 }
 @media (max-width: 640px) {
@@ -329,14 +317,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
-  padding: 20px 12px;
+  gap: 18px;
+  padding: 24px 16px;
 }
 .iconImg {
-  width: clamp(60px, 9vw, 96px);
+  width: clamp(96px, 12vw, 144px);
   height: auto;
   filter: brightness(0) saturate(100%) invert(16%) sepia(8%) saturate(1280%) hue-rotate(351deg) brightness(96%) contrast(86%);
-  opacity: 0.88;
+  opacity: 0.9;
 }
 .iconLabel {
   font-family: var(--font-hearth-serif);
@@ -431,9 +419,9 @@
   position: absolute;
   inset: 0;
   background-image: url("/the-house/artwork/pattern-tile-gold-on-cream.webp");
-  background-size: 280px auto;
+  background-size: 480px auto;
   background-repeat: repeat;
-  opacity: 0.22;
+  opacity: 0.32;
   pointer-events: none;
 }
 .philosophyInner {
