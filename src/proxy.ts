@@ -66,12 +66,17 @@ export function proxy(request: NextRequest) {
   // makes XHR requests to its API, and may iframe checkout.
   const obfHosts = "https://accounts.willowalexander.co.uk https://willowalexander.serviceos.com https://*.serviceos.com";
 
-  // CSP — enforced (not report-only). `unsafe-eval` removed; `unsafe-inline`
-  // retained on script-src because Next.js inlines hydration scripts. A nonce
-  // pattern would let us drop unsafe-inline; see PLAN.md §15 S6 for the spec.
+  // CSP — enforced (not report-only). `unsafe-eval` retained in dev only
+  // (Next.js / React 19 use eval() for source-map reconstruction in the
+  // dev overlay and for some server-component HMR plumbing); stripped in
+  // prod. `unsafe-inline` retained on script-src because Next.js inlines
+  // hydration scripts. A nonce pattern would let us drop unsafe-inline;
+  // see PLAN.md §15 S6 for the spec.
+  const isDev = process.env.NODE_ENV !== "production";
+  const scriptEval = isDev ? " 'unsafe-eval'" : "";
   const csp = [
     "default-src 'self'",
-    `script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com ${obfHosts}`,
+    `script-src 'self' 'unsafe-inline'${scriptEval} https://challenges.cloudflare.com ${obfHosts}`,
     `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com ${obfHosts}`,
     `img-src 'self' data: blob: https://cdn.sanity.io https://cdn.shopify.com https://willowalexander.co.uk ${obfHosts}`,
     "font-src 'self' data: https://fonts.gstatic.com",

@@ -47,16 +47,31 @@ function decode(raw: string): Consent | null {
   };
 }
 
-/** Read from localStorage. Client-only. Returns null pre-decision. */
+/**
+ * Read from localStorage. Client-only. Returns null pre-decision.
+ *
+ * Memoised by the raw stored string so successive calls without an
+ * intervening write return the SAME object reference. This matters for
+ * React's `useSyncExternalStore` — its `getSnapshot` must return a
+ * stable reference when the underlying state hasn't changed, or it will
+ * infinite-loop the render. Module-level cache is safe because consent
+ * is single-tab state and `writeConsent` invalidates the cache implicitly
+ * by changing the raw string.
+ */
+let cachedRaw: string | null | undefined = undefined;
+let cachedValue: Consent | null = null;
 export function readConsent(): Consent | null {
   if (typeof window === "undefined") return null;
+  let raw: string | null = null;
   try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return null;
-    return decode(raw);
+    raw = window.localStorage.getItem(STORAGE_KEY);
   } catch {
     return null;
   }
+  if (raw === cachedRaw) return cachedValue;
+  cachedRaw = raw;
+  cachedValue = raw ? decode(raw) : null;
+  return cachedValue;
 }
 
 /** Persist to both localStorage and cookie. Client-only. */
