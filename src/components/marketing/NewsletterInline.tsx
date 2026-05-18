@@ -5,6 +5,27 @@ import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 import { submitForm } from "@/components/forms/submitForm";
+import type { NewsletterInterest } from "@/lib/forms/schemas";
+
+/**
+ * Interest chips offered on the form. Order is deliberate — start with the
+ * widest editorial bucket, narrow as you go right. Keep in sync with
+ * lib/klaviyo/SURFACE_TO_INTEREST (which decides what Klaviyo segments
+ * each chip pushes the profile into).
+ *
+ * Handyman is intentionally omitted: it's a deferred service per
+ * CLAUDE.md, so we don't want to invite signups we can't fulfil.
+ */
+const INTERESTS: ReadonlyArray<{
+  id: NewsletterInterest;
+  label: string;
+  hint: string;
+}> = [
+  { id: "the-house", label: "The House", hint: "Editorial, gardens, design, recipes" },
+  { id: "services", label: "Home services", hint: "Cleaning, gardening, window cleaning" },
+  { id: "garden-design", label: "Garden design", hint: "Studios + project work" },
+  { id: "interior-design", label: "Interior design", hint: "Studios + project work" },
+];
 
 /**
  * NewsletterInline — split-layout newsletter signup.
@@ -49,8 +70,15 @@ export function NewsletterInline({
 }: NewsletterInlineProps) {
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
+  const [interests, setInterests] = React.useState<NewsletterInterest[]>([]);
   const [state, setState] = React.useState<"idle" | "submitting" | "success" | "error">("idle");
   const honeyRef = React.useRef<HTMLInputElement>(null);
+
+  const toggleInterest = (id: NewsletterInterest) => {
+    setInterests((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id],
+    );
+  };
 
   const handle = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -58,6 +86,7 @@ export function NewsletterInline({
     const result = await submitForm("newsletter", {
       name: name || undefined,
       email,
+      interests,
       sourcePage,
       honey: honeyRef.current?.value ?? "",
       turnstileToken: "",
@@ -209,6 +238,46 @@ export function NewsletterInline({
                     )}
                   />
                 </div>
+
+                {/* Interests — chip group. Optional; empty array still subscribes,
+                    just without segment tagging. Drives Klaviyo's existing
+                    interest segments via the `interest` profile property. */}
+                <fieldset className="mb-5">
+                  <legend
+                    className={cn(
+                      "font-sans text-[10px] tracking-[0.18em] uppercase mb-2",
+                      isDark ? "text-house-cream/55" : "text-house-brown/50",
+                    )}
+                  >
+                    What interests you?
+                  </legend>
+                  <div className="flex flex-wrap gap-2">
+                    {INTERESTS.map((it) => {
+                      const active = interests.includes(it.id);
+                      return (
+                        <button
+                          key={it.id}
+                          type="button"
+                          onClick={() => toggleInterest(it.id)}
+                          aria-pressed={active}
+                          title={it.hint}
+                          className={cn(
+                            "font-sans text-[12px] tracking-[0.04em] px-3 py-2 border cursor-pointer transition-colors duration-[var(--t-base)] select-none",
+                            active
+                              ? isDark
+                                ? "bg-house-gold-light text-house-brown border-house-gold-light"
+                                : "bg-house-brown text-house-cream border-house-brown"
+                              : isDark
+                                ? "bg-transparent text-house-cream/85 border-house-cream/30 hover:border-house-cream/60"
+                                : "bg-transparent text-house-brown/80 border-house-brown/20 hover:border-house-brown/45",
+                          )}
+                        >
+                          {it.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </fieldset>
 
                 <button
                   type="submit"

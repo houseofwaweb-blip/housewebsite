@@ -6,6 +6,7 @@ import { verifyTurnstileToken } from "./turnstile";
 import { checkFormRateLimit } from "@/lib/rate-limit";
 import { getSupabaseAnonClient } from "@/lib/supabase/server";
 import { notifyFormSubmission } from "./notify";
+import { subscribeToNewsletter, trackEvent, type InterestSurface, SURFACE_TO_INTEREST } from "@/lib/klaviyo";
 
 /**
  * Shared form submission handler.
@@ -85,6 +86,9 @@ export async function handleFormSubmission(
     row.preferred_dates = row.preferredDates;
     delete row.preferredDates;
   }
+  // `interests` is form-only — used downstream by Klaviyo, not a Supabase
+  // column on `newsletter_subscribers`. Strip before insert.
+  if ("interests" in row) delete row.interests;
 
   const supabase = getSupabaseAnonClient();
   let { error } = await supabase.from(entry.table).insert(row);
@@ -113,6 +117,44 @@ export async function handleFormSubmission(
   void notifyFormSubmission(type, parsed as Record<string, unknown>).catch(() => {
     // notify already logs internally
   });
+
+  // Newsletter signups also push to Klaviyo for interest-based segmentation.
+  // Same fire-and-forget pattern — Supabase row is the source of truth.
+  if (type === "newsletter") {
+    const p = parsed as {
+      email: string;
+      name?: string;
+      interests?: string[];
+      sourcePage?: string;
+    };
+    const surfaces = (p.interests ?? []) as InterestSurface[];
+
+    void subscribeToNewsletter({
+      email: p.email,
+      firstName: p.name,
+      surfaces,
+      sourcePage: p.sourcePage,
+    }).catch(() => {
+      // klaviyo client already logs internally
+    });
+
+    // Post a custom event so Alex can build interest-aware welcome flows in
+    // the Klaviyo dashboard ("if event.interest_tags contains 'design',
+    // send Garden Design welcome series"). Without this they'd only have
+    // the list-add trigger, which can't see the interest tags.
+    const interestTags = Array.from(
+      new Set(surfaces.flatMap((s) => SURFACE_TO_INTEREST[s] ?? [])),
+    );
+    void trackEvent({
+      email: p.email,
+      metric: "Marketing Site Newsletter Signup",
+      properties: {
+        surfaces,
+        interest_tags: interestTags,
+        signup_page: p.sourcePage,
+      },
+    }).catch(() => {});
+  }
 
   return NextResponse.json({ ok: true });
 }
