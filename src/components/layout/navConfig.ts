@@ -30,7 +30,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
       },
     ],
     preview: {
-      image: "/home/hero-georgian.png",
+      image: "/home/hero-georgian.webp",
       alt: "A Georgian terrace in Notting Hill",
       tag: "The Philosophy",
       heading: "Ownership is passive. Stewardship is intentional.",
@@ -62,7 +62,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
       },
     ],
     preview: {
-      image: "/home/hero-georgian.png",
+      image: "/home/hero-georgian.webp",
       alt: "HoWA product interface",
       tag: "Arriving soon",
       heading: "A single place for the House to reach you.",
@@ -109,7 +109,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
       },
     ],
     preview: {
-      image: "/home/hero-georgian.png",
+      image: "/home/hero-georgian.webp",
       alt: "Interior detail",
       tag: "Featured",
       heading: "A house, re-read.",

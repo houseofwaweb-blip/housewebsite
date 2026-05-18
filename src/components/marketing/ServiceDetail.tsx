@@ -9,8 +9,8 @@ import { SERVICE_AREAS } from "@/lib/services-data/sub-services";
 import s from "./ServiceDetail.module.css";
 
 const PUBLIC = path.join(process.cwd(), "public");
-const PLACEHOLDER_HERO = "/services/photos/placeholders/hero-16x9-v2.jpg";
-const PLACEHOLDER_GALLERY = "/services/photos/placeholders/gallery-4x3-v2.jpg";
+const PLACEHOLDER_HERO = "/services/photos/placeholders/hero-16x9-v2.webp";
+const PLACEHOLDER_GALLERY = "/services/photos/placeholders/gallery-4x3-v2.webp";
 
 function fileOr(localPath: string | undefined, fallback: string) {
   if (!localPath) return fallback;

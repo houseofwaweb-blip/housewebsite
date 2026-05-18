@@ -11,9 +11,9 @@ import { SERVICES, SERVICE_ORDER, type ServiceSlug } from "@/lib/services-data";
 import s from "./sub-service.module.css";
 
 const PUBLIC = path.join(process.cwd(), "public");
-const PLACEHOLDER_HERO = "/services/photos/placeholders/hero-16x10-v2.jpg";
-const PLACEHOLDER_GALLERY_TILE = "/services/photos/placeholders/gallery-4x3-v2.jpg";
-const PLACEHOLDER_BA = "/services/photos/placeholders/before-after-3x2-v2.jpg";
+const PLACEHOLDER_HERO = "/services/photos/placeholders/hero-16x10-v2.webp";
+const PLACEHOLDER_GALLERY_TILE = "/services/photos/placeholders/gallery-4x3-v2.webp";
+const PLACEHOLDER_BA = "/services/photos/placeholders/before-after-3x2-v2.webp";
 
 /** Return the path if the file exists in /public, otherwise the fallback. */
 function fileOr(localPath: string, fallback: string) {

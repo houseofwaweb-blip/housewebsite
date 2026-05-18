@@ -118,7 +118,7 @@ const articles = raw
       category: shortCat,
       categoryLong: primaryCat,
       categorySlug: primaryCat.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
-      image: image || "/hearth/art-lead.png",
+      image: image || "/hearth/art-lead.webp",
       imageAlt: mediaAlt,
       dek: truncateWords(stripHtml(a.excerpt.rendered), 200),
       author: "House of Willow Alexander",

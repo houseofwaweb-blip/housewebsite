@@ -40,7 +40,7 @@ const SERVICES = [
     tagline: "Lawn, beds, and seasonal care.",
     body:
       "Routine cuts, hedge work, planting plans and seasonal tidies — by gardeners who know the difference between cutting back and cutting down.",
-    image: "/services/subbrands/gardeners.png",
+    image: "/services/subbrands/gardeners.webp",
     href: "/services/gardening",
     state: "live" as const,
   },
@@ -50,7 +50,7 @@ const SERVICES = [
     tagline: "Spotless glass, frames, and sills.",
     body:
       "Pure-water reach-and-wash on the outside, traditional cloth on the inside, with a sash-window method that respects the original timber.",
-    image: "/services/subbrands/window-cleaner.png",
+    image: "/services/subbrands/window-cleaner.webp",
     href: "/services/window-cleaning",
     state: "live" as const,
   },
@@ -60,7 +60,7 @@ const SERVICES = [
     tagline: "Domestic cleaning, properly briefed.",
     body:
       "A regular team that learns the home — surfaces, finishes, what to use, what to leave. Same hands twice. Filed to your record after every visit.",
-    image: "/services/subbrands/cleaners.png",
+    image: "/services/subbrands/cleaners.webp",
     href: "/services/cleaning",
     state: "live" as const,
   },
@@ -80,7 +80,7 @@ const SERVICES = [
     tagline: "Small jobs, properly done.",
     body:
       "A trusted set of hands for the long list. Shelves, fixes, draught-proofing, tile replacements, the things that bother you.",
-    image: "/services/subbrands/handyman.png",
+    image: "/services/subbrands/handyman.webp",
     href: "/services/handyman",
     state: "soon" as const,
   },
@@ -90,7 +90,7 @@ const SERVICES = [
     tagline: "A discreet, ongoing presence.",
     body:
       "Daily or weekly housekeeping — laundry, linen, kitchen, light cooking — for households that prefer the home kept beautifully without managing it.",
-    image: "/services/subbrands/housekeeping.png",
+    image: "/services/subbrands/housekeeping.webp",
     href: "/services/housekeeping",
     state: "soon" as const,
   },
@@ -100,7 +100,7 @@ const SERVICES = [
     tagline: "Moves, briefed by the record.",
     body:
       "House-owned moves with packers who handle period interiors with care. The Living Record makes the unpack at the other end clean and quick.",
-    image: "/services/subbrands/removals.png",
+    image: "/services/subbrands/removals.webp",
     href: "/services/removals",
     state: "soon" as const,
   },
@@ -110,7 +110,7 @@ const SERVICES = [
     tagline: "EICRs, EV chargers, retrofit advice.",
     body:
       "Vetted electricians, EICRs filed to your HoWA record, and energy-efficiency planning so the home performs as well as it looks.",
-    image: "/services/subbrands/electrical.png",
+    image: "/services/subbrands/electrical.webp",
     href: "/services/energy",
     state: "soon" as const,
   },
@@ -120,7 +120,7 @@ const SERVICES = [
     tagline: "Dog walking, sitting and check-ins.",
     body:
       "House-approved walkers and sitters who know the door codes, the leash habits, and the after-walk routine.",
-    image: "/services/subbrands/dog-walking.png",
+    image: "/services/subbrands/dog-walking.webp",
     href: "/services/pet-care",
     state: "soon" as const,
   },
