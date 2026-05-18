@@ -2,28 +2,21 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Eyebrow } from "@/components/primitives/Eyebrow";
-import { GhostLink } from "@/components/primitives/GhostLink";
 import { ProductCard } from "@/components/commerce/ProductCard";
 import { PRODUCTS, findProduct, getRelatedProducts } from "@/lib/shop-data";
 import { CATALOGUE_PRODUCTS, findCatalogueProduct } from "@/lib/shop-data/catalogue";
 import { ProductGallery } from "./ProductGallery";
 import { ProductCopy } from "./ProductCopy";
-import { AddToBasketButton } from "./AddToBasketButton";
+import { ProductJsonLd, BreadcrumbJsonLd } from "@/lib/seo/jsonLd";
+import { env } from "@/lib/env";
+import s from "./product.module.css";
 
-/**
- * /shop/[handle] — Lookbook product detail (approved direction).
- *
- * Layout:
- *   1. Breadcrumb
- *   2. Full-bleed landscape hero (21:9 desktop, 16:9 mobile)
- *   3. Purchase bar (title | price | CTA on one line, wraps on mobile)
- *   4. Story split:
- *        Left (sticky): italic lede → body → delivery → HoWA+ → accordion → bottom CTA
- *        Right (scrolls): vertical image stack (desktop) / peek-carousel (mobile)
- *      On mobile: copy comes first, carousel below the accordion
- *   5. Related products
- */
+// "£48" → 48, "£1,250.50" → 1250.5. Falls back to 0 for non-numeric strings
+// (which would be a data bug — Sentry alert in production).
+function parsePrice(p: string): number {
+  const n = Number(p.replace(/[^0-9.]/g, ""));
+  return Number.isFinite(n) ? n : 0;
+}
 
 function resolveProduct(handle: string) {
   const local = findProduct(handle);
@@ -70,34 +63,49 @@ export default async function ProductPage({
   if (!product) notFound();
 
   const related = getRelatedProducts(product.relatedHandles ?? []);
+  const baseUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
+  const productUrl = `${baseUrl}/shop/${product.handle}`;
+
+  const breadcrumbItems = [
+    { name: "Shop", href: "/shop" },
+    ...(product.collection
+      ? [{ name: product.collection, href: `/shop/collections/${product.collection.toLowerCase()}` }]
+      : []),
+    { name: product.title, href: `/shop/${product.handle}` },
+  ];
 
   return (
-    <article className="bg-house-white text-house-brown">
+    <div className={s.page}>
+      <BreadcrumbJsonLd items={breadcrumbItems} />
+      <ProductJsonLd
+        name={product.title}
+        description={product.lede}
+        image={product.image}
+        url={productUrl}
+        sku={product.handle}
+        price={parsePrice(product.price)}
+        availability="InStock"
+      />
       {/* Breadcrumb */}
-      <nav
-        aria-label="Breadcrumb"
-        className="px-[5vw] pt-3 pb-2 font-sans text-[11px] tracking-[0.18em] uppercase text-house-stone"
-      >
-        <Link href="/shop" className="no-underline hover:text-house-gold transition-colors">
-          Shop
-        </Link>
+      <nav aria-label="Breadcrumb" className={s.crumbs}>
+        <Link href="/shop" className={s.crumbLink}>Shop</Link>
         {product.collection ? (
           <>
-            <span className="mx-2">/</span>
+            <span className={s.crumbSep}>/</span>
             <Link
               href={`/shop/collections/${product.collection.toLowerCase()}`}
-              className="no-underline hover:text-house-gold transition-colors"
+              className={s.crumbLink}
             >
               {product.collection}
             </Link>
           </>
         ) : null}
-        <span className="mx-2">/</span>
-        <span className="text-house-brown">{product.title}</span>
+        <span className={s.crumbSep}>/</span>
+        <span>{product.title}</span>
       </nav>
 
-      {/* 1. Hero landscape */}
-      <div className="relative w-full overflow-hidden">
+      {/* Hero landscape */}
+      <div className={s.hero}>
         <Image
           src={product.image}
           alt={product.title}
@@ -105,78 +113,65 @@ export default async function ProductPage({
           height={1200}
           priority
           sizes="100vw"
-          className="w-full h-auto aspect-[21/9] max-md:aspect-[16/9] object-cover"
+          className={s.heroImage}
         />
         {product.houseApproved ? (
-          <span className="absolute top-4 left-4 md:top-5 md:left-5 font-sans text-[9px] tracking-[0.22em] uppercase text-house-gold bg-white/92 px-3 py-1.5 border border-house-gold/30 z-10">
-            House Approved
-          </span>
+          <span className={s.heroSeal}>House Approved</span>
         ) : null}
       </div>
 
-      {/* 2. Purchase bar — matches mockup: 20px vertical padding */}
-      <div className="flex flex-wrap items-center justify-between gap-[20px] px-[5vw] py-[20px] border-b border-house-brown/10 bg-house-white">
-        <div className="flex flex-col gap-0.5 min-w-0 flex-1">
+      {/* Purchase bar */}
+      <div className={s.bar}>
+        <div className={s.barTitle}>
           {product.collection ? (
-            <span className="font-sans text-[10px] tracking-[0.22em] uppercase text-house-gold">
-              {product.collection}
-            </span>
+            <span className={s.barCollection}>{product.collection}</span>
           ) : null}
-          <h1 className="font-display font-medium text-[clamp(22px,3vw,30px)] leading-[1.15] tracking-[-0.005em]">
-            {product.title}
-          </h1>
+          <h1 className={s.barName}>{product.title}</h1>
         </div>
-        <span className="font-display font-medium text-[clamp(20px,2.6vw,26px)]">
+        <div className={s.barPrice}>
           {product.compareAtPrice ? (
             <>
-              <span className="line-through text-house-stone/60 text-[0.8em] mr-2">
-                {product.compareAtPrice}
-              </span>
+              <span className={s.barCompare}>{product.compareAtPrice}</span>
               {product.price}
             </>
           ) : (
             product.price
           )}
-        </span>
-        <span className="max-md:w-full max-md:order-3 inline-block text-center px-8 py-3.5 font-sans text-[12px] tracking-[0.18em] uppercase text-house-stone/60 bg-house-cream-dark border border-house-brown/10 cursor-not-allowed">
-          Coming soon
-        </span>
+        </div>
+        <span className={s.barCta}>Coming soon</span>
       </div>
 
-      {/* 3. Story split — sticky copy left + scrolling gallery right */}
-      <div className="grid grid-cols-1 md:grid-cols-2 max-w-[1400px] mx-auto">
-        {/* Copy — order 1 on both mobile and desktop */}
-        <div className="order-1">
+      {/* Story split */}
+      <div className={s.story}>
+        <div className={s.storyCopy}>
           <ProductCopy product={product} />
         </div>
-        {/* Gallery — order 2 on both; on desktop this is the right column */}
-        <div className="order-2 overflow-hidden">
+        <div className={s.storyGallery}>
           <ProductGallery images={product.images} />
         </div>
       </div>
 
-      {/* 4. Related */}
+      {/* Related */}
       {related.length > 0 ? (
-        <section className="px-[5vw] py-16 bg-house-cream border-t border-house-brown/10">
-          <div className="max-w-[1400px] mx-auto">
-            <div className="flex items-baseline justify-between mb-8 gap-4">
-              <div>
-                <Eyebrow>You might also consider</Eyebrow>
-                <h2 className="font-display font-medium text-[28px] leading-[1.2] mt-2">
-                  From the same world.
-                </h2>
-              </div>
-              <GhostLink href="/shop">All products</GhostLink>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-10">
-              {related.map((p) => (
-                <ProductCard key={p.handle} product={p} />
-              ))}
-            </div>
+        <section className={s.related}>
+          <header className={s.relatedHead}>
+            <p className={s.relatedEy}>You might also consider</p>
+            <h2 className={s.relatedTitle}>
+              From the same <em>world.</em>
+            </h2>
+          </header>
+          <div className={s.relatedGrid}>
+            {related.map((p) => (
+              <ProductCard key={p.handle} product={p} />
+            ))}
           </div>
+          <Link href="/shop" className={s.relatedFootLink}>
+            All products
+            <span aria-hidden="true">→</span>
+          </Link>
         </section>
       ) : null}
-    </article>
+    </div>
   );
 }
 

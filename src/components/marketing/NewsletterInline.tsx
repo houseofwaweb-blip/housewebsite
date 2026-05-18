@@ -75,7 +75,7 @@ export function NewsletterInline({
   const defaultLegal = legalNote ?? "Free \u00b7 GDPR compliant";
 
   // Image for split layout (cream/paper use the drawing room, dark uses Georgian terrace)
-  const splitImage = isDark ? "/home/hero-georgian.png" : "/partners/hero.png";
+  const splitImage = isDark ? "/home/hero-georgian.webp" : "/partners/hero.webp";
 
   return (
     <div

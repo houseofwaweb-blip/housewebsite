@@ -1,85 +1,65 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Eyebrow } from "@/components/primitives/Eyebrow";
-import { GhostLink } from "@/components/primitives/GhostLink";
+import s from "./interiors.module.css";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { getNewsletterBlock } from "@/lib/cms/newsletter";
-import { getPageSections, cms } from "@/lib/cms/page-sections";
-import { getPartnersByDiscipline } from "@/lib/cms/partners";
-import { LAUNCH_PARTNERS } from "@/lib/partners-data";
-import { PartnerCarousel, type PartnerCardData } from "@/components/marketing/PartnerCarousel";
+
+/**
+ * /design/interiors — lander framework.
+ *
+ * Section order:
+ *   1. Hero — Tunbridge interior right, copy left
+ *   2. Stats strip
+ *   3. Three plans — Edit, Additions, Full Edit
+ *   4. Projects gallery — asymmetric editorial grid
+ *   5. Quote
+ *   6. Companion split — start with the Companion
+ *   7. Newsletter
+ */
 
 export const metadata = {
-  title: "Design · Interiors",
+  title: "Interiors — Consciously designed.",
   description:
-    "Consciously designed interiors through THE HOUSE EDIT. Digital plans, full-home edits, and styling sessions — every scheme House Approved.",
+    "Consciously designed interiors through The House Edit. Digital plans, full-home edits, and styling sessions — every scheme House Approved.",
 };
 
-const PROJECTS = [
-  {
-    src: "/design/interiors/project-living-room.webp",
-    alt: "Herts living room — layered textures, muted palette, natural light",
-    caption: "Herts Living Room Design",
-    span: "col-span-2 row-span-2",
-    aspect: "aspect-[4/5]",
-  },
-  {
-    src: "/design/interiors/project-bedroom.webp",
-    alt: "Buckingham bedroom — deep green walls, brass accents, linen bedding",
-    caption: "Buckingham Bedroom Design",
-    span: "col-span-1 row-span-1",
-    aspect: "aspect-[3/4]",
-  },
-  {
-    src: "/design/interiors/project-dining.webp",
-    alt: "Herts dining room — warm timber, candlelight, considered table setting",
-    caption: "Herts Dining Room Design",
-    span: "col-span-1 row-span-1",
-    aspect: "aspect-[3/4]",
-  },
-  {
-    src: "/design/interiors/project-tunbridge-1.webp",
-    alt: "Tunbridge Wells — period drawing room with restored mouldings",
-    caption: "Tunbridge Wells Project",
-    span: "col-span-1 row-span-1",
-    aspect: "aspect-[4/5]",
-  },
-  {
-    src: "/design/interiors/project-tunbridge-2.webp",
-    alt: "Tunbridge Wells — layered sitting room with heritage palette",
-    caption: "Tunbridge Wells Project II",
-    span: "col-span-2 row-span-1",
-    aspect: "aspect-[16/9]",
-  },
+const STAT_COLS = [
+  { value: "3", label: "Plans to begin" },
+  { value: "1:1", label: "Designer access" },
+  { value: "15%", label: "House Store discount" },
+  { value: "0", label: "Cookie-cutter schemes" },
 ];
 
 const PLANS = [
   {
     name: "The House Edit",
+    tagline: "A 90-minute studio session.",
     price: "£295",
-    image: "/partners/project-3.jpg",
     inclusions: [
       "A 90-minute one-to-one online styling session",
       "Thoughtful guidance on palette, layout and sourcing",
       "A personalised PDF moodboard with curated links",
       "10% House Store discount",
     ],
+    image: "/design/interiors/project-living-room.webp",
+    featured: true,
   },
   {
     name: "Additions to Your Edit",
+    tagline: "À-la-carte top-ups.",
     price: "from £195",
-    image: "/services/cleaning.png",
     inclusions: [
       "Shoppable moodboard",
       "Sourcing per room",
       "Material pack — swatches, samples, scents",
       "30-minute follow-up call",
     ],
+    image: "/design/interiors/project-bedroom.webp",
   },
   {
     name: "The Full House Edit",
+    tagline: "A whole-home brief, fully held.",
     price: "from £795",
-    image: "/design/interiors/project-detail.webp",
     inclusions: [
       "Initial 90-minute consultation",
       "Moodboards for up to three rooms",
@@ -88,311 +68,310 @@ const PLANS = [
       "30-minute follow-up call",
       "15% House Store discount",
     ],
+    image: "/design/interiors/project-detail.webp",
   },
 ];
 
-/* ── Fallback partners when Sanity is empty ── */
-const INTERIORS_FALLBACK = [
-  LAUNCH_PARTNERS["delve-interiors"],
-  LAUNCH_PARTNERS["jessica-durling-mcmahon"],
+const STUDIOS = [
+  {
+    slug: "delve-interiors",
+    name: "Delve Interiors",
+    type: "Interiors studio",
+    location: "London & South East",
+    blurb: "Considered schemes, quiet palettes, careful detailing. Listed homes and period flats.",
+    image: "/design/interiors/project-detail.webp",
+    status: "live" as const,
+  },
+  {
+    slug: "jessica-durling-mcmahon",
+    name: "Jessica Durling-McMahon",
+    type: "Interior designer",
+    location: "London & Cotswolds",
+    blurb: "Layered rooms with confident colour, antiques properly used, and a deep love of textile.",
+    image: "/design/interiors/project-dining.webp",
+    status: "live" as const,
+  },
+  {
+    name: "More studios joining",
+    type: "Coming soon",
+    blurb: "We grow the collective only when the next person we'd quietly recommend to a friend turns up.",
+    status: "soon" as const,
+  },
+  {
+    name: "Apply to the collective",
+    type: "Interiors studios",
+    blurb: "We review applications from studios working in the UK. House Approved is a standard, not a label.",
+    status: "apply" as const,
+  },
+];
+
+const PROJECTS = [
+  {
+    src: "/design/interiors/project-living-room.webp",
+    caption: "Herts Living Room",
+    alt: "Herts living room — layered textures, muted palette, natural light",
+    span: "tall",
+  },
+  {
+    src: "/design/interiors/project-bedroom.webp",
+    caption: "Buckingham Bedroom",
+    alt: "Buckingham bedroom — deep green walls, brass accents, linen bedding",
+  },
+  {
+    src: "/design/interiors/project-dining.webp",
+    caption: "Herts Dining",
+    alt: "Herts dining room — warm timber, candlelight, considered table setting",
+  },
+  {
+    src: "/design/interiors/project-tunbridge-1.webp",
+    caption: "Tunbridge Wells I",
+    alt: "Tunbridge Wells — period drawing room with restored mouldings",
+  },
+  {
+    src: "/design/interiors/project-tunbridge-2.webp",
+    caption: "Tunbridge Wells II",
+    alt: "Tunbridge Wells — layered sitting room with heritage palette",
+    span: "wide",
+  },
 ];
 
 export default async function InteriorsPage() {
-  const [nlBlock, sanityPartners, sections] = await Promise.all([
-    getNewsletterBlock("design-interiors"),
-    getPartnersByDiscipline("interiors"),
-    getPageSections("design-interiors"),
-  ]);
-  const s = (name: string) => sections.get(name);
-
-  /* Build partner card data for the carousel */
-  const partnerCards: PartnerCardData[] = sanityPartners.length > 0
-    ? sanityPartners.map((p) => ({
-        slug: p.slug,
-        name: p.name,
-        type: p.type ?? "design-studio",
-        shortBio: p.shortBio,
-        specialties: p.specialties ?? [],
-        houseApprovedSeal: p.houseApprovedSeal ?? false,
-      }))
-    : INTERIORS_FALLBACK.map((p) => ({
-        slug: p.slug,
-        name: p.name,
-        type: p.type,
-        shortBio: p.shortBio,
-        specialties: p.specialties,
-        houseApprovedSeal: p.houseApprovedSeal,
-      }));
+  const nlBlock = await getNewsletterBlock("design-interiors");
 
   return (
-    <>
-      {/* ─── 1. Hero ─── */}
-      <section className="relative min-h-[85vh] flex items-end">
-        <Image
-          src="/design/interiors/project-tunbridge-1.webp"
-          alt="Tunbridge Wells interior — restored period drawing room with garden light"
-          fill
-          priority
-          className="object-cover object-center"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-        <div className="relative z-10 px-[5vw] pb-[8vh] max-w-[880px]">
-          <Eyebrow className="text-white/70">Design · Interiors</Eyebrow>
-          <h1 className="font-display font-medium text-[clamp(44px,7vw,84px)] leading-[1.02] tracking-[-0.015em] text-white mt-4">
-            {cms(s("hero"), "headline", "Interior Design")}
-          </h1>
-          <p className="font-display italic text-[clamp(20px,2.4vw,30px)] leading-[1.3] text-white/85 mt-3">
-            {cms(s("hero"), "subheadline", "Consciously Designed Interiors")}
-          </p>
-          <p className="font-sans text-[17px] leading-[1.65] text-white/75 mt-6 max-w-[56ch]">
-            {cms(s("hero"), "body", "At the House of Willow Alexander, we believe that interiors are living expressions of the people who inhabit them. Our love of design — and our devotion to craftsmanship — has led us to bring together a collective of interior designers and makers who share a single philosophy: beauty, balance, and intention.")}
-          </p>
-          <div className="mt-8 flex items-center gap-4 flex-wrap">
-            <Link
-              href="#open-booking-form"
-              className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-6 py-3.5 no-underline transition-colors duration-[var(--t-slow)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
-            >
-              Book with HoWA
-            </Link>
-            <GhostLink href="#plans" className="text-white border-white/40 hover:border-white">
-              View plans
-            </GhostLink>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── 2. Our Designers — Dark carousel band ─── */}
-      <PartnerCarousel
-        partners={partnerCards}
-        heading="The collective behind your home."
-        headingEm="home."
-        lede="Each studio is selected for their craft, ethics, and aesthetic harmony with the House."
-        dark
-      />
-
-      {/* ─── 3. Image breath — full-bleed project strip ─── */}
-      <section className="relative h-[35vh] md:h-[45vh]">
-        <Image
-          src="/design/interiors/project-detail.webp"
-          alt="Interior detail — layered textiles, brass hardware, natural light"
-          fill
-          className="object-cover object-center"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-house-brown/20 to-transparent" />
-      </section>
-
-      {/* ─── 4. Digital Plans — Featured + grid ─── */}
-      <section id="plans" className="bg-house-cream px-[5vw] py-[88px]">
-        <div className="max-w-[1280px] mx-auto">
-          <div className="mb-14">
-            <Eyebrow>Digital Plans</Eyebrow>
-            <h2 className="font-display font-medium text-[clamp(28px,3.6vw,46px)] leading-[1.1] mt-4 max-w-[20ch]">
-              {cms(s("plans"), "headline", "Three ways to begin.")}
-            </h2>
-          </div>
-
-          {/* Featured plan — The House Edit, hero-scale */}
-          <div className="grid md:grid-cols-[1.3fr_1fr] gap-0 mb-8 bg-white border border-house-brown/10 overflow-hidden">
-            <div className="relative min-h-[360px] md:min-h-0">
-              <Image
-                src={PLANS[0].image}
-                alt={`${PLANS[0].name} — interior design plan`}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 55vw"
-              />
-            </div>
-            <div className="p-10 md:p-12 flex flex-col justify-center">
-              <span className="block font-sans text-[11px] tracking-[0.2em] uppercase mb-3" style={{ color: "var(--house-gold-dark)" }}>
-                Featured
-              </span>
-              <h3 className="font-display font-medium text-[clamp(28px,3vw,38px)] leading-[1.1] text-house-brown mb-2">
-                {PLANS[0].name}
-              </h3>
-              <span className="block font-sans text-[16px] text-house-brown/70 mb-6">
-                {PLANS[0].price}
-              </span>
-              <ul className="list-none space-y-2 mb-8">
-                {PLANS[0].inclusions.map((inc) => (
-                  <li key={inc} className="relative pl-4 font-sans text-[15px] leading-[1.6] text-house-brown/70 before:content-['—'] before:absolute before:left-0 before:text-[var(--house-gold-dark)]">
-                    {inc}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="#open-booking-form"
-                className="inline-block self-start font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-6 py-3.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
-              >
-                Book this edit
+    <div className={s.page}>
+      {/* 1. Hero */}
+      <section className={s.hero}>
+        <div className={s.heroCopy}>
+          <div className={s.heroCopyInner}>
+            <p className={s.heroEy}>Design · Interiors</p>
+            <h1 className={s.heroTitle}>
+              Consciously designed <em>interiors.</em>
+            </h1>
+            <p className={s.heroLede}>
+              At the House, interiors are living expressions of the people who
+              inhabit them. Our collective of designers and makers share a
+              single philosophy — beauty, balance, and intention.
+            </p>
+            <div className={s.heroCtas}>
+              <Link href="#plans" className={s.btnFilled}>
+                See the plans
+              </Link>
+              <Link href="/partners" className={s.btnGhost}>
+                The collective
+                <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
           </div>
-
-          {/* Secondary plans — smaller cards side by side */}
-          <div className="grid md:grid-cols-2 gap-6">
-            {PLANS.slice(1).map((plan) => (
-              <div
-                key={plan.name}
-                className="group bg-white border border-house-brown/10 overflow-hidden flex flex-col sm:flex-row"
-              >
-                <div className="relative aspect-[4/3] sm:aspect-auto sm:w-[45%] shrink-0 overflow-hidden">
-                  <Image
-                    src={plan.image}
-                    alt={`${plan.name} — interior design plan`}
-                    fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    sizes="(max-width: 640px) 100vw, 25vw"
-                  />
-                </div>
-                <div className="flex-1 p-6 flex flex-col">
-                  <h3 className="font-display font-medium text-[22px] leading-[1.15] text-house-brown mb-1">
-                    {plan.name}
-                  </h3>
-                  <span className="block font-sans text-[13px] text-house-brown/60 mb-4">
-                    {plan.price}
-                  </span>
-                  <ul className="flex-1 list-none space-y-1.5 mb-5">
-                    {plan.inclusions.map((inc) => (
-                      <li key={inc} className="relative pl-4 font-sans text-[13px] leading-[1.5] text-house-brown/70 before:content-['—'] before:absolute before:left-0 before:text-[var(--house-gold-dark)]">
-                        {inc}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link
-                    href="#open-booking-form"
-                    className="inline-block self-start font-sans text-[11px] tracking-[0.18em] uppercase text-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] px-5 py-2.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-[var(--house-gold-dark)] hover:text-white"
-                  >
-                    Book this edit
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* The Style Diagnostic — Coming Soon */}
-          <div className="mt-8 border border-dashed border-house-brown/15 bg-white/50 p-8 text-center max-w-[680px] mx-auto">
-            <span className="inline-block font-sans text-[10px] tracking-[0.22em] uppercase text-howa-teal-dark bg-howa-teal-dark/8 px-3 py-1 mb-4">
-              Coming Soon
-            </span>
-            <h3 className="font-display font-medium text-[22px] leading-[1.15] mb-2">
-              The Style Diagnostic
-            </h3>
-            <p className="font-sans text-[14px] leading-[1.6] text-house-brown/70 max-w-[44ch] mx-auto mb-4">
-              A guided style journey that reveals your personal home moodboard.
-            </p>
-            <GhostLink href="/api/howa-bounce?source=style-diagnostic-waitlist">
-              Register interest
-            </GhostLink>
-          </div>
+        </div>
+        <div className={s.heroVisual}>
+          <Image
+            src="/design/interiors/project-tunbridge-1.webp"
+            alt="Tunbridge Wells interior — restored period drawing room with garden light"
+            fill
+            sizes="(min-width: 1024px) 55vw, 100vw"
+            priority
+            style={{ objectFit: "cover", objectPosition: "center" }}
+          />
         </div>
       </section>
 
-      {/* ─── 4. Our Projects — Asymmetric masonry gallery ─── */}
-      <section className="bg-white px-[5vw] py-[88px] border-t border-house-brown/8">
-        <div className="max-w-[1280px] mx-auto">
-          <div className="text-center mb-14">
-            <Eyebrow>Our Projects</Eyebrow>
-            <h2 className="font-display font-medium text-[clamp(28px,3.6vw,46px)] leading-[1.1] mt-4">
-              Rooms that <em className="italic">remember</em> their people.
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-            {PROJECTS.map((p) => (
-              <div key={p.src} className={`group relative overflow-hidden ${p.span}`}>
-                <div className={`relative w-full h-full ${p.aspect}`}>
-                  <Image
-                    src={p.src}
-                    alt={p.alt}
-                    fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    sizes="(max-width: 768px) 50vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <span className="absolute bottom-0 left-0 right-0 px-4 py-3 font-sans text-[12px] tracking-[0.12em] uppercase text-white translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                    {p.caption}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
+      {/* 2. Stats strip */}
+      <section className={s.statsStrip}>
+        <div className={s.statsLede}>
+          <p className={s.statsLedeLine1}>Beauty. Balance. Intention.</p>
+          <p className={s.statsLedeLine2}>Every scheme through a House-Approved studio.</p>
         </div>
+        {STAT_COLS.map((stat) => (
+          <div key={stat.label} className={s.stat}>
+            <span className={s.statValue}>{stat.value}</span>
+            <span className={s.statLabel}>{stat.label}</span>
+          </div>
+        ))}
       </section>
 
-      {/* ─── 4. Interstitial — full-width image band ─── */}
-      <section className="relative h-[40vh] md:h-[50vh]">
-        <Image
-          src="/partners/hero.png"
-          alt="Drawing room with garden views — natural light, period mouldings"
-          fill
-          className="object-cover object-center"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-black/20" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <p className="font-display italic text-[clamp(22px,3vw,36px)] text-white text-center leading-[1.3] px-6 max-w-[36ch]">
-            &ldquo;A home that carries you. Not a statement you have to keep
-            up with.&rdquo;
+      {/* 3. Three plans */}
+      <section id="plans" className={s.plans}>
+        <header className={s.plansHead}>
+          <p className={s.plansEy}>Digital Plans</p>
+          <h2 className={s.plansTitle}>
+            Three ways <em>to begin.</em>
+          </h2>
+          <p className={s.plansLede}>
+            From a 90-minute studio session to a full-home brief held end to
+            end — the right entry point for the room you're starting with.
           </p>
-        </div>
-      </section>
-
-      {/* ─── 5. Companion / HoWA ─── */}
-      <section className="bg-house-white px-[5vw] py-[80px] border-t border-house-brown/8">
-        <div className="max-w-[1080px] mx-auto grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-14 items-center">
-          <div>
-            <span className="block mb-5 font-sans text-[11px] tracking-[0.22em] uppercase text-howa-teal-dark">
-              HoWA · Companion
-            </span>
-            <h2 className="font-sans font-normal text-[clamp(28px,3.2vw,42px)] leading-[1.12] tracking-[-0.015em] text-house-brown mb-[14px]">
-              Start with the{" "}
-              <em className="italic font-light text-howa-teal-dark">
-                Companion.
-              </em>
-            </h2>
-            <p className="max-w-[480px] mb-[10px] font-sans text-[16px] leading-[1.65] text-house-brown/70">
-              Capture your room, ambition, timeline, budget, and aesthetic
-              direction. The Companion builds a brief that your designer can
-              work from on day one — nothing lost, nothing repeated.
-            </p>
-            <p className="max-w-[480px] mb-[26px] font-sans text-[15px] leading-[1.65] text-house-brown/70 italic">
-              Available to all HoWA members.
-            </p>
-            <Link
-              href="/api/howa-bounce?source=interiors-companion"
-              className="inline-block px-[26px] py-[13px] font-sans text-[12px] tracking-[0.16em] uppercase no-underline bg-[var(--house-gold-dark)] text-white border border-[var(--house-gold-dark)] transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
+        </header>
+        <div className={s.plansGrid}>
+          {PLANS.map((p) => (
+            <article
+              key={p.name}
+              className={`${s.planCard} ${p.featured ? s.planCardFeatured : ""}`}
             >
-              Start the Companion
-            </Link>
-          </div>
-
-          <div className="relative aspect-[4/3] overflow-hidden">
-            <Image
-              src="/design/interiors/project-living-room.webp"
-              alt="Living room project — the kind of room the Companion helps you brief"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-          </div>
+              <div className={s.planImage}>
+                <Image
+                  src={p.image}
+                  alt={p.name}
+                  width={780}
+                  height={585}
+                  sizes="(min-width: 1024px) 33vw, 90vw"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+                {p.featured ? <span className={s.planRibbon}>Featured</span> : null}
+              </div>
+              <div className={s.planBody}>
+                <h3 className={s.planName}>{p.name}</h3>
+                <p className={s.planTagline}>{p.tagline}</p>
+                <p className={s.planPrice}>{p.price}</p>
+                <ul className={s.planList}>
+                  {p.inclusions.map((inc) => (
+                    <li key={inc}>{inc}</li>
+                  ))}
+                </ul>
+                <Link href="#open-booking-form" className={s.planCta}>
+                  Book this edit →
+                </Link>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
-      {/* ─── 7. Newsletter ─── */}
+      {/* 3b. The studios behind the work */}
+      <section className={s.studios}>
+        <header className={s.studiosHead}>
+          <p className={s.studiosEy}>The collective</p>
+          <h2 className={s.studiosTitle}>
+            The studios <em>behind the work.</em>
+          </h2>
+          <p className={s.studiosLede}>
+            Every interiors brief lands with a House-Approved studio. We start
+            small on purpose — two interiors partners at launch, more joining
+            as we find them.
+          </p>
+        </header>
+        <div className={s.studiosGrid}>
+          {STUDIOS.map((studio) => (
+            <article
+              key={studio.name}
+              className={`${s.studioCard} ${studio.status !== "live" ? s.studioCardPlaceholder : ""}`}
+            >
+              {studio.status === "live" && studio.image ? (
+                <div className={s.studioImage}>
+                  <Image
+                    src={studio.image}
+                    alt={studio.name}
+                    width={720}
+                    height={540}
+                    sizes="(min-width: 1024px) 25vw, 90vw"
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  />
+                </div>
+              ) : (
+                <div className={s.studioImagePlaceholder}>
+                  <span className={s.studioPlaceholderMark}>
+                    {studio.status === "soon" ? "→" : "+"}
+                  </span>
+                </div>
+              )}
+              <div className={s.studioBody}>
+                <p className={s.studioType}>
+                  {studio.type}
+                  {"location" in studio && studio.location ? ` · ${studio.location}` : ""}
+                </p>
+                <h3 className={s.studioName}>{studio.name}</h3>
+                <p className={s.studioBlurb}>{studio.blurb}</p>
+                {studio.status === "live" && "slug" in studio ? (
+                  <Link href={`/partners/${studio.slug}`} className={s.studioCta}>
+                    See the work →
+                  </Link>
+                ) : studio.status === "apply" ? (
+                  <Link href="/partners#apply" className={s.studioCta}>
+                    Apply →
+                  </Link>
+                ) : (
+                  <span className={s.studioBadge}>Coming soon</span>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* 4. Projects gallery */}
+      <section className={s.projects}>
+        <header className={s.projectsHead}>
+          <p className={s.projectsEy}>Our projects</p>
+          <h2 className={s.projectsTitle}>
+            Rooms that <em>remember their people.</em>
+          </h2>
+        </header>
+        <div className={s.projectsGrid}>
+          {PROJECTS.map((p, i) => (
+            <figure
+              key={p.src}
+              className={`${s.projectCard} ${p.span === "tall" ? s.projectTall : ""} ${p.span === "wide" ? s.projectWide : ""}`}
+            >
+              <Image
+                src={p.src}
+                alt={p.alt}
+                width={1024}
+                height={1024}
+                sizes="(min-width: 1024px) 33vw, 100vw"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                priority={i < 2}
+              />
+              <figcaption className={s.projectCaption}>{p.caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      {/* 5. Quote */}
+      <section className={s.quote}>
+        <p className={s.quoteText}>
+          <em>“A home that carries you. Not a statement you have to keep up with.”</em>
+        </p>
+        <p className={s.quoteAttribution}>The House brief · 2025</p>
+      </section>
+
+      {/* 6. Companion split */}
+      <section className={s.companion}>
+        <div className={s.companionCopy}>
+          <p className={s.companionEy}>HoWA · Companion</p>
+          <h2 className={s.companionTitle}>
+            Start with the <em>Companion.</em>
+          </h2>
+          <p className={s.companionLede}>
+            Capture your room, ambition, timeline, budget and aesthetic
+            direction. The Companion builds a brief your designer can work
+            from on day one — nothing lost, nothing repeated.
+          </p>
+          <p className={s.companionFootnote}>Available to all HoWA members.</p>
+          <Link
+            href="/api/howa-bounce?source=interiors-companion"
+            className={s.btnFilled}
+          >
+            Start the Companion
+          </Link>
+        </div>
+        <div className={s.companionImage}>
+          <Image
+            src="/design/interiors/project-living-room.webp"
+            alt="A living room project — the kind of room the Companion helps you brief"
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            style={{ objectFit: "cover", objectPosition: "center" }}
+          />
+        </div>
+      </section>
+
+      {/* 7. Newsletter */}
       <NewsletterInline
         variant={nlBlock?.variant ?? "cream"}
         sourcePage="/design/interiors"
         {...(nlBlock ?? {})}
       />
-
-      {/* ─── 8. Tagline ─── */}
-      <div className="text-center border-t border-house-brown/10 bg-house-cream px-5 py-6">
-        <p className="font-sans italic text-[14px] text-house-brown/70 tracking-[0.04em]">
-          Beauty, balance, and intention.
-        </p>
-      </div>
-    </>
+    </div>
   );
 }

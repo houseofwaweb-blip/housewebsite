@@ -130,7 +130,7 @@ function toHearthArticle(doc: RawSanityArticle): HearthArticle {
     category,
     categoryLong: doc.categoryLong,
     categorySlug: doc.categorySlug,
-    image: doc.image || "/hearth/art-lead.png",
+    image: doc.image || "/hearth/art-lead.webp",
     imageAlt: doc.imageAlt,
     dek: doc.dek,
     author: doc.author,

@@ -1,200 +1,407 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Eyebrow } from "@/components/primitives/Eyebrow";
-import { GhostLink } from "@/components/primitives/GhostLink";
-import { NewsletterInline } from "@/components/marketing/NewsletterInline";
-import { getNewsletterBlock } from "@/lib/cms/newsletter";
-import { FeatureGrid } from "@/components/marketing/FeatureGrid";
-import { MonthTimeline } from "@/components/marketing/MonthTimeline";
-import { TestimonialBand } from "@/components/marketing/TestimonialCard";
-import { ComparisonTable } from "@/components/marketing/ComparisonTable";
-import { getPageSections, cms } from "@/lib/cms/page-sections";
+import s from "./howa-plus-v1.module.css";
+import { FaqList } from "@/components/marketing/FaqList";
+
+/**
+ * /howa/plus — HoWA+ membership page.
+ *
+ * Section order:
+ *   1. Hero — pink Georgian + blueprint, copy left, image right
+ *   2. Stats strip
+ *   3. Benefits grid — 6 included with HoWA+
+ *   4. Comparison row — Free vs HoWA+
+ *   5. Intelligence band — what your membership pays for
+ *   6. FAQ
+ *   7. Closing — Become a member
+ */
 
 export const metadata = {
-  title: "HoWA+",
+  title: "HoWA+ — A home you mean to keep.",
   description:
-    "The connected membership for a home you mean to keep. £16.99/month. Living record, Companion diagnostic, member pricing, and more.",
+    "The connected membership for a home you mean to keep. £16.99 / month. Living Record, full Companion, member pricing. Cancel anytime.",
 };
 
-const FEATURES = [
+const STAT_COLS = [
+  { value: "£16.99", label: "per month" },
+  { value: "10%", label: "off every House Service" },
+  { value: "∞", label: "Living Record entries" },
+  { value: "0", label: "minimum term" },
+];
+
+const BENEFITS = [
   {
-    title: "10% Off All House Services",
-    description: "Auto-applied at checkout. Gardening, cleaning, windows, gutters, design packages, and product bundles. This is a benefit of HoWA+, but it is not the purpose. The purpose is intelligence.",
+    icon: PercentIcon,
+    image: "/home-v4/plus-benefit-1.png",
+    title: "10% off every House Service",
+    body: "Gardening, cleaning, windows, gutters, design packages, product bundles. Auto-applied at checkout — no codes, no fuss.",
   },
   {
-    title: "Full Dashboard Continuity & Task Centre",
-    description: "Every service, review, booking, and purchase filed to one record that grows with the home. Tasks, seasonal prompts, and reminders surface what matters before it becomes a problem. No meaningful journey ends as an orphan enquiry.",
-    linkHref: "/howa/how-it-works",
-    linkLabel: "How it works →",
+    icon: ClipboardIcon,
+    image: "/home-v4/plus-benefit-2.png",
+    title: "Living Record & Task Centre",
+    body: "Every service, invoice, certificate and photograph filed to a record that grows with the home. Seasonal prompts surface what matters before it bites.",
+    cta: { label: "How it works", href: "/howa/how-it-works" },
   },
   {
-    title: "Companion Diagnostic (Full)",
-    description: "The full Companion. Capture home type, rooms, priorities, style, budget, and household context. AI repair scan and instant quote. AI design moodboards. Every result saves to the home record, even before purchase.",
-    linkHref: "/howa/companion",
-    linkLabel: "See the Companion →",
+    icon: ScanIcon,
+    image: "/home-v4/plus-benefit-3.png",
+    title: "Full Companion Diagnostic",
+    body: "AI repair scan, instant quote, design moodboards. Capture home type, rooms, priorities, style, budget — saved straight to your record.",
+    cta: { label: "See the Companion", href: "/howa/companion" },
   },
   {
-    title: "Richer Documents & Home Logbook",
-    description: "Invoices, certificates, photos, contractor notes, paint colours, appliance details. The home logbook that every trade can reference. Saved guides and seasonal reminders you can action or defer.",
+    icon: BookIcon,
+    image: "/home-v4/plus-benefit-4.png",
+    title: "Home Logbook & Documents",
+    body: "Paint colours, appliance details, contractor notes — the home logbook every trade can reference. Saved guides and reminders you can action or defer.",
   },
   {
+    icon: HearthIcon,
+    image: "/home-v4/plus-benefit-5.png",
     title: "Priority Booking & The Hearth",
-    description: "Priority booking across all House services and approved partners. Full editorial access to The Hearth magazine: long-form writing on homes, gardens, design, and the craft of looking after a place properly.",
-    linkHref: "/journal",
-    linkLabel: "Browse the Hearth →",
+    body: "Priority across all House services and approved partners. Full editorial access to The Hearth — long-form writing on homes, gardens, and the craft of looking after a place.",
+    cta: { label: "Browse the Hearth", href: "/the-hearth" },
   },
   {
-    title: "Carbon Offset Fund & Early Access",
-    description: "A personal carbon offset fund tracked against your household. Early access to new HoWA features, exclusive House events and drops, and Home Protection Review introductions via Provenance.",
+    icon: LeafIcon,
+    image: "/home-v4/plus-benefit-6.png",
+    title: "Carbon Fund & Early Access",
+    body: "A personal carbon offset fund tracked against your household. Early access to new HoWA features, House events and drops, and Protection Review introductions.",
   },
+];
+
+const COMPARE = [
+  { feature: "Living Record entries", free: "Limited", plus: "Unlimited" },
+  { feature: "Service discount", free: "—", plus: "10% on everything" },
+  { feature: "Companion diagnostic", free: "Lite", plus: "Full" },
+  { feature: "Task centre & reminders", free: "—", plus: "Yes" },
+  { feature: "Priority booking", free: "—", plus: "Yes" },
+  { feature: "The Hearth magazine", free: "Excerpts", plus: "Full access" },
+  { feature: "Carbon offset fund", free: "—", plus: "Tracked" },
+  { feature: "Cancel anytime", free: "—", plus: "Yes" },
+];
+
+const INTELLIGENCE_STATS = [
+  { title: "First-year savings", highlight: "£840", subAfter: " typical" },
+  { title: "Issues caught", subAfter: "before they cost you" },
+  { title: "Record at handover", highlight: "+£18,000", subAfter: " sale uplift" },
+  { title: "No long-term", subAfter: "commitment" },
 ];
 
 const TESTIMONIALS = [
   {
-    quote: "We used to keep everything in a folder under the stairs. Now HoWA knows what was done, when, and by whom. The Companion caught a valve leak we'd have ignored for months.",
+    quote:
+      "We used to keep everything in a folder under the stairs. Now HoWA knows what was done, when, and by whom. The Companion caught a valve leak we'd have ignored for months.",
     name: "Catherine M.",
-    homeType: "4-bed Victorian, Clapham",
+    home: "4-bed Victorian, Clapham",
   },
   {
-    quote: "The member pricing alone pays for itself. We had the gutters done, windows cleaned, and a garden tidy all in the first month. Saved about forty pounds on what we'd have paid calling around.",
+    quote:
+      "The member pricing alone pays for itself. Gutters, windows, garden tidy in the first month — about £40 less than calling around.",
     name: "James & Sarah T.",
-    homeType: "3-bed Edwardian, Dulwich",
+    home: "3-bed Edwardian, Dulwich",
   },
   {
-    quote: "I photograph everything now. The Companion told me the crack above the kitchen door was settlement, not structural. Saved me a surveyor's call-out fee and a week of worry.",
+    quote:
+      "Photograph everything. The Companion told me the crack above the kitchen door was settlement, not structural. Saved me a surveyor's call-out and a week of worry.",
     name: "David R.",
-    homeType: "2-bed cottage, Oxfordshire",
+    home: "2-bed cottage, Oxfordshire",
   },
 ];
 
-export default async function HowaPlusPage() {
-  const [nlBlock, sections] = await Promise.all([
-    getNewsletterBlock("howa-plus"),
-    getPageSections("howa-plus"),
-  ]);
-  const s = (name: string) => sections.get(name);
+const FAQS = [
+  {
+    q: "Can I cancel anytime?",
+    a: "Yes. There's no minimum term. Cancel from your dashboard and your record stays accessible in read-only mode for 12 months.",
+  },
+  {
+    q: "Does HoWA+ replace my insurance?",
+    a: "No. HoWA+ is a stewardship membership, not insurance. It does pair beautifully with a Provenance home protection review — we can introduce you.",
+  },
+  {
+    q: "What if my home doesn't fit a category?",
+    a: "We've built HoWA to flex. Leasehold flats, listed cottages, mews houses — all welcome. Your concierge tailors the standard to your property.",
+  },
+  {
+    q: "Where does my data live?",
+    a: "In the UK, encrypted at rest, owned by you. We don't sell, share, or train models on your home record.",
+  },
+  {
+    q: "Do I have to use the booked services?",
+    a: "Never. HoWA surfaces what needs doing and recommends trusted partners — but you stay in control of who comes to your home.",
+  },
+  {
+    q: "What happens if I move?",
+    a: "Your record moves with you. You can also hand it to the new owner as part of the sale — adding £18,000 of average value in our pilot.",
+  },
+];
 
+export default function HowaPlusV1PreviewPage() {
   return (
-    <article className="text-house-brown">
-      {/* 1. Hero — House editorial zone */}
-      <section className="bg-house-cream px-[5vw] pt-[12vh] pb-16">
-        <div className="max-w-[880px] mx-auto">
-          <Eyebrow>HoWA+</Eyebrow>
-          <h1 className="em-accent font-display font-medium text-[clamp(44px,6vw,76px)] leading-[1.05] tracking-[-0.01em] mt-4">
-            {cms(s("hero"), "headline", "The membership for a home you")} <em>{cms(s("hero"), "headlineEm", "mean to keep.")}</em>
-          </h1>
-          <p className="font-sans text-[19px] leading-[1.6] text-house-brown/75 mt-6 max-w-[60ch]">
-            {cms(s("hero"), "body", "HoWA+ is the paid continuity layer. Full dashboard, full Companion, full Hearth editorial access. A living record that remembers what was done, a task centre that tracks what is due, and priority booking across every House service. The intelligence case first. The savings follow.")}
-          </p>
-          <div className="mt-8 flex items-center gap-4 flex-wrap">
-            <Link
-              href="/api/howa-bounce?source=plus-hero"
-              className="inline-block px-8 py-4 font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
-            >
-              Start HoWA+ — £16.99/month
-            </Link>
-            <GhostLink href="/howa/companion">Try the Companion first</GhostLink>
+    <div className={s.page}>
+      {/* 1. Hero */}
+      <section className={s.hero}>
+        <div className={s.heroCopy}>
+          <div className={s.heroCopyInner}>
+            <p className={s.heroEy}>HoWA+ · £16.99 / month</p>
+            <h1 className={s.heroTitle}>
+              The connected membership<br />
+              <em>for a home you mean to keep.</em>
+            </h1>
+            <p className={s.heroLede}>
+              The Living Record, full Companion, member pricing, and a place
+              that grows with the home. Cancel anytime.
+            </p>
+            <div className={s.heroCtas}>
+              <Link href="/api/howa-bounce" className={s.btnFilled}>
+                Become a member
+              </Link>
+              <Link href="/howa/how-it-works" className={s.btnGhost}>
+                See how it works
+                <span aria-hidden="true" className={s.btnArrow}>→</span>
+              </Link>
+            </div>
           </div>
-          <p className="font-sans text-[12px] text-house-brown/70 mt-4">
-            Cancel anytime. Your record stays with you.
-          </p>
+        </div>
+        <div className={s.heroVisual}>
+          <div className={s.heroVisualFrame}>
+            <Image
+              src="/home-v4/howa-lander-hero-v4.png"
+              alt="A pink Georgian townhouse, its left half rendered as a hand-drawn elevation"
+              fill
+              sizes="(min-width: 1024px) 55vw, 100vw"
+              priority
+              style={{ objectFit: "contain", objectPosition: "right center" }}
+            />
+          </div>
         </div>
       </section>
 
-      {/* 2. Transition band */}
-      <div
-        className="relative text-center px-[5vw] py-[42px] border-t border-house-brown/10 border-b border-house-brown/8"
-        style={{ background: "linear-gradient(180deg, var(--house-cream) 0%, var(--house-white) 100%)" }}
-      >
-        <span aria-hidden="true" className="block w-[120px] h-px mx-auto mb-[14px] bg-house-gold opacity-60" />
-        <span aria-hidden="true" className="absolute top-[34px] left-1/2 -translate-x-1/2 font-display text-house-gold text-[18px] leading-none">·</span>
-        <p className="font-sans italic text-[15px] text-house-brown/70 tracking-[0.04em]">
-          The House introduces.
-          <span className="not-italic font-sans text-[11px] tracking-[0.08em] uppercase text-howa-teal ml-2.5 pl-2.5 border-l border-house-brown/20">
-            HoWA+ connects
-          </span>
+      {/* 2. Stats strip */}
+      <section className={s.statsStrip}>
+        <div className={s.statsLede}>
+          <p className={s.statsLedeLine1}>One membership.</p>
+          <p className={s.statsLedeLine2}>The whole house, looked after.</p>
+        </div>
+        {STAT_COLS.map((stat) => (
+          <div key={stat.label} className={s.stat}>
+            <span className={s.statValue}>{stat.value}</span>
+            <span className={s.statLabel}>{stat.label}</span>
+          </div>
+        ))}
+      </section>
+
+      {/* 3. Benefits grid — 3×2 editorial */}
+      <section className={s.benefits}>
+        <header className={s.benefitsHead}>
+          <p className={s.benefitsEy}>What's included.</p>
+          <h2 className={s.benefitsTitle}>
+            Everything that turns a house{" "}
+            <em>into a home you trust.</em>
+          </h2>
+        </header>
+        <div className={s.benefitsGrid}>
+          {BENEFITS.map((b) => {
+            const Icon = b.icon;
+            return (
+              <article key={b.title} className={s.benefitCard}>
+                <div className={s.benefitImage}>
+                  <Image
+                    src={b.image}
+                    alt=""
+                    width={1200}
+                    height={900}
+                    sizes="(min-width: 1024px) 33vw, 90vw"
+                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  />
+                  <span className={s.benefitIcon} aria-hidden="true">
+                    <Icon />
+                  </span>
+                </div>
+                <div className={s.benefitBody}>
+                  <h3 className={s.benefitTitle}>{b.title}</h3>
+                  <p className={s.benefitText}>{b.body}</p>
+                  {b.cta ? (
+                    <Link href={b.cta.href} className={s.benefitCta}>
+                      {b.cta.label} →
+                    </Link>
+                  ) : null}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* 4. Comparison — Free vs HoWA+ */}
+      <section className={s.compareSection}>
+        <header className={s.compareHead}>
+          <h2 className={s.compareTitle}>
+            Free, or <em>HoWA+</em>.
+          </h2>
+        </header>
+        <div className={s.compareTable}>
+          <div className={s.compareRowHeader}>
+            <span />
+            <span className={s.compareColLabel}>Free</span>
+            <span className={`${s.compareColLabel} ${s.compareColLabelPlus}`}>HoWA+</span>
+          </div>
+          {COMPARE.map((row) => (
+            <div key={row.feature} className={s.compareRow}>
+              <span className={s.compareRowFeature}>{row.feature}</span>
+              <span className={s.compareRowFree}>{row.free}</span>
+              <span className={s.compareRowPlus}>{row.plus}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 5. Intelligence band */}
+      <section className={s.intelligence}>
+        <div className={s.intelligenceCopy}>
+          <header className={s.intelligenceHead}>
+            <span className={s.intelligenceIcon} aria-hidden="true">
+              <CalendarIcon />
+            </span>
+            <h2 className={s.intelligenceTitle}>
+              What a membership pays for, <em>per year.</em>
+            </h2>
+          </header>
+          <div className={s.intelligenceStats}>
+            {INTELLIGENCE_STATS.map((stat, i) => (
+              <div key={stat.title} className={s.iStat}>
+                <p className={s.iStatTitle}>{stat.title}</p>
+                <p className={s.iStatSub}>
+                  {stat.highlight ? (
+                    <span className={s.iStatHighlight}>{stat.highlight}</span>
+                  ) : null}
+                  {stat.subAfter}
+                </p>
+                {i < INTELLIGENCE_STATS.length - 1 ? (
+                  <span aria-hidden="true" className={s.iStatArrow}>→</span>
+                ) : null}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className={s.intelligenceImage}>
+          <Image
+            src="/home-v4/plus-intelligence.png"
+            alt="A warm dusk-lit London townhouse interior — what intelligent stewardship protects"
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            style={{ objectFit: "cover" }}
+          />
+        </div>
+      </section>
+
+      {/* 7. FAQ */}
+      <section className={s.faqSection}>
+        <div className={s.faqCopy}>
+          <header className={s.faqHead}>
+            <p className={s.faqEy}>Before you join.</p>
+            <h2 className={s.faqTitle}>Questions, answered.</h2>
+          </header>
+          <FaqList items={FAQS} />
+        </div>
+        <div className={s.faqVisual}>
+          <div className={s.faqVisualFrame}>
+            <Image
+              src="/home-v4/howa-lander-faq-v2.png"
+              alt=""
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              style={{ objectFit: "contain", objectPosition: "right center" }}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* 8. Closing band */}
+      <section className={s.closing}>
+        <p className={s.closingKicker}>HoWA+ · £16.99 / month · Cancel anytime.</p>
+        <p className={s.closingStatement}>
+          <em>A home you mean to keep.</em>
         </p>
-      </div>
-
-      {/* 3. Feature grid */}
-      <section className="bg-house-white px-[5vw] py-16">
-        <div className="max-w-[1100px] mx-auto">
-          <span className="block font-sans text-[10px] tracking-[0.22em] uppercase text-howa-teal mb-2">
-            What you get
-          </span>
-          <h2 className="font-sans font-normal text-[clamp(28px,3.4vw,40px)] leading-[1.12] tracking-[-0.01em] text-house-brown mb-10">
-            Six things that change how your home is{" "}
-            <em className="italic font-light text-howa-teal">looked after.</em>
-          </h2>
-          <FeatureGrid features={FEATURES} />
-        </div>
-      </section>
-
-      {/* 4. A month in HoWA+ */}
-      <section className="px-[5vw] py-16 border-t border-house-brown/8" style={{ background: "var(--howa-paper, #f4efe4)" }}>
-        <div className="max-w-[1100px] mx-auto">
-          <span className="block font-sans text-[10px] tracking-[0.22em] uppercase text-howa-teal mb-2">
-            A month with HoWA+
-          </span>
-          <h2 className="font-sans font-normal text-[clamp(28px,3.4vw,40px)] leading-[1.12] tracking-[-0.01em] text-house-brown mb-10">
-            What stewardship{" "}
-            <em className="italic font-light text-howa-teal">actually looks like.</em>
-          </h2>
-          <MonthTimeline />
-        </div>
-      </section>
-
-      {/* 5. Social proof */}
-      <TestimonialBand testimonials={TESTIMONIALS} counter={247} />
-
-      {/* 6. Comparison table */}
-      <section className="bg-house-white px-[5vw] py-16 border-t border-house-brown/8">
-        <div className="max-w-[960px] mx-auto">
-          <span className="block font-sans text-[10px] tracking-[0.22em] uppercase text-howa-teal mb-2">
-            Compare
-          </span>
-          <h2 className="font-sans font-normal text-[clamp(28px,3.4vw,40px)] leading-[1.12] tracking-[-0.01em] text-house-brown mb-10">
-            Free, HoWA+, and{" "}
-            <em className="italic font-light text-howa-teal">Steward.</em>
-          </h2>
-          <ComparisonTable />
-        </div>
-      </section>
-
-      {/* 7. Newsletter */}
-      <NewsletterInline
-        variant={nlBlock?.variant ?? "cream"}
-        sourcePage="/howa/plus"
-        headline={nlBlock?.headline ?? "The Hearth is part of HoWA+."}
-        body={nlBlock?.body ?? "Members get full editorial access. But the weekly letter is free for everyone. Seasonal notes on homes, gardens, and the craft of proper care."}
-        {...(nlBlock ?? {})}
-      />
-
-      {/* 8. Bottom CTA */}
-      <section className="bg-howa-navy text-house-cream px-[5vw] py-20">
-        <div className="max-w-[720px] mx-auto text-center">
-          <p className="font-display italic text-[clamp(20px,2.8vw,28px)] leading-[1.35] text-house-cream/80 mb-8">
-            A well-kept home isn&apos;t a list of repairs. It&apos;s a system that remembers, recommends, and connects — so you don&apos;t have to.
-          </p>
-          <Link
-            href="/api/howa-bounce?source=plus-footer"
-            className="inline-block px-10 py-4 font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-[var(--house-gold-dark)] border border-[var(--house-gold-dark)] no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
-          >
-            Start HoWA+ — £16.99/month
+        <div className={s.closingCtas}>
+          <Link href="/api/howa-bounce" className={s.closingBtnFilled}>
+            Become a member
           </Link>
-          <div className="mt-5">
-            <GhostLink href="/howa/faq" dark>
-              Questions? Read the FAQ →
-            </GhostLink>
-          </div>
         </div>
       </section>
+    </div>
+  );
+}
 
-      {/* Tagline */}
-      <div className="text-center border-t border-house-brown/10 bg-house-cream px-5 py-6">
-        <p className="font-display italic text-[14px] text-house-brown/70 tracking-[0.04em]">
-          Ownership is passive. Stewardship is intentional.
-        </p>
-      </div>
-    </article>
+/* ----------------------------------------------------------------
+   Inline SVG icons
+---------------------------------------------------------------- */
+function PercentIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" width="22" height="22" aria-hidden="true">
+      <line x1="19" y1="5" x2="5" y2="19" />
+      <circle cx="6.5" cy="6.5" r="2.5" />
+      <circle cx="17.5" cy="17.5" r="2.5" />
+    </svg>
+  );
+}
+function ClipboardIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" width="22" height="22" aria-hidden="true">
+      <rect x="6" y="4" width="12" height="18" rx="1" />
+      <rect x="9" y="2" width="6" height="3" rx="1" />
+      <path d="M9 11 L11 13 L15 9" />
+      <path d="M9 17 H15" />
+    </svg>
+  );
+}
+function ScanIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" width="22" height="22" aria-hidden="true">
+      <path d="M4 8 V5 a1 1 0 0 1 1 -1 H8" />
+      <path d="M20 8 V5 a1 1 0 0 0 -1 -1 H16" />
+      <path d="M4 16 V19 a1 1 0 0 0 1 1 H8" />
+      <path d="M20 16 V19 a1 1 0 0 1 -1 1 H16" />
+      <path d="M3 12 H21" />
+    </svg>
+  );
+}
+function BookIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" width="22" height="22" aria-hidden="true">
+      <path d="M4 4 H10 a3 3 0 0 1 3 3 V21 a2 2 0 0 0 -2 -2 H4 Z" />
+      <path d="M20 4 H14 a3 3 0 0 0 -3 3 V21 a2 2 0 0 1 2 -2 H20 Z" />
+    </svg>
+  );
+}
+function HearthIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" width="22" height="22" aria-hidden="true">
+      <path d="M4 21 V8 L12 3 L20 8 V21 Z" />
+      <rect x="9" y="13" width="6" height="8" />
+      <path d="M8 11 H16" />
+    </svg>
+  );
+}
+function LeafIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" width="22" height="22" aria-hidden="true">
+      <path d="M5 21 C 5 12, 12 5, 21 5 C 21 14, 14 21, 5 21 Z" />
+      <path d="M5 21 L 14 12" />
+    </svg>
+  );
+}
+function CalendarIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="4" y="6" width="24" height="22" rx="1" />
+      <path d="M4 12 L28 12" />
+      <path d="M10 3 L10 9" />
+      <path d="M22 3 L22 9" />
+      <circle cx="11" cy="18" r="0.9" fill="currentColor" stroke="none" />
+      <circle cx="16" cy="18" r="0.9" fill="currentColor" stroke="none" />
+      <circle cx="21" cy="18" r="0.9" fill="currentColor" stroke="none" />
+    </svg>
   );
 }

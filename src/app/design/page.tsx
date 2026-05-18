@@ -1,146 +1,285 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Eyebrow } from "@/components/primitives/Eyebrow";
-import { GhostLink } from "@/components/primitives/GhostLink";
+import s from "./design.module.css";
 
 /**
  * /design — landing page.
- * Two disciplines (interiors + gardens) + four launch studios.
- * Partner profiles live at /partners/[slug] once Sanity content arrives.
+ *
+ * Section order:
+ *   1. Hero — surreal Interior Design sample board image full-width
+ *   2. Stats strip
+ *   3. Two disciplines — Interiors / Gardens (large editorial panels)
+ *   4. Four launch partners — editorial grid
+ *   5. House Approved — what the seal means
+ *   6. Closing CTA — commission a space
  */
+
 export const metadata = {
-  title: "Design",
+  title: "Design — Interiors and gardens, considered.",
   description:
-    "Interiors and gardens by designers we've vetted and trust. Every project carries the House standard.",
+    "Interiors and gardens by designers we've vetted and trust. Every project carries the House Approved seal.",
 };
 
-const LAUNCH_PARTNERS = [
+const STAT_COLS = [
+  { value: "2", label: "Disciplines" },
+  { value: "4", label: "Launch studios" },
+  { value: "1", label: "Annual review" },
+  { value: "0", label: "Hidden commission" },
+];
+
+const PARTNERS = [
   {
     slug: "delve-interiors",
     name: "Delve Interiors",
     type: "Interiors studio",
-    blurb: "Considered schemes, quiet palettes, careful detailing. London and the South East.",
+    blurb:
+      "Considered schemes, quiet palettes, careful detailing. London and the South East.",
+    image: "/design/interiors/project-tunbridge-1.webp",
   },
   {
     slug: "jessica-durling-mcmahon",
     name: "Jessica Durling-McMahon",
     type: "Interior designer",
-    blurb: "Layered rooms with confident colour, antiques properly used, and a love of textile.",
+    blurb:
+      "Layered rooms with confident colour, antiques properly used, and a love of textile.",
+    image: "/design/interiors/project-bedroom.webp",
   },
   {
     slug: "willow-alexander-gardens",
     name: "Willow Alexander Gardens",
     type: "Garden design",
-    blurb: "Planting schemes and landscapes rooted in the garden's existing character.",
+    blurb:
+      "Planting schemes and landscapes rooted in the garden's existing character.",
+    image: "/design/gardens/hero.jpg",
   },
   {
     slug: "house-ai",
     name: "House AI",
     type: "Specialist partner",
-    blurb: "Automation, lighting schemes, and quiet technology that disappears into the architecture.",
+    blurb:
+      "Automation, lighting schemes, and quiet technology that disappears into the architecture.",
+    image: "/home-v4/design-portrait.png",
   },
+];
+
+const SEAL_LINES = [
+  "We've worked with the principal directly on at least one project.",
+  "Their references include people we already trust.",
+  "Their craft, communication and finish all hold up under scrutiny.",
+  "They review with us annually — and we publish what changes.",
 ];
 
 export default function DesignLanding() {
   return (
-    <article className="bg-house-cream text-house-brown">
-      {/* Hero */}
-      <section className="px-[5vw] pt-[12vh] pb-16">
-        <div className="max-w-[880px] mx-auto">
-          <Eyebrow>Design</Eyebrow>
-          <h1 className="em-accent font-display font-medium text-[clamp(44px,6vw,80px)] leading-[1.05] tracking-[-0.01em] mt-4">
-            Interiors and gardens, <em>considered</em>.
-          </h1>
-          <p className="font-sans text-[19px] leading-[1.6] text-house-brown/75 mt-6 max-w-[60ch]">
-            The House commissions and introduces. Every studio below has been
-            vetted and lives up to what we call &ldquo;House Approved&rdquo;
-            — a mark we place only when we would recommend them to someone
-            we love.
-          </p>
-          <div className="mt-8 flex items-center gap-4 flex-wrap">
-            <Link
-              href="#open-booking-form"
-              className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold px-6 py-3.5 no-underline transition-colors duration-[var(--t-slow)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
-            >
-              Commission a space
-            </Link>
-            <GhostLink href="/partners">See all partners</GhostLink>
-          </div>
+    <div className={s.page}>
+      {/* 1. Hero — full-width Interior Design sample board */}
+      <section className={s.hero}>
+        <div className={s.heroBg} aria-hidden="true">
+          <Image
+            src="/home-v4/design-hero.png"
+            alt=""
+            fill
+            sizes="100vw"
+            priority
+            style={{ objectFit: "cover", objectPosition: "right center" }}
+          />
         </div>
-      </section>
-
-      {/* Two disciplines */}
-      <section className="px-[5vw] py-14 border-t border-house-brown/10 bg-white">
-        <div className="max-w-[1200px] mx-auto grid md:grid-cols-2 gap-6">
-          <Link
-            href="/design/interiors"
-            className="group relative border border-house-brown/10 p-10 bg-house-cream no-underline block transition-all duration-[var(--t-slow)] ease-out hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(48,35,28,0.1)] hover:border-house-gold"
-          >
-            <div className="font-sans text-[10px] tracking-[0.22em] uppercase text-house-gold mb-3">
-              01 · Interiors
-            </div>
-            <h2 className="font-display font-medium text-[32px] leading-[1.15] mb-3 pb-3 relative text-house-brown after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-px after:bg-house-gold after:w-[28px] after:transition-[width] after:duration-[var(--t-slow)] after:ease-out group-hover:after:w-[72px]">
-              Interiors
-            </h2>
-            <p className="font-sans italic text-[16px] leading-[1.6] text-house-stone mb-6">
-              Considered schemes, from whole-house renovations to single-room
-              re-reads.
+        <div className={s.heroCopy}>
+          <div className={s.heroCopyInner}>
+            <p className={s.heroEy}>The House · Design</p>
+            <h1 className={s.heroTitle}>
+              Interiors and gardens, <em>considered.</em>
+            </h1>
+            <p className={s.heroLede}>
+              The House commissions and introduces. Every studio has been
+              vetted and lives up to what we call “House Approved” — a mark
+              we place only when we'd recommend them to someone we love.
             </p>
-            <div className="font-sans text-[11px] tracking-[0.16em] uppercase text-house-gold">
-              Discover interiors →
-            </div>
-          </Link>
-
-          <Link
-            href="/design/gardens"
-            className="group relative border border-house-brown/10 p-10 bg-house-cream no-underline block transition-all duration-[var(--t-slow)] ease-out hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(48,35,28,0.1)] hover:border-house-gold"
-          >
-            <div className="font-sans text-[10px] tracking-[0.22em] uppercase text-house-gold mb-3">
-              02 · Gardens
-            </div>
-            <h2 className="font-display font-medium text-[32px] leading-[1.15] mb-3 pb-3 relative text-house-brown after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-px after:bg-house-gold after:w-[28px] after:transition-[width] after:duration-[var(--t-slow)] after:ease-out group-hover:after:w-[72px]">
-              Gardens
-            </h2>
-            <p className="font-sans italic text-[16px] leading-[1.6] text-house-stone mb-6">
-              Planting plans and landscape work, led by Willow Alexander Gardens.
-            </p>
-            <div className="font-sans text-[11px] tracking-[0.16em] uppercase text-house-gold">
-              Discover gardens →
-            </div>
-          </Link>
-        </div>
-      </section>
-
-      {/* Launch studios */}
-      <section className="px-[5vw] py-20 border-t border-house-brown/10">
-        <div className="max-w-[1080px] mx-auto">
-          <Eyebrow>Our studios</Eyebrow>
-          <h2 className="em-accent font-display font-medium text-[clamp(28px,3.8vw,44px)] leading-[1.15] mt-3 mb-10 max-w-[24ch]">
-            Four launch <em>partners</em>.
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {LAUNCH_PARTNERS.map((p) => (
-              <Link
-                key={p.slug}
-                href={`/partners/${p.slug}`}
-                className="group block border border-house-brown/10 p-8 bg-white no-underline transition-[border-color,transform] duration-[var(--t-slow)] ease-out hover:border-house-gold hover:-translate-y-0.5"
-              >
-                <div className="font-sans text-[10px] tracking-[0.22em] uppercase text-house-gold mb-2">
-                  {p.type}
-                </div>
-                <h3 className="font-display font-medium text-[24px] leading-[1.2] text-house-brown mb-3">
-                  {p.name}
-                </h3>
-                <p className="font-sans italic text-[15px] leading-[1.55] text-house-stone">
-                  {p.blurb}
-                </p>
-                <div className="mt-4 font-sans text-[11px] tracking-[0.16em] uppercase text-house-gold">
-                  Read profile →
-                </div>
+            <div className={s.heroCtas}>
+              <Link href="#open-booking-form" className={s.btnFilled}>
+                Commission a space
               </Link>
-            ))}
+              <Link href="/partners" className={s.btnGhost}>
+                See all partners
+                <span aria-hidden="true" className={s.btnArrow}>→</span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
-    </article>
+
+      {/* 2. Stats strip */}
+      <section className={s.statsStrip}>
+        <div className={s.statsLede}>
+          <p className={s.statsLedeLine1}>Considered. Connected. Filed to the record.</p>
+          <p className={s.statsLedeLine2}>Every project, through a House-Approved studio.</p>
+        </div>
+        {STAT_COLS.map((stat) => (
+          <div key={stat.label} className={s.stat}>
+            <span className={s.statValue}>{stat.value}</span>
+            <span className={s.statLabel}>{stat.label}</span>
+          </div>
+        ))}
+      </section>
+
+      {/* 3. Two disciplines */}
+      <section className={s.disciplines}>
+        <header className={s.disciplinesHead}>
+          <p className={s.disciplinesEy}>Two disciplines</p>
+          <h2 className={s.disciplinesTitle}>
+            One studio standard, <em>two crafts.</em>
+          </h2>
+        </header>
+        <div className={s.disciplinesGrid}>
+          <Link href="/design/interiors" className={s.disciplineCard}>
+            <div className={s.disciplineImage}>
+              <Image
+                src="/home-v4/pillar-1.webp"
+                alt="A warm parlour interior with marble fireplace and flowers"
+                width={1168}
+                height={784}
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </div>
+            <div className={s.disciplineBody}>
+              <p className={s.disciplineNumeral}>I.</p>
+              <h3 className={s.disciplineName}>Interiors</h3>
+              <p className={s.disciplineTagline}>
+                Considered schemes, from whole-house renovations to
+                single-room re-reads.
+              </p>
+              <p className={s.disciplineBlurb}>
+                Working with studios who understand period homes, listed
+                fabric, and the rhythms of how people actually live. The
+                result reads worn-in, not decorated.
+              </p>
+              <span className={s.disciplineCta}>Discover interiors →</span>
+            </div>
+          </Link>
+
+          <Link href="/design/gardens" className={s.disciplineCard}>
+            <div className={s.disciplineImage}>
+              <Image
+                src="/home-v4/design-garden-day.jpg"
+                alt="A late-summer garden with brick paths and a Georgian house behind"
+                width={1024}
+                height={1024}
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </div>
+            <div className={s.disciplineBody}>
+              <p className={s.disciplineNumeral}>II.</p>
+              <h3 className={s.disciplineName}>Gardens</h3>
+              <p className={s.disciplineTagline}>
+                Planting plans and landscape work, led by Willow Alexander
+                Gardens.
+              </p>
+              <p className={s.disciplineBlurb}>
+                Designed around what the garden already wants to do — light,
+                shade, drainage, the soil it has. The brief is to make the
+                garden feel inevitable, ten years from now.
+              </p>
+              <span className={s.disciplineCta}>Discover gardens →</span>
+            </div>
+          </Link>
+        </div>
+      </section>
+
+      {/* 4. Launch partners */}
+      <section className={s.partners}>
+        <header className={s.partnersHead}>
+          <p className={s.partnersEy}>Our studios</p>
+          <h2 className={s.partnersTitle}>
+            Four launch <em>partners.</em>
+          </h2>
+          <p className={s.partnersLede}>
+            We name our partners openly. Each has been signed up on the
+            understanding that House Approved is a standard, not a label —
+            reviewed annually, honestly, by both sides.
+          </p>
+        </header>
+        <div className={s.partnersGrid}>
+          {PARTNERS.map((p) => (
+            <Link
+              key={p.slug}
+              href={`/partners/${p.slug}`}
+              className={s.partnerCard}
+            >
+              <div className={s.partnerImage}>
+                <Image
+                  src={p.image}
+                  alt={p.name}
+                  width={720}
+                  height={540}
+                  sizes="(min-width: 1024px) 25vw, 90vw"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </div>
+              <div className={s.partnerBody}>
+                <p className={s.partnerType}>{p.type}</p>
+                <h3 className={s.partnerName}>{p.name}</h3>
+                <p className={s.partnerBlurb}>{p.blurb}</p>
+                <span className={s.partnerCta}>Read profile →</span>
+              </div>
+            </Link>
+          ))}
+        </div>
+        <div className={s.partnersFoot}>
+          <Link href="/design/studios" className={s.partnersFootLink}>
+            Meet the whole collective
+            <span aria-hidden="true">→</span>
+          </Link>
+        </div>
+      </section>
+
+      {/* 5. House Approved — what the seal means */}
+      <section className={s.seal}>
+        <div className={s.sealImage}>
+          <Image
+            src="/home-v4/design-portrait.png"
+            alt="A tall sample board labelled Interior Design with ten paint and textile swatches, leaning in a Georgian hallway"
+            fill
+            sizes="(min-width: 1024px) 45vw, 100vw"
+            style={{ objectFit: "cover", objectPosition: "center" }}
+          />
+        </div>
+        <div className={s.sealCopy}>
+          <p className={s.sealEy}>House Approved</p>
+          <h2 className={s.sealTitle}>
+            The seal means <em>four things.</em>
+          </h2>
+          <ul className={s.sealList}>
+            {SEAL_LINES.map((line, i) => (
+              <li key={i}>
+                <span className={s.sealLineNum}>0{i + 1}.</span>
+                <span>{line}</span>
+              </li>
+            ))}
+          </ul>
+          <Link href="/the-house/standards" className={s.sealLink}>
+            Read the standards →
+          </Link>
+        </div>
+      </section>
+
+      {/* 6. Closing */}
+      <section className={s.closing}>
+        <p className={s.closingKicker}>Commission a space</p>
+        <p className={s.closingStatement}>
+          A room. A garden.<br />
+          <em>A whole house, properly read.</em>
+        </p>
+        <div className={s.closingCtas}>
+          <Link href="#open-booking-form" className={s.closingBtnFilled}>
+            Start a brief
+          </Link>
+          <Link href="/howa/companion" className={s.closingBtnGhost}>
+            Or use the Companion →
+          </Link>
+        </div>
+      </section>
+    </div>
   );
 }

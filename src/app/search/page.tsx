@@ -3,14 +3,11 @@
 import * as React from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { cn } from "@/lib/cn";
+import s from "./search.module.css";
 
 /**
  * /search — full search results page.
- * Spec: DESIGN.md Flow 10.
- *
  * Reads `?q=` from the URL. Auto-searches on load if query present.
- * Same tab filtering as the SearchModal but with a full-page layout.
  */
 
 interface SearchResult {
@@ -34,11 +31,13 @@ const TABS = [
 
 export default function SearchPage() {
   return (
-    <React.Suspense fallback={
-      <div className="bg-house-cream min-h-screen flex items-center justify-center">
-        <p className="font-display italic text-[15px] text-house-brown/40">Loading search&hellip;</p>
-      </div>
-    }>
+    <React.Suspense
+      fallback={
+        <div className={s.loading}>
+          <p>Loading search&hellip;</p>
+        </div>
+      }
+    >
       <SearchContent />
     </React.Suspense>
   );
@@ -85,7 +84,6 @@ function SearchContent() {
     [doSearch],
   );
 
-  // Auto-search on mount if query present
   React.useEffect(() => {
     if (initialQuery) {
       doSearch(initialQuery, "all");
@@ -94,14 +92,15 @@ function SearchContent() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <article className="bg-house-cream text-house-brown min-h-screen">
-      {/* Search input area */}
-      <section className="px-[5vw] pt-[12vh] pb-8">
-        <div className="max-w-[860px] mx-auto">
-          <div className="flex items-center gap-3 pb-2 border-b-2 border-house-brown">
+    <div className={s.page}>
+      {/* Input */}
+      <section className={s.head}>
+        <div className={s.headInner}>
+          <p className={s.eyebrow}>Search the House</p>
+          <div className={s.inputRow}>
             <svg
               aria-hidden="true"
-              className="w-7 h-7 text-house-brown/40 shrink-0"
+              className={s.icon}
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -118,19 +117,12 @@ function SearchContent() {
                 setQuery(e.target.value);
                 scheduleSearch(e.target.value, tab);
               }}
-              placeholder="Search the House"
-              style={{ outline: "none", boxShadow: "none" }}
-              className={cn(
-                "flex-1 bg-transparent border-0 min-w-0",
-                "font-display font-normal italic text-[clamp(24px,3.5vw,32px)] text-house-brown",
-                "placeholder:text-house-brown/30",
-                "[&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden",
-              )}
+              placeholder="What are you looking for?"
+              className={s.input}
             />
           </div>
 
-          {/* Tabs */}
-          <div className="flex flex-wrap gap-5 mt-5 pb-2 border-b border-house-brown/10">
+          <div className={s.tabs}>
             {TABS.map((t) => {
               const active = tab === t.id;
               return (
@@ -141,14 +133,7 @@ function SearchContent() {
                     setTab(t.id);
                     scheduleSearch(query, t.id);
                   }}
-                  className={cn(
-                    "bg-transparent border-0 cursor-pointer py-1",
-                    "font-sans text-[11px] tracking-[0.22em] uppercase",
-                    "transition-all duration-[var(--t-base)] ease-out",
-                    active
-                      ? "text-[var(--house-gold-dark)] border-b border-[var(--house-gold-dark)]"
-                      : "text-house-brown/50 hover:text-house-brown",
-                  )}
+                  className={`${s.tab} ${active ? s.tabActive : ""}`}
                 >
                   {t.label}
                 </button>
@@ -159,77 +144,50 @@ function SearchContent() {
       </section>
 
       {/* Results */}
-      <section className="px-[5vw] pb-20">
-        <div className="max-w-[860px] mx-auto">
+      <section className={s.results}>
+        <div className={s.resultsInner}>
           {loading ? (
-            <p className="font-display italic text-[15px] text-house-brown/40 py-10 text-center">
-              Searching&hellip;
-            </p>
+            <p className={s.statusMsg}>Searching&hellip;</p>
           ) : hasSearched && results.length === 0 ? (
-            <div className="py-16 text-center">
-              <p className="font-display italic text-[19px] text-house-brown/60 mb-4">
+            <div className={s.empty}>
+              <p className={s.emptyTitle}>
                 Nothing quite like &ldquo;{query}&rdquo; yet.
               </p>
-              <p className="font-sans text-[15px] text-house-brown/50 mb-8">
+              <p className={s.emptyLede}>
                 Try different terms, or browse these sections:
               </p>
-              <div className="flex flex-wrap justify-center gap-4">
+              <div className={s.emptyChips}>
                 {[
                   { label: "Services", href: "/services" },
                   { label: "Design", href: "/design/interiors" },
                   { label: "Shop", href: "/shop" },
-                  { label: "Journal", href: "/journal" },
+                  { label: "Journal", href: "/the-hearth" },
                 ].map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown border border-house-brown/20 px-5 py-2.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-brown hover:text-house-cream"
-                  >
+                  <Link key={link.href} href={link.href} className={s.chip}>
                     {link.label}
                   </Link>
                 ))}
               </div>
             </div>
           ) : !hasSearched ? (
-            <p className="font-display italic text-[15px] text-house-brown/40 py-10 text-center">
-              Start typing to search across the House.
-            </p>
+            <p className={s.statusMsg}>Start typing to search across the House.</p>
           ) : (
             <>
-              <p className="font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown/50 mb-6">
+              <p className={s.count}>
                 {results.length} result{results.length !== 1 ? "s" : ""}
               </p>
-              <div className="flex flex-col">
-                {results.map((r, i) => (
-                  <Link
-                    key={r.id}
-                    href={r.href}
-                    style={{ animationDelay: `${Math.min(i, 12) * 50}ms` }}
-                    className={cn(
-                      "flex items-start gap-4 py-4 border-b border-house-brown/8 no-underline",
-                      "transition-[background-color,padding] duration-[var(--t-slow)] ease-out",
-                      "hover:bg-house-cream-dark hover:px-3",
-                      "opacity-0 [animation:howa-slide-in_var(--t-xslow)_var(--ease-out)_forwards]",
-                    )}
-                  >
+              <div className={s.list}>
+                {results.map((r) => (
+                  <Link key={r.id} href={r.href} className={s.result}>
                     {r.image ? (
-                      <img
-                        src={r.image}
-                        alt=""
-                        className="w-16 h-16 object-cover shrink-0 mt-0.5 bg-house-cream-dark"
-                      />
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={r.image} alt="" className={s.resultImage} />
                     ) : null}
-                    <div className="min-w-0">
-                      <div className="font-sans text-[11px] tracking-[0.2em] uppercase text-house-brown/50 mb-1">
-                        {r.type}
-                      </div>
-                      <h3 className="font-display text-[20px] font-medium text-house-brown mb-1">
-                        {r.title}
-                      </h3>
+                    <div className={s.resultBody}>
+                      <p className={s.resultType}>{r.type}</p>
+                      <h3 className={s.resultTitle}>{r.title}</h3>
                       {r.excerpt ? (
-                        <p className="font-sans text-[14px] text-house-brown/60 leading-[1.5]">
-                          {r.excerpt}
-                        </p>
+                        <p className={s.resultExcerpt}>{r.excerpt}</p>
                       ) : null}
                     </div>
                   </Link>
@@ -239,6 +197,6 @@ function SearchContent() {
           )}
         </div>
       </section>
-    </article>
+    </div>
   );
 }

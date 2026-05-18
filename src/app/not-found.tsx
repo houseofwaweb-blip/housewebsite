@@ -40,7 +40,7 @@ export default function NotFound() {
           >
             Back to the House
           </Link>
-          <GhostLink href="/journal">Read the Hearth</GhostLink>
+          <GhostLink href="/the-hearth">Read the Hearth</GhostLink>
           <GhostLink href="/services">Browse services</GhostLink>
         </div>
       </div>

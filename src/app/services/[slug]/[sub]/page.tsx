@@ -1,28 +1,91 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import fs from "node:fs";
+import path from "node:path";
 import { notFound } from "next/navigation";
-import { Eyebrow } from "@/components/primitives/Eyebrow";
-import { GhostLink } from "@/components/primitives/GhostLink";
 import { Accordion } from "@/components/primitives/Accordion";
 import { BeforeAfter } from "@/components/primitives/BeforeAfter";
 import { Gallery } from "@/components/primitives/Gallery";
 import { SERVICES, SERVICE_ORDER, type ServiceSlug } from "@/lib/services-data";
-import { SERVICE_AREAS, SERVICE_TRUST_BADGES } from "@/lib/services-data/sub-services";
+import s from "./sub-service.module.css";
+
+const PUBLIC = path.join(process.cwd(), "public");
+const PLACEHOLDER_HERO = "/services/photos/placeholders/hero-16x10-v2.webp";
+const PLACEHOLDER_GALLERY_TILE = "/services/photos/placeholders/gallery-4x3-v2.webp";
+const PLACEHOLDER_BA = "/services/photos/placeholders/before-after-3x2-v2.webp";
+
+/** Return the path if the file exists in /public, otherwise the fallback. */
+function fileOr(localPath: string, fallback: string) {
+  if (!localPath || localPath.startsWith("http")) return localPath || fallback;
+  const abs = path.join(PUBLIC, localPath.replace(/^\//, ""));
+  try {
+    return fs.existsSync(abs) ? localPath : fallback;
+  } catch {
+    return fallback;
+  }
+}
 
 /**
- * /services/[slug]/[sub] — sub-service detail page.
+ * /services/[slug]/[sub] — lander framework.
  *
- * Sections:
- *   1. Breadcrumb + hero (focused headline + description)
- *   2. Why choose us (4 bullets)
- *   3. What's included
- *   4. Trust strip
- *   5. HoWA+ upsell band
- *   6. FAQ (if available)
- *   7. Related sub-services
- *   8. Service areas
- *   9. Book CTA
+ * Section order (cream / cream-dark alternation):
+ *   1. Hero — split, copy left + image right
+ *   2. About + Why choose — cream-dark, 2-col editorial
+ *   3. What's included — cream, 2-col list
+ *   4. From the work — cream-dark, before/after + gallery
+ *   5. FAQ — cream, accordion
+ *   6. Related sub-services — cream-dark, 3-up
+ *   7. Closing — cream, centered CTA
+ *
+ * What we deliberately do NOT include (lives on the parent /services/[slug]):
+ *   - Trust strip
+ *   - HoWA+ upsell band
+ *   - Service areas brown band
+ *   - Partner carousel
  */
+
+const PARENT_GALLERY: Record<string, Array<{ src: string; alt: string; caption?: string }>> = {
+  gardening: [
+    { src: "/services/photos/gardening-gallery-1.webp", alt: "Gardener at work", caption: "London · 2025" },
+    { src: "/services/photos/gardening-gallery-2.webp", alt: "Mature herbaceous border", caption: "Home Counties · 2025" },
+    { src: "/services/photos/gardening-gallery-3.webp", alt: "Lawn detail", caption: "Surrey · 2024" },
+  ],
+  "window-cleaning": [
+    { src: "/services/photos/window-cleaning-gallery-1.webp", alt: "Pure water pole on sash window", caption: "London · 2025" },
+    { src: "/services/photos/window-cleaning-gallery-2.webp", alt: "Window cleaning detail", caption: "London · 2025" },
+    { src: "/services/photos/window-cleaning-gallery-3.webp", alt: "Upper floor cleaning", caption: "London · 2025" },
+  ],
+  cleaning: [
+    { src: "/services/photos/cleaning-gallery-1.webp", alt: "Cleaning team on site", caption: "London · 2025" },
+    { src: "/services/photos/cleaning-gallery-2.webp", alt: "Bathroom detail", caption: "London · 2025" },
+    { src: "/services/photos/cleaning-gallery-3.webp", alt: "House-approved products", caption: "Brand · 2025" },
+  ],
+  "gutter-cleaning": [
+    { src: "/services/photos/gutter-cleaning-gallery-1.webp", alt: "SkyVac in action", caption: "London · 2025" },
+    { src: "/services/photos/gutter-cleaning-gallery-2.webp", alt: "Equipment detail", caption: "London · 2025" },
+    { src: "/services/photos/gutter-cleaning-gallery-3.webp", alt: "Downpipe inspection", caption: "London · 2025" },
+  ],
+};
+
+const PARENT_BEFORE_AFTER: Record<string, { before: string; after: string }> = {
+  gardening: {
+    before: "/services/photos/gardening-before.webp",
+    after: "/services/photos/gardening-after.webp",
+  },
+  "window-cleaning": {
+    before: "/services/photos/window-cleaning-before.webp",
+    after: "/services/photos/window-cleaning-after.webp",
+  },
+  cleaning: {
+    before: "/services/photos/cleaning-before.webp",
+    after: "/services/photos/cleaning-after.webp",
+  },
+  "gutter-cleaning": {
+    before: "/services/photos/gutter-cleaning-before.webp",
+    after: "/services/photos/gutter-cleaning-after.webp",
+  },
+};
 
 function findSubService(parentSlug: string, subSlug: string) {
   if (!SERVICE_ORDER.includes(parentSlug as ServiceSlug)) return null;
@@ -56,103 +119,94 @@ export default async function SubServicePage({
   if (!result) notFound();
 
   const { parent, sub: service } = result;
-  const siblings = parent.subServices.filter((s) => s.slug !== service.slug).slice(0, 6);
+  const siblings = parent.subServices.filter((sib) => sib.slug !== service.slug).slice(0, 6);
+
+  const requestedHero =
+    service.image ?? `/services/photos/${parent.slug}/${service.slug}-hero.webp`;
+  const heroImage = fileOr(requestedHero, PLACEHOLDER_HERO);
+
+  const baRaw = PARENT_BEFORE_AFTER[parent.slug];
+  const ba = baRaw
+    ? {
+        before: fileOr(baRaw.before, PLACEHOLDER_BA),
+        after: fileOr(baRaw.after, PLACEHOLDER_BA),
+      }
+    : null;
+
+  const gallery = (PARENT_GALLERY[parent.slug] ?? []).map((g) => ({
+    ...g,
+    src: fileOr(g.src, PLACEHOLDER_GALLERY_TILE),
+  }));
+
+  const hasAbout = Boolean(service.body) || Boolean(service.whyChoose?.length);
+  const hasIncluded = Boolean(service.included?.length);
+  const hasVisuals = Boolean(ba || gallery.length > 0);
+  const hasFaq = Boolean(service.faq?.length);
+  const hasRelated = siblings.length > 0;
 
   return (
-    <article className="bg-house-cream text-house-brown">
-      {/* 1. Breadcrumb + Hero */}
-      <section className="px-[5vw] pt-[88px] pb-14">
-        <div className="max-w-[820px] mx-auto">
-          {/* Breadcrumb */}
-          <nav aria-label="Breadcrumb" className="mb-8 flex items-center gap-2 font-sans text-[11px] tracking-[0.18em] uppercase text-house-stone">
-            <Link href="/services" className="no-underline hover:text-house-gold transition-colors">
-              Services
-            </Link>
-            <span aria-hidden="true">/</span>
-            <Link href={`/services/${parent.slug}`} className="no-underline hover:text-house-gold transition-colors">
-              {parent.name}
-            </Link>
-            <span aria-hidden="true">/</span>
-            <span className="text-house-brown">{service.name}</span>
-          </nav>
+    <div className={s.page}>
+      {/* 1. Hero — split */}
+      <section className={s.hero}>
+        <div className={s.heroCopy}>
+          <div className={s.heroCopyInner}>
+            <nav aria-label="Breadcrumb" className={s.heroEy}>
+              <Link href="/services" className={s.crumbLink}>Services</Link>
+              <span className={s.crumbSep}>·</span>
+              <Link href={`/services/${parent.slug}`} className={s.crumbLink}>
+                {parent.name}
+              </Link>
+            </nav>
 
-          <Eyebrow>{parent.eyebrow}</Eyebrow>
-          <h1 className="em-accent font-display font-medium text-[clamp(40px,5.5vw,72px)] leading-[1.08] tracking-[-0.01em] mt-4">
-            {service.name}.
-          </h1>
-          <p className="font-sans text-[19px] leading-[1.6] text-house-brown/75 mt-6 max-w-[60ch]">
-            {service.lede}
-          </p>
-          <div className="mt-8">
-            <Link
-              href="#open-booking-form"
-              className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold px-6 py-3.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
-            >
-              Book now
-            </Link>
+            <h1 className={s.heroTitle}>
+              {service.name}<em>.</em>
+            </h1>
+            <p className={s.heroLede}>{service.lede}</p>
+            <div className={s.heroCtas}>
+              <Link href="#open-booking-form" className={s.btnFilled}>
+                Book {service.name.toLowerCase()}
+              </Link>
+              <Link href={`/services/${parent.slug}`} className={s.btnGhost}>
+                All {parent.name.toLowerCase()}
+                <span aria-hidden="true" className={s.btnArrow}>→</span>
+              </Link>
+            </div>
           </div>
         </div>
-      </section>
-
-      {/* 1b. Before/After + Gallery */}
-      <section className="px-[5vw] py-14 bg-white border-t border-house-brown/10">
-        <div className="max-w-[1100px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12">
-            <div>
-              <Eyebrow>The difference</Eyebrow>
-              <h2 className="font-display font-medium text-[28px] leading-[1.2] mt-3 mb-4">
-                Before &amp; after.
-              </h2>
-              <p className="font-sans italic text-[15px] text-house-stone leading-[1.55]">
-                Drag the handle to see the transformation. Every job is photographed and filed to your HoWA record.
-              </p>
-            </div>
-            <BeforeAfter
-              before={{ src: "/partners/project-4.jpg", alt: `${service.name} — before` }}
-              after={{ src: "/partners/project-1.jpg", alt: `${service.name} — after` }}
-              aspectRatio="3/2"
-            />
-          </div>
-
-          <Eyebrow>Recent work</Eyebrow>
-          <h2 className="font-display font-medium text-[28px] leading-[1.2] mt-3 mb-6">
-            From the field.
-          </h2>
-          <Gallery
-            images={[
-              { src: "/partners/project-1.jpg", alt: `${service.name} example 1`, caption: `${service.name} · London` },
-              { src: "/partners/project-2.jpg", alt: `${service.name} example 2`, caption: `${service.name} · Home Counties` },
-              { src: "/partners/project-3.jpg", alt: `${service.name} example 3`, caption: `${service.name} · South East` },
-            ]}
-            columns={3}
-            aspectRatio="4/3"
+        <div className={s.heroVisual}>
+          <Image
+            src={heroImage}
+            alt={service.name}
+            fill
+            sizes="(min-width: 1024px) 55vw, 100vw"
+            priority
+            style={{ objectFit: "cover", objectPosition: "center" }}
           />
         </div>
       </section>
 
-      {/* 2. Extended description + Why choose */}
-      {(service.body || service.whyChoose) ? (
-        <section className="px-[5vw] py-16 bg-white border-t border-house-brown/10">
-          <div className="max-w-[820px] mx-auto grid md:grid-cols-2 gap-12">
+      {/* 2. About + Why choose */}
+      {hasAbout ? (
+        <section className={s.about}>
+          <div className={s.aboutGrid}>
             {service.body ? (
-              <div>
-                <Eyebrow>About this service</Eyebrow>
-                <p className="font-sans text-[17px] leading-[1.65] text-house-brown/90 mt-4">
-                  {service.body}
-                </p>
+              <div className={s.aboutCol}>
+                <p className={s.sectionEy}>About this service</p>
+                <h2 className={s.sectionTitle}>
+                  What you can <em>expect.</em>
+                </h2>
+                <p className={s.aboutBody}>{service.body}</p>
               </div>
             ) : null}
             {service.whyChoose?.length ? (
-              <div>
-                <Eyebrow>Why choose us</Eyebrow>
-                <ul className="flex flex-col gap-3 mt-4">
+              <div className={s.aboutCol}>
+                <p className={s.sectionEy}>Why choose us</p>
+                <h2 className={s.sectionTitle}>
+                  The House <em>standard.</em>
+                </h2>
+                <ul className={s.list}>
                   {service.whyChoose.map((point) => (
-                    <li
-                      key={point}
-                      className="relative pl-5 font-sans text-[16px] leading-[1.55] text-house-brown/90 before:content-['—'] before:absolute before:left-0 before:text-house-gold"
-                    >
-                      {point}
-                    </li>
+                    <li key={point}>{point}</li>
                   ))}
                 </ul>
               </div>
@@ -162,75 +216,71 @@ export default async function SubServicePage({
       ) : null}
 
       {/* 3. What's included */}
-      {service.included?.length ? (
-        <section className="px-[5vw] py-16 border-t border-house-brown/10">
-          <div className="max-w-[820px] mx-auto">
-            <Eyebrow>What&apos;s included</Eyebrow>
-            <h2 className="font-display font-medium text-[28px] leading-[1.2] mt-3 mb-6">
-              Every visit.
+      {hasIncluded ? (
+        <section className={s.included}>
+          <header className={s.sectionHead}>
+            <p className={s.sectionEy}>What's included</p>
+            <h2 className={s.sectionTitle}>
+              Every <em>visit.</em>
             </h2>
-            <ul className="grid md:grid-cols-2 gap-3">
-              {service.included.map((inc) => (
-                <li
-                  key={inc}
-                  className="relative pl-5 font-sans text-[16px] leading-[1.55] text-house-brown/90 before:content-['—'] before:absolute before:left-0 before:text-house-gold"
-                >
-                  {inc}
-                </li>
-              ))}
-            </ul>
-          </div>
+          </header>
+          <ul className={s.includedList}>
+            {service.included!.map((inc) => (
+              <li key={inc}>{inc}</li>
+            ))}
+          </ul>
         </section>
       ) : null}
 
-      {/* 4. Trust strip */}
-      <section className="bg-house-white border-t border-b border-house-brown/10 px-[5vw] py-5">
-        <div className="max-w-[1100px] mx-auto flex flex-wrap items-center justify-center gap-8 text-center">
-          {SERVICE_TRUST_BADGES.map((badge) => (
-            <span
-              key={badge}
-              className="font-sans text-[10px] tracking-[0.2em] uppercase text-house-stone"
-            >
-              {badge}
-            </span>
-          ))}
-        </div>
-      </section>
-
-      {/* 5. HoWA+ upsell band */}
-      <section className="bg-howa-navy text-house-cream px-[5vw] py-16">
-        <div className="max-w-[820px] mx-auto grid md:grid-cols-[1fr_auto] gap-10 items-center">
-          <div>
-            <span className="block mb-3 font-sans text-[10px] tracking-[0.22em] uppercase text-house-gold-light">
-              HoWA+ Membership
-            </span>
-            <h3 className="font-sans font-normal text-[clamp(24px,2.8vw,34px)] leading-[1.15] tracking-[-0.01em] text-house-cream mb-3">
-              Book, track, and save — all in one place.
-            </h3>
-            <p className="font-sans text-[15px] leading-[1.6] text-house-cream/70 max-w-[46ch]">
-              HoWA+ members get 10% off every service booking, reminders when
-              care is due, and a living record of every visit.
-            </p>
-          </div>
-          <Link
-            href="/howa/plans"
-            className="inline-block shrink-0 font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold px-6 py-3.5 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
-          >
-            Join HoWA+ — £16.99/mo
-          </Link>
-        </div>
-      </section>
-
-      {/* 6. FAQ */}
-      {service.faq?.length ? (
-        <section className="bg-house-white px-[5vw] py-[72px] border-t border-house-brown/10">
-          <div className="max-w-[760px] mx-auto">
-            <Eyebrow>Questions</Eyebrow>
-            <h2 className="font-display font-medium text-[clamp(28px,3.6vw,42px)] leading-[1.15] mt-3 mb-8">
-              About {service.name.toLowerCase()}.
+      {/* 4. From the work — before/after + gallery */}
+      {hasVisuals ? (
+        <section className={s.work}>
+          <header className={s.sectionHead}>
+            <p className={s.sectionEy}>From the work</p>
+            <h2 className={s.sectionTitle}>
+              The visible <em>difference.</em>
             </h2>
+            <p className={s.sectionLede}>
+              Every job is photographed and filed to your HoWA record. Drag
+              the handle below to see a recent transformation.
+            </p>
+          </header>
+          {ba ? (
+            <div className={s.workBeforeAfter}>
+              <BeforeAfter
+                before={{ src: ba.before, alt: `${service.name} — before` }}
+                after={{ src: ba.after, alt: `${service.name} — after` }}
+                aspectRatio="3/2"
+              />
+            </div>
+          ) : null}
+          {gallery.length > 0 ? (
+            <div className={s.workGallery}>
+              <Gallery
+                images={gallery.map((g) => ({
+                  ...g,
+                  caption: `${service.name} · ${g.caption?.split(" · ")[0] ?? "London"}`,
+                }))}
+                columns={3}
+                aspectRatio="4/3"
+              />
+            </div>
+          ) : null}
+        </section>
+      ) : null}
+
+      {/* 5. FAQ */}
+      {hasFaq ? (
+        <section className={s.faq}>
+          <header className={s.sectionHead}>
+            <p className={s.sectionEy}>Questions</p>
+            <h2 className={s.sectionTitle}>
+              About <em>{service.name.toLowerCase()}.</em>
+            </h2>
+          </header>
+          <div className={s.faqInner}>
             <Accordion
-              items={service.faq.map((f, i) => ({
+              items={service.faq!.map((f, i) => ({
                 id: `sub-faq-${i}`,
                 summary: f.q,
                 body: <p>{f.a}</p>,
@@ -240,63 +290,54 @@ export default async function SubServicePage({
         </section>
       ) : null}
 
-      {/* 7. Related sub-services */}
-      {siblings.length > 0 ? (
-        <section className="px-[5vw] py-16 border-t border-house-brown/10">
-          <div className="max-w-[1200px] mx-auto">
-            <Eyebrow>Other {parent.name.toLowerCase()} services</Eyebrow>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-              {siblings.map((sib) => (
-                <Link
-                  key={sib.slug}
-                  href={`/services/${parent.slug}/${sib.slug}`}
-                  className="group flex flex-col bg-white border border-house-brown/12 p-5 no-underline transition-all duration-[var(--t-slow)] ease-out hover:-translate-y-0.5 hover:border-house-gold"
-                >
-                  <h3 className="font-display font-medium text-[20px] leading-[1.2] text-house-brown group-hover:text-house-gold transition-colors duration-[var(--t-slow)] ease-out mb-2">
-                    {sib.name}
-                  </h3>
-                  <p className="font-sans italic text-[14px] leading-[1.55] text-house-stone">
-                    {sib.lede}
-                  </p>
-                </Link>
-              ))}
-            </div>
+      {/* 6. Related */}
+      {hasRelated ? (
+        <section className={s.related}>
+          <header className={s.sectionHead}>
+            <p className={s.sectionEy}>
+              Other {parent.name.toLowerCase()} services
+            </p>
+            <h2 className={s.sectionTitle}>
+              Everything under <em>{parent.name.toLowerCase()}.</em>
+            </h2>
+          </header>
+          <div className={s.relatedGrid}>
+            {siblings.map((sib) => (
+              <Link
+                key={sib.slug}
+                href={`/services/${parent.slug}/${sib.slug}`}
+                className={s.relatedCard}
+              >
+                <h3 className={s.relatedName}>{sib.name}</h3>
+                <p className={s.relatedBlurb}>{sib.lede}</p>
+                <span className={s.relatedCta}>See detail →</span>
+              </Link>
+            ))}
           </div>
         </section>
       ) : null}
 
-      {/* 8. Service areas */}
-      <section className="px-[5vw] py-12 bg-house-brown text-house-cream">
-        <div className="max-w-[1200px] mx-auto">
-          <div className="text-[10px] tracking-[0.22em] uppercase text-house-gold-light mb-3 font-sans">
-            Where we offer {service.name.toLowerCase()}
-          </div>
-          <div className="flex flex-wrap gap-x-6 gap-y-2 font-sans text-[16px] text-house-cream/90">
-            {SERVICE_AREAS.map((area) => (
-              <span key={area}>{area}</span>
-            ))}
-          </div>
+      {/* 7. Closing */}
+      <section className={s.closing}>
+        <p className={s.closingKicker}>Ready when you are</p>
+        <p className={s.closingStatement}>
+          Book <em>{service.name.toLowerCase()}.</em>
+        </p>
+        <p className={s.closingLede}>
+          A short consultation, a fair quote, and a team that arrives when we
+          said they would.
+        </p>
+        <div className={s.closingCtas}>
+          <Link href="#open-booking-form" className={s.btnFilled}>
+            Book now
+          </Link>
+          <Link href={`/services/${parent.slug}`} className={s.btnGhost}>
+            Back to {parent.name.toLowerCase()}
+            <span aria-hidden="true" className={s.btnArrow}>→</span>
+          </Link>
         </div>
       </section>
-
-      {/* 9. Book CTA */}
-      <section className="bg-house-cream px-[5vw] py-14 text-center">
-        <p className="mx-auto max-w-[520px] mb-6 font-sans italic text-[20px] leading-[1.4] text-house-brown">
-          Ready to book {service.name.toLowerCase()}?
-        </p>
-        <Link
-          href="#open-booking-form"
-          className="inline-block px-[30px] py-[15px] font-sans text-[13px] tracking-[0.16em] uppercase no-underline bg-house-gold text-white border border-house-gold transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
-        >
-          Book now
-        </Link>
-        <p className="mt-6">
-          <GhostLink href={`/services/${parent.slug}`}>
-            Back to {parent.name.toLowerCase()}
-          </GhostLink>
-        </p>
-      </section>
-    </article>
+    </div>
   );
 }
 

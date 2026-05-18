@@ -1,43 +1,133 @@
 import Image from "next/image";
 import Link from "next/link";
-import { NewsletterInline } from "@/components/marketing/NewsletterInline";
-import { getNewsletterBlock } from "@/lib/cms/newsletter";
+import s from "./services.module.css";
+import { FaqList } from "@/components/marketing/FaqList";
 
 /**
- * /services — landing page, locked variant: A. Four Disciplines.
- * Spec: /ux/04-services/variant-A.html + _commercial.css.
+ * /services — landing page in the lander framework.
  *
- * Order:
- *   1. Hero A (cream, centred, two CTAs)
- *   2. Four-discipline grid (white tiles, 4:5 portrait images)
- *   3. Transition band (gold line + italic label bridging House → HoWA)
- *   4. HoWA Steward Plans ladder (4 plans, House Essential featured navy)
- *   5. Brief builder band (Companion quote mock — 2-col)
- *   6. FAQ list (static Q/A, no accordion)
- *   7. Closing poem + CTA
- *   8. Italic house tagline
+ * Per CLAUDE.md launch decisions: 4 services only — Gardening, Window
+ * Cleaning, Cleaning, Gutter Cleaning. Handyman / Removals / Energy /
+ * Pet care all deferred.
+ *
+ * Section order:
+ *   1. Hero — image right, copy left (cream)
+ *   2. Stats strip
+ *   3. Four service cards
+ *   4. Steward Plans ladder — 4 plans, House Essential featured
+ *   5. Brief builder — Companion mock
+ *   6. FAQ
+ *   7. Closing
  */
 
 export const metadata = {
-  title: "Services",
+  title: "Services — The quiet standard of care.",
   description:
     "Four disciplines of home care — gardening, window cleaning, cleaning, gutter cleaning — to one House standard. One-off or on a Steward plan.",
 };
 
-const SERVICES_GRID = [
-  { slug: "gardening", name: "Gardeners", image: "/services/subbrands/gardeners.jpg", href: "/services/gardening" },
-  { slug: "cleaning", name: "Cleaners", image: "/services/subbrands/cleaners.jpg", href: "/services/cleaning" },
-  { slug: "window-cleaning", name: "Window\nCleaners", image: "/services/subbrands/window-cleaner.jpg", href: "/services/window-cleaning" },
-  { slug: "handyman", name: "Handyman", image: "/services/subbrands/handyman.jpg", href: "/services/handyman" },
-  { slug: "housekeeping", name: "Housekeeping", image: "/services/subbrands/housekeeping.jpg", href: "/services" },
-  { slug: "removals", name: "Removals", image: "/services/subbrands/removals.jpg", href: "/services/removals" },
-  { slug: "energy", name: "Energy &\nElectrical", image: "/services/subbrands/electrical.jpg", href: "/services/energy" },
-  { slug: "pet-care", name: "Pet\nCare", image: "/services/subbrands/dog-walking.jpg", href: "/services/pet-care" },
+const STAT_COLS = [
+  { value: "4", label: "Disciplines at launch" },
+  { value: "17", label: "House standards" },
+  { value: "1", label: "Calendar to trust" },
+  { value: "0", label: "Sub-contracted finish" },
+];
+
+const SERVICES = [
+  {
+    slug: "gardening",
+    name: "Gardening",
+    tagline: "Lawn, beds, and seasonal care.",
+    body:
+      "Routine cuts, hedge work, planting plans and seasonal tidies — by gardeners who know the difference between cutting back and cutting down.",
+    image: "/services/subbrands/gardeners.webp",
+    href: "/services/gardening",
+    state: "live" as const,
+  },
+  {
+    slug: "window-cleaning",
+    name: "Window Cleaning",
+    tagline: "Spotless glass, frames, and sills.",
+    body:
+      "Pure-water reach-and-wash on the outside, traditional cloth on the inside, with a sash-window method that respects the original timber.",
+    image: "/services/subbrands/window-cleaner.webp",
+    href: "/services/window-cleaning",
+    state: "live" as const,
+  },
+  {
+    slug: "cleaning",
+    name: "Cleaning",
+    tagline: "Domestic cleaning, properly briefed.",
+    body:
+      "A regular team that learns the home — surfaces, finishes, what to use, what to leave. Same hands twice. Filed to your record after every visit.",
+    image: "/services/subbrands/cleaners.webp",
+    href: "/services/cleaning",
+    state: "live" as const,
+  },
+  {
+    slug: "gutter-cleaning",
+    name: "Gutter Cleaning",
+    tagline: "Pre-winter clears and downpipe checks.",
+    body:
+      "Reach-and-vac from the ground for safety, with a borescope check on the downpipes and a flagged works list if anything else needs doing.",
+    image: "/services/subbrands/gutter-cleaning.webp",
+    href: "/services/gutter-cleaning",
+    state: "live" as const,
+  },
+  {
+    slug: "handyman",
+    name: "Handyman",
+    tagline: "Small jobs, properly done.",
+    body:
+      "A trusted set of hands for the long list. Shelves, fixes, draught-proofing, tile replacements, the things that bother you.",
+    image: "/services/subbrands/handyman.webp",
+    href: "/services/handyman",
+    state: "soon" as const,
+  },
+  {
+    slug: "housekeeping",
+    name: "Housekeeping",
+    tagline: "A discreet, ongoing presence.",
+    body:
+      "Daily or weekly housekeeping — laundry, linen, kitchen, light cooking — for households that prefer the home kept beautifully without managing it.",
+    image: "/services/subbrands/housekeeping.webp",
+    href: "/services/housekeeping",
+    state: "soon" as const,
+  },
+  {
+    slug: "removals",
+    name: "Removals",
+    tagline: "Moves, briefed by the record.",
+    body:
+      "House-owned moves with packers who handle period interiors with care. The Living Record makes the unpack at the other end clean and quick.",
+    image: "/services/subbrands/removals.webp",
+    href: "/services/removals",
+    state: "soon" as const,
+  },
+  {
+    slug: "energy",
+    name: "Energy & Electrical",
+    tagline: "EICRs, EV chargers, retrofit advice.",
+    body:
+      "Vetted electricians, EICRs filed to your HoWA record, and energy-efficiency planning so the home performs as well as it looks.",
+    image: "/services/subbrands/electrical.webp",
+    href: "/services/energy",
+    state: "soon" as const,
+  },
+  {
+    slug: "pet-care",
+    name: "Pet Care",
+    tagline: "Dog walking, sitting and check-ins.",
+    body:
+      "House-approved walkers and sitters who know the door codes, the leash habits, and the after-walk routine.",
+    image: "/services/subbrands/dog-walking.webp",
+    href: "/services/pet-care",
+    state: "soon" as const,
+  },
 ];
 
 const PLANS = [
   {
-    tier: "Apartment",
     name: "Apartment Plan",
     priceFrom: "£160",
     inclusions: [
@@ -49,7 +139,6 @@ const PLANS = [
     featured: false,
   },
   {
-    tier: "Recommended",
     name: "House Essential",
     priceFrom: "£280",
     inclusions: [
@@ -62,7 +151,6 @@ const PLANS = [
     featured: true,
   },
   {
-    tier: "Comprehensive",
     name: "House Comprehensive",
     priceFrom: "£440",
     inclusions: [
@@ -74,7 +162,6 @@ const PLANS = [
     featured: false,
   },
   {
-    tier: "Premium",
     name: "House Premium",
     priceFrom: "£640",
     inclusions: [
@@ -87,38 +174,12 @@ const PLANS = [
   },
 ];
 
-const BRIEF_STEPS = [
-  {
-    num: "I.",
-    label: "Property",
-    val: (
-      <>
-        Victorian terrace, SE3 ·{" "}
-        <em className="italic text-howa-teal">3 bedrooms, garden</em>
-      </>
-    ),
-  },
-  {
-    num: "II.",
-    label: "Priorities",
-    val: (
-      <>
-        Cleaning, gardening,{" "}
-        <em className="italic text-howa-teal">gutters before winter</em>
-      </>
-    ),
-  },
-  { num: "III.", label: "Rhythm", val: <>Weekly cleaning · fortnightly garden</> },
-  { num: "IV.", label: "Budget", val: <>£280 / month</> },
-  {
-    num: "V.",
-    label: "Recommendation",
-    val: (
-      <em className="italic text-howa-teal">
-        House Essential · starting Monday
-      </em>
-    ),
-  },
+const BRIEF_LINES = [
+  { num: "I.", label: "Property", value: "Victorian terrace, SE3 · 3 bedrooms, garden" },
+  { num: "II.", label: "Priorities", value: "Cleaning, gardening, gutters before winter" },
+  { num: "III.", label: "Rhythm", value: "Weekly cleaning · fortnightly garden" },
+  { num: "IV.", label: "Budget", value: "£280 / month" },
+  { num: "V.", label: "Recommendation", value: "House Essential · starting Monday", highlight: true },
 ];
 
 const FAQ = [
@@ -128,11 +189,11 @@ const FAQ = [
   },
   {
     q: "Who actually comes to the home?",
-    a: "House-owned teams where we operate directly, House Approved contractors elsewhere.",
+    a: "House-owned teams where we operate directly, House Approved contractors elsewhere — same standards either way.",
   },
   {
     q: "What writes into HoWA?",
-    a: "Visits, notes, photographs on request, products used, team assigned.",
+    a: "Visits, notes, photographs on request, products used, team assigned. Filed to the home record automatically.",
   },
   {
     q: "Do you cover my postcode?",
@@ -140,332 +201,226 @@ const FAQ = [
   },
 ];
 
-export default async function ServicesLanding() {
-  const nlBlock = await getNewsletterBlock("services");
+export default function ServicesLanding() {
   return (
-    <>
-      {/* 1. Hero A */}
-      <section className="bg-house-cream text-center px-[5vw] pt-[88px] pb-10">
-        <span className="block font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold mb-[18px]">
-          The House · Services
-        </span>
-        <h1 className="em-accent mx-auto max-w-[1100px] mb-4 font-display font-medium text-[clamp(56px,7vw,104px)] leading-[1.02] tracking-[-0.01em] text-house-brown">
-          The quiet standard <em>of care.</em>
-        </h1>
-        <p className="mx-auto max-w-[620px] mb-9 font-sans italic text-[22px] leading-[1.55] text-house-stone">
-          Every discipline of home care, kept to one House standard. Book
-          one-off, or let HoWA plan the rhythm.
-        </p>
-        <div className="flex gap-3 justify-center flex-wrap">
-          <Link
-            href="#open-booking-form"
-            className="inline-block px-[26px] py-[13px] font-sans text-[12px] tracking-[0.16em] uppercase no-underline bg-transparent text-house-brown border border-house-brown transition-all duration-[var(--t-base)] ease-out hover:bg-house-brown hover:text-house-cream"
-          >
-            Book one-off
-          </Link>
-          <Link
-            href="/api/howa-bounce?source=services-hero"
-            className="inline-block px-[26px] py-[13px] font-sans text-[12px] tracking-[0.16em] uppercase no-underline bg-house-gold text-white border border-house-gold transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
-          >
-            Start a plan
-          </Link>
-        </div>
-      </section>
-
-      {/* 2. Services grid (desktop) / carousel (mobile) */}
-      <section className="bg-house-cream px-[5vw] pt-6 pb-20">
-        {/* Desktop: 4-column grid */}
-        <div className="hidden sm:grid mx-auto max-w-[1280px] grid-cols-2 lg:grid-cols-4 gap-4">
-          {SERVICES_GRID.map((svc) => (
-            <Link
-              key={svc.slug}
-              href={svc.href}
-              className="group relative block aspect-[3/4] overflow-hidden no-underline"
-            >
-              <Image
-                src={svc.image}
-                alt={svc.name.replace("\n", " ")}
-                fill
-                sizes="(min-width: 1024px) 25vw, 50vw"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-              />
-              {/* Dark overlay for text legibility */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-black/5 transition-opacity duration-[var(--t-slow)] group-hover:from-black/60" />
-              {/* Didot title */}
-              <div className="absolute bottom-0 left-0 p-5">
-                <h3 className="font-display font-medium text-[clamp(24px,2.5vw,34px)] leading-[1.1] text-white whitespace-pre-line tracking-[-0.01em] drop-shadow-[0_2px_12px_rgba(0,0,0,0.3)]">
-                  {svc.name}
-                </h3>
-              </div>
-            </Link>
-          ))}
-        </div>
-
-        {/* Mobile: horizontal scroll carousel */}
-        <div
-          className="flex sm:hidden gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-[5vw] px-[5vw]"
-          style={{ scrollbarWidth: "none" }}
-        >
-          {SERVICES_GRID.map((svc) => (
-            <Link
-              key={svc.slug}
-              href={svc.href}
-              className="group relative flex-none w-[70vw] aspect-[3/4] snap-start overflow-hidden no-underline"
-            >
-              <Image
-                src={svc.image}
-                alt={svc.name.replace("\n", " ")}
-                fill
-                sizes="70vw"
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-black/5" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
-                <h3 className="font-display font-medium text-[28px] leading-[1.1] text-white whitespace-pre-line tracking-[-0.01em] drop-shadow-[0_2px_12px_rgba(0,0,0,0.3)]">
-                  {svc.name}
-                </h3>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* 3. Transition band — House → HoWA */}
-      <div
-        className="relative text-center px-[5vw] py-[42px] border-t border-house-brown/10 border-b border-house-brown/8"
-        style={{
-          background:
-            "linear-gradient(180deg, var(--house-cream) 0%, var(--house-white) 100%)",
-        }}
-      >
-        <span
-          aria-hidden="true"
-          className="block w-[120px] h-px mx-auto mb-[14px] bg-house-gold opacity-60"
-        />
-        <span
-          aria-hidden="true"
-          className="absolute top-[34px] left-1/2 -translate-x-1/2 font-display text-house-gold text-[18px] leading-none"
-        >
-          ·
-        </span>
-        <p className="font-sans italic text-[15px] text-house-stone tracking-[0.04em]">
-          Book one-off.{" "}
-          <em className="not-italic font-sans text-[11px] tracking-[0.08em] uppercase text-howa-teal ml-2 pl-[10px] border-l border-house-brown/20">
-            Or bundle through HoWA
-          </em>
-        </p>
-      </div>
-
-      {/* 4. HoWA Steward Plans ladder */}
-      <section className="bg-house-white px-[5vw] pt-[72px] pb-[88px]">
-        <div className="text-center mb-12">
-          <span className="block mb-[14px] font-sans text-[11px] tracking-[0.22em] uppercase text-howa-teal">
-            HoWA · Steward Plans
-          </span>
-          <h2 className="font-sans font-normal text-[clamp(32px,3.4vw,44px)] leading-[1.12] tracking-[-0.015em] text-house-brown mb-[10px]">
-            Care, on a{" "}
-            <em className="italic font-light text-howa-teal">
-              rhythm the home can trust.
-            </em>
-          </h2>
-          <p className="mx-auto max-w-[620px] font-sans text-[15px] text-house-brown/70">
-            Bundle the services into a plan. HoWA holds the calendar, remembers
-            what&apos;s due, and sends the right hands at the right time.
-          </p>
-        </div>
-
-        <div className="mx-auto max-w-[1180px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-          {PLANS.map((p, i) => {
-            const isFeatured = p.featured;
-            const isLast = i === PLANS.length - 1;
-            return (
-              <div
-                key={p.name}
-                className={
-                  isFeatured
-                    ? "relative z-10 bg-howa-navy text-house-cream border border-howa-navy p-7 pt-8 pb-8 flex flex-col lg:-translate-y-[10px] shadow-[0_20px_50px_rgba(30,42,58,0.15)]"
-                    : `relative bg-white text-house-brown border border-house-brown/18 ${
-                        isLast ? "" : "lg:border-r-0"
-                      } p-7 pt-8 pb-8 flex flex-col`
-                }
-              >
-                <span
-                  className={
-                    isFeatured
-                      ? "font-sans text-[10px] tracking-[0.22em] uppercase text-house-gold-light mb-[10px]"
-                      : "font-sans text-[10px] tracking-[0.22em] uppercase text-house-gold mb-[10px]"
-                  }
-                >
-                  {p.tier}
-                </span>
-                <h4
-                  className={`font-display font-medium text-[24px] mb-1.5 ${
-                    isFeatured ? "text-house-cream" : "text-house-brown"
-                  }`}
-                >
-                  {p.name}
-                </h4>
-                <div
-                  className={`font-sans text-[13px] mb-4 ${
-                    isFeatured ? "text-house-cream/65" : "text-house-stone"
-                  }`}
-                >
-                  from{" "}
-                  <strong
-                    className={`font-medium text-[18px] ${
-                      isFeatured ? "text-house-gold-light" : "text-house-brown"
-                    }`}
-                  >
-                    {p.priceFrom}
-                  </strong>{" "}
-                  / month
-                </div>
-                <ul
-                  className={`flex-1 list-none pl-[14px] text-[12.5px] leading-[1.8] ${
-                    isFeatured ? "text-house-cream/85" : "text-house-brown"
-                  }`}
-                >
-                  {p.inclusions.map((inc) => (
-                    <li
-                      key={inc}
-                      className={`relative py-[1px] before:content-['—'] before:absolute before:-left-[14px] ${
-                        isFeatured
-                          ? "before:text-house-gold-light"
-                          : "before:text-house-gold"
-                      }`}
-                    >
-                      {inc}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-[18px]">
-                  <Link
-                    href="/api/howa-bounce?source=services-plan"
-                    className={
-                      isFeatured
-                        ? "inline-block font-sans text-[11px] tracking-[0.16em] uppercase px-[18px] py-[9px] no-underline text-white bg-house-gold border border-house-gold transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
-                        : "inline-block font-sans text-[11px] tracking-[0.16em] uppercase px-[18px] py-[9px] no-underline text-house-brown border border-house-brown/50 transition-all duration-[var(--t-base)] ease-out hover:bg-house-brown hover:text-house-cream"
-                    }
-                  >
-                    Configure →
-                  </Link>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* 5. Brief builder band — Quick Quote */}
-      <section className="bg-house-white px-[5vw] pt-[72px] pb-[96px] border-t border-house-brown/8 grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-14 items-center">
-        <div>
-          <span className="block mb-5 font-sans text-[11px] tracking-[0.22em] uppercase text-howa-teal">
-            HoWA · Quick Quote
-          </span>
-          <h2 className="font-sans font-normal text-[clamp(32px,3.4vw,44px)] leading-[1.12] tracking-[-0.015em] text-house-brown mb-[14px]">
-            A plan shaped{" "}
-            <em className="italic font-light text-howa-teal">
-              around this home.
-            </em>
-          </h2>
-          <p className="max-w-[480px] mb-[26px] font-sans text-[16px] leading-[1.65] text-house-brown/70">
-            A short Companion captures the property, household, and care
-            rhythm. HoWA proposes the right plan and holds the calendar.
-          </p>
-          <Link
-            href="/api/howa-bounce?source=services-brief"
-            className="inline-block px-[26px] py-[13px] font-sans text-[12px] tracking-[0.16em] uppercase no-underline bg-house-gold text-white border border-house-gold transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
-          >
-            Start the Companion
-          </Link>
-        </div>
-
-        <div
-          className="relative bg-howa-paper border border-house-brown/20 p-6"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(0deg, transparent 0 31px, rgba(48,35,28,0.04) 31px 32px)",
-          }}
-        >
-          {BRIEF_STEPS.map((step, i) => (
-            <div
-              key={step.label}
-              className={`flex gap-[14px] py-[14px] ${
-                i === BRIEF_STEPS.length - 1
-                  ? ""
-                  : "border-b border-dashed border-house-brown/20"
-              }`}
-            >
-              <span className="min-w-[20px] font-sans italic text-[16px] text-house-gold">
-                {step.num}
-              </span>
-              <div>
-                <div className="mb-1 font-sans text-[10px] tracking-[0.18em] uppercase text-house-stone">
-                  {step.label}
-                </div>
-                <div className="font-sans text-[17px] leading-[1.3] text-house-brown">
-                  {step.val}
-                </div>
-              </div>
+    <div className={s.page}>
+      {/* 1. Hero */}
+      <section className={s.hero}>
+        <div className={s.heroCopy}>
+          <div className={s.heroCopyInner}>
+            <p className={s.heroEy}>The House · Services</p>
+            <h1 className={s.heroTitle}>
+              The quiet standard <em>of care.</em>
+            </h1>
+            <p className={s.heroLede}>
+              Every discipline of home care, kept to one House standard.
+              Book one-off, or let HoWA hold the rhythm of the year.
+            </p>
+            <div className={s.heroCtas}>
+              <Link href="#open-booking-form" className={s.btnFilled}>
+                Book one-off
+              </Link>
+              <Link href="#plans" className={s.btnGhost}>
+                Start a plan
+                <span aria-hidden="true" className={s.btnArrow}>→</span>
+              </Link>
             </div>
+          </div>
+        </div>
+        <div className={s.heroVisual}>
+          <Image
+            src="/home-v4/plus-benefit-1.png"
+            alt="A hand cleaning a sash window in golden-hour light, with a plant on the sill inside"
+            fill
+            sizes="(min-width: 1024px) 55vw, 100vw"
+            priority
+            style={{ objectFit: "cover", objectPosition: "center" }}
+          />
+        </div>
+      </section>
+
+      {/* 2. Stats strip */}
+      <section className={s.statsStrip}>
+        <div className={s.statsLede}>
+          <p className={s.statsLedeLine1}>Same standard. Same hands twice.</p>
+          <p className={s.statsLedeLine2}>Held in your record, surfaced when it matters.</p>
+        </div>
+        {STAT_COLS.map((stat) => (
+          <div key={stat.label} className={s.stat}>
+            <span className={s.statValue}>{stat.value}</span>
+            <span className={s.statLabel}>{stat.label}</span>
+          </div>
+        ))}
+      </section>
+
+      {/* 3. Service carousel — all subbrands, live + coming-soon */}
+      <section className={s.services}>
+        <header className={s.servicesHead}>
+          <p className={s.servicesEy}>The Sub-Brands</p>
+          <h2 className={s.servicesTitle}>
+            The hands that <em>look after the home.</em>
+          </h2>
+          <p className={s.servicesLede}>
+            Nine disciplines, one House standard. Four live at launch — the
+            rest opening through 2026 as we onboard partners we trust.
+          </p>
+        </header>
+        <div className={s.servicesCarousel}>
+          {SERVICES.map((svc) => (
+            <Link
+              key={svc.slug}
+              href={svc.href}
+              className={`${s.serviceCard} ${svc.state === "soon" ? s.serviceCardSoon : ""}`}
+              data-state={svc.state}
+            >
+              <div className={s.serviceImage}>
+                <Image
+                  src={svc.image}
+                  alt={svc.name}
+                  width={780}
+                  height={975}
+                  sizes="(min-width: 1024px) 320px, 80vw"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+                <span className={s.serviceState}>
+                  {svc.state === "live" ? "Available now" : "Coming soon"}
+                </span>
+              </div>
+              <div className={s.serviceBody}>
+                <h3 className={s.serviceName}>{svc.name}</h3>
+                <p className={s.serviceTagline}>{svc.tagline}</p>
+                <p className={s.serviceText}>{svc.body}</p>
+                <span className={s.serviceCta}>
+                  {svc.state === "live" ? `See ${svc.name.toLowerCase()} →` : "Register interest →"}
+                </span>
+              </div>
+            </Link>
           ))}
+        </div>
+        <p className={s.servicesFootnote}>
+          Scroll for more — handyman, housekeeping, removals, energy and
+          pet care all opening in 2026.
+        </p>
+      </section>
+
+      {/* 4. Steward Plans ladder */}
+      <section id="plans" className={s.plans}>
+        <header className={s.plansHead}>
+          <p className={s.plansEy}>
+            HoWA Steward · <span className={s.plansEyHighlight}>Available with Steward only</span>
+          </p>
+          <h2 className={s.plansTitle}>
+            Care, on a rhythm <em>the home can trust.</em>
+          </h2>
+          <p className={s.plansLede}>
+            Steward Plans bundle the services into a recurring rhythm. HoWA
+            holds the calendar, remembers what's due, and sends the right hands
+            at the right time. <strong>Open to HoWA Steward customers only —</strong>{" "}
+            <Link href="/howa/steward" className={s.plansLink}>
+              learn about Steward →
+            </Link>
+          </p>
+        </header>
+        <div className={s.plansGrid}>
+          {PLANS.map((p) => (
+            <article
+              key={p.name}
+              className={`${s.planCard} ${p.featured ? s.planCardFeatured : ""}`}
+            >
+              {p.featured ? (
+                <span className={s.planRibbon}>Recommended</span>
+              ) : null}
+              <h3 className={s.planName}>{p.name}</h3>
+              <div className={s.planPrice}>
+                <span className={s.planPriceFrom}>From</span>
+                <span className={s.planPriceAmount}>{p.priceFrom}</span>
+                <span className={s.planPriceUnit}>/ month</span>
+              </div>
+              <ul className={s.planList}>
+                {p.inclusions.map((inc) => (
+                  <li key={inc}>{inc}</li>
+                ))}
+              </ul>
+              <Link
+                href="/howa/steward"
+                className={p.featured ? s.btnFilled : s.btnGhostDark}
+              >
+                Open with Steward →
+              </Link>
+            </article>
+          ))}
+        </div>
+        <p className={s.plansFootnote}>
+          Plans require an active Steward subscription. Adjust the rhythm any
+          month from your HoWA dashboard. Not yet a Steward customer?{" "}
+          <Link href="/howa/steward" className={s.plansLink}>
+            Read about Steward
+          </Link>
+          .
+        </p>
+      </section>
+
+      {/* 5. Brief builder */}
+      <section className={s.brief}>
+        <div className={s.briefCopy}>
+          <p className={s.briefEy}>The Companion · in two minutes</p>
+          <h2 className={s.briefTitle}>
+            Tell us about the home. <em>HoWA proposes the plan.</em>
+          </h2>
+          <p className={s.briefLede}>
+            A short conversation and the Companion sketches a plan that fits
+            the home, the rhythm, and the budget. Adjust before booking, or
+            book straight in.
+          </p>
+          <Link href="/howa/companion" className={s.btnFilled}>
+            Try the Companion
+          </Link>
+        </div>
+        <div className={s.briefMock}>
+          <p className={s.briefMockTitle}>A worked example</p>
+          <ul className={s.briefMockList}>
+            {BRIEF_LINES.map((line) => (
+              <li
+                key={line.num}
+                className={`${s.briefMockLine} ${line.highlight ? s.briefMockHighlight : ""}`}
+              >
+                <span className={s.briefMockNum}>{line.num}</span>
+                <span className={s.briefMockLabel}>{line.label}</span>
+                <span className={s.briefMockValue}>{line.value}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
       {/* 6. FAQ */}
-      <section className="bg-house-white px-[5vw] py-[72px] border-t border-house-brown/8">
-        <div className="text-center mb-10">
-          <h2 className="font-sans font-normal text-[34px] tracking-[-0.015em] text-house-brown">
-            Before you book,{" "}
-            <em className="italic font-light text-howa-teal">
-              some questions.
-            </em>
-          </h2>
-        </div>
-        <div className="mx-auto max-w-[780px]">
-          {FAQ.map((f, i) => (
-            <div
-              key={f.q}
-              className={`flex gap-6 items-baseline py-[18px] border-t border-house-brown/12 ${
-                i === FAQ.length - 1 ? "border-b" : ""
-              }`}
-            >
-              <div className="flex-1 font-sans text-[20px] text-house-brown">
-                {f.q}
-              </div>
-              <div className="max-w-[260px] font-sans text-[13px] leading-[1.6] text-house-stone">
-                {f.a}
-              </div>
-            </div>
-          ))}
+      <section className={s.faqSection}>
+        <div className={s.faqInner}>
+          <header className={s.faqHead}>
+            <p className={s.faqEy}>Questions</p>
+            <h2 className={s.faqTitle}>
+              What people <em>usually</em> ask.
+            </h2>
+          </header>
+          <FaqList items={FAQ} />
         </div>
       </section>
 
-      {/* 7. Closing poem + CTA */}
-      <section className="bg-house-cream px-[5vw] py-[88px] text-center border-t border-house-brown/8">
-        <p className="mx-auto max-w-[640px] mb-7 font-display italic text-[24px] leading-[1.3] text-house-brown">
-          A well-kept home isn&apos;t a pile of bookings.{" "}
-          <em className="italic text-house-stone">
-            It&apos;s a rhythm someone else remembers.
-          </em>
+      {/* 7. Closing */}
+      <section className={s.closing}>
+        <p className={s.closingKicker}>The quiet discipline of looking after a place.</p>
+        <p className={s.closingStatement}>
+          <em>Booked, briefed, and remembered.</em>
         </p>
-        <Link
-          href="/api/howa-bounce?source=services-closing"
-          className="inline-block px-[30px] py-[15px] font-sans text-[13px] tracking-[0.16em] uppercase no-underline bg-house-gold text-white border border-house-gold transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
-        >
-          Start your plan
-        </Link>
+        <div className={s.closingCtas}>
+          <Link href="#open-booking-form" className={s.closingBtnFilled}>
+            Book a service
+          </Link>
+          <Link href="/howa" className={s.closingBtnGhost}>
+            See HoWA →
+          </Link>
+        </div>
       </section>
-
-      {/* 8. Newsletter */}
-      <NewsletterInline variant={nlBlock?.variant ?? "cream"} sourcePage="/services" {...(nlBlock ?? {})} />
-
-      {/* 9. Italic tagline */}
-      <div className="text-center border-t border-house-brown/10 bg-house-cream px-5 py-6">
-        <p className="font-sans italic text-[14px] text-house-stone tracking-[0.04em]">
-          Ownership is passive. Stewardship is intentional.
-        </p>
-      </div>
-    </>
+    </div>
   );
 }

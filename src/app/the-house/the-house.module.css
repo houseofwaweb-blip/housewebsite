@@ -1,0 +1,605 @@
+/* /the-house — lander framework, HoWA-leaning */
+
+.page {
+  background: var(--color-house-cream);
+  color: var(--color-house-brown);
+}
+
+/* ============================================================
+   1. Hero — dollhouse-scene image right, copy left
+   ============================================================ */
+.hero {
+  position: relative;
+  background: var(--color-house-cream);
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 0;
+  align-items: stretch;
+  min-height: clamp(560px, 70vh, 760px);
+  border-bottom: 1px solid rgba(48, 35, 28, 0.08);
+  overflow: hidden;
+}
+.heroCopy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(48px, 5vw, 88px) clamp(40px, 4vw, 80px) clamp(48px, 5vw, 88px) clamp(48px, 5vw, 96px);
+}
+.heroCopyInner { max-width: 580px; }
+.heroEy {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-house-gold-dark);
+  margin: 0 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.heroEy::before {
+  content: "";
+  width: 36px;
+  height: 1px;
+  background: var(--color-house-gold-dark);
+  opacity: 0.7;
+}
+.heroTitle {
+  font-family: var(--font-hearth-serif);
+  font-weight: 400;
+  font-size: clamp(48px, 5.6vw, 88px);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  color: var(--color-house-brown);
+  margin: 0 0 24px;
+}
+.heroTitle em {
+  font-style: italic;
+  color: var(--color-house-gold-dark);
+}
+.heroLede {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(48, 35, 28, 0.72);
+  margin: 0 0 32px;
+  max-width: 44ch;
+  padding-top: 24px;
+  border-top: 1px solid rgba(48, 35, 28, 0.14);
+}
+.heroVisual {
+  position: relative;
+  background: #2a2014;
+  overflow: hidden;
+}
+.heroCtas { display: flex; gap: 12px; flex-wrap: wrap; }
+.btnFilled,
+.btnGhost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 26px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+.btnFilled {
+  background: var(--color-house-gold-dark);
+  color: var(--color-house-cream);
+  border: 1px solid var(--color-house-gold-dark);
+}
+.btnFilled:hover { background: var(--color-house-gold); border-color: var(--color-house-gold); }
+.btnGhost {
+  background: transparent;
+  color: var(--color-house-brown);
+  border: 1px solid rgba(48, 35, 28, 0.32);
+}
+.btnGhost:hover { border-color: var(--color-house-brown); }
+.btnArrow { margin-left: 4px; transition: transform 0.25s ease; }
+.btnGhost:hover .btnArrow { transform: translateY(2px); }
+
+/* ============================================================
+   2. Stats strip
+   ============================================================ */
+.statsStrip {
+  background: var(--color-house-cream-dark);
+  padding: clamp(28px, 3vw, 44px) clamp(40px, 5vw, 88px);
+  border-bottom: 1px solid rgba(48, 35, 28, 0.08);
+  display: grid;
+  grid-template-columns: 4fr 1fr 1fr 1fr 1fr;
+  gap: 0;
+  align-items: center;
+}
+.statsLede { padding-right: clamp(24px, 3vw, 56px); }
+.statsLedeLine1 {
+  font-family: var(--font-sans);
+  font-size: clamp(13px, 1.1vw, 15px);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-house-brown);
+  margin: 0 0 8px;
+  line-height: 1.5;
+}
+.statsLedeLine2 {
+  font-family: var(--font-sans);
+  font-size: clamp(11px, 0.9vw, 13px);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(48, 35, 28, 0.58);
+  margin: 0;
+  line-height: 1.5;
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  padding: 6px clamp(8px, 1vw, 18px);
+  border-left: 1px solid rgba(48, 35, 28, 0.12);
+}
+.statValue {
+  font-family: var(--font-hearth-serif);
+  font-size: clamp(28px, 2.6vw, 40px);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--color-house-brown);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.015em;
+}
+.statLabel {
+  font-family: var(--font-sans);
+  font-size: clamp(9px, 0.75vw, 10px);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(48, 35, 28, 0.62);
+  line-height: 1.4;
+  max-width: 14ch;
+}
+
+/* ============================================================
+   3. Premise — two-column: editorial copy + watercolour illustration
+   ============================================================ */
+.premise {
+  background: var(--color-house-cream);
+  padding: clamp(72px, 7vw, 120px) clamp(40px, 5vw, 88px);
+  border-bottom: 1px solid rgba(48, 35, 28, 0.08);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 5vw, 88px);
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.premiseCopy { max-width: 56ch; }
+.premiseEy {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-house-gold-dark);
+  margin: 0 0 18px;
+  font-weight: 500;
+}
+.premiseStatement {
+  font-family: var(--font-hearth-serif);
+  font-weight: 400;
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.25;
+  color: var(--color-house-brown);
+  margin: 0 0 28px;
+  letter-spacing: -0.01em;
+}
+.premiseStatement em {
+  font-style: italic;
+  color: var(--color-house-gold-dark);
+}
+.premiseBody {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(48, 35, 28, 0.72);
+  margin: 0;
+  padding-top: 24px;
+  border-top: 1px solid rgba(48, 35, 28, 0.14);
+  max-width: 50ch;
+}
+.premiseImage {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.premiseImage img {
+  max-width: 520px;
+  width: 100%;
+  height: auto;
+}
+
+/* ============================================================
+   4. Pillars — alternating two-column
+   ============================================================ */
+.pillar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: stretch;
+  background: var(--color-house-cream);
+  border-bottom: 1px solid rgba(48, 35, 28, 0.06);
+  min-height: clamp(440px, 56vh, 620px);
+}
+.pillarAlt { background: var(--color-house-white); }
+.pillarAlt .pillarCopy { order: 1; }
+.pillarAlt .pillarImage { order: 2; }
+
+.pillarImage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  overflow: hidden;
+}
+.pillarCopy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(56px, 6vw, 96px) clamp(40px, 5vw, 88px);
+  max-width: 640px;
+}
+.pillarMeta {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-house-gold-dark);
+  margin: 0 0 18px;
+  font-weight: 500;
+}
+.pillarTitle {
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(32px, 3.8vw, 56px);
+  line-height: 1.05;
+  color: var(--color-house-brown);
+  margin: 0 0 18px;
+  letter-spacing: -0.014em;
+}
+.pillarHook {
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  font-size: clamp(16px, 1.5vw, 19px);
+  line-height: 1.55;
+  color: rgba(48, 35, 28, 0.78);
+  margin: 0 0 20px;
+  max-width: 44ch;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(48, 35, 28, 0.12);
+}
+.pillarBody {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(48, 35, 28, 0.72);
+  margin: 0 0 24px;
+  max-width: 44ch;
+}
+.pillarLink {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-house-gold-dark);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-house-gold);
+  padding-bottom: 3px;
+  align-self: flex-start;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+.pillarLink:hover {
+  color: var(--color-house-brown);
+  border-color: var(--color-house-brown);
+}
+
+/* ============================================================
+   5. Transition band — House standard / HoWA record
+   ============================================================ */
+.transition {
+  background: var(--color-house-cream-dark);
+  padding: clamp(28px, 3vw, 44px) clamp(40px, 5vw, 88px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(20px, 3vw, 40px);
+  border-bottom: 1px solid rgba(48, 35, 28, 0.08);
+}
+.transitionRule {
+  display: block;
+  width: clamp(60px, 8vw, 120px);
+  height: 1px;
+  background: var(--color-house-gold);
+  opacity: 0.6;
+}
+.transitionLine {
+  font-family: var(--font-hearth-serif);
+  font-size: clamp(14px, 1.3vw, 18px);
+  color: var(--color-house-brown);
+  margin: 0;
+  text-align: center;
+  letter-spacing: -0.005em;
+}
+.transitionLine em {
+  font-style: italic;
+  color: var(--color-house-gold-dark);
+}
+
+/* ============================================================
+   6. HoWA section — cream, HoWA-leaning
+   ============================================================ */
+.howa {
+  background: var(--color-house-cream);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: stretch;
+  border-bottom: 1px solid rgba(48, 35, 28, 0.08);
+  min-height: clamp(440px, 56vh, 620px);
+}
+.howaCopy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(56px, 6vw, 96px) clamp(40px, 5vw, 88px);
+  max-width: 640px;
+}
+.howaEy {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-house-gold-dark);
+  margin: 0 0 18px;
+  font-weight: 500;
+}
+.howaTitle {
+  font-family: var(--font-hearth-serif);
+  font-weight: 400;
+  font-size: clamp(36px, 4.2vw, 64px);
+  line-height: 1.05;
+  color: var(--color-house-brown);
+  margin: 0 0 18px;
+  letter-spacing: -0.014em;
+}
+.howaTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.howaHook {
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  font-size: clamp(16px, 1.5vw, 19px);
+  line-height: 1.55;
+  color: rgba(48, 35, 28, 0.78);
+  margin: 0 0 18px;
+  max-width: 44ch;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(48, 35, 28, 0.12);
+}
+.howaBody {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(48, 35, 28, 0.72);
+  margin: 0 0 24px;
+  max-width: 44ch;
+}
+.howaCtas {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.howaImage {
+  position: relative;
+  background: var(--color-house-cream-dark);
+}
+
+/* ============================================================
+   7. Steward — navy band (the one dark moment)
+   ============================================================ */
+.steward {
+  position: relative;
+  background: #0d1626;
+  color: var(--color-house-cream);
+  min-height: clamp(440px, 56vh, 620px);
+  overflow: hidden;
+  border-bottom: 1px solid rgba(212, 175, 90, 0.18);
+}
+.stewardBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.stewardBg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(13, 22, 38, 0.92) 0%, rgba(13, 22, 38, 0.6) 50%, rgba(13, 22, 38, 0) 90%);
+}
+.stewardCopy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: clamp(440px, 56vh, 620px);
+  padding: clamp(56px, 6vw, 96px) clamp(40px, 5vw, 88px);
+  max-width: 640px;
+}
+.stewardEy {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-house-gold-light);
+  margin: 0 0 18px;
+  font-weight: 500;
+}
+.stewardTitle {
+  font-family: var(--font-hearth-serif);
+  font-weight: 400;
+  font-size: clamp(36px, 4.2vw, 64px);
+  line-height: 1.05;
+  color: var(--color-house-cream);
+  margin: 0 0 18px;
+  letter-spacing: -0.014em;
+}
+.stewardTitle em {
+  font-style: italic;
+  color: var(--color-house-gold-light);
+}
+.stewardHook {
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  font-size: clamp(16px, 1.5vw, 19px);
+  line-height: 1.55;
+  color: rgba(245, 240, 232, 0.85);
+  margin: 0 0 18px;
+  max-width: 44ch;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(245, 240, 232, 0.2);
+}
+.stewardBody {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(245, 240, 232, 0.72);
+  margin: 0 0 24px;
+  max-width: 44ch;
+}
+.stewardCta {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-house-gold-light);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-house-gold-light);
+  padding-bottom: 3px;
+  align-self: flex-start;
+}
+.stewardCta:hover { color: var(--color-house-cream); border-color: var(--color-house-cream); }
+
+/* ============================================================
+   8. Closing — peacock library bg, atmospheric
+   ============================================================ */
+.closing {
+  position: relative;
+  background: #1a1410;
+  color: var(--color-house-cream);
+  padding: clamp(96px, 10vw, 180px) clamp(40px, 5vw, 88px);
+  text-align: center;
+  overflow: hidden;
+}
+.closingBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.closingBg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(20, 14, 8, 0.5) 0%,
+    rgba(20, 14, 8, 0.7) 50%,
+    rgba(20, 14, 8, 0.85) 100%
+  );
+}
+.closingInner {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.closingKicker {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-house-gold-light);
+  margin: 0 0 18px;
+  font-weight: 500;
+}
+.closingStatement {
+  font-family: var(--font-hearth-serif);
+  font-weight: 400;
+  font-size: clamp(32px, 3.8vw, 56px);
+  line-height: 1.2;
+  color: var(--color-house-cream);
+  margin: 0 auto 40px;
+  max-width: 28ch;
+  letter-spacing: -0.012em;
+}
+.closingStatement em {
+  font-style: italic;
+  color: var(--color-house-gold-light);
+}
+.closingCtas {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.closingBtnFilled,
+.closingBtnGhost {
+  display: inline-block;
+  padding: 14px 28px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+.closingBtnFilled {
+  background: var(--color-house-gold-dark);
+  color: var(--color-house-cream);
+  border: 1px solid var(--color-house-gold-dark);
+}
+.closingBtnFilled:hover { background: var(--color-house-gold); border-color: var(--color-house-gold); }
+.closingBtnGhost {
+  background: transparent;
+  color: var(--color-house-cream);
+  border: 1px solid rgba(245, 240, 232, 0.4);
+}
+.closingBtnGhost:hover { border-color: var(--color-house-cream); }
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 1024px) {
+  .statsStrip { grid-template-columns: 1fr 1fr; gap: 24px; padding: 28px clamp(24px, 4vw, 40px); }
+  .statsLede { grid-column: 1 / -1; padding-right: 0; }
+  .stat:nth-of-type(odd) { border-left: none; }
+}
+@media (max-width: 1024px) {
+  .premise { grid-template-columns: 1fr; gap: 32px; }
+  .premiseImage img { max-width: 460px; }
+}
+@media (max-width: 600px) {
+  .hero, .pillar, .howa { grid-template-columns: 1fr; min-height: 0; }
+  .heroCopy, .pillarCopy, .howaCopy { padding: 56px 24px; max-width: none; }
+  .heroVisual, .pillarImage, .howaImage { aspect-ratio: 4/3; min-height: 0; }
+  .pillarAlt .pillarCopy,
+  .pillarAlt .pillarImage { order: initial; }
+  .statsStrip { grid-template-columns: 1fr 1fr; gap: 18px 16px; padding: 36px 24px; }
+  .stat { border-left: none !important; padding: 8px 0; }
+  .premise { padding: 56px 24px; gap: 32px; }
+  .closing { padding: 80px 24px; }
+  .stewardCopy { padding: 64px 24px; max-width: none; min-height: 0; }
+  .steward { min-height: 480px; }
+}

@@ -1,0 +1,92 @@
+import Link from "next/link";
+import { COLLECTIONS } from "@/lib/shop-data";
+import { CATALOGUE_COLLECTIONS } from "@/lib/shop-data/catalogue";
+import s from "./collections-index.module.css";
+
+export const metadata = {
+  title: "Collections — Shop",
+  description:
+    "Every curated edit in the House Shop. House Approved, garden, home, and the categories that follow.",
+};
+
+type CollectionListItem = {
+  handle: string;
+  title: string;
+  count: number;
+  featured?: boolean;
+};
+
+function getAllCollections(): CollectionListItem[] {
+  const local: CollectionListItem[] = COLLECTIONS.map((c) => ({
+    handle: c.handle,
+    title: c.title,
+    count: c.productHandles.length,
+    featured: c.handle === "house-approved",
+  }));
+  const localHandles = new Set(local.map((c) => c.handle));
+  const catalogue: CollectionListItem[] = CATALOGUE_COLLECTIONS.filter(
+    (c) => !localHandles.has(c.handle),
+  ).map((c) => ({
+    handle: c.handle,
+    title: c.title,
+    count: c.productCount,
+    featured: false,
+  }));
+  // Featured first, then by count descending
+  return [...local, ...catalogue].sort((a, b) => {
+    if (a.featured && !b.featured) return -1;
+    if (!a.featured && b.featured) return 1;
+    return b.count - a.count;
+  });
+}
+
+export default function CollectionsIndexPage() {
+  const collections = getAllCollections();
+  const totalPieces = collections.reduce((sum, c) => sum + c.count, 0);
+
+  return (
+    <div className={s.page}>
+      {/* Hero */}
+      <section className={s.hero}>
+        <nav aria-label="Breadcrumb" className={s.crumbs}>
+          <Link href="/shop" className={s.crumbLink}>Shop</Link>
+          <span className={s.crumbSep}>/</span>
+          <span>Collections</span>
+        </nav>
+        <p className={s.heroEy}>The House · Shop</p>
+        <h1 className={s.heroTitle}>
+          Curated <em>collections.</em>
+        </h1>
+        <p className={s.heroLede}>
+          Every category in the House Shop, gathered as edits. Start with what
+          we wear the House Approved seal beside.
+        </p>
+        <p className={s.heroCount}>
+          {collections.length} collections · {totalPieces} pieces
+        </p>
+      </section>
+
+      {/* Collections grid */}
+      <section className={s.grid}>
+        <div className={s.gridInner}>
+          {collections.map((c) => (
+            <Link
+              key={c.handle}
+              href={`/shop/collections/${c.handle}`}
+              className={`${s.card} ${c.featured ? s.cardFeatured : ""}`}
+            >
+              {c.featured ? (
+                <span className={s.cardRibbon}>Featured</span>
+              ) : null}
+              <h3 className={s.cardTitle}>{c.title}</h3>
+              <p className={s.cardCount}>
+                {c.count} {c.count === 1 ? "piece" : "pieces"}
+              </p>
+              <span className={s.cardCta}>Browse →</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}

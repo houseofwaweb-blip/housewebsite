@@ -1,29 +1,51 @@
-import { Eyebrow } from "@/components/primitives/Eyebrow";
+import Image from "next/image";
+import s from "./shop.module.css";
 import { CATALOGUE_PRODUCTS, CATALOGUE_COLLECTIONS, CATALOGUE_BRANDS } from "@/lib/shop-data/catalogue";
 import { ShopBrowser } from "./ShopBrowser";
 
 export const metadata = {
-  title: "Shop",
+  title: "Shop — Objects worth keeping.",
   description:
     "Curated objects from the House of Willow Alexander. Tools, home, and wear — each House Approved for craft, provenance, and lasting use.",
 };
 
 export default function ShopPage() {
   return (
-    <article className="bg-house-cream text-house-brown">
-      {/* Compact hero */}
-      <section className="text-center px-[5vw] pt-12 pb-8">
-        <Eyebrow>The House · Shop</Eyebrow>
-        <h1 className="em-accent font-display font-medium text-[clamp(32px,4.5vw,52px)] leading-[1.08] mt-2">
-          Objects worth <em>keeping.</em>
-        </h1>
-        <p className="font-sans text-[12px] text-house-stone mt-1.5">
-          {CATALOGUE_PRODUCTS.length} pieces
-        </p>
-        <div className="mt-6 mx-auto max-w-[480px] bg-house-white border border-house-gold/20 px-5 py-3.5 text-center">
-          <p className="font-sans italic text-[13px] text-house-stone leading-[1.5]">
-            Our curation is undergoing some renovations. You&apos;ll be able to order from us again soon.
-          </p>
+    <div className={s.page}>
+      {/* Hero */}
+      <section className={s.hero}>
+        <div className={s.heroCopy}>
+          <div className={s.heroCopyInner}>
+            <p className={s.heroEy}>The House · Shop</p>
+            <h1 className={s.heroTitle}>
+              Objects worth <em>keeping.</em>
+            </h1>
+            <p className={s.heroLede}>
+              Curated tools, homewares and small objects — each chosen for
+              craft, provenance and lasting use. Verified by the House,
+              written back to your home record through HoWA.
+            </p>
+            <p className={s.heroCount}>
+              {CATALOGUE_PRODUCTS.length} pieces
+            </p>
+            <div className={s.heroNotice}>
+              <p>
+                A preview of the House Shop. The full edit is being staged for
+                launch — pieces below are browsable now, with checkout opening
+                soon.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className={s.heroVisual}>
+          <Image
+            src="/home-v4/house-temperaments-still-life.png"
+            alt="Still life of curated objects from the House"
+            fill
+            priority
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            style={{ objectFit: "cover", objectPosition: "center" }}
+          />
         </div>
       </section>
 
@@ -33,6 +55,6 @@ export default function ShopPage() {
         collections={CATALOGUE_COLLECTIONS.filter((c) => c.productCount >= 5)}
         brands={CATALOGUE_BRANDS.filter((b) => b.count >= 3)}
       />
-    </article>
+    </div>
   );
 }

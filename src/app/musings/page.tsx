@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Eyebrow } from "@/components/primitives/Eyebrow";
+import s from "./musings.module.css";
 import { getMusingList } from "@/lib/cms/news-musings";
 
 export const metadata = {
-  title: "Musings",
+  title: "Musings — Short notes from the House.",
   description:
     "The House's free blog — notes on gardens, rooms, seasons, and the keeping of a home.",
 };
@@ -14,21 +14,18 @@ export default async function MusingsIndexPage() {
   const [hero, ...rest] = items;
 
   return (
-    <article className="bg-house-cream text-house-brown">
-      {/* Header */}
-      <section className="px-[5vw] pt-[12vh] pb-10">
-        <div className="max-w-[880px] mx-auto">
-          <Eyebrow>The House · Musings</Eyebrow>
-          <h1 className="em-accent font-display font-medium text-[clamp(44px,6vw,80px)] leading-[1.05] tracking-[-0.01em] mt-4">
-            Short notes &amp; <em>practical advice</em>.
+    <div className={s.page}>
+      {/* 1. Hero header */}
+      <section className={s.head}>
+        <div className={s.headInner}>
+          <p className={s.eyebrow}>The House · Musings</p>
+          <h1 className={s.headTitle}>
+            Short notes &amp; <em>practical advice.</em>
           </h1>
-          <p className="font-sans text-[19px] leading-[1.6] text-house-brown/75 mt-6 max-w-[62ch]">
+          <p className={s.headLede}>
             Free to read. Gardens, rooms, seasons, and the quiet work of
             keeping a home. Longer editorial writing lives in{" "}
-            <Link
-              href="/journal"
-              className="text-house-brown underline decoration-house-gold underline-offset-4"
-            >
+            <Link href="/the-hearth" className={s.headLink}>
               The Hearth
             </Link>
             .
@@ -36,94 +33,86 @@ export default async function MusingsIndexPage() {
         </div>
       </section>
 
-      {/* Hero card */}
+      {/* 2. Featured / latest */}
       {hero ? (
-        <section className="px-[5vw] pb-12">
-          <div className="max-w-[1280px] mx-auto">
-            <Link
-              href={`/musings/${hero.slug}`}
-              className="group grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-10 items-center no-underline transition-all duration-[var(--t-slow)] ease-out hover:-translate-y-0.5"
-            >
-              {hero.image ? (
-                <div className="relative aspect-[4/3] w-full overflow-hidden">
-                  <Image
-                    src={hero.image}
-                    alt=""
-                    fill
-                    sizes="(min-width: 768px) 60vw, 100vw"
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-              ) : null}
-              <div>
-                <Eyebrow>Latest</Eyebrow>
-                <h2 className="font-display font-medium text-[clamp(30px,3.6vw,48px)] leading-[1.1] tracking-[-0.005em] text-house-brown group-hover:text-house-gold transition-colors duration-[var(--t-base)] ease-out mt-4 mb-4">
-                  {hero.title}
-                </h2>
-                <p className="font-sans italic text-[17px] leading-[1.6] text-house-stone mb-5 max-w-[54ch]">
-                  {hero.lede}
-                </p>
-                <time
-                  dateTime={hero.publishedAt}
-                  className="font-sans text-[11px] tracking-[0.18em] uppercase text-house-stone"
-                >
-                  {new Date(hero.publishedAt).toLocaleDateString("en-GB", {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  })}
-                </time>
+        <section className={s.featured}>
+          <Link href={`/musings/${hero.slug}`} className={s.featuredCard}>
+            {hero.image ? (
+              <div className={s.featuredImage}>
+                <Image
+                  src={hero.image}
+                  alt=""
+                  fill
+                  sizes="(min-width: 1024px) 55vw, 100vw"
+                  priority
+                  style={{ objectFit: "cover", objectPosition: "center" }}
+                />
               </div>
-            </Link>
-          </div>
+            ) : (
+              <div className={s.featuredImagePlaceholder} aria-hidden="true" />
+            )}
+            <div className={s.featuredBody}>
+              <p className={s.featuredEy}>The latest</p>
+              <h2 className={s.featuredTitle}>{hero.title}</h2>
+              <p className={s.featuredLede}>{hero.lede}</p>
+              <time dateTime={hero.publishedAt} className={s.featuredDate}>
+                {formatDate(hero.publishedAt, "long")}
+              </time>
+            </div>
+          </Link>
         </section>
       ) : null}
 
-      {/* Grid */}
-      <section className="px-[5vw] pb-20 border-t border-house-brown/10 pt-12">
-        <div className="max-w-[1280px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14">
-          {rest.map((m) => {
-            const date = new Date(m.publishedAt).toLocaleDateString("en-GB", {
-              day: "numeric",
-              month: "short",
-              year: "numeric",
-            });
-            return (
-              <article key={m.slug} className="flex flex-col h-full">
-                <Link
-                  href={`/musings/${m.slug}`}
-                  className="group flex flex-col h-full no-underline transition-all duration-[var(--t-slow)] ease-out hover:-translate-y-0.5"
-                >
+      {/* 3. Grid */}
+      {rest.length > 0 ? (
+        <section className={s.grid}>
+          <header className={s.gridHead}>
+            <p className={s.eyebrowCentered}>The archive</p>
+            <h2 className={s.gridTitle}>
+              More <em>from the House.</em>
+            </h2>
+          </header>
+          <div className={s.gridInner}>
+            {rest.map((m) => (
+              <article key={m.slug} className={s.card}>
+                <Link href={`/musings/${m.slug}`} className={s.cardLink}>
                   {m.image ? (
-                    <div className="relative aspect-[4/3] w-full mb-4 overflow-hidden">
+                    <div className={s.cardImage}>
                       <Image
                         src={m.image}
                         alt=""
                         fill
                         sizes="(min-width: 1024px) 33vw, 50vw"
-                        className="object-cover transition-all duration-[var(--t-xslow)] ease-out group-hover:scale-[1.02]"
+                        style={{ objectFit: "cover", objectPosition: "center" }}
                       />
                     </div>
-                  ) : null}
-                  <h3 className="font-display font-medium text-[22px] leading-[1.2] text-house-brown group-hover:text-house-gold transition-colors duration-[var(--t-slow)] ease-out mb-2">
-                    {m.title}
-                  </h3>
-                  <p className="font-sans italic text-[15px] leading-[1.55] text-house-stone mb-3">
-                    {m.lede}
-                  </p>
-                  <time
-                    dateTime={m.publishedAt}
-                    className="mt-auto font-sans text-[10px] tracking-[0.18em] uppercase text-house-stone"
-                  >
-                    {date}
+                  ) : (
+                    <div className={s.cardImagePlaceholder} aria-hidden="true" />
+                  )}
+                  <h3 className={s.cardTitle}>{m.title}</h3>
+                  <p className={s.cardLede}>{m.lede}</p>
+                  <time dateTime={m.publishedAt} className={s.cardDate}>
+                    {formatDate(m.publishedAt, "short")}
                   </time>
                 </Link>
               </article>
-            );
-          })}
-        </div>
-      </section>
-    </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {items.length === 0 ? (
+        <section className={s.empty}>
+          <p className={s.emptyText}>New musings are on their way. Check back soon.</p>
+        </section>
+      ) : null}
+    </div>
   );
+}
+
+function formatDate(iso: string, style: "long" | "short" = "long"): string {
+  const d = new Date(iso);
+  return style === "long"
+    ? d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })
+    : d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
 }
