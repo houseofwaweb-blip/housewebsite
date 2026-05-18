@@ -1,4 +1,4 @@
-/* /the-house/artwork — cinematic long-scroll, lander framework */
+/* /the-house/artwork — text-first long-scroll, lander framework */
 
 .page {
   background: var(--color-house-cream);
@@ -63,30 +63,71 @@
 .bgCreamDark { background: var(--color-house-cream-dark); }
 
 /* ──────────────────────────────────────────────────────────
-   HERO — cover plate fills full viewport, scroll indicator only
+   HERO — text-first title with quiet pattern atmosphere
    ────────────────────────────────────────────────────────── */
-.hero {
+.heroText {
   position: relative;
-  width: 100%;
-  height: clamp(640px, 96vh, 960px);
+  min-height: clamp(560px, 78vh, 760px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(80px, 9vw, 132px) clamp(28px, 5vw, 88px);
   overflow: hidden;
-  background: var(--color-house-brown);
+  background: var(--color-house-cream);
 }
-.heroPlate {
+/* Subtle pattern texture behind the title. Sits at very low opacity so it
+   feels like watermark, not decoration. */
+.heroTexture {
   position: absolute;
   inset: 0;
+  background-image: url("/the-house/artwork/pattern-tile-gold-on-cream.webp");
+  background-size: 360px auto;
+  background-repeat: repeat;
+  opacity: 0.12;
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 80%);
+  pointer-events: none;
 }
-.heroBottom {
-  position: absolute;
-  bottom: 28px;
-  left: 0;
-  right: 0;
+.heroInner {
+  position: relative;
+  z-index: 1;
+  max-width: 880px;
   text-align: center;
-  z-index: 2;
 }
-.heroChapters {
+.heroEyebrow {
   font-family: var(--font-sans);
   font-size: 11px;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--color-house-gold-dark);
+  margin: 0 0 28px;
+  font-weight: 500;
+}
+.heroTitle {
+  font-family: var(--font-hearth-serif);
+  font-weight: 400;
+  font-size: clamp(48px, 7.2vw, 104px);
+  line-height: 1.02;
+  letter-spacing: -0.022em;
+  color: var(--color-house-brown);
+  margin: 0 0 32px;
+}
+.heroTitle em {
+  font-style: italic;
+  color: var(--color-house-gold-dark);
+}
+.heroLede {
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  font-size: clamp(18px, 1.8vw, 22px);
+  line-height: 1.55;
+  color: rgba(48, 35, 28, 0.72);
+  margin: 0 auto 56px;
+  max-width: 56ch;
+}
+.heroScrollCue {
+  font-family: var(--font-sans);
+  font-size: 10px;
   letter-spacing: 0.42em;
   text-transform: uppercase;
   color: var(--color-house-brown);
@@ -95,26 +136,10 @@
   display: inline-block;
   margin: 0;
   font-weight: 500;
-  animation: artwork-pulse 3s ease-in-out infinite;
-}
-@keyframes artwork-pulse {
-  0%, 100% { opacity: 0.85; }
-  50% { opacity: 1; }
-}
-.srOnly {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
 }
 
 /* ──────────────────────────────────────────────────────────
-   SPLIT CHAPTER — image one side, copy the other
+   SPLIT CHAPTER — text one side, single artefact image the other
    ────────────────────────────────────────────────────────── */
 .split {
   display: grid;
@@ -138,36 +163,120 @@
 .splitCopy {
   display: flex;
   align-items: center;
-  padding: clamp(64px, 7vw, 112px) clamp(40px, 5vw, 96px);
+  padding: clamp(64px, 7vw, 112px) clamp(28px, 5vw, 96px);
 }
 .splitCopyInner {
   max-width: 560px;
 }
 
 /* ──────────────────────────────────────────────────────────
-   FULL PLATE — cinematic image
+   IMAGE CLUSTER — Chapter II: two artefacts as a still life
+   Used in place of splitVisual when we need to compose two
+   books overlapping. Lives in the same .split grid as the
+   regular splitVisual but with offset positioning.
    ────────────────────────────────────────────────────────── */
-.plate {
+.cluster {
   position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
+  min-height: clamp(560px, 75vh, 820px);
   background: var(--color-house-cream-dark);
   overflow: hidden;
+  padding: clamp(32px, 5vw, 80px);
 }
-.plateCinematic {
-  aspect-ratio: 21 / 9;
+.clusterFront,
+.clusterBack {
+  position: absolute;
+  width: 58%;
+  aspect-ratio: 3 / 4;
 }
-@media (max-width: 768px) {
-  .plate { aspect-ratio: 4 / 3; }
-  .plateCinematic { aspect-ratio: 16 / 10; }
+.clusterBack {
+  top: 8%;
+  right: 8%;
+  transform: rotate(4deg);
+  z-index: 1;
+}
+.clusterFront {
+  bottom: 8%;
+  left: 8%;
+  transform: rotate(-3deg);
+  z-index: 2;
+}
+.clusterImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-shadow:
+    0 12px 36px -10px rgba(48, 35, 28, 0.32),
+    0 4px 12px -4px rgba(48, 35, 28, 0.24);
 }
 
 /* ──────────────────────────────────────────────────────────
-   COPY SECTION — centred text moment
+   PATTERN REVEAL — Chapter III: the source detail + the pattern
+   ────────────────────────────────────────────────────────── */
+.patternReveal {
+  padding: clamp(64px, 8vw, 112px) clamp(28px, 5vw, 88px);
+  border-bottom: 1px solid rgba(48, 35, 28, 0.08);
+}
+.patternRevealInner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 4vw, 64px);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.patternRevealItem {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.patternRevealImg {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  box-shadow: 0 10px 28px -10px rgba(48, 35, 28, 0.28);
+}
+.patternRevealCap {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(48, 35, 28, 0.7);
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.patternRevealNum {
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  color: var(--color-house-gold-dark);
+  font-size: 16px;
+}
+
+/* ──────────────────────────────────────────────────────────
+   SHELF ROW — Chapter IV: the composed volumes shelf row
+   (sits above the interactive ArtworkVolumesShelf below)
+   ────────────────────────────────────────────────────────── */
+.shelfRow {
+  padding: clamp(48px, 6vw, 96px) clamp(28px, 5vw, 88px) 0;
+  background: var(--color-house-cream-dark);
+}
+.shelfRowImg {
+  display: block;
+  width: 100%;
+  max-width: 1360px;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* ──────────────────────────────────────────────────────────
+   COPY SECTION — text-only chapter, centred
    ────────────────────────────────────────────────────────── */
 .copySection {
-  padding: clamp(80px, 9vw, 132px) clamp(40px, 5vw, 88px);
+  padding: clamp(80px, 9vw, 132px) clamp(28px, 5vw, 88px);
   border-bottom: 1px solid rgba(48, 35, 28, 0.08);
+}
+.copySectionFirst {
+  padding-top: clamp(100px, 11vw, 168px);
 }
 .copySectionInner {
   max-width: 720px;
@@ -175,153 +284,193 @@
   text-align: center;
 }
 .copySectionInner .kicker { justify-content: center; }
+.copySectionInner .chapterRoman { text-align: center; }
 .copySectionInner .headline { max-width: 26ch; margin-left: auto; margin-right: auto; }
-.copySectionInner .body { text-align: left; }
+.copySectionInner .body    { margin-left: auto; margin-right: auto; }
 
 /* ──────────────────────────────────────────────────────────
-   PULL QUOTE — cream or dark
+   ATMOSPHERE — Chapter VI: text over pattern-tile backdrop
+   ────────────────────────────────────────────────────────── */
+.atmosphere {
+  position: relative;
+  padding: clamp(96px, 11vw, 168px) clamp(28px, 5vw, 88px);
+  overflow: hidden;
+  border-bottom: 1px solid rgba(48, 35, 28, 0.08);
+}
+.atmospherePattern {
+  position: absolute;
+  inset: 0;
+  background-image: url("/the-house/artwork/pattern-tile-gold-on-cream.webp");
+  background-size: 280px auto;
+  background-repeat: repeat;
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+/* ──────────────────────────────────────────────────────────
+   ICON GRID — Chapter VII: 8 hand-drawn icons
+   ────────────────────────────────────────────────────────── */
+.iconGrid {
+  padding: clamp(48px, 7vw, 112px) clamp(28px, 5vw, 88px) clamp(80px, 9vw, 132px);
+  background: var(--color-house-cream-dark);
+  border-bottom: 1px solid rgba(48, 35, 28, 0.08);
+}
+.iconGridInner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(20px, 3vw, 48px);
+  max-width: 960px;
+  margin: 0 auto;
+}
+@media (max-width: 640px) {
+  .iconGridInner { grid-template-columns: repeat(2, 1fr); }
+}
+.iconCell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 12px;
+}
+.iconImg {
+  width: clamp(60px, 9vw, 96px);
+  height: auto;
+  filter: brightness(0) saturate(100%) invert(16%) sepia(8%) saturate(1280%) hue-rotate(351deg) brightness(96%) contrast(86%);
+  opacity: 0.88;
+}
+.iconLabel {
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  font-size: 13px;
+  color: rgba(48, 35, 28, 0.6);
+  margin: 0;
+  text-align: center;
+}
+
+/* ──────────────────────────────────────────────────────────
+   PALETTE SHIFT — Chapter V: green/gold → cream + gold + brown
+   ────────────────────────────────────────────────────────── */
+.paletteShift {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 40px auto 0;
+  flex-wrap: wrap;
+}
+.swatch {
+  display: inline-block;
+  width: 56px;
+  height: 80px;
+  border-radius: 2px;
+  box-shadow: 0 4px 10px -4px rgba(48, 35, 28, 0.3);
+}
+.swatchGreen { background: #3a4a35; }
+.swatchGoldOnGreen {
+  background:
+    linear-gradient(135deg, transparent 40%, rgba(194, 166, 96, 0.55) 50%, transparent 60%),
+    #3a4a35;
+}
+.swatchArrow {
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  font-size: 24px;
+  color: var(--color-house-gold-dark);
+  padding: 0 8px;
+}
+.swatchCream { background: #f3ede1; border: 1px solid rgba(48, 35, 28, 0.08); }
+.swatchGold  { background: #c2a660; }
+.swatchBrown { background: #30231c; }
+
+/* ──────────────────────────────────────────────────────────
+   PULL QUOTE — italic Cormorant, text only, no backdrop image
    ────────────────────────────────────────────────────────── */
 .pullQuote {
-  background: var(--color-house-cream-dark);
-  padding: clamp(80px, 9vw, 144px) clamp(40px, 5vw, 88px);
+  padding: clamp(80px, 10vw, 144px) clamp(28px, 5vw, 88px);
+  background: var(--color-house-cream);
   border-bottom: 1px solid rgba(48, 35, 28, 0.08);
-  position: relative;
-  overflow: hidden;
 }
 .pullQuoteDark {
   background: var(--color-house-brown);
   color: var(--color-house-cream);
 }
-.pullQuoteDark::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("/the-house/artwork/pattern-tile-gold-on-cream.webp");
-  background-size: 480px;
-  background-position: center;
-  background-repeat: repeat;
-  opacity: 0.06;
-  pointer-events: none;
-  mix-blend-mode: screen;
-}
 .pullQuoteInner {
-  position: relative;
-  max-width: 860px;
+  max-width: 880px;
   margin: 0 auto;
   text-align: center;
 }
 .pullQuoteText {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-weight: 400;
-  font-size: clamp(28px, 3.8vw, 46px);
-  line-height: 1.3;
-  color: inherit;
-  margin: 0 0 32px;
+  font-size: clamp(26px, 3.2vw, 40px);
+  line-height: 1.32;
   letter-spacing: -0.005em;
+  color: inherit;
+  margin: 0 0 28px;
 }
+.pullQuoteDark .pullQuoteText { color: var(--color-house-cream); }
 .pullQuoteRule {
-  width: 48px;
+  width: 56px;
   height: 1px;
   background: var(--color-house-gold-dark);
   margin: 0 auto;
 }
-.pullQuoteDark .pullQuoteRule {
-  background: var(--color-house-gold-light);
-  opacity: 0.7;
-}
-
-/* Pull-quote with image backdrop (full bleed) */
-.pullQuoteBackdrop {
-  position: relative;
-  min-height: clamp(440px, 60vh, 640px);
-  padding: clamp(80px, 9vw, 144px) clamp(40px, 5vw, 88px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-bottom: 1px solid rgba(48, 35, 28, 0.08);
-}
-.pullQuoteScrim {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(48, 35, 28, 0.18) 0%, rgba(48, 35, 28, 0.42) 50%, rgba(48, 35, 28, 0.22) 100%);
-}
-.pullQuoteBackdrop .pullQuoteInner {
-  color: var(--color-house-cream);
-}
-.pullQuoteBackdrop .pullQuoteText {
-  color: var(--color-house-cream);
-  text-shadow: 0 2px 24px rgba(20, 14, 8, 0.4);
-}
-.pullQuoteBackdrop .pullQuoteRule {
-  background: var(--color-house-gold-light);
-  opacity: 0.78;
-}
+.pullQuoteDark .pullQuoteRule { background: var(--color-house-gold-light); }
 
 /* ──────────────────────────────────────────────────────────
-   PHILOSOPHY — Chapter IX, with pattern atmosphere
+   PHILOSOPHY — Chapter IX, text + pattern atmosphere
    ────────────────────────────────────────────────────────── */
 .philosophy {
   position: relative;
-  background: var(--color-house-cream);
-  padding: clamp(96px, 10vw, 160px) clamp(40px, 5vw, 88px);
-  border-bottom: 1px solid rgba(48, 35, 28, 0.08);
+  padding: clamp(96px, 11vw, 168px) clamp(28px, 5vw, 88px);
+  background: var(--color-house-cream-dark);
   overflow: hidden;
+  border-bottom: 1px solid rgba(48, 35, 28, 0.08);
 }
 .philosophyPattern {
   position: absolute;
   inset: 0;
   background-image: url("/the-house/artwork/pattern-tile-gold-on-cream.webp");
-  background-size: 520px;
-  background-position: center;
+  background-size: 280px auto;
   background-repeat: repeat;
-  opacity: 0.18;
+  opacity: 0.22;
   pointer-events: none;
 }
 .philosophyInner {
   position: relative;
+  z-index: 1;
   max-width: 720px;
   margin: 0 auto;
   text-align: center;
 }
 .philosophyInner .kicker { justify-content: center; }
+.philosophyInner .chapterRoman { text-align: center; }
 .philosophyInner .headline { max-width: 24ch; margin-left: auto; margin-right: auto; }
 .philosophyBody {
   font-family: var(--font-hearth-serif);
-  font-size: clamp(18px, 2vw, 22px);
-  line-height: 1.6;
-  color: rgba(48, 35, 28, 0.82);
+  font-size: clamp(18px, 1.9vw, 22px);
+  line-height: 1.65;
+  color: rgba(48, 35, 28, 0.85);
   margin: 0 0 22px;
-  text-align: left;
+  max-width: 56ch;
+  margin-left: auto;
+  margin-right: auto;
 }
-.philosophyBody:last-of-type { margin-bottom: 0; }
+.philosophyBody:last-child { margin-bottom: 0; }
 
 /* ──────────────────────────────────────────────────────────
-   CLOSING — final colophon plate + CTAs
+   CLOSING — text-led closing statement + CTAs
    ────────────────────────────────────────────────────────── */
-.closing {
-  position: relative;
-  min-height: clamp(540px, 80vh, 760px);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(80px, 8vw, 132px) clamp(40px, 5vw, 88px);
+.closingText {
+  padding: clamp(100px, 12vw, 168px) clamp(28px, 5vw, 88px);
   background: var(--color-house-brown);
   color: var(--color-house-cream);
-}
-.closingPlate { position: absolute; inset: 0; }
-.closingScrim {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(48, 35, 28, 0.55) 0%, rgba(48, 35, 28, 0.7) 100%);
-}
-.closingInner {
-  position: relative;
-  z-index: 2;
-  max-width: 760px;
   text-align: center;
+  border-bottom: 1px solid rgba(48, 35, 28, 0.5);
+}
+.closingTextInner {
+  max-width: 760px;
+  margin: 0 auto;
 }
 .closingKicker {
   font-family: var(--font-sans);
@@ -338,20 +487,19 @@
 .closingKicker::before,
 .closingKicker::after {
   content: "";
-  width: 36px;
+  width: 32px;
   height: 1px;
   background: var(--color-house-gold-light);
-  opacity: 0.7;
+  opacity: 0.6;
 }
 .closingStatement {
   font-family: var(--font-hearth-serif);
-  font-weight: 400;
-  font-size: clamp(28px, 4vw, 52px);
-  line-height: 1.18;
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: 1.2;
   letter-spacing: -0.012em;
   color: var(--color-house-cream);
-  margin: 0 0 40px;
-  text-shadow: 0 2px 24px rgba(20, 14, 8, 0.4);
+  margin: 0 0 56px;
+  font-weight: 400;
 }
 .closingStatement em {
   font-style: italic;
@@ -359,84 +507,107 @@
 }
 .closingCtas {
   display: flex;
-  gap: 12px;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
+  gap: 14px;
 }
-
-/* ──────────────────────────────────────────────────────────
-   Buttons
-   ────────────────────────────────────────────────────────── */
-.btnFilled, .btnGhostLight {
+.btnFilled,
+.btnGhostLight {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 14px 26px;
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 14px 28px;
-  font-family: var(--font-sans);
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: all 0.25s ease;
-  font-weight: 500;
 }
 .btnFilled {
-  background: var(--color-house-cream);
+  background: var(--color-house-gold-light);
   color: var(--color-house-brown);
-  border: 1px solid var(--color-house-cream);
+  border: 1px solid var(--color-house-gold-light);
 }
 .btnFilled:hover {
-  background: var(--color-house-gold-light);
-  border-color: var(--color-house-gold-light);
+  background: var(--color-house-cream);
+  border-color: var(--color-house-cream);
 }
 .btnGhostLight {
   background: transparent;
   color: var(--color-house-cream);
-  border: 1px solid rgba(245, 240, 232, 0.4);
+  border: 1px solid rgba(243, 237, 225, 0.4);
 }
 .btnGhostLight:hover {
-  background: rgba(245, 240, 232, 0.1);
   border-color: var(--color-house-cream);
+  background: rgba(243, 237, 225, 0.06);
 }
-.btnArrow { margin-left: 4px; transition: transform 0.25s ease; }
+.btnArrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
 .btnGhostLight:hover .btnArrow { transform: translateX(3px); }
 
 /* ──────────────────────────────────────────────────────────
-   Tagline
+   FINAL TAGLINE — quiet stewardship line under the closing
    ────────────────────────────────────────────────────────── */
 .tagline {
-  background: var(--color-house-cream);
-  border-top: 1px solid rgba(48, 35, 28, 0.08);
+  padding: clamp(48px, 6vw, 80px) clamp(28px, 5vw, 88px);
   text-align: center;
-  padding: 24px 20px;
+  background: var(--color-house-brown);
+  color: var(--color-house-cream);
 }
 .tagline p {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 14px;
-  color: rgba(48, 35, 28, 0.55);
+  font-size: clamp(15px, 1.6vw, 18px);
+  line-height: 1.5;
+  color: rgba(243, 237, 225, 0.65);
   margin: 0;
-  letter-spacing: 0.02em;
 }
-.tagline em { color: var(--color-house-gold-dark); }
+.tagline em {
+  font-style: italic;
+  color: var(--color-house-gold-light);
+}
 
 /* ──────────────────────────────────────────────────────────
-   Responsive
+   RESPONSIVE — collapse split layouts on mobile/tablet
    ────────────────────────────────────────────────────────── */
-@media (max-width: 1024px) {
-  .split { grid-template-columns: 1fr; min-height: 0; }
-  .splitVisual { aspect-ratio: 16 / 10; }
-  .splitRight .splitVisual,
-  .splitLeft .splitVisual { order: 1; }
-  .splitRight .splitCopy,
-  .splitLeft .splitCopy { order: 2; }
-}
-@media (max-width: 600px) {
-  .hero { padding: 80px 24px; min-height: clamp(560px, 80vh, 720px); }
-  .splitCopy { padding: 56px 24px; }
-  .splitCopyInner { max-width: none; }
-  .copySection, .philosophy, .pullQuote, .pullQuoteBackdrop, .closing {
-    padding-left: 24px;
-    padding-right: 24px;
+@media (max-width: 1023px) {
+  .split {
+    grid-template-columns: 1fr;
+    min-height: auto;
   }
+  /* On mobile, always render the visual first then the copy. */
+  .splitRight .splitVisual,
+  .splitLeft  .splitVisual { order: 1; }
+  .splitRight .splitCopy,
+  .splitLeft  .splitCopy   { order: 2; }
+  .splitVisual {
+    aspect-ratio: 4 / 3;
+    min-height: 280px;
+  }
+  .cluster {
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+    order: 1;
+  }
+  .clusterFront,
+  .clusterBack { width: 56%; }
+  .splitLeft .splitCopy,
+  .splitRight .splitCopy {
+    padding: clamp(48px, 8vw, 80px) clamp(24px, 6vw, 56px);
+  }
+}
+
+@media (max-width: 768px) {
+  .patternRevealInner { grid-template-columns: 1fr; }
+  .headline { max-width: 100%; }
+  .body { max-width: 100%; }
+  .closingKicker { font-size: 10px; letter-spacing: 0.32em; }
+  .closingKicker::before,
+  .closingKicker::after { width: 20px; }
 }

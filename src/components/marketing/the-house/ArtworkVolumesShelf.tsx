@@ -150,7 +150,7 @@ export function ArtworkVolumesShelf() {
         <div className="min-h-[72px] text-center max-w-[640px] mx-auto">
           {hovered === null ? (
             <p className="font-display italic text-[15px] leading-[1.6] text-house-brown/60">
-              Hover any volume to read its story · click to follow it.
+              The seven coloured volumes — the moving anthology of expertise.
             </p>
           ) : (
             <div className="animate-[fadeIn_0.3s_ease-out]">
