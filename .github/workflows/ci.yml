@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+# Cancel in-progress runs on the same branch when a new push arrives —
+# saves CI minutes on rapid pushes during a PR back-and-forth.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    # Env vars Vercel needs at runtime. Most are optional in our schema —
+    # tests use placeholder values so build succeeds without exposing real
+    # secrets. Anything that *must* come from real secrets is below.
+    env:
+      NEXT_PUBLIC_SITE_URL: https://example.com
+      NODE_ENV: production
+      # Tokens used by build steps only. Safe to be empty at build time —
+      # withSentryConfig no-ops without SENTRY_AUTH_TOKEN.
+      SENTRY_AUTH_TOKEN: ""
+      SENTRY_ORG: ""
+      SENTRY_PROJECT: ""
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Sentry source-map upload + Vercel preview deploys need full
+          # history when they're enabled. Fetch depth 0 is cheap on this repo.
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Lint
+        run: npm run lint
+        # Lint debt cleared 2026-05-18: 0 errors, only unused-vars warnings
+        # remain. PRs now block on lint errors.
+
+      - name: TypeScript + production build
+        # `next build` does the typecheck. If types or build fail, PR fails.
+        run: npm run build

@@ -99,6 +99,13 @@ const schema = z.object({
   NEXT_PUBLIC_KLAVIYO_PUBLIC_KEY: z.string().optional(),
   KLAVIYO_PRIVATE_KEY: z.string().optional(),
 
+  // Meta Conversions API. Pixel ID is read from NEXT_PUBLIC_META_PIXEL_ID
+  // (also useful server-side). Access token is server-only; never expose.
+  // Test event code routes events to the Test Events tab while wiring.
+  NEXT_PUBLIC_META_PIXEL_ID: z.string().optional(),
+  META_CAPI_ACCESS_TOKEN: z.string().optional(),
+  META_CAPI_TEST_EVENT_CODE: z.string().optional(),
+
   // Node
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
 });
@@ -106,7 +113,6 @@ const schema = z.object({
 function parseEnv() {
   const parsed = schema.safeParse(process.env);
   if (!parsed.success) {
-    // eslint-disable-next-line no-console
     console.error("Invalid environment variables:", parsed.error.flatten().fieldErrors);
     throw new Error("Invalid environment variables");
   }
@@ -125,4 +131,5 @@ export const servicesReady = {
   turnstile: !!(env.NEXT_PUBLIC_TURNSTILE_SITE_KEY && env.TURNSTILE_SECRET_KEY),
   sentry: !!env.SENTRY_DSN,
   howaProduct: !!(env.HOWA_APP_LIVE && env.NEXT_PUBLIC_HOWA_APP_URL),
+  metaCapi: !!(env.META_CAPI_ACCESS_TOKEN && env.NEXT_PUBLIC_META_PIXEL_ID),
 };

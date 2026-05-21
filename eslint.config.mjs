@@ -22,6 +22,17 @@ const eslintConfig = defineConfig([
     // rather than pepper hundreds of files with &apos; entities.
     rules: {
       "react/no-unescaped-entities": "off",
+      // Allow underscore-prefixed unused vars (intentional ignore convention
+      // for destructured fields we strip before persisting).
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_",
+          destructuredArrayIgnorePattern: "^_",
+        },
+      ],
     },
   },
 ]);

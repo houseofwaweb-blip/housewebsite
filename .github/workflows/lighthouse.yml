@@ -1,0 +1,50 @@
+name: Lighthouse + Accessibility
+
+on:
+  pull_request:
+    branches: [main]
+
+# One run per PR — kill any in-flight run when a new push lands.
+concurrency:
+  group: lighthouse-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    env:
+      NEXT_PUBLIC_SITE_URL: http://localhost:3000
+      NODE_ENV: production
+      SENTRY_AUTH_TOKEN: ""
+      SENTRY_ORG: ""
+      SENTRY_PROJECT: ""
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Production build
+        run: npm run build
+
+      - name: Run Lighthouse CI
+        # Uses .lighthouserc.json — boots `npm run start`, audits the 10
+        # routes listed there against the budgets, and uploads HTML reports
+        # to temporary public storage. Links appear in the job summary.
+        # Accessibility category uses axe-core under the hood, so this is
+        # also the a11y audit.
+        run: |
+          npm install -g @lhci/cli@0.14.x
+          lhci autorun
+        # Don't block PRs on perf/a11y yet — surface results, burn down
+        # offenders, then flip this off in a follow-up PR.
+        continue-on-error: true

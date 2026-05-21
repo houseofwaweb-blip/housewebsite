@@ -34,9 +34,13 @@ const ukPostcode = z
 
 const turnstileToken = z.string().min(1, "Verification required");
 
+// `min(1)` is what gives the `.or(literal(""))` branch a chance to run.
+// Without it, empty string is a valid `string()` value and the union short-
+// circuits on the first branch, leaving "" to slip through to Supabase.
 const sourcePage = z
   .string()
   .trim()
+  .min(1)
   .max(200)
   .optional()
   .or(z.literal("").transform(() => undefined));

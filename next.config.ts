@@ -49,6 +49,61 @@ const nextConfig: NextConfig = {
       { source: "/book-consultation", destination: "/#open-booking-form", permanent: true },
       // WP long-tail SEO catalogue
       ...wpLongTailRedirects,
+      // WooCommerce → new shop URL mapping. The migration preserves slugs
+      // 1:1, so external backlinks to any of these legacy patterns land on
+      // the correct new product or collection. Permanent 301s pass equity.
+      { source: "/product/:slug*", destination: "/shop/:slug*", permanent: true },
+      { source: "/shop/product/:slug*", destination: "/shop/:slug*", permanent: true },
+      { source: "/product-category/:slug*", destination: "/shop/collections/:slug*", permanent: true },
+    ];
+  },
+  async headers() {
+    // Security headers applied to every route. CSP is intentionally
+    // wide on script-src because we load third-party measurement tags
+    // (GA4, Clarity, Meta, Pinterest, Sentry, Vercel) — all of which are
+    // user-gated via the consent system but still need to load from
+    // their respective CDNs when enabled. Narrow only with caution; a
+    // too-tight CSP silently breaks pixels and the cookie scan.
+    const csp = [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://*.clarity.ms https://connect.facebook.net https://s.pinimg.com https://ct.pinterest.com https://cdn-cookieyes.com https://challenges.cloudflare.com https://*.sentry.io https://va.vercel-scripts.com",
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+      "img-src 'self' data: blob: https:",
+      "font-src 'self' data: https://fonts.gstatic.com",
+      "connect-src 'self' https://*.sanity.io https://cdn.sanity.io https://*.shopify.com https://*.supabase.co wss://*.supabase.co https://*.upstash.io https://www.google-analytics.com https://*.analytics.google.com https://www.clarity.ms https://*.clarity.ms https://*.facebook.com https://ct.pinterest.com https://log.cookieyes.com https://*.ingest.sentry.io https://vitals.vercel-insights.com https://va.vercel-scripts.com",
+      "frame-src 'self' https://challenges.cloudflare.com https://www.facebook.com",
+      "frame-ancestors 'none'",
+      "form-action 'self'",
+      "base-uri 'self'",
+      "object-src 'none'",
+      "upgrade-insecure-requests",
+    ].join("; ");
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "Content-Security-Policy", value: csp },
+          { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=(self), interest-cohort=()",
+          },
+          { key: "X-DNS-Prefetch-Control", value: "on" },
+        ],
+      },
+      // Belt-and-braces noindex for admin / preview surfaces, in addition to
+      // robots.txt disallow. Stops staging URLs being indexed if shared.
+      {
+        source: "/studio/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+      {
+        source: "/api/preview/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
     ];
   },
 };
