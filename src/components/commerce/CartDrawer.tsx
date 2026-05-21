@@ -7,7 +7,7 @@ import { cn } from "@/lib/cn";
 import { useCart } from "./CartContext";
 
 export function CartDrawer() {
-  const { lines, count, subtotal, drawerOpen, closeDrawer, updateQty, remove } =
+  const { lines, count, drawerOpen, closeDrawer, updateQty, remove } =
     useCart();
 
   React.useEffect(() => {
@@ -45,7 +45,7 @@ export function CartDrawer() {
       <aside
         role="dialog"
         aria-modal="true"
-        aria-label="Your basket"
+        aria-label="Saved pieces"
         className={cn(
           "fixed top-0 right-0 bottom-0 z-50 w-[420px] max-w-[92vw]",
           "bg-house-white flex flex-col",
@@ -57,7 +57,7 @@ export function CartDrawer() {
         {/* Head */}
         <div className="flex justify-between items-center px-6 py-[18px] border-b border-house-brown/8">
           <h2 className="font-display font-medium text-[18px]">
-            Your basket
+            Saved pieces
             <span className="font-sans font-light text-[13px] text-house-stone ml-1.5">
               ({count})
             </span>
@@ -65,7 +65,7 @@ export function CartDrawer() {
           <button
             type="button"
             onClick={closeDrawer}
-            aria-label="Close basket"
+            aria-label="Close saved pieces"
             className="text-[24px] leading-none bg-transparent border-0 cursor-pointer text-house-brown hover:text-house-gold transition-colors duration-[var(--t-base)]"
           >
             ×
@@ -77,7 +77,7 @@ export function CartDrawer() {
           {lines.length === 0 ? (
             <div className="py-16 text-center">
               <p className="font-display italic text-[18px] text-house-stone mb-4">
-                Your basket is empty.
+                Nothing saved yet.
               </p>
               <Link
                 href="/shop"
@@ -149,37 +149,18 @@ export function CartDrawer() {
         {/* Footer */}
         {lines.length > 0 ? (
           <div className="px-6 py-5 border-t border-house-brown/8 bg-house-white">
-            <div className="flex justify-between items-baseline mb-1">
-              <span className="font-sans text-[13px] tracking-[0.08em] uppercase">
-                Subtotal
-              </span>
-              <span className="font-display font-medium text-[20px]">
-                £{subtotal.toFixed(0)}
-              </span>
-            </div>
             <p className="font-sans text-[11px] text-house-stone mb-4">
-              Free UK delivery on all orders.
+              Saved pieces are kept on this device. Request and we&apos;ll be in touch about availability.
             </p>
 
-            <div className="bg-house-cream border border-house-gold/20 px-3.5 py-2.5 mb-4">
-              <p className="font-sans text-[11px] text-house-brown">
-                <span className="font-medium text-house-gold">HoWA+</span>{" "}
-                members save 10% on every order.{" "}
-                <Link
-                  href="/howa/plans"
-                  className="underline decoration-house-gold underline-offset-2 hover:text-house-gold transition-colors"
-                >
-                  Join for £16.99/mo
-                </Link>
-              </p>
-            </div>
-
             <Link
-              href="/checkout"
+              href={`/contact?topic=shop&items=${encodeURIComponent(
+                lines.map((l) => l.handle).join(","),
+              )}`}
               onClick={closeDrawer}
               className="block w-full py-4 font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold text-center no-underline transition-colors duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
             >
-              Proceed to checkout
+              Request these pieces
             </Link>
 
             <Link
@@ -187,7 +168,7 @@ export function CartDrawer() {
               onClick={closeDrawer}
               className="block text-center mt-3 font-sans text-[11px] tracking-[0.16em] uppercase text-house-gold no-underline border-b border-dotted border-house-gold pb-0.5 mx-auto w-fit hover:border-solid transition-all"
             >
-              View full basket →
+              View all saved →
             </Link>
 
             <button
@@ -195,14 +176,8 @@ export function CartDrawer() {
               onClick={closeDrawer}
               className="block w-full text-center mt-2 font-sans text-[11px] tracking-[0.16em] uppercase text-house-stone bg-transparent border-0 cursor-pointer hover:text-house-brown transition-colors duration-[var(--t-base)]"
             >
-              Continue shopping
+              Continue browsing
             </button>
-
-            <div className="flex justify-center gap-3.5 mt-4 font-sans text-[9px] tracking-[0.16em] uppercase text-house-stone">
-              <span>Secure checkout</span>
-              <span>Free delivery</span>
-              <span>28-day returns</span>
-            </div>
           </div>
         ) : null}
       </aside>

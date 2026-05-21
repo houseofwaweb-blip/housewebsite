@@ -24,7 +24,9 @@ import testimonial from "./testimonial";
 import howaFeature from "./howaFeature";
 import { newsletterBlock } from "./newsletterBlock";
 import { pageSection } from "./pageSection";
+import { artworkPage } from "./artworkPage";
 import { subbrandTile } from "./subbrandTile";
+import { product } from "./product";
 
 import { seo } from "./objects/seo";
 import { cta } from "./objects/cta";
@@ -68,7 +70,9 @@ export const schemaTypes = [
   howaFeature,
   newsletterBlock,
   pageSection,
+  artworkPage,
   subbrandTile,
+  product,
   seo,
   cta,
   heroBlock,

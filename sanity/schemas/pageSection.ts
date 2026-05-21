@@ -128,6 +128,47 @@ export const pageSection = defineType({
       title: "Image caption",
       type: "string",
     }),
+    defineField({
+      name: "cards",
+      title: "Cards / rows / stats",
+      type: "array",
+      description:
+        "Structured items for grids, stat strips, comparison rows, FAQ lists. Each card uses only the fields it needs — leave the rest blank.",
+      of: [
+        {
+          type: "object",
+          name: "pageSectionCard",
+          title: "Card",
+          fields: [
+            { name: "label", title: "Label / eyebrow / value (e.g. ‘£16.99’)", type: "string" },
+            { name: "title", title: "Title / heading / question / row feature", type: "string" },
+            { name: "body", title: "Body / answer / sub-label", type: "text", rows: 3 },
+            { name: "value", title: "Value (free column / highlight figure)", type: "string" },
+            { name: "value2", title: "Value 2 (plus column / sub suffix)", type: "string" },
+            { name: "ctaLabel", title: "CTA label (optional)", type: "string" },
+            { name: "ctaHref", title: "CTA href (optional)", type: "string" },
+            {
+              name: "items",
+              title: "Bullet list (optional)",
+              description:
+                "Nested bullets for this card — used for bullet lists inside a risk area, examples under a verb, inclusions inside a plan, etc.",
+              type: "array",
+              of: [{ type: "string" }],
+            },
+            {
+              name: "image",
+              title: "Image (optional)",
+              type: "image",
+              options: { hotspot: true },
+              fields: [{ name: "alt", type: "string" }],
+            },
+          ],
+          preview: {
+            select: { title: "title", subtitle: "label" },
+          },
+        },
+      ],
+    }),
   ],
   preview: {
     select: { page: "page", section: "section", headline: "headline" },

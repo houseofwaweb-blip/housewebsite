@@ -570,9 +570,9 @@
   background-size: 92% auto;
   z-index: 0;
 }
-.tierCard.assistant .tierBg { background-image: url(/home-v4/assistant-dollhouse.png); }
-.tierCard.housekeeper .tierBg { background-image: url(/home-v4/housekeeper-dollhouse.png); }
-.tierCard.steward .tierBg { background-image: url(/home-v4/steward-dollhouse.png); }
+.tierCard.assistant .tierBg { background-image: url(/home-v4/assistant-dollhouse.webp); }
+.tierCard.housekeeper .tierBg { background-image: url(/home-v4/housekeeper-dollhouse.webp); }
+.tierCard.steward .tierBg { background-image: url(/home-v4/steward-dollhouse.webp); }
 
 /* Subtle top + bottom shadow so the overlay text never fights with the
    dollhouse it sits on. */

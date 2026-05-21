@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import s from "./faq.module.css";
 import { FaqList } from "@/components/marketing/FaqList";
+import { MetaViewContent } from "@/components/marketing/MetaViewContent";
+import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
  * /howa/faq — HoWA FAQ.
@@ -137,28 +139,51 @@ const SECTIONS: { heading: string; items: { q: string; a: string }[] }[] = [
   },
 ];
 
-export default function FaqPage() {
+export default async function FaqPage() {
+  const sections = await getPageSections("howa-faq");
+  const hero = sections.get("hero");
+  const stats = sections.get("stats");
+  const closing = sections.get("closing");
+
+  const statCols = cmsCards(stats, STAT_COLS, (c, base) => ({
+    value: pick(c.value ?? c.label, base?.value ?? ""),
+    label: pick(c.title ?? c.body, base?.label ?? ""),
+  }));
+
   return (
     <div className={s.page}>
+      <MetaViewContent
+        contentId="howa_faq"
+        contentName="HoWA FAQ"
+        contentCategory="howa_marketing"
+      />
       {/* 1. Hero */}
       <section className={s.hero}>
         <div className={s.heroCopy}>
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>HoWA FAQ</p>
+            <p className={s.heroEy}>{cms(hero, "eyebrow", "HoWA FAQ")}</p>
             <h1 className={s.heroTitle}>
-              What people <em>usually</em> ask.
+              {cms(hero, "headline", "What people")}{" "}
+              <em>{cms(hero, "headlineEm", "usually", "headline")}</em>{" "}
+              {cms(hero, "subheadline", "ask.")}
             </h1>
             <p className={s.heroLede}>
-              Questions grouped by topic — pricing, cancellation, privacy, the
-              Companion, the Steward roadmap. If yours isn't here, write to us;
-              and if enough people ask the same one, it ends up on this page.
+              {cms(
+                hero,
+                "body",
+                "Questions grouped by topic — pricing, cancellation, privacy, the Companion, the Steward roadmap. If yours isn't here, write to us; and if enough people ask the same one, it ends up on this page.",
+              )}
             </p>
           </div>
         </div>
         <div className={s.heroVisual}>
           <Image
-            src="/home-v4/howa-lander-faq-v2.png"
-            alt="The Living Record of Your Home — leather-bound book, vase, brass key and HoWA sensor on a wooden cabinet"
+            src={cms(hero, "imageUrl", "/home-v4/howa-lander-faq-v2.webp")}
+            alt={cms(
+              hero,
+              "imageAlt",
+              "The Living Record of Your Home — leather-bound book, vase, brass key and HoWA sensor on a wooden cabinet",
+            )}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
             priority
@@ -170,10 +195,14 @@ export default function FaqPage() {
       {/* 2. Stats strip */}
       <section className={s.statsStrip}>
         <div className={s.statsLede}>
-          <p className={s.statsLedeLine1}>Direct answers. No throat-clearing.</p>
-          <p className={s.statsLedeLine2}>Everything you'd want to know before you start.</p>
+          <p className={s.statsLedeLine1}>
+            {cms(stats, "headline", "Direct answers. No throat-clearing.")}
+          </p>
+          <p className={s.statsLedeLine2}>
+            {cms(stats, "subheadline", "Everything you'd want to know before you start.")}
+          </p>
         </div>
-        {STAT_COLS.map((stat) => (
+        {statCols.map((stat) => (
           <div key={stat.label} className={s.stat}>
             <span className={s.statValue}>{stat.value}</span>
             <span className={s.statLabel}>{stat.label}</span>
@@ -203,16 +232,16 @@ export default function FaqPage() {
 
       {/* 4. Closing */}
       <section className={s.closing}>
-        <p className={s.closingKicker}>Still wondering?</p>
+        <p className={s.closingKicker}>{cms(closing, "eyebrow", "Still wondering?")}</p>
         <p className={s.closingStatement}>
-          <em>Write to the House.</em>
+          <em>{cms(closing, "headlineEm", "Write to the House.", "headline")}</em>
         </p>
         <div className={s.closingCtas}>
-          <Link href="/contact" className={s.closingBtnFilled}>
-            Contact us
+          <Link href={cms(closing, "ctaHref", "/contact")} className={s.closingBtnFilled}>
+            {cms(closing, "ctaLabel", "Contact us")}
           </Link>
-          <Link href="/howa/plans" className={s.closingBtnGhost}>
-            See plans →
+          <Link href={cms(closing, "cta2Href", "/howa/plans")} className={s.closingBtnGhost}>
+            {cms(closing, "cta2Label", "See plans")} →
           </Link>
         </div>
       </section>

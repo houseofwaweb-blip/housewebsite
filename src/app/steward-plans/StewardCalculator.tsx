@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { PLANS } from "@/lib/steward-data";
 
 /**
  * StewardCalculator — pick services, see a live matched plan + price.

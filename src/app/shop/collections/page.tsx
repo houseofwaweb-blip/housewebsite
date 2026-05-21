@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { COLLECTIONS } from "@/lib/shop-data";
-import { CATALOGUE_COLLECTIONS } from "@/lib/shop-data/catalogue";
+import { getShopCollections } from "@/lib/shop-data/source";
 import s from "./collections-index.module.css";
 
 export const metadata = {
@@ -16,7 +16,7 @@ type CollectionListItem = {
   featured?: boolean;
 };
 
-function getAllCollections(): CollectionListItem[] {
+async function getAllCollections(): Promise<CollectionListItem[]> {
   const local: CollectionListItem[] = COLLECTIONS.map((c) => ({
     handle: c.handle,
     title: c.title,
@@ -24,14 +24,15 @@ function getAllCollections(): CollectionListItem[] {
     featured: c.handle === "house-approved",
   }));
   const localHandles = new Set(local.map((c) => c.handle));
-  const catalogue: CollectionListItem[] = CATALOGUE_COLLECTIONS.filter(
-    (c) => !localHandles.has(c.handle),
-  ).map((c) => ({
-    handle: c.handle,
-    title: c.title,
-    count: c.productCount,
-    featured: false,
-  }));
+  const sourced = await getShopCollections();
+  const catalogue: CollectionListItem[] = sourced
+    .filter((c) => !localHandles.has(c.handle))
+    .map((c) => ({
+      handle: c.handle,
+      title: c.title,
+      count: c.productCount,
+      featured: false,
+    }));
   // Featured first, then by count descending
   return [...local, ...catalogue].sort((a, b) => {
     if (a.featured && !b.featured) return -1;
@@ -40,8 +41,8 @@ function getAllCollections(): CollectionListItem[] {
   });
 }
 
-export default function CollectionsIndexPage() {
-  const collections = getAllCollections();
+export default async function CollectionsIndexPage() {
+  const collections = await getAllCollections();
   const totalPieces = collections.reduce((sum, c) => sum + c.count, 0);
 
   return (

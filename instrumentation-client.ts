@@ -3,10 +3,10 @@
  * `sentry.client.config.ts` with this file in the project root.
  *
  * Runs once when the first client bundle hydrates. We respect the user's
- * analytics consent (see lib/consent) — without consent, Sentry is not
+ * measurement consent (see lib/consent) — without consent, Sentry is not
  * initialised at all. ICO position: error monitoring is a "legitimate
  * interest" but using it without consent for personalised debugging
- * crosses the line, so we treat it as analytics and require opt-in.
+ * crosses the line, so we treat it as measurement and require opt-in.
  *
  * The session-replay integration is intentionally omitted at launch —
  * it captures form input by default and would require GDPR DPIA work
@@ -17,17 +17,17 @@ import * as Sentry from "@sentry/nextjs";
 
 const dsn = process.env.NEXT_PUBLIC_SENTRY_DSN;
 
-function hasAnalyticsConsent(): boolean {
+function hasMeasurementConsent(): boolean {
   if (typeof document === "undefined") return false;
-  // Match lib/consent encoding: e1f{0,1}a{0,1}|<iso>. We only care about
-  // the `a` flag.
+  // Match lib/consent encoding: e1f{0,1}m{0,1}k{0,1}|<iso>.
+  // Only the `m` (measurement) flag matters here.
   const match = /(?:^|; )wa-consent=([^;]+)/.exec(document.cookie);
   if (!match) return false;
-  const flag = /a([01])/.exec(decodeURIComponent(match[1]));
+  const flag = /m([01])/.exec(decodeURIComponent(match[1]));
   return flag?.[1] === "1";
 }
 
-if (dsn && hasAnalyticsConsent()) {
+if (dsn && hasMeasurementConsent()) {
   Sentry.init({
     dsn,
     release: process.env.NEXT_PUBLIC_SENTRY_RELEASE,

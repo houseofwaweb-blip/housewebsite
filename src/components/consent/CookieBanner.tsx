@@ -53,7 +53,7 @@ export function CookieBanner() {
 
       {preferencesOpen && (
         <PreferencesModal
-          initial={consent ?? { functional: false, analytics: false }}
+          initial={consent ?? { functional: false, measurement: false, marketing: false }}
           onSave={(next) => setConsent(next)}
           onClose={() => closePreferences()}
         />
@@ -62,17 +62,24 @@ export function CookieBanner() {
   );
 }
 
+interface PreferencesState {
+  functional: boolean;
+  measurement: boolean;
+  marketing: boolean;
+}
+
 function PreferencesModal({
   initial,
   onSave,
   onClose,
 }: {
-  initial: { functional: boolean; analytics: boolean };
-  onSave: (next: { functional: boolean; analytics: boolean }) => void;
+  initial: PreferencesState;
+  onSave: (next: PreferencesState) => void;
   onClose: () => void;
 }) {
   const [functional, setFunctional] = useState(initial.functional);
-  const [analytics, setAnalytics] = useState(initial.analytics);
+  const [measurement, setMeasurement] = useState(initial.measurement);
+  const [marketing, setMarketing] = useState(initial.marketing);
 
   return (
     <div className={s.modalScrim} role="dialog" aria-modal="true" aria-label="Cookie preferences">
@@ -92,15 +99,21 @@ function PreferencesModal({
           />
           <Row
             title="Functional"
-            description="The ServiceOS booking widget and any embedded tools that need to remember a preference."
+            description="Embedded tools that need to remember a preference — the booking widget, postcode lookup, language."
             checked={functional}
             onChange={setFunctional}
           />
           <Row
-            title="Analytics"
-            description="Anonymous page views and Web Vitals. We use them to see which pages are useful and to fix what isn't."
-            checked={analytics}
-            onChange={setAnalytics}
+            title="Measurement"
+            description="Anonymous page views, Web Vitals, and error monitoring. We use them to understand which pages are useful and to fix what isn't."
+            checked={measurement}
+            onChange={setMeasurement}
+          />
+          <Row
+            title="Marketing"
+            description="Advertising and retargeting pixels — Meta, Pinterest, LinkedIn. Off by default. Turn on if you'd rather see relevant House ads than random ones."
+            checked={marketing}
+            onChange={setMarketing}
           />
         </div>
 
@@ -111,7 +124,7 @@ function PreferencesModal({
           <button
             type="button"
             className={s.btnFilled}
-            onClick={() => onSave({ functional, analytics })}
+            onClick={() => onSave({ functional, measurement, marketing })}
           >
             Save preferences
           </button>

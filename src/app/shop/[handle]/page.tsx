@@ -4,10 +4,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ProductCard } from "@/components/commerce/ProductCard";
 import { PRODUCTS, findProduct, getRelatedProducts } from "@/lib/shop-data";
-import { CATALOGUE_PRODUCTS, findCatalogueProduct } from "@/lib/shop-data/catalogue";
+import { getShopProduct } from "@/lib/shop-data/source";
+import { getAllProductHandles, getProductByHandle } from "@/lib/cms/products";
+import { CATALOGUE_PRODUCTS } from "@/lib/shop-data/catalogue";
 import { ProductGallery } from "./ProductGallery";
 import { ProductCopy } from "./ProductCopy";
 import { ProductJsonLd, BreadcrumbJsonLd } from "@/lib/seo/jsonLd";
+import { MetaViewContent } from "@/components/marketing/MetaViewContent";
 import { env } from "@/lib/env";
 import s from "./product.module.css";
 
@@ -18,10 +21,15 @@ function parsePrice(p: string): number {
   return Number.isFinite(n) ? n : 0;
 }
 
-function resolveProduct(handle: string) {
+/**
+ * Resolve a product by handle. Precedence: the 8 curated showpieces
+ * (deepest editorial content) → Sanity (the 501-product catalogue) →
+ * static JSON fallback (handled inside getShopProduct).
+ */
+async function resolveProduct(handle: string) {
   const local = findProduct(handle);
   if (local) return local;
-  const cat = findCatalogueProduct(handle);
+  const cat = await getShopProduct(handle);
   if (!cat) return null;
   return {
     ...cat,
@@ -33,22 +41,55 @@ function resolveProduct(handle: string) {
   };
 }
 
+/**
+ * schema.org availability value derived from our internal status. Drives
+ * the Product JSON-LD so the structured data matches the UI.
+ */
+function toSchemaAvailability(status?: string): "InStock" | "OutOfStock" | "PreOrder" {
+  switch (status) {
+    case "in_stock":
+      return "InStock";
+    case "preorder":
+      return "PreOrder";
+    case "out_of_stock":
+    case "discontinued":
+      return "OutOfStock";
+    case "available_soon":
+    default:
+      return "PreOrder";
+  }
+}
+
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ handle: string }>;
 }): Promise<Metadata> {
   const { handle } = await params;
-  const p = resolveProduct(handle);
+  const p = await resolveProduct(handle);
   if (!p) return { title: "Product not found" };
+  const baseUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
+  const productUrl = `${baseUrl}/shop/${p.handle}`;
+  // OG image needs an absolute URL — relative paths break sharing on Meta,
+  // X, LinkedIn etc. p.image is either absolute (Sanity CDN) or a relative
+  // /partners/*.jpg from the hardcoded fallback.
+  const ogImage = p.image?.startsWith("http") ? p.image : `${baseUrl}${p.image}`;
   return {
     title: `${p.title} — Shop`,
     description: p.lede,
+    alternates: { canonical: productUrl },
     openGraph: {
       type: "website",
+      url: productUrl,
       title: p.title,
       description: p.lede,
-      images: [{ url: p.image }],
+      images: ogImage ? [{ url: ogImage, alt: p.title }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: p.title,
+      description: p.lede,
+      images: ogImage ? [ogImage] : undefined,
     },
   };
 }
@@ -59,12 +100,17 @@ export default async function ProductPage({
   params: Promise<{ handle: string }>;
 }) {
   const { handle } = await params;
-  const product = resolveProduct(handle);
+  const product = await resolveProduct(handle);
   if (!product) notFound();
 
   const related = getRelatedProducts(product.relatedHandles ?? []);
   const baseUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
   const productUrl = `${baseUrl}/shop/${product.handle}`;
+
+  // Pull availability from Sanity if we have it (the static fallback
+  // doesn't carry an explicit status field — defaults to PreOrder).
+  const sanityProduct = await getProductByHandle(handle);
+  const availability = toSchemaAvailability(sanityProduct?.availability);
 
   const breadcrumbItems = [
     { name: "Shop", href: "/shop" },
@@ -84,7 +130,13 @@ export default async function ProductPage({
         url={productUrl}
         sku={product.handle}
         price={parsePrice(product.price)}
-        availability="InStock"
+        availability={availability}
+      />
+      <MetaViewContent
+        contentId={product.handle}
+        contentName={product.title}
+        contentCategory={product.collection}
+        value={parsePrice(product.price)}
       />
       {/* Breadcrumb */}
       <nav aria-label="Breadcrumb" className={s.crumbs}>
@@ -175,9 +227,10 @@ export default async function ProductPage({
   );
 }
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const sanityHandles = await getAllProductHandles();
   const localHandles = PRODUCTS.map((p) => p.handle);
   const catHandles = CATALOGUE_PRODUCTS.map((p) => p.handle);
-  const all = [...new Set([...localHandles, ...catHandles])];
+  const all = [...new Set([...sanityHandles, ...localHandles, ...catHandles])];
   return all.map((handle) => ({ handle }));
 }

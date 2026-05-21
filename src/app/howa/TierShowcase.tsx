@@ -108,7 +108,7 @@ const TIERS: {
     layout: "stack",
     visual: {
       kind: "illustration",
-      src: "/home-v4/assistant-dollhouse.png",
+      src: "/home-v4/assistant-dollhouse.webp",
       alt: "Doll house showing rooms of a Georgian home — Assistant tier",
     },
     features: [

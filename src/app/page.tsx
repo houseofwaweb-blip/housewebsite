@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import s from "./home-v4a.module.css";
 import { OneSystem } from "./OneSystem";
+import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
  * Homepage — high-fidelity build of the locked design.
@@ -102,7 +103,46 @@ const PILLAR_LINES = [
   { icon: AwardIcon, text: "House Approved — the standard, openly published." },
 ];
 
-export default function HomeV4aPreviewPage() {
+const STRIP_STATS = [
+  { value: "91%", label: "House Health Optimal" },
+  { value: "12", label: "Tasks Completed This Week" },
+  { value: "08", label: "Systems Monitored" },
+  { value: "0", label: "Issues Detected" },
+];
+
+export default async function HomeV4aPreviewPage() {
+  const sections = await getPageSections("homepage");
+  const hero = sections.get("hero");
+  const stats = sections.get("stats");
+  const tiers = sections.get("tiers");
+  const intelligence = sections.get("intelligence");
+  const pillars = sections.get("pillars");
+  const closing = sections.get("closing");
+
+  const tierCards = cmsCards(tiers, TIERS, (c, base) => ({
+    slug: base?.slug ?? "",
+    numeral: pick(c.label, base?.numeral ?? ""),
+    label: pick(c.value, base?.label ?? ""),
+    name: pick(c.title, base?.name ?? ""),
+    features: base?.features ?? [],
+    href: pick(c.ctaHref, base?.href ?? "#"),
+  }));
+  const stripStats = cmsCards(stats, STRIP_STATS, (c, base) => ({
+    value: pick(c.value ?? c.label, base?.value ?? ""),
+    label: pick(c.title ?? c.body, base?.label ?? ""),
+  }));
+  const intelligenceStats = cmsCards(intelligence, INTELLIGENCE_STATS, (c, base) => ({
+    title: pick(c.title, base?.title ?? ""),
+    highlight: pick(c.value, base?.highlight),
+    subAfter: pick(c.body ?? c.value2, base?.subAfter ?? ""),
+  }));
+  const pillarCards = cmsCards(pillars, PILLARS, (c, base) => ({
+    label: pick(c.label, base?.label ?? ""),
+    title: pick(c.title, base?.title ?? ""),
+    image: base?.image ?? "",
+    href: pick(c.ctaHref, base?.href ?? "#"),
+  }));
+
   return (
     <div className={s.page}>
       {/* ============================================================
@@ -111,22 +151,27 @@ export default function HomeV4aPreviewPage() {
       <section className={s.hero}>
         <div className={s.heroCopy}>
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>The Home Operating System</p>
+            <p className={s.heroEy}>{cms(hero, "eyebrow", "The Home Operating System")}</p>
             <h1 className={s.heroTitle}>
-              The Home<br />
-              <em>Operating System</em>
+              {cms(hero, "headline", "The Home")}<br />
+              <em>{cms(hero, "headlineEm", "Operating System", "headline")}</em>
             </h1>
-            <p className={s.heroSub}>Your home, finally understood.</p>
+            <p className={s.heroSub}>
+              {cms(hero, "subheadline", "Your home, finally understood.")}
+            </p>
             <p className={s.heroLede}>
-              HoWA observes, learns, and acts — so nothing is missed,
-              delayed, or forgotten.
+              {cms(
+                hero,
+                "body",
+                "HoWA observes, learns, and acts — so nothing is missed, delayed, or forgotten.",
+              )}
             </p>
             <div className={s.heroCtas}>
-              <Link href="/howa" className={s.btnFilled}>
-                Enter HoWA
+              <Link href={cms(hero, "ctaHref", "/howa")} className={s.btnFilled}>
+                {cms(hero, "ctaLabel", "Enter HoWA")}
               </Link>
-              <Link href="/howa/how-it-works" className={s.btnGhost}>
-                See how it works
+              <Link href={cms(hero, "cta2Href", "/howa/how-it-works")} className={s.btnGhost}>
+                {cms(hero, "cta2Label", "See how it works")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
@@ -136,7 +181,7 @@ export default function HomeV4aPreviewPage() {
         <div className={s.heroVisual}>
           <div className={s.heroVisualFrame}>
             <Image
-              src="/home-v4/hero-georgian-london.png"
+              src="/home-v4/hero-georgian-london.webp"
               alt="A refined sage-green Georgian London townhouse with a classical portico entrance, urn planters and a hedge-lined front garden"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
@@ -216,7 +261,7 @@ export default function HomeV4aPreviewPage() {
       <section className={s.statsStrip}>
         <div className={s.statsPlantWrap} aria-hidden="true">
           <Image
-            src="/home-v4/homepage-plant.png"
+            src="/home-v4/homepage-plant.webp"
             alt=""
             width={1000}
             height={1200}
@@ -224,25 +269,19 @@ export default function HomeV4aPreviewPage() {
           />
         </div>
         <div className={s.statsLede}>
-          <p className={s.statsLedeLine1}>It remembers. It signals. It cares.</p>
-          <p className={s.statsLedeLine2}>Stewardship starts with listening.</p>
+          <p className={s.statsLedeLine1}>
+            {cms(stats, "headline", "It remembers. It signals. It cares.")}
+          </p>
+          <p className={s.statsLedeLine2}>
+            {cms(stats, "subheadline", "Stewardship starts with listening.")}
+          </p>
         </div>
-        <div className={s.stat}>
-          <span className={s.statValue}>91%</span>
-          <span className={s.statLabel}>House Health Optimal</span>
-        </div>
-        <div className={s.stat}>
-          <span className={s.statValue}>12</span>
-          <span className={s.statLabel}>Tasks Completed This Week</span>
-        </div>
-        <div className={s.stat}>
-          <span className={s.statValue}>08</span>
-          <span className={s.statLabel}>Systems Monitored</span>
-        </div>
-        <div className={s.stat}>
-          <span className={s.statValue}>0</span>
-          <span className={s.statLabel}>Issues Detected</span>
-        </div>
+        {stripStats.map((stat) => (
+          <div key={stat.label} className={s.stat}>
+            <span className={s.statValue}>{stat.value}</span>
+            <span className={s.statLabel}>{stat.label}</span>
+          </div>
+        ))}
       </section>
 
       {/* ============================================================
@@ -250,10 +289,10 @@ export default function HomeV4aPreviewPage() {
           ============================================================ */}
       <section className={s.tiers}>
         <header className={s.tiersHead}>
-          <h2 className={s.tiersTitle}>Three ways to access it.</h2>
+          <h2 className={s.tiersTitle}>{cms(tiers, "headline", "Three ways to access it.")}</h2>
         </header>
         <div className={s.tierGrid}>
-          {TIERS.map((tier) => (
+          {tierCards.map((tier) => (
             <Link
               key={tier.slug}
               href={tier.href}
@@ -296,12 +335,12 @@ export default function HomeV4aPreviewPage() {
               <CalendarIcon />
             </span>
             <h2 className={s.intelligenceTitle}>
-              Intelligence that<br />
-              <em>makes a real difference.</em>
+              {cms(intelligence, "headline", "Intelligence that")}<br />
+              <em>{cms(intelligence, "headlineEm", "makes a real difference.", "headline")}</em>
             </h2>
           </header>
           <div className={s.intelligenceStats}>
-            {INTELLIGENCE_STATS.map((stat, i) => (
+            {intelligenceStats.map((stat, i) => (
               <div key={stat.title} className={s.iStat}>
                 <p className={s.iStatTitle}>{stat.title}</p>
                 <p className={s.iStatSub}>
@@ -310,7 +349,7 @@ export default function HomeV4aPreviewPage() {
                   ) : null}
                   {stat.subAfter}
                 </p>
-                {i < INTELLIGENCE_STATS.length - 1 ? (
+                {i < intelligenceStats.length - 1 ? (
                   <span aria-hidden="true" className={s.iStatArrow}>→</span>
                 ) : null}
               </div>
@@ -319,8 +358,8 @@ export default function HomeV4aPreviewPage() {
         </div>
         <div className={s.intelligenceImage}>
           <Image
-            src="/home-v4/pillar-1.webp"
-            alt="A warm parlour interior, marble fireplace and flowers"
+            src={cms(intelligence, "imageUrl", "/home-v4/pillar-1.webp")}
+            alt={cms(intelligence, "imageAlt", "A warm parlour interior, marble fireplace and flowers")}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
             style={{ objectFit: "cover" }}
@@ -333,7 +372,7 @@ export default function HomeV4aPreviewPage() {
           ============================================================ */}
       <section className={s.pillars}>
         <div className={s.pillarsGrid}>
-          {PILLARS.map((p) => (
+          {pillarCards.map((p) => (
             <Link key={p.label} href={p.href} className={s.pillarCard}>
               <div className={s.pillarImage}>
                 <Image
@@ -354,9 +393,9 @@ export default function HomeV4aPreviewPage() {
         </div>
 
         <div className={s.poweredBy}>
-          <p className={s.poweredByEy}>Every service. Every standard.</p>
+          <p className={s.poweredByEy}>{cms(pillars, "eyebrow", "Every service. Every standard.")}</p>
           <h2 className={s.poweredByTitle}>
-            Powered by House of Willow Alexander.
+            {cms(pillars, "headline", "Powered by House of Willow Alexander.")}
           </h2>
           <div className={s.pillarsBelow}>
             {PILLAR_LINES.map((line) => {
@@ -379,15 +418,15 @@ export default function HomeV4aPreviewPage() {
           ============================================================ */}
       <section className={s.closing}>
         <p className={s.closingStatement}>
-          For homes with soul, proper care should never be left to{" "}
-          <em>memory alone.</em>
+          {cms(closing, "headline", "For homes with soul, proper care should never be left to")}{" "}
+          <em>{cms(closing, "headlineEm", "memory alone.", "headline")}</em>
         </p>
         <div className={s.closingCtas}>
-          <Link href="/howa" className={s.closingBtnFilled}>
-            Start HoWA
+          <Link href={cms(closing, "ctaHref", "/howa")} className={s.closingBtnFilled}>
+            {cms(closing, "ctaLabel", "Start HoWA")}
           </Link>
-          <Link href="#open-booking-form" className={s.closingBtnGhost}>
-            Book with HoWA
+          <Link href={cms(closing, "cta2Href", "#open-booking-form")} className={s.closingBtnGhost}>
+            {cms(closing, "cta2Label", "Book with HoWA")}
           </Link>
         </div>
       </section>
@@ -443,18 +482,6 @@ function CalendarIcon({ className }: { className?: string }) {
   );
 }
 
-function FloralOrnament({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 60 60" fill="none" stroke="currentColor" strokeWidth="0.6" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--color-house-gold-dark)" }} aria-hidden="true">
-      <path d="M30 8 C 24 18, 24 28, 30 38 C 36 28, 36 18, 30 8 Z" />
-      <path d="M14 32 C 22 28, 28 30, 30 36" />
-      <path d="M46 32 C 38 28, 32 30, 30 36" />
-      <path d="M30 38 L 30 52" />
-      <circle cx="30" cy="14" r="1.2" fill="currentColor" />
-    </svg>
-  );
-}
-
 function HomeIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" width="22" height="22" aria-hidden="true">
@@ -484,22 +511,6 @@ function AwardIcon() {
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" width="22" height="22" aria-hidden="true">
       <circle cx="12" cy="9" r="6" />
       <path d="M9 14 L7 22 L12 19 L17 22 L15 14" />
-    </svg>
-  );
-}
-function AppleIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" />
-    </svg>
-  );
-}
-function GooglePlayIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M3.5 2.5 L14.5 12 L3.5 21.5 a1 1 0 0 1 -.5 -.87 V3.37 a1 1 0 0 1 .5 -.87 z" />
-      <path d="M16.3 9.7 L19.8 11.5 a1 1 0 0 1 0 1.7 L16.3 14.3 L13.5 12 z" />
-      <path d="M3.7 2.5 L14.5 12 L3.7 21.5 z" opacity=".75" />
     </svg>
   );
 }

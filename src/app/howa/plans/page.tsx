@@ -3,6 +3,8 @@ import Link from "next/link";
 import s from "./plans.module.css";
 import { WaitlistMini } from "@/components/marketing/WaitlistMini";
 import { FaqList } from "@/components/marketing/FaqList";
+import { MetaViewContent } from "@/components/marketing/MetaViewContent";
+import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
  * /howa/plans — Plans & pricing.
@@ -91,31 +93,68 @@ const FAQS = [
   },
 ];
 
-export default function PlansPage() {
+export default async function PlansPage() {
+  const sections = await getPageSections("howa-plans");
+  const hero = sections.get("hero");
+  const stats = sections.get("stats");
+  const tiers = sections.get("tiers");
+  const tierPlus = sections.get("tier-plus");
+  const tierSteward = sections.get("tier-steward");
+  const compare = sections.get("compare");
+  const faq = sections.get("faq");
+  const closing = sections.get("closing");
+
+  const statCols = cmsCards(stats, STAT_COLS, (c, base) => ({
+    value: pick(c.value ?? c.label, base?.value ?? ""),
+    label: pick(c.title ?? c.body, base?.label ?? ""),
+  }));
+  const plusInclusions = tierPlus?.items ?? HOWAPLUS_INCLUSIONS;
+  const stewardInclusions = tierSteward?.items ?? STEWARD_INCLUSIONS;
+  const compareRows = cmsCards(compare, COMPARE, (c, base) => ({
+    feature: pick(c.title, base?.feature ?? ""),
+    free: pick(c.label, base?.free ?? ""),
+    plus: pick(c.value, base?.plus ?? ""),
+    steward: pick(c.value2, base?.steward ?? ""),
+  }));
+  const faqItems = cmsCards(faq, FAQS, (c, base) => ({
+    q: pick(c.title, base?.q ?? ""),
+    a: pick(c.body, base?.a ?? ""),
+  }));
+
   return (
     <div className={s.page}>
+      <MetaViewContent
+        contentId="howa_plans"
+        contentName="HoWA plans &amp; pricing"
+        contentCategory="howa_pricing"
+        contentType="product"
+        value={16.99}
+      />
       {/* 1. Hero */}
       <section className={s.hero}>
         <div className={s.heroCopy}>
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>Plans &amp; Pricing</p>
+            <p className={s.heroEy}>{cms(hero, "eyebrow", "Plans & Pricing")}</p>
             <h1 className={s.heroTitle}>
-              Two ways to be <em>stewarded.</em>
+              {cms(hero, "headline", "Two ways to be")}{" "}
+              <em>{cms(hero, "headlineEm", "stewarded.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
-              One platform. Three entitlement levels. Upgrading always preserves
-              the same home record. HoWA+ is the connected continuity and
-              savings layer. Steward is the premium managed-care layer.
+              {cms(
+                hero,
+                "body",
+                "One platform. Three entitlement levels. Upgrading always preserves the same home record. HoWA+ is the connected continuity and savings layer. Steward is the premium managed-care layer.",
+              )}
             </p>
             <div className={s.heroCtas}>
               <Link
-                href="/api/howa-bounce?source=plans"
+                href={cms(hero, "ctaHref", "/api/howa-bounce?source=plans")}
                 className={s.btnFilled}
               >
-                Start HoWA+
+                {cms(hero, "ctaLabel", "Start HoWA+")}
               </Link>
-              <Link href="#steward" className={s.btnGhost}>
-                See Steward
+              <Link href={cms(hero, "cta2Href", "#steward")} className={s.btnGhost}>
+                {cms(hero, "cta2Label", "See Steward")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
@@ -123,8 +162,12 @@ export default function PlansPage() {
         </div>
         <div className={s.heroVisual}>
           <Image
-            src="/home-v4/howa-lander-hero-v4.png"
-            alt="A pink Georgian townhouse with the left half rendered as a hand-drawn elevation — the home, two ways"
+            src={cms(hero, "imageUrl", "/home-v4/howa-lander-hero-v4.webp")}
+            alt={cms(
+              hero,
+              "imageAlt",
+              "A pink Georgian townhouse with the left half rendered as a hand-drawn elevation — the home, two ways",
+            )}
             fill
             sizes="(min-width: 1024px) 55vw, 100vw"
             priority
@@ -136,10 +179,12 @@ export default function PlansPage() {
       {/* 2. Stats strip */}
       <section className={s.statsStrip}>
         <div className={s.statsLede}>
-          <p className={s.statsLedeLine1}>One record. Two tiers.</p>
-          <p className={s.statsLedeLine2}>Entitlements are additive. Cancel anytime.</p>
+          <p className={s.statsLedeLine1}>{cms(stats, "headline", "One record. Two tiers.")}</p>
+          <p className={s.statsLedeLine2}>
+            {cms(stats, "subheadline", "Entitlements are additive. Cancel anytime.")}
+          </p>
         </div>
-        {STAT_COLS.map((stat) => (
+        {statCols.map((stat) => (
           <div key={stat.label} className={s.stat}>
             <span className={s.statValue}>{stat.value}</span>
             <span className={s.statLabel}>{stat.label}</span>
@@ -150,9 +195,10 @@ export default function PlansPage() {
       {/* 3. Tier cards */}
       <section className={s.tiers}>
         <header className={s.tiersHead}>
-          <p className={s.tiersEy}>Choose your tier</p>
+          <p className={s.tiersEy}>{cms(tiers, "eyebrow", "Choose your tier")}</p>
           <h2 className={s.tiersTitle}>
-            One platform. <em>Three valid entitlement levels.</em>
+            {cms(tiers, "headline", "One platform.")}{" "}
+            <em>{cms(tiers, "headlineEm", "Three valid entitlement levels.", "headline")}</em>
           </h2>
         </header>
         <div className={s.tiersGrid}>
@@ -160,7 +206,7 @@ export default function PlansPage() {
           <article className={`${s.tierCard} ${s.tierPlus}`}>
             <div className={s.tierIllustration} aria-hidden="true">
               <Image
-                src="/home-v4/housekeeper-dollhouse.png"
+                src={cms(tierPlus, "imageUrl", "/home-v4/housekeeper-dollhouse.webp")}
                 alt=""
                 width={1024}
                 height={1228}
@@ -168,31 +214,37 @@ export default function PlansPage() {
               />
             </div>
             <div className={s.tierContent}>
-              <div className={s.tierBadge} data-state="live">Live at launch</div>
+              <div className={s.tierBadge} data-state="live">
+                {cms(tierPlus, "eyebrow", "Live at launch")}
+              </div>
               <h3 className={s.tierName}>
-                HoWA<em>+</em>
+                {cms(tierPlus, "headline", "HoWA")}<em>{cms(tierPlus, "headlineEm", "+", "headline")}</em>
               </h3>
               <p className={s.tierTagline}>
-                The connected membership for a home you mean to keep.
+                {cms(
+                  tierPlus,
+                  "subheadline",
+                  "The connected membership for a home you mean to keep.",
+                )}
               </p>
               <div className={s.tierPrice}>
-                <span className={s.tierPriceAmount}>£16.99</span>
-                <span className={s.tierPriceUnit}>/ month</span>
+                <span className={s.tierPriceAmount}>{cms(tierPlus, "body", "£16.99")}</span>
+                <span className={s.tierPriceUnit}>{cms(tierPlus, "body2", "/ month")}</span>
               </div>
               <ul className={s.tierIncludes}>
-                {HOWAPLUS_INCLUSIONS.map((inc) => (
+                {plusInclusions.map((inc) => (
                   <li key={inc}>{inc}</li>
                 ))}
               </ul>
               <div className={s.tierCtas}>
                 <Link
-                  href="/api/howa-bounce?source=plans-howaplus"
+                  href={cms(tierPlus, "ctaHref", "/api/howa-bounce?source=plans-howaplus")}
                   className={s.btnFilled}
                 >
-                  Start HoWA+
+                  {cms(tierPlus, "ctaLabel", "Start HoWA+")}
                 </Link>
-                <Link href="/howa/companion" className={s.tierLink}>
-                  See the Companion →
+                <Link href={cms(tierPlus, "cta2Href", "/howa/companion")} className={s.tierLink}>
+                  {cms(tierPlus, "cta2Label", "See the Companion")} →
                 </Link>
               </div>
             </div>
@@ -202,7 +254,7 @@ export default function PlansPage() {
           <article id="steward" className={`${s.tierCard} ${s.tierSteward}`}>
             <div className={s.tierIllustration} aria-hidden="true">
               <Image
-                src="/home-v4/steward-dollhouse.png"
+                src={cms(tierSteward, "imageUrl", "/home-v4/steward-dollhouse.webp")}
                 alt=""
                 width={1024}
                 height={1228}
@@ -210,17 +262,23 @@ export default function PlansPage() {
               />
             </div>
             <div className={s.tierContent}>
-              <div className={s.tierBadge} data-state="coming">Coming soon</div>
-              <h3 className={s.tierName}>Steward Plans</h3>
+              <div className={s.tierBadge} data-state="coming">
+                {cms(tierSteward, "eyebrow", "Coming soon")}
+              </div>
+              <h3 className={s.tierName}>{cms(tierSteward, "headline", "Steward Plans")}</h3>
               <p className={s.tierTagline}>
-                Recurring managed care. One contact. One invoice.
+                {cms(
+                  tierSteward,
+                  "subheadline",
+                  "Recurring managed care. One contact. One invoice.",
+                )}
               </p>
               <div className={s.tierPrice}>
-                <span className={s.tierPriceAmount}>From quote</span>
-                <span className={s.tierPriceUnit}>/ built with you</span>
+                <span className={s.tierPriceAmount}>{cms(tierSteward, "body", "From quote")}</span>
+                <span className={s.tierPriceUnit}>{cms(tierSteward, "body2", "/ built with you")}</span>
               </div>
               <ul className={s.tierIncludes}>
-                {STEWARD_INCLUSIONS.map((inc) => (
+                {stewardInclusions.map((inc) => (
                   <li key={inc}>{inc}</li>
                 ))}
               </ul>
@@ -238,17 +296,22 @@ export default function PlansPage() {
         </div>
 
         <p className={s.tiersFootnote}>
-          Prices are VAT-inclusive for UK residents. Cancel any time. The
-          record of your home stays yours either way.
+          {cms(
+            tiers,
+            "body",
+            "Prices are VAT-inclusive for UK residents. Cancel any time. The record of your home stays yours either way.",
+          )}
         </p>
       </section>
 
       {/* 4. Comparison table */}
       <section className={s.compare}>
         <header className={s.compareHead}>
-          <p className={s.compareEy}>Feature by feature</p>
+          <p className={s.compareEy}>{cms(compare, "eyebrow", "Feature by feature")}</p>
           <h2 className={s.compareTitle}>
-            Free. <em>HoWA+</em>. Steward.
+            {cms(compare, "headline", "Free.")}{" "}
+            <em>{cms(compare, "headlineEm", "HoWA+", "headline")}</em>.{" "}
+            {cms(compare, "subheadline", "Steward.")}
           </h2>
         </header>
         <div className={s.compareTable}>
@@ -258,7 +321,7 @@ export default function PlansPage() {
             <span className={`${s.compareColLabel} ${s.compareColLabelPlus}`}>HoWA+</span>
             <span className={`${s.compareColLabel} ${s.compareColLabelSteward}`}>Steward</span>
           </div>
-          {COMPARE.map((row) => (
+          {compareRows.map((row) => (
             <div key={row.feature} className={s.compareRow}>
               <span className={s.compareRowFeature}>{row.feature}</span>
               <span className={s.compareRowFree}>{row.free}</span>
@@ -273,24 +336,26 @@ export default function PlansPage() {
       <section className={s.faqSection}>
         <div className={s.faqInner}>
           <header className={s.faqHead}>
-            <p className={s.faqEy}>Questions</p>
+            <p className={s.faqEy}>{cms(faq, "eyebrow", "Questions")}</p>
             <h2 className={s.faqTitle}>
-              What you'd <em>probably</em> ask.
+              {cms(faq, "headline", "What you'd")}{" "}
+              <em>{cms(faq, "headlineEm", "probably", "headline")}</em>{" "}
+              {cms(faq, "subheadline", "ask.")}
             </h2>
           </header>
-          <FaqList items={FAQS} />
+          <FaqList items={faqItems} />
         </div>
       </section>
 
       {/* 6. Closing */}
       <section className={s.closing}>
-        <p className={s.closingKicker}>Still wondering?</p>
+        <p className={s.closingKicker}>{cms(closing, "eyebrow", "Still wondering?")}</p>
         <p className={s.closingStatement}>
-          <em>Write to the House.</em>
+          <em>{cms(closing, "headlineEm", "Write to the House.", "headline")}</em>
         </p>
         <div className={s.closingCtas}>
-          <Link href="/contact" className={s.closingBtnFilled}>
-            Contact us
+          <Link href={cms(closing, "ctaHref", "/contact")} className={s.closingBtnFilled}>
+            {cms(closing, "ctaLabel", "Contact us")}
           </Link>
         </div>
       </section>

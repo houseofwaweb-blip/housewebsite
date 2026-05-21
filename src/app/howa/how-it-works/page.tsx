@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import s from "./how-it-works.module.css";
+import { MetaViewContent } from "@/components/marketing/MetaViewContent";
+import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
  * /howa/how-it-works — How HoWA works.
@@ -39,7 +41,7 @@ const VERBS = [
       "The crack above the kitchen door appeared after the extension. It's settlement, not structural. Fill with flexible caulk and check in six months.",
       "Your garden faces north-west. The planting plan accounts for that — shade-tolerant perennials at the back, sun-loving herbs by the south wall.",
     ],
-    image: "/home-v4/howa-blueprint-hero.png",
+    image: "/home-v4/howa-blueprint-hero.webp",
     imageAlt:
       "An architectural cross-section of a Georgian townhouse annotated with roof, structure, boiler, garden, environment and risk-watch readouts",
   },
@@ -53,7 +55,7 @@ const VERBS = [
       "Your Home Protection Review flagged the flat roof as a priority. HoWA routes that to your insurance record and recommends a surveyor quote before renewal.",
       "The cleaning team noted limescale buildup on the bathroom glass. HoWA recommends a descale visit and adjusts the quarterly schedule.",
     ],
-    image: "/home-v4/plus-benefit-2.png",
+    image: "/home-v4/plus-benefit-2.webp",
     imageAlt:
       "A leather-bound notebook with a fountain pen and calendar — Living Record and task centre",
   },
@@ -67,7 +69,7 @@ const VERBS = [
       "Your design brief needs a kitchen specialist. HoWA connects you with Jessica Durling-McMahon, whose studio focuses on period kitchens. First consultation this week.",
       "The garden needs seasonal pruning. HoWA schedules Willow Alexander Gardens for the next available slot. Same gardener as last time.",
     ],
-    image: "/home-v4/plus-benefit-1.png",
+    image: "/home-v4/plus-benefit-1.webp",
     imageAlt:
       "A window cleaner's hand at a sash window in golden-hour light",
   },
@@ -81,20 +83,46 @@ const VERBS = [
       "Your decorator arrives and checks HoWA before starting. Paint colours, finish types, last painted date — all there. No guessing.",
       "Insurance renewal is in 42 days. HoWA surfaces the Home Protection Review evidence pack, the maintenance log, and the claims history. Ready to go.",
     ],
-    image: "/home-v4/howa-lander-faq-v2.png",
+    image: "/home-v4/howa-lander-faq-v2.webp",
     imageAlt:
       "The Living Record of Your Home — a leather-bound book, vase, brass key and HoWA sensor on a wooden cabinet",
   },
 ];
 
-export default function HowItWorksPage() {
+export default async function HowItWorksPage() {
+  const sections = await getPageSections("howa-how-it-works");
+  const hero = sections.get("hero");
+  const stats = sections.get("stats");
+  const verbsSection = sections.get("verbs");
+  const compound = sections.get("compound");
+  const closing = sections.get("closing");
+
+  const statCols = cmsCards(stats, STAT_COLS, (c, base) => ({
+    value: pick(c.value ?? c.label, base?.value ?? ""),
+    label: pick(c.title ?? c.body, base?.label ?? ""),
+  }));
+  const verbs = cmsCards(verbsSection, VERBS, (c, base) => ({
+    numeral: pick(c.label, base?.numeral ?? ""),
+    verb: pick(c.value, base?.verb ?? ""),
+    title: pick(c.title, base?.title ?? ""),
+    lede: pick(c.body, base?.lede ?? ""),
+    examples: c.items && c.items.length ? c.items : base?.examples ?? [],
+    image: pick(c.imageUrl, base?.image ?? ""),
+    imageAlt: pick(c.imageAlt, base?.imageAlt ?? ""),
+  }));
+
   return (
     <div className={s.page}>
+      <MetaViewContent
+        contentId="howa_how_it_works"
+        contentName="How HoWA works"
+        contentCategory="howa_marketing"
+      />
       {/* 1. Hero — dollhouse-on-cabinet scene as full-bleed bg, copy floats left */}
       <section className={s.hero}>
         <div className={s.heroBg} aria-hidden="true">
           <Image
-            src="/home-v4/howa-dollhouse-scene.png"
+            src={cms(hero, "imageUrl", "/home-v4/howa-dollhouse-scene.webp")}
             alt=""
             fill
             sizes="100vw"
@@ -104,22 +132,24 @@ export default function HowItWorksPage() {
         </div>
         <div className={s.heroCopy}>
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>How HoWA works</p>
+            <p className={s.heroEy}>{cms(hero, "eyebrow", "How HoWA works")}</p>
             <h1 className={s.heroTitle}>
-              Four quiet jobs.<br />
-              <em>Every home, every day.</em>
+              {cms(hero, "headline", "Four quiet jobs.")}<br />
+              <em>{cms(hero, "headlineEm", "Every home, every day.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
-              Whatever the tier, HoWA does the same four things — Understand,
-              Recommend, Connect and Remember. Each one feeds the next, and
-              the record compounds.
+              {cms(
+                hero,
+                "body",
+                "Whatever the tier, HoWA does the same four things — Understand, Recommend, Connect and Remember. Each one feeds the next, and the record compounds.",
+              )}
             </p>
             <div className={s.heroCtas}>
-              <Link href="/api/howa-bounce" className={s.btnFilled}>
-                Enter HoWA
+              <Link href={cms(hero, "ctaHref", "/api/howa-bounce")} className={s.btnFilled}>
+                {cms(hero, "ctaLabel", "Enter HoWA")}
               </Link>
-              <Link href="/howa/plus" className={s.btnGhost}>
-                See HoWA+
+              <Link href={cms(hero, "cta2Href", "/howa/plus")} className={s.btnGhost}>
+                {cms(hero, "cta2Label", "See HoWA+")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
@@ -130,10 +160,14 @@ export default function HowItWorksPage() {
       {/* 2. Stats strip */}
       <section className={s.statsStrip}>
         <div className={s.statsLede}>
-          <p className={s.statsLedeLine1}>Understand. Recommend. Connect. Remember.</p>
-          <p className={s.statsLedeLine2}>One system. Four quiet jobs.</p>
+          <p className={s.statsLedeLine1}>
+            {cms(stats, "headline", "Understand. Recommend. Connect. Remember.")}
+          </p>
+          <p className={s.statsLedeLine2}>
+            {cms(stats, "subheadline", "One system. Four quiet jobs.")}
+          </p>
         </div>
-        {STAT_COLS.map((stat) => (
+        {statCols.map((stat) => (
           <div key={stat.label} className={s.stat}>
             <span className={s.statValue}>{stat.value}</span>
             <span className={s.statLabel}>{stat.label}</span>
@@ -142,7 +176,7 @@ export default function HowItWorksPage() {
       </section>
 
       {/* 3-6. Four verbs */}
-      {VERBS.map((v, i) => (
+      {verbs.map((v, i) => (
         <section
           key={v.verb}
           className={`${s.verbSection} ${i % 2 === 1 ? s.verbAlt : ""}`}
@@ -176,30 +210,31 @@ export default function HowItWorksPage() {
 
       {/* 7. Compound band — navy */}
       <section className={s.compoundBand}>
-        <p className={s.compoundEy}>The compound effect.</p>
+        <p className={s.compoundEy}>{cms(compound, "eyebrow", "The compound effect.")}</p>
         <h2 className={s.compoundTitle}>
           Understand <span className={s.compoundDot}>·</span> Recommend <span className={s.compoundDot}>·</span> Connect <span className={s.compoundDot}>·</span> Remember.
         </h2>
         <p className={s.compoundBody}>
-          Each verb feeds the next. The more HoWA understands, the better it
-          recommends. The more connections it makes, the richer the record.
-          Over time the home goes from unknown to deeply known, and maintenance
-          shifts from reactive to calm.
+          {cms(
+            compound,
+            "body",
+            "Each verb feeds the next. The more HoWA understands, the better it recommends. The more connections it makes, the richer the record. Over time the home goes from unknown to deeply known, and maintenance shifts from reactive to calm.",
+          )}
         </p>
-        <Link href="/howa/plus" className={s.compoundLink}>
-          See what HoWA+ includes →
+        <Link href={cms(compound, "ctaHref", "/howa/plus")} className={s.compoundLink}>
+          {cms(compound, "ctaLabel", "See what HoWA+ includes")} →
         </Link>
       </section>
 
       {/* 8. Closing */}
       <section className={s.closing}>
-        <p className={s.closingKicker}>Begin with the Companion.</p>
+        <p className={s.closingKicker}>{cms(closing, "eyebrow", "Begin with the Companion.")}</p>
         <p className={s.closingStatement}>
-          <em>Two minutes. The first piece of the record.</em>
+          <em>{cms(closing, "headlineEm", "Two minutes. The first piece of the record.", "headline")}</em>
         </p>
         <div className={s.closingCtas}>
-          <Link href="/api/howa-bounce" className={s.closingBtnFilled}>
-            Start HoWA — Free
+          <Link href={cms(closing, "ctaHref", "/api/howa-bounce")} className={s.closingBtnFilled}>
+            {cms(closing, "ctaLabel", "Start HoWA — Free")}
           </Link>
         </div>
       </section>

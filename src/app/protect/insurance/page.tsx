@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import s from "./insurance.module.css";
 import { WaitlistMini } from "@/components/marketing/WaitlistMini";
+import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
  * /protect/insurance — House Approved Insurance.
@@ -67,42 +68,73 @@ const STEPS = [
   },
 ];
 
-export default function ProtectInsurancePage() {
+export default async function ProtectInsurancePage() {
+  const sections = await getPageSections("protect-insurance");
+  const hero = sections.get("hero");
+  const stats = sections.get("stats");
+  const approach = sections.get("approach");
+  const offers = sections.get("offers");
+  const steps = sections.get("steps");
+  const register = sections.get("register");
+  const crossSell = sections.get("cross-sell");
+  const fca = sections.get("fca");
+
+  const statCols = cmsCards(stats, STAT_COLS, (c, base) => ({
+    value: pick(c.value ?? c.label, base?.value ?? ""),
+    label: pick(c.title ?? c.body, base?.label ?? ""),
+  }));
+  const offerCards = cmsCards(offers, OFFERS, (c, base) => ({
+    title: pick(c.title, base?.title ?? ""),
+    body: pick(c.body, base?.body ?? ""),
+  }));
+  const stepCards = cmsCards(steps, STEPS, (c, base) => ({
+    n: pick(c.label, base?.n ?? ""),
+    title: pick(c.title, base?.title ?? ""),
+    body: pick(c.body, base?.body ?? ""),
+  }));
+
   return (
     <div className={s.page}>
       {/* 1. Hero — image right, copy left */}
       <section className={s.hero}>
         <div className={s.heroCopy}>
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>Protect · House Approved Insurance</p>
+            <p className={s.heroEy}>
+              {cms(hero, "eyebrow", "Protect · House Approved Insurance")}
+            </p>
             <h1 className={s.heroTitle}>
-              Carefully protecting <em>the things that matter.</em>
+              {cms(hero, "headline", "Carefully protecting")}{" "}
+              <em>{cms(hero, "headlineEm", "the things that matter.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
-              Cover that understands period homes, valuable contents, and the
-              things a standard high-street policy quietly excludes. Introduced
-              by the House, underwritten by FCA-regulated specialists we've
-              vetted to the same standard as every partner who carries the
-              House Approved seal.
+              {cms(
+                hero,
+                "body",
+                "Cover that understands period homes, valuable contents, and the things a standard high-street policy quietly excludes. Introduced by the House, underwritten by FCA-regulated specialists we've vetted to the same standard as every partner who carries the House Approved seal.",
+              )}
             </p>
             <div className={s.heroCtas}>
-              <a href="#register" className={s.btnFilled}>
-                Register interest
+              <a href={cms(hero, "ctaHref", "#register")} className={s.btnFilled}>
+                {cms(hero, "ctaLabel", "Register interest")}
               </a>
-              <Link href="/protect/home-protection" className={s.btnGhost}>
-                See Home Protection
+              <Link href={cms(hero, "cta2Href", "/protect/home-protection")} className={s.btnGhost}>
+                {cms(hero, "cta2Label", "See Home Protection")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
             <p className={s.heroFootnote}>
-              Opening to HoWA+ members first.
+              {cms(hero, "caption", "Opening to HoWA+ members first.")}
             </p>
           </div>
         </div>
         <div className={s.heroVisual}>
           <Image
-            src="/home-v4/protect-insurance.png"
-            alt="An Edwardian London townhouse with a policeman standing guard at the front door at golden hour"
+            src={cms(hero, "imageUrl", "/home-v4/protect-insurance.webp")}
+            alt={cms(
+              hero,
+              "imageAlt",
+              "An Edwardian London townhouse with a policeman standing guard at the front door at golden hour",
+            )}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
             priority
@@ -114,10 +146,14 @@ export default function ProtectInsurancePage() {
       {/* 2. Stats strip */}
       <section className={s.statsStrip}>
         <div className={s.statsLede}>
-          <p className={s.statsLedeLine1}>Quieter reassurance, when it's needed.</p>
-          <p className={s.statsLedeLine2}>Not more paperwork. Not more panic.</p>
+          <p className={s.statsLedeLine1}>
+            {cms(stats, "headline", "Quieter reassurance, when it's needed.")}
+          </p>
+          <p className={s.statsLedeLine2}>
+            {cms(stats, "subheadline", "Not more paperwork. Not more panic.")}
+          </p>
         </div>
-        {STAT_COLS.map((stat) => (
+        {statCols.map((stat) => (
           <div key={stat.label} className={s.stat}>
             <span className={s.statValue}>{stat.value}</span>
             <span className={s.statLabel}>{stat.label}</span>
@@ -128,15 +164,17 @@ export default function ProtectInsurancePage() {
       {/* 3. A thoughtful approach */}
       <section className={s.approach}>
         <div className={s.approachInner}>
-          <p className={s.approachEy}>A thoughtful approach</p>
+          <p className={s.approachEy}>{cms(approach, "eyebrow", "A thoughtful approach")}</p>
           <h2 className={s.approachTitle}>
-            Insurance as part of a wider <em>ecosystem of care.</em>
+            {cms(approach, "headline", "Insurance as part of a wider")}{" "}
+            <em>{cms(approach, "headlineEm", "ecosystem of care.", "headline")}</em>
           </h2>
           <p className={s.approachBody}>
-            Most insurance is sold in isolation — policies stacked, renewed
-            blindly, rarely revisited. The House approach is different.
-            Insurance here is designed as part of a connected relationship with
-            the home: how it's lived in, maintained, and looked after over time.
+            {cms(
+              approach,
+              "body",
+              "Most insurance is sold in isolation — policies stacked, renewed blindly, rarely revisited. The House approach is different. Insurance here is designed as part of a connected relationship with the home: how it's lived in, maintained, and looked after over time.",
+            )}
           </p>
           <ul className={s.approachList}>
             <li><em>Not more paperwork.</em></li>
@@ -149,13 +187,14 @@ export default function ProtectInsurancePage() {
       {/* 4. What the House offers */}
       <section className={s.offers}>
         <header className={s.offersHead}>
-          <p className={s.offersEy}>What the House offers</p>
+          <p className={s.offersEy}>{cms(offers, "eyebrow", "What the House offers")}</p>
           <h2 className={s.offersTitle}>
-            A conversation, <em>not a comparison site.</em>
+            {cms(offers, "headline", "A conversation,")}{" "}
+            <em>{cms(offers, "headlineEm", "not a comparison site.", "headline")}</em>
           </h2>
         </header>
         <div className={s.offersGrid}>
-          {OFFERS.map((item) => (
+          {offerCards.map((item) => (
             <article key={item.title} className={s.offerCard}>
               <h3 className={s.offerCardTitle}>{item.title}</h3>
               <p className={s.offerCardBody}>{item.body}</p>
@@ -167,13 +206,14 @@ export default function ProtectInsurancePage() {
       {/* 5. Three steps */}
       <section className={s.steps}>
         <header className={s.stepsHead}>
-          <p className={s.stepsEy}>How it works</p>
+          <p className={s.stepsEy}>{cms(steps, "eyebrow", "How it works")}</p>
           <h2 className={s.stepsTitle}>
-            Three steps to <em>proper cover.</em>
+            {cms(steps, "headline", "Three steps to")}{" "}
+            <em>{cms(steps, "headlineEm", "proper cover.", "headline")}</em>
           </h2>
         </header>
         <div className={s.stepsGrid}>
-          {STEPS.map((step) => (
+          {stepCards.map((step) => (
             <article key={step.n} className={s.stepCard}>
               <p className={s.stepNumeral}>{step.n}</p>
               <h3 className={s.stepName}>{step.title}</h3>
@@ -186,13 +226,17 @@ export default function ProtectInsurancePage() {
       {/* 6. Register interest — navy band */}
       <section id="register" className={s.register}>
         <div className={s.registerInner}>
-          <p className={s.registerEy}>House Approved Insurance</p>
+          <p className={s.registerEy}>{cms(register, "eyebrow", "House Approved Insurance")}</p>
           <h2 className={s.registerTitle}>
-            Opening to HoWA+ members <em>first.</em>
+            {cms(register, "headline", "Opening to HoWA+ members")}{" "}
+            <em>{cms(register, "headlineEm", "first.", "headline")}</em>
           </h2>
           <p className={s.registerLede}>
-            Leave your email and we'll write when introductions open. Existing
-            HoWA+ members go to the front of the list.
+            {cms(
+              register,
+              "body",
+              "Leave your email and we'll write when introductions open. Existing HoWA+ members go to the front of the list.",
+            )}
           </p>
           <WaitlistMini
             product="insurance"
@@ -207,28 +251,31 @@ export default function ProtectInsurancePage() {
       {/* 7. Cross-sell */}
       <section className={s.crossSell}>
         <article className={s.crossCard}>
-          <p className={s.crossEy}>Also from Protect</p>
-          <h3 className={s.crossTitle}>Home Protection Review</h3>
+          <p className={s.crossEy}>{cms(crossSell, "eyebrow", "Also from Protect")}</p>
+          <h3 className={s.crossTitle}>{cms(crossSell, "headline", "Home Protection Review")}</h3>
           <p className={s.crossBody}>
-            A one-day in-person review of the property by House-vetted
-            specialists. Condition survey, evidence pack, and a prioritised
-            works list — all filed to HoWA and ready for the insurance
-            conversation.
+            {cms(
+              crossSell,
+              "body",
+              "A one-day in-person review of the property by House-vetted specialists. Condition survey, evidence pack, and a prioritised works list — all filed to HoWA and ready for the insurance conversation.",
+            )}
           </p>
-          <Link href="/protect/home-protection" className={s.crossLink}>
-            See Home Protection →
+          <Link href={cms(crossSell, "ctaHref", "/protect/home-protection")} className={s.crossLink}>
+            {cms(crossSell, "ctaLabel", "See Home Protection")} →
           </Link>
         </article>
         <article className={s.crossCard}>
-          <p className={s.crossEy}>Connected via HoWA</p>
-          <h3 className={s.crossTitle}>The Living Record</h3>
+          <p className={s.crossEy}>{cms(crossSell, "subheadline", "Connected via HoWA")}</p>
+          <h3 className={s.crossTitle}>{cms(crossSell, "headlineEm", "The Living Record", "headline")}</h3>
           <p className={s.crossBody}>
-            Your Home Protection Review evidence feeds directly into the
-            insurance introduction. One conversation, one record, no starting
-            from scratch.
+            {cms(
+              crossSell,
+              "body2",
+              "Your Home Protection Review evidence feeds directly into the insurance introduction. One conversation, one record, no starting from scratch.",
+            )}
           </p>
-          <Link href="/howa" className={s.crossLink}>
-            See HoWA →
+          <Link href={cms(crossSell, "cta2Href", "/howa")} className={s.crossLink}>
+            {cms(crossSell, "cta2Label", "See HoWA")} →
           </Link>
         </article>
       </section>
@@ -236,13 +283,12 @@ export default function ProtectInsurancePage() {
       {/* 8. FCA notice */}
       <section className={s.fca}>
         <p>
-          HoWA acts as an introducer only. Insurance products arranged via
-          Provenance Insurance Brokers, authorised and regulated by the FCA.
-          We do not advise on, arrange, or conduct regulated insurance
-          activity. Introductions are passed to FCA-authorised partners for
-          any subsequent discussion, quotation, or contract. See our{" "}
-          <Link href="/legal/privacy">privacy page</Link> for how your details
-          are handled.
+          {cms(
+            fca,
+            "body",
+            "HoWA acts as an introducer only. Insurance products arranged via Provenance Insurance Brokers, authorised and regulated by the FCA. We do not advise on, arrange, or conduct regulated insurance activity. Introductions are passed to FCA-authorised partners for any subsequent discussion, quotation, or contract.",
+          )}{" "}
+          See our <Link href="/legal/privacy">privacy page</Link> for how your details are handled.
         </p>
       </section>
     </div>

@@ -38,6 +38,40 @@ async function fetchSanitySlugs(type: string): Promise<Slug[]> {
   }
 }
 
+/**
+ * Product handles are stored under `handle.current` (a slug field), not
+ * `slug.current` like other content types — needs its own fetcher.
+ * Includes a per-collection slug derivation so the /shop/collections/<slug>
+ * URLs end up in the sitemap too without a separate document type.
+ */
+async function fetchSanityProductHandles(): Promise<{
+  products: Slug[];
+  collections: Slug[];
+}> {
+  if (!env.SANITY_PROJECT_ID) return { products: [], collections: [] };
+  try {
+    const [products, collectionRows] = await Promise.all([
+      sanityClient.fetch<Slug[]>(
+        `*[_type == "product" && defined(handle.current) && !(_id in path("drafts.**"))]{ "slug": handle.current, _updatedAt }`,
+      ),
+      sanityClient.fetch<Array<{ collection: string; _updatedAt: string }>>(
+        `*[_type == "product" && defined(collection)]{ collection, _updatedAt } | order(_updatedAt desc)`,
+      ),
+    ]);
+    // De-duplicate collections by slug; keep the most recent _updatedAt
+    const seen = new Map<string, string>();
+    for (const row of collectionRows) {
+      const slug = row.collection.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+      if (!seen.has(slug)) seen.set(slug, row._updatedAt);
+    }
+    const collections: Slug[] = Array.from(seen, ([slug, _updatedAt]) => ({ slug, _updatedAt }));
+    return { products, collections };
+  } catch (e) {
+    console.warn(`[sitemap] failed to fetch Sanity product handles:`, e instanceof Error ? e.message : e);
+    return { products: [], collections: [] };
+  }
+}
+
 async function fetchShopifyHandles(): Promise<{
   products: ShopifyHandle[];
   collections: ShopifyHandle[];
@@ -88,7 +122,7 @@ export async function getCmsSitemapEntries(base: string): Promise<SitemapEntry[]
   // servicePackage docs are intentionally not surfaced as standalone URLs —
   // they render as anchors on /howa/plans, not their own pages. Add them
   // here only if we ever publish per-package landing pages.
-  const [articles, musings, newsItems, recipes, partners, stewardPlans, shopify] =
+  const [articles, musings, newsItems, recipes, partners, stewardPlans, shopify, sanityProducts] =
     await Promise.all([
       fetchSanitySlugs("article"),
       fetchSanitySlugs("musing"),
@@ -97,6 +131,7 @@ export async function getCmsSitemapEntries(base: string): Promise<SitemapEntry[]
       fetchSanitySlugs("partner"),
       fetchSanitySlugs("stewardPlan"),
       fetchShopifyHandles(),
+      fetchSanityProductHandles(),
     ]);
 
   const toEntry = (
@@ -124,6 +159,13 @@ export async function getCmsSitemapEntries(base: string): Promise<SitemapEntry[]
     ),
     ...shopify.collections.map((c) =>
       toEntry("/shop/collections", c.handle, c.updatedAt, "weekly", 0.6),
+    ),
+    // Sanity-backed catalogue (when Shopify isn't live)
+    ...sanityProducts.products.map((p) =>
+      toEntry("/shop", p.slug, p._updatedAt, "weekly", 0.6),
+    ),
+    ...sanityProducts.collections.map((c) =>
+      toEntry("/shop/collections", c.slug, c._updatedAt, "weekly", 0.5),
     ),
   ];
 }

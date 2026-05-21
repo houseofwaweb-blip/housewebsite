@@ -2,7 +2,7 @@ import { sanityFetch } from "./fetch";
 import { sanityClient } from "./client";
 import { stewardPlansQuery } from "./queries";
 import { servicesReady } from "@/lib/env";
-import { PLANS, HOME_GARDEN_PLANS, APARTMENT_PLANS, type StewardPlan } from "@/lib/steward-data";
+import { PLANS, type StewardPlan } from "@/lib/steward-data";
 
 export async function getAllPlanSlugs(): Promise<string[]> {
   if (servicesReady.sanity) {

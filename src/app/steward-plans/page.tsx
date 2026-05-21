@@ -75,7 +75,7 @@ export default async function StewardPlansPage() {
       <section className={s.hero}>
         <div className={s.heroImage}>
           <Image
-            src="/home-v4/steward-hero-blueprint.png"
+            src="/home-v4/steward-hero-blueprint.webp"
             alt="A well-kept home rendered as architectural blueprint"
             fill
             priority
@@ -172,7 +172,7 @@ export default async function StewardPlansPage() {
       {/* 5. Editorial image band */}
       <section className={s.imageBand}>
         <Image
-          src="/home-v4/steward-photo-blueprint.png"
+          src="/home-v4/steward-photo-blueprint.webp"
           alt="A well-kept home and garden — photo dissolving into blueprint"
           fill
           sizes="100vw"

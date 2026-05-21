@@ -1,6 +1,10 @@
 import Image from "next/image";
 import s from "./shop.module.css";
-import { CATALOGUE_PRODUCTS, CATALOGUE_COLLECTIONS, CATALOGUE_BRANDS } from "@/lib/shop-data/catalogue";
+import {
+  getShopProducts,
+  getShopCollections,
+  getShopBrands,
+} from "@/lib/shop-data/source";
 import { ShopBrowser } from "./ShopBrowser";
 
 export const metadata = {
@@ -9,7 +13,12 @@ export const metadata = {
     "Curated objects from the House of Willow Alexander. Tools, home, and wear — each House Approved for craft, provenance, and lasting use.",
 };
 
-export default function ShopPage() {
+export default async function ShopPage() {
+  const [products, collections, brands] = await Promise.all([
+    getShopProducts(),
+    getShopCollections(),
+    getShopBrands(),
+  ]);
   return (
     <div className={s.page}>
       {/* Hero */}
@@ -26,20 +35,19 @@ export default function ShopPage() {
               written back to your home record through HoWA.
             </p>
             <p className={s.heroCount}>
-              {CATALOGUE_PRODUCTS.length} pieces
+              {products.length} pieces
             </p>
             <div className={s.heroNotice}>
               <p>
-                A preview of the House Shop. The full edit is being staged for
-                launch — pieces below are browsable now, with checkout opening
-                soon.
+                A curated edit. Enquire for any piece — we&apos;ll be in touch
+                about availability, lead times and bespoke options.
               </p>
             </div>
           </div>
         </div>
         <div className={s.heroVisual}>
           <Image
-            src="/home-v4/house-temperaments-still-life.png"
+            src="/home-v4/house-temperaments-still-life.webp"
             alt="Still life of curated objects from the House"
             fill
             priority
@@ -51,9 +59,9 @@ export default function ShopPage() {
 
       {/* Gallery Wall browser */}
       <ShopBrowser
-        products={CATALOGUE_PRODUCTS}
-        collections={CATALOGUE_COLLECTIONS.filter((c) => c.productCount >= 5)}
-        brands={CATALOGUE_BRANDS.filter((b) => b.count >= 3)}
+        products={products}
+        collections={collections.filter((c) => c.productCount >= 5)}
+        brands={brands.filter((b) => b.count >= 3)}
       />
     </div>
   );

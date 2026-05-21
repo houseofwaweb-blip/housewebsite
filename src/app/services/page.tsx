@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import s from "./services.module.css";
 import { FaqList } from "@/components/marketing/FaqList";
+import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
  * /services — landing page in the lander framework.
@@ -201,27 +202,70 @@ const FAQ = [
   },
 ];
 
-export default function ServicesLanding() {
+export default async function ServicesLanding() {
+  const sections = await getPageSections("services");
+  const hero = sections.get("hero");
+  const stats = sections.get("stats");
+  const servicesHead = sections.get("services");
+  const plansHead = sections.get("plans");
+  const brief = sections.get("brief");
+  const faqHead = sections.get("faq");
+  const closing = sections.get("closing");
+
+  const statCols = cmsCards(stats, STAT_COLS, (c, base) => ({
+    value: pick(c.value ?? c.label, base?.value ?? ""),
+    label: pick(c.title ?? c.body, base?.label ?? ""),
+  }));
+  const serviceCards = cmsCards(servicesHead, SERVICES, (c, base) => ({
+    slug: base?.slug ?? "",
+    name: pick(c.title, base?.name ?? ""),
+    tagline: pick(c.label, base?.tagline ?? ""),
+    body: pick(c.body, base?.body ?? ""),
+    image: pick(c.imageUrl, base?.image ?? ""),
+    href: pick(c.ctaHref, base?.href ?? "#"),
+    state: base?.state ?? ("live" as const),
+  }));
+  const planCards = cmsCards(plansHead, PLANS, (c, base) => ({
+    name: pick(c.title, base?.name ?? ""),
+    priceFrom: pick(c.value, base?.priceFrom ?? ""),
+    inclusions: c.items && c.items.length ? c.items : base?.inclusions ?? [],
+    featured: base?.featured ?? false,
+  }));
+  const briefLines = cmsCards(brief, BRIEF_LINES, (c, base) => ({
+    num: pick(c.label, base?.num ?? ""),
+    label: pick(c.title, base?.label ?? ""),
+    value: pick(c.body ?? c.value, base?.value ?? ""),
+    highlight: base?.highlight ?? false,
+  }));
+  const faqItems = cmsCards(faqHead, FAQ, (c, base) => ({
+    q: pick(c.title, base?.q ?? ""),
+    a: pick(c.body, base?.a ?? ""),
+  }));
+
   return (
     <div className={s.page}>
       {/* 1. Hero */}
       <section className={s.hero}>
         <div className={s.heroCopy}>
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>The House · Services</p>
+            <p className={s.heroEy}>{cms(hero, "eyebrow", "The House · Services")}</p>
             <h1 className={s.heroTitle}>
-              The quiet standard <em>of care.</em>
+              {cms(hero, "headline", "The quiet standard")}{" "}
+              <em>{cms(hero, "headlineEm", "of care.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
-              Every discipline of home care, kept to one House standard.
-              Book one-off, or let HoWA hold the rhythm of the year.
+              {cms(
+                hero,
+                "body",
+                "Every discipline of home care, kept to one House standard. Book one-off, or let HoWA hold the rhythm of the year.",
+              )}
             </p>
             <div className={s.heroCtas}>
-              <Link href="#open-booking-form" className={s.btnFilled}>
-                Book one-off
+              <Link href={cms(hero, "ctaHref", "#open-booking-form")} className={s.btnFilled}>
+                {cms(hero, "ctaLabel", "Book one-off")}
               </Link>
-              <Link href="#plans" className={s.btnGhost}>
-                Start a plan
+              <Link href={cms(hero, "cta2Href", "#plans")} className={s.btnGhost}>
+                {cms(hero, "cta2Label", "Start a plan")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
@@ -229,8 +273,12 @@ export default function ServicesLanding() {
         </div>
         <div className={s.heroVisual}>
           <Image
-            src="/home-v4/plus-benefit-1.png"
-            alt="A hand cleaning a sash window in golden-hour light, with a plant on the sill inside"
+            src={cms(hero, "imageUrl", "/home-v4/plus-benefit-1.webp")}
+            alt={cms(
+              hero,
+              "imageAlt",
+              "A hand cleaning a sash window in golden-hour light, with a plant on the sill inside",
+            )}
             fill
             sizes="(min-width: 1024px) 55vw, 100vw"
             priority
@@ -242,10 +290,14 @@ export default function ServicesLanding() {
       {/* 2. Stats strip */}
       <section className={s.statsStrip}>
         <div className={s.statsLede}>
-          <p className={s.statsLedeLine1}>Same standard. Same hands twice.</p>
-          <p className={s.statsLedeLine2}>Held in your record, surfaced when it matters.</p>
+          <p className={s.statsLedeLine1}>
+            {cms(stats, "headline", "Same standard. Same hands twice.")}
+          </p>
+          <p className={s.statsLedeLine2}>
+            {cms(stats, "subheadline", "Held in your record, surfaced when it matters.")}
+          </p>
         </div>
-        {STAT_COLS.map((stat) => (
+        {statCols.map((stat) => (
           <div key={stat.label} className={s.stat}>
             <span className={s.statValue}>{stat.value}</span>
             <span className={s.statLabel}>{stat.label}</span>
@@ -256,17 +308,21 @@ export default function ServicesLanding() {
       {/* 3. Service carousel — all subbrands, live + coming-soon */}
       <section className={s.services}>
         <header className={s.servicesHead}>
-          <p className={s.servicesEy}>The Sub-Brands</p>
+          <p className={s.servicesEy}>{cms(servicesHead, "eyebrow", "The Sub-Brands")}</p>
           <h2 className={s.servicesTitle}>
-            The hands that <em>look after the home.</em>
+            {cms(servicesHead, "headline", "The hands that")}{" "}
+            <em>{cms(servicesHead, "headlineEm", "look after the home.", "headline")}</em>
           </h2>
           <p className={s.servicesLede}>
-            Nine disciplines, one House standard. Four live at launch — the
-            rest opening through 2026 as we onboard partners we trust.
+            {cms(
+              servicesHead,
+              "body",
+              "Nine disciplines, one House standard. Four live at launch — the rest opening through 2026 as we onboard partners we trust.",
+            )}
           </p>
         </header>
         <div className={s.servicesCarousel}>
-          {SERVICES.map((svc) => (
+          {serviceCards.map((svc) => (
             <Link
               key={svc.slug}
               href={svc.href}
@@ -298,8 +354,11 @@ export default function ServicesLanding() {
           ))}
         </div>
         <p className={s.servicesFootnote}>
-          Scroll for more — handyman, housekeeping, removals, energy and
-          pet care all opening in 2026.
+          {cms(
+            servicesHead,
+            "caption",
+            "Scroll for more — handyman, housekeeping, removals, energy and pet care all opening in 2026.",
+          )}
         </p>
       </section>
 
@@ -307,10 +366,14 @@ export default function ServicesLanding() {
       <section id="plans" className={s.plans}>
         <header className={s.plansHead}>
           <p className={s.plansEy}>
-            HoWA Steward · <span className={s.plansEyHighlight}>Available with Steward only</span>
+            {cms(plansHead, "eyebrow", "HoWA Steward · ")}
+            <span className={s.plansEyHighlight}>
+              {cms(plansHead, "subheadline", "Available with Steward only")}
+            </span>
           </p>
           <h2 className={s.plansTitle}>
-            Care, on a rhythm <em>the home can trust.</em>
+            {cms(plansHead, "headline", "Care, on a rhythm")}{" "}
+            <em>{cms(plansHead, "headlineEm", "the home can trust.", "headline")}</em>
           </h2>
           <p className={s.plansLede}>
             Steward Plans bundle the services into a recurring rhythm. HoWA
@@ -322,7 +385,7 @@ export default function ServicesLanding() {
           </p>
         </header>
         <div className={s.plansGrid}>
-          {PLANS.map((p) => (
+          {planCards.map((p) => (
             <article
               key={p.name}
               className={`${s.planCard} ${p.featured ? s.planCardFeatured : ""}`}
@@ -363,23 +426,26 @@ export default function ServicesLanding() {
       {/* 5. Brief builder */}
       <section className={s.brief}>
         <div className={s.briefCopy}>
-          <p className={s.briefEy}>The Companion · in two minutes</p>
+          <p className={s.briefEy}>{cms(brief, "eyebrow", "The Companion · in two minutes")}</p>
           <h2 className={s.briefTitle}>
-            Tell us about the home. <em>HoWA proposes the plan.</em>
+            {cms(brief, "headline", "Tell us about the home.")}{" "}
+            <em>{cms(brief, "headlineEm", "HoWA proposes the plan.", "headline")}</em>
           </h2>
           <p className={s.briefLede}>
-            A short conversation and the Companion sketches a plan that fits
-            the home, the rhythm, and the budget. Adjust before booking, or
-            book straight in.
+            {cms(
+              brief,
+              "body",
+              "A short conversation and the Companion sketches a plan that fits the home, the rhythm, and the budget. Adjust before booking, or book straight in.",
+            )}
           </p>
-          <Link href="/howa/companion" className={s.btnFilled}>
-            Try the Companion
+          <Link href={cms(brief, "ctaHref", "/howa/companion")} className={s.btnFilled}>
+            {cms(brief, "ctaLabel", "Try the Companion")}
           </Link>
         </div>
         <div className={s.briefMock}>
           <p className={s.briefMockTitle}>A worked example</p>
           <ul className={s.briefMockList}>
-            {BRIEF_LINES.map((line) => (
+            {briefLines.map((line) => (
               <li
                 key={line.num}
                 className={`${s.briefMockLine} ${line.highlight ? s.briefMockHighlight : ""}`}
@@ -397,27 +463,31 @@ export default function ServicesLanding() {
       <section className={s.faqSection}>
         <div className={s.faqInner}>
           <header className={s.faqHead}>
-            <p className={s.faqEy}>Questions</p>
+            <p className={s.faqEy}>{cms(faqHead, "eyebrow", "Questions")}</p>
             <h2 className={s.faqTitle}>
-              What people <em>usually</em> ask.
+              {cms(faqHead, "headline", "What people")}{" "}
+              <em>{cms(faqHead, "headlineEm", "usually", "headline")}</em>{" "}
+              {cms(faqHead, "subheadline", "ask.")}
             </h2>
           </header>
-          <FaqList items={FAQ} />
+          <FaqList items={faqItems} />
         </div>
       </section>
 
       {/* 7. Closing */}
       <section className={s.closing}>
-        <p className={s.closingKicker}>The quiet discipline of looking after a place.</p>
+        <p className={s.closingKicker}>
+          {cms(closing, "eyebrow", "The quiet discipline of looking after a place.")}
+        </p>
         <p className={s.closingStatement}>
-          <em>Booked, briefed, and remembered.</em>
+          <em>{cms(closing, "headlineEm", "Booked, briefed, and remembered.", "headline")}</em>
         </p>
         <div className={s.closingCtas}>
-          <Link href="#open-booking-form" className={s.closingBtnFilled}>
-            Book a service
+          <Link href={cms(closing, "ctaHref", "#open-booking-form")} className={s.closingBtnFilled}>
+            {cms(closing, "ctaLabel", "Book a service")}
           </Link>
-          <Link href="/howa" className={s.closingBtnGhost}>
-            See HoWA →
+          <Link href={cms(closing, "cta2Href", "/howa")} className={s.closingBtnGhost}>
+            {cms(closing, "cta2Label", "See HoWA")} →
           </Link>
         </div>
       </section>

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
+import * as Sentry from "@sentry/nextjs";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { GhostLink } from "@/components/primitives/GhostLink";
 
@@ -20,9 +21,10 @@ export default function ErrorPage({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Once Sentry is wired (A7) replace with Sentry.captureException(error).
-    // eslint-disable-next-line no-console
-    console.error("[route-error]", error);
+    Sentry.captureException(error, {
+      tags: { boundary: "route-segment" },
+      extra: { digest: error.digest },
+    });
   }, [error]);
 
   return (

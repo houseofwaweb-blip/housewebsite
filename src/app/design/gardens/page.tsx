@@ -3,6 +3,7 @@ import Link from "next/link";
 import s from "./gardens.module.css";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { getNewsletterBlock } from "@/lib/cms/newsletter";
+import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
  * /design/gardens — lander framework.
@@ -90,7 +91,7 @@ const SPECIALIST = [
     name: "Full Design & Build",
     price: "Bespoke",
     body: "Commission a full bespoke design with on-site consultation and build management through Willow Alexander Gardens.",
-    image: "/design/gardens/full-design.png",
+    image: "/design/gardens/full-design.webp",
   },
 ];
 
@@ -156,6 +157,34 @@ const PROJECTS = [
 
 export default async function GardensPage() {
   const nlBlock = await getNewsletterBlock("design-gardens");
+  const sections = await getPageSections("design-gardens");
+  const hero = sections.get("hero");
+  const stats = sections.get("stats");
+  const plans = sections.get("plans");
+  const specialist = sections.get("specialist");
+  const studios = sections.get("studios");
+  const projects = sections.get("projects");
+  const quote = sections.get("quote");
+  const companion = sections.get("companion");
+
+  const statCols = cmsCards(stats, STAT_COLS, (c, base) => ({
+    value: pick(c.value ?? c.label, base?.value ?? ""),
+    label: pick(c.title ?? c.body, base?.label ?? ""),
+  }));
+  const planCards = cmsCards(plans, PLANS, (c, base) => ({
+    name: pick(c.title, base?.name ?? ""),
+    tagline: pick(c.label, base?.tagline ?? ""),
+    price: pick(c.value, base?.price ?? ""),
+    inclusions: c.items && c.items.length ? c.items : base?.inclusions ?? [],
+    image: pick(c.imageUrl, base?.image ?? ""),
+    featured: base?.featured ?? false,
+  }));
+  const specialistCards = cmsCards(specialist, SPECIALIST, (c, base) => ({
+    name: pick(c.title, base?.name ?? ""),
+    price: pick(c.value, base?.price ?? ""),
+    body: pick(c.body, base?.body ?? ""),
+    image: pick(c.imageUrl, base?.image ?? ""),
+  }));
 
   return (
     <div className={s.page}>
@@ -163,22 +192,24 @@ export default async function GardensPage() {
       <section className={s.hero}>
         <div className={s.heroCopy}>
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>Design · Gardens</p>
+            <p className={s.heroEy}>{cms(hero, "eyebrow", "Design · Gardens")}</p>
             <h1 className={s.heroTitle}>
-              Landscapes, <em>properly read.</em>
+              {cms(hero, "headline", "Landscapes,")}{" "}
+              <em>{cms(hero, "headlineEm", "properly read.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
-              Designed around what the garden already wants to do — light,
-              shade, drainage, the soil it has. The brief is to make the garden
-              feel inevitable, ten years from now. Led by Willow Alexander
-              Gardens, with the wider collective for specialist work.
+              {cms(
+                hero,
+                "body",
+                "Designed around what the garden already wants to do — light, shade, drainage, the soil it has. The brief is to make the garden feel inevitable, ten years from now. Led by Willow Alexander Gardens, with the wider collective for specialist work.",
+              )}
             </p>
             <div className={s.heroCtas}>
-              <Link href="#plans" className={s.btnFilled}>
-                See the plans
+              <Link href={cms(hero, "ctaHref", "#plans")} className={s.btnFilled}>
+                {cms(hero, "ctaLabel", "See the plans")}
               </Link>
-              <Link href="/partners/willow-alexander-gardens" className={s.btnGhost}>
-                The lead studio
+              <Link href={cms(hero, "cta2Href", "/partners/willow-alexander-gardens")} className={s.btnGhost}>
+                {cms(hero, "cta2Label", "The lead studio")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
@@ -186,8 +217,12 @@ export default async function GardensPage() {
         </div>
         <div className={s.heroVisual}>
           <Image
-            src="/design/gardens/hero.jpg"
-            alt="Estate grounds — mature planting, brick paths and Georgian house behind"
+            src={cms(hero, "imageUrl", "/design/gardens/hero.jpg")}
+            alt={cms(
+              hero,
+              "imageAlt",
+              "Estate grounds — mature planting, brick paths and Georgian house behind",
+            )}
             fill
             sizes="(min-width: 1024px) 55vw, 100vw"
             priority
@@ -199,10 +234,12 @@ export default async function GardensPage() {
       {/* 2. Stats strip */}
       <section className={s.statsStrip}>
         <div className={s.statsLede}>
-          <p className={s.statsLedeLine1}>Light. Soil. Aspect. Time.</p>
-          <p className={s.statsLedeLine2}>Every scheme through a House-Approved studio.</p>
+          <p className={s.statsLedeLine1}>{cms(stats, "headline", "Light. Soil. Aspect. Time.")}</p>
+          <p className={s.statsLedeLine2}>
+            {cms(stats, "subheadline", "Every scheme through a House-Approved studio.")}
+          </p>
         </div>
-        {STAT_COLS.map((stat) => (
+        {statCols.map((stat) => (
           <div key={stat.label} className={s.stat}>
             <span className={s.statValue}>{stat.value}</span>
             <span className={s.statLabel}>{stat.label}</span>
@@ -213,18 +250,21 @@ export default async function GardensPage() {
       {/* 3. Three plans */}
       <section id="plans" className={s.plans}>
         <header className={s.plansHead}>
-          <p className={s.plansEy}>Garden Plans</p>
+          <p className={s.plansEy}>{cms(plans, "eyebrow", "Garden Plans")}</p>
           <h2 className={s.plansTitle}>
-            Three ways <em>to begin.</em>
+            {cms(plans, "headline", "Three ways")}{" "}
+            <em>{cms(plans, "headlineEm", "to begin.", "headline")}</em>
           </h2>
           <p className={s.plansLede}>
-            From a planting plan that solves a single border to a fully
-            dimensioned 3D design ready for build — the right entry point for
-            the garden you have now.
+            {cms(
+              plans,
+              "body",
+              "From a planting plan that solves a single border to a fully dimensioned 3D design ready for build — the right entry point for the garden you have now.",
+            )}
           </p>
         </header>
         <div className={s.plansGrid}>
-          {PLANS.map((p) => (
+          {planCards.map((p) => (
             <article
               key={p.name}
               className={`${s.planCard} ${p.featured ? s.planCardFeatured : ""}`}
@@ -261,13 +301,14 @@ export default async function GardensPage() {
       {/* 4. Specialist services */}
       <section className={s.specialist}>
         <header className={s.specialistHead}>
-          <p className={s.specialistEy}>Specialist services</p>
+          <p className={s.specialistEy}>{cms(specialist, "eyebrow", "Specialist services")}</p>
           <h2 className={s.specialistTitle}>
-            Beyond the plan, <em>three ways further.</em>
+            {cms(specialist, "headline", "Beyond the plan,")}{" "}
+            <em>{cms(specialist, "headlineEm", "three ways further.", "headline")}</em>
           </h2>
         </header>
         <div className={s.specialistGrid}>
-          {SPECIALIST.map((s2) => (
+          {specialistCards.map((s2) => (
             <article key={s2.name} className={s.specialistCard}>
               <div className={s.specialistImage}>
                 <Image
@@ -292,15 +333,17 @@ export default async function GardensPage() {
       {/* 4b. The studios behind the work */}
       <section className={s.studios}>
         <header className={s.studiosHead}>
-          <p className={s.studiosEy}>The collective</p>
+          <p className={s.studiosEy}>{cms(studios, "eyebrow", "The collective")}</p>
           <h2 className={s.studiosTitle}>
-            The studios <em>behind the garden.</em>
+            {cms(studios, "headline", "The studios")}{" "}
+            <em>{cms(studios, "headlineEm", "behind the garden.", "headline")}</em>
           </h2>
           <p className={s.studiosLede}>
-            Every garden brief is led by Willow Alexander Gardens, with
-            specialist partners brought in for hard landscape, lighting and
-            build. We grow the collective slowly — only when the right person
-            turns up.
+            {cms(
+              studios,
+              "body",
+              "Every garden brief is led by Willow Alexander Gardens, with specialist partners brought in for hard landscape, lighting and build. We grow the collective slowly — only when the right person turns up.",
+            )}
           </p>
         </header>
         <div className={s.studiosGrid}>
@@ -354,9 +397,10 @@ export default async function GardensPage() {
       {/* 5. Projects gallery */}
       <section className={s.projects}>
         <header className={s.projectsHead}>
-          <p className={s.projectsEy}>From the studio</p>
+          <p className={s.projectsEy}>{cms(projects, "eyebrow", "From the studio")}</p>
           <h2 className={s.projectsTitle}>
-            Gardens that <em>grow with their people.</em>
+            {cms(projects, "headline", "Gardens that")}{" "}
+            <em>{cms(projects, "headlineEm", "grow with their people.", "headline")}</em>
           </h2>
         </header>
         <div className={s.projectsGrid}>
@@ -383,35 +427,48 @@ export default async function GardensPage() {
       {/* 6. Quote */}
       <section className={s.quote}>
         <p className={s.quoteText}>
-          <em>“A garden deserves a mood, not just a hand.”</em>
+          <em>
+            “{cms(quote, "body", "A garden deserves a mood, not just a hand.")}”
+          </em>
         </p>
-        <p className={s.quoteAttribution}>Willow Alexander Gardens · 2025</p>
+        <p className={s.quoteAttribution}>
+          {cms(quote, "caption", "Willow Alexander Gardens · 2025")}
+        </p>
       </section>
 
       {/* 7. Companion split */}
       <section className={s.companion}>
         <div className={s.companionCopy}>
-          <p className={s.companionEy}>HoWA · Companion</p>
+          <p className={s.companionEy}>{cms(companion, "eyebrow", "HoWA · Companion")}</p>
           <h2 className={s.companionTitle}>
-            Start with the <em>Companion.</em>
+            {cms(companion, "headline", "Start with the")}{" "}
+            <em>{cms(companion, "headlineEm", "Companion.", "headline")}</em>
           </h2>
           <p className={s.companionLede}>
-            Capture your garden's light, soil, aspect, maintenance appetite
-            and budget. The Companion builds a brief your designer can work
-            from on day one — nothing lost, nothing repeated.
+            {cms(
+              companion,
+              "body",
+              "Capture your garden's light, soil, aspect, maintenance appetite and budget. The Companion builds a brief your designer can work from on day one — nothing lost, nothing repeated.",
+            )}
           </p>
-          <p className={s.companionFootnote}>Available to all HoWA members.</p>
+          <p className={s.companionFootnote}>
+            {cms(companion, "caption", "Available to all HoWA members.")}
+          </p>
           <Link
-            href="/api/howa-bounce?source=gardens-companion"
+            href={cms(companion, "ctaHref", "/api/howa-bounce?source=gardens-companion")}
             className={s.btnFilled}
           >
-            Start the Companion
+            {cms(companion, "ctaLabel", "Start the Companion")}
           </Link>
         </div>
         <div className={s.companionImage}>
           <Image
-            src="/design/gardens/concept-plans.jpg"
-            alt="A garden concept plan — the kind of brief the Companion helps you build"
+            src={cms(companion, "imageUrl", "/design/gardens/concept-plans.jpg")}
+            alt={cms(
+              companion,
+              "imageAlt",
+              "A garden concept plan — the kind of brief the Companion helps you build",
+            )}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
             style={{ objectFit: "cover", objectPosition: "center" }}

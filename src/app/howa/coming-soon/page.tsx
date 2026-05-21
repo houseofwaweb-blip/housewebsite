@@ -3,6 +3,7 @@ import Link from "next/link";
 import s from "./coming-soon.module.css";
 import { WaitlistForm } from "@/components/forms/WaitlistForm";
 import { env } from "@/lib/env";
+import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
  * /howa/coming-soon — HoWA app waitlist page.
@@ -47,14 +48,30 @@ const COMING = [
   },
 ];
 
-export default function HowaComingSoonPage() {
+export default async function HowaComingSoonPage() {
+  const sections = await getPageSections("howa-coming-soon");
+  const hero = sections.get("hero");
+  const stats = sections.get("stats");
+  const whats = sections.get("whats");
+  const closing = sections.get("closing");
+
+  const statCols = cmsCards(stats, STAT_COLS, (c, base) => ({
+    value: pick(c.value ?? c.label, base?.value ?? ""),
+    label: pick(c.title ?? c.body, base?.label ?? ""),
+  }));
+  const comingCards = cmsCards(whats, COMING, (c, base) => ({
+    icon: pick(c.label, base?.icon ?? ""),
+    title: pick(c.title, base?.title ?? ""),
+    body: pick(c.body, base?.body ?? ""),
+  }));
+
   return (
     <div className={`${s.page} ${s.stewardTheme}`}>
       {/* 1. Hero — navy blueprint mode + waitlist */}
       <section className={s.hero}>
         <div className={s.heroBg} aria-hidden="true">
           <Image
-            src="/home-v4/steward-hero-blueprint.png"
+            src={cms(hero, "imageUrl", "/home-v4/steward-hero-blueprint.webp")}
             alt=""
             fill
             sizes="100vw"
@@ -64,14 +81,17 @@ export default function HowaComingSoonPage() {
         </div>
         <div className={s.heroCopy}>
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>HoWA · Coming soon</p>
+            <p className={s.heroEy}>{cms(hero, "eyebrow", "HoWA · Coming soon")}</p>
             <h1 className={s.heroTitle}>
-              The home, <em>finally understood.</em>
+              {cms(hero, "headline", "The home,")}{" "}
+              <em>{cms(hero, "headlineEm", "finally understood.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
-              HoWA Product is where stewardship becomes operational — home
-              records, the Companion diagnostic, bookings, and one place for
-              the House to reach you. We'll write the moment it opens.
+              {cms(
+                hero,
+                "body",
+                "HoWA Product is where stewardship becomes operational — home records, the Companion diagnostic, bookings, and one place for the House to reach you. We'll write the moment it opens.",
+              )}
             </p>
             <div className={s.waitlistWrap}>
               <WaitlistForm
@@ -90,10 +110,14 @@ export default function HowaComingSoonPage() {
       {/* 2. Stats strip */}
       <section className={s.statsStrip}>
         <div className={s.statsLede}>
-          <p className={s.statsLedeLine1}>The full operating system, very soon.</p>
-          <p className={s.statsLedeLine2}>The brand site is live today. The product opens next.</p>
+          <p className={s.statsLedeLine1}>
+            {cms(stats, "headline", "The full operating system, very soon.")}
+          </p>
+          <p className={s.statsLedeLine2}>
+            {cms(stats, "subheadline", "The brand site is live today. The product opens next.")}
+          </p>
         </div>
-        {STAT_COLS.map((stat) => (
+        {statCols.map((stat) => (
           <div key={stat.label} className={s.stat}>
             <span className={s.statValue}>{stat.value}</span>
             <span className={s.statLabel}>{stat.label}</span>
@@ -104,13 +128,14 @@ export default function HowaComingSoonPage() {
       {/* 3. What's coming */}
       <section className={s.whatsComing}>
         <header className={s.whatsHead}>
-          <p className={s.whatsEy}>What's launching</p>
+          <p className={s.whatsEy}>{cms(whats, "eyebrow", "What's launching")}</p>
           <h2 className={s.whatsTitle}>
-            One operating system, <em>three quiet doors in.</em>
+            {cms(whats, "headline", "One operating system,")}{" "}
+            <em>{cms(whats, "headlineEm", "three quiet doors in.", "headline")}</em>
           </h2>
         </header>
         <div className={s.whatsGrid}>
-          {COMING.map((item) => (
+          {comingCards.map((item) => (
             <article key={item.title} className={s.whatsCard}>
               <p className={s.whatsCardNumber}>{item.icon}</p>
               <h3 className={s.whatsCardTitle}>{item.title}</h3>
@@ -122,16 +147,16 @@ export default function HowaComingSoonPage() {
 
       {/* 4. Closing */}
       <section className={s.closing}>
-        <p className={s.closingKicker}>In the meantime.</p>
+        <p className={s.closingKicker}>{cms(closing, "eyebrow", "In the meantime.")}</p>
         <p className={s.closingStatement}>
-          <em>Read more about HoWA.</em>
+          <em>{cms(closing, "headlineEm", "Read more about HoWA.", "headline")}</em>
         </p>
         <div className={s.closingCtas}>
-          <Link href="/howa" className={s.closingBtnFilled}>
-            Visit the HoWA page
+          <Link href={cms(closing, "ctaHref", "/howa")} className={s.closingBtnFilled}>
+            {cms(closing, "ctaLabel", "Visit the HoWA page")}
           </Link>
-          <Link href="/howa/plus" className={s.closingBtnGhost}>
-            See HoWA+ →
+          <Link href={cms(closing, "cta2Href", "/howa/plus")} className={s.closingBtnGhost}>
+            {cms(closing, "cta2Label", "See HoWA+")} →
           </Link>
         </div>
       </section>

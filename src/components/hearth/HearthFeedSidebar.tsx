@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { HearthTitle } from "./HearthTitle";
 import { submitForm } from "@/components/forms/submitForm";
 import { POPULAR as POPULAR_FALLBACK, type PopularItem } from "@/lib/hearth-data";

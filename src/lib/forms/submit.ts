@@ -7,6 +7,18 @@ import { checkFormRateLimit } from "@/lib/rate-limit";
 import { getSupabaseAnonClient } from "@/lib/supabase/server";
 import { notifyFormSubmission } from "./notify";
 import { subscribeToNewsletter, trackEvent, type InterestSurface, SURFACE_TO_INTEREST } from "@/lib/klaviyo";
+import { sendMetaCapiEvent, extractMetaIdentifiers, type MetaEventName } from "@/lib/meta/capi";
+import { randomUUID } from "node:crypto";
+
+// Form-type → Meta standard event mapping. Lead is the catch-all for
+// commercial intent; newsletter uses CompleteRegistration; the booking
+// form uses Schedule (Meta's specific intent for booking forms).
+const FORM_TYPE_TO_META_EVENT: Record<FormType, MetaEventName> = {
+  contact: "Lead",
+  consultation: "Schedule",
+  waitlist: "Lead",
+  newsletter: "CompleteRegistration",
+};
 
 /**
  * Shared form submission handler.
@@ -156,5 +168,32 @@ export async function handleFormSubmission(
     }).catch(() => {});
   }
 
-  return NextResponse.json({ ok: true });
+  // Meta Conversions API fire — server-side complement to the browser
+  // pixel. Returns an event_id so the client can fire fbq() with the
+  // matching eventID and Meta dedupes the two signals.
+  const metaEventName = FORM_TYPE_TO_META_EVENT[type];
+  const metaEventId = randomUUID();
+  const submission = parsed as Record<string, unknown>;
+  const metaIdentifiers = extractMetaIdentifiers(req);
+  const eventSourceUrl = req.headers.get("referer") ?? undefined;
+  // Fire-and-forget — never block the form response on Meta's API.
+  void sendMetaCapiEvent({
+    eventName: metaEventName,
+    eventSourceUrl: eventSourceUrl ?? "",
+    eventId: metaEventId,
+    userData: {
+      email: typeof submission.email === "string" ? submission.email : undefined,
+      phone: typeof submission.phone === "string" ? submission.phone : undefined,
+      firstName: typeof submission.name === "string"
+        ? String(submission.name).split(" ")[0]
+        : undefined,
+      lastName: typeof submission.name === "string" && String(submission.name).includes(" ")
+        ? String(submission.name).split(" ").slice(1).join(" ")
+        : undefined,
+      postcode: typeof submission.postcode === "string" ? submission.postcode : undefined,
+      ...metaIdentifiers,
+    },
+  }).catch(() => {});
+
+  return NextResponse.json({ ok: true, metaEventId });
 }

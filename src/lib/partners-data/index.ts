@@ -417,7 +417,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
     heroHeadlineEm: "disappears into the architecture.",
     heroSub:
       "Automation, lighting schemes, audio, and heating controls \u2014 designed with our interior studios from the first brief. The brains behind the HoWA Companion as well.",
-    heroImage: "/home-v4/design-portrait.png",
+    heroImage: "/home-v4/design-portrait.webp",
     heroCaption: "Integrated lighting scheme \u00b7 House AI",
 
     role: "Specialist partner \u00b7 UK-wide",

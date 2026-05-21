@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import s from "./protect.module.css";
 import { WaitlistMini } from "@/components/marketing/WaitlistMini";
+import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
  * /protect — Home Protection & Risk Reduction.
@@ -115,14 +116,48 @@ const AUDIENCE = [
   },
 ];
 
-export default function ProtectPage() {
+export default async function ProtectPage() {
+  const sections = await getPageSections("protect");
+  const hero = sections.get("hero");
+  const stats = sections.get("stats");
+  const premise = sections.get("premise");
+  const risks = sections.get("risks");
+  const steps = sections.get("steps");
+  const audience = sections.get("audience");
+  const register = sections.get("register");
+  const insurance = sections.get("insurance");
+  const closing = sections.get("closing");
+  const fca = sections.get("fca");
+
+  const statCols = cmsCards(stats, STAT_COLS, (c, base) => ({
+    value: pick(c.value ?? c.label, base?.value ?? ""),
+    label: pick(c.title ?? c.body, base?.label ?? ""),
+  }));
+  const riskCards = cmsCards(risks, RISK_AREAS, (c, base) => ({
+    roman: pick(c.label, base?.roman ?? ""),
+    name: pick(c.title, base?.name ?? ""),
+    tagline: pick(c.value, base?.tagline ?? ""),
+    body: pick(c.body, base?.body ?? ""),
+    bullets: c.items && c.items.length ? c.items : base?.bullets ?? [],
+  }));
+  const stepCards = cmsCards(steps, STEPS, (c, base) => ({
+    n: pick(c.label, base?.n ?? ""),
+    name: pick(c.title, base?.name ?? ""),
+    tagline: pick(c.value, base?.tagline ?? ""),
+    body: pick(c.body, base?.body ?? ""),
+  }));
+  const audienceCards = cmsCards(audience, AUDIENCE, (c, base) => ({
+    name: pick(c.title, base?.name ?? ""),
+    body: pick(c.body, base?.body ?? ""),
+  }));
+
   return (
     <div className={s.page}>
       {/* 1. Hero */}
       <section className={s.hero}>
         <div className={s.heroBg} aria-hidden="true">
           <Image
-            src="/home-v4/protect-hero.png"
+            src={cms(hero, "imageUrl", "/home-v4/protect-hero.webp")}
             alt=""
             fill
             sizes="100vw"
@@ -132,21 +167,24 @@ export default function ProtectPage() {
         </div>
         <div className={s.heroCopy}>
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>Protect · Late 2026</p>
+            <p className={s.heroEy}>{cms(hero, "eyebrow", "Protect · Late 2026")}</p>
             <h1 className={s.heroTitle}>
-              Preventative care for homes <em>that are lived in properly.</em>
+              {cms(hero, "headline", "Preventative care for homes")}{" "}
+              <em>{cms(hero, "headlineEm", "that are lived in properly.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
-              A considered approach to protecting homes from avoidable damage —
-              through foresight, verification, and ongoing care. The next layer
-              of stewardship from the House.
+              {cms(
+                hero,
+                "body",
+                "A considered approach to protecting homes from avoidable damage — through foresight, verification, and ongoing care. The next layer of stewardship from the House.",
+              )}
             </p>
             <div className={s.heroCtas}>
-              <a href="#register" className={s.btnFilled}>
-                Register interest
+              <a href={cms(hero, "ctaHref", "#register")} className={s.btnFilled}>
+                {cms(hero, "ctaLabel", "Register interest")}
               </a>
-              <a href="#brief" className={s.btnGhost}>
-                Read the brief
+              <a href={cms(hero, "cta2Href", "#brief")} className={s.btnGhost}>
+                {cms(hero, "cta2Label", "Read the brief")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </a>
             </div>
@@ -157,10 +195,14 @@ export default function ProtectPage() {
       {/* 2. Stats strip */}
       <section className={s.statsStrip}>
         <div className={s.statsLede}>
-          <p className={s.statsLedeLine1}>Foresight. Verification. Ongoing care.</p>
-          <p className={s.statsLedeLine2}>The quiet discipline of looking after a place.</p>
+          <p className={s.statsLedeLine1}>
+            {cms(stats, "headline", "Foresight. Verification. Ongoing care.")}
+          </p>
+          <p className={s.statsLedeLine2}>
+            {cms(stats, "subheadline", "The quiet discipline of looking after a place.")}
+          </p>
         </div>
-        {STAT_COLS.map((stat) => (
+        {statCols.map((stat) => (
           <div key={stat.label} className={s.stat}>
             <span className={s.statValue}>{stat.value}</span>
             <span className={s.statLabel}>{stat.label}</span>
@@ -171,13 +213,16 @@ export default function ProtectPage() {
       {/* 3. Premise */}
       <section id="brief" className={s.premise}>
         <p className={s.premiseStatement}>
-          Most damage doesn't arrive dramatically.<br />
-          It begins quietly. <em>A slow leak, a forgotten battery, a system left unchecked.</em>
+          {cms(premise, "headline", "Most damage doesn't arrive dramatically.")}<br />
+          {cms(premise, "subheadline", "It begins quietly.")}{" "}
+          <em>{cms(premise, "headlineEm", "A slow leak, a forgotten battery, a system left unchecked.", "headline")}</em>
         </p>
         <p className={s.premiseBody}>
-          Home Protection &amp; Risk Reduction is the House's answer to that
-          reality. A new service focused on prevention, continuity, and
-          stewardship over time.
+          {cms(
+            premise,
+            "body",
+            "Home Protection & Risk Reduction is the House's answer to that reality. A new service focused on prevention, continuity, and stewardship over time.",
+          )}
         </p>
       </section>
 
@@ -228,17 +273,21 @@ export default function ProtectPage() {
       {/* 5. Risk areas */}
       <section className={s.risks}>
         <header className={s.risksHead}>
-          <p className={s.risksEy}>Where our experts provide support</p>
+          <p className={s.risksEy}>{cms(risks, "eyebrow", "Where our experts provide support")}</p>
           <h2 className={s.risksTitle}>
-            The risks that build <em>quietly.</em>
+            {cms(risks, "headline", "The risks that build")}{" "}
+            <em>{cms(risks, "headlineEm", "quietly.", "headline")}</em>
           </h2>
           <p className={s.risksLede}>
-            Most household damage doesn't come from a single dramatic event.
-            It builds through small oversights — easy to miss, costly to ignore.
+            {cms(
+              risks,
+              "body",
+              "Most household damage doesn't come from a single dramatic event. It builds through small oversights — easy to miss, costly to ignore.",
+            )}
           </p>
         </header>
         <div className={s.risksGrid}>
-          {RISK_AREAS.map((area) => (
+          {riskCards.map((area) => (
             <article key={area.roman} className={s.riskCard}>
               <p className={s.riskNumeral}>{area.roman}</p>
               <h3 className={s.riskName}>{area.name}</h3>
@@ -257,18 +306,21 @@ export default function ProtectPage() {
       {/* 6. Three steps */}
       <section className={s.steps}>
         <header className={s.stepsHead}>
-          <p className={s.stepsEy}>What to expect</p>
+          <p className={s.stepsEy}>{cms(steps, "eyebrow", "What to expect")}</p>
           <h2 className={s.stepsTitle}>
-            Three quiet acts of <em>looking after.</em>
+            {cms(steps, "headline", "Three quiet acts of")}{" "}
+            <em>{cms(steps, "headlineEm", "looking after.", "headline")}</em>
           </h2>
           <p className={s.stepsLede}>
-            When launched, Home Protection unfolds in three movements — assess,
-            implement, watch over. Held in your home record, surfaced only when
-            it matters.
+            {cms(
+              steps,
+              "body",
+              "When launched, Home Protection unfolds in three movements — assess, implement, watch over. Held in your home record, surfaced only when it matters.",
+            )}
           </p>
         </header>
         <ol className={s.stepsGrid}>
-          {STEPS.map((step) => (
+          {stepCards.map((step) => (
             <li key={step.n} className={s.stepCard}>
               <p className={s.stepNumeral}>{step.n}</p>
               <h3 className={s.stepName}>{step.name}</h3>
@@ -278,8 +330,8 @@ export default function ProtectPage() {
           ))}
         </ol>
         <p className={s.stepsClose}>
-          You don't need to remember everything.{" "}
-          <em>HoWA does that for you.</em>
+          {cms(steps, "body2", "You don't need to remember everything.")}{" "}
+          <em>{cms(steps, "caption", "HoWA does that for you.")}</em>
         </p>
       </section>
 
@@ -287,20 +339,25 @@ export default function ProtectPage() {
       <section className={s.audience}>
         <div className={s.audienceImage}>
           <Image
-            src="/home-v4/protect-still-life.png"
-            alt="A still life of stewardship — brass padlock, smoke detector, key, and chain on a wooden cabinet"
+            src={cms(audience, "imageUrl", "/home-v4/protect-still-life.webp")}
+            alt={cms(
+              audience,
+              "imageAlt",
+              "A still life of stewardship — brass padlock, smoke detector, key, and chain on a wooden cabinet",
+            )}
             fill
             sizes="(min-width: 1024px) 45vw, 100vw"
             style={{ objectFit: "cover", objectPosition: "center" }}
           />
         </div>
         <div className={s.audienceCopy}>
-          <p className={s.audienceEy}>Is it right for you?</p>
+          <p className={s.audienceEy}>{cms(audience, "eyebrow", "Is it right for you?")}</p>
           <h2 className={s.audienceTitle}>
-            For homes that expect to be <em>looked after.</em>
+            {cms(audience, "headline", "For homes that expect to be")}{" "}
+            <em>{cms(audience, "headlineEm", "looked after.", "headline")}</em>
           </h2>
           <ul className={s.audienceList}>
-            {AUDIENCE.map((a) => (
+            {audienceCards.map((a) => (
               <li key={a.name}>
                 <p className={s.audienceLabel}>{a.name}</p>
                 <p className={s.audienceBody}>{a.body}</p>
@@ -308,8 +365,8 @@ export default function ProtectPage() {
             ))}
           </ul>
           <p className={s.audienceClose}>
-            If you already trust the House with your home,{" "}
-            <em>this is the next layer of care.</em>
+            {cms(audience, "body", "If you already trust the House with your home,")}{" "}
+            <em>{cms(audience, "caption", "this is the next layer of care.")}</em>
           </p>
         </div>
       </section>
@@ -318,13 +375,19 @@ export default function ProtectPage() {
       <section id="register" className={s.register}>
         <div className={s.registerInner}>
           <header className={s.registerHead}>
-            <p className={s.registerEy}>Late 2026 · Priority for HoWA+</p>
+            <p className={s.registerEy}>
+              {cms(register, "eyebrow", "Late 2026 · Priority for HoWA+")}
+            </p>
             <h2 className={s.registerTitle}>
-              Home <em>Protection.</em>
+              {cms(register, "headline", "Home")}{" "}
+              <em>{cms(register, "headlineEm", "Protection.", "headline")}</em>
             </h2>
             <p className={s.registerLede}>
-              A one-day in-person review by House-vetted specialists. The first
-              practical act of Home Protection.
+              {cms(
+                register,
+                "body",
+                "A one-day in-person review by House-vetted specialists. The first practical act of Home Protection.",
+              )}
             </p>
           </header>
           <div className={s.registerForm}>
@@ -357,26 +420,36 @@ export default function ProtectPage() {
       <section id="insurance" className={s.insurance}>
         <div className={s.insuranceImage}>
           <Image
-            src="/home-v4/protect-insurance.png"
-            alt="An Edwardian London townhouse with a policeman standing guard at the front door at golden hour"
+            src={cms(insurance, "imageUrl", "/home-v4/protect-insurance.webp")}
+            alt={cms(
+              insurance,
+              "imageAlt",
+              "An Edwardian London townhouse with a policeman standing guard at the front door at golden hour",
+            )}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
             style={{ objectFit: "cover", objectPosition: "center" }}
           />
         </div>
         <div className={s.insuranceCopy}>
-          <p className={s.insuranceEy}>Register interest</p>
+          <p className={s.insuranceEy}>{cms(insurance, "eyebrow", "Register interest")}</p>
           <h2 className={s.insuranceTitle}>
-            House Approved <em>Insurance.</em>
+            {cms(insurance, "headline", "House Approved")}{" "}
+            <em>{cms(insurance, "headlineEm", "Insurance.", "headline")}</em>
           </h2>
           <p className={s.insuranceLede}>
-            Cover that understands period homes, valuable contents, and the
-            things a standard policy quietly excludes.
+            {cms(
+              insurance,
+              "subheadline",
+              "Cover that understands period homes, valuable contents, and the things a standard policy quietly excludes.",
+            )}
           </p>
           <p className={s.insuranceBody}>
-            Introduced by the House, underwritten by FCA-regulated specialists
-            we've vetted to the same standard as every partner who carries the
-            House Approved seal. A proper conversation, not a comparison site.
+            {cms(
+              insurance,
+              "body",
+              "Introduced by the House, underwritten by FCA-regulated specialists we've vetted to the same standard as every partner who carries the House Approved seal. A proper conversation, not a comparison site.",
+            )}
           </p>
           <ul className={s.insuranceBullets}>
             {[
@@ -405,14 +478,17 @@ export default function ProtectPage() {
       {/* 10. Services available now — closing band, navy */}
       <section className={s.closing}>
         <div className={s.closingInner}>
-          <p className={s.closingEy}>A natural evolution</p>
+          <p className={s.closingEy}>{cms(closing, "eyebrow", "A natural evolution")}</p>
           <h2 className={s.closingTitle}>
-            The next layer of care from the <em>House.</em>
+            {cms(closing, "headline", "The next layer of care from the")}{" "}
+            <em>{cms(closing, "headlineEm", "House.", "headline")}</em>
           </h2>
           <p className={s.closingLede}>
-            Home Protection &amp; Risk Reduction is thoughtful, preventative,
-            and designed to last. Until it launches, you can explore the
-            services already available.
+            {cms(
+              closing,
+              "body",
+              "Home Protection & Risk Reduction is thoughtful, preventative, and designed to last. Until it launches, you can explore the services already available.",
+            )}
           </p>
           <div className={s.closingServices}>
             {[
@@ -433,12 +509,12 @@ export default function ProtectPage() {
       {/* 11. FCA notice */}
       <section className={s.fca}>
         <p>
-          House of Willow Alexander acts as an introducer for insurance
-          products; we do not advise on, arrange, or conduct regulated activity.
-          Introductions are passed to FCA-authorised partners for any subsequent
-          discussion, quotation, or contract. See our{" "}
-          <Link href="/legal/privacy">privacy page</Link> for how your details
-          are handled.
+          {cms(
+            fca,
+            "body",
+            "House of Willow Alexander acts as an introducer for insurance products; we do not advise on, arrange, or conduct regulated activity. Introductions are passed to FCA-authorised partners for any subsequent discussion, quotation, or contract.",
+          )}{" "}
+          See our <Link href="/legal/privacy">privacy page</Link> for how your details are handled.
         </p>
       </section>
     </div>

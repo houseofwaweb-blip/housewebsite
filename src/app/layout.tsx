@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { didot, effra, cormorant, jost } from "@/lib/fonts";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/lib/seo/jsonLd";
 import { env } from "@/lib/env";
@@ -12,6 +12,12 @@ import { BookingWidget } from "@/components/marketing/BookingWidget";
 import { ConsentProvider } from "@/components/consent/ConsentProvider";
 import { CookieBanner } from "@/components/consent/CookieBanner";
 import { AnalyticsLoader } from "@/components/consent/AnalyticsLoader";
+import { SpeedInsightsLoader } from "@/components/consent/SpeedInsightsLoader";
+import { GoogleTagSetup } from "@/components/consent/GoogleTagSetup";
+import { MicrosoftClarity } from "@/components/consent/loaders/MicrosoftClarity";
+import { MetaPixel } from "@/components/consent/loaders/MetaPixel";
+import { PinterestTag } from "@/components/consent/loaders/PinterestTag";
+import { ClickIdCapture } from "@/components/marketing/ClickIdCapture";
 import "./globals.css";
 
 // When the HoWA Product app isn't live, header CTA swaps to "Book with HoWA".
@@ -62,6 +68,28 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GSC_VERIFICATION,
+    other: process.env.NEXT_PUBLIC_BING_VERIFICATION
+      ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_VERIFICATION }
+      : undefined,
+  },
+  manifest: "/site.webmanifest",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+};
+
+// Explicit viewport: Next 16 derives a sensible default, but stating it
+// removes ambiguity in Search Console and prevents accidental no-zoom
+// configs from creeping in.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: "#f3ede1",
 };
 
 export default async function RootLayout({
@@ -78,6 +106,40 @@ export default async function RootLayout({
       className={`${didot.variable} ${effra.variable} ${cormorant.variable} ${jost.variable}`}
     >
       <head>
+        {/*
+         * Google Consent Mode v2 default state.
+         * MUST execute synchronously, before any other Google tag loads,
+         * so that gtag.js initialises with consent already denied. Using
+         * a raw <script> rather than next/script to guarantee inline
+         * synchronous execution in the head.
+         *
+         * security_storage is the only category granted by default —
+         * CSRF + session cookies are essential. wait_for_update tells
+         * Google tags to hold beacons for up to 500ms while the user's
+         * consent decision is read from our wa-consent cookie + propagated
+         * via gtag('consent', 'update'). After 500ms, Google sends
+         * cookieless pings for conversion modelling regardless.
+         */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('consent', 'default', {
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied',
+                'analytics_storage': 'denied',
+                'functionality_storage': 'denied',
+                'personalization_storage': 'denied',
+                'security_storage': 'granted',
+                'wait_for_update': 500
+              });
+              gtag('set', 'url_passthrough', true);
+              gtag('set', 'ads_data_redaction', true);
+            `,
+          }}
+        />
         <OrganizationJsonLd />
         <WebSiteJsonLd />
       </head>
@@ -95,6 +157,12 @@ export default async function RootLayout({
             <BookingWidget />
             <CookieBanner />
             <AnalyticsLoader />
+            <SpeedInsightsLoader />
+            <GoogleTagSetup />
+            <MicrosoftClarity />
+            <MetaPixel />
+            <PinterestTag />
+            <ClickIdCapture />
           </CartProvider>
         </ConsentProvider>
       </body>

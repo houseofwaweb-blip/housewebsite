@@ -20,7 +20,7 @@ export default async function PrivacyPage() {
           heading: "Plain English first",
           body: `We collect only what we need. We don't sell your data. The record of your home belongs to you — export it or delete it whenever you like.
 
-We share your details with service providers we use to run the site (Sanity, Shopify, Supabase, Vercel, Sentry, Cloudflare) on strict, audit-logged terms. We don't share them with anyone else without your permission.
+We share your details with service providers we use to run the site (Sanity, Shopify, Supabase, Vercel, Sentry, Cloudflare) on strict, audit-logged terms. We use measurement and advertising services from Google, Microsoft, Meta and Pinterest — but only when you've opted in via the cookie banner, and only ever with hashed identifiers, never raw email or phone. Detail in the [Cookie policy](/legal/cookies).
 
 If you use HoWA+ or the Companion, your photos and notes stay in your private record. They're encrypted at rest and never used to train public models.`,
         },
@@ -38,7 +38,9 @@ Messages you send us via forms — to reply to you, and to route your question t
 
 Photos, documents, and notes added to your record — to provide the Companion and the record features of HoWA+.
 
-Analytics (anonymised) — to understand what's working on the site. No third-party ad-tech.`,
+Measurement data — page views, performance metrics, and (if you consent) heatmaps. Used to understand what's working on the site. Held by Google Analytics, Microsoft Clarity, Vercel and Sentry. Opt-in via the cookie banner.
+
+Advertising and attribution data — if you consent to the Marketing category, we share a hashed (one-way scrambled) version of your email and phone with Google and Meta when you submit a form, so they can attribute the conversion to the right ad campaign. Raw email and phone never leave us. Click identifiers from ad URLs (gclid, fbclid) are stored for 90 days to support cross-session attribution. Opt-in via the cookie banner.`,
         },
         {
           heading: "Your rights",
@@ -46,12 +48,8 @@ Analytics (anonymised) — to understand what's working on the site. No third-pa
 
 You can complain to the ICO if you're unhappy with how we've handled your data. Their address is in their guidance.`,
         },
-        {
-          heading: "This page is in draft",
-          body: `The text above is a working summary. A full, legally reviewed privacy policy will replace it before public launch. If you need the current policy in its most precise form before we publish it, write to privacy@willowalexander.co.uk.`,
-        },
       ]}
-      updatedAt={sanityPage?.lastUpdated ?? "16 April 2026 (draft)"}
+      updatedAt={sanityPage?.lastUpdated ?? "19 May 2026"}
     />
   );
 }

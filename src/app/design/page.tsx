@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import s from "./design.module.css";
+import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
  * /design — landing page.
@@ -58,7 +59,7 @@ const PARTNERS = [
     type: "Specialist partner",
     blurb:
       "Automation, lighting schemes, and quiet technology that disappears into the architecture.",
-    image: "/home-v4/design-portrait.png",
+    image: "/home-v4/design-portrait.webp",
   },
 ];
 
@@ -69,14 +70,35 @@ const SEAL_LINES = [
   "They review with us annually — and we publish what changes.",
 ];
 
-export default function DesignLanding() {
+export default async function DesignLanding() {
+  const sections = await getPageSections("design");
+  const hero = sections.get("hero");
+  const stats = sections.get("stats");
+  const disciplines = sections.get("disciplines");
+  const partners = sections.get("partners");
+  const seal = sections.get("seal");
+  const closing = sections.get("closing");
+
+  const statCols = cmsCards(stats, STAT_COLS, (c, base) => ({
+    value: pick(c.value ?? c.label, base?.value ?? ""),
+    label: pick(c.title ?? c.body, base?.label ?? ""),
+  }));
+  const partnerCards = cmsCards(partners, PARTNERS, (c, base) => ({
+    slug: base?.slug ?? "",
+    name: pick(c.title, base?.name ?? ""),
+    type: pick(c.label, base?.type ?? ""),
+    blurb: pick(c.body, base?.blurb ?? ""),
+    image: base?.image ?? "",
+  }));
+  const sealLines = seal?.items ?? SEAL_LINES;
+
   return (
     <div className={s.page}>
       {/* 1. Hero — full-width Interior Design sample board */}
       <section className={s.hero}>
         <div className={s.heroBg} aria-hidden="true">
           <Image
-            src="/home-v4/design-hero.png"
+            src={cms(hero, "imageUrl", "/home-v4/design-hero.webp")}
             alt=""
             fill
             sizes="100vw"
@@ -86,21 +108,24 @@ export default function DesignLanding() {
         </div>
         <div className={s.heroCopy}>
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>The House · Design</p>
+            <p className={s.heroEy}>{cms(hero, "eyebrow", "The House · Design")}</p>
             <h1 className={s.heroTitle}>
-              Interiors and gardens, <em>considered.</em>
+              {cms(hero, "headline", "Interiors and gardens,")}{" "}
+              <em>{cms(hero, "headlineEm", "considered.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
-              The House commissions and introduces. Every studio has been
-              vetted and lives up to what we call “House Approved” — a mark
-              we place only when we'd recommend them to someone we love.
+              {cms(
+                hero,
+                "body",
+                "The House commissions and introduces. Every studio has been vetted and lives up to what we call \"House Approved\" — a mark we place only when we'd recommend them to someone we love.",
+              )}
             </p>
             <div className={s.heroCtas}>
-              <Link href="#open-booking-form" className={s.btnFilled}>
-                Commission a space
+              <Link href={cms(hero, "ctaHref", "#open-booking-form")} className={s.btnFilled}>
+                {cms(hero, "ctaLabel", "Commission a space")}
               </Link>
-              <Link href="/partners" className={s.btnGhost}>
-                See all partners
+              <Link href={cms(hero, "cta2Href", "/partners")} className={s.btnGhost}>
+                {cms(hero, "cta2Label", "See all partners")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
@@ -111,10 +136,14 @@ export default function DesignLanding() {
       {/* 2. Stats strip */}
       <section className={s.statsStrip}>
         <div className={s.statsLede}>
-          <p className={s.statsLedeLine1}>Considered. Connected. Filed to the record.</p>
-          <p className={s.statsLedeLine2}>Every project, through a House-Approved studio.</p>
+          <p className={s.statsLedeLine1}>
+            {cms(stats, "headline", "Considered. Connected. Filed to the record.")}
+          </p>
+          <p className={s.statsLedeLine2}>
+            {cms(stats, "subheadline", "Every project, through a House-Approved studio.")}
+          </p>
         </div>
-        {STAT_COLS.map((stat) => (
+        {statCols.map((stat) => (
           <div key={stat.label} className={s.stat}>
             <span className={s.statValue}>{stat.value}</span>
             <span className={s.statLabel}>{stat.label}</span>
@@ -125,9 +154,10 @@ export default function DesignLanding() {
       {/* 3. Two disciplines */}
       <section className={s.disciplines}>
         <header className={s.disciplinesHead}>
-          <p className={s.disciplinesEy}>Two disciplines</p>
+          <p className={s.disciplinesEy}>{cms(disciplines, "eyebrow", "Two disciplines")}</p>
           <h2 className={s.disciplinesTitle}>
-            One studio standard, <em>two crafts.</em>
+            {cms(disciplines, "headline", "One studio standard,")}{" "}
+            <em>{cms(disciplines, "headlineEm", "two crafts.", "headline")}</em>
           </h2>
         </header>
         <div className={s.disciplinesGrid}>
@@ -190,18 +220,21 @@ export default function DesignLanding() {
       {/* 4. Launch partners */}
       <section className={s.partners}>
         <header className={s.partnersHead}>
-          <p className={s.partnersEy}>Our studios</p>
+          <p className={s.partnersEy}>{cms(partners, "eyebrow", "Our studios")}</p>
           <h2 className={s.partnersTitle}>
-            Four launch <em>partners.</em>
+            {cms(partners, "headline", "Four launch")}{" "}
+            <em>{cms(partners, "headlineEm", "partners.", "headline")}</em>
           </h2>
           <p className={s.partnersLede}>
-            We name our partners openly. Each has been signed up on the
-            understanding that House Approved is a standard, not a label —
-            reviewed annually, honestly, by both sides.
+            {cms(
+              partners,
+              "body",
+              "We name our partners openly. Each has been signed up on the understanding that House Approved is a standard, not a label — reviewed annually, honestly, by both sides.",
+            )}
           </p>
         </header>
         <div className={s.partnersGrid}>
-          {PARTNERS.map((p) => (
+          {partnerCards.map((p) => (
             <Link
               key={p.slug}
               href={`/partners/${p.slug}`}
@@ -238,45 +271,50 @@ export default function DesignLanding() {
       <section className={s.seal}>
         <div className={s.sealImage}>
           <Image
-            src="/home-v4/design-portrait.png"
-            alt="A tall sample board labelled Interior Design with ten paint and textile swatches, leaning in a Georgian hallway"
+            src={cms(seal, "imageUrl", "/home-v4/design-portrait.webp")}
+            alt={cms(
+              seal,
+              "imageAlt",
+              "A tall sample board labelled Interior Design with ten paint and textile swatches, leaning in a Georgian hallway",
+            )}
             fill
             sizes="(min-width: 1024px) 45vw, 100vw"
             style={{ objectFit: "cover", objectPosition: "center" }}
           />
         </div>
         <div className={s.sealCopy}>
-          <p className={s.sealEy}>House Approved</p>
+          <p className={s.sealEy}>{cms(seal, "eyebrow", "House Approved")}</p>
           <h2 className={s.sealTitle}>
-            The seal means <em>four things.</em>
+            {cms(seal, "headline", "The seal means")}{" "}
+            <em>{cms(seal, "headlineEm", "four things.", "headline")}</em>
           </h2>
           <ul className={s.sealList}>
-            {SEAL_LINES.map((line, i) => (
+            {sealLines.map((line, i) => (
               <li key={i}>
                 <span className={s.sealLineNum}>0{i + 1}.</span>
                 <span>{line}</span>
               </li>
             ))}
           </ul>
-          <Link href="/the-house/standards" className={s.sealLink}>
-            Read the standards →
+          <Link href={cms(seal, "ctaHref", "/the-house/standards")} className={s.sealLink}>
+            {cms(seal, "ctaLabel", "Read the standards")} →
           </Link>
         </div>
       </section>
 
       {/* 6. Closing */}
       <section className={s.closing}>
-        <p className={s.closingKicker}>Commission a space</p>
+        <p className={s.closingKicker}>{cms(closing, "eyebrow", "Commission a space")}</p>
         <p className={s.closingStatement}>
-          A room. A garden.<br />
-          <em>A whole house, properly read.</em>
+          {cms(closing, "headline", "A room. A garden.")}<br />
+          <em>{cms(closing, "headlineEm", "A whole house, properly read.", "headline")}</em>
         </p>
         <div className={s.closingCtas}>
-          <Link href="#open-booking-form" className={s.closingBtnFilled}>
-            Start a brief
+          <Link href={cms(closing, "ctaHref", "#open-booking-form")} className={s.closingBtnFilled}>
+            {cms(closing, "ctaLabel", "Start a brief")}
           </Link>
-          <Link href="/howa/companion" className={s.closingBtnGhost}>
-            Or use the Companion →
+          <Link href={cms(closing, "cta2Href", "/howa/companion")} className={s.closingBtnGhost}>
+            {cms(closing, "cta2Label", "Or use the Companion")} →
           </Link>
         </div>
       </section>

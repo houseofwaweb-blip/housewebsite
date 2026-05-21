@@ -1,8 +1,6 @@
 "use client";
 
-import Link from "next/link";
 import { Accordion } from "@/components/primitives/Accordion";
-import { useCart } from "@/components/commerce/CartContext";
 import type { ShopProduct } from "@/lib/shop-data";
 
 /**
@@ -10,20 +8,6 @@ import type { ShopProduct } from "@/lib/shop-data";
  * All spacing values use explicit pixels matching the approved mockup.
  */
 export function ProductCopy({ product: p }: { product: ShopProduct }) {
-  const { add, openDrawer } = useCart();
-
-  function handleAdd() {
-    add({
-      handle: p.handle,
-      title: p.title,
-      price: p.price,
-      image: p.images[0]?.src ?? p.image,
-      collection: p.collection ?? "",
-      houseApproved: p.houseApproved,
-    });
-    openDrawer();
-  }
-
   const details = [
     p.careNotes && { id: "care", summary: "Care notes", body: <p>{p.careNotes}</p> },
     p.materials && { id: "materials", summary: "Materials", body: <p>{p.materials}</p> },
@@ -59,16 +43,12 @@ export function ProductCopy({ product: p }: { product: ShopProduct }) {
         <div className="font-display font-medium text-[24px] mb-[14px]">
           {p.price}
         </div>
-        <button
-          type="button"
-          disabled
-          className="w-full max-w-[360px] py-[16px] font-sans text-[12px] tracking-[0.18em] uppercase text-house-stone/60 bg-house-cream-dark border border-house-brown/10 cursor-not-allowed"
+        <span
+          aria-label="Available soon"
+          className="inline-block px-[18px] py-[10px] font-sans text-[11px] tracking-[0.24em] uppercase text-house-stone/80 bg-house-cream-dark border border-house-brown/10"
         >
-          Coming soon
-        </button>
-        <p className="font-sans italic text-[12px] text-house-stone mt-3 max-w-[360px]">
-          Our curation is undergoing some renovations. You&apos;ll be able to order from us again soon.
-        </p>
+          Available soon
+        </span>
       </div>
     </div>
   );

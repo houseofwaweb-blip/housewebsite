@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import s from "./howa-plus-v1.module.css";
 import { FaqList } from "@/components/marketing/FaqList";
+import { MetaViewContent } from "@/components/marketing/MetaViewContent";
+import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
  * /howa/plus — HoWA+ membership page.
@@ -32,40 +34,40 @@ const STAT_COLS = [
 const BENEFITS = [
   {
     icon: PercentIcon,
-    image: "/home-v4/plus-benefit-1.png",
+    image: "/home-v4/plus-benefit-1.webp",
     title: "10% off every House Service",
     body: "Gardening, cleaning, windows, gutters, design packages, product bundles. Auto-applied at checkout — no codes, no fuss.",
   },
   {
     icon: ClipboardIcon,
-    image: "/home-v4/plus-benefit-2.png",
+    image: "/home-v4/plus-benefit-2.webp",
     title: "Living Record & Task Centre",
     body: "Every service, invoice, certificate and photograph filed to a record that grows with the home. Seasonal prompts surface what matters before it bites.",
     cta: { label: "How it works", href: "/howa/how-it-works" },
   },
   {
     icon: ScanIcon,
-    image: "/home-v4/plus-benefit-3.png",
+    image: "/home-v4/plus-benefit-3.webp",
     title: "Full Companion Diagnostic",
     body: "AI repair scan, instant quote, design moodboards. Capture home type, rooms, priorities, style, budget — saved straight to your record.",
     cta: { label: "See the Companion", href: "/howa/companion" },
   },
   {
     icon: BookIcon,
-    image: "/home-v4/plus-benefit-4.png",
+    image: "/home-v4/plus-benefit-4.webp",
     title: "Home Logbook & Documents",
     body: "Paint colours, appliance details, contractor notes — the home logbook every trade can reference. Saved guides and reminders you can action or defer.",
   },
   {
     icon: HearthIcon,
-    image: "/home-v4/plus-benefit-5.png",
+    image: "/home-v4/plus-benefit-5.webp",
     title: "Priority Booking & The Hearth",
     body: "Priority across all House services and approved partners. Full editorial access to The Hearth — long-form writing on homes, gardens, and the craft of looking after a place.",
     cta: { label: "Browse the Hearth", href: "/the-hearth" },
   },
   {
     icon: LeafIcon,
-    image: "/home-v4/plus-benefit-6.png",
+    image: "/home-v4/plus-benefit-6.webp",
     title: "Carbon Fund & Early Access",
     body: "A personal carbon offset fund tracked against your household. Early access to new HoWA features, House events and drops, and Protection Review introductions.",
   },
@@ -87,27 +89,6 @@ const INTELLIGENCE_STATS = [
   { title: "Issues caught", subAfter: "before they cost you" },
   { title: "Record at handover", highlight: "+£18,000", subAfter: " sale uplift" },
   { title: "No long-term", subAfter: "commitment" },
-];
-
-const TESTIMONIALS = [
-  {
-    quote:
-      "We used to keep everything in a folder under the stairs. Now HoWA knows what was done, when, and by whom. The Companion caught a valve leak we'd have ignored for months.",
-    name: "Catherine M.",
-    home: "4-bed Victorian, Clapham",
-  },
-  {
-    quote:
-      "The member pricing alone pays for itself. Gutters, windows, garden tidy in the first month — about £40 less than calling around.",
-    name: "James & Sarah T.",
-    home: "3-bed Edwardian, Dulwich",
-  },
-  {
-    quote:
-      "Photograph everything. The Companion told me the crack above the kitchen door was settlement, not structural. Saved me a surveyor's call-out and a week of worry.",
-    name: "David R.",
-    home: "2-bed cottage, Oxfordshire",
-  },
 ];
 
 const FAQS = [
@@ -137,28 +118,75 @@ const FAQS = [
   },
 ];
 
-export default function HowaPlusV1PreviewPage() {
+export default async function HowaPlusV1PreviewPage() {
+  const sections = await getPageSections("howa-plus");
+  const hero = sections.get("hero");
+  const stats = sections.get("stats");
+  const benefits = sections.get("benefits");
+  const compare = sections.get("compare");
+  const intelligence = sections.get("intelligence");
+  const faq = sections.get("faq");
+  const closing = sections.get("closing");
+
+  const statCols = cmsCards(stats, STAT_COLS, (c, base) => ({
+    value: pick(c.value ?? c.label, base?.value ?? ""),
+    label: pick(c.title ?? c.body, base?.label ?? ""),
+  }));
+  const benefitCards = cmsCards(benefits, BENEFITS, (c, base) => ({
+    icon: base?.icon ?? PercentIcon,
+    image: base?.image ?? "/home-v4/plus-benefit-1.webp",
+    title: pick(c.title, base?.title ?? ""),
+    body: pick(c.body, base?.body ?? ""),
+    cta:
+      c.ctaLabel && c.ctaHref
+        ? { label: c.ctaLabel, href: c.ctaHref }
+        : base?.cta,
+  }));
+  const compareRows = cmsCards(compare, COMPARE, (c, base) => ({
+    feature: pick(c.title, base?.feature ?? ""),
+    free: pick(c.value, base?.free ?? ""),
+    plus: pick(c.value2, base?.plus ?? ""),
+  }));
+  const intelligenceStats = cmsCards(intelligence, INTELLIGENCE_STATS, (c, base) => ({
+    title: pick(c.title, base?.title ?? ""),
+    highlight: pick(c.value, base?.highlight),
+    subAfter: pick(c.body ?? c.value2, base?.subAfter ?? ""),
+  }));
+  const faqItems = cmsCards(faq, FAQS, (c, base) => ({
+    q: pick(c.title, base?.q ?? ""),
+    a: pick(c.body, base?.a ?? ""),
+  }));
+
   return (
     <div className={s.page}>
+      <MetaViewContent
+        contentId="howa_plus"
+        contentName="HoWA+ membership"
+        contentCategory="howa_membership"
+        value={16.99}
+      />
       {/* 1. Hero */}
       <section className={s.hero}>
         <div className={s.heroCopy}>
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>HoWA+ · £16.99 / month</p>
+            <p className={s.heroEy}>{cms(hero, "eyebrow", "HoWA+ · £16.99 / month")}</p>
             <h1 className={s.heroTitle}>
-              The connected membership<br />
-              <em>for a home you mean to keep.</em>
+              {cms(hero, "headline", "The connected membership")}<br />
+              <em>{cms(hero, "headlineEm", "for a home you mean to keep.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
-              The Living Record, full Companion, member pricing, and a place
-              that grows with the home. Cancel anytime.
+              {cms(
+                hero,
+                "body",
+                "The Living Record, full Companion, member pricing, and a place that grows with the home. Cancel anytime.",
+              )}
             </p>
             <div className={s.heroCtas}>
-              <Link href="/api/howa-bounce" className={s.btnFilled}>
-                Become a member
+              <Link href={cms(hero, "ctaHref", "/api/howa-bounce")} className={s.btnFilled}>
+                {cms(hero, "ctaLabel", "Become a member")}
               </Link>
-              <Link href="/howa/how-it-works" className={s.btnGhost}>
-                See how it works
+              <Link href={cms(hero, "cta2Href", "/howa/how-it-works")} className={s.btnGhost}>
+                {cms(hero, "cta2Label", "See how it works")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
@@ -167,8 +195,12 @@ export default function HowaPlusV1PreviewPage() {
         <div className={s.heroVisual}>
           <div className={s.heroVisualFrame}>
             <Image
-              src="/home-v4/howa-lander-hero-v4.png"
-              alt="A pink Georgian townhouse, its left half rendered as a hand-drawn elevation"
+              src={cms(hero, "imageUrl", "/home-v4/howa-lander-hero-v4.webp")}
+              alt={cms(
+                hero,
+                "imageAlt",
+                "A pink Georgian townhouse, its left half rendered as a hand-drawn elevation",
+              )}
               fill
               sizes="(min-width: 1024px) 55vw, 100vw"
               priority
@@ -181,10 +213,12 @@ export default function HowaPlusV1PreviewPage() {
       {/* 2. Stats strip */}
       <section className={s.statsStrip}>
         <div className={s.statsLede}>
-          <p className={s.statsLedeLine1}>One membership.</p>
-          <p className={s.statsLedeLine2}>The whole house, looked after.</p>
+          <p className={s.statsLedeLine1}>{cms(stats, "headline", "One membership.")}</p>
+          <p className={s.statsLedeLine2}>
+            {cms(stats, "subheadline", "The whole house, looked after.")}
+          </p>
         </div>
-        {STAT_COLS.map((stat) => (
+        {statCols.map((stat) => (
           <div key={stat.label} className={s.stat}>
             <span className={s.statValue}>{stat.value}</span>
             <span className={s.statLabel}>{stat.label}</span>
@@ -195,14 +229,14 @@ export default function HowaPlusV1PreviewPage() {
       {/* 3. Benefits grid — 3×2 editorial */}
       <section className={s.benefits}>
         <header className={s.benefitsHead}>
-          <p className={s.benefitsEy}>What's included.</p>
+          <p className={s.benefitsEy}>{cms(benefits, "eyebrow", "What's included.")}</p>
           <h2 className={s.benefitsTitle}>
-            Everything that turns a house{" "}
-            <em>into a home you trust.</em>
+            {cms(benefits, "headline", "Everything that turns a house")}{" "}
+            <em>{cms(benefits, "headlineEm", "into a home you trust.", "headline")}</em>
           </h2>
         </header>
         <div className={s.benefitsGrid}>
-          {BENEFITS.map((b) => {
+          {benefitCards.map((b) => {
             const Icon = b.icon;
             return (
               <article key={b.title} className={s.benefitCard}>
@@ -238,7 +272,7 @@ export default function HowaPlusV1PreviewPage() {
       <section className={s.compareSection}>
         <header className={s.compareHead}>
           <h2 className={s.compareTitle}>
-            Free, or <em>HoWA+</em>.
+            {cms(compare, "headline", "Free, or")} <em>{cms(compare, "headlineEm", "HoWA+", "headline")}</em>.
           </h2>
         </header>
         <div className={s.compareTable}>
@@ -247,7 +281,7 @@ export default function HowaPlusV1PreviewPage() {
             <span className={s.compareColLabel}>Free</span>
             <span className={`${s.compareColLabel} ${s.compareColLabelPlus}`}>HoWA+</span>
           </div>
-          {COMPARE.map((row) => (
+          {compareRows.map((row) => (
             <div key={row.feature} className={s.compareRow}>
               <span className={s.compareRowFeature}>{row.feature}</span>
               <span className={s.compareRowFree}>{row.free}</span>
@@ -265,11 +299,12 @@ export default function HowaPlusV1PreviewPage() {
               <CalendarIcon />
             </span>
             <h2 className={s.intelligenceTitle}>
-              What a membership pays for, <em>per year.</em>
+              {cms(intelligence, "headline", "What a membership pays for,")}{" "}
+              <em>{cms(intelligence, "headlineEm", "per year.", "headline")}</em>
             </h2>
           </header>
           <div className={s.intelligenceStats}>
-            {INTELLIGENCE_STATS.map((stat, i) => (
+            {intelligenceStats.map((stat, i) => (
               <div key={stat.title} className={s.iStat}>
                 <p className={s.iStatTitle}>{stat.title}</p>
                 <p className={s.iStatSub}>
@@ -278,7 +313,7 @@ export default function HowaPlusV1PreviewPage() {
                   ) : null}
                   {stat.subAfter}
                 </p>
-                {i < INTELLIGENCE_STATS.length - 1 ? (
+                {i < intelligenceStats.length - 1 ? (
                   <span aria-hidden="true" className={s.iStatArrow}>→</span>
                 ) : null}
               </div>
@@ -287,8 +322,12 @@ export default function HowaPlusV1PreviewPage() {
         </div>
         <div className={s.intelligenceImage}>
           <Image
-            src="/home-v4/plus-intelligence.png"
-            alt="A warm dusk-lit London townhouse interior — what intelligent stewardship protects"
+            src={cms(intelligence, "imageUrl", "/home-v4/plus-intelligence.webp")}
+            alt={cms(
+              intelligence,
+              "imageAlt",
+              "A warm dusk-lit London townhouse interior — what intelligent stewardship protects",
+            )}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
             style={{ objectFit: "cover" }}
@@ -300,16 +339,16 @@ export default function HowaPlusV1PreviewPage() {
       <section className={s.faqSection}>
         <div className={s.faqCopy}>
           <header className={s.faqHead}>
-            <p className={s.faqEy}>Before you join.</p>
-            <h2 className={s.faqTitle}>Questions, answered.</h2>
+            <p className={s.faqEy}>{cms(faq, "eyebrow", "Before you join.")}</p>
+            <h2 className={s.faqTitle}>{cms(faq, "headline", "Questions, answered.")}</h2>
           </header>
-          <FaqList items={FAQS} />
+          <FaqList items={faqItems} />
         </div>
         <div className={s.faqVisual}>
           <div className={s.faqVisualFrame}>
             <Image
-              src="/home-v4/howa-lander-faq-v2.png"
-              alt=""
+              src={cms(faq, "imageUrl", "/home-v4/howa-lander-faq-v2.webp")}
+              alt={cms(faq, "imageAlt", "")}
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
               style={{ objectFit: "contain", objectPosition: "right center" }}
@@ -320,13 +359,15 @@ export default function HowaPlusV1PreviewPage() {
 
       {/* 8. Closing band */}
       <section className={s.closing}>
-        <p className={s.closingKicker}>HoWA+ · £16.99 / month · Cancel anytime.</p>
+        <p className={s.closingKicker}>
+          {cms(closing, "eyebrow", "HoWA+ · £16.99 / month · Cancel anytime.")}
+        </p>
         <p className={s.closingStatement}>
-          <em>A home you mean to keep.</em>
+          <em>{cms(closing, "headlineEm", "A home you mean to keep.", "headline")}</em>
         </p>
         <div className={s.closingCtas}>
-          <Link href="/api/howa-bounce" className={s.closingBtnFilled}>
-            Become a member
+          <Link href={cms(closing, "ctaHref", "/api/howa-bounce")} className={s.closingBtnFilled}>
+            {cms(closing, "ctaLabel", "Become a member")}
           </Link>
         </div>
       </section>

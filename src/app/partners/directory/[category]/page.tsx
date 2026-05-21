@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { StateBadge } from "@/components/primitives/StateBadge";
 import { GhostLink } from "@/components/primitives/GhostLink";
-import { getPartnersByType, type DesignPartner } from "@/lib/cms/partners";
+import { getPartnersByType } from "@/lib/cms/partners";
 import { LAUNCH_PARTNERS, PARTNER_ORDER } from "@/lib/partners-data";
 
 /**

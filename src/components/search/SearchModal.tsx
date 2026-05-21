@@ -104,6 +104,12 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
         setResults(hits);
         setRefreshKey((k) => k + 1);
         setLoading(false);
+        // Meta Search event — fires only after debounce so we don't spam
+        // an event for every keystroke. Consent-gated inside the helper.
+        if (q.trim().length >= 2) {
+          const { trackSearch } = await import("@/lib/meta/pixel");
+          trackSearch({ searchString: q.trim() });
+        }
       }, 300);
     },
     [],
@@ -248,6 +254,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
                 )}
               >
                 {r.image ? (
+                  // eslint-disable-next-line @next/next/no-img-element -- 56×56 thumbnail from arbitrary search-result sources; next/image optimization overhead isn't worth it at this size
                   <img
                     src={r.image}
                     alt=""

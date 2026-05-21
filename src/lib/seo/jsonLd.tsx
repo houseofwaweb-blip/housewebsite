@@ -203,6 +203,139 @@ export function ServiceJsonLd({
 }
 
 /**
+ * LocalBusiness schema for /partners/[slug] pages.
+ *
+ * HoWA is a tech platform that connects householders to vetted local
+ * providers — it is not itself a service business, so LocalBusiness on
+ * the HoWA brand surface would be misleading (and Google rightly
+ * down-weights mismatched entity claims). The partner profile pages
+ * are the only legitimate place for a LocalBusiness mark-up, because
+ * they represent a real local business (Willow Alexander Gardens,
+ * Delve Interiors, etc.).
+ *
+ * Pass `serviceType` so Google can map the partner to the correct
+ * vertical (LocalBusiness has many subclasses; we use the generic
+ * LocalBusiness + a `knowsAbout` field rather than picking subclasses
+ * one at a time, which keeps the helper simple at small SEO cost).
+ */
+export function PartnerLocalBusinessJsonLd({
+  name,
+  description,
+  url,
+  image,
+  telephone,
+  streetAddress,
+  addressLocality,
+  postalCode,
+  serviceType,
+  areaServed = ["London"],
+  priceRange = "££££",
+}: {
+  name: string;
+  description: string;
+  url: string;
+  image?: string;
+  telephone?: string;
+  streetAddress?: string;
+  addressLocality?: string;
+  postalCode?: string;
+  /** e.g. "Garden design", "Interior design" */
+  serviceType: string;
+  areaServed?: string[];
+  priceRange?: string;
+}) {
+  return renderLd({
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name,
+    description,
+    url,
+    ...(image ? { image } : {}),
+    ...(telephone ? { telephone } : {}),
+    knowsAbout: serviceType,
+    priceRange,
+    ...(streetAddress || addressLocality || postalCode
+      ? {
+          address: {
+            "@type": "PostalAddress",
+            ...(streetAddress ? { streetAddress } : {}),
+            ...(addressLocality ? { addressLocality } : {}),
+            ...(postalCode ? { postalCode } : {}),
+            addressCountry: "GB",
+          },
+        }
+      : {}),
+    areaServed: areaServed.map((n) => ({ "@type": "City", name: n })),
+  });
+}
+
+/**
+ * SoftwareApplication schema for /howa and /howa/plans.
+ *
+ * The HoWA Product (companion diagnostic, home record, member dashboard,
+ * billing) is genuine software — not a service — so this is the correct
+ * schema for the HoWA brand surface. SaaS pricing is conveyed via
+ * `offers` so Google can surface the plan price in rich results.
+ */
+export function SoftwareApplicationJsonLd({
+  url,
+  monthlyPriceGBP,
+}: {
+  url: string;
+  /** e.g. 16.99 for the HoWA+ plan. Pass undefined for the marketing landing. */
+  monthlyPriceGBP?: number;
+}) {
+  const base = env.NEXT_PUBLIC_SITE_URL;
+  return renderLd({
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "HoWA",
+    alternateName: "House of Willow Alexander · HoWA",
+    applicationCategory: "LifestyleApplication",
+    operatingSystem: "Web, iOS, Android",
+    url,
+    publisher: { "@id": `${base}#organization` },
+    ...(monthlyPriceGBP !== undefined
+      ? {
+          offers: {
+            "@type": "Offer",
+            price: monthlyPriceGBP.toFixed(2),
+            priceCurrency: "GBP",
+            priceSpecification: {
+              "@type": "UnitPriceSpecification",
+              price: monthlyPriceGBP.toFixed(2),
+              priceCurrency: "GBP",
+              billingDuration: "P1M",
+              unitText: "month",
+            },
+          },
+        }
+      : {}),
+  });
+}
+
+/**
+ * FAQPage schema for FAQ blocks on commercial pages. Body strings are
+ * treated as HTML by Google's parser — callers should pre-sanitise any
+ * rich text before passing in.
+ */
+export function FaqJsonLd({
+  items,
+}: {
+  items: Array<{ question: string; answer: string }>;
+}) {
+  return renderLd({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((it) => ({
+      "@type": "Question",
+      name: it.question,
+      acceptedAnswer: { "@type": "Answer", text: it.answer },
+    })),
+  });
+}
+
+/**
  * Product schema for /shop/[handle]. Required fields for Google Shopping +
  * organic product rich results: name, image, offers (price + availability +
  * currency). `aggregateRating` and `review` are intentionally left to the

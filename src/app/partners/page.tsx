@@ -4,6 +4,7 @@ import s from "./partners.module.css";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { getNewsletterBlock } from "@/lib/cms/newsletter";
 import { LAUNCH_PARTNERS, PARTNER_ORDER } from "@/lib/partners-data";
+import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
  * /partners — the marketplace hub.
@@ -77,6 +78,29 @@ const SEAL_LINES = [
 export default async function PartnersHub() {
   const nlBlock = await getNewsletterBlock("partners");
   const partners = PARTNER_ORDER.map((slug) => LAUNCH_PARTNERS[slug]);
+  const sections = await getPageSections("partners");
+  const hero = sections.get("hero");
+  const stats = sections.get("stats");
+  const categories = sections.get("categories");
+  const partnersHead = sections.get("partners");
+  const seal = sections.get("seal");
+  const apply = sections.get("apply");
+
+  const statCols = cmsCards(stats, STAT_COLS, (c, base) => ({
+    value: pick(c.value ?? c.label, base?.value ?? ""),
+    label: pick(c.title ?? c.body, base?.label ?? ""),
+  }));
+  const categoryCards = cmsCards(categories, CATEGORIES, (c, base) => ({
+    id: base?.id ?? "",
+    eyebrow: pick(c.label, base?.eyebrow ?? ""),
+    title: pick(c.title, base?.title ?? ""),
+    titleEm: pick(c.value, base?.titleEm ?? ""),
+    blurb: pick(c.body, base?.blurb ?? ""),
+    image: pick(c.imageUrl, base?.image ?? ""),
+    href: pick(c.ctaHref, base?.href ?? "#"),
+    ctaLabel: pick(c.ctaLabel, base?.ctaLabel ?? ""),
+  }));
+  const sealLines = seal?.items ?? SEAL_LINES;
 
   return (
     <div className={s.page}>
@@ -84,21 +108,24 @@ export default async function PartnersHub() {
       <section className={s.hero}>
         <div className={s.heroCopy}>
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>House Approved · Partners</p>
+            <p className={s.heroEy}>{cms(hero, "eyebrow", "House Approved · Partners")}</p>
             <h1 className={s.heroTitle}>
-              The people <em>behind the House.</em>
+              {cms(hero, "headline", "The people")}{" "}
+              <em>{cms(hero, "headlineEm", "behind the House.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
-              Every partner below holds a House Approved seal. We know them, we
-              have seen their work in person, and we'd point a family member at
-              them. The list grows slowly, on purpose.
+              {cms(
+                hero,
+                "body",
+                "Every partner below holds a House Approved seal. We know them, we have seen their work in person, and we'd point a family member at them. The list grows slowly, on purpose.",
+              )}
             </p>
             <div className={s.heroCtas}>
-              <Link href="#partners" className={s.btnFilled}>
-                Meet the partners
+              <Link href={cms(hero, "ctaHref", "#partners")} className={s.btnFilled}>
+                {cms(hero, "ctaLabel", "Meet the partners")}
               </Link>
-              <Link href="#seal" className={s.btnGhost}>
-                The standard
+              <Link href={cms(hero, "cta2Href", "#seal")} className={s.btnGhost}>
+                {cms(hero, "cta2Label", "The standard")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
@@ -123,10 +150,14 @@ export default async function PartnersHub() {
       {/* 2. Stats strip */}
       <section className={s.statsStrip}>
         <div className={s.statsLede}>
-          <p className={s.statsLedeLine1}>Vetted in person. Reviewed annually.</p>
-          <p className={s.statsLedeLine2}>Named openly. Held to the same standard.</p>
+          <p className={s.statsLedeLine1}>
+            {cms(stats, "headline", "Vetted in person. Reviewed annually.")}
+          </p>
+          <p className={s.statsLedeLine2}>
+            {cms(stats, "subheadline", "Named openly. Held to the same standard.")}
+          </p>
         </div>
-        {STAT_COLS.map((stat) => (
+        {statCols.map((stat) => (
           <div key={stat.label} className={s.stat}>
             <span className={s.statValue}>{stat.value}</span>
             <span className={s.statLabel}>{stat.label}</span>
@@ -137,17 +168,21 @@ export default async function PartnersHub() {
       {/* 3. Three categories */}
       <section className={s.categories}>
         <header className={s.categoriesHead}>
-          <p className={s.categoriesEy}>Three disciplines</p>
+          <p className={s.categoriesEy}>{cms(categories, "eyebrow", "Three disciplines")}</p>
           <h2 className={s.categoriesTitle}>
-            One standard, <em>three crafts.</em>
+            {cms(categories, "headline", "One standard,")}{" "}
+            <em>{cms(categories, "headlineEm", "three crafts.", "headline")}</em>
           </h2>
           <p className={s.categoriesLede}>
-            The collective spans design studios, service providers and curated
-            suppliers — each governed by the same House Approved standard.
+            {cms(
+              categories,
+              "body",
+              "The collective spans design studios, service providers and curated suppliers — each governed by the same House Approved standard.",
+            )}
           </p>
         </header>
         <div className={s.categoriesGrid}>
-          {CATEGORIES.map((cat) => (
+          {categoryCards.map((cat) => (
             <Link key={cat.id} href={cat.href} className={s.categoryCard}>
               <div className={s.categoryImage}>
                 <Image
@@ -176,14 +211,17 @@ export default async function PartnersHub() {
       {/* 4. Launch partners */}
       <section id="partners" className={s.partners}>
         <header className={s.partnersHead}>
-          <p className={s.partnersEy}>The collective at launch</p>
+          <p className={s.partnersEy}>{cms(partnersHead, "eyebrow", "The collective at launch")}</p>
           <h2 className={s.partnersTitle}>
-            Four launch <em>partners.</em>
+            {cms(partnersHead, "headline", "Four launch")}{" "}
+            <em>{cms(partnersHead, "headlineEm", "partners.", "headline")}</em>
           </h2>
           <p className={s.partnersLede}>
-            We name our partners openly. Each has signed up on the
-            understanding that House Approved is a standard, not a label —
-            reviewed annually, honestly, by both sides.
+            {cms(
+              partnersHead,
+              "body",
+              "We name our partners openly. Each has signed up on the understanding that House Approved is a standard, not a label — reviewed annually, honestly, by both sides.",
+            )}
           </p>
         </header>
         <div className={s.partnersGrid}>
@@ -224,26 +262,31 @@ export default async function PartnersHub() {
       {/* 5. House Approved seal */}
       <section id="seal" className={s.seal}>
         <div className={s.sealCopy}>
-          <p className={s.sealEy}>House Approved</p>
+          <p className={s.sealEy}>{cms(seal, "eyebrow", "House Approved")}</p>
           <h2 className={s.sealTitle}>
-            The seal means <em>four things.</em>
+            {cms(seal, "headline", "The seal means")}{" "}
+            <em>{cms(seal, "headlineEm", "four things.", "headline")}</em>
           </h2>
           <ul className={s.sealList}>
-            {SEAL_LINES.map((line, i) => (
+            {sealLines.map((line, i) => (
               <li key={i}>
                 <span className={s.sealLineNum}>0{i + 1}.</span>
                 <span>{line}</span>
               </li>
             ))}
           </ul>
-          <Link href="/the-house/standards" className={s.sealLink}>
-            Read the standards →
+          <Link href={cms(seal, "ctaHref", "/the-house/standards")} className={s.sealLink}>
+            {cms(seal, "ctaLabel", "Read the standards")} →
           </Link>
         </div>
         <div className={s.sealImage}>
           <Image
-            src="/home-v4/design-portrait.png"
-            alt="A tall sample board labelled Interior Design leaning in a Georgian hallway"
+            src={cms(seal, "imageUrl", "/home-v4/design-portrait.webp")}
+            alt={cms(
+              seal,
+              "imageAlt",
+              "A tall sample board labelled Interior Design leaning in a Georgian hallway",
+            )}
             fill
             sizes="(min-width: 1024px) 45vw, 100vw"
             style={{ objectFit: "cover", objectPosition: "center" }}
@@ -253,21 +296,24 @@ export default async function PartnersHub() {
 
       {/* 6. Apply CTA */}
       <section id="apply" className={s.apply}>
-        <p className={s.applyKicker}>For studios and makers</p>
+        <p className={s.applyKicker}>{cms(apply, "eyebrow", "For studios and makers")}</p>
         <p className={s.applyStatement}>
-          Apply to <em>the collective.</em>
+          {cms(apply, "headline", "Apply to")}{" "}
+          <em>{cms(apply, "headlineEm", "the collective.", "headline")}</em>
         </p>
         <p className={s.applyLede}>
-          We review applications quarterly. House Approved is a standard, not a
-          label — we accept very few, on principle. Write to the House with
-          your portfolio and we'll be in touch.
+          {cms(
+            apply,
+            "body",
+            "We review applications quarterly. House Approved is a standard, not a label — we accept very few, on principle. Write to the House with your portfolio and we'll be in touch.",
+          )}
         </p>
         <div className={s.applyCtas}>
-          <Link href="/contact?subject=Partner+application" className={s.btnFilled}>
-            Apply to join
+          <Link href={cms(apply, "ctaHref", "/contact?subject=Partner+application")} className={s.btnFilled}>
+            {cms(apply, "ctaLabel", "Apply to join")}
           </Link>
-          <Link href="/the-house/standards" className={s.btnGhost}>
-            Read the standards
+          <Link href={cms(apply, "cta2Href", "/the-house/standards")} className={s.btnGhost}>
+            {cms(apply, "cta2Label", "Read the standards")}
             <span aria-hidden="true" className={s.btnArrow}>→</span>
           </Link>
         </div>

@@ -7,7 +7,14 @@ import {
   useState,
   useSyncExternalStore,
 } from "react";
-import { acceptAll, readConsent, rejectAll, writeConsent, type Consent } from "@/lib/consent";
+import {
+  acceptAll,
+  readConsent,
+  rejectAll,
+  writeConsent,
+  type Consent,
+  type ConsentChoice,
+} from "@/lib/consent";
 
 interface ConsentContextValue {
   /** Null = user hasn't decided yet (banner should show). */
@@ -21,7 +28,7 @@ interface ConsentContextValue {
   closePreferences: () => void;
   acceptAll: () => void;
   rejectAll: () => void;
-  setConsent: (next: { functional: boolean; analytics: boolean }) => void;
+  setConsent: (next: ConsentChoice) => void;
 }
 
 const ConsentContext = createContext<ConsentContextValue | null>(null);
@@ -102,7 +109,9 @@ export function useConsent() {
 }
 
 /** Shortcut: is this category granted right now? */
-export function useConsentGranted(category: "functional" | "analytics") {
+export function useConsentGranted(
+  category: "functional" | "measurement" | "marketing",
+) {
   const { consent } = useConsent();
   return consent ? consent[category] : false;
 }

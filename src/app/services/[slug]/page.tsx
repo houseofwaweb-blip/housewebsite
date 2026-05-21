@@ -11,6 +11,7 @@ import { ServiceDetail } from "@/components/marketing/ServiceDetail";
 import { PortableText } from "@/components/cms/PortableText";
 import type { PortableTextBlock } from "@portabletext/types";
 import { ServiceJsonLd } from "@/lib/seo/jsonLd";
+import { MetaViewContent } from "@/components/marketing/MetaViewContent";
 import { env } from "@/lib/env";
 import s from "./service-fallback.module.css";
 
@@ -119,6 +120,12 @@ export default async function ServicePage({
           url={`${baseUrl}/services/${slug}`}
           serviceType={local.name}
         />
+        <MetaViewContent
+          contentId={slug}
+          contentName={local.name}
+          contentCategory="service"
+          contentType="product"
+        />
         <ServiceDetail service={local} />
       </>
     );
@@ -141,6 +148,12 @@ export default async function ServicePage({
             : undefined
         }
         areaServed={service.availableAreas?.[0] ?? "London"}
+      />
+      <MetaViewContent
+        contentId={slug}
+        contentName={service.name}
+        contentCategory={service.category ?? "service"}
+        contentType="product"
       />
       {/* Hero */}
       <section className={s.hero}>

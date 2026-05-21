@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import s from "./steward-v1.module.css";
 import { TierShowcase } from "./TierShowcase";
+import { MetaViewContent } from "@/components/marketing/MetaViewContent";
+import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
  * /howa/steward — HoWA Steward landing.
@@ -36,14 +38,37 @@ const TRUST_LINES = [
   { icon: AwardIcon, text: "Accountability at every step" },
 ];
 
-export default function StewardV1PreviewPage() {
+export default async function StewardV1PreviewPage() {
+  const sections = await getPageSections("howa-steward");
+  const hero = sections.get("hero");
+  const notStatic = sections.get("not-static");
+  const oneSystem = sections.get("one-system");
+  const intelligence = sections.get("intelligence");
+  const powered = sections.get("powered-by");
+  const closing = sections.get("closing");
+
+  const intelligenceStats = cmsCards(intelligence, INTELLIGENCE_STATS, (c, base) => ({
+    title: pick(c.title, base?.title ?? ""),
+    highlight: pick(c.value, base?.highlight),
+    subAfter: pick(c.body ?? c.value2, base?.subAfter ?? ""),
+  }));
+  const trustLines = cmsCards(powered, TRUST_LINES, (c, base) => ({
+    icon: base?.icon ?? HomeIcon,
+    text: pick(c.title ?? c.body, base?.text ?? ""),
+  }));
+
   return (
     <div className={`${s.page} ${s.stewardTheme}`}>
+      <MetaViewContent
+        contentId="howa_steward"
+        contentName="HoWA Steward"
+        contentCategory="howa_membership"
+      />
       {/* 1. Hero — navy blueprint mode, image full-width across header */}
       <section className={s.hero}>
         <div className={s.heroBg} aria-hidden="true">
           <Image
-            src="/home-v4/steward-hero-blueprint.png"
+            src={cms(hero, "imageUrl", "/home-v4/steward-hero-blueprint.webp")}
             alt=""
             fill
             sizes="100vw"
@@ -53,22 +78,27 @@ export default function StewardV1PreviewPage() {
         </div>
         <div className={s.heroCopy}>
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>The Home Operating System</p>
+            <p className={s.heroEy}>{cms(hero, "eyebrow", "The Home Operating System")}</p>
             <h1 className={s.heroTitle}>
-              The Home<br />
-              Operating System
+              {cms(hero, "headline", "The Home")}<br />
+              {cms(hero, "headlineEm", "Operating System", "headline")}
             </h1>
-            <p className={s.heroSub}>Your home, finally understood.</p>
+            <p className={s.heroSub}>
+              {cms(hero, "subheadline", "Your home, finally understood.")}
+            </p>
             <p className={s.heroLede}>
-              HoWA observes, learns, and acts — so nothing is missed, delayed,
-              or forgotten.
+              {cms(
+                hero,
+                "body",
+                "HoWA observes, learns, and acts — so nothing is missed, delayed, or forgotten.",
+              )}
             </p>
             <div className={s.heroCtas}>
-              <Link href="/api/howa-bounce" className={s.btnFilled}>
-                Enter HoWA
+              <Link href={cms(hero, "ctaHref", "/api/howa-bounce")} className={s.btnFilled}>
+                {cms(hero, "ctaLabel", "Enter HoWA")}
               </Link>
-              <Link href="/howa/how-it-works" className={s.btnGhost}>
-                See how it works
+              <Link href={cms(hero, "cta2Href", "/howa/how-it-works")} className={s.btnGhost}>
+                {cms(hero, "cta2Label", "See how it works")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
@@ -80,8 +110,12 @@ export default function StewardV1PreviewPage() {
       <section className={s.notStatic}>
         <div className={s.notStaticImage}>
           <Image
-            src="/home-v4/steward-photo-blueprint-annot.png"
-            alt="A photograph of a Georgian townhouse dissolving into a glowing blueprint diagram, annotated with Structure, Environment, Energy and Security"
+            src={cms(notStatic, "imageUrl", "/home-v4/steward-photo-blueprint-annot.webp")}
+            alt={cms(
+              notStatic,
+              "imageAlt",
+              "A photograph of a Georgian townhouse dissolving into a glowing blueprint diagram, annotated with Structure, Environment, Energy and Security",
+            )}
             fill
             sizes="100vw"
             style={{ objectFit: "cover", objectPosition: "center" }}
@@ -90,15 +124,18 @@ export default function StewardV1PreviewPage() {
         <div className={s.notStaticScrim} aria-hidden="true" />
         <div className={s.notStaticCopy}>
           <h2 className={s.notStaticTitle}>
-            A home is<br />
-            <span className={s.notStaticItalic}>not static.</span>
+            {cms(notStatic, "headline", "A home is")}<br />
+            <span className={s.notStaticItalic}>{cms(notStatic, "headlineEm", "not static.", "headline")}</span>
           </h2>
           <p className={s.notStaticSub}>
-            <em>It is a system<br />in motion.</em>
+            <em>{cms(notStatic, "subheadline", "It is a system\nin motion.")}</em>
           </p>
           <p className={s.notStaticBody}>
-            HoWA transforms your home from a place you manage into a system
-            that manages itself.
+            {cms(
+              notStatic,
+              "body",
+              "HoWA transforms your home from a place you manage into a system that manages itself.",
+            )}
           </p>
         </div>
       </section>
@@ -111,11 +148,11 @@ export default function StewardV1PreviewPage() {
         <div className={s.oneSystemInner}>
           <div className={s.oneSystemCopy}>
             <h2>
-              One system.<br />
-              <em>In your hands.</em>
+              {cms(oneSystem, "headline", "One system.")}<br />
+              <em>{cms(oneSystem, "headlineEm", "In your hands.", "headline")}</em>
             </h2>
             <p>
-              Designed for clarity. Built for your home.
+              {cms(oneSystem, "body", "Designed for clarity. Built for your home.")}
             </p>
             <div className={s.appStores}>
               <Link href="#open-booking-form" className={s.appStore}>
@@ -156,12 +193,12 @@ export default function StewardV1PreviewPage() {
               <CalendarIcon />
             </span>
             <h2 className={s.intelligenceTitle}>
-              Intelligence that<br />
-              <em>makes a real difference.</em>
+              {cms(intelligence, "headline", "Intelligence that")}<br />
+              <em>{cms(intelligence, "headlineEm", "makes a real difference.", "headline")}</em>
             </h2>
           </header>
           <div className={s.intelligenceStats}>
-            {INTELLIGENCE_STATS.map((stat, i) => (
+            {intelligenceStats.map((stat, i) => (
               <div key={stat.title} className={s.iStat}>
                 <p className={s.iStatTitle}>{stat.title}</p>
                 <p className={s.iStatSub}>
@@ -170,7 +207,7 @@ export default function StewardV1PreviewPage() {
                   ) : null}
                   {stat.subAfter}
                 </p>
-                {i < INTELLIGENCE_STATS.length - 1 ? (
+                {i < intelligenceStats.length - 1 ? (
                   <span aria-hidden="true" className={s.iStatArrow}>→</span>
                 ) : null}
               </div>
@@ -179,8 +216,12 @@ export default function StewardV1PreviewPage() {
         </div>
         <div className={s.intelligenceImage}>
           <Image
-            src="/home-v4/plus-intelligence.png"
-            alt="A warm dusk-lit interior — what intelligent stewardship protects"
+            src={cms(intelligence, "imageUrl", "/home-v4/plus-intelligence.webp")}
+            alt={cms(
+              intelligence,
+              "imageAlt",
+              "A warm dusk-lit interior — what intelligent stewardship protects",
+            )}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
             style={{ objectFit: "cover" }}
@@ -190,9 +231,11 @@ export default function StewardV1PreviewPage() {
 
       {/* 6. Powered by the House */}
       <section className={s.poweredBand}>
-        <p className={s.poweredEy}>Powered by the House of Willow Alexander.</p>
+        <p className={s.poweredEy}>
+          {cms(powered, "headline", "Powered by the House of Willow Alexander.")}
+        </p>
         <div className={s.poweredLines}>
-          {TRUST_LINES.map((line) => {
+          {trustLines.map((line) => {
             const Icon = line.icon;
             return (
               <div key={line.text} className={s.poweredLine}>
@@ -208,7 +251,7 @@ export default function StewardV1PreviewPage() {
       <section className={s.stewardClose}>
         <div className={s.stewardCloseBg} aria-hidden="true">
           <Image
-            src="/home-v4/steward-blueprint-only.png"
+            src={cms(closing, "imageUrl", "/home-v4/steward-blueprint-only.webp")}
             alt=""
             fill
             sizes="100vw"
@@ -216,10 +259,14 @@ export default function StewardV1PreviewPage() {
           />
         </div>
         <div className={s.stewardCloseInner}>
-          <h2 className={s.stewardCloseTitle}>Step into stewardship.</h2>
-          <p className={s.stewardCloseSub}>Understand. Protect. Perform.</p>
-          <Link href="/api/howa-bounce" className={s.closingBtnFilled}>
-            Enter HoWA
+          <h2 className={s.stewardCloseTitle}>
+            {cms(closing, "headline", "Step into stewardship.")}
+          </h2>
+          <p className={s.stewardCloseSub}>
+            {cms(closing, "subheadline", "Understand. Protect. Perform.")}
+          </p>
+          <Link href={cms(closing, "ctaHref", "/api/howa-bounce")} className={s.closingBtnFilled}>
+            {cms(closing, "ctaLabel", "Enter HoWA")}
           </Link>
         </div>
       </section>

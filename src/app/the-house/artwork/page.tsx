@@ -5,6 +5,7 @@ import { ArtworkVolumesShelf } from "@/components/marketing/the-house/ArtworkVol
 import { ArtworkEcosystem } from "@/components/marketing/the-house/ArtworkEcosystem";
 import { ArtworkReveal } from "@/components/marketing/the-house/ArtworkReveal";
 import s from "./artwork.module.css";
+import { getArtworkPage } from "@/lib/cms/artwork";
 
 /**
  * /the-house/artwork — The Artwork of the House.
@@ -153,7 +154,31 @@ const EARLY_ICONS: Array<{ file: string; label: string }> = [
   { file: "earth", label: "Earth, in the round" },
 ];
 
-export default function ArtworkPage() {
+export default async function ArtworkPage() {
+  const cmsPage = await getArtworkPage();
+
+  // Merge each fallback chapter with the matching CMS chapter (by index).
+  // Pull-quote stays from fallback unless the CMS chapter provides one.
+  const chapters: Chapter[] = CHAPTERS.map((base, i) => {
+    const c = cmsPage?.chapters?.[i];
+    if (!c) return base;
+    return {
+      roman: (c.roman as Chapter["roman"]) ?? base.roman,
+      kicker: c.kicker ?? base.kicker,
+      headline: c.headline ?? base.headline,
+      body: c.body && c.body.length ? c.body : base.body,
+      pullQuote: c.pullQuote ?? base.pullQuote,
+    };
+  });
+
+  const heroEyebrow = cmsPage?.heroEyebrow ?? "House of Willow Alexander · An origin story";
+  const heroTitle = cmsPage?.heroTitle ?? "The Artwork";
+  const heroTitleEm = cmsPage?.heroTitleEm ?? "of the House.";
+  const heroLede =
+    cmsPage?.heroLede ??
+    "A design-led story of heritage, craft, colour, and British domestic beauty. How the House of Willow Alexander was cultivated, not branded.";
+  const heroScrollCue = cmsPage?.heroScrollCue ?? "↓ ten chapters";
+
   return (
     <div className={s.page}>
       <ArtworkProgressRail />
@@ -166,15 +191,12 @@ export default function ArtworkPage() {
       <section className={s.heroText}>
         <div className={s.heroTexture} aria-hidden="true" />
         <ArtworkReveal className={s.heroInner}>
-          <p className={s.heroEyebrow}>House of Willow Alexander · An origin story</p>
+          <p className={s.heroEyebrow}>{heroEyebrow}</p>
           <h1 className={s.heroTitle}>
-            The Artwork <em>of the House.</em>
+            {heroTitle} <em>{heroTitleEm}</em>
           </h1>
-          <p className={s.heroLede}>
-            A design-led story of heritage, craft, colour, and British domestic
-            beauty. How the House of Willow Alexander was cultivated, not branded.
-          </p>
-          <p className={s.heroScrollCue}>↓ ten chapters</p>
+          <p className={s.heroLede}>{heroLede}</p>
+          <p className={s.heroScrollCue}>{heroScrollCue}</p>
         </ArtworkReveal>
       </section>
 
@@ -182,7 +204,7 @@ export default function ArtworkPage() {
           CHAPTER I — A name like a dedication
           (no pullquote — body already lands on the same idea)
           ════════════════════════════════════════════════════════════ */}
-      <ChapterCopy chapter={CHAPTERS[0]} bg="cream" first />
+      <ChapterCopy chapter={chapters[0]} bg="cream" first />
 
       {/* ════════════════════════════════════════════════════════════
           CHAPTER II — Garden studio, two artefacts
@@ -196,10 +218,10 @@ export default function ArtworkPage() {
       >
         <ArtworkReveal className={s.splitCopy}>
           <div className={s.splitCopyInner}>
-            <p className={s.kicker}>{CHAPTERS[1].kicker}</p>
-            <p className={s.chapterRoman}>Chapter {CHAPTERS[1].roman}</p>
-            <h2 className={s.headline}>{CHAPTERS[1].headline}</h2>
-            {CHAPTERS[1].body.map((p, i) => (
+            <p className={s.kicker}>{chapters[1].kicker}</p>
+            <p className={s.chapterRoman}>Chapter {chapters[1].roman}</p>
+            <h2 className={s.headline}>{chapters[1].headline}</h2>
+            {chapters[1].body.map((p, i) => (
               <p key={i} className={s.body}>
                 {p}
               </p>
@@ -242,10 +264,10 @@ export default function ArtworkPage() {
       >
         <ArtworkReveal className={s.splitCopy}>
           <div className={s.splitCopyInner}>
-            <p className={s.kicker}>{CHAPTERS[2].kicker}</p>
-            <p className={s.chapterRoman}>Chapter {CHAPTERS[2].roman}</p>
-            <h2 className={s.headline}>{CHAPTERS[2].headline}</h2>
-            {CHAPTERS[2].body.map((p, i) => (
+            <p className={s.kicker}>{chapters[2].kicker}</p>
+            <p className={s.chapterRoman}>Chapter {chapters[2].roman}</p>
+            <h2 className={s.headline}>{chapters[2].headline}</h2>
+            {chapters[2].body.map((p, i) => (
               <p key={i} className={s.body}>
                 {p}
               </p>
@@ -265,7 +287,7 @@ export default function ArtworkPage() {
 
       <PatternReveal />
 
-      <PullQuote quote={CHAPTERS[2].pullQuote!} />
+      <PullQuote quote={chapters[2].pullQuote!} />
 
       {/* ════════════════════════════════════════════════════════════
           CHAPTER IV — The coloured volumes
@@ -273,16 +295,16 @@ export default function ArtworkPage() {
           the static shelf-row composite was a duplicate of what the
           interactive shelf already shows).
           ════════════════════════════════════════════════════════════ */}
-      <ChapterCopy chapter={CHAPTERS[3]} bg="cream" />
+      <ChapterCopy chapter={chapters[3]} bg="cream" />
       <ArtworkVolumesShelf />
-      <PullQuote quote={CHAPTERS[3].pullQuote!} dark />
+      <PullQuote quote={chapters[3].pullQuote!} dark />
 
       {/* ════════════════════════════════════════════════════════════
           CHAPTER V — From studio to institution
           Text-led, with a small colour-swatch row showing the
           transformation (green & rough → cream + gold).
           ════════════════════════════════════════════════════════════ */}
-      <ChapterCopy chapter={CHAPTERS[4]} bg="cream-dark">
+      <ChapterCopy chapter={chapters[4]} bg="cream-dark">
         <PaletteShift />
       </ChapterCopy>
 
@@ -297,10 +319,10 @@ export default function ArtworkPage() {
       >
         <div className={s.atmospherePattern} aria-hidden="true" />
         <ArtworkReveal className={s.copySectionInner}>
-          <p className={s.kicker}>{CHAPTERS[5].kicker}</p>
-          <p className={s.chapterRoman}>Chapter {CHAPTERS[5].roman}</p>
-          <h2 className={s.headline}>{CHAPTERS[5].headline}</h2>
-          {CHAPTERS[5].body.map((p, i) => (
+          <p className={s.kicker}>{chapters[5].kicker}</p>
+          <p className={s.chapterRoman}>Chapter {chapters[5].roman}</p>
+          <h2 className={s.headline}>{chapters[5].headline}</h2>
+          {chapters[5].body.map((p, i) => (
             <p key={i} className={s.body}>
               {p}
             </p>
@@ -312,7 +334,7 @@ export default function ArtworkPage() {
           CHAPTER VII — Early icons
           Text intro, then a grid of the eight hand-drawn icons.
           ════════════════════════════════════════════════════════════ */}
-      <ChapterCopy chapter={CHAPTERS[6]} bg="cream" />
+      <ChapterCopy chapter={chapters[6]} bg="cream" />
       <section className={s.iconGrid}>
         <div className={s.iconGridInner}>
           {EARLY_ICONS.map(({ file, label }) => (
@@ -334,7 +356,7 @@ export default function ArtworkPage() {
           CHAPTER VIII — The ecosystem
           Text intro + the interactive ecosystem diagram.
           ════════════════════════════════════════════════════════════ */}
-      <ChapterCopy chapter={CHAPTERS[7]} bg="cream" />
+      <ChapterCopy chapter={chapters[7]} bg="cream" />
       <ArtworkEcosystem />
 
       {/* ════════════════════════════════════════════════════════════
@@ -342,15 +364,15 @@ export default function ArtworkPage() {
           ════════════════════════════════════════════════════════════ */}
       <section
         className={s.philosophy}
-        data-chapter={CHAPTERS[8].roman}
-        id={`chapter-${CHAPTERS[8].roman.toLowerCase()}`}
+        data-chapter={chapters[8].roman}
+        id={`chapter-${chapters[8].roman.toLowerCase()}`}
       >
         <div className={s.philosophyPattern} aria-hidden="true" />
         <ArtworkReveal className={s.philosophyInner}>
-          <p className={s.kicker}>{CHAPTERS[8].kicker}</p>
-          <p className={s.chapterRoman}>Chapter {CHAPTERS[8].roman}</p>
-          <h2 className={s.headline}>{CHAPTERS[8].headline}</h2>
-          {CHAPTERS[8].body.map((p, i) => (
+          <p className={s.kicker}>{chapters[8].kicker}</p>
+          <p className={s.chapterRoman}>Chapter {chapters[8].roman}</p>
+          <h2 className={s.headline}>{chapters[8].headline}</h2>
+          {chapters[8].body.map((p, i) => (
             <p key={i} className={s.philosophyBody}>
               {p}
             </p>
@@ -368,10 +390,10 @@ export default function ArtworkPage() {
       >
         <ArtworkReveal className={s.splitCopy}>
           <div className={s.splitCopyInner}>
-            <p className={s.kicker}>{CHAPTERS[9].kicker}</p>
-            <p className={s.chapterRoman}>Chapter {CHAPTERS[9].roman}</p>
-            <h2 className={s.headline}>{CHAPTERS[9].headline}</h2>
-            {CHAPTERS[9].body.map((p, i) => (
+            <p className={s.kicker}>{chapters[9].kicker}</p>
+            <p className={s.chapterRoman}>Chapter {chapters[9].roman}</p>
+            <h2 className={s.headline}>{chapters[9].headline}</h2>
+            {chapters[9].body.map((p, i) => (
               <p key={i} className={s.body}>
                 {p}
               </p>
@@ -394,19 +416,41 @@ export default function ArtworkPage() {
           ════════════════════════════════════════════════════════════ */}
       <section className={s.closingText}>
         <ArtworkReveal className={s.closingTextInner}>
-          <p className={s.closingKicker}>The House of Willow Alexander</p>
+          <p className={s.closingKicker}>
+            {cmsPage?.closingKicker ?? "The House of Willow Alexander"}
+          </p>
           <p className={s.closingStatement}>
-            A modern British institution built on{" "}
-            <em>design, story, care</em>
-            <br />
-            and the extraordinary beauty of home.
+            {cmsPage?.closingStatement ? (
+              cmsPage.closingStatementEm ? (
+                <>
+                  {cmsPage.closingStatement.split(cmsPage.closingStatementEm)[0]}
+                  <em>{cmsPage.closingStatementEm}</em>
+                  {cmsPage.closingStatement.split(cmsPage.closingStatementEm)[1] ?? ""}
+                </>
+              ) : (
+                cmsPage.closingStatement
+              )
+            ) : (
+              <>
+                A modern British institution built on{" "}
+                <em>design, story, care</em>
+                <br />
+                and the extraordinary beauty of home.
+              </>
+            )}
           </p>
           <div className={s.closingCtas}>
-            <Link href="/the-house/philosophy" className={s.btnFilled}>
-              Read our philosophy
+            <Link
+              href={cmsPage?.closingCtaPrimaryHref ?? "/the-house/philosophy"}
+              className={s.btnFilled}
+            >
+              {cmsPage?.closingCtaPrimary ?? "Read our philosophy"}
             </Link>
-            <Link href="/the-house" className={s.btnGhostLight}>
-              Back to The House
+            <Link
+              href={cmsPage?.closingCtaSecondaryHref ?? "/the-house"}
+              className={s.btnGhostLight}
+            >
+              {cmsPage?.closingCtaSecondary ?? "Back to The House"}
               <span aria-hidden="true" className={s.btnArrow}>
                 →
               </span>
@@ -417,7 +461,21 @@ export default function ArtworkPage() {
 
       <div className={s.tagline}>
         <p>
-          Ownership is passive. <em>Stewardship is intentional.</em>
+          {cmsPage?.tagline ? (
+            cmsPage.taglineEm ? (
+              <>
+                {cmsPage.tagline.split(cmsPage.taglineEm)[0]}
+                <em>{cmsPage.taglineEm}</em>
+                {cmsPage.tagline.split(cmsPage.taglineEm)[1] ?? ""}
+              </>
+            ) : (
+              cmsPage.tagline
+            )
+          ) : (
+            <>
+              Ownership is passive. <em>Stewardship is intentional.</em>
+            </>
+          )}
         </p>
       </div>
     </div>

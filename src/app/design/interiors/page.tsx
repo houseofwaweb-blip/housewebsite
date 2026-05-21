@@ -3,6 +3,7 @@ import Link from "next/link";
 import s from "./interiors.module.css";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { getNewsletterBlock } from "@/lib/cms/newsletter";
+import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
  * /design/interiors — lander framework.
@@ -137,6 +138,27 @@ const PROJECTS = [
 
 export default async function InteriorsPage() {
   const nlBlock = await getNewsletterBlock("design-interiors");
+  const sections = await getPageSections("design-interiors");
+  const hero = sections.get("hero");
+  const stats = sections.get("stats");
+  const plans = sections.get("plans");
+  const studios = sections.get("studios");
+  const projects = sections.get("projects");
+  const quote = sections.get("quote");
+  const companion = sections.get("companion");
+
+  const statCols = cmsCards(stats, STAT_COLS, (c, base) => ({
+    value: pick(c.value ?? c.label, base?.value ?? ""),
+    label: pick(c.title ?? c.body, base?.label ?? ""),
+  }));
+  const planCards = cmsCards(plans, PLANS, (c, base) => ({
+    name: pick(c.title, base?.name ?? ""),
+    tagline: pick(c.label, base?.tagline ?? ""),
+    price: pick(c.value, base?.price ?? ""),
+    inclusions: c.items && c.items.length ? c.items : base?.inclusions ?? [],
+    image: pick(c.imageUrl, base?.image ?? ""),
+    featured: base?.featured ?? false,
+  }));
 
   return (
     <div className={s.page}>
@@ -144,21 +166,24 @@ export default async function InteriorsPage() {
       <section className={s.hero}>
         <div className={s.heroCopy}>
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>Design · Interiors</p>
+            <p className={s.heroEy}>{cms(hero, "eyebrow", "Design · Interiors")}</p>
             <h1 className={s.heroTitle}>
-              Consciously designed <em>interiors.</em>
+              {cms(hero, "headline", "Consciously designed")}{" "}
+              <em>{cms(hero, "headlineEm", "interiors.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
-              At the House, interiors are living expressions of the people who
-              inhabit them. Our collective of designers and makers share a
-              single philosophy — beauty, balance, and intention.
+              {cms(
+                hero,
+                "body",
+                "At the House, interiors are living expressions of the people who inhabit them. Our collective of designers and makers share a single philosophy — beauty, balance, and intention.",
+              )}
             </p>
             <div className={s.heroCtas}>
-              <Link href="#plans" className={s.btnFilled}>
-                See the plans
+              <Link href={cms(hero, "ctaHref", "#plans")} className={s.btnFilled}>
+                {cms(hero, "ctaLabel", "See the plans")}
               </Link>
-              <Link href="/partners" className={s.btnGhost}>
-                The collective
+              <Link href={cms(hero, "cta2Href", "/partners")} className={s.btnGhost}>
+                {cms(hero, "cta2Label", "The collective")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
@@ -166,8 +191,12 @@ export default async function InteriorsPage() {
         </div>
         <div className={s.heroVisual}>
           <Image
-            src="/design/interiors/project-tunbridge-1.webp"
-            alt="Tunbridge Wells interior — restored period drawing room with garden light"
+            src={cms(hero, "imageUrl", "/design/interiors/project-tunbridge-1.webp")}
+            alt={cms(
+              hero,
+              "imageAlt",
+              "Tunbridge Wells interior — restored period drawing room with garden light",
+            )}
             fill
             sizes="(min-width: 1024px) 55vw, 100vw"
             priority
@@ -179,10 +208,12 @@ export default async function InteriorsPage() {
       {/* 2. Stats strip */}
       <section className={s.statsStrip}>
         <div className={s.statsLede}>
-          <p className={s.statsLedeLine1}>Beauty. Balance. Intention.</p>
-          <p className={s.statsLedeLine2}>Every scheme through a House-Approved studio.</p>
+          <p className={s.statsLedeLine1}>{cms(stats, "headline", "Beauty. Balance. Intention.")}</p>
+          <p className={s.statsLedeLine2}>
+            {cms(stats, "subheadline", "Every scheme through a House-Approved studio.")}
+          </p>
         </div>
-        {STAT_COLS.map((stat) => (
+        {statCols.map((stat) => (
           <div key={stat.label} className={s.stat}>
             <span className={s.statValue}>{stat.value}</span>
             <span className={s.statLabel}>{stat.label}</span>
@@ -193,17 +224,21 @@ export default async function InteriorsPage() {
       {/* 3. Three plans */}
       <section id="plans" className={s.plans}>
         <header className={s.plansHead}>
-          <p className={s.plansEy}>Digital Plans</p>
+          <p className={s.plansEy}>{cms(plans, "eyebrow", "Digital Plans")}</p>
           <h2 className={s.plansTitle}>
-            Three ways <em>to begin.</em>
+            {cms(plans, "headline", "Three ways")}{" "}
+            <em>{cms(plans, "headlineEm", "to begin.", "headline")}</em>
           </h2>
           <p className={s.plansLede}>
-            From a 90-minute studio session to a full-home brief held end to
-            end — the right entry point for the room you're starting with.
+            {cms(
+              plans,
+              "body",
+              "From a 90-minute studio session to a full-home brief held end to end — the right entry point for the room you're starting with.",
+            )}
           </p>
         </header>
         <div className={s.plansGrid}>
-          {PLANS.map((p) => (
+          {planCards.map((p) => (
             <article
               key={p.name}
               className={`${s.planCard} ${p.featured ? s.planCardFeatured : ""}`}
@@ -240,14 +275,17 @@ export default async function InteriorsPage() {
       {/* 3b. The studios behind the work */}
       <section className={s.studios}>
         <header className={s.studiosHead}>
-          <p className={s.studiosEy}>The collective</p>
+          <p className={s.studiosEy}>{cms(studios, "eyebrow", "The collective")}</p>
           <h2 className={s.studiosTitle}>
-            The studios <em>behind the work.</em>
+            {cms(studios, "headline", "The studios")}{" "}
+            <em>{cms(studios, "headlineEm", "behind the work.", "headline")}</em>
           </h2>
           <p className={s.studiosLede}>
-            Every interiors brief lands with a House-Approved studio. We start
-            small on purpose — two interiors partners at launch, more joining
-            as we find them.
+            {cms(
+              studios,
+              "body",
+              "Every interiors brief lands with a House-Approved studio. We start small on purpose — two interiors partners at launch, more joining as we find them.",
+            )}
           </p>
         </header>
         <div className={s.studiosGrid}>
@@ -301,9 +339,10 @@ export default async function InteriorsPage() {
       {/* 4. Projects gallery */}
       <section className={s.projects}>
         <header className={s.projectsHead}>
-          <p className={s.projectsEy}>Our projects</p>
+          <p className={s.projectsEy}>{cms(projects, "eyebrow", "Our projects")}</p>
           <h2 className={s.projectsTitle}>
-            Rooms that <em>remember their people.</em>
+            {cms(projects, "headline", "Rooms that")}{" "}
+            <em>{cms(projects, "headlineEm", "remember their people.", "headline")}</em>
           </h2>
         </header>
         <div className={s.projectsGrid}>
@@ -330,35 +369,52 @@ export default async function InteriorsPage() {
       {/* 5. Quote */}
       <section className={s.quote}>
         <p className={s.quoteText}>
-          <em>“A home that carries you. Not a statement you have to keep up with.”</em>
+          <em>
+            “{cms(
+              quote,
+              "body",
+              "A home that carries you. Not a statement you have to keep up with.",
+            )}”
+          </em>
         </p>
-        <p className={s.quoteAttribution}>The House brief · 2025</p>
+        <p className={s.quoteAttribution}>
+          {cms(quote, "caption", "The House brief · 2025")}
+        </p>
       </section>
 
       {/* 6. Companion split */}
       <section className={s.companion}>
         <div className={s.companionCopy}>
-          <p className={s.companionEy}>HoWA · Companion</p>
+          <p className={s.companionEy}>{cms(companion, "eyebrow", "HoWA · Companion")}</p>
           <h2 className={s.companionTitle}>
-            Start with the <em>Companion.</em>
+            {cms(companion, "headline", "Start with the")}{" "}
+            <em>{cms(companion, "headlineEm", "Companion.", "headline")}</em>
           </h2>
           <p className={s.companionLede}>
-            Capture your room, ambition, timeline, budget and aesthetic
-            direction. The Companion builds a brief your designer can work
-            from on day one — nothing lost, nothing repeated.
+            {cms(
+              companion,
+              "body",
+              "Capture your room, ambition, timeline, budget and aesthetic direction. The Companion builds a brief your designer can work from on day one — nothing lost, nothing repeated.",
+            )}
           </p>
-          <p className={s.companionFootnote}>Available to all HoWA members.</p>
+          <p className={s.companionFootnote}>
+            {cms(companion, "caption", "Available to all HoWA members.")}
+          </p>
           <Link
-            href="/api/howa-bounce?source=interiors-companion"
+            href={cms(companion, "ctaHref", "/api/howa-bounce?source=interiors-companion")}
             className={s.btnFilled}
           >
-            Start the Companion
+            {cms(companion, "ctaLabel", "Start the Companion")}
           </Link>
         </div>
         <div className={s.companionImage}>
           <Image
-            src="/design/interiors/project-living-room.webp"
-            alt="A living room project — the kind of room the Companion helps you brief"
+            src={cms(companion, "imageUrl", "/design/interiors/project-living-room.webp")}
+            alt={cms(
+              companion,
+              "imageAlt",
+              "A living room project — the kind of room the Companion helps you brief",
+            )}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
             style={{ objectFit: "cover", objectPosition: "center" }}

@@ -63,9 +63,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
       const next: CartToast = {
         id: crypto.randomUUID(),
-        title: `${item.title} added.`,
+        title: `${item.title} saved.`,
         href: "/shop/basket",
-        linkLabel: "View basket",
+        linkLabel: "View saved",
       };
       setToast(next);
       if (hideTimer.current) window.clearTimeout(hideTimer.current);

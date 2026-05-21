@@ -4,6 +4,7 @@ import s from "./the-house.module.css";
 import { TheHouseNav } from "./TheHouseNav";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { getNewsletterBlock } from "@/lib/cms/newsletter";
+import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
  * /the-house — the brand institution page.
@@ -43,7 +44,7 @@ const PILLARS = [
       "Gardening, cleaning, gutter work, window cleaning. The things that keep a home right, done to a House standard.",
     body:
       "Book one-off through Services, or bundle on a Steward Plan and let HoWA hold the calendar.",
-    image: "/home-v4/plus-benefit-1.png",
+    image: "/home-v4/plus-benefit-1.webp",
     imageAlt:
       "A hand cleaning a sash window in golden-hour light, with a plant on the sill inside",
     link: "/services",
@@ -58,7 +59,7 @@ const PILLARS = [
       "Insurance, condition reviews, and the paper trail that proves the care was done.",
     body:
       "A Home Protection Review surveys the property. The evidence feeds your insurance introduction. House Approved underwriters who know the difference between a sash window and a uPVC frame.",
-    image: "/home-v4/protect-still-life.png",
+    image: "/home-v4/protect-still-life.webp",
     imageAlt:
       "Brass padlock, smoke detector, key and chain on a wooden cabinet — the still life of stewardship",
     link: "/protect",
@@ -87,7 +88,7 @@ const PILLARS = [
       "A curated shop of tools, homewares and garden pieces that carry the House Approved seal.",
     body:
       "Carbon steel secateurs from Sheffield. Copper watering cans from Kent. Linen from Ireland. Things built to last and worth looking after.",
-    image: "/home-v4/plus-benefit-4.png",
+    image: "/home-v4/plus-benefit-4.webp",
     imageAlt:
       "A linen-bound folder open on a desk with paint chips, an EICR certificate and a small framed photo",
     link: "/shop",
@@ -97,6 +98,32 @@ const PILLARS = [
 
 export default async function TheHousePage() {
   const nlBlock = await getNewsletterBlock("the-house");
+  const sections = await getPageSections("the-house");
+  const hero = sections.get("hero");
+  const stats = sections.get("stats");
+  const premise = sections.get("premise");
+  const pillarsSection = sections.get("pillars");
+  const transition = sections.get("transition");
+  const howa = sections.get("howa");
+  const steward = sections.get("steward");
+  const closing = sections.get("closing");
+
+  const statCols = cmsCards(stats, STAT_COLS, (c, base) => ({
+    value: pick(c.value ?? c.label, base?.value ?? ""),
+    label: pick(c.title ?? c.body, base?.label ?? ""),
+  }));
+  const pillarCards = cmsCards(pillarsSection, PILLARS, (c, base) => ({
+    id: base?.id ?? "",
+    numeral: base?.numeral ?? "",
+    eyebrow: pick(c.label, base?.eyebrow ?? ""),
+    title: pick(c.title, base?.title ?? ""),
+    hook: pick(c.body, base?.hook ?? ""),
+    body: pick(c.value, base?.body ?? ""),
+    image: base?.image ?? "",
+    imageAlt: base?.imageAlt ?? "",
+    link: pick(c.ctaHref, base?.link ?? "#"),
+    linkLabel: pick(c.ctaLabel, base?.linkLabel ?? ""),
+  }));
 
   return (
     <div className={s.page}>
@@ -106,22 +133,24 @@ export default async function TheHousePage() {
       <section className={s.hero}>
         <div className={s.heroCopy}>
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>The House</p>
+            <p className={s.heroEy}>{cms(hero, "eyebrow", "The House")}</p>
             <h1 className={s.heroTitle}>
-              A modern British <em>institution.</em>
+              {cms(hero, "headline", "A modern British")}{" "}
+              <em>{cms(hero, "headlineEm", "institution.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
-              House of Willow Alexander exists for the people who care about
-              their homes enough to want them looked after properly. Not just
-              maintained. Stewarded — design, care, protection, and the things
-              worth keeping, all connected by one Living Record.
+              {cms(
+                hero,
+                "body",
+                "House of Willow Alexander exists for the people who care about their homes enough to want them looked after properly. Not just maintained. Stewarded — design, care, protection, and the things worth keeping, all connected by one Living Record.",
+              )}
             </p>
             <div className={s.heroCtas}>
-              <Link href="/howa" className={s.btnFilled}>
-                Enter HoWA
+              <Link href={cms(hero, "ctaHref", "/howa")} className={s.btnFilled}>
+                {cms(hero, "ctaLabel", "Enter HoWA")}
               </Link>
-              <Link href="#care" className={s.btnGhost}>
-                What we do
+              <Link href={cms(hero, "cta2Href", "#care")} className={s.btnGhost}>
+                {cms(hero, "cta2Label", "What we do")}
                 <span aria-hidden="true" className={s.btnArrow}>↓</span>
               </Link>
             </div>
@@ -129,8 +158,12 @@ export default async function TheHousePage() {
         </div>
         <div className={s.heroVisual}>
           <Image
-            src="/home-v4/howa-dollhouse-scene.png"
-            alt="A Georgian dollhouse on a wooden cabinet with annotations — Roof, Boiler, Garden — beside a lamp, dried flowers and a House Health widget"
+            src={cms(hero, "imageUrl", "/home-v4/howa-dollhouse-scene.webp")}
+            alt={cms(
+              hero,
+              "imageAlt",
+              "A Georgian dollhouse on a wooden cabinet with annotations — Roof, Boiler, Garden — beside a lamp, dried flowers and a House Health widget",
+            )}
             fill
             sizes="(min-width: 1024px) 55vw, 100vw"
             priority
@@ -142,10 +175,14 @@ export default async function TheHousePage() {
       {/* 2. Stats strip */}
       <section className={s.statsStrip}>
         <div className={s.statsLede}>
-          <p className={s.statsLedeLine1}>Ownership is passive. Stewardship is intentional.</p>
-          <p className={s.statsLedeLine2}>One House. One Standard. One Record.</p>
+          <p className={s.statsLedeLine1}>
+            {cms(stats, "headline", "Ownership is passive. Stewardship is intentional.")}
+          </p>
+          <p className={s.statsLedeLine2}>
+            {cms(stats, "subheadline", "One House. One Standard. One Record.")}
+          </p>
         </div>
-        {STAT_COLS.map((stat) => (
+        {statCols.map((stat) => (
           <div key={stat.label} className={s.stat}>
             <span className={s.statValue}>{stat.value}</span>
             <span className={s.statLabel}>{stat.label}</span>
@@ -156,22 +193,37 @@ export default async function TheHousePage() {
       {/* 3. Premise — two-column with the watercolour illustration */}
       <section className={s.premise} id="premise">
         <div className={s.premiseCopy}>
-          <p className={s.premiseEy}>A home that remembers</p>
+          <p className={s.premiseEy}>{cms(premise, "eyebrow", "A home that remembers")}</p>
           <p className={s.premiseStatement}>
-            Homes deserve the same kind of quiet institution that schools,
-            clubs and estates have always had.{" "}
-            <em>Somewhere to belong. Somewhere to ask. Somewhere that remembers.</em>
+            {cms(
+              premise,
+              "headline",
+              "Homes deserve the same kind of quiet institution that schools, clubs and estates have always had.",
+            )}{" "}
+            <em>
+              {cms(
+                premise,
+                "headlineEm",
+                "Somewhere to belong. Somewhere to ask. Somewhere that remembers.",
+              )}
+            </em>
           </p>
           <p className={s.premiseBody}>
-            The House is built around four ideas — Care, Flow, Order, Trust.
-            Every service, decision and record lands inside that frame, and
-            the home gets quietly better, year after year.
+            {cms(
+              premise,
+              "body",
+              "The House is built around four ideas — Care, Flow, Order, Trust. Every service, decision and record lands inside that frame, and the home gets quietly better, year after year.",
+            )}
           </p>
         </div>
         <div className={s.premiseImage}>
           <Image
-            src="/home-v4/house-watercolour.png"
-            alt="A watercolour cross-section of a Georgian cottage labelled 'A home that remembers' — Care, Flow, Order and Trust surfacing alongside Home Record, Next System Check, and Security"
+            src={cms(premise, "imageUrl", "/home-v4/house-watercolour.webp")}
+            alt={cms(
+              premise,
+              "imageAlt",
+              "A watercolour cross-section of a Georgian cottage labelled 'A home that remembers' — Care, Flow, Order and Trust surfacing alongside Home Record, Next System Check, and Security",
+            )}
             width={1024}
             height={1280}
             sizes="(min-width: 1024px) 520px, 90vw"
@@ -181,7 +233,7 @@ export default async function TheHousePage() {
       </section>
 
       {/* 4. Four pillars — alternating */}
-      {PILLARS.map((p, i) => (
+      {pillarCards.map((p, i) => (
         <section
           key={p.id}
           id={p.id}
@@ -214,8 +266,8 @@ export default async function TheHousePage() {
       <section className={s.transition}>
         <span className={s.transitionRule} aria-hidden="true" />
         <p className={s.transitionLine}>
-          The House keeps the standard.{" "}
-          <em>HoWA keeps the record.</em>
+          {cms(transition, "headline", "The House keeps the standard.")}{" "}
+          <em>{cms(transition, "headlineEm", "HoWA keeps the record.", "headline")}</em>
         </p>
         <span className={s.transitionRule} aria-hidden="true" />
       </section>
@@ -223,32 +275,42 @@ export default async function TheHousePage() {
       {/* 6. HoWA — cream (HoWA-leaning) */}
       <section className={s.howa} id="howa">
         <div className={s.howaCopy}>
-          <p className={s.howaEy}>V. · HoWA</p>
+          <p className={s.howaEy}>{cms(howa, "eyebrow", "V. · HoWA")}</p>
           <h2 className={s.howaTitle}>
-            The Living <em>Record.</em>
+            {cms(howa, "headline", "The Living")}{" "}
+            <em>{cms(howa, "headlineEm", "Record.", "headline")}</em>
           </h2>
           <p className={s.howaHook}>
-            HoWA is how the House remembers. Every service, every review, every
-            care visit, every purchase. One record that grows with the home.
+            {cms(
+              howa,
+              "subheadline",
+              "HoWA is how the House remembers. Every service, every review, every care visit, every purchase. One record that grows with the home.",
+            )}
           </p>
           <p className={s.howaBody}>
-            Start with the Companion diagnostic. It maps your home's condition,
-            surfaces what needs doing, and files everything to a record that
-            stays with the property. Not a dashboard. A memory.
+            {cms(
+              howa,
+              "body",
+              "Start with the Companion diagnostic. It maps your home's condition, surfaces what needs doing, and files everything to a record that stays with the property. Not a dashboard. A memory.",
+            )}
           </p>
           <div className={s.howaCtas}>
-            <Link href="/howa" className={s.btnFilled}>
-              Enter HoWA
+            <Link href={cms(howa, "ctaHref", "/howa")} className={s.btnFilled}>
+              {cms(howa, "ctaLabel", "Enter HoWA")}
             </Link>
-            <Link href="/howa/plus" className={s.pillarLink}>
-              See HoWA+ →
+            <Link href={cms(howa, "cta2Href", "/howa/plus")} className={s.pillarLink}>
+              {cms(howa, "cta2Label", "See HoWA+")} →
             </Link>
           </div>
         </div>
         <div className={s.howaImage}>
           <Image
-            src="/home-v4/howa-lander-faq-v2.png"
-            alt="The Living Record of Your Home — a leather-bound book, key, vase and HoWA sensor on a wooden cabinet"
+            src={cms(howa, "imageUrl", "/home-v4/howa-lander-faq-v2.webp")}
+            alt={cms(
+              howa,
+              "imageAlt",
+              "The Living Record of Your Home — a leather-bound book, key, vase and HoWA sensor on a wooden cabinet",
+            )}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
             style={{ objectFit: "contain", objectPosition: "right center" }}
@@ -260,7 +322,7 @@ export default async function TheHousePage() {
       <section className={s.steward} id="steward">
         <div className={s.stewardBg} aria-hidden="true">
           <Image
-            src="/home-v4/steward-hero-blueprint.png"
+            src={cms(steward, "imageUrl", "/home-v4/steward-hero-blueprint.webp")}
             alt=""
             fill
             sizes="100vw"
@@ -268,21 +330,27 @@ export default async function TheHousePage() {
           />
         </div>
         <div className={s.stewardCopy}>
-          <p className={s.stewardEy}>VI. · Steward</p>
+          <p className={s.stewardEy}>{cms(steward, "eyebrow", "VI. · Steward")}</p>
           <h2 className={s.stewardTitle}>
-            Care, on a <em>rhythm.</em>
+            {cms(steward, "headline", "Care, on a")}{" "}
+            <em>{cms(steward, "headlineEm", "rhythm.", "headline")}</em>
           </h2>
           <p className={s.stewardHook}>
-            Bundle the home's services into a single managed plan. The House
-            coordinates. You don't think about it.
+            {cms(
+              steward,
+              "subheadline",
+              "Bundle the home's services into a single managed plan. The House coordinates. You don't think about it.",
+            )}
           </p>
           <p className={s.stewardBody}>
-            Steward Plans combine gardening, cleaning, windows and gutters into
-            one monthly schedule. A named team, a single invoice, every visit
-            logged to your HoWA record. Available to House Steward members.
+            {cms(
+              steward,
+              "body",
+              "Steward Plans combine gardening, cleaning, windows and gutters into one monthly schedule. A named team, a single invoice, every visit logged to your HoWA record. Available to House Steward members.",
+            )}
           </p>
-          <Link href="/howa/steward" className={s.stewardCta}>
-            See Steward →
+          <Link href={cms(steward, "ctaHref", "/howa/steward")} className={s.stewardCta}>
+            {cms(steward, "ctaLabel", "See Steward")} →
           </Link>
         </div>
       </section>
@@ -291,7 +359,7 @@ export default async function TheHousePage() {
       <section className={s.closing}>
         <div className={s.closingBg} aria-hidden="true">
           <Image
-            src="/home-v4/house-library-peacock.png"
+            src={cms(closing, "imageUrl", "/home-v4/house-library-peacock.webp")}
             alt=""
             fill
             sizes="100vw"
@@ -299,17 +367,19 @@ export default async function TheHousePage() {
           />
         </div>
         <div className={s.closingInner}>
-          <p className={s.closingKicker}>One home. One Record. One House.</p>
+          <p className={s.closingKicker}>
+            {cms(closing, "eyebrow", "One home. One Record. One House.")}
+          </p>
           <p className={s.closingStatement}>
-            A well-kept home isn't a pile of bookings.<br />
-            <em>It's a rhythm someone else remembers.</em>
+            {cms(closing, "headline", "A well-kept home isn't a pile of bookings.")}<br />
+            <em>{cms(closing, "headlineEm", "It's a rhythm someone else remembers.", "headline")}</em>
           </p>
           <div className={s.closingCtas}>
-            <Link href="/howa" className={s.closingBtnFilled}>
-              Start HoWA
+            <Link href={cms(closing, "ctaHref", "/howa")} className={s.closingBtnFilled}>
+              {cms(closing, "ctaLabel", "Start HoWA")}
             </Link>
-            <Link href="/services" className={s.closingBtnGhost}>
-              Book a service →
+            <Link href={cms(closing, "cta2Href", "/services")} className={s.closingBtnGhost}>
+              {cms(closing, "cta2Label", "Book a service")} →
             </Link>
           </div>
         </div>

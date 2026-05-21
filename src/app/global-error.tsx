@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import * as Sentry from "@sentry/nextjs";
 
 /**
  * Root error boundary. Catches errors that escape the root layout
@@ -19,8 +20,10 @@ export default function GlobalError({
   reset: () => void;
 }) {
   useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.error("[global-error]", error);
+    Sentry.captureException(error, {
+      tags: { boundary: "global" },
+      extra: { digest: error.digest },
+    });
   }, [error]);
 
   return (

@@ -1,4 +1,5 @@
 import { EditorialPage } from "@/components/marketing/EditorialPage";
+import { CookieDisclosureTable } from "@/components/legal/CookieDisclosureTable";
 import { getLegalPage } from "@/lib/cms/legal";
 
 export const metadata = {
@@ -9,35 +10,69 @@ export const metadata = {
 export default async function CookiesPage() {
   const sanityPage = await getLegalPage("cookies");
   return (
-    <EditorialPage
-      eyebrow="Legal · Cookies"
-      title="Cookies, plainly."
-      lede="What we set in your browser, for how long, and why. We keep this as short as we can."
-      sections={[
-        {
-          heading: "What we set",
-          body: `Session cookies to keep you logged in to HoWA, run your cart on the Shop, and remember whether you've accepted our cookie banner.
+    <>
+      <EditorialPage
+        eyebrow="Legal · Cookies"
+        title="Cookies, plainly."
+        lede="What we set in your browser, what we share with whom, and how to change your mind. We keep this as short as we can while being honest."
+        sections={[
+          {
+            heading: "Four categories — you choose",
+            body: `The banner asks you to pick from four categories. You can accept all, reject everything non-essential, or open "Customise" to mix and match.
 
-An analytics cookie from a privacy-respecting provider (no third-party ad-tech) so we can see which pages are useful. IP addresses are anonymised before they reach us.
+**Essential** — always on. Session, security, your cart, and your consent choice itself. Site can't work without these. We never ask permission for these because the law treats them as necessary.
 
-A Cloudflare Turnstile challenge when you submit a form, to keep bots off our mailing list and booking system. Stored briefly, only while the form is live.`,
-        },
-        {
-          heading: "What we don't set",
-          body: `No third-party advertising cookies. No cross-site trackers. No behavioural profiling. No selling of cookie data to anyone.`,
-        },
-        {
-          heading: "Managing them",
-          body: `You can clear cookies from your browser at any time. Most browsers let you set a preference that declines analytics while still accepting the ones needed to keep the site working. If you do that, some things — staying logged in, for instance — won't work.
+**Functional** — embedded tools that remember a preference. The ServiceOS booking widget, postcode lookup, and language preference live here. Default off.
 
-This page will link to a cookie preferences centre once the full privacy banner is wired up.`,
-        },
-        {
-          heading: "This page is in draft",
-          body: `The list above is accurate for the site's current scope. A full cookie table with names, durations, and vendors will replace it before public launch, alongside a preference centre.`,
-        },
-      ]}
-      updatedAt={sanityPage?.lastUpdated ?? "16 April 2026 (draft)"}
-    />
+**Measurement** — first-party understanding of the site. Google Analytics 4, Microsoft Clarity, Vercel Speed Insights, Sentry. We use them to see which pages are useful, find broken things, and improve speed. Default off.
+
+**Marketing** — advertising and retargeting. Meta (Facebook / Instagram), Pinterest, Google Ads. If you turn this on, you'll see relevant House ads on those platforms instead of random ones. Default off.`,
+          },
+          {
+            heading: "What happens when you reject Measurement and Marketing",
+            body: `Google Analytics and Google Ads still load on the page — but with everything denied. They don't set tracking cookies, don't identify you, and don't follow you across sites. They do send anonymous, aggregated signals to Google so we can see overall traffic volume even from non-consenting visitors. This is called "Google Consent Mode v2" and is the standard privacy-forward setup as of 2024.
+
+Meta Pixel, Pinterest Tag, Microsoft Clarity, Sentry and Vercel Analytics don't load at all without consent — they have no equivalent privacy mode.`,
+          },
+          {
+            heading: "Data we share with third parties (only with consent)",
+            body: `If you consent to Marketing and submit a form, we send a hashed version of your email and phone number to Google and Meta. "Hashed" means the value is one-way scrambled before it leaves us — it lets Google and Meta match you against their existing user base for ad attribution, but the raw email/phone is never shared. This is called "Enhanced Conversions" (Google) and "Conversions API" (Meta) — the industry-standard way to measure ad performance under iOS and modern browser privacy.
+
+If you don't consent to Marketing, none of this happens.
+
+We don't sell data. We don't share with anyone outside the providers listed in our [Privacy policy](/legal/privacy).`,
+          },
+          {
+            heading: "If you arrived from an ad",
+            body: `When you click a Google, Meta, or Microsoft ad, the URL gains a small parameter (gclid, fbclid, msclkid). We save these for 90 days in a first-party cookie called wa_click_ids so that if you come back to convert later, the original ad still gets the attribution. Saving these is essential to running paid advertising — there's no separate toggle. If you don't want this, don't click ads. The cookie is first-party only and contains no personal data.`,
+          },
+          {
+            heading: "Managing your choices",
+            body: `Use the "Cookie preferences" link in the footer to change your choice at any time. You can also clear cookies from your browser. If you reject everything non-essential, the site still works — sign-in, the cart, form submissions, and security all run on first-party essential cookies.
+
+When you change a preference, the change applies immediately to scripts already loaded. Some third-party cookies set in previous sessions may still exist in your browser until they expire — clearing your cookies is the surest way to start fresh.`,
+          },
+          {
+            heading: "One note about this page itself",
+            body: `This page (the one you're reading right now) loads a small script from CookieYes to render the full cookie disclosure table below. That script sets one CookieYes cookie. We deliberately scope it to this page only so it doesn't run anywhere else on the site. It's a different system from our own consent banner — we use it purely to auto-generate the table from monthly scans of the live site.`,
+          },
+          {
+            heading: "Full cookie list",
+            body: `The table below is automatically generated from a monthly scan of this site by CookieYes. If something is set that isn't listed, please email privacy@willowalexander.co.uk and we'll investigate.`,
+          },
+        ]}
+        updatedAt={sanityPage?.lastUpdated ?? "19 May 2026"}
+      />
+      <section
+        style={{
+          background: "var(--color-house-cream)",
+          padding: "0 clamp(40px, 5vw, 96px) clamp(80px, 10vw, 120px)",
+        }}
+      >
+        <div style={{ maxWidth: 820, margin: "0 auto" }}>
+          <CookieDisclosureTable />
+        </div>
+      </section>
+    </>
   );
 }

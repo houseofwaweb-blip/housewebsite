@@ -3,6 +3,8 @@ import Link from "next/link";
 import s from "./howa-v1.module.css";
 import { TierShowcase } from "./TierShowcase";
 import { FaqList } from "@/components/marketing/FaqList";
+import { MetaViewContent } from "@/components/marketing/MetaViewContent";
+import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
  * /howa — HoWA landing page.
@@ -103,28 +105,66 @@ const FAQS = [
   },
 ];
 
-export default function HoWAV1PreviewPage() {
+export default async function HoWAV1PreviewPage() {
+  const sections = await getPageSections("howa");
+  const hero = sections.get("hero");
+  const stats = sections.get("stats");
+  const intelligence = sections.get("intelligence");
+  const pillars = sections.get("pillars");
+  const poweredBy = sections.get("powered-by");
+  const faq = sections.get("faq");
+  const closing = sections.get("closing");
+
+  const statCols = cmsCards(stats, STAT_COLS, (c, base) => ({
+    value: pick(c.value ?? c.label, base?.value ?? ""),
+    label: pick(c.title ?? c.body, base?.label ?? ""),
+  }));
+  const intelligenceStats = cmsCards(intelligence, INTELLIGENCE_STATS, (c, base) => ({
+    title: pick(c.title, base?.title ?? ""),
+    highlight: pick(c.value, base?.highlight),
+    subAfter: pick(c.body ?? c.value2, base?.subAfter ?? ""),
+  }));
+  const pillarCards = cmsCards(pillars, PILLARS, (c, base) => ({
+    label: pick(c.label, base?.label ?? ""),
+    title: pick(c.title, base?.title ?? ""),
+    image: base?.image ?? "",
+    href: pick(c.ctaHref, base?.href ?? "#"),
+    cta: pick(c.ctaLabel, base?.cta ?? ""),
+  }));
+  const faqItems = cmsCards(faq, FAQS, (c, base) => ({
+    q: pick(c.title, base?.q ?? ""),
+    a: pick(c.body, base?.a ?? ""),
+  }));
+
   return (
     <div className={s.page}>
+      <MetaViewContent
+        contentId="howa_overview"
+        contentName="HoWA overview"
+        contentCategory="howa_marketing"
+      />
       {/* 1. Hero — copy left + annotated Georgian on right */}
       <section className={s.hero}>
         <div className={s.heroCopy}>
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>The Home Operating System</p>
+            <p className={s.heroEy}>{cms(hero, "eyebrow", "The Home Operating System")}</p>
             <h1 className={s.heroTitle}>
-              Your home,<br />
-              <em>finally understood.</em>
+              {cms(hero, "headline", "Your home,")}<br />
+              <em>{cms(hero, "headlineEm", "finally understood.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
-              HoWA observes, learns, and acts — so nothing is missed, delayed,
-              or forgotten.
+              {cms(
+                hero,
+                "body",
+                "HoWA observes, learns, and acts — so nothing is missed, delayed, or forgotten.",
+              )}
             </p>
             <div className={s.heroCtas}>
-              <Link href="/api/howa-bounce" className={s.btnFilled}>
-                Enter HoWA
+              <Link href={cms(hero, "ctaHref", "/api/howa-bounce")} className={s.btnFilled}>
+                {cms(hero, "ctaLabel", "Enter HoWA")}
               </Link>
-              <Link href="/howa/how-it-works" className={s.btnGhost}>
-                See how it works
+              <Link href={cms(hero, "cta2Href", "/howa/how-it-works")} className={s.btnGhost}>
+                {cms(hero, "cta2Label", "See how it works")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
@@ -134,8 +174,12 @@ export default function HoWAV1PreviewPage() {
         <div className={s.heroVisual}>
           <div className={s.heroVisualFrame}>
             <Image
-              src="/home-v4/howa-lander-hero-v4.png"
-              alt="A pink Georgian townhouse with its left half rendered as a hand-drawn elevation — HoWA revealing the structure beneath the home"
+              src={cms(hero, "imageUrl", "/home-v4/howa-lander-hero-v4.webp")}
+              alt={cms(
+                hero,
+                "imageAlt",
+                "A pink Georgian townhouse with its left half rendered as a hand-drawn elevation — HoWA revealing the structure beneath the home",
+              )}
               fill
               sizes="(min-width: 1024px) 55vw, 100vw"
               priority
@@ -148,10 +192,14 @@ export default function HoWAV1PreviewPage() {
       {/* 2. Stats strip */}
       <section className={s.statsStrip}>
         <div className={s.statsLede}>
-          <p className={s.statsLedeLine1}>It remembers. It signals. It cares.</p>
-          <p className={s.statsLedeLine2}>Stewardship starts with listening.</p>
+          <p className={s.statsLedeLine1}>
+            {cms(stats, "headline", "It remembers. It signals. It cares.")}
+          </p>
+          <p className={s.statsLedeLine2}>
+            {cms(stats, "subheadline", "Stewardship starts with listening.")}
+          </p>
         </div>
-        {STAT_COLS.map((stat) => (
+        {statCols.map((stat) => (
           <div key={stat.label} className={s.stat}>
             <span className={s.statValue}>{stat.value}</span>
             <span className={s.statLabel}>{stat.label}</span>
@@ -170,12 +218,12 @@ export default function HoWAV1PreviewPage() {
               <CalendarIcon />
             </span>
             <h2 className={s.intelligenceTitle}>
-              Intelligence that<br />
-              <em>makes a real difference.</em>
+              {cms(intelligence, "headline", "Intelligence that")}<br />
+              <em>{cms(intelligence, "headlineEm", "makes a real difference.", "headline")}</em>
             </h2>
           </header>
           <div className={s.intelligenceStats}>
-            {INTELLIGENCE_STATS.map((stat, i) => (
+            {intelligenceStats.map((stat, i) => (
               <div key={stat.title} className={s.iStat}>
                 <p className={s.iStatTitle}>{stat.title}</p>
                 <p className={s.iStatSub}>
@@ -184,7 +232,7 @@ export default function HoWAV1PreviewPage() {
                   ) : null}
                   {stat.subAfter}
                 </p>
-                {i < INTELLIGENCE_STATS.length - 1 ? (
+                {i < intelligenceStats.length - 1 ? (
                   <span aria-hidden="true" className={s.iStatArrow}>→</span>
                 ) : null}
               </div>
@@ -193,8 +241,8 @@ export default function HoWAV1PreviewPage() {
         </div>
         <div className={s.intelligenceImage}>
           <Image
-            src="/home-v4/pillar-1.webp"
-            alt="A warm parlour interior, marble fireplace and flowers"
+            src={cms(intelligence, "imageUrl", "/home-v4/pillar-1.webp")}
+            alt={cms(intelligence, "imageAlt", "A warm parlour interior, marble fireplace and flowers")}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
             style={{ objectFit: "cover" }}
@@ -205,7 +253,7 @@ export default function HoWAV1PreviewPage() {
       {/* 5. Pillars */}
       <section className={s.pillars}>
         <div className={s.pillarsGrid}>
-          {PILLARS.map((p) => (
+          {pillarCards.map((p) => (
             <Link key={p.label} href={p.href} className={s.pillarCard}>
               <div className={s.pillarImage}>
                 <Image
@@ -228,9 +276,11 @@ export default function HoWAV1PreviewPage() {
 
         {/* 6. Powered by + customer quote */}
         <div className={s.poweredBy}>
-          <p className={s.poweredByEy}>Every service. Every standard.</p>
+          <p className={s.poweredByEy}>
+            {cms(poweredBy, "eyebrow", "Every service. Every standard.")}
+          </p>
           <h2 className={s.poweredByTitle}>
-            Powered by the House of Willow Alexander.
+            {cms(poweredBy, "headline", "Powered by the House of Willow Alexander.")}
           </h2>
           <div className={s.pillarsBelow}>
             {TRUST_LINES.map((line) => {
@@ -247,10 +297,13 @@ export default function HoWAV1PreviewPage() {
           </div>
           <figure className={s.quote}>
             <blockquote>
-              I just know my home better than anyone, and that gives me real
-              peace of mind.
+              {cms(
+                poweredBy,
+                "body",
+                "I just know my home better than anyone, and that gives me real peace of mind.",
+              )}
             </blockquote>
-            <figcaption>— A. Porter, London</figcaption>
+            <figcaption>{cms(poweredBy, "caption", "— A. Porter, London")}</figcaption>
           </figure>
         </div>
       </section>
@@ -259,16 +312,20 @@ export default function HoWAV1PreviewPage() {
       <section className={s.faqSection}>
         <div className={s.faqCopy}>
           <header className={s.faqHead}>
-            <p className={s.faqEy}>Before you begin.</p>
-            <h2 className={s.faqTitle}>Questions, answered.</h2>
+            <p className={s.faqEy}>{cms(faq, "eyebrow", "Before you begin.")}</p>
+            <h2 className={s.faqTitle}>{cms(faq, "headline", "Questions, answered.")}</h2>
           </header>
-          <FaqList items={FAQS} />
+          <FaqList items={faqItems} />
         </div>
         <div className={s.faqVisual}>
           <div className={s.faqVisualFrame}>
             <Image
-              src="/home-v4/howa-lander-faq-v2.png"
-              alt="The Living Record of Your Home — a leather-bound book on a wooden cabinet beside a vase of foliage, a brass key and a HoWA sensor"
+              src={cms(faq, "imageUrl", "/home-v4/howa-lander-faq-v2.webp")}
+              alt={cms(
+                faq,
+                "imageAlt",
+                "The Living Record of Your Home — a leather-bound book on a wooden cabinet beside a vase of foliage, a brass key and a HoWA sensor",
+              )}
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
               style={{ objectFit: "contain", objectPosition: "right center" }}
@@ -279,13 +336,13 @@ export default function HoWAV1PreviewPage() {
 
       {/* 8. Closing band */}
       <section className={s.closing}>
-        <p className={s.closingKicker}>Step into stewardship.</p>
+        <p className={s.closingKicker}>{cms(closing, "eyebrow", "Step into stewardship.")}</p>
         <p className={s.closingStatement}>
-          <em>Understand. Protect. Perform.</em>
+          <em>{cms(closing, "headlineEm", "Understand. Protect. Perform.", "headline")}</em>
         </p>
         <div className={s.closingCtas}>
-          <Link href="/api/howa-bounce" className={s.closingBtnFilled}>
-            Enter HoWA
+          <Link href={cms(closing, "ctaHref", "/api/howa-bounce")} className={s.closingBtnFilled}>
+            {cms(closing, "ctaLabel", "Enter HoWA")}
           </Link>
         </div>
       </section>

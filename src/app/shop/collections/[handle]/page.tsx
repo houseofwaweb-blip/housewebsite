@@ -1,10 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ProductCard, type ProductCardData } from "@/components/commerce/ProductCard";
-import {
-  CATALOGUE_COLLECTIONS,
-  getCatalogueCollection,
-} from "@/lib/shop-data/catalogue";
+import { getShopCollection, getShopCollections } from "@/lib/shop-data/source";
 import { COLLECTIONS, PRODUCTS } from "@/lib/shop-data";
 import s from "./collection.module.css";
 
@@ -13,7 +10,7 @@ type ResolvedCollection = {
   products: ProductCardData[];
 };
 
-function resolveCollection(handle: string): ResolvedCollection | null {
+async function resolveCollection(handle: string): Promise<ResolvedCollection | null> {
   // Prefer hand-curated local collections (e.g. "house-approved")
   const local = COLLECTIONS.find((c) => c.handle === handle);
   if (local) {
@@ -22,10 +19,11 @@ function resolveCollection(handle: string): ResolvedCollection | null {
       .filter((p): p is NonNullable<typeof p> => Boolean(p));
     return { title: local.title, products };
   }
-  // Fall back to the imported Woo catalogue
-  const cat = CATALOGUE_COLLECTIONS.find((c) => c.handle === handle);
-  if (cat) {
-    return { title: cat.title, products: getCatalogueCollection(handle) };
+  // Fall back to Sanity (or static catalogue beneath it)
+  const sourced = await getShopCollection(handle);
+  if (sourced.length > 0) {
+    // Use the collection display name from the first product
+    return { title: sourced[0].collection, products: sourced };
   }
   return null;
 }
@@ -36,7 +34,7 @@ export async function generateMetadata({
   params: Promise<{ handle: string }>;
 }) {
   const { handle } = await params;
-  const collection = resolveCollection(handle);
+  const collection = await resolveCollection(handle);
   if (!collection) return { title: "Collection not found" };
   return {
     title: `${collection.title} — Shop`,
@@ -49,10 +47,11 @@ export default async function CollectionPage({
   params: Promise<{ handle: string }>;
 }) {
   const { handle } = await params;
-  const collection = resolveCollection(handle);
+  const collection = await resolveCollection(handle);
   if (!collection) notFound();
 
   const products = collection.products;
+  const otherCollections = await getShopCollections();
 
   return (
     <div className={s.page}>
@@ -92,7 +91,7 @@ export default async function CollectionPage({
         <div className={s.othersList}>
           {[
             ...COLLECTIONS.map((c) => ({ handle: c.handle, title: c.title })),
-            ...CATALOGUE_COLLECTIONS.map((c) => ({ handle: c.handle, title: c.title })),
+            ...otherCollections.map((c) => ({ handle: c.handle, title: c.title })),
           ]
             .filter((c, i, a) => c.handle !== handle && a.findIndex((x) => x.handle === c.handle) === i)
             .slice(0, 8)
@@ -115,10 +114,11 @@ export default async function CollectionPage({
   );
 }
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const sourced = await getShopCollections();
   const all = [
     ...COLLECTIONS.map((c) => c.handle),
-    ...CATALOGUE_COLLECTIONS.map((c) => c.handle),
+    ...sourced.map((c) => c.handle),
   ];
   return Array.from(new Set(all)).map((handle) => ({ handle }));
 }

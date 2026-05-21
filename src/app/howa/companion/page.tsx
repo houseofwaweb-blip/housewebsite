@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import s from "./companion.module.css";
 import { CompanionTry } from "@/components/marketing/CompanionTry";
+import { MetaViewContent } from "@/components/marketing/MetaViewContent";
+import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
  * /howa/companion — The Companion diagnostic.
@@ -95,32 +97,63 @@ const EXAMPLES = [
   },
 ];
 
-export default function CompanionPage() {
+export default async function CompanionPage() {
+  const sections = await getPageSections("howa-companion");
+  const hero = sections.get("hero");
+  const stats = sections.get("stats");
+  const steps = sections.get("steps");
+  const examples = sections.get("examples");
+  const quote = sections.get("quote");
+  const closing = sections.get("closing");
+
+  const statCols = cmsCards(stats, STAT_COLS, (c, base) => ({
+    value: pick(c.value ?? c.label, base?.value ?? ""),
+    label: pick(c.title ?? c.body, base?.label ?? ""),
+  }));
+  const stepCards = cmsCards(steps, STEPS, (c, base) => ({
+    n: pick(c.label, base?.n ?? ""),
+    title: pick(c.title, base?.title ?? ""),
+    body: pick(c.body, base?.body ?? ""),
+  }));
+  const exampleCards = cmsCards(examples, EXAMPLES, (c, base) => ({
+    issue: pick(c.title, base?.issue ?? ""),
+    answer: pick(c.body, base?.answer ?? ""),
+    next: pick(c.value2 ?? c.value, base?.next ?? ""),
+  }));
+
   return (
     <div className={s.page}>
+      <MetaViewContent
+        contentId="howa_companion"
+        contentName="HoWA Companion"
+        contentCategory="howa_product_feature"
+      />
       {/* 1. Hero */}
       <section className={s.hero}>
         <div className={s.heroCopy}>
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>The Companion</p>
+            <p className={s.heroEy}>{cms(hero, "eyebrow", "The Companion")}</p>
             <h1 className={s.heroTitle}>
-              The question you'd ask <em>a surveyor</em>,<br />
-              answered.
+              {cms(hero, "headline", "The question you'd ask")}{" "}
+              <em>{cms(hero, "headlineEm", "a surveyor", "headline")}</em>,<br />
+              {cms(hero, "subheadline", "answered.")}
             </h1>
             <p className={s.heroLede}>
-              Not another chatbot. A calm, specific diagnostic built for British
-              homes. Capture the home once, route intelligently into design,
-              services, protection, and ongoing care.
+              {cms(
+                hero,
+                "body",
+                "Not another chatbot. A calm, specific diagnostic built for British homes. Capture the home once, route intelligently into design, services, protection, and ongoing care.",
+              )}
             </p>
             <div className={s.heroCtas}>
               <Link
-                href="/api/howa-bounce?source=companion"
+                href={cms(hero, "ctaHref", "/api/howa-bounce?source=companion")}
                 className={s.btnFilled}
               >
-                Try the Companion
+                {cms(hero, "ctaLabel", "Try the Companion")}
               </Link>
-              <Link href="/howa/plus" className={s.btnGhost}>
-                Part of HoWA+
+              <Link href={cms(hero, "cta2Href", "/howa/plus")} className={s.btnGhost}>
+                {cms(hero, "cta2Label", "Part of HoWA+")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
@@ -128,8 +161,12 @@ export default function CompanionPage() {
         </div>
         <div className={s.heroVisual}>
           <Image
-            src="/home-v4/plus-benefit-3.png"
-            alt="A hand holding a phone running the Companion diagnostic over a kitchen valve, with subtle architect-style annotation lines"
+            src={cms(hero, "imageUrl", "/home-v4/plus-benefit-3.webp")}
+            alt={cms(
+              hero,
+              "imageAlt",
+              "A hand holding a phone running the Companion diagnostic over a kitchen valve, with subtle architect-style annotation lines",
+            )}
             fill
             sizes="(min-width: 1024px) 55vw, 100vw"
             priority
@@ -141,10 +178,14 @@ export default function CompanionPage() {
       {/* 2. Stats strip */}
       <section className={s.statsStrip}>
         <div className={s.statsLede}>
-          <p className={s.statsLedeLine1}>Insight first. Action second.</p>
-          <p className={s.statsLedeLine2}>Guidance before transaction.</p>
+          <p className={s.statsLedeLine1}>
+            {cms(stats, "headline", "Insight first. Action second.")}
+          </p>
+          <p className={s.statsLedeLine2}>
+            {cms(stats, "subheadline", "Guidance before transaction.")}
+          </p>
         </div>
-        {STAT_COLS.map((stat) => (
+        {statCols.map((stat) => (
           <div key={stat.label} className={s.stat}>
             <span className={s.statValue}>{stat.value}</span>
             <span className={s.statLabel}>{stat.label}</span>
@@ -155,13 +196,14 @@ export default function CompanionPage() {
       {/* 3. Four steps */}
       <section className={s.steps}>
         <header className={s.stepsHead}>
-          <p className={s.stepsEy}>How it works</p>
+          <p className={s.stepsEy}>{cms(steps, "eyebrow", "How it works")}</p>
           <h2 className={s.stepsTitle}>
-            Four steps, <em>about two minutes.</em>
+            {cms(steps, "headline", "Four steps,")}{" "}
+            <em>{cms(steps, "headlineEm", "about two minutes.", "headline")}</em>
           </h2>
         </header>
         <div className={s.stepsGrid}>
-          {STEPS.map((step) => (
+          {stepCards.map((step) => (
             <article key={step.n} className={s.stepCard}>
               <p className={s.stepNumber}>{step.n}</p>
               <h3 className={s.stepTitle}>{step.title}</h3>
@@ -174,13 +216,15 @@ export default function CompanionPage() {
       {/* 4. Six examples */}
       <section className={s.examples}>
         <header className={s.examplesHead}>
-          <p className={s.examplesEy}>What good looks like</p>
+          <p className={s.examplesEy}>{cms(examples, "eyebrow", "What good looks like")}</p>
           <h2 className={s.examplesTitle}>
-            Six <em>actual</em> answers.
+            {cms(examples, "headline", "Six")}{" "}
+            <em>{cms(examples, "headlineEm", "actual", "headline")}</em>{" "}
+            {cms(examples, "subheadline", "answers.")}
           </h2>
         </header>
         <ul className={s.examplesList}>
-          {EXAMPLES.map((ex, i) => (
+          {exampleCards.map((ex, i) => (
             <li key={ex.issue} className={s.example}>
               <span className={s.exampleIndex}>0{i + 1}</span>
               <div className={s.exampleBody}>
@@ -206,12 +250,15 @@ export default function CompanionPage() {
       <section className={s.quoteSection}>
         <figure className={s.quote}>
           <blockquote>
-            I photograph everything now. The Companion told me the crack above
-            the kitchen door was settlement, not structural. Saved me a
-            surveyor's call-out fee and a week of worry.
+            {cms(
+              quote,
+              "body",
+              "I photograph everything now. The Companion told me the crack above the kitchen door was settlement, not structural. Saved me a surveyor's call-out fee and a week of worry.",
+            )}
           </blockquote>
           <figcaption>
-            <strong>David R.</strong> · 2-bed cottage, Oxfordshire
+            <strong>{cms(quote, "headline", "David R.")}</strong>{" "}
+            · {cms(quote, "subheadline", "2-bed cottage, Oxfordshire")}
           </figcaption>
         </figure>
       </section>
@@ -225,17 +272,20 @@ export default function CompanionPage() {
 
       {/* 7. Closing */}
       <section className={s.closing}>
-        <p className={s.closingKicker}>The Companion is part of HoWA+.</p>
+        <p className={s.closingKicker}>{cms(closing, "eyebrow", "The Companion is part of HoWA+.")}</p>
         <p className={s.closingStatement}>
-          <em>Your home, finally understood.</em>
+          <em>{cms(closing, "headlineEm", "Your home, finally understood.", "headline")}</em>
         </p>
         <p className={s.closingSub}>
-          Your photos and notes are stored in your private record — encrypted,
-          never shared, never used to train public models.
+          {cms(
+            closing,
+            "body",
+            "Your photos and notes are stored in your private record — encrypted, never shared, never used to train public models.",
+          )}
         </p>
         <div className={s.closingCtas}>
-          <Link href="/howa/plus" className={s.closingBtnFilled}>
-            HoWA+ is £16.99 a month
+          <Link href={cms(closing, "ctaHref", "/howa/plus")} className={s.closingBtnFilled}>
+            {cms(closing, "ctaLabel", "HoWA+ is £16.99 a month")}
           </Link>
         </div>
       </section>

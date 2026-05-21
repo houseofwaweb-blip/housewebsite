@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import s from "./studios.module.css";
+import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
  * /design/studios — lander framework.
@@ -66,7 +67,7 @@ const STUDIOS = [
     blurb:
       "Automation, lighting schemes and quiet technology that disappears into the architecture rather than dominating it.",
     signatures: ["Lighting design", "Automation", "Quiet technology"],
-    image: "/home-v4/design-portrait.png",
+    image: "/home-v4/design-portrait.webp",
   },
 ];
 
@@ -111,29 +112,54 @@ const COMMISSION_STEPS = [
   },
 ];
 
-export default function DesignStudiosPage() {
+export default async function DesignStudiosPage() {
+  const sections = await getPageSections("design-studios");
+  const hero = sections.get("hero");
+  const stats = sections.get("stats");
+  const studios = sections.get("studios");
+  const tests = sections.get("tests");
+  const commission = sections.get("commission");
+  const closing = sections.get("closing");
+
+  const statCols = cmsCards(stats, STAT_COLS, (c, base) => ({
+    value: pick(c.value ?? c.label, base?.value ?? ""),
+    label: pick(c.title ?? c.body, base?.label ?? ""),
+  }));
+  const testCards = cmsCards(tests, SELECTION_TESTS, (c, base) => ({
+    numeral: pick(c.label, base?.numeral ?? ""),
+    title: pick(c.title, base?.title ?? ""),
+    body: pick(c.body, base?.body ?? ""),
+  }));
+  const stepCards = cmsCards(commission, COMMISSION_STEPS, (c, base) => ({
+    n: pick(c.label, base?.n ?? ""),
+    name: pick(c.title, base?.name ?? ""),
+    body: pick(c.body, base?.body ?? ""),
+  }));
+
   return (
     <div className={s.page}>
       {/* 1. Hero */}
       <section className={s.hero}>
         <div className={s.heroCopy}>
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>Design · The Studios</p>
+            <p className={s.heroEy}>{cms(hero, "eyebrow", "Design · The Studios")}</p>
             <h1 className={s.heroTitle}>
-              A small collective, <em>properly chosen.</em>
+              {cms(hero, "headline", "A small collective,")}{" "}
+              <em>{cms(hero, "headlineEm", "properly chosen.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
-              Every studio working under the House Approved seal has been
-              visited, interviewed, and put in front of a real project. The
-              collective starts small on purpose — we would rather work with
-              four studios we trust than forty we don't.
+              {cms(
+                hero,
+                "body",
+                "Every studio working under the House Approved seal has been visited, interviewed, and put in front of a real project. The collective starts small on purpose — we would rather work with four studios we trust than forty we don't.",
+              )}
             </p>
             <div className={s.heroCtas}>
-              <Link href="#studios" className={s.btnFilled}>
-                Meet the studios
+              <Link href={cms(hero, "ctaHref", "#studios")} className={s.btnFilled}>
+                {cms(hero, "ctaLabel", "Meet the studios")}
               </Link>
-              <Link href="/the-house/standards" className={s.btnGhost}>
-                Read the standards
+              <Link href={cms(hero, "cta2Href", "/the-house/standards")} className={s.btnGhost}>
+                {cms(hero, "cta2Label", "Read the standards")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
@@ -158,10 +184,14 @@ export default function DesignStudiosPage() {
       {/* 2. Stats strip */}
       <section className={s.statsStrip}>
         <div className={s.statsLede}>
-          <p className={s.statsLedeLine1}>Vetted. Visited. Reviewed annually.</p>
-          <p className={s.statsLedeLine2}>The collective grows only when the right person turns up.</p>
+          <p className={s.statsLedeLine1}>
+            {cms(stats, "headline", "Vetted. Visited. Reviewed annually.")}
+          </p>
+          <p className={s.statsLedeLine2}>
+            {cms(stats, "subheadline", "The collective grows only when the right person turns up.")}
+          </p>
         </div>
-        {STAT_COLS.map((stat) => (
+        {statCols.map((stat) => (
           <div key={stat.label} className={s.stat}>
             <span className={s.statValue}>{stat.value}</span>
             <span className={s.statLabel}>{stat.label}</span>
@@ -172,13 +202,17 @@ export default function DesignStudiosPage() {
       {/* 3. Studios — editorial cards */}
       <section id="studios" className={s.studios}>
         <header className={s.studiosHead}>
-          <p className={s.studiosEy}>The collective at launch</p>
+          <p className={s.studiosEy}>{cms(studios, "eyebrow", "The collective at launch")}</p>
           <h2 className={s.studiosTitle}>
-            Four studios. <em>Four ways to begin.</em>
+            {cms(studios, "headline", "Four studios.")}{" "}
+            <em>{cms(studios, "headlineEm", "Four ways to begin.", "headline")}</em>
           </h2>
           <p className={s.studiosLede}>
-            Each carries the House Approved seal under the same three tests —
-            and stays in the collective only as long as those tests hold.
+            {cms(
+              studios,
+              "body",
+              "Each carries the House Approved seal under the same three tests — and stays in the collective only as long as those tests hold.",
+            )}
           </p>
         </header>
         <div className={s.studiosGrid}>
@@ -220,18 +254,21 @@ export default function DesignStudiosPage() {
       {/* 4. Selection tests */}
       <section className={s.tests}>
         <header className={s.testsHead}>
-          <p className={s.testsEy}>What House Approved means in design</p>
+          <p className={s.testsEy}>{cms(tests, "eyebrow", "What House Approved means in design")}</p>
           <h2 className={s.testsTitle}>
-            Three tests, <em>every time.</em>
+            {cms(tests, "headline", "Three tests,")}{" "}
+            <em>{cms(tests, "headlineEm", "every time.", "headline")}</em>
           </h2>
           <p className={s.testsLede}>
-            The seal isn't bestowed once and forgotten. Every studio is
-            reviewed annually against the same three tests. If any test fails
-            for two consecutive cycles, the studio leaves the collective.
+            {cms(
+              tests,
+              "body",
+              "The seal isn't bestowed once and forgotten. Every studio is reviewed annually against the same three tests. If any test fails for two consecutive cycles, the studio leaves the collective.",
+            )}
           </p>
         </header>
         <div className={s.testsGrid}>
-          {SELECTION_TESTS.map((t) => (
+          {testCards.map((t) => (
             <article key={t.title} className={s.testCard}>
               <p className={s.testNumeral}>Test {t.numeral}.</p>
               <h3 className={s.testName}>{t.title}</h3>
@@ -244,18 +281,21 @@ export default function DesignStudiosPage() {
       {/* 5. How to commission */}
       <section className={s.commission}>
         <header className={s.commissionHead}>
-          <p className={s.commissionEy}>How to commission</p>
+          <p className={s.commissionEy}>{cms(commission, "eyebrow", "How to commission")}</p>
           <h2 className={s.commissionTitle}>
-            From a brief to a <em>finished room.</em>
+            {cms(commission, "headline", "From a brief to a")}{" "}
+            <em>{cms(commission, "headlineEm", "finished room.", "headline")}</em>
           </h2>
           <p className={s.commissionLede}>
-            You don't pick a studio cold. The Companion learns enough to put
-            two or three in front of you that fit, and the design brief lives
-            on your home record from day one.
+            {cms(
+              commission,
+              "body",
+              "You don't pick a studio cold. The Companion learns enough to put two or three in front of you that fit, and the design brief lives on your home record from day one.",
+            )}
           </p>
         </header>
         <ol className={s.commissionList}>
-          {COMMISSION_STEPS.map((step) => (
+          {stepCards.map((step) => (
             <li key={step.n} className={s.commissionStep}>
               <span className={s.commissionStepN}>{step.n}</span>
               <div className={s.commissionStepBody}>
@@ -269,20 +309,24 @@ export default function DesignStudiosPage() {
 
       {/* 6. Closing */}
       <section className={s.closing}>
-        <p className={s.closingKicker}>Ready when you are</p>
+        <p className={s.closingKicker}>{cms(closing, "eyebrow", "Ready when you are")}</p>
         <p className={s.closingStatement}>
-          Begin with a <em>conversation.</em>
+          {cms(closing, "headline", "Begin with a")}{" "}
+          <em>{cms(closing, "headlineEm", "conversation.", "headline")}</em>
         </p>
         <p className={s.closingLede}>
-          The Companion takes about two minutes. The studios match to the
-          brief. You only meet the ones we think fit.
+          {cms(
+            closing,
+            "body",
+            "The Companion takes about two minutes. The studios match to the brief. You only meet the ones we think fit.",
+          )}
         </p>
         <div className={s.closingCtas}>
-          <Link href="/api/howa-bounce?source=design-studios" className={s.btnFilled}>
-            Launch the Companion
+          <Link href={cms(closing, "ctaHref", "/api/howa-bounce?source=design-studios")} className={s.btnFilled}>
+            {cms(closing, "ctaLabel", "Launch the Companion")}
           </Link>
-          <Link href="/design" className={s.btnGhost}>
-            Back to Design
+          <Link href={cms(closing, "cta2Href", "/design")} className={s.btnGhost}>
+            {cms(closing, "cta2Label", "Back to Design")}
             <span aria-hidden="true" className={s.btnArrow}>→</span>
           </Link>
         </div>

@@ -247,14 +247,34 @@ export const pageSectionsQuery = /* groq */ `*[_type == "pageSection" && page ==
   section, eyebrow, headline, headlineEm, subheadline, body, body2,
   items, ctaLabel, ctaHref, cta2Label, cta2Href, caption,
   "imageUrl": image.asset->url,
-  "imageAlt": image.alt
+  "imageAlt": image.alt,
+  "cards": cards[]{
+    label, title, body, value, value2, ctaLabel, ctaHref, items,
+    "imageUrl": image.asset->url,
+    "imageAlt": image.alt
+  }
 }`;
 
 export const pageSectionQuery = /* groq */ `*[_type == "pageSection" && page == $page && section == $section][0]{
   section, eyebrow, headline, headlineEm, subheadline, body, body2,
   items, ctaLabel, ctaHref, cta2Label, cta2Href, caption,
   "imageUrl": image.asset->url,
-  "imageAlt": image.alt
+  "imageAlt": image.alt,
+  "cards": cards[]{
+    label, title, body, value, value2, ctaLabel, ctaHref, items,
+    "imageUrl": image.asset->url,
+    "imageAlt": image.alt
+  }
+}`;
+
+// ─── Artwork page (singleton) ─────────────────────────────────────────────
+export const artworkPageQuery = /* groq */ `*[_type == "artworkPage"][0]{
+  heroEyebrow, heroTitle, heroTitleEm, heroLede, heroScrollCue,
+  chapters[]{ roman, kicker, headline, body, pullQuote },
+  closingKicker, closingStatement, closingStatementEm,
+  closingCtaPrimary, closingCtaPrimaryHref,
+  closingCtaSecondary, closingCtaSecondaryHref,
+  tagline, taglineEm
 }`;
 
 // ─── Newsletter blocks ────────────────────────────────────────────────────

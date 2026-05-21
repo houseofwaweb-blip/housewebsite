@@ -38,12 +38,8 @@ Cancellation terms for each service are published on the service's page and conf
 
 For things we can limit: our liability for loss arising from the site itself is capped at the fees you've paid us in the previous 12 months. For services, liability sits with the provider as described above.`,
         },
-        {
-          heading: "This page is in draft",
-          body: `The text above is a working summary for design and review. A full, legally reviewed terms of service will replace it before public launch.`,
-        },
       ]}
-      updatedAt={sanityPage?.lastUpdated ?? "16 April 2026 (draft)"}
+      updatedAt={sanityPage?.lastUpdated ?? "19 May 2026"}
     />
   );
 }
