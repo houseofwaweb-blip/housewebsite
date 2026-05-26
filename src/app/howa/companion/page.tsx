@@ -150,7 +150,7 @@ export default async function CompanionPage() {
                 href={cms(hero, "ctaHref", "/api/howa-bounce?source=companion")}
                 className={s.btnFilled}
               >
-                {cms(hero, "ctaLabel", "Try the Companion")}
+                {cms(hero, "ctaLabel", "Coming soon")}
               </Link>
               <Link href={cms(hero, "cta2Href", "/howa/plus")} className={s.btnGhost}>
                 {cms(hero, "cta2Label", "Part of HoWA+")}

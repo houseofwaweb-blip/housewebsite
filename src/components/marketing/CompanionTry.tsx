@@ -30,10 +30,10 @@ export function CompanionTry() {
         type="submit"
         className="mt-3 w-full py-3.5 font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold cursor-pointer transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
       >
-        Ask the Companion →
+        Coming soon →
       </button>
       <p className="font-sans text-[11px] text-house-stone text-center mt-2 italic">
-        Part of HoWA+. You&apos;ll be taken to the Companion to get your answer.
+        Part of HoWA+. We&apos;ll let you know the moment the Companion opens.
       </p>
     </form>
   );

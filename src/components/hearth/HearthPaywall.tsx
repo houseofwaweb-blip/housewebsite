@@ -99,7 +99,7 @@ export function HearthPaywall() {
                 href="/api/howa-bounce?source=hearth-paywall"
                 className="inline-block px-7 py-3.5 font-hearth-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light hover:shadow-[0_8px_24px_rgba(184,148,62,0.3)] max-md:flex-1 max-md:text-center"
               >
-                Continue reading
+                Coming soon
               </Link>
               <Link
                 href="/howa/plans"

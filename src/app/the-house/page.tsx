@@ -147,7 +147,7 @@ export default async function TheHousePage() {
             </p>
             <div className={s.heroCtas}>
               <Link href={cms(hero, "ctaHref", "/howa")} className={s.btnFilled}>
-                {cms(hero, "ctaLabel", "Enter HoWA")}
+                {cms(hero, "ctaLabel", "Coming soon")}
               </Link>
               <Link href={cms(hero, "cta2Href", "#care")} className={s.btnGhost}>
                 {cms(hero, "cta2Label", "What we do")}
@@ -296,7 +296,7 @@ export default async function TheHousePage() {
           </p>
           <div className={s.howaCtas}>
             <Link href={cms(howa, "ctaHref", "/howa")} className={s.btnFilled}>
-              {cms(howa, "ctaLabel", "Enter HoWA")}
+              {cms(howa, "ctaLabel", "Coming soon")}
             </Link>
             <Link href={cms(howa, "cta2Href", "/howa/plus")} className={s.pillarLink}>
               {cms(howa, "cta2Label", "See HoWA+")} →
@@ -376,7 +376,7 @@ export default async function TheHousePage() {
           </p>
           <div className={s.closingCtas}>
             <Link href={cms(closing, "ctaHref", "/howa")} className={s.closingBtnFilled}>
-              {cms(closing, "ctaLabel", "Start HoWA")}
+              {cms(closing, "ctaLabel", "Coming soon")}
             </Link>
             <Link href={cms(closing, "cta2Href", "/services")} className={s.closingBtnGhost}>
               {cms(closing, "cta2Label", "Book a service")} →

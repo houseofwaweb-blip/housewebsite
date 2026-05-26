@@ -146,7 +146,7 @@ export default async function HowItWorksPage() {
             </p>
             <div className={s.heroCtas}>
               <Link href={cms(hero, "ctaHref", "/api/howa-bounce")} className={s.btnFilled}>
-                {cms(hero, "ctaLabel", "Enter HoWA")}
+                {cms(hero, "ctaLabel", "Coming soon")}
               </Link>
               <Link href={cms(hero, "cta2Href", "/howa/plus")} className={s.btnGhost}>
                 {cms(hero, "cta2Label", "See HoWA+")}
@@ -234,7 +234,7 @@ export default async function HowItWorksPage() {
         </p>
         <div className={s.closingCtas}>
           <Link href={cms(closing, "ctaHref", "/api/howa-bounce")} className={s.closingBtnFilled}>
-            {cms(closing, "ctaLabel", "Start HoWA — Free")}
+            {cms(closing, "ctaLabel", "Coming soon")}
           </Link>
         </div>
       </section>

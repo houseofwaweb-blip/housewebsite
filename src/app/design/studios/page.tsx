@@ -323,7 +323,7 @@ export default async function DesignStudiosPage() {
         </p>
         <div className={s.closingCtas}>
           <Link href={cms(closing, "ctaHref", "/api/howa-bounce?source=design-studios")} className={s.btnFilled}>
-            {cms(closing, "ctaLabel", "Launch the Companion")}
+            {cms(closing, "ctaLabel", "Coming soon")}
           </Link>
           <Link href={cms(closing, "cta2Href", "/design")} className={s.btnGhost}>
             {cms(closing, "cta2Label", "Back to Design")}

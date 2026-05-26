@@ -20,13 +20,14 @@ import { PinterestTag } from "@/components/consent/loaders/PinterestTag";
 import { ClickIdCapture } from "@/components/marketing/ClickIdCapture";
 import "./globals.css";
 
-// When the HoWA Product app isn't live, header CTA swaps to "Book with HoWA".
-// Hash href triggers the OBF booking modal in place rather than navigating
-// to a separate page (matches the WP-plugin pattern on willowalexander.co.uk).
-const ctaLabel = env.HOWA_APP_LIVE ? "Start HoWA" : "Book with HoWA";
+// When the HoWA Product app isn't live, the header CTA reads "Coming soon"
+// and routes visitors to the coming-soon waitlist page. Once the product
+// app launches, set HOWA_APP_LIVE=true in Vercel and the label + href
+// swap to point at the real app — no code change required.
+const ctaLabel = env.HOWA_APP_LIVE ? "Start HoWA" : "Coming soon";
 const ctaHref = env.HOWA_APP_LIVE
   ? env.NEXT_PUBLIC_HOWA_APP_URL ?? "/api/howa-bounce"
-  : "#open-booking-form";
+  : "/howa/coming-soon";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL),

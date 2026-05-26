@@ -145,7 +145,7 @@ export function ServiceDetail({ service }: { service: Service }) {
                 Book {service.name.toLowerCase()}
               </Link>
               <Link href="/api/howa-bounce?source=service-hero" className={s.btnGhostLight}>
-                Start a plan
+                Coming soon
               </Link>
             </div>
           </div>
@@ -163,7 +163,7 @@ export function ServiceDetail({ service }: { service: Service }) {
                 Book {service.name.toLowerCase()}
               </Link>
               <Link href="/api/howa-bounce?source=service-hero" className={s.btnGhost}>
-                Start a plan
+                Coming soon
               </Link>
               {service.recurring ? (
                 <span className={s.stewardBadge}>Steward-ready</span>

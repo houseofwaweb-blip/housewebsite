@@ -404,7 +404,7 @@ export default async function InteriorsPage() {
             href={cms(companion, "ctaHref", "/api/howa-bounce?source=interiors-companion")}
             className={s.btnFilled}
           >
-            {cms(companion, "ctaLabel", "Start the Companion")}
+            {cms(companion, "ctaLabel", "Coming soon")}
           </Link>
         </div>
         <div className={s.companionImage}>

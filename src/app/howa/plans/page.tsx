@@ -151,7 +151,7 @@ export default async function PlansPage() {
                 href={cms(hero, "ctaHref", "/api/howa-bounce?source=plans")}
                 className={s.btnFilled}
               >
-                {cms(hero, "ctaLabel", "Start HoWA+")}
+                {cms(hero, "ctaLabel", "Coming soon")}
               </Link>
               <Link href={cms(hero, "cta2Href", "#steward")} className={s.btnGhost}>
                 {cms(hero, "cta2Label", "See Steward")}
@@ -241,7 +241,7 @@ export default async function PlansPage() {
                   href={cms(tierPlus, "ctaHref", "/api/howa-bounce?source=plans-howaplus")}
                   className={s.btnFilled}
                 >
-                  {cms(tierPlus, "ctaLabel", "Start HoWA+")}
+                  {cms(tierPlus, "ctaLabel", "Coming soon")}
                 </Link>
                 <Link href={cms(tierPlus, "cta2Href", "/howa/companion")} className={s.tierLink}>
                   {cms(tierPlus, "cta2Label", "See the Companion")} →

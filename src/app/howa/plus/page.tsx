@@ -183,7 +183,7 @@ export default async function HowaPlusV1PreviewPage() {
             </p>
             <div className={s.heroCtas}>
               <Link href={cms(hero, "ctaHref", "/api/howa-bounce")} className={s.btnFilled}>
-                {cms(hero, "ctaLabel", "Become a member")}
+                {cms(hero, "ctaLabel", "Coming soon")}
               </Link>
               <Link href={cms(hero, "cta2Href", "/howa/how-it-works")} className={s.btnGhost}>
                 {cms(hero, "cta2Label", "See how it works")}
@@ -367,7 +367,7 @@ export default async function HowaPlusV1PreviewPage() {
         </p>
         <div className={s.closingCtas}>
           <Link href={cms(closing, "ctaHref", "/api/howa-bounce")} className={s.closingBtnFilled}>
-            {cms(closing, "ctaLabel", "Become a member")}
+            {cms(closing, "ctaLabel", "Coming soon")}
           </Link>
         </div>
       </section>

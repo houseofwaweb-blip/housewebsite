@@ -73,7 +73,10 @@ const PILLARS = [
   {
     label: "Design & Care",
     title: "Expert care for every aspect of home",
-    image: "/home-v4/pillar-1.webp",
+    // design-portrait.webp is portrait 1023×1537 — matches the 2:3 frame
+    // of pillars 2/3/4. The old pillar-1.webp was landscape 1168×784 and
+    // didn't fill the tile the way the others did.
+    image: "/home-v4/design-portrait.webp",
     href: "/design",
   },
   {
@@ -168,7 +171,7 @@ export default async function HomeV4aPreviewPage() {
             </p>
             <div className={s.heroCtas}>
               <Link href={cms(hero, "ctaHref", "/howa")} className={s.btnFilled}>
-                {cms(hero, "ctaLabel", "Enter HoWA")}
+                {cms(hero, "ctaLabel", "Coming soon")}
               </Link>
               <Link href={cms(hero, "cta2Href", "/howa/how-it-works")} className={s.btnGhost}>
                 {cms(hero, "cta2Label", "See how it works")}
@@ -246,8 +249,8 @@ export default async function HomeV4aPreviewPage() {
               </ul>
 
               <footer className={s.appFooter}>
-                <Link href="/howa" className={s.appFooterCta}>
-                  Get started with HoWA →
+                <Link href="/howa/coming-soon" className={s.appFooterCta}>
+                  Coming soon →
                 </Link>
               </footer>
             </aside>
@@ -423,7 +426,7 @@ export default async function HomeV4aPreviewPage() {
         </p>
         <div className={s.closingCtas}>
           <Link href={cms(closing, "ctaHref", "/howa")} className={s.closingBtnFilled}>
-            {cms(closing, "ctaLabel", "Start HoWA")}
+            {cms(closing, "ctaLabel", "Coming soon")}
           </Link>
           <Link href={cms(closing, "cta2Href", "#open-booking-form")} className={s.closingBtnGhost}>
             {cms(closing, "cta2Label", "Book with HoWA")}

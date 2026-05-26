@@ -458,7 +458,7 @@ export default async function GardensPage() {
             href={cms(companion, "ctaHref", "/api/howa-bounce?source=gardens-companion")}
             className={s.btnFilled}
           >
-            {cms(companion, "ctaLabel", "Start the Companion")}
+            {cms(companion, "ctaLabel", "Coming soon")}
           </Link>
         </div>
         <div className={s.companionImage}>
