@@ -1292,11 +1292,20 @@
   font-size: 14px;
 }
 
-/* The Institution — philosophy band */
+/* The Institution — two-column (copy LEFT, pillar grid RIGHT on desktop) */
 .institution {
   background: var(--color-house-cream);
   padding: clamp(80px, 9vw, 140px) clamp(40px, 5vw, 96px);
-  text-align: center;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(48px, 6vw, 96px);
+  align-items: center;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+.institutionCopy {
+  display: flex;
+  flex-direction: column;
 }
 .institutionEy {
   display: inline-flex;
@@ -1307,10 +1316,10 @@
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
-  margin-bottom: 32px;
+  margin-bottom: 28px;
+  align-self: flex-start;
 }
-.institutionEy::before,
-.institutionEy::after {
+.institutionEy::before {
   content: "";
   width: 36px;
   height: 1px;
@@ -1321,36 +1330,31 @@
   font-family: var(--font-hearth-serif);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(36px, 4.4vw, 64px);
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  max-width: 26ch;
-  margin: 0 auto;
+  font-size: clamp(40px, 4.6vw, 72px);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
   color: var(--color-house-brown);
+  margin: 0;
 }
 .institutionQuote em {
   font-style: normal;
   color: var(--color-house-gold-dark);
 }
 .institutionBody {
-  max-width: 56ch;
-  margin: 36px auto 0;
+  margin: 32px 0 0;
   font-family: var(--font-sans);
   font-size: 17px;
   line-height: 1.7;
   color: rgba(48, 35, 28, 0.78);
+  max-width: 50ch;
 }
 .institutionNav {
   display: flex;
-  justify-content: center;
-  gap: clamp(28px, 4vw, 56px);
-  margin-top: 48px;
-  padding-top: 32px;
-  border-top: 1px solid rgba(48, 35, 28, 0.14);
-  max-width: 760px;
-  margin-left: auto;
-  margin-right: auto;
   flex-wrap: wrap;
+  gap: 20px 32px;
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(48, 35, 28, 0.14);
 }
 .institutionNav a {
   font-family: var(--font-sans);
@@ -1363,6 +1367,57 @@
 }
 .institutionNav a:hover {
   color: var(--color-house-gold-dark);
+}
+
+/* Pillar cards inside the Institution band — 2x2 grid on the right */
+.institutionPillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.institutionPillar {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: var(--color-house-brown);
+  transition: transform 0.2s ease;
+}
+.institutionPillar:hover {
+  transform: translateY(-3px);
+}
+.institutionPillarImage {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+.institutionPillarLabel {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--color-house-gold-dark);
+  margin: 0 0 6px;
+}
+.institutionPillarTitle {
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(15px, 1.3vw, 18px);
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+  margin: 0;
+  color: var(--color-house-brown);
+}
+
+@media (max-width: 900px) {
+  .institution {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 520px) {
+  .institutionPillars {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Introducing HoWA — flagship product teaser */

@@ -90,7 +90,7 @@ const PILLARS = [
     href: "/shop",
   },
   {
-    label: "Journal",
+    label: "The Hearth",
     title: "Stories, guidance, and timeless inspiration",
     image: "/home-v4/pillar-3.webp",
     href: "/the-hearth",
@@ -219,7 +219,7 @@ export default async function HomeV2PreviewPage() {
         </div>
         <div className={s.statsLede}>
           <Image
-            src="/brand/howa/howa-gold.svg"
+            src="/brand/howa/howa-black.svg"
             alt="HoWA"
             width={204}
             height={102}
@@ -246,25 +246,47 @@ export default async function HomeV2PreviewPage() {
       </section>
 
       {/* ============================================================
-          3a. The Institution — House philosophy band [NEW]
+          3a. The Institution — copy LEFT, four pillar cards RIGHT
           ============================================================ */}
       <section className={s.institution}>
-        <span className={s.institutionEy}>The House</span>
-        <blockquote className={s.institutionQuote}>
-          Ownership is passive. <em>Stewardship is intentional.</em>
-        </blockquote>
-        <p className={s.institutionBody}>
-          House of Willow Alexander is a modern British institution for the
-          stewardship of homes. We design, we care, we protect, and we hold
-          the standard. Every service through a House-Approved studio,
-          every decision filed to a record that belongs to the home.
-        </p>
-        <div className={s.institutionNav}>
-          <Link href="/services">Care</Link>
-          <Link href="/protect">Protect</Link>
-          <Link href="/design">Design</Link>
-          <Link href="/howa/steward">Steward Plans</Link>
-          <Link href="/shop">Shop</Link>
+        <div className={s.institutionCopy}>
+          <span className={s.institutionEy}>The House</span>
+          <blockquote className={s.institutionQuote}>
+            Ownership is passive. <em>Stewardship is intentional.</em>
+          </blockquote>
+          <p className={s.institutionBody}>
+            House of Willow Alexander is a modern British institution for the
+            stewardship of homes. We design, we care, we protect, and we hold
+            the standard. Every service through a House-Approved studio,
+            every decision filed to a record that belongs to the home.
+          </p>
+          <div className={s.institutionNav}>
+            <Link href="/services">Care</Link>
+            <Link href="/protect">Protect</Link>
+            <Link href="/design">Design</Link>
+            <Link href="/howa/steward">Steward Plans</Link>
+            <Link href="/shop">Shop</Link>
+          </div>
+        </div>
+        <div className={s.institutionPillars}>
+          {pillarCards.map((p) => (
+            <Link key={p.label} href={p.href} className={s.institutionPillar}>
+              <div className={s.institutionPillarImage}>
+                <Image
+                  src={p.image}
+                  alt={p.title}
+                  width={780}
+                  height={975}
+                  sizes="(min-width: 1024px) 22vw, 45vw"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </div>
+              <div className={s.institutionPillarBody}>
+                <p className={s.institutionPillarLabel}>{p.label}</p>
+                <h3 className={s.institutionPillarTitle}>{p.title}</h3>
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
 
@@ -421,30 +443,9 @@ export default async function HomeV2PreviewPage() {
       </section>
 
       {/* ============================================================
-          6. Four pillar cards
+          6. Powered by — four-pillar grid moved up into Institution band
           ============================================================ */}
       <section className={s.pillars}>
-        <div className={s.pillarsGrid}>
-          {pillarCards.map((p) => (
-            <Link key={p.label} href={p.href} className={s.pillarCard}>
-              <div className={s.pillarImage}>
-                <Image
-                  src={p.image}
-                  alt={p.title}
-                  width={780}
-                  height={975}
-                  sizes="(min-width: 1024px) 24vw, 90vw"
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </div>
-              <div className={s.pillarBody}>
-                <p className={s.pillarLabel}>{p.label}</p>
-                <h3 className={s.pillarTitle}>{p.title}</h3>
-              </div>
-            </Link>
-          ))}
-        </div>
-
         <div className={s.poweredBy}>
           <p className={s.poweredByEy}>{cms(pillars, "eyebrow", "Every service. Every standard.")}</p>
           <h2 className={s.poweredByTitle}>
