@@ -1562,3 +1562,94 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ────────────────────────────────────────────────────────────────────────
+   v2 patch — hero card removed, stats CTA added, intro merged into tiers
+   ──────────────────────────────────────────────────────────────────────── */
+
+/* HoWA wordmark above the stats lede */
+.statsHowaMark {
+  height: 38px;
+  width: auto;
+  margin-bottom: 18px;
+  opacity: 0.92;
+}
+
+/* CTA below the stats lede */
+.statsCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  padding: 12px 22px;
+  background: var(--color-house-gold);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+  align-self: flex-start;
+}
+.statsCta:hover {
+  background: var(--color-house-gold-dark);
+}
+.statsCta > span:last-child {
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* Merged tiers header — absorbed Introducing band */
+.tiersMark {
+  font-family: var(--font-hearth-serif);
+  font-weight: 400;
+  font-size: clamp(80px, 11vw, 180px);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--color-house-brown);
+  margin: 32px 0 0;
+}
+.tiersMark em {
+  color: var(--color-house-gold-dark);
+  font-style: italic;
+}
+.tiersIntroSub {
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1.35;
+  color: rgba(48, 35, 28, 0.78);
+  max-width: 32ch;
+  margin: 22px auto 0;
+  padding-top: 22px;
+  border-top: 1px solid rgba(48, 35, 28, 0.18);
+}
+.tiersIntroBody {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(48, 35, 28, 0.78);
+  max-width: 56ch;
+  margin: 24px auto 0;
+}
+.tiersIntroSignature {
+  margin-top: 28px;
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  color: var(--color-house-gold-dark);
+  font-size: 15px;
+}
+.tiersDivider {
+  width: 80px;
+  height: 1px;
+  background: rgba(48, 35, 28, 0.22);
+  margin: 56px auto;
+}
+
+/* Tighten the lede column on the stats strip so the CTA sits naturally */
+.statsLede {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}

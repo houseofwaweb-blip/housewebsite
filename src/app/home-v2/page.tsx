@@ -200,69 +200,6 @@ export default async function HomeV2PreviewPage() {
               priority
               style={{ objectFit: "cover" }}
             />
-            <aside className={s.heroSideCard} aria-label="HoWA app preview">
-              <div className={s.appBrand}>
-                <Image
-                  src="/brand/howa/howa-black.svg"
-                  alt="HoWA"
-                  width={204}
-                  height={102}
-                  className={s.appBrandLogo}
-                />
-              </div>
-              <header className={s.appHeader}>
-                <span className={s.appHeaderLeft}>
-                  <span className={s.appDot} aria-hidden="true" />
-                  <span className={s.appHeaderTitle}>Today, in your home</span>
-                </span>
-                <span className={s.appHeaderDate}>Thu · 09:00</span>
-              </header>
-
-              <div className={s.appHero}>
-                <p className={s.appHeroLabel}>House Health</p>
-                <div className={s.appHeroRow}>
-                  <PieScore value={91} />
-                  <p className={s.appHeroScore}>
-                    91<span className={s.appHeroScoreUnit}>/100</span>
-                  </p>
-                </div>
-                <p className={s.appHeroSub}>All systems in good order</p>
-              </div>
-
-              <ul className={s.appList}>
-                <li className={s.appRow}>
-                  <span className={`${s.appStatus} ${s.appStatusOk}`} aria-hidden="true" />
-                  <span className={s.appRowLabel}>Roof</span>
-                  <span className={s.appRowValue}>Good order</span>
-                </li>
-                <li className={s.appRow}>
-                  <span className={`${s.appStatus} ${s.appStatusAttn}`} aria-hidden="true" />
-                  <span className={s.appRowLabel}>Boiler</span>
-                  <span className={s.appRowValue}>14 days</span>
-                </li>
-                <li className={s.appRow}>
-                  <span className={`${s.appStatus} ${s.appStatusOk}`} aria-hidden="true" />
-                  <span className={s.appRowLabel}>Garden</span>
-                  <span className={s.appRowValue}>Thursday</span>
-                </li>
-                <li className={s.appRow}>
-                  <span className={`${s.appStatus} ${s.appStatusOk}`} aria-hidden="true" />
-                  <span className={s.appRowLabel}>Cleaning</span>
-                  <span className={s.appRowValue}>Tomorrow</span>
-                </li>
-                <li className={s.appRow}>
-                  <span className={`${s.appStatus} ${s.appStatusOk}`} aria-hidden="true" />
-                  <span className={s.appRowLabel}>Insurance</span>
-                  <span className={s.appRowValue}>42 days</span>
-                </li>
-              </ul>
-
-              <footer className={s.appFooter}>
-                <Link href="/howa/coming-soon" className={s.appFooterCta}>
-                  Coming soon →
-                </Link>
-              </footer>
-            </aside>
           </div>
         </div>
       </section>
@@ -281,12 +218,24 @@ export default async function HomeV2PreviewPage() {
           />
         </div>
         <div className={s.statsLede}>
+          <Image
+            src="/brand/howa/howa-gold.svg"
+            alt="HoWA"
+            width={204}
+            height={102}
+            className={s.statsHowaMark}
+            style={{ width: "auto", height: "44px", marginBottom: "18px" }}
+          />
           <p className={s.statsLedeLine1}>
             {cms(stats, "headline", "It remembers. It signals. It cares.")}
           </p>
           <p className={s.statsLedeLine2}>
             {cms(stats, "subheadline", "Stewardship starts with listening.")}
           </p>
+          <Link href="/howa" className={s.statsCta}>
+            {cms(stats, "ctaLabel", "Find out more about HoWA")}
+            <span aria-hidden="true">→</span>
+          </Link>
         </div>
         {stripStats.map((stat) => (
           <div key={stat.label} className={s.stat}>
@@ -320,32 +269,26 @@ export default async function HomeV2PreviewPage() {
       </section>
 
       {/* ============================================================
-          3b. Introducing HoWA — flagship product teaser [NEW]
+          4. Introducing HoWA + Three ways in — merged section
           ============================================================ */}
-      <section className={s.introducing} id="introducing-howa">
-        <p className={s.introducingPretitle}>Introducing</p>
-        <p className={s.introducingMark}>
-          HoWA<em>+</em>
-        </p>
-        <p className={s.introducingSub}>
-          The Living Record of your home.
-        </p>
-        <p className={s.introducingBody}>
-          The House has always done the work — the gardener, the cleaner,
-          the designer, the surveyor. HoWA is what holds it all together.
-          A quiet operating system for the home you mean to keep.
-        </p>
-        <p className={s.introducingSignature}>
-          The House&apos;s flagship product · £16.99 / month · coming soon
-        </p>
-      </section>
-
-      {/* ============================================================
-          4. Three ways to access it (HoWA tiers)
-          ============================================================ */}
-      <section className={s.tiers}>
+      <section className={s.tiers} id="introducing-howa">
         <header className={s.tiersHead}>
-          <p className={s.tiersEy}>{cms(tiers, "eyebrow", "HoWA · Three ways in")}</p>
+          <p className={s.tiersEy}>Introducing</p>
+          <p className={s.tiersMark}>
+            HoWA<em>+</em>
+          </p>
+          <p className={s.tiersIntroSub}>
+            The Living Record of your home.
+          </p>
+          <p className={s.tiersIntroBody}>
+            The House has always done the work — the gardener, the cleaner,
+            the designer, the surveyor. HoWA is what holds it all together.
+            A quiet operating system for the home you mean to keep.
+          </p>
+          <p className={s.tiersIntroSignature}>
+            The House&apos;s flagship product · £16.99 / month · coming soon
+          </p>
+          <div className={s.tiersDivider} aria-hidden="true" />
           <h2 className={s.tiersTitle}>{cms(tiers, "headline", "One product. Three doors.")}</h2>
         </header>
         <div className={s.tierGrid}>
