@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import s from "./home-v2.module.css";
-import { OneSystem } from "../OneSystem";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
@@ -295,23 +294,18 @@ export default async function HomeV2PreviewPage() {
           ============================================================ */}
       <section className={s.tiers} id="introducing-howa">
         <header className={s.tiersHead}>
-          <p className={s.tiersEy}>Introducing</p>
-          <p className={s.tiersMark}>
-            HoWA<em>+</em>
-          </p>
-          <p className={s.tiersIntroSub}>
-            The Living Record of your home.
-          </p>
+          <p className={s.tiersEy}>Introducing HoWA+ · The flagship product</p>
+          <h2 className={s.tiersTitle}>
+            {cms(tiers, "headline", "The Living Record")} <em>of your home.</em>
+          </h2>
           <p className={s.tiersIntroBody}>
             The House has always done the work — the gardener, the cleaner,
             the designer, the surveyor. HoWA is what holds it all together.
-            A quiet operating system for the home you mean to keep.
+            One product, three ways in.
           </p>
           <p className={s.tiersIntroSignature}>
-            The House&apos;s flagship product · £16.99 / month · coming soon
+            £16.99 / month · cancel anytime · coming soon
           </p>
-          <div className={s.tiersDivider} aria-hidden="true" />
-          <h2 className={s.tiersTitle}>{cms(tiers, "headline", "One product. Three doors.")}</h2>
         </header>
         <div className={s.tierGrid}>
           {tierCards.map((tier) => (
@@ -343,12 +337,10 @@ export default async function HomeV2PreviewPage() {
       </section>
 
       {/* ============================================================
-          4. One system. In your hands.
-          ============================================================ */}
-      <OneSystem />
-
-      {/* ============================================================
           5. Intelligence band — reframed heading
+          (OneSystem phone trio cut — app-store placeholders read
+          premature pre-launch, and the page already sells HoWA via
+          the tiers section above and the intelligence stats below.)
           ============================================================ */}
       <section className={s.intelligence}>
         <div className={s.intelligenceCopy}>
@@ -443,34 +435,27 @@ export default async function HomeV2PreviewPage() {
       </section>
 
       {/* ============================================================
-          6. Powered by — four-pillar grid moved up into Institution band
+          6. Closing band — trust lines merged in from old Powered-by
           ============================================================ */}
-      <section className={s.pillars}>
-        <div className={s.poweredBy}>
-          <p className={s.poweredByEy}>{cms(pillars, "eyebrow", "Every service. Every standard.")}</p>
-          <h2 className={s.poweredByTitle}>
-            {cms(pillars, "headline", "Powered by House of Willow Alexander.")}
-          </h2>
-          <div className={s.pillarsBelow}>
+      <section className={s.closing}>
+        <div className={s.closingTrust}>
+          <p className={s.closingTrustEy}>
+            {cms(pillars, "eyebrow", "Powered by House of Willow Alexander")}
+          </p>
+          <div className={s.closingTrustLines}>
             {PILLAR_LINES.map((line) => {
               const Icon = line.icon;
               return (
-                <div key={line.text} className={s.pillarLine}>
-                  <span className={s.pillarLineIcon}>
+                <div key={line.text} className={s.closingTrustLine}>
+                  <span className={s.closingTrustIcon}>
                     <Icon />
                   </span>
-                  <span className={s.pillarLineText}>{line.text}</span>
+                  <span className={s.closingTrustText}>{line.text}</span>
                 </div>
               );
             })}
           </div>
         </div>
-      </section>
-
-      {/* ============================================================
-          7. Closing band
-          ============================================================ */}
-      <section className={s.closing}>
         <p className={s.closingStatement}>
           {cms(closing, "headline", "For homes with soul, proper care should never be left to")}{" "}
           <em>{cms(closing, "headlineEm", "memory alone.", "headline")}</em>
