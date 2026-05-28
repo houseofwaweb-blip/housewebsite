@@ -63,27 +63,27 @@ const FEATURES = [
   {
     name: "Home",
     desc: "Every room, surface, fitting and finish — quietly known.",
-    examples: ["Rooms & layouts", "Surfaces & finishes", "Fittings & fixtures"],
+    image: "/home-v4/howa-feature-home.webp",
   },
   {
     name: "Garden",
     desc: "Plants, beds, schedules — the year mapped to your soil.",
-    examples: ["Plant inventory", "Care calendar", "Soil & aspect"],
+    image: "/home-v4/howa-feature-garden-care.webp",
   },
   {
     name: "Documents",
     desc: "Deeds, warranties, manuals — read, stored, recallable.",
-    examples: ["Title & deeds", "Warranties", "Operating manuals"],
+    image: "/home-v4/howa-feature-documents.webp",
   },
   {
     name: "Tasks",
     desc: "Seasonal jobs and small attentions, prompted at the right time.",
-    examples: ["Seasonal cycles", "One-off jobs", "Reminders"],
+    image: "/home-v4/howa-feature-tasks.webp",
   },
   {
-    name: "Health",
+    name: "Home Health",
     desc: "A running view of the home's condition — known, not guessed.",
-    examples: ["Condition score", "Trend over time", "Flagged risks"],
+    image: "/home-v4/howa-feature-home-health.webp",
   },
 ];
 
@@ -263,18 +263,22 @@ export default function HowaV2Page() {
         <h2 className={s.featuresTitle}>
           Everything for your home, <em>in one place.</em>
         </h2>
-        <div className={s.featureGrid}>
+        <p className={s.featuresHint}>Swipe to see more →</p>
+        <div className={s.featureCarousel}>
           {FEATURES.map((f) => (
-            <div key={f.name} className={s.feature}>
-              <div className={s.featureIcon}>✦</div>
+            <article key={f.name} className={s.feature}>
+              <div className={s.featureImage}>
+                <Image
+                  src={f.image}
+                  alt={f.name}
+                  width={600}
+                  height={400}
+                  sizes="(max-width: 900px) 80vw, 32vw"
+                />
+              </div>
               <h3 className={s.featureName}>{f.name}</h3>
               <p className={s.featureDesc}>{f.desc}</p>
-              <ul className={s.featureExamples}>
-                {f.examples.map((ex) => (
-                  <li key={ex}>{ex}</li>
-                ))}
-              </ul>
-            </div>
+            </article>
           ))}
         </div>
       </section>
