@@ -30,13 +30,11 @@
 }
 .subbarBrand {
   font-family: var(--font-hearth-serif);
-  font-style: italic;
   font-weight: 500;
   font-size: 22px;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.02em;
   color: var(--color-house-brown);
 }
-.subbarBrand em { color: var(--color-house-gold-dark); }
 .subbarNav {
   display: flex;
   gap: 28px;
@@ -56,6 +54,18 @@
   color: rgba(48, 35, 28, 0.55);
 }
 .subbarRight em { font-style: normal; color: var(--color-house-gold-dark); font-weight: 500; }
+.coveredBy {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.coveredMark {
+  width: 16px;
+  height: 16px;
+  color: var(--color-house-gold-dark);
+  display: inline-flex;
+}
+.coveredMark svg { width: 100%; height: 100%; }
 .subbarCta {
   display: inline-flex;
   align-items: center;
@@ -160,15 +170,22 @@
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(48, 35, 28, 0.62);
+  color: rgba(48, 35, 28, 0.7);
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  align-items: center;
+  gap: 8px;
 }
 .heroBadge::before {
-  content: "✦";
-  color: var(--color-house-gold);
-  font-size: 11px;
+  content: "";
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--color-house-gold);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='5 13 10 18 19 7'/></svg>");
+  background-position: center;
+  background-size: 11px 11px;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
 }
 
 /* hero visual: layered house + 2 phones */
@@ -244,17 +261,19 @@
   font-family: var(--font-sans);
   flex: 1;
 }
-.stepNum {
-  width: 32px;
-  height: 32px;
+.stepIcon {
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background: var(--color-house-gold);
-  color: white;
+  background: rgba(194, 166, 96, 0.16);
+  color: var(--color-house-gold-dark);
   display: grid;
   place-items: center;
-  font-size: 11px;
-  font-weight: 500;
   flex-shrink: 0;
+}
+.stepIcon svg {
+  width: 18px;
+  height: 18px;
 }
 .stepText {
   display: flex;
@@ -471,7 +490,11 @@
   height: 32px;
   color: var(--color-house-gold-dark);
   margin-bottom: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
 }
+.trustIcon svg { width: 28px; height: 28px; }
 .trustName {
   font-family: var(--font-hearth-serif);
   font-style: italic;
@@ -538,6 +561,14 @@
   transition: background-color 0.2s ease;
 }
 .waitlistCta:hover { background: white; }
+.waitlistFootnote {
+  margin: 16px 0 0;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(243, 237, 225, 0.5);
+}
 
 /* Responsive */
 @media (max-width: 1100px) {

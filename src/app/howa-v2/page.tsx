@@ -21,11 +21,42 @@ export const metadata = {
   robots: { index: false, follow: false },
 };
 
+const StepIcon = {
+  scan: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 7V5a1 1 0 0 1 1-1h2" />
+      <path d="M17 4h2a1 1 0 0 1 1 1v2" />
+      <path d="M20 17v2a1 1 0 0 1-1 1h-2" />
+      <path d="M7 20H5a1 1 0 0 1-1-1v-2" />
+      <line x1="4" y1="12" x2="20" y2="12" />
+    </svg>
+  ),
+  brain: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M9.5 2A2.5 2.5 0 0 0 7 4.5v15A2.5 2.5 0 0 0 9.5 22 2.5 2.5 0 0 0 12 19.5v-15A2.5 2.5 0 0 0 9.5 2Z" />
+      <path d="M14.5 2A2.5 2.5 0 0 1 17 4.5v15a2.5 2.5 0 0 1-2.5 2.5 2.5 2.5 0 0 1-2.5-2.5v-15A2.5 2.5 0 0 1 14.5 2Z" />
+      <path d="M7 8h-.5a2.5 2.5 0 0 0 0 5H7" />
+      <path d="M17 8h.5a2.5 2.5 0 0 1 0 5H17" />
+    </svg>
+  ),
+  folder: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7Z" />
+    </svg>
+  ),
+  bell: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+      <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+    </svg>
+  ),
+};
+
 const STEPS = [
-  { num: "1", name: "Scan", desc: "Photograph rooms, garden, documents." },
-  { num: "2", name: "Understand", desc: "HoWA reads, recognises, indexes." },
-  { num: "3", name: "Organise", desc: "Everything filed by room and system." },
-  { num: "4", name: "Remember", desc: "A record that lives with the home." },
+  { key: "scan", name: "Scan", desc: "Capture what matters in seconds.", icon: StepIcon.scan },
+  { key: "understand", name: "Understand", desc: "HoWA interprets and learns your home.", icon: StepIcon.brain },
+  { key: "organise", name: "Organise", desc: "Everything in its place. Always up to date.", icon: StepIcon.folder },
+  { key: "remember", name: "Remember", desc: "Your home's record lives on ahead.", icon: StepIcon.bell },
 ];
 
 const FEATURES = [
@@ -80,24 +111,75 @@ const MODES = [
   },
 ];
 
+const TrustIcon = {
+  shield: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
+      <path d="m9 12 2 2 4-4" />
+    </svg>
+  ),
+  clock: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </svg>
+  ),
+  truck: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 7h11v9H3z" />
+      <path d="M14 10h4l3 3v3h-7" />
+      <circle cx="7" cy="18" r="2" />
+      <circle cx="17" cy="18" r="2" />
+    </svg>
+  ),
+  certificate: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M5 4h14v12H5z" />
+      <path d="M9 20v-4l3 2 3-2v4" />
+      <circle cx="12" cy="10" r="2" />
+    </svg>
+  ),
+};
+
 const TRUST = [
   {
     name: "Assigned to the home",
-    desc: "The record belongs to the address, not the device.",
+    desc: "Permanently linked to your address, not a device.",
+    icon: TrustIcon.shield,
   },
   {
     name: "Lives over time",
-    desc: "Compounds with every season, repair, and change.",
+    desc: "HoWA gets smarter with every update and upload.",
+    icon: TrustIcon.clock,
   },
   {
     name: "Moves with the home",
-    desc: "Transfers cleanly to the next custodian when the time comes.",
+    desc: "Hands cleanly to the next custodian when the time comes.",
+    icon: TrustIcon.truck,
   },
   {
     name: "Evidence-backed",
-    desc: "Photos, documents, dates — nothing assumed.",
+    desc: "Photos, documents, dates — all in one place.",
+    icon: TrustIcon.certificate,
   },
 ];
+
+// Small House mark — used inline next to "Covered by House of Willow Alexander"
+const HouseMark = (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.4"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M3 11 12 3l9 8" />
+    <path d="M5 9.5V21h14V9.5" />
+    <path d="M10 21v-6h4v6" />
+  </svg>
+);
 
 export default function HowaV2Page() {
   return (
@@ -105,9 +187,7 @@ export default function HowaV2Page() {
       <div className={s.banner}>Preview · /howa redesign — not yet live</div>
 
       <div className={s.subbar}>
-        <div className={s.subbarBrand}>
-          Ho<em>WA</em>
-        </div>
+        <div className={s.subbarBrand}>HoWA</div>
         <nav className={s.subbarNav}>
           <a href="#product">Product</a>
           <a href="#how">How it works</a>
@@ -115,7 +195,8 @@ export default function HowaV2Page() {
           <a href="#modes">Modes</a>
         </nav>
         <div className={s.subbarRight}>
-          <span>
+          <span className={s.coveredBy}>
+            <span className={s.coveredMark}>{HouseMark}</span>
             Covered by <em>House of Willow Alexander</em>
           </span>
           <Link href="/howa/coming-soon" className={s.subbarCta}>
@@ -133,8 +214,8 @@ export default function HowaV2Page() {
             intelligence app.
           </h1>
           <p className={s.heroLede}>
-            HoWA reads your home, learns its rhythms, and keeps the record
-            that follows it through time. Scan once. Understood always.
+            Track repairs, garden care, documents, reminders and home health
+            in one living record.
           </p>
           <div className={s.heroCtas}>
             <Link href="/howa/coming-soon" className={s.heroCtaPrimary}>
@@ -144,7 +225,7 @@ export default function HowaV2Page() {
               See how it works →
             </a>
           </div>
-          <p className={s.heroSub}>Coming soon · Private beta opening late 2026.</p>
+          <p className={s.heroSub}>One address. One record. Total peace of mind.</p>
           <div className={s.heroBadges}>
             <div className={s.heroBadge}>Secure</div>
             <div className={s.heroBadge}>Private</div>
@@ -184,9 +265,9 @@ export default function HowaV2Page() {
         <div className={s.stepsLabel}>How it works</div>
         <div className={s.stepsRow}>
           {STEPS.map((step, i) => (
-            <Fragment key={step.name}>
+            <Fragment key={step.key}>
               <div className={s.step}>
-                <div className={s.stepNum}>{step.num}</div>
+                <div className={s.stepIcon}>{step.icon}</div>
                 <div className={s.stepText}>
                   <div className={s.stepName}>{step.name}</div>
                   <div className={s.stepDesc}>{step.desc}</div>
@@ -250,7 +331,7 @@ export default function HowaV2Page() {
         <div className={s.trustGrid}>
           {TRUST.map((t) => (
             <div key={t.name} className={s.trustItem}>
-              <div className={s.trustIcon}>✦</div>
+              <div className={s.trustIcon}>{t.icon}</div>
               <div className={s.trustName}>{t.name}</div>
               <div className={s.trustDesc}>{t.desc}</div>
             </div>
@@ -276,6 +357,7 @@ export default function HowaV2Page() {
           <Link href="/howa/coming-soon" className={s.waitlistCta}>
             Join waitlist
           </Link>
+          <p className={s.waitlistFootnote}>Limited early access</p>
         </div>
         <div />
       </section>
