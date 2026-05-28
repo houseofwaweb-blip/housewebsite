@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import s from "./howa-v2.module.css";
+import { FeatureCarousel } from "./FeatureCarousel";
 
 /**
  * /howa-v2 — HoWA product landing preview.
@@ -263,24 +264,7 @@ export default function HowaV2Page() {
         <h2 className={s.featuresTitle}>
           Everything for your home, <em>in one place.</em>
         </h2>
-        <p className={s.featuresHint}>Swipe to see more →</p>
-        <div className={s.featureCarousel}>
-          {FEATURES.map((f) => (
-            <article key={f.name} className={s.feature}>
-              <div className={s.featureImage}>
-                <Image
-                  src={f.image}
-                  alt={f.name}
-                  width={600}
-                  height={400}
-                  sizes="(max-width: 900px) 80vw, 32vw"
-                />
-              </div>
-              <h3 className={s.featureName}>{f.name}</h3>
-              <p className={s.featureDesc}>{f.desc}</p>
-            </article>
-          ))}
-        </div>
+        <FeatureCarousel features={FEATURES} />
       </section>
 
       {/* ── Modes ────────────────────────────────────────────────────── */}

@@ -288,36 +288,91 @@
   margin: 0 clamp(40px, 5vw, 96px) 12px;
 }
 .featuresTitle em { font-style: italic; }
-.featuresHint {
-  margin: 0 clamp(40px, 5vw, 96px) clamp(32px, 3vw, 48px);
-  font-family: var(--font-sans);
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(48, 35, 28, 0.45);
-}
 
 /* Horizontal peek carousel — 3 cards visible with a sliver of the next one */
 .featureCarousel {
   display: grid;
   grid-auto-flow: column;
-  /* card width is sized so 3 cards + a peek of the 4th fit in the viewport.
-     gap is the gutter between cards. */
   grid-auto-columns: calc((100% - clamp(80px, 10vw, 192px) - 64px) / 3.2);
   gap: 24px;
-  padding: 8px clamp(40px, 5vw, 96px) 24px;
+  padding: clamp(32px, 3vw, 48px) clamp(40px, 5vw, 96px) 0;
+  margin: 0;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-padding-left: clamp(40px, 5vw, 96px);
-  scrollbar-width: thin;
-  scrollbar-color: rgba(48, 35, 28, 0.18) transparent;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
-.featureCarousel::-webkit-scrollbar { height: 6px; }
-.featureCarousel::-webkit-scrollbar-track { background: transparent; }
-.featureCarousel::-webkit-scrollbar-thumb {
-  background: rgba(48, 35, 28, 0.16);
+.featureCarousel::-webkit-scrollbar { display: none; }
+
+/* Controls below the carousel: prev · dots · count · next */
+.carouselControls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px, 2vw, 28px);
+  margin-top: clamp(28px, 3vw, 44px);
+  padding: 0 clamp(40px, 5vw, 96px);
+  font-family: var(--font-sans);
+}
+.carouselArrow {
+  appearance: none;
+  background: transparent;
+  border: 1px solid rgba(48, 35, 28, 0.2);
+  color: var(--color-house-brown);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+.carouselArrow svg { width: 16px; height: 16px; }
+.carouselArrow:hover:not(:disabled) {
+  border-color: var(--color-house-brown);
+  background: var(--color-house-brown);
+  color: var(--color-house-cream);
+}
+.carouselArrow:disabled {
+  opacity: 0.28;
+  cursor: not-allowed;
+}
+.carouselDots {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.carouselDot {
+  appearance: none;
+  background: rgba(48, 35, 28, 0.2);
+  border: 0;
+  padding: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease, width 0.2s ease;
+}
+.carouselDot:hover { background: rgba(48, 35, 28, 0.4); }
+.carouselDotActive {
+  background: var(--color-house-gold);
+  width: 22px;
   border-radius: 3px;
 }
+.carouselCount {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  font-family: var(--font-hearth-serif);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: rgba(48, 35, 28, 0.55);
+  min-width: 60px;
+  justify-content: center;
+}
+.carouselCountActive { color: var(--color-house-brown); font-weight: 500; }
+.carouselCountSlash { color: rgba(48, 35, 28, 0.3); font-size: 11px; }
 
 .feature {
   scroll-snap-align: start;
