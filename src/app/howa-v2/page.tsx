@@ -207,6 +207,8 @@ export default function HowaV2Page() {
 
       {/* ── Hero ─────────────────────────────────────────────────────── */}
       <section className={s.hero} id="product">
+        <div className={s.heroBg} aria-hidden="true" />
+        <div className={s.heroOverlay} aria-hidden="true" />
         <div className={s.heroCopy}>
           <h1 className={s.heroTitle}>
             The home <em>&amp;</em> garden
@@ -231,31 +233,6 @@ export default function HowaV2Page() {
             <div className={s.heroBadge}>Private</div>
             <div className={s.heroBadge}>Always with you</div>
             <div className={s.heroBadge}>Built for homes</div>
-          </div>
-        </div>
-
-        <div className={s.heroVisual}>
-          <div
-            className={s.heroHouse}
-            style={{ backgroundImage: "url(/home-v4/house-watercolour.webp)" }}
-          />
-          <div className={s.heroPhones}>
-            <div className={s.heroPhone}>
-              <Image
-                src="/home-v4/phone-assistant.webp"
-                alt="HoWA Assistant"
-                width={300}
-                height={620}
-              />
-            </div>
-            <div className={`${s.heroPhone} ${s.raised}`}>
-              <Image
-                src="/home-v4/phone-housekeeper.webp"
-                alt="HoWA Housekeeper"
-                width={300}
-                height={620}
-              />
-            </div>
           </div>
         </div>
       </section>

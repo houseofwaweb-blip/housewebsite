@@ -81,17 +81,38 @@
 
 /* ── HERO ─────────────────────────────────────────────────────────────── */
 .hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-  gap: clamp(40px, 5vw, 80px);
-  align-items: center;
-  padding: clamp(64px, 8vw, 120px) clamp(40px, 5vw, 96px);
-  max-width: 1500px;
-  margin: 0 auto;
+  position: relative;
+  isolation: isolate;
+  min-height: 640px;
+  padding: clamp(80px, 9vw, 140px) clamp(40px, 5vw, 96px);
+  overflow: hidden;
+}
+.heroBg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: url("/home-v4/howa-hero-house-garden.webp");
+  background-size: cover;
+  background-position: center right;
+}
+/* Cream gradient masking the left third so headline + copy stay readable */
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to right,
+    rgba(243, 237, 225, 0.92) 0%,
+    rgba(243, 237, 225, 0.78) 28%,
+    rgba(243, 237, 225, 0.35) 50%,
+    rgba(243, 237, 225, 0) 70%
+  );
 }
 .heroCopy {
+  position: relative;
   display: flex;
   flex-direction: column;
+  max-width: 560px;
 }
 .heroTitle {
   font-family: var(--font-hearth-serif);
@@ -186,48 +207,6 @@
   background-size: 11px 11px;
   background-repeat: no-repeat;
   flex-shrink: 0;
-}
-
-/* hero visual: layered house + 2 phones */
-.heroVisual {
-  position: relative;
-  aspect-ratio: 5/4;
-  display: grid;
-  place-items: center;
-}
-.heroHouse {
-  position: absolute;
-  inset: 0;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.92;
-}
-.heroPhones {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  gap: 16px;
-  margin-left: auto;
-  width: 65%;
-  align-items: flex-end;
-}
-.heroPhone {
-  flex: 1;
-  aspect-ratio: 9/19;
-  border-radius: 28px;
-  overflow: hidden;
-  background: var(--color-house-brown);
-  padding: 6px;
-  box-shadow: 0 24px 60px rgba(48, 35, 28, 0.2);
-}
-.heroPhone.raised { transform: translateY(-30px); }
-.heroPhone img {
-  width: 100%;
-  height: 100%;
-  border-radius: 22px;
-  object-fit: cover;
-  display: block;
 }
 
 /* ── How it works strip ──────────────────────────────────────────────── */
@@ -576,7 +555,17 @@
   .trustGrid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; }
+  .hero { min-height: 520px; padding: 64px 32px; }
+  .heroOverlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(243, 237, 225, 0.94) 0%,
+      rgba(243, 237, 225, 0.78) 55%,
+      rgba(243, 237, 225, 0.3) 100%
+    );
+  }
+  .heroBg { background-position: center bottom; }
+  .heroCopy { max-width: 100%; }
   .heroBadges { grid-template-columns: 1fr 1fr; }
   .subbar { grid-template-columns: 1fr; gap: 12px; }
   .subbarNav { display: none; }
