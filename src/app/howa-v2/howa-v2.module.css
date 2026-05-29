@@ -83,8 +83,12 @@
 .hero {
   position: relative;
   isolation: isolate;
-  min-height: 640px;
-  padding: clamp(80px, 9vw, 140px) clamp(40px, 5vw, 96px);
+  /* Match the source image ratio (1672 × 941) so background-size: cover
+     doesn't crop the watercolor sketch + dollhouse + phones. */
+  aspect-ratio: 1672 / 941;
+  display: flex;
+  align-items: center;
+  padding: clamp(40px, 5vw, 96px) clamp(40px, 5vw, 96px);
   overflow: hidden;
 }
 .heroBg {
@@ -93,7 +97,7 @@
   z-index: -2;
   background-image: url("/home-v4/howa-hero-v2.webp");
   background-size: cover;
-  background-position: center right;
+  background-position: center;
 }
 /* Light cream wash — the image is already bright + airy, so this is mostly insurance */
 .heroOverlay {
@@ -621,7 +625,7 @@
   .trustGrid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
 }
 @media (max-width: 900px) {
-  .hero { min-height: 520px; padding: 64px 32px; }
+  .hero { aspect-ratio: auto; min-height: 520px; padding: 64px 32px; }
   .heroOverlay {
     background: linear-gradient(
       to bottom,
