@@ -4,6 +4,8 @@ import s from "./plans.module.css";
 import { WaitlistMini } from "@/components/marketing/WaitlistMini";
 import { FaqList } from "@/components/marketing/FaqList";
 import { MetaViewContent } from "@/components/marketing/MetaViewContent";
+import { SoftwareApplicationJsonLd } from "@/lib/seo/jsonLd";
+import { env } from "@/lib/env";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
@@ -123,6 +125,10 @@ export default async function PlansPage() {
 
   return (
     <div className={s.page}>
+      <SoftwareApplicationJsonLd
+        url={`${env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "")}/howa/plans`}
+        monthlyPriceGBP={16.99}
+      />
       <MetaViewContent
         contentId="howa_plans"
         contentName="HoWA plans &amp; pricing"

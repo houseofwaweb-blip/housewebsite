@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import s from "./howa-v2.module.css";
+import s from "./howa.module.css";
 
 type Feature = {
   name: string;

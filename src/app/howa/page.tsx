@@ -1,403 +1,333 @@
+import { Fragment } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import s from "./howa-v1.module.css";
-import { TierShowcase } from "./TierShowcase";
-import { FaqList } from "@/components/marketing/FaqList";
+import s from "./howa.module.css";
+import { FeatureCarousel } from "./FeatureCarousel";
 import { MetaViewContent } from "@/components/marketing/MetaViewContent";
-import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
+import { SoftwareApplicationJsonLd } from "@/lib/seo/jsonLd";
+import { env } from "@/lib/env";
 
 /**
- * /howa — HoWA landing page.
+ * /howa — HoWA product landing page.
  *
  * Section order:
- *   1. Hero — copy + Georgian house illustration
- *   2. Stats strip
- *   3. One system. Three ways to access it. — tier + phone showcase
- *   4. Intelligence band
- *   5. Pillars
- *   6. Powered by House of Willow Alexander — trust + quote
- *   7. FAQ accordion
- *   8. Closing CTA band — Step into stewardship
+ *   1. Sub-bar (HoWA wordmark + section nav + Covered by House)
+ *   2. Hero — bright editorial composition (watercolor sketch + dollhouse + phones)
+ *   3. How it works — 4-step icon strip
+ *   4. Features — 3-up peek carousel of 5 atmospheric still lifes
+ *   5. Three modes — 3-up landscape cards (Assistant / Housekeeper / Steward)
+ *   6. Trust strip — 4 atmospheric still lifes (Wellington Square nameplate,
+ *      leather journal, brass keys, evidence case)
+ *   7. Waitlist footer band — Step into stewardship
  */
 
 export const metadata = {
-  title: "HoWA — Your home, finally understood.",
+  title: "HoWA — The home & garden intelligence app.",
   description:
-    "The Home Operating System. HoWA observes, learns and acts — so nothing is missed, delayed or forgotten.",
+    "Track repairs, garden care, documents, reminders and home health in one living record. Covered by House of Willow Alexander.",
 };
 
-const STAT_COLS = [
-  { value: "91%", label: "House Health Optimal" },
-  { value: "12", label: "Tasks Completed This Week" },
-  { value: "08", label: "Systems Monitored" },
-  { value: "0", label: "Issues Detected" },
+const StepIcon = {
+  scan: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 7V5a1 1 0 0 1 1-1h2" />
+      <path d="M17 4h2a1 1 0 0 1 1 1v2" />
+      <path d="M20 17v2a1 1 0 0 1-1 1h-2" />
+      <path d="M7 20H5a1 1 0 0 1-1-1v-2" />
+      <line x1="4" y1="12" x2="20" y2="12" />
+    </svg>
+  ),
+  brain: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M9.5 2A2.5 2.5 0 0 0 7 4.5v15A2.5 2.5 0 0 0 9.5 22 2.5 2.5 0 0 0 12 19.5v-15A2.5 2.5 0 0 0 9.5 2Z" />
+      <path d="M14.5 2A2.5 2.5 0 0 1 17 4.5v15a2.5 2.5 0 0 1-2.5 2.5 2.5 2.5 0 0 1-2.5-2.5v-15A2.5 2.5 0 0 1 14.5 2Z" />
+      <path d="M7 8h-.5a2.5 2.5 0 0 0 0 5H7" />
+      <path d="M17 8h.5a2.5 2.5 0 0 1 0 5H17" />
+    </svg>
+  ),
+  folder: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7Z" />
+    </svg>
+  ),
+  bell: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+      <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+    </svg>
+  ),
+};
+
+const STEPS = [
+  { key: "scan", name: "Scan", desc: "Capture what matters in seconds.", icon: StepIcon.scan },
+  { key: "understand", name: "Understand", desc: "HoWA interprets and learns your home.", icon: StepIcon.brain },
+  { key: "organise", name: "Organise", desc: "Everything in its place. Always up to date.", icon: StepIcon.folder },
+  { key: "remember", name: "Remember", desc: "Your home's record lives on ahead.", icon: StepIcon.bell },
 ];
 
-const INTELLIGENCE_STATS = [
-  { title: "Boiler failure predicted", highlight: "14", subAfter: " days early" },
-  { title: "Service booked", subAfter: "automatically" },
-  { title: "Cost reduced", highlight: "by 42%" },
-  { title: "No disruption", subAfter: "to your home" },
-];
-
-const PILLARS = [
+const FEATURES = [
   {
-    label: "Services",
-    title: "Expert care for every aspect of home.",
-    image: "/home-v4/pillar-1.webp",
-    href: "/services",
-    cta: "Explore services",
+    name: "Home",
+    desc: "Every room, surface, fitting and finish — quietly known.",
+    image: "/home-v4/howa-feature-home.webp",
   },
   {
-    label: "Shop",
-    title: "Curated essentials for home and hearth.",
-    image: "/home-v4/pillar-2.webp",
-    href: "/shop",
-    cta: "Visit the shop",
+    name: "Garden",
+    desc: "Plants, beds, schedules — the year mapped to your soil.",
+    image: "/home-v4/howa-feature-garden-care.webp",
   },
   {
-    label: "The Hearth",
-    title: "Stories, guidance, and timeless inspiration.",
-    image: "/home-v4/pillar-3.webp",
-    href: "/hearth",
-    cta: "Read journal",
+    name: "Documents",
+    desc: "Deeds, warranties, manuals — read, stored, recallable.",
+    image: "/home-v4/howa-feature-documents.webp",
   },
   {
-    label: "About the House",
-    title: "Our heritage. Our promise.",
-    image: "/home-v4/pillar-4.webp",
-    href: "/the-house",
-    cta: "Learn more",
-  },
-];
-
-const TRUST_LINES = [
-  { icon: HomeIcon, text: "Trusted services and specialists" },
-  { icon: ShieldIcon, text: "Verified partners and suppliers" },
-  { icon: LeafIcon, text: "Seamless recreation layer" },
-  { icon: AwardIcon, text: "Accountability at every step" },
-];
-
-const FAQS = [
-  {
-    q: "Can I cancel HoWA+ anytime?",
-    a: "Yes. There's no minimum term. Cancel from your account dashboard and your record stays accessible in read-only mode for 12 months.",
+    name: "Tasks",
+    desc: "Seasonal jobs and small attentions, prompted at the right time.",
+    image: "/home-v4/howa-feature-tasks.webp",
   },
   {
-    q: "How long does setup take?",
-    a: "About fifteen minutes. We ask for your address, key system dates (boiler service, EICR, gas safety), and a few photos. HoWA does the rest.",
-  },
-  {
-    q: "What if my home doesn't fit a category?",
-    a: "We've built HoWA to flex. Leasehold flats, listed cottages, mews houses — all welcome. Your concierge tailors the standard to your property.",
-  },
-  {
-    q: "Where does my data live?",
-    a: "In the UK, encrypted at rest, owned by you. We don't sell, share, or train models on your home record.",
-  },
-  {
-    q: "Do I have to use the booked services?",
-    a: "Never. HoWA will surface what needs doing and recommend trusted partners — but you stay in control of who comes to your home.",
-  },
-  {
-    q: "What happens if I move?",
-    a: "Your record moves with you. You can also hand it to the new owner as part of the sale — adding £18,000 of average value in our pilot.",
+    name: "Home Health",
+    desc: "A running view of the home's condition — known, not guessed.",
+    image: "/home-v4/howa-feature-home-health.webp",
   },
 ];
 
-export default async function HoWAV1PreviewPage() {
-  const sections = await getPageSections("howa");
-  const hero = sections.get("hero");
-  const stats = sections.get("stats");
-  const intelligence = sections.get("intelligence");
-  const pillars = sections.get("pillars");
-  const poweredBy = sections.get("powered-by");
-  const faq = sections.get("faq");
-  const closing = sections.get("closing");
+const MODES = [
+  {
+    slug: "assistant",
+    numeral: "I.",
+    label: "HoWA Assistant",
+    name: "The house, alive.",
+    desc: "Always with you. Ask, log, look up — the house at your elbow.",
+    image: "/home-v4/howa-mode-assistant.webp",
+    href: "/howa#assistant",
+  },
+  {
+    slug: "housekeeper",
+    numeral: "II.",
+    label: "HoWA Housekeeper",
+    name: "The house, in order.",
+    desc: "Quietly running things in the background — routines, prompts, care.",
+    image: "/home-v4/howa-mode-housekeeper.webp",
+    href: "/howa#housekeeper",
+  },
+  {
+    slug: "steward",
+    numeral: "III.",
+    label: "HoWA Steward",
+    name: "The house, understood.",
+    desc: "Long-view custodianship. Insurance, value, succession — accounted for.",
+    image: "/home-v4/howa-mode-steward.webp",
+    href: "/howa/steward",
+  },
+];
 
-  const statCols = cmsCards(stats, STAT_COLS, (c, base) => ({
-    value: pick(c.value ?? c.label, base?.value ?? ""),
-    label: pick(c.title ?? c.body, base?.label ?? ""),
-  }));
-  const intelligenceStats = cmsCards(intelligence, INTELLIGENCE_STATS, (c, base) => ({
-    title: pick(c.title, base?.title ?? ""),
-    highlight: pick(c.value, base?.highlight),
-    subAfter: pick(c.body ?? c.value2, base?.subAfter ?? ""),
-  }));
-  const pillarCards = cmsCards(pillars, PILLARS, (c, base) => ({
-    label: pick(c.label, base?.label ?? ""),
-    title: pick(c.title, base?.title ?? ""),
-    image: base?.image ?? "",
-    href: pick(c.ctaHref, base?.href ?? "#"),
-    cta: pick(c.ctaLabel, base?.cta ?? ""),
-  }));
-  const faqItems = cmsCards(faq, FAQS, (c, base) => ({
-    q: pick(c.title, base?.q ?? ""),
-    a: pick(c.body, base?.a ?? ""),
-  }));
+const TRUST = [
+  {
+    name: "Assigned to the home",
+    desc: "Permanently linked to your address, not a device.",
+    image: "/home-v4/howa-trust-assigned-to-the-home.webp",
+  },
+  {
+    name: "Learns over time",
+    desc: "HoWA gets smarter with every update and upload.",
+    image: "/home-v4/howa-trust-learns-over-time.webp",
+  },
+  {
+    name: "Moves with the home",
+    desc: "Hands cleanly to the next custodian when the time comes.",
+    image: "/home-v4/howa-trust-moves-with-the-home.webp",
+  },
+  {
+    name: "Evidence-backed",
+    desc: "Photos, documents, dates — all in one place.",
+    image: "/home-v4/howa-trust-evidence-backed.webp",
+  },
+];
 
+const HouseMark = (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.4"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M3 11 12 3l9 8" />
+    <path d="M5 9.5V21h14V9.5" />
+    <path d="M10 21v-6h4v6" />
+  </svg>
+);
+
+export default function HowaPage() {
   return (
-    <div className={s.page}>
+    <main className={s.page}>
+      <SoftwareApplicationJsonLd url={`${env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "")}/howa`} />
       <MetaViewContent
         contentId="howa_overview"
         contentName="HoWA overview"
         contentCategory="howa_marketing"
       />
-      {/* 1. Hero — copy left + annotated Georgian on right */}
-      <section className={s.hero}>
+
+      <div className={s.subbar}>
+        <div className={s.subbarBrand}>HoWA</div>
+        <nav className={s.subbarNav}>
+          <a href="#product">Product</a>
+          <a href="#how">How it works</a>
+          <a href="#features">Features</a>
+          <a href="#modes">Modes</a>
+        </nav>
+        <div className={s.subbarRight}>
+          <span className={s.coveredBy}>
+            <span className={s.coveredMark}>{HouseMark}</span>
+            Covered by <em>House of Willow Alexander</em>
+          </span>
+          <Link href="/howa/coming-soon" className={s.subbarCta}>
+            Join waitlist
+          </Link>
+        </div>
+      </div>
+
+      {/* ── Hero ─────────────────────────────────────────────────────── */}
+      <section className={s.hero} id="product">
+        <div className={s.heroBg} aria-hidden="true" />
+        <div className={s.heroOverlay} aria-hidden="true" />
         <div className={s.heroCopy}>
-          <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>{cms(hero, "eyebrow", "The Home Operating System")}</p>
-            <h1 className={s.heroTitle}>
-              {cms(hero, "headline", "Your home,")}<br />
-              <em>{cms(hero, "headlineEm", "finally understood.", "headline")}</em>
-            </h1>
-            <p className={s.heroLede}>
-              {cms(
-                hero,
-                "body",
-                "HoWA observes, learns, and acts — so nothing is missed, delayed, or forgotten.",
-              )}
-            </p>
-            <div className={s.heroCtas}>
-              <Link href={cms(hero, "ctaHref", "/api/howa-bounce")} className={s.btnFilled}>
-                {cms(hero, "ctaLabel", "Coming soon")}
-              </Link>
-              <Link href={cms(hero, "cta2Href", "/howa/how-it-works")} className={s.btnGhost}>
-                {cms(hero, "cta2Label", "See how it works")}
-                <span aria-hidden="true" className={s.btnArrow}>→</span>
-              </Link>
-            </div>
+          <h1 className={s.heroTitle}>
+            The home <em>&amp;</em> garden
+            <br />
+            intelligence app.
+          </h1>
+          <p className={s.heroLede}>
+            Track repairs, garden care, documents, reminders and home health
+            in one living record.
+          </p>
+          <div className={s.heroCtas}>
+            <Link href="/howa/coming-soon" className={s.heroCtaPrimary}>
+              Join waitlist
+            </Link>
+            <a href="#how" className={s.heroCtaSecondary}>
+              See how it works →
+            </a>
           </div>
-        </div>
-
-        <div className={s.heroVisual}>
-          <div className={s.heroVisualFrame}>
-            <Image
-              src={cms(hero, "imageUrl", "/home-v4/howa-lander-hero-v4.webp")}
-              alt={cms(
-                hero,
-                "imageAlt",
-                "A pink Georgian townhouse with its left half rendered as a hand-drawn elevation — HoWA revealing the structure beneath the home",
-              )}
-              fill
-              sizes="(min-width: 1024px) 55vw, 100vw"
-              priority
-              style={{ objectFit: "contain", objectPosition: "right center" }}
-            />
+          <p className={s.heroSub}>One address. One record. Total peace of mind.</p>
+          <div className={s.heroBadges}>
+            <div className={s.heroBadge}>Secure</div>
+            <div className={s.heroBadge}>Private</div>
+            <div className={s.heroBadge}>Always with you</div>
+            <div className={s.heroBadge}>Built for homes</div>
           </div>
         </div>
       </section>
 
-      {/* 2. Stats strip */}
-      <section className={s.statsStrip}>
-        <div className={s.statsLede}>
-          <p className={s.statsLedeLine1}>
-            {cms(stats, "headline", "It remembers. It signals. It cares.")}
-          </p>
-          <p className={s.statsLedeLine2}>
-            {cms(stats, "subheadline", "Stewardship starts with listening.")}
-          </p>
-        </div>
-        {statCols.map((stat) => (
-          <div key={stat.label} className={s.stat}>
-            <span className={s.statValue}>{stat.value}</span>
-            <span className={s.statLabel}>{stat.label}</span>
-          </div>
-        ))}
-      </section>
-
-      {/* 3. Tier showcase — dollhouse + phone per tier */}
-      <TierShowcase />
-
-      {/* 4. Intelligence band */}
-      <section className={s.intelligence}>
-        <div className={s.intelligenceCopy}>
-          <header className={s.intelligenceHead}>
-            <span className={s.intelligenceIcon} aria-hidden="true">
-              <CalendarIcon />
-            </span>
-            <h2 className={s.intelligenceTitle}>
-              {cms(intelligence, "headline", "Intelligence that")}<br />
-              <em>{cms(intelligence, "headlineEm", "makes a real difference.", "headline")}</em>
-            </h2>
-          </header>
-          <div className={s.intelligenceStats}>
-            {intelligenceStats.map((stat, i) => (
-              <div key={stat.title} className={s.iStat}>
-                <p className={s.iStatTitle}>{stat.title}</p>
-                <p className={s.iStatSub}>
-                  {stat.highlight ? (
-                    <span className={s.iStatHighlight}>{stat.highlight}</span>
-                  ) : null}
-                  {stat.subAfter}
-                </p>
-                {i < intelligenceStats.length - 1 ? (
-                  <span aria-hidden="true" className={s.iStatArrow}>→</span>
-                ) : null}
+      {/* ── How it works ─────────────────────────────────────────────── */}
+      <section className={s.steps} id="how">
+        <div className={s.stepsLabel}>How it works</div>
+        <div className={s.stepsRow}>
+          {STEPS.map((step, i) => (
+            <Fragment key={step.key}>
+              <div className={s.step}>
+                <div className={s.stepIcon}>{step.icon}</div>
+                <div className={s.stepText}>
+                  <div className={s.stepName}>{step.name}</div>
+                  <div className={s.stepDesc}>{step.desc}</div>
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
-        <div className={s.intelligenceImage}>
-          <Image
-            src={cms(intelligence, "imageUrl", "/home-v4/pillar-1.webp")}
-            alt={cms(intelligence, "imageAlt", "A warm parlour interior, marble fireplace and flowers")}
-            fill
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            style={{ objectFit: "cover" }}
-          />
+              {i < STEPS.length - 1 && (
+                <span className={s.stepArrow}>→</span>
+              )}
+            </Fragment>
+          ))}
         </div>
       </section>
 
-      {/* 5. Pillars */}
-      <section className={s.pillars}>
-        <div className={s.pillarsGrid}>
-          {pillarCards.map((p) => (
-            <Link key={p.label} href={p.href} className={s.pillarCard}>
-              <div className={s.pillarImage}>
+      {/* ── Features ─────────────────────────────────────────────────── */}
+      <section className={s.features} id="features">
+        <h2 className={s.featuresTitle}>
+          Everything for your home, <em>in one place.</em>
+        </h2>
+        <FeatureCarousel features={FEATURES} />
+      </section>
+
+      {/* ── Modes ────────────────────────────────────────────────────── */}
+      <section className={s.modes} id="modes">
+        <header className={s.modesHead}>
+          <h2 className={s.modesTitle}>One app. <em>Three modes.</em></h2>
+        </header>
+        <div className={s.modesGrid}>
+          {MODES.map((m) => (
+            <Link key={m.slug} href={m.href} className={s.modeCard}>
+              <div className={s.modeImage}>
                 <Image
-                  src={p.image}
-                  alt={p.title}
-                  width={780}
-                  height={975}
-                  sizes="(min-width: 1024px) 24vw, 90vw"
-                  style={{ width: "100%", height: "auto" }}
+                  src={m.image}
+                  alt={m.label}
+                  width={600}
+                  height={400}
+                  sizes="(max-width: 900px) 100vw, 33vw"
                 />
               </div>
-              <div className={s.pillarBody}>
-                <p className={s.pillarLabel}>{p.label}</p>
-                <h3 className={s.pillarTitle}>{p.title}</h3>
-                <span className={s.pillarCta}>{p.cta} →</span>
+              <div className={s.modeBody}>
+                <p className={s.modeMeta}>
+                  {m.numeral} {m.label}
+                </p>
+                <h3 className={s.modeTagline}>{m.name}</h3>
+                <p className={s.modeDesc}>{m.desc}</p>
+                <span className={s.modeLearn}>Learn more →</span>
               </div>
             </Link>
           ))}
         </div>
+      </section>
 
-        {/* 6. Powered by + customer quote */}
-        <div className={s.poweredBy}>
-          <p className={s.poweredByEy}>
-            {cms(poweredBy, "eyebrow", "Every service. Every standard.")}
+      {/* ── Trust strip ──────────────────────────────────────────────── */}
+      <section className={s.trust}>
+        <h2 className={s.trustTitle}>
+          One address. One record. <em>One intelligence layer.</em>
+        </h2>
+        <div className={s.trustGrid}>
+          {TRUST.map((t) => (
+            <article key={t.name} className={s.trustItem}>
+              <div className={s.trustImage}>
+                <Image
+                  src={t.image}
+                  alt={t.name}
+                  width={600}
+                  height={400}
+                  sizes="(max-width: 900px) 100vw, (max-width: 1300px) 50vw, 25vw"
+                />
+              </div>
+              <h3 className={s.trustName}>{t.name}</h3>
+              <p className={s.trustDesc}>{t.desc}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Waitlist footer band ─────────────────────────────────────── */}
+      <section className={s.waitlist}>
+        <Image
+          src="/brand/howa/howa-white.svg"
+          alt="HoWA"
+          width={180}
+          height={60}
+          className={s.waitlistHouse}
+        />
+        <div className={s.waitlistCopy}>
+          <h2 className={s.waitlistLine}>Step into stewardship.</h2>
+          <p className={s.waitlistSub}>
+            HoWA is opening in waves. Join the waitlist and we'll bring you in
+            when your home's place is ready.
           </p>
-          <h2 className={s.poweredByTitle}>
-            {cms(poweredBy, "headline", "Powered by the House of Willow Alexander.")}
-          </h2>
-          <div className={s.pillarsBelow}>
-            {TRUST_LINES.map((line) => {
-              const Icon = line.icon;
-              return (
-                <div key={line.text} className={s.pillarLine}>
-                  <span className={s.pillarLineIcon}>
-                    <Icon />
-                  </span>
-                  <span className={s.pillarLineText}>{line.text}</span>
-                </div>
-              );
-            })}
-          </div>
-          <figure className={s.quote}>
-            <blockquote>
-              {cms(
-                poweredBy,
-                "body",
-                "I just know my home better than anyone, and that gives me real peace of mind.",
-              )}
-            </blockquote>
-            <figcaption>{cms(poweredBy, "caption", "— A. Porter, London")}</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      {/* 7. FAQ — Q&A on the left, illustrated still life anchored right */}
-      <section className={s.faqSection}>
-        <div className={s.faqCopy}>
-          <header className={s.faqHead}>
-            <p className={s.faqEy}>{cms(faq, "eyebrow", "Before you begin.")}</p>
-            <h2 className={s.faqTitle}>{cms(faq, "headline", "Questions, answered.")}</h2>
-          </header>
-          <FaqList items={faqItems} />
-        </div>
-        <div className={s.faqVisual}>
-          <div className={s.faqVisualFrame}>
-            <Image
-              src={cms(faq, "imageUrl", "/home-v4/howa-lander-faq-v2.webp")}
-              alt={cms(
-                faq,
-                "imageAlt",
-                "The Living Record of Your Home — a leather-bound book on a wooden cabinet beside a vase of foliage, a brass key and a HoWA sensor",
-              )}
-              fill
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              style={{ objectFit: "contain", objectPosition: "right center" }}
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* 8. Closing band */}
-      <section className={s.closing}>
-        <p className={s.closingKicker}>{cms(closing, "eyebrow", "Step into stewardship.")}</p>
-        <p className={s.closingStatement}>
-          <em>{cms(closing, "headlineEm", "Understand. Protect. Perform.", "headline")}</em>
-        </p>
-        <div className={s.closingCtas}>
-          <Link href={cms(closing, "ctaHref", "/api/howa-bounce")} className={s.closingBtnFilled}>
-            {cms(closing, "ctaLabel", "Coming soon")}
+          <Link href="/howa/coming-soon" className={s.waitlistCta}>
+            Join waitlist
           </Link>
+          <p className={s.waitlistFootnote}>Limited early access</p>
         </div>
+        <div />
       </section>
-    </div>
-  );
-}
-
-/* ----------------------------------------------------------------
-   Inline SVG icons — copy from v4a to keep this preview self-contained
----------------------------------------------------------------- */
-
-function HomeIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" width="22" height="22" aria-hidden="true">
-      <path d="M3 11 L12 4 L21 11 V20 a1 1 0 0 1 -1 1 H4 a1 1 0 0 1 -1 -1 Z" />
-      <path d="M9 21 V13 H15 V21" />
-    </svg>
-  );
-}
-function ShieldIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" width="22" height="22" aria-hidden="true">
-      <path d="M12 3 L20 6 V12 C20 16, 16 20, 12 22 C8 20, 4 16, 4 12 V6 Z" />
-      <path d="M9 12 L11 14 L15 10" />
-    </svg>
-  );
-}
-function LeafIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" width="22" height="22" aria-hidden="true">
-      <path d="M5 21 C 5 12, 12 5, 21 5 C 21 14, 14 21, 5 21 Z" />
-      <path d="M5 21 L 14 12" />
-    </svg>
-  );
-}
-function AwardIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" width="22" height="22" aria-hidden="true">
-      <circle cx="12" cy="9" r="6" />
-      <path d="M9 14 L7 22 L12 19 L17 22 L15 14" />
-    </svg>
-  );
-}
-function CalendarIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <rect x="4" y="6" width="24" height="22" rx="1" />
-      <path d="M4 12 L28 12" />
-      <path d="M10 3 L10 9" />
-      <path d="M22 3 L22 9" />
-      <circle cx="11" cy="18" r="0.9" fill="currentColor" stroke="none" />
-      <circle cx="16" cy="18" r="0.9" fill="currentColor" stroke="none" />
-      <circle cx="21" cy="18" r="0.9" fill="currentColor" stroke="none" />
-      <circle cx="11" cy="23" r="0.9" fill="currentColor" stroke="none" />
-      <circle cx="16" cy="23" r="0.9" fill="currentColor" stroke="none" />
-    </svg>
+    </main>
   );
 }
