@@ -449,78 +449,48 @@
 .modesGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  max-width: 1280px;
+  gap: clamp(20px, 2vw, 32px);
+  max-width: 1400px;
   margin: 0 auto;
 }
 
+/* Landscape image card — image carries the colour story (olive / terracotta /
+   navy watercolor of the house) and the phone UI together. Copy sits below. */
 .modeCard {
-  --bg: #6e7e6a;
-  --fg: #f5f0e8;
-  --fg-muted: rgba(245, 240, 232, 0.72);
-  --rule: rgba(245, 240, 232, 0.22);
-
   display: flex;
   flex-direction: column;
-  background: var(--bg);
-  color: var(--fg);
   text-decoration: none;
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 389/784;
+  color: var(--color-house-brown);
+  text-align: left;
   transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .modeCard:hover { transform: translateY(-3px); }
 
-.modeCard.assistant { --bg: #6f7a64; }
-.modeCard.housekeeper { --bg: #a5644b; }
-.modeCard.steward { --bg: #1f2a3f; }
-
-.modeBg {
-  position: absolute;
-  inset: 0;
-  background-color: var(--bg);
-  background-repeat: no-repeat;
-  background-position: center 48%;
-  background-size: 92% auto;
-  z-index: 0;
+.modeImage {
+  width: 100%;
+  aspect-ratio: 3/2;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.4);
 }
-.modeCard.assistant .modeBg { background-image: url(/home-v4/assistant-dollhouse.webp); }
-.modeCard.housekeeper .modeBg { background-image: url(/home-v4/housekeeper-dollhouse.webp); }
-.modeCard.steward .modeBg { background-image: url(/home-v4/steward-dollhouse.webp); }
-
-.modeBg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, transparent 24%, transparent 60%, rgba(0, 0, 0, 0.28) 100%);
-  pointer-events: none;
+.modeImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-.modeOverlay {
-  position: relative;
-  z-index: 1;
-  flex: 1;
+.modeBody {
+  padding: 22px 0 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: clamp(24px, 2.6vw, 36px) clamp(22px, 2.4vw, 32px);
-  text-align: center;
-}
-
-.modeTop {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 .modeMeta {
   font-family: var(--font-sans);
   font-size: 11px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--color-house-gold-light);
+  color: var(--color-house-gold-dark);
   margin: 0;
   font-weight: 500;
 }
@@ -528,64 +498,29 @@
   font-family: var(--font-hearth-serif);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(20px, 1.8vw, 26px);
-  line-height: 1.2;
-  color: var(--fg);
-  margin: 0;
+  font-size: clamp(22px, 2vw, 28px);
+  line-height: 1.15;
+  color: var(--color-house-brown);
+  margin: 4px 0 6px;
   letter-spacing: -0.005em;
 }
-.modeTagline::after {
-  content: "";
-  display: block;
-  width: 24px;
-  height: 1px;
-  background: var(--color-house-gold-light);
-  margin: 14px auto 0;
-  opacity: 0.7;
-}
-
-.modeFoot {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
-}
-.modeFeatures {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  text-align: left;
-}
-.modeFeatures li {
-  display: grid;
-  grid-template-columns: 14px 1fr;
-  gap: 10px;
-  align-items: baseline;
+.modeDesc {
   font-family: var(--font-sans);
   font-size: 13px;
-  line-height: 1.4;
-  color: var(--fg-muted);
-}
-.modeFeatures li::before {
-  content: "";
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--color-house-gold-light);
-  margin-top: 7px;
+  line-height: 1.55;
+  color: rgba(48, 35, 28, 0.72);
+  margin: 0 0 12px;
+  max-width: 38ch;
 }
 .modeLearn {
   font-family: var(--font-sans);
   font-size: 10px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--fg);
-  border-bottom: 1px solid var(--fg);
+  color: var(--color-house-brown);
+  border-bottom: 1px solid var(--color-house-brown);
   padding-bottom: 3px;
-  text-decoration: none;
+  align-self: flex-start;
   opacity: 0.85;
 }
 

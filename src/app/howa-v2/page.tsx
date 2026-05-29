@@ -94,11 +94,8 @@ const MODES = [
     numeral: "I.",
     label: "HoWA Assistant",
     name: "The house, alive.",
-    features: [
-      "Notices what matters",
-      "Tracks changes in real time",
-      "Surfaces subtle signals",
-    ],
+    desc: "Always with you. Ask, log, look up — the house at your elbow.",
+    image: "/home-v4/howa-mode-assistant.webp",
     href: "/howa#assistant",
   },
   {
@@ -106,11 +103,8 @@ const MODES = [
     numeral: "II.",
     label: "HoWA Housekeeper",
     name: "The house, in order.",
-    features: [
-      "Tasks orchestrated",
-      "Services aligned",
-      "Nothing slips",
-    ],
+    desc: "Quietly running things in the background — routines, prompts, care.",
+    image: "/home-v4/howa-mode-housekeeper.webp",
     href: "/howa#housekeeper",
   },
   {
@@ -118,11 +112,8 @@ const MODES = [
     numeral: "III.",
     label: "HoWA Steward",
     name: "The house, understood.",
-    features: [
-      "Predicts risk",
-      "Optimises systems",
-      "Protects long-term value",
-    ],
+    desc: "Long-view custodianship. Insurance, value, succession — accounted for.",
+    image: "/home-v4/howa-mode-steward.webp",
     href: "/howa/steward",
   },
 ];
@@ -259,27 +250,23 @@ export default function HowaV2Page() {
         </header>
         <div className={s.modesGrid}>
           {MODES.map((m) => (
-            <Link
-              key={m.slug}
-              href={m.href}
-              className={`${s.modeCard} ${s[m.slug]}`}
-            >
-              <div className={s.modeBg} aria-hidden="true" />
-              <div className={s.modeOverlay}>
-                <header className={s.modeTop}>
-                  <p className={s.modeMeta}>
-                    {m.numeral} {m.label}
-                  </p>
-                  <h3 className={s.modeTagline}>{m.name}</h3>
-                </header>
-                <footer className={s.modeFoot}>
-                  <ul className={s.modeFeatures}>
-                    {m.features.map((f) => (
-                      <li key={f}>{f}</li>
-                    ))}
-                  </ul>
-                  <span className={s.modeLearn}>Learn more →</span>
-                </footer>
+            <Link key={m.slug} href={m.href} className={s.modeCard}>
+              <div className={s.modeImage}>
+                <Image
+                  src={m.image}
+                  alt={m.label}
+                  width={600}
+                  height={400}
+                  sizes="(max-width: 900px) 100vw, 33vw"
+                />
+              </div>
+              <div className={s.modeBody}>
+                <p className={s.modeMeta}>
+                  {m.numeral} {m.label}
+                </p>
+                <h3 className={s.modeTagline}>{m.name}</h3>
+                <p className={s.modeDesc}>{m.desc}</p>
+                <span className={s.modeLearn}>Learn more →</span>
               </div>
             </Link>
           ))}
