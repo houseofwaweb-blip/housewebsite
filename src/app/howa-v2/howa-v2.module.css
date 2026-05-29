@@ -91,21 +91,21 @@
   position: absolute;
   inset: 0;
   z-index: -2;
-  background-image: url("/home-v4/howa-hero-house-garden.webp");
+  background-image: url("/home-v4/howa-hero-v2.webp");
   background-size: cover;
   background-position: center right;
 }
-/* Dark gradient masking the left third so light copy stays readable */
+/* Light cream wash — the image is already bright + airy, so this is mostly insurance */
 .heroOverlay {
   position: absolute;
   inset: 0;
   z-index: -1;
   background: linear-gradient(
     to right,
-    rgba(15, 12, 10, 0.78) 0%,
-    rgba(15, 12, 10, 0.62) 28%,
-    rgba(15, 12, 10, 0.28) 50%,
-    rgba(15, 12, 10, 0) 70%
+    rgba(243, 237, 225, 0.72) 0%,
+    rgba(243, 237, 225, 0.45) 30%,
+    rgba(243, 237, 225, 0.1) 55%,
+    rgba(243, 237, 225, 0) 70%
   );
 }
 .heroCopy {
@@ -120,7 +120,7 @@
   font-size: clamp(44px, 5.4vw, 80px);
   line-height: 1.05;
   letter-spacing: -0.02em;
-  color: var(--color-house-cream, #f3ede1);
+  color: var(--color-house-brown, #30231c);
   margin: 0;
 }
 .heroTitle em {
@@ -133,7 +133,7 @@
   font-family: var(--font-sans);
   font-size: 17px;
   line-height: 1.65;
-  color: rgba(243, 237, 225, 0.88);
+  color: rgba(48, 35, 28, 0.78);
   max-width: 48ch;
 }
 .heroCtas {
@@ -148,8 +148,8 @@
   align-items: center;
   gap: 10px;
   padding: 16px 32px;
-  background: var(--color-house-cream, #f3ede1);
-  color: var(--color-house-brown, #30231c);
+  background: var(--color-house-green-deep, #233827);
+  color: var(--color-house-cream);
   text-decoration: none;
   font-family: var(--font-sans);
   font-size: 12px;
@@ -157,7 +157,7 @@
   text-transform: uppercase;
   transition: background-color 0.2s ease;
 }
-.heroCtaPrimary:hover { background: #ffffff; }
+.heroCtaPrimary:hover { background: var(--color-house-brown); }
 .heroCtaSecondary {
   display: inline-flex;
   align-items: center;
@@ -166,19 +166,19 @@
   font-size: 12px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--color-house-cream, #f3ede1);
+  color: var(--color-house-brown);
   text-decoration: none;
   padding-bottom: 2px;
-  border-bottom: 1px solid rgba(243, 237, 225, 0.55);
+  border-bottom: 1px solid var(--color-house-brown);
 }
 .heroSub {
   margin-top: 32px;
   padding-top: 24px;
-  border-top: 1px solid rgba(243, 237, 225, 0.2);
+  border-top: 1px solid rgba(48, 35, 28, 0.14);
   font-family: var(--font-hearth-serif);
   font-style: italic;
   font-size: 16px;
-  color: rgba(243, 237, 225, 0.78);
+  color: rgba(48, 35, 28, 0.65);
 }
 .heroBadges {
   margin-top: 18px;
@@ -191,7 +191,7 @@
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(243, 237, 225, 0.78);
+  color: rgba(48, 35, 28, 0.7);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -514,37 +514,42 @@
 .trustGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
-  max-width: 1300px;
+  gap: clamp(20px, 2vw, 32px);
+  max-width: 1400px;
   margin: 0 auto;
 }
 .trustItem {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  text-align: left;
 }
-.trustIcon {
-  width: 32px;
-  height: 32px;
-  color: var(--color-house-gold-dark);
-  margin-bottom: 4px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: flex-start;
+.trustImage {
+  width: 100%;
+  aspect-ratio: 3/2;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.4);
 }
-.trustIcon svg { width: 28px; height: 28px; }
+.trustImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 .trustName {
+  margin: 20px 0 6px;
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 19px;
+  font-size: 22px;
   font-weight: 400;
   color: var(--color-house-brown);
 }
 .trustDesc {
+  margin: 0;
   font-family: var(--font-sans);
   font-size: 13px;
-  line-height: 1.5;
-  color: rgba(48, 35, 28, 0.7);
+  line-height: 1.55;
+  color: rgba(48, 35, 28, 0.72);
+  max-width: 32ch;
 }
 
 /* ── Waitlist footer band ────────────────────────────────────────────── */
@@ -613,16 +618,16 @@
   .featureCarousel {
     grid-auto-columns: calc((100% - clamp(80px, 10vw, 192px) - 32px) / 2.2);
   }
-  .trustGrid { grid-template-columns: repeat(2, 1fr); }
+  .trustGrid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
 }
 @media (max-width: 900px) {
   .hero { min-height: 520px; padding: 64px 32px; }
   .heroOverlay {
     background: linear-gradient(
       to bottom,
-      rgba(15, 12, 10, 0.82) 0%,
-      rgba(15, 12, 10, 0.6) 55%,
-      rgba(15, 12, 10, 0.2) 100%
+      rgba(243, 237, 225, 0.82) 0%,
+      rgba(243, 237, 225, 0.55) 55%,
+      rgba(243, 237, 225, 0.1) 100%
     );
   }
   .heroBg { background-position: center bottom; }

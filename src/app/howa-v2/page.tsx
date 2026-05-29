@@ -112,56 +112,26 @@ const MODES = [
   },
 ];
 
-const TrustIcon = {
-  shield: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
-      <path d="m9 12 2 2 4-4" />
-    </svg>
-  ),
-  clock: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="9" />
-      <path d="M12 7v5l3 2" />
-    </svg>
-  ),
-  truck: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 7h11v9H3z" />
-      <path d="M14 10h4l3 3v3h-7" />
-      <circle cx="7" cy="18" r="2" />
-      <circle cx="17" cy="18" r="2" />
-    </svg>
-  ),
-  certificate: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M5 4h14v12H5z" />
-      <path d="M9 20v-4l3 2 3-2v4" />
-      <circle cx="12" cy="10" r="2" />
-    </svg>
-  ),
-};
-
 const TRUST = [
   {
     name: "Assigned to the home",
     desc: "Permanently linked to your address, not a device.",
-    icon: TrustIcon.shield,
+    image: "/home-v4/howa-trust-assigned-to-the-home.webp",
   },
   {
-    name: "Lives over time",
+    name: "Learns over time",
     desc: "HoWA gets smarter with every update and upload.",
-    icon: TrustIcon.clock,
+    image: "/home-v4/howa-trust-learns-over-time.webp",
   },
   {
     name: "Moves with the home",
     desc: "Hands cleanly to the next custodian when the time comes.",
-    icon: TrustIcon.truck,
+    image: "/home-v4/howa-trust-moves-with-the-home.webp",
   },
   {
     name: "Evidence-backed",
     desc: "Photos, documents, dates — all in one place.",
-    icon: TrustIcon.certificate,
+    image: "/home-v4/howa-trust-evidence-backed.webp",
   },
 ];
 
@@ -295,11 +265,19 @@ export default function HowaV2Page() {
         </h2>
         <div className={s.trustGrid}>
           {TRUST.map((t) => (
-            <div key={t.name} className={s.trustItem}>
-              <div className={s.trustIcon}>{t.icon}</div>
-              <div className={s.trustName}>{t.name}</div>
-              <div className={s.trustDesc}>{t.desc}</div>
-            </div>
+            <article key={t.name} className={s.trustItem}>
+              <div className={s.trustImage}>
+                <Image
+                  src={t.image}
+                  alt={t.name}
+                  width={600}
+                  height={400}
+                  sizes="(max-width: 900px) 100vw, (max-width: 1300px) 50vw, 25vw"
+                />
+              </div>
+              <h3 className={s.trustName}>{t.name}</h3>
+              <p className={s.trustDesc}>{t.desc}</p>
+            </article>
           ))}
         </div>
       </section>
