@@ -90,25 +90,40 @@ const FEATURES = [
 
 const MODES = [
   {
-    label: "I.",
-    name: "Assistant",
-    desc: "Always with you. Ask, log, look up — the house at your elbow.",
-    house: "/home-v4/assistant-dollhouse.webp",
-    phone: "/home-v4/phone-assistant.webp",
+    slug: "assistant",
+    numeral: "I.",
+    label: "HoWA Assistant",
+    name: "The house, alive.",
+    features: [
+      "Notices what matters",
+      "Tracks changes in real time",
+      "Surfaces subtle signals",
+    ],
+    href: "/howa#assistant",
   },
   {
-    label: "II.",
-    name: "Housekeeper",
-    desc: "Quietly running things in the background — routines, prompts, care.",
-    house: "/home-v4/housekeeper-dollhouse.webp",
-    phone: "/home-v4/phone-housekeeper.webp",
+    slug: "housekeeper",
+    numeral: "II.",
+    label: "HoWA Housekeeper",
+    name: "The house, in order.",
+    features: [
+      "Tasks orchestrated",
+      "Services aligned",
+      "Nothing slips",
+    ],
+    href: "/howa#housekeeper",
   },
   {
-    label: "III.",
-    name: "Steward",
-    desc: "Long-view custodianship. Insurance, value, succession — accounted for.",
-    house: "/home-v4/steward-dollhouse.webp",
-    phone: "/home-v4/phone-steward.webp",
+    slug: "steward",
+    numeral: "III.",
+    label: "HoWA Steward",
+    name: "The house, understood.",
+    features: [
+      "Predicts risk",
+      "Optimises systems",
+      "Protects long-term value",
+    ],
+    href: "/howa/steward",
   },
 ];
 
@@ -239,21 +254,34 @@ export default function HowaV2Page() {
 
       {/* ── Modes ────────────────────────────────────────────────────── */}
       <section className={s.modes} id="modes">
-        <h2 className={s.modesTitle}>
-          One app. <em>Three modes.</em>
-        </h2>
+        <header className={s.modesHead}>
+          <h2 className={s.modesTitle}>One app. <em>Three modes.</em></h2>
+        </header>
         <div className={s.modesGrid}>
           {MODES.map((m) => (
-            <article key={m.name} className={s.mode}>
-              <div className={s.modeCopy}>
-                <div className={s.modeLabel}>{m.label}</div>
-                <h3 className={s.modeName}>{m.name}</h3>
-                <p className={s.modeDesc}>{m.desc}</p>
+            <Link
+              key={m.slug}
+              href={m.href}
+              className={`${s.modeCard} ${s[m.slug]}`}
+            >
+              <div className={s.modeBg} aria-hidden="true" />
+              <div className={s.modeOverlay}>
+                <header className={s.modeTop}>
+                  <p className={s.modeMeta}>
+                    {m.numeral} {m.label}
+                  </p>
+                  <h3 className={s.modeTagline}>{m.name}</h3>
+                </header>
+                <footer className={s.modeFoot}>
+                  <ul className={s.modeFeatures}>
+                    {m.features.map((f) => (
+                      <li key={f}>{f}</li>
+                    ))}
+                  </ul>
+                  <span className={s.modeLearn}>Learn more →</span>
+                </footer>
               </div>
-              <div className={s.modePhone}>
-                <Image src={m.phone} alt={m.name} width={180} height={380} />
-              </div>
-            </article>
+            </Link>
           ))}
         </div>
       </section>

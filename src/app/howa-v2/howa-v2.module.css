@@ -83,12 +83,10 @@
 .hero {
   position: relative;
   isolation: isolate;
-  /* Match the source image ratio (1672 × 941) so background-size: cover
-     doesn't crop the watercolor sketch + dollhouse + phones. */
-  aspect-ratio: 1672 / 941;
+  min-height: 640px;
   display: flex;
   align-items: center;
-  padding: clamp(40px, 5vw, 96px) clamp(40px, 5vw, 96px);
+  padding: clamp(80px, 9vw, 140px) clamp(40px, 5vw, 96px);
   overflow: hidden;
 }
 .heroBg {
@@ -96,8 +94,11 @@
   inset: 0;
   z-index: -2;
   background-image: url("/home-v4/howa-hero-v2.webp");
-  background-size: cover;
-  background-position: center;
+  /* contain → full image fits within the hero height. Anchored right so the
+     dollhouse + phones sit on the right while copy occupies the left. */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center right;
 }
 /* Light cream wash — the image is already bright + airy, so this is mostly insurance */
 .heroOverlay {
@@ -415,89 +416,177 @@
 }
 
 /* ── One app. Three modes. ───────────────────────────────────────────── */
+/* Ported from the homepage tier-card pattern (home-v4a.module.css) so
+   the modes section reads in the same brand language as the rest of /howa. */
 .modes {
-  padding: clamp(72px, 8vw, 120px) clamp(40px, 5vw, 96px);
-  background: var(--color-house-cream-dark, #ebe2d1);
+  background: var(--color-house-cream);
+  padding: clamp(56px, 6vw, 96px) clamp(40px, 5vw, 88px) clamp(72px, 7vw, 104px);
   text-align: center;
+}
+.modesHead {
+  margin: 0 auto 56px;
 }
 .modesTitle {
   font-family: var(--font-hearth-serif);
+  font-style: italic;
   font-weight: 400;
-  font-size: clamp(34px, 4vw, 52px);
-  line-height: 1.1;
+  font-size: clamp(48px, 5.4vw, 80px);
+  line-height: 1.05;
+  color: var(--color-house-brown);
+  margin: 0;
   letter-spacing: -0.015em;
-  margin: 0 0 clamp(40px, 4vw, 60px);
 }
 .modesTitle em { font-style: italic; }
+.modesTitle::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--color-house-gold);
+  margin: 22px auto 0;
+}
+
 .modesGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  max-width: 1500px;
-  margin: 0 auto;
-  text-align: left;
-}
-.mode {
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(48, 35, 28, 0.08);
-  padding: 28px;
-  display: grid;
-  grid-template-columns: 1fr auto;
   gap: 18px;
-  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
 }
-.modeCopy {
+
+.modeCard {
+  --bg: #6e7e6a;
+  --fg: #f5f0e8;
+  --fg-muted: rgba(245, 240, 232, 0.72);
+  --rule: rgba(245, 240, 232, 0.22);
+
   display: flex;
   flex-direction: column;
+  background: var(--bg);
+  color: var(--fg);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 389/784;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.modeLabel {
+.modeCard:hover { transform: translateY(-3px); }
+
+.modeCard.assistant { --bg: #6f7a64; }
+.modeCard.housekeeper { --bg: #a5644b; }
+.modeCard.steward { --bg: #1f2a3f; }
+
+.modeBg {
+  position: absolute;
+  inset: 0;
+  background-color: var(--bg);
+  background-repeat: no-repeat;
+  background-position: center 48%;
+  background-size: 92% auto;
+  z-index: 0;
+}
+.modeCard.assistant .modeBg { background-image: url(/home-v4/assistant-dollhouse.webp); }
+.modeCard.housekeeper .modeBg { background-image: url(/home-v4/housekeeper-dollhouse.webp); }
+.modeCard.steward .modeBg { background-image: url(/home-v4/steward-dollhouse.webp); }
+
+.modeBg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, transparent 24%, transparent 60%, rgba(0, 0, 0, 0.28) 100%);
+  pointer-events: none;
+}
+
+.modeOverlay {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(24px, 2.6vw, 36px) clamp(22px, 2.4vw, 32px);
+  text-align: center;
+}
+
+.modeTop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.modeMeta {
   font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.26em;
+  font-size: 11px;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
-  margin-bottom: 8px;
+  color: var(--color-house-gold-light);
+  margin: 0;
+  font-weight: 500;
 }
-.modeName {
+.modeTagline {
   font-family: var(--font-hearth-serif);
-  font-weight: 400;
   font-style: italic;
-  font-size: 28px;
-  line-height: 1.1;
-  margin: 0 0 12px;
+  font-weight: 400;
+  font-size: clamp(20px, 1.8vw, 26px);
+  line-height: 1.2;
+  color: var(--fg);
+  margin: 0;
+  letter-spacing: -0.005em;
 }
-.modeDesc {
+.modeTagline::after {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--color-house-gold-light);
+  margin: 14px auto 0;
+  opacity: 0.7;
+}
+
+.modeFoot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+.modeFeatures {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+.modeFeatures li {
+  display: grid;
+  grid-template-columns: 14px 1fr;
+  gap: 10px;
+  align-items: baseline;
   font-family: var(--font-sans);
   font-size: 13px;
-  line-height: 1.55;
-  color: rgba(48, 35, 28, 0.72);
-  margin: 0;
+  line-height: 1.4;
+  color: var(--fg-muted);
 }
-.modeHouse {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4/5;
-  margin-bottom: 16px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+.modeFeatures li::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-house-gold-light);
+  margin-top: 7px;
 }
-.modePhone {
-  width: 88px;
-  aspect-ratio: 9/19;
-  border-radius: 18px;
-  overflow: hidden;
-  background: var(--color-house-brown);
-  padding: 4px;
-  flex-shrink: 0;
-  box-shadow: 0 12px 30px rgba(48, 35, 28, 0.18);
-}
-.modePhone img {
-  width: 100%;
-  height: 100%;
-  border-radius: 14px;
-  object-fit: cover;
-  display: block;
+.modeLearn {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--fg);
+  border-bottom: 1px solid var(--fg);
+  padding-bottom: 3px;
+  text-decoration: none;
+  opacity: 0.85;
 }
 
 /* ── Trust strip ─────────────────────────────────────────────────────── */
@@ -625,7 +714,7 @@
   .trustGrid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
 }
 @media (max-width: 900px) {
-  .hero { aspect-ratio: auto; min-height: 520px; padding: 64px 32px; }
+  .hero { min-height: 520px; padding: 64px 32px; }
   .heroOverlay {
     background: linear-gradient(
       to bottom,
