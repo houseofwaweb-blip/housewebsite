@@ -3,6 +3,7 @@ import Link from "next/link";
 import s from "./services.module.css";
 import { FaqList } from "@/components/marketing/FaqList";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
+import { ServiceCarousel } from "./ServiceCarousel";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -335,50 +336,12 @@ export default async function ServicesLanding() {
             )}
           </p>
         </header>
-        <div className={s.servicesCarousel}>
-          {serviceCards.map((svc) => (
-            <Link
-              key={svc.slug}
-              href={svc.href}
-              className={`${s.serviceCard} ${svc.state === "soon" ? s.serviceCardSoon : ""}`}
-              data-state={svc.state}
-            >
-              <div className={s.serviceImage}>
-                {(() => {
-                  const cardImg = imgOr(svc.image);
-                  const soon = cardImg === COMING_SOON;
-                  return (
-                    <>
-                      <Image
-                        src={cardImg}
-                        alt={svc.name}
-                        width={780}
-                        height={975}
-                        sizes="(min-width: 1024px) 320px, 80vw"
-                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                      />
-                      {soon ? (
-                        <span className={s.serviceComingSoon}>Service Coming Soon</span>
-                      ) : (
-                        <span className={s.serviceState}>
-                          {svc.state === "live" ? "Available now" : "Coming soon"}
-                        </span>
-                      )}
-                    </>
-                  );
-                })()}
-              </div>
-              <div className={s.serviceBody}>
-                <h3 className={s.serviceName}>{svc.name}</h3>
-                <p className={s.serviceTagline}>{svc.tagline}</p>
-                <p className={s.serviceText}>{svc.body}</p>
-                <span className={s.serviceCta}>
-                  {svc.state === "live" ? `See ${svc.name.toLowerCase()} →` : "Register interest →"}
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
+        <ServiceCarousel
+          cards={serviceCards.map((svc) => {
+            const cardImg = imgOr(svc.image);
+            return { ...svc, image: cardImg, soon: cardImg === COMING_SOON };
+          })}
+        />
         <p className={s.servicesFootnote}>
           {cms(
             servicesHead,

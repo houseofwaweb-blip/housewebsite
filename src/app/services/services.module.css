@@ -347,6 +347,62 @@
   color: var(--color-house-gold-dark);
 }
 
+/* Slider controls — prev/next arrows + position bars.
+   Makes the one-row scroll-snap strip read as an intentional slider on touch
+   and desktop, instead of a half-peeking card looking "cut off". */
+.carouselControls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 2vw, 22px);
+  margin-top: clamp(24px, 2.6vw, 36px);
+}
+.carouselArrow {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(48, 35, 28, 0.2);
+  background: transparent;
+  color: var(--color-house-brown);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+}
+.carouselArrow:hover:not(:disabled) {
+  border-color: var(--color-house-brown);
+}
+.carouselArrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.carouselDots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.carouselDot {
+  width: 16px;
+  height: 2px;
+  flex: none;
+  padding: 0;
+  border: none;
+  background: rgba(48, 35, 28, 0.22);
+  cursor: pointer;
+  transition: width 0.3s ease, background 0.3s ease;
+}
+.carouselDot:hover {
+  background: rgba(48, 35, 28, 0.45);
+}
+.carouselDotActive,
+.carouselDotActive:hover {
+  width: 28px;
+  background: var(--color-house-gold-dark);
+}
+
 /* ============================================================
    4. Steward Plans ladder
    ============================================================ */
@@ -757,6 +813,10 @@
     scroll-padding-left: 24px;
   }
   .serviceCard { flex: 0 0 78%; }
+  .carouselArrow { width: 40px; height: 40px; }
+  .carouselDots { gap: 6px; }
+  .carouselDot { width: 10px; }
+  .carouselDotActive, .carouselDotActive:hover { width: 20px; }
   .plansGrid { grid-template-columns: 1fr; }
   .briefCopy, .briefMock { padding: 48px 24px; }
   .briefMockLine { grid-template-columns: 24px 90px 1fr; gap: 8px; font-size: 13px; }
