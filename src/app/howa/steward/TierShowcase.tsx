@@ -99,7 +99,7 @@ const TIERS: {
     slug: "assistant",
     numeral: "I.",
     label: "Assistant",
-    tagline: "The house, alive.",
+    tagline: "The house, seen.",
     visual: { kind: "illustration", src: "/home-v4/assistant-dollhouse.webp", alt: "Doll house — Assistant tier" },
     features: [
       { icon: LeafIcon, text: "Notices what matters" },
@@ -125,7 +125,7 @@ const TIERS: {
     slug: "steward",
     numeral: "III.",
     label: "Steward",
-    tagline: "The house, understood.",
+    tagline: "The house, protected before failure.",
     visual: { kind: "phone", src: "/home-v4/steward-phone-steward.webp", alt: "House Health 91% Optimal — Steward phone" },
     features: [
       { icon: ShieldSmallIcon, text: "Predicts risk" },

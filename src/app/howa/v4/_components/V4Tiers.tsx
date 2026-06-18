@@ -24,7 +24,7 @@ const TIERS: Tier[] = [
     points: ["Full logbook", "Paperwork to reminders", "Cost memory", "Seasonal calendar", "Monthly Brief", "Household sharing"],
   },
   {
-    name: "Steward", price: "£29.99/mo", tagline: "Protected before failure.", tierSlug: "steward", accent: "#c5a960", dark: true, cta: "Start Steward", image: "/home-v4/v6-tier-steward-v2.webp",
+    name: "Steward", price: "£29.99/mo", tagline: "The house, protected before failure.", tierSlug: "steward", accent: "#c5a960", dark: true, cta: "Start Steward", image: "/home-v4/v6-tier-steward-v2.webp",
     points: ["HoWA Score drivers", "Risk register", "Proactive protection prompts", "Evidence packs", "Annual Home Report", "Transfer Pack foundations"],
   },
 ];
