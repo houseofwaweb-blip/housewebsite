@@ -42,6 +42,9 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       // Structural moves
+      // The House overview page retired; nav is a hover dropdown, "Discover the
+      // House" anchors to the homepage. Route lands on Philosophy (2026-06-18).
+      { source: "/the-house", destination: "/the-house/philosophy", permanent: false },
       // Companion folded into the free Assistant tier page (2026-06-17)
       { source: "/howa/companion", destination: "/howa/assistant", permanent: true },
       { source: "/protect/review", destination: "/protect/home-protection", permanent: true },

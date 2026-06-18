@@ -23,7 +23,7 @@ const PILLARS = [
   { label: "Design & Care", title: "Design & Care", sub: "Expert design and care for every home.", image: "/home-v4/design-portrait.webp", href: "/design" },
   { label: "The Marketplace", title: "The Marketplace", sub: "Curated essentials for home and hearth.", image: "/home-v4/pillar-2.webp", href: "/shop" },
   { label: "The Hearth", title: "The Hearth", sub: "Stories, guidance, and timeless inspiration.", image: "/home-v4/pillar-3.webp", href: "/the-hearth" },
-  { label: "The House", title: "The House", sub: "The standard we hold ourselves to.", image: "/home-v4/pillar-4.webp", href: "/the-house" },
+  { label: "The House", title: "The House", sub: "The standard we hold ourselves to.", image: "/home-v4/pillar-4.webp", href: "#the-house" },
 ];
 
 const HOWA_FEATURES = [
@@ -117,9 +117,9 @@ export default async function HomePage() {
               best order.
             </p>
             <div className={s.heroCtas}>
-              <Link href="/the-house" className={s.btnGhost}>
+              <a href="#the-house" className={s.btnGhost}>
                 Discover the House <span aria-hidden className={s.arrow}>→</span>
-              </Link>
+              </a>
               <Link href="#open-booking-form" className={s.btnFilled}>
                 Book with HoWA
               </Link>
@@ -171,7 +171,7 @@ export default async function HomePage() {
       </section>
 
       {/* 4. House introduction */}
-      <section className={s.houseIntro}>
+      <section id="the-house" className={s.houseIntro}>
         <div>
           <p className={s.eyebrow}>The House</p>
           <h2 className={s.houseIntroHead}>
@@ -191,7 +191,7 @@ export default async function HomePage() {
             Marketplace carries that conviction. The House is not a brand. It is a
             standard.
           </p>
-          <Link href="/the-house" className={s.textLink}>
+          <Link href="/the-house/philosophy" className={s.textLink}>
             Discover the House standard <span aria-hidden className={s.arrow}>→</span>
           </Link>
         </div>
