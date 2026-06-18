@@ -43,7 +43,7 @@ function fileOr(localPath: string, fallback: string) {
  *
  * What we deliberately do NOT include (lives on the parent /services/[slug]):
  *   - Trust strip
- *   - HoWA+ upsell band
+ *   - Housekeeper upsell band
  *   - Service areas brown band
  *   - Partner carousel
  */

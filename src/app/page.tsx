@@ -56,9 +56,9 @@ const INTEL_STATS = [
 ];
 
 const TIERS = [
-  { slug: "assistant", numeral: "I.", label: "HoWA Assistant", name: "The house, alive.", features: ["Notices what matters", "Tracks changes in real time", "Surfaces subtle signals"], href: "/howa#assistant" },
-  { slug: "housekeeper", numeral: "II.", label: "HoWA Housekeeper", name: "The house, in order.", features: ["Tasks orchestrated", "Services aligned", "Nothing slips"], href: "/howa#housekeeper" },
-  { slug: "steward", numeral: "III.", label: "HoWA Steward", name: "The house, understood.", features: ["Predicts risk", "Optimises systems", "Protects long-term value"], href: "/howa/steward" },
+  { slug: "assistant", numeral: "I.", label: "HoWA Assistant", name: "The house, seen.", features: ["Notices what matters", "Tracks changes in real time", "Surfaces subtle signals"], href: "/howa#assistant" },
+  { slug: "housekeeper", numeral: "II.", label: "HoWA Housekeeper", name: "The house, in order.", features: ["Tasks orchestrated", "Services aligned", "Nothing slips"], href: "/howa/housekeeper" },
+  { slug: "steward", numeral: "III.", label: "HoWA Steward", name: "The house, protected before failure.", features: ["Predicts risk", "Optimises systems", "Protects long-term value"], href: "/howa/steward" },
 ];
 
 const POWERED = [
@@ -107,23 +107,28 @@ export default async function HomePage() {
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>House of Willow Alexander</p>
             <h1 className={s.heroTitle}>
-              A House<br />
-              <em>that remembers.</em>
+              The home of holistic stewardship<br />
+              <em>for house and garden.</em>
             </h1>
-            <p className={s.heroSub}>The standard every home deserves.</p>
             <p className={s.heroLede}>
-              House of Willow Alexander is the design authority behind every
-              service, every standard, and the system that keeps your home in its
-              best order.
+              Trusted services, considered goods and preventative protection for
+              the places you live in, tend and love, held to one House standard.
             </p>
             <div className={s.heroCtas}>
-              <a href="#the-house" className={s.btnGhost}>
-                Discover the House <span aria-hidden className={s.arrow}>→</span>
-              </a>
               <Link href="#open-booking-form" className={s.btnFilled}>
-                Book with HoWA
+                Book a House Service
+              </Link>
+              <Link href="/shop" className={s.btnGhost}>
+                Shop the Marketplace <span aria-hidden className={s.arrow}>→</span>
+              </Link>
+              <Link href="/protect" className={s.btnGhost}>
+                Explore Home Protection <span aria-hidden className={s.arrow}>→</span>
               </Link>
             </div>
+            <p className={s.heroBookingNote}>
+              Online bookings are handled through HoWA, our Home Operating System
+              partner. Prefer to speak to us? <Link href="/contact">Call the House directly</Link>.
+            </p>
           </div>
         </div>
         <div className={s.heroVisual}>
@@ -204,16 +209,15 @@ export default async function HomePage() {
             <HowaWidget />
           </div>
           <div className={s.howaIntroCopy}>
-            <p className={s.eyebrow}>HoWA — the House system</p>
+            <p className={s.eyebrow}>Booked through HoWA</p>
             <h2 className={s.howaIntroTitle}>
-              The House,<br />
-              <em>in your hands.</em>
+              Book House services<br />
+              <em>through HoWA.</em>
             </h2>
             <p className={s.howaIntroPara}>
-              HoWA is how the House of Willow Alexander standard becomes practice.
-              It observes your home, learns its rhythms, and acts — so nothing is
-              missed, delayed, or forgotten. Not just an app. The House, made
-              intelligent.
+              Our online bookings are handled through HoWA, the Home Operating
+              System created from House of Willow Alexander. It keeps appointments,
+              notes, invoices and service history in one Home Record.
             </p>
             <div className={s.howaFeatures}>
               {HOWA_FEATURES.map((f) => (
@@ -223,12 +227,11 @@ export default async function HomePage() {
               ))}
             </div>
             <div className={s.howaIntroCtas}>
-              <Link href="/howa/coming-soon" className={s.btnFilled}>Coming soon</Link>
-              <Link href="/howa/how-it-works" className={s.btnGhost}>
-                See how it works <span aria-hidden className={s.arrow}>→</span>
+              <Link href="#open-booking-form" className={s.btnFilled}>Start online booking</Link>
+              <Link href="/contact" className={s.btnGhost}>
+                Call the House <span aria-hidden className={s.arrow}>→</span>
               </Link>
             </div>
-            <p className={s.howaNote}>Arriving on App Store &amp; Google Play</p>
           </div>
         </div>
       </section>
@@ -351,7 +354,7 @@ export default async function HomePage() {
             ))}
           </div>
           <Link href="/howa/how-it-works" className={s.btnGhostDark}>
-            See HoWA in action <span aria-hidden className={s.arrow}>→</span>
+            See how online booking works <span aria-hidden className={s.arrow}>→</span>
           </Link>
         </div>
         <div className={s.intelVisual}>
@@ -417,8 +420,8 @@ export default async function HomePage() {
           The house you love, held to the standard <em>it deserves.</em>
         </p>
         <div className={s.closingCtas}>
-          <Link href="/howa/coming-soon" className={s.btnFilled}>Coming soon</Link>
-          <Link href="#open-booking-form" className={s.btnGhostDark}>Book with HoWA</Link>
+          <Link href="#open-booking-form" className={s.btnFilled}>Book a House Service</Link>
+          <Link href="/shop" className={s.btnGhostDark}>Shop the Marketplace</Link>
         </div>
       </section>
     </div>

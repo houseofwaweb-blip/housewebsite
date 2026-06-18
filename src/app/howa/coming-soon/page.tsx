@@ -156,8 +156,8 @@ export default async function HowaComingSoonPage() {
           <Link href={cms(closing, "ctaHref", "/howa")} className={s.closingBtnFilled}>
             {cms(closing, "ctaLabel", "Visit the HoWA page")}
           </Link>
-          <Link href={cms(closing, "cta2Href", "/howa/plus")} className={s.closingBtnGhost}>
-            {cms(closing, "cta2Label", "See HoWA+")} →
+          <Link href={cms(closing, "cta2Href", "/howa/housekeeper")} className={s.closingBtnGhost}>
+            {cms(closing, "cta2Label", "See Housekeeper")} →
           </Link>
         </div>
       </section>

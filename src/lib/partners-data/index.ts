@@ -169,7 +169,7 @@ const DEFAULT_DESIGN_PACKAGES: PartnerPackage[] = [
       "Three revision rounds",
       "Aftercare & HoWA project continuity",
     ],
-    ctaLabel: "Book with HoWA →",
+    ctaLabel: "Book a House Service →",
     featured: true,
   },
   {
@@ -408,7 +408,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
           "Seasonal handover pack",
           "Rolling seasonal care (optional)",
         ],
-        ctaLabel: "Book with HoWA \u2192",
+        ctaLabel: "Book a House Service \u2192",
         featured: true,
       },
       {
@@ -504,7 +504,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
           "Scene + automation setup",
           "Aftercare & HoWA-held settings",
         ],
-        ctaLabel: "Book with HoWA \u2192",
+        ctaLabel: "Book a House Service \u2192",
         featured: true,
       },
       {

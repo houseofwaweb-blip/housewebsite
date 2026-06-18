@@ -9,7 +9,7 @@ import { cn } from "@/lib/cn";
  *  live     (moss)   — Live now
  *  interest (teal)   — Register interest (Insurance, Steward waitlist)
  *  soon     (stone)  — muted coming-soon for tier cards
- *  premium  (gold)   — HoWA+ tier flag (no border, italic-feel premium tag)
+ *  premium  (gold)   — Housekeeper tier flag (no border, italic-feel premium tag)
  */
 type State = "coming" | "live" | "interest" | "soon" | "premium";
 
@@ -38,7 +38,7 @@ const defaultLabels: Record<State, string> = {
   live: "Live now",
   interest: "Register interest",
   soon: "Coming",
-  premium: "HoWA+",
+  premium: "Housekeeper",
 };
 
 export function StateBadge({ state, children, className }: StateBadgeProps) {

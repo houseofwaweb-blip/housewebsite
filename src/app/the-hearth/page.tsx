@@ -1,4 +1,3 @@
-import { HearthPromoStrip } from "@/components/hearth/HearthPromoStrip";
 import { HearthMasthead } from "@/components/hearth/HearthMasthead";
 import { HearthCategoryStrip } from "@/components/hearth/HearthCategoryStrip";
 import { HearthHeroLead } from "@/components/hearth/HearthHeroLead";
@@ -31,7 +30,6 @@ export default async function JournalPage() {
 
   return (
     <div className="bg-house-white text-house-black">
-      <HearthPromoStrip />
       <HearthMasthead />
       <HearthCategoryStrip activeSlug="all" />
       <HearthHeroLead article={sections.hero} />

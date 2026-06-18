@@ -53,7 +53,7 @@ function FeedArticle({ article }: { article: HearthArticle }) {
           {article.categoryLong ?? article.category}
           {article.isPremium ? (
             <span className="ml-1.5 text-house-gold text-[9px] tracking-[0.22em] before:content-['◆'] before:text-[8px] before:mr-[2px]">
-              HoWA+
+              Housekeeper
             </span>
           ) : null}
         </span>

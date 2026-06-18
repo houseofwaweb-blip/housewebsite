@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { HearthPromoStrip } from "@/components/hearth/HearthPromoStrip";
 import { HearthMasthead } from "@/components/hearth/HearthMasthead";
 import { HearthCategoryStrip } from "@/components/hearth/HearthCategoryStrip";
 import { HearthMainFeed } from "@/components/hearth/HearthMainFeed";
@@ -55,7 +54,6 @@ export default async function HearthCategoryPage({
 
   return (
     <div className="bg-house-white text-house-black">
-      <HearthPromoStrip />
       <HearthMasthead />
       <HearthCategoryStrip activeSlug={slug} />
 

@@ -6,7 +6,6 @@ import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { GhostLink } from "@/components/primitives/GhostLink";
 import { PortableText } from "@/components/cms/PortableText";
 import { HearthMasthead } from "@/components/hearth/HearthMasthead";
-import { HearthPromoStrip } from "@/components/hearth/HearthPromoStrip";
 import { HearthTitle } from "@/components/hearth/HearthTitle";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { HearthPaywall } from "@/components/hearth/HearthPaywall";
@@ -99,7 +98,6 @@ export default async function ArticlePage({
       />
 
       <div className="bg-house-white text-house-black">
-        <HearthPromoStrip />
         <HearthMasthead />
 
         <div className="sticky top-0 z-30">
@@ -150,7 +148,7 @@ export default async function ArticlePage({
               {article.categoryLong ?? article.category}
               {article.isPremium ? (
                 <span className="ml-2 text-house-gold text-[9px] tracking-[0.22em] uppercase before:content-['◆'] before:text-[8px] before:mr-0.5">
-                  HoWA+
+                  Housekeeper
                 </span>
               ) : null}
             </div>

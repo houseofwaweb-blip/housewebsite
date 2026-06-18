@@ -19,7 +19,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 export const metadata = {
   title: "HoWA FAQ: What people usually ask",
   description:
-    "Answers to the things people ask about HoWA+ and Steward, pricing, cancellation, privacy, the Assistant.",
+    "Answers to the things people ask about Housekeeper and Steward, pricing, cancellation, privacy, the Assistant.",
 };
 
 const STAT_COLS = [
@@ -38,8 +38,8 @@ const SECTIONS: { heading: string; items: { q: string; a: string }[] }[] = [
         a: "Anyone who lives in a home they mean to keep. You don't need to be commissioning a designer or booking a gardener to get value, the record and the Assistant work on day one.",
       },
       {
-        q: "When does HoWA+ open?",
-        a: "HoWA+ opens alongside the new site. If you arrive before the product app is reachable, “Start HoWA” routes to a waitlist and we'll write the moment it opens.",
+        q: "When does Housekeeper open?",
+        a: "Housekeeper opens alongside the new site. If you arrive before the product app is reachable, “Start HoWA” routes to a waitlist and we'll write the moment it opens.",
       },
     ],
   },
@@ -47,7 +47,7 @@ const SECTIONS: { heading: string; items: { q: string; a: string }[] }[] = [
     heading: "Price & billing",
     items: [
       {
-        q: "How much is HoWA+?",
+        q: "How much is Housekeeper?",
         a: "£16.99 a month, VAT inclusive. No annual contract, cancel at the next billing date. Steward is £29.99 a month; Managed Stewardship, the bespoke layer for larger homes, is by application.",
       },
       {
@@ -78,7 +78,7 @@ const SECTIONS: { heading: string; items: { q: string; a: string }[] }[] = [
     items: [
       {
         q: "When does Steward open?",
-        a: "Soon after HoWA+. We're starting with waitlist customers so we can set scheduling and cadence honestly. Register interest on the plans page.",
+        a: "Soon after Housekeeper. We're starting with waitlist customers so we can set scheduling and cadence honestly. Register interest on the plans page.",
       },
       {
         q: "What does Steward cost?",
@@ -106,7 +106,7 @@ const SECTIONS: { heading: string; items: { q: string; a: string }[] }[] = [
         a: "The record belongs to you, not the house. You can export it as a PDF or hand it to the buyer as a provenance document. If the buyer joins HoWA, we can transfer the record to their account with your permission.",
       },
       {
-        q: "If I cancel HoWA+, do I lose my data?",
+        q: "If I cancel Housekeeper, do I lose my data?",
         a: "No. Your record stays with you on the free tier. You lose access to the Assistant, member pricing, and The Hearth, but the record of everything done to your home is yours to keep or export.",
       },
     ],
@@ -132,12 +132,12 @@ const SECTIONS: { heading: string; items: { q: string; a: string }[] }[] = [
     heading: "Member pricing & services",
     items: [
       {
-        q: "How much do HoWA+ members save?",
+        q: "How much do Housekeeper members save?",
         a: "Typically 10–15% off service bookings vs. calling direct, plus 10% off everything in the House shop. A single gutter clear and window clean often covers the monthly fee.",
       },
       {
         q: "What is The Hearth?",
-        a: "The Hearth is our editorial publication for HoWA+ members. Weekly writing on homes, gardens, design, seasonal care, and the craft of looking after a place properly.",
+        a: "The Hearth is our editorial publication for Housekeeper members. Weekly writing on homes, gardens, design, seasonal care, and the craft of looking after a place properly.",
       },
     ],
   },

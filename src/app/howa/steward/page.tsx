@@ -121,7 +121,7 @@ const FEATURE_GROUPS = [
     ],
   },
   {
-    label: "Everything in HoWA+, included",
+    label: "Everything in Housekeeper, included",
     items: [
       "Full Living Record, Task Centre, Document Logbook",
       "10% off all House services",
@@ -158,7 +158,7 @@ export default async function StewardPage() {
           <span className={s.subNavBrand}>HoWA</span>
           <div className={s.subNavLinks}>
             <Link href="/howa" className={s.subNavLink}>Overview</Link>
-            <Link href="/howa/plus" className={s.subNavLink}>HoWA+</Link>
+            <Link href="/howa/housekeeper" className={s.subNavLink}>Housekeeper</Link>
             <span className={`${s.subNavLink} ${s.subNavLinkActive}`}>Steward</span>
             <Link href="/howa/how-it-works" className={s.subNavLink}>How it works</Link>
           </div>
@@ -349,7 +349,7 @@ export default async function StewardPage() {
         </div>
       </section>
 
-      {/* 7. Comparison — Steward vs HoWA+ */}
+      {/* 7. Comparison — Steward vs Housekeeper */}
       <section className={s.compareBand}>
         <div className={s.compareInner}>
           <p className={s.sectionEy}>How Steward compares</p>
@@ -359,7 +359,7 @@ export default async function StewardPage() {
               <thead>
                 <tr>
                   <th aria-label="Feature" />
-                  <th className={s.compareColPlus}>HoWA+</th>
+                  <th className={s.compareColPlus}>Housekeeper</th>
                   <th className={s.compareColSteward}>
                     Steward <span className={s.compareBadge}>Most complete</span>
                   </th>
@@ -385,7 +385,7 @@ export default async function StewardPage() {
               </tbody>
             </table>
           </div>
-          <p className={s.compareNote}>Upgrading from HoWA+ always preserves your existing home record.</p>
+          <p className={s.compareNote}>Upgrading from Housekeeper always preserves your existing home record.</p>
         </div>
       </section>
 

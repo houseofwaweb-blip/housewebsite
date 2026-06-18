@@ -33,7 +33,7 @@ export function CompanionTry() {
         Coming soon →
       </button>
       <p className="font-sans text-[11px] text-house-stone text-center mt-2 italic">
-        Part of HoWA+. We&apos;ll let you know the moment the Companion opens.
+        Part of Housekeeper. We&apos;ll let you know the moment the Companion opens.
       </p>
     </form>
   );

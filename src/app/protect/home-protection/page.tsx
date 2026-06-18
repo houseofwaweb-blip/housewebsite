@@ -130,7 +130,7 @@ export default async function HomeProtectionPage() {
               </Link>
             </div>
             <p className={s.heroFootnote}>
-              {cms(hero, "caption", "Opening to HoWA+ members first.")}
+              {cms(hero, "caption", "Opening to Housekeeper members first.")}
             </p>
           </div>
         </div>
@@ -218,7 +218,7 @@ export default async function HomeProtectionPage() {
             {cms(
               register,
               "body",
-              "Leave your email and we'll write when Home Protection opens. HoWA+ members go to the front of the list.",
+              "Leave your email and we'll write when Home Protection opens. Housekeeper members go to the front of the list.",
             )}
           </p>
           <WaitlistMini

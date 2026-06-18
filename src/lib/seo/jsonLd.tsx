@@ -92,7 +92,7 @@ export function BreadcrumbJsonLd({
   });
 }
 
-/** Article schema for Hearth pieces. Handles the gated (HoWA+) case per DESIGN J.2. */
+/** Article schema for Hearth pieces. Handles the gated (Housekeeper) case per DESIGN J.2. */
 export function ArticleJsonLd({
   title,
   description,
@@ -282,7 +282,7 @@ export function SoftwareApplicationJsonLd({
   monthlyPriceGBP,
 }: {
   url: string;
-  /** e.g. 16.99 for the HoWA+ plan. Pass undefined for the marketing landing. */
+  /** e.g. 16.99 for the Housekeeper plan. Pass undefined for the marketing landing. */
   monthlyPriceGBP?: number;
 }) {
   const base = env.NEXT_PUBLIC_SITE_URL;

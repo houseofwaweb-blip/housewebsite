@@ -21,14 +21,12 @@ import { Klaviyo } from "@/components/consent/loaders/Klaviyo";
 import { ClickIdCapture } from "@/components/marketing/ClickIdCapture";
 import "./globals.css";
 
-// When the HoWA Product app isn't live, the header CTA reads "Coming soon"
-// and routes visitors to the coming-soon waitlist page. Once the product
-// app launches, set HOWA_APP_LIVE=true in Vercel and the label + href
-// swap to point at the real app — no code change required.
-const ctaLabel = env.HOWA_APP_LIVE ? "Start HoWA" : "Coming soon";
-const ctaHref = env.HOWA_APP_LIVE
-  ? env.NEXT_PUBLIC_HOWA_APP_URL ?? "/api/howa-bounce"
-  : "/howa/coming-soon";
+// The primary header CTA is House-led (v5 HoWA-separation review, 2026-06-18):
+// the House sells services, and booking opens the House booking modal
+// (#open-booking-form) which is always available regardless of the HoWA app
+// being live. HoWA online booking is reached from the HoWA Platform menu.
+const ctaLabel = "Book a House Service";
+const ctaHref = "#open-booking-form";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL),

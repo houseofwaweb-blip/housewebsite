@@ -22,7 +22,7 @@ export default async function PrivacyPage() {
 
 We share your details with service providers we use to run the site (Sanity, Shopify, Supabase, Vercel, Sentry, Cloudflare) on strict, audit-logged terms. We use measurement and advertising services from Google, Microsoft, Meta and Pinterest — but only when you've opted in via the cookie banner, and only ever with hashed identifiers, never raw email or phone. Detail in the [Cookie policy](/legal/cookies).
 
-If you use HoWA+ or the Assistant, your photos and notes stay in your private record. They're encrypted at rest and never used to train public models.`,
+If you use Housekeeper or the Assistant, your photos and notes stay in your private record. They're encrypted at rest and never used to train public models.`,
         },
         {
           heading: "Who we are",
@@ -32,11 +32,11 @@ Contact: privacy@willowalexander.co.uk`,
         },
         {
           heading: "What we collect, and why",
-          body: `Account and billing information — to run your HoWA+ or Steward subscription. Processed under contract.
+          body: `Account and billing information — to run your Housekeeper or Steward subscription. Processed under contract.
 
 Messages you send us via forms — to reply to you, and to route your question to the right inbox.
 
-Photos, documents, and notes added to your record — to provide the Assistant and the record features of HoWA+.
+Photos, documents, and notes added to your record — to provide the Assistant and the record features of Housekeeper.
 
 Measurement data — page views, performance metrics, and (if you consent) heatmaps. Used to understand what's working on the site. Held by Google Analytics, Microsoft Clarity, Vercel and Sentry. Opt-in via the cookie banner.
 

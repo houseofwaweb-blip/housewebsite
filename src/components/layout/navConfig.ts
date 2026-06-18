@@ -4,7 +4,7 @@ import shopNavData from "@/lib/shop-data/shop-nav.generated.json";
 /**
  * Shop categories + sub-categories, generated from Shopify collections & tags
  * (src/lib/shop-data/shop-nav.generated.json). Regenerate when categories
- * change. Drives the two-level Shop mega-menu.
+ * change. Drives the two-level Marketplace mega-menu.
  */
 const SHOP_CATEGORIES = (
   shopNavData as Array<{ title: string; handle: string; subs: Array<{ title: string; handle: string }> }>
@@ -17,7 +17,11 @@ const SHOP_CATEGORIES = (
 /**
  * Primary navigation configuration.
  *
- * Order: The House · HoWA · Protect · Design · Services · Shop · The Hearth
+ * Order: The House · Services · Protect · Design · Marketplace · The Hearth · HoWA Platform
+ *
+ * Per the v5 HoWA-separation review (2026-06-18): the House sells first.
+ * HoWA sits last and is labelled "HoWA Platform" so it reads as a separate
+ * product (the online booking + Home Record layer), not a House vertical.
  */
 export const PRIMARY_NAV: MegaPanel[] = [
   {
@@ -54,35 +58,37 @@ export const PRIMARY_NAV: MegaPanel[] = [
   },
 
   {
-    id: "howa",
-    trigger: "HoWA",
-    triggerHref: "/howa",
+    id: "services",
+    trigger: "Services",
+    triggerHref: "/services",
     groups: [
       {
-        heading: "The Product",
+        heading: "Home care",
         links: [
-          { label: "Overview", href: "/howa", description: "What HoWA does" },
-          { label: "HoWA (Assistant)", href: "/howa/assistant", description: "Free — start with an address" },
-          { label: "HoWA+ (Housekeeper)", href: "/howa/plus", description: "The membership — £16.99/mo" },
-          { label: "How it works", href: "/howa/how-it-works", description: "Four quiet jobs" },
+          { label: "Gardening", href: "/services/gardening", description: "Seasonal & one-off" },
+          { label: "Window cleaning", href: "/services/window-cleaning" },
+          { label: "Cleaning", href: "/services/cleaning" },
+          { label: "Gutter cleaning", href: "/services/gutter-cleaning" },
+          { label: "Handyman", href: "/services/handyman" },
+          { label: "Removals", href: "/services/removals" },
         ],
       },
       {
-        heading: "More",
+        heading: "Specialist",
         links: [
-          { label: "Plans & Pricing", href: "/howa/plans", description: "Compare tiers" },
-          { label: "Steward", href: "/howa/steward", description: "The top tier — £29.99/mo" },
-          { label: "FAQ", href: "/howa/faq" },
+          { label: "Energy & Electrical", href: "/services/energy", description: "Solar, EV, rewires" },
+          { label: "Pet Care", href: "/services/pet-care", description: "Walking & sitting" },
+        ],
+      },
+      {
+        heading: "Managed care",
+        links: [
+          { label: "Steward Plans", href: "/steward-plans", description: "Recurring, intentional" },
+          { label: "House Credit", href: "/house-credit", description: "Interest-free finance" },
+          { label: "Book a House Service", href: "#open-booking-form" },
         ],
       },
     ],
-    preview: {
-      image: "/home/hero-georgian.webp",
-      alt: "HoWA product interface",
-      tag: "Arriving soon",
-      heading: "A single place for the House to reach you.",
-      href: "/howa/coming-soon",
-    },
   },
 
   {
@@ -133,42 +139,8 @@ export const PRIMARY_NAV: MegaPanel[] = [
   },
 
   {
-    id: "services",
-    trigger: "Services",
-    triggerHref: "/services",
-    groups: [
-      {
-        heading: "Home care",
-        links: [
-          { label: "Gardening", href: "/services/gardening", description: "Seasonal & one-off" },
-          { label: "Window cleaning", href: "/services/window-cleaning" },
-          { label: "Cleaning", href: "/services/cleaning" },
-          { label: "Gutter cleaning", href: "/services/gutter-cleaning" },
-          { label: "Handyman", href: "/services/handyman" },
-          { label: "Removals", href: "/services/removals" },
-        ],
-      },
-      {
-        heading: "Specialist",
-        links: [
-          { label: "Energy & Electrical", href: "/services/energy", description: "Solar, EV, rewires" },
-          { label: "Pet Care", href: "/services/pet-care", description: "Walking & sitting" },
-        ],
-      },
-      {
-        heading: "Managed care",
-        links: [
-          { label: "Steward Plans", href: "/steward-plans", description: "Recurring, intentional" },
-          { label: "House Credit", href: "/house-credit", description: "Interest-free finance" },
-          { label: "Book with HoWA", href: "#open-booking-form" },
-        ],
-      },
-    ],
-  },
-
-  {
     id: "shop",
-    trigger: "Shop",
+    trigger: "Marketplace",
     triggerHref: "/shop",
     // Mobile drawer reads groups[0]; desktop uses the two-level `shop` menu.
     groups: [
@@ -201,5 +173,38 @@ export const PRIMARY_NAV: MegaPanel[] = [
         ],
       },
     ],
+  },
+
+  {
+    id: "howa",
+    trigger: "HoWA Platform",
+    triggerHref: "/howa",
+    groups: [
+      {
+        heading: "Bookings & Home Record",
+        links: [
+          { label: "Overview", href: "/howa", description: "The Home Operating System" },
+          { label: "Book online through HoWA", href: "#open-booking-form", description: "Online House bookings" },
+          { label: "HoWA (Assistant)", href: "/howa/assistant", description: "Free — start with an address" },
+          { label: "How it works", href: "/howa/how-it-works", description: "Four quiet jobs" },
+        ],
+      },
+      {
+        heading: "Tiers",
+        links: [
+          { label: "Housekeeper by HoWA", href: "/howa/housekeeper", description: "The membership — £16.99/mo" },
+          { label: "Steward", href: "/howa/steward", description: "The top tier — £29.99/mo" },
+          { label: "Plans & Pricing", href: "/howa/plans", description: "Compare tiers" },
+          { label: "FAQ", href: "/howa/faq" },
+        ],
+      },
+    ],
+    preview: {
+      image: "/home/hero-georgian.webp",
+      alt: "HoWA product interface",
+      tag: "The platform",
+      heading: "Online booking and the Home Record, powered by HoWA.",
+      href: "/howa",
+    },
   },
 ];

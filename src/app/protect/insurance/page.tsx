@@ -123,7 +123,7 @@ export default async function ProtectInsurancePage() {
               </Link>
             </div>
             <p className={s.heroFootnote}>
-              {cms(hero, "caption", "Opening to HoWA+ members first.")}
+              {cms(hero, "caption", "Opening to Housekeeper members first.")}
             </p>
           </div>
         </div>
@@ -228,14 +228,14 @@ export default async function ProtectInsurancePage() {
         <div className={s.registerInner}>
           <p className={s.registerEy}>{cms(register, "eyebrow", "House Approved Insurance")}</p>
           <h2 className={s.registerTitle}>
-            {cms(register, "headline", "Opening to HoWA+ members")}{" "}
+            {cms(register, "headline", "Opening to Housekeeper members")}{" "}
             <em>{cms(register, "headlineEm", "first.", "headline")}</em>
           </h2>
           <p className={s.registerLede}>
             {cms(
               register,
               "body",
-              "Leave your email and we'll write when introductions open. Existing HoWA+ members go to the front of the list.",
+              "Leave your email and we'll write when introductions open. Existing Housekeeper members go to the front of the list.",
             )}
           </p>
           <WaitlistMini

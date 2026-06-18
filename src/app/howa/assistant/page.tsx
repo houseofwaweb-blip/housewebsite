@@ -12,7 +12,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  * Assistant is the deck's Tier 01: free, useful before you've paid a penny.
  * The Companion diagnostic (Ask: photograph -> answer) is its centrepiece,
  * alongside the portrait, the scans, quotes-decoded and the first save.
- * Everything carries upward into HoWA+ (Housekeeper) and Steward.
+ * Everything carries upward into Housekeeper (Housekeeper) and Steward.
  *
  * Section order:
  *   1. Hero, "The house, seen." Start with an address.
@@ -21,7 +21,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  *   4. Ask anything, the Companion in action (six real answers)
  *   5. Testimonial
  *   6. CTA band (olive)
- *   7. Closing, free to start, deepens with HoWA+
+ *   7. Closing, free to start, deepens with Housekeeper
  */
 
 export const metadata = {
@@ -343,7 +343,7 @@ export default async function AssistantPage() {
 
       {/* 7. Closing */}
       <section className={s.closing}>
-        <p className={s.closingKicker}>{cms(closing, "eyebrow", "The Assistant is free. It deepens with HoWA+.")}</p>
+        <p className={s.closingKicker}>{cms(closing, "eyebrow", "The Assistant is free. It deepens with Housekeeper.")}</p>
         <p className={s.closingStatement}>
           <em>{cms(closing, "headlineEm", "The first honest conversation with your house.", "headline")}</em>
         </p>

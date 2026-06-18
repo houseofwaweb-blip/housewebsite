@@ -18,7 +18,7 @@ import { PRIMARY_NAV } from "./navConfig";
  * Desktop: brand wordmark → MegaMenu (hover panels) → utility (search, sign in, CTA).
  * Mobile:  brand → hamburger → full-screen drawer with accordion-style children.
  *
- * Primary CTA ("Start HoWA" or "Book with HoWA") is decided upstream by
+ * Primary CTA ("Start HoWA" or "Book a House Service") is decided upstream by
  * the Provider that reads HOWA_APP_LIVE; this component only renders what
  * it's given.
  */

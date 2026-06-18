@@ -169,7 +169,7 @@ export default async function LocalServicePage({
             <div>
               <p className="font-sans text-[16px] leading-[1.7] text-house-brown/85 mb-6 max-w-[58ch]">
                 Our handyman team is in setup, not booking yet. Leave your email and
-                we&apos;ll write the moment we&apos;re working in {location}. HoWA+ members
+                we&apos;ll write the moment we&apos;re working in {location}. Housekeeper members
                 go to the front of the list when bookings open.
               </p>
               <WaitlistMini

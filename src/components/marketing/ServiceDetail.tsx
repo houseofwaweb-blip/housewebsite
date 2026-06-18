@@ -397,7 +397,7 @@ export function ServiceDetail({ service }: { service: Service }) {
           </Link>
         ) : (
           <Link href="#open-booking-form" className={s.btnFilled}>
-            Book with HoWA
+            Book a House Service
           </Link>
         )}
       </section>

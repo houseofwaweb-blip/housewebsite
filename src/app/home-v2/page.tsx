@@ -294,7 +294,7 @@ export default async function HomeV2PreviewPage() {
           ============================================================ */}
       <section className={s.tiers} id="introducing-howa">
         <header className={s.tiersHead}>
-          <p className={s.tiersEy}>Introducing HoWA+ · The flagship product</p>
+          <p className={s.tiersEy}>Introducing Housekeeper · The flagship product</p>
           <h2 className={s.tiersTitle}>
             {cms(tiers, "headline", "The Living Record")} <em>of your home.</em>
           </h2>
@@ -465,7 +465,7 @@ export default async function HomeV2PreviewPage() {
             {cms(closing, "ctaLabel", "Coming soon")}
           </Link>
           <Link href={cms(closing, "cta2Href", "#open-booking-form")} className={s.closingBtnGhost}>
-            {cms(closing, "cta2Label", "Book with HoWA")}
+            {cms(closing, "cta2Label", "Book a House Service")}
           </Link>
         </div>
       </section>

@@ -1,6 +1,6 @@
 /**
  * Steward Plans data — 6 plans across 2 categories.
- * Available to House Steward members only (NOT HoWA+).
+ * Available to House Steward members only (NOT Housekeeper).
  */
 
 export interface StewardPlan {

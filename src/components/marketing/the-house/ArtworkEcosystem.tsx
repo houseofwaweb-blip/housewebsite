@@ -54,7 +54,7 @@ const NODES: Node[] = [
   },
   {
     id: "howa",
-    name: "HoWA & HoWA+",
+    name: "HoWA & Housekeeper",
     description: "The modern intelligence of the House. Luminous, instrument-like.",
     href: "/howa",
     x: 78,

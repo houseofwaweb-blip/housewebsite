@@ -34,7 +34,7 @@ npm run lint         # ESLint
 - **Steward** = blueprint mode (navy / technical / gold-on-navy) — premium layer only
 - Every commercial page follows: editorial top (House) → package middle (HoWA) → continuity bottom (HoWA)
 - Navigation is intent-led, not category-led (The House · HoWA · Design · Services · Protect · Shop · Journal)
-- No "marketplace" language. Use "Shop" or "House Approved"
+- "Marketplace" is the public label for Shop (set by the 2026-06-18 HoWA-separation review). "House Approved" still used for the curated seal
 - Tone: stewardship, continuity, memory, calm intelligence
 
 ## Services at launch (4, not 6)
@@ -43,10 +43,12 @@ Gardening · Window Cleaning · Cleaning · Gutter Cleaning. Handyman, Removals,
 ## Launch partners (4)
 Willow Alexander Gardens · Jessica Durling-McMahon · Delve Interiors · House AI. Each has a `/partners/[slug]` profile. Consent workflow required before publication.
 
-## Commercial decisions (locked 2026-04-15)
-- HoWA+ price: **£16.99/month**
+## Commercial decisions (locked 2026-04-15, amended 2026-06-18)
+- **HoWA+ retired → "Housekeeper"** (the consumer continuity tier). Page is `/howa/housekeeper` (`/howa/plus` 301s to it). Never use "HoWA+" in nav, titles, CTAs, banners, footer or tier tables. Tier ladder: Assistant (free) · Housekeeper (£16.99/mo) · Steward (£29.99/mo, by application)
+- Brand hierarchy (2026-06-18 review): the House is parent/merchant/standard; HoWA is the standalone booking + Home Record platform ("HoWA Platform" in nav, last); Housekeeper is the paid tier inside HoWA. Sell the House first; HoWA handles the online rails
+- Housekeeper price: **£16.99/month**
 - HoWA Steward: coming soon on `/howa/plans`, not in primary nav
-- House Membership: collapsed into HoWA+ (no longer a separate product)
+- House Membership: collapsed into Housekeeper (no longer a separate product)
 - Steward Plans: public label for managed recurring care
 - Protect Review: coming soon at launch, no public booking
 - Insurance: register-interest only (Provenance introducer-only, FCA-regulated)

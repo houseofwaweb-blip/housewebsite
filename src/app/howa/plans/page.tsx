@@ -14,21 +14,21 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  * Section order:
  *   1. Hero, Three ways to be stewarded
  *   2. Stats strip, Three tiers · One record
- *   3. Tier cards, HoWA+ (live) + Steward (coming-soon, navy)
+ *   3. Tier cards, Housekeeper (live) + Steward (coming-soon, navy)
  *   4. Comparison table, full feature row
  *   5. FAQ accordion
  *   6. Closing, write to the House
  */
 
 export const metadata = {
-  title: "Plans & Pricing: HoWA+ and Steward",
+  title: "Plans & Pricing: Housekeeper and Steward",
   description:
-    "Assistant free, HoWA+ at £16.99 a month, Steward at £29.99 a month. One record, three depths of care.",
+    "Assistant free, Housekeeper at £16.99 a month, Steward at £29.99 a month. One record, three depths of care.",
 };
 
 const STAT_COLS = [
   { value: "3", label: "Tiers · One record" },
-  { value: "£16.99", label: "HoWA+ per month" },
+  { value: "£16.99", label: "Housekeeper per month" },
   { value: "0", label: "Minimum term" },
   { value: "∞", label: "Cancellation rights" },
 ];
@@ -54,7 +54,7 @@ const HOWAPLUS_INCLUSIONS = [
 ];
 
 const STEWARD_INCLUSIONS = [
-  "Everything in HoWA+, plus",
+  "Everything in Housekeeper, plus",
   "The HoWA Score, with full drivers and risk register",
   "Proactive protection prompts before failure",
   "Predictive maintenance and anomaly alerts",
@@ -67,24 +67,24 @@ const STEWARD_INCLUSIONS = [
 
 const FAQS = [
   {
-    q: "When does HoWA+ go live?",
-    a: "HoWA+ opens with the new site. The product app (bookings, records, the Assistant) is the surface that unlocks the paid features. If the app isn't live at the moment you try to start, the “Start HoWA” button routes to a waitlist until we're ready.",
+    q: "When does Housekeeper go live?",
+    a: "Housekeeper opens with the new site. The product app (bookings, records, the Assistant) is the surface that unlocks the paid features. If the app isn't live at the moment you try to start, the “Start HoWA” button routes to a waitlist until we're ready.",
   },
   {
     q: "What about Steward plans?",
-    a: "Steward is the recurring managed-care layer on top of HoWA+. Register interest and we'll write when it opens. Pricing varies by the services included and the size of the home, we'll build a quote with you.",
+    a: "Steward is the recurring managed-care layer on top of Housekeeper. Register interest and we'll write when it opens. Pricing varies by the services included and the size of the home, we'll build a quote with you.",
   },
   {
     q: "Can I cancel any time?",
-    a: "Yes. HoWA+ is month to month and cancels at the next billing date. Anything saved to your living record stays yours, export or keep it in a downgraded free account.",
+    a: "Yes. Housekeeper is month to month and cancels at the next billing date. Anything saved to your living record stays yours, export or keep it in a downgraded free account.",
   },
   {
     q: "Is there a family or household plan?",
-    a: "Not at launch. One HoWA+ account covers everyone in one home, additional users can be invited to contribute to the record at no extra cost. A multi-property tier is on the Steward roadmap.",
+    a: "Not at launch. One Housekeeper account covers everyone in one home, additional users can be invited to contribute to the record at no extra cost. A multi-property tier is on the Steward roadmap.",
   },
   {
     q: "What happens to existing House Membership?",
-    a: "House Membership is HoWA+ from now on. If you held a legacy membership, it has been converted on like-for-like terms, you don't need to do anything.",
+    a: "House Membership is Housekeeper from now on. If you held a legacy membership, it has been converted on like-for-like terms, you don't need to do anything.",
   },
 ];
 
@@ -138,7 +138,7 @@ export default async function PlansPage() {
               {cms(
                 hero,
                 "body",
-                "One platform. Three entitlement levels. Upgrading always preserves the same home record. Assistant is the free way in. HoWA+ is the connected continuity and savings layer. Steward is the premium managed-care layer.",
+                "One platform. Three entitlement levels. Upgrading always preserves the same home record. Assistant is the free way in. Housekeeper is the connected continuity and savings layer. Steward is the premium managed-care layer.",
               )}
             </p>
             <div className={s.heroCtas}>
@@ -243,7 +243,7 @@ export default async function PlansPage() {
             </div>
           </article>
 
-          {/* HoWA+, terracotta hat */}
+          {/* Housekeeper, terracotta hat */}
           <article className={`${s.tierCard} ${s.tierPlus}`}>
             <div className={s.tierIllustration} aria-hidden="true">
               <Image
@@ -350,7 +350,7 @@ export default async function PlansPage() {
           <p className={s.compareEy}>{cms(compare, "eyebrow", "Feature by feature")}</p>
           <h2 className={s.compareTitle}>
             {cms(compare, "headline", "Free.")}{" "}
-            <em>{cms(compare, "headlineEm", "HoWA+", "headline")}</em>.{" "}
+            <em>{cms(compare, "headlineEm", "Housekeeper", "headline")}</em>.{" "}
             {cms(compare, "subheadline", "Steward.")}
           </h2>
         </header>
@@ -365,7 +365,7 @@ export default async function PlansPage() {
           />
         </div>
         <div className="howa-surface">
-          <V3Matrix middleLabel="HoWA+" showTitle={false} />
+          <V3Matrix middleLabel="Housekeeper" showTitle={false} />
         </div>
       </section>
 

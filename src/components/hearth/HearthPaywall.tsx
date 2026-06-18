@@ -13,7 +13,7 @@ export function HearthPaywall() {
       <aside
         className="relative bg-house-cream border border-house-gold/30 shadow-[0_24px_60px_rgba(48,35,28,0.12)] px-10 py-10 md:px-12 md:py-12 grid grid-cols-[64px_1fr] gap-7 max-md:grid-cols-1 max-md:gap-5 max-md:px-7 max-md:py-9"
         role="complementary"
-        aria-label="Continue with HoWA+"
+        aria-label="Continue with Housekeeper"
       >
         {/* Thick gold top bar */}
         <span
@@ -28,7 +28,7 @@ export function HearthPaywall() {
 
         <div>
           <p className="font-hearth-sans text-[10px] tracking-[0.24em] uppercase text-house-gold mb-2 flex items-center gap-2">
-            <span>HoWA+ · The Hearth</span>
+            <span>Housekeeper · The Hearth</span>
             <span aria-hidden="true" className="text-house-gold/40">·</span>
             <span className="text-house-stone">Members only</span>
           </p>
@@ -40,7 +40,7 @@ export function HearthPaywall() {
           </h2>
           <p className="font-hearth-serif italic text-[17px] leading-[1.55] text-house-stone mb-7 max-w-[54ch]">
             The Hearth publishes long-form writing every week. Members read in
-            full, plus the rest of HoWA+.
+            full, plus the rest of Housekeeper.
           </p>
 
           <div className="grid grid-cols-2 gap-8 mb-7 py-6 border-t border-b border-house-brown/12 max-md:grid-cols-1 max-md:gap-4">

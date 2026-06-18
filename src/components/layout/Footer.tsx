@@ -16,35 +16,57 @@ export interface FooterColumn {
   links: Array<{ label: string; href: string }>;
 }
 
+// Footer architecture (v5 HoWA-separation review, 2026-06-18): the footer
+// quietly teaches the hierarchy — House -> Services/Protection/Marketplace ->
+// Bookings powered by HoWA -> Reading.
 const COLS: FooterColumn[] = [
   {
     heading: "The House",
     links: [
       { label: "Philosophy", href: "/the-house/philosophy" },
       { label: "Standards", href: "/the-house/standards" },
-      { label: "Proof", href: "/the-house/proof" },
       { label: "Sustainability", href: "/the-house/sustainability" },
       { label: "About", href: "/the-house/about" },
+      { label: "Contact", href: "/contact" },
     ],
   },
   {
-    heading: "HoWA",
+    heading: "Services",
     links: [
-      { label: "Overview", href: "/howa" },
-      { label: "HoWA (Assistant)", href: "/howa/assistant" },
-      { label: "HoWA+ (Housekeeper)", href: "/howa/plus" },
-      { label: "Steward", href: "/howa/steward" },
-      { label: "Plans & Pricing", href: "/howa/plans" },
-      { label: "FAQ", href: "/howa/faq" },
-    ],
-  },
-  {
-    heading: "Commerce",
-    links: [
+      { label: "Gardening", href: "/services/gardening" },
+      { label: "Cleaning", href: "/services/cleaning" },
+      { label: "Window Cleaning", href: "/services/window-cleaning" },
+      { label: "Gutter Cleaning", href: "/services/gutter-cleaning" },
       { label: "Design", href: "/design" },
-      { label: "Services", href: "/services" },
-      { label: "Protect", href: "/protect" },
-      { label: "Shop", href: "/shop" },
+      { label: "Housekeeping", href: "/services/housekeeping" },
+    ],
+  },
+  {
+    heading: "Protection",
+    links: [
+      { label: "Protect Review", href: "/protect/home-protection" },
+      { label: "Evidence Pack", href: "/protect" },
+      { label: "Insurance Readiness", href: "/protect/insurance" },
+      { label: "Register Interest", href: "/protect/insurance" },
+    ],
+  },
+  {
+    heading: "Marketplace",
+    links: [
+      { label: "Shop All", href: "/shop" },
+      { label: "Collections", href: "/shop/collections" },
+      { label: "House Approved", href: "/shop/collections/house-approved" },
+      { label: "Gift Cards", href: "/gift-cards" },
+    ],
+  },
+  {
+    heading: "Bookings & Account",
+    links: [
+      { label: "Book online through HoWA", href: "#open-booking-form" },
+      { label: "Sign in to HoWA", href: "https://accounts.willowalexander.co.uk/" },
+      { label: "Home Record", href: "/howa" },
+      { label: "Housekeeper", href: "/howa/housekeeper" },
+      { label: "Steward", href: "/howa/steward" },
     ],
   },
   {
@@ -54,15 +76,6 @@ const COLS: FooterColumn[] = [
       { label: "Musings", href: "/musings" },
       { label: "Recipes", href: "/recipes" },
       { label: "News", href: "/news" },
-    ],
-  },
-  {
-    heading: "House",
-    links: [
-      { label: "Contact", href: "/contact" },
-      { label: "Book with HoWA", href: "#open-booking-form" },
-      { label: "Partners", href: "/partners" },
-      { label: "Legal", href: "/legal" },
     ],
   },
 ];
@@ -79,7 +92,7 @@ export function Footer({ columns, tagline }: FooterProps) {
   return (
     <footer className="bg-house-brown text-house-cream px-[5vw] py-16 mt-auto">
       <div className="max-w-[1280px] mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 pb-12 border-b border-[rgba(245,240,232,0.12)]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10 pb-12 border-b border-[rgba(245,240,232,0.12)]">
           {cols.map((col) => (
             <div key={col.heading}>
               <h4 className="font-sans text-[10px] tracking-[0.24em] uppercase text-house-gold-light mb-4">
@@ -100,6 +113,11 @@ export function Footer({ columns, tagline }: FooterProps) {
             </div>
           ))}
         </div>
+
+        <p className="pt-8 font-sans text-[12px] leading-[1.6] text-house-cream/55 max-w-[760px]">
+          House services are provided by House of Willow Alexander and approved
+          partners. Online bookings and Home Records are powered by HoWA.
+        </p>
 
         <div className="pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <Link href="/" aria-label="House of Willow Alexander, home">

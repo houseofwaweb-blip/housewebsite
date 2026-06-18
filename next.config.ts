@@ -47,6 +47,8 @@ const nextConfig: NextConfig = {
       { source: "/the-house", destination: "/the-house/philosophy", permanent: false },
       // Companion folded into the free Assistant tier page (2026-06-17)
       { source: "/howa/companion", destination: "/howa/assistant", permanent: true },
+      // HoWA+ retired; the consumer continuity tier is now Housekeeper (2026-06-18)
+      { source: "/howa/plus", destination: "/howa/housekeeper", permanent: true },
       { source: "/protect/review", destination: "/protect/home-protection", permanent: true },
       { source: "/insurance", destination: "/protect/insurance", permanent: true },
       { source: "/press", destination: "/news", permanent: true },

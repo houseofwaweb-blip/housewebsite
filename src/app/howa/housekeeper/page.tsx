@@ -6,20 +6,21 @@ import { MetaViewContent } from "@/components/marketing/MetaViewContent";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
- * /howa/plus, HoWA+ membership page.
+ * /howa/housekeeper, Housekeeper membership page.
+ * (Formerly /howa/plus; the "HoWA+" name was retired 2026-06-18. CMS key stays "howa-plus".)
  *
  * Section order:
  *   1. Hero, pink Georgian + blueprint, copy left, image right
  *   2. Stats strip
- *   3. Benefits grid, 6 included with HoWA+
- *   4. Comparison row, Free vs HoWA+
+ *   3. Benefits grid, 6 included with Housekeeper
+ *   4. Comparison row, Free vs Housekeeper
  *   5. Intelligence band, what your membership pays for
  *   6. FAQ
  *   7. Closing, Become a member
  */
 
 export const metadata = {
-  title: "HoWA+: A home you mean to keep.",
+  title: "Housekeeper by HoWA: A home you mean to keep.",
   description:
     "The connected membership for a home you mean to keep. £16.99 / month. Living Record, full Assistant, member pricing. Cancel anytime.",
 };
@@ -97,8 +98,8 @@ const FAQS = [
     a: "Yes. There's no minimum term. Cancel from your dashboard and your record stays accessible in read-only mode for 12 months.",
   },
   {
-    q: "Does HoWA+ replace my insurance?",
-    a: "No. HoWA+ is a stewardship membership, not insurance. It does pair beautifully with a Provenance home protection review, we can introduce you.",
+    q: "Does Housekeeper replace my insurance?",
+    a: "No. Housekeeper is a stewardship membership, not insurance. It does pair beautifully with a Provenance home protection review, we can introduce you.",
   },
   {
     q: "What if my home doesn't fit a category?",
@@ -161,7 +162,7 @@ export default async function HowaPlusV1PreviewPage() {
     <div className={s.page}>
       <MetaViewContent
         contentId="howa_plus"
-        contentName="HoWA+ membership"
+        contentName="Housekeeper membership"
         contentCategory="howa_membership"
         value={16.99}
       />
@@ -169,7 +170,7 @@ export default async function HowaPlusV1PreviewPage() {
       <section className={s.hero}>
         <div className={s.heroCopy}>
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>{cms(hero, "eyebrow", "HoWA+ · £16.99 / month")}</p>
+            <p className={s.heroEy}>{cms(hero, "eyebrow", "Housekeeper by HoWA · £16.99 / month")}</p>
             <h1 className={s.heroTitle}>
               {cms(hero, "headline", "The connected membership")}<br />
               <em>{cms(hero, "headlineEm", "for a home you mean to keep.", "headline")}</em>
@@ -285,18 +286,18 @@ export default async function HowaPlusV1PreviewPage() {
         </div>
       </section>
 
-      {/* 4. Comparison, Free vs HoWA+ */}
+      {/* 4. Comparison, Free vs Housekeeper */}
       <section className={s.compareSection}>
         <header className={s.compareHead}>
           <h2 className={s.compareTitle}>
-            {cms(compare, "headline", "Free, or")} <em>{cms(compare, "headlineEm", "HoWA+", "headline")}</em>.
+            {cms(compare, "headline", "Free, or")} <em>{cms(compare, "headlineEm", "Housekeeper", "headline")}</em>.
           </h2>
         </header>
         <div className={s.compareTable}>
           <div className={s.compareRowHeader}>
             <span />
             <span className={s.compareColLabel}>Free</span>
-            <span className={`${s.compareColLabel} ${s.compareColLabelPlus}`}>HoWA+</span>
+            <span className={`${s.compareColLabel} ${s.compareColLabelPlus}`}>Housekeeper</span>
           </div>
           {compareRows.map((row) => (
             <div key={row.feature} className={s.compareRow}>
@@ -377,7 +378,7 @@ export default async function HowaPlusV1PreviewPage() {
       {/* 8. Closing band */}
       <section className={s.closing}>
         <p className={s.closingKicker}>
-          {cms(closing, "eyebrow", "HoWA+ · £16.99 / month · Cancel anytime.")}
+          {cms(closing, "eyebrow", "Housekeeper · £16.99 / month · Cancel anytime.")}
         </p>
         <p className={s.closingStatement}>
           <em>{cms(closing, "headlineEm", "A home you mean to keep.", "headline")}</em>
