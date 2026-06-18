@@ -258,22 +258,33 @@ function LocalPartnerPage({ partner: p }: { partner: LaunchPartner }) {
           </h2>
         </header>
         <div className={s.projectsGrid}>
-          {p.projects.map((proj) => (
-            <article key={proj.title} className={s.projectCard}>
-              <div className={s.projectImage}>
-                <Image
-                  src={proj.image}
-                  alt={proj.title}
-                  fill
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 90vw"
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-              <p className={s.projectCaption}>{proj.caption}</p>
-              <h3 className={s.projectTitle}>{proj.title}</h3>
-              <p className={s.projectMeta}>{proj.meta}</p>
-            </article>
-          ))}
+          {p.projects.map((proj) => {
+            const inner = (
+              <>
+                <div className={s.projectImage}>
+                  <Image
+                    src={proj.image}
+                    alt={proj.title}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 90vw"
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+                <p className={s.projectCaption}>{proj.caption}</p>
+                <h3 className={s.projectTitle}>{proj.title}</h3>
+                <p className={s.projectMeta}>{proj.meta}</p>
+              </>
+            );
+            return proj.href ? (
+              <Link key={proj.title} href={proj.href} className={s.projectCard}>
+                {inner}
+              </Link>
+            ) : (
+              <article key={proj.title} className={s.projectCard}>
+                {inner}
+              </article>
+            );
+          })}
         </div>
       </section>
 

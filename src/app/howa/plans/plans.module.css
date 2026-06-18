@@ -206,11 +206,11 @@
   color: var(--color-house-gold-dark);
 }
 .tiersGrid {
-  max-width: 1080px;
+  max-width: 1240px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: clamp(20px, 2vw, 36px);
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(18px, 1.6vw, 28px);
 }
 .tierCard {
   position: relative;
@@ -241,6 +241,9 @@
   align-items: flex-end;
   justify-content: center;
   overflow: hidden;
+}
+.tierAssistant .tierIllustration {
+  background: #5f6a49; /* olive — homepage Assistant tier */
 }
 .tierPlus .tierIllustration {
   background: #a5644b; /* terracotta — homepage Housekeeper tier */
@@ -391,11 +394,16 @@
   font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-brown);
   text-decoration: none;
   text-align: center;
   padding: 6px 0;
+  transition: color 0.2s ease;
 }
+.tierLink:hover { color: var(--color-house-gold-dark); }
+/* Light variant for the navy Steward card */
+.tierSteward .tierLink { color: rgba(243, 237, 224, 0.88); }
+.tierSteward .tierLink:hover { color: #fff; }
 .tierLink:hover { color: var(--color-house-brown); }
 .tierWaitlist { margin-top: auto; }
 .tiersFootnote {

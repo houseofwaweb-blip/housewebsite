@@ -313,8 +313,8 @@ export default async function DesignLanding() {
           <Link href={cms(closing, "ctaHref", "#open-booking-form")} className={s.closingBtnFilled}>
             {cms(closing, "ctaLabel", "Start a brief")}
           </Link>
-          <Link href={cms(closing, "cta2Href", "/howa/companion")} className={s.closingBtnGhost}>
-            {cms(closing, "cta2Label", "Or use the Companion")} →
+          <Link href={cms(closing, "cta2Href", "/howa/assistant")} className={s.closingBtnGhost}>
+            {cms(closing, "cta2Label", "Or use the Assistant")} →
           </Link>
         </div>
       </section>

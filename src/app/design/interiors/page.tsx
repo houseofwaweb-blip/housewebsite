@@ -14,7 +14,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  *   3. Three plans — Edit, Additions, Full Edit
  *   4. Projects gallery — asymmetric editorial grid
  *   5. Quote
- *   6. Companion split — start with the Companion
+ *   6. Assistant split — start with the Assistant
  *   7. Newsletter
  */
 
@@ -382,19 +382,19 @@ export default async function InteriorsPage() {
         </p>
       </section>
 
-      {/* 6. Companion split */}
+      {/* 6. Assistant split */}
       <section className={s.companion}>
         <div className={s.companionCopy}>
-          <p className={s.companionEy}>{cms(companion, "eyebrow", "HoWA · Companion")}</p>
+          <p className={s.companionEy}>{cms(companion, "eyebrow", "HoWA · Assistant")}</p>
           <h2 className={s.companionTitle}>
             {cms(companion, "headline", "Start with the")}{" "}
-            <em>{cms(companion, "headlineEm", "Companion.", "headline")}</em>
+            <em>{cms(companion, "headlineEm", "Assistant.", "headline")}</em>
           </h2>
           <p className={s.companionLede}>
             {cms(
               companion,
               "body",
-              "Capture your room, ambition, timeline, budget and aesthetic direction. The Companion builds a brief your designer can work from on day one — nothing lost, nothing repeated.",
+              "Capture your room, ambition, timeline, budget and aesthetic direction. The Assistant builds a brief your designer can work from on day one — nothing lost, nothing repeated.",
             )}
           </p>
           <p className={s.companionFootnote}>
@@ -413,7 +413,7 @@ export default async function InteriorsPage() {
             alt={cms(
               companion,
               "imageAlt",
-              "A living room project — the kind of room the Companion helps you brief",
+              "A living room project — the kind of room the Assistant helps you brief",
             )}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"

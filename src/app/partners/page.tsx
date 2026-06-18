@@ -62,7 +62,7 @@ const CATEGORIES = [
     titleEm: "keeping.",
     blurb:
       "Artisan makers, curated suppliers and the things we believe in. Selected by the House, written back to your home record through HoWA.",
-    image: "/services/subbrands/handyman.jpg",
+    image: "/the-house/editorial/approved-peony-plate.webp",
     href: "/shop",
     ctaLabel: "Visit the shop",
   },

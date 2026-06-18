@@ -38,6 +38,23 @@ const PROJECT_ID = process.env.SANITY_PROJECT_ID;
 const DATASET = process.env.SANITY_DATASET || "production";
 const TOKEN = process.env.SANITY_MANAGEMENT_TOKEN || process.env.SANITY_TOKEN;
 
+// --- WordPress source + auth ----------------------------------------------
+const WP_BASE = (process.env.WP_BASE_URL || "https://willowalexander.co.uk").replace(/\/$/, "");
+const WP_HOST = new URL(WP_BASE).host;
+const WP_USER = process.env.WP_USERNAME;
+const WP_PASS = process.env.WP_APP_PASSWORD;
+const WP_AUTH =
+  WP_USER && WP_PASS
+    ? "Basic " + Buffer.from(`${WP_USER}:${WP_PASS}`).toString("base64")
+    : null;
+const wpHeaders = (url) => {
+  // Only send credentials to the WordPress host itself, never to a CDN/3rd party.
+  try {
+    if (WP_AUTH && new URL(url).host === WP_HOST) return { Authorization: WP_AUTH };
+  } catch {}
+  return {};
+};
+
 // --- flags -----------------------------------------------------------------
 const args = new Set(process.argv.slice(2));
 const DRY = args.has("--dry-run");
@@ -61,6 +78,28 @@ const client = PROJECT_ID && TOKEN
       useCdn: false,
     })
   : null;
+
+// --- idempotent upsert with RANDOM ids -------------------------------------
+// Sanity's public dataset ACL hides documents whose _id is a custom dotted id
+// (e.g. "recipe.slug") from anonymous reads; only auto/random ids are public.
+// The site reads anonymously, so we must NOT use deterministic dotted ids.
+// Instead: delete any legacy "<prefix>.<slug>" doc, then upsert keyed by slug.
+async function upsertBySlug(type, prefix, slug, doc) {
+  if (!client) return;
+  // Drop the legacy deterministic-id doc (and its draft), if present.
+  await client.delete(`${prefix}.${slug}`).catch(() => {});
+  await client.delete(`drafts.${prefix}.${slug}`).catch(() => {});
+  const existingId = await client.fetch(
+    `*[_type==$t && slug.current==$s && !(_id in path("drafts.**"))][0]._id`,
+    { t: type, s: slug },
+  );
+  if (existingId) {
+    await client.createOrReplace({ _id: existingId, ...doc });
+    return existingId;
+  }
+  const created = await client.create(doc);
+  return created._id;
+}
 
 // --- HTML decoders ---------------------------------------------------------
 const decode = (s) =>
@@ -194,7 +233,7 @@ async function uploadImage(url) {
     { url },
   );
   if (existing) return existing._id;
-  const res = await fetch(url);
+  const res = await fetch(url, { headers: wpHeaders(url) });
   if (!res.ok) {
     console.warn(`    ! image fetch ${res.status} for ${url}`);
     return null;
@@ -235,16 +274,16 @@ async function fetchAll(endpoint, params = {}) {
     _embed: "1",
     ...params,
   });
-  const url = `https://willowalexander.co.uk/wp-json/wp/v2/${endpoint}?${qs}`;
-  const res = await fetch(url);
+  const base = `${WP_BASE}/wp-json/wp/v2/${endpoint}`;
+  const url = `${base}?${qs}`;
+  const res = await fetch(url, { headers: wpHeaders(url) });
   if (!res.ok) throw new Error(`WP ${endpoint} HTTP ${res.status}`);
   const total = Number(res.headers.get("x-wp-total")) || 0;
   const pages = Number(res.headers.get("x-wp-totalpages")) || 1;
   const all = [...(await res.json())];
   for (let p = 2; p <= pages; p++) {
-    const r = await fetch(
-      `https://willowalexander.co.uk/wp-json/wp/v2/${endpoint}?${qs}&page=${p}`,
-    );
+    const pageUrl = `${base}?${qs}&page=${p}`;
+    const r = await fetch(pageUrl, { headers: wpHeaders(pageUrl) });
     if (r.ok) all.push(...(await r.json()));
   }
   console.log(`  fetched ${all.length}/${total} from ${endpoint}`);
@@ -260,7 +299,6 @@ async function importNews() {
     const assetId = !DRY ? await uploadImage(f.imageUrl) : null;
     const body = htmlToPortableText(f.body);
     const doc = {
-      _id: `news.${f.slug}`,
       _type: "newsItem",
       title: f.title,
       slug: { _type: "slug", current: f.slug },
@@ -281,7 +319,7 @@ async function importNews() {
       console.log(`  [dry] ${f.slug} (blocks: ${body.length})`);
       continue;
     }
-    await client.createOrReplace(doc);
+    await upsertBySlug("newsItem", "news", f.slug, doc);
     console.log(`  \u2713 ${f.slug}  (blocks: ${body.length})`);
   }
 }
@@ -295,7 +333,6 @@ async function importMusings() {
     const assetId = !DRY ? await uploadImage(f.imageUrl) : null;
     const body = htmlToPortableText(f.body);
     const doc = {
-      _id: `musing.${f.slug}`,
       _type: "musing",
       title: f.title,
       slug: { _type: "slug", current: f.slug },
@@ -316,7 +353,7 @@ async function importMusings() {
       console.log(`  [dry] ${f.slug} (blocks: ${body.length})`);
       continue;
     }
-    await client.createOrReplace(doc);
+    await upsertBySlug("musing", "musing", f.slug, doc);
     console.log(`  \u2713 ${f.slug}  (blocks: ${body.length})`);
   }
 }
@@ -329,13 +366,49 @@ const MONTH_TO_SEASON = {
   10: "Autumn", 11: "Winter",
 };
 
+// Recipe ingredients + method live in the theme template (ACF-backed), not in
+// the REST `content.rendered` (which only carries the intro). Scrape the
+// rendered page's `.recipe-details` block to recover them.
+async function scrapeRecipeDetails(link) {
+  if (!link) return null;
+  try {
+    const res = await fetch(link, { headers: wpHeaders(link) });
+    if (!res.ok) return null;
+    const dom = new JSDOM(await res.text());
+    const box = dom.window.document.querySelector(".recipe-details");
+    if (!box) return null;
+    let ingredientsHtml = "";
+    let methodHtml = "";
+    for (const h of box.querySelectorAll("h3")) {
+      const label = h.textContent.trim().toLowerCase();
+      const clone = h.parentElement.cloneNode(true);
+      clone.querySelector("h3")?.remove();
+      const inner = clone.innerHTML.trim();
+      if (label.startsWith("ingredient")) ingredientsHtml = inner;
+      else if (label.startsWith("method")) methodHtml = inner;
+    }
+    // Serving line is "Makes N [unit]" (portions/slices/bowl/…) or just "Makes N".
+    const m = box.textContent.match(/Makes\s+(\d+(?:\s+(?:portions?|slices?|servings?|bowls?|pieces?|tenders?|cookies?|muffins?|bars?|balls?|cups?))?)/i);
+    const serves = m ? m[1].trim() : "";
+    return { ingredientsHtml, methodHtml, serves };
+  } catch (e) {
+    console.warn(`    ! scrape failed for ${link}: ${e.message}`);
+    return null;
+  }
+}
+
 async function importRecipes() {
   console.log("\n=== Recipes ===");
   const wpItems = await fetchAll("recipe");
   for (const wp of wpItems) {
     const f = commonFields(wp);
     const assetId = !DRY ? await uploadImage(f.imageUrl) : null;
-    const body = htmlToPortableText(f.body);
+    const details = await scrapeRecipeDetails(wp.link);
+    // Compose: intro (REST content) + Ingredients + Method recovered from page.
+    let composedHtml = f.body || "";
+    if (details?.ingredientsHtml) composedHtml += `<h3>Ingredients</h3>${details.ingredientsHtml}`;
+    if (details?.methodHtml) composedHtml += `<h3>Method</h3>${details.methodHtml}`;
+    const body = htmlToPortableText(composedHtml);
 
     // Pull recipe-category taxonomy terms as tags.
     const recipeTerms = (wp._embedded?.["wp:term"] || [])
@@ -346,7 +419,6 @@ async function importRecipes() {
     const season = MONTH_TO_SEASON[new Date(wp.date).getMonth()] || "Year-round";
 
     const doc = {
-      _id: `recipe.${f.slug}`,
       _type: "recipe",
       title: f.title,
       slug: { _type: "slug", current: f.slug },
@@ -362,13 +434,14 @@ async function importRecipes() {
       author: "House of Willow Alexander",
       tags: recipeTerms,
       season,
+      serves: details?.serves || undefined,
       publishedAt: f.publishedAt,
     };
     if (DRY) {
-      console.log(`  [dry] ${f.slug} (blocks: ${body.length}, tags: ${recipeTerms.join(", ")})`);
+      console.log(`  [dry] ${f.slug} (blocks: ${body.length}, serves: ${details?.serves || "-"}, ing:${details?.ingredientsHtml ? "y" : "n"} method:${details?.methodHtml ? "y" : "n"})`);
       continue;
     }
-    await client.createOrReplace(doc);
+    await upsertBySlug("recipe", "recipe", f.slug, doc);
     console.log(`  ✓ ${f.slug}  (blocks: ${body.length})`);
   }
 }

@@ -28,15 +28,33 @@ const CHAPTER_TITLES: Record<ChapterIdx, string> = {
 export function ArtworkProgressRail() {
   const [active, setActive] = useState<ChapterIdx | null>("I");
   const [progress, setProgress] = useState(0);
+  // The rail floats over both light and dark sections. When a dark section
+  // (data-tone="dark") sits behind it, flip the rail to light ink so it
+  // stays legible instead of dark-on-dark.
+  const [darkBg, setDarkBg] = useState(false);
 
   useEffect(() => {
     const sections = Array.from(
       document.querySelectorAll<HTMLElement>("[data-chapter]"),
     );
+    const darkSections = Array.from(
+      document.querySelectorAll<HTMLElement>('[data-tone="dark"]'),
+    );
 
     const update = () => {
       const total = document.documentElement.scrollHeight - window.innerHeight;
       setProgress(Math.max(0, Math.min(1, window.scrollY / Math.max(1, total))));
+      // Is a dark section behind the rail's vertical centre?
+      const mid = window.innerHeight / 2;
+      let dark = false;
+      for (const el of darkSections) {
+        const r = el.getBoundingClientRect();
+        if (r.top <= mid && r.bottom >= mid) {
+          dark = true;
+          break;
+        }
+      }
+      setDarkBg(dark);
     };
     update();
     window.addEventListener("scroll", update, { passive: true });
@@ -99,8 +117,12 @@ export function ArtworkProgressRail() {
                     className={
                       "font-display italic text-[14px] tabular-nums w-6 text-right transition-colors duration-200 " +
                       (isActive
-                        ? "text-house-gold-dark"
-                        : "text-house-brown/45 group-hover:text-house-brown/75")
+                        ? darkBg
+                          ? "text-house-gold"
+                          : "text-house-gold-dark"
+                        : darkBg
+                          ? "text-house-cream/55 group-hover:text-house-cream/85"
+                          : "text-house-brown/45 group-hover:text-house-brown/75")
                     }
                   >
                     {r}.
@@ -110,16 +132,24 @@ export function ArtworkProgressRail() {
                     className={
                       "h-px transition-all duration-300 ease-out " +
                       (isActive
-                        ? "w-10 bg-house-gold-dark"
-                        : "w-5 bg-house-brown/30 group-hover:w-8 group-hover:bg-house-brown/55")
+                        ? darkBg
+                          ? "w-10 bg-house-gold"
+                          : "w-10 bg-house-gold-dark"
+                        : darkBg
+                          ? "w-5 bg-house-cream/40 group-hover:w-8 group-hover:bg-house-cream/65"
+                          : "w-5 bg-house-brown/30 group-hover:w-8 group-hover:bg-house-brown/55")
                     }
                   />
                   <span
                     className={
                       "font-sans text-[11px] tracking-[0.2em] uppercase transition-colors duration-200 whitespace-nowrap " +
                       (isActive
-                        ? "text-house-brown font-medium"
-                        : "text-house-brown/60 group-hover:text-house-brown")
+                        ? darkBg
+                          ? "text-house-cream font-medium"
+                          : "text-house-brown font-medium"
+                        : darkBg
+                          ? "text-house-cream/60 group-hover:text-house-cream"
+                          : "text-house-brown/60 group-hover:text-house-brown")
                     }
                   >
                     {CHAPTER_TITLES[r]}

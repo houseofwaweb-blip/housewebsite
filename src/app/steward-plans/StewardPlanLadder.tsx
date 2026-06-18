@@ -83,7 +83,7 @@ function PlanCard({ plan: p, mobile }: { plan: StewardPlan; mobile?: boolean }) 
       }
     >
       {isFeatured ? (
-        <span className="absolute top-[-10px] left-1/2 -translate-x-1/2 bg-house-gold text-white font-sans text-[10px] tracking-[0.22em] px-[14px] py-[5px] z-20">
+        <span className="absolute top-[16px] left-1/2 -translate-x-1/2 bg-house-gold text-white font-sans text-[10px] tracking-[0.22em] px-[14px] py-[5px] z-20 shadow-[0_4px_14px_rgba(0,0,0,0.35)]">
           RECOMMENDED
         </span>
       ) : null}
@@ -119,16 +119,19 @@ function PlanCard({ plan: p, mobile }: { plan: StewardPlan; mobile?: boolean }) 
             </li>
           ))}
         </ul>
-        <div className="mt-[22px]">
+        <div className="mt-[22px] flex flex-col gap-[8px] items-start">
+          <span className="inline-block font-sans text-[11px] tracking-[0.16em] uppercase px-[20px] py-[10px] text-white bg-house-gold border border-house-gold cursor-default">
+            Subscription coming soon
+          </span>
           <Link
-            href={`/steward-plans/${p.slug}`}
+            href="#open-booking-form"
             className={
               isFeatured
-                ? "inline-block font-sans text-[11px] tracking-[0.16em] uppercase px-[20px] py-[10px] no-underline text-white bg-house-gold border border-house-gold transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
+                ? "inline-block font-sans text-[11px] tracking-[0.16em] uppercase px-[20px] py-[10px] no-underline text-house-brown border border-house-brown/30 transition-all duration-[var(--t-base)] ease-out hover:border-house-gold hover:text-house-gold"
                 : "inline-block font-sans text-[11px] tracking-[0.16em] uppercase px-[20px] py-[10px] no-underline text-house-cream border border-house-cream/35 transition-all duration-[var(--t-base)] ease-out hover:bg-house-cream/10"
             }
           >
-            Subscribe →
+            Book individual services →
           </Link>
         </div>
       </div>

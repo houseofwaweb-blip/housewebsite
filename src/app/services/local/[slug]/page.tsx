@@ -288,14 +288,14 @@ export default async function LocalServicePage({
             Step into <em>stewardship.</em>
           </h2>
           <p className="font-display italic text-[clamp(17px,1.8vw,21px)] leading-[1.5] text-house-cream/85 mt-6">
-            Two minutes with the Companion. A lifetime of looking after.
+            Two minutes with the Assistant. A lifetime of looking after.
           </p>
           <div className="flex items-center justify-center gap-4 flex-wrap mt-9">
             <Link
-              href="/howa/companion"
+              href="/howa/assistant"
               className="inline-block font-sans text-[12px] tracking-[0.22em] uppercase text-house-brown bg-house-cream border border-house-cream px-7 py-4 no-underline transition-all duration-200 ease-out hover:bg-house-gold hover:border-house-gold"
             >
-              Launch the Companion
+              Launch the Assistant
             </Link>
             <Link
               href="/services"

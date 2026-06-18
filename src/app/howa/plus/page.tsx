@@ -6,22 +6,22 @@ import { MetaViewContent } from "@/components/marketing/MetaViewContent";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
- * /howa/plus — HoWA+ membership page.
+ * /howa/plus, HoWA+ membership page.
  *
  * Section order:
- *   1. Hero — pink Georgian + blueprint, copy left, image right
+ *   1. Hero, pink Georgian + blueprint, copy left, image right
  *   2. Stats strip
- *   3. Benefits grid — 6 included with HoWA+
- *   4. Comparison row — Free vs HoWA+
- *   5. Intelligence band — what your membership pays for
+ *   3. Benefits grid, 6 included with HoWA+
+ *   4. Comparison row, Free vs HoWA+
+ *   5. Intelligence band, what your membership pays for
  *   6. FAQ
- *   7. Closing — Become a member
+ *   7. Closing, Become a member
  */
 
 export const metadata = {
-  title: "HoWA+ — A home you mean to keep.",
+  title: "HoWA+: A home you mean to keep.",
   description:
-    "The connected membership for a home you mean to keep. £16.99 / month. Living Record, full Companion, member pricing. Cancel anytime.",
+    "The connected membership for a home you mean to keep. £16.99 / month. Living Record, full Assistant, member pricing. Cancel anytime.",
 };
 
 const STAT_COLS = [
@@ -36,7 +36,7 @@ const BENEFITS = [
     icon: PercentIcon,
     image: "/home-v4/plus-benefit-1.webp",
     title: "10% off every House Service",
-    body: "Gardening, cleaning, windows, gutters, design packages, product bundles. Auto-applied at checkout — no codes, no fuss.",
+    body: "Gardening, cleaning, windows, gutters, design packages, product bundles. Auto-applied at checkout, no codes, no fuss.",
   },
   {
     icon: ClipboardIcon,
@@ -48,21 +48,21 @@ const BENEFITS = [
   {
     icon: ScanIcon,
     image: "/home-v4/plus-benefit-3.webp",
-    title: "Full Companion Diagnostic",
-    body: "AI repair scan, instant quote, design moodboards. Capture home type, rooms, priorities, style, budget — saved straight to your record.",
-    cta: { label: "See the Companion", href: "/howa/companion" },
+    title: "Full Assistant Diagnostic",
+    body: "Repair scan, instant quote, design moodboards. Capture home type, rooms, priorities, style, budget, saved straight to your record.",
+    cta: { label: "See the Assistant", href: "/howa/assistant" },
   },
   {
     icon: BookIcon,
     image: "/home-v4/plus-benefit-4.webp",
     title: "Home Logbook & Documents",
-    body: "Paint colours, appliance details, contractor notes — the home logbook every trade can reference. Saved guides and reminders you can action or defer.",
+    body: "Paint colours, appliance details, contractor notes, the home logbook every trade can reference. Saved guides and reminders you can action or defer.",
   },
   {
     icon: HearthIcon,
     image: "/home-v4/plus-benefit-5.webp",
     title: "Priority Booking & The Hearth",
-    body: "Priority across all House services and approved partners. Full editorial access to The Hearth — long-form writing on homes, gardens, and the craft of looking after a place.",
+    body: "Priority across all House services and approved partners. Full editorial access to The Hearth, long-form writing on homes, gardens, and the craft of looking after a place.",
     cta: { label: "Browse the Hearth", href: "/the-hearth" },
   },
   {
@@ -76,7 +76,7 @@ const BENEFITS = [
 const COMPARE = [
   { feature: "Living Record entries", free: "Limited", plus: "Unlimited" },
   { feature: "Service discount", free: "—", plus: "10% on everything" },
-  { feature: "Companion diagnostic", free: "Lite", plus: "Full" },
+  { feature: "Assistant diagnostic", free: "Lite", plus: "Full" },
   { feature: "Task centre & reminders", free: "—", plus: "Yes" },
   { feature: "Priority booking", free: "—", plus: "Yes" },
   { feature: "The Hearth magazine", free: "Excerpts", plus: "Full access" },
@@ -98,11 +98,11 @@ const FAQS = [
   },
   {
     q: "Does HoWA+ replace my insurance?",
-    a: "No. HoWA+ is a stewardship membership, not insurance. It does pair beautifully with a Provenance home protection review — we can introduce you.",
+    a: "No. HoWA+ is a stewardship membership, not insurance. It does pair beautifully with a Provenance home protection review, we can introduce you.",
   },
   {
     q: "What if my home doesn't fit a category?",
-    a: "We've built HoWA to flex. Leasehold flats, listed cottages, mews houses — all welcome. Your concierge tailors the standard to your property.",
+    a: "We've built HoWA to flex. Leasehold flats, listed cottages, mews houses, all welcome. Your concierge tailors the standard to your property.",
   },
   {
     q: "Where does my data live?",
@@ -110,11 +110,11 @@ const FAQS = [
   },
   {
     q: "Do I have to use the booked services?",
-    a: "Never. HoWA surfaces what needs doing and recommends trusted partners — but you stay in control of who comes to your home.",
+    a: "Never. HoWA surfaces what needs doing and recommends trusted partners, but you stay in control of who comes to your home.",
   },
   {
     q: "What happens if I move?",
-    a: "Your record moves with you. You can also hand it to the new owner as part of the sale — adding £18,000 of average value in our pilot.",
+    a: "Your record moves with you. You can also hand it to the new owner as part of the sale, adding £18,000 of average value in our pilot.",
   },
 ];
 
@@ -178,12 +178,12 @@ export default async function HowaPlusV1PreviewPage() {
               {cms(
                 hero,
                 "body",
-                "The Living Record, full Companion, member pricing, and a place that grows with the home. Cancel anytime.",
+                "The Living Record, full Assistant, member pricing, and a place that grows with the home. Cancel anytime.",
               )}
             </p>
             <div className={s.heroCtas}>
-              <Link href={cms(hero, "ctaHref", "/api/howa-bounce")} className={s.btnFilled}>
-                {cms(hero, "ctaLabel", "Coming soon")}
+              <Link href={cms(hero, "ctaHref", "/howa/coming-soon?tier=housekeeper")} className={s.btnFilled}>
+                {cms(hero, "ctaLabel", "Join the waitlist")}
               </Link>
               <Link href={cms(hero, "cta2Href", "/howa/how-it-works")} className={s.btnGhost}>
                 {cms(hero, "cta2Label", "See how it works")}
@@ -193,18 +193,35 @@ export default async function HowaPlusV1PreviewPage() {
           </div>
         </div>
         <div className={s.heroVisual}>
+          {/* Floating UI card over the empty terracotta wall, askhowa style */}
+          <div className="hidden lg:block absolute left-[8%] top-[14%] z-10 w-[232px] bg-[#faf7f0] border border-[color:var(--color-gold)]/35 shadow-[0_22px_50px_-18px_rgba(40,25,15,0.55)] px-5 py-4">
+            <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-[color:var(--color-gold-deep)] mb-3 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#b56a5c]" aria-hidden /> In the membership
+            </p>
+            <ul className="space-y-2.5">
+              {["Full logbook", "Maintenance & garden calendar", "Renewal & warranty reminders"].map((f) => (
+                <li key={f} className="flex items-start gap-2.5 font-sans text-[13.5px] leading-[1.35] text-[color:var(--color-ink)]/85">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#b56a5c" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" className="mt-px shrink-0" aria-hidden>
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M8.5 12.5l2.5 2.5 4.5-5" />
+                  </svg>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
           <div className={s.heroVisualFrame}>
             <Image
-              src={cms(hero, "imageUrl", "/home-v4/howa-lander-hero-v4.webp")}
+              src={cms(hero, "imageUrl", "/home-v4/plus-hero.webp")}
               alt={cms(
                 hero,
                 "imageAlt",
-                "A pink Georgian townhouse, its left half rendered as a hand-drawn elevation",
+                "The HoWA Housekeeper dollhouse, a terracotta-toned cutaway Georgian home on a single-colour ground.",
               )}
               fill
               sizes="(min-width: 1024px) 55vw, 100vw"
               priority
-              style={{ objectFit: "contain", objectPosition: "right center" }}
+              style={{ objectFit: "cover", objectPosition: "center" }}
             />
           </div>
         </div>
@@ -226,7 +243,7 @@ export default async function HowaPlusV1PreviewPage() {
         ))}
       </section>
 
-      {/* 3. Benefits grid — 3×2 editorial */}
+      {/* 3. Benefits grid, 3×2 editorial */}
       <section className={s.benefits}>
         <header className={s.benefitsHead}>
           <p className={s.benefitsEy}>{cms(benefits, "eyebrow", "What's included.")}</p>
@@ -268,7 +285,7 @@ export default async function HowaPlusV1PreviewPage() {
         </div>
       </section>
 
-      {/* 4. Comparison — Free vs HoWA+ */}
+      {/* 4. Comparison, Free vs HoWA+ */}
       <section className={s.compareSection}>
         <header className={s.compareHead}>
           <h2 className={s.compareTitle}>
@@ -326,7 +343,7 @@ export default async function HowaPlusV1PreviewPage() {
             alt={cms(
               intelligence,
               "imageAlt",
-              "A warm dusk-lit London townhouse interior — what intelligent stewardship protects",
+              "A warm dusk-lit London townhouse interior, what intelligent stewardship protects",
             )}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
@@ -367,7 +384,7 @@ export default async function HowaPlusV1PreviewPage() {
         </p>
         <div className={s.closingCtas}>
           <Link href={cms(closing, "ctaHref", "/api/howa-bounce")} className={s.closingBtnFilled}>
-            {cms(closing, "ctaLabel", "Coming soon")}
+            {cms(closing, "ctaLabel", "Join the waitlist")}
           </Link>
         </div>
       </section>

@@ -291,12 +291,17 @@
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  padding: 0 clamp(40px, 5vw, 88px);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(48, 35, 28, 0.35) transparent;
+  padding: 0 clamp(40px, 5vw, 88px) 14px;
   scroll-padding-left: clamp(40px, 5vw, 88px);
-  padding-bottom: 12px;
 }
-.subScroller::-webkit-scrollbar { display: none; }
+.subScroller::-webkit-scrollbar { height: 8px; }
+.subScroller::-webkit-scrollbar-thumb {
+  background: rgba(48, 35, 28, 0.3);
+  border-radius: 9999px;
+}
+.subScroller::-webkit-scrollbar-track { background: rgba(48, 35, 28, 0.08); }
 .subCard {
   flex: none;
   width: clamp(280px, 80vw, 340px);
@@ -318,6 +323,22 @@
   position: relative;
   aspect-ratio: 4/3;
   overflow: hidden;
+}
+.comingSoonTag {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(30, 26, 20, 0.34);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
 }
 .subImage img {
   width: 100%; height: 100%;

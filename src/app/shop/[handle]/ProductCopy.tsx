@@ -1,55 +1,79 @@
 "use client";
 
+import * as React from "react";
 import { Accordion } from "@/components/primitives/Accordion";
 import type { ShopProduct } from "@/lib/shop-data";
 
 /**
- * ProductCopy — sticky left-column copy stack for the Lookbook layout.
- * All spacing values use explicit pixels matching the approved mockup.
+ * True when `lede` is genuinely distinct editorial, not just the truncated
+ * first line of `body` (the Shopify case, where lede = firstLine(description)).
+ */
+function ledeIsDistinct(lede?: string, body?: string): boolean {
+  if (!lede || !body) return false;
+  const norm = (s: string) => s.replace(/[…\.]+\s*$/, "").trim().toLowerCase();
+  const l = norm(lede);
+  if (l.length < 8) return false;
+  return !norm(body).startsWith(l.slice(0, Math.min(40, l.length)));
+}
+
+const SUMMARY = "font-sans text-[12px] tracking-[0.2em] uppercase";
+
+/**
+ * ProductCopy — description (with Read more) + the spec accordion list,
+ * styled like the House of Hackney / Henry Holland product information:
+ * a short lead paragraph, a Read more toggle, then hairline-divided
+ * dropdowns. No price/CTA here — the buy column owns those.
  */
 export function ProductCopy({ product: p }: { product: ShopProduct }) {
+  const [expanded, setExpanded] = React.useState(false);
+
   const details = [
-    p.careNotes && { id: "care", summary: "Care notes", body: <p>{p.careNotes}</p> },
-    p.materials && { id: "materials", summary: "Materials", body: <p>{p.materials}</p> },
-    p.dimensions && { id: "dimensions", summary: "Dimensions", body: <p>{p.dimensions}</p> },
-    p.delivery && { id: "delivery", summary: "Delivery & returns", body: <p>{p.delivery} Returns accepted within 30 days in original condition.</p> },
-  ].filter(Boolean) as Array<{ id: string; summary: string; body: React.ReactNode }>;
+    p.materials && { id: "details", summary: <span className={SUMMARY}>Product details</span>, body: <p>{p.materials}{p.dimensions ? ` ${p.dimensions}` : ""}</p> },
+    p.careNotes && { id: "care", summary: <span className={SUMMARY}>Care</span>, body: <p>{p.careNotes}</p> },
+    {
+      id: "delivery",
+      summary: <span className={SUMMARY}>Shipping &amp; returns</span>,
+      body: (
+        <p>
+          {p.delivery ?? "Free UK delivery on every order."} Returns accepted within 30 days in original condition.
+        </p>
+      ),
+    },
+  ].filter(Boolean) as Array<{ id: string; summary: React.ReactNode; body: React.ReactNode }>;
+
+  const showLede = ledeIsDistinct(p.lede, p.body);
+  const body = p.body ?? "";
+  const LIMIT = 260;
+  const long = body.length > LIMIT;
+  const shown = expanded || !long ? body : body.slice(0, LIMIT).replace(/\s+\S*$/, "") + "…";
 
   return (
-    <div
-      className={[
-        "md:sticky md:top-[58px] md:h-fit md:max-h-[calc(100vh-58px)] md:overflow-y-auto md:border-r md:border-house-brown/8",
-        "max-md:static max-md:max-h-none max-md:overflow-visible max-md:border-b max-md:border-house-brown/8",
-        "px-[5vw] py-[48px]",
-      ].join(" ")}
-    >
-      <p className="font-display italic text-[24px] leading-[1.45] text-house-stone mb-[24px] max-w-[480px]">
-        {p.lede}
-      </p>
-
-      <p className="font-sans text-[15px] leading-[1.75] text-house-brown/85 mb-[20px] max-w-[480px]">
-        {p.body}
-      </p>
-
-      {p.delivery ? (
-        <p className="font-sans text-[12px] text-house-stone mb-[20px]">
-          {p.delivery}
+    <div className="pt-2">
+      {showLede ? (
+        <p className="font-display italic text-[20px] leading-[1.45] text-house-stone mb-5">
+          {p.lede}
         </p>
       ) : null}
 
-      {details.length > 0 ? <Accordion items={details} /> : null}
+      <p className="font-sans text-[15px] leading-[1.8] text-house-brown/85 whitespace-pre-line">
+        {shown}
+      </p>
 
-      <div className="mt-[28px] pt-[24px] border-t border-house-brown/10">
-        <div className="font-display font-medium text-[24px] mb-[14px]">
-          {p.price}
-        </div>
-        <span
-          aria-label="Available soon"
-          className="inline-block px-[18px] py-[10px] font-sans text-[11px] tracking-[0.24em] uppercase text-house-stone/80 bg-house-cream-dark border border-house-brown/10"
+      {long ? (
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          className="mt-3 font-sans text-[12px] tracking-[0.08em] text-house-brown underline underline-offset-4 decoration-house-brown/40 hover:decoration-house-gold cursor-pointer"
         >
-          Available soon
-        </span>
-      </div>
+          {expanded ? "Read less" : "Read more"}
+        </button>
+      ) : null}
+
+      {details.length > 0 ? (
+        <div className="mt-9">
+          <Accordion items={details} />
+        </div>
+      ) : null}
     </div>
   );
 }

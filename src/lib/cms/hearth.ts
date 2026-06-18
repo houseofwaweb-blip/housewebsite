@@ -24,8 +24,7 @@ const ARTICLE_PROJECTION = /* groq */ `{
   "dek": lede,
   "image": hero.asset->url,
   "imageAlt": hero.alt,
-  "categoryLong": category->name,
-  "categorySlug": category->slug.current,
+  "categoryRef": category._ref,
   author,
   publishedAt,
   "isPremium": coalesce(isPremium, false),
@@ -43,8 +42,7 @@ const articleBySlugFullQuery = /* groq */ `*[_type == "article" && slug.current 
   "image": hero.asset->url,
   "imageAlt": hero.alt,
   body,
-  "categoryLong": category->name,
-  "categorySlug": category->slug.current,
+  "categoryRef": category._ref,
   author,
   publishedAt,
   "isPremium": coalesce(isPremium, false),
@@ -68,6 +66,25 @@ const SHORT_CATEGORY: Record<string, string> = {
 
 const shortCategory = (long?: string) =>
   (long && SHORT_CATEGORY[long]) || long || "Essays";
+
+// ---------------------------------------------------------------------------
+// Category resolution by reference id.
+//
+// The Sanity READ token has no grant to read `articleCategory` documents, so
+// dereferencing `category->name` returns null. The article's `category._ref`
+// IS readable though, and its id embeds the slug (e.g.
+// "category.gardens-and-exteriors"), so we resolve name + slug from this map
+// instead of from the (unreadable) category doc.
+// ---------------------------------------------------------------------------
+const CATEGORY_BY_REF: Record<string, { name: string; slug: string }> = {
+  "category.colour-and-materials": { name: "COLOUR & MATERIALS", slug: "colour-and-materials" },
+  "category.design-and-architecture": { name: "DESIGN & ARCHITECTURE", slug: "design-and-architecture" },
+  "category.gardens-and-exteriors": { name: "GARDENS & EXTERIORS", slug: "gardens-and-exteriors" },
+  "category.heritage-and-culture": { name: "HERITAGE & CULTURE", slug: "heritage-and-culture" },
+  "category.interiors-and-styling": { name: "INTERIORS & STYLING", slug: "interiors-and-styling" },
+  "category.trends-and-inspiration": { name: "TRENDS & INSPIRATION", slug: "trends-and-inspiration" },
+};
+const categoryBySlug = (slug: string) => CATEGORY_BY_REF[`category.${slug}`] ?? null;
 
 // ---------------------------------------------------------------------------
 // titleEm picker (mirrors transform.mjs — keep the two in sync)
@@ -107,8 +124,7 @@ interface RawSanityArticle {
   dek: string;
   image: string | null;
   imageAlt?: string;
-  categoryLong?: string;
-  categorySlug?: string;
+  categoryRef?: string;
   author: string;
   publishedAt: string;
   isPremium: boolean;
@@ -119,7 +135,10 @@ interface RawSanityArticle {
 }
 
 function toHearthArticle(doc: RawSanityArticle): HearthArticle {
-  const category = shortCategory(doc.categoryLong);
+  const cat = doc.categoryRef ? CATEGORY_BY_REF[doc.categoryRef] : undefined;
+  const categoryLong = cat?.name;
+  const categorySlug = cat?.slug;
+  const category = shortCategory(categoryLong);
   const readTime = doc.bodyWordCount
     ? Math.max(3, Math.round(doc.bodyWordCount / 200))
     : undefined;
@@ -128,8 +147,8 @@ function toHearthArticle(doc: RawSanityArticle): HearthArticle {
     title: doc.title,
     titleEm: pickTitleEm(doc.title),
     category,
-    categoryLong: doc.categoryLong,
-    categorySlug: doc.categorySlug,
+    categoryLong,
+    categorySlug,
     image: doc.image || "/hearth/art-lead.webp",
     imageAlt: doc.imageAlt,
     dek: doc.dek,
@@ -214,13 +233,60 @@ export async function relatedArticlesFromSanity(
   limit = 3,
 ): Promise<HearthArticle[]> {
   if (!category) return [];
-  const query = /* groq */ `*[_type == "article" && slug.current != $slug && category->name == $category] | order(publishedAt desc)[0...$limit] ${ARTICLE_PROJECTION}`;
+  const ref = `category.${category}`;
+  const query = /* groq */ `*[_type == "article" && slug.current != $slug && category._ref == $ref] | order(publishedAt desc)[0...$limit] ${ARTICLE_PROJECTION}`;
   const raw = await sanityFetch<RawSanityArticle[]>({
     query,
-    params: { slug, category, limit },
+    params: { slug, ref, limit },
     tags: [`article:${slug}`, "type:article"],
   });
   return raw.map(toHearthArticle);
+}
+
+export interface HearthCategoryResult {
+  category: { name: string; slug: string; description?: string } | null;
+  articles: HearthArticle[];
+}
+
+/** Articles in one category (matched by category._ref), newest first. */
+export async function getHearthByCategory(categorySlug: string): Promise<HearthCategoryResult> {
+  const meta = categoryBySlug(categorySlug);
+  if (!meta) return { category: null, articles: [] };
+  const ref = `category.${categorySlug}`;
+  const query = /* groq */ `*[_type == "article" && category._ref == $ref] | order(publishedAt desc) ${ARTICLE_PROJECTION}`;
+  const raw = await sanityFetch<RawSanityArticle[]>({
+    query,
+    params: { ref },
+    tags: ["type:article"],
+  });
+  return { category: { name: meta.name, slug: meta.slug }, articles: raw.map(toHearthArticle) };
+}
+
+/** Known category slugs (all have articles) — for generateStaticParams. */
+export async function getActiveCategorySlugs(): Promise<string[]> {
+  return Object.values(CATEGORY_BY_REF).map((c) => c.slug);
+}
+
+export interface AdjacentArticle {
+  slug: string;
+  title: string;
+}
+
+/** The older + newer article either side of `slug` (by publishedAt) for prev/next nav. */
+export async function getAdjacentArticles(
+  slug: string,
+): Promise<{ prev: AdjacentArticle | null; next: AdjacentArticle | null }> {
+  const list = await sanityFetch<AdjacentArticle[]>({
+    query: /* groq */ `*[_type == "article" && defined(slug.current)] | order(publishedAt desc){ "slug": slug.current, title }`,
+    tags: ["type:article"],
+  });
+  const i = list.findIndex((a) => a.slug === slug);
+  if (i === -1) return { prev: null, next: null };
+  // List is newest-first: "prev" = the older article (read before), "next" = newer.
+  return {
+    prev: i < list.length - 1 ? list[i + 1] : null,
+    next: i > 0 ? list[i - 1] : null,
+  };
 }
 
 export { shortCategory, pickTitleEm };

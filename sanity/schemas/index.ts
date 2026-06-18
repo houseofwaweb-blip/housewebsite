@@ -40,6 +40,7 @@ import { megaGroup } from "./objects/megaGroup";
 import { megaPanel } from "./objects/megaPanel";
 
 import { portableText } from "./blocks/portableText";
+import { videoEmbed } from "./blocks/videoEmbed";
 import { pullQuote } from "./blocks/pullQuote";
 import { dropCapPara } from "./blocks/dropCapPara";
 import { photoEssay } from "./blocks/photoEssay";
@@ -84,6 +85,7 @@ export const schemaTypes = [
   megaGroup,
   megaPanel,
   portableText,
+  videoEmbed,
   pullQuote,
   dropCapPara,
   photoEssay,

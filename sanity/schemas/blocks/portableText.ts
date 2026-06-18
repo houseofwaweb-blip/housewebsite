@@ -67,6 +67,7 @@ export const portableText = defineType({
         { name: "caption", type: "string", title: "Caption" },
       ],
     }),
+    defineArrayMember({ type: "videoEmbed" }),
     defineArrayMember({ type: "pullQuote" }),
     defineArrayMember({ type: "dropCapPara" }),
     defineArrayMember({ type: "photoEssay" }),

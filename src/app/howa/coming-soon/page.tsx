@@ -6,20 +6,20 @@ import { env } from "@/lib/env";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
- * /howa/coming-soon — HoWA app waitlist page.
+ * /howa/coming-soon, HoWA app waitlist page.
  *
  * Section order:
- *   1. Hero — navy "blueprint mode" with the steward blueprint cross-section,
+ *   1. Hero, navy "blueprint mode" with the steward blueprint cross-section,
  *      copy + waitlist form left
- *   2. Stats strip — what's launching
- *   3. What's coming — three columns describing the product
- *   4. Closing — read about HoWA in the meantime
+ *   2. Stats strip, what's launching
+ *   3. What's coming, three columns describing the product
+ *   4. Closing, read about HoWA in the meantime
  */
 
 export const metadata = {
-  title: "HoWA — Coming soon",
+  title: "HoWA: Coming soon",
   description:
-    "HoWA Product is where stewardship becomes operational: home records, the Companion, bookings, and a single place for the House to reach you. Join the waitlist.",
+    "HoWA Product is where stewardship becomes operational: home records, the Assistant, bookings, and a single place for the House to reach you. Join the waitlist.",
   robots: { index: false, follow: true },
 };
 
@@ -38,8 +38,8 @@ const COMING = [
   },
   {
     icon: "II.",
-    title: "The Companion",
-    body: "AI repair scan, instant quote, design moodboards. Capture home type, rooms, priorities, style and budget. Calm, specific, honest about what it doesn't know.",
+    title: "The Assistant",
+    body: "Repair scan, instant quote, design moodboards. Capture home type, rooms, priorities, style and budget. Calm, specific, honest about what it doesn't know.",
   },
   {
     icon: "III.",
@@ -67,7 +67,7 @@ export default async function HowaComingSoonPage() {
 
   return (
     <div className={`${s.page} ${s.stewardTheme}`}>
-      {/* 1. Hero — navy blueprint mode + waitlist */}
+      {/* 1. Hero, navy blueprint mode + waitlist */}
       <section className={s.hero}>
         <div className={s.heroBg} aria-hidden="true">
           <Image
@@ -90,7 +90,7 @@ export default async function HowaComingSoonPage() {
               {cms(
                 hero,
                 "body",
-                "HoWA Product is where stewardship becomes operational — home records, the Companion diagnostic, bookings, and one place for the House to reach you. We'll write the moment it opens.",
+                "HoWA Product is where stewardship becomes operational, home records, the Assistant diagnostic, bookings, and one place for the House to reach you. We'll write the moment it opens.",
               )}
             </p>
             <div className={s.waitlistWrap}>
@@ -99,6 +99,7 @@ export default async function HowaComingSoonPage() {
                 turnstileSiteKey={env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? ""}
                 sourcePage="/howa/coming-soon"
                 dark
+                collectTier
                 submitLabel="Tell me when it opens"
                 successMessage="Thank you. You'll be among the first to hear."
               />

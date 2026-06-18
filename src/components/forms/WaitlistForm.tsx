@@ -26,7 +26,15 @@ export interface WaitlistFormProps {
   dark?: boolean;
   submitLabel?: string;
   successMessage?: string;
+  /** HoWA app waitlist: show the required tier picker + optional name/postcode. */
+  collectTier?: boolean;
 }
+
+const TIER_OPTIONS = [
+  { value: "assistant", label: "Assistant, free" },
+  { value: "housekeeper", label: "Housekeeper, £16.99/mo" },
+  { value: "steward", label: "Steward, £29.99/mo" },
+] as const;
 
 export function WaitlistForm({
   product,
@@ -35,6 +43,7 @@ export function WaitlistForm({
   dark = false,
   submitLabel = "Register interest",
   successMessage = "Thank you. We'll write when it opens.",
+  collectTier = false,
 }: WaitlistFormProps) {
   const turnstileRef = React.useRef<TurnstileInstance | null>(null);
   const [status, setStatus] = React.useState<FormStatusState>({ kind: "idle" });
@@ -54,6 +63,29 @@ export function WaitlistForm({
       honey: "",
     },
   });
+
+  // Pre-fill the tier from a `?tier=` link (e.g. /howa/coming-soon?tier=steward),
+  // so "Apply for Steward" arrives with Steward already chosen.
+  React.useEffect(() => {
+    if (!collectTier) return;
+    const params = new URLSearchParams(window.location.search);
+    const t = params.get("tier")?.toLowerCase();
+    if (t && TIER_OPTIONS.some((o) => o.value === t)) {
+      setValue("tier", t as WaitlistInterestInput["tier"], { shouldValidate: true });
+    }
+    // Carry the address/postcode typed into a hero "Enter your address" bar.
+    const pc = params.get("postcode")?.trim();
+    if (pc) {
+      setValue("postcode", pc.toUpperCase(), { shouldValidate: true });
+    }
+  }, [collectTier, setValue]);
+
+  const selectCls = `w-full border px-3 py-2.5 text-[15px] outline-none transition-colors ${
+    dark
+      ? "border-white/30 bg-transparent text-white focus:border-white/60"
+      : "border-house-brown/30 bg-white text-house-brown focus:border-house-gold"
+  }`;
+  const labelCls = `block font-sans text-[12px] tracking-[0.04em] mb-1.5 ${dark ? "text-white/75" : "text-house-brown/70"}`;
 
   const onSubmit = async (data: WaitlistInterestOutput) => {
     setStatus({ kind: "submitting" });
@@ -75,6 +107,68 @@ export function WaitlistForm({
         <input type="text" tabIndex={-1} autoComplete="off" {...register("honey")} />
       </div>
 
+      {collectTier ? (
+        <>
+          <div className="flex flex-col md:flex-row gap-4">
+            <div className="flex-1">
+              <Input
+                label="First name"
+                required
+                autoComplete="given-name"
+                dark={dark}
+                error={errors.firstName?.message}
+                {...register("firstName", { required: "Required" })}
+              />
+            </div>
+            <div className="flex-1">
+              <Input
+                label="Last name"
+                required
+                autoComplete="family-name"
+                dark={dark}
+                error={errors.lastName?.message}
+                {...register("lastName", { required: "Required" })}
+              />
+            </div>
+          </div>
+          <div className="flex flex-col md:flex-row gap-4">
+            <div className="flex-1">
+              <label htmlFor="wl-tier" className={labelCls}>
+                Which tier interests you?
+              </label>
+              <select
+                id="wl-tier"
+                required
+                defaultValue=""
+                className={selectCls}
+                {...register("tier", { required: "Please choose a tier" })}
+              >
+                <option value="" disabled style={{ color: "#6b6357", background: "#fff" }}>
+                  Choose a tier…
+                </option>
+                {TIER_OPTIONS.map((o) => (
+                  <option key={o.value} value={o.value} style={{ color: "#1a241d", background: "#fff" }}>
+                    {o.label}
+                  </option>
+                ))}
+              </select>
+              {errors.tier?.message ? (
+                <p className="font-sans text-[12px] text-red-700 mt-1">{errors.tier.message}</p>
+              ) : null}
+            </div>
+            <div className="flex-1">
+              <Input
+                label="Postcode (optional)"
+                autoComplete="postal-code"
+                dark={dark}
+                error={errors.postcode?.message}
+                {...register("postcode")}
+              />
+            </div>
+          </div>
+        </>
+      ) : null}
+
       <div className="flex flex-col md:flex-row gap-4 md:items-end">
         <div className="flex-1">
           <Input
@@ -92,6 +186,7 @@ export function WaitlistForm({
           variant={dark ? "outline-light" : "gold"}
           loading={isSubmitting}
           disabled={isSubmitting}
+          className="md:mb-1.5"
         >
           {submitLabel}
         </Button>

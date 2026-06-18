@@ -85,3 +85,6 @@ src/lib/hearth-data/wp-import/articles.raw.json
 dist/
 scripts/woo-products.json
 .gstack/
+
+# scratch dir for imports/conversions (not scanned by Tailwind)
+.import-tmp/

@@ -7,6 +7,7 @@ import {
 } from "@portabletext/react";
 import type { PortableTextBlock } from "@portabletext/types";
 import { urlFor } from "@/lib/cms/image";
+import { env } from "@/lib/env";
 
 /**
  * Portable text renderer with the House / HoWA block-kit.
@@ -62,6 +63,32 @@ interface InlineCollectionBlock {
   introCopy?: string;
 }
 
+interface VideoEmbedBlock {
+  _type: "videoEmbed";
+  youtubeUrl?: string;
+  url?: string;
+  caption?: string;
+  file?: { asset?: { _ref?: string } };
+}
+
+// Extract an 11-char YouTube id from watch / youtu.be / shorts / embed URLs.
+function youtubeId(url: string): string | null {
+  const m = url.match(/(?:youtu\.be\/|\/shorts\/|[?&]v=|\/embed\/)([\w-]{11})/);
+  return m ? m[1] : null;
+}
+
+// Build a Sanity CDN file URL from a `file-<hash>-<ext>` asset ref.
+function fileAssetUrl(ref?: string): string | null {
+  if (!ref) return null;
+  const [, hash, ext] = ref.split("-");
+  if (!hash || !ext) return null;
+  const projectId =
+    env.SANITY_PROJECT_ID && env.SANITY_PROJECT_ID !== "placeholder"
+      ? env.SANITY_PROJECT_ID
+      : env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "a9t8u8nh";
+  return `https://cdn.sanity.io/files/${projectId}/${env.SANITY_DATASET}/${hash}.${ext}`;
+}
+
 const components: PortableTextComponents = {
   types: {
     image: ({ value }: { value: SanityImage }) => {
@@ -82,6 +109,51 @@ const components: PortableTextComponents = {
               {value.caption}
             </figcaption>
           ) : null}
+        </figure>
+      );
+    },
+
+    videoEmbed: ({ value }: { value: VideoEmbedBlock }) => {
+      const caption = value.caption ? (
+        <figcaption className="font-sans text-[12px] tracking-[0.04em] text-house-brown/60 mt-3 italic text-center">
+          {value.caption}
+        </figcaption>
+      ) : null;
+
+      if (value.youtubeUrl) {
+        const id = youtubeId(value.youtubeUrl);
+        if (!id) return null;
+        return (
+          <figure className="my-12">
+            <div className="relative mx-auto w-full max-w-[420px] aspect-[9/16] overflow-hidden rounded-sm border border-house-gold/30 bg-black">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${id}`}
+                title={value.caption ?? "Video"}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                loading="lazy"
+                className="absolute inset-0 h-full w-full"
+              />
+            </div>
+            {caption}
+          </figure>
+        );
+      }
+
+      const src = value.url ?? fileAssetUrl(value.file?.asset?._ref);
+      if (!src) return null;
+      return (
+        <figure className="my-12">
+          {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+          <video
+            controls
+            preload="metadata"
+            playsInline
+            className="mx-auto h-auto w-full max-w-[420px] rounded-sm border border-house-gold/30 bg-black"
+          >
+            <source src={src} type="video/mp4" />
+          </video>
+          {caption}
         </figure>
       );
     },

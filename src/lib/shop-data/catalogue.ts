@@ -15,13 +15,24 @@ export interface CatalogueProduct {
   image: string;
   images: Array<{ src: string; alt: string }>;
   collection: string;
+  /** All main-category handles this product belongs to (for accurate filtering). */
+  collectionHandles?: string[];
   houseApproved: boolean;
   lede: string;
   body: string;
+  /** Shopify "Search engine listing" overrides (per-product SEO). Optional —
+      falls back to title/lede when a product has none set. */
+  seoTitle?: string;
+  seoDescription?: string;
   brand: string;
   sku: string;
   inStock: boolean;
   onSale: boolean;
+  /** Shopify default variant GID — enables one-click add from the grid. */
+  variantId?: string;
+  /** True when the product has more than one variant (size/colour) — the
+      grid card shows "Choose options" → product page instead of quick-add. */
+  multiVariant?: boolean;
 }
 
 export interface CatalogueCollection {

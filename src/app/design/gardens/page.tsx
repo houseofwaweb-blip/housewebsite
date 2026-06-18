@@ -4,6 +4,7 @@ import s from "./gardens.module.css";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { getNewsletterBlock } from "@/lib/cms/newsletter";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
+import { GARDEN_PROJECTS } from "@/lib/gardens-projects";
 
 /**
  * /design/gardens — lander framework.
@@ -15,7 +16,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  *   4. Specialist services strip — lighting / collaboration / full design
  *   5. Projects gallery — asymmetric editorial grid
  *   6. Quote
- *   7. Companion split — start with the Companion
+ *   7. Assistant split — start with the Assistant
  *   8. Newsletter
  */
 
@@ -125,35 +126,8 @@ const STUDIOS = [
   },
 ];
 
-const PROJECTS = [
-  {
-    src: "/design/gardens/hand-drawn.jpg",
-    caption: "Hand-Drawn Plans",
-    alt: "Hand-drawn garden plans — pencil sketches with planting annotations",
-    span: "tall",
-  },
-  {
-    src: "/design/gardens/planting-plans.jpg",
-    caption: "Planting Plan — Cotswolds",
-    alt: "Planting plan — detailed layout with seasonal palette",
-  },
-  {
-    src: "/design/gardens/concept-plans.jpg",
-    caption: "Concept Plan — Surrey",
-    alt: "Concept plan — layout, materials palette and planting inspiration",
-  },
-  {
-    src: "/design/gardens/lighting-plans.jpg",
-    caption: "Lighting Plan",
-    alt: "Garden lighting plan — fixture map and circuit guide",
-  },
-  {
-    src: "/design/gardens/collaboration.jpg",
-    caption: "Signature Collaboration",
-    alt: "Design collaboration — creative partnership from concept to build",
-    span: "wide",
-  },
-];
+// Span pattern across the commissions for an editorial, gap-free 3-col grid.
+const PROJECT_SPAN: Record<number, "tall" | "wide"> = { 0: "tall", 5: "tall" };
 
 export default async function GardensPage() {
   const nlBlock = await getNewsletterBlock("design-gardens");
@@ -399,28 +373,35 @@ export default async function GardensPage() {
         <header className={s.projectsHead}>
           <p className={s.projectsEy}>{cms(projects, "eyebrow", "From the studio")}</p>
           <h2 className={s.projectsTitle}>
-            {cms(projects, "headline", "Gardens that")}{" "}
-            <em>{cms(projects, "headlineEm", "grow with their people.", "headline")}</em>
+            {cms(projects, "headline", "Recent")}{" "}
+            <em>{cms(projects, "headlineEm", "commissions.", "headline")}</em>
           </h2>
         </header>
         <div className={s.projectsGrid}>
-          {PROJECTS.map((p, i) => (
-            <figure
-              key={p.src}
-              className={`${s.projectCard} ${p.span === "tall" ? s.projectTall : ""} ${p.span === "wide" ? s.projectWide : ""}`}
-            >
-              <Image
-                src={p.src}
-                alt={p.alt}
-                width={1024}
-                height={1024}
-                sizes="(min-width: 1024px) 33vw, 100vw"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                priority={i < 2}
-              />
-              <figcaption className={s.projectCaption}>{p.caption}</figcaption>
-            </figure>
-          ))}
+          {GARDEN_PROJECTS.map((p, i) => {
+            const span = PROJECT_SPAN[i];
+            return (
+              <Link
+                key={p.slug}
+                href={`/design/gardens/projects/${p.slug}`}
+                className={`${s.projectCard} ${span === "tall" ? s.projectTall : ""} ${span === "wide" ? s.projectWide : ""}`}
+              >
+                <Image
+                  src={p.images[0]}
+                  alt={`${p.title}, ${p.location}`}
+                  width={1024}
+                  height={1024}
+                  sizes="(min-width: 1024px) 33vw, 100vw"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  priority={i < 2}
+                />
+                <figcaption className={s.projectCaption}>
+                  {p.title}
+                  <small>{p.location}</small>
+                </figcaption>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
@@ -436,19 +417,19 @@ export default async function GardensPage() {
         </p>
       </section>
 
-      {/* 7. Companion split */}
+      {/* 7. Assistant split */}
       <section className={s.companion}>
         <div className={s.companionCopy}>
-          <p className={s.companionEy}>{cms(companion, "eyebrow", "HoWA · Companion")}</p>
+          <p className={s.companionEy}>{cms(companion, "eyebrow", "HoWA · Assistant")}</p>
           <h2 className={s.companionTitle}>
             {cms(companion, "headline", "Start with the")}{" "}
-            <em>{cms(companion, "headlineEm", "Companion.", "headline")}</em>
+            <em>{cms(companion, "headlineEm", "Assistant.", "headline")}</em>
           </h2>
           <p className={s.companionLede}>
             {cms(
               companion,
               "body",
-              "Capture your garden's light, soil, aspect, maintenance appetite and budget. The Companion builds a brief your designer can work from on day one — nothing lost, nothing repeated.",
+              "Capture your garden's light, soil, aspect, maintenance appetite and budget. The Assistant builds a brief your designer can work from on day one — nothing lost, nothing repeated.",
             )}
           </p>
           <p className={s.companionFootnote}>
@@ -467,7 +448,7 @@ export default async function GardensPage() {
             alt={cms(
               companion,
               "imageAlt",
-              "A garden concept plan — the kind of brief the Companion helps you build",
+              "A garden concept plan — the kind of brief the Assistant helps you build",
             )}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"

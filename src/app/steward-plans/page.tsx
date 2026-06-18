@@ -35,7 +35,7 @@ const PILLARS = [
 ];
 
 const STEPS = [
-  { n: "01.", title: "Tell us about the home.", body: "Postcode, property type, what you'd like done. Five minutes through the consultation form or the HoWA Companion." },
+  { n: "01.", title: "Tell us about the home.", body: "Postcode, property type, what you'd like done. Five minutes through the consultation form or the HoWA Assistant." },
   { n: "02.", title: "We propose a plan.", body: "A fixed monthly quote — by the home, not by the hour. Itemised, transparent, no surprises. Adjust until it's right." },
   { n: "03.", title: "We arrive when we said.", body: "Vetted, insured teams. Text before arrival. Photographs in your HoWA record after. One monthly payment covers everything." },
 ];

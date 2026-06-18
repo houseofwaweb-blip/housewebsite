@@ -1,0 +1,745 @@
+/* ============================================================
+   Homepage v5 — House-led. House of Willow Alexander first,
+   HoWA introduced mid-page. Tokens only, no new values.
+   ============================================================ */
+
+.page {
+  background: var(--color-house-cream);
+  color: var(--color-house-brown);
+  overflow-x: hidden;
+}
+
+/* Shared section shell */
+.section {
+  padding: clamp(56px, 6vw, 96px) clamp(40px, 5vw, 88px);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.sectionWide {
+  padding: clamp(56px, 6vw, 96px) clamp(40px, 5vw, 88px);
+}
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  color: var(--color-house-gold-dark);
+  margin: 0 0 18px;
+}
+.eyebrowLight { color: var(--color-house-gold-light); }
+
+/* Buttons --------------------------------------------------- */
+.btnFilled,
+.btnGhost,
+.btnGhostDark,
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  text-decoration: none;
+  padding: 13px 24px;
+  transition: all 0.28s ease;
+  cursor: pointer;
+}
+.btnFilled {
+  background: var(--color-house-gold-dark);
+  color: var(--color-house-cream);
+  border: 1px solid var(--color-house-gold-dark);
+}
+.btnFilled:hover { background: var(--color-house-gold); border-color: var(--color-house-gold); }
+.btnGhost {
+  background: transparent;
+  color: var(--color-house-brown);
+  border: 1px solid rgba(48, 35, 28, 0.32);
+}
+.btnGhost:hover { border-color: var(--color-house-brown); }
+.btnGhostDark {
+  background: transparent;
+  color: var(--color-house-cream);
+  border: 1px solid rgba(245, 240, 232, 0.4);
+}
+.btnGhostDark:hover { background: rgba(245, 240, 232, 0.1); border-color: var(--color-house-cream); }
+.textLink {
+  padding: 0 0 4px;
+  letter-spacing: 0.18em;
+  color: var(--color-house-gold-dark);
+  border-bottom: 1px solid rgba(138, 111, 46, 0.4);
+}
+.textLink:hover { border-color: var(--color-house-gold-dark); }
+.arrow { transition: transform 0.28s ease; }
+.btnGhost:hover .arrow,
+.textLink:hover .arrow { transform: translateX(3px); }
+
+/* ============================================================
+   1. Hero — House-led
+   ============================================================ */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 86vh;
+}
+.heroCopy {
+  display: flex;
+  align-items: center;
+  padding: clamp(48px, 6vw, 96px) clamp(40px, 5vw, 80px);
+  background: var(--color-house-cream);
+}
+.heroCopyInner { max-width: 540px; }
+.heroEy {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.34em;
+  color: var(--color-house-gold-dark);
+  margin: 0 0 24px;
+}
+.heroTitle {
+  font-family: var(--font-hearth-serif);
+  font-weight: 400;
+  font-size: clamp(56px, 6.4vw, 100px);
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  color: var(--color-house-brown);
+  margin: 0 0 22px;
+}
+.heroTitle em {
+  font-style: italic;
+  color: var(--color-house-gold-dark);
+}
+.heroSub {
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  font-size: clamp(19px, 2vw, 25px);
+  color: var(--color-house-brown);
+  margin: 0 0 18px;
+}
+.heroLede {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(48, 35, 28, 0.72);
+  margin: 0 0 32px;
+  max-width: 46ch;
+}
+.heroCtas { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.heroVisual { position: relative; }
+.heroVisualFrame { position: absolute; inset: 0; }
+
+/* ============================================================
+   2. Editorial quote band
+   ============================================================ */
+.quoteBand {
+  background: var(--color-house-brown);
+  color: var(--color-house-cream);
+  padding: clamp(56px, 6vw, 88px) clamp(40px, 5vw, 88px);
+}
+.quoteInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2.2fr 1fr;
+  gap: clamp(24px, 4vw, 64px);
+  align-items: center;
+}
+.quoteLabel {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--color-house-gold-light);
+}
+.quoteText {
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  font-size: clamp(17px, 1.6vw, 22px);
+  line-height: 1.5;
+  text-align: center;
+  color: var(--color-house-cream);
+  margin: 0;
+}
+.quoteAttr {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(245, 240, 232, 0.62);
+  text-align: right;
+}
+
+/* ============================================================
+   3. Four pillar cards — tall, editorial, early
+   ============================================================ */
+.pillars { padding: clamp(56px, 6vw, 96px) clamp(40px, 5vw, 88px); }
+.pillarsGrid {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+.pillarCard {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.pillarCard:hover { transform: translateY(-4px); box-shadow: 0 24px 60px -24px rgba(48, 35, 28, 0.4); }
+.pillarImg { object-fit: cover; transition: transform 0.6s ease; }
+.pillarCard:hover .pillarImg { transform: scale(1.04); }
+.pillarScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 14, 8, 0.08) 0%, rgba(20, 14, 8, 0.12) 45%, rgba(20, 14, 8, 0.78) 100%);
+}
+.pillarBody {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 22px;
+  z-index: 2;
+}
+.pillarLabel {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--color-house-gold-light);
+  margin: 0 0 6px;
+}
+.pillarTitle {
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(19px, 1.6vw, 23px);
+  line-height: 1.15;
+  color: var(--color-house-cream);
+  margin: 0 0 6px;
+}
+.pillarSub {
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: rgba(245, 240, 232, 0.78);
+  margin: 0;
+}
+.pillarArrow {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--color-house-gold-light);
+  transition: transform 0.3s ease;
+}
+.pillarCard:hover .pillarArrow { transform: translateX(4px); }
+
+/* ============================================================
+   4. House introduction — split editorial
+   ============================================================ */
+.houseIntro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 5vw, 80px);
+  align-items: start;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: clamp(64px, 7vw, 112px) clamp(40px, 5vw, 88px);
+}
+.houseIntroHead {
+  font-family: var(--font-hearth-serif);
+  font-weight: 400;
+  font-size: clamp(40px, 4.4vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--color-house-brown);
+  margin: 14px 0 0;
+}
+.houseIntroHead em { font-style: italic; color: var(--color-house-gold-dark); }
+.houseIntroBody p {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.72;
+  color: rgba(48, 35, 28, 0.78);
+  margin: 0 0 20px;
+}
+
+/* ============================================================
+   5. HoWA introduction (first HoWA appearance)
+   ============================================================ */
+.howaIntro { background: var(--color-house-cream-dark); }
+.howaIntroInner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 5vw, 80px);
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: clamp(64px, 7vw, 112px) clamp(40px, 5vw, 88px);
+}
+.howaIntroCopy { max-width: 520px; }
+.howaIntroTitle {
+  font-family: var(--font-hearth-serif);
+  font-weight: 400;
+  font-size: clamp(40px, 4.4vw, 60px);
+  line-height: 1.04;
+  color: var(--color-house-brown);
+  margin: 0 0 22px;
+}
+.howaIntroTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.howaIntroPara {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.72;
+  color: rgba(48, 35, 28, 0.78);
+  margin: 0 0 28px;
+}
+.howaFeatures { margin: 0 0 30px; border-top: 1px solid rgba(48, 35, 28, 0.14); }
+.howaFeature {
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(48, 35, 28, 0.14);
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: rgba(48, 35, 28, 0.82);
+}
+.howaFeature strong {
+  font-weight: 600;
+  color: var(--color-house-brown);
+}
+.howaIntroCtas { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.howaNote {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: rgba(48, 35, 28, 0.5);
+  margin: 16px 0 0;
+}
+.howaIntroVisual { position: relative; display: flex; justify-content: center; padding: 8px 0; }
+/* The reused HoWA widget (v4a .heroSideCard) is absolutely positioned for the
+   hero overlay. Pin it back into normal flow here so it sits centred in its
+   own column and the column gap is respected. */
+.howaIntroVisual > aside {
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  transform: none;
+  width: 340px;
+  max-width: 100%;
+}
+
+/* ============================================================
+   6. House principles — manifesto
+   ============================================================ */
+.principles { background: var(--color-house-cream-dark); border-top: 1px solid rgba(48, 35, 28, 0.1); }
+.principlesInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: clamp(56px, 6vw, 96px) clamp(40px, 5vw, 88px);
+}
+.principlesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(28px, 3vw, 48px);
+  margin-top: 36px;
+}
+.principle { border-top: 2px solid rgba(138, 111, 46, 0.4); padding-top: 20px; }
+.principleNum {
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  font-size: 26px;
+  color: var(--color-house-gold-dark);
+  margin: 0 0 10px;
+}
+.principleTitle {
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(20px, 1.8vw, 26px);
+  line-height: 1.15;
+  color: var(--color-house-brown);
+  margin: 0 0 12px;
+}
+.principleBody {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(48, 35, 28, 0.72);
+  margin: 0;
+}
+
+/* ============================================================
+   7. Services showcase
+   ============================================================ */
+.services { background: #ffffff; }
+.servicesInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: clamp(56px, 6vw, 96px) clamp(40px, 5vw, 88px);
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(40px, 5vw, 80px);
+  align-items: start;
+}
+.servicesHead { position: sticky; top: 24px; }
+.servicesTitle {
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(36px, 4vw, 56px);
+  line-height: 1.05;
+  color: var(--color-house-brown);
+  margin: 14px 0 28px;
+}
+.servicesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(48, 35, 28, 0.12);
+  border: 1px solid rgba(48, 35, 28, 0.12);
+}
+.serviceTile {
+  background: #fff;
+  padding: 26px 24px;
+  text-decoration: none;
+  display: block;
+  transition: background 0.28s ease;
+}
+.serviceTile:hover { background: var(--color-house-cream); }
+.serviceName {
+  font-family: var(--font-hearth-serif);
+  font-weight: 500;
+  font-size: 21px;
+  color: var(--color-house-brown);
+  margin: 0 0 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.serviceTileArrow { color: var(--color-house-gold-dark); font-size: 15px; transition: transform 0.28s ease; }
+.serviceTile:hover .serviceTileArrow { transform: translateX(4px); }
+.serviceDesc {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: rgba(48, 35, 28, 0.66);
+  margin: 0;
+}
+
+/* ============================================================
+   8. The Hearth feature
+   ============================================================ */
+.hearth { background: var(--color-house-brown); color: var(--color-house-cream); }
+.hearthInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: clamp(56px, 6vw, 96px) clamp(40px, 5vw, 88px);
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: clamp(40px, 5vw, 72px);
+  align-items: center;
+}
+.hearthCopy { max-width: 460px; }
+.hearthTitle {
+  font-family: var(--font-hearth-serif);
+  font-weight: 400;
+  font-size: clamp(38px, 4.2vw, 58px);
+  line-height: 1.05;
+  color: var(--color-house-cream);
+  margin: 0 0 22px;
+}
+.hearthTitle em { font-style: italic; color: var(--color-house-gold-light); }
+.hearthPara {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.72;
+  color: rgba(245, 240, 232, 0.78);
+  margin: 0 0 30px;
+}
+.hearthGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.hearthCard {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  text-decoration: none;
+}
+.hearthCardImg { object-fit: cover; transition: transform 0.6s ease; }
+.hearthCard:hover .hearthCardImg { transform: scale(1.05); }
+.hearthCardScrim {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(20, 14, 8, 0.05) 30%, rgba(20, 14, 8, 0.82) 100%);
+}
+.hearthCardLabel {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 14px;
+  z-index: 2;
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.2;
+  color: var(--color-house-cream);
+}
+.btnCream {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-house-cream);
+  color: var(--color-house-brown);
+  border: 1px solid var(--color-house-cream);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  text-decoration: none;
+  padding: 13px 24px;
+  transition: all 0.28s ease;
+}
+.btnCream:hover { background: transparent; color: var(--color-house-cream); }
+
+/* ============================================================
+   9. Marketplace feature
+   ============================================================ */
+.market { background: var(--color-house-cream); }
+.marketInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: clamp(56px, 6vw, 96px) clamp(40px, 5vw, 88px);
+}
+.marketHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 36px;
+}
+.marketTitle {
+  font-family: var(--font-hearth-serif);
+  font-weight: 400;
+  font-size: clamp(32px, 3.6vw, 50px);
+  line-height: 1.05;
+  color: var(--color-house-brown);
+  margin: 12px 0 0;
+}
+.marketGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.productCard {
+  display: block;
+  text-decoration: none;
+  background: #fff;
+  border: 1px solid rgba(48, 35, 28, 0.1);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.productCard:hover { transform: translateY(-3px); box-shadow: 0 18px 44px -20px rgba(48, 35, 28, 0.22); }
+.productImg {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--color-house-cream-dark);
+}
+.productImg img { object-fit: cover; }
+.productBody { padding: 16px 18px 20px; }
+.productName {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-house-brown);
+  margin: 0 0 6px;
+}
+.productPrice {
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--color-house-gold-dark);
+  margin: 0;
+}
+.productSoon {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(48, 35, 28, 0.4);
+}
+
+/* ============================================================
+   10. HoWA intelligence (second HoWA appearance)
+   ============================================================ */
+.intel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #232a23;
+  color: var(--color-house-cream);
+}
+.intelCopy {
+  padding: clamp(56px, 6vw, 96px) clamp(40px, 5vw, 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.intelTitle {
+  font-family: var(--font-hearth-serif);
+  font-weight: 400;
+  font-size: clamp(38px, 4.2vw, 58px);
+  line-height: 1.04;
+  color: var(--color-house-cream);
+  margin: 0 0 32px;
+}
+.intelTitle em { font-style: italic; color: var(--color-house-gold-light); }
+.intelStats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(245, 240, 232, 0.14);
+  border: 1px solid rgba(245, 240, 232, 0.14);
+  margin-bottom: 30px;
+}
+.intelStat { background: #232a23; padding: 24px 22px; }
+.intelStatLabel {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: rgba(245, 240, 232, 0.66);
+  margin: 0 0 8px;
+}
+.intelStatValue {
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  font-size: clamp(22px, 2.2vw, 30px);
+  color: var(--color-house-gold-light);
+  margin: 0;
+}
+.intelVisual { position: relative; min-height: 320px; }
+
+/* ============================================================
+   11. HoWA tiers (third HoWA appearance) — reuses v4a tier CSS
+   ============================================================ */
+.tiers { background: var(--color-house-cream); padding: clamp(56px, 6vw, 96px) clamp(40px, 5vw, 88px); }
+.tiersHead { text-align: center; max-width: 760px; margin: 0 auto 48px; }
+.tiersTitle {
+  font-family: var(--font-hearth-serif);
+  font-weight: 400;
+  font-size: clamp(32px, 3.6vw, 50px);
+  line-height: 1.05;
+  color: var(--color-house-brown);
+  margin: 12px 0 0;
+}
+
+/* ============================================================
+   12. Powered by / house standards
+   ============================================================ */
+.powered {
+  background: var(--color-house-cream);
+  border-top: 1px solid rgba(48, 35, 28, 0.1);
+  padding: clamp(56px, 6vw, 88px) clamp(40px, 5vw, 88px);
+  text-align: center;
+}
+.poweredTitle {
+  font-family: var(--font-hearth-serif);
+  font-weight: 400;
+  font-size: clamp(30px, 3.4vw, 46px);
+  color: var(--color-house-brown);
+  margin: 12px 0 40px;
+}
+.poweredGrid {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(24px, 3vw, 44px);
+}
+.poweredItem { text-align: left; }
+.poweredIcon {
+  color: var(--color-house-gold-dark);
+  margin-bottom: 12px;
+  display: inline-flex;
+}
+.poweredText {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(48, 35, 28, 0.74);
+  margin: 0;
+}
+.poweredText strong { font-weight: 600; color: var(--color-house-brown); }
+
+/* ============================================================
+   13. Closing CTA
+   ============================================================ */
+.closing {
+  background: #1d1612;
+  color: var(--color-house-cream);
+  text-align: center;
+  padding: clamp(72px, 9vw, 140px) clamp(40px, 5vw, 88px);
+}
+.closingStatement {
+  font-family: var(--font-hearth-serif);
+  font-weight: 400;
+  font-size: clamp(36px, 4.6vw, 68px);
+  line-height: 1.08;
+  color: var(--color-house-cream);
+  margin: 0 auto 36px;
+  max-width: 16ch;
+}
+.closingStatement em { font-style: italic; color: var(--color-house-gold-light); }
+.closingCtas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 1024px) {
+  .hero { grid-template-columns: 1fr; }
+  .heroVisual { min-height: 60vh; order: -1; }
+  .heroVisualFrame { position: relative; height: 60vh; }
+  .quoteInner { grid-template-columns: 1fr; gap: 18px; text-align: center; }
+  .quoteText { text-align: center; }
+  .quoteAttr { text-align: center; }
+  .pillarsGrid { grid-template-columns: 1fr 1fr; }
+  .houseIntro,
+  .howaIntroInner,
+  .servicesInner,
+  .hearthInner,
+  .intel { grid-template-columns: 1fr; }
+  .intelVisual { min-height: 280px; order: -1; }
+  .servicesHead { position: static; }
+  .principlesGrid { grid-template-columns: 1fr 1fr; }
+  .marketGrid { grid-template-columns: 1fr 1fr; }
+  .poweredGrid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .pillarsGrid { grid-template-columns: 1fr; }
+  .servicesGrid { grid-template-columns: 1fr; }
+  .hearthGrid { grid-template-columns: 1fr 1fr; }
+  .marketGrid {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 60%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+  .productCard { scroll-snap-align: start; }
+  .principlesGrid { grid-template-columns: 1fr; }
+  .intelStats { grid-template-columns: 1fr; }
+  .poweredGrid { grid-template-columns: 1fr; }
+}

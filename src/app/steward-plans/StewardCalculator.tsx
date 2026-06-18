@@ -97,12 +97,17 @@ export function StewardCalculator() {
           ))}
         </ul>
 
-        <Link
-          href={`/steward-plans/${match.slug}`}
-          className="block w-full text-center px-[32px] py-[14px] font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
-        >
-          Subscribe to this plan →
-        </Link>
+        <div className="flex flex-col gap-[10px]">
+          <span className="block w-full text-center px-[32px] py-[14px] font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold cursor-default">
+            Subscription coming soon
+          </span>
+          <Link
+            href="#open-booking-form"
+            className="block w-full text-center px-[32px] py-[14px] font-sans text-[12px] tracking-[0.18em] uppercase text-house-cream border border-house-cream/35 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-cream/10"
+          >
+            Book individual services →
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -150,6 +150,106 @@ export async function subscribeToNewsletter(
   }
 }
 
+/** Form tier slug → Klaviyo `tier_interest` property value. Anything else → Undecided. */
+const TIER_INTEREST: Record<string, string> = {
+  assistant: "Assistant",
+  housekeeper: "Housekeeper",
+  steward: "Steward",
+};
+
+export interface WaitlistSubscribeInput {
+  email: string;
+  firstName?: string;
+  lastName?: string;
+  /** UK postcode — uppercased before sending. */
+  postcode?: string;
+  /** Tier slug from the form (assistant | housekeeper | steward). */
+  tier?: string;
+  /** Steward application: property type → `property_type` profile property. */
+  propertyType?: string;
+  /** Steward application: the free-text note → `steward_note` profile property. */
+  note?: string;
+  sourcePage?: string;
+}
+
+/**
+ * Subscribe a HoWA waitlist sign-up to the shared Klaviyo list (same id as
+ * askhowa.co.uk) with a `tier_interest` profile property and optional
+ * `postcode`, so the cross-site segments and launch flows work identically.
+ *
+ * Uses the public-key `client/subscriptions` endpoint — the correct credential
+ * for form subscriptions. The `pk_<company>_<hash>` key identifies the account
+ * via the `company_id` query param (no Authorization header). Success = 202.
+ *
+ * Fire-and-forget at the call site — the Supabase row is the source of truth,
+ * so a Klaviyo blip never breaks the user's sign-up.
+ */
+export async function subscribeToWaitlist(
+  input: WaitlistSubscribeInput,
+): Promise<SubscribeResult> {
+  const publicKey = env.KLAVIYO_PRIVATE_KEY; // pk_<company>_<hash>
+  const companyId =
+    publicKey && publicKey.startsWith("pk_") ? publicKey.split("_")[1] : undefined;
+  if (!companyId || !env.KLAVIYO_LIST_ID) {
+    console.log(
+      `[klaviyo:waitlist:skipped] email=${input.email} — ${!companyId ? "no pk_ key / company_id" : "KLAVIYO_LIST_ID not set"}`,
+    );
+    return { ok: false, skipped: true };
+  }
+
+  const tierInterest = TIER_INTEREST[(input.tier ?? "").toLowerCase()] ?? "Undecided";
+
+  const body = {
+    data: {
+      type: "subscription",
+      attributes: {
+        custom_source: "HoWA Waitlist",
+        profile: {
+          data: {
+            type: "profile",
+            attributes: {
+              email: input.email,
+              ...(input.firstName ? { first_name: input.firstName } : {}),
+              ...(input.lastName ? { last_name: input.lastName } : {}),
+              properties: {
+                tier_interest: tierInterest,
+                ...(input.postcode ? { postcode: input.postcode.toUpperCase() } : {}),
+                ...(input.propertyType ? { property_type: input.propertyType } : {}),
+                ...(input.note ? { steward_note: input.note } : {}),
+                ...(tierInterest === "Steward" ? { steward_application: true } : {}),
+                ...(input.sourcePage ? { signup_page: input.sourcePage } : {}),
+              },
+            },
+          },
+        },
+      },
+      relationships: {
+        list: { data: { type: "list", id: env.KLAVIYO_LIST_ID } },
+      },
+    },
+  };
+
+  try {
+    const res = await fetch(
+      `https://a.klaviyo.com/client/subscriptions/?company_id=${encodeURIComponent(companyId)}`,
+      {
+        method: "POST",
+        headers: { revision: REVISION, "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      },
+    );
+    if (!res.ok) {
+      const detail = await res.text().catch(() => "<no body>");
+      console.error(`[klaviyo:waitlist:failed] ${res.status} — ${detail.slice(0, 240)}`);
+      return { ok: false, error: `klaviyo-${res.status}` };
+    }
+    return { ok: true }; // 202 Accepted, empty body
+  } catch (e) {
+    console.error("[klaviyo:waitlist:exception]", e);
+    return { ok: false, error: "network" };
+  }
+}
+
 /**
  * Post a custom Klaviyo event. Klaviyo treats events as metrics that can
  * trigger flows ("when a profile does X, send a welcome email"). The

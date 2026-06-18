@@ -1,0 +1,242 @@
+[
+  {
+    "title": "Apparel",
+    "handle": "apparel",
+    "subs": [
+      {
+        "title": "Aprons",
+        "handle": "aprons"
+      },
+      {
+        "title": "Bags & Accessories",
+        "handle": "bags-accessories"
+      },
+      {
+        "title": "Hats",
+        "handle": "hats"
+      },
+      {
+        "title": "Coats",
+        "handle": "coats"
+      },
+      {
+        "title": "Jackets",
+        "handle": "jackets"
+      },
+      {
+        "title": "Gilets",
+        "handle": "gilets"
+      }
+    ]
+  },
+  {
+    "title": "Home Accessories",
+    "handle": "home-accessories",
+    "subs": [
+      {
+        "title": "Home Décor",
+        "handle": "home-decor"
+      },
+      {
+        "title": "Decorations",
+        "handle": "decorations"
+      },
+      {
+        "title": "Serverware",
+        "handle": "serverware"
+      },
+      {
+        "title": "Vases & Planters",
+        "handle": "vases-planters"
+      },
+      {
+        "title": "Ornaments",
+        "handle": "ornaments"
+      },
+      {
+        "title": "Candles & Candle Holders",
+        "handle": "candles-candle-holders"
+      }
+    ]
+  },
+  {
+    "title": "Household Essentials",
+    "handle": "household-essentials",
+    "subs": [
+      {
+        "title": "Cleaning Products",
+        "handle": "cleaning-products"
+      },
+      {
+        "title": "Home Fragrance",
+        "handle": "home-fragrance"
+      },
+      {
+        "title": "Toiletries",
+        "handle": "toiletries"
+      },
+      {
+        "title": "Bathroom Cleaners",
+        "handle": "bathroom-cleaners"
+      },
+      {
+        "title": "Laundry Liquid & Sheets",
+        "handle": "laundry-liquid-sheets"
+      }
+    ]
+  },
+  {
+    "title": "Gardening",
+    "handle": "gardening",
+    "subs": [
+      {
+        "title": "Garden Tools",
+        "handle": "garden-tools"
+      },
+      {
+        "title": "Wildlife",
+        "handle": "wildlife"
+      },
+      {
+        "title": "Seeds",
+        "handle": "seeds"
+      },
+      {
+        "title": "Plant Pots",
+        "handle": "plant-pots"
+      },
+      {
+        "title": "Plant Food",
+        "handle": "plant-food"
+      }
+    ]
+  },
+  {
+    "title": "Outdoor Living",
+    "handle": "outdoor-living",
+    "subs": [
+      {
+        "title": "Garden Furniture",
+        "handle": "garden-furniture"
+      },
+      {
+        "title": "Firepits & BBQs",
+        "handle": "firepits-bbqs"
+      }
+    ]
+  },
+  {
+    "title": "Pet Care",
+    "handle": "pet-care",
+    "subs": [
+      {
+        "title": "Dog Toiletries",
+        "handle": "dog-toiletries"
+      },
+      {
+        "title": "Grooming",
+        "handle": "grooming"
+      },
+      {
+        "title": "Dog Toys",
+        "handle": "dog-toys"
+      },
+      {
+        "title": "Dog Beds",
+        "handle": "dog-beds"
+      }
+    ]
+  },
+  {
+    "title": "Gifts & Stationery",
+    "handle": "gifts-stationery",
+    "subs": [
+      {
+        "title": "Gifts For Gardeners",
+        "handle": "gifts-for-gardeners"
+      },
+      {
+        "title": "Gift Cards",
+        "handle": "gift-cards"
+      },
+      {
+        "title": "Note Pads",
+        "handle": "note-pads"
+      },
+      {
+        "title": "Wrapping & Ribbon",
+        "handle": "wrapping-ribbon"
+      }
+    ]
+  },
+  {
+    "title": "Soft Furnishings",
+    "handle": "soft-furnishings",
+    "subs": [
+      {
+        "title": "Cushions",
+        "handle": "cushions"
+      },
+      {
+        "title": "Throws",
+        "handle": "throws"
+      },
+      {
+        "title": "Rugs",
+        "handle": "rugs"
+      },
+      {
+        "title": "Runners",
+        "handle": "runners"
+      },
+      {
+        "title": "Bedding",
+        "handle": "bedding"
+      }
+    ]
+  },
+  {
+    "title": "Furniture & Storage",
+    "handle": "furniture-storage",
+    "subs": [
+      {
+        "title": "Storage & Shelving",
+        "handle": "storage-shelving"
+      },
+      {
+        "title": "Coffee & Side Tables",
+        "handle": "coffee-side-tables"
+      },
+      {
+        "title": "Dining Tables & Chairs",
+        "handle": "dining-tables-chairs"
+      },
+      {
+        "title": "Ottomans & Pouffes",
+        "handle": "ottomans-pouffes"
+      }
+    ]
+  },
+  {
+    "title": "Lighting",
+    "handle": "lighting",
+    "subs": [
+      {
+        "title": "Ceiling Lights",
+        "handle": "ceiling-lights"
+      },
+      {
+        "title": "Table & Desk Lamps",
+        "handle": "table-desk-lamps"
+      },
+      {
+        "title": "Floor Lamps",
+        "handle": "floor-lamps"
+      },
+      {
+        "title": "Table Lamps",
+        "handle": "table-lamps"
+      }
+    ]
+  }
+]

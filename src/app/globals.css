@@ -135,6 +135,31 @@
 .is-round::before,
 .is-round::after { border-radius: 9999px !important; }
 
+/* HoWA product surface opts out of the heritage zero-radius reset. The
+ * askhowa-derived HoWA design is app-like and relies on rounded corners
+ * (device mockups, cards, pills). Scoped to `.howa-surface` so the rest of
+ * the site stays sharp. Higher specificity + !important beats the `*` reset. */
+.howa-surface [class*="rounded-full"] { border-radius: 9999px !important; }
+.howa-surface [class*="rounded-2xl"] { border-radius: 1rem !important; }
+.howa-surface [class*="rounded-xl"] { border-radius: 0.75rem !important; }
+.howa-surface [class*="rounded-lg"] { border-radius: 0.5rem !important; }
+.howa-surface [class*="rounded-md"] { border-radius: 0.375rem !important; }
+.howa-surface [class*="rounded-[14px]"] { border-radius: 14px !important; }
+.howa-surface [class*="rounded-[37px]"] { border-radius: 37px !important; }
+.howa-surface [class*="rounded-[38px]"] { border-radius: 38px !important; }
+.howa-surface [class*="rounded-[46px]"] { border-radius: 46px !important; }
+.howa-surface [class*="rounded-[48px]"] { border-radius: 48px !important; }
+
+/* /howa Overview "v4" address-first skin (askhowa new-site handover). Brightens
+   the reused beige and hides the reused demo's own heading; the page supplies
+   its own demo copy. Scoped to `.skin-v4`. */
+.skin-v4 [class~="bg-[#f4f1e9]"]    { background-color: #fbfaf5 !important; }
+.skin-v4 [class~="bg-[#f4f1e9]/95"] { background-color: rgba(251, 250, 245, 0.95) !important; }
+.skin-v4 [class~="bg-[#efe7d5]"]    { background-color: #f3eee2 !important; }
+.skin-v4 [class~="bg-[#f5efe2]"]    { background-color: #f8f4ea !important; }
+.skin-v4 #demo [class~="max-w-[600px]"] { display: none !important; }
+.skin-v4 #demo { padding-top: 0 !important; padding-bottom: 0 !important; }
+
 html {
   font-size: 16px;
   text-rendering: optimizeLegibility;
@@ -520,4 +545,39 @@ body {
 [data-book-loading="true"] .obf-loader {
   width: 14px !important;
   height: 14px !important;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   HoWA section (/howa) — tokens + utility classes ported from the
+   askhowa.co.uk source (app/v5/Hero.tsx, HomeHealthGauge.tsx,
+   ModesBands.tsx) for the dollhouse hero + dashboard cards and the tier
+   bands. ADDITIVE ONLY — these names are distinct from the House tokens
+   above, so nothing existing is changed. Safe to delete as a block if the
+   HoWA pieces are ever removed.
+   ════════════════════════════════════════════════════════════════════ */
+:root {
+  --color-gold: #b89968;
+  --color-gold-deep: #8a6f3f;
+  --color-ink: #1a1a1a;
+  --color-ink-soft: #3a352c;
+  --color-howa-green: #1f3a2b;
+  --color-howa-green-deep: #15291e;
+}
+
+/* Display = Didot (House --font-display, Bold/700 only). Italic display +
+   "handwriting" use Cormorant Garamond italic (the Didot-italic stand-in),
+   already loaded site-wide via next/font in layout.tsx. smallcaps = Effra. */
+.font-display { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.005em; }
+.font-italic-display { font-family: var(--font-hearth-serif); font-style: italic; font-weight: 500; }
+.handwriting { font-family: var(--font-hearth-serif); font-style: italic; font-weight: 500; letter-spacing: 0.005em; }
+.smallcaps { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.78rem; }
+
+/* Features tab fade — used by the /howa V6Features tabbed showcase. */
+@keyframes features-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.features-fade { animation: features-fade-in 280ms ease-out both; }
+@media (prefers-reduced-motion: reduce) {
+  .features-fade { animation: none; }
 }

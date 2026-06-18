@@ -9,6 +9,14 @@
   padding: clamp(80px, 8vw, 132px) clamp(40px, 5vw, 88px) clamp(48px, 5vw, 72px);
   border-bottom: 1px solid rgba(48, 35, 28, 0.08);
 }
+/* Desktop: offset the centred header by the 240px filter-rail width so it
+   centres over the product grid, matching the main /shop page header. */
+@media (min-width: 768px) {
+  .hero {
+    padding-left: 240px;
+    padding-right: 2rem;
+  }
+}
 .crumbs {
   font-family: var(--font-sans);
   font-size: 11px;

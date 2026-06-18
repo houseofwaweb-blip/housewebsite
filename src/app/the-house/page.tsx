@@ -291,7 +291,7 @@ export default async function TheHousePage() {
             {cms(
               howa,
               "body",
-              "Start with the Companion diagnostic. It maps your home's condition, surfaces what needs doing, and files everything to a record that stays with the property. Not a dashboard. A memory.",
+              "Start with the Assistant diagnostic. It maps your home's condition, surfaces what needs doing, and files everything to a record that stays with the property. Not a dashboard. A memory.",
             )}
           </p>
           <div className={s.howaCtas}>

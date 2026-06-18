@@ -13,6 +13,11 @@ const FALLBACK_SECTIONS: EditorialSection[] = [
     body: `Most of what makes a home sustainable happens before you decorate it. Retain the fabric. Repair over replace. Extend the life of what was already made. The most sustainable piece of furniture is the one already in the room.
 
 Our partner studios are asked to plan for a thirty-year horizon, not a style cycle. Our services are designed to keep things going longer. The Steward logic exists precisely because long-lived homes need fewer one-off interventions.`,
+    image: {
+      src: "/the-house/editorial/garden-doors-roses.webp",
+      alt: "Open sage garden doors framed by climbing roses, a room that opens to green.",
+      caption: "Kept, repaired, extended. Grown for the long term.",
+    },
   },
   {
     heading: "What we measure",
@@ -23,6 +28,11 @@ Materials provenance for House Approved products — where the raw materials cam
 Travel impact for our own operations — miles driven by services teams, consolidated where possible into single trips.
 
 End-of-life plans for everything we sell — how it's repaired, how it's returned if it ever needs to be, and what happens to it when the next owner has had their turn.`,
+    image: {
+      src: "/the-house/editorial/record-book-toolkit.webp",
+      alt: "The house record book beside a toolkit on a sage cloth.",
+      caption: "Tracked, recorded, kept honest.",
+    },
   },
   {
     heading: "What we refuse",
@@ -46,6 +56,7 @@ export default async function SustainabilityPage() {
           heading: c.title ?? FALLBACK_SECTIONS[i]?.heading,
           body: c.body ?? FALLBACK_SECTIONS[i]?.body ?? "",
           quote: FALLBACK_SECTIONS[i]?.quote,
+          image: FALLBACK_SECTIONS[i]?.image,
         }))
       : FALLBACK_SECTIONS;
 
@@ -68,6 +79,10 @@ export default async function SustainabilityPage() {
         "We're wary of sustainability pages that don't name anything specific. This one tries to. It will be updated as we measure more things and as what we measure gets better.",
       )}
       sections={editorialSections}
+      heroImage={{
+        src: "/the-house/editorial/georgian-wisteria-garden.webp",
+        alt: "A sage Georgian cottage wreathed in wisteria, a cottage garden at sunset.",
+      }}
     />
   );
 }

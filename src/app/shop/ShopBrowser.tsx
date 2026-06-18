@@ -4,7 +4,18 @@ import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
+import { QuickAdd } from "@/components/commerce/QuickAdd";
 import type { CatalogueProduct, CatalogueCollection, CatalogueBrand } from "@/lib/shop-data/catalogue";
+import SHOP_NAV from "@/lib/shop-data/shop-nav.generated.json";
+
+const PER_PAGE = 20;
+
+// Main category handle → its product-type sub-categories (revealed on hover
+// in the Collections filter). Sourced from the generated shop nav.
+type NavCat = { title: string; handle: string; subs: { title: string; handle: string }[] };
+const SUBS_BY_HANDLE = new Map(
+  (SHOP_NAV as NavCat[]).map((c) => [c.handle, c.subs] as const),
+);
 
 const PRICE_RANGES = [
   { label: "Any", min: 0, max: Infinity },
@@ -43,16 +54,14 @@ function FilterSection({
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between py-2.5 bg-transparent border-0 cursor-pointer"
       >
-        <span className="font-sans text-[9px] tracking-[0.22em] uppercase text-house-gold">
+        <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-house-gold">
           {title}
         </span>
         <span
-          className={cn(
-            "font-display text-[16px] text-house-gold transition-transform duration-[var(--t-slow)] ease-out",
-            open && "rotate-45",
-          )}
+          aria-hidden="true"
+          className="font-sans text-[16px] leading-none text-house-gold w-4 text-center select-none"
         >
-          +
+          {open ? "−" : "+"}
         </span>
       </button>
       <div
@@ -104,10 +113,14 @@ export function ShopBrowser({
   products,
   collections,
   brands,
+  subNav,
 }: {
   products: CatalogueProduct[];
   collections: CatalogueCollection[];
   brands: CatalogueBrand[];
+  /** Optional sub-category links shown at the top of the rail (used on category
+      pages, where in-page collection toggles would be redundant). */
+  subNav?: { title: string; handle: string }[];
 }) {
   const [search, setSearch] = React.useState("");
   const [activeCollections, setActiveCollections] = React.useState<Set<string>>(new Set());
@@ -117,7 +130,7 @@ export function ShopBrowser({
   const [inStockOnly, setInStockOnly] = React.useState(false);
   const [approvedOnly, setApprovedOnly] = React.useState(false);
   const [transitioning, setTransitioning] = React.useState(false);
-  const [gridView, setGridView] = React.useState<"standard" | "3x3" | "4x4">("standard");
+  const [page, setPage] = React.useState(1);
   const prevFilterRef = React.useRef("");
 
   function toggleSet<T>(set: Set<T>, value: T): Set<T> {
@@ -142,11 +155,12 @@ export function ShopBrowser({
     }
 
     if (activeCollections.size > 0) {
-      result = result.filter(
-        (p) =>
-          activeCollections.has(
-            p.collection.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-+$/, ""),
-          ),
+      result = result.filter((p) =>
+        p.collectionHandles && p.collectionHandles.length > 0
+          ? p.collectionHandles.some((h) => activeCollections.has(h))
+          : activeCollections.has(
+              p.collection.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-+$/, ""),
+            ),
       );
     }
 
@@ -175,6 +189,7 @@ export function ShopBrowser({
   React.useEffect(() => {
     if (prevFilterRef.current && prevFilterRef.current !== filterKey) {
       setTransitioning(true);
+      setPage(1); // back to page 1 whenever the filters change
       const t = setTimeout(() => setTransitioning(false), 80);
       return () => clearTimeout(t);
     }
@@ -196,24 +211,46 @@ export function ShopBrowser({
   return (
     <div className="grid grid-cols-1 md:grid-cols-[240px_1fr] min-h-[80vh]">
       {/* ══════ SIDEBAR ══════ */}
-      <aside className="md:sticky md:top-0 md:h-screen md:overflow-y-auto md:border-r md:border-house-brown/8 bg-house-white px-6 py-5 max-md:border-b max-md:border-house-brown/8 max-md:px-[5vw] max-md:py-4">
+      <aside className="md:sticky md:top-[89px] md:h-[calc(100vh-89px)] md:overflow-y-auto md:border-r md:border-house-brown/8 bg-house-white px-6 md:pl-[3.5vw] py-5 max-md:border-b max-md:border-house-brown/8 max-md:px-[5vw] max-md:py-4">
         {/* Search */}
         <div className="mb-4">
-          <div className="font-sans text-[9px] tracking-[0.22em] uppercase text-house-gold mb-2">
+          <div className="font-sans text-[10px] tracking-[0.2em] uppercase text-house-gold mb-2">
             Search
           </div>
           <input
-            type="text"
+            type="search"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search products..."
-            className="w-full px-3 py-2.5 border border-house-brown/12 bg-house-cream font-display text-[15px] font-normal italic text-house-brown placeholder:text-house-stone placeholder:italic focus:border-house-gold focus:outline-none transition-colors duration-[var(--t-base)]"
+            placeholder="Search products"
+            className="w-full px-3 py-2.5 border border-house-brown/15 bg-house-cream font-sans text-[13px] text-house-brown placeholder:text-house-stone focus:border-house-gold focus:outline-none transition-colors duration-[var(--t-base)]"
           />
         </div>
 
         <div className="h-px bg-house-brown/6 mb-1" />
 
-        {/* Collections — collapsible */}
+        {/* Sub-categories — navigation links (category pages only) */}
+        {subNav && subNav.length > 0 ? (
+          <FilterSection title="Categories" defaultOpen>
+            <div className="flex flex-col gap-0 max-md:flex-row max-md:flex-wrap max-md:gap-2">
+              {subNav.map((sc) => (
+                <Link
+                  key={sc.handle}
+                  href={`/shop/collections/${sc.handle}`}
+                  className={cn(
+                    "text-left py-1.5 font-sans text-[13px] no-underline cursor-pointer transition-all duration-[var(--t-base)]",
+                    "text-house-stone hover:text-house-brown hover:pl-1 max-md:hover:pl-0",
+                    "max-md:px-3 max-md:py-1 max-md:border max-md:border-house-brown/10 max-md:text-[11px]",
+                  )}
+                >
+                  {sc.title}
+                </Link>
+              ))}
+            </div>
+          </FilterSection>
+        ) : null}
+
+        {/* Collections — collapsible (hidden when none supplied, e.g. category pages) */}
+        {collections.length > 0 ? (
         <FilterSection title="Collections" defaultOpen>
           <div className="flex flex-col gap-0 max-md:flex-row max-md:flex-wrap max-md:gap-2">
             <button
@@ -229,24 +266,48 @@ export function ShopBrowser({
             >
               All <span className="text-[10px] text-house-stone ml-1">{products.length}</span>
             </button>
-            {collections.map((c) => (
-              <button
-                key={c.handle}
-                type="button"
-                onClick={() => setActiveCollections(toggleSet(activeCollections, c.handle))}
-                className={cn(
-                  "text-left py-1.5 font-sans text-[13px] bg-transparent border-0 cursor-pointer transition-all duration-[var(--t-base)]",
-                  "max-md:px-3 max-md:py-1 max-md:border max-md:border-house-brown/10 max-md:text-[11px]",
-                  activeCollections.has(c.handle)
-                    ? "text-house-gold font-normal max-md:border-house-gold"
-                    : "text-house-stone hover:text-house-brown hover:pl-1 max-md:hover:pl-0",
-                )}
-              >
-                {c.title} <span className="text-[10px] text-house-stone ml-1">{c.productCount}</span>
-              </button>
-            ))}
+            {collections.map((c) => {
+              const subs = SUBS_BY_HANDLE.get(c.handle) ?? [];
+              return (
+                <div key={c.handle} className="group/col max-md:contents">
+                  <button
+                    type="button"
+                    onClick={() => setActiveCollections(toggleSet(activeCollections, c.handle))}
+                    className={cn(
+                      "w-full text-left py-1.5 font-sans text-[13px] bg-transparent border-0 cursor-pointer transition-all duration-[var(--t-base)]",
+                      "max-md:w-auto max-md:px-3 max-md:py-1 max-md:border max-md:border-house-brown/10 max-md:text-[11px]",
+                      activeCollections.has(c.handle)
+                        ? "text-house-gold font-normal max-md:border-house-gold"
+                        : "text-house-stone hover:text-house-brown max-md:hover:pl-0",
+                    )}
+                  >
+                    {c.title} <span className="text-[10px] text-house-stone ml-1">{c.productCount}</span>
+                  </button>
+
+                  {/* Product types — reveal on hover (desktop only) */}
+                  {subs.length > 0 ? (
+                    <div className="grid grid-rows-[0fr] group-hover/col:grid-rows-[1fr] transition-[grid-template-rows] duration-[var(--t-base)] ease-out max-md:hidden">
+                      <div className="overflow-hidden">
+                        <div className="flex flex-col ml-1 mb-1.5 pl-3 border-l border-house-brown/10">
+                          {subs.map((sub) => (
+                            <Link
+                              key={sub.handle}
+                              href={`/shop/collections/${sub.handle}`}
+                              className="py-1 font-sans text-[12px] text-house-stone/80 no-underline hover:text-house-gold transition-colors duration-[var(--t-base)]"
+                            >
+                              {sub.title}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+              );
+            })}
           </div>
         </FilterSection>
+        ) : null}
 
         {/* Brand — collapsible */}
         <FilterSection title="Brand">
@@ -314,7 +375,7 @@ export function ShopBrowser({
       </aside>
 
       {/* ══════ GRID ══════ */}
-      <div className="px-[5vw] md:px-8 py-6 pb-16">
+      <div className="px-[5vw] md:px-8 py-6 pb-16 w-full max-w-[1280px] mx-auto">
         {/* Utility bar */}
         <div className="flex items-center justify-between mb-5">
           <span className="font-sans text-[12px] text-house-stone">
@@ -330,30 +391,6 @@ export function ShopBrowser({
             ) : null}
           </span>
           <div className="flex items-center gap-4">
-            {/* View picker */}
-            <div className="hidden lg:flex items-center gap-1.5">
-              {([
-                { id: "standard" as const, label: "Standard", icon: "▦" },
-                { id: "3x3" as const, label: "3×3", icon: "▣" },
-                { id: "4x4" as const, label: "4×4", icon: "⊞" },
-              ]).map((v) => (
-                <button
-                  key={v.id}
-                  type="button"
-                  onClick={() => setGridView(v.id)}
-                  title={v.label}
-                  className={cn(
-                    "w-7 h-7 flex items-center justify-center text-[14px] border transition-all duration-[var(--t-base)] cursor-pointer",
-                    gridView === v.id
-                      ? "border-[var(--house-gold-dark)] text-[var(--house-gold-dark)] bg-[var(--house-gold-dark)]/5"
-                      : "border-house-brown/10 text-house-brown/35 hover:border-house-brown/25 hover:text-house-brown/55 bg-transparent",
-                  )}
-                >
-                  {v.icon}
-                </button>
-              ))}
-            </div>
-
             <select
               value={sortIdx}
               onChange={(e) => setSortIdx(Number(e.target.value))}
@@ -381,67 +418,62 @@ export function ShopBrowser({
             </button>
           </div>
         ) : (
+          <>
           <div
             className={cn(
-              "grid gap-5 transition-all duration-[var(--t-base)] ease-out",
-              gridView === "4x4" ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4" :
-              gridView === "3x3" ? "grid-cols-2 lg:grid-cols-3" :
-              "grid-cols-2 lg:grid-cols-3",
-              gridView === "4x4" && "gap-3",
+              "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-14",
+              "transition-opacity duration-[var(--t-base)] ease-out",
               transitioning ? "opacity-0" : "opacity-100",
             )}
           >
-            {filtered.map((p, i) => (
-              <Link
+            {filtered.slice((page - 1) * PER_PAGE, page * PER_PAGE).map((p, i) => (
+              <div
                 key={p.handle}
-                href={`/shop/${p.handle}`}
                 className={cn(
-                  "group bg-house-white border border-house-brown/6 no-underline",
-                  "transition-all duration-[var(--t-slow)] ease-out",
-                  "hover:border-house-gold hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(48,35,28,0.08)]",
+                  "group relative bg-transparent",
                   "[animation:howa-slide-in_var(--t-xslow)_var(--ease-out)_both]",
-                  i === 0 && gridView === "standard" && !search && activeCollections.size === 0 && activeBrands.size === 0 && "lg:col-span-2",
                 )}
-                style={{ animationDelay: `${Math.min(i * 40, 400)}ms` }}
+                style={{ animationDelay: `${Math.min(i * 30, 360)}ms` }}
               >
-                <div className={cn(
-                  "relative overflow-hidden bg-house-cream",
-                  i === 0 && gridView === "standard" && !search && activeCollections.size === 0 && activeBrands.size === 0 ? "aspect-[8/5]" : gridView === "4x4" ? "aspect-square" : "aspect-[4/5]",
-                )}>
+                <div className="relative overflow-hidden bg-house-cream aspect-[3/4]">
                   <Image
                     src={p.image}
                     alt={p.title}
                     fill
-                    sizes={i === 0 ? "(min-width: 1024px) 66vw, 100vw" : "(min-width: 1024px) 33vw, 50vw"}
+                    sizes="(min-width:1024px) 280px, (min-width:640px) 33vw, 50vw"
                     className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.03]"
                   />
                   {p.houseApproved ? (
-                    <span className="absolute top-2 left-2 font-sans text-[8px] tracking-[0.2em] uppercase text-house-gold bg-white/92 px-2 py-1 border border-house-gold/30">
+                    <span className="absolute top-2 left-2 z-20 font-sans text-[8px] tracking-[0.2em] uppercase text-house-gold bg-white/92 px-2 py-1 border border-house-gold/30">
                       House Approved
                     </span>
                   ) : null}
                   {p.onSale ? (
-                    <span className="absolute top-2 right-2 font-sans text-[8px] tracking-[0.16em] uppercase bg-house-brown text-house-cream px-2 py-1">
+                    <span className="absolute top-2 right-2 z-20 font-sans text-[8px] tracking-[0.16em] uppercase bg-house-brown text-house-cream px-2 py-1">
                       Sale
                     </span>
                   ) : null}
+                  <QuickAdd
+                    handle={p.handle}
+                    title={p.title}
+                    price={p.price}
+                    image={p.image}
+                    variantId={p.variantId}
+                    multiVariant={p.multiVariant}
+                    inStock={p.inStock}
+                  />
                 </div>
-                <div className={cn("px-4 py-3.5", gridView === "4x4" && "px-3 py-2.5")}>
-                  <div className={cn("font-sans tracking-[0.18em] uppercase mb-0.5", gridView === "4x4" ? "text-[8px] text-house-brown/50" : "text-[9px] text-[var(--house-gold-dark)]")}>
+                <div className="pt-3 pb-1">
+                  <div className="font-sans text-[8px] tracking-[0.2em] uppercase text-house-stone/70 mb-1">
                     {p.collection}
                   </div>
-                  <div className={cn("font-display font-medium text-house-brown group-hover:text-[var(--house-gold-dark)] transition-colors duration-[var(--t-base)] mb-0.5", gridView === "4x4" ? "text-[13px]" : "text-[15px]")}>
+                  <div className="font-display text-[13px] leading-snug text-house-brown group-hover:text-[var(--house-gold-dark)] transition-colors duration-[var(--t-base)] mb-1">
                     {p.title}
                   </div>
-                  {p.brand ? (
-                    <div className="font-sans text-[10px] text-house-stone mb-1">
-                      {p.brand}
-                    </div>
-                  ) : null}
-                  <div className="font-display font-medium text-[14px]">
+                  <div className="font-sans text-[12px] text-house-brown/80">
                     {p.compareAtPrice ? (
                       <>
-                        <span className="text-house-stone line-through text-[12px] mr-1.5">
+                        <span className="text-house-stone line-through mr-1.5">
                           {p.compareAtPrice}
                         </span>
                         {p.price}
@@ -451,11 +483,86 @@ export function ShopBrowser({
                     )}
                   </div>
                 </div>
-              </Link>
+                <Link
+                  href={`/shop/${p.handle}`}
+                  aria-label={p.title}
+                  className="absolute inset-0 z-10"
+                />
+              </div>
             ))}
           </div>
+          <Pagination
+            page={page}
+            totalPages={Math.ceil(filtered.length / PER_PAGE)}
+            onChange={setPage}
+          />
+          </>
         )}
       </div>
     </div>
+  );
+}
+
+function Pagination({
+  page,
+  totalPages,
+  onChange,
+}: {
+  page: number;
+  totalPages: number;
+  onChange: (p: number) => void;
+}) {
+  if (totalPages <= 1) return null;
+  const go = (p: number) => {
+    const next = Math.min(Math.max(1, p), totalPages);
+    onChange(next);
+    if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  const delta = 1;
+  const nums: (number | "ellipsis")[] = [];
+  for (let p = 1; p <= totalPages; p++) {
+    if (p === 1 || p === totalPages || (p >= page - delta && p <= page + delta)) {
+      nums.push(p);
+    } else if (nums[nums.length - 1] !== "ellipsis") {
+      nums.push("ellipsis");
+    }
+  }
+  const cell =
+    "min-w-[32px] h-[32px] flex items-center justify-center font-sans text-[12px] cursor-pointer transition-colors duration-[var(--t-base)] bg-transparent border-0";
+  const arrow = "px-3 tracking-[0.12em] uppercase text-[10px]";
+  return (
+    <nav aria-label="Pagination" className="mt-16 flex items-center justify-center gap-1">
+      <button
+        type="button"
+        onClick={() => go(page - 1)}
+        disabled={page === 1}
+        className={cn(cell, arrow, page === 1 ? "text-house-stone/40 cursor-default" : "text-house-brown hover:text-house-gold")}
+      >
+        ← Prev
+      </button>
+      {nums.map((n, i) =>
+        n === "ellipsis" ? (
+          <span key={`e${i}`} className="min-w-[24px] text-center text-house-stone text-[12px]">…</span>
+        ) : (
+          <button
+            key={n}
+            type="button"
+            onClick={() => go(n)}
+            aria-current={n === page ? "page" : undefined}
+            className={cn(cell, n === page ? "text-house-gold border-b border-house-gold" : "text-house-brown hover:text-house-gold")}
+          >
+            {n}
+          </button>
+        ),
+      )}
+      <button
+        type="button"
+        onClick={() => go(page + 1)}
+        disabled={page === totalPages}
+        className={cn(cell, arrow, page === totalPages ? "text-house-stone/40 cursor-default" : "text-house-brown hover:text-house-gold")}
+      >
+        Next →
+      </button>
+    </nav>
   );
 }

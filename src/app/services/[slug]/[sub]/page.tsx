@@ -11,7 +11,10 @@ import { SERVICES, SERVICE_ORDER, type ServiceSlug } from "@/lib/services-data";
 import s from "./sub-service.module.css";
 
 const PUBLIC = path.join(process.cwd(), "public");
-const PLACEHOLDER_HERO = "/services/photos/placeholders/hero-16x10-v2.webp";
+// Sub-services without their own photography get the "Coming Soon" placeholder
+// with a "Service Coming Soon" label over the hero.
+const COMING_SOON = "/services/service-placeholder.webp";
+const PLACEHOLDER_HERO = COMING_SOON;
 const PLACEHOLDER_GALLERY_TILE = "/services/photos/placeholders/gallery-4x3-v2.webp";
 const PLACEHOLDER_BA = "/services/photos/placeholders/before-after-3x2-v2.webp";
 
@@ -124,6 +127,7 @@ export default async function SubServicePage({
   const requestedHero =
     service.image ?? `/services/photos/${parent.slug}/${service.slug}-hero.webp`;
   const heroImage = fileOr(requestedHero, PLACEHOLDER_HERO);
+  const heroSoon = heroImage === COMING_SOON;
 
   const baRaw = PARENT_BEFORE_AFTER[parent.slug];
   const ba = baRaw
@@ -163,11 +167,17 @@ export default async function SubServicePage({
             </h1>
             <p className={s.heroLede}>{service.lede}</p>
             <div className={s.heroCtas}>
-              <Link href="#open-booking-form" className={s.btnFilled}>
-                Book {service.name.toLowerCase()}
-              </Link>
+              {heroSoon ? (
+                <span className={s.btnFilled} style={{ cursor: "default" }}>
+                  Service Coming Soon
+                </span>
+              ) : (
+                <Link href="#open-booking-form" className={s.btnFilled}>
+                  Book {service.name.toLowerCase()}
+                </Link>
+              )}
               <Link href={`/services/${parent.slug}`} className={s.btnGhost}>
-                All {parent.name.toLowerCase()}
+                {heroSoon ? "Book another service" : `All ${parent.name.toLowerCase()}`}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
@@ -182,6 +192,7 @@ export default async function SubServicePage({
             priority
             style={{ objectFit: "cover", objectPosition: "center" }}
           />
+          {heroSoon ? <span className={s.comingSoonTag}>Service Coming Soon</span> : null}
         </div>
       </section>
 
@@ -321,18 +332,28 @@ export default async function SubServicePage({
       <section className={s.closing}>
         <p className={s.closingKicker}>Ready when you are</p>
         <p className={s.closingStatement}>
-          Book <em>{service.name.toLowerCase()}.</em>
+          {heroSoon ? (
+            <><em>{service.name}</em> is coming soon.</>
+          ) : (
+            <>Book <em>{service.name.toLowerCase()}.</em></>
+          )}
         </p>
         <p className={s.closingLede}>
           A short consultation, a fair quote, and a team that arrives when we
           said they would.
         </p>
         <div className={s.closingCtas}>
-          <Link href="#open-booking-form" className={s.btnFilled}>
-            Book now
-          </Link>
-          <Link href={`/services/${parent.slug}`} className={s.btnGhost}>
-            Back to {parent.name.toLowerCase()}
+          {heroSoon ? (
+            <span className={s.btnFilled} style={{ cursor: "default" }}>
+              Service Coming Soon
+            </span>
+          ) : (
+            <Link href="#open-booking-form" className={s.btnFilled}>
+              Book now
+            </Link>
+          )}
+          <Link href={heroSoon ? "/services" : `/services/${parent.slug}`} className={s.btnGhost}>
+            {heroSoon ? "Book another service" : `Back to ${parent.name.toLowerCase()}`}
             <span aria-hidden="true" className={s.btnArrow}>→</span>
           </Link>
         </div>

@@ -43,6 +43,13 @@ const schema = z.object({
   SHOPIFY_STORE_DOMAIN: z.string().optional(),
   SHOPIFY_STOREFRONT_TOKEN: z.string().optional(),
   SHOPIFY_WEBHOOK_SECRET: z.string().optional(),
+  // Catalog mode. SHOP_BUYABLE=false → products + prices stay viewable but
+  // add-to-basket and checkout are disabled (pre-launch browse-only). Flip to
+  // "true" at go-live. Read server-side, passed into CartProvider as a prop.
+  SHOP_BUYABLE: z
+    .enum(["true", "false"])
+    .default("true")
+    .transform((v) => v === "true"),
 
   // Supabase
   SUPABASE_URL: z.string().optional(),
@@ -98,6 +105,9 @@ const schema = z.object({
   // based on what the user selects (see lib/klaviyo when it lands).
   NEXT_PUBLIC_KLAVIYO_PUBLIC_KEY: z.string().optional(),
   KLAVIYO_PRIVATE_KEY: z.string().optional(),
+  // Single shared HoWA waitlist list (same id as askhowa.co.uk) — the waitlist
+  // form subscribes here with a `tier_interest` profile property.
+  KLAVIYO_LIST_ID: z.string().optional(),
 
   // Meta Conversions API. Pixel ID is read from NEXT_PUBLIC_META_PIXEL_ID
   // (also useful server-side). Access token is server-only; never expose.

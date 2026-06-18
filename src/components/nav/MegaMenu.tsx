@@ -33,6 +33,19 @@ export interface MegaLinkGroup {
   links: MegaLink[];
 }
 
+/** A main category in the Shop two-level menu, with its sub-categories. */
+export interface ShopMegaCategory {
+  title: string;
+  href: string;
+  subs: MegaLink[];
+}
+
+/** Shop mega-menu: hover a category on the left, its sub-categories appear right. */
+export interface ShopMega {
+  categories: ShopMegaCategory[];
+  footer?: MegaLink[];
+}
+
 export interface MegaPanel {
   id: string;
   /** The primary nav item label. */
@@ -47,6 +60,8 @@ export interface MegaPanel {
     heading: string;
     href?: string;
   };
+  /** When set, this panel renders the two-level Shop layout instead of groups+preview. */
+  shop?: ShopMega;
 }
 
 const HIDE_GRACE_MS = 200;
@@ -139,10 +154,13 @@ export function MegaMenu({
               "transition-[max-height,opacity,padding] ease-out",
               "[transition-duration:var(--t-xslow),var(--t-slow),var(--t-xslow)]",
               isOpen
-                ? "max-h-[400px] opacity-100 px-[40px] py-[28px] pointer-events-auto"
+                ? cn(panel.shop ? "max-h-[560px]" : "max-h-[520px]", "opacity-100 px-[40px] pt-[28px] pb-[40px] pointer-events-auto")
                 : "max-h-0 opacity-0 px-[40px] py-0 pointer-events-none",
             )}
           >
+            {panel.shop ? (
+              <ShopMegaPanel shop={panel.shop} isOpen={isOpen} />
+            ) : (
             <div className="grid grid-cols-1 md:grid-cols-[1fr_1.6fr] gap-[32px]">
               {/* Links */}
               <div
@@ -189,6 +207,7 @@ export function MegaMenu({
                 </div>
               ) : null}
             </div>
+            )}
           </div>
         );
       })}
@@ -247,6 +266,95 @@ function MegaTrigger({
     >
       {label}
     </button>
+  );
+}
+
+/**
+ * ShopMegaPanel — two-level hover. Main categories list on the left; hovering
+ * one reveals its sub-categories on the right. Utility links along the bottom.
+ */
+function ShopMegaPanel({ shop, isOpen }: { shop: ShopMega; isOpen: boolean }) {
+  const [active, setActive] = React.useState(0);
+  React.useEffect(() => {
+    if (!isOpen) setActive(0);
+  }, [isOpen]);
+  const cat = shop.categories[active] ?? shop.categories[0];
+  return (
+    <div
+      className={cn(
+        "transition-[opacity,transform] duration-[var(--t-slow)] ease-out",
+        isOpen ? "opacity-100 translate-y-0 delay-[120ms]" : "opacity-0 translate-y-3",
+      )}
+    >
+      <div className="grid grid-cols-[minmax(170px,210px)_1fr] gap-[40px]">
+        {/* Main categories */}
+        <ul className="flex flex-col gap-[1px] list-none m-0 p-0 border-r border-house-brown/8 pr-[24px]">
+          {shop.categories.map((c, i) => (
+            <li key={c.href} onMouseEnter={() => setActive(i)}>
+              <Link
+                href={c.href}
+                className={cn(
+                  "group flex items-center justify-between py-[6px] font-sans text-[11px] tracking-[0.12em] uppercase no-underline transition-colors duration-[var(--t-base)]",
+                  i === active ? "text-house-gold" : "text-house-brown hover:text-house-gold",
+                )}
+              >
+                <span>{c.title}</span>
+                <span aria-hidden="true" className={cn("text-[13px] transition-opacity duration-[var(--t-base)]", i === active ? "opacity-100" : "opacity-0")}>→</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        {/* Sub-categories of the active category */}
+        <div>
+          <div className="flex items-baseline justify-between mb-[14px]">
+            <span className="font-sans text-[9px] tracking-[0.28em] uppercase text-house-stone">{cat.title}</span>
+            <Link
+              href={cat.href}
+              className="font-sans text-[9px] tracking-[0.18em] uppercase text-house-gold no-underline hover:pl-[3px] transition-[padding-left] duration-[var(--t-base)]"
+            >
+              View all →
+            </Link>
+          </div>
+          {cat.subs.length > 0 ? (
+            <ul className="grid grid-cols-2 lg:grid-cols-3 gap-x-[28px] gap-y-[9px] list-none m-0 p-0">
+              {cat.subs.map((s) => (
+                <li key={s.href}>
+                  <Link
+                    href={s.href}
+                    className="group inline-flex font-sans text-[12px] text-house-brown no-underline transition-[color,padding-left] duration-[var(--t-base)] ease-out hover:text-house-gold hover:pl-[4px]"
+                  >
+                    {s.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <Link href={cat.href} className="font-display italic text-[15px] text-house-stone no-underline hover:text-house-gold">
+              Browse all {cat.title} →
+            </Link>
+          )}
+        </div>
+      </div>
+
+      {/* Utility footer row */}
+      {shop.footer && shop.footer.length > 0 ? (
+        <div className="mt-[22px] pt-[16px] border-t border-house-brown/10 flex flex-wrap items-center gap-x-[28px] gap-y-[8px]">
+          {shop.footer.map((f) => (
+            <Link
+              key={f.href}
+              href={f.href}
+              className="font-sans text-[10px] tracking-[0.18em] uppercase text-house-brown no-underline hover:text-house-gold transition-colors duration-[var(--t-base)]"
+            >
+              {f.label}
+              {f.description ? (
+                <span className="font-sans normal-case tracking-[0.02em] text-[10px] text-house-stone ml-[6px]">{f.description}</span>
+              ) : null}
+            </Link>
+          ))}
+        </div>
+      ) : null}
+    </div>
   );
 }
 

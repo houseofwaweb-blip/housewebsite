@@ -6,7 +6,7 @@ import { verifyTurnstileToken } from "./turnstile";
 import { checkFormRateLimit } from "@/lib/rate-limit";
 import { getSupabaseAnonClient } from "@/lib/supabase/server";
 import { notifyFormSubmission } from "./notify";
-import { subscribeToNewsletter, trackEvent, type InterestSurface, SURFACE_TO_INTEREST } from "@/lib/klaviyo";
+import { subscribeToNewsletter, subscribeToWaitlist, trackEvent, type InterestSurface, SURFACE_TO_INTEREST } from "@/lib/klaviyo";
 import { sendMetaCapiEvent, extractMetaIdentifiers, type MetaEventName } from "@/lib/meta/capi";
 import { randomUUID } from "node:crypto";
 
@@ -102,6 +102,22 @@ export async function handleFormSubmission(
   // column on `newsletter_subscribers`. Strip before insert.
   if ("interests" in row) delete row.interests;
 
+  // HoWA waitlist extras aren't top-level columns on `waitlist_interests` —
+  // fold them into the existing `context` jsonb and strip the top-level keys.
+  // They're still read from `parsed` for the Klaviyo subscribe below.
+  if (entry.table === "waitlist_interests") {
+    const extras: Record<string, unknown> = {};
+    for (const k of ["firstName", "lastName", "postcode", "tier", "propertyType", "note"]) {
+      if (k in row) {
+        extras[k] = row[k];
+        delete row[k];
+      }
+    }
+    if (Object.keys(extras).length) {
+      row.context = { ...((row.context as Record<string, unknown>) ?? {}), ...extras };
+    }
+  }
+
   const supabase = getSupabaseAnonClient();
   let { error } = await supabase.from(entry.table).insert(row);
 
@@ -166,6 +182,42 @@ export async function handleFormSubmission(
         signup_page: p.sourcePage,
       },
     }).catch(() => {});
+  }
+
+  // HoWA app waitlist also subscribes to the shared Klaviyo list with a
+  // `tier_interest` profile property (matches askhowa.co.uk), so launch
+  // segments/flows work across both sites. Supabase row is the source of truth.
+  if (type === "waitlist") {
+    const w = parsed as {
+      email: string;
+      product: string;
+      firstName?: string;
+      lastName?: string;
+      postcode?: string;
+      tier?: string;
+      propertyType?: string;
+      note?: string;
+      sourcePage?: string;
+    };
+    if (w.product === "howa_app") {
+      void subscribeToWaitlist({
+        email: w.email,
+        firstName: w.firstName,
+        lastName: w.lastName,
+        postcode: w.postcode,
+        tier: w.tier,
+        propertyType: w.propertyType,
+        note: w.note,
+        sourcePage: w.sourcePage,
+      }).catch(() => {
+        // klaviyo client logs internally
+      });
+      void trackEvent({
+        email: w.email,
+        metric: "HoWA Waitlist Signup",
+        properties: { tier_interest: w.tier ?? "Undecided", signup_page: w.sourcePage },
+      }).catch(() => {});
+    }
   }
 
   // Meta Conversions API fire — server-side complement to the browser

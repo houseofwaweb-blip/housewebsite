@@ -27,12 +27,22 @@ House of Willow Alexander exists so the next generation doesn't have to. The ide
 We think the best homes feel worn-in, not decorated. Useful, not performative. They're kept by people who mean to keep them for a long time, not flipped for the next rung of a ladder.
 
 Everything the House does — the design commissions, the services, the Hearth, HoWA — is in service of that kind of home. The one you mean to stay in.`,
+    image: {
+      src: "/the-house/editorial/library-tools.webp",
+      alt: "A green library with a yellow armchair, books and House Approved tools.",
+      caption: "Worn-in, not decorated. A house meant to be kept.",
+    },
   },
   {
     heading: "Why now, and why an institution",
     body: `Care for a home used to run in families. You inherited a network of trades, a quiet education in materials and weather, a set of standards from the people who raised you. Most of us no longer do.
 
 Institutions replace that, at scale and across generations. They hold memory, standards, and trust in one place so every new member doesn't have to rebuild them from scratch. The House is that idea, applied to a home.`,
+    image: {
+      src: "/the-house/editorial/record-book-peony.webp",
+      alt: "A writing-desk still life: the house record book, a globe, a brass sconce and a peony.",
+      caption: "Memory, standards and trust, kept in one place.",
+    },
   },
 ];
 
@@ -47,6 +57,7 @@ export default async function PhilosophyPage() {
           heading: c.title ?? FALLBACK_SECTIONS[i]?.heading,
           body: c.body ?? FALLBACK_SECTIONS[i]?.body ?? "",
           quote: FALLBACK_SECTIONS[i]?.quote,
+          image: FALLBACK_SECTIONS[i]?.image,
         }))
       : FALLBACK_SECTIONS;
 
@@ -68,6 +79,10 @@ export default async function PhilosophyPage() {
         "We think homes deserve the same kind of quiet institution that schools, clubs, and estates have always had — somewhere to belong, somewhere to ask, somewhere that remembers.",
       )}
       sections={editorialSections}
+      heroImage={{
+        src: "/the-house/editorial/wisteria-yellow-chair.webp",
+        alt: "A soft pink room with a yellow armchair and wisteria framing the window.",
+      }}
     />
   );
 }

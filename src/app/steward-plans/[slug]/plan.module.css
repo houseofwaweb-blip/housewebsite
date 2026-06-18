@@ -108,6 +108,32 @@
 }
 .btnFilled:hover { background: var(--color-house-gold-light); border-color: var(--color-house-gold-light); }
 
+/* Subscriptions not live yet: gold "coming soon" + book-individual fallback */
+.ctaStack { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+.btnComingSoon {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 28px;
+  font-family: var(--font-sans);
+  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+  background: var(--color-house-gold-dark);
+  color: var(--color-house-cream);
+  border: 1px solid var(--color-house-gold-dark);
+  font-weight: 500; cursor: default;
+}
+.btnBook {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 28px;
+  font-family: var(--font-sans);
+  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+  text-decoration: none;
+  background: transparent;
+  color: var(--color-house-cream);
+  border: 1px solid rgba(245, 240, 232, 0.4);
+  transition: all 0.25s ease;
+  font-weight: 500;
+}
+.btnBook:hover { background: rgba(245, 240, 232, 0.1); border-color: var(--color-house-cream); }
+
 /* Body */
 .body {
   background: var(--color-house-cream);

@@ -16,11 +16,12 @@ import {
   type CatalogueCollection,
   type CatalogueBrand,
 } from "./catalogue";
+import { loadShopifyCatalogue } from "./shopify-catalogue";
 
 /**
- * Unified shop-data source. Prefers Sanity; falls back to the static
- * WooCommerce JSON dump when Sanity is empty (pre-migration, dev, or
- * outage). Pages call these functions and don't need to know which
+ * Unified shop-data source. Precedence: live Shopify (the system of record
+ * for products/inventory now) → Sanity → static WooCommerce JSON dump
+ * (dev / outage). Pages call these functions and don't need to know which
  * source is live.
  *
  * The return shape matches the existing `CatalogueProduct` interface so
@@ -90,26 +91,34 @@ function portableToPlain(body: unknown[] | null): string {
 
 // ───── Public API (server-side only) ──────────────────────────────────────
 
-/** All products. Sanity-first, static fallback. */
+/** All products. Shopify-first, then Sanity, then static. */
 export async function getShopProducts(): Promise<CatalogueProduct[]> {
+  const shopify = await loadShopifyCatalogue();
+  if (shopify && shopify.products.length > 0) return shopify.products;
   const sanity = await getAllProducts();
   if (sanity.length > 0) return sanity.map(sanityToCatalogue);
   return CATALOGUE_PRODUCTS;
 }
 
-/** Single product by handle. Sanity-first, static fallback. */
+/** Single product by handle. Shopify-first, then Sanity, then static. */
 export async function getShopProduct(
   handle: string,
 ): Promise<CatalogueProduct | null> {
+  const shopify = await loadShopifyCatalogue();
+  const hit = shopify?.byHandle.get(handle);
+  if (hit) return hit;
   const sanity = await getProductByHandle(handle);
   if (sanity) return sanityToCatalogue(sanity);
   return findCatalogueProduct(handle) ?? null;
 }
 
-/** Products in a collection by slug. Sanity-first, static fallback. */
+/** Products in a collection by slug. Shopify-first, then Sanity, then static. */
 export async function getShopCollection(
   collectionSlug: string,
 ): Promise<CatalogueProduct[]> {
+  const shopify = await loadShopifyCatalogue();
+  const hit = shopify?.collectionProducts.get(collectionSlug);
+  if (hit && hit.length > 0) return hit;
   const sanity = await getProductsByCollection(collectionSlug);
   if (sanity.length > 0) return sanity.map(sanityToCatalogue);
   return getCatalogueCollection(collectionSlug);
@@ -122,6 +131,8 @@ export async function getShopCollection(
  * `handle` (URL-safe slug), `title` (display name), `productCount`.
  */
 export async function getShopCollections(): Promise<CatalogueCollection[]> {
+  const shopify = await loadShopifyCatalogue();
+  if (shopify && shopify.collections.length > 0) return shopify.collections;
   const sanity = await getCollectionsWithCounts();
   if (sanity.length > 0) {
     return sanity.map((c) => ({
@@ -133,7 +144,9 @@ export async function getShopCollections(): Promise<CatalogueCollection[]> {
   return CATALOGUE_COLLECTIONS;
 }
 
-/** Brand list. Falls through to static since brand field is light in Sanity. */
+/** Brand list. Shopify vendors first, then the static brand list. */
 export async function getShopBrands(): Promise<CatalogueBrand[]> {
+  const shopify = await loadShopifyCatalogue();
+  if (shopify && shopify.brands.length > 0) return shopify.brands;
   return CATALOGUE_BRANDS;
 }

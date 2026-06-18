@@ -1,4 +1,18 @@
 import type { MegaPanel } from "@/components/nav/MegaMenu";
+import shopNavData from "@/lib/shop-data/shop-nav.generated.json";
+
+/**
+ * Shop categories + sub-categories, generated from Shopify collections & tags
+ * (src/lib/shop-data/shop-nav.generated.json). Regenerate when categories
+ * change. Drives the two-level Shop mega-menu.
+ */
+const SHOP_CATEGORIES = (
+  shopNavData as Array<{ title: string; handle: string; subs: Array<{ title: string; handle: string }> }>
+).map((c) => ({
+  title: c.title,
+  href: `/shop/collections/${c.handle}`,
+  subs: c.subs.map((s) => ({ label: s.title, href: `/shop/collections/${s.handle}` })),
+}));
 
 /**
  * Primary navigation configuration.
@@ -47,16 +61,16 @@ export const PRIMARY_NAV: MegaPanel[] = [
         heading: "The Product",
         links: [
           { label: "Overview", href: "/howa", description: "What HoWA does" },
-          { label: "HoWA+", href: "/howa/plus", description: "The membership — £16.99/mo" },
+          { label: "HoWA (Assistant)", href: "/howa/assistant", description: "Free — start with an address" },
+          { label: "HoWA+ (Housekeeper)", href: "/howa/plus", description: "The membership — £16.99/mo" },
           { label: "How it works", href: "/howa/how-it-works", description: "Four quiet jobs" },
-          { label: "Companion", href: "/howa/companion", description: "The diagnostic" },
         ],
       },
       {
         heading: "More",
         links: [
           { label: "Plans & Pricing", href: "/howa/plans", description: "Compare tiers" },
-          { label: "Steward", href: "/howa/steward", description: "Managed care — coming soon" },
+          { label: "Steward", href: "/howa/steward", description: "The top tier — £29.99/mo" },
           { label: "FAQ", href: "/howa/faq" },
         ],
       },
@@ -155,17 +169,22 @@ export const PRIMARY_NAV: MegaPanel[] = [
     id: "shop",
     trigger: "Shop",
     triggerHref: "/shop",
+    // Mobile drawer reads groups[0]; desktop uses the two-level `shop` menu.
     groups: [
       {
-        heading: "Browse",
-        links: [
-          { label: "All products", href: "/shop" },
-          { label: "House Approved", href: "/shop/collections/house-approved", description: "Our mark of quality" },
-          { label: "Collections", href: "/shop/collections", description: "Curated edits" },
-          { label: "Gift Cards", href: "/gift-cards", description: "Give the gift of care" },
-        ],
+        heading: "Categories",
+        links: SHOP_CATEGORIES.map((c) => ({ label: c.title, href: c.href })),
       },
     ],
+    shop: {
+      categories: SHOP_CATEGORIES,
+      footer: [
+        { label: "House Approved", href: "/shop/collections/house-approved" },
+        { label: "All products", href: "/shop" },
+        { label: "All collections", href: "/shop/collections" },
+        { label: "Gift Cards", href: "/gift-cards" },
+      ],
+    },
   },
 
   {

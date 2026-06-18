@@ -93,12 +93,12 @@ const COMMISSION_STEPS = [
   {
     n: "01.",
     name: "Begin with a conversation",
-    body: "The HoWA Companion asks the right questions to understand your home, your priorities, and what feels right. About two minutes.",
+    body: "The HoWA Assistant asks the right questions to understand your home, your priorities, and what feels right. About two minutes.",
   },
   {
     n: "02.",
     name: "Matched, not assigned",
-    body: "We propose two or three studios from the collective who fit the project. You pick. The Companion creates the design brief on your home record.",
+    body: "We propose two or three studios from the collective who fit the project. You pick. The Assistant creates the design brief on your home record.",
   },
   {
     n: "03.",
@@ -290,7 +290,7 @@ export default async function DesignStudiosPage() {
             {cms(
               commission,
               "body",
-              "You don't pick a studio cold. The Companion learns enough to put two or three in front of you that fit, and the design brief lives on your home record from day one.",
+              "You don't pick a studio cold. The Assistant learns enough to put two or three in front of you that fit, and the design brief lives on your home record from day one.",
             )}
           </p>
         </header>
@@ -318,7 +318,7 @@ export default async function DesignStudiosPage() {
           {cms(
             closing,
             "body",
-            "The Companion takes about two minutes. The studios match to the brief. You only meet the ones we think fit.",
+            "The Assistant takes about two minutes. The studios match to the brief. You only meet the ones we think fit.",
           )}
         </p>
         <div className={s.closingCtas}>

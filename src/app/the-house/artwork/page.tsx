@@ -402,8 +402,8 @@ export default async function ArtworkPage() {
         </ArtworkReveal>
         <div className={s.splitVisual}>
           <Image
-            src={`${ART}/fleet-vans-row.png`}
-            alt="The Willow Alexander electric fleet — a row of liveried vans, each carrying its volume's colour"
+            src={`${ART}/fleet-vans-row.webp`}
+            alt="The Willow Alexander electric fleet, a row of liveried vans, each carrying its volume's colour"
             fill
             sizes="(min-width: 1024px) 55vw, 100vw"
             style={{ objectFit: "cover", objectPosition: "center" }}
@@ -414,7 +414,7 @@ export default async function ArtworkPage() {
       {/* ════════════════════════════════════════════════════════════
           CLOSING — colophon statement + CTAs (text-led, no slide)
           ════════════════════════════════════════════════════════════ */}
-      <section className={s.closingText}>
+      <section className={s.closingText} data-tone="dark">
         <ArtworkReveal className={s.closingTextInner}>
           <p className={s.closingKicker}>
             {cmsPage?.closingKicker ?? "The House of Willow Alexander"}
@@ -459,7 +459,7 @@ export default async function ArtworkPage() {
         </ArtworkReveal>
       </section>
 
-      <div className={s.tagline}>
+      <div className={s.tagline} data-tone="dark">
         <p>
           {cmsPage?.tagline ? (
             cmsPage.taglineEm ? (
@@ -520,7 +520,7 @@ function ChapterCopy({
 
 function PullQuote({ quote, dark = false }: { quote: string; dark?: boolean }) {
   return (
-    <section className={`${s.pullQuote} ${dark ? s.pullQuoteDark : ""}`}>
+    <section className={`${s.pullQuote} ${dark ? s.pullQuoteDark : ""}`} data-tone={dark ? "dark" : undefined}>
       <ArtworkReveal className={s.pullQuoteInner}>
         <p className={s.pullQuoteText}>
           {"“"}
@@ -544,10 +544,10 @@ function PatternReveal() {
       <ArtworkReveal className={s.patternRevealInner}>
         <figure className={s.patternRevealItem}>
           <Image
-            src={`${ART}/mrs-beeton-spread-firstpattern.jpg`}
-            alt="A close detail of the pattern as it appears in Mrs Beeton's book"
-            width={1600}
-            height={1200}
+            src={`${ART}/mrs-beeton-spread.jpg`}
+            alt="Mrs Beeton's engraved botanical frames and decorative covers, the source material for the first pattern"
+            width={1800}
+            height={1350}
             sizes="(min-width: 768px) 45vw, 90vw"
             className={s.patternRevealImg}
           />

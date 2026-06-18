@@ -29,7 +29,7 @@ export interface SearchResult {
 const STATIC_PAGES: SearchResult[] = [
   { id: "sp-howa", type: "HoWA", title: "HoWA — The Intelligence Layer", excerpt: "The installed-per-home stewardship system. Memory, context, continuity.", href: "/howa" },
   { id: "sp-plans", type: "HoWA", title: "Plans & Pricing", excerpt: "HoWA+ at £16.99/mo. Steward plans coming soon.", href: "/howa/plans" },
-  { id: "sp-companion", type: "HoWA", title: "The Companion", excerpt: "The root diagnostic and intake layer. Capture the home, recommend the route.", href: "/howa/companion" },
+  { id: "sp-companion", type: "HoWA", title: "HoWA Assistant (free)", excerpt: "The free way in. The portrait from an address, the Assistant diagnostic, repair, garden and room scans, quotes decoded.", href: "/howa/assistant" },
   { id: "sp-steward", type: "HoWA", title: "HoWA Steward", excerpt: "Managed home intelligence. Predictive maintenance, managed recurring care.", href: "/howa/steward" },
   { id: "sp-how", type: "HoWA", title: "How HoWA Works", excerpt: "Four quiet jobs: Understand, Recommend, Connect, Remember.", href: "/howa/how-it-works" },
   { id: "sp-interiors", type: "Design", title: "Interior Design", excerpt: "Whole-house renovations and single-room reads.", href: "/design/interiors" },

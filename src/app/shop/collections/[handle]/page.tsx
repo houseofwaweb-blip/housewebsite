@@ -1,22 +1,58 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ProductCard, type ProductCardData } from "@/components/commerce/ProductCard";
-import { getShopCollection, getShopCollections } from "@/lib/shop-data/source";
+import {
+  getShopCollection,
+  getShopCollections,
+  getShopProducts,
+} from "@/lib/shop-data/source";
 import { COLLECTIONS, PRODUCTS } from "@/lib/shop-data";
+import type { CatalogueProduct } from "@/lib/shop-data/catalogue";
+import SHOP_NAV from "@/lib/shop-data/shop-nav.generated.json";
+import { ShopBrowser } from "../../ShopBrowser";
 import s from "./collection.module.css";
+
+/** Brand list with counts, derived from a product set (for the filter rail). */
+function deriveBrands(products: CatalogueProduct[]) {
+  const counts = new Map<string, number>();
+  for (const p of products) {
+    if (p.brand) counts.set(p.brand, (counts.get(p.brand) ?? 0) + 1);
+  }
+  return [...counts.entries()]
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count);
+}
+
+type ShopNavCategory = { title: string; handle: string; subs: { title: string; handle: string }[] };
+const NAV = SHOP_NAV as ShopNavCategory[];
 
 type ResolvedCollection = {
   title: string;
-  products: ProductCardData[];
+  products: CatalogueProduct[];
 };
 
 async function resolveCollection(handle: string): Promise<ResolvedCollection | null> {
   // Prefer hand-curated local collections (e.g. "house-approved")
   const local = COLLECTIONS.find((c) => c.handle === handle);
   if (local) {
-    const products = local.productHandles
+    const products: CatalogueProduct[] = local.productHandles
       .map((h) => PRODUCTS.find((p) => p.handle === h))
-      .filter((p): p is NonNullable<typeof p> => Boolean(p));
+      .filter((p): p is NonNullable<typeof p> => Boolean(p))
+      .map((p) => ({
+        handle: p.handle,
+        title: p.title,
+        price: p.price,
+        compareAtPrice: p.compareAtPrice,
+        image: p.image,
+        images: p.images,
+        collection: p.collection ?? local.title,
+        houseApproved: p.houseApproved ?? false,
+        lede: p.lede ?? "",
+        body: p.body ?? "",
+        brand: "",
+        sku: "",
+        inStock: true,
+        onSale: false,
+      }));
     return { title: local.title, products };
   }
   // Fall back to Sanity (or static catalogue beneath it)
@@ -34,6 +70,8 @@ export async function generateMetadata({
   params: Promise<{ handle: string }>;
 }) {
   const { handle } = await params;
+  const mainCat = NAV.find((c) => c.handle === handle);
+  if (mainCat) return { title: `${mainCat.title} — Shop` };
   const collection = await resolveCollection(handle);
   if (!collection) return { title: "Collection not found" };
   return {
@@ -47,11 +85,49 @@ export default async function CollectionPage({
   params: Promise<{ handle: string }>;
 }) {
   const { handle } = await params;
+  const mainCat = NAV.find((c) => c.handle === handle);
+
+  // ── Main category page: full filter rail (Brand · Price · Stock · Sort),
+  //    scoped to this category, with the sub-categories as navigation links. ──
+  if (mainCat) {
+    const all = await getShopProducts();
+    const products = all.filter((p) => p.collectionHandles?.includes(handle));
+    if (products.length === 0) notFound();
+
+    const brands = deriveBrands(products);
+
+    return (
+      <div className={s.page}>
+        <section className={s.hero}>
+          <nav aria-label="Breadcrumb" className={s.crumbs}>
+            <Link href="/shop" className={s.crumbLink}>Shop</Link>
+            <span className={s.crumbSep}>/</span>
+            <span>{mainCat.title}</span>
+          </nav>
+          <p className={s.heroEy}>The House · Shop</p>
+          <h1 className={s.heroTitle}>{mainCat.title}.</h1>
+        </section>
+
+        <ShopBrowser
+          products={products}
+          collections={[]}
+          brands={brands}
+          subNav={mainCat.subs}
+        />
+      </div>
+    );
+  }
+
+  // ── Sub-collection / product-type page: the same filter rail as the main
+  //    categories (Search · Brand · Price · Stock · Sort), minus the
+  //    product-type/categories section — you're already inside one. ──
   const collection = await resolveCollection(handle);
   if (!collection) notFound();
 
   const products = collection.products;
   const otherCollections = await getShopCollections();
+  const parentCat = NAV.find((c) => c.subs.some((sub) => sub.handle === handle));
+  const brands = deriveBrands(products);
 
   return (
     <div className={s.page}>
@@ -60,25 +136,24 @@ export default async function CollectionPage({
         <nav aria-label="Breadcrumb" className={s.crumbs}>
           <Link href="/shop" className={s.crumbLink}>Shop</Link>
           <span className={s.crumbSep}>/</span>
+          {parentCat ? (
+            <>
+              <Link href={`/shop/collections/${parentCat.handle}`} className={s.crumbLink}>
+                {parentCat.title}
+              </Link>
+              <span className={s.crumbSep}>/</span>
+            </>
+          ) : null}
           <span>{collection.title}</span>
         </nav>
         <p className={s.heroEy}>The House · Shop</p>
         <h1 className={s.heroTitle}>
           {collection.title}.
         </h1>
-        <p className={s.heroCount}>
-          {products.length} {products.length === 1 ? "piece" : "pieces"}
-        </p>
       </section>
 
-      {/* Product grid */}
-      <section className={s.grid}>
-        <div className={s.gridInner}>
-          {products.map((p) => (
-            <ProductCard key={p.handle} product={p} />
-          ))}
-        </div>
-      </section>
+      {/* Full filter rail (no categories section), scoped to this product type */}
+      <ShopBrowser products={products} collections={[]} brands={brands} />
 
       {/* Other collections */}
       <section className={s.others}>
@@ -93,7 +168,14 @@ export default async function CollectionPage({
             ...COLLECTIONS.map((c) => ({ handle: c.handle, title: c.title })),
             ...otherCollections.map((c) => ({ handle: c.handle, title: c.title })),
           ]
-            .filter((c, i, a) => c.handle !== handle && a.findIndex((x) => x.handle === c.handle) === i)
+            .filter((c, i, a) =>
+              c.handle !== handle &&
+              // hide back-office collections (kept in Shopify, not public)
+              !["services", "migration-review", "migration", "migration_review"].includes(c.handle) &&
+              !/migration[-_ ]?review/i.test(c.title) &&
+              !/^services$/i.test(c.title) &&
+              a.findIndex((x) => x.handle === c.handle) === i,
+            )
             .slice(0, 8)
             .map((c) => (
               <Link
@@ -117,6 +199,7 @@ export default async function CollectionPage({
 export async function generateStaticParams() {
   const sourced = await getShopCollections();
   const all = [
+    ...NAV.map((c) => c.handle),
     ...COLLECTIONS.map((c) => c.handle),
     ...sourced.map((c) => c.handle),
   ];

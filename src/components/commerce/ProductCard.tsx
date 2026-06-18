@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/cn";
+import { QuickAdd } from "./QuickAdd";
 
 /**
  * ProductCard — the commerce grid tile.
@@ -8,12 +9,14 @@ import { cn } from "@/lib/cn";
  * Design intent: Aesop meets Net-a-Porter.
  * - Big image (4:5 portrait, fills the card)
  * - Quiet type below: title in Didot, price in Effra, optional badge
- * - No "Add to cart" on the grid. The CTA is the card itself (full-card link).
- * - Hover: image breathes (1.02 scale), title shifts gold
+ * - Quick-add on hover (DESIGN.md: "single-click add-to-cart"): single-variant
+ *   products add in one click; multi-variant show "Choose options" → PDP.
+ *   Hidden in catalog mode. See QuickAdd.
+ * - Whole card is a stretched link to the product page; the quick-add button
+ *   sits above it so its clicks are its own (valid HTML, no button-in-anchor).
+ * - Hover: image breathes (1.02 scale), title shifts gold, card lifts
  * - "House Approved" seal if flagged
  * - Compare-at price shown struck-through when on sale
- *
- * Playground patterns used: card lift (subtle), image zoom, title-to-gold.
  */
 
 export interface ProductCardData {
@@ -25,6 +28,11 @@ export interface ProductCardData {
   imageAlt?: string;
   houseApproved?: boolean;
   collection?: string;
+  /** Shopify default variant GID — enables one-click add. */
+  variantId?: string;
+  /** More than one variant → "Choose options" instead of quick-add. */
+  multiVariant?: boolean;
+  inStock?: boolean;
 }
 
 export function ProductCard({
@@ -35,10 +43,9 @@ export function ProductCard({
   className?: string;
 }) {
   return (
-    <Link
-      href={`/shop/${product.handle}`}
+    <div
       className={cn(
-        "group flex flex-col no-underline",
+        "group relative flex flex-col",
         "transition-all duration-[var(--t-slow)] ease-out hover:-translate-y-0.5",
         className,
       )}
@@ -53,10 +60,21 @@ export function ProductCard({
           className="object-cover transition-all duration-[var(--t-xslow)] ease-out group-hover:scale-[1.02]"
         />
         {product.houseApproved ? (
-          <span className="absolute top-3 left-3 font-sans text-[9px] tracking-[0.22em] uppercase text-house-gold bg-white/90 px-2.5 py-1 border border-house-gold/30">
+          <span className="absolute top-3 left-3 z-20 font-sans text-[9px] tracking-[0.22em] uppercase text-house-gold bg-white/90 px-2.5 py-1 border border-house-gold/30">
             House Approved
           </span>
         ) : null}
+
+        {/* Quick-add — above the stretched link */}
+        <QuickAdd
+          handle={product.handle}
+          title={product.title}
+          price={product.price}
+          image={product.image}
+          variantId={product.variantId}
+          multiVariant={product.multiVariant}
+          inStock={product.inStock}
+        />
       </div>
 
       {/* Copy */}
@@ -82,6 +100,13 @@ export function ProductCard({
           )}
         </div>
       </div>
-    </Link>
+
+      {/* Stretched link to the product page (whole card) */}
+      <Link
+        href={`/shop/${product.handle}`}
+        aria-label={product.title}
+        className="absolute inset-0 z-10"
+      />
+    </div>
   );
 }

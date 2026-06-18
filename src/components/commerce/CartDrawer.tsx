@@ -7,7 +7,7 @@ import { cn } from "@/lib/cn";
 import { useCart } from "./CartContext";
 
 export function CartDrawer() {
-  const { lines, count, drawerOpen, closeDrawer, updateQty, remove } =
+  const { lines, count, subtotal, drawerOpen, closeDrawer, updateQty, remove, buyable } =
     useCart();
 
   React.useEffect(() => {
@@ -45,7 +45,7 @@ export function CartDrawer() {
       <aside
         role="dialog"
         aria-modal="true"
-        aria-label="Saved pieces"
+        aria-label="Basket"
         className={cn(
           "fixed top-0 right-0 bottom-0 z-50 w-[420px] max-w-[92vw]",
           "bg-house-white flex flex-col",
@@ -57,7 +57,7 @@ export function CartDrawer() {
         {/* Head */}
         <div className="flex justify-between items-center px-6 py-[18px] border-b border-house-brown/8">
           <h2 className="font-display font-medium text-[18px]">
-            Saved pieces
+            Basket
             <span className="font-sans font-light text-[13px] text-house-stone ml-1.5">
               ({count})
             </span>
@@ -65,7 +65,7 @@ export function CartDrawer() {
           <button
             type="button"
             onClick={closeDrawer}
-            aria-label="Close saved pieces"
+            aria-label="Close basket"
             className="text-[24px] leading-none bg-transparent border-0 cursor-pointer text-house-brown hover:text-house-gold transition-colors duration-[var(--t-base)]"
           >
             ×
@@ -77,7 +77,7 @@ export function CartDrawer() {
           {lines.length === 0 ? (
             <div className="py-16 text-center">
               <p className="font-display italic text-[18px] text-house-stone mb-4">
-                Nothing saved yet.
+                Your basket is empty.
               </p>
               <Link
                 href="/shop"
@@ -90,25 +90,23 @@ export function CartDrawer() {
           ) : (
             lines.map((line) => (
               <div
-                key={line.handle}
+                key={line.id}
                 className="flex gap-4 py-5 border-b border-house-brown/8 last:border-b-0"
               >
                 <div className="w-[72px] h-[90px] flex-shrink-0 overflow-hidden bg-house-cream">
-                  <Image
-                    src={line.image}
-                    alt={line.title}
-                    width={144}
-                    height={180}
-                    className="w-full h-full object-cover"
-                  />
+                  {line.image ? (
+                    <Image
+                      src={line.image}
+                      alt={line.title}
+                      width={144}
+                      height={180}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : null}
                 </div>
                 <div className="flex-1 flex flex-col">
-                  <span className="font-display font-medium text-[15px] mb-0.5">
+                  <span className="font-display font-medium text-[15px] mb-1">
                     {line.title}
-                  </span>
-                  <span className="font-sans text-[11px] tracking-[0.08em] uppercase text-house-stone mb-1.5">
-                    {line.collection}
-                    {line.houseApproved ? " · House Approved" : ""}
                   </span>
                   <span className="font-display font-medium text-[15px]">
                     {line.price}
@@ -117,7 +115,7 @@ export function CartDrawer() {
                   <div className="flex items-center gap-2 mt-2.5">
                     <button
                       type="button"
-                      onClick={() => updateQty(line.handle, line.quantity - 1)}
+                      onClick={() => updateQty(line.id, line.quantity - 1)}
                       className="w-7 h-7 border border-house-brown/20 bg-transparent text-[16px] flex items-center justify-center cursor-pointer hover:border-house-gold transition-colors duration-[var(--t-base)]"
                     >
                       −
@@ -127,7 +125,7 @@ export function CartDrawer() {
                     </span>
                     <button
                       type="button"
-                      onClick={() => updateQty(line.handle, line.quantity + 1)}
+                      onClick={() => updateQty(line.id, line.quantity + 1)}
                       className="w-7 h-7 border border-house-brown/20 bg-transparent text-[16px] flex items-center justify-center cursor-pointer hover:border-house-gold transition-colors duration-[var(--t-base)]"
                     >
                       +
@@ -135,7 +133,7 @@ export function CartDrawer() {
                   </div>
                   <button
                     type="button"
-                    onClick={() => remove(line.handle)}
+                    onClick={() => remove(line.id)}
                     className="mt-2 self-start text-left font-sans text-[10px] tracking-[0.14em] uppercase text-house-stone bg-transparent border-0 cursor-pointer hover:text-house-brown transition-colors duration-[var(--t-base)]"
                   >
                     Remove
@@ -149,26 +147,34 @@ export function CartDrawer() {
         {/* Footer */}
         {lines.length > 0 ? (
           <div className="px-6 py-5 border-t border-house-brown/8 bg-house-white">
-            <p className="font-sans text-[11px] text-house-stone mb-4">
-              Saved pieces are kept on this device. Request and we&apos;ll be in touch about availability.
+            <div className="flex items-baseline justify-between mb-1">
+              <span className="font-sans text-[11px] tracking-[0.14em] uppercase text-house-stone">Subtotal</span>
+              <span className="font-display font-medium text-[18px]">{subtotal}</span>
+            </div>
+            <p className="font-sans text-[10px] text-house-stone mb-4">
+              Shipping &amp; taxes calculated at checkout.
             </p>
 
-            <Link
-              href={`/contact?topic=shop&items=${encodeURIComponent(
-                lines.map((l) => l.handle).join(","),
-              )}`}
-              onClick={closeDrawer}
-              className="block w-full py-4 font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold text-center no-underline transition-colors duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
-            >
-              Request these pieces
-            </Link>
+            {buyable ? (
+              <Link
+                href="/shop/checkout"
+                onClick={closeDrawer}
+                className="block w-full py-4 font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold text-center no-underline transition-colors duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
+              >
+                Checkout
+              </Link>
+            ) : (
+              <p className="block w-full py-4 font-sans text-[12px] tracking-[0.18em] uppercase text-house-stone border border-house-brown/15 text-center">
+                Checkout available at launch
+              </p>
+            )}
 
             <Link
               href="/shop/basket"
               onClick={closeDrawer}
               className="block text-center mt-3 font-sans text-[11px] tracking-[0.16em] uppercase text-house-gold no-underline border-b border-dotted border-house-gold pb-0.5 mx-auto w-fit hover:border-solid transition-all"
             >
-              View all saved →
+              View basket →
             </Link>
 
             <button

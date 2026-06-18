@@ -1,40 +1,48 @@
 import Image from "next/image";
 import Link from "next/link";
 import s from "./plans.module.css";
-import { WaitlistMini } from "@/components/marketing/WaitlistMini";
 import { FaqList } from "@/components/marketing/FaqList";
+import { V3Matrix } from "../V3Matrix";
 import { MetaViewContent } from "@/components/marketing/MetaViewContent";
 import { SoftwareApplicationJsonLd } from "@/lib/seo/jsonLd";
 import { env } from "@/lib/env";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
- * /howa/plans — Plans & pricing.
+ * /howa/plans, Plans & pricing.
  *
  * Section order:
- *   1. Hero — Two ways to be stewarded
- *   2. Stats strip — Two tiers · One record
- *   3. Tier cards — HoWA+ (live) + Steward (coming-soon, navy)
- *   4. Comparison table — full feature row
+ *   1. Hero, Three ways to be stewarded
+ *   2. Stats strip, Three tiers · One record
+ *   3. Tier cards, HoWA+ (live) + Steward (coming-soon, navy)
+ *   4. Comparison table, full feature row
  *   5. FAQ accordion
- *   6. Closing — write to the House
+ *   6. Closing, write to the House
  */
 
 export const metadata = {
-  title: "Plans & Pricing — HoWA+ and Steward",
+  title: "Plans & Pricing: HoWA+ and Steward",
   description:
-    "HoWA+ at £16.99 a month. Steward plans for recurring managed care, coming soon. One record, two ways to be stewarded.",
+    "Assistant free, HoWA+ at £16.99 a month, Steward at £29.99 a month. One record, three depths of care.",
 };
 
 const STAT_COLS = [
-  { value: "2", label: "Tiers · One record" },
+  { value: "3", label: "Tiers · One record" },
   { value: "£16.99", label: "HoWA+ per month" },
   { value: "0", label: "Minimum term" },
   { value: "∞", label: "Cancellation rights" },
 ];
 
+const ASSISTANT_INCLUSIONS = [
+  "The portrait, instant facts from your address",
+  "Ask anything about home, garden and paperwork",
+  "Repair, garden and room scans",
+  "Quotes, decoded",
+  "Your first save, the record begins",
+];
+
 const HOWAPLUS_INCLUSIONS = [
-  "10% off all House services — auto-applied at checkout",
+  "10% off all House services, auto-applied at checkout",
   "Full dashboard continuity and task centre with seasonal prompts",
   "Richer document and home logbook history",
   "Priority booking across House services",
@@ -47,51 +55,36 @@ const HOWAPLUS_INCLUSIONS = [
 
 const STEWARD_INCLUSIONS = [
   "Everything in HoWA+, plus",
-  "Access to Steward Plans — bespoke recurring service subscriptions",
-  "Smart-home controller with live device integrations",
-  "Anomaly alerts and predictive maintenance",
-  "Automated seasonal care scheduling",
-  "Live utility and energy monitoring",
-  "Delegated helper and household permissions",
-  "Insurance prefill and risk score integration",
-  "Home Protection Review (when live)",
+  "The HoWA Score, with full drivers and risk register",
+  "Proactive protection prompts before failure",
+  "Predictive maintenance and anomaly alerts",
+  "Sensor and smart-meter interpretation where connected",
+  "Evidence packs and the Annual Home Report",
+  "Transfer Pack foundations for when you sell",
+  "Insurance readiness, evidence not advice",
   "Priority HoWA support channel",
-];
-
-const COMPARE = [
-  { feature: "Living Record entries", free: "Limited", plus: "Unlimited", steward: "Unlimited" },
-  { feature: "Service discount", free: "—", plus: "10%", steward: "10%" },
-  { feature: "Companion diagnostic", free: "Lite", plus: "Full", steward: "Full" },
-  { feature: "Task centre & reminders", free: "—", plus: "Yes", steward: "Yes" },
-  { feature: "Priority booking", free: "—", plus: "Yes", steward: "Priority+" },
-  { feature: "The Hearth magazine", free: "Excerpts", plus: "Full", steward: "Full" },
-  { feature: "Carbon offset fund", free: "—", plus: "Tracked", steward: "Tracked" },
-  { feature: "Smart-home controller", free: "—", plus: "—", steward: "Yes" },
-  { feature: "Predictive maintenance", free: "—", plus: "—", steward: "Yes" },
-  { feature: "Home Protection Review", free: "—", plus: "—", steward: "When live" },
-  { feature: "Recurring service plan", free: "—", plus: "—", steward: "Bespoke" },
 ];
 
 const FAQS = [
   {
     q: "When does HoWA+ go live?",
-    a: "HoWA+ opens with the new site. The product app (bookings, records, the Companion) is the surface that unlocks the paid features. If the app isn't live at the moment you try to start, the “Start HoWA” button routes to a waitlist until we're ready.",
+    a: "HoWA+ opens with the new site. The product app (bookings, records, the Assistant) is the surface that unlocks the paid features. If the app isn't live at the moment you try to start, the “Start HoWA” button routes to a waitlist until we're ready.",
   },
   {
     q: "What about Steward plans?",
-    a: "Steward is the recurring managed-care layer on top of HoWA+. Register interest and we'll write when it opens. Pricing varies by the services included and the size of the home — we'll build a quote with you.",
+    a: "Steward is the recurring managed-care layer on top of HoWA+. Register interest and we'll write when it opens. Pricing varies by the services included and the size of the home, we'll build a quote with you.",
   },
   {
     q: "Can I cancel any time?",
-    a: "Yes. HoWA+ is month to month and cancels at the next billing date. Anything saved to your living record stays yours — export or keep it in a downgraded free account.",
+    a: "Yes. HoWA+ is month to month and cancels at the next billing date. Anything saved to your living record stays yours, export or keep it in a downgraded free account.",
   },
   {
     q: "Is there a family or household plan?",
-    a: "Not at launch. One HoWA+ account covers everyone in one home — additional users can be invited to contribute to the record at no extra cost. A multi-property tier is on the Steward roadmap.",
+    a: "Not at launch. One HoWA+ account covers everyone in one home, additional users can be invited to contribute to the record at no extra cost. A multi-property tier is on the Steward roadmap.",
   },
   {
     q: "What happens to existing House Membership?",
-    a: "House Membership is HoWA+ from now on. If you held a legacy membership, it has been converted on like-for-like terms — you don't need to do anything.",
+    a: "House Membership is HoWA+ from now on. If you held a legacy membership, it has been converted on like-for-like terms, you don't need to do anything.",
   },
 ];
 
@@ -100,6 +93,7 @@ export default async function PlansPage() {
   const hero = sections.get("hero");
   const stats = sections.get("stats");
   const tiers = sections.get("tiers");
+  const tierAssistant = sections.get("tier-assistant");
   const tierPlus = sections.get("tier-plus");
   const tierSteward = sections.get("tier-steward");
   const compare = sections.get("compare");
@@ -110,14 +104,9 @@ export default async function PlansPage() {
     value: pick(c.value ?? c.label, base?.value ?? ""),
     label: pick(c.title ?? c.body, base?.label ?? ""),
   }));
+  const assistantInclusions = tierAssistant?.items ?? ASSISTANT_INCLUSIONS;
   const plusInclusions = tierPlus?.items ?? HOWAPLUS_INCLUSIONS;
   const stewardInclusions = tierSteward?.items ?? STEWARD_INCLUSIONS;
-  const compareRows = cmsCards(compare, COMPARE, (c, base) => ({
-    feature: pick(c.title, base?.feature ?? ""),
-    free: pick(c.label, base?.free ?? ""),
-    plus: pick(c.value, base?.plus ?? ""),
-    steward: pick(c.value2, base?.steward ?? ""),
-  }));
   const faqItems = cmsCards(faq, FAQS, (c, base) => ({
     q: pick(c.title, base?.q ?? ""),
     a: pick(c.body, base?.a ?? ""),
@@ -142,22 +131,22 @@ export default async function PlansPage() {
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>{cms(hero, "eyebrow", "Plans & Pricing")}</p>
             <h1 className={s.heroTitle}>
-              {cms(hero, "headline", "Two ways to be")}{" "}
+              {cms(hero, "headline", "Three ways to be")}{" "}
               <em>{cms(hero, "headlineEm", "stewarded.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
               {cms(
                 hero,
                 "body",
-                "One platform. Three entitlement levels. Upgrading always preserves the same home record. HoWA+ is the connected continuity and savings layer. Steward is the premium managed-care layer.",
+                "One platform. Three entitlement levels. Upgrading always preserves the same home record. Assistant is the free way in. HoWA+ is the connected continuity and savings layer. Steward is the premium managed-care layer.",
               )}
             </p>
             <div className={s.heroCtas}>
               <Link
-                href={cms(hero, "ctaHref", "/api/howa-bounce?source=plans")}
+                href={cms(hero, "ctaHref", "/howa/coming-soon")}
                 className={s.btnFilled}
               >
-                {cms(hero, "ctaLabel", "Coming soon")}
+                {cms(hero, "ctaLabel", "Join the waitlist")}
               </Link>
               <Link href={cms(hero, "cta2Href", "#steward")} className={s.btnGhost}>
                 {cms(hero, "cta2Label", "See Steward")}
@@ -168,11 +157,11 @@ export default async function PlansPage() {
         </div>
         <div className={s.heroVisual}>
           <Image
-            src={cms(hero, "imageUrl", "/home-v4/howa-lander-hero-v4.webp")}
+            src={cms(hero, "imageUrl", "/home-v4/v6-one-record-v3.webp")}
             alt={cms(
               hero,
               "imageAlt",
-              "A pink Georgian townhouse with the left half rendered as a hand-drawn elevation — the home, two ways",
+              "Three phones in the Assistant, Housekeeper and Steward colourways, with the cutaway dollhouse softly behind.",
             )}
             fill
             sizes="(min-width: 1024px) 55vw, 100vw"
@@ -185,7 +174,7 @@ export default async function PlansPage() {
       {/* 2. Stats strip */}
       <section className={s.statsStrip}>
         <div className={s.statsLede}>
-          <p className={s.statsLedeLine1}>{cms(stats, "headline", "One record. Two tiers.")}</p>
+          <p className={s.statsLedeLine1}>{cms(stats, "headline", "One record. Three tiers.")}</p>
           <p className={s.statsLedeLine2}>
             {cms(stats, "subheadline", "Entitlements are additive. Cancel anytime.")}
           </p>
@@ -208,7 +197,53 @@ export default async function PlansPage() {
           </h2>
         </header>
         <div className={s.tiersGrid}>
-          {/* HoWA+ — terracotta hat */}
+          {/* Assistant, olive hat — the free tier */}
+          <article className={`${s.tierCard} ${s.tierAssistant}`}>
+            <div className={s.tierIllustration} aria-hidden="true">
+              <Image
+                src={cms(tierAssistant, "imageUrl", "/home-v4/assistant-dollhouse.webp")}
+                alt=""
+                width={1024}
+                height={1228}
+                sizes="(min-width: 1024px) 400px, 100vw"
+              />
+            </div>
+            <div className={s.tierContent}>
+              <div className={s.tierBadge} data-state="live">
+                {cms(tierAssistant, "eyebrow", "Free · the way in")}
+              </div>
+              <h3 className={s.tierName}>{cms(tierAssistant, "headline", "Assistant")}</h3>
+              <p className={s.tierTagline}>
+                {cms(
+                  tierAssistant,
+                  "subheadline",
+                  "The house, seen. Useful before you've paid a penny.",
+                )}
+              </p>
+              <div className={s.tierPrice}>
+                <span className={s.tierPriceAmount}>{cms(tierAssistant, "body", "Free")}</span>
+                <span className={s.tierPriceUnit}>{cms(tierAssistant, "body2", "/ start with an address")}</span>
+              </div>
+              <ul className={s.tierIncludes}>
+                {assistantInclusions.map((inc) => (
+                  <li key={inc}>{inc}</li>
+                ))}
+              </ul>
+              <div className={s.tierCtas}>
+                <Link
+                  href={cms(tierAssistant, "ctaHref", "/howa/coming-soon?tier=assistant")}
+                  className={s.btnFilled}
+                >
+                  {cms(tierAssistant, "ctaLabel", "Join the waitlist")}
+                </Link>
+                <Link href={cms(tierAssistant, "cta2Href", "/howa/how-it-works")} className={s.tierLink}>
+                  {cms(tierAssistant, "cta2Label", "See how it works")} →
+                </Link>
+              </div>
+            </div>
+          </article>
+
+          {/* HoWA+, terracotta hat */}
           <article className={`${s.tierCard} ${s.tierPlus}`}>
             <div className={s.tierIllustration} aria-hidden="true">
               <Image
@@ -244,19 +279,19 @@ export default async function PlansPage() {
               </ul>
               <div className={s.tierCtas}>
                 <Link
-                  href={cms(tierPlus, "ctaHref", "/api/howa-bounce?source=plans-howaplus")}
+                  href={cms(tierPlus, "ctaHref", "/howa/coming-soon?tier=housekeeper")}
                   className={s.btnFilled}
                 >
-                  {cms(tierPlus, "ctaLabel", "Coming soon")}
+                  {cms(tierPlus, "ctaLabel", "Join the waitlist")}
                 </Link>
-                <Link href={cms(tierPlus, "cta2Href", "/howa/companion")} className={s.tierLink}>
-                  {cms(tierPlus, "cta2Label", "See the Companion")} →
+                <Link href={cms(tierPlus, "cta2Href", "/howa/assistant")} className={s.tierLink}>
+                  {cms(tierPlus, "cta2Label", "See the Assistant")} →
                 </Link>
               </div>
             </div>
           </article>
 
-          {/* Steward — navy hat + body */}
+          {/* Steward, navy hat + body */}
           <article id="steward" className={`${s.tierCard} ${s.tierSteward}`}>
             <div className={s.tierIllustration} aria-hidden="true">
               <Image
@@ -268,34 +303,33 @@ export default async function PlansPage() {
               />
             </div>
             <div className={s.tierContent}>
-              <div className={s.tierBadge} data-state="coming">
-                {cms(tierSteward, "eyebrow", "Coming soon")}
+              <div className={s.tierBadge} data-state="live">
+                {cms(tierSteward, "eyebrow", "The standard")}
               </div>
-              <h3 className={s.tierName}>{cms(tierSteward, "headline", "Steward Plans")}</h3>
+              <h3 className={s.tierName}>{cms(tierSteward, "headline", "Steward")}</h3>
               <p className={s.tierTagline}>
                 {cms(
                   tierSteward,
                   "subheadline",
-                  "Recurring managed care. One contact. One invoice.",
+                  "Protected before failure.",
                 )}
               </p>
               <div className={s.tierPrice}>
-                <span className={s.tierPriceAmount}>{cms(tierSteward, "body", "From quote")}</span>
-                <span className={s.tierPriceUnit}>{cms(tierSteward, "body2", "/ built with you")}</span>
+                <span className={s.tierPriceAmount}>{cms(tierSteward, "body", "£29.99")}</span>
+                <span className={s.tierPriceUnit}>{cms(tierSteward, "body2", "/ month")}</span>
               </div>
               <ul className={s.tierIncludes}>
                 {stewardInclusions.map((inc) => (
                   <li key={inc}>{inc}</li>
                 ))}
               </ul>
-              <div className={s.tierWaitlist}>
-                <WaitlistMini
-                  product="steward"
-                  sourcePage="/howa/plans"
-                  placeholder="Your email"
-                  buttonLabel="Register"
-                  successMessage="Thank you. We'll write when Steward opens."
-                />
+              <div className={s.tierCtas}>
+                <Link
+                  href={cms(tierSteward, "ctaHref", "/howa/steward")}
+                  className={s.btnFilled}
+                >
+                  {cms(tierSteward, "ctaLabel", "Explore Steward")}
+                </Link>
               </div>
             </div>
           </article>
@@ -320,21 +354,18 @@ export default async function PlansPage() {
             {cms(compare, "subheadline", "Steward.")}
           </h2>
         </header>
-        <div className={s.compareTable}>
-          <div className={s.compareRowHeader}>
-            <span />
-            <span className={s.compareColLabel}>Free</span>
-            <span className={`${s.compareColLabel} ${s.compareColLabelPlus}`}>HoWA+</span>
-            <span className={`${s.compareColLabel} ${s.compareColLabelSteward}`}>Steward</span>
-          </div>
-          {compareRows.map((row) => (
-            <div key={row.feature} className={s.compareRow}>
-              <span className={s.compareRowFeature}>{row.feature}</span>
-              <span className={s.compareRowFree}>{row.free}</span>
-              <span className={s.compareRowPlus}>{row.plus}</span>
-              <span className={s.compareRowSteward}>{row.steward}</span>
-            </div>
-          ))}
+        <div className="mx-auto mb-10 max-w-[860px] lg:mb-12">
+          <Image
+            src="/home-v4/v6-one-record-feature.webp"
+            alt="Three phones in the Assistant, Housekeeper and Steward colourways, showing one continuous home record across the tiers."
+            width={1448}
+            height={1086}
+            sizes="(min-width: 1024px) 860px, 100vw"
+            className="h-auto w-full"
+          />
+        </div>
+        <div className="howa-surface">
+          <V3Matrix middleLabel="HoWA+" showTitle={false} />
         </div>
       </section>
 

@@ -73,7 +73,7 @@ export function HearthPaywall() {
                 {[
                   "Member service rates",
                   "Your home's Living Record",
-                  "The Companion diagnostic",
+                  "The Assistant diagnostic",
                   "Cancel any time",
                 ].map((item) => (
                   <li

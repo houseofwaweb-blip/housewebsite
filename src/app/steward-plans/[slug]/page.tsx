@@ -62,9 +62,12 @@ export default async function PlanDetailPage({
             <span className={s.heroPrice}>{plan.priceLabel}</span>
             <span className={s.heroPriceUnit}>/ month</span>
           </div>
-          <Link href="#open-booking-form" className={s.btnFilled}>
-            Subscribe to this plan
-          </Link>
+          <div className={s.ctaStack}>
+            <span className={s.btnComingSoon}>Subscription coming soon</span>
+            <Link href="#open-booking-form" className={s.btnBook}>
+              Book individual services →
+            </Link>
+          </div>
         </div>
       </section>
 

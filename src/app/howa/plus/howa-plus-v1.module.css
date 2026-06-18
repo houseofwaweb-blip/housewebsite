@@ -192,20 +192,18 @@
 
 .heroVisual {
   position: relative;
-  background: var(--color-house-white);
+  /* Locked to 4:3 so a 4:3 full-bleed hero image fills it exactly (no crop).
+     The matched terracotta is a fallback behind the image. */
+  aspect-ratio: 4 / 3;
+  background: #bd765a;
   padding: 0;
-  overflow: visible;
+  overflow: hidden;
 }
 .heroVisualFrame {
-  /* Image keeps its 16:9 aspect at full hero height, anchored right.
-     At narrower viewports its left edge bleeds into the copy column,
-     and the copy floats over the blueprint half via z-index. */
+  /* Fill the visual column so the 4:3 full-bleed hero image covers it
+     (crops the wall sides, keeps the whole dollhouse — not the roof/garden). */
   position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: auto;
-  aspect-ratio: 16 / 9;
+  inset: 0;
   pointer-events: none;
 }
 

@@ -9,15 +9,15 @@ import { cn } from "@/lib/cn";
  * for the index and "The Hearth Collection" for the editorial series).
  */
 
+// Slugs match the Sanity `articleCategory` slugs so the category routes resolve.
 const STRIP = [
   { slug: "all", label: "The Latest", href: "/the-hearth" },
-  { slug: "interiors-styling", label: "Interiors & Styling", href: "/the-hearth/category/interiors-styling" },
-  { slug: "design-architecture", label: "Design & Architecture", href: "/the-hearth/category/design-architecture" },
-  { slug: "gardens-exteriors", label: "Gardens & Exteriors", href: "/the-hearth/category/gardens-exteriors" },
-  { slug: "colour-materials", label: "Colour & Materials", href: "/the-hearth/category/colour-materials" },
-  { slug: "heritage-culture", label: "Heritage & Culture", href: "/the-hearth/category/heritage-culture" },
-  { slug: "trends-inspiration", label: "Trends & Inspiration", href: "/the-hearth/category/trends-inspiration" },
-  { slug: "collection", label: "The Hearth Collection", href: "/the-hearth/collection" },
+  { slug: "interiors-and-styling", label: "Interiors & Styling", href: "/the-hearth/category/interiors-and-styling" },
+  { slug: "design-and-architecture", label: "Design & Architecture", href: "/the-hearth/category/design-and-architecture" },
+  { slug: "gardens-and-exteriors", label: "Gardens & Exteriors", href: "/the-hearth/category/gardens-and-exteriors" },
+  { slug: "colour-and-materials", label: "Colour & Materials", href: "/the-hearth/category/colour-and-materials" },
+  { slug: "heritage-and-culture", label: "Heritage & Culture", href: "/the-hearth/category/heritage-and-culture" },
+  { slug: "trends-and-inspiration", label: "Trends & Inspiration", href: "/the-hearth/category/trends-and-inspiration" },
 ];
 
 export function HearthCategoryStrip({ activeSlug = "all" }: { activeSlug?: string }) {

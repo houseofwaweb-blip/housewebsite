@@ -5,22 +5,22 @@ import { MetaViewContent } from "@/components/marketing/MetaViewContent";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
- * /howa/how-it-works — How HoWA works.
+ * /howa/how-it-works, How HoWA works.
  *
  * Section order:
- *   1. Hero — copy left, blueprint cross-section right (full-bleed bg, same
+ *   1. Hero, copy left, blueprint cross-section right (full-bleed bg, same
  *      gradient-scrim treatment as the steward hero)
- *   2. Stats strip — Four quiet jobs at a glance
- *   3. Verb sections — Understand / Recommend / Connect / Remember
+ *   2. Stats strip, Four quiet jobs at a glance
+ *   3. Verb sections, Understand / Recommend / Connect / Remember
  *      Each is a 2-col image+copy split, alternating sides
- *   4. Compound effect — dark navy band
- *   5. Closing CTA — Start with the Companion
+ *   4. Compound effect, dark navy band
+ *   5. Closing CTA, Start with the Assistant
  */
 
 export const metadata = {
-  title: "How HoWA works — Understand. Recommend. Connect. Remember.",
+  title: "How HoWA works: Understand. Recommend. Connect. Remember.",
   description:
-    "Four quiet jobs. Every home, every day. How HoWA stewards the home — from the first scan to the inherited record.",
+    "Four quiet jobs. Every home, every day. How HoWA stewards the home, from the first scan to the inherited record.",
 };
 
 const STAT_COLS = [
@@ -35,15 +35,15 @@ const VERBS = [
     numeral: "I.",
     verb: "Understand",
     title: "It starts by knowing the home.",
-    lede: "HoWA reads every system in the home — fabric, services, garden, contents — and builds a record that compounds with every visit.",
+    lede: "HoWA reads every system in the home, fabric, services, garden, contents, and builds a record that compounds with every visit.",
     examples: [
       "Your boiler was installed in 2018. It has two years of expected life left before replacement becomes the smarter move.",
       "The crack above the kitchen door appeared after the extension. It's settlement, not structural. Fill with flexible caulk and check in six months.",
-      "Your garden faces north-west. The planting plan accounts for that — shade-tolerant perennials at the back, sun-loving herbs by the south wall.",
+      "Your garden faces north-west. The planting plan accounts for that, shade-tolerant perennials at the back, sun-loving herbs by the south wall.",
     ],
-    image: "/home-v4/howa-blueprint-hero.webp",
+    image: "/home-v4/howitworks-scan-v2.webp",
     imageAlt:
-      "An architectural cross-section of a Georgian townhouse annotated with roof, structure, boiler, garden, environment and risk-watch readouts",
+      "A phone scanning a room in the home, HoWA reading its fabric, services and contents to build the record",
   },
   {
     numeral: "II.",
@@ -55,9 +55,9 @@ const VERBS = [
       "Your Home Protection Review flagged the flat roof as a priority. HoWA routes that to your insurance record and recommends a surveyor quote before renewal.",
       "The cleaning team noted limescale buildup on the bathroom glass. HoWA recommends a descale visit and adjusts the quarterly schedule.",
     ],
-    image: "/home-v4/plus-benefit-2.webp",
+    image: "/home-v4/howa-remember.webp",
     imageAlt:
-      "A leather-bound notebook with a fountain pen and calendar — Living Record and task centre",
+      "The HoWA home record on a phone beside the cutaway dollhouse, surfacing what matters next",
   },
   {
     numeral: "III.",
@@ -69,23 +69,23 @@ const VERBS = [
       "Your design brief needs a kitchen specialist. HoWA connects you with Jessica Durling-McMahon, whose studio focuses on period kitchens. First consultation this week.",
       "The garden needs seasonal pruning. HoWA schedules Willow Alexander Gardens for the next available slot. Same gardener as last time.",
     ],
-    image: "/home-v4/plus-benefit-1.webp",
+    image: "/home-v4/howa-connect.webp",
     imageAlt:
-      "A window cleaner's hand at a sash window in golden-hour light",
+      "HoWA matching the home with the right trusted hands, booked, billed and filed in one place",
   },
   {
     numeral: "IV.",
     verb: "Remember",
     title: "And it never forgets.",
-    lede: "Every service, decision, and document — kept in a record that travels with the home. When you hand the keys on, you hand the story on too.",
+    lede: "Every service, decision, and document, kept in a record that travels with the home. When you hand the keys on, you hand the story on too.",
     examples: [
       "When you sell the house, the buyer inherits a complete record: every service, every repair, every improvement, every plan. That's provenance.",
-      "Your decorator arrives and checks HoWA before starting. Paint colours, finish types, last painted date — all there. No guessing.",
+      "Your decorator arrives and checks HoWA before starting. Paint colours, finish types, last painted date, all there. No guessing.",
       "Insurance renewal is in 42 days. HoWA surfaces the Home Protection Review evidence pack, the maintenance log, and the claims history. Ready to go.",
     ],
-    image: "/home-v4/howa-lander-faq-v2.webp",
+    image: "/home-v4/howa-understand.webp",
     imageAlt:
-      "The Living Record of Your Home — a leather-bound book, vase, brass key and HoWA sensor on a wooden cabinet",
+      "The HoWA living record of the home, every service, decision and document kept and carried forward",
   },
 ];
 
@@ -118,7 +118,7 @@ export default async function HowItWorksPage() {
         contentName="How HoWA works"
         contentCategory="howa_marketing"
       />
-      {/* 1. Hero — dollhouse-on-cabinet scene as full-bleed bg, copy floats left */}
+      {/* 1. Hero, dollhouse-on-cabinet scene as full-bleed bg, copy floats left */}
       <section className={s.hero}>
         <div className={s.heroBg} aria-hidden="true">
           <Image
@@ -141,12 +141,12 @@ export default async function HowItWorksPage() {
               {cms(
                 hero,
                 "body",
-                "Whatever the tier, HoWA does the same four things — Understand, Recommend, Connect and Remember. Each one feeds the next, and the record compounds.",
+                "Whatever the tier, HoWA does the same four things, Understand, Recommend, Connect and Remember. Each one feeds the next, and the record compounds.",
               )}
             </p>
             <div className={s.heroCtas}>
               <Link href={cms(hero, "ctaHref", "/api/howa-bounce")} className={s.btnFilled}>
-                {cms(hero, "ctaLabel", "Coming soon")}
+                {cms(hero, "ctaLabel", "Join the waitlist")}
               </Link>
               <Link href={cms(hero, "cta2Href", "/howa/plus")} className={s.btnGhost}>
                 {cms(hero, "cta2Label", "See HoWA+")}
@@ -208,7 +208,7 @@ export default async function HowItWorksPage() {
         </section>
       ))}
 
-      {/* 7. Compound band — navy */}
+      {/* 7. Compound band, navy */}
       <section className={s.compoundBand}>
         <p className={s.compoundEy}>{cms(compound, "eyebrow", "The compound effect.")}</p>
         <h2 className={s.compoundTitle}>
@@ -228,13 +228,13 @@ export default async function HowItWorksPage() {
 
       {/* 8. Closing */}
       <section className={s.closing}>
-        <p className={s.closingKicker}>{cms(closing, "eyebrow", "Begin with the Companion.")}</p>
+        <p className={s.closingKicker}>{cms(closing, "eyebrow", "Begin with the Assistant.")}</p>
         <p className={s.closingStatement}>
           <em>{cms(closing, "headlineEm", "Two minutes. The first piece of the record.", "headline")}</em>
         </p>
         <div className={s.closingCtas}>
           <Link href={cms(closing, "ctaHref", "/api/howa-bounce")} className={s.closingBtnFilled}>
-            {cms(closing, "ctaLabel", "Coming soon")}
+            {cms(closing, "ctaLabel", "Join the waitlist")}
           </Link>
         </div>
       </section>

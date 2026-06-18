@@ -3,6 +3,20 @@ import Link from "next/link";
 import s from "./services.module.css";
 import { FaqList } from "@/components/marketing/FaqList";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
+import fs from "node:fs";
+import path from "node:path";
+
+// Services without their own photography fall back to the "Coming Soon"
+// placeholder, with a "Service Coming Soon" label over it.
+const COMING_SOON = "/services/service-placeholder.webp";
+function imgOr(p?: string): string {
+  if (!p || p.startsWith("http")) return p || COMING_SOON;
+  try {
+    return fs.existsSync(path.join(process.cwd(), "public", p.replace(/^\//, ""))) ? p : COMING_SOON;
+  } catch {
+    return COMING_SOON;
+  }
+}
 
 /**
  * /services — landing page in the lander framework.
@@ -16,7 +30,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  *   2. Stats strip
  *   3. Four service cards
  *   4. Steward Plans ladder — 4 plans, House Essential featured
- *   5. Brief builder — Companion mock
+ *   5. Brief builder — Assistant mock
  *   6. FAQ
  *   7. Closing
  */
@@ -330,17 +344,29 @@ export default async function ServicesLanding() {
               data-state={svc.state}
             >
               <div className={s.serviceImage}>
-                <Image
-                  src={svc.image}
-                  alt={svc.name}
-                  width={780}
-                  height={975}
-                  sizes="(min-width: 1024px) 320px, 80vw"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
-                <span className={s.serviceState}>
-                  {svc.state === "live" ? "Available now" : "Coming soon"}
-                </span>
+                {(() => {
+                  const cardImg = imgOr(svc.image);
+                  const soon = cardImg === COMING_SOON;
+                  return (
+                    <>
+                      <Image
+                        src={cardImg}
+                        alt={svc.name}
+                        width={780}
+                        height={975}
+                        sizes="(min-width: 1024px) 320px, 80vw"
+                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                      />
+                      {soon ? (
+                        <span className={s.serviceComingSoon}>Service Coming Soon</span>
+                      ) : (
+                        <span className={s.serviceState}>
+                          {svc.state === "live" ? "Available now" : "Coming soon"}
+                        </span>
+                      )}
+                    </>
+                  );
+                })()}
               </div>
               <div className={s.serviceBody}>
                 <h3 className={s.serviceName}>{svc.name}</h3>
@@ -426,7 +452,7 @@ export default async function ServicesLanding() {
       {/* 5. Brief builder */}
       <section className={s.brief}>
         <div className={s.briefCopy}>
-          <p className={s.briefEy}>{cms(brief, "eyebrow", "The Companion · in two minutes")}</p>
+          <p className={s.briefEy}>{cms(brief, "eyebrow", "The Assistant · in two minutes")}</p>
           <h2 className={s.briefTitle}>
             {cms(brief, "headline", "Tell us about the home.")}{" "}
             <em>{cms(brief, "headlineEm", "HoWA proposes the plan.", "headline")}</em>
@@ -435,11 +461,11 @@ export default async function ServicesLanding() {
             {cms(
               brief,
               "body",
-              "A short conversation and the Companion sketches a plan that fits the home, the rhythm, and the budget. Adjust before booking, or book straight in.",
+              "A short conversation and the Assistant sketches a plan that fits the home, the rhythm, and the budget. Adjust before booking, or book straight in.",
             )}
           </p>
-          <Link href={cms(brief, "ctaHref", "/howa/companion")} className={s.btnFilled}>
-            {cms(brief, "ctaLabel", "Try the Companion")}
+          <Link href={cms(brief, "ctaHref", "/howa/assistant")} className={s.btnFilled}>
+            {cms(brief, "ctaLabel", "Try the Assistant")}
           </Link>
         </div>
         <div className={s.briefMock}>

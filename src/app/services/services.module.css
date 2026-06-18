@@ -265,6 +265,22 @@
   background: var(--color-house-cream);
   color: var(--color-house-brown);
 }
+.serviceComingSoon {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(30, 26, 20, 0.34);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
+}
 .serviceCard[data-state="live"] .serviceState {
   background: rgba(122, 160, 122, 0.95);
   color: var(--color-house-cream);

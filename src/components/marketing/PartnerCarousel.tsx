@@ -35,6 +35,15 @@ interface Props {
   eyebrow?: string;
   /** Render on dark background (brown band). Cards stay white. */
   dark?: boolean;
+  /**
+   * Booking mode (service pages): cards open the booking platform instead of
+   * linking to a partner profile, the CTA reads "Book now", and the
+   * partner-directory affordances (ghost "become a partner" tile, "see all"
+   * link) are dropped.
+   */
+  bookingMode?: boolean;
+  /** Anchor the cards open in booking mode. Defaults to the global booking form. */
+  bookingHref?: string;
   className?: string;
 }
 
@@ -48,7 +57,7 @@ function typeLabel(t: string): string {
   }
 }
 
-export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = "Our partners", dark = false, className }: Props) {
+export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = "Our partners", dark = false, bookingMode = false, bookingHref = "#open-booking-form", className }: Props) {
   const scrollRef = React.useRef<HTMLDivElement>(null);
   const [canLeft, setCanLeft] = React.useState(false);
   const [canRight, setCanRight] = React.useState(true);
@@ -124,7 +133,7 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = 
           {partners.map((p) => (
             <Link
               key={p.slug}
-              href={`/partners/${p.slug}`}
+              href={bookingMode ? bookingHref : `/partners/${p.slug}`}
               data-card
               className="group flex-none w-[85vw] sm:w-[380px] snap-start bg-house-white border border-house-brown/10 p-8 no-underline flex flex-col transition-all duration-[var(--t-slow)] ease-out hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(48,35,28,0.08)] hover:border-[var(--house-gold-dark)]"
             >
@@ -164,43 +173,45 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = 
 
               {/* CTA */}
               <span className="inline-flex items-center gap-2 font-sans text-[12px] tracking-[0.16em] uppercase" style={{ color: "var(--house-gold-dark)" }}>
-                View profile
+                {bookingMode ? "Book now" : "View profile"}
                 <span className="inline-block transition-transform duration-[var(--t-slow)] ease-out group-hover:translate-x-2">&rarr;</span>
               </span>
             </Link>
           ))}
 
-          {/* Ghost tile */}
-          <div key="__ghost" className={cn(
-            "flex-none w-[85vw] sm:w-[320px] snap-start border border-dashed p-8 flex flex-col items-center justify-center text-center",
-            dark ? "border-house-cream/20" : "border-house-brown/15"
-          )}>
-            <p className={cn("font-display italic text-[17px] mb-3", dark ? "text-house-cream/40" : "text-house-brown/40")}>
-              More partners joining soon.
-            </p>
-            <Link
-              href="/contact"
-              className={cn(
-                "font-sans text-[11px] tracking-[0.16em] uppercase no-underline pb-px border-b transition-colors",
-                dark ? "border-house-cream/25 text-house-cream/50 hover:text-house-cream" : "border-house-brown/30 text-house-brown/50 hover:text-house-brown"
-              )}
-            >
-              Become a partner &rarr;
-            </Link>
-          </div>
+          {/* Ghost tile — partner-directory affordance, hidden in booking mode */}
+          {bookingMode ? null : (
+            <div key="__ghost" className={cn(
+              "flex-none w-[85vw] sm:w-[320px] snap-start border border-dashed p-8 flex flex-col items-center justify-center text-center",
+              dark ? "border-house-cream/20" : "border-house-brown/15"
+            )}>
+              <p className={cn("font-display italic text-[17px] mb-3", dark ? "text-house-cream/40" : "text-house-brown/40")}>
+                More partners joining soon.
+              </p>
+              <Link
+                href="/contact"
+                className={cn(
+                  "font-sans text-[11px] tracking-[0.16em] uppercase no-underline pb-px border-b transition-colors",
+                  dark ? "border-house-cream/25 text-house-cream/50 hover:text-house-cream" : "border-house-brown/30 text-house-brown/50 hover:text-house-brown"
+                )}
+              >
+                Become a partner &rarr;
+              </Link>
+            </div>
+          )}
         </div>
 
-        {/* See all link */}
+        {/* Bottom CTA — booking mode opens the booking platform; otherwise the directory */}
         <div className="mt-8 text-center">
           <Link
-            href="/partners"
+            href={bookingMode ? bookingHref : "/partners"}
             className={cn(
               "inline-flex items-center gap-2 font-sans text-[12px] tracking-[0.18em] uppercase no-underline pb-1 border-b transition-[color,border-style] duration-[var(--t-slow)] ease-out hover:border-dotted",
               dark ? "text-house-gold-light border-house-gold-light" : ""
             )}
             style={dark ? undefined : { color: "var(--house-gold-dark)", borderColor: "var(--house-gold-dark)" }}
           >
-            See all House Approved partners
+            {bookingMode ? "Book this service" : "See all House Approved partners"}
             <span>&rarr;</span>
           </Link>
         </div>

@@ -16,6 +16,16 @@ type CollectionListItem = {
   featured?: boolean;
 };
 
+// Back-office collections — kept in Shopify, hidden from the public shop.
+const HIDDEN_HANDLES = new Set(["services", "migration-review", "migration", "migration_review"]);
+function isHidden(c: { handle: string; title: string }): boolean {
+  return (
+    HIDDEN_HANDLES.has(c.handle) ||
+    /migration[-_ ]?review/i.test(c.title) ||
+    /^services$/i.test(c.title)
+  );
+}
+
 async function getAllCollections(): Promise<CollectionListItem[]> {
   const local: CollectionListItem[] = COLLECTIONS.map((c) => ({
     handle: c.handle,
@@ -33,12 +43,15 @@ async function getAllCollections(): Promise<CollectionListItem[]> {
       count: c.productCount,
       featured: false,
     }));
-  // Featured first, then by count descending
-  return [...local, ...catalogue].sort((a, b) => {
-    if (a.featured && !b.featured) return -1;
-    if (!a.featured && b.featured) return 1;
-    return b.count - a.count;
-  });
+  // Featured first, then by count descending. Hidden back-office collections
+  // (services, migration-review) are filtered out of the public list.
+  return [...local, ...catalogue]
+    .filter((c) => !isHidden(c))
+    .sort((a, b) => {
+      if (a.featured && !b.featured) return -1;
+      if (!a.featured && b.featured) return 1;
+      return b.count - a.count;
+    });
 }
 
 export default async function CollectionsIndexPage() {

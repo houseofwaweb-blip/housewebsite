@@ -17,6 +17,7 @@ import { GoogleTagSetup } from "@/components/consent/GoogleTagSetup";
 import { MicrosoftClarity } from "@/components/consent/loaders/MicrosoftClarity";
 import { MetaPixel } from "@/components/consent/loaders/MetaPixel";
 import { PinterestTag } from "@/components/consent/loaders/PinterestTag";
+import { Klaviyo } from "@/components/consent/loaders/Klaviyo";
 import { ClickIdCapture } from "@/components/marketing/ClickIdCapture";
 import "./globals.css";
 
@@ -146,7 +147,7 @@ export default async function RootLayout({
       </head>
       <body>
         <ConsentProvider>
-          <CartProvider>
+          <CartProvider buyable={env.SHOP_BUYABLE}>
             <a href="#main" className="skip-link">
               Skip to content
             </a>
@@ -163,6 +164,7 @@ export default async function RootLayout({
             <MicrosoftClarity />
             <MetaPixel />
             <PinterestTag />
+            <Klaviyo />
             <ClickIdCapture />
           </CartProvider>
         </ConsentProvider>

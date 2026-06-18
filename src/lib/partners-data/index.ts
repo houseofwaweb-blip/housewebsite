@@ -6,6 +6,8 @@
  * placeholder art (public/partners/*) until per-partner photography lands.
  */
 
+import { GARDEN_PROJECTS } from "@/lib/gardens-projects";
+
 export type PartnerSlug =
   | "delve-interiors"
   | "jessica-durling-mcmahon"
@@ -28,6 +30,8 @@ export interface PartnerProject {
   caption: string;
   meta: string;
   image: string;
+  /** Optional link to a full project page (e.g. a garden commission). */
+  href?: string;
 }
 
 export interface LaunchPartner {
@@ -124,6 +128,16 @@ const PLACEHOLDER_PROJECTS: PartnerProject[] = [
   },
 ];
 
+// Willow Alexander Gardens' real commissions, linked to their full project
+// pages under /design/gardens/projects. Mirrors the gallery on /design/gardens.
+const GARDEN_COMMISSIONS: PartnerProject[] = GARDEN_PROJECTS.slice(0, 6).map((p) => ({
+  title: p.title,
+  caption: `Gardens · ${p.type}`,
+  meta: p.location,
+  image: p.images[0],
+  href: `/design/gardens/projects/${p.slug}`,
+}));
+
 // Default design package ladder for studios. House AI gets a custom set.
 const DEFAULT_DESIGN_PACKAGES: PartnerPackage[] = [
   {
@@ -191,6 +205,30 @@ const DEFAULT_FAQ = [
   {
     q: "Does every action live in HoWA?",
     a: "Every meaningful one. The living record is the point.",
+  },
+];
+
+// Garden-specific FAQ for Willow Alexander Gardens (not interiors).
+const GARDEN_FAQ = [
+  {
+    q: "Do you build the gardens, or only design them?",
+    a: "Both. The studio designs and builds, so the garden you are shown is the garden you get, delivered by one team from plan to planting.",
+  },
+  {
+    q: "Where do you work?",
+    a: "Across London and the South East, with most gardens in Kent and south London. If you are nearby, ask.",
+  },
+  {
+    q: "How long does a garden take?",
+    a: "A design takes a few weeks; a build runs from a few weeks to a few months depending on scale, levels and groundwork. You will have a realistic programme before anything begins.",
+  },
+  {
+    q: "What does a garden cost?",
+    a: "It depends on size, changes in level and materials. We give an honest range at the first visit and a fixed quote once the design is settled.",
+  },
+  {
+    q: "Will it be a lot of upkeep?",
+    a: "Only as much as you want. We plant for the maintenance you are happy to give, and the garden can be looked after through House services once it is in.",
   },
 ];
 
@@ -392,9 +430,9 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
 
     projectsHeading: "From the studio.",
     projectsHeadingEm: "Recent commissions.",
-    projects: PLACEHOLDER_PROJECTS,
+    projects: GARDEN_COMMISSIONS,
 
-    faq: DEFAULT_FAQ,
+    faq: GARDEN_FAQ,
     closingLine:
       "A garden you want to live in \u2014 planted once, tended forever.",
     closingLineEm: "planted once, tended forever.",
@@ -416,7 +454,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
     heroHeadline: "Intelligence that disappears into the architecture.",
     heroHeadlineEm: "disappears into the architecture.",
     heroSub:
-      "Automation, lighting schemes, audio, and heating controls \u2014 designed with our interior studios from the first brief. The brains behind the HoWA Companion as well.",
+      "Automation, lighting schemes, audio, and heating controls \u2014 designed with our interior studios from the first brief. The brains behind the HoWA Assistant as well.",
     heroImage: "/home-v4/design-portrait.webp",
     heroCaption: "Integrated lighting scheme \u00b7 House AI",
 
@@ -425,7 +463,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
       "Automation, lighting, audio, and quiet technology that disappears into the architecture.",
     longBio: [
       "House AI is our specialist partner for anything electrical, automated, or intelligent inside a home. They build systems that are meant to be invisible: lighting that does the right thing without thinking about it, audio you don't see, heating that learns.",
-      "They work with our design studios from early concept so the technology doesn't feel bolted on. House AI also powers the back-end of the HoWA Companion \u2014 the model behind the diagnostic.",
+      "They work with our design studios from early concept so the technology doesn't feel bolted on. House AI also powers the back-end of the HoWA Assistant \u2014 the model behind the diagnostic.",
     ],
     portraitImage: "/partners/portrait.webp",
     founded: "2021",
@@ -480,7 +518,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
           "Firmware refresh",
           "Annual health check",
           "Smart-home audit",
-          "Companion-linked alerts",
+          "Assistant-linked alerts",
         ],
         ctaLabel: "Add in HoWA \u2192",
       },
@@ -495,7 +533,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
       "Technology worth not thinking about \u2014 specified once, updated forever.",
     closingLineEm: "specified once, updated forever.",
 
-    specialties: ["Lighting schemes", "Audio & AV", "Heating & controls", "Companion models"],
+    specialties: ["Lighting schemes", "Audio & AV", "Heating & controls", "Assistant models"],
     serviceAreas: ["UK-wide"],
     houseApprovedSeal: true,
     awaitingAssets: true,

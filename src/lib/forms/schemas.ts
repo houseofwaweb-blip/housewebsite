@@ -89,6 +89,17 @@ export type ConsultationBookingOutput = z.output<typeof consultationBookingSchem
 export const waitlistInterestSchema = z.object({
   email,
   product: z.enum(["steward", "protect_review", "insurance", "howa_app", "other"]),
+  // HoWA app waitlist extras (optional in the schema so the other register-
+  // interest products keep working; the HoWA form makes tier required client-side).
+  // tier maps to the Klaviyo `tier_interest` profile property; postcode is uppercased.
+  firstName: z.string().trim().min(1).max(120).optional(),
+  lastName: z.string().trim().min(1).max(120).optional(),
+  postcode: z.string().trim().max(12).optional(),
+  tier: z.enum(["assistant", "housekeeper", "steward"]).optional(),
+  // Steward application extras (the /howa/steward "Request an invitation" form).
+  // propertyType -> Klaviyo `property_type`; note -> `steward_note`.
+  propertyType: z.string().trim().max(60).optional(),
+  note: z.string().trim().max(2000).optional().or(z.literal("").transform(() => undefined)),
   context: z.record(z.string(), z.unknown()).optional(),
   sourcePage,
   turnstileToken,

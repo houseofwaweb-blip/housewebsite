@@ -38,5 +38,9 @@ export async function GET(req: NextRequest) {
     dest.searchParams.set("utm_medium", source);
     return NextResponse.redirect(dest, 307);
   }
-  return NextResponse.redirect(new URL("/howa/coming-soon", req.url), 307);
+  // Relative redirect: the browser resolves this Location against the URL it
+  // actually requested. Building `new URL(..., req.url)` would bake in the
+  // server's bound host (e.g. 0.0.0.0 when started with -H 0.0.0.0), producing
+  // an unreachable http://0.0.0.0:4000/... destination.
+  return new NextResponse(null, { status: 307, headers: { Location: "/howa/coming-soon" } });
 }

@@ -23,6 +23,12 @@ const wpLongTailRedirects = (wpLongTail as LongTailEntry[]).map((e) => ({
 }));
 
 const nextConfig: NextConfig = {
+  // Allow the dev server's runtime (HMR + React Refresh) to be reached from
+  // other devices on the LAN — without this, accessing the site via the
+  // machine's IP (e.g. for same-WiFi demos) loads the HTML but blocks the
+  // dev runtime, leaving the page non-interactive. localhost is allowed by
+  // default; LAN IPs must be listed.
+  allowedDevOrigins: ["192.168.1.149", "192.168.1.*", "*.local"],
   images: {
     remotePatterns: [
       // Live WordPress CDN — used by the Hearth until we migrate images into Sanity
@@ -36,6 +42,8 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       // Structural moves
+      // Companion folded into the free Assistant tier page (2026-06-17)
+      { source: "/howa/companion", destination: "/howa/assistant", permanent: true },
       { source: "/protect/review", destination: "/protect/home-protection", permanent: true },
       { source: "/insurance", destination: "/protect/insurance", permanent: true },
       { source: "/press", destination: "/news", permanent: true },

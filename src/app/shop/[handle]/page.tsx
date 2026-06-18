@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ProductCard } from "@/components/commerce/ProductCard";
 import { PRODUCTS, findProduct, getRelatedProducts } from "@/lib/shop-data";
 import { getShopProduct } from "@/lib/shop-data/source";
-import { getAllProductHandles, getProductByHandle } from "@/lib/cms/products";
-import { CATALOGUE_PRODUCTS } from "@/lib/shop-data/catalogue";
+import { getProductByHandle } from "@/lib/cms/products";
+import { getProductVariants } from "@/lib/shop-data/shopify-catalogue";
+import { ProductBuy } from "./ProductBuy";
 import { ProductGallery } from "./ProductGallery";
 import { ProductCopy } from "./ProductCopy";
 import { ProductJsonLd, BreadcrumbJsonLd } from "@/lib/seo/jsonLd";
@@ -74,21 +74,26 @@ export async function generateMetadata({
   // X, LinkedIn etc. p.image is either absolute (Sanity CDN) or a relative
   // /partners/*.jpg from the hardcoded fallback.
   const ogImage = p.image?.startsWith("http") ? p.image : `${baseUrl}${p.image}`;
+  // Prefer the per-product "Search engine listing" set in Shopify; fall back
+  // to the product title / first line of the description when none is set.
+  const metaTitle = p.seoTitle?.trim() ? p.seoTitle : `${p.title} — Shop`;
+  const ogTitle = p.seoTitle?.trim() ? p.seoTitle : p.title;
+  const metaDescription = p.seoDescription?.trim() ? p.seoDescription : p.lede;
   return {
-    title: `${p.title} — Shop`,
-    description: p.lede,
+    title: metaTitle,
+    description: metaDescription,
     alternates: { canonical: productUrl },
     openGraph: {
       type: "website",
       url: productUrl,
-      title: p.title,
-      description: p.lede,
+      title: ogTitle,
+      description: metaDescription,
       images: ogImage ? [{ url: ogImage, alt: p.title }] : undefined,
     },
     twitter: {
       card: "summary_large_image",
-      title: p.title,
-      description: p.lede,
+      title: ogTitle,
+      description: metaDescription,
       images: ogImage ? [ogImage] : undefined,
     },
   };
@@ -103,6 +108,7 @@ export default async function ProductPage({
   const product = await resolveProduct(handle);
   if (!product) notFound();
 
+  const variants = await getProductVariants(handle);
   const related = getRelatedProducts(product.relatedHandles ?? []);
   const baseUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
   const productUrl = `${baseUrl}/shop/${product.handle}`;
@@ -156,50 +162,48 @@ export default async function ProductPage({
         <span>{product.title}</span>
       </nav>
 
-      {/* Hero landscape */}
-      <div className={s.hero}>
-        <Image
-          src={product.image}
-          alt={product.title}
-          width={2800}
-          height={1200}
-          priority
-          sizes="100vw"
-          className={s.heroImage}
-        />
-        {product.houseApproved ? (
-          <span className={s.heroSeal}>House Approved</span>
-        ) : null}
-      </div>
+      {/* PDP — gallery left, buy column right (DESIGN.md <PDPLayout />) */}
+      <div className={s.pdp}>
+        <ProductGallery images={product.images} />
 
-      {/* Purchase bar */}
-      <div className={s.bar}>
-        <div className={s.barTitle}>
-          {product.collection ? (
-            <span className={s.barCollection}>{product.collection}</span>
+        <div className={s.buy}>
+          {product.collection || product.houseApproved ? (
+            <div className={s.eyebrowRow}>
+              {product.collection ? (
+                <span className={s.collection}>{product.collection}</span>
+              ) : null}
+              {product.houseApproved ? (
+                <span className={s.seal}>House Approved</span>
+              ) : null}
+            </div>
           ) : null}
-          <h1 className={s.barName}>{product.title}</h1>
-        </div>
-        <div className={s.barPrice}>
-          {product.compareAtPrice ? (
-            <>
-              <span className={s.barCompare}>{product.compareAtPrice}</span>
-              {product.price}
-            </>
-          ) : (
-            product.price
-          )}
-        </div>
-        <span className={s.barCta}>Coming soon</span>
-      </div>
 
-      {/* Story split */}
-      <div className={s.story}>
-        <div className={s.storyCopy}>
+          <h1 className={s.name}>{product.title}</h1>
+
+          <div className={s.price}>
+            {product.compareAtPrice ? (
+              <span className={s.compare}>{product.compareAtPrice}</span>
+            ) : null}
+            {product.price}
+          </div>
+
+          {variants.length > 0 ? (
+            <ProductBuy
+              variants={variants}
+              product={{
+                handle: product.handle,
+                title: product.title,
+                price: product.price,
+                image: product.image,
+              }}
+            />
+          ) : (
+            <div className="mb-9">
+              <span className={s.comingSoon}>Coming soon</span>
+            </div>
+          )}
+
           <ProductCopy product={product} />
-        </div>
-        <div className={s.storyGallery}>
-          <ProductGallery images={product.images} />
         </div>
       </div>
 
@@ -227,10 +231,12 @@ export default async function ProductPage({
   );
 }
 
+// Pages not listed here (the 500+ Sanity/catalogue products) render on first
+// request and are then cached. dynamicParams defaults to true.
+export const revalidate = 3600;
+
+// Prebuild only the curated showpieces at build time. Prebuilding all 500+
+// products exhausted build memory; the rest are served on-demand via ISR.
 export async function generateStaticParams() {
-  const sanityHandles = await getAllProductHandles();
-  const localHandles = PRODUCTS.map((p) => p.handle);
-  const catHandles = CATALOGUE_PRODUCTS.map((p) => p.handle);
-  const all = [...new Set([...sanityHandles, ...localHandles, ...catHandles])];
-  return all.map((handle) => ({ handle }));
+  return PRODUCTS.map((p) => ({ handle: p.handle }));
 }

@@ -1,46 +1,63 @@
 "use client";
 
+import * as React from "react";
 import Image from "next/image";
+import s from "./product.module.css";
 
 /**
- * ProductGallery — right-column image stack (desktop) / horizontal
- * peek-carousel (mobile) for the Lookbook layout.
- *
- * Desktop: simple vertical flex-col, overflow-hidden (no scrollbar).
- * Mobile: horizontal scroll-snap at 85vw per image, peek from right.
- * Gold hairline dividers between images on desktop only.
+ * ProductGallery — thumbnail rail (left) + large main image.
+ * Clicking a thumbnail swaps the main image. Single-image products
+ * render just the main image with no rail. On mobile the rail moves
+ * below the main image as a horizontal strip (CSS column-reverse).
  */
 export function ProductGallery({
   images,
 }: {
   images: Array<{ src: string; alt: string }>;
 }) {
+  const [active, setActive] = React.useState(0);
+  if (!images.length) return null;
+
+  const multi = images.length > 1;
+  const main = images[Math.min(active, images.length - 1)];
+
   return (
-    <div
-      className={[
-        /* Desktop: vertical stack, overflow hidden — NO scrollbar */
-        "md:flex md:flex-col md:overflow-hidden",
-        /* Mobile: horizontal carousel with snap */
-        "max-md:flex max-md:flex-row max-md:overflow-x-auto max-md:[scroll-snap-type:x_mandatory] max-md:[-webkit-overflow-scrolling:touch]",
-      ].join(" ")}
-    >
-      {images.map((img, i) => (
-        <div key={img.src} className="max-md:shrink-0 max-md:w-[85vw] max-md:[scroll-snap-align:start] max-md:first:ml-[5vw] max-md:mr-[3vw] max-md:last:mr-[5vw]">
-          {/* Gold hairline divider — desktop only, not before first image */}
-          {i > 0 ? (
-            <div aria-hidden="true" className="h-px bg-house-gold/20 max-md:hidden" />
-          ) : null}
-          <Image
-            src={img.src}
-            alt={img.alt}
-            width={1400}
-            height={1750}
-            sizes="(max-width: 768px) 85vw, 50vw"
-            className="w-full h-auto object-cover max-md:aspect-[4/5]"
-            priority={i === 0}
-          />
+    <div className={s.gallery}>
+      {multi ? (
+        <div className={s.thumbs} role="list" aria-label="Product images">
+          {images.map((img, i) => (
+            <button
+              key={img.src + i}
+              type="button"
+              role="listitem"
+              aria-label={`View image ${i + 1} of ${images.length}`}
+              aria-current={i === active}
+              onClick={() => setActive(i)}
+              className={i === active ? `${s.thumb} ${s.thumbActive}` : s.thumb}
+            >
+              <Image
+                src={img.src}
+                alt=""
+                width={160}
+                height={160}
+                className={s.thumbImg}
+              />
+            </button>
+          ))}
         </div>
-      ))}
+      ) : null}
+
+      <div className={s.mainWrap}>
+        <Image
+          src={main.src}
+          alt={main.alt}
+          width={1400}
+          height={1750}
+          priority
+          sizes="(max-width: 900px) 100vw, 52vw"
+          className={s.mainImg}
+        />
+      </div>
     </div>
   );
 }

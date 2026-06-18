@@ -1,4 +1,3 @@
-import Image from "next/image";
 import s from "./shop.module.css";
 import {
   getShopProducts,
@@ -6,6 +5,13 @@ import {
   getShopBrands,
 } from "@/lib/shop-data/source";
 import { ShopBrowser } from "./ShopBrowser";
+
+/** The 11 top-level categories — the only collections shown in the filter rail. */
+const MAIN_CATEGORY_HANDLES = new Set([
+  "apparel", "home-accessories", "household-essentials", "gardening",
+  "outdoor-living", "pet-care", "gifts-stationery", "books",
+  "soft-furnishings", "furniture-storage", "lighting",
+]);
 
 export const metadata = {
   title: "Shop — Objects worth keeping.",
@@ -21,46 +27,30 @@ export default async function ShopPage() {
   ]);
   return (
     <div className={s.page}>
-      {/* Hero */}
-      <section className={s.hero}>
-        <div className={s.heroCopy}>
-          <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>The House · Shop</p>
-            <h1 className={s.heroTitle}>
-              Objects worth <em>keeping.</em>
-            </h1>
-            <p className={s.heroLede}>
-              Curated tools, homewares and small objects — each chosen for
-              craft, provenance and lasting use. Verified by the House,
-              written back to your home record through HoWA.
-            </p>
-            <p className={s.heroCount}>
-              {products.length} pieces
-            </p>
-            <div className={s.heroNotice}>
-              <p>
-                A curated edit. Enquire for any piece — we&apos;ll be in touch
-                about availability, lead times and bespoke options.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className={s.heroVisual}>
-          <Image
-            src="/home-v4/house-temperaments-still-life.webp"
-            alt="Still life of curated objects from the House"
-            fill
-            priority
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            style={{ objectFit: "cover", objectPosition: "center" }}
-          />
-        </div>
+      {/* Header — minimal, straight to product (DSM-style). On desktop, pad
+          left by the sidebar width so the title centres over the product grid,
+          not the whole page. */}
+      <section className="border-b border-house-brown/8 px-[5vw] md:pl-[240px] md:pr-8 pt-10 pb-7 text-center">
+        <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-house-gold mb-3">
+          The House · Shop
+        </p>
+        <h1 className="font-display text-[clamp(30px,3.4vw,48px)] leading-[1.05] tracking-[-0.01em] text-house-brown">
+          Objects worth{" "}
+          <em className="italic" style={{ fontFamily: "var(--font-hearth-serif)" }}>
+            keeping.
+          </em>
+        </h1>
+        <p className="font-sans text-[13.5px] text-house-stone max-w-[460px] mx-auto mt-4 leading-[1.6]">
+          Curated tools, homewares and small objects — chosen for craft,
+          provenance and lasting use.
+        </p>
       </section>
 
-      {/* Gallery Wall browser */}
+      {/* Gallery Wall browser — sidebar shows main categories only (not the
+          45 tag sub-collections, House Approved, Services, Migration Review). */}
       <ShopBrowser
         products={products}
-        collections={collections.filter((c) => c.productCount >= 5)}
+        collections={collections.filter((c) => MAIN_CATEGORY_HANDLES.has(c.handle))}
         brands={brands.filter((b) => b.count >= 3)}
       />
     </div>

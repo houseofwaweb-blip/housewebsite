@@ -9,8 +9,11 @@ import { SERVICE_AREAS } from "@/lib/services-data/sub-services";
 import s from "./ServiceDetail.module.css";
 
 const PUBLIC = path.join(process.cwd(), "public");
-const PLACEHOLDER_HERO = "/services/photos/placeholders/hero-16x9-v2.webp";
-const PLACEHOLDER_GALLERY = "/services/photos/placeholders/gallery-4x3-v2.webp";
+// Services / sub-services without their own photography fall back to the
+// "Coming Soon" placeholder, with a "Service Coming Soon" label over it.
+const COMING_SOON = "/services/service-placeholder.webp";
+const PLACEHOLDER_HERO = COMING_SOON;
+const PLACEHOLDER_GALLERY = COMING_SOON;
 
 function fileOr(localPath: string | undefined, fallback: string) {
   if (!localPath) return fallback;
@@ -118,14 +121,19 @@ export function ServiceDetail({ service }: { service: Service }) {
   const partnerNameSingular = partners.singular;
 
   const heroImage = fileOr(service.heroImage, PLACEHOLDER_HERO);
+  // No real photography => this service isn't live yet. Same signal that drives
+  // the "Service Coming Soon" image overlay. When true we suppress the
+  // book-this-service CTA and point people at services they can actually book.
+  const soon = heroImage === COMING_SOON;
   const galleryRaw =
     PLACEHOLDER_GALLERY_BY_SERVICE[service.slug] ?? PLACEHOLDER_GALLERY_BY_SERVICE.gardening;
   const gallery = galleryRaw.map((g) => ({ ...g, src: fileOr(g.src, PLACEHOLDER_GALLERY) }));
 
   return (
     <div className={s.page}>
-      {/* 1. Hero */}
-      {service.heroImage ? (
+      {/* 1. Hero — image hero always shows (coming-soon services fall back to
+          the "Service Coming Soon" placeholder so the top never sits bare). */}
+      {service.heroImage || soon ? (
         <section className={s.heroImageSection}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -141,12 +149,20 @@ export function ServiceDetail({ service }: { service: Service }) {
             </h1>
             <p className={s.heroLedeLight}>{service.lede}</p>
             <div className={s.heroCtas}>
-              <Link href="#open-booking-form" className={s.btnFilled}>
-                Book {service.name.toLowerCase()}
-              </Link>
-              <Link href="/api/howa-bounce?source=service-hero" className={s.btnGhostLight}>
-                Coming soon
-              </Link>
+              {soon ? (
+                <>
+                  <span className={s.btnFilled} style={{ cursor: "default" }}>
+                    Service Coming Soon
+                  </span>
+                  <Link href="/services" className={s.btnGhostLight}>
+                    Book another service →
+                  </Link>
+                </>
+              ) : (
+                <Link href="#open-booking-form" className={s.btnFilled}>
+                  Book {service.name.toLowerCase()}
+                </Link>
+              )}
             </div>
           </div>
         </section>
@@ -159,15 +175,25 @@ export function ServiceDetail({ service }: { service: Service }) {
             </h1>
             <p className={s.heroLede}>{service.lede}</p>
             <div className={s.heroCtas}>
-              <Link href="#open-booking-form" className={s.btnFilled}>
-                Book {service.name.toLowerCase()}
-              </Link>
-              <Link href="/api/howa-bounce?source=service-hero" className={s.btnGhost}>
-                Coming soon
-              </Link>
-              {service.recurring ? (
-                <span className={s.stewardBadge}>Steward-ready</span>
-              ) : null}
+              {soon ? (
+                <>
+                  <span className={s.btnFilled} style={{ cursor: "default" }}>
+                    Service Coming Soon
+                  </span>
+                  <Link href="/services" className={s.btnGhost}>
+                    Book another service →
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link href="#open-booking-form" className={s.btnFilled}>
+                    Book {service.name.toLowerCase()}
+                  </Link>
+                  {service.recurring ? (
+                    <span className={s.stewardBadge}>Steward-ready</span>
+                  ) : null}
+                </>
+              )}
             </div>
           </div>
         </section>
@@ -182,15 +208,19 @@ export function ServiceDetail({ service }: { service: Service }) {
         </section>
       ) : null}
 
-      {/* 3. Partner carousel — dark band */}
-      <PartnerCarousel
-        eyebrow={`Our ${partnerName}`}
-        heading={`Meet our ${partnerName}.`}
-        headingEm={partnerName + "."}
-        lede={`Every ${partnerNameSingular} who works through the House has been vetted, insured, and meets the standard we'd hold ourselves to.`}
-        partners={PLACEHOLDER_PARTNERS[service.slug] ?? []}
-        dark
-      />
+      {/* 3. Partner carousel — dark band. Hidden for coming-soon services:
+          they have no vetted partners yet and we don't want a book-this CTA. */}
+      {soon ? null : (
+        <PartnerCarousel
+          eyebrow={`Our ${partnerName}`}
+          heading={`Meet our ${partnerName}.`}
+          headingEm={partnerName + "."}
+          lede={`Every ${partnerNameSingular} who works through the House has been vetted, insured, and meets the standard we'd hold ourselves to.`}
+          partners={PLACEHOLDER_PARTNERS[service.slug] ?? []}
+          dark
+          bookingMode
+        />
+      )}
 
       {/* 4. What's included + How it works */}
       <section className={s.what}>
@@ -234,7 +264,8 @@ export function ServiceDetail({ service }: { service: Service }) {
                 SUB_SERVICE_IMAGES[`${service.slug}/${sub.slug}`] ??
                 sub.image ??
                 `/services/photos/${service.slug}/${sub.slug}-hero.webp`;
-              const img = fileOr(requested, PLACEHOLDER_GALLERY);
+              const img = fileOr(requested, COMING_SOON);
+              const soon = img === COMING_SOON;
               return (
                 <Link
                   key={sub.slug}
@@ -244,6 +275,7 @@ export function ServiceDetail({ service }: { service: Service }) {
                   <div className={s.subImage}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={img} alt={sub.name} />
+                    {soon ? <span className={s.comingSoonTag}>Service Coming Soon</span> : null}
                   </div>
                   <div className={s.subBody}>
                     <h3 className={s.subName}>{sub.name}</h3>
@@ -285,9 +317,20 @@ export function ServiceDetail({ service }: { service: Service }) {
               and the work is logged to your home record. No subscription
               required.
             </p>
-            <Link href="#open-booking-form" className={s.btnFilled}>
-              Book {service.name.toLowerCase()}
-            </Link>
+            {soon ? (
+              <div className={s.heroCtas}>
+                <span className={s.btnFilled} style={{ cursor: "default" }}>
+                  Service Coming Soon
+                </span>
+                <Link href="/services" className={s.btnGhost}>
+                  Book another service →
+                </Link>
+              </div>
+            ) : (
+              <Link href="#open-booking-form" className={s.btnFilled}>
+                Book {service.name.toLowerCase()}
+              </Link>
+            )}
           </article>
 
           <article className={s.bookingCardNavy}>
@@ -348,9 +391,15 @@ export function ServiceDetail({ service }: { service: Service }) {
         <p className={s.closingStatement}>
           <em>A well-kept home</em> starts with one conversation.
         </p>
-        <Link href="#open-booking-form" className={s.btnFilled}>
-          Book with HoWA
-        </Link>
+        {soon ? (
+          <Link href="/services" className={s.btnFilled}>
+            Book another service →
+          </Link>
+        ) : (
+          <Link href="#open-booking-form" className={s.btnFilled}>
+            Book with HoWA
+          </Link>
+        )}
       </section>
     </div>
   );

@@ -16,6 +16,7 @@ import { env } from "@/lib/env";
 import {
   getAllArticleSlugs,
   getArticleBySlug,
+  getAdjacentArticles,
   relatedArticlesFromSanity,
 } from "@/lib/cms/hearth";
 import type { PortableTextBlock } from "@portabletext/types";
@@ -65,7 +66,8 @@ export default async function ArticlePage({
     month: "long",
     year: "numeric",
   });
-  const related = await relatedArticlesFromSanity(slug, article.categoryLong, 3);
+  const related = await relatedArticlesFromSanity(slug, article.categorySlug, 3);
+  const { prev, next } = await getAdjacentArticles(slug);
   const bodyBlocks = (article.body as PortableTextBlock[] | undefined) ?? [];
   const hasBody = bodyBlocks.length > 0;
   // Paywall: preview the first 2 blocks for premium articles, paywall the rest.
@@ -103,6 +105,44 @@ export default async function ArticlePage({
         <div className="sticky top-0 z-30">
           <ProgressBar scroll className="bg-house-white" />
         </div>
+
+        {/* Top prev / next — same neighbours as the footer nav, compact */}
+        {prev || next ? (
+          <nav
+            aria-label="Article navigation (top)"
+            className="max-w-[760px] mx-auto px-[5vw] pt-7 flex items-center justify-between gap-10 md:gap-24"
+          >
+            {prev ? (
+              <Link
+                href={`/the-hearth/${prev.slug}`}
+                className="group inline-flex items-center gap-2 min-w-0 no-underline text-left"
+              >
+                <span aria-hidden className="font-hearth-sans text-[13px] text-house-stone transition-colors group-hover:text-house-gold">←</span>
+                <span className="min-w-0">
+                  <span className="block font-hearth-sans text-[9px] tracking-[0.2em] uppercase text-house-stone">Previous</span>
+                  <span className="block font-hearth-serif text-[14px] leading-snug text-house-black truncate max-w-[34vw] md:max-w-[220px] transition-colors group-hover:text-house-gold">{prev.title}</span>
+                </span>
+              </Link>
+            ) : (
+              <span />
+            )}
+
+            {next ? (
+              <Link
+                href={`/the-hearth/${next.slug}`}
+                className="group inline-flex items-center gap-2 min-w-0 no-underline text-right"
+              >
+                <span className="min-w-0">
+                  <span className="block font-hearth-sans text-[9px] tracking-[0.2em] uppercase text-house-stone">Next</span>
+                  <span className="block font-hearth-serif text-[14px] leading-snug text-house-black truncate max-w-[34vw] md:max-w-[220px] transition-colors group-hover:text-house-gold">{next.title}</span>
+                </span>
+                <span aria-hidden className="font-hearth-sans text-[13px] text-house-stone transition-colors group-hover:text-house-gold">→</span>
+              </Link>
+            ) : (
+              <span />
+            )}
+          </nav>
+        ) : null}
 
         <article>
           <header className="px-[5vw] pt-12 pb-8 text-center max-w-[860px] mx-auto">
@@ -180,6 +220,45 @@ export default async function ArticlePage({
             </div>
           </div>
         </article>
+
+        {/* Prev / back-to-Hearth / next */}
+        <nav
+          aria-label="Article navigation"
+          className="max-w-[760px] mx-auto px-[5vw] py-9 border-t border-house-brown/12 flex items-stretch justify-between gap-4"
+        >
+          {prev ? (
+            <Link href={`/the-hearth/${prev.slug}`} className="group flex-1 min-w-0 no-underline">
+              <span className="block font-hearth-sans text-[10px] tracking-[0.2em] uppercase text-house-stone mb-1">
+                <span aria-hidden>←</span> Previous
+              </span>
+              <span className="block font-hearth-serif text-[15px] leading-snug text-house-black truncate transition-colors group-hover:text-house-gold">
+                {prev.title}
+              </span>
+            </Link>
+          ) : (
+            <span className="flex-1" />
+          )}
+
+          <Link
+            href="/the-hearth"
+            className="shrink-0 self-center font-hearth-sans text-[10px] tracking-[0.18em] uppercase text-house-black no-underline border border-house-brown/25 px-5 py-2.5 transition-colors hover:text-house-gold hover:border-house-gold"
+          >
+            The Hearth
+          </Link>
+
+          {next ? (
+            <Link href={`/the-hearth/${next.slug}`} className="group flex-1 min-w-0 text-right no-underline">
+              <span className="block font-hearth-sans text-[10px] tracking-[0.2em] uppercase text-house-stone mb-1">
+                Next <span aria-hidden>→</span>
+              </span>
+              <span className="block font-hearth-serif text-[15px] leading-snug text-house-black truncate transition-colors group-hover:text-house-gold">
+                {next.title}
+              </span>
+            </Link>
+          ) : (
+            <span className="flex-1" />
+          )}
+        </nav>
 
         {/* Post-read signup — captures the reader at peak interest. Cream
             variant matches the Hearth surface; sourcePage carries the slug
