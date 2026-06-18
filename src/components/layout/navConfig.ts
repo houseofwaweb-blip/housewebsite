@@ -23,7 +23,8 @@ export const PRIMARY_NAV: MegaPanel[] = [
   {
     id: "the-house",
     trigger: "The House",
-    triggerHref: "/the-house",
+    // No triggerHref: "The House" is a hover-dropdown only — it opens the menu
+    // rather than navigating to a standalone overview page.
     groups: [
       {
         heading: "What we stand for",
