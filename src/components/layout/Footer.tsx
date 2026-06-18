@@ -33,6 +33,7 @@ const COLS: FooterColumn[] = [
       { label: "Overview", href: "/howa" },
       { label: "HoWA (Assistant)", href: "/howa/assistant" },
       { label: "HoWA+ (Housekeeper)", href: "/howa/plus" },
+      { label: "Steward", href: "/howa/steward" },
       { label: "Plans & Pricing", href: "/howa/plans" },
       { label: "FAQ", href: "/howa/faq" },
     ],

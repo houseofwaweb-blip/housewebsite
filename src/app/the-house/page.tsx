@@ -96,6 +96,40 @@ const PILLARS = [
   },
 ];
 
+// Directory of every route under the House — this page is the front door.
+const HOUSE_ROUTES = [
+  {
+    heading: "What we stand for",
+    links: [
+      { label: "Philosophy", href: "/the-house/philosophy", desc: "Our founding idea" },
+      { label: "The Artwork of the House", href: "/the-house/artwork", desc: "Heritage, craft, colour" },
+      { label: "Standards", href: "/the-house/standards", desc: "How we work" },
+      { label: "Proof", href: "/the-house/proof", desc: "The record, evidenced" },
+      { label: "Sustainability", href: "/the-house/sustainability", desc: "Our commitments" },
+      { label: "About", href: "/the-house/about", desc: "The team behind the House" },
+    ],
+  },
+  {
+    heading: "What we do",
+    links: [
+      { label: "Design", href: "/design", desc: "Interiors & gardens" },
+      { label: "Services", href: "/services", desc: "Care for the home" },
+      { label: "Protect", href: "/protect", desc: "Insurance & reviews" },
+      { label: "Shop", href: "/shop", desc: "House Approved objects" },
+      { label: "HoWA", href: "/howa", desc: "The home system" },
+    ],
+  },
+  {
+    heading: "Reading",
+    links: [
+      { label: "The Hearth", href: "/the-hearth", desc: "The magazine" },
+      { label: "Musings", href: "/musings", desc: "Notes & advice" },
+      { label: "Recipes", href: "/recipes", desc: "Seasonal cooking" },
+      { label: "News", href: "/news", desc: "Press & awards" },
+    ],
+  },
+];
+
 export default async function TheHousePage() {
   const nlBlock = await getNewsletterBlock("the-house");
   const sections = await getPageSections("the-house");
@@ -352,6 +386,41 @@ export default async function TheHousePage() {
           <Link href={cms(steward, "ctaHref", "/howa/steward")} className={s.stewardCta}>
             {cms(steward, "ctaLabel", "See Steward")} →
           </Link>
+        </div>
+      </section>
+
+      {/* 7b. Explore the House — directory of every route */}
+      <section className="bg-house-cream px-[5vw] py-[clamp(56px,7vw,104px)]">
+        <div className="max-w-[1180px] mx-auto">
+          <p className="font-sans text-[11px] tracking-[0.28em] uppercase text-house-gold-dark mb-3">
+            Explore the House
+          </p>
+          <h2 className="font-display text-[clamp(28px,3.4vw,46px)] leading-[1.1] text-house-brown mb-10">
+            Everything under one roof.
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12">
+            {HOUSE_ROUTES.map((group) => (
+              <div key={group.heading}>
+                <h3 className="font-sans text-[10px] tracking-[0.24em] uppercase text-house-stone mb-5 pb-2 border-b border-house-brown/15">
+                  {group.heading}
+                </h3>
+                <ul className="space-y-4">
+                  {group.links.map((l) => (
+                    <li key={l.href}>
+                      <Link
+                        href={l.href}
+                        className="group inline-flex items-baseline gap-2 font-display text-[20px] leading-tight text-house-brown no-underline transition-colors hover:text-house-gold-dark"
+                      >
+                        {l.label}
+                        <span className="text-house-gold-dark opacity-0 transition-opacity group-hover:opacity-100" aria-hidden>→</span>
+                      </Link>
+                      <p className="font-sans text-[13px] text-house-brown/55 mt-0.5">{l.desc}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
