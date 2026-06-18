@@ -14,7 +14,7 @@ const MAIN_CATEGORY_HANDLES = new Set([
 ]);
 
 export const metadata = {
-  title: "Shop — Objects worth keeping.",
+  title: { absolute: "The House Marketplace | Home, garden and household essentials" },
   description:
     "Curated objects from the House of Willow Alexander. Tools, home, and wear — each House Approved for craft, provenance, and lasting use.",
 };
@@ -32,17 +32,17 @@ export default async function ShopPage() {
           not the whole page. */}
       <section className="border-b border-house-brown/8 px-[5vw] md:pl-[240px] md:pr-8 pt-10 pb-7 text-center">
         <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-house-gold mb-3">
-          The House · Shop
+          The House · Marketplace
         </p>
         <h1 className="font-display text-[clamp(30px,3.4vw,48px)] leading-[1.05] tracking-[-0.01em] text-house-brown">
-          Objects worth{" "}
+          The House{" "}
           <em className="italic" style={{ fontFamily: "var(--font-hearth-serif)" }}>
-            keeping.
+            Marketplace.
           </em>
         </h1>
         <p className="font-sans text-[13.5px] text-house-stone max-w-[460px] mx-auto mt-4 leading-[1.6]">
-          Curated tools, homewares and small objects — chosen for craft,
-          provenance and lasting use.
+          Objects worth keeping for house, garden and daily care, chosen for
+          craft, provenance, usefulness and lasting stewardship.
         </p>
       </section>
 

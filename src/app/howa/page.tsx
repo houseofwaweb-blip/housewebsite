@@ -31,7 +31,7 @@ import { V4MobileCta } from "./v4/_components/V4MobileCta";
  */
 
 export const metadata = {
-  title: "HoWA: The home & garden intelligence app.",
+  title: { absolute: "HoWA | Home Operating System for house and garden" },
   description:
     "Enter your address. In sixty seconds, HoWA builds the first portrait of your home, what it is, what matters, what can wait, and what to do next.",
 };
@@ -61,7 +61,7 @@ export default function HowaPage() {
         <div className={s.subbarRight}>
           <span className={s.coveredBy}>
             <span className={s.coveredMark}>{HouseMark}</span>
-            Covered by <em>House of Willow Alexander</em>
+Created from <em>House of Willow Alexander</em>
           </span>
           <Link href="/howa/coming-soon" className={s.subbarCta}>
             Join waitlist

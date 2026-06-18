@@ -22,7 +22,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  */
 
 export const metadata = {
-  title: "Protect — Home Protection & Risk Reduction",
+  title: "Preventative home protection",
   description:
     "Preventative care for homes that are lived in properly. A new House service launching late 2026 — Home Protection Review, coordinated setup, ongoing oversight.",
 };
@@ -169,19 +169,19 @@ export default async function ProtectPage() {
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>{cms(hero, "eyebrow", "Protect · Late 2026")}</p>
             <h1 className={s.heroTitle}>
-              {cms(hero, "headline", "Preventative care for homes")}{" "}
-              <em>{cms(hero, "headlineEm", "that are lived in properly.", "headline")}</em>
+              {cms(hero, "headline", "Home protection,")}{" "}
+              <em>{cms(hero, "headlineEm", "before the problem becomes a claim.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
               {cms(
                 hero,
                 "body",
-                "A considered approach to protecting homes from avoidable damage — through foresight, verification, and ongoing care. The next layer of stewardship from the House.",
+                "Preventative reviews, condition evidence and practical next steps for homes that deserve better oversight. Reviews, photos and documents are filed into HoWA, so the home keeps a living evidence trail.",
               )}
             </p>
             <div className={s.heroCtas}>
               <a href={cms(hero, "ctaHref", "#register")} className={s.btnFilled}>
-                {cms(hero, "ctaLabel", "Register interest")}
+                {cms(hero, "ctaLabel", "Register interest in Home Protection")}
               </a>
               <a href={cms(hero, "cta2Href", "#brief")} className={s.btnGhost}>
                 {cms(hero, "cta2Label", "Read the brief")}

@@ -110,22 +110,22 @@ export default async function DesignLanding() {
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>{cms(hero, "eyebrow", "The House · Design")}</p>
             <h1 className={s.heroTitle}>
-              {cms(hero, "headline", "Interiors and gardens,")}{" "}
-              <em>{cms(hero, "headlineEm", "considered.", "headline")}</em>
+              {cms(hero, "headline", "Design for houses and gardens")}{" "}
+              <em>{cms(hero, "headlineEm", "with memory.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
               {cms(
                 hero,
                 "body",
-                "The House commissions and introduces. Every studio has been vetted and lives up to what we call \"House Approved\" — a mark we place only when we'd recommend them to someone we love.",
+                "Commission interiors, gardens and considered improvements through House Approved studios, with every brief, decision and handover available to your Home Record when booked online.",
               )}
             </p>
             <div className={s.heroCtas}>
               <Link href={cms(hero, "ctaHref", "#open-booking-form")} className={s.btnFilled}>
                 {cms(hero, "ctaLabel", "Commission a space")}
               </Link>
-              <Link href={cms(hero, "cta2Href", "/partners")} className={s.btnGhost}>
-                {cms(hero, "cta2Label", "See all partners")}
+              <Link href={cms(hero, "cta2Href", "/design/studios")} className={s.btnGhost}>
+                {cms(hero, "cta2Label", "See House Approved studios")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>

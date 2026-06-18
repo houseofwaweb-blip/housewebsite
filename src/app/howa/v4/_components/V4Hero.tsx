@@ -62,6 +62,11 @@ function HeroCopy() {
       <a href="#demo" className="mt-3 inline-flex items-center gap-1.5 text-[15px] text-[color:var(--color-ink-soft)] hover:text-[color:var(--color-ink)] transition-colors">
         See sample record <span aria-hidden>→</span>
       </a>
+      <p className="mt-6 max-w-[460px] text-[13px] leading-[1.55] text-[color:var(--color-ink)]/55">
+        House of Willow Alexander is HoWA&apos;s founding service partner. House
+        bookings are made through HoWA and written back to your Home Record, and
+        HoWA is also a standalone product for any home.
+      </p>
     </div>
   );
 }

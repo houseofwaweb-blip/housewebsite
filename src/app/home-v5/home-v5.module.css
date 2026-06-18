@@ -128,7 +128,25 @@
   margin: 0 0 32px;
   max-width: 46ch;
 }
-.heroCtas { display: flex; gap: 12px; flex-wrap: wrap; }
+.heroCtas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+/* Equal-width hero CTAs on one row; tighten so the three labels fit. */
+.heroCtas > a {
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  min-width: 0;
+  padding-left: 8px;
+  padding-right: 8px;
+  letter-spacing: 0.07em;
+}
+@media (max-width: 640px) {
+  .heroCtas { grid-template-columns: 1fr; }
+  .heroCtas > a { white-space: normal; }
+}
 .heroBookingNote {
   font-family: var(--font-sans);
   font-size: 13px;

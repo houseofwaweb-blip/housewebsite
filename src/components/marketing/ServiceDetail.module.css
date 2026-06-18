@@ -590,6 +590,14 @@
   max-width: 32ch;
 }
 .closingStatement em { font-style: italic; color: var(--color-house-gold-dark); }
+.closingNote {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(48, 35, 28, 0.55);
+  margin: 20px auto 0;
+  max-width: 52ch;
+}
 
 /* Responsive */
 @media (max-width: 1024px) {

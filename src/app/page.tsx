@@ -14,7 +14,7 @@ import { shopifyProvider } from "@/lib/commerce/shopify";
  */
 
 export const metadata = {
-  title: { absolute: "House of Willow Alexander — The House Standard" },
+  title: { absolute: "House of Willow Alexander | Holistic stewardship for house and garden" },
   description:
     "House of Willow Alexander is the design authority behind every service, every standard, and the system that keeps your home in its best order.",
 };
@@ -119,10 +119,10 @@ export default async function HomePage() {
                 Book a House Service
               </Link>
               <Link href="/shop" className={s.btnGhost}>
-                Shop the Marketplace <span aria-hidden className={s.arrow}>→</span>
+                Shop the Marketplace
               </Link>
               <Link href="/protect" className={s.btnGhost}>
-                Explore Home Protection <span aria-hidden className={s.arrow}>→</span>
+                Explore Home Protection
               </Link>
             </div>
             <p className={s.heroBookingNote}>
@@ -202,41 +202,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 5. HoWA introduction — first HoWA appearance */}
-      <section className={s.howaIntro}>
-        <div className={s.howaIntroInner}>
-          <div className={s.howaIntroVisual}>
-            <HowaWidget />
-          </div>
-          <div className={s.howaIntroCopy}>
-            <p className={s.eyebrow}>Booked through HoWA</p>
-            <h2 className={s.howaIntroTitle}>
-              Book House services<br />
-              <em>through HoWA.</em>
-            </h2>
-            <p className={s.howaIntroPara}>
-              Our online bookings are handled through HoWA, the Home Operating
-              System created from House of Willow Alexander. It keeps appointments,
-              notes, invoices and service history in one Home Record.
-            </p>
-            <div className={s.howaFeatures}>
-              {HOWA_FEATURES.map((f) => (
-                <div key={f.lead} className={s.howaFeature}>
-                  <strong>{f.lead}</strong> — {f.rest}
-                </div>
-              ))}
-            </div>
-            <div className={s.howaIntroCtas}>
-              <Link href="#open-booking-form" className={s.btnFilled}>Start online booking</Link>
-              <Link href="/contact" className={s.btnGhost}>
-                Call the House <span aria-hidden className={s.arrow}>→</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. House principles — manifesto */}
+      {/* House principles — manifesto */}
       <section className={s.principles}>
         <div className={s.principlesInner}>
           <p className={s.eyebrow}>The House standard</p>
@@ -276,39 +242,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 8. The Hearth feature */}
-      <section className={s.hearth}>
-        <div className={s.hearthInner}>
-          <div className={s.hearthCopy}>
-            <p className={s.eyebrow + " " + s.eyebrowLight}>The Hearth</p>
-            <h2 className={s.hearthTitle}>
-              <em>The magazine for</em> homes with soul.
-            </h2>
-            <p className={s.hearthPara}>
-              Seasonal recipes, interiors inspiration, gardening notes, and the
-              quiet work of maintaining a home with care. Published when it matters,
-              never when it doesn&apos;t.
-            </p>
-            <Link href="/the-hearth" className={s.btnCream}>
-              Read the Hearth <span aria-hidden className={s.arrow}>→</span>
-            </Link>
-          </div>
-          <div className={s.hearthGrid}>
-            {(hearthArticles.length >= 4
-              ? hearthArticles.slice(0, 4).map((a) => ({ title: a.title, href: `/the-hearth/${a.slug}`, image: a.image }))
-              : HEARTH_FALLBACK.map((t, i) => ({ title: t, href: "/the-hearth", image: `/home-v4/pillar-${(i % 4) + 1}.webp` }))
-            ).map((card) => (
-              <Link key={card.title} href={card.href} className={s.hearthCard}>
-                <Image src={card.image} alt={card.title} fill sizes="(min-width: 1024px) 28vw, 45vw" className={s.hearthCardImg} />
-                <div className={s.hearthCardScrim} aria-hidden />
-                <span className={s.hearthCardLabel}>{card.title}</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 9. Marketplace feature */}
+      {/* Marketplace feature */}
       <section className={s.market}>
         <div className={s.marketInner}>
           <div className={s.marketHead}>
@@ -334,6 +268,40 @@ export default async function HomePage() {
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Booked through HoWA — platform module, after the commercial sections */}
+      <section className={s.howaIntro}>
+        <div className={s.howaIntroInner}>
+          <div className={s.howaIntroVisual}>
+            <HowaWidget />
+          </div>
+          <div className={s.howaIntroCopy}>
+            <p className={s.eyebrow}>Booked through HoWA</p>
+            <h2 className={s.howaIntroTitle}>
+              Book House services<br />
+              <em>through HoWA.</em>
+            </h2>
+            <p className={s.howaIntroPara}>
+              Our online bookings are handled through HoWA, the Home Operating
+              System created from House of Willow Alexander. It keeps appointments,
+              notes, invoices and service history in one Home Record.
+            </p>
+            <div className={s.howaFeatures}>
+              {HOWA_FEATURES.map((f) => (
+                <div key={f.lead} className={s.howaFeature}>
+                  <strong>{f.lead}</strong> — {f.rest}
+                </div>
+              ))}
+            </div>
+            <div className={s.howaIntroCtas}>
+              <Link href="#open-booking-form" className={s.btnFilled}>Start online booking</Link>
+              <Link href="/contact" className={s.btnGhost}>
+                Call the House <span aria-hidden className={s.arrow}>→</span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -394,6 +362,38 @@ export default async function HomePage() {
               </div>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* The Hearth — editorial close */}
+      <section className={s.hearth}>
+        <div className={s.hearthInner}>
+          <div className={s.hearthCopy}>
+            <p className={s.eyebrow + " " + s.eyebrowLight}>The Hearth</p>
+            <h2 className={s.hearthTitle}>
+              <em>The magazine for</em> homes with soul.
+            </h2>
+            <p className={s.hearthPara}>
+              Seasonal recipes, interiors inspiration, gardening notes, and the
+              quiet work of maintaining a home with care. Published when it matters,
+              never when it doesn&apos;t.
+            </p>
+            <Link href="/the-hearth" className={s.btnCream}>
+              Read the Hearth <span aria-hidden className={s.arrow}>→</span>
+            </Link>
+          </div>
+          <div className={s.hearthGrid}>
+            {(hearthArticles.length >= 4
+              ? hearthArticles.slice(0, 4).map((a) => ({ title: a.title, href: `/the-hearth/${a.slug}`, image: a.image }))
+              : HEARTH_FALLBACK.map((t, i) => ({ title: t, href: "/the-hearth", image: `/home-v4/pillar-${(i % 4) + 1}.webp` }))
+            ).map((card) => (
+              <Link key={card.title} href={card.href} className={s.hearthCard}>
+                <Image src={card.image} alt={card.title} fill sizes="(min-width: 1024px) 28vw, 45vw" className={s.hearthCardImg} />
+                <div className={s.hearthCardScrim} aria-hidden />
+                <span className={s.hearthCardLabel}>{card.title}</span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 

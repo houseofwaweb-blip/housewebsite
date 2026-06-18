@@ -69,6 +69,13 @@
 }
 .heroVisual { position: relative; background: var(--color-house-cream-dark); }
 .heroCtas { display: flex; gap: 12px; flex-wrap: wrap; }
+.heroMicro {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(48, 35, 28, 0.55);
+  margin: 16px 0 0;
+}
 .btnFilled,
 .btnGhost,
 .btnGhostDark {

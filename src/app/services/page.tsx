@@ -37,7 +37,7 @@ function imgOr(p?: string): string {
  */
 
 export const metadata = {
-  title: "Services — The quiet standard of care.",
+  title: "Home and garden services",
   description:
     "Four disciplines of home care — gardening, window cleaning, cleaning, gutter cleaning — to one House standard. One-off or on a Steward plan.",
 };
@@ -272,18 +272,19 @@ export default async function ServicesLanding() {
               {cms(
                 hero,
                 "body",
-                "Every discipline of home care, kept to one House standard. Book one-off, or let HoWA hold the rhythm of the year.",
+                "Every discipline of home and garden care, held to one House standard. Book a one-off visit, arrange recurring care, or speak directly to the House.",
               )}
             </p>
             <div className={s.heroCtas}>
               <Link href={cms(hero, "ctaHref", "#open-booking-form")} className={s.btnFilled}>
-                {cms(hero, "ctaLabel", "Book one-off")}
+                {cms(hero, "ctaLabel", "Book online through HoWA")}
               </Link>
-              <Link href={cms(hero, "cta2Href", "#plans")} className={s.btnGhost}>
-                {cms(hero, "cta2Label", "Start a plan")}
+              <Link href={cms(hero, "cta2Href", "/contact")} className={s.btnGhost}>
+                {cms(hero, "cta2Label", "Call the House")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
+            <p className={s.heroMicro}>Online bookings create or update your Home Record.</p>
           </div>
         </div>
         <div className={s.heroVisual}>

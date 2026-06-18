@@ -400,6 +400,11 @@ export function ServiceDetail({ service }: { service: Service }) {
             Book a House Service
           </Link>
         )}
+        <p className={s.closingNote}>
+          We are proud founding partners of HoWA, which handles our online
+          bookings and keeps your appointment, notes, invoices and service
+          history in one Home Record.
+        </p>
       </section>
     </div>
   );
