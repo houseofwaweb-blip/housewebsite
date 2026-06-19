@@ -99,7 +99,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
       {
         heading: "Protection",
         links: [
-          { label: "Home Protection", href: "/protect/home-protection", description: "Coming soon" },
+          { label: "Home Protection", href: "/protect/home-protection", description: "Register interest" },
           { label: "House Approved Insurance", href: "/protect/insurance", description: "Register interest" },
         ],
       },
