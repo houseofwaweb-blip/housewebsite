@@ -14,22 +14,22 @@ import { shopifyProvider } from "@/lib/commerce/shopify";
  */
 
 export const metadata = {
-  title: { absolute: "House of Willow Alexander | Holistic stewardship for house and garden" },
+  title: { absolute: "House of Willow Alexander | Care, design and intelligence for home and garden" },
   description:
     "House of Willow Alexander is the design authority behind every service, every standard, and the system that keeps your home in its best order.",
 };
 
 const PILLARS = [
   { label: "Design & Care", title: "Design & Care", sub: "Expert design and care for every home.", image: "/home-v4/design-portrait.webp", href: "/design" },
-  { label: "The Marketplace", title: "The Marketplace", sub: "Curated essentials for home and hearth.", image: "/home-v4/pillar-2.webp", href: "/shop" },
-  { label: "The Hearth", title: "The Hearth", sub: "Stories, guidance, and timeless inspiration.", image: "/home-v4/pillar-3.webp", href: "/the-hearth" },
+  { label: "The Marketplace", title: "The Marketplace", sub: "Objects with a place in the House.", image: "/home-v4/pillar-2.webp", href: "/shop" },
+  { label: "The Hearth", title: "The Hearth", sub: "The editorial soul of the House.", image: "/home-v4/pillar-3.webp", href: "/the-hearth" },
   { label: "The House", title: "The House", sub: "The standard we hold ourselves to.", image: "/home-v4/pillar-4.webp", href: "#the-house" },
 ];
 
 const HOWA_FEATURES = [
-  { lead: "The Living Record", rest: "every decision, document and service, kept." },
-  { lead: "House Intelligence", rest: "predicts risk, surfaces signals, acts quietly." },
-  { lead: "HoWA Housekeeper", rest: "tasks orchestrated, services aligned." },
+  { lead: "A living record", rest: "the boiler date, the window clean, the warranty and the rose bed, all remembered in one place." },
+  { lead: "Risk surfaced early", rest: "the right specialist booked, the record updated, the next reminder set." },
+  { lead: "Every home has a rhythm", rest: "windows remembered, gutters before the storm, garden care kept in season." },
 ];
 
 const PRINCIPLES = [
@@ -49,22 +49,22 @@ const SERVICES = [
 ];
 
 const INTEL_STATS = [
-  { label: "Boiler failure predicted", value: "14 days early" },
-  { label: "Service booked", value: "automatically" },
-  { label: "Cost reduced", value: "by 42%" },
-  { label: "No disruption", value: "to your home" },
+  { label: "Risk surfaced", value: "early" },
+  { label: "The right specialist", value: "booked" },
+  { label: "The record", value: "updated" },
+  { label: "The next reminder", value: "set" },
 ];
 
 const TIERS = [
   { slug: "assistant", numeral: "I.", label: "HoWA Assistant", name: "The house, seen.", features: ["Notices what matters", "Tracks changes in real time", "Surfaces subtle signals"], href: "/howa#assistant" },
-  { slug: "housekeeper", numeral: "II.", label: "HoWA Housekeeper", name: "The house, in order.", features: ["Tasks orchestrated", "Services aligned", "Nothing slips"], href: "/howa/housekeeper" },
+  { slug: "housekeeper", numeral: "II.", label: "HoWA Housekeeper", name: "The house, in order.", features: ["Windows remembered", "Services in rhythm", "Nothing slips"], href: "/howa/housekeeper" },
   { slug: "steward", numeral: "III.", label: "HoWA Steward", name: "The house, protected before failure.", features: ["Predicts risk", "Optimises systems", "Protects long-term value"], href: "/howa/steward" },
 ];
 
 const POWERED = [
   { icon: HomeIcon, lead: "House-vetted partners only", rest: " — every studio carries the seal." },
   { icon: ShieldIcon, lead: "Held in your record", rest: " — every decision and document, kept." },
-  { icon: LeafIcon, lead: "Carbon-neutral by default", rest: " — sustainability tracked, not claimed." },
+  { icon: LeafIcon, lead: "Repair over replace", rest: " — retain the fabric, choose better, evidence the impact." },
   { icon: AwardIcon, lead: "House Approved", rest: " — the standard, openly published." },
 ];
 
@@ -107,22 +107,25 @@ export default async function HomePage() {
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>House of Willow Alexander</p>
             <h1 className={s.heroTitle}>
-              The home of holistic stewardship<br />
-              <em>for house and garden.</em>
+              That Feeling<br />
+              <em>You Call Home.</em>
             </h1>
             <p className={s.heroLede}>
-              Trusted services, considered goods and preventative protection for
-              the places you live in, tend and love, held to one House standard.
+              A modern British House for the care, design and intelligence of
+              home and garden. We bring together House Approved services,
+              considered goods, editorial guidance and HoWA, the Home
+              Intelligence OS created to help every home be beautifully kept and
+              better understood over time.
             </p>
             <div className={s.heroCtas}>
               <Link href="#open-booking-form" className={s.btnFilled}>
                 Book a House Service
               </Link>
-              <Link href="/shop" className={s.btnGhost}>
-                Shop the Marketplace
+              <Link href="/the-house/philosophy" className={s.btnGhost}>
+                Explore the House
               </Link>
-              <Link href="/protect" className={s.btnGhost}>
-                Explore Home Protection
+              <Link href="/howa" className={s.btnGhost}>
+                Start your Home Record
               </Link>
             </div>
             <p className={s.heroBookingNote}>
@@ -180,21 +183,22 @@ export default async function HomePage() {
         <div>
           <p className={s.eyebrow}>The House</p>
           <h2 className={s.houseIntroHead}>
-            Design, care,<br />
-            <em>and the standard behind it.</em>
+            Care, design and intelligence,<br />
+            <em>held to one House standard.</em>
           </h2>
         </div>
         <div className={s.houseIntroBody}>
           <p>
-            House of Willow Alexander was founded on a single conviction: that the
-            homes we love should be held to the same standard as the objects within
-            them — designed with intention, maintained with care, and recorded with
-            precision.
+            House of Willow Alexander brings the many parts of home into one
+            considered standard: gardens and rooms, services and objects,
+            documents and records. Each is held to a single test, would we trust
+            this in a home we love?
           </p>
           <p>
-            Every service we offer, every partner we approve, every piece in the
-            Marketplace carries that conviction. The House is not a brand. It is a
-            standard.
+            Cultivated from a garden studio and founded by Samuel Collett and
+            Alexander Oakley, the House began with gardens: soil, seasons, craft,
+            electric vans and the belief that care could be beautiful. From there
+            it grew into a modern British House for the whole home.
           </p>
           <Link href="/the-house/philosophy" className={s.textLink}>
             Discover the House standard <span aria-hidden className={s.arrow}>→</span>
@@ -223,7 +227,12 @@ export default async function HomePage() {
         <div className={s.servicesInner}>
           <div className={s.servicesHead}>
             <p className={s.eyebrow}>The Services</p>
-            <h2 className={s.servicesTitle}>Every home, properly cared for.</h2>
+            <h2 className={s.servicesTitle}>The practical care of home and garden.</h2>
+            <p className={s.sectionSub}>
+              Gardeners, cleaners, window care, design, repairs and specialist
+              partners, booked through HoWA, delivered to the House standard and
+              written back to your Home Record.
+            </p>
             <Link href="/services" className={s.btnGhost}>
               See all services <span aria-hidden className={s.arrow}>→</span>
             </Link>
@@ -248,7 +257,11 @@ export default async function HomePage() {
           <div className={s.marketHead}>
             <div>
               <p className={s.eyebrow}>The Marketplace</p>
-              <h2 className={s.marketTitle}>Curated essentials for home and hearth.</h2>
+              <h2 className={s.marketTitle}>Objects with a place in the House.</h2>
+              <p className={s.sectionSub}>
+                Considered goods, home essentials, garden tools and House Approved
+                pieces, chosen for usefulness, beauty and longevity.
+              </p>
             </div>
             <Link href="/shop" className={s.btnGhost}>
               Shop all <span aria-hidden className={s.arrow}>→</span>
@@ -279,15 +292,17 @@ export default async function HomePage() {
             <HowaWidget />
           </div>
           <div className={s.howaIntroCopy}>
-            <p className={s.eyebrow}>Booked through HoWA</p>
+            <p className={s.eyebrow}>HoWA · Home Intelligence OS</p>
             <h2 className={s.howaIntroTitle}>
-              Book House services<br />
-              <em>through HoWA.</em>
+              Born inside the House.<br />
+              <em>Built for every home.</em>
             </h2>
             <p className={s.howaIntroPara}>
-              Our online bookings are handled through HoWA, the Home Operating
-              System created from House of Willow Alexander. It keeps appointments,
-              notes, invoices and service history in one Home Record.
+              HoWA is the Home Intelligence OS created from House of Willow
+              Alexander. It begins with your address, builds the first portrait of
+              your home and keeps a living record of its services, documents, costs,
+              risks and care over time. House bookings are powered by HoWA, but
+              HoWA is not only for House services.
             </p>
             <div className={s.howaFeatures}>
               {HOWA_FEATURES.map((f) => (
@@ -297,9 +312,9 @@ export default async function HomePage() {
               ))}
             </div>
             <div className={s.howaIntroCtas}>
-              <Link href="#open-booking-form" className={s.btnFilled}>Start online booking</Link>
-              <Link href="/contact" className={s.btnGhost}>
-                Call the House <span aria-hidden className={s.arrow}>→</span>
+              <Link href="/howa" className={s.btnFilled}>Start your Home Record</Link>
+              <Link href="/howa/how-it-works" className={s.btnGhost}>
+                See how it works <span aria-hidden className={s.arrow}>→</span>
               </Link>
             </div>
           </div>
@@ -310,8 +325,8 @@ export default async function HomePage() {
       <section className={s.intel}>
         <div className={s.intelCopy}>
           <h2 className={s.intelTitle}>
-            The House,<br />
-            <em>at work for you.</em>
+            Your house is trying<br />
+            <em>to tell you something.</em>
           </h2>
           <div className={s.intelStats}>
             {INTEL_STATS.map((stat) => (
@@ -322,7 +337,7 @@ export default async function HomePage() {
             ))}
           </div>
           <Link href="/howa/how-it-works" className={s.btnGhostDark}>
-            See how online booking works <span aria-hidden className={s.arrow}>→</span>
+            See how HoWA works <span aria-hidden className={s.arrow}>→</span>
           </Link>
         </div>
         <div className={s.intelVisual}>
@@ -340,7 +355,7 @@ export default async function HomePage() {
       <section className={s.tiers}>
         <header className={s.tiersHead}>
           <p className={s.eyebrow}>HoWA</p>
-          <h2 className={s.tiersTitle}>Three ways HoWA serves the House.</h2>
+          <h2 className={s.tiersTitle}>Three ways HoWA serves the home.</h2>
         </header>
         <div className={v.tierGrid}>
           {TIERS.map((tier) => (
@@ -371,12 +386,12 @@ export default async function HomePage() {
           <div className={s.hearthCopy}>
             <p className={s.eyebrow + " " + s.eyebrowLight}>The Hearth</p>
             <h2 className={s.hearthTitle}>
-              <em>The magazine for</em> homes with soul.
+              <em>The editorial</em> soul of the House.
             </h2>
             <p className={s.hearthPara}>
-              Seasonal recipes, interiors inspiration, gardening notes, and the
-              quiet work of maintaining a home with care. Published when it matters,
-              never when it doesn&apos;t.
+              Essays, recipes, garden notes and design wisdom for the quiet art of
+              keeping a home. Published when there is something worth saying,
+              never when there isn&apos;t.
             </p>
             <Link href="/the-hearth" className={s.btnCream}>
               Read the Hearth <span aria-hidden className={s.arrow}>→</span>
@@ -450,7 +465,7 @@ function HowaWidget() {
           <PieScore value={91} />
           <p className={v.appHeroScore}>91<span className={v.appHeroScoreUnit}>/100</span></p>
         </div>
-        <p className={v.appHeroSub}>All systems in good order</p>
+        <p className={v.appHeroSub}>Boiler, roof and garden, on track</p>
       </div>
       <ul className={v.appList}>
         <li className={v.appRow}><span className={`${v.appStatus} ${v.appStatusOk}`} aria-hidden /><span className={v.appRowLabel}>Roof</span><span className={v.appRowValue}>Good order</span></li>

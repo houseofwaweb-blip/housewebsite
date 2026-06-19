@@ -28,6 +28,14 @@
   margin: 0 0 18px;
 }
 .eyebrowLight { color: var(--color-house-gold-light); }
+.sectionSub {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(48, 35, 28, 0.66);
+  margin: 14px 0 0;
+  max-width: 52ch;
+}
 
 /* Buttons --------------------------------------------------- */
 .btnFilled,

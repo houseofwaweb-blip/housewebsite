@@ -115,7 +115,7 @@ export function Footer({ columns, tagline }: FooterProps) {
         </div>
 
         <p className="pt-8 font-sans text-[12px] leading-[1.6] text-house-cream/55 max-w-[760px]">
-          House services are provided by House of Willow Alexander and approved
+          House services are delivered by House of Willow Alexander and approved
           partners. Online bookings and Home Records are powered by HoWA.
         </p>
 

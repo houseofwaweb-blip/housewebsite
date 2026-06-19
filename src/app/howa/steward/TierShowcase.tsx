@@ -115,8 +115,8 @@ const TIERS: {
     tagline: "The house, in order.",
     visual: { kind: "phone", src: "/home-v4/steward-phone-housekeeper.webp", alt: "Today's Plan — Housekeeper phone" },
     features: [
-      { icon: TaskIcon, text: "Tasks orchestrated" },
-      { icon: CalendarSmallIcon, text: "Services aligned" },
+      { icon: TaskIcon, text: "Windows remembered" },
+      { icon: CalendarSmallIcon, text: "Services in rhythm" },
       { icon: BellIcon, text: "Nothing slips" },
     ],
     href: "/howa#housekeeper",

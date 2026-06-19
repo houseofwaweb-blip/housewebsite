@@ -10,9 +10,11 @@ export const metadata = {
 const FALLBACK_SECTIONS: EditorialSection[] = [
   {
     heading: "Who we are",
-    body: `House of Willow Alexander was started by Alex Field, out of a dissatisfaction with the way the existing market thinks about homes. The full team fits on one page and we like it that way.
+    body: `House of Willow Alexander was founded by Samuel Collett and Alexander Oakley, from a belief that home and garden care could be more beautiful, more sustainable and more intelligently held.
 
-We're based in West London. We work across the UK for design and Steward commissions; services operate in defined postcode areas you'll find on each service's page.`,
+What began with gardens, soil, seasons, craft and electric vans, has grown into a modern British House: part service standard, part design authority, part editorial world, part marketplace, and part technology system through HoWA.
+
+The House exists to bring taste, trust, sustainability and intelligent memory into the everyday work of keeping a home. The people we send, the products we approve, the partners we recommend and the records we keep are held to the same test: would we trust this in a home we love? We work across the UK for design and Steward commissions; services operate in defined postcode areas you'll find on each service's page.`,
   },
   {
     heading: "The partner studios",
