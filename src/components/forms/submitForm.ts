@@ -44,7 +44,7 @@ export async function submitForm(
     const message = mapErrorCode(code);
     return { ok: false, error: message };
   } catch {
-    return { ok: false, error: "Network trouble — please try again in a moment." };
+    return { ok: false, error: "Network trouble. Please try again in a moment." };
   }
 }
 

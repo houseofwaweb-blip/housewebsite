@@ -22,9 +22,9 @@ We may update these terms occasionally. We'll tell you about significant changes
         },
         {
           heading: "Your account",
-          body: `You're responsible for keeping your login details safe. You're not responsible for anything we do that's our fault — like losing your record or billing you incorrectly. When that happens, we fix it.
+          body: `You're responsible for keeping your login details safe. You're not responsible for anything we do that's our fault: like losing your record or billing you incorrectly. When that happens, we fix it.
 
-Don't try to break the product — automated scraping, load-testing without our agreement, attempts to access other members' records, etc. Obvious stuff.`,
+Don't try to break the product: automated scraping, load-testing without our agreement, attempts to access other members' records, etc. Obvious stuff.`,
         },
         {
           heading: "Services & bookings",
@@ -34,7 +34,7 @@ Cancellation terms for each service are published on the service's page and conf
         },
         {
           heading: "Liability",
-          body: `Nothing in these terms excludes liability we can't legally exclude — things like gross negligence or fraud.
+          body: `Nothing in these terms excludes liability we can't legally exclude: things like gross negligence or fraud.
 
 For things we can limit: our liability for loss arising from the site itself is capped at the fees you've paid us in the previous 12 months. For services, liability sits with the provider as described above.`,
         },

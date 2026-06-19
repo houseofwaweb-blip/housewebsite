@@ -71,11 +71,11 @@ export async function generateMetadata({
 }) {
   const { handle } = await params;
   const mainCat = NAV.find((c) => c.handle === handle);
-  if (mainCat) return { title: `${mainCat.title} — Shop` };
+  if (mainCat) return { title: `${mainCat.title} | Shop` };
   const collection = await resolveCollection(handle);
   if (!collection) return { title: "Collection not found" };
   return {
-    title: `${collection.title} — Shop`,
+    title: `${collection.title} | Shop`,
   };
 }
 

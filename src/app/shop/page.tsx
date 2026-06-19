@@ -17,7 +17,7 @@ const MAIN_CATEGORY_HANDLES = new Set([
 export const metadata = {
   title: { absolute: "The House Marketplace | Home, garden and household essentials" },
   description:
-    "Curated objects from the House of Willow Alexander. Tools, home, and wear — each House Approved for craft, provenance, and lasting use.",
+    "Curated objects from the House of Willow Alexander. Tools, home, and wear, each House Approved for craft, provenance, and lasting use.",
 };
 
 export default async function ShopPage() {

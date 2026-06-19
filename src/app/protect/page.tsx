@@ -24,7 +24,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 export const metadata = {
   title: "Preventative home protection",
   description:
-    "Preventative care for homes that are lived in properly. A new House service launching late 2026 — Home Protection Review, coordinated setup, ongoing oversight.",
+    "Preventative care for homes that are lived in properly. A new House service launching late 2026: Home Protection Review, coordinated setup, ongoing oversight.",
 };
 
 const STAT_COLS = [
@@ -64,7 +64,7 @@ const RISK_AREAS = [
     name: "Fire & Carbon Monoxide",
     tagline: "Systems degrade. Batteries fail. Standards change.",
     body:
-      "Smoke and CO detection placement, condition, and regular verification. Often correctly installed once and quietly forgotten — until they matter.",
+      "Smoke and CO detection placement, condition, and regular verification. Often correctly installed once and quietly forgotten, until they matter.",
     bullets: [
       "Detector placement against current standards",
       "Battery and self-test verification",
@@ -86,7 +86,7 @@ const STEPS = [
     name: "Protection Setup",
     tagline: "Coordinated implementation of agreed measures.",
     body:
-      "Approved partners book the work, the House oversees the schedule, and every action is logged. You see what was done, when, and by whom — without managing each handover yourself.",
+      "Approved partners book the work, the House oversees the schedule, and every action is logged. You see what was done, when, and by whom, without managing each handover yourself.",
   },
   {
     n: "III.",
@@ -282,7 +282,7 @@ export default async function ProtectPage() {
             {cms(
               risks,
               "body",
-              "Most household damage doesn't come from a single dramatic event. It builds through small oversights — easy to miss, costly to ignore.",
+              "Most household damage doesn't come from a single dramatic event. It builds through small oversights: easy to miss, costly to ignore.",
             )}
           </p>
         </header>
@@ -315,7 +315,7 @@ export default async function ProtectPage() {
             {cms(
               steps,
               "body",
-              "When launched, Home Protection unfolds in three movements — assess, implement, watch over. Held in your home record, surfaced only when it matters.",
+              "When launched, Home Protection unfolds in three movements: assess, implement, watch over. Held in your home record, surfaced only when it matters.",
             )}
           </p>
         </header>
@@ -343,7 +343,7 @@ export default async function ProtectPage() {
             alt={cms(
               audience,
               "imageAlt",
-              "A still life of stewardship — brass padlock, smoke detector, key, and chain on a wooden cabinet",
+              "A still life of stewardship: brass padlock, smoke detector, key, and chain on a wooden cabinet",
             )}
             fill
             sizes="(min-width: 1024px) 45vw, 100vw"
@@ -393,8 +393,8 @@ export default async function ProtectPage() {
           <div className={s.registerForm}>
             <ul className={s.registerBullets}>
               {[
-                "Condition survey across the building — fabric, systems, access, security.",
-                "Evidence pack — photographs, notes, and a prioritised works list.",
+                "Condition survey across the building: fabric, systems, access, security.",
+                "Evidence pack: photographs, notes, and a prioritised works list.",
                 "Insurance-ready documentation, filed straight to your HoWA record.",
                 "Introductions to vetted specialists for anything the Review flags.",
               ].map((line) => (
@@ -455,7 +455,7 @@ export default async function ProtectPage() {
             {[
               "A named underwriter who understands the home.",
               "Cover for period features, outbuildings, collections, and grounds.",
-              "Claims support via the House — we stay with you until it resolves.",
+              "Claims support via the House. We stay with you until it resolves.",
             ].map((line) => (
               <li key={line}>{line}</li>
             ))}

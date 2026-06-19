@@ -76,7 +76,7 @@ export async function generateMetadata({
   const ogImage = p.image?.startsWith("http") ? p.image : `${baseUrl}${p.image}`;
   // Prefer the per-product "Search engine listing" set in Shopify; fall back
   // to the product title / first line of the description when none is set.
-  const metaTitle = p.seoTitle?.trim() ? p.seoTitle : `${p.title} — Shop`;
+  const metaTitle = p.seoTitle?.trim() ? p.seoTitle : `${p.title} | Shop`;
   const ogTitle = p.seoTitle?.trim() ? p.seoTitle : p.title;
   const metaDescription = p.seoDescription?.trim() ? p.seoDescription : p.lede;
   return {

@@ -32,10 +32,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL),
   title: {
     default: "House of Willow Alexander",
-    template: "%s — House of Willow Alexander",
+    template: "%s | House of Willow Alexander",
   },
   description:
-    "A modern British institution for effortless intelligent living. Design, care, protection, and curated commerce — connected by HoWA.",
+    "A modern British institution for effortless intelligent living. Design, care, protection, and curated commerce, connected by HoWA.",
   applicationName: "House of Willow Alexander",
   authors: [{ name: "House of Willow Alexander" }],
   creator: "House of Willow Alexander",

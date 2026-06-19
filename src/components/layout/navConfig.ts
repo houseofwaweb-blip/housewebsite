@@ -185,15 +185,15 @@ export const PRIMARY_NAV: MegaPanel[] = [
         links: [
           { label: "Overview", href: "/howa", description: "The Home Intelligence OS" },
           { label: "Book online through HoWA", href: "#open-booking-form", description: "Online House bookings" },
-          { label: "HoWA (Assistant)", href: "/howa/assistant", description: "Free — start with an address" },
+          { label: "HoWA (Assistant)", href: "/howa/assistant", description: "Free: start with an address" },
           { label: "How it works", href: "/howa/how-it-works", description: "Four quiet jobs" },
         ],
       },
       {
         heading: "Tiers",
         links: [
-          { label: "Housekeeper by HoWA", href: "/howa/housekeeper", description: "The membership — £16.99/mo" },
-          { label: "Steward", href: "/howa/steward", description: "The top tier — £29.99/mo" },
+          { label: "Housekeeper by HoWA", href: "/howa/housekeeper", description: "The membership: £16.99/mo" },
+          { label: "Steward", href: "/howa/steward", description: "The top tier: £29.99/mo" },
           { label: "Plans & Pricing", href: "/howa/plans", description: "Compare tiers" },
           { label: "FAQ", href: "/howa/faq" },
         ],

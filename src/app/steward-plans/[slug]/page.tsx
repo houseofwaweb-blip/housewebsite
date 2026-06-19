@@ -16,7 +16,7 @@ export async function generateMetadata({
   const plan = findPlan(slug);
   if (!plan) return { title: "Plan not found" };
   return {
-    title: `${plan.name} — Steward Plans`,
+    title: `${plan.name} | Steward Plans`,
     description: plan.lede,
   };
 }

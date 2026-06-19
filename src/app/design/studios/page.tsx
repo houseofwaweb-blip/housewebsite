@@ -16,7 +16,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  */
 
 export const metadata = {
-  title: "The Studios — Four, properly chosen.",
+  title: "The Studios: Four, properly chosen.",
   description:
     "The studios and designers the House works with. How we select, what House Approved means in design, and how to commission a project.",
 };
@@ -75,7 +75,7 @@ const SELECTION_TESTS = [
   {
     numeral: "I",
     title: "Living-home test",
-    body: "Their work survives the kind of use a real family puts a home through. Not a show home. A lived-in one — with dogs, children, dinner parties, weekends.",
+    body: "Their work survives the kind of use a real family puts a home through. Not a show home. A lived-in one, with dogs, children, dinner parties, weekends.",
   },
   {
     numeral: "II",
@@ -85,7 +85,7 @@ const SELECTION_TESTS = [
   {
     numeral: "III",
     title: "Care test",
-    body: "Every project comes with care notes — what was specified, where it came from, how to look after it, who to call when something needs attention. The record stays with the home.",
+    body: "Every project comes with care notes: what was specified, where it came from, how to look after it, who to call when something needs attention. The record stays with the home.",
   },
 ];
 
@@ -103,7 +103,7 @@ const COMMISSION_STEPS = [
   {
     n: "03.",
     name: "Commission",
-    body: "Project lives in HoWA throughout — drawings, mood boards, decisions, samples, costs, supplier records. You stay in the loop without managing it.",
+    body: "Project lives in HoWA throughout: drawings, mood boards, decisions, samples, costs, supplier records. You stay in the loop without managing it.",
   },
   {
     n: "04.",
@@ -151,7 +151,7 @@ export default async function DesignStudiosPage() {
               {cms(
                 hero,
                 "body",
-                "Every studio working under the House Approved seal has been visited, interviewed, and put in front of a real project. The collective starts small on purpose — we would rather work with four studios we trust than forty we don't.",
+                "Every studio working under the House Approved seal has been visited, interviewed, and put in front of a real project. The collective starts small on purpose. We would rather work with four studios we trust than forty we don't.",
               )}
             </p>
             <div className={s.heroCtas}>
@@ -211,7 +211,7 @@ export default async function DesignStudiosPage() {
             {cms(
               studios,
               "body",
-              "Each carries the House Approved seal under the same three tests — and stays in the collective only as long as those tests hold.",
+              "Each carries the House Approved seal under the same three tests, and stays in the collective only as long as those tests hold.",
             )}
           </p>
         </header>

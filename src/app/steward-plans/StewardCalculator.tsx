@@ -10,8 +10,8 @@ import Link from "next/link";
  */
 
 const SERVICE_OPTIONS = [
-  { label: "Weekly gardening", freq: "1–2 hrs/week", index: 0 },
-  { label: "Weekly cleaning", freq: "2–3 hrs/week", index: 1 },
+  { label: "Weekly gardening", freq: "1 to 2 hrs/week", index: 0 },
+  { label: "Weekly cleaning", freq: "2 to 3 hrs/week", index: 1 },
   { label: "External windows", freq: "Monthly", index: 2 },
   { label: "Internal windows", freq: "Monthly", index: 3 },
   { label: "Gutter cleaning", freq: "Bi-annual", index: 4 },

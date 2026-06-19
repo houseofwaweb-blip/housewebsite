@@ -98,7 +98,7 @@ function SidebarNewsletter() {
           role="status"
           className="font-hearth-serif italic text-[14px] leading-[1.5] text-house-black"
         >
-          Thank you — the next letter lands on Friday.
+          Thank you. The next letter lands on Friday.
         </p>
       ) : (
         <form

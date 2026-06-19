@@ -3,9 +3,9 @@ import s from "./house-credit.module.css";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 export const metadata = {
-  title: "House Credit — Interest-free finance.",
+  title: "House Credit | Interest-free finance.",
   description:
-    "House Credit — spread the cost of home care, design, and services with interest-free finance from the House.",
+    "House Credit: spread the cost of home care, design, and services with interest-free finance from the House.",
 };
 
 const FEATURES = [
@@ -22,7 +22,7 @@ const FEATURES = [
   {
     title: "Works across the House",
     description:
-      "Use House Credit for anything — a kitchen renovation, a year of garden care, or a full Steward plan.",
+      "Use House Credit for anything: a kitchen renovation, a year of garden care, or a full Steward plan.",
   },
   {
     title: "No hidden fees",
@@ -67,7 +67,7 @@ export default async function HouseCreditPage() {
             {cms(
               hero,
               "body",
-              "Spread the cost of home care. Interest-free finance on services, design, and shop purchases — managed through your HoWA account.",
+              "Spread the cost of home care. Interest-free finance on services, design, and shop purchases, managed through your HoWA account.",
             )}
           </p>
         </div>

@@ -16,7 +16,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  */
 
 export const metadata = {
-  title: "Design — Interiors and gardens, considered.",
+  title: "Design: Interiors and gardens, considered.",
   description:
     "Interiors and gardens by designers we've vetted and trust. Every project carries the House Approved seal.",
 };
@@ -67,7 +67,7 @@ const SEAL_LINES = [
   "We've worked with the principal directly on at least one project.",
   "Their references include people we already trust.",
   "Their craft, communication and finish all hold up under scrutiny.",
-  "They review with us annually — and we publish what changes.",
+  "They review with us annually, and we publish what changes.",
 ];
 
 export default async function DesignLanding() {
@@ -207,7 +207,7 @@ export default async function DesignLanding() {
                 Gardens.
               </p>
               <p className={s.disciplineBlurb}>
-                Designed around what the garden already wants to do — light,
+                Designed around what the garden already wants to do: light,
                 shade, drainage, the soil it has. The brief is to make the
                 garden feel inevitable, ten years from now.
               </p>
@@ -229,7 +229,7 @@ export default async function DesignLanding() {
             {cms(
               partners,
               "body",
-              "We name our partners openly. Each has been signed up on the understanding that House Approved is a standard, not a label — reviewed annually, honestly, by both sides.",
+              "We name our partners openly. Each has been signed up on the understanding that House Approved is a standard, not a label, reviewed annually, honestly, by both sides.",
             )}
           </p>
         </header>

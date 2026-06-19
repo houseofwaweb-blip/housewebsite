@@ -267,7 +267,7 @@ export default async function ArticlePage({
           sourcePage={`/the-hearth/${slug}`}
           eyebrow="The Hearth"
           headline="Keep reading the House."
-          body="A weekly letter from the editors — seasonal notes on the home, the garden, and the craft of looking after a place properly."
+          body="A weekly letter from the editors: seasonal notes on the home, the garden, and the craft of looking after a place properly."
         />
 
         {related.length > 0 ? (

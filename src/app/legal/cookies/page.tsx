@@ -17,26 +17,26 @@ export default async function CookiesPage() {
         lede="What we set in your browser, what we share with whom, and how to change your mind. We keep this as short as we can while being honest."
         sections={[
           {
-            heading: "Four categories — you choose",
+            heading: "Four categories, you choose",
             body: `The banner asks you to pick from four categories. You can accept all, reject everything non-essential, or open "Customise" to mix and match.
 
-**Essential** — always on. Session, security, your cart, and your consent choice itself. Site can't work without these. We never ask permission for these because the law treats them as necessary.
+**Essential**: always on. Session, security, your cart, and your consent choice itself. Site can't work without these. We never ask permission for these because the law treats them as necessary.
 
-**Functional** — embedded tools that remember a preference. The ServiceOS booking widget, postcode lookup, and language preference live here. Default off.
+**Functional**: embedded tools that remember a preference. The ServiceOS booking widget, postcode lookup, and language preference live here. Default off.
 
-**Measurement** — first-party understanding of the site. Google Analytics 4, Microsoft Clarity, Vercel Speed Insights, Sentry. We use them to see which pages are useful, find broken things, and improve speed. Default off.
+**Measurement**: first-party understanding of the site. Google Analytics 4, Microsoft Clarity, Vercel Speed Insights, Sentry. We use them to see which pages are useful, find broken things, and improve speed. Default off.
 
-**Marketing** — advertising and retargeting. Meta (Facebook / Instagram), Pinterest, Google Ads. If you turn this on, you'll see relevant House ads on those platforms instead of random ones. Default off.`,
+**Marketing**: advertising and retargeting. Meta (Facebook / Instagram), Pinterest, Google Ads. If you turn this on, you'll see relevant House ads on those platforms instead of random ones. Default off.`,
           },
           {
             heading: "What happens when you reject Measurement and Marketing",
-            body: `Google Analytics and Google Ads still load on the page — but with everything denied. They don't set tracking cookies, don't identify you, and don't follow you across sites. They do send anonymous, aggregated signals to Google so we can see overall traffic volume even from non-consenting visitors. This is called "Google Consent Mode v2" and is the standard privacy-forward setup as of 2024.
+            body: `Google Analytics and Google Ads still load on the page, but with everything denied. They don't set tracking cookies, don't identify you, and don't follow you across sites. They do send anonymous, aggregated signals to Google so we can see overall traffic volume even from non-consenting visitors. This is called "Google Consent Mode v2" and is the standard privacy-forward setup as of 2024.
 
-Meta Pixel, Pinterest Tag, Microsoft Clarity, Sentry and Vercel Analytics don't load at all without consent — they have no equivalent privacy mode.`,
+Meta Pixel, Pinterest Tag, Microsoft Clarity, Sentry and Vercel Analytics don't load at all without consent. They have no equivalent privacy mode.`,
           },
           {
             heading: "Data we share with third parties (only with consent)",
-            body: `If you consent to Marketing and submit a form, we send a hashed version of your email and phone number to Google and Meta. "Hashed" means the value is one-way scrambled before it leaves us — it lets Google and Meta match you against their existing user base for ad attribution, but the raw email/phone is never shared. This is called "Enhanced Conversions" (Google) and "Conversions API" (Meta) — the industry-standard way to measure ad performance under iOS and modern browser privacy.
+            body: `If you consent to Marketing and submit a form, we send a hashed version of your email and phone number to Google and Meta. "Hashed" means the value is one-way scrambled before it leaves us. It lets Google and Meta match you against their existing user base for ad attribution, but the raw email/phone is never shared. This is called "Enhanced Conversions" (Google) and "Conversions API" (Meta), the industry-standard way to measure ad performance under iOS and modern browser privacy.
 
 If you don't consent to Marketing, none of this happens.
 
@@ -44,17 +44,17 @@ We don't sell data. We don't share with anyone outside the providers listed in o
           },
           {
             heading: "If you arrived from an ad",
-            body: `When you click a Google, Meta, or Microsoft ad, the URL gains a small parameter (gclid, fbclid, msclkid). We save these for 90 days in a first-party cookie called wa_click_ids so that if you come back to convert later, the original ad still gets the attribution. Saving these is essential to running paid advertising — there's no separate toggle. If you don't want this, don't click ads. The cookie is first-party only and contains no personal data.`,
+            body: `When you click a Google, Meta, or Microsoft ad, the URL gains a small parameter (gclid, fbclid, msclkid). We save these for 90 days in a first-party cookie called wa_click_ids so that if you come back to convert later, the original ad still gets the attribution. Saving these is essential to running paid advertising. There's no separate toggle. If you don't want this, don't click ads. The cookie is first-party only and contains no personal data.`,
           },
           {
             heading: "Managing your choices",
-            body: `Use the "Cookie preferences" link in the footer to change your choice at any time. You can also clear cookies from your browser. If you reject everything non-essential, the site still works — sign-in, the cart, form submissions, and security all run on first-party essential cookies.
+            body: `Use the "Cookie preferences" link in the footer to change your choice at any time. You can also clear cookies from your browser. If you reject everything non-essential, the site still works: sign-in, the cart, form submissions, and security all run on first-party essential cookies.
 
-When you change a preference, the change applies immediately to scripts already loaded. Some third-party cookies set in previous sessions may still exist in your browser until they expire — clearing your cookies is the surest way to start fresh.`,
+When you change a preference, the change applies immediately to scripts already loaded. Some third-party cookies set in previous sessions may still exist in your browser until they expire. Clearing your cookies is the surest way to start fresh.`,
           },
           {
             heading: "One note about this page itself",
-            body: `This page (the one you're reading right now) loads a small script from CookieYes to render the full cookie disclosure table below. That script sets one CookieYes cookie. We deliberately scope it to this page only so it doesn't run anywhere else on the site. It's a different system from our own consent banner — we use it purely to auto-generate the table from monthly scans of the live site.`,
+            body: `This page (the one you're reading right now) loads a small script from CookieYes to render the full cookie disclosure table below. That script sets one CookieYes cookie. We deliberately scope it to this page only so it doesn't run anywhere else on the site. It's a different system from our own consent banner. We use it purely to auto-generate the table from monthly scans of the live site.`,
           },
           {
             heading: "Full cookie list",

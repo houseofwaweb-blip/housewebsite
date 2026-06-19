@@ -81,7 +81,7 @@ export function ModesBands() {
             <div className="absolute inset-y-0 right-0 w-[58%] opacity-95">
               <Image
                 src={m.image}
-                alt={`${m.name} mode — a cutaway Georgian house.`}
+                alt={`${m.name} mode, a cutaway Georgian house.`}
                 fill
                 sizes="(max-width: 1024px) 60vw, 22vw"
                 className="object-cover object-left"

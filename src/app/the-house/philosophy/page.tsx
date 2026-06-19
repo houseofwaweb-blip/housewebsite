@@ -26,7 +26,7 @@ House of Willow Alexander exists so the next generation doesn't have to. The ide
 
 We think the best homes feel worn-in, not decorated. Useful, not performative. They're kept by people who mean to keep them for a long time, not flipped for the next rung of a ladder.
 
-Everything the House does — the design commissions, the services, the Hearth, HoWA — is in service of that kind of home. The one you mean to stay in.`,
+Everything the House does, the design commissions, the services, the Hearth, HoWA, is in service of that kind of home. The one you mean to stay in.`,
     image: {
       src: "/the-house/editorial/library-tools.webp",
       alt: "A green library with a yellow armchair, books and House Approved tools.",
@@ -76,7 +76,7 @@ export default async function PhilosophyPage() {
       lede={cms(
         intro,
         "body",
-        "We think homes deserve the same kind of quiet institution that schools, clubs, and estates have always had — somewhere to belong, somewhere to ask, somewhere that remembers.",
+        "We think homes deserve the same kind of quiet institution that schools, clubs, and estates have always had: somewhere to belong, somewhere to ask, somewhere that remembers.",
       )}
       sections={editorialSections}
       heroImage={{

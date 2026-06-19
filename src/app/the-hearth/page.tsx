@@ -22,7 +22,7 @@ import { getHearthIndex } from "@/lib/cms/hearth";
 export const metadata = {
   title: { absolute: "The Hearth | Journal for homes and gardens" },
   description:
-    "A journal on the keeping of homes and gardens. Essays, interiors, gardens, architecture — from House of Willow Alexander.",
+    "A journal on the keeping of homes and gardens. Essays, interiors, gardens, architecture, from House of Willow Alexander.",
 };
 
 export default async function JournalPage() {

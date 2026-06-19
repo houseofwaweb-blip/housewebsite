@@ -4,9 +4,9 @@ import s from "./recipes.module.css";
 import { getRecipeList } from "@/lib/cms/news-musings";
 
 export const metadata = {
-  title: "Recipes — Seasonal cooking, simply done.",
+  title: "Recipes | Seasonal cooking, simply done.",
   description:
-    "Seasonal recipes from the House — simple food, good ingredients, and the meals that make a home feel lived in.",
+    "Seasonal recipes from the House: simple food, good ingredients, and the meals that make a home feel lived in.",
 };
 
 export default async function RecipesIndexPage() {

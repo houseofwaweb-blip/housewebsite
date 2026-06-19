@@ -19,7 +19,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  */
 
 export const metadata = {
-  title: "House Approved Insurance — Carefully protecting the things that matter.",
+  title: "House Approved Insurance: carefully protecting the things that matter.",
   description:
     "Insurance introduced by the House of Willow Alexander. Cover that understands period homes, collections, and the things a standard policy misses.",
 };
@@ -173,7 +173,7 @@ export default async function ProtectInsurancePage() {
             {cms(
               approach,
               "body",
-              "Most insurance is sold in isolation — policies stacked, renewed blindly, rarely revisited. The House approach is different. Insurance here is designed as part of a connected relationship with the home: how it's lived in, maintained, and looked after over time.",
+              "Most insurance is sold in isolation: policies stacked, renewed blindly, rarely revisited. The House approach is different. Insurance here is designed as part of a connected relationship with the home: how it's lived in, maintained, and looked after over time.",
             )}
           </p>
           <ul className={s.approachList}>
@@ -257,7 +257,7 @@ export default async function ProtectInsurancePage() {
             {cms(
               crossSell,
               "body",
-              "A one-day in-person review of the property by House-vetted specialists. Condition survey, evidence pack, and a prioritised works list — all filed to HoWA and ready for the insurance conversation.",
+              "A one-day in-person review of the property by House-vetted specialists. Condition survey, evidence pack, and a prioritised works list, all filed to HoWA and ready for the insurance conversation.",
             )}
           </p>
           <Link href={cms(crossSell, "ctaHref", "/protect/home-protection")} className={s.crossLink}>

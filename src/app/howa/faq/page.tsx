@@ -133,7 +133,7 @@ const SECTIONS: { heading: string; items: { q: string; a: string }[] }[] = [
     items: [
       {
         q: "How much do Housekeeper members save?",
-        a: "Typically 10–15% off service bookings vs. calling direct, plus 10% off everything in the House shop. A single gutter clear and window clean often covers the monthly fee.",
+        a: "Typically 10 to 15% off service bookings vs. calling direct, plus 10% off everything in the House shop. A single gutter clear and window clean often covers the monthly fee.",
       },
       {
         q: "What is The Hearth?",

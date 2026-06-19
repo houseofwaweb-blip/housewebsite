@@ -73,7 +73,7 @@ const PLACEHOLDER_GALLERY_BY_SERVICE: Record<string, GalleryImage[]> = {
   ],
   cleaning: [
     { src: "/services/photos/cleaning-gallery-1.webp", alt: "Cleaning team on site", caption: "London · 2025" },
-    { src: "/services/photos/cleaning-gallery-2.webp", alt: "Bathroom detail — surface-appropriate cleaning", caption: "London · 2025" },
+    { src: "/services/photos/cleaning-gallery-2.webp", alt: "Bathroom detail, surface-appropriate cleaning", caption: "London · 2025" },
     { src: "/services/photos/cleaning-gallery-3.webp", alt: "House-approved products laid out", caption: "Brand · 2025" },
   ],
   "gutter-cleaning": [

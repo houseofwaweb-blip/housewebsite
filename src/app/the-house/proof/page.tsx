@@ -14,11 +14,11 @@ const FALLBACK_SECTIONS: EditorialSection[] = [
   },
   {
     heading: "Recent work",
-    body: `A Grade II Georgian terrace in Notting Hill — full interior re-read, garden replant, ongoing Steward care. Delve Interiors.
+    body: `A Grade II Georgian terrace in Notting Hill: full interior re-read, garden replant, ongoing Steward care. Delve Interiors.
 
-A private studio in Chelsea — architectural detailing, library build, two-year commission. Jessica Durling-McMahon.
+A private studio in Chelsea: architectural detailing, library build, two-year commission. Jessica Durling-McMahon.
 
-A country house garden in Oxfordshire — three-year landscape scheme, seasonal management ongoing. Willow Alexander Gardens.`,
+A country house garden in Oxfordshire: three-year landscape scheme, seasonal management ongoing. Willow Alexander Gardens.`,
   },
   {
     heading: "Testimony",

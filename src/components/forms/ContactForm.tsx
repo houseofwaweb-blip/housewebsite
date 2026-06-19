@@ -102,7 +102,7 @@ export function ContactForm({ turnstileSiteKey, sourcePage }: ContactFormProps) 
     if (result.ok) {
       setStatus({
         kind: "success",
-        message: "Thank you. Your message is with us — we'll reply within one working day.",
+        message: "Thank you. Your message is with us. We'll reply within one working day.",
       });
       reset({ topic: "general", sourcePage, turnstileToken: "", honey: "" });
       setTopic(null);

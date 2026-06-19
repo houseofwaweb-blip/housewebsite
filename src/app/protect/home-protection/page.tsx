@@ -18,7 +18,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  */
 
 export const metadata = {
-  title: "Home Protection — Know the home before the home needs you.",
+  title: "Home Protection. Know the home before the home needs you.",
   description:
     "A one-day in-person review by House-vetted specialists. Condition survey, evidence pack, and insurance-ready documentation for your home.",
 };
@@ -33,7 +33,7 @@ const STAT_COLS = [
 const COVERS = [
   {
     title: "Condition survey",
-    body: "A thorough walk-through of the building — fabric, systems, access, security, damp, drainage. Carried out by House-vetted building surveyors who understand period homes.",
+    body: "A thorough walk-through of the building: fabric, systems, access, security, damp, drainage. Carried out by House-vetted building surveyors who understand period homes.",
   },
   {
     title: "Evidence pack",
@@ -49,7 +49,7 @@ const STEPS = [
   {
     n: "I.",
     title: "Book",
-    body: "Register interest and we'll arrange a date. The review fits into a single day — no disruption, no scaffolding.",
+    body: "Register interest and we'll arrange a date. The review fits into a single day: no disruption, no scaffolding.",
   },
   {
     n: "II.",
@@ -117,7 +117,7 @@ export default async function HomeProtectionPage() {
               {cms(
                 hero,
                 "body",
-                "A one-day in-person review by House-vetted specialists. A condition survey, an evidence pack, and insurance-ready documentation — filed to your HoWA record and ready for whatever comes next.",
+                "A one-day in-person review by House-vetted specialists. A condition survey, an evidence pack, and insurance-ready documentation, filed to your HoWA record and ready for whatever comes next.",
               )}
             </p>
             <div className={s.heroCtas}>
@@ -201,7 +201,7 @@ export default async function HomeProtectionPage() {
             alt={cms(
               register,
               "imageAlt",
-              "Still life of stewardship — brass padlock, smoke detector, key, and chain on a wooden cabinet",
+              "Still life of stewardship: brass padlock, smoke detector, key, and chain on a wooden cabinet",
             )}
             fill
             sizes="(min-width: 1024px) 45vw, 100vw"

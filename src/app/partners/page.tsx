@@ -20,7 +20,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  */
 
 export const metadata = {
-  title: "Partners — The people behind the House.",
+  title: "Partners: The people behind the House.",
   description:
     "House Approved designers, service providers and curated suppliers. Every partner vetted in person, reviewed annually, and named openly.",
 };
@@ -72,7 +72,7 @@ const SEAL_LINES = [
   "We've worked with the principal directly on at least one project.",
   "Their references include people we already trust.",
   "Their craft, communication and finish all hold up under scrutiny.",
-  "They review with us annually — and we publish what changes.",
+  "They review with us annually, and we publish what changes.",
 ];
 
 export default async function PartnersHub() {
@@ -177,7 +177,7 @@ export default async function PartnersHub() {
             {cms(
               categories,
               "body",
-              "The collective spans design studios, service providers and curated suppliers — each governed by the same House Approved standard.",
+              "The collective spans design studios, service providers and curated suppliers, each governed by the same House Approved standard.",
             )}
           </p>
         </header>
@@ -220,7 +220,7 @@ export default async function PartnersHub() {
             {cms(
               partnersHead,
               "body",
-              "We name our partners openly. Each has signed up on the understanding that House Approved is a standard, not a label — reviewed annually, honestly, by both sides.",
+              "We name our partners openly. Each has signed up on the understanding that House Approved is a standard, not a label, reviewed annually, honestly, by both sides.",
             )}
           </p>
         </header>
@@ -305,7 +305,7 @@ export default async function PartnersHub() {
           {cms(
             apply,
             "body",
-            "We review applications quarterly. House Approved is a standard, not a label — we accept very few, on principle. Write to the House with your portfolio and we'll be in touch.",
+            "We review applications quarterly. House Approved is a standard, not a label. We accept very few, on principle. Write to the House with your portfolio and we'll be in touch.",
           )}
         </p>
         <div className={s.applyCtas}>

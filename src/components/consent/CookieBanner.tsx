@@ -33,7 +33,7 @@ export function CookieBanner() {
           <div className={s.bannerInner}>
             <p className={s.bannerCopy}>
               The House uses cookies. Essential cookies keep the site working.
-              Functional and analytics cookies are optional — they help us run
+              Functional and analytics cookies are optional. They help us run
               the booking widget and understand which pages are useful.
             </p>
             <div className={s.bannerActions}>
@@ -99,7 +99,7 @@ function PreferencesModal({
           />
           <Row
             title="Functional"
-            description="Embedded tools that need to remember a preference — the booking widget, postcode lookup, language."
+            description="Embedded tools that need to remember a preference: the booking widget, postcode lookup, language."
             checked={functional}
             onChange={setFunctional}
           />
@@ -111,7 +111,7 @@ function PreferencesModal({
           />
           <Row
             title="Marketing"
-            description="Advertising and retargeting pixels — Meta, Pinterest, LinkedIn. Off by default. Turn on if you'd rather see relevant House ads than random ones."
+            description="Advertising and retargeting pixels: Meta, Pinterest, LinkedIn. Off by default. Turn on if you'd rather see relevant House ads than random ones."
             checked={marketing}
             onChange={setMarketing}
           />

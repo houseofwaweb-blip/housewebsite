@@ -21,7 +21,7 @@ import { GARDEN_PROJECTS } from "@/lib/gardens-projects";
  */
 
 export const metadata = {
-  title: "Gardens — Landscapes, properly read.",
+  title: "Gardens: Landscapes, properly read.",
   description:
     "Planting plans, concept designs and full landscape commissions through the House design collective. Led by Willow Alexander Gardens.",
 };
@@ -79,13 +79,13 @@ const SPECIALIST = [
   {
     name: "Lighting Plans",
     price: "from £395",
-    body: "A professional lighting layout — fixture map, specification list and circuit guide.",
+    body: "A professional lighting layout: fixture map, specification list and circuit guide.",
     image: "/design/gardens/lighting-plans.jpg",
   },
   {
     name: "Signature Collaboration",
     price: "Coming soon",
-    body: "A full creative partnership with one of our leading studios — artistic direction, materials and build liaison.",
+    body: "A full creative partnership with one of our leading studios: artistic direction, materials and build liaison.",
     image: "/design/gardens/collaboration.jpg",
   },
   {
@@ -109,13 +109,13 @@ const STUDIOS = [
   {
     name: "Hard landscape partner",
     type: "Coming soon",
-    blurb: "A specialist studio for build, masonry and water — currently being interviewed against the three tests.",
+    blurb: "A specialist studio for build, masonry and water, currently being interviewed against the three tests.",
     status: "soon" as const,
   },
   {
     name: "Planting specialist",
     type: "Coming soon",
-    blurb: "A second planting-led practice joining the collective — a wilder, looser hand for naturalistic schemes.",
+    blurb: "A second planting-led practice joining the collective, a wilder, looser hand for naturalistic schemes.",
     status: "soon" as const,
   },
   {
@@ -175,7 +175,7 @@ export default async function GardensPage() {
               {cms(
                 hero,
                 "body",
-                "Designed around what the garden already wants to do — light, shade, drainage, the soil it has. The brief is to make the garden feel inevitable, ten years from now. Led by Willow Alexander Gardens, with the wider collective for specialist work.",
+                "Designed around what the garden already wants to do: light, shade, drainage, the soil it has. The brief is to make the garden feel inevitable, ten years from now. Led by Willow Alexander Gardens, with the wider collective for specialist work.",
               )}
             </p>
             <div className={s.heroCtas}>
@@ -195,7 +195,7 @@ export default async function GardensPage() {
             alt={cms(
               hero,
               "imageAlt",
-              "Estate grounds — mature planting, brick paths and Georgian house behind",
+              "Estate grounds: mature planting, brick paths and Georgian house behind",
             )}
             fill
             sizes="(min-width: 1024px) 55vw, 100vw"
@@ -233,7 +233,7 @@ export default async function GardensPage() {
             {cms(
               plans,
               "body",
-              "From a planting plan that solves a single border to a fully dimensioned 3D design ready for build — the right entry point for the garden you have now.",
+              "From a planting plan that solves a single border to a fully dimensioned 3D design ready for build, the right entry point for the garden you have now.",
             )}
           </p>
         </header>
@@ -316,7 +316,7 @@ export default async function GardensPage() {
             {cms(
               studios,
               "body",
-              "Every garden brief is led by Willow Alexander Gardens, with specialist partners brought in for hard landscape, lighting and build. We grow the collective slowly — only when the right person turns up.",
+              "Every garden brief is led by Willow Alexander Gardens, with specialist partners brought in for hard landscape, lighting and build. We grow the collective slowly, only when the right person turns up.",
             )}
           </p>
         </header>
@@ -429,7 +429,7 @@ export default async function GardensPage() {
             {cms(
               companion,
               "body",
-              "Capture your garden's light, soil, aspect, maintenance appetite and budget. The Assistant builds a brief your designer can work from on day one — nothing lost, nothing repeated.",
+              "Capture your garden's light, soil, aspect, maintenance appetite and budget. The Assistant builds a brief your designer can work from on day one, nothing lost, nothing repeated.",
             )}
           </p>
           <p className={s.companionFootnote}>
@@ -448,7 +448,7 @@ export default async function GardensPage() {
             alt={cms(
               companion,
               "imageAlt",
-              "A garden concept plan — the kind of brief the Assistant helps you build",
+              "A garden concept plan, the kind of brief the Assistant helps you build",
             )}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"

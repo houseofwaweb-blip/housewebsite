@@ -12,11 +12,11 @@ const FALLBACK_SECTIONS: EditorialSection[] = [
     heading: "What House Approved means",
     body: `We only place the House Approved seal on partners and products that meet three tests.
 
-First, they would survive the kind of use a real family puts a home through — not a show home, a lived-in one. Second, they are made, grown, or offered by people we have met, visited, and would recommend to a friend. Third, they come with care notes: what it is, how to look after it, how to repair it when something goes wrong.`,
+First, they would survive the kind of use a real family puts a home through, not a show home, a lived-in one. Second, they are made, grown, or offered by people we have met, visited, and would recommend to a friend. Third, they come with care notes: what it is, how to look after it, how to repair it when something goes wrong.`,
   },
   {
     heading: "The review cadence",
-    body: `House Approved is not a badge you earn once. Partners are reviewed annually. Products are reviewed whenever we stop hearing good things about them — which happens more often than we'd like to admit.
+    body: `House Approved is not a badge you earn once. Partners are reviewed annually. Products are reviewed whenever we stop hearing good things about them, which happens more often than we'd like to admit.
 
 When something stops meeting the standard, it comes off the list. Quietly, without drama. The point of the seal is that it means something; the moment it stops, the institution stops.`,
     image: {

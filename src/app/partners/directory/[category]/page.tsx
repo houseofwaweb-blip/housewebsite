@@ -62,7 +62,7 @@ export async function generateMetadata({
   const { category } = await params;
   const cat = CATEGORIES[category];
   if (!cat) return { title: "Directory" };
-  return { title: `${cat.title.replace(".", "")} — Partners`, description: cat.description };
+  return { title: `${cat.title.replace(".", "")}, Partners`, description: cat.description };
 }
 
 export function generateStaticParams() {

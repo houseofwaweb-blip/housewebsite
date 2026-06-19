@@ -22,9 +22,9 @@ import { StewardCalculator } from "./StewardCalculator";
  */
 
 export const metadata = {
-  title: "Steward Plans — Care on a rhythm.",
+  title: "Steward Plans: Care on a rhythm.",
   description:
-    "Bundle your home services into a single monthly Steward Plan. Gardening, cleaning, windows, gutters — managed through HoWA. Available to House Steward members.",
+    "Bundle your home services into a single monthly Steward Plan. Gardening, cleaning, windows, gutters, managed through HoWA. Available to House Steward members.",
 };
 
 const PILLARS = [
@@ -36,17 +36,17 @@ const PILLARS = [
 
 const STEPS = [
   { n: "01.", title: "Tell us about the home.", body: "Postcode, property type, what you'd like done. Five minutes through the consultation form or the HoWA Assistant." },
-  { n: "02.", title: "We propose a plan.", body: "A fixed monthly quote — by the home, not by the hour. Itemised, transparent, no surprises. Adjust until it's right." },
+  { n: "02.", title: "We propose a plan.", body: "A fixed monthly quote, by the home, not by the hour. Itemised, transparent, no surprises. Adjust until it's right." },
   { n: "03.", title: "We arrive when we said.", body: "Vetted, insured teams. Text before arrival. Photographs in your HoWA record after. One monthly payment covers everything." },
 ];
 
 const SERVICES = [
   { name: "Gardening", desc: "Seasonal pruning, weeding, lawn care, and planting by horticulturally trained gardeners.", freq: "Weekly or fortnightly" },
-  { name: "Cleaning", desc: "Full domestic clean — kitchens, bathrooms, living spaces. Surface-appropriate, fragrance-free on request.", freq: "Weekly · 2–3 hours" },
+  { name: "Cleaning", desc: "Full domestic clean: kitchens, bathrooms, living spaces. Surface-appropriate, fragrance-free on request.", freq: "Weekly · 2-3 hours" },
   { name: "Window cleaning", desc: "Pure-water pole system, frames and sills included. Up to four storeys from the ground.", freq: "Monthly" },
   { name: "Gutter cleaning", desc: "Vacuum-pole gutter clear, photographic record, downpipe check, condition report.", freq: "Bi-annual" },
-  { name: "Deep cleaning", desc: "Quarterly deep clean — behind furniture, inside ovens, descale, skirting, light switches.", freq: "Quarterly · 4 hours" },
-  { name: "HoWA record", desc: "Every visit logged — team, notes, photographs, products used. The living memory of your home's care.", freq: "Always on" },
+  { name: "Deep cleaning", desc: "Quarterly deep clean: behind furniture, inside ovens, descale, skirting, light switches.", freq: "Quarterly · 4 hours" },
+  { name: "HoWA record", desc: "Every visit logged: team, notes, photographs, products used. The living memory of your home's care.", freq: "Always on" },
 ];
 
 const TRUST = [
@@ -173,7 +173,7 @@ export default async function StewardPlansPage() {
       <section className={s.imageBand}>
         <Image
           src="/home-v4/steward-photo-blueprint.webp"
-          alt="A well-kept home and garden — photo dissolving into blueprint"
+          alt="A well-kept home and garden, photo dissolving into blueprint"
           fill
           sizes="100vw"
           style={{ objectFit: "cover", objectPosition: "center" }}

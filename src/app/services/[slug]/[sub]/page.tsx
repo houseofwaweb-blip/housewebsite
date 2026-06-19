@@ -107,7 +107,7 @@ export async function generateMetadata({
   const result = findSubService(slug, sub);
   if (!result) return { title: "Service not found" };
   return {
-    title: `${result.sub.name} — ${result.parent.name}`,
+    title: `${result.sub.name}, ${result.parent.name}`,
     description: result.sub.lede,
   };
 }
@@ -259,8 +259,8 @@ export default async function SubServicePage({
           {ba ? (
             <div className={s.workBeforeAfter}>
               <BeforeAfter
-                before={{ src: ba.before, alt: `${service.name} — before` }}
-                after={{ src: ba.after, alt: `${service.name} — after` }}
+                before={{ src: ba.before, alt: `${service.name}, before` }}
+                after={{ src: ba.after, alt: `${service.name}, after` }}
                 aspectRatio="3/2"
               />
             </div>

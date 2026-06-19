@@ -80,7 +80,7 @@ const SCORE_STEPS = [
 
 const VALUE_STATS = [
   { big: "£840+", label: "Typical first-year service savings with member pricing" },
-  { big: "1–3", label: "Issues typically caught before they cost more" },
+  { big: "1 to 3", label: "Issues typically caught before they cost more" },
   { big: "+£18,000", label: "Average sale uplift from a properly evidenced home record" },
   { big: "£29.99", label: "Per month. Less than a single emergency call-out" },
 ];
@@ -250,7 +250,7 @@ export default async function StewardPage() {
       {/* 3b. Quote panel */}
       <section className={s.quotePanel}>
         <p className={s.quoteText}>Ownership is passive. <em>Stewardship is intentional.</em></p>
-        <p className={s.quoteAttr}>— The House of Willow Alexander</p>
+        <p className={s.quoteAttr}>The House of Willow Alexander</p>
       </section>
 
       {/* 4. The four pillars */}
@@ -336,8 +336,8 @@ export default async function StewardPage() {
               ))}
             </div>
             <p className={s.recordSub} style={{ maxWidth: "52ch" }}>
-              The average emergency boiler repair costs £300–£600. A roof survey,
-              prompted by a missed maintenance cycle, runs to £800–£2,000. A sale that
+              The average emergency boiler repair costs £300 to £600. A roof survey,
+              prompted by a missed maintenance cycle, runs to £800 to £2,000. A sale that
               falls through or negotiates down on condition evidence costs far more.
               Steward doesn&apos;t promise to prevent every problem. But it watches for the
               ones that were preventable.

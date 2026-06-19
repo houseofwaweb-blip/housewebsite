@@ -23,11 +23,11 @@ Our partner studios are asked to plan for a thirty-year horizon, not a style cyc
     heading: "What we measure",
     body: `We track three things at the moment, and intend to add more.
 
-Materials provenance for House Approved products — where the raw materials came from, who worked them, and the distance travelled to reach the store.
+Materials provenance for House Approved products: where the raw materials came from, who worked them, and the distance travelled to reach the store.
 
-Travel impact for our own operations — miles driven by services teams, consolidated where possible into single trips.
+Travel impact for our own operations: miles driven by services teams, consolidated where possible into single trips.
 
-End-of-life plans for everything we sell — how it's repaired, how it's returned if it ever needs to be, and what happens to it when the next owner has had their turn.`,
+End-of-life plans for everything we sell: how it's repaired, how it's returned if it ever needs to be, and what happens to it when the next owner has had their turn.`,
     image: {
       src: "/the-house/editorial/record-book-toolkit.webp",
       alt: "The house record book beside a toolkit on a sage cloth.",

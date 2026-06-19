@@ -19,9 +19,9 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  */
 
 export const metadata = {
-  title: "Interiors — Consciously designed.",
+  title: "Interiors: Consciously designed.",
   description:
-    "Consciously designed interiors through The House Edit. Digital plans, full-home edits, and styling sessions — every scheme House Approved.",
+    "Consciously designed interiors through The House Edit. Digital plans, full-home edits, and styling sessions, every scheme House Approved.",
 };
 
 const STAT_COLS = [
@@ -52,7 +52,7 @@ const PLANS = [
     inclusions: [
       "Shoppable moodboard",
       "Sourcing per room",
-      "Material pack — swatches, samples, scents",
+      "Material pack: swatches, samples, scents",
       "30-minute follow-up call",
     ],
     image: "/design/interiors/project-bedroom.webp",
@@ -110,28 +110,28 @@ const PROJECTS = [
   {
     src: "/design/interiors/project-living-room.webp",
     caption: "Herts Living Room",
-    alt: "Herts living room — layered textures, muted palette, natural light",
+    alt: "Herts living room: layered textures, muted palette, natural light",
     span: "tall",
   },
   {
     src: "/design/interiors/project-bedroom.webp",
     caption: "Buckingham Bedroom",
-    alt: "Buckingham bedroom — deep green walls, brass accents, linen bedding",
+    alt: "Buckingham bedroom: deep green walls, brass accents, linen bedding",
   },
   {
     src: "/design/interiors/project-dining.webp",
     caption: "Herts Dining",
-    alt: "Herts dining room — warm timber, candlelight, considered table setting",
+    alt: "Herts dining room: warm timber, candlelight, considered table setting",
   },
   {
     src: "/design/interiors/project-tunbridge-1.webp",
     caption: "Tunbridge Wells I",
-    alt: "Tunbridge Wells — period drawing room with restored mouldings",
+    alt: "Tunbridge Wells: period drawing room with restored mouldings",
   },
   {
     src: "/design/interiors/project-tunbridge-2.webp",
     caption: "Tunbridge Wells II",
-    alt: "Tunbridge Wells — layered sitting room with heritage palette",
+    alt: "Tunbridge Wells: layered sitting room with heritage palette",
     span: "wide",
   },
 ];
@@ -175,7 +175,7 @@ export default async function InteriorsPage() {
               {cms(
                 hero,
                 "body",
-                "At the House, interiors are living expressions of the people who inhabit them. Our collective of designers and makers share a single philosophy — beauty, balance, and intention.",
+                "At the House, interiors are living expressions of the people who inhabit them. Our collective of designers and makers share a single philosophy: beauty, balance, and intention.",
               )}
             </p>
             <div className={s.heroCtas}>
@@ -195,7 +195,7 @@ export default async function InteriorsPage() {
             alt={cms(
               hero,
               "imageAlt",
-              "Tunbridge Wells interior — restored period drawing room with garden light",
+              "Tunbridge Wells interior: restored period drawing room with garden light",
             )}
             fill
             sizes="(min-width: 1024px) 55vw, 100vw"
@@ -233,7 +233,7 @@ export default async function InteriorsPage() {
             {cms(
               plans,
               "body",
-              "From a 90-minute studio session to a full-home brief held end to end — the right entry point for the room you're starting with.",
+              "From a 90-minute studio session to a full-home brief held end to end, the right entry point for the room you're starting with.",
             )}
           </p>
         </header>
@@ -284,7 +284,7 @@ export default async function InteriorsPage() {
             {cms(
               studios,
               "body",
-              "Every interiors brief lands with a House-Approved studio. We start small on purpose — two interiors partners at launch, more joining as we find them.",
+              "Every interiors brief lands with a House-Approved studio. We start small on purpose: two interiors partners at launch, more joining as we find them.",
             )}
           </p>
         </header>
@@ -394,7 +394,7 @@ export default async function InteriorsPage() {
             {cms(
               companion,
               "body",
-              "Capture your room, ambition, timeline, budget and aesthetic direction. The Assistant builds a brief your designer can work from on day one — nothing lost, nothing repeated.",
+              "Capture your room, ambition, timeline, budget and aesthetic direction. The Assistant builds a brief your designer can work from on day one, nothing lost, nothing repeated.",
             )}
           </p>
           <p className={s.companionFootnote}>
@@ -413,7 +413,7 @@ export default async function InteriorsPage() {
             alt={cms(
               companion,
               "imageAlt",
-              "A living room project — the kind of room the Assistant helps you brief",
+              "A living room project, the kind of room the Assistant helps you brief",
             )}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"

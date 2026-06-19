@@ -51,8 +51,8 @@ const CHAPTERS: Chapter[] = [
     kicker: "Every house begins with a name",
     headline: "A name chosen like a dedication.",
     body: [
-      "Willow — inspired by Samuel's mother's favourite tree. A symbol of resilience, softness, and quiet magic. A tree that bends but never breaks. Alexander — the name of the co-founder. Steady, classical, architectural. The grounding note that anchors the lyricism of the willow.",
-      "Together, they form a name with its own mythology — a name that sounds as though it has lived on bookshelves and brass plaques for generations.",
+      "Willow, inspired by Samuel's mother's favourite tree. A symbol of resilience, softness, and quiet magic. A tree that bends but never breaks. Alexander, the name of the co-founder. Steady, classical, architectural. The grounding note that anchors the lyricism of the willow.",
+      "Together, they form a name with its own mythology, a name that sounds as though it has lived on bookshelves and brass plaques for generations.",
     ],
     pullQuote: "A name planted like a tree. A House rooted in meaning.",
   },
@@ -61,8 +61,8 @@ const CHAPTERS: Chapter[] = [
     kicker: "The birthplace",
     headline: "A garden studio, and a little magic.",
     body: [
-      "The brand began as a garden design studio — its creative cradle. Two artefacts lit the spark: a vintage copy of The Wizard of Oz, with typography that danced between fantasy and serif authority, and an antique gardening encyclopaedia, bound in deep green and black.",
-      "From these came our first palette: heritage green, grounded in nature, paired with a thread of gold — a subtle spark of magic. Earthy, enchanting, quietly theatrical.",
+      "The brand began as a garden design studio, its creative cradle. Two artefacts lit the spark: a vintage copy of The Wizard of Oz, with typography that danced between fantasy and serif authority, and an antique gardening encyclopaedia, bound in deep green and black.",
+      "From these came our first palette: heritage green, grounded in nature, paired with a thread of gold, a subtle spark of magic. Earthy, enchanting, quietly theatrical.",
     ],
   },
   {
@@ -70,8 +70,8 @@ const CHAPTERS: Chapter[] = [
     kicker: "The Victorian discovery",
     headline: "Mrs Beeton, and the first pattern.",
     body: [
-      "Studying British design history, Samuel encountered the ornate world of Mrs Beeton — the Victorian matriarch of British domestic culture. Her books were more than manuals; they were artworks. Engraved botanical frames, decorative florals, meticulous linework.",
-      "From these illustrations came the first Willow Alexander pattern: a continuous hand-drawn floral tapestry, originally rendered in gold on deep green. The pattern connected horticultural expertise to domestic authority — garden and home united under a single illustrated canopy.",
+      "Studying British design history, Samuel encountered the ornate world of Mrs Beeton, the Victorian matriarch of British domestic culture. Her books were more than manuals; they were artworks. Engraved botanical frames, decorative florals, meticulous linework.",
+      "From these illustrations came the first Willow Alexander pattern: a continuous hand-drawn floral tapestry, originally rendered in gold on deep green. The pattern connected horticultural expertise to domestic authority, garden and home united under a single illustrated canopy.",
     ],
     pullQuote: "Not in trend, but in tradition. Not in decoration, but in cultural lineage.",
   },
@@ -80,10 +80,10 @@ const CHAPTERS: Chapter[] = [
     kicker: "The coloured volumes",
     headline: "A library that became a fleet.",
     body: [
-      "Mrs Beeton's books came in coloured editions. Greens. Blues. Burgundies. Teals. Auburns. Magentas. A row of them looked like the rainbow of British housekeeping — each spine a different discipline of domestic life.",
-      "Years later, those colours resurfaced as the perfect design system. Each Willow Alexander service became its own volume in the library of the House — wrapped in the same white floral pattern, transformed into a moving anthology of expertise.",
+      "Mrs Beeton's books came in coloured editions. Greens. Blues. Burgundies. Teals. Auburns. Magentas. A row of them looked like the rainbow of British housekeeping, each spine a different discipline of domestic life.",
+      "Years later, those colours resurfaced as the perfect design system. Each Willow Alexander service became its own volume in the library of the House, wrapped in the same white floral pattern, transformed into a moving anthology of expertise.",
     ],
-    pullQuote: "This is not a rainbow. It is a system — a coded, crafted chromatic identity rooted in British publishing history.",
+    pullQuote: "This is not a rainbow. It is a system, a coded, crafted chromatic identity rooted in British publishing history.",
   },
   {
     roman: "V",
@@ -101,7 +101,7 @@ const CHAPTERS: Chapter[] = [
     headline: "Linework, as a language.",
     body: [
       "The floral pattern now functions as one of the House's most important design devices. It speaks differently depending on where it lives.",
-      "For the institution: gold or white linework, used sparingly, as a frame, a border, a whisper — the visual equivalent of a monogram. For the service brands: white pattern set boldly over their Beeton-inspired colourways — a visual genealogy linking each discipline back to the House. For editorial and the marketplace: the pattern deepens, softens, expands; becomes atmosphere, textile, mood.",
+      "For the institution: gold or white linework, used sparingly, as a frame, a border, a whisper, the visual equivalent of a monogram. For the service brands: white pattern set boldly over their Beeton-inspired colourways, a visual genealogy linking each discipline back to the House. For editorial and the marketplace: the pattern deepens, softens, expands; becomes atmosphere, textile, mood.",
       "The pattern does what the House does. It unites many worlds with quiet authority.",
     ],
   },
@@ -110,7 +110,7 @@ const CHAPTERS: Chapter[] = [
     kicker: "The early icons",
     headline: "A human hand in the margins.",
     body: [
-      "In the early years, a family of hand-drawn icons appeared across the brand — sketches inspired by the doodles and recipe notes a mother might scribble in the margins of her favourite cookbook. They expressed warmth, familiarity, the human hand behind the services.",
+      "In the early years, a family of hand-drawn icons appeared across the brand, sketches inspired by the doodles and recipe notes a mother might scribble in the margins of her favourite cookbook. They expressed warmth, familiarity, the human hand behind the services.",
       "As the House matured, the icons gently stepped back. They live now mostly in the archive, but their spirit remains in the tone of voice: warm, observant, never cold.",
     ],
   },
@@ -128,7 +128,7 @@ const CHAPTERS: Chapter[] = [
     headline: "Beauty as responsibility.",
     body: [
       "At the heart of the House lies a belief: that homes and gardens are not simply spaces, but expressions of care. That craftsmanship and sustainability are not trends, but inherited duties. That beauty is not excess, but an act of stewardship.",
-      "The artwork of the House — its colours, its patterns, its names, its stories — is a reminder that design matters because life matters. That what we touch daily should be crafted with intention.",
+      "The artwork of the House, its colours, its patterns, its names, its stories, is a reminder that design matters because life matters. That what we touch daily should be crafted with intention.",
     ],
     pullQuote: "Beauty is not excess. It is an act of stewardship.",
   },
@@ -137,7 +137,7 @@ const CHAPTERS: Chapter[] = [
     kicker: "A living story",
     headline: "Rooted in the past. Growing into the future.",
     body: [
-      "The artwork of the House is not finished. It evolves with every new service, every new product, every new idea. But its foundation is set — a name planted like a tree, a palette lifted from literature, a pattern drawn from Victorian craft, a fleet inspired by British domestic history. A brand that feels discovered, not invented.",
+      "The artwork of the House is not finished. It evolves with every new service, every new product, every new idea. But its foundation is set: a name planted like a tree, a palette lifted from literature, a pattern drawn from Victorian craft, a fleet inspired by British domestic history. A brand that feels discovered, not invented.",
     ],
   },
 ];
@@ -553,13 +553,13 @@ function PatternReveal() {
           />
           <figcaption className={s.patternRevealCap}>
             <span className={s.patternRevealNum}>01</span>
-            The source — Beeton's engraved botanical frame.
+            The source, Beeton's engraved botanical frame.
           </figcaption>
         </figure>
         <figure className={s.patternRevealItem}>
           <Image
             src={`${ART}/pattern-master-gold-on-green.webp`}
-            alt="The first Willow Alexander pattern — gold floral linework on deep green"
+            alt="The first Willow Alexander pattern, gold floral linework on deep green"
             width={1600}
             height={1200}
             sizes="(min-width: 768px) 45vw, 90vw"
@@ -567,7 +567,7 @@ function PatternReveal() {
           />
           <figcaption className={s.patternRevealCap}>
             <span className={s.patternRevealNum}>02</span>
-            The pattern — gold on heritage green, our first.
+            The pattern, gold on heritage green, our first.
           </figcaption>
         </figure>
       </ArtworkReveal>

@@ -32,7 +32,7 @@ const VOLUMES: Volume[] = [
     brand: "Gardening",
     colour: serviceColour("gardening"),
     spine: "/the-house/artwork/spines/spine-gardeners-green.webp",
-    story: "The colour of craft and landscape — where the House began.",
+    story: "The colour of craft and landscape, where the House began.",
     href: "/services/gardening",
   },
   {
@@ -80,7 +80,7 @@ const VOLUMES: Volume[] = [
     brand: "The master edition",
     colour: "#7a6028",
     spine: "/the-house/artwork/spines/spine-home-garden-gold.webp",
-    story: "The master edition — the volume that holds them all.",
+    story: "The master edition, the volume that holds them all.",
     href: "/the-house",
   },
 ];
@@ -113,7 +113,7 @@ export function ArtworkVolumesShelf() {
                 onMouseEnter={() => setHovered(i)}
                 onFocus={() => setHovered(i)}
                 onBlur={() => setHovered(null)}
-                aria-label={`${v.name} — ${v.brand}`}
+                aria-label={`${v.name}, ${v.brand}`}
                 className="group relative flex-1 max-w-[110px] md:max-w-[150px] no-underline transition-transform duration-300 ease-out"
                 style={{
                   height: "clamp(330px, 42vw, 540px)",
@@ -129,7 +129,7 @@ export function ArtworkVolumesShelf() {
                 <div className="relative w-full h-full shadow-[0_10px_32px_-14px_rgba(48,35,28,0.45)] transition-shadow duration-300 group-hover:shadow-[0_22px_44px_-16px_rgba(48,35,28,0.65)]">
                   <Image
                     src={v.spine}
-                    alt={`${v.name} — Beeton-style book spine`}
+                    alt={`${v.name}, Beeton-style book spine`}
                     fill
                     sizes="(min-width: 768px) 150px, 110px"
                     style={{ objectFit: "contain", objectPosition: "center" }}
@@ -150,7 +150,7 @@ export function ArtworkVolumesShelf() {
         <div className="min-h-[72px] text-center max-w-[640px] mx-auto">
           {hovered === null ? (
             <p className="font-display italic text-[15px] leading-[1.6] text-house-brown/60">
-              The seven coloured volumes — the moving anthology of expertise.
+              The seven coloured volumes, the moving anthology of expertise.
             </p>
           ) : (
             <div className="animate-[fadeIn_0.3s_ease-out]">

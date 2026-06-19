@@ -3,7 +3,7 @@ import { env } from "@/lib/env";
 import s from "./contact.module.css";
 
 export const metadata = {
-  title: "Contact — Write to the House.",
+  title: "Contact | Write to the House.",
   description: "Write to the House. We read every message.",
 };
 

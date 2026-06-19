@@ -100,7 +100,7 @@ const TIERS: {
     numeral: "I.",
     label: "Assistant",
     tagline: "The house, seen.",
-    visual: { kind: "illustration", src: "/home-v4/assistant-dollhouse.webp", alt: "Doll house — Assistant tier" },
+    visual: { kind: "illustration", src: "/home-v4/assistant-dollhouse.webp", alt: "Doll house, Assistant tier" },
     features: [
       { icon: LeafIcon, text: "Notices what matters" },
       { icon: PulseIcon, text: "Tracks changes in real time" },
@@ -113,7 +113,7 @@ const TIERS: {
     numeral: "II.",
     label: "Housekeeper",
     tagline: "The house, in order.",
-    visual: { kind: "phone", src: "/home-v4/steward-phone-housekeeper.webp", alt: "Today's Plan — Housekeeper phone" },
+    visual: { kind: "phone", src: "/home-v4/steward-phone-housekeeper.webp", alt: "Today's Plan, Housekeeper phone" },
     features: [
       { icon: TaskIcon, text: "Windows remembered" },
       { icon: CalendarSmallIcon, text: "Services in rhythm" },
@@ -126,7 +126,7 @@ const TIERS: {
     numeral: "III.",
     label: "Steward",
     tagline: "The house, protected before failure.",
-    visual: { kind: "phone", src: "/home-v4/steward-phone-steward.webp", alt: "House Health 91% Optimal — Steward phone" },
+    visual: { kind: "phone", src: "/home-v4/steward-phone-steward.webp", alt: "House Health 91% Optimal, Steward phone" },
     features: [
       { icon: ShieldSmallIcon, text: "Predicts risk" },
       { icon: GearIcon, text: "Optimises systems" },

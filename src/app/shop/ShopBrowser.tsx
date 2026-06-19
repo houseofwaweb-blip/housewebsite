@@ -20,9 +20,9 @@ const SUBS_BY_HANDLE = new Map(
 const PRICE_RANGES = [
   { label: "Any", min: 0, max: Infinity },
   { label: "Under £25", min: 0, max: 25 },
-  { label: "£25 – £50", min: 25, max: 50 },
-  { label: "£50 – £100", min: 50, max: 100 },
-  { label: "£100 – £250", min: 100, max: 250 },
+  { label: "£25 to £50", min: 25, max: 50 },
+  { label: "£50 to £100", min: 50, max: 100 },
+  { label: "£100 to £250", min: 100, max: 250 },
   { label: "£250+", min: 250, max: Infinity },
 ];
 
@@ -30,7 +30,7 @@ const SORT_OPTIONS = [
   { label: "Newest", fn: () => 0 },
   { label: "Price: low → high", fn: (a: CatalogueProduct, b: CatalogueProduct) => parsePrice(a.price) - parsePrice(b.price) },
   { label: "Price: high → low", fn: (a: CatalogueProduct, b: CatalogueProduct) => parsePrice(b.price) - parsePrice(a.price) },
-  { label: "Name A–Z", fn: (a: CatalogueProduct, b: CatalogueProduct) => a.title.localeCompare(b.title) },
+  { label: "Name A to Z", fn: (a: CatalogueProduct, b: CatalogueProduct) => a.title.localeCompare(b.title) },
 ];
 
 function parsePrice(p: string): number {

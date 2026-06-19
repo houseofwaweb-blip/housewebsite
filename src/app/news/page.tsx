@@ -4,7 +4,7 @@ import s from "./news.module.css";
 import { getNewsList } from "@/lib/cms/news-musings";
 
 export const metadata = {
-  title: "News — Announcements & press.",
+  title: "News | Announcements & press.",
   description:
     "Press, recognition, and announcements from the House of Willow Alexander.",
 };
@@ -32,7 +32,7 @@ export default async function NewsIndexPage() {
       <section className={s.list}>
         <div className={s.listInner}>
           {items.length === 0 ? (
-            <p className={s.empty}>No news yet — please check back soon.</p>
+            <p className={s.empty}>No news yet. Please check back soon.</p>
           ) : (
             items.map((item, i) => {
               const date = new Date(item.publishedAt).toLocaleDateString("en-GB", {

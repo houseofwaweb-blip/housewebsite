@@ -4,9 +4,9 @@ import s from "./musings.module.css";
 import { getMusingList } from "@/lib/cms/news-musings";
 
 export const metadata = {
-  title: "Musings — Short notes from the House.",
+  title: "Musings | Short notes from the House.",
   description:
-    "The House's free blog — notes on gardens, rooms, seasons, and the keeping of a home.",
+    "The House's free blog: notes on gardens, rooms, seasons, and the keeping of a home.",
 };
 
 export default async function MusingsIndexPage() {

@@ -22,7 +22,7 @@ export default function NotFound() {
         </h1>
         <p className="font-sans text-[19px] leading-[1.6] text-house-brown/75 mt-6 max-w-[52ch] mx-auto">
           The page you asked for isn&apos;t here, or isn&apos;t here any more.
-          If you followed a link from elsewhere, we&apos;d like to know —
+          If you followed a link from elsewhere, we&apos;d like to know:
           <Link
             href="/contact"
             className="text-house-brown underline decoration-house-gold underline-offset-4"

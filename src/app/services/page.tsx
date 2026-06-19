@@ -40,7 +40,7 @@ function imgOr(p?: string): string {
 export const metadata = {
   title: "Home and garden services",
   description:
-    "Four disciplines of home care — gardening, window cleaning, cleaning, gutter cleaning — to one House standard. One-off or on a Steward plan.",
+    "Four disciplines of home care, gardening, window cleaning, cleaning, gutter cleaning, to one House standard. One-off or on a Steward plan.",
 };
 
 const STAT_COLS = [
@@ -56,7 +56,7 @@ const SERVICES = [
     name: "Gardening",
     tagline: "Lawn, beds, and seasonal care.",
     body:
-      "Routine cuts, hedge work, planting plans and seasonal tidies — by gardeners who know the difference between cutting back and cutting down.",
+      "Routine cuts, hedge work, planting plans and seasonal tidies, by gardeners who know the difference between cutting back and cutting down.",
     image: "/services/subbrands/gardeners.webp",
     href: "/services/gardening",
     state: "live" as const,
@@ -76,7 +76,7 @@ const SERVICES = [
     name: "Cleaning",
     tagline: "Domestic cleaning, properly briefed.",
     body:
-      "A regular team that learns the home — surfaces, finishes, what to use, what to leave. Same hands twice. Filed to your record after every visit.",
+      "A regular team that learns the home: surfaces, finishes, what to use, what to leave. Same hands twice. Filed to your record after every visit.",
     image: "/services/subbrands/cleaners.webp",
     href: "/services/cleaning",
     state: "live" as const,
@@ -106,7 +106,7 @@ const SERVICES = [
     name: "Housekeeping",
     tagline: "A discreet, ongoing presence.",
     body:
-      "Daily or weekly housekeeping — laundry, linen, kitchen, light cooking — for households that prefer the home kept beautifully without managing it.",
+      "Daily or weekly housekeeping, laundry, linen, kitchen, light cooking, for households that prefer the home kept beautifully without managing it.",
     image: "/services/subbrands/housekeeping.webp",
     href: "/services/housekeeping",
     state: "soon" as const,
@@ -206,7 +206,7 @@ const FAQ = [
   },
   {
     q: "Who actually comes to the home?",
-    a: "House-owned teams where we operate directly, House Approved contractors elsewhere — same standards either way.",
+    a: "House-owned teams where we operate directly, House Approved contractors elsewhere, same standards either way.",
   },
   {
     q: "What writes into HoWA?",
@@ -371,7 +371,7 @@ export default async function ServicesLanding() {
           <p className={s.plansLede}>
             Steward Plans bundle the services into a recurring rhythm. HoWA
             holds the calendar, remembers what's due, and sends the right hands
-            at the right time. <strong>Open to HoWA Steward customers only —</strong>{" "}
+            at the right time. <strong>Open to HoWA Steward customers only.</strong>{" "}
             <Link href="/howa/steward" className={s.plansLink}>
               learn about Steward →
             </Link>

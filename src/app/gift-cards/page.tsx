@@ -2,9 +2,9 @@ import Link from "next/link";
 import s from "./gift-cards.module.css";
 
 export const metadata = {
-  title: "Gift Cards — Give a well-kept home.",
+  title: "Gift Cards | Give a well-kept home.",
   description:
-    "House of Willow Alexander gift cards — give the gift of home care, design, or anything from the House.",
+    "House of Willow Alexander gift cards: give the gift of home care, design, or anything from the House.",
 };
 
 const DENOMINATIONS = [
@@ -32,7 +32,7 @@ export default function GiftCardsPage() {
             Give the gift of <em>a well-kept home.</em>
           </h1>
           <p className={s.heroLede}>
-            House gift cards work across everything — services, the shop, design
+            House gift cards work across everything: services, the shop, design
             consultations, and HoWA memberships. Delivered by email, redeemed
             online or in person.
           </p>

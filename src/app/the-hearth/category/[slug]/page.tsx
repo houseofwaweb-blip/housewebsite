@@ -35,7 +35,7 @@ export async function generateMetadata({
   if (!category) return { title: "The Hearth" };
   const label = titleCase(category.name);
   return {
-    title: `${label} — The Hearth`,
+    title: `${label} | The Hearth`,
     description:
       category.description ??
       `${label} from The Hearth, the House of Willow Alexander journal on homes and gardens.`,
