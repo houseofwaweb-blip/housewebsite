@@ -110,6 +110,16 @@ export function HearthPaywall() {
             </div>
           </div>
 
+          <p className="mt-4 font-hearth-serif text-[14px] text-house-stone">
+            Already a member?{" "}
+            <a
+              href="https://accounts.willowalexander.co.uk/"
+              className="font-hearth-sans text-[11px] tracking-[0.16em] uppercase text-house-brown no-underline border-b border-dotted border-house-brown pb-px transition-colors hover:text-house-gold hover:border-house-gold"
+            >
+              Log in
+            </a>
+          </p>
+
           <div className="mt-6 pt-5 border-t border-house-brown/8 flex gap-5 justify-center flex-wrap font-hearth-sans text-[10px] tracking-[0.14em] uppercase text-house-stone">
             {["14-day refund", "Cancel anytime", "Your record stays yours"].map(
               (s) => (
