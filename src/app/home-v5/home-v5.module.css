@@ -133,15 +133,17 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }
-/* Equal-width hero CTAs on one row; tighten so the three labels fit. */
+/* Equal-width hero CTAs on one row; tighten the type so the three labels
+   fit with comfortable side padding (no edge-hugging). */
 .heroCtas > a {
   justify-content: center;
   text-align: center;
   white-space: nowrap;
   min-width: 0;
-  padding-left: 8px;
-  padding-right: 8px;
-  letter-spacing: 0.07em;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: 10px;
+  letter-spacing: 0.04em;
 }
 @media (max-width: 640px) {
   .heroCtas { grid-template-columns: 1fr; }
