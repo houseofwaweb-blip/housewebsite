@@ -18,6 +18,10 @@ export interface CatalogueProduct {
   /** All main-category handles this product belongs to (for accurate filtering). */
   collectionHandles?: string[];
   houseApproved: boolean;
+  /** "Why the House chose it" — editorial endorsement against the House
+      standards (craft, sustainability, design, provenance). From the Shopify
+      `howa.editorialCopy` metafield. */
+  whyChosen?: string;
   lede: string;
   body: string;
   /** Shopify "Search engine listing" overrides (per-product SEO). Optional —

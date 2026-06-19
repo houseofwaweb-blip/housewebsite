@@ -69,6 +69,17 @@ export function ProductCopy({ product: p }: { product: ShopProduct }) {
         </button>
       ) : null}
 
+      {p.whyChosen ? (
+        <div className="mt-8 border-t border-house-brown/10 pt-6">
+          <p className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold mb-2.5">
+            Why the House chose it
+          </p>
+          <p className="font-display italic text-[17px] leading-[1.55] text-house-brown/85">
+            {p.whyChosen}
+          </p>
+        </div>
+      ) : null}
+
       {details.length > 0 ? (
         <div className="mt-9">
           <Accordion items={details} />

@@ -11,6 +11,8 @@ import type { ProductCardData } from "@/components/commerce/ProductCard";
 export interface ShopProduct extends ProductCardData {
   lede: string;
   body: string;
+  /** "Why the House chose it" — editorial endorsement vs the House standards. */
+  whyChosen?: string;
   /** Optional per-product SEO overrides (Shopify "Search engine listing"). */
   seoTitle?: string;
   seoDescription?: string;

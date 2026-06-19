@@ -42,6 +42,8 @@ const CAT_FIELDS = /* GraphQL */ `
     priceRange { minVariantPrice { amount currencyCode } }
     compareAtPriceRange { minVariantPrice { amount currencyCode } }
     variants(first: 2) { nodes { id sku } }
+    whyChosen: metafield(namespace: "howa", key: "editorialCopy") { value }
+    houseApprovedMeta: metafield(namespace: "howa", key: "houseApproved") { value }
   }
 `;
 
@@ -85,6 +87,8 @@ interface SfProduct {
   priceRange: { minVariantPrice: MoneyV };
   compareAtPriceRange: { minVariantPrice: MoneyV };
   variants: { nodes: Array<{ id: string; sku: string | null }> };
+  whyChosen: { value: string | null } | null;
+  houseApprovedMeta: { value: string | null } | null;
 }
 interface CatalogueData {
   collections: {
@@ -126,7 +130,8 @@ function mapProduct(p: SfProduct, collection: string): CatalogueProduct {
     image: p.featuredImage?.url ?? imageNodes[0]?.url ?? "",
     images: imageNodes.map((i) => ({ src: i.url, alt: i.altText ?? p.title })),
     collection,
-    houseApproved: false, // set later via Shopify metafields when defined
+    houseApproved: p.houseApprovedMeta?.value === "true",
+    whyChosen: p.whyChosen?.value || undefined,
     lede: firstLine(p.description),
     body: p.description ?? "",
     seoTitle: p.seo?.title || undefined,
