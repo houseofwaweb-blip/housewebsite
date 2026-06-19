@@ -20,7 +20,7 @@ export const metadata = {
 };
 
 const PILLARS = [
-  { label: "Design & Care", title: "Design & Care", sub: "Expert design and care for every home.", image: "/home-v4/design-portrait.webp", href: "/design" },
+  { label: "Design & Care", title: "Design & Care", sub: "Design and care, held to the House standard.", image: "/home-v4/design-portrait.webp", href: "/design" },
   { label: "The Marketplace", title: "The Marketplace", sub: "Objects with a place in the House.", image: "/home-v4/pillar-2.webp", href: "/shop" },
   { label: "The Hearth", title: "The Hearth", sub: "The editorial soul of the House.", image: "/home-v4/pillar-3.webp", href: "/the-hearth" },
   { label: "The House", title: "The House", sub: "The standard we hold ourselves to.", image: "/home-v4/pillar-4.webp", href: "#the-house" },
@@ -128,8 +128,8 @@ export default async function HomePage() {
               </Link>
             </div>
             <p className={s.heroBookingNote}>
-              Online bookings are handled through HoWA, our Home Intelligence OS
-              partner. Prefer to speak to us? <Link href="/contact">Call the House directly</Link>.
+              Online bookings are powered by HoWA, the Home Intelligence OS
+              created from the House. Prefer to speak to us? <Link href="/contact">Call the House directly</Link>.
             </p>
           </div>
         </div>
@@ -221,7 +221,108 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 7. Services showcase */}
+      {/* HoWA — the intelligence layer, introduced before the execution layers (slide 12) */}
+      <section className={s.howaIntro}>
+        <div className={s.howaIntroInner}>
+          <div className={s.howaIntroVisual}>
+            <HowaWidget />
+          </div>
+          <div className={s.howaIntroCopy}>
+            <p className={s.eyebrow}>HoWA · Home Intelligence OS</p>
+            <h2 className={s.howaIntroTitle}>
+              Born inside the House.<br />
+              <em>Built for every home.</em>
+            </h2>
+            <p className={s.howaIntroPara}>
+              HoWA is the Home Intelligence OS created from House of Willow
+              Alexander. It begins with your address, builds the first portrait of
+              your home and keeps a living record of its services, documents, costs,
+              risks and care over time. House bookings are powered by HoWA, but
+              HoWA is not only for House services.
+            </p>
+            <div className={s.howaFeatures}>
+              {HOWA_FEATURES.map((f) => (
+                <div key={f.lead} className={s.howaFeature}>
+                  <strong>{f.lead}:</strong> {f.rest}
+                </div>
+              ))}
+            </div>
+            <div className={s.howaIntroCtas}>
+              <Link href="/howa" className={s.btnFilled}>Start your Home Record</Link>
+              <Link href="/howa/how-it-works" className={s.btnGhost}>
+                See how it works <span aria-hidden className={s.arrow}>→</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* HoWA intelligence — what the house notices */}
+      <section className={s.intel}>
+        <div className={s.intelCopy}>
+          <h2 className={s.intelTitle}>
+            Your house is trying<br />
+            <em>to tell you something.</em>
+          </h2>
+          <p className={s.intelPara}>
+            The windows, the gutters, the laundry that never ends, the boiler
+            service you keep meaning to book, the warranty you know is somewhere.
+            Hand it to HoWA, and the house starts to remember for you, so the
+            next thing to do is simply there when you need it.
+          </p>
+          <div className={s.intelStats}>
+            {INTEL_STATS.map((stat) => (
+              <div key={stat.label} className={s.intelStat}>
+                <p className={s.intelStatLabel}>{stat.label}</p>
+                <p className={s.intelStatValue}>{stat.value}</p>
+              </div>
+            ))}
+          </div>
+          <Link href="/howa/how-it-works" className={s.btnGhostDark}>
+            See how HoWA works <span aria-hidden className={s.arrow}>→</span>
+          </Link>
+        </div>
+        <div className={s.intelVisual}>
+          <Image
+            src="/home-v4/pillar-1.webp"
+            alt="A warm parlour interior with a marble fireplace and flowers"
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            style={{ objectFit: "cover" }}
+          />
+        </div>
+      </section>
+
+      {/* HoWA tiers — three ways HoWA serves the home (reuses v4a tier cards) */}
+      <section className={s.tiers}>
+        <header className={s.tiersHead}>
+          <p className={s.eyebrow}>HoWA</p>
+          <h2 className={s.tiersTitle}>Three ways HoWA serves the home.</h2>
+        </header>
+        <div className={v.tierGrid}>
+          {TIERS.map((tier) => (
+            <Link key={tier.slug} href={tier.href} className={`${v.tierCard} ${v[tier.slug]}`}>
+              <div className={v.tierBg} aria-hidden="true" />
+              <div className={v.tierOverlay}>
+                <header className={v.tierTop}>
+                  <p className={v.tierMeta}>{tier.numeral} {tier.label}</p>
+                  <h3 className={v.tierTagline}>{tier.name}</h3>
+                </header>
+                <footer className={v.tierFoot}>
+                  <ul className={v.tierFeatures}>
+                    {tier.features.map((f) => (
+                      <li key={f}>{f}</li>
+                    ))}
+                  </ul>
+                  <span className={v.tierLearn}>Learn more →</span>
+                </footer>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Execution layer — Services showcase */}
       <section className={s.services}>
         <div className={s.servicesInner}>
           <div className={s.servicesHead}>
@@ -281,107 +382,6 @@ export default async function HomePage() {
               </Link>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Booked through HoWA — platform module, after the commercial sections */}
-      <section className={s.howaIntro}>
-        <div className={s.howaIntroInner}>
-          <div className={s.howaIntroVisual}>
-            <HowaWidget />
-          </div>
-          <div className={s.howaIntroCopy}>
-            <p className={s.eyebrow}>HoWA · Home Intelligence OS</p>
-            <h2 className={s.howaIntroTitle}>
-              Born inside the House.<br />
-              <em>Built for every home.</em>
-            </h2>
-            <p className={s.howaIntroPara}>
-              HoWA is the Home Intelligence OS created from House of Willow
-              Alexander. It begins with your address, builds the first portrait of
-              your home and keeps a living record of its services, documents, costs,
-              risks and care over time. House bookings are powered by HoWA, but
-              HoWA is not only for House services.
-            </p>
-            <div className={s.howaFeatures}>
-              {HOWA_FEATURES.map((f) => (
-                <div key={f.lead} className={s.howaFeature}>
-                  <strong>{f.lead}:</strong> {f.rest}
-                </div>
-              ))}
-            </div>
-            <div className={s.howaIntroCtas}>
-              <Link href="/howa" className={s.btnFilled}>Start your Home Record</Link>
-              <Link href="/howa/how-it-works" className={s.btnGhost}>
-                See how it works <span aria-hidden className={s.arrow}>→</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 10. HoWA intelligence — second HoWA appearance */}
-      <section className={s.intel}>
-        <div className={s.intelCopy}>
-          <h2 className={s.intelTitle}>
-            Your house is trying<br />
-            <em>to tell you something.</em>
-          </h2>
-          <p className={s.intelPara}>
-            The windows, the gutters, the laundry that never ends, the boiler
-            service you keep meaning to book, the warranty you know is somewhere.
-            Hand it to HoWA, and the house starts to remember for you, so the
-            next thing to do is simply there when you need it.
-          </p>
-          <div className={s.intelStats}>
-            {INTEL_STATS.map((stat) => (
-              <div key={stat.label} className={s.intelStat}>
-                <p className={s.intelStatLabel}>{stat.label}</p>
-                <p className={s.intelStatValue}>{stat.value}</p>
-              </div>
-            ))}
-          </div>
-          <Link href="/howa/how-it-works" className={s.btnGhostDark}>
-            See how HoWA works <span aria-hidden className={s.arrow}>→</span>
-          </Link>
-        </div>
-        <div className={s.intelVisual}>
-          <Image
-            src="/home-v4/pillar-1.webp"
-            alt="A warm parlour interior with a marble fireplace and flowers"
-            fill
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            style={{ objectFit: "cover" }}
-          />
-        </div>
-      </section>
-
-      {/* 11. HoWA tiers — third HoWA appearance (reuses v4a tier cards) */}
-      <section className={s.tiers}>
-        <header className={s.tiersHead}>
-          <p className={s.eyebrow}>HoWA</p>
-          <h2 className={s.tiersTitle}>Three ways HoWA serves the home.</h2>
-        </header>
-        <div className={v.tierGrid}>
-          {TIERS.map((tier) => (
-            <Link key={tier.slug} href={tier.href} className={`${v.tierCard} ${v[tier.slug]}`}>
-              <div className={v.tierBg} aria-hidden="true" />
-              <div className={v.tierOverlay}>
-                <header className={v.tierTop}>
-                  <p className={v.tierMeta}>{tier.numeral} {tier.label}</p>
-                  <h3 className={v.tierTagline}>{tier.name}</h3>
-                </header>
-                <footer className={v.tierFoot}>
-                  <ul className={v.tierFeatures}>
-                    {tier.features.map((f) => (
-                      <li key={f}>{f}</li>
-                    ))}
-                  </ul>
-                  <span className={v.tierLearn}>Learn more →</span>
-                </footer>
-              </div>
-            </Link>
-          ))}
         </div>
       </section>
 

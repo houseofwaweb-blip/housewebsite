@@ -92,6 +92,9 @@ export function Footer({ columns, tagline }: FooterProps) {
   return (
     <footer className="bg-house-brown text-house-cream px-[5vw] py-16 mt-auto">
       <div className="max-w-[1280px] mx-auto">
+        <p className="font-display italic text-[clamp(24px,3vw,38px)] leading-[1.15] text-house-cream/90 pb-12 max-w-[18ch]">
+          That Feeling You Call Home.
+        </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10 pb-12 border-b border-[rgba(245,240,232,0.12)]">
           {cols.map((col) => (
             <div key={col.heading}>
