@@ -4,6 +4,7 @@ import s from "./home-v5/home-v5.module.css";
 import v from "./home-v4a.module.css";
 import { getLatestHearthArticles } from "@/lib/cms/hearth";
 import { shopifyProvider } from "@/lib/commerce/shopify";
+import { PlaceholderImage } from "@/components/marketing/PlaceholderImage";
 
 /**
  * Homepage — House-led (v5).
@@ -193,14 +194,41 @@ export default async function HomePage() {
             documents and records. Each is held to a single test, would we trust
             this in a home we love?
           </p>
-          <p>
-            Cultivated from a garden studio and founded by Samuel Collett and
-            Alexander Oakley, the House began with gardens: soil, seasons, craft,
-            electric vans and the belief that care could be beautiful. From there
-            it grew into a modern British House for the whole home.
-          </p>
           <Link href="/the-house/philosophy" className={s.textLink}>
             Discover the House standard <span aria-hidden className={s.arrow}>→</span>
+          </Link>
+        </div>
+      </section>
+
+      {/* Origin pulse — founder story brought up from About / Artwork (slide 12 #03, slide 18) */}
+      <section className={s.origin}>
+        <div className={s.originVisual}>
+          <PlaceholderImage
+            ratio="4 / 5"
+            caption="The original garden studio. Soil, seasons and a single electric van."
+          />
+        </div>
+        <div className={s.originCopy}>
+          <p className={s.eyebrow}>Origin</p>
+          <h2 className={s.originTitle}>
+            Cultivated from a garden studio.<br />
+            <em>Built into a House.</em>
+          </h2>
+          <p className={s.originPara}>
+            House of Willow Alexander began with gardens. Soil, seasons, craft, a
+            single electric van and regenerative planting plans, founded by Samuel
+            Collett and Alexander Oakley on a simple belief, that care could be
+            beautiful.
+          </p>
+          <p className={s.originPara}>
+            The name was chosen like a dedication. Willow for resilience and quiet
+            magic, Alexander for something steady and classical. Cultivated, not
+            branded. From that studio it grew into a modern British House for the
+            whole home, part service standard, part design authority, part
+            editorial world, and the place HoWA was born.
+          </p>
+          <Link href="/the-house/artwork" className={s.textLink}>
+            Read the Artwork of the House <span aria-hidden className={s.arrow}>→</span>
           </Link>
         </div>
       </section>

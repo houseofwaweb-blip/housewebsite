@@ -305,6 +305,41 @@
   margin: 14px 0 0;
 }
 .houseIntroHead em { font-style: italic; color: var(--color-house-gold-dark); }
+
+/* Origin pulse — founder story section (image + copy) */
+.origin {
+  display: grid;
+  grid-template-columns: 0.82fr 1fr;
+  gap: clamp(40px, 6vw, 96px);
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: clamp(56px, 7vw, 112px) clamp(40px, 5vw, 88px);
+}
+.originVisual { width: 100%; }
+.originCopy { display: flex; flex-direction: column; align-items: flex-start; }
+.originTitle {
+  font-family: var(--font-hearth-serif);
+  font-weight: 400;
+  font-size: clamp(32px, 3.8vw, 52px);
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+  color: var(--color-house-brown);
+  margin: 14px 0 26px;
+}
+.originTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.originPara {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.72;
+  color: rgba(48, 35, 28, 0.78);
+  margin: 0 0 20px;
+  max-width: 54ch;
+}
+@media (max-width: 860px) {
+  .origin { grid-template-columns: 1fr; gap: 32px; }
+}
+
 .houseIntroBody p {
   font-family: var(--font-sans);
   font-size: 16px;
