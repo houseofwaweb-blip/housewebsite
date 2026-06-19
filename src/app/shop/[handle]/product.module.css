@@ -63,7 +63,9 @@
 .thumb:hover { opacity: 1; border-color: rgba(48, 35, 28, 0.4); }
 .thumbActive { opacity: 1; border-color: var(--color-house-gold-dark); }
 .thumbImg { width: 100%; height: 100%; object-fit: cover; display: block; }
+.galleryCol { min-width: 0; }
 .mainWrap {
+  position: relative;
   flex: 1;
   min-width: 0;
   background: var(--color-house-cream-dark);
@@ -75,6 +77,83 @@
   aspect-ratio: 4 / 5;
   object-fit: cover;
   display: block;
+}
+
+/* Wax-seal "stamp of approval" on the product image */
+.imgSeal {
+  position: absolute;
+  top: clamp(12px, 1.4vw, 18px);
+  right: clamp(12px, 1.4vw, 18px);
+  z-index: 2;
+  width: clamp(64px, 6vw, 82px);
+  height: clamp(64px, 6vw, 82px);
+  border-radius: 50% !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1px;
+  background: rgba(245, 240, 232, 0.93);
+  border: 1px solid var(--color-house-gold-dark);
+  box-shadow:
+    inset 0 0 0 3px rgba(245, 240, 232, 0.93),
+    inset 0 0 0 4px rgba(212, 175, 90, 0.45),
+    0 6px 18px -8px rgba(48, 35, 28, 0.35);
+  backdrop-filter: blur(1px);
+}
+.sealTop,
+.sealBot {
+  font-family: var(--font-sans);
+  font-size: 6.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--color-house-gold-dark);
+}
+.sealMark {
+  font-family: var(--font-hearth-serif);
+  font-size: clamp(16px, 1.6vw, 20px);
+  line-height: 1;
+  color: var(--color-house-gold-dark);
+  margin: 2px 0;
+}
+
+/* "Why the House chose it" plaque, directly beneath the image */
+.plaque {
+  margin: 16px 0 0;
+  border: 1px solid rgba(212, 175, 90, 0.5);
+  background: var(--color-house-cream);
+  padding: clamp(18px, 1.7vw, 26px);
+}
+.plaqueHead {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 10px;
+}
+.plaqueMark {
+  font-family: var(--font-hearth-serif);
+  font-size: 15px;
+  line-height: 1;
+  color: var(--color-house-gold-dark);
+}
+.plaqueLabel {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--color-house-gold-dark);
+}
+.plaqueText {
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.55;
+  color: rgba(48, 35, 28, 0.85);
+  margin: 0;
 }
 
 /* Buy column */

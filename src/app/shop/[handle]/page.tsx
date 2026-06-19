@@ -164,7 +164,7 @@ export default async function ProductPage({
 
       {/* PDP — gallery left, buy column right (DESIGN.md <PDPLayout />) */}
       <div className={s.pdp}>
-        <ProductGallery images={product.images} />
+        <ProductGallery images={product.images} whyChosen={product.whyChosen} />
 
         <div className={s.buy}>
           {product.collection || product.houseApproved ? (
