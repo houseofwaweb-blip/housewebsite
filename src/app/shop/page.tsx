@@ -35,14 +35,16 @@ export default async function ShopPage() {
           The House · Marketplace
         </p>
         <h1 className="font-display text-[clamp(30px,3.4vw,48px)] leading-[1.05] tracking-[-0.01em] text-house-brown">
-          The House{" "}
+          Objects with a place{" "}
           <em className="italic" style={{ fontFamily: "var(--font-hearth-serif)" }}>
-            Marketplace.
+            in the House.
           </em>
         </h1>
-        <p className="font-sans text-[13.5px] text-house-stone max-w-[460px] mx-auto mt-4 leading-[1.6]">
-          Objects worth keeping for house, garden and daily care, chosen for
-          craft, provenance, usefulness and lasting stewardship.
+        <p className="font-sans text-[13.5px] text-house-stone max-w-[480px] mx-auto mt-4 leading-[1.6]">
+          An edited cabinet, not a catalogue. Each thing here is House Approved,
+          chosen for how it is made, how long it lasts, and whether it can be
+          mended rather than replaced. Tools, linens, garden kit and household
+          goods we have used, trust, and would keep.
         </p>
       </section>
 

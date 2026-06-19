@@ -432,7 +432,7 @@ export default async function HomePage() {
       {/* 13. Closing CTA */}
       <section className={s.closing}>
         <p className={s.closingStatement}>
-          The house you love, held to the standard <em>it deserves.</em>
+          A House for the home you love, <em>kept to the standard a good home deserves.</em>
         </p>
         <div className={s.closingCtas}>
           <Link href="#open-booking-form" className={s.btnFilled}>Book a House Service</Link>

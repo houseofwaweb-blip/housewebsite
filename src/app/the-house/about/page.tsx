@@ -43,9 +43,9 @@ export default async function AboutPage() {
         }))
       : FALLBACK_SECTIONS;
 
-  const headline = cms(intro, "headline", "A");
-  const headlineEm = cms(intro, "headlineEm", "small", "headline");
-  const headlineTail = cms(intro, "subheadline", "team, on purpose.");
+  const headline = cms(intro, "headline", "A modern British House for the");
+  const headlineEm = cms(intro, "headlineEm", "care, design and intelligence", "headline");
+  const headlineTail = cms(intro, "subheadline", "of home.");
 
   return (
     <EditorialPage
@@ -58,7 +58,7 @@ export default async function AboutPage() {
       lede={cms(
         intro,
         "body",
-        "The House is run by a small core team. The work — designs, services, the journal, the product — is carried by a wider set of partners we name openly.",
+        "We began with gardens, soil and seasons, and grew into a House that tends the whole of a home. Today that means the design that shapes a house, the care that keeps it, and the records that remember it.",
       )}
       sections={editorialSections}
     />

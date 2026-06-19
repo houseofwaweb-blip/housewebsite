@@ -23,8 +23,9 @@ export function HearthMasthead({ className }: { className?: string }) {
         </h1>
       </Link>
       <p className="font-hearth-serif italic text-[14px] text-house-stone mt-[10px] max-w-[640px] mx-auto">
-        A journal on the keeping of homes and gardens, seasonal notes, practical
-        guidance and considered essays from House of Willow Alexander.
+        Essays, recipes, garden notes and design wisdom, gathered through the
+        seasons. Quiet observations on the art of keeping a home, and the rooms,
+        gardens and thresholds worth keeping well.
       </p>
       <p className="font-hearth-sans text-[10px] tracking-[0.16em] uppercase text-house-stone/70 mt-[10px]">
         Housekeeper members receive full archive access and seasonal guides.

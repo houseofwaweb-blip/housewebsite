@@ -265,14 +265,14 @@ export default async function ServicesLanding() {
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>{cms(hero, "eyebrow", "The House · Services")}</p>
             <h1 className={s.heroTitle}>
-              {cms(hero, "headline", "The quiet standard")}{" "}
-              <em>{cms(hero, "headlineEm", "of care.", "headline")}</em>
+              {cms(hero, "headline", "Care as craft,")}{" "}
+              <em>{cms(hero, "headlineEm", "season after season.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
               {cms(
                 hero,
                 "body",
-                "Every discipline of home and garden care, held to one House standard. Book a one-off visit, arrange recurring care, or speak directly to the House.",
+                "The practical work of looking after a house and garden, held to one House standard. Gardens cut and planted, windows and sills cleared, gutters seen to before the weather turns, small repairs put right. Delivered by House of Willow Alexander and the people we approve, booked through HoWA, and written back to your Home Record so the house remembers what was done.",
               )}
             </p>
             <div className={s.heroCtas}>
@@ -324,16 +324,16 @@ export default async function ServicesLanding() {
       {/* 3. Service carousel — all subbrands, live + coming-soon */}
       <section className={s.services}>
         <header className={s.servicesHead}>
-          <p className={s.servicesEy}>{cms(servicesHead, "eyebrow", "The Sub-Brands")}</p>
+          <p className={s.servicesEy}>{cms(servicesHead, "eyebrow", "The disciplines")}</p>
           <h2 className={s.servicesTitle}>
             {cms(servicesHead, "headline", "The hands that")}{" "}
-            <em>{cms(servicesHead, "headlineEm", "look after the home.", "headline")}</em>
+            <em>{cms(servicesHead, "headlineEm", "keep a house in good order.", "headline")}</em>
           </h2>
           <p className={s.servicesLede}>
             {cms(
               servicesHead,
               "body",
-              "Nine disciplines, one House standard. Four live at launch — the rest opening through 2026 as we onboard partners we trust.",
+              "Nine disciplines, one way of working. Four are live now. The rest open through 2026 as we approve the people we would have in our own homes.",
             )}
           </p>
         </header>

@@ -110,14 +110,14 @@ export default async function DesignLanding() {
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>{cms(hero, "eyebrow", "The House · Design")}</p>
             <h1 className={s.heroTitle}>
-              {cms(hero, "headline", "Design for houses and gardens")}{" "}
-              <em>{cms(hero, "headlineEm", "with memory.", "headline")}</em>
+              {cms(hero, "headline", "Rooms and gardens,")}{" "}
+              <em>{cms(hero, "headlineEm", "made to last.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
               {cms(
                 hero,
                 "body",
-                "Commission interiors, gardens and considered improvements through House Approved studios, with every brief, decision and handover available to your Home Record when booked online.",
+                "Interiors and gardens are a House discipline, care as craft worked out in plaster, paint, planting and light. Commissioned through House Approved studios who understand period fabric, the way a garden drains, and how people actually live in their rooms. Book online and every brief, decision and handover is written into your Home Record.",
               )}
             </p>
             <div className={s.heroCtas}>
