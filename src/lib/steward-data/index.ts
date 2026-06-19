@@ -28,7 +28,7 @@ export const PLANS: StewardPlan[] = [
     price: 605,
     priceLabel: "£605",
     featured: false,
-    image: "https://willowalexander.co.uk/wp-content/uploads/2026/01/Home-Garden-Plus-Essential.jpg",
+    image: "/home-v4/plan-home-garden-plus-essential.jpg",
     inclusions: [
       "Weekly gardening (1hr)",
       "Weekly cleaning (2hrs)",
@@ -47,7 +47,7 @@ export const PLANS: StewardPlan[] = [
     price: 745,
     priceLabel: "£745",
     featured: true,
-    image: "https://willowalexander.co.uk/wp-content/uploads/2026/01/Home-Garden-Plus-Comprehensive.jpg",
+    image: "/home-v4/plan-home-garden-plus-comprehensive.jpg",
     inclusions: [
       "Weekly gardening (1hr)",
       "Weekly cleaning (3hrs)",
@@ -68,7 +68,7 @@ export const PLANS: StewardPlan[] = [
     price: 1040,
     priceLabel: "£1,040",
     featured: false,
-    image: "https://willowalexander.co.uk/wp-content/uploads/2026/01/Home-Garden-Plus-Premium.jpg",
+    image: "/home-v4/plan-home-garden-plus-premium.jpg",
     inclusions: [
       "Weekly gardening (2hrs)",
       "Weekly cleaning (3hrs)",
@@ -89,7 +89,7 @@ export const PLANS: StewardPlan[] = [
     price: 300,
     priceLabel: "£300",
     featured: false,
-    image: "https://willowalexander.co.uk/wp-content/uploads/2026/01/Apartment-Plus-Essential.jpg",
+    image: "/home-v4/plan-apartment-plus-essential.jpg",
     inclusions: [
       "Weekly cleaning (2hrs)",
       "External window cleaning (monthly)",
@@ -107,7 +107,7 @@ export const PLANS: StewardPlan[] = [
     price: 460,
     priceLabel: "£460",
     featured: true,
-    image: "https://willowalexander.co.uk/wp-content/uploads/2026/01/Apartment-Plus-Balcony.jpg",
+    image: "/home-v4/plan-apartment-plus-balcony.jpg",
     inclusions: [
       "Fortnightly gardening (1hr)",
       "Weekly cleaning (2hrs)",
@@ -127,7 +127,7 @@ export const PLANS: StewardPlan[] = [
     price: 335,
     priceLabel: "£335",
     featured: false,
-    image: "https://willowalexander.co.uk/wp-content/uploads/2026/01/Apartment-Plus-Comprehensive.jpg",
+    image: "/home-v4/plan-apartment-plus-comprehensive.jpg",
     inclusions: [
       "Weekly cleaning (2hrs)",
       "External window cleaning (monthly)",
