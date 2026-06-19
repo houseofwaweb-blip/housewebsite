@@ -169,14 +169,14 @@ export default async function ProtectPage() {
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>{cms(hero, "eyebrow", "Protect · Late 2026")}</p>
             <h1 className={s.heroTitle}>
-              {cms(hero, "headline", "Home protection,")}{" "}
-              <em>{cms(hero, "headlineEm", "before the problem becomes a claim.", "headline")}</em>
+              {cms(hero, "headline", "Catch the small things")}{" "}
+              <em>{cms(hero, "headlineEm", "before they become the big ones.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
               {cms(
                 hero,
                 "body",
-                "Preventative reviews, condition evidence and practical next steps for homes that deserve better oversight. Reviews, photos and documents are filed into HoWA, so the home keeps a living evidence trail.",
+                "A slipped tile, a gutter quietly filling, a boiler service a year overdue, damp finding its way in behind a cupboard. Most home trouble starts small and patient, long before it becomes a claim. Home Protection is the House looking for it early, on the ground and in person, with every photograph, note and date kept in your HoWA record so the home remembers what was found and what was done.",
               )}
             </p>
             <div className={s.heroCtas}>

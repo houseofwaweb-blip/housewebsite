@@ -115,7 +115,7 @@ const SERVICES = [
     name: "Removals",
     tagline: "Moves, briefed by the record.",
     body:
-      "House-owned moves with packers who handle period interiors with care. The Living Record makes the unpack at the other end clean and quick.",
+      "Moves briefed by your record, with packers who handle period interiors with care. The Living Record makes the unpack at the other end clean and quick.",
     image: "/services/subbrands/removals.webp",
     href: "/services/removals",
     state: "soon" as const,
@@ -347,7 +347,7 @@ export default async function ServicesLanding() {
           {cms(
             servicesHead,
             "caption",
-            "Scroll for more — handyman, housekeeping, removals, energy and pet care all opening in 2026.",
+            "Scroll for more. Further disciplines open through 2026 as we approve the people behind them.",
           )}
         </p>
       </section>

@@ -73,7 +73,7 @@ function HeroCopy() {
   return (
     <div className="max-w-[540px]">
       <p className="smallcaps text-[13px] tracking-[0.2em] text-[color:var(--color-gold-deep)] mb-4">
-        The Home Operating System
+        The Home Intelligence OS
       </p>
       <h1 className="font-display text-[clamp(42px,3.4vw,68px)] leading-[0.98] tracking-[-0.015em] text-[color:var(--color-ink)]">
         Your house is

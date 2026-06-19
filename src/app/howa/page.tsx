@@ -31,7 +31,7 @@ import { V4MobileCta } from "./v4/_components/V4MobileCta";
  */
 
 export const metadata = {
-  title: { absolute: "HoWA | Home Operating System for house and garden" },
+  title: { absolute: "HoWA | The Home Intelligence OS for house and garden" },
   description:
     "Enter your address. In sixty seconds, HoWA builds the first portrait of your home, what it is, what matters, what can wait, and what to do next.",
 };

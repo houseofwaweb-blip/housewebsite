@@ -33,19 +33,18 @@ const HOWA_FEATURES = [
 ];
 
 const PRINCIPLES = [
-  { num: "I.", title: "Design-led thinking", body: "Every system, every service, every recommendation is held to a design standard — not just functional, but considered." },
+  { num: "I.", title: "Design-led thinking", body: "Every system, every service, every recommendation is held to a design standard. Not just functional, but considered." },
   { num: "II.", title: "The living record", body: "Nothing should be lost to memory. The House keeps every decision, document and service in a record that endures." },
-  { num: "III.", title: "Stewardship over transaction", body: "A home is not a product. It is an asset of life. We treat it — and those who care for it — accordingly." },
+  { num: "III.", title: "Stewardship over transaction", body: "A home is not a product. It is an asset of life. We treat it, and those who care for it, accordingly." },
   { num: "IV.", title: "House-vetted, always", body: "Every partner, every studio, every service carries the House Approved seal. No exceptions, no compromises." },
 ];
 
 const SERVICES = [
   { name: "Gardening", href: "/services/gardening", desc: "Seasonal and one-off garden care." },
-  { name: "Interior Design", href: "/design/interiors", desc: "Considered schemes, House-approved studios." },
+  { name: "Window Cleaning", href: "/services/window-cleaning", desc: "Glass, frames and sills, never chased." },
   { name: "Cleaning", href: "/services/cleaning", desc: "Regular and deep clean, scheduled through HoWA." },
-  { name: "Window Cleaning", href: "/services/window-cleaning", desc: "Trusted, tracked, never chased." },
-  { name: "Handyman", href: "/services/handyman", desc: "Minor repairs, quick fixes, proper tradespeople." },
-  { name: "Energy & Electrical", href: "/services/energy", desc: "Solar, EV, rewires — future-proofing your home." },
+  { name: "Gutter Cleaning", href: "/services/gutter-cleaning", desc: "Cleared before the weather turns." },
+  { name: "Design", href: "/design", desc: "Interiors and gardens, House Approved studios." },
 ];
 
 const INTEL_STATS = [
@@ -62,10 +61,10 @@ const TIERS = [
 ];
 
 const POWERED = [
-  { icon: HomeIcon, lead: "House-vetted partners only", rest: " — every studio carries the seal." },
-  { icon: ShieldIcon, lead: "Held in your record", rest: " — every decision and document, kept." },
-  { icon: LeafIcon, lead: "Repair over replace", rest: " — retain the fabric, choose better, evidence the impact." },
-  { icon: AwardIcon, lead: "House Approved", rest: " — the standard, openly published." },
+  { icon: HomeIcon, lead: "House-vetted partners only", rest: ", every studio carries the seal." },
+  { icon: ShieldIcon, lead: "Held in your record", rest: ", every decision and document, kept." },
+  { icon: LeafIcon, lead: "Repair over replace", rest: ", retain the fabric, choose better, evidence the impact." },
+  { icon: AwardIcon, lead: "House Approved", rest: ", the standard, openly published." },
 ];
 
 const PRODUCTS = [
@@ -129,7 +128,7 @@ export default async function HomePage() {
               </Link>
             </div>
             <p className={s.heroBookingNote}>
-              Online bookings are handled through HoWA, our Home Operating System
+              Online bookings are handled through HoWA, our Home Intelligence OS
               partner. Prefer to speak to us? <Link href="/contact">Call the House directly</Link>.
             </p>
           </div>
@@ -153,10 +152,10 @@ export default async function HomePage() {
         <div className={s.quoteInner}>
           <span className={s.quoteLabel}>Est. as a House of design</span>
           <p className={s.quoteText}>
-            “We hold our homes to a higher standard — in design, in care, in the
+            “We hold our homes to a higher standard, in design, in care, in the
             record kept over time.”
           </p>
-          <span className={s.quoteAttr}>— House of Willow Alexander</span>
+          <span className={s.quoteAttr}>House of Willow Alexander</span>
         </div>
       </section>
 
@@ -307,7 +306,7 @@ export default async function HomePage() {
             <div className={s.howaFeatures}>
               {HOWA_FEATURES.map((f) => (
                 <div key={f.lead} className={s.howaFeature}>
-                  <strong>{f.lead}</strong> — {f.rest}
+                  <strong>{f.lead}:</strong> {f.rest}
                 </div>
               ))}
             </div>
@@ -472,7 +471,7 @@ function HowaWidget() {
         <li className={v.appRow}><span className={`${v.appStatus} ${v.appStatusAttn}`} aria-hidden /><span className={v.appRowLabel}>Boiler</span><span className={v.appRowValue}>14 days</span></li>
         <li className={v.appRow}><span className={`${v.appStatus} ${v.appStatusOk}`} aria-hidden /><span className={v.appRowLabel}>Garden</span><span className={v.appRowValue}>Thursday</span></li>
         <li className={v.appRow}><span className={`${v.appStatus} ${v.appStatusOk}`} aria-hidden /><span className={v.appRowLabel}>Cleaning</span><span className={v.appRowValue}>Tomorrow</span></li>
-        <li className={v.appRow}><span className={`${v.appStatus} ${v.appStatusOk}`} aria-hidden /><span className={v.appRowLabel}>Insurance</span><span className={v.appRowValue}>42 days</span></li>
+        <li className={v.appRow}><span className={`${v.appStatus} ${v.appStatusOk}`} aria-hidden /><span className={v.appRowLabel}>Warranty</span><span className={v.appRowValue}>42 days</span></li>
       </ul>
       <footer className={v.appFooter}>
         <Link href="/howa/coming-soon" className={v.appFooterCta}>Coming soon →</Link>

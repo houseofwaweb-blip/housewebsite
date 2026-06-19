@@ -46,7 +46,7 @@ export function V4Hero() {
 function HeroCopy() {
   return (
     <div className="max-w-[540px]">
-      <p className="smallcaps mb-4 text-[13px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">The Home Operating System</p>
+      <p className="smallcaps mb-4 text-[13px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">The Home Intelligence OS</p>
       <h1 className="font-display text-[clamp(40px,3.4vw,64px)] leading-[0.98] tracking-[-0.015em] text-[color:var(--color-ink)]">
         Your house is
         <br />
@@ -64,8 +64,8 @@ function HeroCopy() {
       </a>
       <p className="mt-6 max-w-[460px] text-[13px] leading-[1.55] text-[color:var(--color-ink)]/55">
         House of Willow Alexander is HoWA&apos;s founding service partner. House
-        bookings are made through HoWA and written back to your Home Record, and
-        HoWA is also a standalone product for any home.
+        work is booked through HoWA and written back to your Home Record, and
+        HoWA stands on its own for any home, with or without the House.
       </p>
     </div>
   );

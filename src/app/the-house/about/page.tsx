@@ -18,15 +18,15 @@ The House exists to bring taste, trust, sustainability and intelligent memory in
   },
   {
     heading: "The partner studios",
-    body: `Most of the design work runs through four launch partner studios: Delve Interiors, Jessica Durling-McMahon, Willow Alexander Gardens, and House AI.
+    body: `Most of the design work runs through four launch partner studios: Delve Interiors, Jessica Durling-McMahon, Willow Alexander Gardens, and House AI. We chose a small number on purpose, so we know the people who turn up at your door and the standard they bring through it.
 
-Each has been signed up on the understanding that House Approved is a standard, not a label. They review annually, we review them annually, and we're honest with both each other and with you about what's working.`,
+Each one signed up on a single understanding. House Approved is a standard, not a label. It is the same test we set ourselves: would we trust this in a home we love? They review their work each year, we review them each year, and we are honest with each other, and with you, about what is working and what needs attention. If a studio stops meeting the standard, the seal comes off. That is the whole point of holding one.`,
   },
   {
     heading: "How to reach us",
-    body: `You can write to us through the contact form, which routes by topic to the right inbox. For design, services, or protection commissions, the consultation form is the right place to start — we reply within one working day. Press and partnership enquiries arrive quickly, too.
+    body: `The quickest way to reach us is the contact form. It routes by topic, so a question about a garden, a window, a warranty or a press enquiry lands in the right inbox rather than a general one. If you are thinking about a design, services or protection commission, start with the consultation form instead. That is where we take the few details we need to come back to you properly.
 
-We'd rather hear from you than not. The House is built to be spoken to.`,
+We reply within one working day. We would always rather hear from you than not, so write even if the question is half-formed. The House is built to be spoken to.`,
   },
 ];
 

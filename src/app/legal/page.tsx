@@ -29,7 +29,7 @@ export default function LegalIndex() {
           <p className="font-sans text-[14px] leading-[1.6] text-house-brown/55 mt-6 max-w-[64ch]">
             House services are provided by House of Willow Alexander and its
             approved partners. Online bookings, your account and the Home Record
-            are powered by HoWA, a separate Home Operating System for which House
+            are powered by HoWA, a separate Home Intelligence OS for which House
             of Willow Alexander is the founding service partner. Information you
             add to your Home Record is held within HoWA under its own terms.
           </p>

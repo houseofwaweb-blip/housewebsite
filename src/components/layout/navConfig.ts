@@ -183,7 +183,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
       {
         heading: "Bookings & Home Record",
         links: [
-          { label: "Overview", href: "/howa", description: "The Home Operating System" },
+          { label: "Overview", href: "/howa", description: "The Home Intelligence OS" },
           { label: "Book online through HoWA", href: "#open-booking-form", description: "Online House bookings" },
           { label: "HoWA (Assistant)", href: "/howa/assistant", description: "Free — start with an address" },
           { label: "How it works", href: "/howa/how-it-works", description: "Four quiet jobs" },
