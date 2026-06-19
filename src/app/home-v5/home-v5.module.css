@@ -645,7 +645,15 @@
   font-size: clamp(38px, 4.2vw, 58px);
   line-height: 1.04;
   color: var(--color-house-cream);
-  margin: 0 0 32px;
+  margin: 0 0 24px;
+}
+.intelPara {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.72;
+  color: rgba(245, 240, 232, 0.72);
+  margin: 0 0 30px;
+  max-width: 48ch;
 }
 .intelTitle em { font-style: italic; color: var(--color-house-gold-light); }
 .intelStats {

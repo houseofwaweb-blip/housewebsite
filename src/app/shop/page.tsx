@@ -5,6 +5,7 @@ import {
   getShopBrands,
 } from "@/lib/shop-data/source";
 import { ShopBrowser } from "./ShopBrowser";
+import { HouseStandardStrip } from "@/components/marketing/HouseStandardStrip";
 
 /** The 11 top-level categories — the only collections shown in the filter rail. */
 const MAIN_CATEGORY_HANDLES = new Set([
@@ -46,7 +47,14 @@ export default async function ShopPage() {
           mended rather than replaced. Tools, linens, garden kit and household
           goods we have used, trust, and would keep.
         </p>
+        <p className="font-sans italic text-[12.5px] text-house-stone/80 max-w-[520px] mx-auto mt-4 leading-[1.6]">
+          Where it helps, a purchase can attach to your Home Record, so the
+          warranty, the care notes and the reminder to replace it are kept with
+          the house, not lost in a drawer.
+        </p>
       </section>
+
+      <HouseStandardStrip />
 
       {/* Gallery Wall browser — sidebar shows main categories only (not the
           45 tag sub-collections, House Approved, Services, Migration Review). */}

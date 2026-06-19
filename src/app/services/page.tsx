@@ -4,6 +4,7 @@ import s from "./services.module.css";
 import { FaqList } from "@/components/marketing/FaqList";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 import { ServiceCarousel } from "./ServiceCarousel";
+import { HouseStandardStrip } from "@/components/marketing/HouseStandardStrip";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -351,6 +352,8 @@ export default async function ServicesLanding() {
           )}
         </p>
       </section>
+
+      <HouseStandardStrip />
 
       {/* 4. Steward Plans ladder */}
       <section id="plans" className={s.plans}>

@@ -327,6 +327,12 @@ export default async function HomePage() {
             Your house is trying<br />
             <em>to tell you something.</em>
           </h2>
+          <p className={s.intelPara}>
+            The windows, the gutters, the laundry that never ends, the boiler
+            service you keep meaning to book, the warranty you know is somewhere.
+            Hand it to HoWA, and the house starts to remember for you, so the
+            next thing to do is simply there when you need it.
+          </p>
           <div className={s.intelStats}>
             {INTEL_STATS.map((stat) => (
               <div key={stat.label} className={s.intelStat}>
