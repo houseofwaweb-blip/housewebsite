@@ -4,6 +4,7 @@ import s from "./steward-plans.module.css";
 import { getHomeGardenPlans, getApartmentPlans } from "@/lib/cms/steward-plans";
 import { StewardPlanLadder } from "./StewardPlanLadder";
 import { StewardCalculator } from "./StewardCalculator";
+import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 
 /**
  * /steward-plans — lander framework, navy blueprint mode (Steward only).
@@ -256,6 +257,7 @@ export default async function StewardPlansPage() {
 
       {/* 10. Closing */}
       <section className={s.closing}>
+        <FlowerWatermark color="gold" side="right" opacity={0.19} />
         <p className={s.closingStatement}>
           <em>A well-kept home isn't a pile of bookings.</em><br />
           It's a rhythm someone else remembers.

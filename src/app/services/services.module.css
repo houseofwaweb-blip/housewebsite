@@ -828,3 +828,7 @@
   .briefCopy, .briefMock { padding: 48px 24px; }
   .briefMockLine { grid-template-columns: 24px 90px 1fr; gap: 8px; font-size: 13px; }
 }
+
+/* Flower watermark host: clip the off-edge motif, keep content above */
+.closing { position: relative; overflow: hidden; }
+.closing > *:not([aria-hidden="true"]) { position: relative; z-index: 1; }

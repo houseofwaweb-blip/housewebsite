@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import s from "./design.module.css";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
+import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 
 /**
  * /design — landing page.
@@ -304,6 +305,7 @@ export default async function DesignLanding() {
 
       {/* 6. Closing */}
       <section className={s.closing}>
+        <FlowerWatermark color="white" side="right" opacity={0.13} />
         <p className={s.closingKicker}>{cms(closing, "eyebrow", "Commission a space")}</p>
         <p className={s.closingStatement}>
           {cms(closing, "headline", "A room. A garden.")}<br />

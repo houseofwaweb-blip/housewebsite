@@ -597,3 +597,7 @@
   .sealCopy { padding: 48px 24px; max-width: none; }
   .disciplineBody, .partnerBody { padding: 28px 24px; }
 }
+
+/* Flower watermark host: clip the off-edge motif, keep content above */
+.closing { position: relative; overflow: hidden; }
+.closing > *:not([aria-hidden="true"]) { position: relative; z-index: 1; }

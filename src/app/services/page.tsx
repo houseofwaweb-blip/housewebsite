@@ -5,6 +5,7 @@ import { FaqList } from "@/components/marketing/FaqList";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 import { ServiceCarousel } from "./ServiceCarousel";
 import { HouseStandardStrip } from "@/components/marketing/HouseStandardStrip";
+import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -469,6 +470,7 @@ export default async function ServicesLanding() {
 
       {/* 7. Closing */}
       <section className={s.closing}>
+        <FlowerWatermark color="white" side="right" opacity={0.13} />
         <p className={s.closingKicker}>
           {cms(closing, "eyebrow", "The quiet discipline of looking after a place.")}
         </p>

@@ -913,3 +913,7 @@
   .closing { padding: 64px 24px; }
   .closingServices { grid-template-columns: 1fr; }
 }
+
+/* Flower watermark host: clip the off-edge motif, keep content above */
+.closing { position: relative; overflow: hidden; }
+.closing > *:not([aria-hidden="true"]) { position: relative; z-index: 1; }

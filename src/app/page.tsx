@@ -105,7 +105,7 @@ export default async function HomePage() {
       {/* 1. Hero — House-led */}
       <section className={s.hero}>
         <div className={s.heroCopy}>
-          <FlowerWatermark color="gold" side="left" opacity={0.11} className="!top-auto bottom-[-12%] h-[74%]" />
+          <FlowerWatermark color="gold" side="left" opacity={0.16} className="!top-auto bottom-[-12%] h-[74%]" />
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>House of Willow Alexander</p>
             <h1 className={s.heroTitle}>
@@ -205,7 +205,7 @@ export default async function HomePage() {
 
       {/* Origin pulse — founder story brought up from About / Artwork (slide 12 #03, slide 18) */}
       <section className={s.origin}>
-        <FlowerWatermark color="gold" side="right" opacity={0.15} />
+        <FlowerWatermark color="gold" side="right" opacity={0.2} />
         <div className={s.originVisual}>
           <PlaceholderImage
             ratio="4 / 5"
@@ -451,7 +451,7 @@ export default async function HomePage() {
 
       {/* 12. Powered by / house standards */}
       <section className={s.powered}>
-        <FlowerWatermark color="gold" side="left" opacity={0.13} />
+        <FlowerWatermark color="gold" side="left" opacity={0.18} />
         <p className={s.eyebrow}>The design authority behind it all</p>
         <h2 className={s.poweredTitle}>The House sets the standard.</h2>
         <div className={s.poweredGrid}>

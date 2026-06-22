@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import s from "./protect.module.css";
 import { WaitlistMini } from "@/components/marketing/WaitlistMini";
+import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
@@ -477,6 +478,7 @@ export default async function ProtectPage() {
 
       {/* 10. Services available now — closing band, navy */}
       <section className={s.closing}>
+        <FlowerWatermark color="white" side="right" opacity={0.12} />
         <div className={s.closingInner}>
           <p className={s.closingEy}>{cms(closing, "eyebrow", "A natural evolution")}</p>
           <h2 className={s.closingTitle}>
