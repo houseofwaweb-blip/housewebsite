@@ -66,6 +66,7 @@ export default async function SustainabilityPage() {
 
   return (
     <EditorialPage
+      watermark="gold"
       eyebrow={cms(intro, "eyebrow", "The House · Sustainability")}
       title={
         <>

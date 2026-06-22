@@ -64,6 +64,7 @@ export default async function StandardsPage() {
 
   return (
     <EditorialPage
+      watermark="gold"
       eyebrow={cms(intro, "eyebrow", "The House · Standards")}
       title={
         <>

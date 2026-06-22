@@ -46,6 +46,7 @@ export default async function ProofPage() {
 
   return (
     <EditorialPage
+      watermark="gold"
       eyebrow={cms(intro, "eyebrow", "The House · Proof")}
       title={cms(intro, "headline", "Testimony.")}
       lede={cms(

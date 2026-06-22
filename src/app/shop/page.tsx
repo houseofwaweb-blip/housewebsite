@@ -32,9 +32,9 @@ export default async function ShopPage() {
       {/* Header — minimal, straight to product (DSM-style). On desktop, pad
           left by the sidebar width so the title centres over the product grid,
           not the whole page. */}
-      <section className="relative overflow-hidden border-b border-house-brown/8 px-[5vw] md:pl-[240px] md:pr-8 pt-10 pb-7 text-center">
+      <section className="relative overflow-hidden border-b border-house-brown/8 px-[5vw] pt-10 pb-7 text-center">
         <FlowerWatermark color="gold" side="right" opacity={0.18} />
-        <div className="relative z-10">
+        <div className="relative z-10 max-w-[760px] mx-auto">
         <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-house-gold mb-3">
           The House · Marketplace
         </p>

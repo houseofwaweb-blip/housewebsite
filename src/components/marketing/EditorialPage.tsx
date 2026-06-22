@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 
 /**
  * EditorialPage — shared template for long-form editorial pages under
@@ -38,6 +39,8 @@ export interface EditorialPageProps {
   updatedAt?: string;
   /** Optional figure set beside the lede. */
   heroImage?: EditorialImage;
+  /** Optional House floral watermark in the header (gold on the cream ground). */
+  watermark?: "white" | "gold" | "black";
 }
 
 const headingStyle: React.CSSProperties = {
@@ -136,7 +139,7 @@ function Figure({ image, priority }: { image: EditorialImage; priority?: boolean
   );
 }
 
-export function EditorialPage({ eyebrow, title, lede, sections, updatedAt, heroImage }: EditorialPageProps) {
+export function EditorialPage({ eyebrow, title, lede, sections, updatedAt, heroImage, watermark }: EditorialPageProps) {
   // Alternate which side each figure sits on. The lede figure (if any) takes
   // the first slot on the right; section figures zigzag from there.
   let imgSlot = heroImage ? 1 : 0;
@@ -151,10 +154,13 @@ export function EditorialPage({ eyebrow, title, lede, sections, updatedAt, heroI
       {/* Hero — eyebrow + large editorial title */}
       <header
         style={{
+          position: "relative",
+          overflow: "hidden",
           padding: "clamp(80px, 12vh, 140px) clamp(40px, 5vw, 96px) clamp(36px, 4vw, 56px)",
         }}
       >
-        <div style={{ maxWidth: 1140, margin: "0 auto" }}>
+        {watermark ? <FlowerWatermark color={watermark} side="right" opacity={watermark === "gold" ? 0.17 : 0.13} /> : null}
+        <div style={{ position: "relative", zIndex: 1, maxWidth: 1140, margin: "0 auto" }}>
           <p
             style={{
               fontFamily: "var(--font-sans)",

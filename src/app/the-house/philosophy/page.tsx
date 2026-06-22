@@ -67,6 +67,7 @@ export default async function PhilosophyPage() {
 
   return (
     <EditorialPage
+      watermark="gold"
       eyebrow={cms(intro, "eyebrow", "The House · Philosophy")}
       title={
         <>
