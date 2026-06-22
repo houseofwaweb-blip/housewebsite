@@ -273,7 +273,7 @@ export default async function ServicesLanding() {
               {cms(
                 hero,
                 "body",
-                "The practical work of looking after a house and garden, held to one House standard. Gardens cut and planted, windows and sills cleared, gutters seen to before the weather turns, small repairs put right. Delivered by House of Willow Alexander and the people we approve, booked through HoWA, and written back to your Home Record so the house remembers what was done.",
+                "Gardens that grow character, homes that hold heart. The practical work of looking after a house and garden, held to one House standard. Lawns cut and beds planted, windows and sills cleared, gutters seen to before the weather turns, small repairs put right. Delivered by House of Willow Alexander and the people we approve, booked through HoWA, and written back to your Home Record so the house remembers what was done.",
               )}
             </p>
             <div className={s.heroCtas}>
