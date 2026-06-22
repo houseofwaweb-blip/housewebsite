@@ -341,10 +341,12 @@
 }
 
 /* Flower watermark host sections: clip the off-edge motif, keep real content above it */
+.heroCopy,
 .origin,
 .quoteBand,
 .powered,
 .closing { position: relative; overflow: hidden; }
+.heroCopyInner,
 .origin > *:not([aria-hidden="true"]),
 .quoteBand > *:not([aria-hidden="true"]),
 .powered > *:not([aria-hidden="true"]),

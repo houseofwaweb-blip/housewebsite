@@ -25,8 +25,8 @@ export function FlowerWatermark({
   return (
     <div
       aria-hidden="true"
-      className={`pointer-events-none absolute top-[-12%] bottom-[-12%] z-0 hidden select-none sm:block w-[clamp(300px,42vw,640px)] ${
-        side === "right" ? "right-[-7%]" : "left-[-7%]"
+      className={`pointer-events-none absolute top-[-12%] bottom-[-12%] z-0 hidden select-none sm:block w-[clamp(360px,48vw,760px)] ${
+        side === "right" ? "right-[-8%]" : "left-[-8%]"
       } ${className}`}
       style={{
         backgroundImage: `url(/photos/wa-flower-${color}.png)`,

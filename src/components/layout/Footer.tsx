@@ -92,7 +92,7 @@ export function Footer({ columns, tagline }: FooterProps) {
 
   return (
     <footer className="relative overflow-hidden bg-house-brown text-house-cream px-[5vw] py-16 mt-auto">
-      <FlowerWatermark color="white" side="right" opacity={0.1} />
+      <FlowerWatermark color="white" side="left" opacity={0.13} />
       <div className="relative z-10 max-w-[1280px] mx-auto">
         <p className="font-display italic text-[clamp(24px,3vw,38px)] leading-[1.15] text-house-cream/90 pb-12 max-w-[18ch]">
           That Feeling You Call Home.
