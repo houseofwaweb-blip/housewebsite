@@ -154,13 +154,10 @@ export function EditorialPage({ eyebrow, title, lede, sections, updatedAt, heroI
       {/* Hero — eyebrow + large editorial title */}
       <header
         style={{
-          position: "relative",
-          overflow: "hidden",
           padding: "clamp(80px, 12vh, 140px) clamp(40px, 5vw, 96px) clamp(36px, 4vw, 56px)",
         }}
       >
-        {watermark ? <FlowerWatermark color={watermark} side="right" opacity={watermark === "gold" ? 0.17 : 0.13} /> : null}
-        <div style={{ position: "relative", zIndex: 1, maxWidth: 1140, margin: "0 auto" }}>
+        <div style={{ maxWidth: 1140, margin: "0 auto" }}>
           <p
             style={{
               fontFamily: "var(--font-sans)",
@@ -194,11 +191,18 @@ export function EditorialPage({ eyebrow, title, lede, sections, updatedAt, heroI
         </div>
       </header>
 
-      {/* Body — magazine column with side figures */}
+      {/* Body — magazine column with side figures + House floral watermarks in the side gaps */}
       <div
-        className="space-y-[clamp(52px,6vw,92px)]"
-        style={{ maxWidth: 1140, margin: "0 auto", padding: "clamp(8px, 2vw, 24px) clamp(40px, 5vw, 96px) clamp(80px, 8vw, 128px)" }}
+        style={{ position: "relative", overflow: "hidden", maxWidth: 1140, margin: "0 auto", padding: "clamp(8px, 2vw, 24px) clamp(40px, 5vw, 96px) clamp(80px, 8vw, 128px)" }}
       >
+        {watermark ? (
+          <>
+            <FlowerWatermark color={watermark} side="right" opacity={watermark === "gold" ? 0.24 : 0.16} className="!top-[3%] !bottom-auto !h-[clamp(340px,38vw,520px)] !w-[clamp(340px,38vw,520px)]" />
+            <FlowerWatermark color={watermark} side="left" opacity={watermark === "gold" ? 0.21 : 0.15} className="!top-[39%] !bottom-auto !h-[clamp(320px,34vw,480px)] !w-[clamp(320px,34vw,480px)]" />
+            <FlowerWatermark color={watermark} side="right" opacity={watermark === "gold" ? 0.22 : 0.15} className="!top-auto !bottom-[3%] !h-[clamp(340px,38vw,520px)] !w-[clamp(340px,38vw,520px)]" />
+          </>
+        ) : null}
+        <div className="space-y-[clamp(52px,6vw,92px)]" style={{ position: "relative", zIndex: 1 }}>
         {/* Lede, optionally beside the hero figure */}
         {lede || heroImage ? (
           heroImage ? (
@@ -278,6 +282,7 @@ export function EditorialPage({ eyebrow, title, lede, sections, updatedAt, heroI
             Last updated {updatedAt}
           </p>
         ) : null}
+        </div>
       </div>
     </article>
   );
