@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { CookiePreferencesLink } from "@/components/consent/CookiePreferencesLink";
+import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 
 /**
  * Global footer.
@@ -90,8 +91,9 @@ export function Footer({ columns, tagline }: FooterProps) {
   const tag = tagline || "Ownership is passive. Stewardship is intentional.";
 
   return (
-    <footer className="bg-house-brown text-house-cream px-[5vw] py-16 mt-auto">
-      <div className="max-w-[1280px] mx-auto">
+    <footer className="relative overflow-hidden bg-house-brown text-house-cream px-[5vw] py-16 mt-auto">
+      <FlowerWatermark color="white" side="right" opacity={0.1} />
+      <div className="relative z-10 max-w-[1280px] mx-auto">
         <p className="font-display italic text-[clamp(24px,3vw,38px)] leading-[1.15] text-house-cream/90 pb-12 max-w-[18ch]">
           That Feeling You Call Home.
         </p>

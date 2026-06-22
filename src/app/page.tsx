@@ -5,6 +5,7 @@ import v from "./home-v4a.module.css";
 import { getLatestHearthArticles } from "@/lib/cms/hearth";
 import { shopifyProvider } from "@/lib/commerce/shopify";
 import { PlaceholderImage } from "@/components/marketing/PlaceholderImage";
+import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 
 /**
  * Homepage — House-led (v5).
@@ -150,6 +151,7 @@ export default async function HomePage() {
 
       {/* 2. Editorial quote band */}
       <section className={s.quoteBand}>
+        <FlowerWatermark color="white" side="left" opacity={0.09} />
         <div className={s.quoteInner}>
           <span className={s.quoteLabel}>Est. as a House of design</span>
           <p className={s.quoteText}>
@@ -202,6 +204,7 @@ export default async function HomePage() {
 
       {/* Origin pulse — founder story brought up from About / Artwork (slide 12 #03, slide 18) */}
       <section className={s.origin}>
+        <FlowerWatermark color="gold" side="right" opacity={0.1} />
         <div className={s.originVisual}>
           <PlaceholderImage
             ratio="4 / 5"
@@ -447,6 +450,7 @@ export default async function HomePage() {
 
       {/* 12. Powered by / house standards */}
       <section className={s.powered}>
+        <FlowerWatermark color="gold" side="left" opacity={0.08} />
         <p className={s.eyebrow}>The design authority behind it all</p>
         <h2 className={s.poweredTitle}>The House sets the standard.</h2>
         <div className={s.poweredGrid}>
@@ -464,6 +468,7 @@ export default async function HomePage() {
 
       {/* 13. Closing CTA */}
       <section className={s.closing}>
+        <FlowerWatermark color="white" side="right" opacity={0.1} />
         <p className={s.closingStatement}>
           A House for the home you love, <em>kept to the standard a good home deserves.</em>
         </p>

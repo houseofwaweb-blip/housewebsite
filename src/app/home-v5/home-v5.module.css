@@ -340,6 +340,16 @@
   .origin { grid-template-columns: 1fr; gap: 32px; }
 }
 
+/* Flower watermark host sections: clip the off-edge motif, keep real content above it */
+.origin,
+.quoteBand,
+.powered,
+.closing { position: relative; overflow: hidden; }
+.origin > *:not([aria-hidden="true"]),
+.quoteBand > *:not([aria-hidden="true"]),
+.powered > *:not([aria-hidden="true"]),
+.closing > *:not([aria-hidden="true"]) { position: relative; z-index: 1; }
+
 .houseIntroBody p {
   font-family: var(--font-sans);
   font-size: 16px;
