@@ -614,3 +614,7 @@
   .subScroller { padding: 0 24px; scroll-padding-left: 24px; }
   .closing { padding: 80px 24px; }
 }
+
+/* Flower watermark host */
+.closing { position: relative; overflow: hidden; }
+.closing > *:not([aria-hidden="true"]) { position: relative; z-index: 1; }

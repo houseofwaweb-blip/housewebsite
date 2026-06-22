@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import s from "./partners.module.css";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
+import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { getNewsletterBlock } from "@/lib/cms/newsletter";
 import { LAUNCH_PARTNERS, PARTNER_ORDER } from "@/lib/partners-data";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
@@ -296,6 +297,7 @@ export default async function PartnersHub() {
 
       {/* 6. Apply CTA */}
       <section id="apply" className={s.apply}>
+        <FlowerWatermark color="gold" side="right" opacity={0.18} />
         <p className={s.applyKicker}>{cms(apply, "eyebrow", "For studios and makers")}</p>
         <p className={s.applyStatement}>
           {cms(apply, "headline", "Apply to")}{" "}

@@ -832,3 +832,6 @@
 /* Flower watermark host: clip the off-edge motif, keep content above */
 .closing { position: relative; overflow: hidden; }
 .closing > *:not([aria-hidden="true"]) { position: relative; z-index: 1; }
+
+.heroCopy { position: relative; overflow: hidden; }
+.heroCopyInner { position: relative; z-index: 1; }

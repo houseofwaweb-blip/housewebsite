@@ -264,6 +264,7 @@ export default async function ServicesLanding() {
       {/* 1. Hero */}
       <section className={s.hero}>
         <div className={s.heroCopy}>
+          <FlowerWatermark color="gold" side="left" opacity={0.16} className="!top-auto bottom-[-12%] h-[74%]" />
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>{cms(hero, "eyebrow", "The House · Services")}</p>
             <h1 className={s.heroTitle}>

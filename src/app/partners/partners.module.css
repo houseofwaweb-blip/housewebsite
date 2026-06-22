@@ -519,3 +519,7 @@
   .sealCopy { padding: 48px 24px; max-width: none; }
   .apply { padding: 80px 24px; }
 }
+
+/* Flower watermark host */
+.apply { position: relative; overflow: hidden; }
+.apply > *:not([aria-hidden="true"]) { position: relative; z-index: 1; }

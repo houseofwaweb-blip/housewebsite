@@ -7,6 +7,7 @@ import { PartnerCarousel, type PartnerCardData } from "./PartnerCarousel";
 import type { Service } from "@/lib/services-data";
 import { SERVICE_AREAS } from "@/lib/services-data/sub-services";
 import s from "./ServiceDetail.module.css";
+import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 
 const PUBLIC = path.join(process.cwd(), "public");
 // Services / sub-services without their own photography fall back to the
@@ -388,6 +389,7 @@ export function ServiceDetail({ service }: { service: Service }) {
 
       {/* 10. Closing */}
       <section className={s.closing}>
+        <FlowerWatermark color="gold" side="right" opacity={0.18} />
         <p className={s.closingStatement}>
           <em>A well-kept home</em> starts with one conversation.
         </p>
