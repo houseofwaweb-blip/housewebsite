@@ -60,6 +60,8 @@ export interface CommerceProvider {
   getProductByHandle(handle: string): Promise<CommerceProduct | null>;
   getCollection(handle: string, limit?: number): Promise<CommerceCollection | null>;
   listFeaturedProducts(limit?: number): Promise<CommerceProduct[]>;
+  listBestSellers(limit?: number): Promise<CommerceProduct[]>;
+  listNewArrivals(limit?: number): Promise<CommerceProduct[]>;
   searchProducts(query: string, limit?: number): Promise<CommerceProduct[]>;
   createCart(): Promise<CommerceCart>;
   getCart(cartId: string): Promise<CommerceCart | null>;

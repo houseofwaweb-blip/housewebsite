@@ -268,6 +268,30 @@ export const shopifyProvider: CommerceProvider = {
     return nodes.map(mapProduct);
   },
 
+  async listBestSellers(limit = 8) {
+    const data = await storefront<{ products: { nodes: ShopifyProductNode[] } }>(
+      `${PRODUCT_FRAGMENT}
+      query ($limit: Int!) {
+        products(first: $limit, sortKey: BEST_SELLING) { nodes { ...ProductFields } }
+      }`,
+      { limit },
+      ["products:bestselling"],
+    );
+    return data.products.nodes.map(mapProduct);
+  },
+
+  async listNewArrivals(limit = 8) {
+    const data = await storefront<{ products: { nodes: ShopifyProductNode[] } }>(
+      `${PRODUCT_FRAGMENT}
+      query ($limit: Int!) {
+        products(first: $limit, sortKey: CREATED_AT, reverse: true) { nodes { ...ProductFields } }
+      }`,
+      { limit },
+      ["products:new"],
+    );
+    return data.products.nodes.map(mapProduct);
+  },
+
   async searchProducts(query: string, limit = 10) {
     const data = await storefront<{ products: { nodes: ShopifyProductNode[] } }>(
       `${PRODUCT_FRAGMENT}
