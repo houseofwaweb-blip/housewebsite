@@ -74,6 +74,15 @@ const PRODUCTS = [
   { name: "House Approved", price: "Shop all", image: null, href: "/shop" },
 ];
 
+// A curated set of room collections for the homepage Marketplace teaser.
+// The full eight live on /shop.
+const HOME_ROOMS = [
+  { name: "Kitchen", handle: "kitchen", image: "/shop/rooms/kitchen.webp" },
+  { name: "Living Room", handle: "living-room", image: "/shop/rooms/living-room.webp" },
+  { name: "Bedroom", handle: "bedroom", image: "/shop/rooms/bedroom.webp" },
+  { name: "Garden & Outdoor", handle: "garden", image: "/shop/rooms/garden.webp" },
+];
+
 const HEARTH_FALLBACK = [
   "A guide to seasonal planting",
   "How to read a house survey",
@@ -361,6 +370,53 @@ export default async function HomePage() {
               </div>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* Marketplace — shop by room (collections teaser; full grid lives a few sections below) */}
+      <section className={s.market}>
+        <div className={s.marketInner}>
+          <div className={s.marketHead}>
+            <div>
+              <p className={s.eyebrow}>The Marketplace</p>
+              <h2 className={s.marketTitle}>A place for everything.</h2>
+              <p className={s.sectionSub}>
+                Step into a room to see what the House keeps there, from the
+                kitchen table to the garden bench. Every object earns its place.
+              </p>
+            </div>
+            <Link href="/shop" className={s.btnGhost}>
+              All rooms <span aria-hidden className={s.arrow}>→</span>
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {HOME_ROOMS.map((r) => (
+              <Link
+                key={r.handle}
+                href={`/shop/collections/${r.handle}`}
+                className="group relative block aspect-[4/5] overflow-hidden bg-house-cream-dark no-underline"
+              >
+                <Image
+                  src={r.image}
+                  alt={r.name}
+                  fill
+                  sizes="(min-width: 860px) 22vw, 50vw"
+                  className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.04]"
+                />
+                <span
+                  aria-hidden
+                  className="absolute inset-0"
+                  style={{ background: "linear-gradient(to top, rgba(26,19,13,0.72), rgba(26,19,13,0.05) 55%)" }}
+                />
+                <div className="absolute inset-x-0 bottom-0 p-4 text-center">
+                  <p className="font-display text-[clamp(17px,1.6vw,24px)] leading-[1.1] text-white">{r.name}</p>
+                  <p className="font-sans text-[9px] tracking-[0.2em] uppercase text-white/80 mt-1.5 transition-colors group-hover:text-white">
+                    Shop the room →
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
