@@ -4,7 +4,6 @@ import s from "./home-v5/home-v5.module.css";
 import v from "./home-v4a.module.css";
 import { getLatestHearthArticles } from "@/lib/cms/hearth";
 import { shopifyProvider } from "@/lib/commerce/shopify";
-import { PlaceholderImage } from "@/components/marketing/PlaceholderImage";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 
 /**
@@ -207,9 +206,13 @@ export default async function HomePage() {
       <section className={s.origin}>
         <FlowerWatermark color="gold" side="right" opacity={0.2} />
         <div className={s.originVisual}>
-          <PlaceholderImage
-            ratio="4 / 5"
-            caption="The original garden studio. Soil, seasons and a single electric van."
+          <Image
+            src="/home-v4/origin-garden-studio.webp"
+            alt="The original Willow Alexander garden studio: soil, seasons and a single electric van"
+            width={1122}
+            height={1402}
+            sizes="(min-width: 860px) 42vw, 100vw"
+            style={{ width: "100%", height: "auto", display: "block" }}
           />
         </div>
         <div className={s.originCopy}>

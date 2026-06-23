@@ -13,7 +13,9 @@ for a CMS-driven image, wire it to Sanity. The placeholder component lives at
 
 | # | Page | URL | Section | File | What it should show | Ratio / size | Status |
 |---|------|-----|---------|------|---------------------|--------------|--------|
-| 1 | Homepage | `/` | Origin pulse ("Cultivated from a garden studio") | `src/app/page.tsx` (Origin section) | The original garden studio: soil, seasons, a single electric van, regenerative planting. Lineage / care mood per deck slide 28 (Victorian domestic authority + gardens, front doors, seasonal maintenance). Warm, tactile, British. | 4:5 portrait, ~760×950 | ☐ Pending |
+| 1 | Homepage | `/` | Origin pulse ("Cultivated from a garden studio") | `src/app/page.tsx` (Origin section) | Supplied by the House and live at `/home-v4/origin-garden-studio.webp`. | 4:5 portrait, 1122×1402 | ✅ Done |
+
+All placeholders have been supplied. No outstanding placeholder images.
 
 ---
 
