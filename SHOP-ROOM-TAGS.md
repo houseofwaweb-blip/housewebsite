@@ -1,6 +1,6 @@
 # Shop room tags — applied to the live catalogue
 
-Each product carries one or more `room-*` tags (existing tags untouched). Build a Shopify smart collection per room: handle as listed, rule = "Product tag is equal to" the tag.
+Each product carries one or more `room-*` tags (existing tags untouched). Build a Shopify smart collection per room: handle as listed, rule = "Product tag is equal to" the tag. Items that suit two rooms (a throw, a candle) carry both tags by design.
 
 | Room | Handle | Tag | Products |
 |---|---|---|---:|
@@ -9,7 +9,7 @@ Each product carries one or more `room-*` tags (existing tags untouched). Build 
 | Living Room | `living-room` | `room-living` | 179 |
 | Bedroom | `bedroom` | `room-bedroom` | 63 |
 | Bathroom | `bathroom` | `room-bathroom` | 46 |
-| Hallway & Entrance | `hallway` | `room-hallway` | 9 |
+| Hallway & Entrance | `hallway` | `room-hallway` | 12 |
 | Garden & Outdoor | `garden` | `room-garden` | 131 |
 | Utility & Laundry | `utility` | `room-utility` | 65 |
 
@@ -383,16 +383,19 @@ Each product carries one or more `room-*` tags (existing tags untouched). Build 
 - “Goodbye Anxiety” Natural Dog Shampoo Bar
 - “You Rolled in What?” Natural Dog Shampoo Bar
 
-### Hallway & Entrance — `room-hallway` (9)
-- Beach Ready Straw Basket Bag
+### Hallway & Entrance — `room-hallway` (12)
+- Antique Solid Wood Cupboard
+- Bibi Khaki End Table
+- Brushed Steel Multi Drawer Apothecary Cabinet
 - French Market Basket
-- Large Tote Bag
-- Market Straw Bag
-- Rei Slouch Tote Bag
-- Round Wicker Straw Bag
-- Straw Back Pack with Leather Strap
-- Straw Tote Bag
-- Wicker Straw Beach Bag
+- Natural Reed Baskets, Set of 3
+- Natural Wicker Circular Log Basket with Lining
+- Tall Brushed Steel Multi Drawer Metal Cabinet
+- Vintage Bleached Cupboard
+- Vintage Handcrafted Brown Shutters
+- Vintage Hardwood Cupboard
+- Vintage Tall Hand Woven Wicker Basket
+- Woven Reed Baskets
 
 ### Garden & Outdoor — `room-garden` (131)
 - 1 Hour Garden Tidy Gift Card
