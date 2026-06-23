@@ -195,18 +195,44 @@ export function EditorialPage({ eyebrow, title, lede, sections, updatedAt, heroI
       <div
         style={{ position: "relative", overflow: "hidden", maxWidth: 1140, margin: "0 auto", padding: "clamp(8px, 2vw, 24px) clamp(40px, 5vw, 96px) clamp(80px, 8vw, 128px)" }}
       >
-        {watermark ? (
-          <>
-            <FlowerWatermark color={watermark} side="right" opacity={watermark === "gold" ? 0.24 : 0.16} className="!top-[3%] !bottom-auto !h-[clamp(340px,38vw,520px)] !w-[clamp(340px,38vw,520px)]" />
-            <FlowerWatermark color={watermark} side="left" opacity={watermark === "gold" ? 0.21 : 0.15} className="!top-[39%] !bottom-auto !h-[clamp(320px,34vw,480px)] !w-[clamp(320px,34vw,480px)]" />
-            <FlowerWatermark color={watermark} side="right" opacity={watermark === "gold" ? 0.22 : 0.15} className="!top-auto !bottom-[3%] !h-[clamp(340px,38vw,520px)] !w-[clamp(340px,38vw,520px)]" />
-          </>
-        ) : null}
         <div className="space-y-[clamp(52px,6vw,92px)]" style={{ position: "relative", zIndex: 1 }}>
         {/* Lede, optionally beside the hero figure */}
         {lede || heroImage ? (
           heroImage ? (
             <div className="grid items-start gap-8 lg:grid-cols-[1.25fr_0.9fr] lg:gap-14">
+              <div className="flex flex-col lg:self-stretch">
+                <p
+                  style={{
+                    fontFamily: "var(--font-hearth-serif)",
+                    fontStyle: "italic",
+                    fontSize: "clamp(20px, 2vw, 26px)",
+                    lineHeight: 1.5,
+                    color: "rgba(48, 35, 28, 0.82)",
+                    margin: 0,
+                    paddingTop: 24,
+                    borderTop: "1px solid rgba(48, 35, 28, 0.14)",
+                  }}
+                >
+                  {lede}
+                </p>
+                {watermark ? (
+                  <div
+                    aria-hidden="true"
+                    className="hidden lg:block flex-1 min-h-[300px] mt-10 select-none"
+                    style={{
+                      backgroundImage: `url(/photos/wa-flower-${watermark}.png)`,
+                      backgroundRepeat: "no-repeat",
+                      backgroundPosition: "center",
+                      backgroundSize: "contain",
+                      opacity: 0.5,
+                    }}
+                  />
+                ) : null}
+              </div>
+              <Figure image={heroImage} priority />
+            </div>
+          ) : (
+            <div className="flex items-center gap-10">
               <p
                 style={{
                   fontFamily: "var(--font-hearth-serif)",
@@ -215,30 +241,27 @@ export function EditorialPage({ eyebrow, title, lede, sections, updatedAt, heroI
                   lineHeight: 1.5,
                   color: "rgba(48, 35, 28, 0.82)",
                   margin: 0,
+                  maxWidth: "52ch",
                   paddingTop: 24,
                   borderTop: "1px solid rgba(48, 35, 28, 0.14)",
                 }}
               >
                 {lede}
               </p>
-              <Figure image={heroImage} priority />
+              {watermark ? (
+                <div
+                  aria-hidden="true"
+                  className="hidden lg:block flex-1 self-stretch min-h-[240px] select-none"
+                  style={{
+                    backgroundImage: `url(/photos/wa-flower-${watermark}.png)`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center",
+                    backgroundSize: "contain",
+                    opacity: 0.5,
+                  }}
+                />
+              ) : null}
             </div>
-          ) : (
-            <p
-              style={{
-                fontFamily: "var(--font-hearth-serif)",
-                fontStyle: "italic",
-                fontSize: "clamp(20px, 2vw, 26px)",
-                lineHeight: 1.5,
-                color: "rgba(48, 35, 28, 0.82)",
-                margin: 0,
-                maxWidth: "52ch",
-                paddingTop: 24,
-                borderTop: "1px solid rgba(48, 35, 28, 0.14)",
-              }}
-            >
-              {lede}
-            </p>
           )
         ) : null}
 
