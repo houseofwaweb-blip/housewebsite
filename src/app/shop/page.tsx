@@ -1,14 +1,15 @@
 import Link from "next/link";
+import Image from "next/image";
 import s from "./shop.module.css";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { HouseStandardStrip } from "@/components/marketing/HouseStandardStrip";
+import { shopifyProvider } from "@/lib/commerce/shopify";
 
 /**
- * Marketplace landing — "collections as rooms" (Designer Handover Guide, slide 25).
- * Organises the shop by domestic life rather than a raw product grid. Each room
- * links to its Shopify collection (built by the House from the room-* product
- * tags); "View all products" falls through to the full filterable grid at
- * /shop/all. Room artwork is a marked placeholder until the House supplies it.
+ * Marketplace landing — "collections as rooms" (Designer Handover Guide, slide 25)
+ * with a clear "shop all" path and a real featured-products strip so the page
+ * reads as a shop, not an empty directory. Room artwork is a marked placeholder
+ * until the House supplies it; each room links to its Shopify collection.
  */
 const ROOMS = [
   { name: "Kitchen", handle: "kitchen" },
@@ -21,19 +22,37 @@ const ROOMS = [
   { name: "Utility & Laundry", handle: "utility" },
 ];
 
+function formatMoney(m: { amount: string; currencyCode: string }) {
+  const sym = m.currencyCode === "GBP" ? "£" : m.currencyCode === "USD" ? "$" : "";
+  return `${sym}${Number(m.amount).toFixed(2)}`;
+}
+
 export const metadata = {
-  title: { absolute: "The House Marketplace | Shop by room" },
+  title: { absolute: "The House Marketplace | Shop home, garden and household" },
   description:
-    "Objects with a place in the House. Shop House Approved goods by room, kitchen, table, garden and more, or browse everything.",
+    "Objects with a place in the House. Browse all House Approved goods, or shop by room, kitchen, table, garden and more.",
 };
 
-export default function ShopPage() {
+export default async function ShopPage() {
+  const featured = await shopifyProvider.listFeaturedProducts(8).catch(() => []);
+  const cards = featured
+    .map((p) => ({
+      handle: p.handle,
+      title: p.title,
+      price: formatMoney(p.price),
+      image: p.images[0]?.url ?? "",
+      alt: p.images[0]?.altText ?? p.title,
+      houseApproved: p.metafields?.houseApproved,
+    }))
+    .filter((c) => c.image)
+    .slice(0, 8);
+
   return (
     <div className={s.page}>
-      {/* Brand intro */}
-      <section className="relative overflow-hidden border-b border-house-brown/8 px-[5vw] pt-12 pb-9 text-center">
+      {/* Brand intro + primary actions */}
+      <section className="relative overflow-hidden border-b border-house-brown/8 px-[5vw] pt-12 pb-10 text-center">
         <FlowerWatermark color="gold" side="right" opacity={0.18} />
-        <div className="relative z-10 max-w-[760px] mx-auto">
+        <div className="relative z-10 max-w-[680px] mx-auto">
           <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-house-gold mb-3">
             The House · Marketplace
           </p>
@@ -43,16 +62,73 @@ export default function ShopPage() {
               in the House.
             </em>
           </h1>
-          <p className="font-sans text-[13.5px] text-house-stone max-w-[480px] mx-auto mt-4 leading-[1.6]">
+          <p className="font-sans text-[13.5px] text-house-stone max-w-[460px] mx-auto mt-4 leading-[1.6]">
             An edited cabinet, not a catalogue. Each thing here is House Approved,
             chosen for how it is made, how long it lasts, and whether it can be
             mended rather than replaced.
           </p>
+          <div className="flex flex-wrap items-center justify-center gap-3 mt-7">
+            <Link
+              href="/shop/all"
+              className="inline-flex items-center justify-center font-sans text-[11px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold px-7 py-3.5 no-underline transition-colors hover:bg-house-gold-dark hover:border-house-gold-dark"
+            >
+              Shop all products
+            </Link>
+            <a
+              href="#rooms"
+              className="inline-flex items-center justify-center gap-2 font-sans text-[11px] tracking-[0.18em] uppercase text-house-brown border border-house-brown/25 px-7 py-3.5 no-underline transition-colors hover:border-house-gold hover:text-house-gold-dark"
+            >
+              Shop by room <span aria-hidden>↓</span>
+            </a>
+          </div>
         </div>
       </section>
 
+      {/* Featured products — real imagery so the page reads as a shop */}
+      {cards.length > 0 && (
+        <section className="px-[5vw] py-[clamp(40px,5vw,68px)] border-b border-house-brown/8">
+          <div className="max-w-[1280px] mx-auto">
+            <div className="flex items-end justify-between flex-wrap gap-3 mb-7">
+              <h2 className="font-display italic text-[clamp(22px,2.6vw,32px)] text-house-brown">
+                House Approved favourites.
+              </h2>
+              <Link
+                href="/shop/all"
+                className="font-sans text-[11px] tracking-[0.18em] uppercase text-house-gold-dark no-underline border-b border-house-gold/40 pb-1"
+              >
+                View all products →
+              </Link>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-x-5 gap-y-9">
+              {cards.map((c) => (
+                <Link key={c.handle} href={`/shop/${c.handle}`} className="group block no-underline">
+                  <div className="relative aspect-[4/5] w-full overflow-hidden bg-house-cream-dark mb-3">
+                    <Image
+                      src={c.image}
+                      alt={c.alt}
+                      fill
+                      sizes="(min-width: 1024px) 22vw, 45vw"
+                      className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.03]"
+                    />
+                    {c.houseApproved ? (
+                      <span className="absolute top-3 left-3 font-sans text-[8px] tracking-[0.18em] uppercase text-white bg-house-brown/70 px-2 py-1">
+                        House Approved
+                      </span>
+                    ) : null}
+                  </div>
+                  <p className="font-display text-[15px] leading-[1.25] text-house-brown group-hover:text-house-gold-dark transition-colors">
+                    {c.title}
+                  </p>
+                  <p className="font-sans text-[13px] text-house-stone mt-0.5">{c.price}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Shop by room */}
-      <section className="px-[5vw] py-[clamp(44px,6vw,80px)]">
+      <section id="rooms" className="px-[5vw] py-[clamp(44px,6vw,80px)]">
         <div className="max-w-[1280px] mx-auto">
           <div className="flex items-end justify-between flex-wrap gap-4 mb-8">
             <div>
