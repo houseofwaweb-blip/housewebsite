@@ -47,6 +47,13 @@ const SERVICES = [
   { name: "Gutter Cleaning", href: "/services/gutter-cleaning", image: "/services/subbrands/gutter-cleaning.webp" },
 ];
 
+const SERVICE_BLURB: Record<string, string> = {
+  Gardening: "Lawns, borders and seasonal care",
+  "Window Cleaning": "Streak-free, inside and out",
+  Cleaning: "Regular or one-off, kept spotless",
+  "Gutter Cleaning": "Cleared, checked and flowing",
+};
+
 const INTEL_STATS = [
   { label: "Risk surfaced", value: "early" },
   { label: "The right specialist", value: "booked" },
@@ -539,6 +546,45 @@ export default async function HomePage() {
               </div>
             );
           })}
+        </div>
+      </section>
+
+      {/* Services — second touchpoint with clear CTAs, beneath the House standard */}
+      <section className="px-[5vw] py-[clamp(48px,6vw,90px)] border-t border-house-brown/10" style={{ background: "var(--color-house-cream)" }}>
+        <div className="max-w-[1180px] mx-auto">
+          <div className="text-center max-w-[660px] mx-auto mb-11">
+            <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-house-gold mb-3">The Services</p>
+            <h2 className="font-display text-[clamp(26px,3vw,42px)] leading-[1.06] text-house-brown mb-4">
+              Whatever the home needs, booked in minutes.
+            </h2>
+            <p className="font-sans text-[14px] text-house-stone leading-[1.6]">
+              Vetted local specialists, delivered to the House standard and written
+              back to your Home Record.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-11">
+            {SERVICES.map((svc) => (
+              <Link
+                key={svc.name}
+                href={svc.href}
+                className="group flex flex-col border border-house-brown/12 bg-house-white p-6 no-underline transition-colors hover:border-house-gold"
+              >
+                <p className="font-display text-[19px] leading-tight text-house-brown mb-1.5">{svc.name}</p>
+                <p className="font-sans text-[12.5px] text-house-stone leading-[1.5] mb-6 flex-1">{SERVICE_BLURB[svc.name]}</p>
+                <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-house-gold-dark transition-colors group-hover:text-house-brown">
+                  Book {svc.name} →
+                </span>
+              </Link>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link href="#open-booking-form" className={s.btnFilled}>Book a House Service</Link>
+            <Link href="/services" className={s.btnGhost}>
+              See all services <span aria-hidden className={s.arrow}>→</span>
+            </Link>
+          </div>
         </div>
       </section>
 
