@@ -35,8 +35,8 @@ const HOWA_FEATURES = [
 
 const PRINCIPLES = [
   { num: "I.", title: "Design-led thinking", body: "Every system, every service, every recommendation is held to a design standard. Not just functional, but considered." },
-  { num: "II.", title: "The living record", body: "Nothing should be lost to memory. The House keeps every decision, document and service in a record that endures." },
-  { num: "III.", title: "Stewardship over transaction", body: "A home is not a product. It is an asset of life. We treat it, and those who care for it, accordingly." },
+  { num: "II.", title: "The living record", body: "Nothing should be lost to memory. The boiler service, the warranty, the planting plan, every decision and document, kept where the house can find them." },
+  { num: "III.", title: "Stewardship over transaction", body: "A home is not a product to be processed. It is where a life is kept. We treat it, and the people who care for it, that way." },
   { num: "IV.", title: "House-vetted, always", body: "Every partner, every studio, every service carries the House Approved seal. No exceptions, no compromises." },
 ];
 
@@ -568,13 +568,24 @@ export default async function HomePage() {
               <Link
                 key={svc.name}
                 href={svc.href}
-                className="group flex flex-col border border-house-brown/12 bg-house-white p-6 no-underline transition-colors hover:border-house-gold"
+                className="group flex flex-col border border-house-brown/12 bg-house-white no-underline transition-colors hover:border-house-gold"
               >
-                <p className="font-display text-[19px] leading-tight text-house-brown mb-1.5">{svc.name}</p>
-                <p className="font-sans text-[12.5px] text-house-stone leading-[1.5] mb-6 flex-1">{SERVICE_BLURB[svc.name]}</p>
-                <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-house-gold-dark transition-colors group-hover:text-house-brown">
-                  Book {svc.name} →
-                </span>
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-house-cream-dark">
+                  <Image
+                    src={svc.image}
+                    alt={svc.name}
+                    fill
+                    sizes="(min-width: 768px) 22vw, 50vw"
+                    className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.04]"
+                  />
+                </div>
+                <div className="flex flex-col flex-1 p-6">
+                  <p className="font-display text-[19px] leading-tight text-house-brown mb-1.5">{svc.name}</p>
+                  <p className="font-sans text-[12.5px] text-house-stone leading-[1.5] mb-6 flex-1">{SERVICE_BLURB[svc.name]}</p>
+                  <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-house-gold-dark transition-colors group-hover:text-house-brown">
+                    Book {svc.name} →
+                  </span>
+                </div>
               </Link>
             ))}
           </div>

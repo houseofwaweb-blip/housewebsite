@@ -323,7 +323,7 @@ export const REMOVALS_SUBS: SubService[] = [
     lede: "Flats, studios, and one-bed moves. Load, transport, unload. Blanket-wrapped, fully insured.",
     body: "Our small move service covers everything from a studio flat to a one-bedroom home. A two-person team loads, transports, and unloads your belongings with blanket wrapping for all furniture. Beds and tables are dismantled and reassembled. Everything is insured in transit. We arrive on time, in uniform, and leave the new place ready to live in.",
     whyChoose: [
-      "Two-person team with a clean, carbon-neutral van",
+      "Two-person team with a clean, electric van",
       "Blanket wrapping and furniture protection included",
       "Dismantling and reassembly of beds and tables",
       "Fully insured in transit with certification on request",

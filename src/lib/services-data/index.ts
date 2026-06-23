@@ -162,7 +162,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
   "window-cleaning": {
     slug: "window-cleaning",
     name: "Window cleaning",
-    lede: "Pole and reach pure water system, powered by our carbon-neutral electric fleet. No ladders, no squeegees, no streaks. Federation of Window Cleaners certified.",
+    lede: "Pole and reach pure water system, powered by our electric fleet. No ladders, no squeegees, no streaks. Federation of Window Cleaners certified.",
     eyebrow: "Services · Window cleaning",
     heroImage: "/services/photos/window-cleaning-hero.webp",
     headline: "Light, properly let in.",
@@ -366,7 +366,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
   handyman: {
     slug: "handyman",
     name: "Handyman",
-    lede: "General repairs, furniture assembly, picture hanging, shelf fitting, and the odd jobs a house always needs. Fully insured, carbon-neutral, on time.",
+    lede: "General repairs, furniture assembly, picture hanging, shelf fitting, and the odd jobs a house always needs. Fully insured, on time.",
     eyebrow: "Services \u00b7 Handyman",
     headline: "The small fixes that keep a house running.",
     colour: "#5a2533",
@@ -465,7 +465,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
         "Tell us what\u2019s moving, where from, where to",
         "Fixed quote based on volume, distance, and access",
         "Book at least two weeks ahead \u2014 short notice possible",
-        "Uniformed team arrives on time, fully insured, carbon-neutral fleet",
+        "Uniformed team arrives on time, fully insured, electric fleet",
       ],
     },
     recurring: false,
@@ -528,7 +528,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
   energy: {
     slug: "energy",
     name: "Energy & Electrical",
-    lede: "Solar installation, EV charging, electrical repairs, and safety inspections. NICEIC-registered, fully certified, carbon-neutral fleet.",
+    lede: "Solar installation, EV charging, electrical repairs, and safety inspections. NICEIC-registered, fully certified, electric fleet.",
     eyebrow: "Services \u00b7 Energy & Electrical",
     headline: "Power that works for the home.",
     sections: {
