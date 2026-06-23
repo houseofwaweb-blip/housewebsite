@@ -279,6 +279,44 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Services showcase — sits directly under The House standard */}
+      <section className={s.services}>
+        <div className={s.servicesInner}>
+          <div className={s.servicesHead}>
+            <p className={s.eyebrow}>The Services</p>
+            <h2 className={s.servicesTitle}>The practical care of home and garden.</h2>
+            <p className={s.sectionSub}>
+              Gardeners, cleaners, window care, design, repairs and specialist
+              partners, booked through HoWA, delivered to the House standard and
+              written back to your Home Record.
+            </p>
+            <div className={s.servicesCtas}>
+              <Link href="#open-booking-form" className={s.btnFilled}>
+                Book a House Service
+              </Link>
+              <Link href="/services" className={s.btnGhost}>
+                See all services <span aria-hidden className={s.arrow}>→</span>
+              </Link>
+            </div>
+          </div>
+          <div className={s.servicesGrid}>
+            {SERVICES.map((svc) => (
+              <Link key={svc.name} href={svc.href} className={s.serviceTile}>
+                <Image
+                  src={svc.image}
+                  alt={svc.name}
+                  fill
+                  sizes="(min-width: 860px) 22vw, 50vw"
+                  className={s.serviceTileImg}
+                />
+                <span className={s.serviceTileName}>{svc.name}</span>
+                <span aria-hidden className={s.serviceTileArrow}>→</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* HoWA — the intelligence layer, introduced before the execution layers (slide 12) */}
       <section className={s.howaIntro}>
         <div className={s.howaIntroInner}>
@@ -421,44 +459,6 @@ export default async function HomePage() {
                     Shop the room →
                   </p>
                 </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Execution layer — Services showcase */}
-      <section className={s.services}>
-        <div className={s.servicesInner}>
-          <div className={s.servicesHead}>
-            <p className={s.eyebrow}>The Services</p>
-            <h2 className={s.servicesTitle}>The practical care of home and garden.</h2>
-            <p className={s.sectionSub}>
-              Gardeners, cleaners, window care, design, repairs and specialist
-              partners, booked through HoWA, delivered to the House standard and
-              written back to your Home Record.
-            </p>
-            <div className={s.servicesCtas}>
-              <Link href="#open-booking-form" className={s.btnFilled}>
-                Book a House Service
-              </Link>
-              <Link href="/services" className={s.btnGhost}>
-                See all services <span aria-hidden className={s.arrow}>→</span>
-              </Link>
-            </div>
-          </div>
-          <div className={s.servicesGrid}>
-            {SERVICES.map((svc) => (
-              <Link key={svc.name} href={svc.href} className={s.serviceTile}>
-                <Image
-                  src={svc.image}
-                  alt={svc.name}
-                  fill
-                  sizes="(min-width: 860px) 22vw, 50vw"
-                  className={s.serviceTileImg}
-                />
-                <span className={s.serviceTileName}>{svc.name}</span>
-                <span aria-hidden className={s.serviceTileArrow}>→</span>
               </Link>
             ))}
           </div>
