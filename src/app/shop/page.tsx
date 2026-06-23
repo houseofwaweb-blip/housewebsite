@@ -20,8 +20,8 @@ const ROOMS: { name: string; handle: string; image: string | null }[] = [
   { name: "Bedroom", handle: "bedroom", image: "/shop/rooms/bedroom.webp" },
   { name: "Bathroom", handle: "bathroom", image: "/shop/rooms/bathroom.webp" },
   { name: "Hallway & Entrance", handle: "hallway", image: "/shop/rooms/hallway.webp" },
-  { name: "Garden & Outdoor", handle: "garden", image: "/shop/rooms/garden.webp" },
-  { name: "Utility & Laundry", handle: "utility", image: "/shop/rooms/utility.webp" },
+  { name: "Garden & Outdoor", handle: "garden-outdoor", image: "/shop/rooms/garden.webp" },
+  { name: "Utility & Laundry", handle: "utility-and-laundry", image: "/shop/rooms/utility.webp" },
 ];
 
 function formatMoney(m: { amount: string; currencyCode: string }) {

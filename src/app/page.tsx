@@ -80,7 +80,7 @@ const HOME_ROOMS = [
   { name: "Kitchen", handle: "kitchen", image: "/shop/rooms/kitchen.webp" },
   { name: "Living Room", handle: "living-room", image: "/shop/rooms/living-room.webp" },
   { name: "Bedroom", handle: "bedroom", image: "/shop/rooms/bedroom.webp" },
-  { name: "Garden & Outdoor", handle: "garden", image: "/shop/rooms/garden.webp" },
+  { name: "Garden & Outdoor", handle: "garden-outdoor", image: "/shop/rooms/garden.webp" },
 ];
 
 const HEARTH_FALLBACK = [
