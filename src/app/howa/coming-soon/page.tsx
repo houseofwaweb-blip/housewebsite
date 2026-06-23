@@ -112,7 +112,7 @@ export default async function HowaComingSoonPage() {
       <section className={s.statsStrip}>
         <div className={s.statsLede}>
           <p className={s.statsLedeLine1}>
-            {cms(stats, "headline", "The full operating system, very soon.")}
+            {cms(stats, "headline", "The full Home Intelligence OS, very soon.")}
           </p>
           <p className={s.statsLedeLine2}>
             {cms(stats, "subheadline", "The brand site is live today. The product opens next.")}
@@ -131,7 +131,7 @@ export default async function HowaComingSoonPage() {
         <header className={s.whatsHead}>
           <p className={s.whatsEy}>{cms(whats, "eyebrow", "What's launching")}</p>
           <h2 className={s.whatsTitle}>
-            {cms(whats, "headline", "One operating system,")}{" "}
+            {cms(whats, "headline", "One Home Intelligence OS,")}{" "}
             <em>{cms(whats, "headlineEm", "three quiet doors in.", "headline")}</em>
           </h2>
         </header>

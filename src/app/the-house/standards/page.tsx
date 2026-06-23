@@ -13,6 +13,7 @@ const FALLBACK_SECTIONS: EditorialSection[] = [
     body: `We only place the House Approved seal on partners and products that meet three tests.
 
 First, they would survive the kind of use a real family puts a home through, not a show home, a lived-in one. Second, they are made, grown, or offered by people we have met, visited, and would recommend to a friend. Third, they come with care notes: what it is, how to look after it, how to repair it when something goes wrong.`,
+    quote: { text: "Would we trust this in a home we love?" },
   },
   {
     heading: "The review cadence",

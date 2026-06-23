@@ -37,7 +37,7 @@ export function V4Record() {
             </div>
           ))}
         </div>
-        <p className="mt-5 text-[14px] text-[color:var(--color-ink-soft)]/70">Every feature writes back to this centre.</p>
+        <p className="mt-5 text-[14px] text-[color:var(--color-ink-soft)]/70">Everything writes back to this centre.</p>
         <p className="mt-4 font-italic-display text-[clamp(17px,1.7vw,22px)] leading-[1.3] text-[color:var(--color-gold-deep)]">
           HoWA earns its place before anyone visits. The first value is clarity.
         </p>

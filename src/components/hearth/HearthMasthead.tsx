@@ -22,7 +22,10 @@ export function HearthMasthead({ className }: { className?: string }) {
           Hearth
         </h1>
       </Link>
-      <p className="font-hearth-serif italic text-[14px] text-house-stone mt-[10px] max-w-[640px] mx-auto">
+      <p className="font-hearth-serif italic text-[clamp(17px,1.8vw,22px)] text-house-gold-dark mt-[12px]">
+        The editorial soul of the House.
+      </p>
+      <p className="font-hearth-serif italic text-[14px] text-house-stone mt-[8px] max-w-[640px] mx-auto">
         Essays, recipes, garden notes and design wisdom, gathered through the
         seasons. Quiet observations on the art of keeping a home, and the rooms,
         gardens and thresholds worth keeping well.

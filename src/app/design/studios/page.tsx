@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import s from "./studios.module.css";
+import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
@@ -141,6 +142,7 @@ export default async function DesignStudiosPage() {
       {/* 1. Hero */}
       <section className={s.hero}>
         <div className={s.heroCopy}>
+          <FlowerWatermark color="gold" side="left" opacity={0.16} className="!top-auto bottom-[-12%] h-[74%]" />
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>{cms(hero, "eyebrow", "Design · The Studios")}</p>
             <h1 className={s.heroTitle}>
@@ -309,6 +311,7 @@ export default async function DesignStudiosPage() {
 
       {/* 6. Closing */}
       <section className={s.closing}>
+        <FlowerWatermark color="gold" side="right" opacity={0.18} />
         <p className={s.closingKicker}>{cms(closing, "eyebrow", "Ready when you are")}</p>
         <p className={s.closingStatement}>
           {cms(closing, "headline", "Begin with a")}{" "}

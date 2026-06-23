@@ -1,5 +1,6 @@
 import { ContactForm } from "@/components/forms/ContactForm";
 import { env } from "@/lib/env";
+import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import s from "./contact.module.css";
 
 export const metadata = {
@@ -11,6 +12,7 @@ export default function ContactPage() {
   return (
     <div className={s.page}>
       <section className={s.hero}>
+        <FlowerWatermark color="gold" side="right" opacity={0.16} />
         <div className={s.heroInner}>
           <p className={s.heroEy}>Contact</p>
           <h1 className={s.heroTitle}>

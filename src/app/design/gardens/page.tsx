@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import s from "./gardens.module.css";
+import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { getNewsletterBlock } from "@/lib/cms/newsletter";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
@@ -165,6 +166,7 @@ export default async function GardensPage() {
       {/* 1. Hero */}
       <section className={s.hero}>
         <div className={s.heroCopy}>
+          <FlowerWatermark color="gold" side="left" opacity={0.16} className="!top-auto bottom-[-12%] h-[74%]" />
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>{cms(hero, "eyebrow", "Design · Gardens")}</p>
             <h1 className={s.heroTitle}>

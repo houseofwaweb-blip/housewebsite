@@ -49,7 +49,7 @@ export function V4Portrait() {
           {/* the house, then its first Score */}
           <div className="space-y-4">
             <div className="relative aspect-[1448/1086] w-full overflow-hidden rounded-2xl ring-1 ring-[color:var(--color-gold)]/20 shadow-[0_24px_60px_-30px_rgba(40,30,10,0.45)]">
-              <Image src="/home-v4/v6-how-it-works-v3.webp" alt="A hand holding a phone showing the HoWA home dashboard beside a cutaway dollhouse on a table." fill sizes="(max-width:1024px) 92vw, 420px" className="object-cover" />
+              <Image src="/home-v4/v6-how-it-works-v3.webp" alt="A hand holding a phone showing the HoWA home record beside a cutaway dollhouse on a table." fill sizes="(max-width:1024px) 92vw, 420px" className="object-cover" />
             </div>
             <div className="rounded-2xl bg-[#1d2a40] p-6 text-[#f3ede0]">
               <div className="flex items-center gap-5">

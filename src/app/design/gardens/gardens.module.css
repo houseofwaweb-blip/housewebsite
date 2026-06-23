@@ -674,3 +674,6 @@
   .projectsGrid { grid-template-columns: 1fr; grid-auto-rows: 240px; }
   .projectTall, .projectWide { grid-row: auto; grid-column: auto; }
 }
+
+.heroCopy { position: relative; overflow: hidden; }
+.heroCopyInner { position: relative; z-index: 1; }

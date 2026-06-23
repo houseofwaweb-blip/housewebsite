@@ -10,7 +10,7 @@ const TIERS = [
 const ROWS: { f: string; c: [Cell, Cell, Cell] }[] = [
   { f: "Instant address portrait", c: ["yes", "yes", "yes"] },
   { f: "Ask HoWA + scans", c: ["yes", "yes", "yes"] },
-  { f: "Document upload + dashboard", c: ["yes", "yes", "yes"] },
+  { f: "Document upload + home record", c: ["yes", "yes", "yes"] },
   { f: "Full logbook + assets", c: ["no", "yes", "yes"] },
   { f: "Renewals + seasonal calendar", c: ["no", "yes", "yes"] },
   { f: "Monthly Brief", c: ["no", "yes", "yes"] },

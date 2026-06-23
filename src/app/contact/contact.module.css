@@ -64,3 +64,6 @@
   .hero { padding: 72px 24px 36px; }
   .form { padding: 36px 24px 72px; }
 }
+
+.hero { position: relative; overflow: hidden; }
+.hero > *:not([aria-hidden="true"]) { position: relative; z-index: 1; }
