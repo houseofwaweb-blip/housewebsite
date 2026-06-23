@@ -214,6 +214,14 @@ export default async function HomePage() {
             sizes="(min-width: 860px) 42vw, 100vw"
             style={{ width: "100%", height: "auto", display: "block" }}
           />
+          <div className={s.originScrim} aria-hidden="true" />
+          <Image
+            src="/brand/wa-gardens-white.png"
+            alt="Willow Alexander Gardens"
+            width={3595}
+            height={2184}
+            className={s.originLogo}
+          />
         </div>
         <div className={s.originCopy}>
           <p className={s.eyebrow}>Origin</p>
@@ -368,9 +376,14 @@ export default async function HomePage() {
               partners, booked through HoWA, delivered to the House standard and
               written back to your Home Record.
             </p>
-            <Link href="/services" className={s.btnGhost}>
-              See all services <span aria-hidden className={s.arrow}>→</span>
-            </Link>
+            <div className={s.servicesCtas}>
+              <Link href="#open-booking-form" className={s.btnFilled}>
+                Book a House Service
+              </Link>
+              <Link href="/services" className={s.btnGhost}>
+                See all services <span aria-hidden className={s.arrow}>→</span>
+              </Link>
+            </div>
           </div>
           <div className={s.servicesGrid}>
             {SERVICES.map((svc) => (
