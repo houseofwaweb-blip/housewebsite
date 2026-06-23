@@ -177,7 +177,7 @@ export default async function InteriorsPage() {
               {cms(
                 hero,
                 "body",
-                "At the House, interiors are living expressions of the people who inhabit them. Our collective of designers and makers share a single philosophy: beauty, balance, and intention.",
+                "Rooms read for the people who live in them, not decorated at them. Worked out in plaster, paint, joinery and the light a room actually gets, through House Approved studios who know period fabric and how a house wears over years.",
               )}
             </p>
             <div className={s.heroCtas}>

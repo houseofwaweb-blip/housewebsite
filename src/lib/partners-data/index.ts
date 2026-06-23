@@ -192,7 +192,7 @@ const DEFAULT_DESIGN_PACKAGES: PartnerPackage[] = [
 const DEFAULT_FAQ = [
   {
     q: "How is HoWA different from hiring a designer directly?",
-    a: "HoWA matches, configures, and holds the record — you keep the designer relationship.",
+    a: "HoWA matches, configures, and holds the record, and you keep the designer relationship.",
   },
   {
     q: "Can I buy a package before a consultation?",

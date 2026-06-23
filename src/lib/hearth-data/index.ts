@@ -1,5 +1,5 @@
 /**
- * Hearth dataset — sourced from the live WordPress site
+ * Hearth dataset, sourced from the live WordPress site
  * (https://willowalexander.co.uk/wp-json/wp/v2/howa_living) via the
  * transform script at ./wp-import/transform.mjs.
  *
@@ -42,7 +42,7 @@ export interface PopularItem {
   image: string;
 }
 
-// Full chronological list — used for archive, [slug] lookup, related posts.
+// Full chronological list, used for archive, [slug] lookup, related posts.
 export const ALL_ARTICLES: HearthArticle[] = articlesJson as HearthArticle[];
 
 // Pre-split sections for the index page layout.
@@ -60,12 +60,12 @@ export const MAIN_FEED: HearthArticle[] = sections.mainFeed;
 export const POPULAR: PopularItem[] = sections.popular;
 export const MORE_FEED: HearthArticle[] = sections.moreFeed;
 
-// Collection band — curated editorial, independent of chronological feed.
+// Collection band, curated editorial, independent of chronological feed.
 export const COLLECTION = {
   season: "Spring MMXXVI",
   title: "A spring collection",
   titleEm: "spring",
-  body: "Twelve dispatches, one seasonal hand. Essays, photo notes, and a few recipes from the Hearth Collection — published weekly through April and May.",
+  body: "Twelve dispatches, one seasonal hand. Essays, photo notes, and a few recipes from the Hearth Collection, published weekly through April and May.",
   ctaLabel: "Explore the Collection",
   ctaHref: "/the-hearth/collection/spring-2026",
   big: ALL_ARTICLES[0]?.image ?? "/hearth/art-lead.webp",

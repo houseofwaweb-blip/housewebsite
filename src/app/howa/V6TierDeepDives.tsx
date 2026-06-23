@@ -52,7 +52,7 @@ const TIERS: Tier[] = [
       { t: "One Home Record, your address starts to have a memory" },
       { t: "Ask HoWA, questions about your home, garden and documents" },
       { t: "Repair, garden and room scans, with urgency and next step" },
-      { t: "Document upload and starter dashboard" },
+      { t: "Document upload and your first saved home record" },
     ],
     image: "/home-v4/v6-tier-assistant.webp",
     imageRight: true,
@@ -115,7 +115,7 @@ export function V6TierDeepDives() {
   return (
     <section id="modes" className="bg-[#f4f1e9] pt-16 lg:pt-20 pb-8 scroll-mt-28">
       <header className={s.modesHead} style={{ textAlign: "center" }}>
-        <h2 className={s.modesTitle}>One app. <em>Three modes.</em></h2>
+        <h2 className={s.modesTitle}>One record. <em>Three depths of care.</em></h2>
       </header>
 
       <div className="max-w-[1240px] mx-auto px-6 sm:px-10 space-y-8 mt-12 lg:mt-16">

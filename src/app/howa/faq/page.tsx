@@ -39,7 +39,7 @@ const SECTIONS: { heading: string; items: { q: string; a: string }[] }[] = [
       },
       {
         q: "When does Housekeeper open?",
-        a: "Housekeeper opens alongside the new site. If you arrive before the product app is reachable, “Start HoWA” routes to a waitlist and we'll write the moment it opens.",
+        a: "Housekeeper opens alongside the new site. If you arrive before HoWA is reachable, “Start HoWA” routes to a waitlist and we'll write the moment it opens.",
       },
     ],
   },

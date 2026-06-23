@@ -44,7 +44,7 @@ const MODES: Mode[] = [
     numeral: "II",
     name: "Housekeeper",
     tagline: "The house, in order.",
-    desc: "Every detail. Every task. Perfectly handled.",
+    desc: "Papers, tasks and renewals, all held in one record.",
     points: ["Task management", "Supplier coordination", "Preventive care"],
     bg: "#bd6a52",
     image: "/home-v4/tier-band-housekeeper.webp",

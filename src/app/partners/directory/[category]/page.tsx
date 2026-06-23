@@ -35,7 +35,7 @@ const CATEGORIES: Record<string, {
   marketplace: {
     title: "Makers & suppliers.",
     titleEm: "suppliers.",
-    description: "Artisan makers, curated suppliers, and brand partners. Selected by the House for craft, quality, and sustainability.",
+    description: "Makers, small suppliers, and brand partners. Chosen for how a thing is made, how it lasts, and how it sits in a home.",
     types: ["craftsman", "artisan-maker", "shop-supplier", "brand-partner"],
   },
 };
@@ -125,7 +125,7 @@ export default async function DirectoryPage({
                 No partners in this category yet.
               </p>
               <p className="font-sans text-[15px] text-house-brown/50">
-                We're growing the House Approved network. Check back soon.
+                The House Approved list grows slowly, on purpose. Check back soon.
               </p>
             </div>
           ) : (

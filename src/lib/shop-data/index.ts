@@ -3,7 +3,7 @@
  * swapping to real Shopify calls is a single-line change per query.
  *
  * Products are inspired by the WP WooCommerce catalogue at
- * willowalexander.co.uk/shop — British lifestyle, garden, home.
+ * willowalexander.co.uk/shop, British lifestyle, garden, home.
  */
 
 import type { ProductCardData } from "@/components/commerce/ProductCard";
@@ -11,7 +11,7 @@ import type { ProductCardData } from "@/components/commerce/ProductCard";
 export interface ShopProduct extends ProductCardData {
   lede: string;
   body: string;
-  /** "Why the House chose it" — editorial endorsement vs the House standards. */
+  /** "Why the House chose it", editorial endorsement vs the House standards. */
   whyChosen?: string;
   /** Optional per-product SEO overrides (Shopify "Search engine listing"). */
   seoTitle?: string;
@@ -62,7 +62,7 @@ export const PRODUCTS: ShopProduct[] = [
     houseApproved: true,
     collection: "Garden",
     lede: "Solid copper, brass rose. Develops a living patina over the seasons.",
-    body: "Hand-spun from a single sheet of 0.7mm copper. The brass rose gives a fine, even spray. Holds 5 litres. Over time the copper develops a natural verdigris patina — the sign of a tool in use. Made in England.",
+    body: "Hand-spun from a single sheet of 0.7mm copper. The brass rose gives a fine, even spray. Holds 5 litres. Over time the copper develops a natural verdigris patina, the sign of a tool in use. Made in England.",
     images: [{ src: img(2), alt: "Copper Watering Can" }, { src: img(4), alt: "Detail" }],
     careNotes: "Do not polish unless you prefer bright copper. Empty after use in winter to avoid frost damage.",
     materials: "0.7mm solid copper body, brass rose and handle fittings.",
@@ -103,7 +103,7 @@ export const PRODUCTS: ShopProduct[] = [
     image: img(5),
     collection: "Home",
     lede: "Hand-rolled in Devon. Unscented, slow-burning, beautiful light.",
-    body: "A set of four hand-rolled beeswax candles from a family apiary in Devon. Unscented — the natural honey aroma is enough. Each candle burns for approximately 8 hours with a steady, warm flame. Wrapped in tissue and kraft.",
+    body: "A set of four hand-rolled beeswax candles from a family apiary in Devon. Unscented, the natural honey aroma is enough. Each candle burns for approximately 8 hours with a steady, warm flame. Wrapped in tissue and kraft.",
     images: [{ src: img(5), alt: "Beeswax Candle Set" }],
     delivery: "Free UK delivery. Ships within 2 working days.",
     relatedHandles: ["stoneware-oil-burner", "heritage-secateurs"],
@@ -146,7 +146,7 @@ export const PRODUCTS: ShopProduct[] = [
     houseApproved: true,
     collection: "Home",
     lede: "Wall-mounted or freestanding. Blacksmith-made in the Cotswolds.",
-    body: "Forged by hand from a single bar of mild steel by a Cotswolds blacksmith. The slight irregularity of the surface is the point — each one is unique. Available wall-mounted (with fixings) or freestanding (weighted base). Finished with a clear wax to slow the natural patina.",
+    body: "Forged by hand from a single bar of mild steel by a Cotswolds blacksmith. The slight irregularity of the surface is the point, each one is unique. Available wall-mounted (with fixings) or freestanding (weighted base). Finished with a clear wax to slow the natural patina.",
     images: [{ src: img(2), alt: "Hand-Forged Boot Scraper" }, { src: img(6), alt: "Detail" }],
     materials: "Mild steel, beeswax finish.",
     delivery: "Free UK delivery. Ships within 5 working days (made to order).",

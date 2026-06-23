@@ -26,7 +26,7 @@ const FEATURES = [
 ];
 
 const POINTS = [
-  "A single source of truth for your home",
+  "One record, bound to your address",
   "All rooms, systems and assets mapped",
   "Documents, plans and manuals stored",
   "Tasks and timelines, all in view",

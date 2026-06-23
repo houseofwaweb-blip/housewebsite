@@ -62,7 +62,7 @@ const CATEGORIES = [
     title: "Objects worth keeping.",
     titleEm: "keeping.",
     blurb:
-      "Artisan makers, curated suppliers and the things we believe in. Selected by the House, written back to your home record through HoWA.",
+      "Makers, small suppliers, and the few things we keep coming back to. Chosen by the House, and logged to your home record through HoWA.",
     image: "/the-house/editorial/approved-peony-plate.webp",
     href: "/shop",
     ctaLabel: "Visit the shop",
@@ -178,7 +178,7 @@ export default async function PartnersHub() {
             {cms(
               categories,
               "body",
-              "The collective spans design studios, service providers and curated suppliers, each governed by the same House Approved standard.",
+              "Design studios, service providers, and the makers behind the shop. Three different crafts, held to one House Approved seal.",
             )}
           </p>
         </header>

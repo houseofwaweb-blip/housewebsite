@@ -419,8 +419,8 @@ export function V6Cta() {
       <div className="max-w-[1320px] mx-auto px-6 sm:px-10 py-12 flex flex-col lg:flex-row items-center justify-between gap-6">
         <div>
           <h2 className="font-display text-[clamp(25px,2.4vw,36px)] leading-[1.1]">
-            Ready to transform the way
-            <br className="hidden sm:block" /> you care for your home?
+            Start with your address.
+            <br className="hidden sm:block" /> Meet the home that remembers.
           </h2>
         </div>
         <div className="flex items-center gap-5">

@@ -23,7 +23,7 @@ export default async function NewsIndexPage() {
           </h1>
           <p className={s.headLede}>
             Awards, recognition, recent features, and the occasional note from
-            the House. Updated as things happen.
+            the House. Added as they come.
           </p>
         </div>
       </section>

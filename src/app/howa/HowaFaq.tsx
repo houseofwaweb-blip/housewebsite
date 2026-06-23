@@ -3,7 +3,7 @@
    no extra globals classes. Bright House ground, gold accents. */
 const FAQS: [string, string][] = [
   [
-    "When does the app launch?",
+    "When does HoWA launch?",
     "We're in private beta. Joining the waitlist secures your spot in the first cohort, with invites rolling out in waves through 2026.",
   ],
   [

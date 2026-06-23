@@ -43,7 +43,7 @@ const ASSISTANT_INCLUSIONS = [
 
 const HOWAPLUS_INCLUSIONS = [
   "10% off all House services, auto-applied at checkout",
-  "Full dashboard continuity and task centre with seasonal prompts",
+  "Full Living Record continuity and task centre with seasonal prompts",
   "Richer document and home logbook history",
   "Priority booking across House services",
   "Full access to The Hearth magazine",
@@ -68,7 +68,7 @@ const STEWARD_INCLUSIONS = [
 const FAQS = [
   {
     q: "When does Housekeeper go live?",
-    a: "Housekeeper opens with the new site. The product app (bookings, records, the Assistant) is the surface that unlocks the paid features. If the app isn't live at the moment you try to start, the “Start HoWA” button routes to a waitlist until we're ready.",
+    a: "Housekeeper opens with the new site. HoWA itself (bookings, records, the Assistant) is the surface that unlocks the paid features. If HoWA isn't live at the moment you try to start, the “Start HoWA” button routes to a waitlist until we're ready.",
   },
   {
     q: "What about Steward plans?",

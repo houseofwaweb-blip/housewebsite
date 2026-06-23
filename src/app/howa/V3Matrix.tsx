@@ -7,7 +7,7 @@ const ROWS: { f: string; c: [Cell, Cell, Cell] }[] = [
   { f: "One Home Record, your address remembers", c: ["yes", "yes", "yes"] },
   { f: "Ask HoWA, answers from your own record", c: ["yes", "yes", "yes"] },
   { f: "Repair, garden & room scans", c: ["yes", "yes", "yes"] },
-  { f: "Document upload & dashboard", c: ["yes", "yes", "yes"] },
+  { f: "Document upload & home record", c: ["yes", "yes", "yes"] },
   { f: "Full logbook: rooms, assets, service history", c: ["no", "yes", "yes"] },
   { f: "Maintenance calendar & seasonal garden plan", c: ["no", "yes", "yes"] },
   { f: "Renewal & warranty reminders", c: ["no", "yes", "yes"] },

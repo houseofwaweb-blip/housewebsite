@@ -1,5 +1,5 @@
 /**
- * Services dataset — hardcoded for launch, swap to Sanity `service` +
+ * Services dataset, hardcoded for launch, swap to Sanity `service` +
  * `servicePackage` documents later. Shape matches the GROQ response so
  * the migration is a single line: `await sanityFetch({...})`.
  */
@@ -91,7 +91,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
     sections: {
       included: [
         "Seasonal pruning, weeding, and bed maintenance",
-        "Lawn care — mowing, edging, seasonal feeds",
+        "Lawn care, mowing, edging, seasonal feeds",
         "Tree, shrub, and hedge shaping up to 4m",
         "Plant health reviews and replacement recommendations",
         "Green waste removal (licensed carrier)",
@@ -99,7 +99,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
       how: [
         "Walk the garden with you, or read the brief you send",
         "Quote within 48 hours, itemised, no surprises",
-        "Schedule with you — one-off, monthly, or seasonal",
+        "Schedule with you, one-off, monthly, or seasonal",
         "Show up when we said, leave it looking like we cared",
       ],
     },
@@ -170,15 +170,15 @@ export const SERVICES: Record<ServiceSlug, Service> = {
     colour: "#3e2649",
     sections: {
       included: [
-        "All exterior windows, frames, and sills — front and back elevations",
-        "Pure water pole and reach system — no detergents, dries streak-free",
+        "All exterior windows, frames, and sills, front and back elevations",
+        "Pure water pole and reach system, no detergents, dries streak-free",
         "Up to four storeys from the ground, no ladders against your walls",
         "UPVC frame, soffit, and fascia cleaning",
         "Condition note on any cracked or failed glazing spotted",
       ],
       how: [
         "Tell us your postcode and frontage type",
-        "Fixed quote within 24 hours — no surprises",
+        "Fixed quote within 24 hours, no surprises",
         "Book a one-off or schedule monthly / bi-monthly",
         "Text reminder the day before, van tracking on the day",
       ],
@@ -225,7 +225,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
   cleaning: {
     slug: "cleaning",
     name: "Cleaning",
-    lede: "Trained, uniformed cleaners using organic products that are tough on grime but kind to the environment. Zero-emission fleet, battery-operated tools, fragrance-free on request.",
+    lede: "Trained, uniformed cleaners using organic products that lift grime without leaving a chemical note in the air. Zero-emission fleet, battery-operated tools, fragrance-free on request.",
     eyebrow: "Services · Cleaning",
     heroImage: "/services/photos/cleaning-hero.webp",
     headline: "A house that feels cared for.",
@@ -233,18 +233,18 @@ export const SERVICES: Record<ServiceSlug, Service> = {
     colour: "#2e4055",
     sections: {
       included: [
-        "Full-home clean — kitchens, bathrooms, living spaces, bedrooms",
+        "Full-home clean, kitchens, bathrooms, living spaces, bedrooms",
         "Eco-friendly organic products via Bower Collective",
-        "Battery-operated, low-noise equipment — we bring everything",
-        "Laminated floor, wood, carpet, and tile — handled correctly per material",
+        "Battery-operated, low-noise equipment, we bring everything",
+        "Laminated floor, wood, carpet, and tile, handled correctly per material",
         "Window interiors, skirting, light switches, door handles",
         "Optional laundry, linen, inside-oven, and inside-fridge deep clean",
       ],
       how: [
-        "Easy booking via our online platform or by phone",
-        "Personalised cleaning plan tailored to your priorities",
-        "Vetted, uniformed team arrives on time with everything they need",
-        "We review the work with you to ensure complete satisfaction",
+        "Tell us the home, the rooms, and the products you prefer",
+        "We set a plan around your priorities, room by room",
+        "A vetted team arrives on time, bringing everything they need",
+        "We walk the work with you and file a note to your record",
       ],
     },
     recurring: true,
@@ -312,11 +312,11 @@ export const SERVICES: Record<ServiceSlug, Service> = {
     headlineEm: "that saves a large one.",
     sections: {
       included: [
-        "Full SkyVac vacuum-pole gutter clear — front and back elevations",
+        "Full SkyVac vacuum-pole gutter clear, front and back elevations",
         "Camera-guided inspection to confirm all blockages cleared",
         "Down and drainpipe cleaning and blockage check",
         "Photographic before/after record of each gutter run",
-        "Flag for repairs — loose brackets, splits, poor falls",
+        "Flag for repairs, loose brackets, splits, poor falls",
       ],
       how: [
         "Confirm property type and access needs",
@@ -357,7 +357,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
     ],
     subServices: GUTTER_CLEANING_SUBS,
     faq: [
-      { q: "How often should gutters be cleaned?", a: "At least twice a year — autumn after the last leaves, and spring before heavy rain. Properties near trees may need quarterly." },
+      { q: "How often should gutters be cleaned?", a: "At least twice a year, autumn after the last leaves, and spring before heavy rain. Properties near trees may need quarterly." },
       { q: "Can you repair damaged gutters?", a: "We flag issues in the condition report. For replacements we introduce you to a trusted roofer through the House." },
       ...SERVICE_FAQ_SHARED,
     ],

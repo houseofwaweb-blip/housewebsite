@@ -24,7 +24,7 @@ export function V6HowItWorks() {
             <div className="relative w-full aspect-[1448/1086]">
               <Image
                 src="/home-v4/v6-how-it-works-lead-v2.webp"
-                alt="A person holding a phone showing the HoWA home dashboard beside a cutaway dollhouse on a table."
+                alt="A person holding a phone showing the HoWA home record beside a cutaway dollhouse on a table."
                 fill
                 sizes="(max-width:1024px) 92vw, 600px"
                 className="object-cover"

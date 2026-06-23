@@ -95,7 +95,7 @@ const INTELLIGENCE_STATS = [
 const FAQS = [
   {
     q: "Can I cancel anytime?",
-    a: "Yes. There's no minimum term. Cancel from your dashboard and your record stays accessible in read-only mode for 12 months.",
+    a: "Yes. There's no minimum term. Cancel from your account and your record stays accessible in read-only mode for 12 months.",
   },
   {
     q: "Does Housekeeper replace my insurance?",

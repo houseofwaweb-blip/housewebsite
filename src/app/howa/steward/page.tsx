@@ -195,7 +195,7 @@ export default async function StewardPage() {
               <a href="#whats-included" className={s.btnGhost}>See what&apos;s included ↓</a>
             </div>
           </div>
-          <aside className={s.heroBadge} aria-label="Steward dashboard preview">
+          <aside className={s.heroBadge} aria-label="Steward HoWA Score preview">
             <div className={s.heroBadgeHead}>
               <span className={s.heroBadgeTop}><span className={s.heroBadgeDot} aria-hidden />Steward</span>
               <span className={s.heroBadgeLive}>● Live</span>
@@ -456,10 +456,10 @@ export default async function StewardPage() {
           <div className={s.managedOverlay} />
         </div>
         <div className={s.managedInner2}>
-          <p className={s.sectionEy}>Managed Stewardship · the layer beyond the app</p>
+          <p className={s.sectionEy}>Managed Stewardship · the layer beyond the record</p>
           <h2 className={s.managedTitle}>For a home that asks a lot of you.</h2>
           <p className={s.managedSub}>
-            Beyond the Steward app tier, for larger homes, estates and complex households
+            Beyond the Steward tier, for larger homes, estates and complex households
             where a digital record is not enough. A named person. Human coordination.
             Contractor management. Oversight that knows the home as well as you do.
           </p>

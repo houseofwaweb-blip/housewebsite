@@ -29,7 +29,7 @@ export function OrganizationJsonLd() {
     url: base,
     logo: `${base}/brand/logo-organization.png`,
     description:
-      "A modern British institution for effortless intelligent living. Design, care, protection, and curated commerce — connected by HoWA.",
+      "A modern British House for the care, design and intelligence of home and garden. Design, care, protection, and curated commerce, connected by HoWA.",
     foundingLocation: {
       "@type": "Place",
       address: {

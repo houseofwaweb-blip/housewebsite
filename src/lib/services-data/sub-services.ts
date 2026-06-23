@@ -11,12 +11,12 @@ export const GARDENING_SUBS: SubService[] = [
   {
     slug: "garden-clearance",
     name: "Garden clearance",
-    lede: "Reclaim an overgrown space. We clear, sort, and remove — leaving a garden ready for what comes next.",
+    lede: "Reclaim an overgrown space. We clear, sort, and remove, leaving a garden ready for what comes next.",
     body: "Whether you have just moved in, are preparing to sell, or simply haven't been able to keep up with an increasingly overgrown garden, a professional clearance is the first step back. Our horticulturally trained team assesses what should stay, what should go, and what needs care rather than removal. All green waste is removed by licensed carriers. The garden is left clean, raked, and ready for replanting or a design brief.",
     whyChoose: [
-      "Horticulturally trained team — we don't just cut, we assess",
+      "Horticulturally trained team, we don't just cut, we assess",
       "Structured approach: assess, clear, remove, prepare",
-      "Licensed waste carriers — responsible disposal as standard",
+      "Licensed waste carriers, responsible disposal as standard",
       "Discreet, efficient, and respectful of your neighbours",
     ],
     included: [
@@ -27,9 +27,9 @@ export const GARDENING_SUBS: SubService[] = [
       "Photographic before-and-after in your HoWA record",
     ],
     faq: [
-      { q: "Do you remove and dispose of all garden waste?", a: "Yes. We are licensed waste carriers. Everything is removed, sorted, and disposed of responsibly — never fly-tipped." },
+      { q: "Do you remove and dispose of all garden waste?", a: "Yes. We are licensed waste carriers. Everything is removed, sorted, and disposed of responsibly, never fly-tipped." },
       { q: "How do you approach larger or heavily overgrown gardens?", a: "We start with a structured assessment. For larger spaces we may stage the clearance over two visits, so the work is done properly and nothing worth keeping is lost." },
-      { q: "Can you prepare a garden for sale or letting?", a: "Yes — we regularly prepare gardens for estate agent photography and viewings. We can also coordinate with Willow Alexander Gardens for planting if you want to go further." },
+      { q: "Can you prepare a garden for sale or letting?", a: "Yes, we regularly prepare gardens for estate agent photography and viewings. We can also coordinate with Willow Alexander Gardens for planting if you want to go further." },
     ],
   },
   {
@@ -70,7 +70,7 @@ export const GARDENING_SUBS: SubService[] = [
   {
     slug: "garden-maintenance-subscriptions",
     name: "Garden maintenance subscriptions",
-    lede: "Scheduled seasonal care — the same gardener, on a rhythm. Weekly, fortnightly, or monthly.",
+    lede: "Scheduled seasonal care, the same gardener, on a rhythm. Weekly, fortnightly, or monthly.",
     body: "Our subscription plans are the most popular way to keep a garden running. You pick the rhythm. We assign a named gardener who learns the space. Visits are scheduled through HoWA, photographed, and logged to your home record. No per-visit admin, no surprises.",
   },
   {
@@ -85,9 +85,9 @@ export const WINDOW_CLEANING_SUBS: SubService[] = [
     slug: "regular-window-cleaning",
     name: "Regular window cleaning",
     lede: "Scheduled monthly or bi-monthly cleans. The same team, the same day, text before arrival.",
-    body: "Pure-water pole cleaning for all exterior windows, frames, and sills. Scheduled on a cadence that suits the property — monthly for high-traffic streets, bi-monthly for quieter ones. You don't need to be home. We text the morning of, arrive when we said, and file a note to your HoWA record after each visit.",
+    body: "Pure-water pole cleaning for all exterior windows, frames, and sills. Scheduled on a cadence that suits the property, monthly for high-traffic streets, bi-monthly for quieter ones. You don't need to be home. We text the morning of, arrive when we said, and file a note to your HoWA record after each visit.",
     whyChoose: [
-      "Pure-water pole system — no detergents, no residue, no streaks",
+      "Pure-water pole system, no detergents, no residue, no streaks",
       "Frames and sills included as standard (not extra)",
       "Up to four storeys from the ground, no ladders required",
       "A rain guarantee: if it rains within 48 hours, we return free",
@@ -114,22 +114,22 @@ export const WINDOW_CLEANING_SUBS: SubService[] = [
     slug: "gutter-cleaning",
     name: "Gutter cleaning",
     lede: "Vacuum-pole gutter clears, front and back. Photographic evidence of every run. Twice a year is ideal.",
-    body: "Blocked gutters cause damp, staining, and pest access. Our team clears all gutters by industrial vacuum pole — no ladders on your walls, no damage to fascia. We photograph every run before and after, note any loose brackets or splits, and file the whole thing to your HoWA record. Most homes need this twice a year: once after the last leaves, once before winter rain.",
+    body: "Blocked gutters cause damp, staining, and pest access. Our team clears all gutters by industrial vacuum pole, no ladders on your walls, no damage to fascia. We photograph every run before and after, note any loose brackets or splits, and file the whole thing to your HoWA record. Most homes need this twice a year: once after the last leaves, once before winter rain.",
     whyChoose: [
-      "Industrial vacuum pole — safe, efficient, no ladders on walls",
+      "Industrial vacuum pole, safe, efficient, no ladders on walls",
       "Before/after photographic record filed to HoWA",
       "Downpipe checks and minor blockage clearance included",
       "Flags repairs early, before damp sets in",
     ],
     included: [
-      "Full gutter clear — front and back elevations",
+      "Full gutter clear, front and back elevations",
       "Downpipe visual check + minor clearance",
       "Photographic record filed to HoWA",
       "Condition report on brackets, splits, and falls",
       "Green waste bagged and removed",
     ],
     faq: [
-      { q: "How often should gutters be cleaned?", a: "At least twice a year — autumn after the last leaves, and spring before heavy rain. Properties near trees may benefit from quarterly." },
+      { q: "How often should gutters be cleaned?", a: "At least twice a year, autumn after the last leaves, and spring before heavy rain. Properties near trees may benefit from quarterly." },
       { q: "Can you repair damaged gutters?", a: "We flag issues in the condition report. For replacements and re-seating we introduce you to a trusted roofer through the House." },
     ],
   },
@@ -170,10 +170,10 @@ export const CLEANING_SUBS: SubService[] = [
     slug: "regular-cleaning",
     name: "Regular cleaning",
     lede: "Weekly or fortnightly domestic care. Same team each visit, your preferences on file in HoWA.",
-    body: "Our regular cleaning service is built on consistency. We assign a named team who learns the home — your surfaces, your products, your preferences. Visits are scheduled through HoWA and logged with a short note after each one. If your regular cleaner is away, we send a cover team briefed from your record.",
+    body: "Our regular cleaning service is built on consistency. We assign a named team who learns the home, your surfaces, your products, your preferences. Visits are scheduled through HoWA and logged with a short note after each one. If your regular cleaner is away, we send a cover team briefed from your record.",
     whyChoose: [
       "Named team who learns the home over time",
-      "Scheduled through HoWA — no per-visit admin",
+      "Scheduled through HoWA, no per-visit admin",
       "All products House-approved; fragrance-free on request",
       "Vetted, insured, and DBS-checked as standard",
     ],
@@ -207,7 +207,7 @@ export const CLEANING_SUBS: SubService[] = [
   {
     slug: "spring-clean",
     name: "Spring clean",
-    lede: "A seasonal reset — windows inside, skirting, light switches, under-furniture, and the things the weekly misses.",
+    lede: "A seasonal reset, windows inside, skirting, light switches, under-furniture, and the things the weekly misses.",
   },
 ];
 
@@ -374,7 +374,7 @@ export const ENERGY_SUBS: SubService[] = [
     lede: "Roof-mounted and in-roof solar panel systems. Full survey, design, installation, and MCS certification.",
     body: "We handle the complete solar journey: structural survey, panel layout design, scaffolding, installation, DNO grid connection application, and MCS certification. Battery storage systems (Tesla Powerwall, GivEnergy, Fox ESS) can be added at install or retrofitted later. Every system is designed for the specific property, not a generic template.",
     whyChoose: [
-      "MCS-certified installation — qualifies for Smart Export Guarantee payments",
+      "MCS-certified installation, qualifies for Smart Export Guarantee payments",
       "Full structural and electrical survey before any work begins",
       "Battery storage integration available at install or later",
       "DNO application and grid connection handled for you",
@@ -437,9 +437,9 @@ export const PET_CARE_SUBS: SubService[] = [
     slug: "dog-walking",
     name: "Dog walking",
     lede: "Solo walks by experienced, insured handlers. GPS-tracked routes, photo updates, and behaviour notes after every visit.",
-    body: "Every walk is solo unless you request otherwise. Your handler learns the dog's temperament, favourite routes, and recall level. Walks are GPS-tracked with a live map you can check from your phone. After each walk, you receive a photo, a route summary, and a short behaviour note — all filed to your HoWA record.",
+    body: "Every walk is solo unless you request otherwise. Your handler learns the dog's temperament, favourite routes, and recall level. Walks are GPS-tracked with a live map you can check from your phone. After each walk, you receive a photo, a route summary, and a short behaviour note, all filed to your HoWA record.",
     whyChoose: [
-      "Solo walks — your dog gets full attention, every time",
+      "Solo walks, your dog gets full attention, every time",
       "GPS-tracked with live route sharing",
       "Same handler wherever possible for consistency",
       "All handlers DBS-checked and fully insured",
@@ -460,9 +460,9 @@ export const PET_CARE_SUBS: SubService[] = [
     slug: "dog-sitting",
     name: "Dog sitting",
     lede: "In-home care while you're away. Feeding, walks, medication, and daily updates. Your home or the sitter's.",
-    body: "Our sitters stay in your home or host your dog in theirs — whichever suits the dog's temperament. They follow your instructions for feeding, medication, exercise, and bedtime routine. You receive daily photo updates and can message the sitter directly through the platform. Emergency vet details are held on file.",
+    body: "Our sitters stay in your home or host your dog in theirs, whichever suits the dog's temperament. They follow your instructions for feeding, medication, exercise, and bedtime routine. You receive daily photo updates and can message the sitter directly through the platform. Emergency vet details are held on file.",
     whyChoose: [
-      "In-home care — your dog stays in familiar surroundings",
+      "In-home care, your dog stays in familiar surroundings",
       "Feeding, medication, and routine followed exactly",
       "Daily photo and status updates",
       "Emergency vet instructions on file in HoWA",
