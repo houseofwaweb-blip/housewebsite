@@ -11,15 +11,15 @@ import { shopifyProvider } from "@/lib/commerce/shopify";
  * reads as a shop, not an empty directory. Room artwork is a marked placeholder
  * until the House supplies it; each room links to its Shopify collection.
  */
-const ROOMS = [
-  { name: "Kitchen", handle: "kitchen" },
-  { name: "Dining & Table", handle: "dining" },
-  { name: "Living Room", handle: "living-room" },
-  { name: "Bedroom", handle: "bedroom" },
-  { name: "Bathroom", handle: "bathroom" },
-  { name: "Hallway & Entrance", handle: "hallway" },
-  { name: "Garden & Outdoor", handle: "garden" },
-  { name: "Utility & Laundry", handle: "utility" },
+const ROOMS: { name: string; handle: string; image: string | null }[] = [
+  { name: "Kitchen", handle: "kitchen", image: "/shop/rooms/kitchen.webp" },
+  { name: "Dining & Table", handle: "dining", image: "/shop/rooms/dining.webp" },
+  { name: "Living Room", handle: "living-room", image: "/shop/rooms/living-room.webp" },
+  { name: "Bedroom", handle: "bedroom", image: "/shop/rooms/bedroom.webp" },
+  { name: "Bathroom", handle: "bathroom", image: "/shop/rooms/bathroom.webp" },
+  { name: "Hallway & Entrance", handle: "hallway", image: "/shop/rooms/hallway.webp" },
+  { name: "Garden & Outdoor", handle: "garden", image: "/shop/rooms/garden.webp" },
+  { name: "Utility & Laundry", handle: "utility", image: "/shop/rooms/utility.webp" },
 ];
 
 function formatMoney(m: { amount: string; currencyCode: string }) {
@@ -148,24 +148,53 @@ export default async function ShopPage() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {ROOMS.map((r) => (
-              <Link
-                key={r.handle}
-                href={`/shop/collections/${r.handle}`}
-                className="group relative block aspect-[4/5] overflow-hidden bg-house-cream-dark no-underline"
-              >
-                <span aria-hidden className="absolute inset-4 border border-house-brown/15" />
-                <span className="absolute top-6 left-0 right-0 text-center font-sans text-[9px] tracking-[0.3em] uppercase text-house-gold">
-                  Placeholder image
-                </span>
-                <span className="absolute inset-0 flex items-center justify-center px-4 text-center font-display text-[clamp(19px,2.1vw,28px)] leading-[1.1] text-house-brown">
-                  {r.name}
-                </span>
-                <span className="absolute bottom-6 left-0 right-0 text-center font-sans text-[10px] tracking-[0.2em] uppercase text-house-stone transition-colors group-hover:text-house-gold-dark">
-                  Shop the room →
-                </span>
-              </Link>
-            ))}
+            {ROOMS.map((r) =>
+              r.image ? (
+                <Link
+                  key={r.handle}
+                  href={`/shop/collections/${r.handle}`}
+                  className="group relative block aspect-[4/5] overflow-hidden bg-house-cream-dark no-underline"
+                >
+                  <Image
+                    src={r.image}
+                    alt={r.name}
+                    fill
+                    sizes="(min-width: 1024px) 22vw, 45vw"
+                    className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.04]"
+                  />
+                  <span
+                    aria-hidden
+                    className="absolute inset-0"
+                    style={{ background: "linear-gradient(to top, rgba(26,19,13,0.72), rgba(26,19,13,0.05) 55%)" }}
+                  />
+                  <div className="absolute inset-x-0 bottom-0 p-5 text-center">
+                    <p className="font-display text-[clamp(19px,2.1vw,28px)] leading-[1.1] text-white">
+                      {r.name}
+                    </p>
+                    <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-white/80 mt-2 transition-colors group-hover:text-white">
+                      Shop the room →
+                    </p>
+                  </div>
+                </Link>
+              ) : (
+                <Link
+                  key={r.handle}
+                  href={`/shop/collections/${r.handle}`}
+                  className="group relative block aspect-[4/5] overflow-hidden bg-house-cream-dark no-underline"
+                >
+                  <span aria-hidden className="absolute inset-4 border border-house-brown/15" />
+                  <span className="absolute top-6 left-0 right-0 text-center font-sans text-[9px] tracking-[0.3em] uppercase text-house-gold">
+                    Placeholder image
+                  </span>
+                  <span className="absolute inset-0 flex items-center justify-center px-4 text-center font-display text-[clamp(19px,2.1vw,28px)] leading-[1.1] text-house-brown">
+                    {r.name}
+                  </span>
+                  <span className="absolute bottom-6 left-0 right-0 text-center font-sans text-[10px] tracking-[0.2em] uppercase text-house-stone transition-colors group-hover:text-house-gold-dark">
+                    Shop the room →
+                  </span>
+                </Link>
+              ),
+            )}
           </div>
         </div>
       </section>
