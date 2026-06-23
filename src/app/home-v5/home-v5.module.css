@@ -500,10 +500,16 @@
 .servicesHead { position: sticky; top: 24px; }
 .servicesCtas {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
   margin-top: 34px;
+}
+.servicesCtas > a {
+  width: 100%;
+  max-width: 320px;
+  justify-content: center;
+  text-align: center;
 }
 .servicesTitle {
   font-family: var(--font-hearth-serif);
