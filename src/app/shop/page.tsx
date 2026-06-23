@@ -6,6 +6,9 @@ import { HouseStandardStrip } from "@/components/marketing/HouseStandardStrip";
 import { shopifyProvider } from "@/lib/commerce/shopify";
 import type { CommerceProduct } from "@/lib/commerce/types";
 import { getShopProducts } from "@/lib/shop-data/source";
+import type { CatalogueProduct } from "@/lib/shop-data/catalogue";
+import { AddToCartButton } from "@/components/commerce/AddToCartButton";
+import { ProductSlider, type Slide } from "./ProductSlider";
 
 /**
  * Marketplace landing — "collections as rooms" (Designer Handover Guide, slide 25).
@@ -42,6 +45,22 @@ function toCards(products: CommerceProduct[]): Card[] {
       houseApproved: p.metafields?.houseApproved,
     }))
     .filter((c) => c.image);
+}
+
+/** Rich slide/feature data (excerpt + variant for add-to-basket) from the catalogue. */
+function toSlide(cp: CatalogueProduct): Slide {
+  return {
+    handle: cp.handle,
+    title: cp.title,
+    price: cp.price,
+    image: cp.image || cp.images?.[0]?.src || "",
+    alt: cp.title,
+    excerpt: (cp.lede || "").trim() || undefined,
+    houseApproved: cp.houseApproved,
+    variantId: cp.variantId,
+    multiVariant: cp.multiVariant ?? false,
+    inStock: cp.inStock ?? true,
+  };
 }
 
 function Rail({ title, cards, viewAllHref }: { title: string; cards: Card[]; viewAllHref: string }) {
@@ -88,7 +107,7 @@ function Rail({ title, cards, viewAllHref }: { title: string; cards: Card[]; vie
 }
 
 /** A single buyable piece, given room to breathe — breaks up the product grids. */
-function FeaturedProduct({ p }: { p: Card | null }) {
+function FeaturedProduct({ p }: { p: Slide | null }) {
   if (!p) return null;
   return (
     <section style={{ background: "var(--color-house-brown)" }} className="px-[5vw] py-[clamp(48px,6vw,90px)]">
@@ -109,13 +128,27 @@ function FeaturedProduct({ p }: { p: Card | null }) {
         <div className="text-house-cream">
           <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-house-gold mb-5">The piece this week</p>
           <h2 className="font-display text-[clamp(28px,3.4vw,46px)] leading-[1.06] mb-4">{p.title}</h2>
-          <p className="font-sans text-[15px] text-house-cream/70 mb-7">{p.price}</p>
-          <Link
-            href={`/shop/${p.handle}`}
-            className="inline-flex items-center justify-center font-sans text-[11px] tracking-[0.18em] uppercase text-house-brown bg-house-gold px-8 py-4 no-underline transition-colors hover:bg-house-cream"
-          >
-            Shop this piece →
-          </Link>
+          <p className="font-sans text-[15px] text-house-cream/70 mb-5">{p.price}</p>
+          {p.excerpt ? (
+            <p className="font-sans text-[14px] leading-[1.7] text-house-cream/65 max-w-[46ch] mb-3 line-clamp-2">
+              {p.excerpt}{" "}
+              <Link href={`/shop/${p.handle}`} className="text-house-gold no-underline whitespace-nowrap hover:text-house-cream">
+                Read more →
+              </Link>
+            </p>
+          ) : null}
+          <div className="mt-6">
+            <AddToCartButton
+              handle={p.handle}
+              title={p.title}
+              price={p.price}
+              image={p.image}
+              variantId={p.variantId}
+              multiVariant={p.multiVariant}
+              inStock={p.inStock}
+              className="inline-flex items-center justify-center font-sans text-[11px] tracking-[0.18em] uppercase text-house-brown bg-house-gold px-8 py-4 no-underline transition-colors hover:bg-house-cream disabled:opacity-70 cursor-pointer"
+            />
+          </div>
         </div>
       </div>
     </section>
@@ -163,47 +196,6 @@ function TwoCollections() {
   );
 }
 
-/** A horizontal, swipeable product slider — a different rhythm to the grids. */
-function Carousel({ title, cards }: { title: string; cards: Card[] }) {
-  if (cards.length === 0) return null;
-  return (
-    <section className="py-[clamp(36px,4.5vw,60px)] border-b border-house-brown/8">
-      <div className="max-w-[1280px] mx-auto px-[5vw] mb-6 flex items-end justify-between">
-        <h2 className="font-display italic text-[clamp(22px,2.6vw,32px)] text-house-brown">{title}</h2>
-        <span className="hidden sm:block font-sans text-[10px] tracking-[0.2em] uppercase text-house-stone">Swipe →</span>
-      </div>
-      <div className="flex gap-4 overflow-x-auto px-[5vw] pb-3 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-        {cards.map((c) => (
-          <Link
-            key={c.handle}
-            href={`/shop/${c.handle}`}
-            className="group block no-underline snap-start shrink-0 w-[clamp(190px,26vw,260px)]"
-          >
-            <div className="relative aspect-[4/5] w-full overflow-hidden bg-house-cream-dark mb-3">
-              <Image
-                src={c.image}
-                alt={c.alt}
-                fill
-                sizes="260px"
-                className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.03]"
-              />
-              {c.houseApproved ? (
-                <span className="absolute top-3 left-3 font-sans text-[8px] tracking-[0.18em] uppercase text-white bg-house-brown/70 px-2 py-1">
-                  House Approved
-                </span>
-              ) : null}
-            </div>
-            <p className="font-display text-[14px] leading-[1.25] text-house-brown group-hover:text-house-gold-dark transition-colors">
-              {c.title}
-            </p>
-            <p className="font-sans text-[13px] text-house-stone mt-0.5">{c.price}</p>
-          </Link>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 export const metadata = {
   title: { absolute: "The House Marketplace | Shop home, garden and household" },
   description:
@@ -234,10 +226,26 @@ export default async function ShopPage() {
     .filter((p) => p.houseApproved && p.image)
     .map((p) => ({ handle: p.handle, title: p.title, price: p.price, image: p.image, alt: p.title, houseApproved: true }));
   const bestCards = toCards(best);
+  // Rich, buyable feature/slider data: best-seller order matched to the catalogue
+  // (which carries variant IDs + the short lede excerpt).
+  const catByHandle = new Map(shopProducts.map((p) => [p.handle, p] as const));
+  const richBest: Slide[] = best
+    .map((b) => catByHandle.get(b.handle))
+    .filter((cp): cp is CatalogueProduct => Boolean(cp && cp.image))
+    .map(toSlide);
+
   const houseApproved = take(haCards, 8);
+  // Reserve the feature + slider pieces first, so the grids below don't repeat them.
+  const featured = richBest.find((r) => !seen.has(r.handle)) ?? null;
+  if (featured) seen.add(featured.handle);
+  const sliderSlides: Slide[] = [];
+  for (const r of richBest) {
+    if (sliderSlides.length >= 6) break;
+    if (seen.has(r.handle)) continue;
+    seen.add(r.handle);
+    sliderSlides.push(r);
+  }
   const bestSellers = take(bestCards, 8);
-  const featured = take(bestCards, 1)[0] ?? null;
-  const carousel = take(bestCards, 12);
   const newIn = take(toCards(fresh), 8);
 
   return (
@@ -336,7 +344,7 @@ export default async function ShopPage() {
       <Rail title="Best sellers." cards={bestSellers} viewAllHref="/shop/all" />
       <FeaturedProduct p={featured} />
       <TwoCollections />
-      <Carousel title="More worth keeping." cards={carousel} />
+      <ProductSlider title="More worth keeping." slides={sliderSlides} />
       <Rail title="New in." cards={newIn} viewAllHref="/shop/all" />
 
       <HouseStandardStrip />

@@ -195,6 +195,10 @@ export function EditorialPage({ eyebrow, title, lede, sections, updatedAt, heroI
       <div
         style={{ position: "relative", overflow: "hidden", maxWidth: 1140, margin: "0 auto", padding: "clamp(8px, 2vw, 24px) clamp(40px, 5vw, 96px) clamp(80px, 8vw, 128px)" }}
       >
+        {/* A single faint House flower bled off the lower edge — texture, not a planted graphic. */}
+        {watermark ? (
+          <FlowerWatermark color={watermark} side="right" opacity={0.1} className="!top-auto bottom-[-14%] h-[58%]" />
+        ) : null}
         <div className="space-y-[clamp(52px,6vw,92px)]" style={{ position: "relative", zIndex: 1 }}>
         {/* Lede, optionally beside the hero figure */}
         {lede || heroImage ? (
@@ -215,19 +219,6 @@ export function EditorialPage({ eyebrow, title, lede, sections, updatedAt, heroI
                 >
                   {lede}
                 </p>
-                {watermark ? (
-                  <div
-                    aria-hidden="true"
-                    className="hidden lg:block flex-1 min-h-[300px] mt-10 select-none"
-                    style={{
-                      backgroundImage: `url(/photos/wa-flower-${watermark}.png)`,
-                      backgroundRepeat: "no-repeat",
-                      backgroundPosition: "center",
-                      backgroundSize: "contain",
-                      opacity: 0.5,
-                    }}
-                  />
-                ) : null}
               </div>
               <Figure image={heroImage} priority />
             </div>
@@ -248,19 +239,6 @@ export function EditorialPage({ eyebrow, title, lede, sections, updatedAt, heroI
               >
                 {lede}
               </p>
-              {watermark ? (
-                <div
-                  aria-hidden="true"
-                  className="hidden lg:block flex-1 self-stretch min-h-[240px] select-none"
-                  style={{
-                    backgroundImage: `url(/photos/wa-flower-${watermark}.png)`,
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "center",
-                    backgroundSize: "contain",
-                    opacity: 0.5,
-                  }}
-                />
-              ) : null}
             </div>
           )
         ) : null}

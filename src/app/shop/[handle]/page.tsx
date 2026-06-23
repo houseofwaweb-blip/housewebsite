@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ProductCard } from "@/components/commerce/ProductCard";
-import { PRODUCTS, findProduct, getRelatedProducts } from "@/lib/shop-data";
-import { getShopProduct } from "@/lib/shop-data/source";
+import { PRODUCTS, findProduct } from "@/lib/shop-data";
+import { getShopProduct, getShopProducts } from "@/lib/shop-data/source";
+import { RecentlyViewed } from "./RecentlyViewed";
 import { getProductByHandle } from "@/lib/cms/products";
 import { getProductVariants } from "@/lib/shop-data/shopify-catalogue";
 import { ProductBuy } from "./ProductBuy";
@@ -109,7 +110,20 @@ export default async function ProductPage({
   if (!product) notFound();
 
   const variants = await getProductVariants(handle);
-  const related = getRelatedProducts(product.relatedHandles ?? []);
+
+  // Recommended: real pieces from the same collection, topped up with other
+  // House goods so the rail is always full. (relatedHandles is legacy/empty now.)
+  const catalogue = await getShopProducts().catch(() => []);
+  const sameCollection = catalogue.filter(
+    (p) => p.handle !== product.handle && p.image && p.collection === product.collection,
+  );
+  let related = sameCollection.slice(0, 4);
+  if (related.length < 4) {
+    const fill = catalogue
+      .filter((p) => p.handle !== product.handle && p.image && !related.some((r) => r.handle === p.handle))
+      .slice(0, 4 - related.length);
+    related = [...related, ...fill];
+  }
   const baseUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
   const productUrl = `${baseUrl}/shop/${product.handle}`;
 
@@ -227,6 +241,16 @@ export default async function ProductPage({
           </Link>
         </section>
       ) : null}
+
+      {/* The customer's own browsing history */}
+      <RecentlyViewed
+        current={{
+          handle: product.handle,
+          title: product.title,
+          price: product.price,
+          image: product.image,
+        }}
+      />
     </div>
   );
 }
