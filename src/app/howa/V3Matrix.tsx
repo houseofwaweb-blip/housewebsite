@@ -22,7 +22,7 @@ export function V3Matrix({ middleLabel = "Housekeeper", showTitle = true }: { mi
   const TIERS = [
     { name: "Assistant", price: "Free", accent: "#5f6a49" },
     { name: middleLabel, price: "£16.99/mo", accent: "#b56a5c" },
-    { name: "Steward", price: "By application", accent: "#c5a960" },
+    { name: "Steward", price: "£29.99/mo", accent: "#c5a960" },
   ];
   return (
     <section id="tiers" className="bg-[#fbfaf5] pt-16 pb-3 lg:py-24 scroll-mt-20">
