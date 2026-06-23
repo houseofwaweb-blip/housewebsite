@@ -87,6 +87,123 @@ function Rail({ title, cards, viewAllHref }: { title: string; cards: Card[]; vie
   );
 }
 
+/** A single buyable piece, given room to breathe — breaks up the product grids. */
+function FeaturedProduct({ p }: { p: Card | null }) {
+  if (!p) return null;
+  return (
+    <section style={{ background: "var(--color-house-brown)" }} className="px-[5vw] py-[clamp(48px,6vw,90px)]">
+      <div className="max-w-[1160px] mx-auto grid md:grid-cols-2 gap-[clamp(28px,4vw,64px)] items-center">
+        <Link
+          href={`/shop/${p.handle}`}
+          className="group relative block aspect-[4/5] overflow-hidden no-underline"
+          style={{ background: "rgba(0,0,0,0.2)" }}
+        >
+          <Image
+            src={p.image}
+            alt={p.alt}
+            fill
+            sizes="(min-width: 768px) 45vw, 90vw"
+            className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.03]"
+          />
+        </Link>
+        <div className="text-house-cream">
+          <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-house-gold mb-5">The piece this week</p>
+          <h2 className="font-display text-[clamp(28px,3.4vw,46px)] leading-[1.06] mb-4">{p.title}</h2>
+          <p className="font-sans text-[15px] text-house-cream/70 mb-7">{p.price}</p>
+          <Link
+            href={`/shop/${p.handle}`}
+            className="inline-flex items-center justify-center font-sans text-[11px] tracking-[0.18em] uppercase text-house-brown bg-house-gold px-8 py-4 no-underline transition-colors hover:bg-house-cream"
+          >
+            Shop this piece →
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/** Two side-by-side collection pickers — a wider, editorial break between grids. */
+function TwoCollections() {
+  const blocks = [
+    { name: "The Garden", sub: "Tools, pots and the outdoor life", handle: "garden-outdoor", image: "/shop/rooms/garden.webp" },
+    { name: "The Table", sub: "Dining, glass and good linen", handle: "dining", image: "/shop/rooms/dining.webp" },
+  ];
+  return (
+    <section className="px-[5vw] py-[clamp(36px,4.5vw,64px)] border-b border-house-brown/8">
+      <div className="max-w-[1280px] mx-auto grid md:grid-cols-2 gap-3">
+        {blocks.map((b) => (
+          <Link
+            key={b.handle}
+            href={`/shop/collections/${b.handle}`}
+            className="group relative block aspect-[16/11] overflow-hidden bg-house-cream-dark no-underline"
+          >
+            <Image
+              src={b.image}
+              alt={b.name}
+              fill
+              sizes="(min-width: 768px) 45vw, 90vw"
+              className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.04]"
+            />
+            <span
+              aria-hidden
+              className="absolute inset-0"
+              style={{ background: "linear-gradient(to top, rgba(26,19,13,0.72), rgba(26,19,13,0.08) 60%)" }}
+            />
+            <div className="absolute inset-x-0 bottom-0 p-7">
+              <p className="font-display text-[clamp(22px,2.4vw,34px)] leading-tight text-white">{b.name}</p>
+              <p className="font-sans text-[12.5px] text-white/80 mt-1.5">{b.sub}</p>
+              <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-white/90 mt-4 transition-colors group-hover:text-white">
+                Explore the collection →
+              </p>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/** A horizontal, swipeable product slider — a different rhythm to the grids. */
+function Carousel({ title, cards }: { title: string; cards: Card[] }) {
+  if (cards.length === 0) return null;
+  return (
+    <section className="py-[clamp(36px,4.5vw,60px)] border-b border-house-brown/8">
+      <div className="max-w-[1280px] mx-auto px-[5vw] mb-6 flex items-end justify-between">
+        <h2 className="font-display italic text-[clamp(22px,2.6vw,32px)] text-house-brown">{title}</h2>
+        <span className="hidden sm:block font-sans text-[10px] tracking-[0.2em] uppercase text-house-stone">Swipe →</span>
+      </div>
+      <div className="flex gap-4 overflow-x-auto px-[5vw] pb-3 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+        {cards.map((c) => (
+          <Link
+            key={c.handle}
+            href={`/shop/${c.handle}`}
+            className="group block no-underline snap-start shrink-0 w-[clamp(190px,26vw,260px)]"
+          >
+            <div className="relative aspect-[4/5] w-full overflow-hidden bg-house-cream-dark mb-3">
+              <Image
+                src={c.image}
+                alt={c.alt}
+                fill
+                sizes="260px"
+                className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.03]"
+              />
+              {c.houseApproved ? (
+                <span className="absolute top-3 left-3 font-sans text-[8px] tracking-[0.18em] uppercase text-white bg-house-brown/70 px-2 py-1">
+                  House Approved
+                </span>
+              ) : null}
+            </div>
+            <p className="font-display text-[14px] leading-[1.25] text-house-brown group-hover:text-house-gold-dark transition-colors">
+              {c.title}
+            </p>
+            <p className="font-sans text-[13px] text-house-stone mt-0.5">{c.price}</p>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export const metadata = {
   title: { absolute: "The House Marketplace | Shop home, garden and household" },
   description:
@@ -116,8 +233,11 @@ export default async function ShopPage() {
   const haCards: Card[] = shopProducts
     .filter((p) => p.houseApproved && p.image)
     .map((p) => ({ handle: p.handle, title: p.title, price: p.price, image: p.image, alt: p.title, houseApproved: true }));
+  const bestCards = toCards(best);
   const houseApproved = take(haCards, 8);
-  const bestSellers = take(toCards(best), 8);
+  const bestSellers = take(bestCards, 8);
+  const featured = take(bestCards, 1)[0] ?? null;
+  const carousel = take(bestCards, 12);
   const newIn = take(toCards(fresh), 8);
 
   return (
@@ -211,9 +331,12 @@ export default async function ShopPage() {
         </div>
       </section>
 
-      {/* Engaging product rails */}
+      {/* Broken-up commerce zone: grid → single feature → dual pickers → slider → grid */}
       <Rail title="House Approved." cards={houseApproved} viewAllHref="/shop/collections/house-approved" />
       <Rail title="Best sellers." cards={bestSellers} viewAllHref="/shop/all" />
+      <FeaturedProduct p={featured} />
+      <TwoCollections />
+      <Carousel title="More worth keeping." cards={carousel} />
       <Rail title="New in." cards={newIn} viewAllHref="/shop/all" />
 
       <HouseStandardStrip />
