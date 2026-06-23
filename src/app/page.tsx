@@ -465,41 +465,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Marketplace feature */}
-      <section className={s.market}>
-        <div className={s.marketInner}>
-          <div className={s.marketHead}>
-            <div>
-              <p className={s.eyebrow}>The Marketplace</p>
-              <h2 className={s.marketTitle}>Objects with a place in the House.</h2>
-              <p className={s.sectionSub}>
-                Considered goods, home essentials, garden tools and House Approved
-                pieces, chosen for usefulness, beauty and longevity.
-              </p>
-            </div>
-            <Link href="/shop" className={s.btnGhost}>
-              Shop all <span aria-hidden className={s.arrow}>→</span>
-            </Link>
-          </div>
-          <div className={s.marketGrid}>
-            {marketCards.map((p) => (
-              <Link key={p.name} href={p.href} className={s.productCard}>
-                <div className={s.productImg}>
-                  {p.image ? (
-                    <Image src={p.image} alt={p.name} fill sizes="(min-width: 1024px) 24vw, 60vw" />
-                  ) : null}
-                </div>
-                <div className={s.productBody}>
-                  <p className={s.productName}>{p.name}</p>
-                  <p className={s.productPrice}>{p.price}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* The Hearth — editorial close */}
+      {/* The Hearth — editorial break between the two Marketplace sections */}
       <section className={s.hearth}>
         <div className={s.hearthInner}>
           <div className={s.hearthCopy}>
@@ -531,7 +497,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 12. Powered by / house standards */}
+      {/* The House sets the standard — between the two Marketplace sections */}
       <section className={s.powered}>
         <FlowerWatermark color="gold" side="left" opacity={0.18} />
         <p className={s.eyebrow}>The design authority behind it all</p>
@@ -546,6 +512,40 @@ export default async function HomePage() {
               </div>
             );
           })}
+        </div>
+      </section>
+
+      {/* Marketplace feature */}
+      <section className={s.market}>
+        <div className={s.marketInner}>
+          <div className={s.marketHead}>
+            <div>
+              <p className={s.eyebrow}>The Marketplace</p>
+              <h2 className={s.marketTitle}>Objects with a place in the House.</h2>
+              <p className={s.sectionSub}>
+                Considered goods, home essentials, garden tools and House Approved
+                pieces, chosen for usefulness, beauty and longevity.
+              </p>
+            </div>
+            <Link href="/shop" className={s.btnGhost}>
+              Shop all <span aria-hidden className={s.arrow}>→</span>
+            </Link>
+          </div>
+          <div className={s.marketGrid}>
+            {marketCards.map((p) => (
+              <Link key={p.name} href={p.href} className={s.productCard}>
+                <div className={s.productImg}>
+                  {p.image ? (
+                    <Image src={p.image} alt={p.name} fill sizes="(min-width: 1024px) 24vw, 60vw" />
+                  ) : null}
+                </div>
+                <div className={s.productBody}>
+                  <p className={s.productName}>{p.name}</p>
+                  <p className={s.productPrice}>{p.price}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
