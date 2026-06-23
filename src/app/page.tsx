@@ -41,11 +41,10 @@ const PRINCIPLES = [
 ];
 
 const SERVICES = [
-  { name: "Gardening", href: "/services/gardening", desc: "Seasonal and one-off garden care." },
-  { name: "Window Cleaning", href: "/services/window-cleaning", desc: "Glass, frames and sills, never chased." },
-  { name: "Cleaning", href: "/services/cleaning", desc: "Regular and deep clean, scheduled through HoWA." },
-  { name: "Gutter Cleaning", href: "/services/gutter-cleaning", desc: "Cleared before the weather turns." },
-  { name: "Design", href: "/design", desc: "Interiors and gardens, House Approved studios." },
+  { name: "Gardening", href: "/services/gardening", image: "/services/subbrands/gardeners.webp" },
+  { name: "Window Cleaning", href: "/services/window-cleaning", image: "/services/subbrands/window-cleaner.webp" },
+  { name: "Cleaning", href: "/services/cleaning", image: "/services/subbrands/cleaners.webp" },
+  { name: "Gutter Cleaning", href: "/services/gutter-cleaning", image: "/services/subbrands/gutter-cleaning.webp" },
 ];
 
 const INTEL_STATS = [
@@ -388,11 +387,15 @@ export default async function HomePage() {
           <div className={s.servicesGrid}>
             {SERVICES.map((svc) => (
               <Link key={svc.name} href={svc.href} className={s.serviceTile}>
-                <p className={s.serviceName}>
-                  {svc.name}
-                  <span aria-hidden className={s.serviceTileArrow}>→</span>
-                </p>
-                <p className={s.serviceDesc}>{svc.desc}</p>
+                <Image
+                  src={svc.image}
+                  alt={svc.name}
+                  fill
+                  sizes="(min-width: 860px) 22vw, 50vw"
+                  className={s.serviceTileImg}
+                />
+                <span className={s.serviceTileName}>{svc.name}</span>
+                <span aria-hidden className={s.serviceTileArrow}>→</span>
               </Link>
             ))}
           </div>
