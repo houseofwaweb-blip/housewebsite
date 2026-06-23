@@ -1,241 +1,19 @@
-# Shop room tags applied
+# Shop room tags — applied to the live catalogue
 
-Each product below received the listed tag (existing tags untouched). Build a Shopify smart collection per room: rule = Product tag is equal to the tag.
+Each product carries one or more `room-*` tags (existing tags untouched). Build a Shopify smart collection per room: handle as listed, rule = "Product tag is equal to" the tag.
 
-### room-bathroom (46)
-- Amber Glass Soap Dispenser
-- Anxiety Calm Balm for Paws
-- Back Scrubber Loofah | Natural Skin Exfoliator
-- Bamboo Baby Wipes
-- Bath Foam - Deepest Sleep
-- Bath Soak
-- Bath-Time Loofah Smile
-- Bloom & Bathe Orange Blossom Soap
-- Botanical Bath Bombs
-- Botanical Hand Wash
-- Bower Toilet Cleaner Refill – Pine & Cedarwood 1L
-- Bower Toilet Rolls - 24 Pack
-- Cashmere Shampoo - Midwinter
-- Christmas Hand Care Set – Spirit of Noel
-- Clear Glass Soap Dispenser
-- Dig and Scrub Exfoliating Soap Bar
-- Dog Cologne - Coastal
-- Dog Shampoo – Coastal
-- Eco Dog Shampoo
-- Eco Hand Soap
-- Eco Toilet Cleaner
-- Green Glass Soap Dispenser
-- Hand Towels - 100% Organic Cotton - Beach Sand
-- Itchy Paw Balm
-- Lemongrass & Jojoba Hand Cream
-- Lemongrass Toilet Refresher Bombs - 20 Per Pack
-- Natural Cellulose Sponges with Loofah Scourer
-- Natural Hand Wash - Coastal Walks 300ml
-- Olive Wood Soap Dish
-- Organic Hand and Body Soap
-- Organic Marseille Soap Bar – 300g
-- Paw Cleanser – Coastal
-- Pet-Sun Protection Balm
-- Pre Walk Paw Protection Balm
-- Reusable Toilet Cleaner Dispenser Bottle - 750ml
-- Rough Paws & Snout Saviour
-- Seep Loofah Cloths
-- Short Recycled Glass Soap Dispenser
-- Tall Recycled Glass Soap Dispenser
-- Two Piece Mini Shower Steamer Gift Set
-- Ultimate Dog Pamper Kit
-- Who Gives A Crap Paper Towel
-- Who Gives A Crap Toilet Roll – 6 Pack
-- Ylang Ylang Toilet Refresher Bombs - 20 Per Pack
-- “Goodbye Anxiety” Natural Dog Shampoo Bar
-- “You Rolled in What?” Natural Dog Shampoo Bar
+| Room | Handle | Tag | Products |
+|---|---|---|---:|
+| Kitchen | `kitchen` | `room-kitchen` | 38 |
+| Dining & Table | `dining` | `room-dining` | 34 |
+| Living Room | `living-room` | `room-living` | 179 |
+| Bedroom | `bedroom` | `room-bedroom` | 63 |
+| Bathroom | `bathroom` | `room-bathroom` | 46 |
+| Hallway & Entrance | `hallway` | `room-hallway` | 9 |
+| Garden & Outdoor | `garden` | `room-garden` | 131 |
+| Utility & Laundry | `utility` | `room-utility` | 65 |
 
-### room-bedroom (3)
-- Lark Cotton Muslin Duvet Cover Set Eucalyptus
-- Luxury Plush Grey Dog Bed
-- Pet Bed Refresher - Coastal
-
-### room-dining (34)
-- Abigail Ahern Afton Brass Tray
-- Alice Osmose Gold Tray
-- Alice Rectangular Tray with Gold Handle
-- Alice Round Golden Tray
-- Ceramic Serving Bowl - Set of 3
-- Coaster Black Agate Stone - 4 Set
-- Glass Dome with Wooden Base
-- Gold Coffee Scoop With Clip
-- Green Glass Wavy Bowl with Gold Rim
-- Honey Dipper
-- Kitchen Storage Box with Bamboo Lid & Spoon
-- Linen Napkin
-- Linen Table Runner
-- Maple Wood Tea Spoon
-- Marble Salt and Pepper
-- Meraki Gold Metal Bowl
-- Mini Moonstone Tapas Bowl
-- Natural Coconut Bowl & Bamboo Spoon Set
-- Recycled Glass Bathroom Tumbler
-- Reusable Cutlery Kit
-- Reusable Eco-Friendly Cutlery Kit
-- Sandy Coffee Mug
-- Sandy Stoneware Bowlearth
-- Sandy Stoneware Mug
-- Standing Pie Dish
-- Stoneware Sandy Breakfast Plate
-- Stoneware Sandy Salad Bowl
-- The Burned Bowl
-- Vintage Indian Paraat Bowl
-- Vintage Wooden Spoon Decoration
-- Vita Wooden Snack Board
-- Wooden Bell Stand Display
-- Wooden Kitchen Food Tongs Scissor Clip
-- Wooden Salad Spoon and Fork Set
-
-### room-garden (131)
-- 1 Hour Garden Tidy Gift Card
-- 10L Compostable Waste Bags | 1 Roll of 18 Bags
-- 140L Compostable Waste Bags | 1 Roll of 5 Bags | Eco Green Living
-- 4 Litre Certified Compostable Food & Freezer Bags (25 Bags)
-- 6 Litre Certified Compostable Food & Freezer Bags (20 Bags)
-- 6 Litre Compostable Caddy Bags | 1 Roll of 30 Bags
-- 60L Compostable Waste Bags | 1 Roll of 10 Bags | Eco Green L
-- A Year in Bloom: Flowering Bulbs For Gardeners Handbook
-- Albero Planter
-- Aphids Repellent
-- Beginner’s Herb Garden - Organic Herb Seeds
-- Biodegradable Coir Pot
-- Bird Feeder Platform
-- Bird Feeder Stake - Bird Feeding Station
-- Black Spot Rescue
-- Canvas Garden Apron
-- Canvas Garden Tote Bag
-- Carbon-Steel Hand Shears
-- Complete Organic Plant Food - 450ml Pump Bottle
-- Complete Organic Plant Food - 50ml
-- Compostable Bin Liners (30 Litre) | 1 Roll of 18 Bags
-- Compostable Dog Waste Bags | 1 Pack - 60 Large Bags
-- Compostable Drawstring Bin Bags | 40 Litre (25 Bags)
-- Compostable Drawstring Bin Bags | 8 Litre (25 Bags)
-- Compostable Sponge Cleaning Cloths - 4 Pack
-- Compostable Sponges x2
-- Compostable Swedish Dish Cloths
-- Dandelion Trowel V-model
-- Domed Terrarium & Trowel Set
-- Double Hanging Bird Feeder Ring
-- Earthy Anthracite Bamboo Hanging Bird Bath/Feeder
-- Earthy Anthracite Bamboo Watering Jug
-- Earthy Chaff Hanging Roosting Pouch
-- Earthy Natural Bamboo Japandi Birdhouse
-- Earthy Natural/Anthracite Bamboo 2-Tone Hanging Birdhouse
-- Earthy Oatmeal Chaff/Natural Bamboo Hanging Acorn Birdhouse
-- Earthy Straw Hanging Bird Bath and Feeder
-- Fiennes Sun Lounger Set
-- Forrester – 8 Seat Cube Set
-- Garden design
-- Garden of Happiness - Organic Herb Seeds
-- Garden Reset Day Gift Card
-- Garden Tool Set With Bag
-- Gardener's Brush | Coconut Fibre & Rubberwood
-- Gardeners Hand Cream - Basil and Neroli
-- Glass Plant Sprayer
-- Glass Spray Mister For Your Plants
-- Golden Plant Stake - Pin
-- Green Fly Repellent
-- Grow Green Kit - Home Grown Hero
-- Half-Day Transformation Gift Card
-- Hand Cultivator 3-Tine
-- Handmade Mini Plant Pot
-- Hanging Bird Feeder
-- Herbal Tea Garden - Organic Herb Seeds
-- Indoor Plant Rescue
-- Kabloom Seedbom Wildflower Seed Bomb
-- Kensington Brass Effect Metal Bowl Indoor Planter On Stand
-- Kensington Indoor Metal Hanging Planter
-- Large Vintage Kadai
-- Leaf Shine Set
-- Light Grey Wicker Lined Planter Basket with Rope Handles
-- Long Handle Sickle
-- Mayfair Antique Brass Effect Metal Hanging Indoor Planter
-- Nutscene Gardeners Gift Set
-- Outdoor Buttermere Metal Basket Fire Pit
-- Outdoor Galvanised Milk Churn Planter
-- Outdoor Plant Support
-- Plant Care Kit - For Healthy Plants That Love You Back
-- Potting Tarp For Urban Gardening
-- Pula Lightweight Recyclable Planter
-- Pula Recyclable Trio Planter
-- Rain Catcher Drip Chain
-- Rain Catcher Fountain
-- Rain Catcher | Plant Support
-- Rectangular Wicker Garden Trugs
-- Recycled Plastic Cleo High Planter
-- Recycled Plastic Cleo Planter
-- Recycled Plastic Naxos Planter
-- Rustic Garden Art Ball Stake
-- Rusty Metal Abstract Hanging Bird Feeder
-- Rusty Metal Peony Garden Stake
-- Rusty Metal Poppy Seedhead
-- Seagrass Navy Lined Hanging Indoor Planters - Set of 2
-- Seasonal Refresh Gift Card
-- Seedball Wildflower Grab Bags - Bee Mix
-- Seedball Wildflower Grab Bags - Butterfly Mix
-- Seedball Wildflower Grab Bags - Garden Meadow Mix
-- Seedball Wildflower Grab Bags - Wildlife Mix
-- Seep Compostable Bin Liner - 30L
-- Set of 2 Sustainable Hanging Seagrass Planters
-- Set of 3 Galvanised with Brass Details Planters
-- Shell On Earth - Crushed Whelk Shells
-- Short Handle Sickle
-- Sicilian Honey Garlic Flower
-- Slug & Snail Repellent
-- Sneeboer 49cm Handle Digging Fork 4 Tines
-- Sneeboer Border Fork 4 Tines
-- Sneeboer Border Spade With Steps
-- Sneeboer Children’s Rake
-- Sneeboer Children’s Spade
-- Sneeboer Edging Knife With Steps
-- Sneeboer Fork & Mattock Hand Model
-- Sneeboer Garden Rake 6 Tines
-- Sneeboer Heart Shaped Trowel
-- Sneeboer Leaf Rake 20T
-- Sneeboer Leave Picker
-- Sneeboer Maintenance Kit
-- Sneeboer Raised Bed Leaf Rake
-- Sneeboer Royal Dutch Hand Hoe
-- Sneeboer Stone Scratcher
-- Sneeboer Weeding Trowel
-- Solis Outdoor Metal Round Firebowl
-- Subscription Starter Gift Card
-- Sweet Dreams Garden - Organic Herb Seeds
-- The Bee Growbar
-- The Butterfly Growbar
-- The Cat Growbar
-- The Edible Flower Growbar
-- The Gardener's Set
-- The Gin Growbar
-- The Pizza Herbs Growbar
-- The Scented Garden - Organic Herb Seeds
-- Tool & Plant Pot Cleaning Spray
-- Unisex Wax Bucket Hat
-- Unisex Wax Flat Cap
-- Unisex Wax Quilted Bodywarmer Gilet
-- Unisex Wax Stockman Coat with Hood
-- Wax Padded Jacket
-- Weeding Hoe - Large
-- Weeding Hoe - Small
-
-### room-hallway (9)
-- Beach Ready Straw Basket Bag
-- French Market Basket
-- Large Tote Bag
-- Market Straw Bag
-- Rei Slouch Tote Bag
-- Round Wicker Straw Bag
-- Straw Back Pack with Leather Strap
-- Straw Tote Bag
-- Wicker Straw Beach Bag
-
-### room-kitchen (38)
+### Kitchen — `room-kitchen` (38)
 - 7 Piece Natural Teak Utensil Set
 - Bamboo Dish Brush Set
 - Bamboo Pet Bowl Set
@@ -275,7 +53,43 @@ Each product below received the listed tag (existing tags untouched). Build a Sh
 - Wild Meadow Apron
 - Wild Meadow Oven Glove
 
-### room-living (179)
+### Dining & Table — `room-dining` (34)
+- Abigail Ahern Afton Brass Tray
+- Alice Osmose Gold Tray
+- Alice Rectangular Tray with Gold Handle
+- Alice Round Golden Tray
+- Ceramic Serving Bowl - Set of 3
+- Coaster Black Agate Stone - 4 Set
+- Glass Dome with Wooden Base
+- Gold Coffee Scoop With Clip
+- Green Glass Wavy Bowl with Gold Rim
+- Honey Dipper
+- Kitchen Storage Box with Bamboo Lid & Spoon
+- Linen Napkin
+- Linen Table Runner
+- Maple Wood Tea Spoon
+- Marble Salt and Pepper
+- Meraki Gold Metal Bowl
+- Mini Moonstone Tapas Bowl
+- Natural Coconut Bowl & Bamboo Spoon Set
+- Recycled Glass Bathroom Tumbler
+- Reusable Cutlery Kit
+- Reusable Eco-Friendly Cutlery Kit
+- Sandy Coffee Mug
+- Sandy Stoneware Bowlearth
+- Sandy Stoneware Mug
+- Standing Pie Dish
+- Stoneware Sandy Breakfast Plate
+- Stoneware Sandy Salad Bowl
+- The Burned Bowl
+- Vintage Indian Paraat Bowl
+- Vintage Wooden Spoon Decoration
+- Vita Wooden Snack Board
+- Wooden Bell Stand Display
+- Wooden Kitchen Food Tongs Scissor Clip
+- Wooden Salad Spoon and Fork Set
+
+### Living Room — `room-living` (179)
 - 'Mimosa & Blossom' Candle with Cork Lid
 - 'Sicilian Basil & Wild Lemon' Small Ridged Candle
 - 'Wild Fig & Vanilla' Candle with Cork Lid
@@ -307,9 +121,9 @@ Each product below received the listed tag (existing tags untouched). Build a Sh
 - Bergamot + Patchouli Home Fragrance Set
 - Bergamot + Patchouli Soy Wax Eco Candle
 - Big Mamma Cucina Popolare: Contemporary Italian Recipes Handbook
+- Black Rattan Hanging Lamp Oliver - M
 - Black and Brass Large Tripod Floor Lamp
 - Black and Brass Large Tripod Table Lamp
-- Black Rattan Hanging Lamp Oliver - M
 - Bower Glass & Mirror Cleaner Refill – Pink Salt 1L
 - Candle - Basil & Neroli 8oz
 - Candle - Coastal Walks 8oz
@@ -456,7 +270,264 @@ Each product below received the listed tag (existing tags untouched). Build a Sh
 - Yoga Essentials Kit
 - Yoko Shell Stick Set 3
 
-### room-utility (65)
+### Bedroom — `room-bedroom` (63)
+- 'Mimosa & Blossom' Candle with Cork Lid
+- 'Sicilian Basil & Wild Lemon' Small Ridged Candle
+- 'Wild Fig & Vanilla' Candle with Cork Lid
+- Abigail Ahern Laval Table Lamp
+- Abigail Ahern Rawlins Cushion
+- Basil & Neroli Mood Mist
+- Bath Foam - Deepest Sleep
+- Bellatrix Embroidered Cushion Cover - Heather
+- Bergamot + Patchouli Eco Reed Diffuser
+- Bergamot + Patchouli Home Fragrance Set
+- Bergamot + Patchouli Soy Wax Eco Candle
+- Black and Brass Large Tripod Floor Lamp
+- Black and Brass Large Tripod Table Lamp
+- Candle - Basil & Neroli 8oz
+- Candle - Coastal Walks 8oz
+- Candle - Geranium & Tomato
+- Copper Industrial Lamp with Stone Base
+- Elysium Velvet Cushion Cover - Onyx
+- Fresh Cotton Reed Diffuser
+- Fresh Linen Eco Reed Diffuser
+- Frida Cushion Cover - Moss
+- Handmade Charcoal Large Chunky Knit Throw
+- Handmade Charcoal Small Chunky Knit Throw
+- Handmade Cream Chunky Knit Throw
+- Handmade Dark Grey Chunky Knit Throw
+- Handmade Ecru Chunky Knit Throw
+- Handmade Ivory Chunky Knit Throw
+- Handmade Latte Chunky Knit Throw
+- Handmade Light Grey Chunky Knit Throw
+- Handmade Oat Chunky Knit Throw
+- Home Care Bundle
+- House of Bloom Zinnia Bee Rectangular Cushion Cover
+- Hug Rug Woven Diamond Cushion
+- Hug Rug Woven Diamond Throw
+- Industrial Metal Franklin Floor Lamp
+- Kielder Forest Fungi Cushion Cover
+- Large Pillar Base Candle Stand
+- Lark Cotton Muslin Duvet Cover Set Eucalyptus
+- Light Touch Eco-Candle
+- Linen Cushion Cover
+- Linen Mist
+- Luxury Plush Grey Dog Bed
+- Marble and Silver Industrial Desk Lamp
+- Midnight Garden Bird Cushion Green
+- Norfolk Natural Living Reed Diffuser
+- Orient Chinoiserie Cushion Cover - Gold
+- Peony Shaped Candle
+- Pet Bed Refresher - Coastal
+- Pillow Mist - Deepest Sleep
+- Pink Jarron Blues Glass Floor Lamp
+- Refillable Gingerbread Scented Candle
+- Room and Mood Mist - Coastal Walks
+- Room and Mood Mist - Jasmine & Vanilla
+- Room and Mood Mist - Rose Garden
+- Room and Mood Mist - Spirit of Noel
+- Sage + Sea Salt Soy Wax Eco Candle
+- Scented Vinegar - Rose
+- Shugborough Birds Traditional Cushion Cover
+- The Scented Garden - Organic Herb Seeds
+- Thistle Printed Drum Shade
+- Vanilla Blanc Reed Diffuser
+- Vintage Candle Stand
+- Yoga Essentials Kit
+
+### Bathroom — `room-bathroom` (46)
+- Amber Glass Soap Dispenser
+- Anxiety Calm Balm for Paws
+- Back Scrubber Loofah | Natural Skin Exfoliator
+- Bamboo Baby Wipes
+- Bath Foam - Deepest Sleep
+- Bath Soak
+- Bath-Time Loofah Smile
+- Bloom & Bathe Orange Blossom Soap
+- Botanical Bath Bombs
+- Botanical Hand Wash
+- Bower Toilet Cleaner Refill – Pine & Cedarwood 1L
+- Bower Toilet Rolls - 24 Pack
+- Cashmere Shampoo - Midwinter
+- Christmas Hand Care Set – Spirit of Noel
+- Clear Glass Soap Dispenser
+- Dig and Scrub Exfoliating Soap Bar
+- Dog Cologne - Coastal
+- Dog Shampoo – Coastal
+- Eco Dog Shampoo
+- Eco Hand Soap
+- Eco Toilet Cleaner
+- Green Glass Soap Dispenser
+- Hand Towels - 100% Organic Cotton - Beach Sand
+- Itchy Paw Balm
+- Lemongrass & Jojoba Hand Cream
+- Lemongrass Toilet Refresher Bombs - 20 Per Pack
+- Natural Cellulose Sponges with Loofah Scourer
+- Natural Hand Wash - Coastal Walks 300ml
+- Olive Wood Soap Dish
+- Organic Hand and Body Soap
+- Organic Marseille Soap Bar – 300g
+- Paw Cleanser – Coastal
+- Pet-Sun Protection Balm
+- Pre Walk Paw Protection Balm
+- Reusable Toilet Cleaner Dispenser Bottle - 750ml
+- Rough Paws & Snout Saviour
+- Seep Loofah Cloths
+- Short Recycled Glass Soap Dispenser
+- Tall Recycled Glass Soap Dispenser
+- Two Piece Mini Shower Steamer Gift Set
+- Ultimate Dog Pamper Kit
+- Who Gives A Crap Paper Towel
+- Who Gives A Crap Toilet Roll – 6 Pack
+- Ylang Ylang Toilet Refresher Bombs - 20 Per Pack
+- “Goodbye Anxiety” Natural Dog Shampoo Bar
+- “You Rolled in What?” Natural Dog Shampoo Bar
+
+### Hallway & Entrance — `room-hallway` (9)
+- Beach Ready Straw Basket Bag
+- French Market Basket
+- Large Tote Bag
+- Market Straw Bag
+- Rei Slouch Tote Bag
+- Round Wicker Straw Bag
+- Straw Back Pack with Leather Strap
+- Straw Tote Bag
+- Wicker Straw Beach Bag
+
+### Garden & Outdoor — `room-garden` (131)
+- 1 Hour Garden Tidy Gift Card
+- 10L Compostable Waste Bags | 1 Roll of 18 Bags
+- 140L Compostable Waste Bags | 1 Roll of 5 Bags | Eco Green Living
+- 4 Litre Certified Compostable Food & Freezer Bags (25 Bags)
+- 6 Litre Certified Compostable Food & Freezer Bags (20 Bags)
+- 6 Litre Compostable Caddy Bags | 1 Roll of 30 Bags
+- 60L Compostable Waste Bags | 1 Roll of 10 Bags | Eco Green L
+- A Year in Bloom: Flowering Bulbs For Gardeners Handbook
+- Albero Planter
+- Aphids Repellent
+- Beginner’s Herb Garden - Organic Herb Seeds
+- Biodegradable Coir Pot
+- Bird Feeder Platform
+- Bird Feeder Stake - Bird Feeding Station
+- Black Spot Rescue
+- Canvas Garden Apron
+- Canvas Garden Tote Bag
+- Carbon-Steel Hand Shears
+- Complete Organic Plant Food - 450ml Pump Bottle
+- Complete Organic Plant Food - 50ml
+- Compostable Bin Liners (30 Litre) | 1 Roll of 18 Bags
+- Compostable Dog Waste Bags | 1 Pack - 60 Large Bags
+- Compostable Drawstring Bin Bags | 40 Litre (25 Bags)
+- Compostable Drawstring Bin Bags | 8 Litre (25 Bags)
+- Compostable Sponge Cleaning Cloths - 4 Pack
+- Compostable Sponges x2
+- Compostable Swedish Dish Cloths
+- Dandelion Trowel V-model
+- Domed Terrarium & Trowel Set
+- Double Hanging Bird Feeder Ring
+- Earthy Anthracite Bamboo Hanging Bird Bath/Feeder
+- Earthy Anthracite Bamboo Watering Jug
+- Earthy Chaff Hanging Roosting Pouch
+- Earthy Natural Bamboo Japandi Birdhouse
+- Earthy Natural/Anthracite Bamboo 2-Tone Hanging Birdhouse
+- Earthy Oatmeal Chaff/Natural Bamboo Hanging Acorn Birdhouse
+- Earthy Straw Hanging Bird Bath and Feeder
+- Fiennes Sun Lounger Set
+- Forrester – 8 Seat Cube Set
+- Garden Reset Day Gift Card
+- Garden Tool Set With Bag
+- Garden design
+- Garden of Happiness - Organic Herb Seeds
+- Gardener's Brush | Coconut Fibre & Rubberwood
+- Gardeners Hand Cream - Basil and Neroli
+- Glass Plant Sprayer
+- Glass Spray Mister For Your Plants
+- Golden Plant Stake - Pin
+- Green Fly Repellent
+- Grow Green Kit - Home Grown Hero
+- Half-Day Transformation Gift Card
+- Hand Cultivator 3-Tine
+- Handmade Mini Plant Pot
+- Hanging Bird Feeder
+- Herbal Tea Garden - Organic Herb Seeds
+- Indoor Plant Rescue
+- Kabloom Seedbom Wildflower Seed Bomb
+- Kensington Brass Effect Metal Bowl Indoor Planter On Stand
+- Kensington Indoor Metal Hanging Planter
+- Large Vintage Kadai
+- Leaf Shine Set
+- Light Grey Wicker Lined Planter Basket with Rope Handles
+- Long Handle Sickle
+- Mayfair Antique Brass Effect Metal Hanging Indoor Planter
+- Nutscene Gardeners Gift Set
+- Outdoor Buttermere Metal Basket Fire Pit
+- Outdoor Galvanised Milk Churn Planter
+- Outdoor Plant Support
+- Plant Care Kit - For Healthy Plants That Love You Back
+- Potting Tarp For Urban Gardening
+- Pula Lightweight Recyclable Planter
+- Pula Recyclable Trio Planter
+- Rain Catcher Drip Chain
+- Rain Catcher Fountain
+- Rain Catcher | Plant Support
+- Rectangular Wicker Garden Trugs
+- Recycled Plastic Cleo High Planter
+- Recycled Plastic Cleo Planter
+- Recycled Plastic Naxos Planter
+- Rustic Garden Art Ball Stake
+- Rusty Metal Abstract Hanging Bird Feeder
+- Rusty Metal Peony Garden Stake
+- Rusty Metal Poppy Seedhead
+- Seagrass Navy Lined Hanging Indoor Planters - Set of 2
+- Seasonal Refresh Gift Card
+- Seedball Wildflower Grab Bags - Bee Mix
+- Seedball Wildflower Grab Bags - Butterfly Mix
+- Seedball Wildflower Grab Bags - Garden Meadow Mix
+- Seedball Wildflower Grab Bags - Wildlife Mix
+- Seep Compostable Bin Liner - 30L
+- Set of 2 Sustainable Hanging Seagrass Planters
+- Set of 3 Galvanised with Brass Details Planters
+- Shell On Earth - Crushed Whelk Shells
+- Short Handle Sickle
+- Sicilian Honey Garlic Flower
+- Slug & Snail Repellent
+- Sneeboer 49cm Handle Digging Fork 4 Tines
+- Sneeboer Border Fork 4 Tines
+- Sneeboer Border Spade With Steps
+- Sneeboer Children’s Rake
+- Sneeboer Children’s Spade
+- Sneeboer Edging Knife With Steps
+- Sneeboer Fork & Mattock Hand Model
+- Sneeboer Garden Rake 6 Tines
+- Sneeboer Heart Shaped Trowel
+- Sneeboer Leaf Rake 20T
+- Sneeboer Leave Picker
+- Sneeboer Maintenance Kit
+- Sneeboer Raised Bed Leaf Rake
+- Sneeboer Royal Dutch Hand Hoe
+- Sneeboer Stone Scratcher
+- Sneeboer Weeding Trowel
+- Solis Outdoor Metal Round Firebowl
+- Subscription Starter Gift Card
+- Sweet Dreams Garden - Organic Herb Seeds
+- The Bee Growbar
+- The Butterfly Growbar
+- The Cat Growbar
+- The Edible Flower Growbar
+- The Gardener's Set
+- The Gin Growbar
+- The Pizza Herbs Growbar
+- The Scented Garden - Organic Herb Seeds
+- Tool & Plant Pot Cleaning Spray
+- Unisex Wax Bucket Hat
+- Unisex Wax Flat Cap
+- Unisex Wax Quilted Bodywarmer Gilet
+- Unisex Wax Stockman Coat with Hood
+- Wax Padded Jacket
+- Weeding Hoe - Large
+- Weeding Hoe - Small
+
+### Utility & Laundry — `room-utility` (65)
 - 100% Recycled Aluminium Foil - 30cm X 10m
 - 100% Recycled Paper Reminder List
 - 100% Recycled Paper Shopping List
