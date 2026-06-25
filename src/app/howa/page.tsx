@@ -18,6 +18,7 @@ import { V4Fulfilment, V4Managed } from "./v4/_components/V4Fulfilment";
 import { V4Partners } from "./v4/_components/V4Partners";
 import { V4Faq, V4Cta } from "./v4/_components/V4Closing";
 import { V4MobileCta } from "./v4/_components/V4MobileCta";
+import { V4GetApp } from "./v4/_components/V4GetApp";
 
 /**
  * /howa Overview — the address-first "v4" homepage ported from the finalised
@@ -87,6 +88,7 @@ Created from <em>House of Willow Alexander</em>
 
         <div className="order-3 lg:order-none"><V4Partners /></div>
         <div className="order-3 lg:order-none"><V6Testimonial /></div>
+        <div className="order-3 lg:order-none"><V4GetApp /></div>
         <div className="order-3 lg:order-none"><V4Faq /></div>
         <div className="order-3 lg:order-none"><V4Cta /></div>
       </div>
