@@ -93,7 +93,7 @@ export async function generateMetadata({
 }
 
 const CTA_LABEL: Record<ServicePackage["cta"], string> = {
-  bookNow: "Book now",
+  bookNow: "Book through HoWA",
   payNow: "Pay now",
   quoteEntry: "Get a quote",
   applicationOnly: "Apply to join",
