@@ -20,9 +20,9 @@ export function AppStoreBadges({ className = "" }: { className?: string }) {
         <Image
           src="/brand/google-play-prereg.png"
           alt="Pre-register on Google Play"
-          width={176}
-          height={52}
-          className="h-[52px] w-auto"
+          width={270}
+          height={80}
+          className="h-[44px] w-auto"
         />
       </Link>
       <Link
@@ -41,7 +41,7 @@ const FONT = "var(--font-sans), Helvetica, Arial, sans-serif";
 /** Standard black "Download on the App Store" lockup. */
 function AppleBadge() {
   return (
-    <svg viewBox="0 0 120 40" className="h-[40px] w-auto" role="img" aria-label="Download on the App Store" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 120 40" className="h-[44px] w-auto" role="img" aria-label="Download on the App Store" xmlns="http://www.w3.org/2000/svg">
       <rect x="0.5" y="0.5" width="119" height="39" rx="6.5" fill="#000" stroke="#A6A6A6" strokeWidth="1" />
       <path
         transform="translate(11,8.5) scale(0.95)"

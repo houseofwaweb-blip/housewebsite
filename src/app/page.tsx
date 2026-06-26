@@ -5,6 +5,7 @@ import v from "./home-v4a.module.css";
 import { getLatestHearthArticles } from "@/lib/cms/hearth";
 import { shopifyProvider } from "@/lib/commerce/shopify";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
+import { HowaAppBanner } from "@/components/marketing/HowaAppBanner";
 
 /**
  * Homepage — House-led (v5).
@@ -417,6 +418,9 @@ export default async function HomePage() {
           ))}
         </div>
       </section>
+
+      {/* HoWA app — compact get-the-app banner, closing the HoWA zone */}
+      <HowaAppBanner />
 
       {/* Marketplace — shop by room (collections teaser; full grid lives a few sections below) */}
       <section className={s.market}>
