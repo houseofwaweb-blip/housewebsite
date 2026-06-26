@@ -290,7 +290,7 @@ export default async function ShopPage() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {ROOMS.map((r) =>
+            {ROOMS.map((r, i) =>
               r.image ? (
                 <Link
                   key={r.handle}
@@ -302,6 +302,7 @@ export default async function ShopPage() {
                     alt={r.name}
                     fill
                     sizes="(min-width: 1024px) 22vw, 45vw"
+                    priority={i < 4}
                     className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.04]"
                   />
                   <span

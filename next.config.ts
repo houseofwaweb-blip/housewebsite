@@ -42,9 +42,12 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       // Structural moves
-      // The House overview page retired; nav is a hover dropdown, "Discover the
-      // House" anchors to the homepage. Route lands on Philosophy (2026-06-18).
-      { source: "/the-house", destination: "/the-house/philosophy", permanent: false },
+      // "Marketplace" is the public label for the Shop.
+      { source: "/marketplace", destination: "/shop", permanent: true },
+      { source: "/marketplace/:path*", destination: "/shop/:path*", permanent: true },
+      // The House overview hub was retired; the section's de-facto overview is
+      // the About page, so the bare route lands there (301, 2026-06-26).
+      { source: "/the-house", destination: "/the-house/about", permanent: true },
       // Companion folded into the free Assistant tier page (2026-06-17)
       { source: "/howa/companion", destination: "/howa/assistant", permanent: true },
       // HoWA+ retired; the consumer continuity tier is now Housekeeper (2026-06-18)

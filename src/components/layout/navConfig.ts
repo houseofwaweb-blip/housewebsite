@@ -27,8 +27,9 @@ export const PRIMARY_NAV: MegaPanel[] = [
   {
     id: "the-house",
     trigger: "The House",
-    // No triggerHref: "The House" is a hover-dropdown only — it opens the menu
-    // rather than navigating to a standalone overview page.
+    // The standalone overview hub was retired; the dropdown's "See all" link and
+    // the bare /the-house route both lead to About (the section's overview).
+    triggerHref: "/the-house/about",
     groups: [
       {
         heading: "What we stand for",
