@@ -337,6 +337,9 @@ export default async function HomePage() {
               risks and care over time. House bookings are powered by HoWA, but
               HoWA is not only for House services.
             </p>
+            <p className={s.howaIntroPara}>
+              <em>Technology in service of beauty, calm and flow, never technology for its own sake.</em>
+            </p>
             <div className={s.howaFeatures}>
               {HOWA_FEATURES.map((f) => (
                 <div key={f.lead} className={s.howaFeature}>
