@@ -53,6 +53,9 @@ export async function getApartmentPlans(): Promise<StewardPlan[]> {
 
 function sanityToPlan(doc: SanityPlan): StewardPlan {
   const priceNum = parseInt(doc.price.replace(/[^0-9]/g, ""), 10) || 0;
+  // The Sanity plan docs carry no image; reuse the localised tier images
+  // (matched by slug) so the cards render instead of broken <img>s.
+  const local = PLANS.find((p) => p.slug === doc.slug);
   return {
     slug: doc.slug,
     name: doc.title,
@@ -62,9 +65,9 @@ function sanityToPlan(doc: SanityPlan): StewardPlan {
     price: priceNum,
     priceLabel: `£${priceNum}`,
     featured: doc.featured,
-    image: "",
+    image: local?.image ?? "",
     inclusions: doc.inclusions,
     lede: doc.bestFor,
-    body: "",
+    body: local?.body ?? "",
   };
 }
