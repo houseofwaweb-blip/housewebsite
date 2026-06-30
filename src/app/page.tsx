@@ -595,7 +595,7 @@ export default async function HomePage() {
                   <p className="font-display text-[19px] leading-tight text-house-brown mb-1.5">{svc.name}</p>
                   <p className="font-sans text-[12.5px] text-house-stone leading-[1.5] mb-6 flex-1">{SERVICE_BLURB[svc.name]}</p>
                   <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-house-gold-dark transition-colors group-hover:text-house-brown">
-                    Book {svc.name} →
+                    Book through HoWA →
                   </span>
                 </div>
               </Link>
