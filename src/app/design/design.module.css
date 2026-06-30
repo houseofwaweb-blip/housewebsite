@@ -86,7 +86,10 @@
   padding-top: 24px;
   border-top: 1px solid rgba(245, 240, 232, 0.2);
 }
-.heroCtas { display: flex; gap: 12px; flex-wrap: wrap; }
+.heroCtas { display: flex; gap: 12px; flex-wrap: wrap; align-items: stretch; }
+/* Both hero CTAs grow equally and stretch to a shared height, so the filled and
+   ghost buttons are the same size whether side by side or wrapped. */
+.heroCtas > a { flex: 1 1 200px; }
 .btnFilled,
 .btnGhost {
   display: inline-flex;

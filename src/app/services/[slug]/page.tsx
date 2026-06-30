@@ -183,7 +183,7 @@ export default async function ServicePage({
             <p className={s.heroLede}>{service.lede}</p>
             <div className={s.heroCtas}>
               <Link href="#open-booking-form" className={s.btnFilled}>
-                Book this service
+                Book this service through HoWA
               </Link>
               {service.recurring ? (
                 <span className={s.heroBadge}>Steward-ready</span>

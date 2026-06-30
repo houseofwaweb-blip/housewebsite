@@ -137,24 +137,23 @@
   max-width: 46ch;
 }
 .heroCtas {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
-/* Equal-width hero CTAs on one row; tighten the type so the three labels
-   fit with comfortable side padding (no edge-hugging). */
+/* Hero CTAs sized to their content, each label on one line (no wrapping or
+   truncation). They sit on one row on desktop and stack on small screens. */
 .heroCtas > a {
   justify-content: center;
   text-align: center;
-  white-space: normal;
-  min-width: 0;
-  padding: 16px 22px;
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  line-height: 1.3;
+  white-space: nowrap;
+  padding: 15px 20px;
+  font-size: 11px;
+  letter-spacing: 0.07em;
 }
 @media (max-width: 640px) {
-  .heroCtas { grid-template-columns: 1fr; }
+  .heroCtas { flex-direction: column; }
+  .heroCtas > a { white-space: normal; }
 }
 .heroBookingNote {
   font-family: var(--font-sans);

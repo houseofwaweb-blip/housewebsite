@@ -143,9 +143,6 @@ export default async function HomePage() {
               <Link href="/shop" className={s.btnGhost}>
                 Shop the Marketplace
               </Link>
-              <Link href="/howa" className={s.btnGhost}>
-                Start your Home Record
-              </Link>
             </div>
             <p className={s.heroBookingNote}>
               Online bookings are powered by HoWA, the Home Intelligence OS
@@ -341,6 +338,14 @@ export default async function HomePage() {
                 <Image src={t.src} alt={t.alt} fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover" />
               </div>
             ))}
+          </div>
+          <div className="mt-[clamp(28px,4vw,48px)] flex justify-center">
+            <a
+              href="#open-booking-form"
+              className="inline-flex items-center justify-center border border-house-gold bg-house-gold px-9 py-4 font-sans text-[11px] tracking-[0.18em] uppercase text-house-cream no-underline transition-colors hover:bg-house-gold-light hover:border-house-gold-light"
+            >
+              Book through HoWA
+            </a>
           </div>
         </div>
       </section>

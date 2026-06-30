@@ -211,7 +211,7 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = 
             )}
             style={dark ? undefined : { color: "var(--house-gold-dark)", borderColor: "var(--house-gold-dark)" }}
           >
-            {bookingMode ? "Book this service" : "See all House Approved partners"}
+            {bookingMode ? "Book this service through HoWA" : "See all House Approved partners"}
             <span>&rarr;</span>
           </Link>
         </div>

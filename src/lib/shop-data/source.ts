@@ -89,15 +89,34 @@ function portableToPlain(body: unknown[] | null): string {
     .join("\n\n");
 }
 
+// ───── Marketplace visibility ─────────────────────────────────────────────
+
+/**
+ * Service / care / design "plans" (Apartment+, Home & Garden+, The Full House
+ * Edit, and the design plan products) are sold on their own pages — Design,
+ * Steward Plans, Protect — not in the marketplace grid (brief slide 9: separate
+ * care plans from the product grid). They are HIDDEN from every marketplace
+ * listing but stay fully buyable at /shop/{handle}, so their own pages can link
+ * straight to a working product page. getShopProduct() is intentionally NOT
+ * filtered.
+ */
+const PLAN_TITLE = /apartment\s*\+|home\s*&\s*garden\s*\+|full house edit|\bplans?\b/i;
+function isPlanProduct(p: CatalogueProduct): boolean {
+  return PLAN_TITLE.test(p.title);
+}
+function isPlanCollection(c: CatalogueCollection): boolean {
+  return /plan|apartment\+|home-?\s*&?-?\s*garden-?\s*\+/i.test(`${c.handle} ${c.title}`);
+}
+
 // ───── Public API (server-side only) ──────────────────────────────────────
 
-/** All products. Shopify-first, then Sanity, then static. */
+/** All marketplace products. Shopify-first, then Sanity, then static. Plans hidden. */
 export async function getShopProducts(): Promise<CatalogueProduct[]> {
   const shopify = await loadShopifyCatalogue();
-  if (shopify && shopify.products.length > 0) return shopify.products;
+  if (shopify && shopify.products.length > 0) return shopify.products.filter((p) => !isPlanProduct(p));
   const sanity = await getAllProducts();
-  if (sanity.length > 0) return sanity.map(sanityToCatalogue);
-  return CATALOGUE_PRODUCTS;
+  if (sanity.length > 0) return sanity.map(sanityToCatalogue).filter((p) => !isPlanProduct(p));
+  return CATALOGUE_PRODUCTS.filter((p) => !isPlanProduct(p));
 }
 
 /** Single product by handle. Shopify-first, then Sanity, then static. */
@@ -118,10 +137,10 @@ export async function getShopCollection(
 ): Promise<CatalogueProduct[]> {
   const shopify = await loadShopifyCatalogue();
   const hit = shopify?.collectionProducts.get(collectionSlug);
-  if (hit && hit.length > 0) return hit;
+  if (hit && hit.length > 0) return hit.filter((p) => !isPlanProduct(p));
   const sanity = await getProductsByCollection(collectionSlug);
-  if (sanity.length > 0) return sanity.map(sanityToCatalogue);
-  return getCatalogueCollection(collectionSlug);
+  if (sanity.length > 0) return sanity.map(sanityToCatalogue).filter((p) => !isPlanProduct(p));
+  return getCatalogueCollection(collectionSlug).filter((p) => !isPlanProduct(p));
 }
 
 /**
@@ -132,7 +151,7 @@ export async function getShopCollection(
  */
 export async function getShopCollections(): Promise<CatalogueCollection[]> {
   const shopify = await loadShopifyCatalogue();
-  if (shopify && shopify.collections.length > 0) return shopify.collections;
+  if (shopify && shopify.collections.length > 0) return shopify.collections.filter((c) => !isPlanCollection(c));
   const sanity = await getCollectionsWithCounts();
   if (sanity.length > 0) {
     return sanity.map((c) => ({
