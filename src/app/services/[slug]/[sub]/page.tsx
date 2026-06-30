@@ -7,7 +7,6 @@ import path from "node:path";
 import { notFound } from "next/navigation";
 import { Accordion } from "@/components/primitives/Accordion";
 import { Gallery } from "@/components/primitives/Gallery";
-import { ServiceBookingBand } from "@/components/marketing/ServiceBookingBand";
 import { ServiceCtaRow } from "@/components/marketing/ServiceCtaRow";
 import { SERVICES, SERVICE_ORDER, type ServiceSlug } from "@/lib/services-data";
 import s from "./sub-service.module.css";
@@ -199,9 +198,6 @@ export default async function SubServicePage({
           {heroSoon ? <span className={s.comingSoonTag}>Service Coming Soon</span> : null}
         </div>
       </section>
-
-      {/* 1b. Ways to book band */}
-      {!heroSoon ? <ServiceBookingBand /> : null}
 
       {/* 2. About + Why choose */}
       {hasAbout ? (

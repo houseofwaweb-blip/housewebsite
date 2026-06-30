@@ -11,7 +11,6 @@ import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { EnquiryForm } from "@/components/marketing/EnquiryForm";
 import { BookingFlowStrip } from "@/components/marketing/BookingFlowStrip";
 import { ServiceCtaRow } from "@/components/marketing/ServiceCtaRow";
-import { ServiceBookingBand } from "@/components/marketing/ServiceBookingBand";
 
 const PUBLIC = path.join(process.cwd(), "public");
 // Services / sub-services without their own photography fall back to the
@@ -211,9 +210,6 @@ export function ServiceDetail({ service }: { service: Service }) {
           </div>
         </section>
       )}
-
-      {/* 1b. Ways to book band — online / call / enquiry */}
-      {!soon ? <ServiceBookingBand /> : null}
 
       {/* 2. Trust strip */}
       {service.trustBadges.length > 0 ? (
