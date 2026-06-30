@@ -64,7 +64,7 @@ const captionStyle: React.CSSProperties = {
   fontFamily: "var(--font-hearth-serif)",
   fontStyle: "italic",
   fontSize: 14,
-  color: "rgba(48, 35, 28, 0.6)",
+  color: "rgba(48, 35, 28, 0.72)",
   margin: "12px 0 0",
 };
 
@@ -101,7 +101,7 @@ function SectionText({ section }: { section: EditorialSection }) {
                 fontSize: 11,
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
-                color: "rgba(48, 35, 28, 0.55)",
+                color: "rgba(48, 35, 28, 0.72)",
                 display: "block",
               }}
             >
@@ -275,7 +275,7 @@ export function EditorialPage({ eyebrow, title, lede, sections, updatedAt, heroI
               fontSize: 11,
               letterSpacing: "0.22em",
               textTransform: "uppercase",
-              color: "rgba(48, 35, 28, 0.55)",
+              color: "rgba(48, 35, 28, 0.72)",
               paddingTop: 24,
               borderTop: "1px solid rgba(48, 35, 28, 0.12)",
             }}

@@ -22,14 +22,14 @@ export function HearthHowaHooks() {
           {HOOKS.map((h) =>
             h.href.startsWith("#") ? (
               <li key={h.label}>
-                <a href={h.href} className="group inline-flex items-baseline gap-2 font-hearth-serif text-[17px] leading-snug text-house-black no-underline transition-colors hover:text-house-gold">
-                  <span aria-hidden className="text-house-gold">→</span> {h.label}
+                <a href={h.href} className="group inline-flex items-baseline gap-2 font-hearth-serif text-[17px] leading-snug text-house-black no-underline transition-colors hover:text-house-gold-dark">
+                  <span aria-hidden className="text-house-gold-dark">→</span> {h.label}
                 </a>
               </li>
             ) : (
               <li key={h.label}>
-                <Link href={h.href} className="group inline-flex items-baseline gap-2 font-hearth-serif text-[17px] leading-snug text-house-black no-underline transition-colors hover:text-house-gold">
-                  <span aria-hidden className="text-house-gold">→</span> {h.label}
+                <Link href={h.href} className="group inline-flex items-baseline gap-2 font-hearth-serif text-[17px] leading-snug text-house-black no-underline transition-colors hover:text-house-gold-dark">
+                  <span aria-hidden className="text-house-gold-dark">→</span> {h.label}
                 </Link>
               </li>
             ),

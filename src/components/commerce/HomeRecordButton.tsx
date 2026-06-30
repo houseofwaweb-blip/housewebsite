@@ -51,7 +51,7 @@ export function HomeRecordButton({
       aria-pressed={saved}
       className={
         className ||
-        "inline-flex w-full items-center justify-center gap-2 border border-house-gold bg-house-gold px-6 py-4 font-sans text-[11px] tracking-[0.18em] uppercase text-white transition-colors hover:bg-house-gold-dark hover:border-house-gold-dark cursor-pointer"
+        "inline-flex w-full items-center justify-center gap-2 border border-house-gold-dark bg-house-gold-dark px-6 py-4 font-sans text-[11px] tracking-[0.18em] uppercase text-white transition-[filter,transform] hover:brightness-110 cursor-pointer"
       }
     >
       <span aria-hidden>{saved ? "✓" : "+"}</span>

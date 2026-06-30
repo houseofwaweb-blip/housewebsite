@@ -132,7 +132,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
         type="button"
         aria-label="Close search"
         onClick={onClose}
-        className="absolute top-5 right-[5vw] z-10 text-[28px] leading-none text-house-brown hover:text-house-gold transition-colors duration-[var(--t-base)] bg-transparent border-0 cursor-pointer"
+        className="absolute top-5 right-[5vw] z-10 text-[28px] leading-none text-house-brown hover:text-house-gold-dark transition-colors duration-[var(--t-base)] bg-transparent border-0 cursor-pointer"
       >
         ×
       </button>
@@ -194,7 +194,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
                   "font-sans text-[11px] tracking-[0.22em] uppercase",
                   "transition-all duration-[var(--t-base)] ease-out",
                   active
-                    ? "text-house-gold border-b border-house-gold opacity-100 pb-[6px]"
+                    ? "text-house-gold-dark border-b border-house-gold opacity-100 pb-[6px]"
                     : "text-house-brown/65 hover:text-house-brown hover:opacity-100",
                 )}
               >
@@ -213,7 +213,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
             <Link
               href={`/search${query ? `?q=${encodeURIComponent(query)}` : ""}`}
               onClick={onClose}
-              className="group inline-flex items-center gap-[8px] font-sans text-[12px] tracking-[0.18em] uppercase no-underline text-house-brown border-b border-solid border-house-gold pb-[3px] transition-[color,border-style] duration-[var(--t-slow)] ease-out hover:text-house-gold hover:border-dotted"
+              className="group inline-flex items-center gap-[8px] font-sans text-[12px] tracking-[0.18em] uppercase no-underline text-house-brown border-b border-solid border-house-gold pb-[3px] transition-[color,border-style] duration-[var(--t-slow)] ease-out hover:text-house-gold-dark hover:border-dotted"
             >
               <span>View all results</span>
               <span

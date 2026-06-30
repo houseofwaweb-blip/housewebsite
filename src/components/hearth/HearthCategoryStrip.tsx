@@ -36,8 +36,8 @@ export function HearthCategoryStrip({ activeSlug = "all" }: { activeSlug?: strin
             className={cn(
               "font-hearth-sans text-[11px] font-normal tracking-[0.18em] uppercase no-underline py-1 transition-colors duration-[var(--t-base)] ease-out",
               active
-                ? "text-house-gold border-b border-house-gold"
-                : "text-house-black hover:text-house-gold",
+                ? "text-house-gold-dark border-b border-house-gold"
+                : "text-house-black hover:text-house-gold-dark",
             )}
           >
             {c.label}

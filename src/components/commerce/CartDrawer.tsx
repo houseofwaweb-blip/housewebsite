@@ -66,7 +66,7 @@ export function CartDrawer() {
             type="button"
             onClick={closeDrawer}
             aria-label="Close basket"
-            className="text-[24px] leading-none bg-transparent border-0 cursor-pointer text-house-brown hover:text-house-gold transition-colors duration-[var(--t-base)]"
+            className="text-[24px] leading-none bg-transparent border-0 cursor-pointer text-house-brown hover:text-house-gold-dark transition-colors duration-[var(--t-base)]"
           >
             ×
           </button>
@@ -82,7 +82,7 @@ export function CartDrawer() {
               <Link
                 href="/shop"
                 onClick={closeDrawer}
-                className="font-sans text-[11px] tracking-[0.18em] uppercase text-house-gold border-b border-dotted border-house-gold pb-0.5 no-underline hover:border-solid transition-all"
+                className="font-sans text-[11px] tracking-[0.18em] uppercase text-house-gold-dark border-b border-dotted border-house-gold pb-0.5 no-underline hover:border-solid transition-all"
               >
                 Browse the shop →
               </Link>
@@ -172,7 +172,7 @@ export function CartDrawer() {
             <Link
               href="/shop/basket"
               onClick={closeDrawer}
-              className="block text-center mt-3 font-sans text-[11px] tracking-[0.16em] uppercase text-house-gold no-underline border-b border-dotted border-house-gold pb-0.5 mx-auto w-fit hover:border-solid transition-all"
+              className="block text-center mt-3 font-sans text-[11px] tracking-[0.16em] uppercase text-house-gold-dark no-underline border-b border-dotted border-house-gold pb-0.5 mx-auto w-fit hover:border-solid transition-all"
             >
               View basket →
             </Link>

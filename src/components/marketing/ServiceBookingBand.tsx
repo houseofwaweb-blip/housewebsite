@@ -13,7 +13,7 @@ export function ServiceBookingBand() {
         <div className="grid gap-4 sm:grid-cols-3">
           <a
             href="#open-booking-form"
-            className="group flex flex-col items-center text-center gap-1.5 border border-house-gold bg-house-gold px-6 py-6 no-underline transition-colors hover:bg-house-gold-dark"
+            className="group flex flex-col items-center text-center gap-1.5 border border-house-gold-dark bg-house-gold-dark px-6 py-6 no-underline transition-[filter] hover:brightness-110"
           >
             <span className="font-sans text-[11px] tracking-[0.18em] uppercase text-white">Book online</span>
             <span className="font-sans text-[12.5px] text-house-cream/90">Through HoWA, choose your slot</span>

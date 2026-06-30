@@ -34,7 +34,7 @@ export function BasketClient() {
   return (
     <article className="bg-house-cream text-house-brown">
       <nav aria-label="Breadcrumb" className="px-[5vw] pt-4 pb-2 font-sans text-[11px] tracking-[0.14em] uppercase text-house-stone">
-        <Link href="/shop" className="no-underline hover:text-house-gold transition-colors">Shop</Link>
+        <Link href="/shop" className="no-underline hover:text-house-gold-dark transition-colors">Shop</Link>
         <span className="mx-1.5">/</span>
         <span className="text-house-brown">Basket</span>
       </nav>
@@ -58,7 +58,7 @@ export function BasketClient() {
                   ) : null}
                 </Link>
                 <div>
-                  <Link href={`/shop/${line.handle}`} className="block font-display font-medium text-[17px] mb-1 no-underline text-house-brown hover:text-house-gold transition-colors">
+                  <Link href={`/shop/${line.handle}`} className="block font-display font-medium text-[17px] mb-1 no-underline text-house-brown hover:text-house-gold-dark transition-colors">
                     {line.title}
                   </Link>
                   <div className="flex items-center gap-2.5 mt-2">

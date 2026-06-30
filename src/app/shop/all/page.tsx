@@ -31,7 +31,7 @@ export default async function ShopAllPage() {
     <div className={s.page}>
       <section className="border-b border-house-brown/8 px-[5vw] pt-10 pb-7 text-center">
         <div className="max-w-[760px] mx-auto">
-          <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-house-gold mb-3">
+          <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-house-gold-dark mb-3">
             The House · Marketplace
           </p>
           <h1 className="font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-[-0.01em] text-house-brown">

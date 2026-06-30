@@ -266,7 +266,7 @@
 .siblingPrice span {
   font-family: var(--font-sans);
   font-size: 13px;
-  color: rgba(48, 35, 28, 0.6);
+  color: rgba(48, 35, 28, 0.72);
 }
 .siblingLede {
   font-family: var(--font-sans);

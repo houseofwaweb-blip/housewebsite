@@ -51,7 +51,7 @@
   gap: 18px;
   font-size: 11px;
   letter-spacing: 0.18em;
-  color: rgba(48, 35, 28, 0.55);
+  color: rgba(48, 35, 28, 0.72);
 }
 .subbarRight em { font-style: normal; color: var(--color-house-gold-dark); font-weight: 500; }
 .coveredBy {
@@ -230,7 +230,7 @@
   font-size: 10px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: rgba(48, 35, 28, 0.55);
+  color: rgba(48, 35, 28, 0.72);
 }
 .stepsRow {
   display: flex;
@@ -271,7 +271,7 @@
 }
 .stepDesc {
   font-size: 11px;
-  color: rgba(48, 35, 28, 0.6);
+  color: rgba(48, 35, 28, 0.72);
   margin-top: 2px;
 }
 .stepArrow {
@@ -372,7 +372,7 @@
   font-family: var(--font-hearth-serif);
   font-size: 14px;
   letter-spacing: 0.04em;
-  color: rgba(48, 35, 28, 0.55);
+  color: rgba(48, 35, 28, 0.72);
   min-width: 60px;
   justify-content: center;
 }

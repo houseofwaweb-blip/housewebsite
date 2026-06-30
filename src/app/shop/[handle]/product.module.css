@@ -9,13 +9,13 @@
   font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(48, 35, 28, 0.55);
+  color: rgba(48, 35, 28, 0.72);
   font-weight: 500;
   background: var(--color-house-cream);
   border-bottom: 1px solid rgba(48, 35, 28, 0.06);
 }
 .crumbLink {
-  color: rgba(48, 35, 28, 0.55);
+  color: rgba(48, 35, 28, 0.72);
   text-decoration: none;
   transition: color 0.25s ease;
 }
@@ -205,7 +205,7 @@
 }
 .compare {
   text-decoration: line-through;
-  color: rgba(48, 35, 28, 0.5);
+  color: rgba(48, 35, 28, 0.72);
   font-size: 0.78em;
   margin-right: 12px;
 }
@@ -216,7 +216,7 @@
   font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(48, 35, 28, 0.55);
+  color: rgba(48, 35, 28, 0.72);
   background: var(--color-house-cream-dark);
   border: 1px solid rgba(48, 35, 28, 0.12);
   font-weight: 500;

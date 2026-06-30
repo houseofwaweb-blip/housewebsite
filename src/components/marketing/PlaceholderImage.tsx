@@ -24,7 +24,7 @@ export function PlaceholderImage({
         aria-hidden
         className="absolute inset-4 border border-house-brown/20"
       />
-      <span className="relative font-sans text-[10px] tracking-[0.32em] uppercase text-house-gold mb-3">
+      <span className="relative font-sans text-[10px] tracking-[0.32em] uppercase text-house-gold-dark mb-3">
         Placeholder image
       </span>
       {caption ? (

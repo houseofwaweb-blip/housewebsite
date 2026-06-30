@@ -88,7 +88,7 @@
   font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(48, 35, 28, 0.5);
+  color: rgba(48, 35, 28, 0.72);
   font-weight: 500;
   transition: color 0.25s ease, border-color 0.25s ease;
 }
@@ -133,7 +133,7 @@
   font-family: var(--font-sans);
   font-size: 15px;
   line-height: 1.6;
-  color: rgba(48, 35, 28, 0.55);
+  color: rgba(48, 35, 28, 0.72);
   margin: 0 0 28px;
 }
 .emptyChips {
@@ -165,7 +165,7 @@
   font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(48, 35, 28, 0.55);
+  color: rgba(48, 35, 28, 0.72);
   margin: 0 0 24px;
   font-weight: 500;
 }
@@ -217,7 +217,7 @@
   font-family: var(--font-sans);
   font-size: 14px;
   line-height: 1.55;
-  color: rgba(48, 35, 28, 0.62);
+  color: rgba(48, 35, 28, 0.72);
   margin: 0;
 }
 

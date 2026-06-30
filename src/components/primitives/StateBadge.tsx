@@ -24,12 +24,12 @@ const base =
   "tracking-[0.2em] uppercase py-1 px-2.5";
 
 const variants: Record<State, string> = {
-  coming: "border border-house-gold text-house-gold bg-house-gold/10 before:content-['●'] before:text-[8px]",
+  coming: "border border-house-gold text-house-gold-dark bg-house-gold/10 before:content-['●'] before:text-[8px]",
   live: "border border-house-moss text-house-moss bg-house-moss/10 before:content-['✓'] before:text-[9px]",
   interest: "border border-howa-teal text-howa-teal bg-howa-teal/5 before:content-['◈'] before:text-[10px]",
   soon: "border border-house-stone text-house-stone bg-house-stone/5 opacity-60",
   premium:
-    "border-0 p-0 text-house-gold text-[9px] tracking-[0.22em] " +
+    "border-0 p-0 text-house-gold-dark text-[9px] tracking-[0.22em] " +
     "before:content-['◆'] before:text-[8px] before:mr-0.5",
 };
 

@@ -342,7 +342,7 @@ export default async function HomePage() {
           <div className="mt-[clamp(28px,4vw,48px)] flex justify-center">
             <a
               href="#open-booking-form"
-              className="inline-flex items-center justify-center border border-house-gold bg-house-gold px-9 py-4 font-sans text-[11px] tracking-[0.18em] uppercase text-house-cream no-underline transition-colors hover:bg-house-gold-light hover:border-house-gold-light"
+              className="inline-flex items-center justify-center border border-house-gold-dark bg-house-gold-dark px-9 py-4 font-sans text-[11px] tracking-[0.18em] uppercase text-house-cream no-underline transition-[filter] hover:brightness-110"
             >
               Book through HoWA
             </a>
@@ -599,7 +599,7 @@ export default async function HomePage() {
       <section className="px-[5vw] py-[clamp(48px,6vw,90px)] border-t border-house-brown/10" style={{ background: "var(--color-house-cream)" }}>
         <div className="max-w-[1180px] mx-auto">
           <div className="text-center max-w-[660px] mx-auto mb-11">
-            <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-house-gold mb-3">The Services</p>
+            <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-house-gold-dark mb-3">The Services</p>
             <h2 className="font-display text-[clamp(26px,3vw,42px)] leading-[1.06] text-house-brown mb-4">
               Whatever the home needs, booked in minutes.
             </h2>

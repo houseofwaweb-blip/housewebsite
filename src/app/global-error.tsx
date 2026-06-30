@@ -49,7 +49,7 @@ export default function GlobalError({
               fontSize: 11,
               letterSpacing: "0.26em",
               textTransform: "uppercase",
-              color: "rgba(48, 35, 28, 0.55)",
+              color: "rgba(48, 35, 28, 0.72)",
               margin: 0,
             }}
           >

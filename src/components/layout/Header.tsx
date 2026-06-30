@@ -111,9 +111,9 @@ export function Header({
           href={ctaHref}
           className={cn(
             "booknow-button",
-            "font-sans text-[11px] tracking-[0.16em] uppercase text-white bg-house-gold border border-house-gold px-5 py-2.5 no-underline",
-            "transition-colors duration-[var(--t-slow)] ease-out",
-            "hover:bg-house-gold-light hover:border-house-gold-light",
+            "font-sans text-[11px] tracking-[0.16em] uppercase text-white bg-house-gold-dark border border-house-gold-dark px-5 py-2.5 no-underline",
+            "transition-[filter] duration-[var(--t-slow)] ease-out",
+            "hover:brightness-110",
           )}
         >
           {ctaLabel}
@@ -167,7 +167,7 @@ export function Header({
             <Link
               href={ctaHref}
               onClick={() => setMobileOpen(false)}
-              className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold px-6 py-4 text-center mb-6 no-underline"
+              className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold-dark px-6 py-4 text-center mb-6 no-underline"
             >
               {ctaLabel}
             </Link>
@@ -189,7 +189,7 @@ export function Header({
                     <span
                       aria-hidden="true"
                       className={cn(
-                        "font-display text-[24px] text-house-gold",
+                        "font-display text-[24px] text-house-gold-dark",
                         "transition-all duration-[var(--t-slow)] ease-out",
                         expanded && "rotate-45",
                       )}
@@ -214,7 +214,7 @@ export function Header({
                           <Link
                             href={panel.triggerHref}
                             onClick={() => setMobileOpen(false)}
-                            className="font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold no-underline mb-1"
+                            className="font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-dark no-underline mb-1"
                           >
                             See all {panel.trigger.toLowerCase()} →
                           </Link>

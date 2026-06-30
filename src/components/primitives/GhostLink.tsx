@@ -37,7 +37,7 @@ export function GhostLink({
     "border-b border-solid border-house-gold",
     "transition-[color,border-style] duration-[var(--t-slow)] ease-out",
     "hover:border-dotted",
-    dark ? "text-house-cream hover:text-house-gold-light" : "text-house-brown hover:text-house-gold",
+    dark ? "text-house-cream hover:text-house-gold-light" : "text-house-brown hover:text-house-gold-dark",
     className,
   );
 

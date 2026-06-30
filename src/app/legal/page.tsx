@@ -45,7 +45,7 @@ export default function LegalIndex() {
               className="group flex items-baseline justify-between gap-6 py-6 border-t border-house-brown/10 last:border-b no-underline"
             >
               <div>
-                <h2 className="font-display font-medium text-[24px] leading-[1.2] text-house-brown group-hover:text-house-gold transition-colors duration-[var(--t-slow)] ease-out">
+                <h2 className="font-display font-medium text-[24px] leading-[1.2] text-house-brown group-hover:text-house-gold-dark transition-colors duration-[var(--t-slow)] ease-out">
                   {p.title}
                 </h2>
                 <p className="font-sans italic text-[15px] leading-[1.5] text-house-stone mt-1">
@@ -54,7 +54,7 @@ export default function LegalIndex() {
               </div>
               <span
                 aria-hidden="true"
-                className="font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold transition-all duration-[var(--t-slow)] ease-out group-hover:translate-x-2"
+                className="font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-dark transition-all duration-[var(--t-slow)] ease-out group-hover:translate-x-2"
               >
                 Read →
               </span>

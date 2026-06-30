@@ -8,7 +8,7 @@ import { cn } from "@/lib/cn";
 type Colour = "gold" | "teal" | "stone" | "cream";
 
 const colours: Record<Colour, string> = {
-  gold: "text-house-gold",
+  gold: "text-house-gold-dark",
   teal: "text-howa-teal",
   stone: "text-house-stone",
   cream: "text-house-cream/85",

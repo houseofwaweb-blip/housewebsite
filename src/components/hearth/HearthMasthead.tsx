@@ -18,7 +18,7 @@ export function HearthMasthead({ className }: { className?: string }) {
         <span className="block font-hearth-sans text-[9px] tracking-[0.32em] uppercase text-house-stone mb-[2px]">
           THE
         </span>
-        <h1 className="font-hearth-serif font-medium uppercase leading-none text-[clamp(34px,4vw,54px)] tracking-[-0.005em] text-house-black transition-colors hover:text-house-gold">
+        <h1 className="font-hearth-serif font-medium uppercase leading-none text-[clamp(34px,4vw,54px)] tracking-[-0.005em] text-house-black transition-colors hover:text-house-gold-dark">
           Hearth
         </h1>
       </Link>

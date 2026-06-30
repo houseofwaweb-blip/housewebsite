@@ -15,7 +15,7 @@ export function HearthCollectionBand() {
     >
       <div className="max-w-[1360px] mx-auto grid md:grid-cols-[1fr_1.2fr] gap-14 items-center">
         <div>
-          <span className="block mb-[14px] font-hearth-sans text-[10px] tracking-[0.28em] uppercase text-house-gold">
+          <span className="block mb-[14px] font-hearth-sans text-[10px] tracking-[0.28em] uppercase text-house-gold-dark">
             ◆ The Hearth Collection · {COLLECTION.season}
           </span>
           <h2 className="font-hearth-serif font-medium text-[clamp(32px,3.6vw,48px)] leading-[1.1] tracking-[-0.005em] text-house-black mb-3">

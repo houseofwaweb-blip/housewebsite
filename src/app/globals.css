@@ -68,7 +68,9 @@
   --color-house-cream: #f5f0e8;
   --color-house-cream-dark: #ebe4d6;
   --color-house-white: #faf8f4;
-  --color-house-stone: #a09885;
+  /* Darkened from #a09885 for WCAG AA: muted text now clears 4.5:1 on cream,
+     cream-dark and white (was ~2.5:1, a fail). */
+  --color-house-stone: #6a6458;
   --color-house-moss: #5a6b4a;
   --color-house-black: #1d1d1b;
   /* Moodboard additions (2026-06-30): richer greens + the oxblood accent */
@@ -83,7 +85,9 @@
   --color-howa-paper: #f4efe4;
   --color-howa-light: #f0f4f3;
 
-  --color-house-gold-dark: #8a6f2e;
+  /* Darkened from #8a6f2e for WCAG AA: eyebrows/links clear 4.5:1 on cream and
+     cream-dark, and it works as a button fill with white/cream text. */
+  --color-house-gold-dark: #7a6229;
 
   --color-success: #5a6b4a;
   --color-warning: #c4922a;
@@ -336,7 +340,7 @@ body {
 .tier-howa .tier-cta {
   display: inline-block; font-family: var(--font-hearth-sans);
   font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
-  border: 1px solid rgba(48,35,28,0.5); padding: 10px 20px;
+  border: 1px solid rgba(48, 35, 28, 0.72); padding: 10px 20px;
   color: var(--house-brown); text-decoration: none; background: transparent;
   transition: background var(--t-base) var(--ease-out), color var(--t-base) var(--ease-out);
 }

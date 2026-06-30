@@ -118,7 +118,7 @@ export function ArtworkProgressRail() {
                       "font-display italic text-[14px] tabular-nums w-6 text-right transition-colors duration-200 " +
                       (isActive
                         ? darkBg
-                          ? "text-house-gold"
+                          ? "text-house-gold-dark"
                           : "text-house-gold-dark"
                         : darkBg
                           ? "text-house-cream/55 group-hover:text-house-cream/85"
