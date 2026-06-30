@@ -9,6 +9,7 @@ import { SERVICE_AREAS } from "@/lib/services-data/sub-services";
 import s from "./ServiceDetail.module.css";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { EnquiryForm } from "@/components/marketing/EnquiryForm";
+import { BookingFlowStrip } from "@/components/marketing/BookingFlowStrip";
 
 const PUBLIC = path.join(process.cwd(), "public");
 // Services / sub-services without their own photography fall back to the
@@ -306,6 +307,9 @@ export function ServiceDetail({ service }: { service: Service }) {
         />
       </section>
 
+      {/* Booking flow — the journey services should show (brief slide 8) */}
+      <BookingFlowStrip />
+
       {/* 7. Booking — two-block CTA */}
       <section className={s.booking}>
         <div className={s.bookingGrid}>
@@ -350,6 +354,10 @@ export function ServiceDetail({ service }: { service: Service }) {
             </Link>
           </article>
         </div>
+        <p className={s.bookingBlurb} style={{ textAlign: "center", maxWidth: "62ch", margin: "clamp(20px,3vw,32px) auto 0" }}>
+          House-owned teams where we operate directly. HoWA Approved trades up and
+          down the country where specialist reach is needed. No unapproved hands.
+        </p>
       </section>
 
       {/* 8. FAQ */}

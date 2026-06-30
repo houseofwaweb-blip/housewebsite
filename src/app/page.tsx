@@ -168,6 +168,9 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Real-life proof band — House vans + crew, high up (brief slide 5/17) */}
+      <VanBand />
+
       {/* 2. Editorial quote band */}
       <section className={s.quoteBand}>
         <FlowerWatermark color="white" side="right" opacity={0.14} />
@@ -359,9 +362,6 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Real-life proof band — House vans + crew (brief slide 17) */}
-      <VanBand />
 
       {/* Booking flow strip — make the "what happens next" loop explicit (brief 5/8) */}
       <BookingFlowStrip />
