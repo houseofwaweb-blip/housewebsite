@@ -1,4 +1,5 @@
 import { EditorialPage, type EditorialSection } from "@/components/marketing/EditorialPage";
+import { EnquiryForm } from "@/components/marketing/EnquiryForm";
 import { getPageSections, cms } from "@/lib/cms/page-sections";
 
 export const metadata = {
@@ -58,20 +59,31 @@ export default async function AboutPage() {
   const headlineTail = cms(intro, "subheadline", "of home.");
 
   return (
-    <EditorialPage
-      watermark="gold"
-      eyebrow={cms(intro, "eyebrow", "The House · About")}
-      title={
-        <>
-          {headline} <em>{headlineEm}</em> {headlineTail}
-        </>
-      }
-      lede={cms(
-        intro,
-        "body",
-        "We began with gardens, soil and seasons, and grew into a House that tends the whole of a home. Today that means the design that shapes a house, the care that keeps it, and the records that remember it.",
-      )}
-      sections={editorialSections}
-    />
+    <>
+      <EditorialPage
+        watermark="gold"
+        eyebrow={cms(intro, "eyebrow", "The House · About")}
+        title={
+          <>
+            {headline} <em>{headlineEm}</em> {headlineTail}
+          </>
+        }
+        lede={cms(
+          intro,
+          "body",
+          "We began with gardens, soil and seasons, and grew into a House that tends the whole of a home. Today that means the design that shapes a house, the care that keeps it, and the records that remember it.",
+        )}
+        sections={editorialSections}
+      />
+      {/* The "How to reach us" copy promises a contact form — here it is. */}
+      <div id="reach-us" style={{ background: "var(--color-house-cream)" }}>
+        <EnquiryForm
+          sourcePage="/the-house/about"
+          eyebrow="How to reach us"
+          headline="Write to the House."
+          body="A question about a garden, a window, a warranty or a press enquiry. Choose the topic and it lands in the right inbox. We reply within one working day."
+        />
+      </div>
+    </>
   );
 }

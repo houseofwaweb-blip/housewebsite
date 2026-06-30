@@ -312,7 +312,7 @@ export default async function ServicesLanding() {
         </div>
         <div className={s.heroVisual}>
           <Image
-            src={cms(hero, "imageUrl", "/home-v4/plus-benefit-1.webp")}
+            src={cms(hero, "imageUrl", "/services/photos/window-cleaning/regular-window-cleaning-hero.webp")}
             alt={cms(
               hero,
               "imageAlt",
