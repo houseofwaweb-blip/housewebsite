@@ -8,6 +8,7 @@ import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { HowaAppBanner } from "@/components/marketing/HowaAppBanner";
 import { EnquiryForm } from "@/components/marketing/EnquiryForm";
 import { BookingFlowStrip } from "@/components/marketing/BookingFlowStrip";
+import { VanBand } from "@/components/marketing/VanBand";
 
 /**
  * Homepage — House-led (v5).
@@ -358,6 +359,9 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Real-life proof band — House vans + crew (brief slide 17) */}
+      <VanBand />
 
       {/* Booking flow strip — make the "what happens next" loop explicit (brief 5/8) */}
       <BookingFlowStrip />

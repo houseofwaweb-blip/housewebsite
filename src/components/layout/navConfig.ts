@@ -178,7 +178,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
 
   {
     id: "howa",
-    trigger: "HoWA Platform",
+    trigger: "Meet HoWA",
     triggerHref: "/howa",
     groups: [
       {
