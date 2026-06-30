@@ -8,7 +8,6 @@ import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { HowaAppBanner } from "@/components/marketing/HowaAppBanner";
 import { EnquiryForm } from "@/components/marketing/EnquiryForm";
 import { BookingFlowStrip } from "@/components/marketing/BookingFlowStrip";
-import { VanBand } from "@/components/marketing/VanBand";
 
 /**
  * Homepage — House-led (v5).
@@ -167,9 +166,6 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Real-life proof band — House vans + crew, high up (brief slide 5/17) */}
-      <VanBand />
 
       {/* 2. Editorial quote band */}
       <section className={s.quoteBand}>
