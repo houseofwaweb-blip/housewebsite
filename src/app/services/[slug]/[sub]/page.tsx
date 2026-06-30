@@ -174,7 +174,7 @@ export default async function SubServicePage({
                 </span>
               ) : (
                 <Link href="#open-booking-form" className={s.btnFilled}>
-                  Book {service.name.toLowerCase()}
+                  Book through HoWA
                 </Link>
               )}
               <Link href={`/services/${parent.slug}`} className={s.btnGhost}>

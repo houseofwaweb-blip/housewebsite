@@ -242,17 +242,19 @@ export default async function ProductPage({
 
           <ProductCopy product={product} />
 
-          {/* Service cross-sell — only for goods that can actually be installed or
-              maintained, not small homeware (brief slide 9) */}
-          {serviceable ? (
-            <p className="mt-6 font-sans text-[13px] leading-[1.6] text-house-stone">
-              Need this fitted, hung, cleaned or maintained?{" "}
-              <a href="#open-booking-form" className="text-house-gold-dark underline underline-offset-[3px]">
-                Book through HoWA
-              </a>{" "}
-              and it is kept in your Home Record.
-            </p>
-          ) : null}
+          {/* Secondary CTA (brief slide 9) — present on every product, but the
+              wording adapts: installable/maintainable goods get the fitting line,
+              everything else gets a calmer House-services line (a mug isn't
+              "fitted or cleaned"). */}
+          <p className="mt-6 font-sans text-[13px] leading-[1.6] text-house-stone">
+            {serviceable
+              ? "Need this fitted, hung, cleaned or maintained? "
+              : "Planning work on your home? "}
+            <a href="#open-booking-form" className="text-house-gold-dark underline underline-offset-[3px]">
+              Book through HoWA
+            </a>{" "}
+            and it is kept in your Home Record.
+          </p>
         </div>
       </div>
 
