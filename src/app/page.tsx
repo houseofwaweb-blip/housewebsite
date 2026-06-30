@@ -365,6 +365,10 @@ export default async function HomePage() {
               HoWA is not only for House services.
             </p>
             <p className={s.howaIntroPara}>
+              HoWA began as the House booking and home-record platform. It now also
+              lives independently as the Home Intelligence OS for any address.
+            </p>
+            <p className={s.howaIntroPara}>
               <em>Technology in service of beauty, calm and flow, never technology for its own sake.</em>
             </p>
             <div className={s.howaFeatures}>
