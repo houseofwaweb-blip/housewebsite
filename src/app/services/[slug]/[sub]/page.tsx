@@ -6,6 +6,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { notFound } from "next/navigation";
 import { Accordion } from "@/components/primitives/Accordion";
+import { Gallery } from "@/components/primitives/Gallery";
 import { SERVICES, SERVICE_ORDER, type ServiceSlug } from "@/lib/services-data";
 import s from "./sub-service.module.css";
 
@@ -136,6 +137,13 @@ export default async function SubServicePage({
     heroImage,
   );
 
+  // The other real shots of this service (correct per sub, not the generic
+  // parent gallery) — only the tiles that actually exist are shown.
+  const gallery = [1, 2, 3]
+    .map((n) => fileOr(`/services/photos/${parent.slug}/${service.slug}-gallery-${n}.webp`, COMING_SOON))
+    .filter((src) => src !== COMING_SOON)
+    .map((src, i) => ({ src, alt: `${service.name}, recent work ${i + 1}`, caption: `${service.name} · London` }));
+
   const hasAbout = Boolean(service.body) || Boolean(service.whyChoose?.length);
   const hasIncluded = Boolean(service.included?.length);
   const hasVisuals = !heroSoon && workImage !== COMING_SOON;
@@ -261,6 +269,11 @@ export default async function SubServicePage({
               />
             </div>
           </div>
+          {gallery.length > 0 ? (
+            <div className={s.workGallery}>
+              <Gallery images={gallery} columns={3} aspectRatio="4/3" />
+            </div>
+          ) : null}
         </section>
       ) : null}
 
