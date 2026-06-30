@@ -320,6 +320,31 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Real crew proof on a forest-green ground (brief slide 5: real people,
+          real standards; moodboard section colour) */}
+      <section className="px-[5vw] py-[clamp(52px,7vw,104px)] bg-house-forest">
+        <div className="mx-auto max-w-[1200px]">
+          <p className="text-center" style={{ fontFamily: "var(--font-sans)", fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--color-house-gold-light)", margin: "0 0 14px", fontWeight: 500 }}>
+            On the road
+          </p>
+          <h2 className="text-center" style={{ fontFamily: "var(--font-hearth-serif)", fontWeight: 400, fontSize: "clamp(26px,3.6vw,44px)", lineHeight: 1.1, color: "var(--color-house-cream)", margin: "0 0 clamp(28px,4vw,52px)" }}>
+            Real people, real standards, <em>one remembered home.</em>
+          </h2>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+            {[
+              { src: "/services/photos/vans/asher-349.webp", alt: "A liveried House of Willow Alexander electric van" },
+              { src: "/services/photos/gardening/garden-tidy-hero.webp", alt: "Gardening team at work" },
+              { src: "/services/photos/window-cleaning/one-off-window-cleaning-hero.webp", alt: "Window cleaning in progress" },
+              { src: "/services/photos/cleaning/regular-cleaning-hero.webp", alt: "Home cleaning in progress" },
+            ].map((t) => (
+              <div key={t.src} className="relative aspect-[4/5] overflow-hidden bg-house-forest">
+                <Image src={t.src} alt={t.alt} fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* HoWA — the intelligence layer, introduced before the execution layers (slide 12) */}
       <section className={s.howaIntro}>
         <div className={s.howaIntroInner}>
