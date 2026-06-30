@@ -377,24 +377,25 @@ export default async function ServicesLanding() {
 
       <HouseStandardStrip />
 
-      {/* Real teams on the road — real field photography (brief slide 5/7/8) */}
-      <section className="px-[5vw] py-[clamp(48px,7vw,96px)] bg-house-cream-dark">
+      {/* Real teams on the road — real field photography (brief slide 5/7/8) on a
+          forest-green House ground (moodboard section colour) */}
+      <section className="px-[5vw] py-[clamp(48px,7vw,96px)] bg-house-forest">
         <div className="mx-auto max-w-[1200px]">
           <p
             className="text-center"
-            style={{ fontFamily: "var(--font-sans)", fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--color-house-gold-dark)", margin: "0 0 14px", fontWeight: 500 }}
+            style={{ fontFamily: "var(--font-sans)", fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--color-house-gold-light)", margin: "0 0 14px", fontWeight: 500 }}
           >
             On the road
           </p>
           <h2
             className="text-center"
-            style={{ fontFamily: "var(--font-hearth-serif)", fontWeight: 400, fontSize: "clamp(26px,3.4vw,42px)", lineHeight: 1.1, color: "var(--color-house-brown)", margin: "0 0 clamp(28px,4vw,52px)" }}
+            style={{ fontFamily: "var(--font-hearth-serif)", fontWeight: 400, fontSize: "clamp(26px,3.4vw,42px)", lineHeight: 1.1, color: "var(--color-house-cream)", margin: "0 0 clamp(28px,4vw,52px)" }}
           >
             Real teams. Real vans. <em>One House standard.</em>
           </h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
             {REAL_WORK.map((t) => (
-              <div key={t.src} className="relative aspect-[4/5] overflow-hidden bg-house-cream">
+              <div key={t.src} className="relative aspect-[4/5] overflow-hidden bg-house-forest">
                 <Image src={t.src} alt={t.alt} fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover" />
               </div>
             ))}
