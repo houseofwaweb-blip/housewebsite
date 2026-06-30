@@ -6,8 +6,6 @@ import fs from "node:fs";
 import path from "node:path";
 import { notFound } from "next/navigation";
 import { Accordion } from "@/components/primitives/Accordion";
-import { BeforeAfter } from "@/components/primitives/BeforeAfter";
-import { Gallery } from "@/components/primitives/Gallery";
 import { SERVICES, SERVICE_ORDER, type ServiceSlug } from "@/lib/services-data";
 import s from "./sub-service.module.css";
 
@@ -130,22 +128,17 @@ export default async function SubServicePage({
   const heroImage = fileOr(requestedHero, PLACEHOLDER_HERO);
   const heroSoon = heroImage === COMING_SOON;
 
-  const baRaw = PARENT_BEFORE_AFTER[parent.slug];
-  const ba = baRaw
-    ? {
-        before: fileOr(baRaw.before, PLACEHOLDER_BA),
-        after: fileOr(baRaw.after, PLACEHOLDER_BA),
-      }
-    : null;
-
-  const gallery = (PARENT_GALLERY[parent.slug] ?? []).map((g) => ({
-    ...g,
-    src: fileOr(g.src, PLACEHOLDER_GALLERY_TILE),
-  }));
+  // One real shot of the team on this service (brief: replace the before/after
+  // slider + the generic re-captioned gallery with a single static image).
+  // Falls back to the sub-service hero, which is already the correct subject.
+  const workImage = fileOr(
+    `/services/photos/${parent.slug}/${service.slug}-work.webp`,
+    heroImage,
+  );
 
   const hasAbout = Boolean(service.body) || Boolean(service.whyChoose?.length);
   const hasIncluded = Boolean(service.included?.length);
-  const hasVisuals = Boolean(ba || gallery.length > 0);
+  const hasVisuals = !heroSoon && workImage !== COMING_SOON;
   const hasFaq = Boolean(service.faq?.length);
   const hasRelated = siblings.length > 0;
 
@@ -244,40 +237,30 @@ export default async function SubServicePage({
         </section>
       ) : null}
 
-      {/* 4. From the work — before/after + gallery */}
+      {/* 4. From the work — a single real shot of the team on this service */}
       {hasVisuals ? (
         <section className={s.work}>
           <header className={s.sectionHead}>
             <p className={s.sectionEy}>From the work</p>
             <h2 className={s.sectionTitle}>
-              The visible <em>difference.</em>
+              Our team, <em>on the job.</em>
             </h2>
             <p className={s.sectionLede}>
-              Every job is photographed and filed to your HoWA record. Drag
-              the handle below to see a recent transformation.
+              A recent {service.name.toLowerCase()} visit. Every job is photographed
+              and filed to your HoWA record.
             </p>
           </header>
-          {ba ? (
-            <div className={s.workBeforeAfter}>
-              <BeforeAfter
-                before={{ src: ba.before, alt: `${service.name}, before` }}
-                after={{ src: ba.after, alt: `${service.name}, after` }}
-                aspectRatio="3/2"
+          <div className={s.workBeforeAfter}>
+            <div style={{ position: "relative", width: "100%", aspectRatio: "3 / 2", overflow: "hidden" }}>
+              <Image
+                src={workImage}
+                alt={`${service.name} — our team at work`}
+                fill
+                sizes="(min-width: 1024px) 80vw, 100vw"
+                style={{ objectFit: "cover" }}
               />
             </div>
-          ) : null}
-          {gallery.length > 0 ? (
-            <div className={s.workGallery}>
-              <Gallery
-                images={gallery.map((g) => ({
-                  ...g,
-                  caption: `${service.name} · ${g.caption?.split(" · ")[0] ?? "London"}`,
-                }))}
-                columns={3}
-                aspectRatio="4/3"
-              />
-            </div>
-          ) : null}
+          </div>
         </section>
       ) : null}
 
