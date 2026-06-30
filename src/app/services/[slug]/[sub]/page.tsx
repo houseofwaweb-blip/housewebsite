@@ -7,6 +7,8 @@ import path from "node:path";
 import { notFound } from "next/navigation";
 import { Accordion } from "@/components/primitives/Accordion";
 import { Gallery } from "@/components/primitives/Gallery";
+import { ServiceBookingBand } from "@/components/marketing/ServiceBookingBand";
+import { ServiceCtaRow } from "@/components/marketing/ServiceCtaRow";
 import { SERVICES, SERVICE_ORDER, type ServiceSlug } from "@/lib/services-data";
 import s from "./sub-service.module.css";
 
@@ -198,6 +200,9 @@ export default async function SubServicePage({
         </div>
       </section>
 
+      {/* 1b. Ways to book band */}
+      {!heroSoon ? <ServiceBookingBand /> : null}
+
       {/* 2. About + Why choose */}
       {hasAbout ? (
         <section className={s.about}>
@@ -228,6 +233,8 @@ export default async function SubServicePage({
         </section>
       ) : null}
 
+      {hasAbout && !heroSoon ? <ServiceCtaRow service={service.name} /> : null}
+
       {/* 3. What's included */}
       {hasIncluded ? (
         <section className={s.included}>
@@ -244,6 +251,8 @@ export default async function SubServicePage({
           </ul>
         </section>
       ) : null}
+
+      {hasIncluded && !heroSoon ? <ServiceCtaRow service={service.name} /> : null}
 
       {/* 4. From the work — a single real shot of the team on this service */}
       {hasVisuals ? (
@@ -277,6 +286,8 @@ export default async function SubServicePage({
         </section>
       ) : null}
 
+      {hasVisuals && !heroSoon ? <ServiceCtaRow service={service.name} /> : null}
+
       {/* 5. FAQ */}
       {hasFaq ? (
         <section className={s.faq}>
@@ -297,6 +308,8 @@ export default async function SubServicePage({
           </div>
         </section>
       ) : null}
+
+      {hasFaq && !heroSoon ? <ServiceCtaRow service={service.name} /> : null}
 
       {/* 6. Related */}
       {hasRelated ? (
@@ -326,13 +339,15 @@ export default async function SubServicePage({
       ) : null}
 
       {/* 7. Closing */}
-      <EnquiryForm
-        defaultService={parent.slug}
-        sourcePage={`/services/${parent.slug}/${service.slug}`}
-        eyebrow="Enquire"
-        headline={`Ask about ${service.name.toLowerCase()}.`}
-        body="Tell us about your home and what you need. We come back to you personally, usually within one working day. Or book online in a couple of minutes."
-      />
+      <div id="service-enquiry" className="scroll-mt-24">
+        <EnquiryForm
+          defaultService={parent.slug}
+          sourcePage={`/services/${parent.slug}/${service.slug}`}
+          eyebrow="Enquire"
+          headline={`Ask about ${service.name.toLowerCase()}.`}
+          body="Tell us about your home and what you need. We come back to you personally, usually within one working day. Or book online in a couple of minutes."
+        />
+      </div>
 
       <section className={s.closing}>
         <p className={s.closingKicker}>Ready when you are</p>
