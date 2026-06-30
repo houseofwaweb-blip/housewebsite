@@ -5,6 +5,7 @@ import { ProductCard } from "@/components/commerce/ProductCard";
 import { PRODUCTS, findProduct } from "@/lib/shop-data";
 import { getShopProduct, getShopProducts } from "@/lib/shop-data/source";
 import { RecentlyViewed } from "./RecentlyViewed";
+import { HomeRecordButton } from "@/components/commerce/HomeRecordButton";
 import { getProductByHandle } from "@/lib/cms/products";
 import { getProductVariants } from "@/lib/shop-data/shopify-catalogue";
 import { ProductBuy } from "./ProductBuy";
@@ -124,6 +125,11 @@ export default async function ProductPage({
       .slice(0, 4 - related.length);
     related = [...related, ...fill];
   }
+
+  // The "fitted/hung/cleaned/maintained" cross-sell only makes sense for larger
+  // installable/maintainable goods, not a mug or a book (brief slide 9).
+  const cat = `${product.collection ?? ""}`.toLowerCase();
+  const serviceable = /furnitur|lighting|soft.?furnish|outdoor|curtain|blind|shelv|wardrobe|\brug|mirror|cabinet|table|sofa|bed\b/.test(cat);
   const baseUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
   const productUrl = `${baseUrl}/shop/${product.handle}`;
 
@@ -212,21 +218,37 @@ export default async function ProductPage({
               }}
             />
           ) : (
-            <div className="mb-9">
-              <span className={s.comingSoon}>Coming soon</span>
+            <div className="mb-4">
+              <span className={s.comingSoon}>Available at launch</span>
             </div>
           )}
 
+          {/* Save / wishlist into the Home Record (brief slide 9/10) */}
+          <div className="mb-9">
+            <HomeRecordButton
+              handle={product.handle}
+              title={product.title}
+              price={product.price}
+              image={product.image}
+            />
+            <p className="mt-2 font-sans text-[12px] leading-[1.5] text-house-stone">
+              Save it to your Home Record to keep its details, care notes and warranty in one place.
+            </p>
+          </div>
+
           <ProductCopy product={product} />
 
-          {/* Service cross-sell (brief slide 9): connect objects to House care */}
-          <p className="mt-6 font-sans text-[13px] leading-[1.6] text-house-stone">
-            Need this fitted, hung, cleaned or maintained?{" "}
-            <a href="#open-booking-form" className="text-house-gold-dark underline underline-offset-[3px]">
-              Book through HoWA
-            </a>{" "}
-            and it is kept in your Home Record.
-          </p>
+          {/* Service cross-sell — only for goods that can actually be installed or
+              maintained, not small homeware (brief slide 9) */}
+          {serviceable ? (
+            <p className="mt-6 font-sans text-[13px] leading-[1.6] text-house-stone">
+              Need this fitted, hung, cleaned or maintained?{" "}
+              <a href="#open-booking-form" className="text-house-gold-dark underline underline-offset-[3px]">
+                Book through HoWA
+              </a>{" "}
+              and it is kept in your Home Record.
+            </p>
+          ) : null}
         </div>
       </div>
 
