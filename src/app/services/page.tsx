@@ -229,6 +229,16 @@ const FAQ = [
   },
 ];
 
+// Real field photography (brief slide 5/7/8) — real crew + a real van, shown as
+// a contained grid, not a full-bleed band. Does not touch the brand still-life
+// category cards (those are brand assets).
+const REAL_WORK = [
+  { src: "/services/photos/vans/asher-348.webp", alt: "A liveried House of Willow Alexander electric van" },
+  { src: "/services/photos/gardening/garden-clearance-hero.webp", alt: "Gardening team clearing a garden" },
+  { src: "/services/photos/window-cleaning/regular-window-cleaning-hero.webp", alt: "Window cleaning in progress" },
+  { src: "/services/photos/cleaning/regular-cleaning-hero.webp", alt: "Home cleaning in progress" },
+];
+
 export default async function ServicesLanding() {
   const sections = await getPageSections("services");
   const hero = sections.get("hero");
@@ -366,6 +376,31 @@ export default async function ServicesLanding() {
       </section>
 
       <HouseStandardStrip />
+
+      {/* Real teams on the road — real field photography (brief slide 5/7/8) */}
+      <section className="px-[5vw] py-[clamp(48px,7vw,96px)] bg-house-cream-dark">
+        <div className="mx-auto max-w-[1200px]">
+          <p
+            className="text-center"
+            style={{ fontFamily: "var(--font-sans)", fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--color-house-gold-dark)", margin: "0 0 14px", fontWeight: 500 }}
+          >
+            On the road
+          </p>
+          <h2
+            className="text-center"
+            style={{ fontFamily: "var(--font-hearth-serif)", fontWeight: 400, fontSize: "clamp(26px,3.4vw,42px)", lineHeight: 1.1, color: "var(--color-house-brown)", margin: "0 0 clamp(28px,4vw,52px)" }}
+          >
+            Real teams. Real vans. <em>One House standard.</em>
+          </h2>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+            {REAL_WORK.map((t) => (
+              <div key={t.src} className="relative aspect-[4/5] overflow-hidden bg-house-cream">
+                <Image src={t.src} alt={t.alt} fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* 4. Steward Plans ladder */}
       <section id="plans" className={s.plans}>
