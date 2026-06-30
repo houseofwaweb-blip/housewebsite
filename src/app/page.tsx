@@ -7,6 +7,7 @@ import { shopifyProvider } from "@/lib/commerce/shopify";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { HowaAppBanner } from "@/components/marketing/HowaAppBanner";
 import { EnquiryForm } from "@/components/marketing/EnquiryForm";
+import { BookingFlowStrip } from "@/components/marketing/BookingFlowStrip";
 
 /**
  * Homepage — House-led (v5).
@@ -357,6 +358,9 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Booking flow strip — make the "what happens next" loop explicit (brief 5/8) */}
+      <BookingFlowStrip />
 
       {/* HoWA intelligence — what the house notices */}
       <section className={s.intel}>
