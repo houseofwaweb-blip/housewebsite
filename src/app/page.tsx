@@ -136,11 +136,11 @@ export default async function HomePage() {
               better understood over time.
             </p>
             <div className={s.heroCtas}>
-              <Link href="#open-booking-form" className={s.btnFilled}>
-                Book a House Service
-              </Link>
-              <Link href="/the-house/philosophy" className={s.btnGhost}>
-                Explore the House
+              <a href="#open-booking-form" className={s.btnFilled}>
+                Book through HoWA
+              </a>
+              <Link href="/shop" className={s.btnGhost}>
+                Shop the Marketplace
               </Link>
               <Link href="/howa" className={s.btnGhost}>
                 Start your Home Record
@@ -294,7 +294,7 @@ export default async function HomePage() {
             </p>
             <div className={s.servicesCtas}>
               <Link href="#open-booking-form" className={s.btnFilled}>
-                Book a House Service
+                Book through HoWA
               </Link>
               <Link href="/services" className={s.btnGhost}>
                 See all services <span aria-hidden className={s.arrow}>→</span>
@@ -599,7 +599,7 @@ export default async function HomePage() {
           </div>
 
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="#open-booking-form" className={s.btnFilled}>Book a House Service</Link>
+            <Link href="#open-booking-form" className={s.btnFilled}>Book through HoWA</Link>
             <Link href="/services" className={s.btnGhost}>
               See all services <span aria-hidden className={s.arrow}>→</span>
             </Link>
@@ -622,7 +622,7 @@ export default async function HomePage() {
           A House for the home you love, <em>kept to the standard a good home deserves.</em>
         </p>
         <div className={s.closingCtas}>
-          <Link href="#open-booking-form" className={s.btnFilled}>Book a House Service</Link>
+          <Link href="#open-booking-form" className={s.btnFilled}>Book through HoWA</Link>
           <Link href="/shop" className={s.btnGhostDark}>Shop the Marketplace</Link>
         </div>
       </section>

@@ -48,7 +48,7 @@ const STAT_COLS = [
   { value: "4", label: "Disciplines at launch" },
   { value: "17", label: "House standards" },
   { value: "1", label: "Calendar to trust" },
-  { value: "0", label: "Sub-contracted finish" },
+  { value: "No", label: "Unapproved hands" },
 ];
 
 const SERVICES = [

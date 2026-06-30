@@ -197,7 +197,7 @@ export function BookingForm({
           loading={isSubmitting}
           disabled={isSubmitting}
         >
-          Book a House Service
+          Book through HoWA
         </Button>
         <p className={`font-sans text-[12px] leading-[1.6] mt-3 ${dark ? "text-house-cream/55" : "text-house-brown/55"}`}>
           Online bookings are handled through HoWA and kept in your Home Record.
