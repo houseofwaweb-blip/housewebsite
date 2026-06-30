@@ -139,11 +139,13 @@
 .heroCtas {
   display: flex;
   flex-wrap: wrap;
+  align-items: stretch;
   gap: 10px;
 }
-/* Hero CTAs sized to their content, each label on one line (no wrapping or
-   truncation). They sit on one row on desktop and stack on small screens. */
+/* Both hero CTAs grow equally and stretch to a shared height, so the filled and
+   ghost buttons are the same size; each label stays on one line. */
 .heroCtas > a {
+  flex: 1 1 200px;
   justify-content: center;
   text-align: center;
   white-space: nowrap;

@@ -138,7 +138,7 @@ export default async function HomePage() {
             </p>
             <div className={s.heroCtas}>
               <a href="#open-booking-form" className={s.btnFilled}>
-                Book a House service through HoWA
+                Book through HoWA
               </a>
               <Link href="/shop" className={s.btnGhost}>
                 Shop the Marketplace

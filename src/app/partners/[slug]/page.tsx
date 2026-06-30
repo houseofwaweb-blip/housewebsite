@@ -176,6 +176,20 @@ function LocalPartnerPage({ partner: p }: { partner: LaunchPartner }) {
           </div>
           <h2 className={s.designerName}>{p.name}.</h2>
           <p className={s.designerRole}>{p.role}</p>
+          {p.type !== "brand-partner" ? (
+            <p
+              style={{
+                fontFamily: "var(--font-hearth-serif)",
+                fontStyle: "italic",
+                fontSize: 15,
+                lineHeight: 1.5,
+                color: "var(--color-house-gold-dark)",
+                margin: "12px 0 0",
+              }}
+            >
+              Proud to partner with HoWA, who handles all our bookings.
+            </p>
+          ) : null}
           {p.longBio.map((para, i) => (
             <p
               key={i}
