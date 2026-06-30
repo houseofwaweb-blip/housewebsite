@@ -131,9 +131,9 @@ export function EnquiryForm({
           </p>
           <p className={cn("font-sans text-[13px] mt-6", isDark ? "text-house-cream/60" : "text-house-stone")}>
             Prefer to book online?{" "}
-            <Link href="#open-booking-form" className={cn("underline underline-offset-[3px]", isDark ? "text-house-gold-light" : "text-house-gold-dark")}>
+            <a href="#open-booking-form" className={cn("underline underline-offset-[3px]", isDark ? "text-house-gold-light" : "text-house-gold-dark")}>
               Book a House service
-            </Link>
+            </a>
             .
           </p>
         </div>

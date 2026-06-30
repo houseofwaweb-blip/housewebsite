@@ -94,6 +94,14 @@ export function ContactForm({ turnstileSiteKey, sourcePage }: ContactFormProps) 
     },
   });
 
+  // No Turnstile site key configured (local/preview without the env var): skip
+  // the widget entirely and satisfy the token field, so the form still submits
+  // instead of rendering the Cloudflare "unable to connect" error. The server
+  // skips verification when its secret is likewise unset.
+  React.useEffect(() => {
+    if (!turnstileSiteKey) setValue("turnstileToken", "no-turnstile", { shouldValidate: false });
+  }, [turnstileSiteKey, setValue]);
+
   const activeTopic = topic ? TOPICS.find((t) => t.value === topic)! : null;
 
   const onSubmit = async (data: ContactSubmissionOutput) => {
@@ -191,16 +199,20 @@ export function ContactForm({ turnstileSiteKey, sourcePage }: ContactFormProps) 
             {...register("message")}
           />
 
-          <TurnstileField
-            ref={turnstileRef}
-            siteKey={turnstileSiteKey}
-            onToken={(token) => setValue("turnstileToken", token, { shouldValidate: true })}
-            onExpire={() => setValue("turnstileToken", "")}
-          />
-          {errors.turnstileToken ? (
-            <p className="font-sans text-[12px] text-red-700">
-              {errors.turnstileToken.message}
-            </p>
+          {turnstileSiteKey ? (
+            <>
+              <TurnstileField
+                ref={turnstileRef}
+                siteKey={turnstileSiteKey}
+                onToken={(token) => setValue("turnstileToken", token, { shouldValidate: true })}
+                onExpire={() => setValue("turnstileToken", "")}
+              />
+              {errors.turnstileToken ? (
+                <p className="font-sans text-[12px] text-red-700">
+                  {errors.turnstileToken.message}
+                </p>
+              ) : null}
+            </>
           ) : null}
 
           <div className="pt-2">

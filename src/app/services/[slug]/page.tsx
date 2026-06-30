@@ -6,6 +6,8 @@ import { sanityFetch } from "@/lib/cms/fetch";
 import { serviceBySlugQuery } from "@/lib/cms/queries";
 import { urlFor } from "@/lib/cms/image";
 import { SERVICES, SERVICE_ORDER, type ServiceSlug } from "@/lib/services-data";
+import { SOON_SERVICE_CARDS } from "../page";
+import { EnquiryForm } from "@/components/marketing/EnquiryForm";
 import { getAllServiceSlugs } from "@/lib/cms/services";
 import { ServiceDetail } from "@/components/marketing/ServiceDetail";
 import { PortableText } from "@/components/cms/PortableText";
@@ -85,7 +87,16 @@ export async function generateMetadata({
     };
   }
   const service = await loadSanityService(slug);
-  if (!service) return { title: "Service not found" };
+  if (!service) {
+    const soon = SOON_SERVICE_CARDS.find((c) => c.slug === slug);
+    if (soon) {
+      return {
+        title: `${soon.name} (coming soon)`,
+        description: `${soon.tagline} ${soon.body}`,
+      };
+    }
+    return { title: "Service not found" };
+  }
   return {
     title: service.seo?.title ?? service.name,
     description: service.seo?.description ?? service.lede,
@@ -133,7 +144,13 @@ export default async function ServicePage({
 
   // 2. Sanity fallback — lander framework
   const service = await loadSanityService(slug);
-  if (!service) notFound();
+
+  // 3. Coming-soon services (linked from the index + footer, no full page yet)
+  if (!service) {
+    const soon = SOON_SERVICE_CARDS.find((c) => c.slug === slug);
+    if (soon) return <ComingSoonService card={soon} />;
+    notFound();
+  }
 
   return (
     <div className={s.page}>
@@ -279,7 +296,55 @@ export default async function ServicePage({
   );
 }
 
+/** Coming-soon page for a deferred service: still informative, still captures
+ *  interest, never a 404. */
+function ComingSoonService({
+  card,
+}: {
+  card: { slug: string; name: string; tagline: string; body: string; image: string };
+}) {
+  return (
+    <div className={s.page}>
+      <section className={s.hero}>
+        <div className={s.heroCopy}>
+          <div className={s.heroCopyInner}>
+            <p className={s.heroEy}>Coming soon</p>
+            <h1 className={s.heroTitle}>{card.name}</h1>
+            <p className={s.heroLede}>
+              {card.tagline} {card.body}
+            </p>
+            <div className={s.heroCtas}>
+              <Link href="/services" className={s.btnGhost}>
+                Browse live services →
+              </Link>
+            </div>
+          </div>
+        </div>
+        <div className={s.heroVisual}>
+          <Image
+            src={card.image}
+            alt={card.name}
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            priority
+            style={{ objectFit: "cover" }}
+          />
+        </div>
+      </section>
+
+      <EnquiryForm
+        defaultService="general"
+        sourcePage={`/services/${card.slug}`}
+        eyebrow="Register interest"
+        headline={`${card.name} is coming to the House.`}
+        body={`We are bringing ${card.name.toLowerCase()} to the House. Leave your details and we will tell you the moment it opens, and answer anything in the meantime.`}
+      />
+    </div>
+  );
+}
+
 export async function generateStaticParams() {
   const slugs = await getAllServiceSlugs();
-  return slugs.map((slug) => ({ slug }));
+  const soon = SOON_SERVICE_CARDS.map((c) => c.slug);
+  return Array.from(new Set([...slugs, ...soon])).map((slug) => ({ slug }));
 }

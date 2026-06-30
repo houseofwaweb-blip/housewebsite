@@ -144,6 +144,16 @@ const SERVICES = [
   },
 ];
 
+/** The deferred services, exposed so /services/[slug] can render a coming-soon
+ *  page for them instead of 404ing (they're linked from here + the footer). */
+export const SOON_SERVICE_CARDS = SERVICES.filter((sv) => sv.state === "soon").map((sv) => ({
+  slug: sv.slug,
+  name: sv.name,
+  tagline: sv.tagline,
+  body: sv.body,
+  image: sv.image,
+}));
+
 const PLANS = [
   {
     name: "Apartment Plan",
