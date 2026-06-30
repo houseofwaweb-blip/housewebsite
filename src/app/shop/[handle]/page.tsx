@@ -251,7 +251,7 @@ export default async function ProductPage({
             </p>
             <dl className="m-0 space-y-2.5">
               {[
-                ["Supplier", product.houseApproved ? "House Approved maker" : "Vetted House maker"],
+                ["Supplier", product.brand?.trim() || "House Approved maker"],
                 ["Care", product.careNotes?.trim() || "Surface-appropriate care notes, saved with the item."],
                 ["Warranty", "Receipt and any warranty stored at purchase."],
                 ["Replacement", "HoWA reminds you when it is due for renewal."],
