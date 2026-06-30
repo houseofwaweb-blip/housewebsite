@@ -661,7 +661,7 @@
 }
 .briefMockLine {
   display: grid;
-  grid-template-columns: 32px 110px 1fr;
+  grid-template-columns: 28px 150px 1fr;
   gap: 12px;
   align-items: baseline;
   padding: 14px 0;
@@ -680,7 +680,7 @@
 }
 .briefMockLabel {
   font-size: 11px;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(245, 240, 232, 0.55);
   font-weight: 500;
@@ -826,7 +826,7 @@
   .carouselDotActive, .carouselDotActive:hover { width: 20px; }
   .plansGrid { grid-template-columns: 1fr; }
   .briefCopy, .briefMock { padding: 48px 24px; }
-  .briefMockLine { grid-template-columns: 24px 90px 1fr; gap: 8px; font-size: 13px; }
+  .briefMockLine { grid-template-columns: 22px 120px 1fr; gap: 8px; font-size: 13px; }
 }
 
 /* Flower watermark host: clip the off-edge motif, keep content above */

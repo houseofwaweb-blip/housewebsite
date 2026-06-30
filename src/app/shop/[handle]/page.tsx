@@ -242,6 +242,28 @@ export default async function ProductPage({
 
           <ProductCopy product={product} />
 
+          {/* Warranty, care, supplier, replacement — what the Home Record keeps
+              for this object (brief slide 9/10). Supplier is real product data;
+              the rest is framed as what HoWA stores at and after purchase. */}
+          <div className="mt-7 border-t border-house-brown/12 pt-6">
+            <p className="font-sans text-[10px] tracking-[0.22em] uppercase text-house-gold-dark mb-3">
+              Kept in your Home Record
+            </p>
+            <dl className="m-0 space-y-2.5">
+              {[
+                ["Supplier", product.houseApproved ? "House Approved maker" : "Vetted House maker"],
+                ["Care", product.careNotes?.trim() || "Surface-appropriate care notes, saved with the item."],
+                ["Warranty", "Receipt and any warranty stored at purchase."],
+                ["Replacement", "HoWA reminds you when it is due for renewal."],
+              ].map(([k, v]) => (
+                <div key={k} className="flex gap-4 font-sans text-[13px] leading-[1.5]">
+                  <dt className="w-[92px] shrink-0 text-house-stone">{k}</dt>
+                  <dd className="m-0 text-house-brown">{v}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
           {/* Secondary CTA (brief slide 9) — present on every product, but the
               wording adapts: installable/maintainable goods get the fitting line,
               everything else gets a calmer House-services line (a mug isn't
