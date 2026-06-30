@@ -123,7 +123,7 @@ export default async function DesignLanding() {
             </p>
             <div className={s.heroCtas}>
               <Link href={cms(hero, "ctaHref", "#open-booking-form")} className={s.btnFilled}>
-                {cms(hero, "ctaLabel", "Commission a space")}
+                {cms(hero, "ctaLabel", "Start a design brief through HoWA")}
               </Link>
               <Link href={cms(hero, "cta2Href", "/design/studios")} className={s.btnGhost}>
                 {cms(hero, "cta2Label", "See House Approved studios")}
@@ -313,7 +313,7 @@ export default async function DesignLanding() {
         </p>
         <div className={s.closingCtas}>
           <Link href={cms(closing, "ctaHref", "#open-booking-form")} className={s.closingBtnFilled}>
-            {cms(closing, "ctaLabel", "Start a brief")}
+            {cms(closing, "ctaLabel", "Start a brief through HoWA")}
           </Link>
           <Link href={cms(closing, "cta2Href", "/howa/assistant")} className={s.closingBtnGhost}>
             {cms(closing, "cta2Label", "Or use the Assistant")} →

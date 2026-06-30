@@ -315,9 +315,9 @@ export function ServiceDetail({ service }: { service: Service }) {
               Book one-off care <em>through HoWA.</em>
             </h3>
             <p className={s.bookingBlurb}>
-              Single visits, seasonal jobs, or a one-off tidy. Book through HoWA
-              and the work is logged to your home record. No subscription
-              required.
+              Single visits, seasonal jobs, or a one-off tidy, booked through
+              HoWA. Visit notes, photos, products used, costs and next reminders
+              are saved to your Home Record. No subscription required.
             </p>
             {soon ? (
               <div className={s.heroCtas}>
