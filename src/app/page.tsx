@@ -6,6 +6,7 @@ import { getLatestHearthArticles } from "@/lib/cms/hearth";
 import { shopifyProvider } from "@/lib/commerce/shopify";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { HowaAppBanner } from "@/components/marketing/HowaAppBanner";
+import { EnquiryForm } from "@/components/marketing/EnquiryForm";
 
 /**
  * Homepage — House-led (v5).
@@ -605,6 +606,14 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Enquiry / book-a-service form — direct lead capture into the Home Record */}
+      <EnquiryForm
+        sourcePage="/"
+        eyebrow="Get in touch"
+        headline="Speak to the House."
+        body="Ask a question or tell us which service you are after, and we will come back to you personally. Choose a service below, or leave it as a general enquiry."
+      />
 
       {/* 13. Closing CTA */}
       <section className={s.closing}>

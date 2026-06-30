@@ -8,6 +8,7 @@ import type { Service } from "@/lib/services-data";
 import { SERVICE_AREAS } from "@/lib/services-data/sub-services";
 import s from "./ServiceDetail.module.css";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
+import { EnquiryForm } from "@/components/marketing/EnquiryForm";
 
 const PUBLIC = path.join(process.cwd(), "public");
 // Services / sub-services without their own photography fall back to the
@@ -386,6 +387,15 @@ export function ServiceDetail({ service }: { service: Service }) {
           We're expanding.
         </p>
       </section>
+
+      {/* Enquiry form — prefilled with this service */}
+      <EnquiryForm
+        defaultService={service.slug}
+        sourcePage={`/services/${service.slug}`}
+        eyebrow="Enquire"
+        headline={`Ask about ${service.name.toLowerCase()}.`}
+        body="Tell us about your home and what you need. We come back to you personally, usually within one working day. Or book online in a couple of minutes."
+      />
 
       {/* 10. Closing */}
       <section className={s.closing}>
