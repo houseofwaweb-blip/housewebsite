@@ -39,8 +39,10 @@ export function ProductBuy({
   // Catalog mode — browse only, no purchasing yet.
   if (!buyable) {
     return (
-      <div className="mb-9">
-        <span className="inline-block px-7 py-4 font-sans text-[11px] tracking-[0.22em] uppercase text-house-stone bg-house-cream-dark border border-house-brown/12">
+      <div className="mb-3">
+        {/* Buy action stand-in until checkout is live — same size as the Home
+            Record button below it, distinct colour (brand brown vs gold) */}
+        <span className="inline-flex w-full items-center justify-center gap-2 px-6 py-4 font-sans text-[11px] tracking-[0.18em] uppercase text-house-cream bg-house-brown border border-house-brown">
           Available at launch
         </span>
       </div>

@@ -162,9 +162,14 @@ export function ServiceDetail({ service }: { service: Service }) {
                   </Link>
                 </>
               ) : (
-                <Link href="#open-booking-form" className={s.btnFilled}>
-                  Book {service.name.toLowerCase()}
-                </Link>
+                <>
+                  <Link href="#open-booking-form" className={s.btnFilled}>
+                    Book {service.name.toLowerCase()}
+                  </Link>
+                  <Link href="/api/howa-bounce?source=service-hero" className={s.btnGhostLight}>
+                    Start a plan
+                  </Link>
+                </>
               )}
             </div>
           </div>
@@ -191,6 +196,9 @@ export function ServiceDetail({ service }: { service: Service }) {
                 <>
                   <Link href="#open-booking-form" className={s.btnFilled}>
                     Book {service.name.toLowerCase()}
+                  </Link>
+                  <Link href="/api/howa-bounce?source=service-hero" className={s.btnGhost}>
+                    Start a plan
                   </Link>
                   {service.recurring ? (
                     <span className={s.stewardBadge}>Steward-ready</span>

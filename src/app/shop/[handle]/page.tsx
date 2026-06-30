@@ -218,8 +218,12 @@ export default async function ProductPage({
               }}
             />
           ) : (
-            <div className="mb-4">
-              <span className={s.comingSoon}>Available at launch</span>
+            <div className="mb-3">
+              {/* Buy action stand-in until checkout is live — same size as the
+                  Home Record button, distinct colour (brand brown vs gold) */}
+              <span className="inline-flex w-full items-center justify-center gap-2 border border-house-brown bg-house-brown px-6 py-4 font-sans text-[11px] tracking-[0.18em] uppercase text-house-cream">
+                Available at launch
+              </span>
             </div>
           )}
 
