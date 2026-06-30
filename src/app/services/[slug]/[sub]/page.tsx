@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { EnquiryForm } from "@/components/marketing/EnquiryForm";
 import fs from "node:fs";
 import path from "node:path";
 import { notFound } from "next/navigation";
@@ -329,6 +330,14 @@ export default async function SubServicePage({
       ) : null}
 
       {/* 7. Closing */}
+      <EnquiryForm
+        defaultService={parent.slug}
+        sourcePage={`/services/${parent.slug}/${service.slug}`}
+        eyebrow="Enquire"
+        headline={`Ask about ${service.name.toLowerCase()}.`}
+        body="Tell us about your home and what you need. We come back to you personally, usually within one working day. Or book online in a couple of minutes."
+      />
+
       <section className={s.closing}>
         <p className={s.closingKicker}>Ready when you are</p>
         <p className={s.closingStatement}>
