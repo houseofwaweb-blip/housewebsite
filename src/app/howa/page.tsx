@@ -7,6 +7,7 @@ import { V6Testimonial } from "./V6Sections";
 import { V4Hero } from "./v4/_components/V4Hero";
 import { V4Portrait } from "./v4/_components/V4Portrait";
 import { V4Bands } from "./v4/_components/V4Bands";
+import { V4WhyHere } from "./v4/_components/V4WhyHere";
 import { V4Record } from "./v4/_components/V4Record";
 import { V4WhatItDoes } from "./v4/_components/V4WhatItDoes";
 import { V4Demo } from "./v4/_components/V4Demo";
@@ -75,6 +76,7 @@ Created from <em>House of Willow Alexander</em>
         <div className="order-1 lg:order-none"><V4Hero /></div>
         <div className="order-1 lg:order-none"><V4Portrait /></div>
         <div className="order-3 lg:order-none"><V4Bands /></div>
+        <div className="order-2 lg:order-none"><V4WhyHere /></div>
         <div className="order-2 lg:order-none"><V4Record /></div>
         <div className="order-2 lg:order-none"><V4WhatItDoes /></div>
         <div className="order-2 lg:order-none"><V4Demo /></div>
