@@ -6,6 +6,7 @@ import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { GhostLink } from "@/components/primitives/GhostLink";
 import { PortableText } from "@/components/cms/PortableText";
 import { HearthMasthead } from "@/components/hearth/HearthMasthead";
+import { HearthHowaHooks } from "@/components/hearth/HearthHowaHooks";
 import { HearthTitle } from "@/components/hearth/HearthTitle";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { HearthPaywall } from "@/components/hearth/HearthPaywall";
@@ -257,6 +258,9 @@ export default async function ArticlePage({
             <span className="flex-1" />
           )}
         </nav>
+
+        {/* Soft conversion into HoWA action (brief slide 14) */}
+        <HearthHowaHooks />
 
         {/* Post-read signup — captures the reader at peak interest. Cream
             variant matches the Hearth surface; sourcePage carries the slug

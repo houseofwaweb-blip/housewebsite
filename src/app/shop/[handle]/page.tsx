@@ -218,6 +218,15 @@ export default async function ProductPage({
           )}
 
           <ProductCopy product={product} />
+
+          {/* Service cross-sell (brief slide 9): connect objects to House care */}
+          <p className="mt-6 font-sans text-[13px] leading-[1.6] text-house-stone">
+            Need this fitted, hung, cleaned or maintained?{" "}
+            <a href="#open-booking-form" className="text-house-gold-dark underline underline-offset-[3px]">
+              Book through HoWA
+            </a>{" "}
+            and it is kept in your Home Record.
+          </p>
         </div>
       </div>
 
