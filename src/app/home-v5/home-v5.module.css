@@ -110,7 +110,7 @@
 }
 .heroTitle {
   font-family: var(--font-hearth-serif);
-  font-weight: 400;
+  font-weight: 600;
   font-size: clamp(56px, 6.4vw, 100px);
   line-height: 0.98;
   letter-spacing: -0.01em;
@@ -262,7 +262,7 @@
 .pillarTitle {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-weight: 400;
+  font-weight: 600;
   font-size: clamp(19px, 1.6vw, 23px);
   line-height: 1.15;
   color: var(--color-house-cream);
@@ -297,7 +297,7 @@
 }
 .houseIntroHead {
   font-family: var(--font-hearth-serif);
-  font-weight: 400;
+  font-weight: 600;
   font-size: clamp(40px, 4.4vw, 64px);
   line-height: 1.05;
   letter-spacing: -0.01em;
@@ -354,7 +354,7 @@
 .originCopy { display: flex; flex-direction: column; align-items: flex-start; }
 .originTitle {
   font-family: var(--font-hearth-serif);
-  font-weight: 400;
+  font-weight: 600;
   font-size: clamp(32px, 3.8vw, 52px);
   line-height: 1.06;
   letter-spacing: -0.01em;
@@ -410,7 +410,7 @@
 .howaIntroCopy { max-width: 520px; }
 .howaIntroTitle {
   font-family: var(--font-hearth-serif);
-  font-weight: 400;
+  font-weight: 600;
   font-size: clamp(40px, 4.4vw, 60px);
   line-height: 1.04;
   color: var(--color-house-brown);
@@ -485,7 +485,7 @@
 .principleTitle {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-weight: 400;
+  font-weight: 600;
   font-size: clamp(20px, 1.8vw, 26px);
   line-height: 1.15;
   color: var(--color-house-brown);
@@ -529,7 +529,7 @@
 .servicesTitle {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-weight: 400;
+  font-weight: 600;
   font-size: clamp(36px, 4vw, 56px);
   line-height: 1.05;
   color: var(--color-house-brown);
@@ -567,7 +567,7 @@
   left: clamp(16px, 1.8vw, 22px);
   z-index: 2;
   font-family: var(--font-hearth-serif);
-  font-weight: 400;
+  font-weight: 600;
   font-size: clamp(18px, 2vw, 25px);
   line-height: 1.05;
   letter-spacing: -0.01em;
@@ -617,7 +617,7 @@
 .hearthCopy { max-width: 460px; }
 .hearthTitle {
   font-family: var(--font-hearth-serif);
-  font-weight: 400;
+  font-weight: 600;
   font-size: clamp(38px, 4.2vw, 58px);
   line-height: 1.05;
   color: var(--color-house-cream);
@@ -698,7 +698,7 @@
 }
 .marketTitle {
   font-family: var(--font-hearth-serif);
-  font-weight: 400;
+  font-weight: 600;
   font-size: clamp(32px, 3.6vw, 50px);
   line-height: 1.05;
   color: var(--color-house-brown);
@@ -766,7 +766,7 @@
 }
 .intelTitle {
   font-family: var(--font-hearth-serif);
-  font-weight: 400;
+  font-weight: 600;
   font-size: clamp(38px, 4.2vw, 58px);
   line-height: 1.04;
   color: var(--color-house-cream);
@@ -813,7 +813,7 @@
 .tiersHead { text-align: center; max-width: 760px; margin: 0 auto 48px; }
 .tiersTitle {
   font-family: var(--font-hearth-serif);
-  font-weight: 400;
+  font-weight: 600;
   font-size: clamp(32px, 3.6vw, 50px);
   line-height: 1.05;
   color: var(--color-house-brown);
@@ -831,7 +831,7 @@
 }
 .poweredTitle {
   font-family: var(--font-hearth-serif);
-  font-weight: 400;
+  font-weight: 600;
   font-size: clamp(30px, 3.4vw, 46px);
   color: var(--color-house-brown);
   margin: 12px 0 40px;
@@ -869,7 +869,7 @@
 }
 .closingStatement {
   font-family: var(--font-hearth-serif);
-  font-weight: 400;
+  font-weight: 600;
   font-size: clamp(36px, 4.6vw, 68px);
   line-height: 1.08;
   color: var(--color-house-cream);
