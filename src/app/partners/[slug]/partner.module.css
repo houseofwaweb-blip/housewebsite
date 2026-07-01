@@ -14,7 +14,9 @@
 .heroImage { position: absolute; inset: 0; }
 .heroScrim {
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(20, 14, 8, 0.38) 0%, rgba(20, 14, 8, 0.05) 35%, rgba(20, 14, 8, 0.62) 100%);
+  background:
+    linear-gradient(90deg, rgba(20, 14, 8, 0.8) 0%, rgba(20, 14, 8, 0.52) 44%, rgba(20, 14, 8, 0.16) 74%, rgba(20, 14, 8, 0) 100%),
+    linear-gradient(180deg, rgba(20, 14, 8, 0.16) 0%, rgba(20, 14, 8, 0.1) 42%, rgba(20, 14, 8, 0.52) 100%);
 }
 .heroCopy {
   position: relative;
