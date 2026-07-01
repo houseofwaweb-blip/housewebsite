@@ -162,65 +162,10 @@ export default async function DesignLanding() {
             {cms(
               disciplines,
               "body",
-              "The House does not operate as an open directory of designers. We work with our own garden design studio and a small number of House Approved design partners, chosen for taste, care, communication and the ability to leave a home better understood than they found it. At launch, design begins through two clear routes: Willow Alexander Gardens for gardens and outdoor spaces, and Delve Interiors for considered interiors.",
+              "The House does not operate as an open directory of designers. We work with our own garden design studio and a small number of House Approved design partners, chosen for taste, care, communication and the ability to leave a home better understood than they found it. At launch, design begins through two clear routes: Willow Alexander Gardens for gardens and outdoor spaces, and Delve Interiors for considered interiors. More designers and makers will be invited into the House Approved circle as the standard proves itself.",
             )}
           </p>
         </header>
-        <div className={s.disciplinesGrid}>
-          <Link href="/design/interiors" className={s.disciplineCard}>
-            <div className={s.disciplineImage}>
-              <Image
-                src="/home-v4/pillar-1.webp"
-                alt="A warm parlour interior with marble fireplace and flowers"
-                width={1168}
-                height={784}
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            </div>
-            <div className={s.disciplineBody}>
-              <p className={s.disciplineNumeral}>I.</p>
-              <h3 className={s.disciplineName}>Interiors</h3>
-              <p className={s.disciplineTagline}>
-                Considered schemes, from whole-house renovations to
-                single-room re-reads.
-              </p>
-              <p className={s.disciplineBlurb}>
-                Working with studios who understand period homes, listed
-                fabric, and the rhythms of how people actually live. The
-                result reads worn-in, not decorated.
-              </p>
-              <span className={s.disciplineCta}>Discover interiors →</span>
-            </div>
-          </Link>
-
-          <Link href="/design/gardens" className={s.disciplineCard}>
-            <div className={s.disciplineImage}>
-              <Image
-                src="/home-v4/design-garden-day.jpg"
-                alt="A late-summer garden with brick paths and a Georgian house behind"
-                width={1024}
-                height={1024}
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
-            </div>
-            <div className={s.disciplineBody}>
-              <p className={s.disciplineNumeral}>II.</p>
-              <h3 className={s.disciplineName}>Gardens</h3>
-              <p className={s.disciplineTagline}>
-                Planting plans and landscape work, led by Willow Alexander
-                Gardens.
-              </p>
-              <p className={s.disciplineBlurb}>
-                Designed around what the garden already wants to do: light,
-                shade, drainage, the soil it has. The brief is to make the
-                garden feel inevitable, ten years from now.
-              </p>
-              <span className={s.disciplineCta}>Discover gardens →</span>
-            </div>
-          </Link>
-        </div>
       </section>
 
       {/* 4. Two live routes + HoWA design intelligence */}
