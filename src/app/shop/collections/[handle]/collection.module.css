@@ -43,7 +43,7 @@
   font-weight: 500;
 }
 .heroTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(44px, 6vw, 80px);
   line-height: 1.04;
@@ -92,7 +92,7 @@
   font-weight: 500;
 }
 .othersTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(26px, 3vw, 38px);
   line-height: 1.1;

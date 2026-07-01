@@ -44,7 +44,7 @@ export interface EditorialPageProps {
 }
 
 const headingStyle: React.CSSProperties = {
-  fontFamily: "var(--font-hearth-serif)",
+  fontFamily: "var(--font-display)",
   fontStyle: "italic",
   fontWeight: 400,
   fontSize: "clamp(26px, 2.8vw, 36px)",
@@ -81,7 +81,7 @@ function SectionText({ section }: { section: EditorialSection }) {
         <blockquote style={{ margin: "32px 0 0", paddingLeft: 28, borderLeft: "2px solid var(--color-house-gold)" }}>
           <p
             style={{
-              fontFamily: "var(--font-hearth-serif)",
+              fontFamily: "var(--font-display)",
               fontStyle: "italic",
               fontWeight: 400,
               fontSize: "clamp(20px, 2.2vw, 28px)",
@@ -177,7 +177,7 @@ export function EditorialPage({ eyebrow, title, lede, sections, updatedAt, heroI
           </p>
           <h1
             style={{
-              fontFamily: "var(--font-hearth-serif)",
+              fontFamily: "var(--font-display)",
               fontWeight: 400,
               fontSize: "clamp(44px, 5.4vw, 84px)",
               lineHeight: 1.02,

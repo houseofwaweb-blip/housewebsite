@@ -15,7 +15,7 @@
   font-weight: 500;
 }
 .sectionTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(28px, 3.4vw, 44px);
   line-height: 1.1;
@@ -114,7 +114,7 @@
 .crumbLink:hover { color: var(--color-house-brown); }
 .crumbSep { margin: 0 10px; color: var(--color-house-gold-dark); opacity: 0.6; }
 .heroTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(44px, 5.4vw, 80px);
   line-height: 1.02;
@@ -336,7 +336,7 @@
   font-weight: 500;
 }
 .closingStatement {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(36px, 4.6vw, 64px);
   line-height: 1.08;

@@ -389,7 +389,7 @@ export default async function ServicesLanding() {
           </p>
           <h2
             className="text-center"
-            style={{ fontFamily: "var(--font-hearth-serif)", fontWeight: 400, fontSize: "clamp(26px,3.4vw,42px)", lineHeight: 1.1, color: "var(--color-house-cream)", margin: "0 0 clamp(28px,4vw,52px)" }}
+            style={{ fontFamily: "var(--font-display)", fontWeight: 400, fontSize: "clamp(26px,3.4vw,42px)", lineHeight: 1.1, color: "var(--color-house-cream)", margin: "0 0 clamp(28px,4vw,52px)" }}
           >
             Real teams. Real vans. <em>One House standard.</em>
           </h2>

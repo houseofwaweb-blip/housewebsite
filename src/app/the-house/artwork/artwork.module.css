@@ -36,7 +36,7 @@
   margin: 0 0 14px;
 }
 .headline {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(32px, 4.4vw, 56px);
   line-height: 1.05;
@@ -104,7 +104,7 @@
   font-weight: 500;
 }
 .heroTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(48px, 7.2vw, 104px);
   line-height: 1.02;
@@ -400,7 +400,7 @@
   text-align: center;
 }
 .pullQuoteText {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-style: italic;
   font-size: clamp(26px, 3.2vw, 40px);
   line-height: 1.32;
@@ -493,7 +493,7 @@
   opacity: 0.6;
 }
 .closingStatement {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-size: clamp(28px, 3.4vw, 44px);
   line-height: 1.2;
   letter-spacing: -0.012em;

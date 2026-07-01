@@ -20,7 +20,7 @@
   font-weight: 500;
 }
 .heroTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(44px, 6vw, 80px);
   line-height: 1.05;
@@ -59,7 +59,7 @@
   font-weight: 500;
 }
 .denomsTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(28px, 3.4vw, 44px);
   line-height: 1.1;
@@ -90,7 +90,7 @@
   transform: translateY(-2px);
 }
 .denomValue {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(28px, 2.8vw, 38px);
   color: var(--color-house-brown);
@@ -128,7 +128,7 @@
   font-weight: 500;
 }
 .howTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(28px, 3.4vw, 44px);
   line-height: 1.1;
@@ -190,7 +190,7 @@
   font-weight: 500;
 }
 .closingStatement {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(28px, 3.4vw, 44px);
   line-height: 1.2;

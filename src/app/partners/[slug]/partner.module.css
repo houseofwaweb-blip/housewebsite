@@ -40,7 +40,7 @@
   opacity: 0.78;
 }
 .heroTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(48px, 6.4vw, 96px);
   line-height: 1.02;
@@ -155,7 +155,7 @@
   padding: 4px 10px;
 }
 .designerName {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(34px, 4vw, 52px);
   line-height: 1.1;
@@ -226,7 +226,7 @@
   font-weight: 500;
 }
 .servicesTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(28px, 3.2vw, 42px);
   line-height: 1.1;
@@ -297,7 +297,7 @@
   font-weight: 500;
 }
 .packagesTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(32px, 3.8vw, 50px);
   line-height: 1.1;
@@ -349,7 +349,7 @@
 }
 .packageCardFeatured .packageTier { color: var(--color-house-gold-light); }
 .packageName {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: 30px;
   line-height: 1.1;
@@ -451,7 +451,7 @@
   font-weight: 500;
 }
 .projectsTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(32px, 3.8vw, 50px);
   line-height: 1.1;
@@ -512,7 +512,7 @@
   margin-bottom: clamp(36px, 4vw, 56px);
 }
 .faqTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(28px, 3.2vw, 40px);
   line-height: 1.1;
@@ -567,7 +567,7 @@
   font-weight: 500;
 }
 .closingStatement {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(28px, 3.4vw, 44px);
   line-height: 1.25;
@@ -592,7 +592,7 @@
   max-width: 640px;
 }
 .simpleHeroTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(40px, 5vw, 72px);
   line-height: 1.05;

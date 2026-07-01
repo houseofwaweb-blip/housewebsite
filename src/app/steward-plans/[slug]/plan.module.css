@@ -52,7 +52,7 @@
   font-weight: 500;
 }
 .heroTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(40px, 5.4vw, 76px);
   line-height: 1.05;
@@ -76,7 +76,7 @@
   border-top: 1px solid rgba(212, 175, 90, 0.32);
 }
 .heroPrice {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(36px, 4vw, 56px);
   color: var(--color-house-gold-light);
@@ -157,7 +157,7 @@
   margin-bottom: 40px;
 }
 .inclusionsTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: 28px;
   line-height: 1.1;
@@ -210,7 +210,7 @@
   font-weight: 500;
 }
 .siblingsTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(26px, 3vw, 38px);
   line-height: 1.1;

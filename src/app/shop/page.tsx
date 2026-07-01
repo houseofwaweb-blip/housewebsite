@@ -259,7 +259,7 @@ export default async function ShopPage() {
           </p>
           <h1 className="font-display text-[clamp(30px,3.4vw,48px)] leading-[1.05] tracking-[-0.01em] text-house-brown">
             Objects with a place{" "}
-            <em className="italic" style={{ fontFamily: "var(--font-hearth-serif)" }}>
+            <em className="italic" style={{ fontFamily: "var(--font-display)" }}>
               in the House.
             </em>
           </h1>

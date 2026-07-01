@@ -240,7 +240,7 @@ export default async function DesignLanding() {
           <p className="text-center" style={{ fontFamily: "var(--font-sans)", fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--color-house-gold-dark)", margin: "0 0 14px", fontWeight: 500 }}>
             How a commission works
           </p>
-          <h2 className="text-center" style={{ fontFamily: "var(--font-hearth-serif)", fontWeight: 400, fontSize: "clamp(26px,3.4vw,42px)", lineHeight: 1.1, color: "var(--color-house-brown)", margin: "0 0 clamp(32px,4vw,56px)" }}>
+          <h2 className="text-center" style={{ fontFamily: "var(--font-display)", fontWeight: 400, fontSize: "clamp(26px,3.4vw,42px)", lineHeight: 1.1, color: "var(--color-house-brown)", margin: "0 0 clamp(32px,4vw,56px)" }}>
             Brief to <em>handover.</em>
           </h2>
           <ol className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-4 list-none p-0 m-0">
@@ -252,7 +252,7 @@ export default async function DesignLanding() {
               { n: "05", t: "Handover", d: "The finished space, written to your Home Record." },
             ].map((step) => (
               <li key={step.n} className="text-center sm:text-left">
-                <span style={{ fontFamily: "var(--font-hearth-serif)", fontStyle: "italic", fontSize: 28, color: "var(--color-house-gold-dark)", display: "block", marginBottom: 8 }}>{step.n}</span>
+                <span style={{ fontFamily: "var(--font-display)", fontStyle: "italic", fontSize: 28, color: "var(--color-house-gold-dark)", display: "block", marginBottom: 8 }}>{step.n}</span>
                 <p style={{ fontFamily: "var(--font-sans)", fontSize: 12, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--color-house-brown)", margin: "0 0 8px", fontWeight: 600 }}>{step.t}</p>
                 <p style={{ fontFamily: "var(--font-sans)", fontSize: 13.5, lineHeight: 1.55, color: "rgba(48,35,28,0.7)", margin: 0 }}>{step.d}</p>
               </li>

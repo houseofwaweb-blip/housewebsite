@@ -326,7 +326,7 @@ export default async function HomePage() {
           <p className="text-center" style={{ fontFamily: "var(--font-sans)", fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--color-house-gold-light)", margin: "0 0 14px", fontWeight: 500 }}>
             On the road
           </p>
-          <h2 className="text-center" style={{ fontFamily: "var(--font-hearth-serif)", fontWeight: 400, fontSize: "clamp(26px,3.6vw,44px)", lineHeight: 1.1, color: "var(--color-house-cream)", margin: "0 0 clamp(28px,4vw,52px)" }}>
+          <h2 className="text-center" style={{ fontFamily: "var(--font-display)", fontWeight: 400, fontSize: "clamp(26px,3.6vw,44px)", lineHeight: 1.1, color: "var(--color-house-cream)", margin: "0 0 clamp(28px,4vw,52px)" }}>
             Real people, real standards, <em>one remembered home.</em>
           </h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">

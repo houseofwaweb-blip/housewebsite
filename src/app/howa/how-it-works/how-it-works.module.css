@@ -68,7 +68,7 @@
   opacity: 0.7;
 }
 .heroTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(48px, 5.6vw, 84px);
   line-height: 1.0;
@@ -171,7 +171,7 @@
   border-left: 1px solid rgba(48, 35, 28, 0.12);
 }
 .statValue {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-size: clamp(32px, 3vw, 44px);
   font-weight: 400;
   line-height: 1;
@@ -234,7 +234,7 @@
   font-weight: 500;
 }
 .verbTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
   font-size: clamp(34px, 3.8vw, 54px);
@@ -299,7 +299,7 @@
   font-weight: 500;
 }
 .compoundTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
   font-size: clamp(28px, 3.4vw, 48px);
@@ -355,7 +355,7 @@
   font-weight: 500;
 }
 .closingStatement {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
   font-size: clamp(32px, 3.6vw, 52px);

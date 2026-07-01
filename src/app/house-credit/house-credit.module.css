@@ -20,7 +20,7 @@
   font-weight: 500;
 }
 .heroTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(48px, 6.4vw, 88px);
   line-height: 1.04;
@@ -59,7 +59,7 @@
   font-weight: 500;
 }
 .featuresTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(28px, 3.4vw, 44px);
   line-height: 1.1;
@@ -121,7 +121,7 @@
   font-weight: 500;
 }
 .exampleTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(26px, 3.2vw, 40px);
   line-height: 1.1;
@@ -155,7 +155,7 @@
 }
 .exampleStat:last-child { border-right: none; }
 .exampleStatValue {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(28px, 3vw, 38px);
   color: var(--color-house-gold-dark);
@@ -189,7 +189,7 @@
   font-weight: 500;
 }
 .closingStatement {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(28px, 3.4vw, 44px);
   line-height: 1.2;

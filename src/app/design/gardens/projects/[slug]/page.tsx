@@ -61,7 +61,7 @@ export default async function GardenProjectPage({
           Willow Alexander Gardens · {project.type}
         </p>
         <h1
-          className="font-hearth-serif text-[clamp(40px,5.4vw,76px)] leading-[1.02] tracking-[-0.02em]"
+          className="font-display text-[clamp(40px,5.4vw,76px)] leading-[1.02] tracking-[-0.02em]"
           style={{ color: "var(--color-house-brown)" }}
         >
           {project.title}
@@ -127,7 +127,7 @@ export default async function GardenProjectPage({
 
       {/* CTA */}
       <section className="border-t border-house-brown/10 px-6 sm:px-10 py-[clamp(56px,7vw,104px)] text-center">
-        <h2 className="font-hearth-serif text-[clamp(26px,3vw,40px)] leading-[1.1]" style={{ color: "var(--color-house-brown)" }}>
+        <h2 className="font-display text-[clamp(26px,3vw,40px)] leading-[1.1]" style={{ color: "var(--color-house-brown)" }}>
           Considering a garden of your own?
         </h2>
         <p className="mt-4 font-sans text-[16px] leading-[1.6] text-house-brown/70 max-w-[46ch] mx-auto">

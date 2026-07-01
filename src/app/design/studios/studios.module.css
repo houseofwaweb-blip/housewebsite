@@ -40,7 +40,7 @@
   opacity: 0.7;
 }
 .heroTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(44px, 5.4vw, 80px);
   line-height: 1.02;
@@ -135,7 +135,7 @@
   border-left: 1px solid rgba(48, 35, 28, 0.12);
 }
 .statValue {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-size: clamp(28px, 2.6vw, 40px);
   font-weight: 400;
   line-height: 1;
@@ -177,7 +177,7 @@
   font-weight: 500;
 }
 .studiosTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(34px, 4vw, 56px);
   line-height: 1.1;
@@ -235,7 +235,7 @@
   font-weight: 500;
 }
 .studioName {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
   font-size: clamp(24px, 2.4vw, 32px);
@@ -308,7 +308,7 @@
   font-weight: 500;
 }
 .testsTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(32px, 3.8vw, 52px);
   line-height: 1.1;
@@ -384,7 +384,7 @@
   font-weight: 500;
 }
 .commissionTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(32px, 3.8vw, 52px);
   line-height: 1.1;
@@ -417,7 +417,7 @@
   border-left: 2px solid var(--color-house-gold-dark);
 }
 .commissionStepN {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
   font-size: clamp(28px, 2.8vw, 36px);
@@ -459,7 +459,7 @@
   font-weight: 500;
 }
 .closingStatement {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(36px, 4.6vw, 64px);
   line-height: 1.08;

@@ -30,7 +30,7 @@
   opacity: 0.7;
 }
 .heroTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(44px, 6vw, 80px);
   line-height: 1.04;

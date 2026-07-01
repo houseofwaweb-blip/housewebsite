@@ -74,7 +74,7 @@
   opacity: 0.78;
 }
 .heroTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(44px, 6vw, 88px);
   line-height: 1.02;
@@ -117,7 +117,7 @@
   font-weight: 500;
 }
 .pillarsTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(30px, 3.4vw, 46px);
   line-height: 1.1;
@@ -194,7 +194,7 @@
   font-weight: 500;
 }
 .ladderTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(30px, 3.4vw, 46px);
   line-height: 1.1;
@@ -235,7 +235,7 @@
   font-weight: 500;
 }
 .howTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(30px, 3.4vw, 46px);
   line-height: 1.1;
@@ -317,7 +317,7 @@
   font-weight: 500;
 }
 .imageBandTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(28px, 3.6vw, 46px);
   line-height: 1.1;
@@ -358,7 +358,7 @@
   font-weight: 500;
 }
 .includedTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(28px, 3.2vw, 42px);
   line-height: 1.1;
@@ -452,7 +452,7 @@
   font-weight: 500;
 }
 .calculatorTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(28px, 3.2vw, 42px);
   line-height: 1.1;
@@ -487,7 +487,7 @@
   font-weight: 500;
 }
 .membershipTitle {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(28px, 3.6vw, 46px);
   line-height: 1.1;
@@ -533,7 +533,7 @@
   border-top: 1px solid rgba(48, 35, 28, 0.08);
 }
 .closingStatement {
-  font-family: var(--font-hearth-serif);
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(22px, 3vw, 36px);
   line-height: 1.3;
