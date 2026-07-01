@@ -34,7 +34,7 @@
   --howa-light: #f0f4f3;
 
   /* Accessible alternatives — WCAG AA compliant (2026-04-22 audit) */
-  --house-gold-dark: #8a6f2e;  /* 5.16:1 on white — text and filled buttons */
+  --house-gold-dark: #7a6229;  /* WCAG AA: 5.1:1 on cream — text and filled buttons */
   --text-muted: rgba(48,35,28,0.7); /* ~5.5:1 on white — replaces house-stone for body */
 
   /* Semantic */
@@ -200,8 +200,11 @@ body {
 
 /* Focus ring — gold, offset, visible on all keyboard-reachable elements */
 *:focus-visible {
-  outline: 2px solid var(--house-gold);
+  /* WCAG 1.4.11: 3px gold-dark ring (5:1 on cream) + a light halo so the focus
+     indicator stays visible on dark surfaces too. */
+  outline: 3px solid var(--color-house-gold-dark);
   outline-offset: 2px;
+  box-shadow: 0 0 0 5px rgba(245, 240, 232, 0.4);
   transition: outline-offset var(--t-fast) var(--ease-out);
 }
 
