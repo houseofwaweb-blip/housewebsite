@@ -23,52 +23,49 @@ export const metadata = {
 };
 
 const STAT_COLS = [
-  { value: "2", label: "Disciplines" },
-  { value: "4", label: "Launch studios" },
-  { value: "1", label: "Annual review" },
-  { value: "0", label: "Hidden commission" },
+  { value: "2", label: "Live design routes" },
+  { value: "1", label: "In-house garden studio" },
+  { value: "1", label: "House Approved interiors partner" },
+  { value: "+", label: "Invited by standard, not volume" },
 ];
 
-const PARTNERS = [
+// Two live routes plus HoWA's design layer. The wider House Approved circle
+// grows by standard, not volume — no directory, no Jessica/House-AI padding.
+const CARDS = [
   {
-    slug: "delve-interiors",
-    name: "Delve Interiors",
-    type: "Interiors studio",
-    blurb:
-      "Considered schemes, quiet palettes, careful detailing. London and the South East.",
-    image: "/design/interiors/project-tunbridge-1.webp",
-  },
-  {
-    slug: "jessica-durling-mcmahon",
-    name: "Jessica Durling-McMahon",
-    type: "Interior designer",
-    blurb:
-      "Layered rooms with confident colour, antiques properly used, and a love of textile.",
-    image: "/design/interiors/project-bedroom.webp",
-  },
-  {
-    slug: "willow-alexander-gardens",
     name: "Willow Alexander Gardens",
-    type: "Garden design",
+    type: "Garden design · planting · outdoor living · ecological schemes",
     blurb:
-      "Planting schemes and landscapes rooted in the garden's existing character.",
+      "The original creative studio of the House. Planting-led gardens, seasonal structure, edible spaces, ecological thinking and outdoor rooms with lasting character.",
+    cta: "Explore garden design",
+    href: "/design/gardens",
     image: "/design/gardens/hero.jpg",
   },
   {
-    slug: "house-ai",
-    name: "House AI",
-    type: "Specialist partner",
+    name: "Delve Interiors",
+    type: "Interior design · rooms · finishes · schemes",
     blurb:
-      "Automation, lighting schemes, and quiet technology that disappears into the architecture.",
-    image: "/home-v4/design-portrait.webp",
+      "A considered interiors partner for homes that need calm, detail, proportion and a more resolved way of living.",
+    cta: "Explore interiors",
+    href: "/design/interiors",
+    image: "/design/interiors/project-tunbridge-1.webp",
+  },
+  {
+    name: "HoWA Design Intelligence",
+    type: "Moodboards · briefs · home record · project memory",
+    blurb:
+      "For early ideas, room scans, garden prompts and structured briefs. HoWA helps turn inspiration into a design record: images, preferences, budgets, decisions, suppliers and care notes saved against the home.",
+    cta: "Start with HoWA",
+    href: "/howa",
+    image: "/home/howa-app.webp",
   },
 ];
 
 const SEAL_LINES = [
-  "We've worked with the principal directly on at least one project.",
-  "Their references include people we already trust.",
-  "Their craft, communication and finish all hold up under scrutiny.",
-  "They review with us annually, and we publish what changes.",
+  "Chosen for taste, care and communication.",
+  "Judged on whether they leave a home better understood than they found it.",
+  "Held to the test we set ourselves: would we trust this in a home we love?",
+  "Invited into the House Approved circle by standard, not by volume.",
 ];
 
 export default async function DesignLanding() {
@@ -84,11 +81,12 @@ export default async function DesignLanding() {
     value: pick(c.value ?? c.label, base?.value ?? ""),
     label: pick(c.title ?? c.body, base?.label ?? ""),
   }));
-  const partnerCards = cmsCards(partners, PARTNERS, (c, base) => ({
-    slug: base?.slug ?? "",
+  const routeCards = cmsCards(partners, CARDS, (c, base) => ({
     name: pick(c.title, base?.name ?? ""),
     type: pick(c.label, base?.type ?? ""),
     blurb: pick(c.body, base?.blurb ?? ""),
+    cta: base?.cta ?? "",
+    href: base?.href ?? "",
     image: base?.image ?? "",
   }));
   const sealLines = seal?.items ?? SEAL_LINES;
@@ -111,22 +109,22 @@ export default async function DesignLanding() {
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>{cms(hero, "eyebrow", "The House · Design")}</p>
             <h1 className={s.heroTitle}>
-              {cms(hero, "headline", "Rooms and gardens,")}{" "}
-              <em>{cms(hero, "headlineEm", "made to last.", "headline")}</em>
+              {cms(hero, "headline", "Design by the")}{" "}
+              <em>{cms(hero, "headlineEm", "House.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
               {cms(
                 hero,
                 "body",
-                "Interiors and gardens are a House discipline, care as craft worked out in plaster, paint, planting and light. Commissioned through House Approved studios who understand period fabric, the way a garden drains, and how people actually live in their rooms. Book online and every brief, decision and handover is written into your Home Record.",
+                "Rooms, gardens, and the quiet work of making a home feel properly known. Begin with a conversation through HoWA: we learn the home, the brief, the budget, the rhythm of the household and the feeling you are trying to create, then guide you towards the right design route.",
               )}
             </p>
             <div className={s.heroCtas}>
               <Link href={cms(hero, "ctaHref", "#open-booking-form")} className={s.btnFilled}>
-                {cms(hero, "ctaLabel", "Start a design brief through HoWA")}
+                {cms(hero, "ctaLabel", "Start a design brief")}
               </Link>
-              <Link href={cms(hero, "cta2Href", "/design/studios")} className={s.btnGhost}>
-                {cms(hero, "cta2Label", "See House Approved studios")}
+              <Link href={cms(hero, "cta2Href", "#routes")} className={s.btnGhost}>
+                {cms(hero, "cta2Label", "Explore interiors and gardens")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
@@ -155,11 +153,18 @@ export default async function DesignLanding() {
       {/* 3. Two disciplines */}
       <section className={s.disciplines}>
         <header className={s.disciplinesHead}>
-          <p className={s.disciplinesEy}>{cms(disciplines, "eyebrow", "Two disciplines")}</p>
+          <p className={s.disciplinesEy}>{cms(disciplines, "eyebrow", "The circle")}</p>
           <h2 className={s.disciplinesTitle}>
-            {cms(disciplines, "headline", "One studio standard,")}{" "}
-            <em>{cms(disciplines, "headlineEm", "two crafts.", "headline")}</em>
+            {cms(disciplines, "headline", "A small design world,")}{" "}
+            <em>{cms(disciplines, "headlineEm", "growing carefully.", "headline")}</em>
           </h2>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: 16, lineHeight: 1.7, color: "rgba(48,35,28,0.72)", margin: "18px auto 0", maxWidth: "64ch" }}>
+            {cms(
+              disciplines,
+              "body",
+              "The House does not operate as an open directory of designers. We work with our own garden design studio and a small number of House Approved design partners, chosen for taste, care, communication and the ability to leave a home better understood than they found it. At launch, design begins through two clear routes: Willow Alexander Gardens for gardens and outdoor spaces, and Delve Interiors for considered interiors.",
+            )}
+          </p>
         </header>
         <div className={s.disciplinesGrid}>
           <Link href="/design/interiors" className={s.disciplineCard}>
@@ -218,36 +223,32 @@ export default async function DesignLanding() {
         </div>
       </section>
 
-      {/* 4. Launch partners */}
-      <section className={s.partners}>
+      {/* 4. Two live routes + HoWA design intelligence */}
+      <section id="routes" className={s.partners}>
         <header className={s.partnersHead}>
-          <p className={s.partnersEy}>{cms(partners, "eyebrow", "Our studios")}</p>
+          <p className={s.partnersEy}>{cms(partners, "eyebrow", "How design begins")}</p>
           <h2 className={s.partnersTitle}>
-            {cms(partners, "headline", "Four launch")}{" "}
-            <em>{cms(partners, "headlineEm", "partners.", "headline")}</em>
+            {cms(partners, "headline", "Two live routes.")}{" "}
+            <em>{cms(partners, "headlineEm", "One growing circle.", "headline")}</em>
           </h2>
           <p className={s.partnersLede}>
             {cms(
               partners,
               "body",
-              "We name our partners openly. Each has been signed up on the understanding that House Approved is a standard, not a label, reviewed annually, honestly, by both sides.",
+              "Design begins with what is real: our garden studio, our first interiors partner, and HoWA's design intelligence layer. The wider House Approved design circle will grow slowly, not to fill a directory, but to protect the standard.",
             )}
           </p>
         </header>
         <div className={s.partnersGrid}>
-          {partnerCards.map((p) => (
-            <Link
-              key={p.slug}
-              href={`/partners/${p.slug}`}
-              className={s.partnerCard}
-            >
+          {routeCards.map((p) => (
+            <Link key={p.name} href={p.href} className={s.partnerCard}>
               <div className={s.partnerImage}>
                 <Image
                   src={p.image}
                   alt={p.name}
                   width={720}
                   height={540}
-                  sizes="(min-width: 1024px) 25vw, 90vw"
+                  sizes="(min-width: 1024px) 33vw, 90vw"
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
               </div>
@@ -255,16 +256,10 @@ export default async function DesignLanding() {
                 <p className={s.partnerType}>{p.type}</p>
                 <h3 className={s.partnerName}>{p.name}</h3>
                 <p className={s.partnerBlurb}>{p.blurb}</p>
-                <span className={s.partnerCta}>Read profile →</span>
+                <span className={s.partnerCta}>{p.cta} →</span>
               </div>
             </Link>
           ))}
-        </div>
-        <div className={s.partnersFoot}>
-          <Link href="/design/studios" className={s.partnersFootLink}>
-            Meet the whole collective
-            <span aria-hidden="true">→</span>
-          </Link>
         </div>
       </section>
 
