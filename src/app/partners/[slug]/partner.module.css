@@ -66,7 +66,7 @@
   right: 24px;
   z-index: 2;
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(245, 240, 232, 0.5);
@@ -147,7 +147,7 @@
 .designerSealMark {
   display: inline-flex; align-items: center; gap: 6px;
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -194,7 +194,7 @@
 .designerMetaItem { display: flex; flex-direction: column; gap: 6px; }
 .designerMetaLabel {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -218,7 +218,7 @@
 }
 .servicesEy {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -289,7 +289,7 @@
 }
 .packagesEy {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -340,7 +340,7 @@
 .packageCardFeatured:hover { transform: translateY(-16px); }
 .packageTier {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -443,7 +443,7 @@
 }
 .projectsEy {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -479,7 +479,7 @@
 .projectCard:hover .projectImage img { transform: scale(1.03); }
 .projectCaption {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);

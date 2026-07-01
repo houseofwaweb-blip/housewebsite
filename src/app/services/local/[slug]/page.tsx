@@ -206,7 +206,7 @@ export default async function LocalServicePage({
                 href={`/services/${svc.slug}`}
                 className="group bg-house-cream p-7 no-underline text-house-brown transition-colors hover:bg-house-cream-dark"
               >
-                <p className="font-sans text-[10px] tracking-[0.32em] uppercase text-house-gold-dark mb-3">
+                <p className="font-sans text-[11px] tracking-[0.32em] uppercase text-house-gold-dark mb-3">
                   Service
                 </p>
                 <h3 className="em-accent font-display font-medium text-[22px] leading-[1.15] mb-3">
@@ -215,7 +215,7 @@ export default async function LocalServicePage({
                 <p className="font-sans text-[13px] leading-[1.55] text-house-brown/72 mb-4">
                   {svc.blurb}
                 </p>
-                <p className="font-sans text-[10px] tracking-[0.22em] uppercase text-house-gold-dark border-t border-house-brown/10 pt-3">
+                <p className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-dark border-t border-house-brown/10 pt-3">
                   Available in {location} →
                 </p>
               </Link>

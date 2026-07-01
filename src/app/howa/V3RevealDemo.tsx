@@ -36,13 +36,13 @@ export function V3RevealDemo() {
             <div className="mt-6 grid max-w-[520px] grid-cols-2 gap-3">
               {facts.map((f) => (
                 <div key={f.k} className="rounded-xl border border-[color:var(--color-gold)]/20 bg-white px-4 py-3">
-                  <p className="smallcaps text-[9.5px] tracking-[0.12em] text-[color:var(--color-gold-deep)]">{f.k}</p>
+                  <p className="smallcaps text-[11px] tracking-[0.12em] text-[color:var(--color-gold-deep)]">{f.k}</p>
                   <p className="mt-1 font-display text-[18px] leading-none text-[color:var(--color-ink)]">{f.v}</p>
-                  <p className="mt-1 font-mono text-[9.5px] text-[color:var(--color-ink-soft)]/60">{f.note}</p>
+                  <p className="mt-1 font-mono text-[11px] text-[color:var(--color-ink-soft)]/60">{f.note}</p>
                 </div>
               ))}
             </div>
-            <p className="mt-5 max-w-[520px] font-mono text-[10.5px] tracking-[0.06em] text-[color:var(--color-ink-soft)]/55">
+            <p className="mt-5 max-w-[520px] font-mono text-[11px] tracking-[0.06em] text-[color:var(--color-ink-soft)]/55">
               ILLUSTRATIVE: drawn from UK public records (EPC, Environment Agency, Historic England, VOA, planning) once live.
             </p>
           </div>

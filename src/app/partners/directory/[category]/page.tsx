@@ -169,7 +169,7 @@ export default async function DirectoryPage({
                       {p.specialties.slice(0, 4).map((spec) => (
                         <span
                           key={spec}
-                          className="font-sans text-[10px] tracking-[0.06em] text-house-brown/55 border border-house-brown/12 px-2 py-0.5"
+                          className="font-sans text-[11px] tracking-[0.06em] text-house-brown/55 border border-house-brown/12 px-2 py-0.5"
                         >
                           {spec}
                         </span>

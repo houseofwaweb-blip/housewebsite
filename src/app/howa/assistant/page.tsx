@@ -229,7 +229,7 @@ export default async function AssistantPage() {
         <div className={s.heroVisual}>
           {/* Floating UI card over the empty olive wall, askhowa style */}
           <div className="hidden lg:block absolute left-[8%] top-[14%] z-10 w-[232px] bg-[#faf7f0] border border-[color:var(--color-gold)]/35 shadow-[0_22px_50px_-18px_rgba(30,30,15,0.5)] px-5 py-4">
-            <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-[color:var(--color-gold-deep)] mb-3 flex items-center gap-1.5">
+            <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-[color:var(--color-gold-deep)] mb-3 flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#5f6a49]" aria-hidden /> Free with Assistant
             </p>
             <ul className="space-y-2.5">

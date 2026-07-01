@@ -557,7 +557,7 @@ function Nav({ tab, setTab }: { tab: Tab; setTab: (t: Tab) => void }) {
         return (
           <button key={it.id} onClick={() => setTab(it.id)} className={"flex flex-1 flex-col items-center gap-1 py-1 transition-colors " + (active ? "text-[#5f6a49]" : "text-[color:var(--color-ink-soft)]/55")}>
             <span className={active ? "scale-110 transition-transform" : "transition-transform"}>{it.icon}</span>
-            <span className="text-[10px] tracking-wide">{it.label}</span>
+            <span className="text-[11px] tracking-wide">{it.label}</span>
           </button>
         );
       })}

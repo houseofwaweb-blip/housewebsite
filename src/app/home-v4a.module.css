@@ -153,7 +153,7 @@
 }
 .btnGhost:hover { border-color: var(--color-house-brown); }
 .btnGhost small {
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.32em;
   opacity: 0.55;
   margin-left: 8px;
@@ -177,7 +177,7 @@
   padding-top: 8px;
 }
 .heroNextCare strong {
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -282,7 +282,7 @@
   letter-spacing: -0.005em;
 }
 .appHeaderDate {
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -296,7 +296,7 @@
   background: linear-gradient(180deg, rgba(245, 235, 218, 0.35), rgba(251, 246, 236, 0));
 }
 .appHeroLabel {
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -400,7 +400,7 @@
   background: linear-gradient(180deg, rgba(251, 246, 236, 0), rgba(245, 235, 218, 0.55));
 }
 .appFooterCta {
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -490,7 +490,7 @@
 }
 .statLabel {
   font-family: var(--font-sans);
-  font-size: clamp(9px, 0.75vw, 10px);
+  font-size: clamp(11px, 0.75vw, 10px);
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -669,7 +669,7 @@
 }
 .tierLearn {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--fg);
@@ -975,7 +975,7 @@
 }
 .pillarLabel {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -1001,7 +1001,7 @@
 }
 .poweredByEy {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);

@@ -594,7 +594,7 @@
 }
 .heroBadgeDot { width: 9px; height: 9px; background: var(--gold); display: inline-block; }
 .heroBadgeLive {
-  font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.16em;
+  font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.16em;
   text-transform: uppercase; color: #6fae8b;
 }
 .heroBadgeScore { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
@@ -602,7 +602,7 @@
 .heroBadgeScoreNum { font-family: var(--font-display); font-weight: 700; font-size: 2.6rem; line-height: 1; color: var(--gold); }
 .heroBadgeScoreNum span { font-size: 1.1rem; color: var(--ink-faint); }
 .heroBadge .scoreBarTrack { margin: 0.9rem 0 0.5rem; }
-.heroBadgeState { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.16em; font-size: 10.5px; color: var(--gold); margin-bottom: 1.1rem; }
+.heroBadgeState { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.16em; font-size: 11px; color: var(--gold); margin-bottom: 1.1rem; }
 .heroBadgeList { list-style: none; margin: 0; padding: 0; }
 .heroBadgeRow {
   display: flex; justify-content: space-between; gap: 1rem;
@@ -636,7 +636,7 @@
 .statItem { display: flex; flex-direction: column; gap: 0.5rem; }
 @media (min-width: 760px) { .statItem + .statItem { border-left: 1px solid rgba(243,237,224,0.12); } }
 .statValue { font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 3.4vw, 3rem); color: var(--cream); line-height: 1; }
-.statLabel { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.16em; font-size: 10.5px; color: var(--ink-faint); }
+.statLabel { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.16em; font-size: 11px; color: var(--ink-faint); }
 
 /* 3b. Quote panel */
 .quotePanel { background: var(--navy-deep); padding: clamp(2.5rem, 5vh, 3.5rem) 1.5rem clamp(4rem, 9vh, 6.5rem); text-align: center; }
@@ -652,7 +652,7 @@
   .pillarRowAlt .pillarText { order: 2; }
 }
 .pillarNum { font-family: var(--font-hearth-serif); font-style: italic; font-size: 2rem; color: var(--gold); margin-bottom: 1rem; }
-.pillarSubLabel { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.2em; font-size: 10.5px; color: var(--gold); margin-bottom: 0.9rem; }
+.pillarSubLabel { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; color: var(--gold); margin-bottom: 0.9rem; }
 .pillarHeading { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.01em; line-height: 1.1; font-size: clamp(1.6rem, 2.8vw, 2.3rem); margin-bottom: 1.1rem; }
 .pillarBody { font-family: var(--font-sans); font-size: 15.5px; line-height: 1.7; color: var(--ink-light); max-width: 46ch; }
 .scenarioCard { margin: 1.75rem 0 0; padding: 1.25rem 1.5rem; border-left: 2px solid var(--gold); background: rgba(38,52,76,0.4); font-family: var(--font-hearth-serif); font-style: italic; font-size: 15.5px; line-height: 1.6; color: var(--ink-light); }
@@ -670,7 +670,7 @@
 .scoreBarTrack { height: 8px; background: rgba(243,237,224,0.12); margin: 1rem 0 0.5rem; }
 .scoreBarFill { display: block; height: 100%; background: var(--gold); }
 .scoreCardState { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.16em; font-size: 11px; color: var(--gold); margin-bottom: 1.5rem; }
-.scoreDriversLabel { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.16em; font-size: 10.5px; color: var(--ink-faint); margin-bottom: 0.9rem; }
+.scoreDriversLabel { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.16em; font-size: 11px; color: var(--ink-faint); margin-bottom: 0.9rem; }
 .scoreDrivers { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; }
 .driverRow { display: grid; grid-template-columns: 9px 1fr 90px 22px; align-items: center; gap: 0.6rem; font-family: var(--font-sans); font-size: 13px; color: var(--ink-light); }
 .driverDot { width: 7px; height: 7px; background: var(--gold); }
@@ -706,7 +706,7 @@
 .compareFeature { text-align: left; font-family: var(--font-sans); font-size: 14px; color: var(--cream); }
 .compareColSteward { color: var(--gold); border-left: 1px solid rgba(197,169,96,0.35); border-right: 1px solid rgba(197,169,96,0.35); }
 .compareCellSteward { background: rgba(197,169,96,0.07); border-left: 1px solid rgba(197,169,96,0.35); border-right: 1px solid rgba(197,169,96,0.35); }
-.compareBadge { display: block; margin-top: 0.3rem; font-size: 9px; letter-spacing: 0.16em; color: var(--gold); }
+.compareBadge { display: block; margin-top: 0.3rem; font-size: 11px; letter-spacing: 0.16em; color: var(--gold); }
 .compareDash { color: var(--ink-faint); }
 .compareWord { font-family: var(--font-sans); font-size: 12.5px; color: var(--ink-light); }
 .compareWordGold { font-family: var(--font-display); font-weight: 700; color: var(--gold); }
@@ -717,7 +717,7 @@
 /* 8. Grouped features */
 .incCopy { align-self: start; }
 .featureGroups { display: grid; gap: 2rem; }
-.featureGroupLabel { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.18em; font-size: 10.5px; color: var(--gold); margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid rgba(197,169,96,0.25); }
+.featureGroupLabel { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.18em; font-size: 11px; color: var(--gold); margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid rgba(197,169,96,0.25); }
 .featureGroupList { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.8rem; }
 
 /* 10. Managed Stewardship full-bleed */

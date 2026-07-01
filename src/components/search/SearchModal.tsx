@@ -262,7 +262,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
                   />
                 ) : null}
                 <div className="min-w-0">
-                  <div className="font-sans text-[10px] tracking-[0.22em] uppercase text-house-brown/60 mb-[4px]">
+                  <div className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-brown/60 mb-[4px]">
                     {r.type}
                   </div>
                   <h5 className="font-display text-[20px] font-medium text-house-brown mb-[4px]">

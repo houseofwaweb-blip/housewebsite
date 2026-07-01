@@ -14,7 +14,7 @@ export function CompanionTry() {
 
   return (
     <form onSubmit={handleSubmit} className="max-w-[560px] mx-auto">
-      <label className="block font-sans text-[10px] tracking-[0.22em] uppercase text-howa-teal mb-3 text-center">
+      <label className="block font-sans text-[11px] tracking-[0.22em] uppercase text-howa-teal mb-3 text-center">
         Try it yourself
       </label>
       <div className="relative">

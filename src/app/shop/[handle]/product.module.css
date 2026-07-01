@@ -141,7 +141,7 @@
 }
 .plaqueLabel {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   font-weight: 500;
@@ -167,7 +167,7 @@
 .eyebrowRow { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
 .collection {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -175,7 +175,7 @@
 }
 .seal {
   font-family: var(--font-sans);
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -248,7 +248,7 @@
 .relatedHead { max-width: 1320px; margin: 0 auto clamp(28px, 3vw, 40px); }
 .relatedEy {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);

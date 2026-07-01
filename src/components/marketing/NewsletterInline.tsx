@@ -245,7 +245,7 @@ export function NewsletterInline({
                 <fieldset className="mb-5">
                   <legend
                     className={cn(
-                      "font-sans text-[10px] tracking-[0.18em] uppercase mb-2",
+                      "font-sans text-[11px] tracking-[0.18em] uppercase mb-2",
                       isDark ? "text-house-cream/55" : "text-house-brown/50",
                     )}
                   >
@@ -291,7 +291,7 @@ export function NewsletterInline({
 
               <p
                 className={cn(
-                  "font-sans text-[10px] tracking-[0.12em] uppercase mt-4",
+                  "font-sans text-[11px] tracking-[0.12em] uppercase mt-4",
                   isDark ? "text-house-cream/40" : "text-house-brown/40",
                 )}
               >

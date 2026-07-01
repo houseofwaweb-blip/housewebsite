@@ -151,12 +151,12 @@ export function V6TierDeepDives() {
                     {t.body}
                   </p>
                   {t.plus && (
-                    <p className={"smallcaps text-[10.5px] tracking-[0.16em] mb-3 " + (dark ? "text-[#f3ede0]/55" : "text-[color:var(--color-ink-soft)]/65")}>
+                    <p className={"smallcaps text-[11px] tracking-[0.16em] mb-3 " + (dark ? "text-[#f3ede0]/55" : "text-[color:var(--color-ink-soft)]/65")}>
                       {t.plus}
                     </p>
                   )}
                   {t.groupLabel && (
-                    <p className="smallcaps text-[10px] tracking-[0.18em] mb-2.5" style={{ color: t.accent }}>
+                    <p className="smallcaps text-[11px] tracking-[0.18em] mb-2.5" style={{ color: t.accent }}>
                       {t.groupLabel}
                     </p>
                   )}
@@ -192,7 +192,7 @@ export function V6TierDeepDives() {
                     {/* floating UI card — sits over the empty colour field beside the
                         house, so nothing in the cutaway gets covered */}
                     <div className="hidden sm:block absolute top-1/2 -translate-y-1/2 left-4 lg:left-6 w-[166px] rounded-md bg-[#faf7f0] border border-[color:var(--color-gold)]/35 shadow-[0_16px_38px_-16px_rgba(20,15,5,0.5)] px-4 py-4">
-                      <p className="smallcaps text-[10px] tracking-[0.16em] text-[color:var(--color-gold-deep)] mb-2.5">{t.card.title}</p>
+                      <p className="smallcaps text-[11px] tracking-[0.16em] text-[color:var(--color-gold-deep)] mb-2.5">{t.card.title}</p>
                       <ul className="space-y-2">
                         {t.card.items.map((it) => (
                           <li key={it} className="flex items-center gap-2 text-[12.5px] leading-[1.25] text-[color:var(--color-ink-soft)]">
@@ -218,7 +218,7 @@ export function V6TierDeepDives() {
 
 function ComingTag({ dark }: { dark?: boolean }) {
   return (
-    <span className={"shrink-0 mt-0.5 smallcaps text-[9px] tracking-[0.14em] rounded-full px-2 py-0.5 " + (dark ? "border border-[#f3ede0]/25 text-[#f3ede0]/55" : "border border-[color:var(--color-ink)]/15 text-[color:var(--color-ink-soft)]/60")}>
+    <span className={"shrink-0 mt-0.5 smallcaps text-[11px] tracking-[0.14em] rounded-full px-2 py-0.5 " + (dark ? "border border-[#f3ede0]/25 text-[#f3ede0]/55" : "border border-[color:var(--color-ink)]/15 text-[color:var(--color-ink-soft)]/60")}>
       Coming
     </span>
   );

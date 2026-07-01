@@ -10,7 +10,7 @@
    ────────────────────────────────────────────────────────── */
 .kicker {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.36em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -127,7 +127,7 @@
 }
 .heroScrollCue {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.42em;
   text-transform: uppercase;
   color: var(--color-house-brown);
@@ -607,7 +607,7 @@
   .patternRevealInner { grid-template-columns: 1fr; }
   .headline { max-width: 100%; }
   .body { max-width: 100%; }
-  .closingKicker { font-size: 10px; letter-spacing: 0.32em; }
+  .closingKicker { font-size: 11px; letter-spacing: 0.32em; }
   .closingKicker::before,
   .closingKicker::after { width: 20px; }
 }

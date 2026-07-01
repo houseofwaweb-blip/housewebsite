@@ -37,7 +37,7 @@ export function V4HeroPhone() {
           {/* tab bar */}
           <div className="flex items-center justify-around border-t border-[#1d2a40]/10 bg-[#ece6d8] py-3">
             {["Home", "Timeline", "Record", "Profile"].map((t, i) => (
-              <span key={t} className={"text-[9px] tracking-[0.04em] " + (i === 0 ? "font-semibold text-[#1f3a2b]" : "text-[#1d2a40]/45")}>
+              <span key={t} className={"text-[11px] tracking-[0.04em] " + (i === 0 ? "font-semibold text-[#1f3a2b]" : "text-[#1d2a40]/45")}>
                 {t}
               </span>
             ))}
@@ -67,7 +67,7 @@ function ScoreCard() {
       <div className="flex items-center justify-between gap-3">
         <div className="flex flex-col items-center shrink-0">
           <ScoreGauge value={62} size={68} />
-          <span className="text-[10px] uppercase tracking-[0.16em] text-[#8a6f3f] mt-1.5">of 100</span>
+          <span className="text-[11px] uppercase tracking-[0.16em] text-[#8a6f3f] mt-1.5">of 100</span>
         </div>
         <div className="relative h-[78px] flex-1 max-w-[200px]">
           <Image src="/home-v4/card-graph.webp" alt="" fill sizes="200px" className="object-contain object-right" />

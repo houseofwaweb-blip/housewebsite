@@ -69,7 +69,7 @@ export function BasketClient() {
                   <button
                     type="button"
                     onClick={() => remove(line.id)}
-                    className="mt-2.5 font-sans text-[10px] tracking-[0.14em] uppercase text-house-stone bg-transparent border-0 cursor-pointer hover:text-house-brown transition-colors duration-[var(--t-base)]"
+                    className="mt-2.5 font-sans text-[11px] tracking-[0.14em] uppercase text-house-stone bg-transparent border-0 cursor-pointer hover:text-house-brown transition-colors duration-[var(--t-base)]"
                   >
                     Remove
                   </button>

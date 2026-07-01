@@ -193,7 +193,7 @@
 }
 .heroBadge {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.7);
@@ -227,7 +227,7 @@
 }
 .stepsLabel {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -514,7 +514,7 @@
 }
 .modeLearn {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--color-house-brown);
@@ -635,7 +635,7 @@
 .waitlistFootnote {
   margin: 16px 0 0;
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(243, 237, 225, 0.5);

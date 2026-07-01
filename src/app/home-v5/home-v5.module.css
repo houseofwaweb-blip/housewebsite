@@ -192,7 +192,7 @@
 }
 .quoteLabel {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.3em;
@@ -252,7 +252,7 @@
 }
 .pillarLabel {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.3em;
@@ -728,7 +728,7 @@
 }
 .productSoon {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.2em;
   color: rgba(48, 35, 28, 0.4);

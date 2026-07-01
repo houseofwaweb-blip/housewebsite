@@ -60,7 +60,7 @@ export function ProductCard({
           className="object-cover transition-all duration-[var(--t-xslow)] ease-out group-hover:scale-[1.02]"
         />
         {product.houseApproved ? (
-          <span className="absolute top-3 left-3 z-20 font-sans text-[9px] tracking-[0.22em] uppercase text-house-gold-dark bg-white/90 px-2.5 py-1 border border-house-gold/30">
+          <span className="absolute top-3 left-3 z-20 font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-dark bg-white/90 px-2.5 py-1 border border-house-gold/30">
             House Approved
           </span>
         ) : null}
@@ -80,7 +80,7 @@ export function ProductCard({
       {/* Copy */}
       <div className="flex flex-col gap-1">
         {product.collection ? (
-          <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-house-gold-dark">
+          <span className="font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-dark">
             {product.collection}
           </span>
         ) : null}

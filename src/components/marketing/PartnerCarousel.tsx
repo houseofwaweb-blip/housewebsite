@@ -143,7 +143,7 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = 
                   {typeLabel(p.type)}
                 </span>
                 {p.houseApprovedSeal && (
-                  <span className="font-sans text-[9px] tracking-[0.16em] uppercase text-house-moss border border-house-moss/30 px-2 py-0.5">
+                  <span className="font-sans text-[11px] tracking-[0.16em] uppercase text-house-moss border border-house-moss/30 px-2 py-0.5">
                     House Approved
                   </span>
                 )}
@@ -164,7 +164,7 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = 
               {p.specialties && p.specialties.length > 0 && (
                 <div className="flex flex-wrap gap-1.5 mb-5">
                   {p.specialties.slice(0, 4).map((s) => (
-                    <span key={s} className="font-sans text-[10px] tracking-[0.06em] text-house-brown/55 border border-house-brown/12 px-2 py-0.5">
+                    <span key={s} className="font-sans text-[11px] tracking-[0.06em] text-house-brown/55 border border-house-brown/12 px-2 py-0.5">
                       {s}
                     </span>
                   ))}

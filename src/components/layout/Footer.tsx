@@ -100,7 +100,7 @@ export function Footer({ columns, tagline }: FooterProps) {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10 pb-12 border-b border-[rgba(245,240,232,0.12)]">
           {cols.map((col) => (
             <div key={col.heading}>
-              <h4 className="font-sans text-[10px] tracking-[0.24em] uppercase text-house-gold-light mb-4">
+              <h4 className="font-sans text-[11px] tracking-[0.24em] uppercase text-house-gold-light mb-4">
                 {col.heading}
               </h4>
               <ul className="space-y-2">

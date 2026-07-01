@@ -27,7 +27,7 @@
 .crumbSep { margin: 0 10px; }
 .heroEy {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -102,7 +102,7 @@
   background: var(--color-house-gold-dark);
   color: var(--color-house-cream);
   font-family: var(--font-sans);
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   padding: 5px 10px;

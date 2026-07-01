@@ -23,7 +23,7 @@ export function HowaAppBanner() {
 
         {/* Copy */}
         <div className="flex-1 text-[color:var(--color-howa-paper)]">
-          <p className="mb-1.5 font-sans text-[10px] uppercase tracking-[0.3em] text-[color:var(--color-howa-teal)]">
+          <p className="mb-1.5 font-sans text-[11px] uppercase tracking-[0.3em] text-[color:var(--color-howa-teal)]">
             The HoWA app
           </p>
           <p className="font-display text-[clamp(18px,2vw,24px)] leading-[1.2]">

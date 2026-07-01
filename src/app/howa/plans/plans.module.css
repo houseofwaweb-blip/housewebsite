@@ -160,7 +160,7 @@
 }
 .statLabel {
   font-family: var(--font-sans);
-  font-size: clamp(9px, 0.75vw, 10px);
+  font-size: clamp(11px, 0.75vw, 10px);
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -185,7 +185,7 @@
 }
 .tiersEy {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -282,7 +282,7 @@
   gap: 8px;
   padding: 6px 12px;
   font-family: var(--font-sans);
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   font-weight: 500;
@@ -432,7 +432,7 @@
 }
 .compareEy {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -512,7 +512,7 @@
 .faqHead { text-align: center; margin-bottom: clamp(40px, 4vw, 64px); }
 .faqEy {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);

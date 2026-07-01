@@ -124,7 +124,7 @@ export function BookingForm({
 
       <div>
         <span
-          className={`font-sans text-[10px] tracking-[0.22em] uppercase block mb-3 ${
+          className={`font-sans text-[11px] tracking-[0.22em] uppercase block mb-3 ${
             dark ? "text-house-cream/70" : "text-house-brown/70"
           }`}
         >

@@ -54,7 +54,7 @@ function FilterSection({
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between py-2.5 bg-transparent border-0 cursor-pointer"
       >
-        <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-house-gold-dark">
+        <span className="font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-dark">
           {title}
         </span>
         <span
@@ -214,7 +214,7 @@ export function ShopBrowser({
       <aside className="md:sticky md:top-[89px] md:h-[calc(100vh-89px)] md:overflow-y-auto md:border-r md:border-house-brown/8 bg-house-white px-6 md:pl-[3.5vw] py-5 max-md:border-b max-md:border-house-brown/8 max-md:px-[5vw] max-md:py-4">
         {/* Search */}
         <div className="mb-4">
-          <div className="font-sans text-[10px] tracking-[0.2em] uppercase text-house-gold-dark mb-2">
+          <div className="font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-dark mb-2">
             Search
           </div>
           <input
@@ -264,7 +264,7 @@ export function ShopBrowser({
                   : "text-house-stone hover:text-house-brown hover:pl-1 max-md:hover:pl-0",
               )}
             >
-              All <span className="text-[10px] text-house-stone ml-1">{products.length}</span>
+              All <span className="text-[11px] text-house-stone ml-1">{products.length}</span>
             </button>
             {collections.map((c) => {
               const subs = SUBS_BY_HANDLE.get(c.handle) ?? [];
@@ -281,7 +281,7 @@ export function ShopBrowser({
                         : "text-house-stone hover:text-house-brown max-md:hover:pl-0",
                     )}
                   >
-                    {c.title} <span className="text-[10px] text-house-stone ml-1">{c.productCount}</span>
+                    {c.title} <span className="text-[11px] text-house-stone ml-1">{c.productCount}</span>
                   </button>
 
                   {/* Product types — reveal on hover (desktop only) */}
@@ -332,7 +332,7 @@ export function ShopBrowser({
                   activeBrands.has(b.name) ? "text-house-gold-dark" : "text-house-stone hover:text-house-brown",
                 )}
               >
-                {b.name} <span className="text-[10px] text-house-stone ml-1">{b.count}</span>
+                {b.name} <span className="text-[11px] text-house-stone ml-1">{b.count}</span>
               </button>
             ))}
           </div>
@@ -367,7 +367,7 @@ export function ShopBrowser({
           <button
             type="button"
             onClick={clearFilters}
-            className="mt-3 font-sans text-[10px] tracking-[0.14em] uppercase text-house-gold-dark bg-transparent border-0 cursor-pointer border-b border-dotted border-house-gold pb-0.5 hover:border-solid transition-all max-md:hidden"
+            className="mt-3 font-sans text-[11px] tracking-[0.14em] uppercase text-house-gold-dark bg-transparent border-0 cursor-pointer border-b border-dotted border-house-gold pb-0.5 hover:border-solid transition-all max-md:hidden"
           >
             Clear all filters ×
           </button>
@@ -384,7 +384,7 @@ export function ShopBrowser({
               <button
                 type="button"
                 onClick={clearFilters}
-                className="ml-2 font-sans text-[10px] tracking-[0.12em] uppercase text-house-gold-dark bg-transparent border-0 cursor-pointer border-b border-dotted border-house-gold pb-px"
+                className="ml-2 font-sans text-[11px] tracking-[0.12em] uppercase text-house-gold-dark bg-transparent border-0 cursor-pointer border-b border-dotted border-house-gold pb-px"
               >
                 Clear ×
               </button>
@@ -529,7 +529,7 @@ function Pagination({
   }
   const cell =
     "min-w-[32px] h-[32px] flex items-center justify-center font-sans text-[12px] cursor-pointer transition-colors duration-[var(--t-base)] bg-transparent border-0";
-  const arrow = "px-3 tracking-[0.12em] uppercase text-[10px]";
+  const arrow = "px-3 tracking-[0.12em] uppercase text-[11px]";
   return (
     <nav aria-label="Pagination" className="mt-16 flex items-center justify-center gap-1">
       <button

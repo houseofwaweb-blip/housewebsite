@@ -221,7 +221,7 @@ const components: PortableTextComponents = {
     marginNote: ({ value }: { value: MarginNoteBlock }) => (
       <aside className="my-10 md:float-right md:w-[32%] md:ml-8 md:mb-6 border-t border-b border-house-brown/15 py-6">
         {value.label ? (
-          <div className="font-sans text-[10px] tracking-[0.22em] uppercase text-house-gold-dark mb-2">
+          <div className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-dark mb-2">
             {value.label}
           </div>
         ) : null}
@@ -233,7 +233,7 @@ const components: PortableTextComponents = {
 
     inlineProduct: ({ value }: { value: InlineProductBlock }) => (
       <div className="my-10 border border-house-brown/12 p-6 flex flex-col gap-3">
-        <div className="font-sans text-[10px] tracking-[0.22em] uppercase text-house-gold-dark">
+        <div className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-dark">
           From the Shop
         </div>
         <Link
@@ -252,7 +252,7 @@ const components: PortableTextComponents = {
 
     inlineCollection: ({ value }: { value: InlineCollectionBlock }) => (
       <div className="my-10 border-t border-b border-house-brown/12 py-6">
-        <div className="font-sans text-[10px] tracking-[0.22em] uppercase text-house-gold-dark mb-2">
+        <div className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-dark mb-2">
           A House-approved collection
         </div>
         <Link

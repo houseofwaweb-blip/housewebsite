@@ -83,12 +83,12 @@ function PlanCard({ plan: p, mobile }: { plan: StewardPlan; mobile?: boolean }) 
       }
     >
       {isFeatured ? (
-        <span className="absolute top-[16px] left-1/2 -translate-x-1/2 bg-house-gold-dark text-white font-sans text-[10px] tracking-[0.22em] px-[14px] py-[5px] z-20 shadow-[0_4px_14px_rgba(0,0,0,0.35)]">
+        <span className="absolute top-[16px] left-1/2 -translate-x-1/2 bg-house-gold-dark text-white font-sans text-[11px] tracking-[0.22em] px-[14px] py-[5px] z-20 shadow-[0_4px_14px_rgba(0,0,0,0.35)]">
           RECOMMENDED
         </span>
       ) : null}
       {p.featured && mobile ? (
-        <span className="absolute top-[12px] right-[12px] bg-house-gold-dark text-white font-sans text-[9px] tracking-[0.22em] px-[10px] py-[4px] z-20">
+        <span className="absolute top-[12px] right-[12px] bg-house-gold-dark text-white font-sans text-[11px] tracking-[0.22em] px-[10px] py-[4px] z-20">
           RECOMMENDED
         </span>
       ) : null}
@@ -103,7 +103,7 @@ function PlanCard({ plan: p, mobile }: { plan: StewardPlan; mobile?: boolean }) 
       />
 
       <div className="flex flex-col flex-1 px-[28px] pt-[24px] pb-[36px]">
-        <span className={`font-sans text-[10px] tracking-[0.22em] uppercase mb-[12px] ${isFeatured ? "text-house-gold-dark" : "text-house-gold-light"}`}>
+        <span className={`font-sans text-[11px] tracking-[0.22em] uppercase mb-[12px] ${isFeatured ? "text-house-gold-dark" : "text-house-gold-light"}`}>
           {p.tier}
         </span>
         <h4 className={`font-display font-medium text-[28px] tracking-[-0.005em] mb-[4px] ${isFeatured ? "text-house-brown" : "text-house-cream"}`}>

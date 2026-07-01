@@ -46,7 +46,7 @@ export function ProductSlider({ title, slides }: { title: string; slides: Slide[
         <div className="grid md:grid-cols-2 gap-[clamp(24px,4vw,60px)] items-center">
           {/* Text — left */}
           <div className="order-2 md:order-1">
-            <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-house-gold-dark mb-4">
+            <p className="font-sans text-[11px] tracking-[0.3em] uppercase text-house-gold-dark mb-4">
               {s.houseApproved ? "House Approved" : "From the collection"}
             </p>
             <h3 className="font-display text-[clamp(26px,3vw,40px)] leading-[1.08] text-house-brown mb-3">

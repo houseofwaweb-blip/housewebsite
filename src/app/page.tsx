@@ -501,7 +501,7 @@ export default async function HomePage() {
                 />
                 <div className="absolute inset-x-0 bottom-0 p-4 text-center">
                   <p className="font-display text-[clamp(17px,1.6vw,24px)] leading-[1.1] text-white">{r.name}</p>
-                  <p className="font-sans text-[9px] tracking-[0.2em] uppercase text-white/80 mt-1.5 transition-colors group-hover:text-white">
+                  <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-white/80 mt-1.5 transition-colors group-hover:text-white">
                     Shop the room →
                   </p>
                 </div>
@@ -599,7 +599,7 @@ export default async function HomePage() {
       <section className="px-[5vw] py-[clamp(48px,6vw,90px)] border-t border-house-brown/10" style={{ background: "var(--color-house-cream)" }}>
         <div className="max-w-[1180px] mx-auto">
           <div className="text-center max-w-[660px] mx-auto mb-11">
-            <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-house-gold-dark mb-3">The Services</p>
+            <p className="font-sans text-[11px] tracking-[0.3em] uppercase text-house-gold-dark mb-3">The Services</p>
             <h2 className="font-display text-[clamp(26px,3vw,42px)] leading-[1.06] text-house-brown mb-4">
               Whatever the home needs, booked in minutes.
             </h2>
@@ -628,7 +628,7 @@ export default async function HomePage() {
                 <div className="flex flex-col flex-1 p-6">
                   <p className="font-display text-[19px] leading-tight text-house-brown mb-1.5">{svc.name}</p>
                   <p className="font-sans text-[12.5px] text-house-stone leading-[1.5] mb-6 flex-1">{SERVICE_BLURB[svc.name]}</p>
-                  <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-house-gold-dark transition-colors group-hover:text-house-brown">
+                  <span className="font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-dark transition-colors group-hover:text-house-brown">
                     Book through HoWA →
                   </span>
                 </div>

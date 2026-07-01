@@ -73,7 +73,7 @@ export function ProgressBar({
       {(label || note) && (
         <div
           className={cn(
-            "flex items-baseline justify-between font-sans text-[10px] tracking-[0.2em] uppercase",
+            "flex items-baseline justify-between font-sans text-[11px] tracking-[0.2em] uppercase",
             dark ? "text-house-cream/55" : "text-house-stone",
           )}
         >

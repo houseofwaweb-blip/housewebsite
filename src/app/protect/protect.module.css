@@ -181,7 +181,7 @@
 }
 .statLabel {
   font-family: var(--font-sans);
-  font-size: clamp(9px, 0.75vw, 10px);
+  font-size: clamp(11px, 0.75vw, 10px);
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -243,7 +243,7 @@
 .twinDoesnt { background: var(--color-house-cream); }
 .twinKicker {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -316,7 +316,7 @@
 }
 .risksEy {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-oxblood);
@@ -439,7 +439,7 @@
 }
 .stepsEy {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-oxblood);
@@ -556,7 +556,7 @@
 }
 .audienceEy {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-oxblood);
@@ -637,7 +637,7 @@
 }
 .registerEy {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-oxblood);
@@ -719,7 +719,7 @@
 }
 .insuranceEy {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-oxblood);
@@ -853,7 +853,7 @@
 .closingServiceArrow {
   display: block;
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(245, 240, 232, 0.55);

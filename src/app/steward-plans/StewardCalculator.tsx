@@ -76,7 +76,7 @@ export function StewardCalculator() {
 
       {/* Result panel */}
       <div className="bg-howa-navy text-house-cream px-[32px] py-[36px] md:sticky md:top-[70px]">
-        <div className="font-sans text-[10px] tracking-[0.22em] uppercase text-house-gold-light mb-[8px]">
+        <div className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-light mb-[8px]">
           Your estimate
         </div>
         <div className="font-display font-medium text-[48px] text-house-cream mb-[4px]">
@@ -84,7 +84,7 @@ export function StewardCalculator() {
         </div>
         <div className="font-sans text-[13px] text-house-cream/60 mb-[24px]">per month</div>
 
-        <div className="font-sans text-[10px] tracking-[0.18em] uppercase text-house-gold-light mb-[6px]">
+        <div className="font-sans text-[11px] tracking-[0.18em] uppercase text-house-gold-light mb-[6px]">
           Best match
         </div>
         <div className="font-display font-medium text-[24px] mb-[20px]">{match.name}</div>

@@ -43,7 +43,7 @@ function SecondaryArticle({ article }: { article: HearthArticle }) {
             className="w-full h-auto aspect-[3/2] object-cover transition-all duration-[var(--t-xslow)] ease-out group-hover:scale-[1.02]"
           />
         </div>
-        <span className="inline-block mb-[10px] font-hearth-sans text-[10px] tracking-[0.22em] uppercase text-house-black">
+        <span className="inline-block mb-[10px] font-hearth-sans text-[11px] tracking-[0.22em] uppercase text-house-black">
           {article.categoryLong ?? article.category}
           {article.flag ? (
             <em className="not-italic ml-1.5 font-hearth-serif italic text-[12px] text-house-stone tracking-normal normal-case">
@@ -57,7 +57,7 @@ function SecondaryArticle({ article }: { article: HearthArticle }) {
         <p className="font-hearth-serif italic text-[15px] leading-[1.5] text-house-stone mb-[10px]">
           {article.dek}
         </p>
-        <p className="mt-auto font-hearth-sans text-[10px] tracking-[0.14em] uppercase text-house-stone">
+        <p className="mt-auto font-hearth-sans text-[11px] tracking-[0.14em] uppercase text-house-stone">
           <em className="not-italic font-hearth-serif italic text-[12px] text-house-black normal-case tracking-normal mr-1">
             {article.author}
           </em>

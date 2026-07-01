@@ -72,7 +72,7 @@ export function HearthFullWidthNewsletter() {
         </form>
       )}
 
-      <p className="font-hearth-sans text-[10px] tracking-[0.14em] uppercase text-house-white/45 mt-[18px]">
+      <p className="font-hearth-sans text-[11px] tracking-[0.14em] uppercase text-house-white/45 mt-[18px]">
         Free · GDPR compliant · read more in our{" "}
         <Link
           href="/legal/privacy"

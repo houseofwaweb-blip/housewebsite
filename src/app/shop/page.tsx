@@ -126,7 +126,7 @@ function FeaturedProduct({ p }: { p: Slide | null }) {
           />
         </Link>
         <div className="text-house-cream">
-          <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-house-gold-dark mb-5">The piece this week</p>
+          <p className="font-sans text-[11px] tracking-[0.3em] uppercase text-house-gold-dark mb-5">The piece this week</p>
           <h2 className="font-display text-[clamp(28px,3.4vw,46px)] leading-[1.06] mb-4">{p.title}</h2>
           <p className="font-sans text-[15px] text-house-cream/70 mb-5">{p.price}</p>
           {p.excerpt ? (
@@ -185,7 +185,7 @@ function TwoCollections() {
             <div className="absolute inset-x-0 bottom-0 p-7">
               <p className="font-display text-[clamp(22px,2.4vw,34px)] leading-tight text-white">{b.name}</p>
               <p className="font-sans text-[12.5px] text-white/80 mt-1.5">{b.sub}</p>
-              <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-white/90 mt-4 transition-colors group-hover:text-white">
+              <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-white/90 mt-4 transition-colors group-hover:text-white">
                 Explore the collection →
               </p>
             </div>
@@ -254,7 +254,7 @@ export default async function ShopPage() {
       <section className="relative overflow-hidden border-b border-house-brown/8 px-[5vw] pt-12 pb-9 text-center">
         <FlowerWatermark color="gold" side="right" opacity={0.18} />
         <div className="relative z-10 max-w-[680px] mx-auto">
-          <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-house-gold-dark mb-3">
+          <p className="font-sans text-[11px] tracking-[0.3em] uppercase text-house-gold-dark mb-3">
             The House · Marketplace
           </p>
           <h1 className="font-display text-[clamp(30px,3.4vw,48px)] leading-[1.05] tracking-[-0.01em] text-house-brown">
@@ -281,7 +281,7 @@ export default async function ShopPage() {
       <section className="px-[5vw] py-[clamp(44px,6vw,80px)] border-b border-house-brown/8">
         <div className="max-w-[1280px] mx-auto">
           <div className="mb-8">
-            <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-house-gold-dark mb-2">
+            <p className="font-sans text-[11px] tracking-[0.3em] uppercase text-house-gold-dark mb-2">
               Room by room
             </p>
             <h2 className="font-display italic text-[clamp(26px,3vw,40px)] leading-[1.05] text-house-brown">
@@ -312,7 +312,7 @@ export default async function ShopPage() {
                   />
                   <div className="absolute inset-x-0 bottom-0 p-5 text-center">
                     <p className="font-display text-[clamp(19px,2.1vw,28px)] leading-[1.1] text-white">{r.name}</p>
-                    <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-white/80 mt-2 transition-colors group-hover:text-white">
+                    <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-white/80 mt-2 transition-colors group-hover:text-white">
                       Shop the room →
                     </p>
                   </div>
@@ -324,13 +324,13 @@ export default async function ShopPage() {
                   className="group relative block aspect-[4/5] overflow-hidden bg-house-cream-dark no-underline"
                 >
                   <span aria-hidden className="absolute inset-4 border border-house-brown/15" />
-                  <span className="absolute top-6 left-0 right-0 text-center font-sans text-[9px] tracking-[0.3em] uppercase text-house-gold-dark">
+                  <span className="absolute top-6 left-0 right-0 text-center font-sans text-[11px] tracking-[0.3em] uppercase text-house-gold-dark">
                     Placeholder image
                   </span>
                   <span className="absolute inset-0 flex items-center justify-center px-4 text-center font-display text-[clamp(19px,2.1vw,28px)] leading-[1.1] text-house-brown">
                     {r.name}
                   </span>
-                  <span className="absolute bottom-6 left-0 right-0 text-center font-sans text-[10px] tracking-[0.2em] uppercase text-house-stone transition-colors group-hover:text-house-gold-dark">
+                  <span className="absolute bottom-6 left-0 right-0 text-center font-sans text-[11px] tracking-[0.2em] uppercase text-house-stone transition-colors group-hover:text-house-gold-dark">
                     Shop the room →
                   </span>
                 </Link>

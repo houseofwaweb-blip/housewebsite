@@ -44,7 +44,7 @@ export function V3Matrix({ middleLabel = "Housekeeper", showTitle = true }: { mi
               <div key={t.name} className="overflow-hidden rounded-2xl border border-[color:var(--color-gold)]/25 bg-white">
                 <div className="flex items-center justify-between border-b border-[color:var(--color-ink)]/10 px-5 py-4">
                   <span className="font-display text-[19px]" style={{ color: t.accent }}>{t.name}</span>
-                  <span className="smallcaps text-[10px] tracking-[0.1em] text-[color:var(--color-ink-soft)]/60">{t.price}</span>
+                  <span className="smallcaps text-[11px] tracking-[0.1em] text-[color:var(--color-ink-soft)]/60">{t.price}</span>
                 </div>
                 <ul className="space-y-2.5 px-5 py-4">
                   {inc.map((f) => (
@@ -73,11 +73,11 @@ export function V3Matrix({ middleLabel = "Housekeeper", showTitle = true }: { mi
         <div className="hidden overflow-hidden rounded-2xl border border-[color:var(--color-gold)]/25 bg-white lg:block">
           {/* header */}
           <div className="grid grid-cols-[1.6fr_repeat(3,0.8fr)] items-end gap-2 border-b border-[color:var(--color-ink)]/10 px-4 py-4 sm:px-6">
-            <span className="smallcaps text-[10px] tracking-[0.16em] text-[color:var(--color-ink-soft)]/60">Capability</span>
+            <span className="smallcaps text-[11px] tracking-[0.16em] text-[color:var(--color-ink-soft)]/60">Capability</span>
             {TIERS.map((t) => (
               <div key={t.name} className="text-center">
                 <p className="font-display text-[clamp(14px,1.4vw,19px)] leading-none" style={{ color: t.accent }}>{t.name}</p>
-                <p className="smallcaps mt-1 text-[9.5px] tracking-[0.1em] text-[color:var(--color-ink-soft)]/60">{t.price}</p>
+                <p className="smallcaps mt-1 text-[11px] tracking-[0.1em] text-[color:var(--color-ink-soft)]/60">{t.price}</p>
               </div>
             ))}
           </div>

@@ -39,7 +39,7 @@ export function V4Score() {
             <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-3 rounded-xl bg-[#16243b]/95 px-4 py-3 ring-1 ring-[color:var(--color-gold)]/25 backdrop-blur-[2px]">
               <V4ScoreRing value={62} size={58} stroke={5} />
               <div>
-                <p className="smallcaps text-[9px] tracking-[0.16em] text-[#c5a960]">HoWA Score</p>
+                <p className="smallcaps text-[11px] tracking-[0.16em] text-[#c5a960]">HoWA Score</p>
                 <p className="font-display text-[15px] leading-tight text-[#f3ede0]">62 · In order, with gaps</p>
               </div>
             </div>

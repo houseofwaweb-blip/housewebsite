@@ -18,7 +18,7 @@ export function BookingFlowStrip() {
   return (
     <section className="px-[5vw] py-[clamp(44px,5.5vw,80px)] border-t border-house-brown/8" style={{ background: "var(--color-house-white)" }}>
       <div className="mx-auto max-w-[1100px] text-center">
-        <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-house-gold-dark mb-3">
+        <p className="font-sans text-[11px] tracking-[0.3em] uppercase text-house-gold-dark mb-3">
           What happens when you book
         </p>
         <h2 className="font-display text-[clamp(26px,3vw,40px)] leading-[1.08] text-house-brown mb-4">

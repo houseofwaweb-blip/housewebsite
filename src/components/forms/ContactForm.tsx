@@ -125,7 +125,7 @@ export function ContactForm({ turnstileSiteKey, sourcePage }: ContactFormProps) 
     <div className="space-y-10">
       {/* Step 1 — topic selection */}
       <fieldset>
-        <legend className="font-sans text-[10px] tracking-[0.22em] uppercase text-house-brown/70 mb-4">
+        <legend className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-brown/70 mb-4">
           What's this about?
         </legend>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">

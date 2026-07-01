@@ -15,7 +15,7 @@ export function HearthMasthead({ className }: { className?: string }) {
       )}
     >
       <Link href="/the-hearth" className="block no-underline" aria-label="The Hearth, home">
-        <span className="block font-hearth-sans text-[9px] tracking-[0.32em] uppercase text-house-stone mb-[2px]">
+        <span className="block font-hearth-sans text-[11px] tracking-[0.32em] uppercase text-house-stone mb-[2px]">
           THE
         </span>
         <h1 className="font-hearth-serif font-medium uppercase leading-none text-[clamp(34px,4vw,54px)] tracking-[-0.005em] text-house-black transition-colors hover:text-house-gold-dark">
@@ -30,7 +30,7 @@ export function HearthMasthead({ className }: { className?: string }) {
         seasons. Quiet observations on the art of keeping a home, and the rooms,
         gardens and thresholds worth keeping well.
       </p>
-      <p className="font-hearth-sans text-[10px] tracking-[0.16em] uppercase text-house-stone/70 mt-[10px]">
+      <p className="font-hearth-sans text-[11px] tracking-[0.16em] uppercase text-house-stone/70 mt-[10px]">
         Housekeeper members receive full archive access and seasonal guides.
       </p>
     </header>

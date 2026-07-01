@@ -33,7 +33,7 @@ export function V4Portrait() {
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {facts.map((f) => (
               <div key={f.k} className="rounded-xl border border-[color:var(--color-gold)]/20 bg-white p-5">
-                <p className="smallcaps text-[9.5px] tracking-[0.14em] text-[color:var(--color-gold-deep)]">{f.k}</p>
+                <p className="smallcaps text-[11px] tracking-[0.14em] text-[color:var(--color-gold-deep)]">{f.k}</p>
                 <p className="mt-1 font-display text-[20px] leading-none text-[color:var(--color-ink)]">{f.v}</p>
                 <p className="mt-1.5 text-[13.5px] leading-snug text-[color:var(--color-ink-soft)]/80">{f.note}</p>
               </div>
@@ -64,7 +64,7 @@ export function V4Portrait() {
                 One number for a house well kept. Provisional from the first portrait, it sharpens as documents, jobs and evidence are added.
               </p>
             </div>
-            <p className="font-mono text-[10px] tracking-[0.06em] text-[color:var(--color-ink-soft)]/50">
+            <p className="font-mono text-[11px] tracking-[0.06em] text-[color:var(--color-ink-soft)]/50">
               ILLUSTRATIVE · LIVE FACTS FROM UK PUBLIC RECORDS WHERE AVAILABLE, CORRECTABLE BY THE HOMEOWNER
             </p>
           </div>

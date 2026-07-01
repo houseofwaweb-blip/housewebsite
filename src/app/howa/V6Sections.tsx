@@ -54,18 +54,18 @@ export function V6WhatItIs() {
             <div className="hidden md:block absolute top-[11%] left-[4.5%] max-w-[190px]">
               <div className="flex items-center gap-2">
                 <span aria-hidden className="w-6 h-px bg-[color:var(--color-gold)]/80" />
-                <span className="font-mono text-[10.5px] tracking-[0.2em] uppercase text-[#f3ede0]/90">The HoWA layer</span>
+                <span className="font-mono text-[11px] tracking-[0.2em] uppercase text-[#f3ede0]/90">The HoWA layer</span>
               </div>
               <p className="font-mono text-[11px] tracking-[0.02em] text-[#f3ede0]/55 pl-8 mt-1">understands, then acts</p>
             </div>
             <div className="hidden md:block absolute top-[60%] right-[4.5%] max-w-[200px] text-right">
               <div className="flex items-center justify-end gap-2">
-                <span className="font-mono text-[10.5px] tracking-[0.2em] uppercase text-[#f3ede0]/90">Your home</span>
+                <span className="font-mono text-[11px] tracking-[0.2em] uppercase text-[#f3ede0]/90">Your home</span>
                 <span aria-hidden className="w-6 h-px bg-[color:var(--color-gold)]/80" />
               </div>
               <p className="font-mono text-[11px] tracking-[0.02em] text-[#f3ede0]/55 pr-8 mt-1">every room, asset and document</p>
             </div>
-            <span className="hidden sm:block absolute bottom-[7%] left-[4.5%] font-mono text-[10px] tracking-[0.22em] uppercase text-[#f3ede0]/40">Fig. 01 &middot; the layer above</span>
+            <span className="hidden sm:block absolute bottom-[7%] left-[4.5%] font-mono text-[11px] tracking-[0.22em] uppercase text-[#f3ede0]/40">Fig. 01 &middot; the layer above</span>
           </figcaption>
         </figure>
       </div>
@@ -172,13 +172,13 @@ function RecordDataModel() {
 function StatusTag({ kind }: { kind: "live" | "coming" }) {
   if (kind === "live") {
     return (
-      <span className="shrink-0 mt-0.5 smallcaps text-[9.5px] tracking-[0.14em] rounded-full px-2 py-0.5 bg-[color:var(--color-howa-green)]/12 text-[color:var(--color-howa-green)]">
+      <span className="shrink-0 mt-0.5 smallcaps text-[11px] tracking-[0.14em] rounded-full px-2 py-0.5 bg-[color:var(--color-howa-green)]/12 text-[color:var(--color-howa-green)]">
         Live now
       </span>
     );
   }
   return (
-    <span className="shrink-0 mt-0.5 smallcaps text-[9.5px] tracking-[0.14em] rounded-full px-2 py-0.5 border border-[color:var(--color-ink)]/20 text-[color:var(--color-ink-soft)]/65">
+    <span className="shrink-0 mt-0.5 smallcaps text-[11px] tracking-[0.14em] rounded-full px-2 py-0.5 border border-[color:var(--color-ink)]/20 text-[color:var(--color-ink-soft)]/65">
       Coming
     </span>
   );
@@ -264,7 +264,7 @@ export function V6ThreeThings() {
               </div>
               <h3 className="font-display text-[22px] leading-[1.1]">{c.title}</h3>
               {c.kicker && (
-                <p className="smallcaps text-[10.5px] tracking-[0.16em] text-[color:var(--color-gold-deep)] mt-1.5">{c.kicker}</p>
+                <p className="smallcaps text-[11px] tracking-[0.16em] text-[color:var(--color-gold-deep)] mt-1.5">{c.kicker}</p>
               )}
               <p className="text-[16px] leading-[1.5] text-[color:var(--color-ink-soft)] mt-3">{c.body}</p>
               {c.examples && (
@@ -322,7 +322,7 @@ export function V6Protection() {
               )}
             </span>
           ))}
-          <span className="ml-1 smallcaps text-[9px] tracking-[0.14em] rounded-full px-2 py-0.5 border border-[#f3ede0]/25 text-[#f3ede0]/55">
+          <span className="ml-1 smallcaps text-[11px] tracking-[0.14em] rounded-full px-2 py-0.5 border border-[#f3ede0]/25 text-[#f3ede0]/55">
             Coming
           </span>
         </div>

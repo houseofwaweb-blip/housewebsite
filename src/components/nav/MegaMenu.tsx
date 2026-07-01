@@ -171,7 +171,7 @@ export function MegaMenu({
               >
                 {panel.groups.map((group) => (
                   <div key={group.heading}>
-                    <div className="font-sans text-[9px] tracking-[0.28em] uppercase text-house-stone mb-[10px]">
+                    <div className="font-sans text-[11px] tracking-[0.28em] uppercase text-house-stone mb-[10px]">
                       {group.heading}
                     </div>
                     <ul className="flex flex-col gap-[8px] list-none m-0 p-0">
@@ -183,7 +183,7 @@ export function MegaMenu({
                           >
                             <span>{link.label}</span>
                             {link.description ? (
-                              <span className="font-sans normal-case text-[10px] tracking-[0.02em] text-house-stone ml-[8px]">
+                              <span className="font-sans normal-case text-[11px] tracking-[0.02em] text-house-stone ml-[8px]">
                                 {link.description}
                               </span>
                             ) : null}
@@ -308,10 +308,10 @@ function ShopMegaPanel({ shop, isOpen }: { shop: ShopMega; isOpen: boolean }) {
         {/* Sub-categories of the active category */}
         <div>
           <div className="flex items-baseline justify-between mb-[14px]">
-            <span className="font-sans text-[9px] tracking-[0.28em] uppercase text-house-stone">{cat.title}</span>
+            <span className="font-sans text-[11px] tracking-[0.28em] uppercase text-house-stone">{cat.title}</span>
             <Link
               href={cat.href}
-              className="font-sans text-[9px] tracking-[0.18em] uppercase text-house-gold-dark no-underline hover:pl-[3px] transition-[padding-left] duration-[var(--t-base)]"
+              className="font-sans text-[11px] tracking-[0.18em] uppercase text-house-gold-dark no-underline hover:pl-[3px] transition-[padding-left] duration-[var(--t-base)]"
             >
               View all →
             </Link>
@@ -344,11 +344,11 @@ function ShopMegaPanel({ shop, isOpen }: { shop: ShopMega; isOpen: boolean }) {
             <Link
               key={f.href}
               href={f.href}
-              className="font-sans text-[10px] tracking-[0.18em] uppercase text-house-brown no-underline hover:text-house-gold-dark transition-colors duration-[var(--t-base)]"
+              className="font-sans text-[11px] tracking-[0.18em] uppercase text-house-brown no-underline hover:text-house-gold-dark transition-colors duration-[var(--t-base)]"
             >
               {f.label}
               {f.description ? (
-                <span className="font-sans normal-case tracking-[0.02em] text-[10px] text-house-stone ml-[6px]">{f.description}</span>
+                <span className="font-sans normal-case tracking-[0.02em] text-[11px] text-house-stone ml-[6px]">{f.description}</span>
               ) : null}
             </Link>
           ))}

@@ -34,7 +34,7 @@ export function HearthFeedSidebar({ popular }: { popular?: PopularItem[] }) {
                 {i + 1}
               </span>
               <div className="min-w-0">
-                <span className="block mb-1 font-hearth-sans text-[9px] tracking-[0.22em] uppercase text-house-stone">
+                <span className="block mb-1 font-hearth-sans text-[11px] tracking-[0.22em] uppercase text-house-stone">
                   {item.tag}
                 </span>
                 <h5 className="font-hearth-serif font-medium text-[16px] leading-[1.2] tracking-[-0.005em] text-house-black">
@@ -82,7 +82,7 @@ function SidebarNewsletter() {
 
   return (
     <div className="bg-howa-paper p-[20px_20px_24px] border border-house-brown/20">
-      <span className="block mb-[10px] font-hearth-sans text-[9px] tracking-[0.28em] uppercase text-house-gold-dark">
+      <span className="block mb-[10px] font-hearth-sans text-[11px] tracking-[0.28em] uppercase text-house-gold-dark">
         The Hearth · Weekly
       </span>
       <h4 className="font-hearth-serif font-medium text-[22px] leading-[1.15] tracking-[-0.005em] text-house-black mb-2">
@@ -122,7 +122,7 @@ function SidebarNewsletter() {
           <button
             type="submit"
             disabled={state === "submitting"}
-            className="shrink-0 bg-house-black text-house-white font-hearth-sans text-[10px] tracking-[0.18em] uppercase px-[14px] py-[11px] border-0 cursor-pointer disabled:opacity-60"
+            className="shrink-0 bg-house-black text-house-white font-hearth-sans text-[11px] tracking-[0.18em] uppercase px-[14px] py-[11px] border-0 cursor-pointer disabled:opacity-60"
           >
             {state === "submitting" ? "…" : "Sign up"}
           </button>

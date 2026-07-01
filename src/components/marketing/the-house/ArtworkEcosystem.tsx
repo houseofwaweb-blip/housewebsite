@@ -180,7 +180,7 @@ export function ArtworkEcosystem() {
               >
                 <p
                   className={
-                    "font-sans text-[10px] tracking-[0.28em] uppercase mb-1.5 " +
+                    "font-sans text-[11px] tracking-[0.28em] uppercase mb-1.5 " +
                     (isCore ? "text-house-gold-light" : "text-house-gold-dark/80")
                   }
                 >
