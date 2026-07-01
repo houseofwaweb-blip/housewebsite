@@ -356,11 +356,11 @@ export default async function HomePage() {
           <div className={s.howaIntroVisual}>
             <Image
               src="/home/howa-app.webp"
-              alt="The HoWA app on a phone: a home's HoWA Score of 91, with spaces, assets, upcoming maintenance and recent events"
-              width={1086}
-              height={1448}
-              sizes="(min-width: 1024px) 420px, 80vw"
-              className="w-full max-w-[420px] h-auto"
+              alt="The HoWA app on a phone: a home's Home Health Score of 91%, today's plan, next best action and a home overview"
+              width={941}
+              height={1672}
+              sizes="(min-width: 1024px) 400px, 80vw"
+              className="w-full max-w-[400px] h-auto"
             />
           </div>
           <div className={s.howaIntroCopy}>
