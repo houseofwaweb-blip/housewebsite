@@ -50,16 +50,6 @@ const STUDIOS = [
     signatures: ["Planting-led", "Ecological", "Heritage gardens"],
     image: "/design/gardens/hero.jpg",
   },
-  {
-    slug: "house-ai",
-    name: "House AI",
-    type: "Specialist partner",
-    location: "UK-wide",
-    blurb:
-      "Automation, lighting schemes and quiet technology that disappears into the architecture rather than dominating it.",
-    signatures: ["Lighting design", "Automation", "Quiet technology"],
-    image: "/home-v4/design-portrait.webp",
-  },
 ];
 
 const SELECTION_TESTS = [

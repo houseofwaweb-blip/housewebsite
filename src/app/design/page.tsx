@@ -174,7 +174,7 @@ export default async function DesignLanding() {
           <p className={s.partnersEy}>{cms(partners, "eyebrow", "How design begins")}</p>
           <h2 className={s.partnersTitle}>
             {cms(partners, "headline", "Two live routes.")}{" "}
-            <em>{cms(partners, "headlineEm", "One growing circle.", "headline")}</em>
+            <em>{cms(partners, "headlineEm", "One intelligence layer.", "headline")}</em>
           </h2>
           <p className={s.partnersLede}>
             {cms(

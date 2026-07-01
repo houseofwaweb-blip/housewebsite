@@ -112,7 +112,7 @@
   font-family: var(--font-didot);
   font-weight: 700;
   font-size: clamp(56px, 6.4vw, 100px);
-  line-height: 0.98;
+  line-height: 1.06;
   letter-spacing: -0.01em;
   color: var(--color-house-brown);
   margin: 0 0 22px;
@@ -299,7 +299,7 @@
   font-family: var(--font-didot);
   font-weight: 700;
   font-size: clamp(40px, 4.4vw, 64px);
-  line-height: 1.05;
+  line-height: 1.14;
   letter-spacing: -0.01em;
   color: var(--color-house-brown);
   margin: 14px 0 0;
@@ -313,8 +313,9 @@
   position: relative;
   overflow: hidden;
 }
-.originBand .originTitle,
-.originBand .originTitle em { color: var(--color-house-cream); }
+.originBand .originTitle { color: var(--color-house-cream); }
+/* Only the "Built into a House." line picks up gold; the rest stays cream. */
+.originBand .originTitle em { color: var(--color-house-gold-light); }
 .originBand .originPara { color: var(--color-house-cream); }
 .originBand .eyebrow { color: var(--color-house-cream); }
 .originBand .textLink {
@@ -356,7 +357,7 @@
   font-family: var(--font-didot);
   font-weight: 700;
   font-size: clamp(32px, 3.8vw, 52px);
-  line-height: 1.06;
+  line-height: 1.14;
   letter-spacing: -0.01em;
   color: var(--color-house-brown);
   margin: 14px 0 26px;
@@ -412,7 +413,7 @@
   font-family: var(--font-didot);
   font-weight: 700;
   font-size: clamp(40px, 4.4vw, 60px);
-  line-height: 1.04;
+  line-height: 1.14;
   color: var(--color-house-brown);
   margin: 0 0 22px;
 }
@@ -531,7 +532,7 @@
   font-style: italic;
   font-weight: 700;
   font-size: clamp(36px, 4vw, 56px);
-  line-height: 1.05;
+  line-height: 1.14;
   color: var(--color-house-brown);
   margin: 14px 0 28px;
 }
@@ -619,7 +620,7 @@
   font-family: var(--font-didot);
   font-weight: 700;
   font-size: clamp(38px, 4.2vw, 58px);
-  line-height: 1.05;
+  line-height: 1.14;
   color: var(--color-house-cream);
   margin: 0 0 22px;
 }
@@ -700,7 +701,7 @@
   font-family: var(--font-didot);
   font-weight: 700;
   font-size: clamp(32px, 3.6vw, 50px);
-  line-height: 1.05;
+  line-height: 1.14;
   color: var(--color-house-brown);
   margin: 12px 0 0;
 }
@@ -768,7 +769,7 @@
   font-family: var(--font-didot);
   font-weight: 700;
   font-size: clamp(38px, 4.2vw, 58px);
-  line-height: 1.04;
+  line-height: 1.14;
   color: var(--color-house-cream);
   margin: 0 0 24px;
 }
@@ -815,7 +816,7 @@
   font-family: var(--font-didot);
   font-weight: 700;
   font-size: clamp(32px, 3.6vw, 50px);
-  line-height: 1.05;
+  line-height: 1.14;
   color: var(--color-house-brown);
   margin: 12px 0 0;
 }
@@ -871,7 +872,7 @@
   font-family: var(--font-didot);
   font-weight: 700;
   font-size: clamp(36px, 4.6vw, 68px);
-  line-height: 1.08;
+  line-height: 1.14;
   color: var(--color-house-cream);
   margin: 0 auto 36px;
   max-width: 16ch;
