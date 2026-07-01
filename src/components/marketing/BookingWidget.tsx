@@ -22,22 +22,27 @@ import { useConsentGranted } from "@/components/consent/ConsentProvider";
  *   - Phone:       0800 047 8738
  *   - Primary:     #c2a660 (HoWA gold)
  *   - Secondary:   #0f3e33 (HoWA navy)
- *   - Logo:        /brand/howa/howa-black.svg (served from this site)
+ *   - Logo:        /brand/howa/howa-black.png (served from this site; PNG, not
+ *                  SVG — the OBF modal doesn't reliably render SVG logos)
  */
 
 // Static config — dynamic fields (main_url, logo_url) get filled at
 // runtime so the widget's API origin checks match whatever host the page
 // is served from (production / preview / localhost).
 const OBF_BASE_CONFIG = {
-  app_url: "https://accounts.willowalexander.co.uk/",
+  app_url: "https://accounts.willowalexander.co.uk/obf/",
   api_url: "https://willowalexander.serviceos.com/",
   accounts_url: "https://accounts.willowalexander.co.uk/",
   country: "UK",
   hide_phone: false,
   free_quote: false,
   search: false,
-  init_event: "on_load",
-  website_name: "Willow Alexander",
+  // "on_click" binds the modal to any href="#open-booking-form" link (the
+  // proven config from the window-cleaner site). "on_load" does NOT wire the
+  // click triggers, which is why the CTAs did nothing.
+  init_event: "on_click",
+  website_name: "House of Willow Alexander",
+  phone: "0800 047 8738",
   // PUBLISHABLE widget key. This identifies the ServiceOS booking profile to
   // their CDN-served client.min.js and is the same key the WordPress plugin
   // ships in plain HTML on the live site. It does NOT authorize privileged
@@ -96,7 +101,7 @@ export function BookingWidget() {
     window.obfOptions = {
       ...OBF_BASE_CONFIG,
       main_url: origin + "/",
-      logo_url: origin + "/brand/howa/howa-black.svg",
+      logo_url: origin + "/brand/howa/howa-black.png",
     };
 
     const script = document.createElement("script");
