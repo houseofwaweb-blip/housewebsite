@@ -99,7 +99,7 @@
    * Hearth magazine, and we don't want the font-matcher picking it up
    * when Didot can't serve a specific weight or italic. */
   --font-display: var(--font-didot), "Didot LT Pro", "Playfair Display", Georgia, serif;
-  --font-sans: "Effra Std", Inter, system-ui, sans-serif;
+  --font-sans: var(--font-effra), "Effra Std", Inter, system-ui, sans-serif;
   --font-mono: "DM Mono", ui-monospace, Menlo, monospace;
 
   /* Typography — Cormorant Garamond + Jost (Hearth-only, magazine voice).
@@ -189,7 +189,10 @@ body {
   background: var(--house-cream);
   color: var(--house-brown);
   font-family: var(--font-sans);
-  font-weight: 300;
+  /* Body base was 300 (Light), but only Effra Regular/Medium are loaded so it
+     rendered at 400. Step up to Medium (500) for a slightly firmer, more
+     legible body voice. */
+  font-weight: 500;
   line-height: 1.5;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;

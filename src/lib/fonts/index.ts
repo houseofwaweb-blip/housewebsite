@@ -41,6 +41,11 @@ export const effra = localFont({
       weight: "400",
       style: "normal",
     },
+    {
+      path: "../../../public/fonts/Effra-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
   ],
   variable: "--font-effra",
   display: "swap",
