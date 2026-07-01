@@ -274,9 +274,13 @@ export default async function SubServicePage({
               />
             </div>
           </div>
-          {gallery.length > 0 ? (
+          {gallery.length >= 2 ? (
             <div className={s.workGallery}>
-              <Gallery images={gallery} columns={3} aspectRatio="4/3" />
+              <Gallery
+                images={gallery}
+                columns={gallery.length >= 3 ? 3 : 2}
+                aspectRatio="4/3"
+              />
             </div>
           ) : null}
         </section>
