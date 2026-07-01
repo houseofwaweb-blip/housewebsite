@@ -50,15 +50,6 @@ const CARDS = [
     href: "/design/interiors",
     image: "/design/interiors/project-tunbridge-1.webp",
   },
-  {
-    name: "HoWA Design Intelligence",
-    type: "Moodboards · briefs · home record · project memory",
-    blurb:
-      "For early ideas, room scans, garden prompts and structured briefs. HoWA helps turn inspiration into a design record: images, preferences, budgets, decisions, suppliers and care notes saved against the home.",
-    cta: "Start with HoWA",
-    href: "/howa",
-    image: "/home/howa-app.webp",
-  },
 ];
 
 const SEAL_LINES = [
@@ -174,7 +165,7 @@ export default async function DesignLanding() {
           <p className={s.partnersEy}>{cms(partners, "eyebrow", "How design begins")}</p>
           <h2 className={s.partnersTitle}>
             {cms(partners, "headline", "Two live routes.")}{" "}
-            <em>{cms(partners, "headlineEm", "One intelligence layer.", "headline")}</em>
+            <em>{cms(partners, "headlineEm", "One growing circle.", "headline")}</em>
           </h2>
           <p className={s.partnersLede}>
             {cms(

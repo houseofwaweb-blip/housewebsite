@@ -338,11 +338,11 @@
   margin: 0;
 }
 .partnersGrid {
-  max-width: 1280px;
+  max-width: 1040px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: clamp(18px, 2vw, 28px);
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(20px, 2.4vw, 32px);
 }
 .partnerCard {
   display: flex;
