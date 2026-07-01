@@ -27,10 +27,10 @@ What began with gardens, soil, seasons, craft and electric vans, has grown into 
 The House exists to bring taste, trust, sustainability and intelligent memory into the everyday work of keeping a home. The people we send, the products we approve, the partners we recommend and the records we keep are held to the same test: would we trust this in a home we love? We work across the UK for design and Steward commissions; services operate in defined postcode areas you'll find on each service's page.`,
   },
   {
-    heading: "The partner studios",
-    body: `Most of the design work runs through four launch partner studios: Delve Interiors, Jessica Durling-McMahon, Willow Alexander Gardens, and House AI. We chose a small number on purpose, so we know the people who turn up at your door and the standard they bring through it.
+    heading: "How design begins",
+    body: `Design runs through a small circle, kept deliberately small. Our own garden studio, Willow Alexander Gardens, for gardens and outdoor spaces. Delve Interiors, a House Approved partner, for considered interiors. And HoWA's design intelligence, connecting the two back to your home record. We chose a small number on purpose, so we know the people who turn up at your door and the standard they bring through it.
 
-Each one signed up on a single understanding. House Approved is a standard, not a label. It is the same test we set ourselves: would we trust this in a home we love? They review their work each year, we review them each year, and we are honest with each other, and with you, about what is working and what needs attention. If a studio stops meeting the standard, the seal comes off. That is the whole point of holding one.`,
+Each works to a single understanding. House Approved is a standard, not a label. It is the same test we set ourselves: would we trust this in a home we love? We stay honest with each other, and with you, about what is working and what needs attention. If a partner stops meeting the standard, the seal comes off. That is the whole point of holding one.`,
   },
   {
     heading: "How to reach us",

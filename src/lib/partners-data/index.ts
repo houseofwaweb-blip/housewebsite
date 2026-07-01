@@ -10,7 +10,6 @@ import { GARDEN_PROJECTS } from "@/lib/gardens-projects";
 
 export type PartnerSlug =
   | "delve-interiors"
-  | "jessica-durling-mcmahon"
   | "willow-alexander-gardens"
   | "house-ai";
 
@@ -301,54 +300,6 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
     ],
   },
 
-  "jessica-durling-mcmahon": {
-    slug: "jessica-durling-mcmahon",
-    name: "Jessica Durling-McMahon",
-    type: "interior-designer",
-    typeLabel: "Interior designer",
-
-    heroEyebrow: "Design · Interiors by the House",
-    heroHeadline: "Rooms with a memory.",
-    heroHeadlineEm: "with a memory.",
-    heroSub:
-      "Layered rooms with confident colour, antiques properly used, and a love of textile. From a single room refresh to a full-house edit, commissioned through the House and coordinated through HoWA.",
-    heroImage: "/design/interiors/project-bedroom.webp",
-    heroCaption: "Kensington drawing room \u00b7 Jessica Durling-McMahon",
-
-    role: "Founder \u00b7 Durling Interiors, London",
-    shortBio:
-      "Layered rooms with confident colour, antiques properly used, and a love of textile.",
-    longBio: [
-      "A studio led by instinct and discipline. Rooms composed with a slow hand, for homes that prefer to feel inherited rather than assembled.",
-      "Work ranges from intimate reading rooms to full-house commissions across London and the Home Counties. Studio focus: pattern, light, and the restraint to let a room settle.",
-    ],
-    portraitImage: "/partners/portrait.webp",
-    founded: "2017",
-    basedIn: "Notting Hill",
-    recent: "Kensington \u00b7 Cotswolds",
-
-    packagesHeading: "Three ways to commission.",
-    packagesHeadingEm: "One living record.",
-    packagesLede:
-      "Every package writes back into your HoWA home record, so decisions, materials, and moodboards stay with the house \u2014 not in an email thread.",
-    packages: DEFAULT_DESIGN_PACKAGES,
-
-    projectsHeading: "From the studio.",
-    projectsHeadingEm: "Recent commissions.",
-    projects: PLACEHOLDER_PROJECTS,
-
-    faq: DEFAULT_FAQ,
-    closingLine:
-      "For a room worth living in \u2014 commission once, and steward over time.",
-    closingLineEm: "commission once, and steward over time.",
-
-    specialties: ["Layered colour", "Antiques & vintage sourcing", "Textile-forward schemes"],
-    serviceAreas: ["London", "South East", "Cotswolds"],
-    instagram: "@jessicadurlingmcmahon",
-    houseApprovedSeal: true,
-    awaitingAssets: true,
-  },
-
   "willow-alexander-gardens": {
     slug: "willow-alexander-gardens",
     name: "Willow Alexander Gardens",
@@ -542,7 +493,6 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
 
 export const PARTNER_ORDER: PartnerSlug[] = [
   "delve-interiors",
-  "jessica-durling-mcmahon",
   "willow-alexander-gardens",
   "house-ai",
 ];

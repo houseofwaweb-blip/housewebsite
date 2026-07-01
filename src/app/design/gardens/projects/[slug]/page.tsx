@@ -131,7 +131,7 @@ export default async function GardenProjectPage({
           Considering a garden of your own?
         </h2>
         <p className="mt-4 font-sans text-[16px] leading-[1.6] text-house-brown/70 max-w-[46ch] mx-auto">
-          The studio takes on a small number of commissions through the House design collective.
+          The studio takes on a small number of commissions through the House.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
           <Link href="/design/gardens#open-booking-form" className="inline-flex items-center justify-center px-7 py-3.5 bg-house-gold text-white text-[15px] tracking-[0.04em] hover:bg-house-gold-dark transition-colors">

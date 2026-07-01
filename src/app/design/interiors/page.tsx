@@ -74,39 +74,6 @@ const PLANS = [
   },
 ];
 
-const STUDIOS = [
-  {
-    slug: "delve-interiors",
-    name: "Delve Interiors",
-    type: "Interiors studio",
-    location: "London & South East",
-    blurb: "Considered schemes, quiet palettes, careful detailing. Listed homes and period flats.",
-    image: "/design/interiors/project-detail.webp",
-    status: "live" as const,
-  },
-  {
-    slug: "jessica-durling-mcmahon",
-    name: "Jessica Durling-McMahon",
-    type: "Interior designer",
-    location: "London & Cotswolds",
-    blurb: "Layered rooms with confident colour, antiques properly used, and a deep love of textile.",
-    image: "/design/interiors/project-dining.webp",
-    status: "live" as const,
-  },
-  {
-    name: "More studios joining",
-    type: "Coming soon",
-    blurb: "We grow the collective only when the next person we'd quietly recommend to a friend turns up.",
-    status: "soon" as const,
-  },
-  {
-    name: "Apply to the collective",
-    type: "Interiors studios",
-    blurb: "We review applications from studios working in the UK. House Approved is a standard, not a label.",
-    status: "apply" as const,
-  },
-];
-
 const PROJECTS = [
   {
     src: "/design/interiors/project-living-room.webp",
@@ -143,7 +110,6 @@ export default async function InteriorsPage() {
   const hero = sections.get("hero");
   const stats = sections.get("stats");
   const plans = sections.get("plans");
-  const studios = sections.get("studios");
   const projects = sections.get("projects");
   const quote = sections.get("quote");
   const companion = sections.get("companion");
@@ -177,15 +143,15 @@ export default async function InteriorsPage() {
               {cms(
                 hero,
                 "body",
-                "Rooms read for the people who live in them, not decorated at them. Worked out in plaster, paint, joinery and the light a room actually gets, through House Approved studios who know period fabric and how a house wears over years.",
+                "Rooms read for the people who live in them, not decorated at them. Worked out in plaster, paint, joinery and the light a room actually gets, with Delve Interiors, our House Approved studio who know period fabric and how a house wears over years.",
               )}
             </p>
             <div className={s.heroCtas}>
               <Link href={cms(hero, "ctaHref", "#plans")} className={s.btnFilled}>
                 {cms(hero, "ctaLabel", "See the plans")}
               </Link>
-              <Link href={cms(hero, "cta2Href", "/partners")} className={s.btnGhost}>
-                {cms(hero, "cta2Label", "The collective")}
+              <Link href={cms(hero, "cta2Href", "/partners/delve-interiors")} className={s.btnGhost}>
+                {cms(hero, "cta2Label", "Meet Delve Interiors")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
@@ -212,7 +178,7 @@ export default async function InteriorsPage() {
         <div className={s.statsLede}>
           <p className={s.statsLedeLine1}>{cms(stats, "headline", "Beauty. Balance. Intention.")}</p>
           <p className={s.statsLedeLine2}>
-            {cms(stats, "subheadline", "Every scheme through a House-Approved studio.")}
+            {cms(stats, "subheadline", "Every scheme through Delve Interiors, House Approved.")}
           </p>
         </div>
         {statCols.map((stat) => (
@@ -268,70 +234,6 @@ export default async function InteriorsPage() {
                 <Link href="#open-booking-form" className={s.planCta}>
                   Book this edit →
                 </Link>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* 3b. The studios behind the work */}
-      <section className={s.studios}>
-        <header className={s.studiosHead}>
-          <p className={s.studiosEy}>{cms(studios, "eyebrow", "The collective")}</p>
-          <h2 className={s.studiosTitle}>
-            {cms(studios, "headline", "The studios")}{" "}
-            <em>{cms(studios, "headlineEm", "behind the work.", "headline")}</em>
-          </h2>
-          <p className={s.studiosLede}>
-            {cms(
-              studios,
-              "body",
-              "Every interiors brief lands with a House-Approved studio. We start small on purpose: two interiors partners at launch, more joining as we find them.",
-            )}
-          </p>
-        </header>
-        <div className={s.studiosGrid}>
-          {STUDIOS.map((studio) => (
-            <article
-              key={studio.name}
-              className={`${s.studioCard} ${studio.status !== "live" ? s.studioCardPlaceholder : ""}`}
-            >
-              {studio.status === "live" && studio.image ? (
-                <div className={s.studioImage}>
-                  <Image
-                    src={studio.image}
-                    alt={studio.name}
-                    width={720}
-                    height={540}
-                    sizes="(min-width: 1024px) 25vw, 90vw"
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                  />
-                </div>
-              ) : (
-                <div className={s.studioImagePlaceholder}>
-                  <span className={s.studioPlaceholderMark}>
-                    {studio.status === "soon" ? "→" : "+"}
-                  </span>
-                </div>
-              )}
-              <div className={s.studioBody}>
-                <p className={s.studioType}>
-                  {studio.type}
-                  {"location" in studio && studio.location ? ` · ${studio.location}` : ""}
-                </p>
-                <h3 className={s.studioName}>{studio.name}</h3>
-                <p className={s.studioBlurb}>{studio.blurb}</p>
-                {studio.status === "live" && "slug" in studio ? (
-                  <Link href={`/partners/${studio.slug}`} className={s.studioCta}>
-                    See the work →
-                  </Link>
-                ) : studio.status === "apply" ? (
-                  <Link href="/partners#apply" className={s.studioCta}>
-                    Apply →
-                  </Link>
-                ) : (
-                  <span className={s.studioBadge}>Coming soon</span>
-                )}
               </div>
             </article>
           ))}

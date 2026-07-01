@@ -24,7 +24,7 @@ import { GARDEN_PROJECTS } from "@/lib/gardens-projects";
 export const metadata = {
   title: "Gardens: Landscapes, properly read.",
   description:
-    "Planting plans, concept designs and full landscape commissions through the House design collective. Led by Willow Alexander Gardens.",
+    "Planting plans, concept designs and full landscape commissions through the House. Led by our in-house garden studio, Willow Alexander Gardens.",
 };
 
 const STAT_COLS = [
@@ -97,36 +97,6 @@ const SPECIALIST = [
   },
 ];
 
-const STUDIOS = [
-  {
-    slug: "willow-alexander-gardens",
-    name: "Willow Alexander Gardens",
-    type: "Garden design",
-    location: "UK-wide · Hertfordshire studio",
-    blurb: "Planting schemes and landscapes rooted in the garden's existing character. Ecological, seasonal, edible.",
-    image: "/design/gardens/hero.jpg",
-    status: "live" as const,
-  },
-  {
-    name: "Hard landscape partner",
-    type: "Coming soon",
-    blurb: "A specialist studio for build, masonry and water, currently being interviewed against the three tests.",
-    status: "soon" as const,
-  },
-  {
-    name: "Planting specialist",
-    type: "Coming soon",
-    blurb: "A second planting-led practice joining the collective, a wilder, looser hand for naturalistic schemes.",
-    status: "soon" as const,
-  },
-  {
-    name: "Apply to the collective",
-    type: "Garden studios",
-    blurb: "We review applications from garden designers and landscape practices working in the UK.",
-    status: "apply" as const,
-  },
-];
-
 // Span pattern across the commissions for an editorial, gap-free 3-col grid.
 const PROJECT_SPAN: Record<number, "tall" | "wide"> = { 0: "tall", 5: "tall" };
 
@@ -137,7 +107,6 @@ export default async function GardensPage() {
   const stats = sections.get("stats");
   const plans = sections.get("plans");
   const specialist = sections.get("specialist");
-  const studios = sections.get("studios");
   const projects = sections.get("projects");
   const quote = sections.get("quote");
   const companion = sections.get("companion");
@@ -177,7 +146,7 @@ export default async function GardensPage() {
               {cms(
                 hero,
                 "body",
-                "Designed around what the garden already wants to do: light, shade, drainage, the soil it has. The brief is to make the garden feel inevitable, ten years from now. Led by Willow Alexander Gardens, with the wider collective for specialist work.",
+                "Designed around what the garden already wants to do: light, shade, drainage, the soil it has. The brief is to make the garden feel inevitable, ten years from now. Led by Willow Alexander Gardens, the House's own garden studio, with specialist partners brought in for build.",
               )}
             </p>
             <div className={s.heroCtas}>
@@ -300,70 +269,6 @@ export default async function GardensPage() {
                 <h3 className={s.specialistName}>{s2.name}</h3>
                 <p className={s.specialistPrice}>{s2.price}</p>
                 <p className={s.specialistBlurb}>{s2.body}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* 4b. The studios behind the work */}
-      <section className={s.studios}>
-        <header className={s.studiosHead}>
-          <p className={s.studiosEy}>{cms(studios, "eyebrow", "The collective")}</p>
-          <h2 className={s.studiosTitle}>
-            {cms(studios, "headline", "The studios")}{" "}
-            <em>{cms(studios, "headlineEm", "behind the garden.", "headline")}</em>
-          </h2>
-          <p className={s.studiosLede}>
-            {cms(
-              studios,
-              "body",
-              "Every garden brief is led by Willow Alexander Gardens, with specialist partners brought in for hard landscape, lighting and build. We grow the collective slowly, only when the right person turns up.",
-            )}
-          </p>
-        </header>
-        <div className={s.studiosGrid}>
-          {STUDIOS.map((studio) => (
-            <article
-              key={studio.name}
-              className={`${s.studioCard} ${studio.status !== "live" ? s.studioCardPlaceholder : ""}`}
-            >
-              {studio.status === "live" && "image" in studio && studio.image ? (
-                <div className={s.studioImage}>
-                  <Image
-                    src={studio.image}
-                    alt={studio.name}
-                    width={720}
-                    height={540}
-                    sizes="(min-width: 1024px) 25vw, 90vw"
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                  />
-                </div>
-              ) : (
-                <div className={s.studioImagePlaceholder}>
-                  <span className={s.studioPlaceholderMark}>
-                    {studio.status === "soon" ? "→" : "+"}
-                  </span>
-                </div>
-              )}
-              <div className={s.studioBody}>
-                <p className={s.studioType}>
-                  {studio.type}
-                  {"location" in studio && studio.location ? ` · ${studio.location}` : ""}
-                </p>
-                <h3 className={s.studioName}>{studio.name}</h3>
-                <p className={s.studioBlurb}>{studio.blurb}</p>
-                {studio.status === "live" && "slug" in studio ? (
-                  <Link href={`/partners/${studio.slug}`} className={s.studioCta}>
-                    See the work →
-                  </Link>
-                ) : studio.status === "apply" ? (
-                  <Link href="/partners#apply" className={s.studioCta}>
-                    Apply →
-                  </Link>
-                ) : (
-                  <span className={s.studioBadge}>Coming soon</span>
-                )}
               </div>
             </article>
           ))}

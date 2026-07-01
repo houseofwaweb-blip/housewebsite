@@ -10,23 +10,23 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  * Section order:
  *   1. Hero — copy left, 2x2 studio mosaic right
  *   2. Stats strip
- *   3. The collective — four studios as editorial cards with image
+ *   3. The circle — the House's design routes as editorial cards with image
  *   4. Selection — three tests, House Approved meaning
  *   5. How to commission — 4 step process
  *   6. Closing CTA
  */
 
 export const metadata = {
-  title: "The Studios: Four, properly chosen.",
+  title: "The Studios: chosen with care.",
   description:
     "The studios and designers the House works with. How we select, what House Approved means in design, and how to commission a project.",
 };
 
 const STAT_COLS = [
-  { value: "4", label: "Launch studios" },
-  { value: "3", label: "Annual tests" },
-  { value: "1:1", label: "Founder relationship" },
-  { value: "0", label: "Faceless agencies" },
+  { value: "2", label: "Live design routes" },
+  { value: "1", label: "In-house garden studio" },
+  { value: "1", label: "House Approved interiors partner" },
+  { value: "+", label: "Invited by standard, not volume" },
 ];
 
 const STUDIOS = [
@@ -39,16 +39,6 @@ const STUDIOS = [
       "Considered schemes, quiet palettes, careful detailing. Listed homes, period flats and contemporary pieds-à-terre.",
     signatures: ["Listed-property specialist", "Period detailing", "Quiet colour"],
     image: "/design/interiors/project-tunbridge-1.webp",
-  },
-  {
-    slug: "jessica-durling-mcmahon",
-    name: "Jessica Durling-McMahon",
-    type: "Interior designer",
-    location: "London & Cotswolds",
-    blurb:
-      "Layered rooms with confident colour, antiques properly used, and a deep love of textile and pattern.",
-    signatures: ["Confident colour", "Antiques placement", "Textile-led"],
-    image: "/design/interiors/project-bedroom.webp",
   },
   {
     slug: "willow-alexander-gardens",
@@ -81,7 +71,7 @@ const SELECTION_TESTS = [
   {
     numeral: "II",
     title: "Person test",
-    body: "We have met them, visited their studio, and would put a friend in their hands. Every studio carries individual responsibility, not a faceless agency front.",
+    body: "We know the people behind the work and would put a friend in their hands. Every studio carries individual responsibility, not a faceless agency front.",
   },
   {
     numeral: "III",
@@ -99,7 +89,7 @@ const COMMISSION_STEPS = [
   {
     n: "02.",
     name: "Matched, not assigned",
-    body: "We propose two or three studios from the collective who fit the project. You pick. The Assistant creates the design brief on your home record.",
+    body: "We propose the design route that fits the project, our garden studio, our interiors partner, or both. You pick. The Assistant creates the design brief on your home record.",
   },
   {
     n: "03.",
@@ -146,14 +136,14 @@ export default async function DesignStudiosPage() {
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>{cms(hero, "eyebrow", "Design · The Studios")}</p>
             <h1 className={s.heroTitle}>
-              {cms(hero, "headline", "A small collective,")}{" "}
+              {cms(hero, "headline", "A small design circle,")}{" "}
               <em>{cms(hero, "headlineEm", "properly chosen.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
               {cms(
                 hero,
                 "body",
-                "Every studio working under the House Approved seal has been visited, interviewed, and put in front of a real project. The collective starts small on purpose. We would rather work with four studios we trust than forty we don't.",
+                "Every studio working under the House Approved seal is chosen for taste, care, and the ability to leave a home better understood than they found it. We keep the circle small on purpose: a few people we trust, not a directory.",
               )}
             </p>
             <div className={s.heroCtas}>
@@ -187,10 +177,10 @@ export default async function DesignStudiosPage() {
       <section className={s.statsStrip}>
         <div className={s.statsLede}>
           <p className={s.statsLedeLine1}>
-            {cms(stats, "headline", "Vetted. Visited. Reviewed annually.")}
+            {cms(stats, "headline", "Chosen with care. Held to a standard.")}
           </p>
           <p className={s.statsLedeLine2}>
-            {cms(stats, "subheadline", "The collective grows only when the right person turns up.")}
+            {cms(stats, "subheadline", "The circle grows only when the right person turns up.")}
           </p>
         </div>
         {statCols.map((stat) => (
@@ -204,16 +194,16 @@ export default async function DesignStudiosPage() {
       {/* 3. Studios — editorial cards */}
       <section id="studios" className={s.studios}>
         <header className={s.studiosHead}>
-          <p className={s.studiosEy}>{cms(studios, "eyebrow", "The collective at launch")}</p>
+          <p className={s.studiosEy}>{cms(studios, "eyebrow", "The circle at launch")}</p>
           <h2 className={s.studiosTitle}>
-            {cms(studios, "headline", "Four studios.")}{" "}
-            <em>{cms(studios, "headlineEm", "Four ways to begin.", "headline")}</em>
+            {cms(studios, "headline", "Two live routes.")}{" "}
+            <em>{cms(studios, "headlineEm", "One growing circle.", "headline")}</em>
           </h2>
           <p className={s.studiosLede}>
             {cms(
               studios,
               "body",
-              "Each carries the House Approved seal under the same three tests, and stays in the collective only as long as those tests hold.",
+              "Each carries the House Approved seal under the same three tests, and stays in the circle only as long as those tests hold.",
             )}
           </p>
         </header>
@@ -265,7 +255,7 @@ export default async function DesignStudiosPage() {
             {cms(
               tests,
               "body",
-              "The seal isn't bestowed once and forgotten. Every studio is reviewed annually against the same three tests. If any test fails for two consecutive cycles, the studio leaves the collective.",
+              "The seal isn't bestowed once and forgotten. Every studio is held to the same three tests for as long as it carries the seal. If a studio stops meeting the standard, the seal comes off.",
             )}
           </p>
         </header>

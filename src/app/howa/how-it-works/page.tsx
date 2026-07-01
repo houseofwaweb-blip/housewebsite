@@ -66,7 +66,7 @@ const VERBS = [
     lede: "Trusted services, vetted partners, and the same trade twice when continuity matters. Booked, billed and filed in one place.",
     examples: [
       "You need a plumber for the radiator valve. HoWA matches you with a House-vetted tradesperson at the member rate. Booked for Tuesday.",
-      "Your design brief needs a kitchen specialist. HoWA connects you with Jessica Durling-McMahon, whose studio focuses on period kitchens. First consultation this week.",
+      "Your design brief needs an interiors specialist. HoWA connects you with Delve Interiors, whose studio focuses on period homes. First consultation this week.",
       "The garden needs seasonal pruning. HoWA schedules Willow Alexander Gardens for the next available slot. Same gardener as last time.",
     ],
     image: "/home-v4/howa-connect.webp",

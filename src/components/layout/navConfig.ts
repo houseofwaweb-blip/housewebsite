@@ -122,10 +122,9 @@ export const PRIMARY_NAV: MegaPanel[] = [
       {
         heading: "Our studios",
         links: [
-          { label: "The Studios", href: "/design/studios", description: "The collective explained" },
-          { label: "Partner directory", href: "/partners", description: "Vetted designers & makers" },
+          { label: "How design begins", href: "/design/studios", description: "The House's design routes" },
+          { label: "Partner directory", href: "/partners", description: "House Approved designers & makers" },
           { label: "Delve Interiors", href: "/partners/delve-interiors" },
-          { label: "Jessica Durling-McMahon", href: "/partners/jessica-durling-mcmahon" },
           { label: "Willow Alexander Gardens", href: "/partners/willow-alexander-gardens" },
         ],
       },
