@@ -201,7 +201,7 @@ export default async function HowaPlusV1PreviewPage() {
             </p>
             <ul className="space-y-2.5">
               {["Full logbook", "Maintenance & garden calendar", "Renewal & warranty reminders"].map((f) => (
-                <li key={f} className="flex items-start gap-2.5 font-sans text-[14px] leading-[1.35] text-[color:var(--color-ink)]/85">
+                <li key={f} className="flex items-start gap-2.5 font-sans text-[15px] leading-[1.35] text-[color:var(--color-ink)]/85">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#b56a5c" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" className="mt-px shrink-0" aria-hidden>
                     <circle cx="12" cy="12" r="9" />
                     <path d="M8.5 12.5l2.5 2.5 4.5-5" />

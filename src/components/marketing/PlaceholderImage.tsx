@@ -28,7 +28,7 @@ export function PlaceholderImage({
         Placeholder image
       </span>
       {caption ? (
-        <span className="relative font-display italic text-[clamp(14px,1.6vw,17px)] leading-[1.4] text-house-brown/55 max-w-[30ch]">
+        <span className="relative font-display italic text-[clamp(15px,1.6vw,17px)] leading-[1.4] text-house-brown/55 max-w-[30ch]">
           {caption}
         </span>
       ) : null}

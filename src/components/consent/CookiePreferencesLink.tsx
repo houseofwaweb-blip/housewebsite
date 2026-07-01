@@ -13,7 +13,7 @@ export function CookiePreferencesLink() {
     <button
       type="button"
       onClick={openPreferences}
-      className="font-sans text-[14px] text-house-cream/70 hover:text-house-cream transition-colors duration-[var(--t-base)] bg-transparent border-0 cursor-pointer underline decoration-house-gold/60 underline-offset-4 hover:decoration-house-gold p-0"
+      className="font-sans text-[15px] text-house-cream/70 hover:text-house-cream transition-colors duration-[var(--t-base)] bg-transparent border-0 cursor-pointer underline decoration-house-gold/60 underline-offset-4 hover:decoration-house-gold p-0"
     >
       Cookie preferences
     </button>

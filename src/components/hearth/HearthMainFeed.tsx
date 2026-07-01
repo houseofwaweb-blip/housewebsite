@@ -60,7 +60,7 @@ function FeedArticle({ article }: { article: HearthArticle }) {
         <h4 className="font-hearth-serif font-medium text-[22px] leading-[1.15] tracking-[-0.005em] text-house-black mb-2 transition-colors duration-[var(--t-slow)] ease-out group-hover:text-house-gold-dark">
           <HearthTitle title={article.title} em={article.titleEm} />
         </h4>
-        <p className="mt-auto font-hearth-serif italic text-[14px] leading-[1.5] text-house-stone">
+        <p className="mt-auto font-hearth-serif italic text-[15px] leading-[1.5] text-house-stone">
           {article.dek}
         </p>
       </Link>

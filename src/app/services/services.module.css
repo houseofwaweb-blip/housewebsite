@@ -59,7 +59,7 @@
 }
 .heroLede {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.65;
   color: rgba(48, 35, 28, 0.72);
   margin: 0 0 32px;
@@ -71,7 +71,7 @@
 .heroCtas { display: flex; gap: 12px; flex-wrap: wrap; }
 .heroMicro {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
   color: rgba(48, 35, 28, 0.72);
   margin: 16px 0 0;
@@ -126,7 +126,7 @@
 .statsLede { padding-right: clamp(24px, 3vw, 56px); }
 .statsLedeLine1 {
   font-family: var(--font-sans);
-  font-size: clamp(14px, 1.1vw, 15px);
+  font-size: clamp(15px, 1.1vw, 15px);
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -211,7 +211,7 @@
 }
 .servicesLede {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.7;
   color: rgba(48, 35, 28, 0.72);
   margin: 18px auto 0;
@@ -282,7 +282,7 @@
   background: rgba(30, 26, 20, 0.34);
   color: #fff;
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -299,7 +299,7 @@
 .servicesFootnote {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 14px;
+  font-size: 15px;
   color: rgba(48, 35, 28, 0.65);
   text-align: center;
   margin: clamp(24px, 2.6vw, 36px) auto 0;
@@ -330,7 +330,7 @@
 }
 .serviceTagline {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -339,7 +339,7 @@
 }
 .serviceText {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
@@ -361,7 +361,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(14px, 2vw, 22px);
+  gap: clamp(15px, 2vw, 22px);
   margin-top: clamp(24px, 2.6vw, 36px);
 }
 .carouselArrow {
@@ -462,7 +462,7 @@
 }
 .plansLede {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.7;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
@@ -563,7 +563,7 @@
   position: relative;
   padding-left: 18px;
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.78);
 }
@@ -583,7 +583,7 @@
   margin: clamp(32px, 3vw, 48px) auto 0;
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 14px;
+  font-size: 15px;
   color: rgba(48, 35, 28, 0.65);
 }
 
@@ -629,7 +629,7 @@
 }
 .briefLede {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.7;
   color: rgba(48, 35, 28, 0.72);
   margin: 0 0 28px;
@@ -667,7 +667,7 @@
   padding: 14px 0;
   border-top: 1px solid rgba(245, 240, 232, 0.12);
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.5;
   color: rgba(245, 240, 232, 0.85);
 }
@@ -675,7 +675,7 @@
 .briefMockNum {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--color-house-gold-light);
 }
 .briefMockLabel {
@@ -826,7 +826,7 @@
   .carouselDotActive, .carouselDotActive:hover { width: 20px; }
   .plansGrid { grid-template-columns: 1fr; }
   .briefCopy, .briefMock { padding: 48px 24px; }
-  .briefMockLine { grid-template-columns: 22px 120px 1fr; gap: 8px; font-size: 14px; }
+  .briefMockLine { grid-template-columns: 22px 120px 1fr; gap: 8px; font-size: 15px; }
 }
 
 /* Flower watermark host: clip the off-edge motif, keep content above */

@@ -610,7 +610,7 @@ export default async function HomePage() {
             <h2 className="font-display text-[clamp(26px,3vw,42px)] leading-[1.06] text-house-brown mb-4">
               Whatever the home needs, booked in minutes.
             </h2>
-            <p className="font-sans text-[14px] text-house-stone leading-[1.6]">
+            <p className="font-sans text-[15px] text-house-stone leading-[1.6]">
               Vetted local specialists, delivered to the House standard and written
               back to your Home Record.
             </p>
@@ -634,7 +634,7 @@ export default async function HomePage() {
                 </div>
                 <div className="flex flex-col flex-1 p-6">
                   <p className="font-display text-[19px] leading-tight text-house-brown mb-1.5">{svc.name}</p>
-                  <p className="font-sans text-[14px] text-house-stone leading-[1.5] mb-6 flex-1">{SERVICE_BLURB[svc.name]}</p>
+                  <p className="font-sans text-[15px] text-house-stone leading-[1.5] mb-6 flex-1">{SERVICE_BLURB[svc.name]}</p>
                   <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-dark transition-colors group-hover:text-house-brown">
                     Book through HoWA →
                   </span>

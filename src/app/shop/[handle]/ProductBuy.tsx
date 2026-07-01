@@ -28,7 +28,7 @@ export function ProductBuy({
 
   if (!selected) {
     return (
-      <span className="font-sans text-[14px] tracking-[0.16em] uppercase text-house-stone">
+      <span className="font-sans text-[15px] tracking-[0.16em] uppercase text-house-stone">
         Unavailable
       </span>
     );
@@ -78,7 +78,7 @@ export function ProductBuy({
           <select
             value={variantId}
             onChange={(e) => setVariantId(e.target.value)}
-            className="font-sans text-[14px] text-house-brown bg-house-white border border-house-brown/20 px-4 py-3 cursor-pointer focus:border-house-gold focus:outline-none"
+            className="font-sans text-[15px] text-house-brown bg-house-white border border-house-brown/20 px-4 py-3 cursor-pointer focus:border-house-gold focus:outline-none"
             aria-label="Choose an option"
           >
             {variants.map((v) => (
@@ -103,7 +103,7 @@ export function ProductBuy({
           >
             −
           </button>
-          <span className="w-7 text-center font-sans text-[14px] text-house-brown tabular-nums">
+          <span className="w-7 text-center font-sans text-[15px] text-house-brown tabular-nums">
             {qty}
           </span>
           <button

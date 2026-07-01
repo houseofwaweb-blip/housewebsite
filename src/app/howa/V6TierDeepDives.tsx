@@ -162,7 +162,7 @@ export function V6TierDeepDives() {
                   )}
                   <ul className="space-y-2 mb-4">
                     {t.points.map((p) => (
-                      <li key={p.t} className={"flex items-start gap-2.5 text-[15.5px] leading-[1.4] " + (dark ? "text-[#f3ede0]/85" : "text-[color:var(--color-ink-soft)]")}>
+                      <li key={p.t} className={"flex items-start gap-2.5 text-[16px] leading-[1.4] " + (dark ? "text-[#f3ede0]/85" : "text-[color:var(--color-ink-soft)]")}>
                         <span className="mt-1 shrink-0">
                           <CheckGlyph color={t.accent} />
                         </span>
@@ -172,7 +172,7 @@ export function V6TierDeepDives() {
                     ))}
                   </ul>
                   {t.fine && (
-                    <p className={"text-[14px] leading-[1.45] mb-6 max-w-[390px] " + (dark ? "text-[#f3ede0]/45" : "text-[color:var(--color-ink-soft)]/55")}>
+                    <p className={"text-[15px] leading-[1.45] mb-6 max-w-[390px] " + (dark ? "text-[#f3ede0]/45" : "text-[color:var(--color-ink-soft)]/55")}>
                       {t.fine}
                     </p>
                   )}
@@ -195,7 +195,7 @@ export function V6TierDeepDives() {
                       <p className="smallcaps text-[12px] tracking-[0.16em] text-[color:var(--color-gold-deep)] mb-2.5">{t.card.title}</p>
                       <ul className="space-y-2">
                         {t.card.items.map((it) => (
-                          <li key={it} className="flex items-center gap-2 text-[14px] leading-[1.25] text-[color:var(--color-ink-soft)]">
+                          <li key={it} className="flex items-center gap-2 text-[15px] leading-[1.25] text-[color:var(--color-ink-soft)]">
                             <CheckGlyph color={t.accent} small /> {it}
                           </li>
                         ))}

@@ -113,14 +113,14 @@ export function ModesBands() {
               </p>
               <ul className="space-y-2 mb-7">
                 {m.points.map((p) => (
-                  <li key={p} className="flex items-center gap-2.5 text-[15.5px] text-[#f3ede0]/90">
+                  <li key={p} className="flex items-center gap-2.5 text-[16px] text-[#f3ede0]/90">
                     <CheckGlyph /> {p}
                   </li>
                 ))}
               </ul>
               <Link
                 href={m.href}
-                className="mt-auto inline-flex items-center gap-2 self-start rounded-md border border-[#f3ede0]/45 px-5 py-2.5 text-[15.5px] text-[#f3ede0] hover:bg-[#f3ede0]/10 transition-colors"
+                className="mt-auto inline-flex items-center gap-2 self-start rounded-md border border-[#f3ede0]/45 px-5 py-2.5 text-[16px] text-[#f3ede0] hover:bg-[#f3ede0]/10 transition-colors"
               >
                 Explore {m.name} <span aria-hidden>→</span>
               </Link>

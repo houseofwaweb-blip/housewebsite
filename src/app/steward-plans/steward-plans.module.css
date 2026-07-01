@@ -165,7 +165,7 @@
 }
 .pillarDesc {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.65;
   color: rgba(245, 240, 232, 0.62);
   margin: 0;
@@ -328,7 +328,7 @@
 .imageBandTitle em { font-style: italic; color: var(--color-house-gold-light); }
 .imageBandLede {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.65;
   color: rgba(245, 240, 232, 0.82);
   margin: 0;
@@ -393,7 +393,7 @@
 }
 .serviceDesc {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
   color: rgba(48, 35, 28, 0.72);
   margin: 4px 0 0;
@@ -501,7 +501,7 @@
 .membershipTitle em { font-style: italic; color: var(--color-house-gold-light); }
 .membershipLede {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.7;
   color: rgba(245, 240, 232, 0.72);
   margin: 0 auto 32px;

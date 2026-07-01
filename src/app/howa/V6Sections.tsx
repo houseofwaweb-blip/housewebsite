@@ -30,7 +30,7 @@ export function V6WhatItIs() {
   return (
     <section id="what" className="bg-[#f4f1e9] py-16 lg:py-24 border-t border-[color:var(--color-ink)]/8 scroll-mt-20">
       <div className="max-w-[940px] mx-auto px-6 sm:px-10 text-center">
-        <p className="smallcaps text-[14px] tracking-[0.2em] text-[color:var(--color-gold-deep)] mb-5">What HoWA is</p>
+        <p className="smallcaps text-[15px] tracking-[0.2em] text-[color:var(--color-gold-deep)] mb-5">What HoWA is</p>
         <p className="font-italic-display text-[clamp(18px,1.8vw,24px)] text-[color:var(--color-ink-soft)] mb-6">
           Not a smart-home gadget. Not a folder of receipts. Not a booking app.
         </p>
@@ -75,7 +75,7 @@ export function V6WhatItIs() {
           {beneath.map((c) => (
             <div key={c.who} className="bg-[#f4f1e9] px-5 py-6 text-center">
               <p className="font-display text-[17px] mb-1">{c.who}</p>
-              <p className="text-[14px] text-[color:var(--color-ink-soft)]/75">{c.does}</p>
+              <p className="text-[15px] text-[color:var(--color-ink-soft)]/75">{c.does}</p>
             </div>
           ))}
         </div>
@@ -123,7 +123,7 @@ export function V6OneRecord() {
               <span className="font-display text-[20px] text-[#c5a960] tabular-nums">{p.n}</span>
               <div>
                 <p className="font-display text-[19px] leading-[1.2] mb-1">{p.t}</p>
-                <p className="text-[15.5px] leading-[1.5] text-[color:var(--color-ink-soft)] max-w-[260px]">{p.b}</p>
+                <p className="text-[16px] leading-[1.5] text-[color:var(--color-ink-soft)] max-w-[260px]">{p.b}</p>
               </div>
             </div>
           ))}
@@ -158,7 +158,7 @@ function RecordDataModel() {
       </figure>
       <ul className="max-w-[760px] mx-auto space-y-3.5">
         {rows.map((r) => (
-          <li key={r.t} className="flex items-start gap-3 text-[15.5px] leading-[1.5] text-[color:var(--color-ink-soft)]">
+          <li key={r.t} className="flex items-start gap-3 text-[16px] leading-[1.5] text-[color:var(--color-ink-soft)]">
             <span className="mt-0.5 shrink-0"><Tick /></span>
             <span className="flex-1">{r.t}</span>
             {r.tag === "coming" && <StatusTag kind="coming" />}
@@ -196,7 +196,7 @@ export function V6Trust() {
         <p className="font-display text-[clamp(19px,2vw,26px)] leading-[1.3] text-[color:var(--color-ink)] max-w-[660px] mx-auto">
           Your home&apos;s record belongs to you. We don&apos;t sell it, and we don&apos;t use it to train anyone&apos;s models.
         </p>
-        <p className="mt-3 text-[15.5px] leading-[1.55] text-[color:var(--color-ink-soft)]">
+        <p className="mt-3 text-[16px] leading-[1.55] text-[color:var(--color-ink-soft)]">
           You choose what is shared, with whom, and every access is logged.
         </p>
       </div>
@@ -246,7 +246,7 @@ export function V6ThreeThings() {
     <section id="does" className="bg-[#f4f1e9] pt-16 lg:pt-20 pb-10 scroll-mt-20">
       <div className="max-w-[1240px] mx-auto px-6 sm:px-10">
         <div className="text-center max-w-[680px] mx-auto mb-12">
-          <p className="smallcaps text-[14px] tracking-[0.2em] text-[color:var(--color-gold-deep)] mb-3">Live today</p>
+          <p className="smallcaps text-[15px] tracking-[0.2em] text-[color:var(--color-gold-deep)] mb-3">Live today</p>
           <h2 className="font-display text-[clamp(28px,2.8vw,42px)] leading-[1.08] tracking-[-0.01em]">
             Three things HoWA does <span className="font-italic-display text-[#c5a960]">today</span>.
           </h2>
@@ -276,7 +276,7 @@ export function V6ThreeThings() {
                   ))}
                 </ul>
               )}
-              <p className="mt-auto pt-4 border-t border-[color:var(--color-ink)]/8 text-[14px] leading-[1.45] text-[color:var(--color-ink-soft)]/80">
+              <p className="mt-auto pt-4 border-t border-[color:var(--color-ink)]/8 text-[15px] leading-[1.45] text-[color:var(--color-ink-soft)]/80">
                 {c.foot}
               </p>
             </div>
@@ -314,7 +314,7 @@ export function V6Protection() {
         <div className="mt-10 flex items-center flex-wrap gap-x-2.5 gap-y-3">
           {flow.map((s, i) => (
             <span key={s} className="flex items-center gap-2.5">
-              <span className={"rounded-md border px-3.5 py-2 font-mono text-[14px] tracking-[0.03em] " + (i === flow.length - 1 ? "border-[#c5a960]/55 text-[#c5a960]" : "border-[#f3ede0]/25 text-[#f3ede0]/90")}>
+              <span className={"rounded-md border px-3.5 py-2 font-mono text-[15px] tracking-[0.03em] " + (i === flow.length - 1 ? "border-[#c5a960]/55 text-[#c5a960]" : "border-[#f3ede0]/25 text-[#f3ede0]/90")}>
                 {s}
               </span>
               {i < flow.length - 1 && (
@@ -327,7 +327,7 @@ export function V6Protection() {
           </span>
         </div>
 
-        <p className="mt-8 text-[14px] leading-[1.5] text-[#f3ede0]/45 max-w-[560px]">
+        <p className="mt-8 text-[15px] leading-[1.5] text-[#f3ede0]/45 max-w-[560px]">
           HoWA prepares evidence and prefills your details for renewal. It does not give insurance advice or arrange cover.
         </p>
         </div>
@@ -365,7 +365,7 @@ export function V6Testimonial() {
           <p className="text-[16.5px] leading-[1.55] text-[color:var(--color-ink-soft)]">
             For the first time we have one place for everything. It saves time, money and so much mental space.
           </p>
-          <p className="mt-3 text-[15px] text-[color:var(--color-ink-soft)]/70">Charlotte M., Homeowner</p>
+          <p className="mt-3 text-[16px] text-[color:var(--color-ink-soft)]/70">Charlotte M., Homeowner</p>
         </div>
         <div className="lg:col-span-3">
           <div className="relative w-full aspect-[4/3] max-w-[220px] ml-auto">
@@ -392,13 +392,13 @@ export function V6Stats() {
       <div className="max-w-[1320px] mx-auto px-6 sm:px-10 flex flex-col lg:flex-row items-center gap-8">
         <div className="shrink-0 max-w-[230px]">
           <p className="font-display text-[21px] leading-[1.15]">A typical home.</p>
-          <p className="text-[15px] text-[color:var(--color-ink-soft)]/70 mt-1">Illustrative of what HoWA holds for a home like yours.</p>
+          <p className="text-[16px] text-[color:var(--color-ink-soft)]/70 mt-1">Illustrative of what HoWA holds for a home like yours.</p>
         </div>
         <div className="flex-1 grid grid-cols-2 sm:grid-cols-4 gap-6">
           {stats.map((s) => (
             <div key={s.l}>
               <p className="font-display text-[25px] leading-none">{s.n}</p>
-              <p className="text-[14px] text-[color:var(--color-ink-soft)]/70 mt-1.5 leading-[1.3]">{s.l}</p>
+              <p className="text-[15px] text-[color:var(--color-ink-soft)]/70 mt-1.5 leading-[1.3]">{s.l}</p>
             </div>
           ))}
         </div>
@@ -424,7 +424,7 @@ export function V6Cta() {
           </h2>
         </div>
         <div className="flex items-center gap-5">
-          <p className="text-[15.5px] text-[#f3ede0]/85 max-w-[220px] hidden sm:block">
+          <p className="text-[16px] text-[#f3ede0]/85 max-w-[220px] hidden sm:block">
             Join the waitlist and be among the first to bring HoWA to your home.
           </p>
           <a href="/howa/coming-soon" className="inline-flex items-center gap-2 rounded-md bg-[#f3ede0] px-7 py-3.5 text-[16px] text-[#27384c] hover:bg-white transition-colors whitespace-nowrap">

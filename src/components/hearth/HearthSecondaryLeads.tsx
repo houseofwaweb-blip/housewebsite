@@ -46,7 +46,7 @@ function SecondaryArticle({ article }: { article: HearthArticle }) {
         <span className="inline-block mb-[10px] font-hearth-sans text-[12px] tracking-[0.22em] uppercase text-house-black">
           {article.categoryLong ?? article.category}
           {article.flag ? (
-            <em className="not-italic ml-1.5 font-hearth-serif italic text-[14px] text-house-stone tracking-normal normal-case">
+            <em className="not-italic ml-1.5 font-hearth-serif italic text-[15px] text-house-stone tracking-normal normal-case">
               {article.flag}
             </em>
           ) : null}
@@ -54,11 +54,11 @@ function SecondaryArticle({ article }: { article: HearthArticle }) {
         <h2 className="font-hearth-serif font-medium text-[26px] leading-[1.12] tracking-[-0.005em] text-house-black mb-[10px] transition-colors duration-[var(--t-slow)] ease-out group-hover:text-house-gold-dark">
           <HearthTitle title={article.title} em={article.titleEm} />
         </h2>
-        <p className="font-hearth-serif italic text-[15px] leading-[1.5] text-house-stone mb-[10px]">
+        <p className="font-hearth-serif italic text-[16px] leading-[1.5] text-house-stone mb-[10px]">
           {article.dek}
         </p>
         <p className="mt-auto font-hearth-sans text-[12px] tracking-[0.14em] uppercase text-house-stone">
-          <em className="not-italic font-hearth-serif italic text-[14px] text-house-black normal-case tracking-normal mr-1">
+          <em className="not-italic font-hearth-serif italic text-[15px] text-house-black normal-case tracking-normal mr-1">
             {article.author}
           </em>
           · {formattedDate}

@@ -78,7 +78,7 @@
 }
 .heroLede {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.65;
   color: rgba(245, 240, 232, 0.78);
   margin: 0 0 32px;
@@ -106,7 +106,7 @@
 .statsLede { padding-right: clamp(24px, 3vw, 56px); }
 .statsLedeLine1 {
   font-family: var(--font-sans);
-  font-size: clamp(14px, 1.1vw, 15px);
+  font-size: clamp(15px, 1.1vw, 15px);
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -207,7 +207,7 @@
 .whatsCardNumber {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--color-house-gold-light);
   margin: 0;
 }
@@ -223,7 +223,7 @@
 }
 .whatsCardBody {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.65;
   color: rgba(245, 240, 232, 0.72);
   margin: 0;

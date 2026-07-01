@@ -34,7 +34,7 @@ export function BookingFlowStrip() {
             <li key={step.n} className="flex flex-col">
               <span className="font-display text-[28px] leading-none text-house-gold-dark mb-3">{step.n}</span>
               <span aria-hidden className="block h-px w-8 bg-house-gold/40 mb-3" />
-              <span className="font-sans text-[14px] leading-[1.5] text-house-brown">{step.label}</span>
+              <span className="font-sans text-[15px] leading-[1.5] text-house-brown">{step.label}</span>
             </li>
           ))}
         </ol>

@@ -78,7 +78,7 @@
 }
 .heroLede {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.65;
   color: rgba(245, 240, 232, 0.78);
   margin: 0 0 32px;
@@ -144,7 +144,7 @@
 .statsLede { padding-right: clamp(24px, 3vw, 56px); }
 .statsLedeLine1 {
   font-family: var(--font-sans);
-  font-size: clamp(14px, 1.1vw, 15px);
+  font-size: clamp(15px, 1.1vw, 15px);
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -281,7 +281,7 @@
   position: relative;
   padding-left: 22px;
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.55;
   color: var(--color-house-brown);
 }
@@ -338,7 +338,7 @@
 }
 .risksLede {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.7;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
@@ -390,7 +390,7 @@
 }
 .riskBody {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.65;
   color: rgba(48, 35, 28, 0.72);
   margin: 0 0 20px;
@@ -409,7 +409,7 @@
   position: relative;
   padding-left: 18px;
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.78);
 }
@@ -461,7 +461,7 @@
 }
 .stepsLede {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.7;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
@@ -511,7 +511,7 @@
 }
 .stepBody {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.65;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
@@ -601,7 +601,7 @@
 .audienceBody {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
@@ -675,7 +675,7 @@
   position: relative;
   padding-left: 22px;
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.55;
   color: var(--color-house-brown);
 }
@@ -688,7 +688,7 @@
 .registerNote {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 14px;
+  font-size: 15px;
   color: rgba(48, 35, 28, 0.65);
   margin: 0 0 18px;
 }
@@ -749,7 +749,7 @@
 }
 .insuranceBody {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.65;
   color: rgba(48, 35, 28, 0.78);
   margin: 0 0 20px;
@@ -766,7 +766,7 @@
   position: relative;
   padding-left: 22px;
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.55;
   color: var(--color-house-brown);
 }
@@ -872,7 +872,7 @@
   max-width: 880px;
   margin: 0 auto;
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.65;
 }
 .fca a {

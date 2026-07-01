@@ -105,7 +105,7 @@ const components: PortableTextComponents = {
             className="w-full h-auto"
           />
           {value.caption ? (
-            <figcaption className="font-sans text-[14px] tracking-[0.04em] text-house-brown/60 mt-3 italic">
+            <figcaption className="font-sans text-[15px] tracking-[0.04em] text-house-brown/60 mt-3 italic">
               {value.caption}
             </figcaption>
           ) : null}
@@ -115,7 +115,7 @@ const components: PortableTextComponents = {
 
     videoEmbed: ({ value }: { value: VideoEmbedBlock }) => {
       const caption = value.caption ? (
-        <figcaption className="font-sans text-[14px] tracking-[0.04em] text-house-brown/60 mt-3 italic text-center">
+        <figcaption className="font-sans text-[15px] tracking-[0.04em] text-house-brown/60 mt-3 italic text-center">
           {value.caption}
         </figcaption>
       ) : null;
@@ -243,7 +243,7 @@ const components: PortableTextComponents = {
           {value.handle.replace(/-/g, " ")}
         </Link>
         {value.houseNote ? (
-          <p className="font-sans italic text-[15px] text-house-brown/70 leading-[1.55]">
+          <p className="font-sans italic text-[16px] text-house-brown/70 leading-[1.55]">
             {value.houseNote}
           </p>
         ) : null}
@@ -287,7 +287,7 @@ const components: PortableTextComponents = {
       </h3>
     ),
     h4: ({ children }) => (
-      <h4 className="font-sans text-[14px] tracking-[0.2em] uppercase mt-10 mb-3 text-house-brown/80">
+      <h4 className="font-sans text-[15px] tracking-[0.2em] uppercase mt-10 mb-3 text-house-brown/80">
         {children}
       </h4>
     ),

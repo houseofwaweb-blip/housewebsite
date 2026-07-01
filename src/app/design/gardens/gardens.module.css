@@ -51,7 +51,7 @@
 .heroTitle em { font-style: italic; color: var(--color-house-gold-dark); }
 .heroLede {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.65;
   color: rgba(48, 35, 28, 0.72);
   margin: 0 0 32px;
@@ -99,7 +99,7 @@
 .statsLede { padding-right: clamp(24px, 3vw, 56px); }
 .statsLedeLine1 {
   font-family: var(--font-sans);
-  font-size: clamp(14px, 1.1vw, 15px);
+  font-size: clamp(15px, 1.1vw, 15px);
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -176,7 +176,7 @@
 .plansTitle em { font-style: italic; color: var(--color-house-gold-dark); }
 .plansLede {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.7;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
@@ -238,7 +238,7 @@
 }
 .planTagline {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.5;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
@@ -264,7 +264,7 @@
   position: relative;
   padding-left: 20px;
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.72);
 }
@@ -360,7 +360,7 @@
 }
 .specialistBlurb {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
   color: rgba(48, 35, 28, 0.72);
   margin: 6px 0 0;
@@ -472,7 +472,7 @@
 }
 .studioBlurb {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
@@ -533,7 +533,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 280px;
-  gap: clamp(14px, 1.4vw, 18px);
+  gap: clamp(15px, 1.4vw, 18px);
 }
 .projectCard {
   position: relative;
@@ -633,7 +633,7 @@
 .companionTitle em { font-style: italic; color: var(--color-house-gold-dark); }
 .companionLede {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.7;
   color: rgba(48, 35, 28, 0.72);
   margin: 0 0 18px;
@@ -642,7 +642,7 @@
 .companionFootnote {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 14px;
+  font-size: 15px;
   color: rgba(48, 35, 28, 0.72);
   margin: 0 0 24px;
 }

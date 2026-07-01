@@ -32,7 +32,7 @@ export function V3Security() {
                 <LockGlyph />
                 <p className="font-display text-[17px] text-[#f3ede0]">{p.t}</p>
               </div>
-              <p className="text-[14px] leading-[1.5] text-[#f3ede0]/70">{p.b}</p>
+              <p className="text-[15px] leading-[1.5] text-[#f3ede0]/70">{p.b}</p>
             </div>
           ))}
         </div>

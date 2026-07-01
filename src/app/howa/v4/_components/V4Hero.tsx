@@ -46,7 +46,7 @@ export function V4Hero() {
 function HeroCopy() {
   return (
     <div className="max-w-[540px]">
-      <p className="smallcaps mb-4 text-[14px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">The Home Intelligence OS</p>
+      <p className="smallcaps mb-4 text-[15px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">The Home Intelligence OS</p>
       <h1 className="font-display text-[clamp(40px,3.4vw,64px)] leading-[0.98] tracking-[-0.015em] text-[color:var(--color-ink)]">
         Your house is
         <br />
@@ -59,10 +59,10 @@ function HeroCopy() {
       <div className="mt-7">
         <V4AddressBar />
       </div>
-      <a href="#demo" className="mt-3 inline-flex items-center gap-1.5 text-[15px] text-[color:var(--color-ink-soft)] hover:text-[color:var(--color-ink)] transition-colors">
+      <a href="#demo" className="mt-3 inline-flex items-center gap-1.5 text-[16px] text-[color:var(--color-ink-soft)] hover:text-[color:var(--color-ink)] transition-colors">
         See sample record <span aria-hidden>→</span>
       </a>
-      <p className="mt-6 max-w-[460px] text-[14px] leading-[1.55] text-[color:var(--color-ink)]/55">
+      <p className="mt-6 max-w-[460px] text-[15px] leading-[1.55] text-[color:var(--color-ink)]/55">
         House of Willow Alexander is HoWA&apos;s founding service partner. House
         work is booked through HoWA and written back to your Home Record, and
         HoWA stands on its own for any home, with or without the House.

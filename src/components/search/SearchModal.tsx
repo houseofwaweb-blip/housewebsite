@@ -213,7 +213,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
             <Link
               href={`/search${query ? `?q=${encodeURIComponent(query)}` : ""}`}
               onClick={onClose}
-              className="group inline-flex items-center gap-[8px] font-sans text-[14px] tracking-[0.18em] uppercase no-underline text-house-brown border-b border-solid border-house-gold pb-[3px] transition-[color,border-style] duration-[var(--t-slow)] ease-out hover:text-house-gold-dark hover:border-dotted"
+              className="group inline-flex items-center gap-[8px] font-sans text-[15px] tracking-[0.18em] uppercase no-underline text-house-brown border-b border-solid border-house-gold pb-[3px] transition-[color,border-style] duration-[var(--t-slow)] ease-out hover:text-house-gold-dark hover:border-dotted"
             >
               <span>View all results</span>
               <span
@@ -228,7 +228,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
 
         <div key={refreshKey} className="flex flex-col">
           {loading ? (
-            <p className="font-display italic text-[15px] text-house-brown/50 py-[40px] text-center">
+            <p className="font-display italic text-[16px] text-house-brown/50 py-[40px] text-center">
               Searching&hellip;
             </p>
           ) : results.length === 0 && query.length > 0 ? (
@@ -236,7 +236,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
               Nothing quite like &ldquo;{query}&rdquo; yet. Try different terms.
             </p>
           ) : results.length === 0 ? (
-            <p className="font-display italic text-[15px] text-house-brown/50 py-[40px] text-center">
+            <p className="font-display italic text-[16px] text-house-brown/50 py-[40px] text-center">
               Start typing to search across the House.
             </p>
           ) : (
@@ -269,7 +269,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
                     {r.title}
                   </h5>
                   {r.excerpt ? (
-                    <p className="font-sans text-[14px] text-house-brown/60 leading-[1.5]">
+                    <p className="font-sans text-[15px] text-house-brown/60 leading-[1.5]">
                       {r.excerpt}
                     </p>
                   ) : null}

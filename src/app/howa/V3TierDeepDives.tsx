@@ -105,7 +105,7 @@ function TierCard({ t }: { t: Tier }) {
           <p className="smallcaps mb-2.5 text-[12px] tracking-[0.16em] text-[color:var(--color-gold-deep)]">{t.card.title}</p>
           <ul className="space-y-2">
             {t.card.items.map((it) => (
-              <li key={it} className="flex items-center gap-2 text-[14px] leading-[1.2] text-[color:var(--color-ink-soft)]">
+              <li key={it} className="flex items-center gap-2 text-[15px] leading-[1.2] text-[color:var(--color-ink-soft)]">
                 <CheckGlyph color={t.accent} small /> {it}
               </li>
             ))}
@@ -123,7 +123,7 @@ function TierCard({ t }: { t: Tier }) {
         )}
         <ul className="mb-6 space-y-2">
           {t.points.map((p) => (
-            <li key={p} className="flex items-start gap-2.5 text-[15px] leading-[1.4] text-[color:var(--color-ink-soft)]">
+            <li key={p} className="flex items-start gap-2.5 text-[16px] leading-[1.4] text-[color:var(--color-ink-soft)]">
               <span className="mt-1 shrink-0"><CheckGlyph color={t.accent} /></span>
               <span className="flex-1">{p}</span>
             </li>
@@ -159,7 +159,7 @@ function TierWide({ t }: { t: Tier }) {
           {t.groupLabel && <p className="smallcaps mb-2.5 text-[12px] tracking-[0.18em]" style={{ color: t.accent }}>{t.groupLabel}</p>}
           <ul className="mb-6 space-y-2">
             {t.points.map((p) => (
-              <li key={p} className="flex items-start gap-2.5 text-[15.5px] leading-[1.4] text-[#f3ede0]/85">
+              <li key={p} className="flex items-start gap-2.5 text-[16px] leading-[1.4] text-[#f3ede0]/85">
                 <span className="mt-1 shrink-0"><CheckGlyph color={t.accent} /></span>
                 <span className="flex-1">{p}</span>
               </li>
@@ -176,7 +176,7 @@ function TierWide({ t }: { t: Tier }) {
               <p className="smallcaps mb-2.5 text-[12px] tracking-[0.16em] text-[color:var(--color-gold-deep)]">{t.card.title}</p>
               <ul className="space-y-2">
                 {t.card.items.map((it) => (
-                  <li key={it} className="flex items-center gap-2 text-[14px] leading-[1.25] text-[color:var(--color-ink-soft)]">
+                  <li key={it} className="flex items-center gap-2 text-[15px] leading-[1.25] text-[color:var(--color-ink-soft)]">
                     <CheckGlyph color={t.accent} small /> {it}
                   </li>
                 ))}

@@ -50,7 +50,7 @@ export default function ErrorPage({
           <button
             type="button"
             onClick={() => reset()}
-            className="inline-block font-sans text-[14px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold px-6 py-3.5 no-underline cursor-pointer transition-colors duration-[var(--t-slow)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
+            className="inline-block font-sans text-[15px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold px-6 py-3.5 no-underline cursor-pointer transition-colors duration-[var(--t-slow)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
           >
             Try again
           </button>

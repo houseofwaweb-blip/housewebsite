@@ -29,7 +29,7 @@ export function CartToast() {
     >
       {toast ? (
         <>
-          <p className="font-sans italic text-[14px] leading-[1.45] pr-6">
+          <p className="font-sans italic text-[15px] leading-[1.45] pr-6">
             {toast.title}
           </p>
           {toast.href ? (

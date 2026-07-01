@@ -124,7 +124,7 @@ export default async function DirectoryPage({
               <p className="font-display italic text-[20px] text-house-brown/50 mb-4">
                 No partners in this category yet.
               </p>
-              <p className="font-sans text-[15px] text-house-brown/50">
+              <p className="font-sans text-[16px] text-house-brown/50">
                 The House Approved list grows slowly, on purpose. Check back soon.
               </p>
             </div>
@@ -159,7 +159,7 @@ export default async function DirectoryPage({
                   />
 
                   {/* Bio */}
-                  <p className="font-sans text-[15px] leading-[1.6] text-house-brown/70 mb-5">
+                  <p className="font-sans text-[16px] leading-[1.6] text-house-brown/70 mb-5">
                     {p.shortBio}
                   </p>
 
@@ -179,14 +179,14 @@ export default async function DirectoryPage({
 
                   {/* Service areas */}
                   {p.serviceAreas && p.serviceAreas.length > 0 && (
-                    <p className="font-sans text-[14px] text-house-brown/50 mb-4">
+                    <p className="font-sans text-[15px] text-house-brown/50 mb-4">
                       {p.serviceAreas.join(" · ")}
                     </p>
                   )}
 
                   {/* CTA */}
                   <span
-                    className="inline-flex items-center gap-2 font-sans text-[14px] tracking-[0.16em] uppercase transition-colors duration-[var(--t-base)] group-hover:text-[var(--house-gold-dark)]"
+                    className="inline-flex items-center gap-2 font-sans text-[15px] tracking-[0.16em] uppercase transition-colors duration-[var(--t-base)] group-hover:text-[var(--house-gold-dark)]"
                     style={{ color: "var(--house-gold-dark)" }}
                   >
                     View profile
@@ -206,7 +206,7 @@ export default async function DirectoryPage({
         </p>
         <Link
           href="/contact"
-          className="font-sans text-[14px] tracking-[0.16em] uppercase text-house-cream border border-house-cream/40 px-6 py-3 no-underline transition-all duration-[var(--t-base)] hover:bg-house-cream hover:text-house-brown"
+          className="font-sans text-[15px] tracking-[0.16em] uppercase text-house-cream border border-house-cream/40 px-6 py-3 no-underline transition-all duration-[var(--t-base)] hover:bg-house-cream hover:text-house-brown"
         >
           Write to the House
         </Link>

@@ -52,9 +52,9 @@ export function ProductSlider({ title, slides }: { title: string; slides: Slide[
             <h3 className="font-display text-[clamp(26px,3vw,40px)] leading-[1.08] text-house-brown mb-3">
               {s.title}
             </h3>
-            <p className="font-sans text-[15px] text-house-stone mb-5">{s.price}</p>
+            <p className="font-sans text-[16px] text-house-stone mb-5">{s.price}</p>
             {s.excerpt ? (
-              <p className="font-sans text-[14px] leading-[1.7] text-house-brown/70 max-w-[46ch] mb-7 line-clamp-3">
+              <p className="font-sans text-[15px] leading-[1.7] text-house-brown/70 max-w-[46ch] mb-7 line-clamp-3">
                 {s.excerpt}{" "}
                 <Link href={`/shop/${s.handle}`} className="text-house-gold-dark no-underline whitespace-nowrap hover:text-house-brown">
                   Read more →

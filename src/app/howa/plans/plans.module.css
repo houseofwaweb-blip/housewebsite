@@ -59,7 +59,7 @@
 }
 .heroLede {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.65;
   color: rgba(48, 35, 28, 0.72);
   margin: 0 0 32px;
@@ -123,7 +123,7 @@
 .statsLede { padding-right: clamp(24px, 3vw, 56px); }
 .statsLedeLine1 {
   font-family: var(--font-sans);
-  font-size: clamp(14px, 1.1vw, 15px);
+  font-size: clamp(15px, 1.1vw, 15px);
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -317,7 +317,7 @@
 .tierTagline {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: clamp(15px, 1.4vw, 18px);
+  font-size: clamp(16px, 1.4vw, 18px);
   line-height: 1.45;
   color: rgba(48, 35, 28, 0.72);
   margin: 0 0 24px;
@@ -365,7 +365,7 @@
   position: relative;
   padding-left: 22px;
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.78);
 }
@@ -412,7 +412,7 @@
   margin: clamp(32px, 3vw, 48px) auto 0;
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 14px;
+  font-size: 15px;
   color: rgba(48, 35, 28, 0.7);
   line-height: 1.55;
 }
@@ -486,7 +486,7 @@
 .compareColLabelSteward { color: #0d1626; }
 .compareRowFeature {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   color: var(--color-house-brown);
   font-weight: 500;
 }
@@ -494,7 +494,7 @@
 .compareRowPlus,
 .compareRowSteward {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   color: rgba(48, 35, 28, 0.7);
   text-align: center;
 }
@@ -615,10 +615,10 @@
     grid-template-columns: 1.6fr 1fr 1fr 1fr;
     padding: 12px 14px;
   }
-  .compareRowFeature { font-size: 14px; }
+  .compareRowFeature { font-size: 15px; }
   .compareRowFree,
   .compareRowPlus,
-  .compareRowSteward { font-size: 14px; }
+  .compareRowSteward { font-size: 15px; }
 
   .faqSection { padding: 56px 24px; }
   .closing { padding: 56px 24px; }

@@ -157,7 +157,7 @@
   color: var(--color-house-cream);
   text-decoration: none;
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   transition: background-color 0.2s ease;
@@ -168,7 +168,7 @@
   align-items: center;
   gap: 10px;
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-house-brown);
@@ -264,7 +264,7 @@
   flex-direction: column;
 }
 .stepName {
-  font-size: 14px;
+  font-size: 15px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-house-brown);
@@ -276,7 +276,7 @@
 }
 .stepArrow {
   color: rgba(48, 35, 28, 0.35);
-  font-size: 14px;
+  font-size: 15px;
 }
 
 /* ── Everything for your home, in one place. ─────────────────────────── */
@@ -370,7 +370,7 @@
   align-items: baseline;
   gap: 4px;
   font-family: var(--font-hearth-serif);
-  font-size: 14px;
+  font-size: 15px;
   letter-spacing: 0.04em;
   color: rgba(48, 35, 28, 0.72);
   min-width: 60px;
@@ -408,7 +408,7 @@
 }
 .featureDesc {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   color: rgba(48, 35, 28, 0.72);
   line-height: 1.55;
   margin: 0;
@@ -506,7 +506,7 @@
 }
 .modeDesc {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.72);
   margin: 0 0 12px;
@@ -574,7 +574,7 @@
 .trustDesc {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.72);
   max-width: 32ch;
@@ -611,7 +611,7 @@
 }
 .waitlistSub {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
   color: rgba(243, 237, 225, 0.72);
   max-width: 50ch;
@@ -626,7 +626,7 @@
   color: var(--color-house-brown);
   text-decoration: none;
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   transition: background-color 0.2s ease;

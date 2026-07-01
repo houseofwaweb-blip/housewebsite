@@ -65,7 +65,7 @@ export default async function HearthCategoryPage({
           {label}
         </h1>
         {category.description ? (
-          <p className="mt-4 max-w-[60ch] mx-auto font-hearth-sans text-[15px] leading-[1.6] text-house-brown/70">
+          <p className="mt-4 max-w-[60ch] mx-auto font-hearth-sans text-[16px] leading-[1.6] text-house-brown/70">
             {category.description}
           </p>
         ) : null}
@@ -80,7 +80,7 @@ export default async function HearthCategoryPage({
             viewAllHref="/the-hearth"
           />
         ) : (
-          <p className="py-16 text-center font-hearth-sans text-[15px] text-house-brown/60">
+          <p className="py-16 text-center font-hearth-sans text-[16px] text-house-brown/60">
             No articles in this section yet. Please check back soon.
           </p>
         )}

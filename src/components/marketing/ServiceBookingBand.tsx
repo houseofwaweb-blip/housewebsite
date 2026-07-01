@@ -16,21 +16,21 @@ export function ServiceBookingBand() {
             className="group flex flex-col items-center text-center gap-1.5 border border-house-gold-dark bg-house-gold-dark px-6 py-6 no-underline transition-[filter] hover:brightness-110"
           >
             <span className="font-sans text-[12px] tracking-[0.18em] uppercase text-white">Book online</span>
-            <span className="font-sans text-[14px] text-house-cream/90">Through HoWA, choose your slot</span>
+            <span className="font-sans text-[15px] text-house-cream/90">Through HoWA, choose your slot</span>
           </a>
           <a
             href="tel:08000478738"
             className="group flex flex-col items-center text-center gap-1.5 border border-house-brown/30 bg-house-white px-6 py-6 no-underline transition-colors hover:border-house-brown"
           >
             <span className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown">Call the team</span>
-            <span className="font-sans text-[14px] text-house-stone">0800 047 8738</span>
+            <span className="font-sans text-[15px] text-house-stone">0800 047 8738</span>
           </a>
           <a
             href="#service-enquiry"
             className="group flex flex-col items-center text-center gap-1.5 border border-house-brown/30 bg-house-white px-6 py-6 no-underline transition-colors hover:border-house-brown"
           >
             <span className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown">Send an enquiry</span>
-            <span className="font-sans text-[14px] text-house-stone">We reply within a working day</span>
+            <span className="font-sans text-[15px] text-house-stone">We reply within a working day</span>
           </a>
         </div>
       </div>

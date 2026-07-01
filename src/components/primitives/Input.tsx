@@ -114,7 +114,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <p
             id={hintId}
             className={cn(
-              "font-sans italic text-[14px] leading-[1.4]",
+              "font-sans italic text-[15px] leading-[1.4]",
               dark ? "text-house-cream/55" : "text-house-stone",
             )}
           >
@@ -125,11 +125,11 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {/* Message slot — grid-row expand (0fr → 1fr) */}
         <MessageSlot open={state === "error" || state === "success"}>
           {state === "error" ? (
-            <p id={errorId} role="alert" className="font-sans italic text-[14px] text-error">
+            <p id={errorId} role="alert" className="font-sans italic text-[15px] text-error">
               {error}
             </p>
           ) : state === "success" ? (
-            <p id={successId} className="font-sans italic text-[14px] text-success">
+            <p id={successId} className="font-sans italic text-[15px] text-success">
               {success}
             </p>
           ) : null}
@@ -236,7 +236,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           <p
             id={hintId}
             className={cn(
-              "font-sans italic text-[14px] leading-[1.4]",
+              "font-sans italic text-[15px] leading-[1.4]",
               dark ? "text-house-cream/55" : "text-house-stone",
             )}
           >
@@ -246,11 +246,11 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 
         <MessageSlot open={state === "error" || state === "success"}>
           {state === "error" ? (
-            <p id={errorId} role="alert" className="font-sans italic text-[14px] text-error">
+            <p id={errorId} role="alert" className="font-sans italic text-[15px] text-error">
               {error}
             </p>
           ) : state === "success" ? (
-            <p id={successId} className="font-sans italic text-[14px] text-success">
+            <p id={successId} className="font-sans italic text-[15px] text-success">
               {success}
             </p>
           ) : null}

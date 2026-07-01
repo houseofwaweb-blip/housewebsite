@@ -156,7 +156,7 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = 
               <div className="h-px w-7 mb-4 transition-[width] duration-[var(--t-slow)] ease-out group-hover:w-16" style={{ background: "var(--house-gold-dark)" }} />
 
               {/* Bio */}
-              <p className="font-sans text-[15px] leading-[1.6] text-house-brown/70 mb-5 flex-1">
+              <p className="font-sans text-[16px] leading-[1.6] text-house-brown/70 mb-5 flex-1">
                 {p.shortBio}
               </p>
 
@@ -172,7 +172,7 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = 
               )}
 
               {/* CTA */}
-              <span className="inline-flex items-center gap-2 font-sans text-[14px] tracking-[0.16em] uppercase" style={{ color: "var(--house-gold-dark)" }}>
+              <span className="inline-flex items-center gap-2 font-sans text-[15px] tracking-[0.16em] uppercase" style={{ color: "var(--house-gold-dark)" }}>
                 {bookingMode ? "Book through HoWA" : "View profile"}
                 <span className="inline-block transition-transform duration-[var(--t-slow)] ease-out group-hover:translate-x-2">&rarr;</span>
               </span>
@@ -206,7 +206,7 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = 
           <Link
             href={bookingMode ? bookingHref : "/partners"}
             className={cn(
-              "inline-flex items-center gap-2 font-sans text-[14px] tracking-[0.18em] uppercase no-underline pb-1 border-b transition-[color,border-style] duration-[var(--t-slow)] ease-out hover:border-dotted",
+              "inline-flex items-center gap-2 font-sans text-[15px] tracking-[0.18em] uppercase no-underline pb-1 border-b transition-[color,border-style] duration-[var(--t-slow)] ease-out hover:border-dotted",
               dark ? "text-house-gold-light border-house-gold-light" : ""
             )}
             style={dark ? undefined : { color: "var(--house-gold-dark)", borderColor: "var(--house-gold-dark)" }}

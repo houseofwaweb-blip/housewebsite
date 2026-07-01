@@ -57,7 +57,7 @@ export function HearthPaywall() {
                 ].map((item) => (
                   <li
                     key={item}
-                    className="font-hearth-serif text-[15px] leading-[1.55] text-house-brown py-0.5 flex gap-2"
+                    className="font-hearth-serif text-[16px] leading-[1.55] text-house-brown py-0.5 flex gap-2"
                   >
                     <span aria-hidden="true" className="text-house-gold-dark font-bold flex-shrink-0">·</span>
                     {item}
@@ -78,7 +78,7 @@ export function HearthPaywall() {
                 ].map((item) => (
                   <li
                     key={item}
-                    className="font-hearth-serif text-[15px] leading-[1.55] text-house-brown py-0.5 flex gap-2"
+                    className="font-hearth-serif text-[16px] leading-[1.55] text-house-brown py-0.5 flex gap-2"
                   >
                     <span aria-hidden="true" className="text-house-gold-dark font-bold flex-shrink-0">·</span>
                     {item}
@@ -92,12 +92,12 @@ export function HearthPaywall() {
             <p className="font-hearth-serif text-[16px] text-house-black">
               <strong className="font-medium text-[26px]">£16.99</strong>
               <span className="ml-1">/month</span>
-              <em className="italic text-house-stone text-[14px] ml-2">VAT inc.</em>
+              <em className="italic text-house-stone text-[15px] ml-2">VAT inc.</em>
             </p>
             <div className="flex items-center gap-5 flex-wrap max-md:w-full">
               <Link
                 href="/api/howa-bounce?source=hearth-paywall"
-                className="inline-block px-7 py-3.5 font-hearth-sans text-[14px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light hover:shadow-[0_8px_24px_rgba(184,148,62,0.3)] max-md:flex-1 max-md:text-center"
+                className="inline-block px-7 py-3.5 font-hearth-sans text-[15px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light hover:shadow-[0_8px_24px_rgba(184,148,62,0.3)] max-md:flex-1 max-md:text-center"
               >
                 Coming soon
               </Link>
@@ -110,7 +110,7 @@ export function HearthPaywall() {
             </div>
           </div>
 
-          <p className="mt-4 font-hearth-serif text-[14px] text-house-stone">
+          <p className="mt-4 font-hearth-serif text-[15px] text-house-stone">
             Already a member?{" "}
             <a
               href="https://accounts.willowalexander.co.uk/"

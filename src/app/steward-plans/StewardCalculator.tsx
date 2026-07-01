@@ -60,7 +60,7 @@ export function StewardCalculator() {
         <h3 className="font-display font-medium text-[22px] mb-[20px]">Your services</h3>
         {SERVICE_OPTIONS.map((s) => (
           <div key={s.index} className="flex justify-between items-center py-[14px] border-b border-house-brown/10 last:border-b-0">
-            <label className="font-sans text-[15px] flex items-center gap-[12px] cursor-pointer">
+            <label className="font-sans text-[16px] flex items-center gap-[12px] cursor-pointer">
               <input
                 type="checkbox"
                 checked={checked.includes(s.index)}
@@ -69,7 +69,7 @@ export function StewardCalculator() {
               />
               {s.label}
             </label>
-            <span className="font-sans text-[14px] text-house-stone">{s.freq}</span>
+            <span className="font-sans text-[15px] text-house-stone">{s.freq}</span>
           </div>
         ))}
       </div>
@@ -82,14 +82,14 @@ export function StewardCalculator() {
         <div className="font-display font-medium text-[48px] text-house-cream mb-[4px]">
           £{match.price.toLocaleString()}
         </div>
-        <div className="font-sans text-[14px] text-house-cream/60 mb-[24px]">per month</div>
+        <div className="font-sans text-[15px] text-house-cream/60 mb-[24px]">per month</div>
 
         <div className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-light mb-[6px]">
           Best match
         </div>
         <div className="font-display font-medium text-[24px] mb-[20px]">{match.name}</div>
 
-        <ul className="list-none pl-[16px] text-[14px] leading-[1.8] text-house-cream/78 mb-[24px]">
+        <ul className="list-none pl-[16px] text-[15px] leading-[1.8] text-house-cream/78 mb-[24px]">
           {match.list.map((l) => (
             <li key={l} className="relative py-[2px] before:content-['—'] before:absolute before:-left-[16px] before:text-house-gold-light">
               {l}
@@ -98,12 +98,12 @@ export function StewardCalculator() {
         </ul>
 
         <div className="flex flex-col gap-[10px]">
-          <span className="block w-full text-center px-[32px] py-[14px] font-sans text-[14px] tracking-[0.18em] uppercase text-white bg-house-gold-dark border border-house-gold cursor-default">
+          <span className="block w-full text-center px-[32px] py-[14px] font-sans text-[15px] tracking-[0.18em] uppercase text-white bg-house-gold-dark border border-house-gold cursor-default">
             Subscription coming soon
           </span>
           <Link
             href="#open-booking-form"
-            className="block w-full text-center px-[32px] py-[14px] font-sans text-[14px] tracking-[0.18em] uppercase text-house-cream border border-house-cream/35 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-cream/10"
+            className="block w-full text-center px-[32px] py-[14px] font-sans text-[15px] tracking-[0.18em] uppercase text-house-cream border border-house-cream/35 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-cream/10"
           >
             Book individual services →
           </Link>

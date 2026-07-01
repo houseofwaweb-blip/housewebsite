@@ -69,7 +69,7 @@
 .byline em {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 15px;
+  font-size: 16px;
   letter-spacing: 0;
   text-transform: none;
   color: var(--color-house-brown);
@@ -186,7 +186,7 @@
 .prose :global(figcaption) {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.5;
   color: rgba(48, 35, 28, 0.72);
   margin-top: 12px;

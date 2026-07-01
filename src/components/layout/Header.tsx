@@ -167,7 +167,7 @@ export function Header({
             <Link
               href={ctaHref}
               onClick={() => setMobileOpen(false)}
-              className="inline-block font-sans text-[14px] tracking-[0.18em] uppercase text-white bg-house-gold-dark px-6 py-4 text-center mb-6 no-underline"
+              className="inline-block font-sans text-[15px] tracking-[0.18em] uppercase text-white bg-house-gold-dark px-6 py-4 text-center mb-6 no-underline"
             >
               {ctaLabel}
             </Link>

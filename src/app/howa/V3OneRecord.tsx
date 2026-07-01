@@ -33,7 +33,7 @@ export function V3OneRecord() {
               <span className="font-display text-[20px] tabular-nums text-[#c5a960]">{p.n}</span>
               <div>
                 <p className="mb-1 font-display text-[19px] leading-[1.2]">{p.t}</p>
-                <p className="max-w-[260px] text-[15.5px] leading-[1.5] text-[color:var(--color-ink-soft)]">{p.b}</p>
+                <p className="max-w-[260px] text-[16px] leading-[1.5] text-[color:var(--color-ink-soft)]">{p.b}</p>
               </div>
             </div>
           ))}

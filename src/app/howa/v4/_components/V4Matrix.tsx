@@ -39,7 +39,7 @@ export function V4Matrix() {
               </div>
               <ul className="space-y-2.5 px-5 py-4">
                 {ROWS.filter((r) => r.c[j] !== "no").map((r) => (
-                  <li key={r.f} className="flex items-start gap-2.5 text-[14px] leading-snug text-[color:var(--color-ink)]/85">
+                  <li key={r.f} className="flex items-start gap-2.5 text-[15px] leading-snug text-[color:var(--color-ink)]/85">
                     <span className="mt-0.5 shrink-0">{renderCell(r.c[j])}</span>{r.f}
                   </li>
                 ))}
@@ -66,12 +66,12 @@ export function V4Matrix() {
           </div>
           {ROWS.map((r, i) => (
             <div key={r.f} className={"grid grid-cols-[1.7fr_repeat(3,0.8fr)] items-center gap-2 px-6 py-2.5 " + (i % 2 ? "bg-[#1d2a40]/[0.02]" : "")}>
-              <span className="text-[14px] leading-snug text-[color:var(--color-ink)]/85">{r.f}</span>
+              <span className="text-[15px] leading-snug text-[color:var(--color-ink)]/85">{r.f}</span>
               {r.c.map((cell, j) => <span key={j} className="flex justify-center">{renderCell(cell)}</span>)}
             </div>
           ))}
         </div>
-        <p className="mt-5 text-center text-[14px] text-[color:var(--color-ink-soft)]/60">
+        <p className="mt-5 text-center text-[15px] text-[color:var(--color-ink-soft)]/60">
           &ldquo;Starter&rdquo; means a first version of the HoWA Score; the full drivers, risk register and improvement plan are Steward.
         </p>
       </div>

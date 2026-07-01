@@ -26,7 +26,7 @@ export default function LegalIndex() {
             We&apos;ve tried to keep them in plain English. Any question, write
             to us and we&apos;ll translate.
           </p>
-          <p className="font-sans text-[14px] leading-[1.6] text-house-brown/55 mt-6 max-w-[64ch]">
+          <p className="font-sans text-[15px] leading-[1.6] text-house-brown/55 mt-6 max-w-[64ch]">
             House services are provided by House of Willow Alexander and its
             approved partners. Online bookings, your account and the Home Record
             are powered by HoWA, a separate Home Intelligence OS for which House
@@ -48,7 +48,7 @@ export default function LegalIndex() {
                 <h2 className="font-display font-medium text-[24px] leading-[1.2] text-house-brown group-hover:text-house-gold-dark transition-colors duration-[var(--t-slow)] ease-out">
                   {p.title}
                 </h2>
-                <p className="font-sans italic text-[15px] leading-[1.5] text-house-stone mt-1">
+                <p className="font-sans italic text-[16px] leading-[1.5] text-house-stone mt-1">
                   {p.blurb}
                 </p>
               </div>

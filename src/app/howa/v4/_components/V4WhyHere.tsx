@@ -23,7 +23,7 @@ export function V4WhyHere() {
     <section className="scroll-mt-20 bg-[#fbfaf5] py-16 lg:py-24 border-t border-[color:var(--color-ink)]/8">
       <div className="mx-auto max-w-[1180px] px-6 sm:px-10">
         <div className="max-w-[760px]">
-          <p className="smallcaps mb-3 text-[14px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">
+          <p className="smallcaps mb-3 text-[15px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">
             Why House work is booked here
           </p>
           <h2 className="font-display text-[clamp(28px,3.2vw,46px)] leading-[1.08] tracking-[-0.01em]">
@@ -50,7 +50,7 @@ export function V4WhyHere() {
                 {col.items.map((it) => (
                   <li
                     key={it}
-                    className="flex gap-3 text-[15.5px] leading-[1.5] text-[color:var(--color-ink-soft)]"
+                    className="flex gap-3 text-[16px] leading-[1.5] text-[color:var(--color-ink-soft)]"
                   >
                     <span aria-hidden className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--color-gold)]" />
                     {it}

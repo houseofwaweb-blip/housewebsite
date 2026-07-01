@@ -61,7 +61,7 @@ function MoreArticle({ article }: { article: HearthArticle }) {
           <HearthTitle title={article.title} em={article.titleEm} />
         </h4>
         <p className="mt-auto font-hearth-sans text-[12px] tracking-[0.14em] uppercase text-house-stone">
-          <em className="not-italic font-hearth-serif italic text-[14px] text-house-black normal-case tracking-normal mr-1">
+          <em className="not-italic font-hearth-serif italic text-[15px] text-house-black normal-case tracking-normal mr-1">
             {article.author}
           </em>
           · {formattedDate}

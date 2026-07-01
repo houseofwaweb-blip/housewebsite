@@ -132,7 +132,7 @@
 .exampleTitle em { font-style: italic; color: var(--color-house-gold-dark); }
 .exampleLede {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.7;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
@@ -216,7 +216,7 @@
 .btnFilled:hover { background: var(--color-house-gold); border-color: var(--color-house-gold); }
 .closingFineprint {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.72);
   margin: 24px auto 0;

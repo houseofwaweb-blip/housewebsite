@@ -299,7 +299,7 @@ function ShopMegaPanel({ shop, isOpen }: { shop: ShopMega; isOpen: boolean }) {
                 )}
               >
                 <span>{c.title}</span>
-                <span aria-hidden="true" className={cn("text-[14px] transition-opacity duration-[var(--t-base)]", i === active ? "opacity-100" : "opacity-0")}>→</span>
+                <span aria-hidden="true" className={cn("text-[15px] transition-opacity duration-[var(--t-base)]", i === active ? "opacity-100" : "opacity-0")}>→</span>
               </Link>
             </li>
           ))}
@@ -322,7 +322,7 @@ function ShopMegaPanel({ shop, isOpen }: { shop: ShopMega; isOpen: boolean }) {
                 <li key={s.href}>
                   <Link
                     href={s.href}
-                    className="group inline-flex font-sans text-[14px] text-house-brown no-underline transition-[color,padding-left] duration-[var(--t-base)] ease-out hover:text-house-gold-dark hover:pl-[4px]"
+                    className="group inline-flex font-sans text-[15px] text-house-brown no-underline transition-[color,padding-left] duration-[var(--t-base)] ease-out hover:text-house-gold-dark hover:pl-[4px]"
                   >
                     {s.label}
                   </Link>
@@ -330,7 +330,7 @@ function ShopMegaPanel({ shop, isOpen }: { shop: ShopMega; isOpen: boolean }) {
               ))}
             </ul>
           ) : (
-            <Link href={cat.href} className="font-display italic text-[15px] text-house-stone no-underline hover:text-house-gold-dark">
+            <Link href={cat.href} className="font-display italic text-[16px] text-house-stone no-underline hover:text-house-gold-dark">
               Browse all {cat.title} →
             </Link>
           )}

@@ -27,7 +27,7 @@ export function StewardPlanLadder({
         <button
           type="button"
           onClick={() => setTab("hg")}
-          className={`px-[24px] md:px-[32px] py-[12px] font-sans text-[14px] tracking-[0.18em] uppercase border border-house-cream/20 transition-all duration-[var(--t-base)] ease-out cursor-pointer ${
+          className={`px-[24px] md:px-[32px] py-[12px] font-sans text-[15px] tracking-[0.18em] uppercase border border-house-cream/20 transition-all duration-[var(--t-base)] ease-out cursor-pointer ${
             tab === "hg"
               ? "bg-house-cream/10 text-house-cream border-house-cream/30"
               : "bg-transparent text-house-cream/60"
@@ -39,7 +39,7 @@ export function StewardPlanLadder({
         <button
           type="button"
           onClick={() => setTab("apt")}
-          className={`px-[24px] md:px-[32px] py-[12px] font-sans text-[14px] tracking-[0.18em] uppercase border border-house-cream/20 transition-all duration-[var(--t-base)] ease-out cursor-pointer ${
+          className={`px-[24px] md:px-[32px] py-[12px] font-sans text-[15px] tracking-[0.18em] uppercase border border-house-cream/20 transition-all duration-[var(--t-base)] ease-out cursor-pointer ${
             tab === "apt"
               ? "bg-house-cream/10 text-house-cream border-house-cream/30"
               : "bg-transparent text-house-cream/60"
@@ -109,10 +109,10 @@ function PlanCard({ plan: p, mobile }: { plan: StewardPlan; mobile?: boolean }) 
         <h4 className={`font-display font-medium text-[28px] tracking-[-0.005em] mb-[4px] ${isFeatured ? "text-house-brown" : "text-house-cream"}`}>
           {p.tier}
         </h4>
-        <div className={`font-sans text-[14px] mb-[22px] ${isFeatured ? "text-house-stone" : "text-house-cream/60"}`}>
+        <div className={`font-sans text-[15px] mb-[22px] ${isFeatured ? "text-house-stone" : "text-house-cream/60"}`}>
           from <strong className={`font-medium text-[22px] ${isFeatured ? "text-house-brown" : "text-house-gold-light"}`}>{p.priceLabel}</strong> / month
         </div>
-        <ul className={`list-none pl-[16px] text-[14px] leading-[1.85] flex-1 ${isFeatured ? "text-house-brown" : "text-house-cream/78"}`}>
+        <ul className={`list-none pl-[16px] text-[15px] leading-[1.85] flex-1 ${isFeatured ? "text-house-brown" : "text-house-cream/78"}`}>
           {p.inclusions.map((inc) => (
             <li key={inc} className={`relative py-[2px] before:content-['—'] before:absolute before:-left-[16px] ${isFeatured ? "before:text-house-gold-dark" : "before:text-house-gold-light"}`}>
               {inc}

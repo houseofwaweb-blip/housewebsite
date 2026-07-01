@@ -78,7 +78,7 @@ export function ProgressBar({
           )}
         >
           <span>{label}</span>
-          <span className="font-sans italic text-[14px] normal-case tracking-normal">{note}</span>
+          <span className="font-sans italic text-[15px] normal-case tracking-normal">{note}</span>
         </div>
       )}
     </div>

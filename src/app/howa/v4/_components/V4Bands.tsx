@@ -117,7 +117,7 @@ export function V4Bands() {
               </p>
               <ul className="space-y-2 mb-7">
                 {m.points.map((p) => (
-                  <li key={p} className="flex items-center gap-2.5 text-[15.5px] text-[#f3ede0]">
+                  <li key={p} className="flex items-center gap-2.5 text-[16px] text-[#f3ede0]">
                     <CheckGlyph /> {p}
                   </li>
                 ))}
@@ -125,7 +125,7 @@ export function V4Bands() {
               <a
                 href={m.href}
                 className={
-                  "mt-auto inline-flex items-center gap-2 self-start rounded-md px-5 py-2.5 text-[15.5px] transition-colors " +
+                  "mt-auto inline-flex items-center gap-2 self-start rounded-md px-5 py-2.5 text-[16px] transition-colors " +
                   (m.accent
                     ? "bg-[#c5a960] text-[#1d2a40] hover:bg-[#d4ba78]"
                     : "border border-[#f3ede0]/45 text-[#f3ede0] hover:bg-[#f3ede0]/10")

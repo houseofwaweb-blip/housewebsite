@@ -194,7 +194,7 @@ export default async function LocalServicePage({
             <h2 className="em-accent font-display font-medium text-[clamp(28px,3.2vw,40px)] leading-[1.1] tracking-[-0.005em] mt-5">
               What the House <em>does</em> cover in {location}.
             </h2>
-            <p className="font-sans text-[15px] leading-[1.7] text-house-brown/72 mt-5">
+            <p className="font-sans text-[16px] leading-[1.7] text-house-brown/72 mt-5">
               Four launch services, each delivered by House Approved teams, each booked
               and recorded through HoWA.
             </p>
@@ -212,7 +212,7 @@ export default async function LocalServicePage({
                 <h3 className="em-accent font-display font-medium text-[22px] leading-[1.15] mb-3">
                   {svc.name}
                 </h3>
-                <p className="font-sans text-[14px] leading-[1.55] text-house-brown/72 mb-4">
+                <p className="font-sans text-[15px] leading-[1.55] text-house-brown/72 mb-4">
                   {svc.blurb}
                 </p>
                 <p className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-dark border-t border-house-brown/10 pt-3">
@@ -264,11 +264,11 @@ export default async function LocalServicePage({
             },
           ].map((c) => (
             <article key={c.n} className="bg-house-cream p-9">
-              <p className="font-display italic text-[14px] text-house-gold-dark mb-3">{c.n}</p>
-              <h3 className="font-sans font-medium text-[14px] tracking-[0.28em] uppercase text-house-brown mb-3">
+              <p className="font-display italic text-[15px] text-house-gold-dark mb-3">{c.n}</p>
+              <h3 className="font-sans font-medium text-[15px] tracking-[0.28em] uppercase text-house-brown mb-3">
                 {c.h}
               </h3>
-              <p className="font-sans text-[14px] leading-[1.65] text-house-brown/78">
+              <p className="font-sans text-[15px] leading-[1.65] text-house-brown/78">
                 {c.b}
               </p>
             </article>
@@ -293,13 +293,13 @@ export default async function LocalServicePage({
           <div className="flex items-center justify-center gap-4 flex-wrap mt-9">
             <Link
               href="/howa/assistant"
-              className="inline-block font-sans text-[14px] tracking-[0.22em] uppercase text-house-brown bg-house-cream border border-house-cream px-7 py-4 no-underline transition-all duration-200 ease-out hover:bg-house-gold hover:border-house-gold"
+              className="inline-block font-sans text-[15px] tracking-[0.22em] uppercase text-house-brown bg-house-cream border border-house-cream px-7 py-4 no-underline transition-all duration-200 ease-out hover:bg-house-gold hover:border-house-gold"
             >
               Launch the Assistant
             </Link>
             <Link
               href="/services"
-              className="font-sans text-[14px] tracking-[0.22em] uppercase text-house-cream/85 underline decoration-house-gold-light underline-offset-4 hover:text-house-cream"
+              className="font-sans text-[15px] tracking-[0.22em] uppercase text-house-cream/85 underline decoration-house-gold-light underline-offset-4 hover:text-house-cream"
             >
               All services →
             </Link>

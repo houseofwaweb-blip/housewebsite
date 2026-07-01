@@ -119,7 +119,7 @@ export function Footer({ columns, tagline }: FooterProps) {
           ))}
         </div>
 
-        <p className="pt-8 font-sans text-[14px] leading-[1.6] text-house-cream/55 max-w-[760px]">
+        <p className="pt-8 font-sans text-[15px] leading-[1.6] text-house-cream/55 max-w-[760px]">
           House services are delivered by House of Willow Alexander and HoWA
           Approved trades up and down the country. Bookings and Home Records are
           powered by HoWA.
@@ -137,7 +137,7 @@ export function Footer({ columns, tagline }: FooterProps) {
           </Link>
           <div className="flex items-center gap-6">
             <CookiePreferencesLink />
-            <div className="font-sans italic text-[14px] text-house-cream/70">
+            <div className="font-sans italic text-[15px] text-house-cream/70">
               {tag}
             </div>
           </div>

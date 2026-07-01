@@ -142,11 +142,11 @@ export function LiveSearch({
         aria-busy={loading || undefined}
       >
         {loading && results.length === 0 ? (
-          <p className="font-sans italic text-[15px] text-house-stone py-10 text-center">
+          <p className="font-sans italic text-[16px] text-house-stone py-10 text-center">
             Searching…
           </p>
         ) : results.length === 0 && query.length > 0 ? (
-          <p className="font-sans italic text-[15px] text-house-stone py-10 text-center">
+          <p className="font-sans italic text-[16px] text-house-stone py-10 text-center">
             No matches for &ldquo;{query}&rdquo;.
           </p>
         ) : (
@@ -167,7 +167,7 @@ export function LiveSearch({
               </div>
               <h5 className="font-sans text-[20px] text-house-brown m-0 mb-1">{r.title}</h5>
               {r.excerpt ? (
-                <p className="font-sans italic text-[14px] text-house-stone m-0">
+                <p className="font-sans italic text-[15px] text-house-stone m-0">
                   {r.excerpt}
                 </p>
               ) : null}

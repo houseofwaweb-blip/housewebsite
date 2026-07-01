@@ -40,7 +40,7 @@ export function V4Score() {
               <V4ScoreRing value={62} size={58} stroke={5} />
               <div>
                 <p className="smallcaps text-[12px] tracking-[0.16em] text-[#c5a960]">HoWA Score</p>
-                <p className="font-display text-[15px] leading-tight text-[#f3ede0]">62 · In order, with gaps</p>
+                <p className="font-display text-[16px] leading-tight text-[#f3ede0]">62 · In order, with gaps</p>
               </div>
             </div>
           </div>
@@ -50,9 +50,9 @@ export function V4Score() {
         <div className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-2xl bg-[#c5a960]/15 sm:grid-cols-2 lg:grid-cols-4">
           {progression.map((p) => (
             <div key={p.n} className="bg-[#1d2a40] p-6">
-              <p className="font-display text-[15px] text-[#c5a960]">{p.n}</p>
+              <p className="font-display text-[16px] text-[#c5a960]">{p.n}</p>
               <p className="mt-1 font-display text-[19px] text-[#f3ede0]">{p.t}</p>
-              <p className="mt-2 text-[14px] leading-[1.5] text-[#f3ede0]/70">{p.b}</p>
+              <p className="mt-2 text-[15px] leading-[1.5] text-[#f3ede0]/70">{p.b}</p>
             </div>
           ))}
         </div>

@@ -19,7 +19,7 @@ export function BasketClient() {
           </p>
           <Link
             href="/shop"
-            className="inline-block px-8 py-4 font-sans text-[14px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
+            className="inline-block px-8 py-4 font-sans text-[15px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
           >
             Browse the shop
           </Link>
@@ -29,7 +29,7 @@ export function BasketClient() {
   }
 
   const qtyBtn =
-    "w-7 h-7 border border-house-brown/15 bg-transparent text-[14px] flex items-center justify-center cursor-pointer hover:border-house-gold transition-colors duration-[var(--t-base)]";
+    "w-7 h-7 border border-house-brown/15 bg-transparent text-[15px] flex items-center justify-center cursor-pointer hover:border-house-gold transition-colors duration-[var(--t-base)]";
 
   return (
     <article className="bg-house-cream text-house-brown">
@@ -45,7 +45,7 @@ export function BasketClient() {
           <h1 className="font-display font-medium text-[clamp(32px,4vw,48px)] leading-[1.08] mb-1">
             Your <em className="italic">basket.</em>
           </h1>
-          <p className="font-sans text-[14px] text-house-stone mb-8">
+          <p className="font-sans text-[15px] text-house-stone mb-8">
             {count} {count === 1 ? "item" : "items"}
           </p>
 
@@ -63,7 +63,7 @@ export function BasketClient() {
                   </Link>
                   <div className="flex items-center gap-2.5 mt-2">
                     <button type="button" aria-label="Decrease quantity" onClick={() => updateQty(line.id, line.quantity - 1)} className={qtyBtn}>−</button>
-                    <span className="font-sans text-[14px] min-w-[20px] text-center">{line.quantity}</span>
+                    <span className="font-sans text-[15px] min-w-[20px] text-center">{line.quantity}</span>
                     <button type="button" aria-label="Increase quantity" onClick={() => updateQty(line.id, line.quantity + 1)} className={qtyBtn}>+</button>
                   </div>
                   <button
@@ -86,7 +86,7 @@ export function BasketClient() {
         <div className="md:sticky md:top-[80px]">
           <div className="bg-house-white border border-house-brown/8 p-7">
             <h3 className="font-display font-medium text-[18px] mb-4">Summary</h3>
-            <div className="flex justify-between items-baseline font-sans text-[14px] py-2 border-b border-house-brown/8">
+            <div className="flex justify-between items-baseline font-sans text-[15px] py-2 border-b border-house-brown/8">
               <span className="text-house-stone">Subtotal</span>
               <span className="font-display font-medium text-[18px]">{subtotal}</span>
             </div>
@@ -96,12 +96,12 @@ export function BasketClient() {
             {buyable ? (
               <Link
                 href="/shop/checkout"
-                className="block w-full py-4 font-sans text-[14px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold text-center no-underline transition-colors duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
+                className="block w-full py-4 font-sans text-[15px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold text-center no-underline transition-colors duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
               >
                 Checkout
               </Link>
             ) : (
-              <p className="block w-full py-4 font-sans text-[14px] tracking-[0.18em] uppercase text-house-stone border border-house-brown/15 text-center">
+              <p className="block w-full py-4 font-sans text-[15px] tracking-[0.18em] uppercase text-house-stone border border-house-brown/15 text-center">
                 Checkout available at launch
               </p>
             )}

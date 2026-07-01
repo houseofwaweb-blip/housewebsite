@@ -27,7 +27,7 @@ export function HouseStandardStrip({ points = POINTS }: { points?: string[] }) {
           {points.map((p) => (
             <li
               key={p}
-              className="flex items-center gap-2.5 font-sans text-[14px] tracking-[0.06em] text-house-brown/70"
+              className="flex items-center gap-2.5 font-sans text-[15px] tracking-[0.06em] text-house-brown/70"
             >
               <span aria-hidden className="is-round w-1 h-1 bg-house-gold inline-block" />
               {p}

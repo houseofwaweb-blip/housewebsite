@@ -30,7 +30,7 @@
 .eyebrowLight { color: var(--color-house-gold-light); }
 .sectionSub {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.7;
   color: rgba(48, 35, 28, 0.66);
   margin: 14px 0 0;
@@ -159,7 +159,7 @@
 }
 .heroBookingNote {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
   color: rgba(48, 35, 28, 0.72);
   margin: 18px 0 0;
@@ -270,7 +270,7 @@
 }
 .pillarSub {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.5;
   color: rgba(245, 240, 232, 0.85);
   margin: 0;
@@ -478,7 +478,7 @@
 }
 .principleBody {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.65;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
@@ -548,7 +548,7 @@
 }
 .serviceTileName {
   position: absolute;
-  top: clamp(14px, 1.6vw, 20px);
+  top: clamp(15px, 1.6vw, 20px);
   left: clamp(16px, 1.8vw, 22px);
   z-index: 2;
   font-family: var(--font-hearth-serif);
@@ -580,7 +580,7 @@
 .serviceTile:hover .serviceTileArrow { transform: translateX(4px); }
 .serviceDesc {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
   color: rgba(48, 35, 28, 0.66);
   margin: 0;
@@ -777,7 +777,7 @@
 .intelStat { background: #232a23; padding: 24px 22px; }
 .intelStatLabel {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   letter-spacing: 0.04em;
   color: rgba(245, 240, 232, 0.66);
   margin: 0 0 8px;
@@ -836,7 +836,7 @@
 }
 .poweredText {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
   color: rgba(48, 35, 28, 0.74);
   margin: 0;

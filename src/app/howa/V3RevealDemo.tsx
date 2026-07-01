@@ -19,7 +19,7 @@ export function V3RevealDemo() {
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:gap-14">
           {/* LEFT — address reveal */}
           <div className="min-w-0 lg:pt-1">
-            <p className="smallcaps mb-3 text-[14px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">Starts the moment you join</p>
+            <p className="smallcaps mb-3 text-[15px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">Starts the moment you join</p>
             <h2 className="font-display text-[clamp(28px,2.8vw,42px)] leading-[1.08] tracking-[-0.01em]">
               Your address already tells a story. <span className="font-italic-display text-[#c5a960]">HoWA reads it.</span>
             </h2>
@@ -29,8 +29,8 @@ export function V3RevealDemo() {
 
             <div className="mt-7 flex max-w-[460px] items-center gap-2 rounded-full border border-[color:var(--color-gold)]/35 bg-white px-4 py-2.5 shadow-[0_10px_30px_-18px_rgba(40,30,10,0.4)]">
               <PinGlyph />
-              <span className="flex-1 text-[15px] text-[color:var(--color-ink)]">11 Wellington Square, London SW1A</span>
-              <span className="rounded-full bg-[color:var(--color-howa-green)] px-4 py-1.5 text-[14px] text-white">Reveal</span>
+              <span className="flex-1 text-[16px] text-[color:var(--color-ink)]">11 Wellington Square, London SW1A</span>
+              <span className="rounded-full bg-[color:var(--color-howa-green)] px-4 py-1.5 text-[15px] text-white">Reveal</span>
             </div>
 
             <div className="mt-6 grid max-w-[520px] grid-cols-2 gap-3">

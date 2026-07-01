@@ -35,7 +35,7 @@ export function HearthArticleBody({
         "[&_p]:mb-[22px]",
         "[&_h2]:font-hearth-serif [&_h2]:font-medium [&_h2]:text-[clamp(28px,3.5vw,42px)] [&_h2]:leading-[1.15] [&_h2]:mt-14 [&_h2]:mb-4 [&_h2]:text-house-black",
         "[&_h3]:font-hearth-serif [&_h3]:font-medium [&_h3]:text-[clamp(22px,2.6vw,30px)] [&_h3]:leading-[1.2] [&_h3]:mt-10 [&_h3]:mb-3 [&_h3]:text-house-black",
-        "[&_h4]:font-hearth-sans [&_h4]:text-[14px] [&_h4]:tracking-[0.2em] [&_h4]:uppercase [&_h4]:mt-8 [&_h4]:mb-3 [&_h4]:text-house-black/80",
+        "[&_h4]:font-hearth-sans [&_h4]:text-[15px] [&_h4]:tracking-[0.2em] [&_h4]:uppercase [&_h4]:mt-8 [&_h4]:mb-3 [&_h4]:text-house-black/80",
         "[&_em]:italic",
         "[&_strong]:font-medium",
         "[&_a]:text-house-gold-dark [&_a]:underline [&_a]:underline-offset-[3px] [&_a]:decoration-house-gold/40 hover:[&_a]:decoration-house-gold",
@@ -45,7 +45,7 @@ export function HearthArticleBody({
         "[&_ol]:my-5 [&_ol]:pl-6 [&_ol]:list-decimal [&_ol_li]:mb-2 [&_ol_li]:pl-2",
         "[&_img]:w-full [&_img]:h-auto [&_img]:my-10",
         "[&_figure]:my-10",
-        "[&_figcaption]:font-hearth-sans [&_figcaption]:text-[14px] [&_figcaption]:italic [&_figcaption]:text-house-stone [&_figcaption]:mt-3",
+        "[&_figcaption]:font-hearth-sans [&_figcaption]:text-[15px] [&_figcaption]:italic [&_figcaption]:text-house-stone [&_figcaption]:mt-3",
         "[&_hr]:my-10 [&_hr]:border-0 [&_hr]:border-t [&_hr]:border-house-brown/15",
         className,
       )}

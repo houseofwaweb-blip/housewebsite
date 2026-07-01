@@ -94,10 +94,10 @@ function Rail({ title, cards, viewAllHref }: { title: string; cards: Card[]; vie
                   </span>
                 ) : null}
               </div>
-              <p className="font-display text-[15px] leading-[1.25] text-house-brown group-hover:text-house-gold-dark transition-colors">
+              <p className="font-display text-[16px] leading-[1.25] text-house-brown group-hover:text-house-gold-dark transition-colors">
                 {c.title}
               </p>
-              <p className="font-sans text-[14px] text-house-stone mt-0.5">{c.price}</p>
+              <p className="font-sans text-[15px] text-house-stone mt-0.5">{c.price}</p>
             </Link>
           ))}
         </div>
@@ -128,9 +128,9 @@ function FeaturedProduct({ p }: { p: Slide | null }) {
         <div className="text-house-cream">
           <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-dark mb-5">The piece this week</p>
           <h2 className="font-display text-[clamp(28px,3.4vw,46px)] leading-[1.06] mb-4">{p.title}</h2>
-          <p className="font-sans text-[15px] text-house-cream/70 mb-5">{p.price}</p>
+          <p className="font-sans text-[16px] text-house-cream/70 mb-5">{p.price}</p>
           {p.excerpt ? (
-            <p className="font-sans text-[14px] leading-[1.7] text-house-cream/65 max-w-[46ch] mb-3 line-clamp-2">
+            <p className="font-sans text-[15px] leading-[1.7] text-house-cream/65 max-w-[46ch] mb-3 line-clamp-2">
               {p.excerpt}{" "}
               <Link href={`/shop/${p.handle}`} className="text-house-gold-dark no-underline whitespace-nowrap hover:text-house-cream">
                 Read more →
@@ -184,7 +184,7 @@ function TwoCollections() {
             />
             <div className="absolute inset-x-0 bottom-0 p-7">
               <p className="font-display text-[clamp(22px,2.4vw,34px)] leading-tight text-white">{b.name}</p>
-              <p className="font-sans text-[14px] text-white/80 mt-1.5">{b.sub}</p>
+              <p className="font-sans text-[15px] text-white/80 mt-1.5">{b.sub}</p>
               <p className="font-sans text-[12px] tracking-[0.2em] uppercase text-white/90 mt-4 transition-colors group-hover:text-white">
                 Explore the collection →
               </p>
@@ -263,7 +263,7 @@ export default async function ShopPage() {
               in the House.
             </em>
           </h1>
-          <p className="font-sans text-[14px] text-house-stone max-w-[460px] mx-auto mt-4 leading-[1.6]">
+          <p className="font-sans text-[15px] text-house-stone max-w-[460px] mx-auto mt-4 leading-[1.6]">
             An edited cabinet, not a catalogue. Each thing here is House Approved,
             chosen for how it is made, how long it lasts, and whether it can be
             mended rather than replaced.

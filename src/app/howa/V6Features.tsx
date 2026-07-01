@@ -65,7 +65,7 @@ export function V6Features() {
                 type="button"
                 onClick={() => setActive(i)}
                 className={
-                  "relative text-[15px] pb-3 transition-colors " +
+                  "relative text-[16px] pb-3 transition-colors " +
                   (i === active ? "text-[color:var(--color-ink)]" : "text-[color:var(--color-ink-soft)]/60 hover:text-[color:var(--color-ink)]")
                 }
               >

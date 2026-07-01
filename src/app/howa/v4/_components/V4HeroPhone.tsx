@@ -63,7 +63,7 @@ function ScoreCard() {
       <p className="text-[12px] uppercase tracking-[0.18em] text-[#1a241d] flex items-center gap-1.5">
         <ShieldGlyph /> HoWA Score
       </p>
-      <p className="text-[14px] text-[#3a352c]/75 mt-1 mb-3.5">In order, with gaps</p>
+      <p className="text-[15px] text-[#3a352c]/75 mt-1 mb-3.5">In order, with gaps</p>
       <div className="flex items-center justify-between gap-3">
         <div className="flex flex-col items-center shrink-0">
           <ScoreGauge value={62} size={68} />
@@ -86,9 +86,9 @@ function RecordCard() {
           <p className="text-[12px] uppercase tracking-[0.18em] text-[#1a241d] flex items-center gap-1.5">
             <LeafGlyph /> Living Record
           </p>
-          <p className="text-[14px] text-[#3a352c]/75 mt-1">Updated today</p>
-          <p className="text-[14px] text-[#3a352c]/75">08:42</p>
-          <a href="#demo" className="inline-flex items-center gap-1 text-[14px] text-[#8a6f3f] mt-3 hover:text-[#6f5832] transition-colors">View record →</a>
+          <p className="text-[15px] text-[#3a352c]/75 mt-1">Updated today</p>
+          <p className="text-[15px] text-[#3a352c]/75">08:42</p>
+          <a href="#demo" className="inline-flex items-center gap-1 text-[15px] text-[#8a6f3f] mt-3 hover:text-[#6f5832] transition-colors">View record →</a>
         </div>
         <div className="relative w-[124px] h-[104px] shrink-0 opacity-90">
           <Image src="/home-v4/card-house-sketch-v3.webp" alt="" fill sizes="124px" className="object-contain" />
@@ -106,16 +106,16 @@ function ActionCard() {
       <p className="text-[12px] uppercase tracking-[0.18em] text-[#1a241d] flex items-center gap-1.5 mb-2">
         <ClipboardGlyph /> What matters first
       </p>
-      <p className="text-[14px] text-[#1a241d]">3 things need attention</p>
-      <p className="text-[14px] text-[#3a352c]/70 mb-3">HoWA tells you what matters first</p>
+      <p className="text-[15px] text-[#1a241d]">3 things need attention</p>
+      <p className="text-[15px] text-[#3a352c]/70 mb-3">HoWA tells you what matters first</p>
       <ul className="space-y-1.5 mb-3">
         {items.map((t) => (
-          <li key={t} className="flex items-center gap-2 text-[14px] text-[#3a352c]">
+          <li key={t} className="flex items-center gap-2 text-[15px] text-[#3a352c]">
             <CheckGlyph /> {t}
           </li>
         ))}
       </ul>
-      <a href="#tiers" className="inline-flex items-center gap-1 text-[14px] text-[#8a6f3f] hover:text-[#6f5832] transition-colors">View plan →</a>
+      <a href="#tiers" className="inline-flex items-center gap-1 text-[15px] text-[#8a6f3f] hover:text-[#6f5832] transition-colors">View plan →</a>
     </Card>
   );
 }

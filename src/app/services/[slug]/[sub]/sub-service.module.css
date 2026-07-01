@@ -26,7 +26,7 @@
 .sectionTitle em { font-style: italic; color: var(--color-house-gold-dark); }
 .sectionLede {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.7;
   color: rgba(48, 35, 28, 0.72);
   margin: 0 auto;
@@ -145,7 +145,7 @@
   background: rgba(30, 26, 20, 0.34);
   color: #fff;
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -171,7 +171,7 @@
 .aboutCol {}
 .aboutBody {
   font-family: var(--font-sans);
-  font-size: 15.5px;
+  font-size: 16px;
   line-height: 1.75;
   color: rgba(48, 35, 28, 0.82);
   margin: 0;
@@ -219,7 +219,7 @@
   position: relative;
   padding-left: 22px;
   font-family: var(--font-sans);
-  font-size: 15.5px;
+  font-size: 16px;
   line-height: 1.65;
   color: rgba(48, 35, 28, 0.82);
 }
@@ -302,7 +302,7 @@
 }
 .relatedBlurb {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
@@ -348,7 +348,7 @@
 .closingStatement em { font-style: italic; color: var(--color-house-gold-dark); }
 .closingLede {
   font-family: var(--font-sans);
-  font-size: 15.5px;
+  font-size: 16px;
   line-height: 1.65;
   color: rgba(48, 35, 28, 0.7);
   margin: 0 auto 32px;

@@ -104,7 +104,7 @@ export function EnquiryForm({
   };
 
   const field = cn(
-    "w-full border outline-none font-sans text-[14px] px-4 py-3.5 text-house-brown",
+    "w-full border outline-none font-sans text-[15px] px-4 py-3.5 text-house-brown",
     "placeholder:italic placeholder:font-display placeholder:text-house-brown/35",
     isDark ? "bg-house-white border-house-white" : "bg-house-white border-house-brown/15 focus:border-house-gold",
   );
@@ -126,10 +126,10 @@ export function EnquiryForm({
           <h2 className={cn("font-display text-[clamp(28px,3.2vw,44px)] leading-[1.08] mb-4", isDark ? "text-house-cream" : "text-house-brown")}>
             {headline}
           </h2>
-          <p className={cn("font-sans text-[15px] leading-[1.7] max-w-[44ch]", isDark ? "text-house-cream/70" : "text-house-stone")}>
+          <p className={cn("font-sans text-[16px] leading-[1.7] max-w-[44ch]", isDark ? "text-house-cream/70" : "text-house-stone")}>
             {body}
           </p>
-          <p className={cn("font-sans text-[14px] mt-6", isDark ? "text-house-cream/60" : "text-house-stone")}>
+          <p className={cn("font-sans text-[15px] mt-6", isDark ? "text-house-cream/60" : "text-house-stone")}>
             Prefer to book online?{" "}
             <a href="#open-booking-form" className={cn("underline underline-offset-[3px]", isDark ? "text-house-gold-light" : "text-house-gold-dark")}>
               Book through HoWA
@@ -177,7 +177,7 @@ export function EnquiryForm({
               <textarea value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="How can we help? Tell us a little about your home." aria-label="Your message" rows={4} className={cn(field, "resize-y")} />
 
               {state === "error" ? (
-                <p className="font-sans text-[14px] text-[#8b3a3a]" role="alert">{error}</p>
+                <p className="font-sans text-[15px] text-[#8b3a3a]" role="alert">{error}</p>
               ) : null}
 
               <button

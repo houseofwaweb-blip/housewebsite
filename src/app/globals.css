@@ -291,7 +291,7 @@ body {
 .tier-howaplus .tier-roman,
 .tier-steward .tier-roman {
   font-family: var(--font-hearth-serif); font-style: italic;
-  font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase;
+  font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
   margin-bottom: 6px;
 }
 .tier-howa .tier-roman { color: var(--house-gold-dark); }
@@ -300,7 +300,7 @@ body {
   letter-spacing: -0.005em; color: var(--house-brown);
 }
 .tier-howa .tier-price-label {
-  font-family: var(--font-hearth-sans); font-size: 14px;
+  font-family: var(--font-hearth-sans); font-size: 15px;
   color: var(--text-muted); margin-top: 2px; margin-bottom: 20px;
 }
 .tier-howa .tier-preview {
@@ -308,13 +308,13 @@ body {
   padding: 14px; margin-bottom: 22px; min-height: 150px;
 }
 .tier-howa .tier-preview .pp-title {
-  font-family: var(--font-hearth-serif); font-size: 14px; font-style: italic;
+  font-family: var(--font-hearth-serif); font-size: 15px; font-style: italic;
   color: var(--text-muted); margin-bottom: 8px; letter-spacing: 0.04em;
 }
 .tier-howa .tier-preview .pp-row {
   display: flex; justify-content: space-between; align-items: center;
   padding: 6px 0; border-bottom: 1px dashed rgba(48,35,28,0.18);
-  font-family: var(--font-hearth-sans); font-size: 14px; color: var(--house-brown);
+  font-family: var(--font-hearth-sans); font-size: 15px; color: var(--house-brown);
 }
 .tier-howa .tier-preview .pp-row:last-child { border-bottom: none; }
 .tier-howa .tier-preview .pp-row em {
@@ -325,7 +325,7 @@ body {
   background: var(--house-gold-dark); margin-right: 8px; vertical-align: middle;
 }
 .tier-howa ul, .tier-howaplus ul, .tier-steward ul {
-  list-style: none; font-size: 14px; line-height: 1.8; padding-left: 16px; flex: 1;
+  list-style: none; font-size: 15px; line-height: 1.8; padding-left: 16px; flex: 1;
 }
 .tier-howa ul { color: var(--house-brown); }
 .tier-howa ul li, .tier-howaplus ul li, .tier-steward ul li {
@@ -371,7 +371,7 @@ body {
   color: var(--house-brown); letter-spacing: -0.005em;
 }
 .tier-howaplus .tier-price-label {
-  font-family: var(--font-hearth-sans); font-size: 14px;
+  font-family: var(--font-hearth-sans); font-size: 15px;
   color: var(--house-brown); margin-bottom: 22px;
 }
 .tier-howaplus .tier-price-label strong {

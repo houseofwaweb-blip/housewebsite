@@ -72,7 +72,7 @@ export function Hero() {
 function HeroCopy() {
   return (
     <div className="max-w-[540px]">
-      <p className="smallcaps text-[14px] tracking-[0.2em] text-[color:var(--color-gold-deep)] mb-4">
+      <p className="smallcaps text-[15px] tracking-[0.2em] text-[color:var(--color-gold-deep)] mb-4">
         The Home Intelligence OS
       </p>
       <h1 className="font-display text-[clamp(42px,3.4vw,68px)] leading-[0.98] tracking-[-0.015em] text-[color:var(--color-ink)]">
@@ -126,7 +126,7 @@ function HomeHealthCard() {
       <p className="smallcaps text-[12px] tracking-[0.18em] text-[color:var(--color-ink)] flex items-center gap-1.5">
         <ShieldGlyph /> Home Health
       </p>
-      <p className="text-[14px] text-[color:var(--color-ink-soft)]/75 mt-1 mb-3.5">All systems normal</p>
+      <p className="text-[15px] text-[color:var(--color-ink-soft)]/75 mt-1 mb-3.5">All systems normal</p>
       <div className="flex items-center justify-between gap-3">
         <div className="flex flex-col items-center shrink-0">
           <HomeHealthGauge value={91} size={68} />
@@ -148,9 +148,9 @@ function LivingRecordCard() {
           <p className="smallcaps text-[12px] tracking-[0.18em] text-[color:var(--color-ink)] flex items-center gap-1.5">
             <LeafGlyph /> Living Record
           </p>
-          <p className="text-[14px] text-[color:var(--color-ink-soft)]/75 mt-1">Updated today</p>
-          <p className="text-[14px] text-[color:var(--color-ink-soft)]/75">08:42</p>
-          <a href="#how" className="inline-flex items-center gap-1 text-[14px] text-[color:var(--color-gold-deep)] mt-3">
+          <p className="text-[15px] text-[color:var(--color-ink-soft)]/75 mt-1">Updated today</p>
+          <p className="text-[15px] text-[color:var(--color-ink-soft)]/75">08:42</p>
+          <a href="#how" className="inline-flex items-center gap-1 text-[15px] text-[color:var(--color-gold-deep)] mt-3">
             View record <span aria-hidden>→</span>
           </a>
         </div>
@@ -169,16 +169,16 @@ function NextActionCard() {
       <p className="smallcaps text-[12px] tracking-[0.18em] text-[color:var(--color-ink)] flex items-center gap-1.5 mb-2">
         <ClipboardGlyph /> Next Best Action
       </p>
-      <p className="text-[14px] text-[color:var(--color-ink)]">3 tasks scheduled</p>
-      <p className="text-[14px] text-[color:var(--color-ink-soft)]/70 mb-3">All systems on track</p>
+      <p className="text-[15px] text-[color:var(--color-ink)]">3 tasks scheduled</p>
+      <p className="text-[15px] text-[color:var(--color-ink-soft)]/70 mb-3">All systems on track</p>
       <ul className="space-y-1.5 mb-3">
         {items.map((t) => (
-          <li key={t} className="flex items-center gap-2 text-[14px] text-[color:var(--color-ink-soft)]">
+          <li key={t} className="flex items-center gap-2 text-[15px] text-[color:var(--color-ink-soft)]">
             <CheckGlyph /> {t}
           </li>
         ))}
       </ul>
-      <a href="#how" className="inline-flex items-center gap-1 text-[14px] text-[color:var(--color-gold-deep)]">
+      <a href="#how" className="inline-flex items-center gap-1 text-[15px] text-[color:var(--color-gold-deep)]">
         View plan <span aria-hidden>→</span>
       </a>
     </Card>

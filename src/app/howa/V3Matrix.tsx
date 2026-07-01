@@ -48,20 +48,20 @@ export function V3Matrix({ middleLabel = "Housekeeper", showTitle = true }: { mi
                 </div>
                 <ul className="space-y-2.5 px-5 py-4">
                   {inc.map((f) => (
-                    <li key={f} className="flex items-start gap-2.5 text-[14px] leading-snug text-[color:var(--color-ink)]/85">
+                    <li key={f} className="flex items-start gap-2.5 text-[15px] leading-snug text-[color:var(--color-ink)]/85">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-howa-green)" strokeWidth="1.8" className="mt-px shrink-0" aria-hidden><circle cx="12" cy="12" r="9" /><path d="M8.5 12.5l2.5 2.5 4.5-5" /></svg>
                       {f}
                     </li>
                   ))}
                   {soon.map((f) => (
-                    <li key={f} className="flex items-start gap-2.5 text-[14px] leading-snug text-[color:var(--color-ink-soft)]/65">
+                    <li key={f} className="flex items-start gap-2.5 text-[15px] leading-snug text-[color:var(--color-ink-soft)]/65">
                       <span className="smallcaps mt-px shrink-0 rounded-full border border-[color:var(--color-ink)]/15 px-1.5 py-0.5 text-[8px] tracking-[0.1em] text-[color:var(--color-ink-soft)]/55">Coming</span>
                       {f}
                     </li>
                   ))}
                 </ul>
                 <div className="px-5 pb-5">
-                  <a href="/howa/coming-soon" className="block rounded-md px-4 py-3 text-center text-[14px] transition-opacity hover:opacity-90" style={{ background: t.accent, color: t.accent === "#c5a960" ? "#1d2a40" : "#fff" }}>
+                  <a href="/howa/coming-soon" className="block rounded-md px-4 py-3 text-center text-[15px] transition-opacity hover:opacity-90" style={{ background: t.accent, color: t.accent === "#c5a960" ? "#1d2a40" : "#fff" }}>
                     {t.name === "Steward" ? "Apply" : "Choose"} {t.name}
                   </a>
                 </div>
@@ -76,7 +76,7 @@ export function V3Matrix({ middleLabel = "Housekeeper", showTitle = true }: { mi
             <span className="smallcaps text-[12px] tracking-[0.16em] text-[color:var(--color-ink-soft)]/60">Capability</span>
             {TIERS.map((t) => (
               <div key={t.name} className="text-center">
-                <p className="font-display text-[clamp(14px,1.4vw,19px)] leading-none" style={{ color: t.accent }}>{t.name}</p>
+                <p className="font-display text-[clamp(15px,1.4vw,19px)] leading-none" style={{ color: t.accent }}>{t.name}</p>
                 <p className="smallcaps mt-1 text-[12px] tracking-[0.1em] text-[color:var(--color-ink-soft)]/60">{t.price}</p>
               </div>
             ))}
@@ -84,7 +84,7 @@ export function V3Matrix({ middleLabel = "Housekeeper", showTitle = true }: { mi
           {/* rows */}
           {ROWS.map((r, i) => (
             <div key={r.f} className={"grid grid-cols-[1.6fr_repeat(3,0.8fr)] items-center gap-2 px-4 py-2.5 sm:px-6 " + (i % 2 ? "bg-[#1d2a40]/[0.02]" : "")}>
-              <span className="text-[14px] leading-snug text-[color:var(--color-ink)]/85">{r.f}</span>
+              <span className="text-[15px] leading-snug text-[color:var(--color-ink)]/85">{r.f}</span>
               {r.c.map((cell, j) => (
                 <span key={j} className="flex justify-center">{renderCell(cell)}</span>
               ))}
@@ -94,7 +94,7 @@ export function V3Matrix({ middleLabel = "Housekeeper", showTitle = true }: { mi
           <div className="grid grid-cols-[1.6fr_repeat(3,0.8fr)] items-center gap-2 border-t border-[color:var(--color-ink)]/10 px-4 py-4 sm:px-6">
             <span />
             {TIERS.map((t) => (
-              <a key={t.name} href="/howa/coming-soon" className="mx-auto rounded-md px-3 py-1.5 text-center text-[14px] transition-opacity hover:opacity-90" style={{ background: t.accent, color: t.accent === "#c5a960" ? "#1d2a40" : "#fff" }}>
+              <a key={t.name} href="/howa/coming-soon" className="mx-auto rounded-md px-3 py-1.5 text-center text-[15px] transition-opacity hover:opacity-90" style={{ background: t.accent, color: t.accent === "#c5a960" ? "#1d2a40" : "#fff" }}>
                 {t.name === "Steward" ? "Apply" : "Choose"}
               </a>
             ))}

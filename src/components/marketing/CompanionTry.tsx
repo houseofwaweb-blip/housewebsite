@@ -28,7 +28,7 @@ export function CompanionTry() {
       </div>
       <button
         type="submit"
-        className="mt-3 w-full py-3.5 font-sans text-[14px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold cursor-pointer transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
+        className="mt-3 w-full py-3.5 font-sans text-[15px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold cursor-pointer transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
       >
         Coming soon →
       </button>

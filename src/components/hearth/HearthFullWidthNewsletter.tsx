@@ -60,7 +60,7 @@ export function HearthFullWidthNewsletter() {
             placeholder="your@email.co.uk"
             autoComplete="email"
             aria-label="Your email"
-            className="flex-1 bg-transparent border-0 outline-none min-w-0 font-hearth-sans text-[14px] px-[18px] py-[14px] text-house-black placeholder:italic placeholder:font-hearth-serif placeholder:text-house-stone"
+            className="flex-1 bg-transparent border-0 outline-none min-w-0 font-hearth-sans text-[15px] px-[18px] py-[14px] text-house-black placeholder:italic placeholder:font-hearth-serif placeholder:text-house-stone"
           />
           <button
             type="submit"

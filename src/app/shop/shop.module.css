@@ -51,7 +51,7 @@
 .heroTitle em { font-style: italic; color: var(--color-house-gold-dark); }
 .heroLede {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.65;
   color: rgba(48, 35, 28, 0.72);
   margin: 0 0 18px;
@@ -77,7 +77,7 @@
 .heroNotice p {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.74);
   margin: 0;

@@ -181,7 +181,7 @@ export function NewsletterInline({
 
           <p
             className={cn(
-              "font-sans text-[15px] leading-[1.65] mb-8 max-w-[400px]",
+              "font-sans text-[16px] leading-[1.65] mb-8 max-w-[400px]",
               isDark ? "text-house-cream/70" : "text-house-brown/70",
             )}
           >
@@ -214,7 +214,7 @@ export function NewsletterInline({
                     autoComplete="given-name"
                     aria-label="Your name"
                     className={cn(
-                      "border outline-none font-sans text-[14px] px-4 py-3.5 text-house-brown w-full",
+                      "border outline-none font-sans text-[15px] px-4 py-3.5 text-house-brown w-full",
                       "placeholder:italic placeholder:font-display placeholder:text-house-brown/35",
                       isDark
                         ? "bg-house-white border-house-white"
@@ -230,7 +230,7 @@ export function NewsletterInline({
                     autoComplete="email"
                     aria-label="Your email"
                     className={cn(
-                      "border outline-none font-sans text-[14px] px-4 py-3.5 text-house-brown w-full",
+                      "border outline-none font-sans text-[15px] px-4 py-3.5 text-house-brown w-full",
                       "placeholder:italic placeholder:font-display placeholder:text-house-brown/35",
                       isDark
                         ? "bg-house-white border-house-white"
@@ -262,7 +262,7 @@ export function NewsletterInline({
                           aria-pressed={active}
                           title={it.hint}
                           className={cn(
-                            "font-sans text-[14px] tracking-[0.04em] px-3 py-2 border cursor-pointer transition-colors duration-[var(--t-base)] select-none",
+                            "font-sans text-[15px] tracking-[0.04em] px-3 py-2 border cursor-pointer transition-colors duration-[var(--t-base)] select-none",
                             active
                               ? isDark
                                 ? "bg-house-gold-light text-house-brown border-house-gold-light"

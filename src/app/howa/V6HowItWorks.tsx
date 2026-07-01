@@ -34,7 +34,7 @@ export function V6HowItWorks() {
 
           {/* heading + the three plain, obvious steps */}
           <div>
-            <p className="smallcaps text-[14px] tracking-[0.18em] text-[color:var(--color-gold-deep)] mb-3">How HoWA works</p>
+            <p className="smallcaps text-[15px] tracking-[0.18em] text-[color:var(--color-gold-deep)] mb-3">How HoWA works</p>
             <h2 className="font-display text-[clamp(27px,2.6vw,40px)] leading-[1.05] tracking-[-0.01em]">
               Three simple steps.
               <br />

@@ -123,7 +123,7 @@ export function ArtworkEcosystem() {
           <h3 className="font-display font-medium text-[clamp(28px,3.4vw,42px)] leading-[1.15] tracking-[-0.005em] text-house-brown">
             A living, design-led <em className="text-house-gold-dark">universe.</em>
           </h3>
-          <p className="font-sans text-[15px] leading-[1.7] text-house-brown/72 mt-6">
+          <p className="font-sans text-[16px] leading-[1.7] text-house-brown/72 mt-6">
             Threaded together by name, colour, pattern, story. Nothing stands alone.
             Everything belongs.
           </p>
@@ -197,14 +197,14 @@ export function ArtworkEcosystem() {
                 <p
                   className={
                     "font-display italic " +
-                    (isCore ? "text-[18px] md:text-[22px] leading-[1.2]" : "text-[15px] md:text-[16px] leading-[1.25]")
+                    (isCore ? "text-[18px] md:text-[22px] leading-[1.2]" : "text-[16px] md:text-[16px] leading-[1.25]")
                   }
                 >
                   {n.name}
                 </p>
                 <p
                   className={
-                    "font-sans text-[14px] leading-[1.5] mt-2 " +
+                    "font-sans text-[15px] leading-[1.5] mt-2 " +
                     (isCore ? "text-house-cream/80" : "text-house-brown/65")
                   }
                 >
@@ -222,7 +222,7 @@ export function ArtworkEcosystem() {
           })}
         </div>
 
-        <p className="text-center font-sans italic text-[14px] text-house-brown/55 mt-10">
+        <p className="text-center font-sans italic text-[15px] text-house-brown/55 mt-10">
           Tap any sibling to enter that world.
         </p>
       </div>

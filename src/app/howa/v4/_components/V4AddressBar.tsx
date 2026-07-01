@@ -22,7 +22,7 @@ export function V4AddressBar() {
           onKeyDown={(e) => { if (e.key === "Enter") go(); }}
           aria-label="Your address or postcode"
           placeholder="Your address or postcode"
-          className="w-full bg-transparent text-[15px] text-[color:var(--color-ink)] placeholder:text-[color:var(--color-ink-soft)]/45 focus:outline-none"
+          className="w-full bg-transparent text-[16px] text-[color:var(--color-ink)] placeholder:text-[color:var(--color-ink-soft)]/45 focus:outline-none"
         />
       </span>
       <button onClick={go} className="inline-flex items-center justify-center gap-2 rounded-md bg-[color:var(--color-howa-green)] px-6 py-3 text-[16px] text-white transition-colors hover:bg-[color:var(--color-howa-green-deep)]">

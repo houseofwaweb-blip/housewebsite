@@ -30,7 +30,7 @@
 .chapterRoman {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 14px;
+  font-size: 15px;
   letter-spacing: 0.04em;
   color: rgba(48, 35, 28, 0.72);
   margin: 0 0 14px;
@@ -239,7 +239,7 @@
 }
 .patternRevealCap {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.7);
   display: flex;
@@ -341,7 +341,7 @@
 .iconLabel {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 14px;
+  font-size: 15px;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
   text-align: center;
@@ -563,7 +563,7 @@
 .tagline p {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: clamp(15px, 1.6vw, 18px);
+  font-size: clamp(16px, 1.6vw, 18px);
   line-height: 1.5;
   color: rgba(243, 237, 225, 0.65);
   margin: 0;

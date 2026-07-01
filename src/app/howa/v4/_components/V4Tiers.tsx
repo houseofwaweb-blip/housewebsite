@@ -34,7 +34,7 @@ export function V4Tiers() {
     <section id="tiers" className="scroll-mt-20 bg-[#fbfaf5] py-16 lg:py-24">
       <div className="mx-auto max-w-[1180px] px-6 sm:px-10">
         <div className="mb-10 max-w-[680px]">
-          <p className="smallcaps mb-3 text-[14px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">Tiers</p>
+          <p className="smallcaps mb-3 text-[15px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">Tiers</p>
           <h2 className="font-display text-[clamp(28px,3.2vw,46px)] leading-[1.08] tracking-[-0.01em]">
             One record. <span className="font-italic-display text-[#c5a960]">Three depths of care.</span>
           </h2>
@@ -60,7 +60,7 @@ export function V4Tiers() {
                 <p className={"mt-2 font-italic-display text-[18px] " + (dark ? "text-[#f3ede0]/85" : "text-[color:var(--color-ink-soft)]")}>{t.tagline}</p>
                 <ul className="mt-5 mb-7 space-y-2.5">
                   {t.points.map((p) => (
-                    <li key={p} className={"flex items-start gap-2.5 text-[15px] leading-[1.4] " + (dark ? "text-[#f3ede0]/85" : "text-[color:var(--color-ink-soft)]")}>
+                    <li key={p} className={"flex items-start gap-2.5 text-[16px] leading-[1.4] " + (dark ? "text-[#f3ede0]/85" : "text-[color:var(--color-ink-soft)]")}>
                       <span className="mt-0.5 shrink-0"><Tick color={dark ? "#c5a960" : t.accent} /></span>
                       <span className="flex-1">{p}</span>
                     </li>
@@ -68,7 +68,7 @@ export function V4Tiers() {
                 </ul>
                 <a
                   href={t.tierSlug === "steward" ? "/howa/steward" : `/howa/coming-soon?tier=${t.tierSlug}`}
-                  className={"mt-auto inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-[15.5px] transition-colors " + (dark ? "bg-[#c5a960] text-[#1d2a40] hover:bg-[#d4ba78]" : "text-white")}
+                  className={"mt-auto inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-[16px] transition-colors " + (dark ? "bg-[#c5a960] text-[#1d2a40] hover:bg-[#d4ba78]" : "text-white")}
                   style={dark ? undefined : { background: t.accent }}
                 >
                   {t.cta} <span aria-hidden>→</span>
@@ -78,7 +78,7 @@ export function V4Tiers() {
             );
           })}
         </div>
-        <p className="mt-6 text-[14px] text-[color:var(--color-ink-soft)]/70">
+        <p className="mt-6 text-[15px] text-[color:var(--color-ink-soft)]/70">
           Larger homes and estates needing human coordination: see <a href="#managed" className="text-[color:var(--color-gold-deep)] underline underline-offset-2">Managed Stewardship</a>, below.
         </p>
       </div>

@@ -142,7 +142,7 @@
   border-top: 1px solid rgba(48, 35, 28, 0.12);
   border-bottom: 1px solid rgba(48, 35, 28, 0.12);
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 15px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.7);
@@ -238,7 +238,7 @@
 .cardLede {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.7);
   margin: 0 0 14px;

@@ -80,12 +80,12 @@ export function WaitlistForm({
     }
   }, [collectTier, setValue]);
 
-  const selectCls = `w-full border px-3 py-2.5 text-[15px] outline-none transition-colors ${
+  const selectCls = `w-full border px-3 py-2.5 text-[16px] outline-none transition-colors ${
     dark
       ? "border-white/30 bg-transparent text-white focus:border-white/60"
       : "border-house-brown/30 bg-white text-house-brown focus:border-house-gold"
   }`;
-  const labelCls = `block font-sans text-[14px] tracking-[0.04em] mb-1.5 ${dark ? "text-white/75" : "text-house-brown/70"}`;
+  const labelCls = `block font-sans text-[15px] tracking-[0.04em] mb-1.5 ${dark ? "text-white/75" : "text-house-brown/70"}`;
 
   const onSubmit = async (data: WaitlistInterestOutput) => {
     setStatus({ kind: "submitting" });
@@ -153,7 +153,7 @@ export function WaitlistForm({
                 ))}
               </select>
               {errors.tier?.message ? (
-                <p className="font-sans text-[14px] text-red-700 mt-1">{errors.tier.message}</p>
+                <p className="font-sans text-[15px] text-red-700 mt-1">{errors.tier.message}</p>
               ) : null}
             </div>
             <div className="flex-1">
@@ -200,7 +200,7 @@ export function WaitlistForm({
         onExpire={() => setValue("turnstileToken", "")}
       />
       {errors.turnstileToken ? (
-        <p className="font-sans text-[14px] text-red-700">
+        <p className="font-sans text-[15px] text-red-700">
           {errors.turnstileToken.message}
         </p>
       ) : null}

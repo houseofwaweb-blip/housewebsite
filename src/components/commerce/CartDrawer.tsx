@@ -58,7 +58,7 @@ export function CartDrawer() {
         <div className="flex justify-between items-center px-6 py-[18px] border-b border-house-brown/8">
           <h2 className="font-display font-medium text-[18px]">
             Basket
-            <span className="font-sans font-light text-[14px] text-house-stone ml-1.5">
+            <span className="font-sans font-light text-[15px] text-house-stone ml-1.5">
               ({count})
             </span>
           </h2>
@@ -105,10 +105,10 @@ export function CartDrawer() {
                   ) : null}
                 </div>
                 <div className="flex-1 flex flex-col">
-                  <span className="font-display font-medium text-[15px] mb-1">
+                  <span className="font-display font-medium text-[16px] mb-1">
                     {line.title}
                   </span>
-                  <span className="font-display font-medium text-[15px]">
+                  <span className="font-display font-medium text-[16px]">
                     {line.price}
                   </span>
                   {/* Quantity */}
@@ -120,7 +120,7 @@ export function CartDrawer() {
                     >
                       −
                     </button>
-                    <span className="font-sans text-[14px] min-w-[20px] text-center">
+                    <span className="font-sans text-[15px] min-w-[20px] text-center">
                       {line.quantity}
                     </span>
                     <button
@@ -159,12 +159,12 @@ export function CartDrawer() {
               <Link
                 href="/shop/checkout"
                 onClick={closeDrawer}
-                className="block w-full py-4 font-sans text-[14px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold text-center no-underline transition-colors duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
+                className="block w-full py-4 font-sans text-[15px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold text-center no-underline transition-colors duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
               >
                 Checkout
               </Link>
             ) : (
-              <p className="block w-full py-4 font-sans text-[14px] tracking-[0.18em] uppercase text-house-stone border border-house-brown/15 text-center">
+              <p className="block w-full py-4 font-sans text-[15px] tracking-[0.18em] uppercase text-house-stone border border-house-brown/15 text-center">
                 Checkout available at launch
               </p>
             )}

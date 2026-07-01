@@ -235,7 +235,7 @@ export default async function ProductPage({
               price={product.price}
               image={product.image}
             />
-            <p className="mt-2 font-sans text-[14px] leading-[1.5] text-house-stone">
+            <p className="mt-2 font-sans text-[15px] leading-[1.5] text-house-stone">
               Save it to your Home Record to keep its details, care notes and warranty in one place.
             </p>
           </div>
@@ -256,7 +256,7 @@ export default async function ProductPage({
                 ["Warranty", "Receipt and any warranty stored at purchase."],
                 ["Replacement", "HoWA reminds you when it is due for renewal."],
               ].map(([k, v]) => (
-                <div key={k} className="flex gap-4 font-sans text-[14px] leading-[1.5]">
+                <div key={k} className="flex gap-4 font-sans text-[15px] leading-[1.5]">
                   <dt className="w-[92px] shrink-0 text-house-stone">{k}</dt>
                   <dd className="m-0 text-house-brown">{v}</dd>
                 </div>
@@ -268,7 +268,7 @@ export default async function ProductPage({
               wording adapts: installable/maintainable goods get the fitting line,
               everything else gets a calmer House-services line (a mug isn't
               "fitted or cleaned"). */}
-          <p className="mt-6 font-sans text-[14px] leading-[1.6] text-house-stone">
+          <p className="mt-6 font-sans text-[15px] leading-[1.6] text-house-stone">
             {serviceable
               ? "Need this fitted, hung, cleaned or maintained? "
               : "Planning work on your home? "}

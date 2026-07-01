@@ -87,7 +87,7 @@ export function ProductCard({
         <h3 className="font-display font-medium text-[18px] leading-[1.25] text-house-brown transition-colors duration-[var(--t-slow)] ease-out group-hover:text-house-gold-dark">
           {product.title}
         </h3>
-        <div className="font-sans text-[14px] text-house-stone">
+        <div className="font-sans text-[15px] text-house-stone">
           {product.compareAtPrice ? (
             <>
               <span className="line-through text-house-stone/60 mr-2">

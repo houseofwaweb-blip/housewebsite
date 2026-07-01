@@ -14,7 +14,7 @@ export function V4Faq() {
   return (
     <section id="faq" className="scroll-mt-20 bg-[#fbfaf5] py-16 lg:py-24 border-t border-[color:var(--color-ink)]/8">
       <div className="mx-auto max-w-[860px] px-6 sm:px-10">
-        <p className="smallcaps mb-3 text-center text-[14px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">Questions</p>
+        <p className="smallcaps mb-3 text-center text-[15px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">Questions</p>
         <h2 className="mb-10 text-center font-display text-[clamp(28px,3vw,44px)] leading-[1.1] tracking-[-0.01em]">
           Before <span className="font-italic-display text-[#c5a960]">you begin.</span>
         </h2>
@@ -25,7 +25,7 @@ export function V4Faq() {
                 {q}
                 <span aria-hidden className="text-[color:var(--color-gold-deep)] transition-transform group-open:rotate-45">+</span>
               </summary>
-              <p className="pb-5 text-[15px] leading-[1.6] text-[color:var(--color-ink-soft)]">{a}</p>
+              <p className="pb-5 text-[16px] leading-[1.6] text-[color:var(--color-ink-soft)]">{a}</p>
             </details>
           ))}
         </div>

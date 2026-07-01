@@ -65,7 +65,7 @@ export function WaitlistMini({
         role="status"
         className={cn(
           "bg-success text-white px-5 py-4",
-          "font-sans italic text-[15px]",
+          "font-sans italic text-[16px]",
           "[animation:howa-slide-up_var(--t-slow)_var(--ease-out)]",
           className,
         )}
@@ -100,10 +100,10 @@ export function WaitlistMini({
         aria-invalid={error ? true : undefined}
         className={cn(
           "flex-1 bg-transparent border-0 outline-none min-w-0 px-3",
-          "font-sans text-[14px] text-house-brown",
+          "font-sans text-[15px] text-house-brown",
           "border-b border-house-brown/20 focus:border-house-gold transition-colors",
           "duration-slow ease-out",
-          "placeholder:font-display placeholder:italic placeholder:text-[14px] placeholder:text-house-stone",
+          "placeholder:font-display placeholder:italic placeholder:text-[15px] placeholder:text-house-stone",
         )}
       />
 
@@ -122,7 +122,7 @@ export function WaitlistMini({
       </button>
 
       {error ? (
-        <p role="alert" className="absolute -bottom-6 left-0 font-display italic text-[14px] text-error">
+        <p role="alert" className="absolute -bottom-6 left-0 font-display italic text-[15px] text-error">
           {error}
         </p>
       ) : null}

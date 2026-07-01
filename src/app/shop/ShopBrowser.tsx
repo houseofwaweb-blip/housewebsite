@@ -92,7 +92,7 @@ function Toggle({
   label: string;
 }) {
   return (
-    <label className="flex items-center gap-2 font-sans text-[14px] text-house-stone cursor-pointer py-1">
+    <label className="flex items-center gap-2 font-sans text-[15px] text-house-stone cursor-pointer py-1">
       <button
         type="button"
         onClick={onToggle}
@@ -222,7 +222,7 @@ export function ShopBrowser({
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search products"
-            className="w-full px-3 py-2.5 border border-house-brown/15 bg-house-cream font-sans text-[14px] text-house-brown placeholder:text-house-stone focus:border-house-gold focus:outline-none transition-colors duration-[var(--t-base)]"
+            className="w-full px-3 py-2.5 border border-house-brown/15 bg-house-cream font-sans text-[15px] text-house-brown placeholder:text-house-stone focus:border-house-gold focus:outline-none transition-colors duration-[var(--t-base)]"
           />
         </div>
 
@@ -237,7 +237,7 @@ export function ShopBrowser({
                   key={sc.handle}
                   href={`/shop/collections/${sc.handle}`}
                   className={cn(
-                    "text-left py-1.5 font-sans text-[14px] no-underline cursor-pointer transition-all duration-[var(--t-base)]",
+                    "text-left py-1.5 font-sans text-[15px] no-underline cursor-pointer transition-all duration-[var(--t-base)]",
                     "text-house-stone hover:text-house-brown hover:pl-1 max-md:hover:pl-0",
                     "max-md:px-3 max-md:py-1 max-md:border max-md:border-house-brown/10 max-md:text-[12px]",
                   )}
@@ -257,7 +257,7 @@ export function ShopBrowser({
               type="button"
               onClick={() => setActiveCollections(new Set())}
               className={cn(
-                "text-left py-1.5 font-sans text-[14px] bg-transparent border-0 cursor-pointer transition-all duration-[var(--t-base)]",
+                "text-left py-1.5 font-sans text-[15px] bg-transparent border-0 cursor-pointer transition-all duration-[var(--t-base)]",
                 "max-md:px-3 max-md:py-1 max-md:border max-md:border-house-brown/10 max-md:text-[12px]",
                 activeCollections.size === 0
                   ? "text-house-gold-dark font-normal max-md:border-house-gold"
@@ -274,7 +274,7 @@ export function ShopBrowser({
                     type="button"
                     onClick={() => setActiveCollections(toggleSet(activeCollections, c.handle))}
                     className={cn(
-                      "w-full text-left py-1.5 font-sans text-[14px] bg-transparent border-0 cursor-pointer transition-all duration-[var(--t-base)]",
+                      "w-full text-left py-1.5 font-sans text-[15px] bg-transparent border-0 cursor-pointer transition-all duration-[var(--t-base)]",
                       "max-md:w-auto max-md:px-3 max-md:py-1 max-md:border max-md:border-house-brown/10 max-md:text-[12px]",
                       activeCollections.has(c.handle)
                         ? "text-house-gold-dark font-normal max-md:border-house-gold"
@@ -293,7 +293,7 @@ export function ShopBrowser({
                             <Link
                               key={sub.handle}
                               href={`/shop/collections/${sub.handle}`}
-                              className="py-1 font-sans text-[14px] text-house-stone/80 no-underline hover:text-house-gold-dark transition-colors duration-[var(--t-base)]"
+                              className="py-1 font-sans text-[15px] text-house-stone/80 no-underline hover:text-house-gold-dark transition-colors duration-[var(--t-base)]"
                             >
                               {sub.title}
                             </Link>
@@ -316,7 +316,7 @@ export function ShopBrowser({
               type="button"
               onClick={() => setActiveBrands(new Set())}
               className={cn(
-                "text-left py-1 font-sans text-[14px] bg-transparent border-0 cursor-pointer transition-colors duration-[var(--t-base)]",
+                "text-left py-1 font-sans text-[15px] bg-transparent border-0 cursor-pointer transition-colors duration-[var(--t-base)]",
                 activeBrands.size === 0 ? "text-house-gold-dark" : "text-house-stone hover:text-house-brown",
               )}
             >
@@ -328,7 +328,7 @@ export function ShopBrowser({
                 type="button"
                 onClick={() => setActiveBrands(toggleSet(activeBrands, b.name))}
                 className={cn(
-                  "text-left py-1 font-sans text-[14px] bg-transparent border-0 cursor-pointer transition-colors duration-[var(--t-base)]",
+                  "text-left py-1 font-sans text-[15px] bg-transparent border-0 cursor-pointer transition-colors duration-[var(--t-base)]",
                   activeBrands.has(b.name) ? "text-house-gold-dark" : "text-house-stone hover:text-house-brown",
                 )}
               >
@@ -347,7 +347,7 @@ export function ShopBrowser({
                 type="button"
                 onClick={() => setPriceIdx(i)}
                 className={cn(
-                  "text-left py-1 font-sans text-[14px] bg-transparent border-0 cursor-pointer transition-colors duration-[var(--t-base)]",
+                  "text-left py-1 font-sans text-[15px] bg-transparent border-0 cursor-pointer transition-colors duration-[var(--t-base)]",
                   priceIdx === i ? "text-house-gold-dark" : "text-house-stone hover:text-house-brown",
                 )}
               >
@@ -378,7 +378,7 @@ export function ShopBrowser({
       <div className="px-[5vw] md:px-8 py-6 pb-16 w-full max-w-[1280px] mx-auto">
         {/* Utility bar */}
         <div className="flex items-center justify-between mb-5">
-          <span className="font-sans text-[14px] text-house-stone">
+          <span className="font-sans text-[15px] text-house-stone">
             {filtered.length} {filtered.length === 1 ? "piece" : "pieces"}
             {hasFilters ? (
               <button
@@ -467,10 +467,10 @@ export function ShopBrowser({
                   <div className="font-sans text-[8px] tracking-[0.2em] uppercase text-house-stone/70 mb-1">
                     {p.collection}
                   </div>
-                  <div className="font-display text-[14px] leading-snug text-house-brown group-hover:text-[var(--house-gold-dark)] transition-colors duration-[var(--t-base)] mb-1">
+                  <div className="font-display text-[15px] leading-snug text-house-brown group-hover:text-[var(--house-gold-dark)] transition-colors duration-[var(--t-base)] mb-1">
                     {p.title}
                   </div>
-                  <div className="font-sans text-[14px] text-house-brown/80">
+                  <div className="font-sans text-[15px] text-house-brown/80">
                     {p.compareAtPrice ? (
                       <>
                         <span className="text-house-stone line-through mr-1.5">
@@ -528,7 +528,7 @@ function Pagination({
     }
   }
   const cell =
-    "min-w-[32px] h-[32px] flex items-center justify-center font-sans text-[14px] cursor-pointer transition-colors duration-[var(--t-base)] bg-transparent border-0";
+    "min-w-[32px] h-[32px] flex items-center justify-center font-sans text-[15px] cursor-pointer transition-colors duration-[var(--t-base)] bg-transparent border-0";
   const arrow = "px-3 tracking-[0.12em] uppercase text-[12px]";
   return (
     <nav aria-label="Pagination" className="mt-16 flex items-center justify-center gap-1">
@@ -542,7 +542,7 @@ function Pagination({
       </button>
       {nums.map((n, i) =>
         n === "ellipsis" ? (
-          <span key={`e${i}`} className="min-w-[24px] text-center text-house-stone text-[14px]">…</span>
+          <span key={`e${i}`} className="min-w-[24px] text-center text-house-stone text-[15px]">…</span>
         ) : (
           <button
             key={n}

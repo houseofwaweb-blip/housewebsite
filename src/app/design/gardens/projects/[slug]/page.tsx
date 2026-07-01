@@ -47,7 +47,7 @@ export default async function GardenProjectPage({
   const fileNo = (s: string) => s.match(/(\d+)\.webp$/)?.[1] ?? "";
   const Badge = ({ src }: { src: string }) =>
     DEV ? (
-      <span className="absolute top-2 left-2 z-10 bg-black/75 text-white text-[14px] font-mono px-2 py-0.5 pointer-events-none">
+      <span className="absolute top-2 left-2 z-10 bg-black/75 text-white text-[15px] font-mono px-2 py-0.5 pointer-events-none">
         {fileNo(src)}
       </span>
     ) : null;
@@ -66,7 +66,7 @@ export default async function GardenProjectPage({
         >
           {project.title}
         </h1>
-        <p className="mt-4 font-sans text-[14px] tracking-[0.18em] uppercase text-house-brown/55">
+        <p className="mt-4 font-sans text-[15px] tracking-[0.18em] uppercase text-house-brown/55">
           {project.location}
         </p>
       </header>
@@ -134,10 +134,10 @@ export default async function GardenProjectPage({
           The studio takes on a small number of commissions through the House design collective.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-          <Link href="/design/gardens#open-booking-form" className="inline-flex items-center justify-center px-7 py-3.5 bg-house-gold text-white text-[14px] tracking-[0.04em] hover:bg-house-gold-dark transition-colors">
+          <Link href="/design/gardens#open-booking-form" className="inline-flex items-center justify-center px-7 py-3.5 bg-house-gold text-white text-[15px] tracking-[0.04em] hover:bg-house-gold-dark transition-colors">
             Enquire about a garden
           </Link>
-          <Link href="/design/gardens" className="inline-flex items-center gap-1.5 text-[15px] text-house-brown/70 hover:text-house-brown transition-colors">
+          <Link href="/design/gardens" className="inline-flex items-center gap-1.5 text-[16px] text-house-brown/70 hover:text-house-brown transition-colors">
             All garden work <span aria-hidden>&rarr;</span>
           </Link>
         </div>
@@ -155,7 +155,7 @@ export default async function GardenProjectPage({
                     <Image src={p.images[0]} alt={p.title} fill sizes="(min-width: 640px) 33vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
                   </div>
                   <h3 className="mt-3 font-hearth-serif text-[20px] leading-tight" style={{ color: "var(--color-house-brown)" }}>{p.title}</h3>
-                  <p className="font-sans text-[14px] tracking-[0.16em] uppercase text-house-brown/55 mt-1">{p.location}</p>
+                  <p className="font-sans text-[15px] tracking-[0.16em] uppercase text-house-brown/55 mt-1">{p.location}</p>
                 </Link>
               ))}
             </div>

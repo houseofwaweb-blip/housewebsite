@@ -56,10 +56,10 @@ export function RecentlyViewed({ current }: { current: Item }) {
                   />
                 ) : null}
               </div>
-              <p className="font-display text-[15px] leading-[1.25] text-house-brown group-hover:text-house-gold-dark transition-colors">
+              <p className="font-display text-[16px] leading-[1.25] text-house-brown group-hover:text-house-gold-dark transition-colors">
                 {p.title}
               </p>
-              <p className="font-sans text-[14px] text-house-stone mt-0.5">{p.price}</p>
+              <p className="font-sans text-[15px] text-house-stone mt-0.5">{p.price}</p>
             </Link>
           ))}
         </div>

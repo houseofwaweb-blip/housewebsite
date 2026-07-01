@@ -30,7 +30,7 @@ export function CheckoutClient() {
           </p>
           <Link
             href="/shop"
-            className="inline-block px-8 py-4 font-sans text-[14px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
+            className="inline-block px-8 py-4 font-sans text-[15px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
           >
             Browse the shop
           </Link>
@@ -62,7 +62,7 @@ export function CheckoutClient() {
           <h1 className="font-display font-medium text-[clamp(32px,4vw,48px)] leading-[1.08] mb-1">
             Review your <em className="italic">order.</em>
           </h1>
-          <p className="font-sans text-[14px] text-house-stone mb-8">
+          <p className="font-sans text-[15px] text-house-stone mb-8">
             {count} {count === 1 ? "item" : "items"}
             <span className="mx-2 text-house-brown/30">·</span>
             <Link href="/shop/basket" className="underline underline-offset-4 decoration-house-brown/30 hover:decoration-house-gold transition-colors">
@@ -81,7 +81,7 @@ export function CheckoutClient() {
                 <Link href={`/shop/${line.handle}`} className="block font-display font-medium text-[17px] mb-1 no-underline text-house-brown hover:text-house-gold-dark transition-colors">
                   {line.title}
                 </Link>
-                <p className="font-sans text-[14px] text-house-stone">
+                <p className="font-sans text-[15px] text-house-stone">
                   Quantity {line.quantity}
                 </p>
               </div>
@@ -97,7 +97,7 @@ export function CheckoutClient() {
         <div className="md:sticky md:top-[100px]">
           <div className="bg-house-white border border-house-brown/8 p-7">
             <h3 className="font-display font-medium text-[18px] mb-4">Order summary</h3>
-            <div className="flex justify-between items-baseline font-sans text-[14px] py-2 border-b border-house-brown/8">
+            <div className="flex justify-between items-baseline font-sans text-[15px] py-2 border-b border-house-brown/8">
               <span className="text-house-stone">Subtotal</span>
               <span className="font-display font-medium text-[18px]">{subtotal}</span>
             </div>
@@ -110,12 +110,12 @@ export function CheckoutClient() {
                 type="button"
                 onClick={handlePay}
                 disabled={busy || redirecting || !checkoutUrl}
-                className="block w-full py-4 font-sans text-[14px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold text-center transition-colors duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light disabled:opacity-60 disabled:cursor-wait cursor-pointer"
+                className="block w-full py-4 font-sans text-[15px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold text-center transition-colors duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light disabled:opacity-60 disabled:cursor-wait cursor-pointer"
               >
                 {redirecting ? "Redirecting…" : busy ? "Updating…" : "Continue to secure payment"}
               </button>
             ) : (
-              <p className="block w-full py-4 font-sans text-[14px] tracking-[0.18em] uppercase text-house-stone border border-house-brown/15 text-center">
+              <p className="block w-full py-4 font-sans text-[15px] tracking-[0.18em] uppercase text-house-stone border border-house-brown/15 text-center">
                 Checkout available at launch
               </p>
             )}

@@ -149,7 +149,7 @@ export function ContactForm({ turnstileSiteKey, sourcePage }: ContactFormProps) 
                 <div className="font-sans text-[17px] font-medium mb-1.5">
                   {t.label}
                 </div>
-                <div className="font-sans text-[14px] text-house-brown/70 leading-[1.55]">
+                <div className="font-sans text-[15px] text-house-brown/70 leading-[1.55]">
                   {t.blurb}
                 </div>
               </button>
@@ -208,7 +208,7 @@ export function ContactForm({ turnstileSiteKey, sourcePage }: ContactFormProps) 
                 onExpire={() => setValue("turnstileToken", "")}
               />
               {errors.turnstileToken ? (
-                <p className="font-sans text-[14px] text-red-700">
+                <p className="font-sans text-[15px] text-red-700">
                   {errors.turnstileToken.message}
                 </p>
               ) : null}

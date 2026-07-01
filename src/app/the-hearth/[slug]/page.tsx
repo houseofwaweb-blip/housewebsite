@@ -116,10 +116,10 @@ export default async function ArticlePage({
                 href={`/the-hearth/${prev.slug}`}
                 className="group inline-flex items-center gap-2 min-w-0 no-underline text-left"
               >
-                <span aria-hidden className="font-hearth-sans text-[14px] text-house-stone transition-colors group-hover:text-house-gold-dark">←</span>
+                <span aria-hidden className="font-hearth-sans text-[15px] text-house-stone transition-colors group-hover:text-house-gold-dark">←</span>
                 <span className="min-w-0">
                   <span className="block font-hearth-sans text-[12px] tracking-[0.2em] uppercase text-house-stone">Previous</span>
-                  <span className="block font-hearth-serif text-[14px] leading-snug text-house-black truncate max-w-[34vw] md:max-w-[220px] transition-colors group-hover:text-house-gold-dark">{prev.title}</span>
+                  <span className="block font-hearth-serif text-[15px] leading-snug text-house-black truncate max-w-[34vw] md:max-w-[220px] transition-colors group-hover:text-house-gold-dark">{prev.title}</span>
                 </span>
               </Link>
             ) : (
@@ -133,9 +133,9 @@ export default async function ArticlePage({
               >
                 <span className="min-w-0">
                   <span className="block font-hearth-sans text-[12px] tracking-[0.2em] uppercase text-house-stone">Next</span>
-                  <span className="block font-hearth-serif text-[14px] leading-snug text-house-black truncate max-w-[34vw] md:max-w-[220px] transition-colors group-hover:text-house-gold-dark">{next.title}</span>
+                  <span className="block font-hearth-serif text-[15px] leading-snug text-house-black truncate max-w-[34vw] md:max-w-[220px] transition-colors group-hover:text-house-gold-dark">{next.title}</span>
                 </span>
-                <span aria-hidden className="font-hearth-sans text-[14px] text-house-stone transition-colors group-hover:text-house-gold-dark">→</span>
+                <span aria-hidden className="font-hearth-sans text-[15px] text-house-stone transition-colors group-hover:text-house-gold-dark">→</span>
               </Link>
             ) : (
               <span />
@@ -160,7 +160,7 @@ export default async function ArticlePage({
               {article.dek}
             </p>
             <p className="font-hearth-sans text-[12px] tracking-[0.16em] uppercase text-house-stone mt-8 flex gap-3 justify-center flex-wrap">
-              <em className="not-italic font-hearth-serif italic text-[14px] tracking-[0.02em] normal-case text-house-black">
+              <em className="not-italic font-hearth-serif italic text-[15px] tracking-[0.02em] normal-case text-house-black">
                 {article.author}
               </em>
               <span>·</span>
@@ -194,7 +194,7 @@ export default async function ArticlePage({
             <div className="max-w-[720px] mx-auto">
               {hasBody ? (
                 <>
-                  <div className="font-hearth-serif text-[19px] leading-[1.75] text-house-black/90 [&_p]:mb-[22px] [&_h2]:font-hearth-serif [&_h2]:font-medium [&_h2]:text-[clamp(28px,3.5vw,42px)] [&_h2]:leading-[1.15] [&_h2]:mt-14 [&_h2]:mb-4 [&_h3]:font-hearth-serif [&_h3]:font-medium [&_h3]:text-[clamp(22px,2.6vw,30px)] [&_h3]:mt-10 [&_h3]:mb-3 [&_h4]:font-hearth-sans [&_h4]:text-[14px] [&_h4]:tracking-[0.2em] [&_h4]:uppercase [&_h4]:mt-8 [&_h4]:mb-3 [&_a]:text-house-gold-dark [&_a]:underline [&_a]:underline-offset-[3px] [&_blockquote]:my-10 [&_blockquote]:border-l [&_blockquote]:border-house-gold [&_blockquote]:pl-7 [&_blockquote]:italic [&_ul]:my-5 [&_ul]:pl-6 [&_ol]:my-5 [&_ol]:pl-6 [&_ol]:list-decimal">
+                  <div className="font-hearth-serif text-[19px] leading-[1.75] text-house-black/90 [&_p]:mb-[22px] [&_h2]:font-hearth-serif [&_h2]:font-medium [&_h2]:text-[clamp(28px,3.5vw,42px)] [&_h2]:leading-[1.15] [&_h2]:mt-14 [&_h2]:mb-4 [&_h3]:font-hearth-serif [&_h3]:font-medium [&_h3]:text-[clamp(22px,2.6vw,30px)] [&_h3]:mt-10 [&_h3]:mb-3 [&_h4]:font-hearth-sans [&_h4]:text-[15px] [&_h4]:tracking-[0.2em] [&_h4]:uppercase [&_h4]:mt-8 [&_h4]:mb-3 [&_a]:text-house-gold-dark [&_a]:underline [&_a]:underline-offset-[3px] [&_blockquote]:my-10 [&_blockquote]:border-l [&_blockquote]:border-house-gold [&_blockquote]:pl-7 [&_blockquote]:italic [&_ul]:my-5 [&_ul]:pl-6 [&_ol]:my-5 [&_ol]:pl-6 [&_ol]:list-decimal">
                     <PortableText value={previewBlocks} />
                   </div>
 
@@ -230,7 +230,7 @@ export default async function ArticlePage({
               <span className="block font-hearth-sans text-[12px] tracking-[0.2em] uppercase text-house-stone mb-1">
                 <span aria-hidden>←</span> Previous
               </span>
-              <span className="block font-hearth-serif text-[15px] leading-snug text-house-black truncate transition-colors group-hover:text-house-gold-dark">
+              <span className="block font-hearth-serif text-[16px] leading-snug text-house-black truncate transition-colors group-hover:text-house-gold-dark">
                 {prev.title}
               </span>
             </Link>
@@ -250,7 +250,7 @@ export default async function ArticlePage({
               <span className="block font-hearth-sans text-[12px] tracking-[0.2em] uppercase text-house-stone mb-1">
                 Next <span aria-hidden>→</span>
               </span>
-              <span className="block font-hearth-serif text-[15px] leading-snug text-house-black truncate transition-colors group-hover:text-house-gold-dark">
+              <span className="block font-hearth-serif text-[16px] leading-snug text-house-black truncate transition-colors group-hover:text-house-gold-dark">
                 {next.title}
               </span>
             </Link>

@@ -39,11 +39,11 @@ export function V6Partners() {
               {WA_BRANDS.map((b) => (
                 <div key={b.name} className="rounded-md px-3.5 py-4 text-[#f3ede0]" style={{ background: b.color }}>
                   <p className="smallcaps text-[8.5px] tracking-[0.14em] text-[#f3ede0]/70">Willow Alexander</p>
-                  <p className="font-display text-[15px] leading-tight mt-0.5">{b.name}</p>
+                  <p className="font-display text-[16px] leading-tight mt-0.5">{b.name}</p>
                 </div>
               ))}
             </div>
-            <p className="mt-6 text-[15.5px] leading-[1.5] text-[color:var(--color-ink-soft)]/85 max-w-[520px]">
+            <p className="mt-6 text-[16px] leading-[1.5] text-[color:var(--color-ink-soft)]/85 max-w-[520px]">
               Alongside a vetted network of House Approved trades, with coverage across the country.
             </p>
           </div>
@@ -106,7 +106,7 @@ export function V6Partners() {
           </div>
           <a
             href="mailto:sales@willowalexander.co.uk?subject=Founding partner application"
-            className="shrink-0 inline-flex items-center gap-2 rounded-md bg-[#c5a960] px-7 py-3.5 font-mono text-[14px] tracking-[0.02em] text-[#1d2a40] hover:bg-[#d4ba78] transition-colors"
+            className="shrink-0 inline-flex items-center gap-2 rounded-md bg-[#c5a960] px-7 py-3.5 font-mono text-[15px] tracking-[0.02em] text-[#1d2a40] hover:bg-[#d4ba78] transition-colors"
           >
             Apply to partner <span aria-hidden>→</span>
           </a>

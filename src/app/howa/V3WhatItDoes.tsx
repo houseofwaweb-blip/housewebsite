@@ -73,7 +73,7 @@ export function V3WhatItDoes() {
                   ))}
                 </ul>
               )}
-              <p className="mt-auto border-t border-[color:var(--color-ink)]/8 pt-4 text-[14px] leading-[1.45] text-[color:var(--color-ink-soft)]/80">
+              <p className="mt-auto border-t border-[color:var(--color-ink)]/8 pt-4 text-[15px] leading-[1.45] text-[color:var(--color-ink-soft)]/80">
                 {c.foot}
               </p>
             </div>

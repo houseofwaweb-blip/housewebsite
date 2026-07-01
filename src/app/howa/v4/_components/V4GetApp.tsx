@@ -29,7 +29,7 @@ export function V4GetApp() {
           <h2 className="mb-4 font-display text-[clamp(28px,3.4vw,46px)] leading-[1.08]">
             Your whole home, in your pocket.
           </h2>
-          <p className="mb-8 max-w-[46ch] font-sans text-[15px] leading-[1.7] text-[color:var(--color-howa-paper)]/70">
+          <p className="mb-8 max-w-[46ch] font-sans text-[16px] leading-[1.7] text-[color:var(--color-howa-paper)]/70">
             The living record, your HoWA Score and what matters next, wherever you are.
             Coming soon to iPhone and Android, pre-register now and we will tell you the moment it lands.
           </p>

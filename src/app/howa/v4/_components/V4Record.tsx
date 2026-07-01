@@ -15,7 +15,7 @@ export function V4Record() {
     <section id="record" className="scroll-mt-20 bg-[#fbfaf5] py-16 lg:py-24 border-t border-[color:var(--color-ink)]/8">
       <div className="mx-auto max-w-[1180px] px-6 sm:px-10">
         <div className="max-w-[720px]">
-          <p className="smallcaps mb-3 text-[14px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">One Home Record</p>
+          <p className="smallcaps mb-3 text-[15px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">One Home Record</p>
           <h2 className="font-display text-[clamp(28px,3.2vw,46px)] leading-[1.08] tracking-[-0.01em]">
             One address. One record. <span className="font-italic-display text-[#c5a960]">A home that remembers.</span>
           </h2>
@@ -33,11 +33,11 @@ export function V4Record() {
           {writes.map((w) => (
             <div key={w.k} className="rounded-xl border border-[color:var(--color-gold)]/20 bg-white p-4">
               <p className="font-display text-[16px] leading-tight text-[color:var(--color-ink)]">{w.k}</p>
-              <p className="mt-1.5 text-[14px] leading-snug text-[color:var(--color-ink-soft)]/80">{w.v}</p>
+              <p className="mt-1.5 text-[15px] leading-snug text-[color:var(--color-ink-soft)]/80">{w.v}</p>
             </div>
           ))}
         </div>
-        <p className="mt-5 text-[14px] text-[color:var(--color-ink-soft)]/70">Everything writes back to this centre.</p>
+        <p className="mt-5 text-[15px] text-[color:var(--color-ink-soft)]/70">Everything writes back to this centre.</p>
         <p className="mt-4 font-italic-display text-[clamp(17px,1.7vw,22px)] leading-[1.3] text-[color:var(--color-gold-deep)]">
           HoWA earns its place before anyone visits. The first value is clarity.
         </p>

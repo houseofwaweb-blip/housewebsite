@@ -37,7 +37,7 @@
 /* Gallery — thumbnail rail + main image */
 .gallery {
   display: flex;
-  gap: clamp(14px, 1.1vw, 18px);
+  gap: clamp(15px, 1.1vw, 18px);
   align-items: flex-start;
   min-width: 0;
 }
@@ -82,8 +82,8 @@
 /* Wax-seal "stamp of approval" on the product image */
 .imgSeal {
   position: absolute;
-  top: clamp(14px, 1.4vw, 18px);
-  right: clamp(14px, 1.4vw, 18px);
+  top: clamp(15px, 1.4vw, 18px);
+  right: clamp(15px, 1.4vw, 18px);
   z-index: 2;
   width: clamp(64px, 6vw, 82px);
   height: clamp(64px, 6vw, 82px);
@@ -135,7 +135,7 @@
 }
 .plaqueMark {
   font-family: var(--font-hearth-serif);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1;
   color: var(--color-house-gold-dark);
 }
@@ -150,7 +150,7 @@
 .plaqueText {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: clamp(15px, 1.4vw, 17px);
+  font-size: clamp(16px, 1.4vw, 17px);
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.85);
   margin: 0;

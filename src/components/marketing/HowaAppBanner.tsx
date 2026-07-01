@@ -29,7 +29,7 @@ export function HowaAppBanner() {
           <p className="font-display text-[clamp(18px,2vw,24px)] leading-[1.2]">
             Your home&apos;s living record, score and next steps, in your pocket.
           </p>
-          <p className="mt-1 font-sans text-[14px] text-[color:var(--color-howa-paper)]/65">
+          <p className="mt-1 font-sans text-[15px] text-[color:var(--color-howa-paper)]/65">
             Coming soon to iPhone and Android.
           </p>
         </div>

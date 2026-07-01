@@ -73,7 +73,7 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: clamp(14px, 1.6vw, 22px);
+  gap: clamp(15px, 1.6vw, 22px);
 }
 .denomCard {
   display: flex; flex-direction: column;
@@ -101,7 +101,7 @@
 .denomDesc {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.45;
   color: rgba(48, 35, 28, 0.72);
   margin: 6px 0 0;
