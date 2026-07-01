@@ -218,11 +218,12 @@ export default async function HomePage() {
       </section>
 
       {/* Origin pulse — founder story brought up from About / Artwork (slide 12 #03, slide 18) */}
-      <section className={s.origin}>
-        <FlowerWatermark color="gold" side="right" opacity={0.2} />
+      <section className={s.originBand}>
+        <FlowerWatermark color="white" side="right" opacity={0.1} />
+        <div className={s.origin}>
         <div className={s.originVisual}>
           <Image
-            src="/home-v4/origin-garden-studio.webp"
+            src="/home/origin-studio.webp"
             alt="The original Willow Alexander garden studio: soil, seasons and a single electric van"
             width={1122}
             height={1402}
@@ -260,6 +261,7 @@ export default async function HomePage() {
           <Link href="/the-house/artwork" className={s.textLink}>
             Read the Artwork of the House <span aria-hidden className={s.arrow}>→</span>
           </Link>
+        </div>
         </div>
       </section>
 

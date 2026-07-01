@@ -307,6 +307,21 @@
 .houseIntroHead em { font-style: italic; color: var(--color-house-gold-dark); }
 
 /* Origin pulse — founder story section (image + copy) */
+/* Origin — olive-green full-width band; cream text for AA contrast on olive. */
+.originBand {
+  background: var(--color-house-olive);
+  position: relative;
+  overflow: hidden;
+}
+.originBand .originTitle,
+.originBand .originTitle em { color: var(--color-house-cream); }
+.originBand .originPara { color: var(--color-house-cream); }
+.originBand .eyebrow { color: var(--color-house-cream); }
+.originBand .textLink {
+  color: var(--color-house-cream);
+  border-bottom-color: rgba(245, 240, 232, 0.5);
+}
+.originBand .textLink:hover { border-color: var(--color-house-cream); }
 .origin {
   display: grid;
   grid-template-columns: 0.82fr 1fr;
