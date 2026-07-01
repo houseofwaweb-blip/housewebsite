@@ -2,21 +2,22 @@ import localFont from "next/font/local";
 import { Cormorant_Garamond, Jost } from "next/font/google";
 
 /**
- * Didot LT Pro — the House display face.
- * We only have the Bold cut (no italic file). Registered at 400/500/700
- * as NORMAL only. When `font-style: italic` is applied, the browser won't
- * find a matching italic face and `font-synthesis: style` (set on body in
- * globals.css) kicks in to synthesize the slant. This gives us a real
- * visible italic without a separate font file.
+ * Didot — the House display face (Linotype Didot).
+ * Regular (400) + Italic extracted from the Linotype Didot .ttc; Bold (700)
+ * from DidotLTPro-Bold. So headings can now be a lighter Regular with real
+ * italics, and reserve the Bold cut for emphasis (weight 700).
+ *   - 400 / 500  -> Didot Regular  (+ real Didot Italic for `font-style: italic`)
+ *   - 700        -> DidotLTPro Bold
  *
- * Licence confirmation pending (PLAN.md §10 Open Loop #3).
+ * Licence confirmation pending (PLAN.md §10 Open Loop #3) — all cuts are
+ * Linotype Didot; confirm the webfont licence covers the Regular/Italic too.
  */
 export const didot = localFont({
   src: [
-    { path: "../../../public/fonts/DidotLTPro-Bold.woff2", weight: "400", style: "normal" },
-    { path: "../../../public/fonts/DidotLTPro-Bold.woff", weight: "400", style: "normal" },
-    { path: "../../../public/fonts/DidotLTPro-Bold.woff2", weight: "500", style: "normal" },
-    { path: "../../../public/fonts/DidotLTPro-Bold.woff", weight: "500", style: "normal" },
+    { path: "../../../public/fonts/Didot-Regular.woff2", weight: "400", style: "normal" },
+    { path: "../../../public/fonts/Didot-Italic.woff2", weight: "400", style: "italic" },
+    { path: "../../../public/fonts/Didot-Regular.woff2", weight: "500", style: "normal" },
+    { path: "../../../public/fonts/Didot-Italic.woff2", weight: "500", style: "italic" },
     { path: "../../../public/fonts/DidotLTPro-Bold.woff2", weight: "700", style: "normal" },
     { path: "../../../public/fonts/DidotLTPro-Bold.woff", weight: "700", style: "normal" },
   ],
