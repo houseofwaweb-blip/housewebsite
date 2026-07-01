@@ -13,11 +13,11 @@ export default async function CookiesPage() {
     <>
       <EditorialPage
         eyebrow="Legal · Cookies"
-        title="Cookies, plainly."
-        lede="What we set in your browser, what we share with whom, and how to change your mind. We keep this as short as we can while being honest."
+        title="Cookie policy."
+        lede="What cookies we set in your browser, what we share and with whom, and how to manage your choices."
         sections={[
           {
-            heading: "Four categories, you choose",
+            heading: "The four categories",
             body: `The banner asks you to pick from four categories. You can accept all, reject everything non-essential, or open "Customise" to mix and match.
 
 **Essential**: always on. Session, security, your cart, and your consent choice itself. Site can't work without these. We never ask permission for these because the law treats them as necessary.
@@ -44,7 +44,7 @@ We don't sell data. We don't share with anyone outside the providers listed in o
           },
           {
             heading: "If you arrived from an ad",
-            body: `When you click a Google, Meta, or Microsoft ad, the URL gains a small parameter (gclid, fbclid, msclkid). We save these for 90 days in a first-party cookie called wa_click_ids so that if you come back to convert later, the original ad still gets the attribution. Saving these is essential to running paid advertising. There's no separate toggle. If you don't want this, don't click ads. The cookie is first-party only and contains no personal data.`,
+            body: `When you click a Google, Meta, or Microsoft ad, the URL gains a small parameter (gclid, fbclid, msclkid). We save these for 90 days in a first-party cookie called wa_click_ids so that if you come back to convert later, the original ad still gets the attribution. Saving these is essential to running paid advertising, so there is no separate toggle; you can avoid it by not clicking on ads. The cookie is first-party only and contains no personal data.`,
           },
           {
             heading: "Managing your choices",

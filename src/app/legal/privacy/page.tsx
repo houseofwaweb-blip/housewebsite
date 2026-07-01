@@ -13,16 +13,16 @@ export default async function PrivacyPage() {
   return (
     <EditorialPage
       eyebrow="Legal · Privacy"
-      title={sanityPage?.title ?? "How we handle your data."}
-      lede="Plain-English summary first; the formal policy follows. If anything isn't clear, write to us and we'll answer in the same plain English."
+      title={sanityPage?.title ?? "Privacy policy."}
+      lede="How House of Willow Alexander Ltd collects, uses, and protects your personal data, and the rights you have over it under UK data protection law."
       sections={[
         {
-          heading: "Plain English first",
-          body: `We collect only what we need. We don't sell your data. The record of your home belongs to you. Export it or delete it whenever you like.
+          heading: "Overview",
+          body: `We collect only the data we need to provide the site, shop, and services, and we do not sell your personal data. Data you add to your Home Record remains yours; you can export or delete it at any time.
 
-We share your details with service providers we use to run the site (Sanity, Shopify, Supabase, Vercel, Sentry, Cloudflare) on strict, audit-logged terms. We use measurement and advertising services from Google, Microsoft, Meta and Pinterest, but only when you've opted in via the cookie banner, and only ever with hashed identifiers, never raw email or phone. Detail in the [Cookie policy](/legal/cookies).
+We share your data with the service providers that operate the site (Sanity, Shopify, Supabase, Vercel, Sentry, Cloudflare) under contract. We use measurement and advertising services from Google, Microsoft, Meta and Pinterest only where you have consented via the cookie banner, and only with hashed identifiers, never raw email or phone. Detail is set out in the [Cookie policy](/legal/cookies).
 
-If you use Housekeeper or the Assistant, your photos and notes stay in your private record. They're encrypted at rest and never used to train public models.`,
+Data you add to Housekeeper or the Assistant, such as photos and notes, is held in your private record, encrypted at rest, and is not used to train public models.`,
         },
         {
           heading: "Who we are",

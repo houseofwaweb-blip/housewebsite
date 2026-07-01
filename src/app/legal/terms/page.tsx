@@ -12,19 +12,19 @@ export default async function TermsPage() {
     <EditorialPage
       eyebrow="Legal · Terms"
       title="Terms of use."
-      lede="The rules of using the site, HoWA, and our services. We've tried to keep them fair and readable."
+      lede="The terms on which you may use the site, HoWA, and our services."
       sections={[
         {
           heading: "The basics",
-          body: `This site and HoWA are operated by House of Willow Alexander Ltd, registered in England & Wales (company number 15062693), registered office 12 Hatherley Road, Sidcup, Kent, DA14 4DT. You can reach us at info@willowalexander.co.uk. By using them, you agree to these terms. If you don't, please don't use them.
+          body: `This site and HoWA are operated by House of Willow Alexander Ltd, registered in England & Wales (company number 15062693), registered office 12 Hatherley Road, Sidcup, Kent, DA14 4DT. You can reach us at info@willowalexander.co.uk. By using the site, HoWA, or our services, you agree to these terms. If you do not agree, you should not use them.
 
-We may update these terms occasionally. We'll tell you about significant changes in the product. The "Last updated" date at the bottom of this page is the authority.`,
+We may update these terms from time to time. We will notify you of significant changes in the product. The "Last updated" date at the foot of this page is the operative version.`,
         },
         {
           heading: "Your account",
-          body: `You're responsible for keeping your login details safe. You're not responsible for anything we do that's our fault: like losing your record or billing you incorrectly. When that happens, we fix it.
+          body: `You are responsible for keeping your login details secure. You are not liable for errors on our part, such as loss of your record or incorrect billing; where these occur, we will correct them.
 
-Don't try to break the product: automated scraping, load-testing without our agreement, attempts to access other members' records, etc. Obvious stuff.`,
+You must not attempt to disrupt or misuse the service, including automated scraping, load-testing without our agreement, or attempts to access other members' records.`,
         },
         {
           heading: "Services & bookings",
