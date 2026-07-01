@@ -25,7 +25,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 24px;
   font-weight: 500;
   display: flex;
@@ -48,7 +48,7 @@
   color: var(--color-house-brown);
   margin: 0 0 24px;
 }
-.heroTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.heroTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .heroLede {
   font-family: var(--font-sans);
   font-size: 16px;
@@ -173,7 +173,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -186,7 +186,7 @@
   margin: 0 0 18px;
   letter-spacing: -0.012em;
 }
-.studiosTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.studiosTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .studiosLede {
   font-family: var(--font-sans);
   font-size: 16px;
@@ -231,7 +231,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0;
   font-weight: 500;
 }
@@ -274,7 +274,7 @@
   content: "—";
   position: absolute;
   left: 0;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 .studioCta {
   margin-top: auto;
@@ -283,7 +283,7 @@
   font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   text-decoration: none;
   align-self: flex-start;
 }
@@ -304,7 +304,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -317,7 +317,7 @@
   margin: 0 0 18px;
   letter-spacing: -0.012em;
 }
-.testsTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.testsTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .testsLede {
   font-family: var(--font-sans);
   font-size: 16px;
@@ -344,7 +344,7 @@
   font-family: var(--font-hearth-serif);
   font-style: italic;
   font-size: 16px;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0;
 }
 .testName {
@@ -380,7 +380,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -393,7 +393,7 @@
   margin: 0 0 18px;
   letter-spacing: -0.012em;
 }
-.commissionTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.commissionTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .commissionLede {
   font-family: var(--font-sans);
   font-size: 16px;
@@ -422,7 +422,7 @@
   font-style: italic;
   font-weight: 400;
   font-size: clamp(28px, 2.8vw, 36px);
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   letter-spacing: -0.012em;
   flex-shrink: 0;
 }
@@ -455,7 +455,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 18px;
   font-weight: 500;
 }
@@ -468,7 +468,7 @@
   margin: 0 0 18px;
   letter-spacing: -0.015em;
 }
-.closingStatement em { font-style: italic; color: var(--color-house-gold-dark); }
+.closingStatement em { font-style: italic; color: var(--color-house-gold-ink); }
 .closingLede {
   font-family: var(--font-sans);
   font-size: 16px;

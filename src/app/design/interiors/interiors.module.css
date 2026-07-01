@@ -25,7 +25,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 24px;
   font-weight: 500;
   display: flex;
@@ -48,7 +48,7 @@
   color: var(--color-house-brown);
   margin: 0 0 24px;
 }
-.heroTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.heroTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .heroLede {
   font-family: var(--font-sans);
   font-size: 16px;
@@ -160,7 +160,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -173,7 +173,7 @@
   margin: 0 0 18px;
   letter-spacing: -0.012em;
 }
-.plansTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.plansTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .plansLede {
   font-family: var(--font-sans);
   font-size: 16px;
@@ -272,7 +272,7 @@
   content: "—";
   position: absolute;
   left: 0;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 .planCta {
   margin-top: auto;
@@ -281,7 +281,7 @@
   font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   text-decoration: none;
   align-self: flex-start;
 }
@@ -302,7 +302,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -315,7 +315,7 @@
   margin: 0 0 18px;
   letter-spacing: -0.012em;
 }
-.studiosTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.studiosTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .studiosLede {
   font-family: var(--font-sans);
   font-size: 14.5px;
@@ -362,7 +362,7 @@
   font-family: var(--font-display);
   font-style: italic;
   font-size: clamp(36px, 4vw, 56px);
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   opacity: 0.7;
 }
 .studioBody {
@@ -376,7 +376,7 @@
   font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0;
   font-weight: 500;
 }
@@ -404,7 +404,7 @@
   font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   text-decoration: none;
 }
 .studioBadge {
@@ -433,7 +433,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -446,7 +446,7 @@
   margin: 0;
   letter-spacing: -0.012em;
 }
-.projectsTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.projectsTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .projectsGrid {
   max-width: 1280px;
   margin: 0 auto;
@@ -534,7 +534,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -547,7 +547,7 @@
   margin: 0 0 18px;
   letter-spacing: -0.012em;
 }
-.companionTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.companionTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .companionLede {
   font-family: var(--font-sans);
   font-size: 16px;

@@ -49,9 +49,9 @@ export function CheckoutClient() {
   return (
     <article className="bg-house-cream text-house-brown">
       <nav aria-label="Breadcrumb" className="px-[5vw] pt-4 pb-2 font-sans text-[12px] tracking-[0.14em] uppercase text-house-stone">
-        <Link href="/shop" className="no-underline hover:text-house-gold-dark transition-colors">Shop</Link>
+        <Link href="/shop" className="no-underline hover:text-house-gold-ink transition-colors">Shop</Link>
         <span className="mx-1.5">/</span>
-        <Link href="/shop/basket" className="no-underline hover:text-house-gold-dark transition-colors">Basket</Link>
+        <Link href="/shop/basket" className="no-underline hover:text-house-gold-ink transition-colors">Basket</Link>
         <span className="mx-1.5">/</span>
         <span className="text-house-brown">Checkout</span>
       </nav>
@@ -78,7 +78,7 @@ export function CheckoutClient() {
                 ) : null}
               </Link>
               <div>
-                <Link href={`/shop/${line.handle}`} className="block font-display font-medium text-[17px] mb-1 no-underline text-house-brown hover:text-house-gold-dark transition-colors">
+                <Link href={`/shop/${line.handle}`} className="block font-display font-medium text-[17px] mb-1 no-underline text-house-brown hover:text-house-gold-ink transition-colors">
                   {line.title}
                 </Link>
                 <p className="font-sans text-[15px] text-house-stone">

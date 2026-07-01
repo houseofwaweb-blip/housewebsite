@@ -183,7 +183,7 @@ function LocalPartnerPage({ partner: p }: { partner: LaunchPartner }) {
                 fontStyle: "italic",
                 fontSize: 15,
                 lineHeight: 1.5,
-                color: "var(--color-house-gold-dark)",
+                color: "var(--color-house-gold-ink)",
                 margin: "12px 0 0",
               }}
             >

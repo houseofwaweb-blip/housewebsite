@@ -91,7 +91,7 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = 
         {/* Header */}
         <div className="flex items-end justify-between mb-10 gap-6 flex-wrap">
           <div>
-            <span className={cn("block font-sans text-[12px] tracking-[0.22em] uppercase mb-3", dark ? "text-house-gold-light" : "")} style={dark ? undefined : { color: "var(--house-gold-dark)" }}>
+            <span className={cn("block font-sans text-[12px] tracking-[0.22em] uppercase mb-3", dark ? "text-house-gold-light" : "")} style={dark ? undefined : { color: "var(--house-gold-ink)" }}>
               {eyebrow}
             </span>
             <h2 className={cn("font-display font-medium text-[clamp(28px,3.6vw,46px)] leading-[1.1] tracking-[-0.01em]", dark && "text-house-cream")}>
@@ -139,7 +139,7 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = 
             >
               {/* Type + seal */}
               <div className="flex items-center justify-between mb-4">
-                <span className="font-sans text-[12px] tracking-[0.2em] uppercase" style={{ color: "var(--house-gold-dark)" }}>
+                <span className="font-sans text-[12px] tracking-[0.2em] uppercase" style={{ color: "var(--house-gold-ink)" }}>
                   {typeLabel(p.type)}
                 </span>
                 {p.houseApprovedSeal && (
@@ -172,7 +172,7 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = 
               )}
 
               {/* CTA */}
-              <span className="inline-flex items-center gap-2 font-sans text-[15px] tracking-[0.16em] uppercase" style={{ color: "var(--house-gold-dark)" }}>
+              <span className="inline-flex items-center gap-2 font-sans text-[15px] tracking-[0.16em] uppercase" style={{ color: "var(--house-gold-ink)" }}>
                 {bookingMode ? "Book through HoWA" : "View profile"}
                 <span className="inline-block transition-transform duration-[var(--t-slow)] ease-out group-hover:translate-x-2">&rarr;</span>
               </span>
@@ -209,7 +209,7 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = 
               "inline-flex items-center gap-2 font-sans text-[15px] tracking-[0.18em] uppercase no-underline pb-1 border-b transition-[color,border-style] duration-[var(--t-slow)] ease-out hover:border-dotted",
               dark ? "text-house-gold-light border-house-gold-light" : ""
             )}
-            style={dark ? undefined : { color: "var(--house-gold-dark)", borderColor: "var(--house-gold-dark)" }}
+            style={dark ? undefined : { color: "var(--house-gold-ink)", borderColor: "var(--house-gold-dark)" }}
           >
             {bookingMode ? "Book this service through HoWA" : "See all House Approved partners"}
             <span>&rarr;</span>

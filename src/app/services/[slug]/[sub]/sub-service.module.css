@@ -10,7 +10,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -23,7 +23,7 @@
   color: var(--color-house-brown);
   margin: 0 0 18px;
 }
-.sectionTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.sectionTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .sectionLede {
   font-family: var(--font-sans);
   font-size: 16px;
@@ -92,7 +92,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 24px;
   font-weight: 500;
   display: flex;
@@ -107,12 +107,12 @@
   opacity: 0.7;
 }
 .crumbLink {
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   text-decoration: none;
   transition: color 0.25s ease;
 }
 .crumbLink:hover { color: var(--color-house-brown); }
-.crumbSep { margin: 0 10px; color: var(--color-house-gold-dark); opacity: 0.6; }
+.crumbSep { margin: 0 10px; color: var(--color-house-gold-ink); opacity: 0.6; }
 .heroTitle {
   font-family: var(--font-display);
   font-weight: 400;
@@ -122,7 +122,7 @@
   color: var(--color-house-brown);
   margin: 0 0 24px;
 }
-.heroTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.heroTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .heroLede {
   font-family: var(--font-sans);
   font-size: 16px;
@@ -195,7 +195,7 @@
   content: "—";
   position: absolute;
   left: 0;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 
 /* ──────────────────────────────────────────────────────────
@@ -227,7 +227,7 @@
   content: "—";
   position: absolute;
   left: 0;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 
 /* ──────────────────────────────────────────────────────────
@@ -314,7 +314,7 @@
   font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   font-weight: 500;
 }
 
@@ -331,7 +331,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 18px;
   font-weight: 500;
 }
@@ -345,7 +345,7 @@
   letter-spacing: -0.015em;
   max-width: 24ch;
 }
-.closingStatement em { font-style: italic; color: var(--color-house-gold-dark); }
+.closingStatement em { font-style: italic; color: var(--color-house-gold-ink); }
 .closingLede {
   font-family: var(--font-sans);
   font-size: 16px;

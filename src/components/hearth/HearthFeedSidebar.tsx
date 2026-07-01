@@ -30,7 +30,7 @@ export function HearthFeedSidebar({ popular }: { popular?: PopularItem[] }) {
               key={item.slug}
               className="grid grid-cols-[28px_1fr_72px] gap-3 items-start py-[14px] border-b border-house-brown/10 last:border-b-0"
             >
-              <span className="font-hearth-serif italic text-[28px] leading-none text-house-gold-dark">
+              <span className="font-hearth-serif italic text-[28px] leading-none text-house-gold-ink">
                 {i + 1}
               </span>
               <div className="min-w-0">
@@ -82,7 +82,7 @@ function SidebarNewsletter() {
 
   return (
     <div className="bg-howa-paper p-[20px_20px_24px] border border-house-brown/20">
-      <span className="block mb-[10px] font-hearth-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-dark">
+      <span className="block mb-[10px] font-hearth-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink">
         The Hearth · Weekly
       </span>
       <h4 className="font-hearth-serif font-medium text-[22px] leading-[1.15] tracking-[-0.005em] text-house-black mb-2">

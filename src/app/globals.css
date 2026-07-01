@@ -65,6 +65,10 @@
   --color-house-brown: #30231c;
   --color-house-gold: #b8943e;
   --color-house-gold-light: #d4af5a;
+  /* Brand gold for TEXT emphasis (headings' italic, eyebrows, gold links).
+     Brighter than gold-dark; used for colour, never for button backgrounds. */
+  --color-house-gold-ink: #c5a960;
+  --house-gold-ink: #c5a960;
   --color-house-cream: #f5f0e8;
   --color-house-cream-dark: #ebe4d6;
   --color-house-white: #faf8f4;
@@ -300,7 +304,7 @@ body {
   font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
   margin-bottom: 6px;
 }
-.tier-howa .tier-roman { color: var(--house-gold-dark); }
+.tier-howa .tier-roman { color: var(--house-gold-ink); }
 .tier-howa .tier-name {
   font-family: var(--font-hearth-sans); font-size: 24px; font-weight: 400;
   letter-spacing: -0.005em; color: var(--house-brown);
@@ -338,7 +342,7 @@ body {
   position: relative; padding: 2px 0;
 }
 .tier-howa ul li::before, .tier-howaplus ul li::before {
-  content: '—'; position: absolute; left: -16px; color: var(--house-gold-dark);
+  content: '—'; position: absolute; left: -16px; color: var(--house-gold-ink);
 }
 .tier-howa .tier-cta-row, .tier-howaplus .tier-cta-row, .tier-steward .tier-cta-row {
   margin-top: 22px;
@@ -371,7 +375,7 @@ body {
   font-family: var(--font-hearth-sans); font-size: 12px;
   letter-spacing: 0.22em; padding: 5px 14px; z-index: 3;
 }
-.tier-howaplus .tier-roman { color: var(--house-gold-dark); }
+.tier-howaplus .tier-roman { color: var(--house-gold-ink); }
 .tier-howaplus .tier-name {
   font-family: var(--font-hearth-sans); font-size: 26px; font-weight: 500;
   color: var(--house-brown); letter-spacing: -0.005em;
@@ -381,7 +385,7 @@ body {
   color: var(--house-brown); margin-bottom: 22px;
 }
 .tier-howaplus .tier-price-label strong {
-  font-size: 22px; font-weight: 500; color: var(--house-gold-dark); letter-spacing: 0;
+  font-size: 22px; font-weight: 500; color: var(--house-gold-ink); letter-spacing: 0;
 }
 .tier-howaplus .tier-preview {
   background: #fff; border: 1px solid rgba(48,35,28,0.15);
@@ -408,7 +412,7 @@ body {
   border-top: 1px solid rgba(48,35,28,0.08); color: var(--house-brown);
 }
 .tier-howaplus .tier-preview .attn-row em {
-  color: var(--house-gold-dark); font-style: normal; font-weight: 500; font-size: 12px;
+  color: var(--house-gold-ink); font-style: normal; font-weight: 500; font-size: 12px;
   padding: 2px 8px; border: 1px solid var(--house-gold-dark);
   letter-spacing: 0.08em; text-transform: uppercase;
 }

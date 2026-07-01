@@ -229,7 +229,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 18px;
   font-weight: 500;
 }
@@ -275,7 +275,7 @@
   font-family: var(--font-hearth-serif);
   font-style: italic;
   font-size: 16px;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   font-variant-numeric: tabular-nums;
 }
 
@@ -350,7 +350,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }

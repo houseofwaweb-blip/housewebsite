@@ -164,7 +164,7 @@ export function EditorialPage({ eyebrow, title, lede, sections, updatedAt, heroI
               fontSize: 11,
               letterSpacing: "0.32em",
               textTransform: "uppercase",
-              color: "var(--color-house-gold-dark)",
+              color: "var(--color-house-gold-ink)",
               margin: "0 0 24px",
               fontWeight: 500,
               display: "flex",

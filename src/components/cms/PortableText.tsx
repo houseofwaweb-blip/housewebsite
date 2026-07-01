@@ -172,7 +172,7 @@ const components: PortableTextComponents = {
     ),
 
     dropCapPara: ({ value }: { value: DropCapParaBlock }) => (
-      <p className="my-8 font-sans text-[18px] leading-[1.7] text-house-brown/90 first-letter:font-display first-letter:text-[64px] first-letter:leading-[0.9] first-letter:float-left first-letter:mr-3 first-letter:mt-1 first-letter:text-house-gold-dark">
+      <p className="my-8 font-sans text-[18px] leading-[1.7] text-house-brown/90 first-letter:font-display first-letter:text-[64px] first-letter:leading-[0.9] first-letter:float-left first-letter:mr-3 first-letter:mt-1 first-letter:text-house-gold-ink">
         {value.body}
       </p>
     ),
@@ -221,7 +221,7 @@ const components: PortableTextComponents = {
     marginNote: ({ value }: { value: MarginNoteBlock }) => (
       <aside className="my-10 md:float-right md:w-[32%] md:ml-8 md:mb-6 border-t border-b border-house-brown/15 py-6">
         {value.label ? (
-          <div className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-dark mb-2">
+          <div className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-ink mb-2">
             {value.label}
           </div>
         ) : null}
@@ -233,12 +233,12 @@ const components: PortableTextComponents = {
 
     inlineProduct: ({ value }: { value: InlineProductBlock }) => (
       <div className="my-10 border border-house-brown/12 p-6 flex flex-col gap-3">
-        <div className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-dark">
+        <div className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-ink">
           From the Shop
         </div>
         <Link
           href={`/shop/${value.handle}`}
-          className="font-sans text-[20px] no-underline text-house-brown hover:text-house-gold-dark transition-colors"
+          className="font-sans text-[20px] no-underline text-house-brown hover:text-house-gold-ink transition-colors"
         >
           {value.handle.replace(/-/g, " ")}
         </Link>
@@ -252,12 +252,12 @@ const components: PortableTextComponents = {
 
     inlineCollection: ({ value }: { value: InlineCollectionBlock }) => (
       <div className="my-10 border-t border-b border-house-brown/12 py-6">
-        <div className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-dark mb-2">
+        <div className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-ink mb-2">
           A House-approved collection
         </div>
         <Link
           href={`/shop/collections/${value.handle}`}
-          className="font-display text-[22px] no-underline text-house-brown hover:text-house-gold-dark transition-colors"
+          className="font-display text-[22px] no-underline text-house-brown hover:text-house-gold-ink transition-colors"
         >
           {value.handle.replace(/-/g, " ")}
         </Link>
@@ -312,7 +312,7 @@ const components: PortableTextComponents = {
           href={href}
           target={newTab ? "_blank" : undefined}
           rel={newTab ? "noopener noreferrer" : undefined}
-          className="text-house-gold-dark underline underline-offset-[3px] decoration-house-gold/40 hover:decoration-house-gold transition-colors"
+          className="text-house-gold-ink underline underline-offset-[3px] decoration-house-gold/40 hover:decoration-house-gold transition-colors"
         >
           {children}
         </a>
@@ -336,7 +336,7 @@ const components: PortableTextComponents = {
       return (
         <Link
           href={`${prefix}/${ref.slug.current}`}
-          className="text-house-gold-dark underline underline-offset-[3px] decoration-house-gold/40 hover:decoration-house-gold transition-colors"
+          className="text-house-gold-ink underline underline-offset-[3px] decoration-house-gold/40 hover:decoration-house-gold transition-colors"
         >
           {children}
         </Link>

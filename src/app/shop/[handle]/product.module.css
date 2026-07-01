@@ -19,7 +19,7 @@
   text-decoration: none;
   transition: color 0.25s ease;
 }
-.crumbLink:hover { color: var(--color-house-gold-dark); }
+.crumbLink:hover { color: var(--color-house-gold-ink); }
 .crumbSep { margin: 0 10px; }
 
 /* PDP — gallery (thumbs left + main image) | buy column right */
@@ -110,13 +110,13 @@
   text-transform: uppercase;
   font-weight: 500;
   line-height: 1;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 .sealMark {
   font-family: var(--font-hearth-serif);
   font-size: clamp(16px, 1.6vw, 20px);
   line-height: 1;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 2px 0;
 }
 
@@ -137,7 +137,7 @@
   font-family: var(--font-hearth-serif);
   font-size: 16px;
   line-height: 1;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 .plaqueLabel {
   font-family: var(--font-sans);
@@ -145,7 +145,7 @@
   letter-spacing: 0.24em;
   text-transform: uppercase;
   font-weight: 500;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 .plaqueText {
   font-family: var(--font-hearth-serif);
@@ -170,7 +170,7 @@
   font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   font-weight: 500;
 }
 .seal {
@@ -178,7 +178,7 @@
   font-size: 12px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   border: 1px solid rgba(212, 175, 90, 0.5);
   padding: 4px 9px;
   font-weight: 500;
@@ -251,7 +251,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 10px;
   font-weight: 500;
 }
@@ -264,7 +264,7 @@
   color: var(--color-house-brown);
   margin: 0;
 }
-.relatedTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.relatedTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .relatedGrid {
   max-width: 1320px;
   margin: 0 auto 28px;
@@ -286,7 +286,7 @@
   font-weight: 500;
   transition: border-color 0.25s ease, color 0.25s ease;
 }
-.relatedFootLink:hover { border-color: var(--color-house-gold-dark); color: var(--color-house-gold-dark); }
+.relatedFootLink:hover { border-color: var(--color-house-gold-dark); color: var(--color-house-gold-ink); }
 .relatedFootLink span { transition: transform 0.25s ease; }
 .relatedFootLink:hover span { transform: translateX(3px); }
 

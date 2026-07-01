@@ -30,7 +30,7 @@ export function ProductSlider({ title, slides }: { title: string; slides: Slide[
   const s = slides[i];
 
   const arrow =
-    "w-10 h-10 flex items-center justify-center border border-house-brown/20 text-house-brown hover:border-house-gold hover:text-house-gold-dark transition-colors cursor-pointer";
+    "w-10 h-10 flex items-center justify-center border border-house-brown/20 text-house-brown hover:border-house-gold hover:text-house-gold-ink transition-colors cursor-pointer";
 
   return (
     <section className="px-[5vw] py-[clamp(44px,5.5vw,80px)] border-b border-house-brown/8">
@@ -46,7 +46,7 @@ export function ProductSlider({ title, slides }: { title: string; slides: Slide[
         <div className="grid md:grid-cols-2 gap-[clamp(24px,4vw,60px)] items-center">
           {/* Text — left */}
           <div className="order-2 md:order-1">
-            <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-dark mb-4">
+            <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink mb-4">
               {s.houseApproved ? "House Approved" : "From the collection"}
             </p>
             <h3 className="font-display text-[clamp(26px,3vw,40px)] leading-[1.08] text-house-brown mb-3">
@@ -56,7 +56,7 @@ export function ProductSlider({ title, slides }: { title: string; slides: Slide[
             {s.excerpt ? (
               <p className="font-sans text-[15px] leading-[1.7] text-house-brown/70 max-w-[46ch] mb-7 line-clamp-3">
                 {s.excerpt}{" "}
-                <Link href={`/shop/${s.handle}`} className="text-house-gold-dark no-underline whitespace-nowrap hover:text-house-brown">
+                <Link href={`/shop/${s.handle}`} className="text-house-gold-ink no-underline whitespace-nowrap hover:text-house-brown">
                   Read more →
                 </Link>
               </p>

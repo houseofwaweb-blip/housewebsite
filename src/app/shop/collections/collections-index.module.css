@@ -23,14 +23,14 @@
   text-decoration: none;
   transition: color 0.25s ease;
 }
-.crumbLink:hover { color: var(--color-house-gold-dark); }
+.crumbLink:hover { color: var(--color-house-gold-ink); }
 .crumbSep { margin: 0 10px; }
 .heroEy {
   font-family: var(--font-sans);
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -43,7 +43,7 @@
   color: var(--color-house-brown);
   margin: 0 0 18px;
 }
-.heroTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.heroTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .heroLede {
   font-family: var(--font-sans);
   font-size: 16px;
@@ -133,7 +133,7 @@
   font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   font-weight: 500;
 }
 

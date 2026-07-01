@@ -179,7 +179,7 @@ export function MegaMenu({
                         <li key={link.href}>
                           <Link
                             href={link.href}
-                            className="group inline-flex items-baseline font-sans text-[12px] tracking-[0.14em] uppercase text-house-brown no-underline transition-[color,padding-left] duration-[var(--t-base)] ease-out hover:text-house-gold-dark hover:pl-[4px]"
+                            className="group inline-flex items-baseline font-sans text-[12px] tracking-[0.14em] uppercase text-house-brown no-underline transition-[color,padding-left] duration-[var(--t-base)] ease-out hover:text-house-gold-ink hover:pl-[4px]"
                           >
                             <span>{link.label}</span>
                             {link.description ? (
@@ -234,14 +234,14 @@ function MegaTrigger({
     "transition-colors duration-[var(--t-slow)] ease-out",
     dark
       ? "text-house-cream hover:text-house-gold-light"
-      : "text-house-brown hover:text-house-gold-dark",
+      : "text-house-brown hover:text-house-gold-ink",
     // Underline that scales from left
     "after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full",
     dark ? "after:bg-house-gold-light" : "after:bg-house-gold",
     "after:origin-left after:scale-x-0 after:transition-all after:duration-[var(--t-slow)] after:ease-out",
     "hover:after:scale-x-100",
     isOpen && "after:scale-x-100",
-    isOpen && (dark ? "text-house-gold-light" : "text-house-gold-dark"),
+    isOpen && (dark ? "text-house-gold-light" : "text-house-gold-ink"),
   );
 
   if (triggerHref) {
@@ -295,7 +295,7 @@ function ShopMegaPanel({ shop, isOpen }: { shop: ShopMega; isOpen: boolean }) {
                 href={c.href}
                 className={cn(
                   "group flex items-center justify-between py-[6px] font-sans text-[12px] tracking-[0.12em] uppercase no-underline transition-colors duration-[var(--t-base)]",
-                  i === active ? "text-house-gold-dark" : "text-house-brown hover:text-house-gold-dark",
+                  i === active ? "text-house-gold-ink" : "text-house-brown hover:text-house-gold-ink",
                 )}
               >
                 <span>{c.title}</span>
@@ -311,7 +311,7 @@ function ShopMegaPanel({ shop, isOpen }: { shop: ShopMega; isOpen: boolean }) {
             <span className="font-sans text-[12px] tracking-[0.28em] uppercase text-house-stone">{cat.title}</span>
             <Link
               href={cat.href}
-              className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-dark no-underline hover:pl-[3px] transition-[padding-left] duration-[var(--t-base)]"
+              className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-ink no-underline hover:pl-[3px] transition-[padding-left] duration-[var(--t-base)]"
             >
               View all →
             </Link>
@@ -322,7 +322,7 @@ function ShopMegaPanel({ shop, isOpen }: { shop: ShopMega; isOpen: boolean }) {
                 <li key={s.href}>
                   <Link
                     href={s.href}
-                    className="group inline-flex font-sans text-[15px] text-house-brown no-underline transition-[color,padding-left] duration-[var(--t-base)] ease-out hover:text-house-gold-dark hover:pl-[4px]"
+                    className="group inline-flex font-sans text-[15px] text-house-brown no-underline transition-[color,padding-left] duration-[var(--t-base)] ease-out hover:text-house-gold-ink hover:pl-[4px]"
                   >
                     {s.label}
                   </Link>
@@ -330,7 +330,7 @@ function ShopMegaPanel({ shop, isOpen }: { shop: ShopMega; isOpen: boolean }) {
               ))}
             </ul>
           ) : (
-            <Link href={cat.href} className="font-display italic text-[16px] text-house-stone no-underline hover:text-house-gold-dark">
+            <Link href={cat.href} className="font-display italic text-[16px] text-house-stone no-underline hover:text-house-gold-ink">
               Browse all {cat.title} →
             </Link>
           )}
@@ -344,7 +344,7 @@ function ShopMegaPanel({ shop, isOpen }: { shop: ShopMega; isOpen: boolean }) {
             <Link
               key={f.href}
               href={f.href}
-              className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline hover:text-house-gold-dark transition-colors duration-[var(--t-base)]"
+              className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline hover:text-house-gold-ink transition-colors duration-[var(--t-base)]"
             >
               {f.label}
               {f.description ? (

@@ -608,7 +608,7 @@ export default async function HomePage() {
       <section className="px-[5vw] py-[clamp(48px,6vw,90px)] border-t border-house-brown/10" style={{ background: "var(--color-house-cream)" }}>
         <div className="max-w-[1180px] mx-auto">
           <div className="text-center max-w-[660px] mx-auto mb-11">
-            <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-dark mb-3">The Services</p>
+            <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink mb-3">The Services</p>
             <h2 className="font-display text-[clamp(26px,3vw,42px)] leading-[1.06] text-house-brown mb-4">
               Whatever the home needs, booked in minutes.
             </h2>
@@ -637,7 +637,7 @@ export default async function HomePage() {
                 <div className="flex flex-col flex-1 p-6">
                   <p className="font-display text-[19px] leading-tight text-house-brown mb-1.5">{svc.name}</p>
                   <p className="font-sans text-[15px] text-house-stone leading-[1.5] mb-6 flex-1">{SERVICE_BLURB[svc.name]}</p>
-                  <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-dark transition-colors group-hover:text-house-brown">
+                  <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-ink transition-colors group-hover:text-house-brown">
                     Book through HoWA →
                   </span>
                 </div>

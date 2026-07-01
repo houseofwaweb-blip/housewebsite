@@ -71,14 +71,14 @@ export function Accordion({ items, multi = false, defaultOpen, dark, className }
                 "py-5 px-0 bg-transparent border-0 cursor-pointer",
                 "font-sans text-[20px] leading-[1.3]",
                 "transition-colors duration-[var(--t-base)] ease-out",
-                dark ? "text-house-cream hover:text-house-gold-light" : "text-house-brown hover:text-house-gold-dark",
+                dark ? "text-house-cream hover:text-house-gold-light" : "text-house-brown hover:text-house-gold-ink",
               )}
             >
               <span>{item.summary}</span>
               <span
                 aria-hidden="true"
                 className={cn(
-                  "shrink-0 font-display text-[28px] leading-none text-house-gold-dark",
+                  "shrink-0 font-display text-[28px] leading-none text-house-gold-ink",
                   "transition-all duration-[var(--t-slow)] ease-out",
                   isOpen && "rotate-45",
                 )}

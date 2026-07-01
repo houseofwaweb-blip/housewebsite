@@ -14,7 +14,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 22px;
   font-weight: 500;
   display: flex; align-items: center; gap: 14px;
@@ -35,7 +35,7 @@
   color: var(--color-house-brown);
   margin: 0 0 24px;
 }
-.headTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.headTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .headLede {
   font-family: var(--font-sans);
   font-size: 17px;
@@ -77,7 +77,7 @@
   font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   font-weight: 500;
   padding-top: 6px;
 }
@@ -92,8 +92,8 @@
   margin: 0 0 10px;
   transition: color 0.25s ease;
 }
-.rowTitle em { font-style: italic; color: var(--color-house-gold-dark); }
-.row:hover .rowTitle { color: var(--color-house-gold-dark); }
+.rowTitle em { font-style: italic; color: var(--color-house-gold-ink); }
+.row:hover .rowTitle { color: var(--color-house-gold-ink); }
 .rowLede {
   font-family: var(--font-hearth-serif);
   font-style: italic;

@@ -103,7 +103,7 @@ function PlanCard({ plan: p, mobile }: { plan: StewardPlan; mobile?: boolean }) 
       />
 
       <div className="flex flex-col flex-1 px-[28px] pt-[24px] pb-[36px]">
-        <span className={`font-sans text-[12px] tracking-[0.22em] uppercase mb-[12px] ${isFeatured ? "text-house-gold-dark" : "text-house-gold-light"}`}>
+        <span className={`font-sans text-[12px] tracking-[0.22em] uppercase mb-[12px] ${isFeatured ? "text-house-gold-ink" : "text-house-gold-light"}`}>
           {p.tier}
         </span>
         <h4 className={`font-display font-medium text-[28px] tracking-[-0.005em] mb-[4px] ${isFeatured ? "text-house-brown" : "text-house-cream"}`}>
@@ -114,7 +114,7 @@ function PlanCard({ plan: p, mobile }: { plan: StewardPlan; mobile?: boolean }) 
         </div>
         <ul className={`list-none pl-[16px] text-[15px] leading-[1.85] flex-1 ${isFeatured ? "text-house-brown" : "text-house-cream/78"}`}>
           {p.inclusions.map((inc) => (
-            <li key={inc} className={`relative py-[2px] before:content-['—'] before:absolute before:-left-[16px] ${isFeatured ? "before:text-house-gold-dark" : "before:text-house-gold-light"}`}>
+            <li key={inc} className={`relative py-[2px] before:content-['—'] before:absolute before:-left-[16px] ${isFeatured ? "before:text-house-gold-ink" : "before:text-house-gold-light"}`}>
               {inc}
             </li>
           ))}
@@ -127,7 +127,7 @@ function PlanCard({ plan: p, mobile }: { plan: StewardPlan; mobile?: boolean }) 
             href="#open-booking-form"
             className={
               isFeatured
-                ? "inline-block font-sans text-[12px] tracking-[0.16em] uppercase px-[20px] py-[10px] no-underline text-house-brown border border-house-brown/30 transition-all duration-[var(--t-base)] ease-out hover:border-house-gold hover:text-house-gold-dark"
+                ? "inline-block font-sans text-[12px] tracking-[0.16em] uppercase px-[20px] py-[10px] no-underline text-house-brown border border-house-brown/30 transition-all duration-[var(--t-base)] ease-out hover:border-house-gold hover:text-house-gold-ink"
                 : "inline-block font-sans text-[12px] tracking-[0.16em] uppercase px-[20px] py-[10px] no-underline text-house-cream border border-house-cream/35 transition-all duration-[var(--t-base)] ease-out hover:bg-house-cream/10"
             }
           >

@@ -31,7 +31,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 24px;
   display: flex;
   align-items: center;
@@ -55,7 +55,7 @@
 }
 .heroTitle em {
   font-style: italic;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 .heroLede {
   font-family: var(--font-sans);
@@ -189,7 +189,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -204,7 +204,7 @@
 }
 .approachTitle em {
   font-style: italic;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 .approachBody {
   font-family: var(--font-sans);
@@ -235,7 +235,7 @@
   content: "—";
   position: absolute;
   left: 0;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   font-style: normal;
 }
 
@@ -259,7 +259,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -274,7 +274,7 @@
 }
 .offersTitle em {
   font-style: italic;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 .offersGrid {
   max-width: 1080px;
@@ -330,7 +330,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -345,7 +345,7 @@
 }
 .stepsTitle em {
   font-style: italic;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 .stepsGrid {
   max-width: 1080px;
@@ -365,7 +365,7 @@
   font-family: var(--font-hearth-serif);
   font-style: italic;
   font-size: 15px;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0;
 }
 .stepName {
@@ -445,7 +445,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -471,7 +471,7 @@
   font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   text-decoration: none;
   border-bottom: 1px solid var(--color-house-gold);
   padding-bottom: 3px;

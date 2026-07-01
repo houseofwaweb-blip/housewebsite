@@ -31,7 +31,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 24px;
   display: flex;
   align-items: center;
@@ -55,7 +55,7 @@
 }
 .heroTitle em {
   font-style: italic;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 .heroLede {
   font-family: var(--font-sans);
@@ -188,7 +188,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -203,7 +203,7 @@
 }
 .tiersTitle em {
   font-style: italic;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 .tiersGrid {
   max-width: 1240px;
@@ -311,7 +311,7 @@
 }
 .tierName em {
   font-style: italic;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 .tierSteward .tierName { color: var(--color-house-cream); }
 .tierTagline {
@@ -374,7 +374,7 @@
   position: absolute;
   left: 0;
   top: 0;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   opacity: 0.7;
 }
 .tierSteward .tierIncludes li {
@@ -400,7 +400,7 @@
   padding: 6px 0;
   transition: color 0.2s ease;
 }
-.tierLink:hover { color: var(--color-house-gold-dark); }
+.tierLink:hover { color: var(--color-house-gold-ink); }
 /* Light variant for the navy Steward card */
 .tierSteward .tierLink { color: rgba(243, 237, 224, 0.88); }
 .tierSteward .tierLink:hover { color: #fff; }
@@ -435,7 +435,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -450,7 +450,7 @@
 }
 .compareTitle em {
   font-style: italic;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 .compareTable {
   max-width: 920px;
@@ -482,7 +482,7 @@
   color: rgba(48, 35, 28, 0.72);
   text-align: center;
 }
-.compareColLabelPlus { color: var(--color-house-gold-dark); }
+.compareColLabelPlus { color: var(--color-house-gold-ink); }
 .compareColLabelSteward { color: #0d1626; }
 .compareRowFeature {
   font-family: var(--font-sans);
@@ -515,7 +515,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -530,7 +530,7 @@
 }
 .faqTitle em {
   font-style: italic;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 
 /* FAQ list internals live in components/marketing/FaqList.module.css.

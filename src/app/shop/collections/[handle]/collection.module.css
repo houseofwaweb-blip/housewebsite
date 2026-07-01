@@ -31,14 +31,14 @@
   text-decoration: none;
   transition: color 0.25s ease;
 }
-.crumbLink:hover { color: var(--color-house-gold-dark); }
+.crumbLink:hover { color: var(--color-house-gold-ink); }
 .crumbSep { margin: 0 10px; }
 .heroEy {
   font-family: var(--font-sans);
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -87,7 +87,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 12px;
   font-weight: 500;
 }
@@ -100,7 +100,7 @@
   color: var(--color-house-brown);
   margin: 0;
 }
-.othersTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.othersTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .othersList {
   max-width: 1280px;
   margin: 0 auto;
@@ -123,7 +123,7 @@
 }
 .othersChip:hover {
   border-color: var(--color-house-gold-dark);
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 .othersFootLink {
   display: inline-flex; align-items: center; gap: 12px;
@@ -140,7 +140,7 @@
 }
 .othersFootLink:hover {
   border-color: var(--color-house-gold-dark);
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 .othersFootLink span { transition: transform 0.25s ease; }
 .othersFootLink:hover span { transform: translateX(3px); }

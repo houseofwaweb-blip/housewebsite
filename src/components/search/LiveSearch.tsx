@@ -124,7 +124,7 @@ export function LiveSearch({
                 className={cn(
                   "font-sans text-[12px] tracking-[0.22em] uppercase bg-transparent border-0 cursor-pointer py-1 transition-[color,border-color,opacity,padding] duration-[var(--t-base)] ease-out",
                   active
-                    ? "text-house-gold-dark border-b border-house-gold opacity-100 pb-1.5"
+                    ? "text-house-gold-ink border-b border-house-gold opacity-100 pb-1.5"
                     : "text-house-brown/65 hover:text-house-brown hover:opacity-100",
                 )}
               >

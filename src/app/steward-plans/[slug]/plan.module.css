@@ -184,7 +184,7 @@
   content: "—";
   position: absolute;
   left: 0;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 
 /* FAQ accordion wrapper — let primitive style itself */
@@ -205,7 +205,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 12px;
   font-weight: 500;
 }
@@ -218,7 +218,7 @@
   color: var(--color-house-brown);
   margin: 0;
 }
-.siblingsTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.siblingsTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .siblingsGrid {
   max-width: 1080px;
   margin: 0 auto;
@@ -251,7 +251,7 @@
   font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0;
   font-weight: 500;
 }
@@ -292,7 +292,7 @@
   font-weight: 500;
   transition: border-color 0.25s ease, color 0.25s ease;
 }
-.siblingsFootLink:hover { border-color: var(--color-house-gold-dark); color: var(--color-house-gold-dark); }
+.siblingsFootLink:hover { border-color: var(--color-house-gold-dark); color: var(--color-house-gold-ink); }
 .siblingsFootLink span { transition: transform 0.25s ease; }
 .siblingsFootLink:hover span { transform: translateX(3px); }
 

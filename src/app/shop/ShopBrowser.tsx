@@ -54,12 +54,12 @@ function FilterSection({
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between py-2.5 bg-transparent border-0 cursor-pointer"
       >
-        <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-dark">
+        <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-ink">
           {title}
         </span>
         <span
           aria-hidden="true"
-          className="font-sans text-[16px] leading-none text-house-gold-dark w-4 text-center select-none"
+          className="font-sans text-[16px] leading-none text-house-gold-ink w-4 text-center select-none"
         >
           {open ? "−" : "+"}
         </span>
@@ -214,7 +214,7 @@ export function ShopBrowser({
       <aside className="md:sticky md:top-[89px] md:h-[calc(100vh-89px)] md:overflow-y-auto md:border-r md:border-house-brown/8 bg-house-white px-6 md:pl-[3.5vw] py-5 max-md:border-b max-md:border-house-brown/8 max-md:px-[5vw] max-md:py-4">
         {/* Search */}
         <div className="mb-4">
-          <div className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-dark mb-2">
+          <div className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-ink mb-2">
             Search
           </div>
           <input
@@ -260,7 +260,7 @@ export function ShopBrowser({
                 "text-left py-1.5 font-sans text-[15px] bg-transparent border-0 cursor-pointer transition-all duration-[var(--t-base)]",
                 "max-md:px-3 max-md:py-1 max-md:border max-md:border-house-brown/10 max-md:text-[12px]",
                 activeCollections.size === 0
-                  ? "text-house-gold-dark font-normal max-md:border-house-gold"
+                  ? "text-house-gold-ink font-normal max-md:border-house-gold"
                   : "text-house-stone hover:text-house-brown hover:pl-1 max-md:hover:pl-0",
               )}
             >
@@ -277,7 +277,7 @@ export function ShopBrowser({
                       "w-full text-left py-1.5 font-sans text-[15px] bg-transparent border-0 cursor-pointer transition-all duration-[var(--t-base)]",
                       "max-md:w-auto max-md:px-3 max-md:py-1 max-md:border max-md:border-house-brown/10 max-md:text-[12px]",
                       activeCollections.has(c.handle)
-                        ? "text-house-gold-dark font-normal max-md:border-house-gold"
+                        ? "text-house-gold-ink font-normal max-md:border-house-gold"
                         : "text-house-stone hover:text-house-brown max-md:hover:pl-0",
                     )}
                   >
@@ -293,7 +293,7 @@ export function ShopBrowser({
                             <Link
                               key={sub.handle}
                               href={`/shop/collections/${sub.handle}`}
-                              className="py-1 font-sans text-[15px] text-house-stone/80 no-underline hover:text-house-gold-dark transition-colors duration-[var(--t-base)]"
+                              className="py-1 font-sans text-[15px] text-house-stone/80 no-underline hover:text-house-gold-ink transition-colors duration-[var(--t-base)]"
                             >
                               {sub.title}
                             </Link>
@@ -317,7 +317,7 @@ export function ShopBrowser({
               onClick={() => setActiveBrands(new Set())}
               className={cn(
                 "text-left py-1 font-sans text-[15px] bg-transparent border-0 cursor-pointer transition-colors duration-[var(--t-base)]",
-                activeBrands.size === 0 ? "text-house-gold-dark" : "text-house-stone hover:text-house-brown",
+                activeBrands.size === 0 ? "text-house-gold-ink" : "text-house-stone hover:text-house-brown",
               )}
             >
               All brands
@@ -329,7 +329,7 @@ export function ShopBrowser({
                 onClick={() => setActiveBrands(toggleSet(activeBrands, b.name))}
                 className={cn(
                   "text-left py-1 font-sans text-[15px] bg-transparent border-0 cursor-pointer transition-colors duration-[var(--t-base)]",
-                  activeBrands.has(b.name) ? "text-house-gold-dark" : "text-house-stone hover:text-house-brown",
+                  activeBrands.has(b.name) ? "text-house-gold-ink" : "text-house-stone hover:text-house-brown",
                 )}
               >
                 {b.name} <span className="text-[12px] text-house-stone ml-1">{b.count}</span>
@@ -348,7 +348,7 @@ export function ShopBrowser({
                 onClick={() => setPriceIdx(i)}
                 className={cn(
                   "text-left py-1 font-sans text-[15px] bg-transparent border-0 cursor-pointer transition-colors duration-[var(--t-base)]",
-                  priceIdx === i ? "text-house-gold-dark" : "text-house-stone hover:text-house-brown",
+                  priceIdx === i ? "text-house-gold-ink" : "text-house-stone hover:text-house-brown",
                 )}
               >
                 {r.label}
@@ -367,7 +367,7 @@ export function ShopBrowser({
           <button
             type="button"
             onClick={clearFilters}
-            className="mt-3 font-sans text-[12px] tracking-[0.14em] uppercase text-house-gold-dark bg-transparent border-0 cursor-pointer border-b border-dotted border-house-gold pb-0.5 hover:border-solid transition-all max-md:hidden"
+            className="mt-3 font-sans text-[12px] tracking-[0.14em] uppercase text-house-gold-ink bg-transparent border-0 cursor-pointer border-b border-dotted border-house-gold pb-0.5 hover:border-solid transition-all max-md:hidden"
           >
             Clear all filters ×
           </button>
@@ -384,7 +384,7 @@ export function ShopBrowser({
               <button
                 type="button"
                 onClick={clearFilters}
-                className="ml-2 font-sans text-[12px] tracking-[0.12em] uppercase text-house-gold-dark bg-transparent border-0 cursor-pointer border-b border-dotted border-house-gold pb-px"
+                className="ml-2 font-sans text-[12px] tracking-[0.12em] uppercase text-house-gold-ink bg-transparent border-0 cursor-pointer border-b border-dotted border-house-gold pb-px"
               >
                 Clear ×
               </button>
@@ -412,7 +412,7 @@ export function ShopBrowser({
             <button
               type="button"
               onClick={clearFilters}
-              className="font-sans text-[12px] tracking-[0.16em] uppercase text-house-gold-dark bg-transparent border-0 cursor-pointer border-b border-dotted border-house-gold pb-0.5"
+              className="font-sans text-[12px] tracking-[0.16em] uppercase text-house-gold-ink bg-transparent border-0 cursor-pointer border-b border-dotted border-house-gold pb-0.5"
             >
               Clear filters
             </button>
@@ -444,7 +444,7 @@ export function ShopBrowser({
                     className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.03]"
                   />
                   {p.houseApproved ? (
-                    <span className="absolute top-2 left-2 z-20 font-sans text-[8px] tracking-[0.2em] uppercase text-house-gold-dark bg-white/92 px-2 py-1 border border-house-gold/30">
+                    <span className="absolute top-2 left-2 z-20 font-sans text-[8px] tracking-[0.2em] uppercase text-house-gold-ink bg-white/92 px-2 py-1 border border-house-gold/30">
                       House Approved
                     </span>
                   ) : null}
@@ -536,7 +536,7 @@ function Pagination({
         type="button"
         onClick={() => go(page - 1)}
         disabled={page === 1}
-        className={cn(cell, arrow, page === 1 ? "text-house-stone/40 cursor-default" : "text-house-brown hover:text-house-gold-dark")}
+        className={cn(cell, arrow, page === 1 ? "text-house-stone/40 cursor-default" : "text-house-brown hover:text-house-gold-ink")}
       >
         ← Prev
       </button>
@@ -549,7 +549,7 @@ function Pagination({
             type="button"
             onClick={() => go(n)}
             aria-current={n === page ? "page" : undefined}
-            className={cn(cell, n === page ? "text-house-gold-dark border-b border-house-gold" : "text-house-brown hover:text-house-gold-dark")}
+            className={cn(cell, n === page ? "text-house-gold-ink border-b border-house-gold" : "text-house-brown hover:text-house-gold-ink")}
           >
             {n}
           </button>
@@ -559,7 +559,7 @@ function Pagination({
         type="button"
         onClick={() => go(page + 1)}
         disabled={page === totalPages}
-        className={cn(cell, arrow, page === totalPages ? "text-house-stone/40 cursor-default" : "text-house-brown hover:text-house-gold-dark")}
+        className={cn(cell, arrow, page === totalPages ? "text-house-stone/40 cursor-default" : "text-house-brown hover:text-house-gold-ink")}
       >
         Next →
       </button>

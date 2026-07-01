@@ -60,7 +60,7 @@ export function ProductCard({
           className="object-cover transition-all duration-[var(--t-xslow)] ease-out group-hover:scale-[1.02]"
         />
         {product.houseApproved ? (
-          <span className="absolute top-3 left-3 z-20 font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-dark bg-white/90 px-2.5 py-1 border border-house-gold/30">
+          <span className="absolute top-3 left-3 z-20 font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-ink bg-white/90 px-2.5 py-1 border border-house-gold/30">
             House Approved
           </span>
         ) : null}
@@ -80,11 +80,11 @@ export function ProductCard({
       {/* Copy */}
       <div className="flex flex-col gap-1">
         {product.collection ? (
-          <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-dark">
+          <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-ink">
             {product.collection}
           </span>
         ) : null}
-        <h3 className="font-display font-medium text-[18px] leading-[1.25] text-house-brown transition-colors duration-[var(--t-slow)] ease-out group-hover:text-house-gold-dark">
+        <h3 className="font-display font-medium text-[18px] leading-[1.25] text-house-brown transition-colors duration-[var(--t-slow)] ease-out group-hover:text-house-gold-ink">
           {product.title}
         </h3>
         <div className="font-sans text-[15px] text-house-stone">

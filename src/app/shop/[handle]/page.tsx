@@ -246,7 +246,7 @@ export default async function ProductPage({
               for this object (brief slide 9/10). Supplier is real product data;
               the rest is framed as what HoWA stores at and after purchase. */}
           <div className="mt-7 border-t border-house-brown/12 pt-6">
-            <p className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-dark mb-3">
+            <p className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-ink mb-3">
               Kept in your Home Record
             </p>
             <dl className="m-0 space-y-2.5">
@@ -272,7 +272,7 @@ export default async function ProductPage({
             {serviceable
               ? "Need this fitted, hung, cleaned or maintained? "
               : "Planning work on your home? "}
-            <a href="#open-booking-form" className="text-house-gold-dark underline underline-offset-[3px]">
+            <a href="#open-booking-form" className="text-house-gold-ink underline underline-offset-[3px]">
               Book through HoWA
             </a>{" "}
             and it is kept in your Home Record.

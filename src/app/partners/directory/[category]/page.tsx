@@ -140,7 +140,7 @@ export default async function DirectoryPage({
                   <div className="flex items-center justify-between mb-4">
                     <span
                       className="font-sans text-[12px] tracking-[0.2em] uppercase"
-                      style={{ color: "var(--house-gold-dark)" }}
+                      style={{ color: "var(--house-gold-ink)" }}
                     >
                       {TYPE_LABELS[p.type] ?? p.type}
                     </span>
@@ -187,7 +187,7 @@ export default async function DirectoryPage({
                   {/* CTA */}
                   <span
                     className="inline-flex items-center gap-2 font-sans text-[15px] tracking-[0.16em] uppercase transition-colors duration-[var(--t-base)] group-hover:text-[var(--house-gold-dark)]"
-                    style={{ color: "var(--house-gold-dark)" }}
+                    style={{ color: "var(--house-gold-ink)" }}
                   >
                     View profile
                     <span className="inline-block transition-transform duration-[var(--t-slow)] ease-out group-hover:translate-x-2">&rarr;</span>

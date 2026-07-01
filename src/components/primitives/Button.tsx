@@ -46,7 +46,7 @@ const variants: Record<Variant, string> = {
     "bg-howa-teal text-white border-howa-teal " +
     "hover:brightness-110",
   ghost:
-    "bg-transparent text-house-gold-dark border-transparent " +
+    "bg-transparent text-house-gold-ink border-transparent " +
     "underline underline-offset-4 decoration-solid " +
     "hover:text-house-gold-light hover:decoration-dotted",
 };

@@ -32,7 +32,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 24px;
   display: flex;
   align-items: center;
@@ -56,7 +56,7 @@
 }
 .heroTitle em {
   font-style: italic;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 .heroLede {
   font-family: var(--font-sans);
@@ -188,7 +188,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -203,7 +203,7 @@
 }
 .stepsTitle em {
   font-style: italic;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 .stepsGrid {
   max-width: 1280px;
@@ -224,7 +224,7 @@
   font-style: italic;
   font-size: 15px;
   letter-spacing: 0;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0;
 }
 .stepTitle {
@@ -263,7 +263,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -278,7 +278,7 @@
 }
 .examplesTitle em {
   font-style: italic;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 
 .examplesList {
@@ -300,7 +300,7 @@
   font-family: var(--font-display);
   font-style: italic;
   font-size: clamp(22px, 1.8vw, 28px);
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   font-variant-numeric: tabular-nums;
 }
 .exampleBody {
@@ -317,7 +317,7 @@
   margin: 0 0 8px;
   font-weight: 500;
 }
-.exampleLabelHowa { color: var(--color-house-gold-dark); }
+.exampleLabelHowa { color: var(--color-house-gold-ink); }
 .exampleIssue {
   font-family: var(--font-sans);
   font-size: 16px;
@@ -523,7 +523,7 @@
 .askBot {
   padding-top: 20px;
 }
-.askBotLabel { color: var(--color-house-gold-dark); }
+.askBotLabel { color: var(--color-house-gold-ink); }
 .askAnswer {
   font-family: var(--font-hearth-serif);
   font-style: italic;

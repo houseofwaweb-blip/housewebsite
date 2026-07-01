@@ -25,7 +25,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 24px;
   font-weight: 500;
   display: flex;
@@ -48,7 +48,7 @@
   color: var(--color-house-brown);
   margin: 0 0 24px;
 }
-.heroTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.heroTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .heroLede {
   font-family: var(--font-sans);
   font-size: 16px;
@@ -172,7 +172,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -185,7 +185,7 @@
   margin: 0 0 18px;
   letter-spacing: -0.012em;
 }
-.categoriesTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.categoriesTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .categoriesLede {
   font-family: var(--font-sans);
   font-size: 16px;
@@ -232,7 +232,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0;
   font-weight: 500;
 }
@@ -245,7 +245,7 @@
   margin: 0;
   letter-spacing: -0.008em;
 }
-.categoryTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.categoryTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .categoryBlurb {
   font-family: var(--font-sans);
   font-size: 15px;
@@ -259,7 +259,7 @@
   font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 
 /* Partners — 4-up */
@@ -280,7 +280,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -293,7 +293,7 @@
   margin: 0 0 18px;
   letter-spacing: -0.012em;
 }
-.partnersTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.partnersTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .partnersLede {
   font-family: var(--font-sans);
   font-size: 16px;
@@ -341,7 +341,7 @@
   font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0;
   font-weight: 500;
 }
@@ -381,7 +381,7 @@
 .partnerSpecialties li::before {
   content: "—";
   position: absolute; left: 0;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 .partnerCta {
   margin-top: auto;
@@ -390,7 +390,7 @@
   font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 
 /* Seal */
@@ -413,7 +413,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -426,7 +426,7 @@
   margin: 0 0 24px;
   letter-spacing: -0.012em;
 }
-.sealTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.sealTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .sealList {
   list-style: none;
   padding: 0;
@@ -447,7 +447,7 @@
 .sealLineNum {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   flex-shrink: 0;
   min-width: 32px;
 }
@@ -456,7 +456,7 @@
   font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   text-decoration: none;
   align-self: flex-start;
 }
@@ -473,7 +473,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 18px;
   font-weight: 500;
 }
@@ -486,7 +486,7 @@
   margin: 0 0 18px;
   letter-spacing: -0.015em;
 }
-.applyStatement em { font-style: italic; color: var(--color-house-gold-dark); }
+.applyStatement em { font-style: italic; color: var(--color-house-gold-ink); }
 .applyLede {
   font-family: var(--font-sans);
   font-size: 16px;

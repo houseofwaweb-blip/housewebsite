@@ -29,7 +29,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 22px;
   font-weight: 500;
   display: flex; align-items: center; gap: 14px;
@@ -94,7 +94,7 @@
 }
 .tab:hover { color: var(--color-house-brown); }
 .tabActive {
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   border-bottom: 1px solid var(--color-house-gold-dark);
   padding-bottom: 3px;
 }
@@ -199,7 +199,7 @@
   font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 6px;
   font-weight: 500;
 }

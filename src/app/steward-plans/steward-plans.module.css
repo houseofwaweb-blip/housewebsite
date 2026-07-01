@@ -230,7 +230,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -243,7 +243,7 @@
   color: var(--color-house-brown);
   margin: 0 0 16px;
 }
-.howTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.howTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .howLede {
   font-family: var(--font-sans);
   font-size: 14.5px;
@@ -268,7 +268,7 @@
   font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   font-weight: 500;
 }
 .howStepName {
@@ -353,7 +353,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -366,7 +366,7 @@
   color: var(--color-house-brown);
   margin: 0;
 }
-.includedTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.includedTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .includedGrid {
   max-width: 1180px;
   margin: 0 auto;
@@ -403,7 +403,7 @@
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 12px 0 0;
   font-weight: 500;
 }
@@ -447,7 +447,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -460,7 +460,7 @@
   color: var(--color-house-brown);
   margin: 0 0 16px;
 }
-.calculatorTitle em { font-style: italic; color: var(--color-house-gold-dark); }
+.calculatorTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .calculatorLede {
   font-family: var(--font-sans);
   font-size: 14.5px;
@@ -542,7 +542,7 @@
   letter-spacing: -0.012em;
   max-width: 36ch;
 }
-.closingStatement em { font-style: italic; color: var(--color-house-gold-dark); }
+.closingStatement em { font-style: italic; color: var(--color-house-gold-ink); }
 
 /* Responsive */
 @media (max-width: 1024px) {

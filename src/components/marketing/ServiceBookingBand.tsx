@@ -7,7 +7,7 @@ export function ServiceBookingBand() {
   return (
     <section className="px-[5vw] py-[clamp(36px,5vw,64px)] bg-house-cream-dark border-y border-house-brown/10">
       <div className="mx-auto max-w-[1100px]">
-        <p className="text-center font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-dark mb-[clamp(20px,3vw,32px)]">
+        <p className="text-center font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink mb-[clamp(20px,3vw,32px)]">
           Booked through HoWA, three ways
         </p>
         <div className="grid gap-4 sm:grid-cols-3">

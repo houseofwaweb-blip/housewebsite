@@ -23,13 +23,13 @@ export function ServiceCtaRow({ service }: { service: string }) {
           </a>
           <a
             href={PHONE_HREF}
-            className="font-sans text-[15px] text-house-gold-dark underline underline-offset-[3px] transition-colors hover:text-house-brown"
+            className="font-sans text-[15px] text-house-gold-ink underline underline-offset-[3px] transition-colors hover:text-house-brown"
           >
             Call {PHONE_DISPLAY}
           </a>
           <a
             href="#service-enquiry"
-            className="font-sans text-[15px] text-house-gold-dark underline underline-offset-[3px] transition-colors hover:text-house-brown"
+            className="font-sans text-[15px] text-house-gold-ink underline underline-offset-[3px] transition-colors hover:text-house-brown"
           >
             Send an enquiry
           </a>

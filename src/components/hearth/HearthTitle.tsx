@@ -34,7 +34,7 @@ export function HearthTitle({
     return (
       <Link
         href={href}
-        className={`text-inherit no-underline hover:text-house-gold-dark transition-colors duration-[var(--t-base)] ease-out ${className ?? ""}`}
+        className={`text-inherit no-underline hover:text-house-gold-ink transition-colors duration-[var(--t-base)] ease-out ${className ?? ""}`}
       >
         {content}
       </Link>

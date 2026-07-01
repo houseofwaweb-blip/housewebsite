@@ -31,7 +31,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 24px;
   display: flex;
   align-items: center;
@@ -55,7 +55,7 @@
 }
 .heroTitle em {
   font-style: italic;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 .heroLede {
   font-family: var(--font-sans);
@@ -192,7 +192,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -207,7 +207,7 @@
 }
 .servicesTitle em {
   font-style: italic;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 .servicesLede {
   font-family: var(--font-sans);
@@ -333,7 +333,7 @@
   font-size: 15px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0;
   font-weight: 500;
 }
@@ -351,7 +351,7 @@
   font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 
 /* Slider controls — prev/next arrows + position bars.
@@ -430,18 +430,18 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
 .plansEyHighlight {
   background: rgba(212, 175, 90, 0.18);
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   padding: 4px 10px;
   margin-left: 6px;
 }
 .plansLink {
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   text-decoration: none;
   border-bottom: 1px solid var(--color-house-gold);
   padding-bottom: 1px;
@@ -458,7 +458,7 @@
 }
 .plansTitle em {
   font-style: italic;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 .plansLede {
   font-family: var(--font-sans);
@@ -571,7 +571,7 @@
   content: "—";
   position: absolute;
   left: 0;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 .planCardFeatured .planList li {
   color: rgba(245, 240, 232, 0.78);
@@ -610,7 +610,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -625,7 +625,7 @@
 }
 .briefTitle em {
   font-style: italic;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 .briefLede {
   font-family: var(--font-sans);
@@ -713,7 +713,7 @@
   font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
   margin: 0 0 14px;
   font-weight: 500;
 }
@@ -728,7 +728,7 @@
 }
 .faqTitle em {
   font-style: italic;
-  color: var(--color-house-gold-dark);
+  color: var(--color-house-gold-ink);
 }
 /* FAQ list internals live in components/marketing/FaqList.module.css */
 

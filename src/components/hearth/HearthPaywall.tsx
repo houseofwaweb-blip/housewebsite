@@ -27,9 +27,9 @@ export function HearthPaywall() {
         </div>
 
         <div>
-          <p className="font-hearth-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-dark mb-2 flex items-center gap-2">
+          <p className="font-hearth-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-2 flex items-center gap-2">
             <span>Housekeeper · The Hearth</span>
-            <span aria-hidden="true" className="text-house-gold-dark/40">·</span>
+            <span aria-hidden="true" className="text-house-gold-ink/40">·</span>
             <span className="text-house-stone">Members only</span>
           </p>
           <h2 className="font-hearth-serif font-medium text-[clamp(26px,3vw,34px)] leading-[1.15] text-house-black mb-3">
@@ -45,7 +45,7 @@ export function HearthPaywall() {
 
           <div className="grid grid-cols-2 gap-8 mb-7 py-6 border-t border-b border-house-brown/12 max-md:grid-cols-1 max-md:gap-4">
             <div>
-              <p className="font-hearth-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-dark mb-3">
+              <p className="font-hearth-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-3">
                 What you get
               </p>
               <ul className="list-none m-0 p-0">
@@ -59,14 +59,14 @@ export function HearthPaywall() {
                     key={item}
                     className="font-hearth-serif text-[16px] leading-[1.55] text-house-brown py-0.5 flex gap-2"
                   >
-                    <span aria-hidden="true" className="text-house-gold-dark font-bold flex-shrink-0">·</span>
+                    <span aria-hidden="true" className="text-house-gold-ink font-bold flex-shrink-0">·</span>
                     {item}
                   </li>
                 ))}
               </ul>
             </div>
             <div>
-              <p className="font-hearth-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-dark mb-3">
+              <p className="font-hearth-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-3">
                 Why it&apos;s worth it
               </p>
               <ul className="list-none m-0 p-0">
@@ -80,7 +80,7 @@ export function HearthPaywall() {
                     key={item}
                     className="font-hearth-serif text-[16px] leading-[1.55] text-house-brown py-0.5 flex gap-2"
                   >
-                    <span aria-hidden="true" className="text-house-gold-dark font-bold flex-shrink-0">·</span>
+                    <span aria-hidden="true" className="text-house-gold-ink font-bold flex-shrink-0">·</span>
                     {item}
                   </li>
                 ))}
@@ -103,7 +103,7 @@ export function HearthPaywall() {
               </Link>
               <Link
                 href="/howa/plans"
-                className="font-hearth-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline border-b border-dotted border-house-brown pb-px transition-colors duration-[var(--t-base)] hover:text-house-gold-dark hover:border-house-gold"
+                className="font-hearth-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline border-b border-dotted border-house-brown pb-px transition-colors duration-[var(--t-base)] hover:text-house-gold-ink hover:border-house-gold"
               >
                 Compare plans
               </Link>
@@ -114,7 +114,7 @@ export function HearthPaywall() {
             Already a member?{" "}
             <a
               href="https://accounts.willowalexander.co.uk/"
-              className="font-hearth-sans text-[12px] tracking-[0.16em] uppercase text-house-brown no-underline border-b border-dotted border-house-brown pb-px transition-colors hover:text-house-gold-dark hover:border-house-gold"
+              className="font-hearth-sans text-[12px] tracking-[0.16em] uppercase text-house-brown no-underline border-b border-dotted border-house-brown pb-px transition-colors hover:text-house-gold-ink hover:border-house-gold"
             >
               Log in
             </a>

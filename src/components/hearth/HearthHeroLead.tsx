@@ -47,7 +47,7 @@ export function HearthHeroLead({ article }: { article: HearthArticle }) {
             ) : null}
           </span>
 
-          <h1 className="font-hearth-serif font-medium leading-[1.04] tracking-[-0.01em] text-[clamp(42px,4.6vw,68px)] text-house-black mb-[18px] transition-colors duration-[var(--t-base)] ease-out group-hover:text-house-gold-dark">
+          <h1 className="font-hearth-serif font-medium leading-[1.04] tracking-[-0.01em] text-[clamp(42px,4.6vw,68px)] text-house-black mb-[18px] transition-colors duration-[var(--t-base)] ease-out group-hover:text-house-gold-ink">
             <HearthTitle title={article.title} em={article.titleEm} />
           </h1>
 

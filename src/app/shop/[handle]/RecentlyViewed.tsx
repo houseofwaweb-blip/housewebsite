@@ -40,7 +40,7 @@ export function RecentlyViewed({ current }: { current: Item }) {
   return (
     <section className="px-[5vw] py-[clamp(40px,5vw,72px)] border-t border-house-brown/8">
       <div className="max-w-[1280px] mx-auto">
-        <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-dark mb-2">Where you have been</p>
+        <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink mb-2">Where you have been</p>
         <h2 className="font-display italic text-[clamp(22px,2.6vw,32px)] text-house-brown mb-8">Recently viewed.</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-x-5 gap-y-9">
           {items.map((p) => (
@@ -56,7 +56,7 @@ export function RecentlyViewed({ current }: { current: Item }) {
                   />
                 ) : null}
               </div>
-              <p className="font-display text-[16px] leading-[1.25] text-house-brown group-hover:text-house-gold-dark transition-colors">
+              <p className="font-display text-[16px] leading-[1.25] text-house-brown group-hover:text-house-gold-ink transition-colors">
                 {p.title}
               </p>
               <p className="font-sans text-[15px] text-house-stone mt-0.5">{p.price}</p>
