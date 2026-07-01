@@ -111,9 +111,9 @@
 .heroTitle {
   font-family: var(--font-didot);
   font-weight: 700;
-  font-size: clamp(56px, 6.4vw, 100px);
-  line-height: 1.06;
-  letter-spacing: -0.01em;
+  font-size: clamp(52px, 6vw, 92px);
+  line-height: 1.08;
+  letter-spacing: 0.005em;
   color: var(--color-house-brown);
   margin: 0 0 22px;
 }
@@ -155,7 +155,9 @@
 }
 @media (max-width: 640px) {
   .heroCtas { flex-direction: column; }
-  .heroCtas > a { white-space: normal; }
+  /* In a column, flex-basis is the MAIN (vertical) axis, so `flex: 1 1 200px`
+     was forcing each button to ~200px tall. Reset to content height. */
+  .heroCtas > a { flex: 0 0 auto; white-space: normal; }
 }
 .heroBookingNote {
   font-family: var(--font-sans);

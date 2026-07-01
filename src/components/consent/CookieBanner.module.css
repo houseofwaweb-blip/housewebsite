@@ -200,17 +200,27 @@
 }
 
 @media (max-width: 640px) {
+  .banner {
+    padding: 16px 5vw;
+  }
   .bannerInner {
     flex-direction: column;
     align-items: stretch;
-    gap: 16px;
+    gap: 14px;
+  }
+  /* In a column, flex-basis becomes the vertical axis, so `flex: 1 1 320px`
+     forced the copy to 320px tall and blew the banner up. Content height only. */
+  .bannerCopy {
+    flex: 0 0 auto;
+    font-size: 14px;
   }
   .bannerActions {
     justify-content: stretch;
   }
   .btnFilled,
   .btnGhost {
-    flex: 1;
+    flex: 1 1 auto;
     text-align: center;
+    padding: 12px 14px;
   }
 }

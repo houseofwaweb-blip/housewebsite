@@ -125,7 +125,7 @@ export function Footer({ columns, tagline }: FooterProps) {
           powered by HoWA.
         </p>
 
-        <div className="pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div className="pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           <Link href="/" aria-label="House of Willow Alexander, home">
             <Image
               src="/brand/wordmark-white.svg"
@@ -135,13 +135,26 @@ export function Footer({ columns, tagline }: FooterProps) {
               className="h-[48px] w-auto opacity-90"
             />
           </Link>
-          <div className="flex items-center gap-6">
+          <nav
+            aria-label="Legal"
+            className="flex flex-wrap items-center gap-x-6 gap-y-2 font-sans text-[14px] text-house-cream/70"
+          >
+            <Link href="/legal/privacy" className="no-underline hover:text-house-cream transition-colors">
+              Privacy
+            </Link>
+            <Link href="/legal/terms" className="no-underline hover:text-house-cream transition-colors">
+              Terms
+            </Link>
+            <Link href="/legal/cookies" className="no-underline hover:text-house-cream transition-colors">
+              Cookie policy
+            </Link>
             <CookiePreferencesLink />
-            <div className="font-sans italic text-[15px] text-house-cream/70">
-              {tag}
-            </div>
-          </div>
+          </nav>
         </div>
+
+        <p className="pt-6 font-sans italic text-[15px] text-house-cream/60 text-center md:text-right">
+          {tag}
+        </p>
       </div>
     </footer>
   );
