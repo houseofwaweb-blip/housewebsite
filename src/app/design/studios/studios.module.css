@@ -62,7 +62,8 @@
 .heroMosaic {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* Two studios at launch -> stack them to fill the column (no empty cells). */
+  grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 2px;
   background: rgba(48, 35, 28, 0.08);
