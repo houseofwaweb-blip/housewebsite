@@ -80,16 +80,21 @@ const nextConfig: NextConfig = {
     // user-gated via the consent system but still need to load from
     // their respective CDNs when enabled. Narrow only with caution; a
     // too-tight CSP silently breaks pixels and the cookie scan.
+    // ServiceOS / OBF (the "Book through HoWA" booking widget) loads its client
+    // script from accounts.willowalexander.co.uk and talks to *.serviceos.com.
+    // These must be allowed in script/connect/frame/style/form or the widget
+    // silently fails to open.
+    const OBF = "https://accounts.willowalexander.co.uk https://willowalexander.serviceos.com https://*.serviceos.com";
     const csp = [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://*.clarity.ms https://connect.facebook.net https://s.pinimg.com https://ct.pinterest.com https://cdn-cookieyes.com https://challenges.cloudflare.com https://*.sentry.io https://va.vercel-scripts.com",
-      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+      `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://accounts.willowalexander.co.uk https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://*.clarity.ms https://connect.facebook.net https://s.pinimg.com https://ct.pinterest.com https://cdn-cookieyes.com https://challenges.cloudflare.com https://*.sentry.io https://va.vercel-scripts.com`,
+      `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.willowalexander.co.uk`,
       "img-src 'self' data: blob: https:",
       "font-src 'self' data: https://fonts.gstatic.com",
-      "connect-src 'self' https://*.sanity.io https://cdn.sanity.io https://*.shopify.com https://*.supabase.co wss://*.supabase.co https://*.upstash.io https://www.google-analytics.com https://*.analytics.google.com https://www.clarity.ms https://*.clarity.ms https://*.facebook.com https://ct.pinterest.com https://log.cookieyes.com https://*.ingest.sentry.io https://vitals.vercel-insights.com https://va.vercel-scripts.com",
-      "frame-src 'self' https://challenges.cloudflare.com https://www.facebook.com",
+      `connect-src 'self' ${OBF} https://*.sanity.io https://cdn.sanity.io https://*.shopify.com https://*.supabase.co wss://*.supabase.co https://*.upstash.io https://www.google-analytics.com https://*.analytics.google.com https://www.clarity.ms https://*.clarity.ms https://*.facebook.com https://ct.pinterest.com https://log.cookieyes.com https://*.ingest.sentry.io https://vitals.vercel-insights.com https://va.vercel-scripts.com`,
+      `frame-src 'self' ${OBF} https://challenges.cloudflare.com https://www.facebook.com`,
       "frame-ancestors 'none'",
-      "form-action 'self'",
+      `form-action 'self' ${OBF}`,
       "base-uri 'self'",
       "object-src 'none'",
       "upgrade-insecure-requests",
