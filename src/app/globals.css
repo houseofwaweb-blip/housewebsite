@@ -98,7 +98,7 @@
    * Cormorant is NOT in the fallback chain: it's loaded only for the
    * Hearth magazine, and we don't want the font-matcher picking it up
    * when Didot can't serve a specific weight or italic. */
-  --font-display: "Didot LT Pro", Didot, "Playfair Display", Georgia, serif;
+  --font-display: var(--font-didot), "Didot LT Pro", "Playfair Display", Georgia, serif;
   --font-sans: "Effra Std", Inter, system-ui, sans-serif;
   --font-mono: "DM Mono", ui-monospace, Menlo, monospace;
 
