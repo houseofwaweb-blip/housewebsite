@@ -26,9 +26,9 @@ If you use Housekeeper or the Assistant, your photos and notes stay in your priv
         },
         {
           heading: "Who we are",
-          body: `House of Willow Alexander Ltd is the data controller. Our registered office, company number, and ICO registration number will be listed here once legal review is complete.
+          body: `House of Willow Alexander Ltd (registered in England & Wales, company number 15062693) is the data controller. Registered office: 12 Hatherley Road, Sidcup, Kent, DA14 4DT.
 
-Contact: privacy@willowalexander.co.uk`,
+Contact: info@willowalexander.co.uk`,
         },
         {
           heading: "What we collect, and why",
@@ -49,7 +49,7 @@ Advertising and attribution data: if you consent to the Marketing category, we s
 You can complain to the ICO if you're unhappy with how we've handled your data. Their address is in their guidance.`,
         },
       ]}
-      updatedAt={sanityPage?.lastUpdated ?? "19 May 2026"}
+      updatedAt={sanityPage?.lastUpdated ?? "1 July 2026"}
     />
   );
 }

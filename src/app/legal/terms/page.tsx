@@ -16,7 +16,7 @@ export default async function TermsPage() {
       sections={[
         {
           heading: "The basics",
-          body: `This site and HoWA are operated by House of Willow Alexander Ltd. By using them, you agree to these terms. If you don't, please don't use them.
+          body: `This site and HoWA are operated by House of Willow Alexander Ltd, registered in England & Wales (company number 15062693), registered office 12 Hatherley Road, Sidcup, Kent, DA14 4DT. You can reach us at info@willowalexander.co.uk. By using them, you agree to these terms. If you don't, please don't use them.
 
 We may update these terms occasionally. We'll tell you about significant changes in the product. The "Last updated" date at the bottom of this page is the authority.`,
         },
@@ -39,7 +39,7 @@ Cancellation terms for each service are published on the service's page and conf
 For things we can limit: our liability for loss arising from the site itself is capped at the fees you've paid us in the previous 12 months. For services, liability sits with the provider as described above.`,
         },
       ]}
-      updatedAt={sanityPage?.lastUpdated ?? "19 May 2026"}
+      updatedAt={sanityPage?.lastUpdated ?? "1 July 2026"}
     />
   );
 }

@@ -58,10 +58,10 @@ When you change a preference, the change applies immediately to scripts already 
           },
           {
             heading: "Full cookie list",
-            body: `The table below is automatically generated from a monthly scan of this site by CookieYes. If something is set that isn't listed, please email privacy@willowalexander.co.uk and we'll investigate.`,
+            body: `The table below is automatically generated from a monthly scan of this site by CookieYes. If something is set that isn't listed, please email info@willowalexander.co.uk and we'll investigate.`,
           },
         ]}
-        updatedAt={sanityPage?.lastUpdated ?? "19 May 2026"}
+        updatedAt={sanityPage?.lastUpdated ?? "1 July 2026"}
       />
       <section
         style={{
