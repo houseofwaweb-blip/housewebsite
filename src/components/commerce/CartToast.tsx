@@ -36,7 +36,7 @@ export function CartToast() {
             <Link
               href={toast.href}
               onClick={clearToast}
-              className="inline-block mt-2 font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-light border-b border-house-gold-light/40 hover:border-house-gold-light pb-0.5 no-underline transition-colors"
+              className="inline-block mt-2 font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-light border-b border-house-gold-light/40 hover:border-house-gold-light pb-0.5 no-underline transition-colors"
             >
               {toast.linkLabel} →
             </Link>

@@ -221,7 +221,7 @@ export default async function ProductPage({
             <div className="mb-3">
               {/* Buy action stand-in until checkout is live — same size as the
                   Home Record button, distinct colour (brand brown vs gold) */}
-              <span className="inline-flex w-full items-center justify-center gap-2 border border-house-brown bg-house-brown px-6 py-4 font-sans text-[11px] tracking-[0.18em] uppercase text-house-cream">
+              <span className="inline-flex w-full items-center justify-center gap-2 border border-house-brown bg-house-brown px-6 py-4 font-sans text-[12px] tracking-[0.18em] uppercase text-house-cream">
                 Available at launch
               </span>
             </div>
@@ -235,7 +235,7 @@ export default async function ProductPage({
               price={product.price}
               image={product.image}
             />
-            <p className="mt-2 font-sans text-[12px] leading-[1.5] text-house-stone">
+            <p className="mt-2 font-sans text-[14px] leading-[1.5] text-house-stone">
               Save it to your Home Record to keep its details, care notes and warranty in one place.
             </p>
           </div>
@@ -246,7 +246,7 @@ export default async function ProductPage({
               for this object (brief slide 9/10). Supplier is real product data;
               the rest is framed as what HoWA stores at and after purchase. */}
           <div className="mt-7 border-t border-house-brown/12 pt-6">
-            <p className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-dark mb-3">
+            <p className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-dark mb-3">
               Kept in your Home Record
             </p>
             <dl className="m-0 space-y-2.5">
@@ -256,7 +256,7 @@ export default async function ProductPage({
                 ["Warranty", "Receipt and any warranty stored at purchase."],
                 ["Replacement", "HoWA reminds you when it is due for renewal."],
               ].map(([k, v]) => (
-                <div key={k} className="flex gap-4 font-sans text-[13px] leading-[1.5]">
+                <div key={k} className="flex gap-4 font-sans text-[14px] leading-[1.5]">
                   <dt className="w-[92px] shrink-0 text-house-stone">{k}</dt>
                   <dd className="m-0 text-house-brown">{v}</dd>
                 </div>
@@ -268,7 +268,7 @@ export default async function ProductPage({
               wording adapts: installable/maintainable goods get the fitting line,
               everything else gets a calmer House-services line (a mug isn't
               "fitted or cleaned"). */}
-          <p className="mt-6 font-sans text-[13px] leading-[1.6] text-house-stone">
+          <p className="mt-6 font-sans text-[14px] leading-[1.6] text-house-stone">
             {serviceable
               ? "Need this fitted, hung, cleaned or maintained? "
               : "Planning work on your home? "}

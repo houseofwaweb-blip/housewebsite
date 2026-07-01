@@ -28,7 +28,7 @@
 .heroCopyInner { max-width: 580px; }
 .heroEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -70,7 +70,7 @@
 .heroFootnote {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 13px;
+  font-size: 14px;
   color: rgba(48, 35, 28, 0.72);
   margin: 18px 0 0;
 }
@@ -90,7 +90,7 @@
   gap: 10px;
   padding: 13px 26px;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
@@ -129,7 +129,7 @@
 .statsLede { padding-right: clamp(24px, 3vw, 56px); }
 .statsLedeLine1 {
   font-family: var(--font-sans);
-  font-size: clamp(13px, 1.1vw, 15px);
+  font-size: clamp(14px, 1.1vw, 15px);
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -139,7 +139,7 @@
 }
 .statsLedeLine2 {
   font-family: var(--font-sans);
-  font-size: clamp(11px, 0.9vw, 13px);
+  font-size: clamp(12px, 0.9vw, 13px);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -166,7 +166,7 @@
 }
 .statLabel {
   font-family: var(--font-sans);
-  font-size: clamp(11px, 0.75vw, 10px);
+  font-size: clamp(12px, 0.75vw, 10px);
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -186,7 +186,7 @@
 .approachInner { max-width: 880px; margin: 0 auto; }
 .approachEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -256,7 +256,7 @@
 }
 .offersEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -327,7 +327,7 @@
 }
 .stepsEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -397,7 +397,7 @@
 .registerInner { max-width: 760px; margin: 0 auto; text-align: center; }
 .registerEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-light);
@@ -442,7 +442,7 @@
 }
 .crossEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -468,7 +468,7 @@
 }
 .crossLink {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -490,7 +490,7 @@
   max-width: 880px;
   margin: 0 auto;
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.65;
 }
 .fca a {

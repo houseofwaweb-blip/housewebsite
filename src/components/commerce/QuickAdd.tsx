@@ -41,7 +41,7 @@ export function QuickAdd({
   const wrap =
     "absolute inset-x-0 bottom-0 z-20 p-2.5 opacity-0 translate-y-2 transition-all duration-[var(--t-base)] ease-out group-hover:opacity-100 group-hover:translate-y-0 max-md:opacity-100 max-md:translate-y-0";
   const base =
-    "block w-full py-2.5 text-center font-sans text-[11px] tracking-[0.18em] uppercase no-underline transition-colors duration-[var(--t-base)] ease-out";
+    "block w-full py-2.5 text-center font-sans text-[12px] tracking-[0.18em] uppercase no-underline transition-colors duration-[var(--t-base)] ease-out";
 
   // Multi-variant → send them to the product page to pick options.
   if (multiVariant) {

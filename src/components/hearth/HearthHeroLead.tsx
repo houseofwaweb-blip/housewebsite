@@ -38,10 +38,10 @@ export function HearthHeroLead({ article }: { article: HearthArticle }) {
         </div>
 
         <div>
-          <span className="inline-block mb-[18px] font-hearth-sans text-[11px] tracking-[0.24em] uppercase text-house-black after:content-['_/'] after:text-house-stone after:ml-1">
+          <span className="inline-block mb-[18px] font-hearth-sans text-[12px] tracking-[0.24em] uppercase text-house-black after:content-['_/'] after:text-house-stone after:ml-1">
             {article.categoryLong ?? article.category}
             {article.flag ? (
-              <em className="not-italic ml-1.5 font-hearth-serif italic text-[13px] tracking-[0.02em] normal-case text-house-stone">
+              <em className="not-italic ml-1.5 font-hearth-serif italic text-[14px] tracking-[0.02em] normal-case text-house-stone">
                 {article.flag}
               </em>
             ) : null}
@@ -55,7 +55,7 @@ export function HearthHeroLead({ article }: { article: HearthArticle }) {
             {article.dek}
           </p>
 
-          <p className="font-hearth-sans text-[11px] tracking-[0.14em] uppercase text-house-stone">
+          <p className="font-hearth-sans text-[12px] tracking-[0.14em] uppercase text-house-stone">
             <em className="not-italic font-hearth-serif italic text-[14px] tracking-[0.02em] normal-case text-house-black mr-1.5">
               {article.author}
             </em>

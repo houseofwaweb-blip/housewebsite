@@ -5,7 +5,7 @@
 /* Shared eyebrow */
 .eyebrow {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -22,7 +22,7 @@
 }
 .eyebrowCentered {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -97,7 +97,7 @@
 .featuredBody {}
 .featuredEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -142,7 +142,7 @@
   border-top: 1px solid rgba(48, 35, 28, 0.12);
   border-bottom: 1px solid rgba(48, 35, 28, 0.12);
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.7);
@@ -155,7 +155,7 @@
 }
 .cardMeta {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -164,7 +164,7 @@
 }
 .featuredDate {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -246,7 +246,7 @@
 .cardDate {
   margin-top: auto;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);

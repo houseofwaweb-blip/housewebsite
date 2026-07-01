@@ -30,7 +30,7 @@ export function V6WhatItIs() {
   return (
     <section id="what" className="bg-[#f4f1e9] py-16 lg:py-24 border-t border-[color:var(--color-ink)]/8 scroll-mt-20">
       <div className="max-w-[940px] mx-auto px-6 sm:px-10 text-center">
-        <p className="smallcaps text-[12px] tracking-[0.2em] text-[color:var(--color-gold-deep)] mb-5">What HoWA is</p>
+        <p className="smallcaps text-[14px] tracking-[0.2em] text-[color:var(--color-gold-deep)] mb-5">What HoWA is</p>
         <p className="font-italic-display text-[clamp(18px,1.8vw,24px)] text-[color:var(--color-ink-soft)] mb-6">
           Not a smart-home gadget. Not a folder of receipts. Not a booking app.
         </p>
@@ -54,18 +54,18 @@ export function V6WhatItIs() {
             <div className="hidden md:block absolute top-[11%] left-[4.5%] max-w-[190px]">
               <div className="flex items-center gap-2">
                 <span aria-hidden className="w-6 h-px bg-[color:var(--color-gold)]/80" />
-                <span className="font-mono text-[11px] tracking-[0.2em] uppercase text-[#f3ede0]/90">The HoWA layer</span>
+                <span className="font-mono text-[12px] tracking-[0.2em] uppercase text-[#f3ede0]/90">The HoWA layer</span>
               </div>
-              <p className="font-mono text-[11px] tracking-[0.02em] text-[#f3ede0]/55 pl-8 mt-1">understands, then acts</p>
+              <p className="font-mono text-[12px] tracking-[0.02em] text-[#f3ede0]/55 pl-8 mt-1">understands, then acts</p>
             </div>
             <div className="hidden md:block absolute top-[60%] right-[4.5%] max-w-[200px] text-right">
               <div className="flex items-center justify-end gap-2">
-                <span className="font-mono text-[11px] tracking-[0.2em] uppercase text-[#f3ede0]/90">Your home</span>
+                <span className="font-mono text-[12px] tracking-[0.2em] uppercase text-[#f3ede0]/90">Your home</span>
                 <span aria-hidden className="w-6 h-px bg-[color:var(--color-gold)]/80" />
               </div>
-              <p className="font-mono text-[11px] tracking-[0.02em] text-[#f3ede0]/55 pr-8 mt-1">every room, asset and document</p>
+              <p className="font-mono text-[12px] tracking-[0.02em] text-[#f3ede0]/55 pr-8 mt-1">every room, asset and document</p>
             </div>
-            <span className="hidden sm:block absolute bottom-[7%] left-[4.5%] font-mono text-[11px] tracking-[0.22em] uppercase text-[#f3ede0]/40">Fig. 01 &middot; the layer above</span>
+            <span className="hidden sm:block absolute bottom-[7%] left-[4.5%] font-mono text-[12px] tracking-[0.22em] uppercase text-[#f3ede0]/40">Fig. 01 &middot; the layer above</span>
           </figcaption>
         </figure>
       </div>
@@ -144,7 +144,7 @@ function RecordDataModel() {
   ];
   return (
     <div className="mt-14 lg:mt-16 border-t border-[color:var(--color-gold)]/20 pt-10">
-      <p className="smallcaps text-[11px] tracking-[0.18em] text-[color:var(--color-gold-deep)] mb-5 text-center">
+      <p className="smallcaps text-[12px] tracking-[0.18em] text-[color:var(--color-gold-deep)] mb-5 text-center">
         How the record is built
       </p>
       <figure className="relative w-full aspect-[1672/941] rounded-lg overflow-hidden bg-[#27384c] shadow-[0_30px_70px_-34px_rgba(20,15,5,0.6)] ring-1 ring-[color:var(--color-gold)]/20 mb-9">
@@ -172,13 +172,13 @@ function RecordDataModel() {
 function StatusTag({ kind }: { kind: "live" | "coming" }) {
   if (kind === "live") {
     return (
-      <span className="shrink-0 mt-0.5 smallcaps text-[11px] tracking-[0.14em] rounded-full px-2 py-0.5 bg-[color:var(--color-howa-green)]/12 text-[color:var(--color-howa-green)]">
+      <span className="shrink-0 mt-0.5 smallcaps text-[12px] tracking-[0.14em] rounded-full px-2 py-0.5 bg-[color:var(--color-howa-green)]/12 text-[color:var(--color-howa-green)]">
         Live now
       </span>
     );
   }
   return (
-    <span className="shrink-0 mt-0.5 smallcaps text-[11px] tracking-[0.14em] rounded-full px-2 py-0.5 border border-[color:var(--color-ink)]/20 text-[color:var(--color-ink-soft)]/65">
+    <span className="shrink-0 mt-0.5 smallcaps text-[12px] tracking-[0.14em] rounded-full px-2 py-0.5 border border-[color:var(--color-ink)]/20 text-[color:var(--color-ink-soft)]/65">
       Coming
     </span>
   );
@@ -246,7 +246,7 @@ export function V6ThreeThings() {
     <section id="does" className="bg-[#f4f1e9] pt-16 lg:pt-20 pb-10 scroll-mt-20">
       <div className="max-w-[1240px] mx-auto px-6 sm:px-10">
         <div className="text-center max-w-[680px] mx-auto mb-12">
-          <p className="smallcaps text-[12px] tracking-[0.2em] text-[color:var(--color-gold-deep)] mb-3">Live today</p>
+          <p className="smallcaps text-[14px] tracking-[0.2em] text-[color:var(--color-gold-deep)] mb-3">Live today</p>
           <h2 className="font-display text-[clamp(28px,2.8vw,42px)] leading-[1.08] tracking-[-0.01em]">
             Three things HoWA does <span className="font-italic-display text-[#c5a960]">today</span>.
           </h2>
@@ -264,7 +264,7 @@ export function V6ThreeThings() {
               </div>
               <h3 className="font-display text-[22px] leading-[1.1]">{c.title}</h3>
               {c.kicker && (
-                <p className="smallcaps text-[11px] tracking-[0.16em] text-[color:var(--color-gold-deep)] mt-1.5">{c.kicker}</p>
+                <p className="smallcaps text-[12px] tracking-[0.16em] text-[color:var(--color-gold-deep)] mt-1.5">{c.kicker}</p>
               )}
               <p className="text-[16px] leading-[1.5] text-[color:var(--color-ink-soft)] mt-3">{c.body}</p>
               {c.examples && (
@@ -296,7 +296,7 @@ export function V6Protection() {
     <section id="protection" className="relative text-[#f3ede0] overflow-hidden scroll-mt-20" style={{ background: "#27384c" }}>
       <div className="max-w-[1180px] mx-auto px-6 sm:px-10 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
         <div className="lg:col-span-7">
-        <p className="smallcaps text-[11px] tracking-[0.18em] text-[#f3ede0]/60 mb-5 flex items-center gap-2">
+        <p className="smallcaps text-[12px] tracking-[0.18em] text-[#f3ede0]/60 mb-5 flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-[#c5a960]" /> Protection
         </p>
         <h2 className="font-display text-[clamp(30px,3.4vw,50px)] leading-[1.08] tracking-[-0.01em] text-[#f3ede0] max-w-[900px]">
@@ -314,7 +314,7 @@ export function V6Protection() {
         <div className="mt-10 flex items-center flex-wrap gap-x-2.5 gap-y-3">
           {flow.map((s, i) => (
             <span key={s} className="flex items-center gap-2.5">
-              <span className={"rounded-md border px-3.5 py-2 font-mono text-[12.5px] tracking-[0.03em] " + (i === flow.length - 1 ? "border-[#c5a960]/55 text-[#c5a960]" : "border-[#f3ede0]/25 text-[#f3ede0]/90")}>
+              <span className={"rounded-md border px-3.5 py-2 font-mono text-[14px] tracking-[0.03em] " + (i === flow.length - 1 ? "border-[#c5a960]/55 text-[#c5a960]" : "border-[#f3ede0]/25 text-[#f3ede0]/90")}>
                 {s}
               </span>
               {i < flow.length - 1 && (
@@ -322,12 +322,12 @@ export function V6Protection() {
               )}
             </span>
           ))}
-          <span className="ml-1 smallcaps text-[11px] tracking-[0.14em] rounded-full px-2 py-0.5 border border-[#f3ede0]/25 text-[#f3ede0]/55">
+          <span className="ml-1 smallcaps text-[12px] tracking-[0.14em] rounded-full px-2 py-0.5 border border-[#f3ede0]/25 text-[#f3ede0]/55">
             Coming
           </span>
         </div>
 
-        <p className="mt-8 text-[12.5px] leading-[1.5] text-[#f3ede0]/45 max-w-[560px]">
+        <p className="mt-8 text-[14px] leading-[1.5] text-[#f3ede0]/45 max-w-[560px]">
           HoWA prepares evidence and prefills your details for renewal. It does not give insurance advice or arrange cover.
         </p>
         </div>
@@ -398,7 +398,7 @@ export function V6Stats() {
           {stats.map((s) => (
             <div key={s.l}>
               <p className="font-display text-[25px] leading-none">{s.n}</p>
-              <p className="text-[12.5px] text-[color:var(--color-ink-soft)]/70 mt-1.5 leading-[1.3]">{s.l}</p>
+              <p className="text-[14px] text-[color:var(--color-ink-soft)]/70 mt-1.5 leading-[1.3]">{s.l}</p>
             </div>
           ))}
         </div>

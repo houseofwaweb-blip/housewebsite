@@ -100,7 +100,7 @@ export function WaitlistMini({
         aria-invalid={error ? true : undefined}
         className={cn(
           "flex-1 bg-transparent border-0 outline-none min-w-0 px-3",
-          "font-sans text-[13px] text-house-brown",
+          "font-sans text-[14px] text-house-brown",
           "border-b border-house-brown/20 focus:border-house-gold transition-colors",
           "duration-slow ease-out",
           "placeholder:font-display placeholder:italic placeholder:text-[14px] placeholder:text-house-stone",
@@ -112,7 +112,7 @@ export function WaitlistMini({
         disabled={state === "submitting"}
         className={cn(
           "shrink-0 bg-house-brown text-house-cream px-3.5 py-2",
-          "font-sans text-[11px] tracking-[0.2em] uppercase",
+          "font-sans text-[12px] tracking-[0.2em] uppercase",
           "transition-[background-color,letter-spacing,padding] duration-[var(--t-slow)] ease-out",
           "hover:bg-house-gold hover:tracking-[0.22em] hover:px-4",
           "disabled:opacity-60 disabled:cursor-not-allowed",
@@ -122,7 +122,7 @@ export function WaitlistMini({
       </button>
 
       {error ? (
-        <p role="alert" className="absolute -bottom-6 left-0 font-display italic text-[12px] text-error">
+        <p role="alert" className="absolute -bottom-6 left-0 font-display italic text-[14px] text-error">
           {error}
         </p>
       ) : null}

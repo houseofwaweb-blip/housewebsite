@@ -84,7 +84,7 @@ function GalleryItem({
         />
       </div>
       {image.caption ? (
-        <figcaption className="mt-2 font-sans text-[11px] tracking-[0.04em] text-house-stone italic">
+        <figcaption className="mt-2 font-sans text-[12px] tracking-[0.04em] text-house-stone italic">
           {image.caption}
         </figcaption>
       ) : null}

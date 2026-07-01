@@ -7,7 +7,7 @@
   display: inline-flex; align-items: center; gap: 10px;
   padding: 13px 26px;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
@@ -36,7 +36,7 @@
   display: inline-flex; align-items: center;
   padding: 6px 12px;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -71,7 +71,7 @@
 }
 .heroEyLight {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: rgba(245, 240, 232, 0.78);
@@ -115,7 +115,7 @@
 .heroTextInner { max-width: 980px; margin: 0 auto; }
 .heroEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -166,7 +166,7 @@
 }
 .trustItem {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.26em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -189,7 +189,7 @@
 .whatCol {}
 .whatEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -246,7 +246,7 @@
 }
 .whatStepN {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -267,7 +267,7 @@
 }
 .subEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -334,7 +334,7 @@
   background: rgba(30, 26, 20, 0.34);
   color: #fff;
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -353,7 +353,7 @@
 }
 .subImagePlaceholder span {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.3);
@@ -377,7 +377,7 @@
 .subCard:hover .subName { color: var(--color-house-gold-dark); }
 .subBlurb {
   font-family: var(--font-sans);
-  font-size: 13.5px;
+  font-size: 14px;
   line-height: 1.6;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
@@ -385,7 +385,7 @@
 }
 .subCta {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -405,7 +405,7 @@
 }
 .galleryEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -453,7 +453,7 @@
 }
 .bookingEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -462,7 +462,7 @@
 }
 .bookingEyLight {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-light);
@@ -511,7 +511,7 @@
 }
 .faqEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -541,7 +541,7 @@
 }
 .areasEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-light);
@@ -592,7 +592,7 @@
 .closingStatement em { font-style: italic; color: var(--color-house-gold-dark); }
 .closingNote {
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
   color: rgba(48, 35, 28, 0.72);
   margin: 20px auto 0;

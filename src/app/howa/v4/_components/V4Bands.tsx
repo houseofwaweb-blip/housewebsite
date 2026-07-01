@@ -108,7 +108,7 @@ export function V4Bands() {
                   <span className="font-italic-display" style={m.accent ? { color: m.accent } : undefined}>{m.name}</span>
                 </h3>
               </div>
-              <p className="smallcaps text-[11px] tracking-[0.16em] text-[#f3ede0]/65 mb-3 -mt-1">{m.price}</p>
+              <p className="smallcaps text-[12px] tracking-[0.16em] text-[#f3ede0]/65 mb-3 -mt-1">{m.price}</p>
               <p className="font-italic-display text-[clamp(18px,1.5vw,23px)] text-[#f3ede0] mb-4">
                 {m.tagline}
               </p>

@@ -34,7 +34,7 @@ export function V4Tiers() {
     <section id="tiers" className="scroll-mt-20 bg-[#fbfaf5] py-16 lg:py-24">
       <div className="mx-auto max-w-[1180px] px-6 sm:px-10">
         <div className="mb-10 max-w-[680px]">
-          <p className="smallcaps mb-3 text-[12px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">Tiers</p>
+          <p className="smallcaps mb-3 text-[14px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">Tiers</p>
           <h2 className="font-display text-[clamp(28px,3.2vw,46px)] leading-[1.08] tracking-[-0.01em]">
             One record. <span className="font-italic-display text-[#c5a960]">Three depths of care.</span>
           </h2>

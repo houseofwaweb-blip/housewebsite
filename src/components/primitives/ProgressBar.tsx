@@ -73,12 +73,12 @@ export function ProgressBar({
       {(label || note) && (
         <div
           className={cn(
-            "flex items-baseline justify-between font-sans text-[11px] tracking-[0.2em] uppercase",
+            "flex items-baseline justify-between font-sans text-[12px] tracking-[0.2em] uppercase",
             dark ? "text-house-cream/55" : "text-house-stone",
           )}
         >
           <span>{label}</span>
-          <span className="font-sans italic text-[13px] normal-case tracking-normal">{note}</span>
+          <span className="font-sans italic text-[14px] normal-case tracking-normal">{note}</span>
         </div>
       )}
     </div>

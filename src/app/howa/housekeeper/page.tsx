@@ -196,12 +196,12 @@ export default async function HowaPlusV1PreviewPage() {
         <div className={s.heroVisual}>
           {/* Floating UI card over the empty terracotta wall, askhowa style */}
           <div className="hidden lg:block absolute left-[8%] top-[14%] z-10 w-[232px] bg-[#faf7f0] border border-[color:var(--color-gold)]/35 shadow-[0_22px_50px_-18px_rgba(40,25,15,0.55)] px-5 py-4">
-            <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-[color:var(--color-gold-deep)] mb-3 flex items-center gap-1.5">
+            <p className="font-sans text-[12px] tracking-[0.2em] uppercase text-[color:var(--color-gold-deep)] mb-3 flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#b56a5c]" aria-hidden /> In the membership
             </p>
             <ul className="space-y-2.5">
               {["Full logbook", "Maintenance & garden calendar", "Renewal & warranty reminders"].map((f) => (
-                <li key={f} className="flex items-start gap-2.5 font-sans text-[13.5px] leading-[1.35] text-[color:var(--color-ink)]/85">
+                <li key={f} className="flex items-start gap-2.5 font-sans text-[14px] leading-[1.35] text-[color:var(--color-ink)]/85">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#b56a5c" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" className="mt-px shrink-0" aria-hidden>
                     <circle cx="12" cy="12" r="9" />
                     <path d="M8.5 12.5l2.5 2.5 4.5-5" />

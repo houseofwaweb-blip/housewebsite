@@ -191,7 +191,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
                 }}
                 className={cn(
                   "bg-transparent border-0 cursor-pointer py-[4px]",
-                  "font-sans text-[11px] tracking-[0.22em] uppercase",
+                  "font-sans text-[12px] tracking-[0.22em] uppercase",
                   "transition-all duration-[var(--t-base)] ease-out",
                   active
                     ? "text-house-gold-dark border-b border-house-gold opacity-100 pb-[6px]"
@@ -213,7 +213,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
             <Link
               href={`/search${query ? `?q=${encodeURIComponent(query)}` : ""}`}
               onClick={onClose}
-              className="group inline-flex items-center gap-[8px] font-sans text-[12px] tracking-[0.18em] uppercase no-underline text-house-brown border-b border-solid border-house-gold pb-[3px] transition-[color,border-style] duration-[var(--t-slow)] ease-out hover:text-house-gold-dark hover:border-dotted"
+              className="group inline-flex items-center gap-[8px] font-sans text-[14px] tracking-[0.18em] uppercase no-underline text-house-brown border-b border-solid border-house-gold pb-[3px] transition-[color,border-style] duration-[var(--t-slow)] ease-out hover:text-house-gold-dark hover:border-dotted"
             >
               <span>View all results</span>
               <span
@@ -262,7 +262,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
                   />
                 ) : null}
                 <div className="min-w-0">
-                  <div className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-brown/60 mb-[4px]">
+                  <div className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-brown/60 mb-[4px]">
                     {r.type}
                   </div>
                   <h5 className="font-display text-[20px] font-medium text-house-brown mb-[4px]">

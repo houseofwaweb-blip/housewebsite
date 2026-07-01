@@ -15,7 +15,7 @@ export function HearthHowaHooks() {
   return (
     <aside className="px-[5vw] py-12 border-t border-house-brown/12 bg-house-white">
       <div className="mx-auto max-w-[720px]">
-        <p className="font-hearth-sans text-[11px] tracking-[0.24em] uppercase text-house-gold-dark mb-4">
+        <p className="font-hearth-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-dark mb-4">
           Take it further with HoWA
         </p>
         <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3">

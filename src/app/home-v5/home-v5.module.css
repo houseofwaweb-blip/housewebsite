@@ -20,7 +20,7 @@
 }
 .eyebrow {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.32em;
@@ -46,7 +46,7 @@
   align-items: center;
   gap: 8px;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.22em;
@@ -101,7 +101,7 @@
 .heroCopyInner { max-width: 540px; }
 .heroEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.34em;
@@ -150,7 +150,7 @@
   text-align: center;
   white-space: nowrap;
   padding: 15px 20px;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.07em;
 }
 @media (max-width: 640px) {
@@ -159,7 +159,7 @@
 }
 .heroBookingNote {
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
   color: rgba(48, 35, 28, 0.72);
   margin: 18px 0 0;
@@ -192,7 +192,7 @@
 }
 .quoteLabel {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.3em;
@@ -209,7 +209,7 @@
 }
 .quoteAttr {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: rgba(245, 240, 232, 0.62);
@@ -252,7 +252,7 @@
 }
 .pillarLabel {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.3em;
@@ -270,7 +270,7 @@
 }
 .pillarSub {
   font-family: var(--font-sans);
-  font-size: 12.5px;
+  font-size: 14px;
   line-height: 1.5;
   color: rgba(245, 240, 232, 0.78);
   margin: 0;
@@ -425,7 +425,7 @@
 .howaIntroCtas { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 .howaNote {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.06em;
   color: rgba(48, 35, 28, 0.72);
   margin: 16px 0 0;
@@ -580,7 +580,7 @@
 .serviceTile:hover .serviceTileArrow { transform: translateX(4px); }
 .serviceDesc {
   font-family: var(--font-sans);
-  font-size: 13.5px;
+  font-size: 14px;
   line-height: 1.6;
   color: rgba(48, 35, 28, 0.66);
   margin: 0;
@@ -654,7 +654,7 @@
   color: var(--color-house-brown);
   border: 1px solid var(--color-house-cream);
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.22em;
@@ -712,7 +712,7 @@
 .productBody { padding: 16px 18px 20px; }
 .productName {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.14em;
@@ -728,7 +728,7 @@
 }
 .productSoon {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.2em;
   color: rgba(48, 35, 28, 0.4);
@@ -777,7 +777,7 @@
 .intelStat { background: #232a23; padding: 24px 22px; }
 .intelStatLabel {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.04em;
   color: rgba(245, 240, 232, 0.66);
   margin: 0 0 8px;

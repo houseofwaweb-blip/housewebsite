@@ -44,7 +44,7 @@ export function V3Matrix({ middleLabel = "Housekeeper", showTitle = true }: { mi
               <div key={t.name} className="overflow-hidden rounded-2xl border border-[color:var(--color-gold)]/25 bg-white">
                 <div className="flex items-center justify-between border-b border-[color:var(--color-ink)]/10 px-5 py-4">
                   <span className="font-display text-[19px]" style={{ color: t.accent }}>{t.name}</span>
-                  <span className="smallcaps text-[11px] tracking-[0.1em] text-[color:var(--color-ink-soft)]/60">{t.price}</span>
+                  <span className="smallcaps text-[12px] tracking-[0.1em] text-[color:var(--color-ink-soft)]/60">{t.price}</span>
                 </div>
                 <ul className="space-y-2.5 px-5 py-4">
                   {inc.map((f) => (
@@ -54,7 +54,7 @@ export function V3Matrix({ middleLabel = "Housekeeper", showTitle = true }: { mi
                     </li>
                   ))}
                   {soon.map((f) => (
-                    <li key={f} className="flex items-start gap-2.5 text-[13.5px] leading-snug text-[color:var(--color-ink-soft)]/65">
+                    <li key={f} className="flex items-start gap-2.5 text-[14px] leading-snug text-[color:var(--color-ink-soft)]/65">
                       <span className="smallcaps mt-px shrink-0 rounded-full border border-[color:var(--color-ink)]/15 px-1.5 py-0.5 text-[8px] tracking-[0.1em] text-[color:var(--color-ink-soft)]/55">Coming</span>
                       {f}
                     </li>
@@ -73,18 +73,18 @@ export function V3Matrix({ middleLabel = "Housekeeper", showTitle = true }: { mi
         <div className="hidden overflow-hidden rounded-2xl border border-[color:var(--color-gold)]/25 bg-white lg:block">
           {/* header */}
           <div className="grid grid-cols-[1.6fr_repeat(3,0.8fr)] items-end gap-2 border-b border-[color:var(--color-ink)]/10 px-4 py-4 sm:px-6">
-            <span className="smallcaps text-[11px] tracking-[0.16em] text-[color:var(--color-ink-soft)]/60">Capability</span>
+            <span className="smallcaps text-[12px] tracking-[0.16em] text-[color:var(--color-ink-soft)]/60">Capability</span>
             {TIERS.map((t) => (
               <div key={t.name} className="text-center">
                 <p className="font-display text-[clamp(14px,1.4vw,19px)] leading-none" style={{ color: t.accent }}>{t.name}</p>
-                <p className="smallcaps mt-1 text-[11px] tracking-[0.1em] text-[color:var(--color-ink-soft)]/60">{t.price}</p>
+                <p className="smallcaps mt-1 text-[12px] tracking-[0.1em] text-[color:var(--color-ink-soft)]/60">{t.price}</p>
               </div>
             ))}
           </div>
           {/* rows */}
           {ROWS.map((r, i) => (
             <div key={r.f} className={"grid grid-cols-[1.6fr_repeat(3,0.8fr)] items-center gap-2 px-4 py-2.5 sm:px-6 " + (i % 2 ? "bg-[#1d2a40]/[0.02]" : "")}>
-              <span className="text-[13.5px] leading-snug text-[color:var(--color-ink)]/85">{r.f}</span>
+              <span className="text-[14px] leading-snug text-[color:var(--color-ink)]/85">{r.f}</span>
               {r.c.map((cell, j) => (
                 <span key={j} className="flex justify-center">{renderCell(cell)}</span>
               ))}
@@ -94,7 +94,7 @@ export function V3Matrix({ middleLabel = "Housekeeper", showTitle = true }: { mi
           <div className="grid grid-cols-[1.6fr_repeat(3,0.8fr)] items-center gap-2 border-t border-[color:var(--color-ink)]/10 px-4 py-4 sm:px-6">
             <span />
             {TIERS.map((t) => (
-              <a key={t.name} href="/howa/coming-soon" className="mx-auto rounded-md px-3 py-1.5 text-center text-[12px] transition-opacity hover:opacity-90" style={{ background: t.accent, color: t.accent === "#c5a960" ? "#1d2a40" : "#fff" }}>
+              <a key={t.name} href="/howa/coming-soon" className="mx-auto rounded-md px-3 py-1.5 text-center text-[14px] transition-opacity hover:opacity-90" style={{ background: t.accent, color: t.accent === "#c5a960" ? "#1d2a40" : "#fff" }}>
                 {t.name === "Steward" ? "Apply" : "Choose"}
               </a>
             ))}

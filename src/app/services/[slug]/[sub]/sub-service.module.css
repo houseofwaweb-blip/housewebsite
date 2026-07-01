@@ -7,7 +7,7 @@
    ────────────────────────────────────────────────────────── */
 .sectionEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -45,7 +45,7 @@
   display: inline-flex; align-items: center; gap: 10px;
   padding: 13px 26px;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
@@ -89,7 +89,7 @@
 .heroCopyInner { max-width: 580px; }
 .heroEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -145,7 +145,7 @@
   background: rgba(30, 26, 20, 0.34);
   color: #fff;
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -311,7 +311,7 @@
 .relatedCta {
   margin-top: 12px;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -328,7 +328,7 @@
 }
 .closingKicker {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);

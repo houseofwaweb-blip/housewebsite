@@ -6,7 +6,7 @@
 .crumbs {
   padding: 16px clamp(40px, 5vw, 88px);
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -37,7 +37,7 @@
 /* Gallery — thumbnail rail + main image */
 .gallery {
   display: flex;
-  gap: clamp(12px, 1.1vw, 18px);
+  gap: clamp(14px, 1.1vw, 18px);
   align-items: flex-start;
   min-width: 0;
 }
@@ -82,8 +82,8 @@
 /* Wax-seal "stamp of approval" on the product image */
 .imgSeal {
   position: absolute;
-  top: clamp(12px, 1.4vw, 18px);
-  right: clamp(12px, 1.4vw, 18px);
+  top: clamp(14px, 1.4vw, 18px);
+  right: clamp(14px, 1.4vw, 18px);
   z-index: 2;
   width: clamp(64px, 6vw, 82px);
   height: clamp(64px, 6vw, 82px);
@@ -141,7 +141,7 @@
 }
 .plaqueLabel {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   font-weight: 500;
@@ -167,7 +167,7 @@
 .eyebrowRow { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
 .collection {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -175,7 +175,7 @@
 }
 .seal {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -213,7 +213,7 @@
   display: inline-block;
   padding: 14px 26px;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -248,7 +248,7 @@
 .relatedHead { max-width: 1320px; margin: 0 auto clamp(28px, 3vw, 40px); }
 .relatedEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -276,7 +276,7 @@
 .relatedFootLink {
   display: inline-flex; align-items: center; gap: 12px;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-house-brown);

@@ -19,7 +19,7 @@ export function FormStatus({ status, dark }: { status: FormStatusState; dark?: b
       role="status"
       aria-live="polite"
       className={cn(
-        "font-sans text-[12px] tracking-[0.04em] mt-6 pb-3 border-b",
+        "font-sans text-[14px] tracking-[0.04em] mt-6 pb-3 border-b",
         dark
           ? "text-house-cream border-house-cream/15"
           : "text-house-brown border-house-brown/15",

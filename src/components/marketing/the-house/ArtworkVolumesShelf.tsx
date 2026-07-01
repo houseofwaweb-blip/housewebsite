@@ -155,7 +155,7 @@ export function ArtworkVolumesShelf() {
           ) : (
             <div className="animate-[fadeIn_0.3s_ease-out]">
               <p
-                className="font-sans text-[11px] tracking-[0.32em] uppercase mb-2 font-medium"
+                className="font-sans text-[12px] tracking-[0.32em] uppercase mb-2 font-medium"
                 style={{ color: VOLUMES[hovered].colour }}
               >
                 {VOLUMES[hovered].brand}

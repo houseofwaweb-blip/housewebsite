@@ -27,7 +27,7 @@ export function HearthPaywall() {
         </div>
 
         <div>
-          <p className="font-hearth-sans text-[11px] tracking-[0.24em] uppercase text-house-gold-dark mb-2 flex items-center gap-2">
+          <p className="font-hearth-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-dark mb-2 flex items-center gap-2">
             <span>Housekeeper · The Hearth</span>
             <span aria-hidden="true" className="text-house-gold-dark/40">·</span>
             <span className="text-house-stone">Members only</span>
@@ -45,7 +45,7 @@ export function HearthPaywall() {
 
           <div className="grid grid-cols-2 gap-8 mb-7 py-6 border-t border-b border-house-brown/12 max-md:grid-cols-1 max-md:gap-4">
             <div>
-              <p className="font-hearth-sans text-[11px] tracking-[0.24em] uppercase text-house-gold-dark mb-3">
+              <p className="font-hearth-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-dark mb-3">
                 What you get
               </p>
               <ul className="list-none m-0 p-0">
@@ -66,7 +66,7 @@ export function HearthPaywall() {
               </ul>
             </div>
             <div>
-              <p className="font-hearth-sans text-[11px] tracking-[0.24em] uppercase text-house-gold-dark mb-3">
+              <p className="font-hearth-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-dark mb-3">
                 Why it&apos;s worth it
               </p>
               <ul className="list-none m-0 p-0">
@@ -92,18 +92,18 @@ export function HearthPaywall() {
             <p className="font-hearth-serif text-[16px] text-house-black">
               <strong className="font-medium text-[26px]">£16.99</strong>
               <span className="ml-1">/month</span>
-              <em className="italic text-house-stone text-[13px] ml-2">VAT inc.</em>
+              <em className="italic text-house-stone text-[14px] ml-2">VAT inc.</em>
             </p>
             <div className="flex items-center gap-5 flex-wrap max-md:w-full">
               <Link
                 href="/api/howa-bounce?source=hearth-paywall"
-                className="inline-block px-7 py-3.5 font-hearth-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light hover:shadow-[0_8px_24px_rgba(184,148,62,0.3)] max-md:flex-1 max-md:text-center"
+                className="inline-block px-7 py-3.5 font-hearth-sans text-[14px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light hover:shadow-[0_8px_24px_rgba(184,148,62,0.3)] max-md:flex-1 max-md:text-center"
               >
                 Coming soon
               </Link>
               <Link
                 href="/howa/plans"
-                className="font-hearth-sans text-[11px] tracking-[0.18em] uppercase text-house-brown no-underline border-b border-dotted border-house-brown pb-px transition-colors duration-[var(--t-base)] hover:text-house-gold-dark hover:border-house-gold"
+                className="font-hearth-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline border-b border-dotted border-house-brown pb-px transition-colors duration-[var(--t-base)] hover:text-house-gold-dark hover:border-house-gold"
               >
                 Compare plans
               </Link>
@@ -114,13 +114,13 @@ export function HearthPaywall() {
             Already a member?{" "}
             <a
               href="https://accounts.willowalexander.co.uk/"
-              className="font-hearth-sans text-[11px] tracking-[0.16em] uppercase text-house-brown no-underline border-b border-dotted border-house-brown pb-px transition-colors hover:text-house-gold-dark hover:border-house-gold"
+              className="font-hearth-sans text-[12px] tracking-[0.16em] uppercase text-house-brown no-underline border-b border-dotted border-house-brown pb-px transition-colors hover:text-house-gold-dark hover:border-house-gold"
             >
               Log in
             </a>
           </p>
 
-          <div className="mt-6 pt-5 border-t border-house-brown/8 flex gap-5 justify-center flex-wrap font-hearth-sans text-[11px] tracking-[0.14em] uppercase text-house-stone">
+          <div className="mt-6 pt-5 border-t border-house-brown/8 flex gap-5 justify-center flex-wrap font-hearth-sans text-[12px] tracking-[0.14em] uppercase text-house-stone">
             {["14-day refund", "Cancel anytime", "Your record stays yours"].map(
               (s) => (
                 <span key={s} className="flex items-center gap-1.5">

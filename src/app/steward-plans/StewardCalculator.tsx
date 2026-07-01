@@ -69,27 +69,27 @@ export function StewardCalculator() {
               />
               {s.label}
             </label>
-            <span className="font-sans text-[12px] text-house-stone">{s.freq}</span>
+            <span className="font-sans text-[14px] text-house-stone">{s.freq}</span>
           </div>
         ))}
       </div>
 
       {/* Result panel */}
       <div className="bg-howa-navy text-house-cream px-[32px] py-[36px] md:sticky md:top-[70px]">
-        <div className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-light mb-[8px]">
+        <div className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-light mb-[8px]">
           Your estimate
         </div>
         <div className="font-display font-medium text-[48px] text-house-cream mb-[4px]">
           £{match.price.toLocaleString()}
         </div>
-        <div className="font-sans text-[13px] text-house-cream/60 mb-[24px]">per month</div>
+        <div className="font-sans text-[14px] text-house-cream/60 mb-[24px]">per month</div>
 
-        <div className="font-sans text-[11px] tracking-[0.18em] uppercase text-house-gold-light mb-[6px]">
+        <div className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-light mb-[6px]">
           Best match
         </div>
         <div className="font-display font-medium text-[24px] mb-[20px]">{match.name}</div>
 
-        <ul className="list-none pl-[16px] text-[13px] leading-[1.8] text-house-cream/78 mb-[24px]">
+        <ul className="list-none pl-[16px] text-[14px] leading-[1.8] text-house-cream/78 mb-[24px]">
           {match.list.map((l) => (
             <li key={l} className="relative py-[2px] before:content-['—'] before:absolute before:-left-[16px] before:text-house-gold-light">
               {l}
@@ -98,12 +98,12 @@ export function StewardCalculator() {
         </ul>
 
         <div className="flex flex-col gap-[10px]">
-          <span className="block w-full text-center px-[32px] py-[14px] font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold-dark border border-house-gold cursor-default">
+          <span className="block w-full text-center px-[32px] py-[14px] font-sans text-[14px] tracking-[0.18em] uppercase text-white bg-house-gold-dark border border-house-gold cursor-default">
             Subscription coming soon
           </span>
           <Link
             href="#open-booking-form"
-            className="block w-full text-center px-[32px] py-[14px] font-sans text-[12px] tracking-[0.18em] uppercase text-house-cream border border-house-cream/35 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-cream/10"
+            className="block w-full text-center px-[32px] py-[14px] font-sans text-[14px] tracking-[0.18em] uppercase text-house-cream border border-house-cream/35 no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-cream/10"
           >
             Book individual services →
           </Link>

@@ -72,7 +72,7 @@ function Rail({ title, cards, viewAllHref }: { title: string; cards: Card[]; vie
           <h2 className="font-display italic text-[clamp(22px,2.6vw,32px)] text-house-brown">{title}</h2>
           <Link
             href={viewAllHref}
-            className="font-sans text-[11px] tracking-[0.18em] uppercase text-house-gold-dark no-underline border-b border-house-gold/40 pb-1"
+            className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-dark no-underline border-b border-house-gold/40 pb-1"
           >
             View all →
           </Link>
@@ -97,7 +97,7 @@ function Rail({ title, cards, viewAllHref }: { title: string; cards: Card[]; vie
               <p className="font-display text-[15px] leading-[1.25] text-house-brown group-hover:text-house-gold-dark transition-colors">
                 {c.title}
               </p>
-              <p className="font-sans text-[13px] text-house-stone mt-0.5">{c.price}</p>
+              <p className="font-sans text-[14px] text-house-stone mt-0.5">{c.price}</p>
             </Link>
           ))}
         </div>
@@ -126,7 +126,7 @@ function FeaturedProduct({ p }: { p: Slide | null }) {
           />
         </Link>
         <div className="text-house-cream">
-          <p className="font-sans text-[11px] tracking-[0.3em] uppercase text-house-gold-dark mb-5">The piece this week</p>
+          <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-dark mb-5">The piece this week</p>
           <h2 className="font-display text-[clamp(28px,3.4vw,46px)] leading-[1.06] mb-4">{p.title}</h2>
           <p className="font-sans text-[15px] text-house-cream/70 mb-5">{p.price}</p>
           {p.excerpt ? (
@@ -146,7 +146,7 @@ function FeaturedProduct({ p }: { p: Slide | null }) {
               variantId={p.variantId}
               multiVariant={p.multiVariant}
               inStock={p.inStock}
-              className="inline-flex items-center justify-center font-sans text-[11px] tracking-[0.18em] uppercase text-house-brown bg-house-gold px-8 py-4 no-underline transition-colors hover:bg-house-cream disabled:opacity-70 cursor-pointer"
+              className="inline-flex items-center justify-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown bg-house-gold px-8 py-4 no-underline transition-colors hover:bg-house-cream disabled:opacity-70 cursor-pointer"
             />
           </div>
         </div>
@@ -184,8 +184,8 @@ function TwoCollections() {
             />
             <div className="absolute inset-x-0 bottom-0 p-7">
               <p className="font-display text-[clamp(22px,2.4vw,34px)] leading-tight text-white">{b.name}</p>
-              <p className="font-sans text-[12.5px] text-white/80 mt-1.5">{b.sub}</p>
-              <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-white/90 mt-4 transition-colors group-hover:text-white">
+              <p className="font-sans text-[14px] text-white/80 mt-1.5">{b.sub}</p>
+              <p className="font-sans text-[12px] tracking-[0.2em] uppercase text-white/90 mt-4 transition-colors group-hover:text-white">
                 Explore the collection →
               </p>
             </div>
@@ -254,7 +254,7 @@ export default async function ShopPage() {
       <section className="relative overflow-hidden border-b border-house-brown/8 px-[5vw] pt-12 pb-9 text-center">
         <FlowerWatermark color="gold" side="right" opacity={0.18} />
         <div className="relative z-10 max-w-[680px] mx-auto">
-          <p className="font-sans text-[11px] tracking-[0.3em] uppercase text-house-gold-dark mb-3">
+          <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-dark mb-3">
             The House · Marketplace
           </p>
           <h1 className="font-display text-[clamp(30px,3.4vw,48px)] leading-[1.05] tracking-[-0.01em] text-house-brown">
@@ -263,14 +263,14 @@ export default async function ShopPage() {
               in the House.
             </em>
           </h1>
-          <p className="font-sans text-[13.5px] text-house-stone max-w-[460px] mx-auto mt-4 leading-[1.6]">
+          <p className="font-sans text-[14px] text-house-stone max-w-[460px] mx-auto mt-4 leading-[1.6]">
             An edited cabinet, not a catalogue. Each thing here is House Approved,
             chosen for how it is made, how long it lasts, and whether it can be
             mended rather than replaced.
           </p>
           <Link
             href="/shop/all"
-            className="inline-flex items-center justify-center font-sans text-[11px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold px-7 py-3.5 no-underline transition-colors hover:bg-house-gold-dark hover:border-house-gold-dark mt-7"
+            className="inline-flex items-center justify-center font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold px-7 py-3.5 no-underline transition-colors hover:bg-house-gold-dark hover:border-house-gold-dark mt-7"
           >
             Shop all products
           </Link>
@@ -281,7 +281,7 @@ export default async function ShopPage() {
       <section className="px-[5vw] py-[clamp(44px,6vw,80px)] border-b border-house-brown/8">
         <div className="max-w-[1280px] mx-auto">
           <div className="mb-8">
-            <p className="font-sans text-[11px] tracking-[0.3em] uppercase text-house-gold-dark mb-2">
+            <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-dark mb-2">
               Room by room
             </p>
             <h2 className="font-display italic text-[clamp(26px,3vw,40px)] leading-[1.05] text-house-brown">
@@ -312,7 +312,7 @@ export default async function ShopPage() {
                   />
                   <div className="absolute inset-x-0 bottom-0 p-5 text-center">
                     <p className="font-display text-[clamp(19px,2.1vw,28px)] leading-[1.1] text-white">{r.name}</p>
-                    <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-white/80 mt-2 transition-colors group-hover:text-white">
+                    <p className="font-sans text-[12px] tracking-[0.2em] uppercase text-white/80 mt-2 transition-colors group-hover:text-white">
                       Shop the room →
                     </p>
                   </div>
@@ -324,13 +324,13 @@ export default async function ShopPage() {
                   className="group relative block aspect-[4/5] overflow-hidden bg-house-cream-dark no-underline"
                 >
                   <span aria-hidden className="absolute inset-4 border border-house-brown/15" />
-                  <span className="absolute top-6 left-0 right-0 text-center font-sans text-[11px] tracking-[0.3em] uppercase text-house-gold-dark">
+                  <span className="absolute top-6 left-0 right-0 text-center font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-dark">
                     Placeholder image
                   </span>
                   <span className="absolute inset-0 flex items-center justify-center px-4 text-center font-display text-[clamp(19px,2.1vw,28px)] leading-[1.1] text-house-brown">
                     {r.name}
                   </span>
-                  <span className="absolute bottom-6 left-0 right-0 text-center font-sans text-[11px] tracking-[0.2em] uppercase text-house-stone transition-colors group-hover:text-house-gold-dark">
+                  <span className="absolute bottom-6 left-0 right-0 text-center font-sans text-[12px] tracking-[0.2em] uppercase text-house-stone transition-colors group-hover:text-house-gold-dark">
                     Shop the room →
                   </span>
                 </Link>

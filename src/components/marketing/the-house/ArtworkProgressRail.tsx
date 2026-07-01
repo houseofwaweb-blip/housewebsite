@@ -142,7 +142,7 @@ export function ArtworkProgressRail() {
                   />
                   <span
                     className={
-                      "font-sans text-[11px] tracking-[0.2em] uppercase transition-colors duration-200 whitespace-nowrap " +
+                      "font-sans text-[12px] tracking-[0.2em] uppercase transition-colors duration-200 whitespace-nowrap " +
                       (isActive
                         ? darkBg
                           ? "text-house-cream font-medium"

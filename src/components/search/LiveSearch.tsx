@@ -122,7 +122,7 @@ export function LiveSearch({
                   scheduleQuery(query, t.id);
                 }}
                 className={cn(
-                  "font-sans text-[11px] tracking-[0.22em] uppercase bg-transparent border-0 cursor-pointer py-1 transition-[color,border-color,opacity,padding] duration-[var(--t-base)] ease-out",
+                  "font-sans text-[12px] tracking-[0.22em] uppercase bg-transparent border-0 cursor-pointer py-1 transition-[color,border-color,opacity,padding] duration-[var(--t-base)] ease-out",
                   active
                     ? "text-house-gold-dark border-b border-house-gold opacity-100 pb-1.5"
                     : "text-house-brown/65 hover:text-house-brown hover:opacity-100",
@@ -162,7 +162,7 @@ export function LiveSearch({
                 "opacity-0 [animation:howa-slide-in_var(--t-xslow)_var(--ease-out)_forwards]",
               )}
             >
-              <div className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-stone mb-1">
+              <div className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-stone mb-1">
                 {r.type}
               </div>
               <h5 className="font-sans text-[20px] text-house-brown m-0 mb-1">{r.title}</h5>

@@ -24,7 +24,7 @@ export function HowaFaq() {
   return (
     <section id="faq" className="bg-[#f4f1e9] scroll-mt-20">
       <div className="mx-auto max-w-[860px] px-6 sm:px-10 py-20">
-        <p className="smallcaps mb-4 text-center text-[11px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">Questions</p>
+        <p className="smallcaps mb-4 text-center text-[12px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">Questions</p>
         <h2 className="mb-12 text-center font-display text-[clamp(29px,3.2vw,44px)] leading-[1.1] tracking-[-0.005em]">
           Before <span className="font-italic-display text-[#c5a960]">you begin.</span>
         </h2>

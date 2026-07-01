@@ -163,7 +163,7 @@ export function NewsletterInline({
 
           <span
             className={cn(
-              "block mb-5 font-sans text-[11px] tracking-[0.22em] uppercase",
+              "block mb-5 font-sans text-[12px] tracking-[0.22em] uppercase",
               isDark ? "text-house-gold-light" : "text-[var(--house-gold-dark)]",
             )}
           >
@@ -245,7 +245,7 @@ export function NewsletterInline({
                 <fieldset className="mb-5">
                   <legend
                     className={cn(
-                      "font-sans text-[11px] tracking-[0.18em] uppercase mb-2",
+                      "font-sans text-[12px] tracking-[0.18em] uppercase mb-2",
                       isDark ? "text-house-cream/55" : "text-house-brown/50",
                     )}
                   >
@@ -262,7 +262,7 @@ export function NewsletterInline({
                           aria-pressed={active}
                           title={it.hint}
                           className={cn(
-                            "font-sans text-[12px] tracking-[0.04em] px-3 py-2 border cursor-pointer transition-colors duration-[var(--t-base)] select-none",
+                            "font-sans text-[14px] tracking-[0.04em] px-3 py-2 border cursor-pointer transition-colors duration-[var(--t-base)] select-none",
                             active
                               ? isDark
                                 ? "bg-house-gold-light text-house-brown border-house-gold-light"
@@ -282,7 +282,7 @@ export function NewsletterInline({
                 <button
                   type="submit"
                   disabled={state === "submitting"}
-                  className="w-full text-house-cream font-sans text-[11px] tracking-[0.18em] uppercase px-5 py-3.5 border-0 cursor-pointer disabled:opacity-60 transition-colors duration-[var(--t-base)]"
+                  className="w-full text-house-cream font-sans text-[12px] tracking-[0.18em] uppercase px-5 py-3.5 border-0 cursor-pointer disabled:opacity-60 transition-colors duration-[var(--t-base)]"
                   style={{ background: "var(--house-gold-dark)" }}
                 >
                   {state === "submitting" ? "\u2026" : buttonLabel}
@@ -291,7 +291,7 @@ export function NewsletterInline({
 
               <p
                 className={cn(
-                  "font-sans text-[11px] tracking-[0.12em] uppercase mt-4",
+                  "font-sans text-[12px] tracking-[0.12em] uppercase mt-4",
                   isDark ? "text-house-cream/40" : "text-house-brown/40",
                 )}
               >

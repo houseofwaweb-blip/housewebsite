@@ -120,7 +120,7 @@ export function EnquiryForm({
       <div className="mx-auto grid max-w-[1080px] items-start gap-[clamp(28px,4vw,64px)] md:grid-cols-2">
         {/* Copy */}
         <div>
-          <p className={cn("mb-4 font-sans text-[11px] tracking-[0.3em] uppercase", isDark ? "text-house-gold-light" : "text-house-gold-dark")}>
+          <p className={cn("mb-4 font-sans text-[12px] tracking-[0.3em] uppercase", isDark ? "text-house-gold-light" : "text-house-gold-dark")}>
             {eyebrow}
           </p>
           <h2 className={cn("font-display text-[clamp(28px,3.2vw,44px)] leading-[1.08] mb-4", isDark ? "text-house-cream" : "text-house-brown")}>
@@ -129,7 +129,7 @@ export function EnquiryForm({
           <p className={cn("font-sans text-[15px] leading-[1.7] max-w-[44ch]", isDark ? "text-house-cream/70" : "text-house-stone")}>
             {body}
           </p>
-          <p className={cn("font-sans text-[13px] mt-6", isDark ? "text-house-cream/60" : "text-house-stone")}>
+          <p className={cn("font-sans text-[14px] mt-6", isDark ? "text-house-cream/60" : "text-house-stone")}>
             Prefer to book online?{" "}
             <a href="#open-booking-form" className={cn("underline underline-offset-[3px]", isDark ? "text-house-gold-light" : "text-house-gold-dark")}>
               Book through HoWA
@@ -177,19 +177,19 @@ export function EnquiryForm({
               <textarea value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="How can we help? Tell us a little about your home." aria-label="Your message" rows={4} className={cn(field, "resize-y")} />
 
               {state === "error" ? (
-                <p className="font-sans text-[13px] text-[#8b3a3a]" role="alert">{error}</p>
+                <p className="font-sans text-[14px] text-[#8b3a3a]" role="alert">{error}</p>
               ) : null}
 
               <button
                 type="submit"
                 disabled={state === "submitting"}
-                className="w-full font-sans text-[11px] tracking-[0.18em] uppercase text-white border-0 px-5 py-4 cursor-pointer disabled:opacity-60 transition-colors"
+                className="w-full font-sans text-[12px] tracking-[0.18em] uppercase text-white border-0 px-5 py-4 cursor-pointer disabled:opacity-60 transition-colors"
                 style={{ background: "var(--color-house-gold-dark)" }}
               >
                 {state === "submitting" ? "Sending…" : buttonLabel}
               </button>
 
-              <p className={cn("font-sans text-[11px] tracking-[0.1em] uppercase mt-1", isDark ? "text-house-cream/40" : "text-house-brown/40")}>
+              <p className={cn("font-sans text-[12px] tracking-[0.1em] uppercase mt-1", isDark ? "text-house-cream/40" : "text-house-brown/40")}>
                 We reply personally &middot;{" "}
                 <Link href="/legal/privacy" className="underline underline-offset-[3px]">Privacy Policy</Link>
               </p>

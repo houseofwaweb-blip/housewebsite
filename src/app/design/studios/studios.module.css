@@ -22,7 +22,7 @@
 .heroCopyInner { max-width: 580px; }
 .heroEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -77,7 +77,7 @@
   display: inline-flex; align-items: center; gap: 10px;
   padding: 13px 26px;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
@@ -111,7 +111,7 @@
 .statsLede { padding-right: clamp(24px, 3vw, 56px); }
 .statsLedeLine1 {
   font-family: var(--font-sans);
-  font-size: clamp(13px, 1.1vw, 15px);
+  font-size: clamp(14px, 1.1vw, 15px);
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -121,7 +121,7 @@
 }
 .statsLedeLine2 {
   font-family: var(--font-sans);
-  font-size: clamp(11px, 0.9vw, 13px);
+  font-size: clamp(12px, 0.9vw, 13px);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -145,7 +145,7 @@
 }
 .statLabel {
   font-family: var(--font-sans);
-  font-size: clamp(11px, 0.75vw, 10px);
+  font-size: clamp(12px, 0.75vw, 10px);
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -169,7 +169,7 @@
 }
 .studiosEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -227,7 +227,7 @@
 }
 .studioType {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -265,7 +265,7 @@
   position: relative;
   padding-left: 20px;
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.7);
 }
@@ -279,7 +279,7 @@
   margin-top: auto;
   padding-top: 16px;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -300,7 +300,7 @@
 }
 .testsEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -348,7 +348,7 @@
 }
 .testName {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--color-house-brown);
@@ -376,7 +376,7 @@
 }
 .commissionEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -428,7 +428,7 @@
 .commissionStepBody { display: flex; flex-direction: column; gap: 8px; }
 .commissionStepName {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--color-house-brown);
@@ -451,7 +451,7 @@
 }
 .closingKicker {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);

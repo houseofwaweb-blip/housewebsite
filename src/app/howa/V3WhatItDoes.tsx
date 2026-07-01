@@ -55,13 +55,13 @@ export function V3WhatItDoes() {
                 <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[color:var(--color-gold)]/12 text-[color:var(--color-gold-deep)]">
                   {c.icon}
                 </span>
-                <span className="smallcaps inline-flex items-center gap-1.5 rounded-full bg-[color:var(--color-howa-green)]/10 px-2.5 py-1 text-[11px] tracking-[0.14em] text-[color:var(--color-howa-green)]">
+                <span className="smallcaps inline-flex items-center gap-1.5 rounded-full bg-[color:var(--color-howa-green)]/10 px-2.5 py-1 text-[12px] tracking-[0.14em] text-[color:var(--color-howa-green)]">
                   <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--color-howa-green)]" /> Live now
                 </span>
               </div>
               <h3 className="font-display text-[22px] leading-[1.1]">{c.title}</h3>
               {c.kicker && (
-                <p className="smallcaps mt-1.5 text-[11px] tracking-[0.16em] text-[color:var(--color-gold-deep)]">{c.kicker}</p>
+                <p className="smallcaps mt-1.5 text-[12px] tracking-[0.16em] text-[color:var(--color-gold-deep)]">{c.kicker}</p>
               )}
               <p className="mt-3 text-[16px] leading-[1.5] text-[color:var(--color-ink-soft)]">{c.body}</p>
               {c.examples && (

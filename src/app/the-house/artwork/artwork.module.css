@@ -10,7 +10,7 @@
    ────────────────────────────────────────────────────────── */
 .kicker {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.36em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -96,7 +96,7 @@
 }
 .heroEyebrow {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.36em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -127,7 +127,7 @@
 }
 .heroScrollCue {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.42em;
   text-transform: uppercase;
   color: var(--color-house-brown);
@@ -239,7 +239,7 @@
 }
 .patternRevealCap {
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.7);
   display: flex;
@@ -341,7 +341,7 @@
 .iconLabel {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 13px;
+  font-size: 14px;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
   text-align: center;
@@ -474,7 +474,7 @@
 }
 .closingKicker {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.42em;
   text-transform: uppercase;
   color: var(--color-house-gold-light);
@@ -515,7 +515,7 @@
 .btnFilled,
 .btnGhostLight {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   padding: 14px 26px;
@@ -607,7 +607,7 @@
   .patternRevealInner { grid-template-columns: 1fr; }
   .headline { max-width: 100%; }
   .body { max-width: 100%; }
-  .closingKicker { font-size: 11px; letter-spacing: 0.32em; }
+  .closingKicker { font-size: 12px; letter-spacing: 0.32em; }
   .closingKicker::before,
   .closingKicker::after { width: 20px; }
 }

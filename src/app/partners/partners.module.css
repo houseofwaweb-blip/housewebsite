@@ -22,7 +22,7 @@
 .heroCopyInner { max-width: 580px; }
 .heroEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -77,7 +77,7 @@
   display: inline-flex; align-items: center; gap: 10px;
   padding: 13px 26px;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
@@ -111,7 +111,7 @@
 .statsLede { padding-right: clamp(24px, 3vw, 56px); }
 .statsLedeLine1 {
   font-family: var(--font-sans);
-  font-size: clamp(13px, 1.1vw, 15px);
+  font-size: clamp(14px, 1.1vw, 15px);
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -121,7 +121,7 @@
 }
 .statsLedeLine2 {
   font-family: var(--font-sans);
-  font-size: clamp(11px, 0.9vw, 13px);
+  font-size: clamp(12px, 0.9vw, 13px);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -145,7 +145,7 @@
 }
 .statLabel {
   font-family: var(--font-sans);
-  font-size: clamp(11px, 0.75vw, 10px);
+  font-size: clamp(12px, 0.75vw, 10px);
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -169,7 +169,7 @@
 }
 .categoriesEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -229,7 +229,7 @@
 }
 .categoryEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -256,7 +256,7 @@
 .categoryCta {
   margin-top: 6px;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -277,7 +277,7 @@
 }
 .partnersEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -338,7 +338,7 @@
 }
 .partnerType {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -357,7 +357,7 @@
 }
 .partnerBlurb {
   font-family: var(--font-sans);
-  font-size: 13.5px;
+  font-size: 14px;
   line-height: 1.6;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
@@ -374,7 +374,7 @@
   position: relative;
   padding-left: 16px;
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.68);
 }
@@ -387,7 +387,7 @@
   margin-top: auto;
   padding-top: 10px;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -410,7 +410,7 @@
 }
 .sealEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -453,7 +453,7 @@
 }
 .sealLink {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -470,7 +470,7 @@
 }
 .applyKicker {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);

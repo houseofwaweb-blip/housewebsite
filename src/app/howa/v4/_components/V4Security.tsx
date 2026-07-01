@@ -14,7 +14,7 @@ export function V4Security() {
     <section id="security" className="relative overflow-hidden text-[#f3ede0] scroll-mt-20" style={{ background: "#1d2a40" }}>
       <div className="mx-auto max-w-[1240px] px-6 py-16 sm:px-10 lg:py-20">
         <div className="max-w-[640px]">
-          <p className="smallcaps mb-4 flex items-center gap-2 text-[11px] tracking-[0.18em] text-[#f3ede0]/60">
+          <p className="smallcaps mb-4 flex items-center gap-2 text-[12px] tracking-[0.18em] text-[#f3ede0]/60">
             <span className="h-1.5 w-1.5 rounded-full bg-[#c5a960]" /> Security &amp; privacy
           </p>
           <h2 className="font-display text-[clamp(28px,3vw,44px)] leading-[1.08] text-[#f3ede0]">
@@ -37,7 +37,7 @@ export function V4Security() {
           ))}
         </div>
 
-        <p className="mt-6 font-mono text-[11px] tracking-[0.08em] text-[#f3ede0]/45">
+        <p className="mt-6 font-mono text-[12px] tracking-[0.08em] text-[#f3ede0]/45">
           AES-256 AT REST · TLS 1.3 IN TRANSIT · UK-ONLY · SOC2 ON THE ROADMAP
         </p>
       </div>

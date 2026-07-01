@@ -16,7 +16,7 @@ function ledeIsDistinct(lede?: string, body?: string): boolean {
   return !norm(body).startsWith(l.slice(0, Math.min(40, l.length)));
 }
 
-const SUMMARY = "font-sans text-[12px] tracking-[0.2em] uppercase";
+const SUMMARY = "font-sans text-[14px] tracking-[0.2em] uppercase";
 
 /**
  * ProductCopy — description (with Read more) + the spec accordion list,
@@ -63,7 +63,7 @@ export function ProductCopy({ product: p }: { product: ShopProduct }) {
         <button
           type="button"
           onClick={() => setExpanded((v) => !v)}
-          className="mt-3 font-sans text-[12px] tracking-[0.08em] text-house-brown underline underline-offset-4 decoration-house-brown/40 hover:decoration-house-gold cursor-pointer"
+          className="mt-3 font-sans text-[14px] tracking-[0.08em] text-house-brown underline underline-offset-4 decoration-house-brown/40 hover:decoration-house-gold cursor-pointer"
         >
           {expanded ? "Read less" : "Read more"}
         </button>

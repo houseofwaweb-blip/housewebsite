@@ -15,7 +15,7 @@ export function V6Stewardship() {
     <section className="relative text-[#f3ede0] overflow-hidden" style={{ background: "#27384c" }}>
       <div className="max-w-[1320px] mx-auto px-6 sm:px-10 py-14 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         <div className="lg:col-span-4">
-          <p className="smallcaps text-[11px] tracking-[0.18em] text-[#f3ede0]/60 mb-3 flex items-center gap-2">
+          <p className="smallcaps text-[12px] tracking-[0.18em] text-[#f3ede0]/60 mb-3 flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#c5a960]" /> Stewardship
           </p>
           <h2 className="font-display text-[clamp(29px,2.8vw,42px)] leading-[1.05] text-[#c5a960]">

@@ -171,7 +171,7 @@ export function MegaMenu({
               >
                 {panel.groups.map((group) => (
                   <div key={group.heading}>
-                    <div className="font-sans text-[11px] tracking-[0.28em] uppercase text-house-stone mb-[10px]">
+                    <div className="font-sans text-[12px] tracking-[0.28em] uppercase text-house-stone mb-[10px]">
                       {group.heading}
                     </div>
                     <ul className="flex flex-col gap-[8px] list-none m-0 p-0">
@@ -179,11 +179,11 @@ export function MegaMenu({
                         <li key={link.href}>
                           <Link
                             href={link.href}
-                            className="group inline-flex items-baseline font-sans text-[11px] tracking-[0.14em] uppercase text-house-brown no-underline transition-[color,padding-left] duration-[var(--t-base)] ease-out hover:text-house-gold-dark hover:pl-[4px]"
+                            className="group inline-flex items-baseline font-sans text-[12px] tracking-[0.14em] uppercase text-house-brown no-underline transition-[color,padding-left] duration-[var(--t-base)] ease-out hover:text-house-gold-dark hover:pl-[4px]"
                           >
                             <span>{link.label}</span>
                             {link.description ? (
-                              <span className="font-sans normal-case text-[11px] tracking-[0.02em] text-house-stone ml-[8px]">
+                              <span className="font-sans normal-case text-[12px] tracking-[0.02em] text-house-stone ml-[8px]">
                                 {link.description}
                               </span>
                             ) : null}
@@ -230,7 +230,7 @@ function MegaTrigger({
 }) {
   const classes = cn(
     "group/trigger relative inline-block py-2 px-0 bg-transparent border-0",
-    "font-sans text-[11px] tracking-[0.18em] uppercase cursor-pointer",
+    "font-sans text-[12px] tracking-[0.18em] uppercase cursor-pointer",
     "transition-colors duration-[var(--t-slow)] ease-out",
     dark
       ? "text-house-cream hover:text-house-gold-light"
@@ -294,12 +294,12 @@ function ShopMegaPanel({ shop, isOpen }: { shop: ShopMega; isOpen: boolean }) {
               <Link
                 href={c.href}
                 className={cn(
-                  "group flex items-center justify-between py-[6px] font-sans text-[11px] tracking-[0.12em] uppercase no-underline transition-colors duration-[var(--t-base)]",
+                  "group flex items-center justify-between py-[6px] font-sans text-[12px] tracking-[0.12em] uppercase no-underline transition-colors duration-[var(--t-base)]",
                   i === active ? "text-house-gold-dark" : "text-house-brown hover:text-house-gold-dark",
                 )}
               >
                 <span>{c.title}</span>
-                <span aria-hidden="true" className={cn("text-[13px] transition-opacity duration-[var(--t-base)]", i === active ? "opacity-100" : "opacity-0")}>→</span>
+                <span aria-hidden="true" className={cn("text-[14px] transition-opacity duration-[var(--t-base)]", i === active ? "opacity-100" : "opacity-0")}>→</span>
               </Link>
             </li>
           ))}
@@ -308,10 +308,10 @@ function ShopMegaPanel({ shop, isOpen }: { shop: ShopMega; isOpen: boolean }) {
         {/* Sub-categories of the active category */}
         <div>
           <div className="flex items-baseline justify-between mb-[14px]">
-            <span className="font-sans text-[11px] tracking-[0.28em] uppercase text-house-stone">{cat.title}</span>
+            <span className="font-sans text-[12px] tracking-[0.28em] uppercase text-house-stone">{cat.title}</span>
             <Link
               href={cat.href}
-              className="font-sans text-[11px] tracking-[0.18em] uppercase text-house-gold-dark no-underline hover:pl-[3px] transition-[padding-left] duration-[var(--t-base)]"
+              className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-dark no-underline hover:pl-[3px] transition-[padding-left] duration-[var(--t-base)]"
             >
               View all →
             </Link>
@@ -322,7 +322,7 @@ function ShopMegaPanel({ shop, isOpen }: { shop: ShopMega; isOpen: boolean }) {
                 <li key={s.href}>
                   <Link
                     href={s.href}
-                    className="group inline-flex font-sans text-[12px] text-house-brown no-underline transition-[color,padding-left] duration-[var(--t-base)] ease-out hover:text-house-gold-dark hover:pl-[4px]"
+                    className="group inline-flex font-sans text-[14px] text-house-brown no-underline transition-[color,padding-left] duration-[var(--t-base)] ease-out hover:text-house-gold-dark hover:pl-[4px]"
                   >
                     {s.label}
                   </Link>
@@ -344,11 +344,11 @@ function ShopMegaPanel({ shop, isOpen }: { shop: ShopMega; isOpen: boolean }) {
             <Link
               key={f.href}
               href={f.href}
-              className="font-sans text-[11px] tracking-[0.18em] uppercase text-house-brown no-underline hover:text-house-gold-dark transition-colors duration-[var(--t-base)]"
+              className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline hover:text-house-gold-dark transition-colors duration-[var(--t-base)]"
             >
               {f.label}
               {f.description ? (
-                <span className="font-sans normal-case tracking-[0.02em] text-[11px] text-house-stone ml-[6px]">{f.description}</span>
+                <span className="font-sans normal-case tracking-[0.02em] text-[12px] text-house-stone ml-[6px]">{f.description}</span>
               ) : null}
             </Link>
           ))}

@@ -22,7 +22,7 @@
 .heroCopyInner { max-width: 580px; }
 .heroEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -65,7 +65,7 @@
   display: inline-flex; align-items: center; gap: 10px;
   padding: 13px 26px;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
@@ -99,7 +99,7 @@
 .statsLede { padding-right: clamp(24px, 3vw, 56px); }
 .statsLedeLine1 {
   font-family: var(--font-sans);
-  font-size: clamp(13px, 1.1vw, 15px);
+  font-size: clamp(14px, 1.1vw, 15px);
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -109,7 +109,7 @@
 }
 .statsLedeLine2 {
   font-family: var(--font-sans);
-  font-size: clamp(11px, 0.9vw, 13px);
+  font-size: clamp(12px, 0.9vw, 13px);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -133,7 +133,7 @@
 }
 .statLabel {
   font-family: var(--font-sans);
-  font-size: clamp(11px, 0.75vw, 10px);
+  font-size: clamp(12px, 0.75vw, 10px);
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -157,7 +157,7 @@
 }
 .plansEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -214,7 +214,7 @@
   background: var(--color-house-gold-dark);
   color: var(--color-house-cream);
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   padding: 6px 12px;
@@ -238,7 +238,7 @@
 }
 .planTagline {
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.5;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
@@ -264,7 +264,7 @@
   position: relative;
   padding-left: 20px;
   font-family: var(--font-sans);
-  font-size: 13.5px;
+  font-size: 14px;
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.72);
 }
@@ -278,7 +278,7 @@
   margin-top: auto;
   padding-top: 12px;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -299,7 +299,7 @@
 }
 .studiosEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -373,7 +373,7 @@
 }
 .studioType {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -392,7 +392,7 @@
 }
 .studioBlurb {
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
@@ -401,7 +401,7 @@
   margin-top: auto;
   padding-top: 8px;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -411,7 +411,7 @@
   margin-top: auto;
   padding-top: 8px;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -430,7 +430,7 @@
 }
 .projectsEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -453,7 +453,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 280px;
-  gap: clamp(12px, 1.4vw, 18px);
+  gap: clamp(14px, 1.4vw, 18px);
 }
 .projectCard {
   position: relative;
@@ -472,7 +472,7 @@
   right: 0;
   padding: 14px 18px;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-house-cream);
@@ -506,7 +506,7 @@
 .quoteText em { font-style: italic; }
 .quoteAttribution {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -531,7 +531,7 @@
 }
 .companionEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);

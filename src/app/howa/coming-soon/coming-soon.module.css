@@ -47,7 +47,7 @@
 .heroCopyInner { max-width: 580px; }
 .heroEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-light);
@@ -106,7 +106,7 @@
 .statsLede { padding-right: clamp(24px, 3vw, 56px); }
 .statsLedeLine1 {
   font-family: var(--font-sans);
-  font-size: clamp(13px, 1.1vw, 15px);
+  font-size: clamp(14px, 1.1vw, 15px);
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -116,7 +116,7 @@
 }
 .statsLedeLine2 {
   font-family: var(--font-sans);
-  font-size: clamp(11px, 0.9vw, 13px);
+  font-size: clamp(12px, 0.9vw, 13px);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(245, 240, 232, 0.55);
@@ -143,7 +143,7 @@
 }
 .statLabel {
   font-family: var(--font-sans);
-  font-size: clamp(11px, 0.75vw, 10px);
+  font-size: clamp(12px, 0.75vw, 10px);
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -170,7 +170,7 @@
 }
 .whatsEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-light);
@@ -240,7 +240,7 @@
 }
 .closingKicker {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-light);
@@ -269,7 +269,7 @@
   display: inline-block;
   padding: 14px 28px;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;

@@ -28,7 +28,7 @@
 .heroCopyInner { max-width: 580px; }
 .heroEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -71,7 +71,7 @@
 .heroCtas { display: flex; gap: 12px; flex-wrap: wrap; }
 .heroMicro {
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
   color: rgba(48, 35, 28, 0.72);
   margin: 16px 0 0;
@@ -84,7 +84,7 @@
   gap: 10px;
   padding: 13px 26px;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
@@ -126,7 +126,7 @@
 .statsLede { padding-right: clamp(24px, 3vw, 56px); }
 .statsLedeLine1 {
   font-family: var(--font-sans);
-  font-size: clamp(13px, 1.1vw, 15px);
+  font-size: clamp(14px, 1.1vw, 15px);
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -136,7 +136,7 @@
 }
 .statsLedeLine2 {
   font-family: var(--font-sans);
-  font-size: clamp(11px, 0.9vw, 13px);
+  font-size: clamp(12px, 0.9vw, 13px);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -163,7 +163,7 @@
 }
 .statLabel {
   font-family: var(--font-sans);
-  font-size: clamp(11px, 0.75vw, 10px);
+  font-size: clamp(12px, 0.75vw, 10px);
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -189,7 +189,7 @@
 }
 .servicesEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -264,7 +264,7 @@
   bottom: 12px;
   left: 12px;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   font-weight: 500;
@@ -282,7 +282,7 @@
   background: rgba(30, 26, 20, 0.34);
   color: #fff;
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -330,7 +330,7 @@
 }
 .serviceTagline {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -348,7 +348,7 @@
   margin-top: auto;
   padding-top: 12px;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -427,7 +427,7 @@
 }
 .plansEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -497,7 +497,7 @@
   background: var(--color-house-gold-dark);
   color: var(--color-house-cream);
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   padding: 6px 14px;
@@ -525,7 +525,7 @@
 .planCardFeatured .planPrice { border-bottom-color: rgba(245, 240, 232, 0.18); }
 .planPriceFrom {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -543,7 +543,7 @@
 .planCardFeatured .planPriceAmount { color: var(--color-house-cream); }
 .planPriceUnit {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -563,7 +563,7 @@
   position: relative;
   padding-left: 18px;
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.78);
 }
@@ -607,7 +607,7 @@
 }
 .briefEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -645,7 +645,7 @@
 }
 .briefMockTitle {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-light);
@@ -679,7 +679,7 @@
   color: var(--color-house-gold-light);
 }
 .briefMockLabel {
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(245, 240, 232, 0.55);
@@ -710,7 +710,7 @@
 }
 .faqEy {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-dark);
@@ -743,7 +743,7 @@
 }
 .closingKicker {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-light);
@@ -772,7 +772,7 @@
   display: inline-block;
   padding: 14px 28px;
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
@@ -826,7 +826,7 @@
   .carouselDotActive, .carouselDotActive:hover { width: 20px; }
   .plansGrid { grid-template-columns: 1fr; }
   .briefCopy, .briefMock { padding: 48px 24px; }
-  .briefMockLine { grid-template-columns: 22px 120px 1fr; gap: 8px; font-size: 13px; }
+  .briefMockLine { grid-template-columns: 22px 120px 1fr; gap: 8px; font-size: 14px; }
 }
 
 /* Flower watermark host: clip the off-edge motif, keep content above */

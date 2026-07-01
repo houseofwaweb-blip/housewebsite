@@ -17,7 +17,7 @@ export function V4Fulfilment() {
       <div className="mx-auto max-w-[1180px] px-6 sm:px-10">
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
           <div>
-            <p className="smallcaps mb-3 text-[12px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">Optional fulfilment</p>
+            <p className="smallcaps mb-3 text-[14px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">Optional fulfilment</p>
             <h2 className="font-display text-[clamp(26px,2.8vw,40px)] leading-[1.1] tracking-[-0.01em]">
               Trusted hands, <span className="font-italic-display text-[#c5a960]">always optional.</span>
             </h2>
@@ -38,7 +38,7 @@ export function V4Fulfilment() {
             <div key={s.t} className="rounded-xl border border-[color:var(--color-gold)]/20 bg-white p-5">
               <p className="font-display text-[16px] text-[#c5a960]">{String(i + 1).padStart(2, "0")}</p>
               <p className="mt-1 font-display text-[17px] leading-tight text-[color:var(--color-ink)]">{s.t}</p>
-              <p className="mt-2 text-[13.5px] leading-[1.5] text-[color:var(--color-ink-soft)]/80">{s.b}</p>
+              <p className="mt-2 text-[14px] leading-[1.5] text-[color:var(--color-ink-soft)]/80">{s.b}</p>
             </div>
           ))}
         </div>
@@ -53,7 +53,7 @@ export function V4Managed() {
       <div className="mx-auto max-w-[1180px] px-6 sm:px-10">
         <div className="flex flex-col items-start justify-between gap-6 rounded-2xl border border-[color:var(--color-gold)]/30 bg-white p-8 lg:flex-row lg:items-center lg:p-10">
           <div className="max-w-[640px]">
-            <p className="smallcaps mb-2 text-[11px] tracking-[0.18em] text-[color:var(--color-gold-deep)]">Managed Stewardship · bespoke · by application</p>
+            <p className="smallcaps mb-2 text-[12px] tracking-[0.18em] text-[color:var(--color-gold-deep)]">Managed Stewardship · bespoke · by application</p>
             <h3 className="font-display text-[clamp(22px,2.2vw,32px)] leading-[1.12] tracking-[-0.005em]">
               For larger homes, estates and complex households.
             </h3>

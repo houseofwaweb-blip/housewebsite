@@ -125,7 +125,7 @@ export function ContactForm({ turnstileSiteKey, sourcePage }: ContactFormProps) 
     <div className="space-y-10">
       {/* Step 1 — topic selection */}
       <fieldset>
-        <legend className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-brown/70 mb-4">
+        <legend className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-brown/70 mb-4">
           What's this about?
         </legend>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -149,7 +149,7 @@ export function ContactForm({ turnstileSiteKey, sourcePage }: ContactFormProps) 
                 <div className="font-sans text-[17px] font-medium mb-1.5">
                   {t.label}
                 </div>
-                <div className="font-sans text-[12px] text-house-brown/70 leading-[1.55]">
+                <div className="font-sans text-[14px] text-house-brown/70 leading-[1.55]">
                   {t.blurb}
                 </div>
               </button>
@@ -208,7 +208,7 @@ export function ContactForm({ turnstileSiteKey, sourcePage }: ContactFormProps) 
                 onExpire={() => setValue("turnstileToken", "")}
               />
               {errors.turnstileToken ? (
-                <p className="font-sans text-[12px] text-red-700">
+                <p className="font-sans text-[14px] text-red-700">
                   {errors.turnstileToken.message}
                 </p>
               ) : null}

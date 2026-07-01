@@ -46,7 +46,7 @@ export function ProductSlider({ title, slides }: { title: string; slides: Slide[
         <div className="grid md:grid-cols-2 gap-[clamp(24px,4vw,60px)] items-center">
           {/* Text — left */}
           <div className="order-2 md:order-1">
-            <p className="font-sans text-[11px] tracking-[0.3em] uppercase text-house-gold-dark mb-4">
+            <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-dark mb-4">
               {s.houseApproved ? "House Approved" : "From the collection"}
             </p>
             <h3 className="font-display text-[clamp(26px,3vw,40px)] leading-[1.08] text-house-brown mb-3">
@@ -70,7 +70,7 @@ export function ProductSlider({ title, slides }: { title: string; slides: Slide[
                 variantId={s.variantId}
                 multiVariant={s.multiVariant}
                 inStock={s.inStock}
-                className="inline-flex items-center justify-center font-sans text-[11px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold px-7 py-3.5 no-underline transition-colors hover:bg-house-gold-dark hover:border-house-gold-dark disabled:opacity-70 cursor-pointer"
+                className="inline-flex items-center justify-center font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold px-7 py-3.5 no-underline transition-colors hover:bg-house-gold-dark hover:border-house-gold-dark disabled:opacity-70 cursor-pointer"
               />
             </div>
           </div>

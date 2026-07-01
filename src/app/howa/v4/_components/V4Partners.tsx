@@ -9,14 +9,14 @@ export function V4Partners() {
         <div className="relative mx-auto mb-8 aspect-[1168/784] w-full max-w-[520px] overflow-hidden rounded-2xl ring-1 ring-[color:var(--color-gold)]/25 shadow-[0_30px_70px_-34px_rgba(40,30,10,0.45)]">
           <Image src="/home-v4/v6-interior-design.webp" alt="An interior design styling board of fabric swatches over an elegant Georgian room." fill sizes="(max-width:768px) 92vw, 520px" className="object-cover" />
         </div>
-        <p className="smallcaps mb-3 text-[12px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">Partners</p>
+        <p className="smallcaps mb-3 text-[14px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">Partners</p>
         <p className="font-display text-[clamp(19px,2vw,26px)] leading-[1.3] text-[color:var(--color-ink)]">
           Partners appear where they help the home record.
         </p>
-        <p className="mt-3 smallcaps text-[11px] tracking-[0.16em] text-[color:var(--color-gold-deep)]/75">
+        <p className="mt-3 smallcaps text-[12px] tracking-[0.16em] text-[color:var(--color-gold-deep)]/75">
           Energy · Insurance readiness · Conveyancing · Home goods
         </p>
-        <p className="mt-4 text-[13px] text-[color:var(--color-ink-soft)]/60">
+        <p className="mt-4 text-[14px] text-[color:var(--color-ink-soft)]/60">
           With your consent, and only where they help the home, never a directory or a discounts club.
         </p>
         <a href="mailto:sales@willowalexander.co.uk?subject=HoWA partner enquiry" className="mt-4 inline-flex items-center gap-1.5 text-[14px] text-[color:var(--color-gold-deep)] underline underline-offset-2">

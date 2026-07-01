@@ -16,7 +16,7 @@ export function V4Score() {
       <div className="mx-auto max-w-[1180px] px-6 py-16 sm:px-10 lg:py-24">
         <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
           <div>
-            <p className="smallcaps mb-4 flex items-center gap-2 text-[11px] tracking-[0.18em] text-[#f3ede0]/60">
+            <p className="smallcaps mb-4 flex items-center gap-2 text-[12px] tracking-[0.18em] text-[#f3ede0]/60">
               <span className="h-1.5 w-1.5 rounded-full bg-[#c5a960]" /> HoWA Score
             </p>
             <h2 className="font-display text-[clamp(28px,3.2vw,46px)] leading-[1.08] text-[#f3ede0]">
@@ -39,7 +39,7 @@ export function V4Score() {
             <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-3 rounded-xl bg-[#16243b]/95 px-4 py-3 ring-1 ring-[color:var(--color-gold)]/25 backdrop-blur-[2px]">
               <V4ScoreRing value={62} size={58} stroke={5} />
               <div>
-                <p className="smallcaps text-[11px] tracking-[0.16em] text-[#c5a960]">HoWA Score</p>
+                <p className="smallcaps text-[12px] tracking-[0.16em] text-[#c5a960]">HoWA Score</p>
                 <p className="font-display text-[15px] leading-tight text-[#f3ede0]">62 · In order, with gaps</p>
               </div>
             </div>

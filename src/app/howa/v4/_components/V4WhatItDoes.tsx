@@ -14,7 +14,7 @@ export function V4WhatItDoes() {
     <section id="does" className="scroll-mt-20 bg-[#fbfaf5] py-16 lg:py-24 border-t border-[color:var(--color-ink)]/8">
       <div className="mx-auto max-w-[1180px] px-6 sm:px-10">
         <div className="mb-9 max-w-[680px]">
-          <p className="smallcaps mb-3 text-[12px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">What HoWA does</p>
+          <p className="smallcaps mb-3 text-[14px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">What HoWA does</p>
           <h2 className="font-display text-[clamp(28px,3.2vw,46px)] leading-[1.08] tracking-[-0.01em]">
             Know, ask, act, <span className="font-italic-display text-[#c5a960]">remember.</span>
           </h2>

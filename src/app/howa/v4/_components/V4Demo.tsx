@@ -17,7 +17,7 @@ export function V4Demo() {
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_auto] lg:gap-16">
           {/* copy + what you can do, beside the phone */}
           <div className="min-w-0">
-            <p className="smallcaps mb-3 text-[12px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">Step inside</p>
+            <p className="smallcaps mb-3 text-[14px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">Step inside</p>
             <h2 className="font-display text-[clamp(27px,2.8vw,42px)] leading-[1.08] tracking-[-0.01em]">
               Try the first <span className="font-italic-display text-[#c5a960]">home record.</span>
             </h2>
@@ -29,7 +29,7 @@ export function V4Demo() {
               {can.map((c) => (
                 <li key={c.t} className="rounded-xl border border-[color:var(--color-gold)]/20 bg-white p-4">
                   <p className="font-display text-[16px] leading-tight text-[color:var(--color-ink)]">{c.t}</p>
-                  <p className="mt-1 text-[13px] leading-snug text-[color:var(--color-ink-soft)]/80">{c.b}</p>
+                  <p className="mt-1 text-[14px] leading-snug text-[color:var(--color-ink-soft)]/80">{c.b}</p>
                 </li>
               ))}
             </ul>

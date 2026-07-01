@@ -20,7 +20,7 @@ export function MobileCta({
         {label} <span aria-hidden>&rarr;</span>
       </a>
       {sub ? (
-        <p className="mt-2.5 text-center text-[13px] leading-[1.4] text-[color:var(--color-ink-soft)]/70">{sub}</p>
+        <p className="mt-2.5 text-center text-[14px] leading-[1.4] text-[color:var(--color-ink-soft)]/70">{sub}</p>
       ) : null}
     </div>
   );

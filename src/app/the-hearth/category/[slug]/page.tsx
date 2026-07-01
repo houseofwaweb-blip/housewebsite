@@ -58,7 +58,7 @@ export default async function HearthCategoryPage({
       <HearthCategoryStrip activeSlug={slug} />
 
       <section className="max-w-[1360px] mx-auto px-[5vw] pt-12 pb-2 text-center">
-        <p className="font-hearth-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-dark mb-3">
+        <p className="font-hearth-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-dark mb-3">
           The Hearth
         </p>
         <h1 className="font-hearth-serif text-[clamp(32px,4vw,52px)] leading-[1.05] text-house-black">

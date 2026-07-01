@@ -23,13 +23,13 @@ export function HowaAppBanner() {
 
         {/* Copy */}
         <div className="flex-1 text-[color:var(--color-howa-paper)]">
-          <p className="mb-1.5 font-sans text-[11px] uppercase tracking-[0.3em] text-[color:var(--color-howa-teal)]">
+          <p className="mb-1.5 font-sans text-[12px] uppercase tracking-[0.3em] text-[color:var(--color-howa-teal)]">
             The HoWA app
           </p>
           <p className="font-display text-[clamp(18px,2vw,24px)] leading-[1.2]">
             Your home&apos;s living record, score and next steps, in your pocket.
           </p>
-          <p className="mt-1 font-sans text-[13px] text-[color:var(--color-howa-paper)]/65">
+          <p className="mt-1 font-sans text-[14px] text-[color:var(--color-howa-paper)]/65">
             Coming soon to iPhone and Android.
           </p>
         </div>

@@ -119,7 +119,7 @@ export default async function LocalServicePage({
           ============================================================ */}
       <section className="px-[5vw] pt-[10vh] pb-16 border-b border-house-brown/10">
         <div className="max-w-[960px] mx-auto">
-          <nav aria-label="Breadcrumb" className="font-sans text-[11px] tracking-[0.18em] uppercase text-house-brown/55 mb-7">
+          <nav aria-label="Breadcrumb" className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown/55 mb-7">
             <Link href="/services" className="hover:text-house-brown">Services</Link>
             <span className="mx-2">/</span>
             <Link href={`/services/${entry.service}`} className="hover:text-house-brown">{serviceName}</Link>
@@ -206,16 +206,16 @@ export default async function LocalServicePage({
                 href={`/services/${svc.slug}`}
                 className="group bg-house-cream p-7 no-underline text-house-brown transition-colors hover:bg-house-cream-dark"
               >
-                <p className="font-sans text-[11px] tracking-[0.32em] uppercase text-house-gold-dark mb-3">
+                <p className="font-sans text-[12px] tracking-[0.32em] uppercase text-house-gold-dark mb-3">
                   Service
                 </p>
                 <h3 className="em-accent font-display font-medium text-[22px] leading-[1.15] mb-3">
                   {svc.name}
                 </h3>
-                <p className="font-sans text-[13px] leading-[1.55] text-house-brown/72 mb-4">
+                <p className="font-sans text-[14px] leading-[1.55] text-house-brown/72 mb-4">
                   {svc.blurb}
                 </p>
-                <p className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-dark border-t border-house-brown/10 pt-3">
+                <p className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-dark border-t border-house-brown/10 pt-3">
                   Available in {location} →
                 </p>
               </Link>
@@ -265,7 +265,7 @@ export default async function LocalServicePage({
           ].map((c) => (
             <article key={c.n} className="bg-house-cream p-9">
               <p className="font-display italic text-[14px] text-house-gold-dark mb-3">{c.n}</p>
-              <h3 className="font-sans font-medium text-[12px] tracking-[0.28em] uppercase text-house-brown mb-3">
+              <h3 className="font-sans font-medium text-[14px] tracking-[0.28em] uppercase text-house-brown mb-3">
                 {c.h}
               </h3>
               <p className="font-sans text-[14px] leading-[1.65] text-house-brown/78">
@@ -281,7 +281,7 @@ export default async function LocalServicePage({
           ============================================================ */}
       <section className="px-[5vw] py-20 bg-house-brown text-house-cream text-center">
         <div className="max-w-[680px] mx-auto">
-          <p className="font-sans text-[11px] tracking-[0.32em] uppercase text-house-gold-light mb-5">
+          <p className="font-sans text-[12px] tracking-[0.32em] uppercase text-house-gold-light mb-5">
             Looking after homes in {location}
           </p>
           <h2 className="em-accent font-display font-medium text-[clamp(28px,3.4vw,44px)] leading-[1.1]">
@@ -293,13 +293,13 @@ export default async function LocalServicePage({
           <div className="flex items-center justify-center gap-4 flex-wrap mt-9">
             <Link
               href="/howa/assistant"
-              className="inline-block font-sans text-[12px] tracking-[0.22em] uppercase text-house-brown bg-house-cream border border-house-cream px-7 py-4 no-underline transition-all duration-200 ease-out hover:bg-house-gold hover:border-house-gold"
+              className="inline-block font-sans text-[14px] tracking-[0.22em] uppercase text-house-brown bg-house-cream border border-house-cream px-7 py-4 no-underline transition-all duration-200 ease-out hover:bg-house-gold hover:border-house-gold"
             >
               Launch the Assistant
             </Link>
             <Link
               href="/services"
-              className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-cream/85 underline decoration-house-gold-light underline-offset-4 hover:text-house-cream"
+              className="font-sans text-[14px] tracking-[0.22em] uppercase text-house-cream/85 underline decoration-house-gold-light underline-offset-4 hover:text-house-cream"
             >
               All services →
             </Link>

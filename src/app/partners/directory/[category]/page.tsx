@@ -139,7 +139,7 @@ export default async function DirectoryPage({
                   {/* Type + seal */}
                   <div className="flex items-center justify-between mb-4">
                     <span
-                      className="font-sans text-[11px] tracking-[0.2em] uppercase"
+                      className="font-sans text-[12px] tracking-[0.2em] uppercase"
                       style={{ color: "var(--house-gold-dark)" }}
                     >
                       {TYPE_LABELS[p.type] ?? p.type}
@@ -169,7 +169,7 @@ export default async function DirectoryPage({
                       {p.specialties.slice(0, 4).map((spec) => (
                         <span
                           key={spec}
-                          className="font-sans text-[11px] tracking-[0.06em] text-house-brown/55 border border-house-brown/12 px-2 py-0.5"
+                          className="font-sans text-[12px] tracking-[0.06em] text-house-brown/55 border border-house-brown/12 px-2 py-0.5"
                         >
                           {spec}
                         </span>
@@ -179,14 +179,14 @@ export default async function DirectoryPage({
 
                   {/* Service areas */}
                   {p.serviceAreas && p.serviceAreas.length > 0 && (
-                    <p className="font-sans text-[12px] text-house-brown/50 mb-4">
+                    <p className="font-sans text-[14px] text-house-brown/50 mb-4">
                       {p.serviceAreas.join(" · ")}
                     </p>
                   )}
 
                   {/* CTA */}
                   <span
-                    className="inline-flex items-center gap-2 font-sans text-[12px] tracking-[0.16em] uppercase transition-colors duration-[var(--t-base)] group-hover:text-[var(--house-gold-dark)]"
+                    className="inline-flex items-center gap-2 font-sans text-[14px] tracking-[0.16em] uppercase transition-colors duration-[var(--t-base)] group-hover:text-[var(--house-gold-dark)]"
                     style={{ color: "var(--house-gold-dark)" }}
                   >
                     View profile
@@ -206,7 +206,7 @@ export default async function DirectoryPage({
         </p>
         <Link
           href="/contact"
-          className="font-sans text-[12px] tracking-[0.16em] uppercase text-house-cream border border-house-cream/40 px-6 py-3 no-underline transition-all duration-[var(--t-base)] hover:bg-house-cream hover:text-house-brown"
+          className="font-sans text-[14px] tracking-[0.16em] uppercase text-house-cream border border-house-cream/40 px-6 py-3 no-underline transition-all duration-[var(--t-base)] hover:bg-house-cream hover:text-house-brown"
         >
           Write to the House
         </Link>

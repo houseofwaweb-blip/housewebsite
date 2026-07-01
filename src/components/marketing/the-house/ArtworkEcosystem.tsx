@@ -117,7 +117,7 @@ export function ArtworkEcosystem() {
     <div className="bg-house-cream px-[5vw] py-24 md:py-32">
       <div className="max-w-[1080px] mx-auto">
         <header className="text-center max-w-[640px] mx-auto mb-16">
-          <p className="font-sans text-[11px] tracking-[0.32em] uppercase text-house-gold-dark mb-5">
+          <p className="font-sans text-[12px] tracking-[0.32em] uppercase text-house-gold-dark mb-5">
             The Ecosystem
           </p>
           <h3 className="font-display font-medium text-[clamp(28px,3.4vw,42px)] leading-[1.15] tracking-[-0.005em] text-house-brown">
@@ -180,7 +180,7 @@ export function ArtworkEcosystem() {
               >
                 <p
                   className={
-                    "font-sans text-[11px] tracking-[0.28em] uppercase mb-1.5 " +
+                    "font-sans text-[12px] tracking-[0.28em] uppercase mb-1.5 " +
                     (isCore ? "text-house-gold-light" : "text-house-gold-dark/80")
                   }
                 >
@@ -204,7 +204,7 @@ export function ArtworkEcosystem() {
                 </p>
                 <p
                   className={
-                    "font-sans text-[12px] leading-[1.5] mt-2 " +
+                    "font-sans text-[14px] leading-[1.5] mt-2 " +
                     (isCore ? "text-house-cream/80" : "text-house-brown/65")
                   }
                 >
@@ -222,7 +222,7 @@ export function ArtworkEcosystem() {
           })}
         </div>
 
-        <p className="text-center font-sans italic text-[13px] text-house-brown/55 mt-10">
+        <p className="text-center font-sans italic text-[14px] text-house-brown/55 mt-10">
           Tap any sibling to enter that world.
         </p>
       </div>

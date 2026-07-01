@@ -20,16 +20,16 @@ export interface StateBadgeProps {
 }
 
 const base =
-  "inline-flex items-center gap-1.5 font-sans text-[11px] " +
+  "inline-flex items-center gap-1.5 font-sans text-[12px] " +
   "tracking-[0.2em] uppercase py-1 px-2.5";
 
 const variants: Record<State, string> = {
   coming: "border border-house-gold text-house-gold-dark bg-house-gold/10 before:content-['●'] before:text-[8px]",
-  live: "border border-house-moss text-house-moss bg-house-moss/10 before:content-['✓'] before:text-[11px]",
-  interest: "border border-howa-teal text-howa-teal bg-howa-teal/5 before:content-['◈'] before:text-[11px]",
+  live: "border border-house-moss text-house-moss bg-house-moss/10 before:content-['✓'] before:text-[12px]",
+  interest: "border border-howa-teal text-howa-teal bg-howa-teal/5 before:content-['◈'] before:text-[12px]",
   soon: "border border-house-stone text-house-stone bg-house-stone/5 opacity-60",
   premium:
-    "border-0 p-0 text-house-gold-dark text-[11px] tracking-[0.22em] " +
+    "border-0 p-0 text-house-gold-dark text-[12px] tracking-[0.22em] " +
     "before:content-['◆'] before:text-[8px] before:mr-0.5",
 };
 

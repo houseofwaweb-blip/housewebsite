@@ -105,7 +105,7 @@ const components: PortableTextComponents = {
             className="w-full h-auto"
           />
           {value.caption ? (
-            <figcaption className="font-sans text-[12px] tracking-[0.04em] text-house-brown/60 mt-3 italic">
+            <figcaption className="font-sans text-[14px] tracking-[0.04em] text-house-brown/60 mt-3 italic">
               {value.caption}
             </figcaption>
           ) : null}
@@ -115,7 +115,7 @@ const components: PortableTextComponents = {
 
     videoEmbed: ({ value }: { value: VideoEmbedBlock }) => {
       const caption = value.caption ? (
-        <figcaption className="font-sans text-[12px] tracking-[0.04em] text-house-brown/60 mt-3 italic text-center">
+        <figcaption className="font-sans text-[14px] tracking-[0.04em] text-house-brown/60 mt-3 italic text-center">
           {value.caption}
         </figcaption>
       ) : null;
@@ -164,7 +164,7 @@ const components: PortableTextComponents = {
           &ldquo;{value.quote}&rdquo;
         </p>
         {value.attribution ? (
-          <cite className="font-sans not-italic text-[11px] tracking-[0.2em] uppercase text-house-brown/55 mt-4 block">
+          <cite className="font-sans not-italic text-[12px] tracking-[0.2em] uppercase text-house-brown/55 mt-4 block">
             {value.attribution}
           </cite>
         ) : null}
@@ -187,7 +187,7 @@ const components: PortableTextComponents = {
       return (
         <section className="my-14">
           {value.title ? (
-            <h3 className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-brown/60 mb-6">
+            <h3 className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-brown/60 mb-6">
               {value.title}
             </h3>
           ) : null}
@@ -206,7 +206,7 @@ const components: PortableTextComponents = {
                     className="w-full h-auto"
                   />
                   {img.caption ? (
-                    <figcaption className="font-sans text-[11px] text-house-brown/55 italic">
+                    <figcaption className="font-sans text-[12px] text-house-brown/55 italic">
                       {img.caption}
                     </figcaption>
                   ) : null}
@@ -221,7 +221,7 @@ const components: PortableTextComponents = {
     marginNote: ({ value }: { value: MarginNoteBlock }) => (
       <aside className="my-10 md:float-right md:w-[32%] md:ml-8 md:mb-6 border-t border-b border-house-brown/15 py-6">
         {value.label ? (
-          <div className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-dark mb-2">
+          <div className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-dark mb-2">
             {value.label}
           </div>
         ) : null}
@@ -233,7 +233,7 @@ const components: PortableTextComponents = {
 
     inlineProduct: ({ value }: { value: InlineProductBlock }) => (
       <div className="my-10 border border-house-brown/12 p-6 flex flex-col gap-3">
-        <div className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-dark">
+        <div className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-dark">
           From the Shop
         </div>
         <Link
@@ -252,7 +252,7 @@ const components: PortableTextComponents = {
 
     inlineCollection: ({ value }: { value: InlineCollectionBlock }) => (
       <div className="my-10 border-t border-b border-house-brown/12 py-6">
-        <div className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-dark mb-2">
+        <div className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-dark mb-2">
           A House-approved collection
         </div>
         <Link
@@ -287,7 +287,7 @@ const components: PortableTextComponents = {
       </h3>
     ),
     h4: ({ children }) => (
-      <h4 className="font-sans text-[12px] tracking-[0.2em] uppercase mt-10 mb-3 text-house-brown/80">
+      <h4 className="font-sans text-[14px] tracking-[0.2em] uppercase mt-10 mb-3 text-house-brown/80">
         {children}
       </h4>
     ),

@@ -27,7 +27,7 @@ export function V6Partners() {
       <section id="fulfilment" className="bg-[#efe7d5] border-t border-[color:var(--color-gold)]/25 scroll-mt-20">
         <div className="max-w-[1240px] mx-auto px-6 sm:px-10 py-16 lg:py-20 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <div className="lg:col-span-7">
-            <p className="smallcaps text-[11px] tracking-[0.2em] text-[color:var(--color-gold-deep)] mb-5">The House at work</p>
+            <p className="smallcaps text-[12px] tracking-[0.2em] text-[color:var(--color-gold-deep)] mb-5">The House at work</p>
             <h2 className="font-italic-display text-[clamp(28px,3vw,44px)] leading-[1.1] text-[color:var(--color-ink)]">
               When the work needs doing, the House steps in.
             </h2>
@@ -67,7 +67,7 @@ export function V6Partners() {
         <div className="max-w-[1240px] mx-auto px-6 sm:px-10 py-16 lg:py-20">
           <div className="text-center max-w-[660px] mx-auto">
             <SealMark className="mx-auto w-12 h-12 text-[color:var(--color-gold)] opacity-50 mb-5" />
-            <p className="smallcaps text-[11px] tracking-[0.18em] text-[color:var(--color-gold-deep)] mb-4">Partnerships &middot; by the House of Willow Alexander</p>
+            <p className="smallcaps text-[12px] tracking-[0.18em] text-[color:var(--color-gold-deep)] mb-4">Partnerships &middot; by the House of Willow Alexander</p>
             <h2 className="font-italic-display text-[clamp(28px,3vw,44px)] leading-[1.1] text-[color:var(--color-ink)]">
               An exclusive circle of partners.
             </h2>
@@ -83,7 +83,7 @@ export function V6Partners() {
             <p className="mt-7 text-[17px] leading-[1.55] text-[color:var(--color-ink-soft)]">
               Hand-picked British institutions across property, the home and beyond. First names announced soon.
             </p>
-            <p className="mt-7 smallcaps text-[11px] tracking-[0.16em] text-[color:var(--color-gold-deep)]/70 leading-[1.9]">
+            <p className="mt-7 smallcaps text-[12px] tracking-[0.16em] text-[color:var(--color-gold-deep)]/70 leading-[1.9]">
               {CIRCLE.join("  ·  ")}
             </p>
           </div>
@@ -94,7 +94,7 @@ export function V6Partners() {
       <section id="founding-partner" className="text-[#f3ede0] scroll-mt-20" style={{ background: "#1d2a40" }}>
         <div className="max-w-[1240px] mx-auto px-6 sm:px-10 py-14 lg:py-16 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
           <div className="max-w-[680px]">
-            <p className="smallcaps text-[11px] tracking-[0.18em] text-[#f3ede0]/55 mb-4 flex items-center gap-2">
+            <p className="smallcaps text-[12px] tracking-[0.18em] text-[#f3ede0]/55 mb-4 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[#c5a960]" /> Founding partners
             </p>
             <h2 className="font-display text-[clamp(26px,2.6vw,38px)] leading-[1.1] text-[#f3ede0]">

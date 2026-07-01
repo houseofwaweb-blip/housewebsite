@@ -28,7 +28,7 @@ export function ProductBuy({
 
   if (!selected) {
     return (
-      <span className="font-sans text-[12px] tracking-[0.16em] uppercase text-house-stone">
+      <span className="font-sans text-[14px] tracking-[0.16em] uppercase text-house-stone">
         Unavailable
       </span>
     );
@@ -42,7 +42,7 @@ export function ProductBuy({
       <div className="mb-3">
         {/* Buy action stand-in until checkout is live — same size as the Home
             Record button below it, distinct colour (brand brown vs gold) */}
-        <span className="inline-flex w-full items-center justify-center gap-2 px-6 py-4 font-sans text-[11px] tracking-[0.18em] uppercase text-house-cream bg-house-brown border border-house-brown">
+        <span className="inline-flex w-full items-center justify-center gap-2 px-6 py-4 font-sans text-[12px] tracking-[0.18em] uppercase text-house-cream bg-house-brown border border-house-brown">
           Available at launch
         </span>
       </div>
@@ -72,7 +72,7 @@ export function ProductBuy({
     <div className="flex flex-col gap-5 mb-9">
       {multi ? (
         <label className="flex flex-col gap-2">
-          <span className="font-sans text-[11px] tracking-[0.18em] uppercase text-house-stone">
+          <span className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-stone">
             Option
           </span>
           <select
@@ -119,7 +119,7 @@ export function ProductBuy({
           type="button"
           onClick={handleAdd}
           disabled={soldOut || busy}
-          className="flex-1 px-6 font-sans text-[11px] tracking-[0.22em] uppercase text-white bg-house-gold border-0 transition-colors duration-[var(--t-base)] ease-out hover:bg-house-gold-light disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+          className="flex-1 px-6 font-sans text-[12px] tracking-[0.22em] uppercase text-white bg-house-gold-dark border-0 transition-[filter] duration-[var(--t-base)] ease-out hover:brightness-110 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
         >
           {soldOut ? "Sold out" : busy ? "Adding…" : added ? "Added ✓" : "Add to basket"}
         </button>

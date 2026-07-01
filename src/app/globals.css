@@ -291,7 +291,7 @@ body {
 .tier-howaplus .tier-roman,
 .tier-steward .tier-roman {
   font-family: var(--font-hearth-serif); font-style: italic;
-  font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+  font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase;
   margin-bottom: 6px;
 }
 .tier-howa .tier-roman { color: var(--house-gold-dark); }
@@ -300,7 +300,7 @@ body {
   letter-spacing: -0.005em; color: var(--house-brown);
 }
 .tier-howa .tier-price-label {
-  font-family: var(--font-hearth-sans); font-size: 13px;
+  font-family: var(--font-hearth-sans); font-size: 14px;
   color: var(--text-muted); margin-top: 2px; margin-bottom: 20px;
 }
 .tier-howa .tier-preview {
@@ -308,24 +308,24 @@ body {
   padding: 14px; margin-bottom: 22px; min-height: 150px;
 }
 .tier-howa .tier-preview .pp-title {
-  font-family: var(--font-hearth-serif); font-size: 12px; font-style: italic;
+  font-family: var(--font-hearth-serif); font-size: 14px; font-style: italic;
   color: var(--text-muted); margin-bottom: 8px; letter-spacing: 0.04em;
 }
 .tier-howa .tier-preview .pp-row {
   display: flex; justify-content: space-between; align-items: center;
   padding: 6px 0; border-bottom: 1px dashed rgba(48,35,28,0.18);
-  font-family: var(--font-hearth-sans); font-size: 12px; color: var(--house-brown);
+  font-family: var(--font-hearth-sans); font-size: 14px; color: var(--house-brown);
 }
 .tier-howa .tier-preview .pp-row:last-child { border-bottom: none; }
 .tier-howa .tier-preview .pp-row em {
-  font-style: italic; color: var(--text-muted); font-size: 11px;
+  font-style: italic; color: var(--text-muted); font-size: 12px;
 }
 .tier-howa .tier-preview .pp-dot {
   display: inline-block; width: 6px; height: 6px; border-radius: 50% !important;
   background: var(--house-gold-dark); margin-right: 8px; vertical-align: middle;
 }
 .tier-howa ul, .tier-howaplus ul, .tier-steward ul {
-  list-style: none; font-size: 13px; line-height: 1.8; padding-left: 16px; flex: 1;
+  list-style: none; font-size: 14px; line-height: 1.8; padding-left: 16px; flex: 1;
 }
 .tier-howa ul { color: var(--house-brown); }
 .tier-howa ul li, .tier-howaplus ul li, .tier-steward ul li {
@@ -339,7 +339,7 @@ body {
 }
 .tier-howa .tier-cta {
   display: inline-block; font-family: var(--font-hearth-sans);
-  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
   border: 1px solid rgba(48, 35, 28, 0.72); padding: 10px 20px;
   color: var(--house-brown); text-decoration: none; background: transparent;
   transition: background var(--t-base) var(--ease-out), color var(--t-base) var(--ease-out);
@@ -362,7 +362,7 @@ body {
 .tier-howaplus::before {
   content: 'RECOMMENDED'; position: absolute; top: -10px; left: 50%;
   transform: translateX(-50%); background: var(--house-gold-dark); color: #fff;
-  font-family: var(--font-hearth-sans); font-size: 11px;
+  font-family: var(--font-hearth-sans); font-size: 12px;
   letter-spacing: 0.22em; padding: 5px 14px; z-index: 3;
 }
 .tier-howaplus .tier-roman { color: var(--house-gold-dark); }
@@ -383,7 +383,7 @@ body {
 }
 .tier-howaplus .tier-preview .greeting {
   padding: 11px 14px 2px; font-family: var(--font-hearth-sans);
-  font-size: 11px; color: var(--text-muted);
+  font-size: 12px; color: var(--text-muted);
 }
 .tier-howaplus .tier-preview .greeting strong {
   color: var(--house-brown); font-weight: 500;
@@ -397,19 +397,19 @@ body {
   background-image: url('/home/hero-georgian.webp'); filter: saturate(0.92);
 }
 .tier-howaplus .tier-preview .attn-row {
-  padding: 9px 14px; font-family: var(--font-hearth-sans); font-size: 11px;
+  padding: 9px 14px; font-family: var(--font-hearth-sans); font-size: 12px;
   display: flex; justify-content: space-between; align-items: center;
   border-top: 1px solid rgba(48,35,28,0.08); color: var(--house-brown);
 }
 .tier-howaplus .tier-preview .attn-row em {
-  color: var(--house-gold-dark); font-style: normal; font-weight: 500; font-size: 11px;
+  color: var(--house-gold-dark); font-style: normal; font-weight: 500; font-size: 12px;
   padding: 2px 8px; border: 1px solid var(--house-gold-dark);
   letter-spacing: 0.08em; text-transform: uppercase;
 }
 .tier-howaplus ul { color: var(--house-brown); }
 .tier-howaplus .tier-cta {
   display: inline-block; font-family: var(--font-hearth-sans);
-  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
   background: var(--house-gold-dark); color: #fff; border: 1px solid var(--house-gold-dark);
   padding: 11px 22px; text-decoration: none;
   transition: background var(--t-base) var(--ease-out);
@@ -442,13 +442,13 @@ body {
   color: var(--house-cream); letter-spacing: -0.005em;
 }
 .tier-steward .tier-price-label {
-  font-family: var(--font-hearth-sans); font-size: 11px;
+  font-family: var(--font-hearth-sans); font-size: 12px;
   letter-spacing: 0.18em; text-transform: uppercase;
   color: rgba(245,240,232,0.65); margin-top: 2px; margin-bottom: 20px;
 }
 .tier-steward .soon-badge {
   position: absolute; top: 18px; right: 18px; z-index: 2;
-  font-family: var(--font-hearth-sans); font-size: 11px; letter-spacing: 0.2em;
+  font-family: var(--font-hearth-sans); font-size: 12px; letter-spacing: 0.2em;
   padding: 4px 10px; background: rgba(184,148,62,0.15);
   color: var(--house-gold-light); border: 1px solid rgba(184,148,62,0.35);
 }
@@ -461,7 +461,7 @@ body {
   display: flex; flex-direction: column; align-items: center; gap: 8px;
 }
 .tier-steward .gauge-label {
-  font-family: var(--font-hearth-serif); font-size: 11px; font-style: italic;
+  font-family: var(--font-hearth-serif); font-size: 12px; font-style: italic;
   letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,240,232,0.65);
 }
 .tier-steward .gauge {
@@ -484,7 +484,7 @@ body {
   color: var(--house-gold-light); position: relative; z-index: 1;
 }
 .tier-steward .gauge-axes {
-  font-family: var(--font-hearth-sans); font-size: 11px;
+  font-family: var(--font-hearth-sans); font-size: 12px;
   color: rgba(245,240,232,0.55); letter-spacing: 0.14em;
   text-transform: uppercase; text-align: center;
 }
@@ -494,7 +494,7 @@ body {
 }
 .tier-steward .tier-cta {
   display: inline-block; font-family: var(--font-hearth-sans);
-  font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
   border: 1px solid rgba(245,240,232,0.45); padding: 10px 20px;
   color: var(--house-cream); text-decoration: none;
   transition: background var(--t-base) var(--ease-out);
@@ -525,7 +525,7 @@ body {
   background: var(--house-brown);
   color: var(--house-cream);
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   text-decoration: none;

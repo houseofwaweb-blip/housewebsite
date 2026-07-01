@@ -36,7 +36,7 @@ export default function NotFound() {
         <div className="mt-10 flex flex-wrap items-center justify-center gap-6">
           <Link
             href="/"
-            className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold px-6 py-3.5 no-underline transition-colors duration-[var(--t-slow)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
+            className="inline-block font-sans text-[14px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold px-6 py-3.5 no-underline transition-colors duration-[var(--t-slow)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
           >
             Back to the House
           </Link>

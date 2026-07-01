@@ -49,10 +49,10 @@ function FeedArticle({ article }: { article: HearthArticle }) {
             className="w-full h-auto aspect-[4/3] object-cover transition-all duration-[var(--t-xslow)] ease-out group-hover:scale-[1.02]"
           />
         </div>
-        <span className="inline-block mb-2 font-hearth-sans text-[11px] tracking-[0.22em] uppercase text-house-black">
+        <span className="inline-block mb-2 font-hearth-sans text-[12px] tracking-[0.22em] uppercase text-house-black">
           {article.categoryLong ?? article.category}
           {article.isPremium ? (
-            <span className="ml-1.5 text-house-gold-dark text-[11px] tracking-[0.22em] before:content-['◆'] before:text-[8px] before:mr-[2px]">
+            <span className="ml-1.5 text-house-gold-dark text-[12px] tracking-[0.22em] before:content-['◆'] before:text-[8px] before:mr-[2px]">
               Housekeeper
             </span>
           ) : null}
@@ -86,7 +86,7 @@ export function SectionHead({
       {viewAllHref ? (
         <Link
           href={viewAllHref}
-          className="font-hearth-sans text-[11px] tracking-[0.2em] uppercase text-house-black no-underline border-b border-house-gold pb-[3px]"
+          className="font-hearth-sans text-[12px] tracking-[0.2em] uppercase text-house-black no-underline border-b border-house-gold pb-[3px]"
         >
           View all →
         </Link>

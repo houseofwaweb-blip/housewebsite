@@ -89,7 +89,7 @@ export function Header({
           aria-label="Search the site"
           onClick={() => setSearchOpen(true)}
           className={cn(
-            "bg-transparent border-0 cursor-pointer font-sans text-[11px] tracking-[0.16em] uppercase opacity-[0.55] hover:opacity-100",
+            "bg-transparent border-0 cursor-pointer font-sans text-[12px] tracking-[0.16em] uppercase opacity-[0.55] hover:opacity-100",
             "transition-opacity duration-[var(--t-base)]",
             dark ? "text-house-cream" : "text-house-brown",
           )}
@@ -99,7 +99,7 @@ export function Header({
         <a
           href="https://accounts.willowalexander.co.uk/"
           className={cn(
-            "font-sans text-[11px] tracking-[0.16em] uppercase no-underline opacity-[0.55] hover:opacity-100",
+            "font-sans text-[12px] tracking-[0.16em] uppercase no-underline opacity-[0.55] hover:opacity-100",
             "transition-opacity duration-[var(--t-base)]",
             dark ? "text-house-cream" : "text-house-brown",
           )}
@@ -111,7 +111,7 @@ export function Header({
           href={ctaHref}
           className={cn(
             "booknow-button",
-            "font-sans text-[11px] tracking-[0.16em] uppercase text-white bg-house-gold-dark border border-house-gold-dark px-5 py-2.5 no-underline",
+            "font-sans text-[12px] tracking-[0.16em] uppercase text-white bg-house-gold-dark border border-house-gold-dark px-5 py-2.5 no-underline",
             "transition-[filter] duration-[var(--t-slow)] ease-out",
             "hover:brightness-110",
           )}
@@ -167,7 +167,7 @@ export function Header({
             <Link
               href={ctaHref}
               onClick={() => setMobileOpen(false)}
-              className="inline-block font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold-dark px-6 py-4 text-center mb-6 no-underline"
+              className="inline-block font-sans text-[14px] tracking-[0.18em] uppercase text-white bg-house-gold-dark px-6 py-4 text-center mb-6 no-underline"
             >
               {ctaLabel}
             </Link>
@@ -214,7 +214,7 @@ export function Header({
                           <Link
                             href={panel.triggerHref}
                             onClick={() => setMobileOpen(false)}
-                            className="font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-dark no-underline mb-1"
+                            className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-dark no-underline mb-1"
                           >
                             See all {panel.trigger.toLowerCase()} →
                           </Link>
@@ -240,21 +240,21 @@ export function Header({
               <button
                 type="button"
                 onClick={() => { setMobileOpen(false); setSearchOpen(true); }}
-                className="text-left bg-transparent border-0 cursor-pointer font-sans text-[11px] tracking-[0.16em] uppercase opacity-60"
+                className="text-left bg-transparent border-0 cursor-pointer font-sans text-[12px] tracking-[0.16em] uppercase opacity-60"
               >
                 Search
               </button>
               <a
                 href="https://accounts.willowalexander.co.uk/"
                 onClick={() => setMobileOpen(false)}
-                className="font-sans text-[11px] tracking-[0.16em] uppercase opacity-60 no-underline"
+                className="font-sans text-[12px] tracking-[0.16em] uppercase opacity-60 no-underline"
               >
                 Sign in
               </a>
               <Link
                 href={ctaHref}
                 onClick={() => setMobileOpen(false)}
-                className="booknow-button font-sans text-[11px] tracking-[0.16em] uppercase opacity-60 no-underline"
+                className="booknow-button font-sans text-[12px] tracking-[0.16em] uppercase opacity-60 no-underline"
               >
                 {ctaLabel}
               </Link>

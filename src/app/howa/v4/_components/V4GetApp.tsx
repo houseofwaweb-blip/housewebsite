@@ -23,7 +23,7 @@ export function V4GetApp() {
 
         {/* Copy + badges — right */}
         <div className="text-[color:var(--color-howa-paper)]">
-          <p className="mb-4 font-sans text-[11px] uppercase tracking-[0.3em] text-[color:var(--color-howa-teal)]">
+          <p className="mb-4 font-sans text-[12px] uppercase tracking-[0.3em] text-[color:var(--color-howa-teal)]">
             The HoWA app
           </p>
           <h2 className="mb-4 font-display text-[clamp(28px,3.4vw,46px)] leading-[1.08]">

@@ -47,7 +47,7 @@ export default async function GardenProjectPage({
   const fileNo = (s: string) => s.match(/(\d+)\.webp$/)?.[1] ?? "";
   const Badge = ({ src }: { src: string }) =>
     DEV ? (
-      <span className="absolute top-2 left-2 z-10 bg-black/75 text-white text-[12px] font-mono px-2 py-0.5 pointer-events-none">
+      <span className="absolute top-2 left-2 z-10 bg-black/75 text-white text-[14px] font-mono px-2 py-0.5 pointer-events-none">
         {fileNo(src)}
       </span>
     ) : null;
@@ -56,7 +56,7 @@ export default async function GardenProjectPage({
     <article style={{ background: "var(--color-house-cream)", color: "var(--color-house-brown)" }}>
       {/* Header */}
       <header className="mx-auto max-w-[1100px] px-6 sm:px-10 pt-[clamp(72px,10vh,128px)] pb-[clamp(28px,4vw,48px)]">
-        <p className="font-sans text-[11px] tracking-[0.28em] uppercase text-house-gold-dark mb-5 flex items-center gap-3">
+        <p className="font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-dark mb-5 flex items-center gap-3">
           <span aria-hidden className="w-9 h-px bg-house-gold-dark/70" />
           Willow Alexander Gardens · {project.type}
         </p>
@@ -66,7 +66,7 @@ export default async function GardenProjectPage({
         >
           {project.title}
         </h1>
-        <p className="mt-4 font-sans text-[13px] tracking-[0.18em] uppercase text-house-brown/55">
+        <p className="mt-4 font-sans text-[14px] tracking-[0.18em] uppercase text-house-brown/55">
           {project.location}
         </p>
       </header>
@@ -147,7 +147,7 @@ export default async function GardenProjectPage({
       {others.length ? (
         <section className="bg-house-cream-dark/40 px-6 sm:px-10 py-[clamp(48px,6vw,88px)]">
           <div className="mx-auto max-w-[1240px]">
-            <p className="font-sans text-[11px] tracking-[0.28em] uppercase text-house-gold-dark mb-7">More from the studio</p>
+            <p className="font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-dark mb-7">More from the studio</p>
             <div className="grid gap-6 sm:grid-cols-3">
               {others.map((p) => (
                 <Link key={p.slug} href={`/design/gardens/projects/${p.slug}`} className="group block">
@@ -155,7 +155,7 @@ export default async function GardenProjectPage({
                     <Image src={p.images[0]} alt={p.title} fill sizes="(min-width: 640px) 33vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
                   </div>
                   <h3 className="mt-3 font-hearth-serif text-[20px] leading-tight" style={{ color: "var(--color-house-brown)" }}>{p.title}</h3>
-                  <p className="font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown/55 mt-1">{p.location}</p>
+                  <p className="font-sans text-[14px] tracking-[0.16em] uppercase text-house-brown/55 mt-1">{p.location}</p>
                 </Link>
               ))}
             </div>

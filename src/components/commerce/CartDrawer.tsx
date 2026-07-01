@@ -58,7 +58,7 @@ export function CartDrawer() {
         <div className="flex justify-between items-center px-6 py-[18px] border-b border-house-brown/8">
           <h2 className="font-display font-medium text-[18px]">
             Basket
-            <span className="font-sans font-light text-[13px] text-house-stone ml-1.5">
+            <span className="font-sans font-light text-[14px] text-house-stone ml-1.5">
               ({count})
             </span>
           </h2>
@@ -82,7 +82,7 @@ export function CartDrawer() {
               <Link
                 href="/shop"
                 onClick={closeDrawer}
-                className="font-sans text-[11px] tracking-[0.18em] uppercase text-house-gold-dark border-b border-dotted border-house-gold pb-0.5 no-underline hover:border-solid transition-all"
+                className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-dark border-b border-dotted border-house-gold pb-0.5 no-underline hover:border-solid transition-all"
               >
                 Browse the shop →
               </Link>
@@ -134,7 +134,7 @@ export function CartDrawer() {
                   <button
                     type="button"
                     onClick={() => remove(line.id)}
-                    className="mt-2 self-start text-left font-sans text-[11px] tracking-[0.14em] uppercase text-house-stone bg-transparent border-0 cursor-pointer hover:text-house-brown transition-colors duration-[var(--t-base)]"
+                    className="mt-2 self-start text-left font-sans text-[12px] tracking-[0.14em] uppercase text-house-stone bg-transparent border-0 cursor-pointer hover:text-house-brown transition-colors duration-[var(--t-base)]"
                   >
                     Remove
                   </button>
@@ -148,10 +148,10 @@ export function CartDrawer() {
         {lines.length > 0 ? (
           <div className="px-6 py-5 border-t border-house-brown/8 bg-house-white">
             <div className="flex items-baseline justify-between mb-1">
-              <span className="font-sans text-[11px] tracking-[0.14em] uppercase text-house-stone">Subtotal</span>
+              <span className="font-sans text-[12px] tracking-[0.14em] uppercase text-house-stone">Subtotal</span>
               <span className="font-display font-medium text-[18px]">{subtotal}</span>
             </div>
-            <p className="font-sans text-[11px] text-house-stone mb-4">
+            <p className="font-sans text-[12px] text-house-stone mb-4">
               Shipping &amp; taxes calculated at checkout.
             </p>
 
@@ -159,12 +159,12 @@ export function CartDrawer() {
               <Link
                 href="/shop/checkout"
                 onClick={closeDrawer}
-                className="block w-full py-4 font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold text-center no-underline transition-colors duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
+                className="block w-full py-4 font-sans text-[14px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold text-center no-underline transition-colors duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
               >
                 Checkout
               </Link>
             ) : (
-              <p className="block w-full py-4 font-sans text-[12px] tracking-[0.18em] uppercase text-house-stone border border-house-brown/15 text-center">
+              <p className="block w-full py-4 font-sans text-[14px] tracking-[0.18em] uppercase text-house-stone border border-house-brown/15 text-center">
                 Checkout available at launch
               </p>
             )}
@@ -172,7 +172,7 @@ export function CartDrawer() {
             <Link
               href="/shop/basket"
               onClick={closeDrawer}
-              className="block text-center mt-3 font-sans text-[11px] tracking-[0.16em] uppercase text-house-gold-dark no-underline border-b border-dotted border-house-gold pb-0.5 mx-auto w-fit hover:border-solid transition-all"
+              className="block text-center mt-3 font-sans text-[12px] tracking-[0.16em] uppercase text-house-gold-dark no-underline border-b border-dotted border-house-gold pb-0.5 mx-auto w-fit hover:border-solid transition-all"
             >
               View basket →
             </Link>
@@ -180,7 +180,7 @@ export function CartDrawer() {
             <button
               type="button"
               onClick={closeDrawer}
-              className="block w-full text-center mt-2 font-sans text-[11px] tracking-[0.16em] uppercase text-house-stone bg-transparent border-0 cursor-pointer hover:text-house-brown transition-colors duration-[var(--t-base)]"
+              className="block w-full text-center mt-2 font-sans text-[12px] tracking-[0.16em] uppercase text-house-stone bg-transparent border-0 cursor-pointer hover:text-house-brown transition-colors duration-[var(--t-base)]"
             >
               Continue browsing
             </button>

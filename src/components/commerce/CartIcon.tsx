@@ -20,7 +20,7 @@ export function CartIcon({ dark = false, className, onClick }: CartIconProps) {
       onClick={onClick}
       className={cn(
         "inline-flex items-center gap-2 px-3 py-2 border bg-transparent cursor-pointer",
-        "font-sans text-[11px] tracking-[0.18em] uppercase",
+        "font-sans text-[12px] tracking-[0.18em] uppercase",
         "transition-colors duration-[var(--t-base)] ease-out",
         dark
           ? "border-house-cream/30 text-house-cream hover:border-house-cream"
@@ -34,7 +34,7 @@ export function CartIcon({ dark = false, className, onClick }: CartIconProps) {
         className={cn(
           "is-round inline-flex items-center justify-center",
           "min-w-[20px] h-5 px-1.5 bg-house-gold-dark text-white",
-          "font-sans text-[11px] tracking-normal leading-none",
+          "font-sans text-[12px] tracking-normal leading-none",
           count > 0 && "[animation:howa-bump_var(--t-slow)_var(--ease-settle)]",
         )}
       >

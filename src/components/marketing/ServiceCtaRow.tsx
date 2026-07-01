@@ -17,19 +17,19 @@ export function ServiceCtaRow({ service }: { service: string }) {
         <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
           <a
             href="#open-booking-form"
-            className="inline-flex items-center bg-house-gold-dark px-5 py-2.5 font-sans text-[11px] tracking-[0.18em] uppercase text-white no-underline transition-[filter] hover:brightness-110"
+            className="inline-flex items-center bg-house-gold-dark px-5 py-2.5 font-sans text-[12px] tracking-[0.18em] uppercase text-white no-underline transition-[filter] hover:brightness-110"
           >
             Book through HoWA
           </a>
           <a
             href={PHONE_HREF}
-            className="font-sans text-[12.5px] text-house-gold-dark underline underline-offset-[3px] transition-colors hover:text-house-brown"
+            className="font-sans text-[14px] text-house-gold-dark underline underline-offset-[3px] transition-colors hover:text-house-brown"
           >
             Call {PHONE_DISPLAY}
           </a>
           <a
             href="#service-enquiry"
-            className="font-sans text-[12.5px] text-house-gold-dark underline underline-offset-[3px] transition-colors hover:text-house-brown"
+            className="font-sans text-[14px] text-house-gold-dark underline underline-offset-[3px] transition-colors hover:text-house-brown"
           >
             Send an enquiry
           </a>

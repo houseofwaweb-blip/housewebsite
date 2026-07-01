@@ -35,7 +35,7 @@ export function V4Matrix() {
             <div key={t.name} className="overflow-hidden rounded-2xl border border-[color:var(--color-gold)]/25 bg-white">
               <div className="flex items-baseline justify-between border-b border-[color:var(--color-ink)]/10 bg-[#faf8f3] px-5 py-4">
                 <p className="font-display text-[21px] leading-none" style={{ color: t.accent }}>{t.name}</p>
-                <p className="smallcaps text-[11px] tracking-[0.12em] text-[color:var(--color-ink-soft)]/70">{t.price}</p>
+                <p className="smallcaps text-[12px] tracking-[0.12em] text-[color:var(--color-ink-soft)]/70">{t.price}</p>
               </div>
               <ul className="space-y-2.5 px-5 py-4">
                 {ROWS.filter((r) => r.c[j] !== "no").map((r) => (
@@ -56,11 +56,11 @@ export function V4Matrix() {
         {/* desktop: the table */}
         <div className="hidden overflow-hidden rounded-2xl border border-[color:var(--color-gold)]/25 bg-white lg:block">
           <div className="grid grid-cols-[1.7fr_repeat(3,0.8fr)] items-end gap-2 border-b border-[color:var(--color-ink)]/10 px-6 py-4">
-            <span className="smallcaps text-[11px] tracking-[0.16em] text-[color:var(--color-ink-soft)]/60">Capability</span>
+            <span className="smallcaps text-[12px] tracking-[0.16em] text-[color:var(--color-ink-soft)]/60">Capability</span>
             {TIERS.map((t) => (
               <div key={t.name} className="text-center">
                 <p className="font-display text-[18px] leading-none" style={{ color: t.accent }}>{t.name}</p>
-                <p className="smallcaps mt-1 text-[11px] tracking-[0.1em] text-[color:var(--color-ink-soft)]/60">{t.price}</p>
+                <p className="smallcaps mt-1 text-[12px] tracking-[0.1em] text-[color:var(--color-ink-soft)]/60">{t.price}</p>
               </div>
             ))}
           </div>
@@ -71,7 +71,7 @@ export function V4Matrix() {
             </div>
           ))}
         </div>
-        <p className="mt-5 text-center text-[12.5px] text-[color:var(--color-ink-soft)]/60">
+        <p className="mt-5 text-center text-[14px] text-[color:var(--color-ink-soft)]/60">
           &ldquo;Starter&rdquo; means a first version of the HoWA Score; the full drivers, risk register and improvement plan are Steward.
         </p>
       </div>
