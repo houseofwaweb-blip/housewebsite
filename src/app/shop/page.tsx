@@ -270,7 +270,7 @@ export default async function ShopPage() {
           </p>
           <Link
             href="/shop/all"
-            className="inline-flex items-center justify-center font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold px-7 py-3.5 no-underline transition-colors hover:bg-house-gold-dark hover:border-house-gold-dark mt-7"
+            className="inline-flex items-center justify-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown bg-house-gold border border-house-gold px-7 py-3.5 no-underline transition-colors hover:bg-house-gold-ink hover:border-house-gold-dark mt-7"
           >
             Shop all products
           </Link>

@@ -33,7 +33,7 @@ export function CartIcon({ dark = false, className, onClick }: CartIconProps) {
         key={count}
         className={cn(
           "is-round inline-flex items-center justify-center",
-          "min-w-[20px] h-5 px-1.5 bg-house-gold-dark text-white",
+          "min-w-[20px] h-5 px-1.5 bg-house-gold-ink text-house-brown",
           "font-sans text-[12px] tracking-normal leading-none",
           count > 0 && "[animation:howa-bump_var(--t-slow)_var(--ease-settle)]",
         )}

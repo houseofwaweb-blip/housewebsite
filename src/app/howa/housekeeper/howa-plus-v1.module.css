@@ -78,7 +78,7 @@
   display: inline-block;
   width: 36px;
   height: 1px;
-  background: var(--color-house-gold-dark);
+  background: var(--color-house-gold-ink);
   opacity: 0.6;
 }
 
@@ -143,9 +143,9 @@
   transition: all 0.25s ease;
 }
 .btnFilled {
-  background: var(--color-house-gold-dark);
-  color: var(--color-house-cream);
-  border: 1px solid var(--color-house-gold-dark);
+  background: var(--color-house-gold-ink);
+  color: var(--color-house-brown);
+  border: 1px solid var(--color-house-gold-ink);
 }
 .btnFilled:hover { background: var(--color-house-brown); border-color: var(--color-house-brown); }
 .btnGhost {
@@ -371,7 +371,7 @@
   display: inline-block;
 }
 .appStatusOk { background: #7aa07a; }
-.appStatusAttn { background: var(--color-house-gold-dark); box-shadow: 0 0 0 3px rgba(176, 138, 75, 0.18); }
+.appStatusAttn { background: var(--color-house-gold-ink); box-shadow: 0 0 0 3px rgba(176, 138, 75, 0.18); }
 
 .appRowLabel {
   font-size: 15px;
@@ -1089,9 +1089,9 @@
   transition: all 0.25s ease;
 }
 .closingBtnFilled {
-  background: var(--color-house-gold-dark);
-  color: var(--color-house-cream);
-  border: 1px solid var(--color-house-gold-dark);
+  background: var(--color-house-gold-ink);
+  color: var(--color-house-brown);
+  border: 1px solid var(--color-house-gold-ink);
 }
 .closingBtnFilled:hover {
   background: var(--color-house-gold);
@@ -1506,7 +1506,7 @@
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
   text-decoration: none;
-  border-bottom: 1px solid var(--color-house-gold-dark);
+  border-bottom: 1px solid var(--color-house-gold-ink);
   padding-bottom: 3px;
   align-self: center;
   transition: color 0.25s ease, border-color 0.25s ease;

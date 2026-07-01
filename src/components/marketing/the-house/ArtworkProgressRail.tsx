@@ -134,7 +134,7 @@ export function ArtworkProgressRail() {
                       (isActive
                         ? darkBg
                           ? "w-10 bg-house-gold"
-                          : "w-10 bg-house-gold-dark"
+                          : "w-10 bg-house-gold-ink"
                         : darkBg
                           ? "w-5 bg-house-cream/40 group-hover:w-8 group-hover:bg-house-cream/65"
                           : "w-5 bg-house-brown/30 group-hover:w-8 group-hover:bg-house-brown/55")

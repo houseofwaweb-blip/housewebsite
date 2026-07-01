@@ -15,9 +15,9 @@
   font-weight: 500;
 }
 .btnFilled {
-  background: var(--color-house-gold-dark);
-  color: var(--color-house-cream);
-  border: 1px solid var(--color-house-gold-dark);
+  background: var(--color-house-gold-ink);
+  color: var(--color-house-brown);
+  border: 1px solid var(--color-house-gold-ink);
 }
 .btnFilled:hover { background: var(--color-house-gold); border-color: var(--color-house-gold); }
 .btnGhost {
@@ -127,7 +127,7 @@
   content: "";
   width: 36px;
   height: 1px;
-  background: var(--color-house-gold-dark);
+  background: var(--color-house-gold-ink);
   opacity: 0.7;
 }
 .heroTitle {

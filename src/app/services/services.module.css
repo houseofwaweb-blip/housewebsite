@@ -41,7 +41,7 @@
   content: "";
   width: 36px;
   height: 1px;
-  background: var(--color-house-gold-dark);
+  background: var(--color-house-gold-ink);
   opacity: 0.7;
 }
 .heroTitle {
@@ -91,9 +91,9 @@
   transition: all 0.25s ease;
 }
 .btnFilled {
-  background: var(--color-house-gold-dark);
-  color: var(--color-house-cream);
-  border: 1px solid var(--color-house-gold-dark);
+  background: var(--color-house-gold-ink);
+  color: var(--color-house-brown);
+  border: 1px solid var(--color-house-gold-ink);
 }
 .btnFilled:hover { background: var(--color-house-gold); border-color: var(--color-house-gold); }
 .btnGhost {
@@ -407,7 +407,7 @@
 .carouselDotActive,
 .carouselDotActive:hover {
   width: 28px;
-  background: var(--color-house-gold-dark);
+  background: var(--color-house-gold-ink);
 }
 
 /* ============================================================
@@ -494,8 +494,8 @@
   top: -14px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--color-house-gold-dark);
-  color: var(--color-house-cream);
+  background: var(--color-house-gold-ink);
+  color: var(--color-house-brown);
   font-family: var(--font-sans);
   font-size: 12px;
   letter-spacing: 0.28em;
@@ -779,9 +779,9 @@
   transition: all 0.25s ease;
 }
 .closingBtnFilled {
-  background: var(--color-house-gold-dark);
-  color: var(--color-house-cream);
-  border: 1px solid var(--color-house-gold-dark);
+  background: var(--color-house-gold-ink);
+  color: var(--color-house-brown);
+  border: 1px solid var(--color-house-gold-ink);
 }
 .closingBtnFilled:hover {
   background: var(--color-house-gold);

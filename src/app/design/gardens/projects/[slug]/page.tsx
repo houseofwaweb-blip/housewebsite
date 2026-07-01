@@ -57,7 +57,7 @@ export default async function GardenProjectPage({
       {/* Header */}
       <header className="mx-auto max-w-[1100px] px-6 sm:px-10 pt-[clamp(72px,10vh,128px)] pb-[clamp(28px,4vw,48px)]">
         <p className="font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink mb-5 flex items-center gap-3">
-          <span aria-hidden className="w-9 h-px bg-house-gold-dark/70" />
+          <span aria-hidden className="w-9 h-px bg-house-gold-ink/70" />
           Willow Alexander Gardens · {project.type}
         </p>
         <h1
@@ -134,7 +134,7 @@ export default async function GardenProjectPage({
           The studio takes on a small number of commissions through the House.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-          <Link href="/design/gardens#open-booking-form" className="inline-flex items-center justify-center px-7 py-3.5 bg-house-gold text-white text-[15px] tracking-[0.04em] hover:bg-house-gold-dark transition-colors">
+          <Link href="/design/gardens#open-booking-form" className="inline-flex items-center justify-center px-7 py-3.5 bg-house-gold text-house-brown text-[15px] tracking-[0.04em] hover:bg-house-gold-ink transition-colors">
             Enquire about a garden
           </Link>
           <Link href="/design/gardens" className="inline-flex items-center gap-1.5 text-[16px] text-house-brown/70 hover:text-house-brown transition-colors">

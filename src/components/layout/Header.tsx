@@ -111,7 +111,7 @@ export function Header({
           href={ctaHref}
           className={cn(
             "booknow-button",
-            "font-sans text-[12px] tracking-[0.16em] uppercase text-white bg-house-gold-dark border border-house-gold-dark px-5 py-2.5 no-underline",
+            "font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown bg-house-gold-ink border border-house-gold-dark px-5 py-2.5 no-underline",
             "transition-[filter] duration-[var(--t-slow)] ease-out",
             "hover:brightness-110",
           )}
@@ -167,7 +167,7 @@ export function Header({
             <Link
               href={ctaHref}
               onClick={() => setMobileOpen(false)}
-              className="inline-block font-sans text-[15px] tracking-[0.18em] uppercase text-white bg-house-gold-dark px-6 py-4 text-center mb-6 no-underline"
+              className="inline-block font-sans text-[15px] tracking-[0.18em] uppercase text-house-brown bg-house-gold-ink px-6 py-4 text-center mb-6 no-underline"
             >
               {ctaLabel}
             </Link>

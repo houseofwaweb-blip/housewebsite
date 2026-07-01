@@ -24,7 +24,7 @@
   content: "";
   width: 32px;
   height: 1px;
-  background: var(--color-house-gold-dark);
+  background: var(--color-house-gold-ink);
   opacity: 0.7;
 }
 .chapterRoman {
@@ -412,7 +412,7 @@
 .pullQuoteRule {
   width: 56px;
   height: 1px;
-  background: var(--color-house-gold-dark);
+  background: var(--color-house-gold-ink);
   margin: 0 auto;
 }
 .pullQuoteDark .pullQuoteRule { background: var(--color-house-gold-light); }

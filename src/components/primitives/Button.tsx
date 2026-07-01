@@ -34,7 +34,7 @@ const sizes: Record<Size, string> = {
 
 const variants: Record<Variant, string> = {
   gold:
-    "bg-house-gold-dark text-white border-house-gold-dark " +
+    "bg-house-gold-ink text-house-brown border-house-gold-dark " +
     "hover:brightness-110 hover:-translate-y-px",
   outline:
     "bg-transparent text-house-brown border-house-brown " +

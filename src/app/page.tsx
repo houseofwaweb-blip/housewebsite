@@ -344,7 +344,7 @@ export default async function HomePage() {
           <div className="mt-[clamp(28px,4vw,48px)] flex justify-center">
             <a
               href="#open-booking-form"
-              className="inline-flex items-center justify-center border border-house-gold-dark bg-house-gold-dark px-9 py-4 font-sans text-[12px] tracking-[0.18em] uppercase text-house-cream no-underline transition-[filter] hover:brightness-110"
+              className="inline-flex items-center justify-center border border-house-gold-dark bg-house-gold-ink px-9 py-4 font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-[filter] hover:brightness-110"
             >
               Book through HoWA
             </a>

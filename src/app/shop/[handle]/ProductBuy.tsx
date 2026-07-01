@@ -119,7 +119,7 @@ export function ProductBuy({
           type="button"
           onClick={handleAdd}
           disabled={soldOut || busy}
-          className="flex-1 px-6 font-sans text-[12px] tracking-[0.22em] uppercase text-white bg-house-gold-dark border-0 transition-[filter] duration-[var(--t-base)] ease-out hover:brightness-110 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+          className="flex-1 px-6 font-sans text-[12px] tracking-[0.22em] uppercase text-house-brown bg-house-gold-ink border-0 transition-[filter] duration-[var(--t-base)] ease-out hover:brightness-110 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
         >
           {soldOut ? "Sold out" : busy ? "Adding…" : added ? "Added ✓" : "Add to basket"}
         </button>

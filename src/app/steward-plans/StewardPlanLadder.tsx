@@ -83,12 +83,12 @@ function PlanCard({ plan: p, mobile }: { plan: StewardPlan; mobile?: boolean }) 
       }
     >
       {isFeatured ? (
-        <span className="absolute top-[16px] left-1/2 -translate-x-1/2 bg-house-gold-dark text-white font-sans text-[12px] tracking-[0.22em] px-[14px] py-[5px] z-20 shadow-[0_4px_14px_rgba(0,0,0,0.35)]">
+        <span className="absolute top-[16px] left-1/2 -translate-x-1/2 bg-house-gold-ink text-house-brown font-sans text-[12px] tracking-[0.22em] px-[14px] py-[5px] z-20 shadow-[0_4px_14px_rgba(0,0,0,0.35)]">
           RECOMMENDED
         </span>
       ) : null}
       {p.featured && mobile ? (
-        <span className="absolute top-[12px] right-[12px] bg-house-gold-dark text-white font-sans text-[12px] tracking-[0.22em] px-[10px] py-[4px] z-20">
+        <span className="absolute top-[12px] right-[12px] bg-house-gold-ink text-house-brown font-sans text-[12px] tracking-[0.22em] px-[10px] py-[4px] z-20">
           RECOMMENDED
         </span>
       ) : null}
@@ -120,7 +120,7 @@ function PlanCard({ plan: p, mobile }: { plan: StewardPlan; mobile?: boolean }) 
           ))}
         </ul>
         <div className="mt-[22px] flex flex-col gap-[8px] items-start">
-          <span className="inline-block font-sans text-[12px] tracking-[0.16em] uppercase px-[20px] py-[10px] text-white bg-house-gold-dark border border-house-gold cursor-default">
+          <span className="inline-block font-sans text-[12px] tracking-[0.16em] uppercase px-[20px] py-[10px] text-house-brown bg-house-gold-ink border border-house-gold cursor-default">
             Subscription coming soon
           </span>
           <Link

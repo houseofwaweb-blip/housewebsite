@@ -22,7 +22,7 @@ export function HearthPaywall() {
         />
 
         {/* Prominent H mark */}
-        <div className="flex items-center justify-center w-16 h-16 bg-house-gold-dark text-white font-hearth-serif italic text-[32px] leading-none shadow-[0_4px_16px_rgba(184,148,62,0.25)] max-md:w-14 max-md:h-14 max-md:text-[26px]">
+        <div className="flex items-center justify-center w-16 h-16 bg-house-gold-ink text-house-brown font-hearth-serif italic text-[32px] leading-none shadow-[0_4px_16px_rgba(184,148,62,0.25)] max-md:w-14 max-md:h-14 max-md:text-[26px]">
           H
         </div>
 

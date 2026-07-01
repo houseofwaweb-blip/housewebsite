@@ -109,9 +109,9 @@
   transition: all 0.25s ease;
 }
 .btnFilled {
-  background: var(--color-house-gold-dark);
-  color: var(--color-house-cream);
-  border: 1px solid var(--color-house-gold-dark);
+  background: var(--color-house-gold-ink);
+  color: var(--color-house-brown);
+  border: 1px solid var(--color-house-gold-ink);
 }
 .btnFilled:hover {
   background: var(--color-house-gold);
@@ -379,9 +379,9 @@
   letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
-  background: var(--color-house-gold-dark);
-  color: var(--color-house-cream);
-  border: 1px solid var(--color-house-gold-dark);
+  background: var(--color-house-gold-ink);
+  color: var(--color-house-brown);
+  border: 1px solid var(--color-house-gold-ink);
   transition: all 0.25s ease;
 }
 .closingBtnFilled:hover {

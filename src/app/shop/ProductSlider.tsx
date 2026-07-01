@@ -70,7 +70,7 @@ export function ProductSlider({ title, slides }: { title: string; slides: Slide[
                 variantId={s.variantId}
                 multiVariant={s.multiVariant}
                 inStock={s.inStock}
-                className="inline-flex items-center justify-center font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold px-7 py-3.5 no-underline transition-colors hover:bg-house-gold-dark hover:border-house-gold-dark disabled:opacity-70 cursor-pointer"
+                className="inline-flex items-center justify-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown bg-house-gold border border-house-gold px-7 py-3.5 no-underline transition-colors hover:bg-house-gold-ink hover:border-house-gold-dark disabled:opacity-70 cursor-pointer"
               />
             </div>
           </div>

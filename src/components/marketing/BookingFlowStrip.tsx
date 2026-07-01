@@ -42,7 +42,7 @@ export function BookingFlowStrip() {
         <div className="mt-11">
           <a
             href="#open-booking-form"
-            className="inline-flex items-center justify-center font-sans text-[12px] tracking-[0.18em] uppercase text-white bg-house-gold-dark border border-house-gold-dark px-8 py-4 no-underline transition-colors hover:brightness-110"
+            className="inline-flex items-center justify-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown bg-house-gold-ink border border-house-gold-dark px-8 py-4 no-underline transition-colors hover:brightness-110"
           >
             Book through HoWA
           </a>

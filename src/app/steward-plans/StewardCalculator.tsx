@@ -98,7 +98,7 @@ export function StewardCalculator() {
         </ul>
 
         <div className="flex flex-col gap-[10px]">
-          <span className="block w-full text-center px-[32px] py-[14px] font-sans text-[15px] tracking-[0.18em] uppercase text-white bg-house-gold-dark border border-house-gold cursor-default">
+          <span className="block w-full text-center px-[32px] py-[14px] font-sans text-[15px] tracking-[0.18em] uppercase text-house-brown bg-house-gold-ink border border-house-gold cursor-default">
             Subscription coming soon
           </span>
           <Link
