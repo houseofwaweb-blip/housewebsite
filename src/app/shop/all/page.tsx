@@ -46,7 +46,7 @@ export default async function ShopAllPage() {
         </div>
       </section>
 
-      <HouseStandardStrip />
+      <HouseStandardStrip points={["Vetted against real family use", "Care notes for use and repair", "Chosen to last, made to mend"]} />
 
       <ShopBrowser
         products={products}

@@ -252,10 +252,10 @@
 }
 .pillarLabel {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.28em;
   color: var(--color-house-gold-light);
   margin: 0 0 6px;
 }
@@ -270,9 +270,9 @@
 }
 .pillarSub {
   font-family: var(--font-sans);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.5;
-  color: rgba(245, 240, 232, 0.78);
+  color: rgba(245, 240, 232, 0.85);
   margin: 0;
 }
 .pillarArrow {

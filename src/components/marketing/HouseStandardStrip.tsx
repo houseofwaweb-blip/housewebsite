@@ -12,7 +12,7 @@ const POINTS = [
   "No undisclosed commission",
 ];
 
-export function HouseStandardStrip() {
+export function HouseStandardStrip({ points = POINTS }: { points?: string[] }) {
   return (
     <section className="bg-house-cream-dark/50 border-y border-house-brown/10 px-[5vw] py-[clamp(48px,5vw,76px)]">
       <div className="max-w-[920px] mx-auto text-center">
@@ -24,7 +24,7 @@ export function HouseStandardStrip() {
           home we love?
         </p>
         <ul className="mt-8 flex flex-wrap justify-center gap-x-10 gap-y-3 list-none p-0 m-0">
-          {POINTS.map((p) => (
+          {points.map((p) => (
             <li
               key={p}
               className="flex items-center gap-2.5 font-sans text-[14px] tracking-[0.06em] text-house-brown/70"

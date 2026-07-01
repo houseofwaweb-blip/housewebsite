@@ -348,7 +348,7 @@ export default async function ShopPage() {
       <ProductSlider title="More worth keeping." slides={sliderSlides} />
       <Rail title="New in." cards={newIn} viewAllHref="/shop/all" />
 
-      <HouseStandardStrip />
+      <HouseStandardStrip points={["Vetted against real family use", "Care notes for use and repair", "Chosen to last, made to mend"]} />
     </div>
   );
 }

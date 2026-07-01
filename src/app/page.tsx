@@ -354,7 +354,14 @@ export default async function HomePage() {
       <section className={s.howaIntro}>
         <div className={s.howaIntroInner}>
           <div className={s.howaIntroVisual}>
-            <HowaWidget />
+            <Image
+              src="/home/howa-app.webp"
+              alt="The HoWA app on a phone: a home's HoWA Score of 91, with spaces, assets, upcoming maintenance and recent events"
+              width={1086}
+              height={1448}
+              sizes="(min-width: 1024px) 420px, 80vw"
+              className="w-full max-w-[420px] h-auto"
+            />
           </div>
           <div className={s.howaIntroCopy}>
             <p className={s.eyebrow}>HoWA · Home Intelligence OS</p>

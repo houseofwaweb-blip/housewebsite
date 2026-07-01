@@ -111,6 +111,17 @@ function mapProduct(p: ShopifyProductNode): CommerceProduct {
 }
 
 // ── Cart ──────────────────────────────────────────────────────────────
+/**
+ * Service / care / design "plans" (Apartment+, Home & Garden+, The Full House
+ * Edit, design plans) are sold on their own pages, not the marketplace (brief
+ * slide 9). Hide them from every commerce listing — featured, best-sellers,
+ * new arrivals and search. The product pages themselves stay reachable.
+ */
+const PLAN_TITLE = /apartment\s*\+|home\s*&\s*garden\s*\+|full house edit|\bplans?\b/i;
+function dropPlans<T extends { title: string }>(items: T[]): T[] {
+  return items.filter((p) => !PLAN_TITLE.test(p.title));
+}
+
 const CART_FRAGMENT = /* GraphQL */ `
   fragment CartFields on Cart {
     id
@@ -248,7 +259,7 @@ export const shopifyProvider: CommerceProvider = {
       query ($limit: Int!) {
         products(first: $limit, query: "tag:featured") { nodes { ...ProductFields } }
       }`,
-      { limit },
+      { limit: limit + 12 },
       ["products:featured"],
     );
     let nodes = data.products.nodes;
@@ -260,12 +271,12 @@ export const shopifyProvider: CommerceProvider = {
         query ($limit: Int!) {
           products(first: $limit, sortKey: BEST_SELLING) { nodes { ...ProductFields } }
         }`,
-        { limit },
+        { limit: limit + 12 },
         ["products:bestselling"],
       );
       nodes = fallback.products.nodes;
     }
-    return nodes.map(mapProduct);
+    return dropPlans(nodes.map(mapProduct)).slice(0, limit);
   },
 
   async listBestSellers(limit = 8) {
@@ -274,10 +285,10 @@ export const shopifyProvider: CommerceProvider = {
       query ($limit: Int!) {
         products(first: $limit, sortKey: BEST_SELLING) { nodes { ...ProductFields } }
       }`,
-      { limit },
+      { limit: limit + 12 },
       ["products:bestselling"],
     );
-    return data.products.nodes.map(mapProduct);
+    return dropPlans(data.products.nodes.map(mapProduct)).slice(0, limit);
   },
 
   async listNewArrivals(limit = 8) {
@@ -286,10 +297,10 @@ export const shopifyProvider: CommerceProvider = {
       query ($limit: Int!) {
         products(first: $limit, sortKey: CREATED_AT, reverse: true) { nodes { ...ProductFields } }
       }`,
-      { limit },
+      { limit: limit + 12 },
       ["products:new"],
     );
-    return data.products.nodes.map(mapProduct);
+    return dropPlans(data.products.nodes.map(mapProduct)).slice(0, limit);
   },
 
   async searchProducts(query: string, limit = 10) {
@@ -301,7 +312,7 @@ export const shopifyProvider: CommerceProvider = {
       { query, limit },
       ["products:search"],
     );
-    return data.products.nodes.map(mapProduct);
+    return dropPlans(data.products.nodes.map(mapProduct)).slice(0, limit);
   },
 
   // Cart — Storefront Cart API. Returns a cart carrying `checkoutUrl`.
