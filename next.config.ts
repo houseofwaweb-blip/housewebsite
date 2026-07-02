@@ -58,6 +58,18 @@ const nextConfig: NextConfig = {
       // Journal renamed to The Hearth (2026-05-14)
       { source: "/journal", destination: "/the-hearth", permanent: true },
       { source: "/journal/:slug*", destination: "/the-hearth/:slug*", permanent: true },
+      // WordPress content types → new sections. Slugs were preserved in the
+      // migration, so article/recipe/service URLs land on their exact new page.
+      { source: "/howa-living", destination: "/the-hearth", permanent: true },
+      { source: "/howa-living/:slug*", destination: "/the-hearth/:slug*", permanent: true },
+      { source: "/recipe", destination: "/recipes", permanent: true },
+      { source: "/recipe/:slug*", destination: "/recipes/:slug*", permanent: true },
+      { source: "/service", destination: "/services", permanent: true },
+      { source: "/service/:path*", destination: "/services/:path*", permanent: true },
+      // Advice articles weren't migrated 1:1 yet — soft-land on the Hearth hub
+      // (302) rather than hard-404 the old URLs / their backlinks.
+      { source: "/advice", destination: "/the-hearth", permanent: false },
+      { source: "/advice/:slug*", destination: "/the-hearth", permanent: false },
       // Sign-in moved to external accounts subdomain
       { source: "/sign-in", destination: "https://accounts.willowalexander.co.uk/", permanent: true },
       // Booking is a modal triggered by `#open-booking-form` from any page;
