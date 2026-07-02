@@ -70,6 +70,44 @@ const nextConfig: NextConfig = {
       // (302) rather than hard-404 the old URLs / their backlinks.
       { source: "/advice", destination: "/the-hearth", permanent: false },
       { source: "/advice/:slug*", destination: "/the-hearth", permanent: false },
+      // Legacy WordPress pages → their new homes.
+      { source: "/contact-us", destination: "/contact", permanent: true },
+      { source: "/our-story", destination: "/the-house/about", permanent: true },
+      { source: "/accreditations", destination: "/the-house/standards", permanent: true },
+      { source: "/sustainability", destination: "/the-house/sustainability", permanent: true },
+      { source: "/garden-design", destination: "/design/gardens", permanent: true },
+      { source: "/garden-design-3", destination: "/design/gardens", permanent: true },
+      { source: "/interior-design", destination: "/design/interiors", permanent: true },
+      { source: "/interior-design-2", destination: "/design/interiors", permanent: true },
+      { source: "/interior-design-5", destination: "/design/interiors", permanent: true },
+      { source: "/how-it-works", destination: "/howa/how-it-works", permanent: true },
+      { source: "/join-howa", destination: "/howa", permanent: true },
+      { source: "/howa-membership", destination: "/howa/housekeeper", permanent: true },
+      { source: "/house-member-subscriptions", destination: "/howa/housekeeper", permanent: true },
+      { source: "/howa-services", destination: "/services", permanent: true },
+      { source: "/luxury-home-concierge", destination: "/howa", permanent: true },
+      { source: "/the-house-companion", destination: "/howa/assistant", permanent: true },
+      { source: "/house-companion-1", destination: "/howa/assistant", permanent: true },
+      { source: "/house-plans", destination: "/steward-plans", permanent: true },
+      { source: "/house-plans/property-managers", destination: "/steward-plans", permanent: true },
+      { source: "/home-and-garden-services-subscriptions-packages", destination: "/steward-plans", permanent: true },
+      { source: "/home-garden-subscriptions-how-works", destination: "/steward-plans", permanent: true },
+      { source: "/commercial-property-management", destination: "/services", permanent: true },
+      { source: "/airbnb-and-short-let", destination: "/services", permanent: true },
+      { source: "/in-the-press", destination: "/news", permanent: true },
+      { source: "/magazine", destination: "/the-hearth", permanent: true },
+      { source: "/insurance-by-the-house", destination: "/protect/insurance", permanent: true },
+      { source: "/home-protection-risk-reduction", destination: "/protect/home-protection", permanent: true },
+      { source: "/privacy-policy", destination: "/legal/privacy", permanent: true },
+      { source: "/cookie-policy", destination: "/legal/cookies", permanent: true },
+      { source: "/gift-cards-2", destination: "/gift-cards", permanent: true },
+      // Legacy WooCommerce shop pages → the marketplace.
+      { source: "/shop-all", destination: "/shop", permanent: true },
+      { source: "/sale", destination: "/shop", permanent: true },
+      { source: "/basket", destination: "/shop", permanent: true },
+      { source: "/checkout", destination: "/shop", permanent: true },
+      { source: "/my-account", destination: "https://accounts.willowalexander.co.uk/", permanent: true },
+      { source: "/:s([^/]*-shop)", destination: "/shop", permanent: true },
       // Sign-in moved to external accounts subdomain
       { source: "/sign-in", destination: "https://accounts.willowalexander.co.uk/", permanent: true },
       // Booking is a modal triggered by `#open-booking-form` from any page;
@@ -83,6 +121,15 @@ const nextConfig: NextConfig = {
       { source: "/product/:slug*", destination: "/shop/:slug*", permanent: true },
       { source: "/shop/product/:slug*", destination: "/shop/:slug*", permanent: true },
       { source: "/product-category/:slug*", destination: "/shop/collections/:slug*", permanent: true },
+      // Legacy location × service SEO pages that weren't migrated 1:1 (the
+      // migrated set is handled by wp-long-tail above, which wins by order).
+      // Route by service keyword to the right hub; anything else → /services.
+      // These are LAST so the exact long-tail slugs match first.
+      { source: "/:s([^/]*window[^/]*-in-[^/]*)", destination: "/services/window-cleaning", permanent: true },
+      { source: "/:s([^/]*gutter[^/]*-in-[^/]*)", destination: "/services/gutter-cleaning", permanent: true },
+      { source: "/:s([^/]*garden[^/]*-in-[^/]*)", destination: "/services/gardening", permanent: true },
+      { source: "/:s([^/]*clean[^/]*-in-[^/]*)", destination: "/services/cleaning", permanent: true },
+      { source: "/:s([^/]*-in-[^/]*)", destination: "/services", permanent: true },
     ];
   },
   async headers() {
