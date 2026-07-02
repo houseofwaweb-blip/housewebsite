@@ -55,6 +55,15 @@ async function resolveCollection(handle: string): Promise<ResolvedCollection | n
       }));
     return { title: local.title, products };
   }
+  // "House Approved" is a virtual collection: the curated seal lives on a
+  // product metafield, not a Shopify collection (COLLECTIONS is empty), so
+  // build it from every product carrying the seal. Without this the nav,
+  // footer, and shop-rail "view all" links to /shop/collections/house-approved
+  // all 404. Mirrors the House Approved rail on the shop landing page.
+  if (handle === "house-approved") {
+    const products = (await getShopProducts()).filter((p) => p.houseApproved);
+    if (products.length > 0) return { title: "House Approved", products };
+  }
   // Fall back to Sanity (or static catalogue beneath it)
   const sourced = await getShopCollection(handle);
   if (sourced.length > 0) {
@@ -199,6 +208,7 @@ export default async function CollectionPage({
 export async function generateStaticParams() {
   const sourced = await getShopCollections();
   const all = [
+    "house-approved", // virtual collection (curated seal, not a Shopify collection)
     ...NAV.map((c) => c.handle),
     ...COLLECTIONS.map((c) => c.handle),
     ...sourced.map((c) => c.handle),
