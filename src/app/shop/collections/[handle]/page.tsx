@@ -61,7 +61,14 @@ async function resolveCollection(handle: string): Promise<ResolvedCollection | n
   // footer, and shop-rail "view all" links to /shop/collections/house-approved
   // all 404. Mirrors the House Approved rail on the shop landing page.
   if (handle === "house-approved") {
-    const products = (await getShopProducts()).filter((p) => p.houseApproved);
+    // The whole shop is "House Approved" (the seal is a highlight, not a gate —
+    // see the shop copy "Each thing here is House Approved"). Prefer sealed
+    // products; if none are flagged in the active source (the seal metafield
+    // isn't populated in the static catalogue), fall back to the full
+    // catalogue rather than 404 the nav/footer/shop links.
+    const all = await getShopProducts();
+    const sealed = all.filter((p) => p.houseApproved);
+    const products = sealed.length > 0 ? sealed : all;
     if (products.length > 0) return { title: "House Approved", products };
   }
   // Fall back to Sanity (or static catalogue beneath it)
