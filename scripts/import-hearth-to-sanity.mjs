@@ -135,11 +135,23 @@ const STYLE_FOR_TAG = {
   div: "normal",
 };
 
-function htmlToPortableText(html) {
+function htmlToPortableText(html, imageMap = new Map()) {
   if (!html) return [];
   const dom = new JSDOM(`<!doctype html><body>${html}</body>`);
   const body = dom.window.document.body;
   const blocks = [];
+
+  const pushImage = (img) => {
+    const src = img.getAttribute("src");
+    const assetId = src && imageMap.get(src);
+    if (!assetId) return;
+    blocks.push({
+      _type: "image",
+      _key: randomUUID().slice(0, 12),
+      asset: { _type: "reference", _ref: assetId },
+      alt: img.getAttribute("alt") || "",
+    });
+  };
 
   const pushTextBlock = (node, style) => {
     const markDefs = [];
@@ -177,10 +189,21 @@ function htmlToPortableText(html) {
 
   for (const node of body.children) {
     const tag = node.tagName.toLowerCase();
+    if (tag === "img") {
+      pushImage(node);
+      continue;
+    }
+    // Emit any inline text first, then the images that lived in this node.
+    // WP wraps figures as <p><img></p> (empty text → skipped) and mixed
+    // <p>text <img></p> (text block, then image below).
+    const imgs = typeof node.querySelectorAll === "function"
+      ? [...node.querySelectorAll("img")]
+      : [];
     if (tag === "ul") pushList(node, false);
     else if (tag === "ol") pushList(node, true);
     else if (STYLE_FOR_TAG[tag]) pushTextBlock(node, STYLE_FOR_TAG[tag]);
     else pushTextBlock(node, "normal");
+    for (const img of imgs) pushImage(img);
   }
 
   return blocks;
@@ -215,35 +238,53 @@ async function ensureCategory(categoryLong) {
   return _id;
 }
 
-async function uploadImageForArticle(article) {
-  if (!article.image) return null;
-  // Skip placeholder / relative paths — only upload real WP CDN URLs.
-  if (!/^https?:\/\//i.test(article.image)) return null;
+// Upload a single WP image URL to Sanity, deduped by source URL so re-runs
+// reuse the same asset. Returns the asset _id (or null on skip/failure).
+async function uploadImageByUrl(url) {
+  if (!url || !/^https?:\/\//i.test(url)) return null;
   if (DRY) {
-    console.log(`  [dry] would upload image from ${article.image}`);
+    console.log(`  [dry] would upload image from ${url}`);
     return null;
   }
-  // Skip if this asset already exists for the slug.
-  // Sanity doesn't let us pick the asset _id, so we stash the WP URL as a
-  // metadata field and look it up on re-run.
+  // Skip if this asset already exists. Sanity doesn't let us pick the asset
+  // _id, so we stash the WP URL as a metadata field and look it up on re-run.
   const existing = await client.fetch(
     '*[_type == "sanity.imageAsset" && source.name == "wp" && source.id == $url][0]',
-    { url: article.image },
+    { url },
   );
   if (existing) return existing._id;
 
-  const res = await fetch(article.image);
+  const res = await fetch(url);
   if (!res.ok) {
-    console.warn(`  ! image fetch failed (${res.status}) for ${article.slug}`);
+    console.warn(`  ! image fetch failed (${res.status}) for ${url}`);
     return null;
   }
   const buf = Buffer.from(await res.arrayBuffer());
-  const filename = path.basename(new URL(article.image).pathname);
+  const filename = path.basename(new URL(url).pathname);
   const asset = await client.assets.upload("image", buf, {
     filename,
-    source: { id: article.image, name: "wp", url: article.image },
+    source: { id: url, name: "wp", url },
   });
   return asset._id;
+}
+
+async function uploadImageForArticle(article) {
+  return uploadImageByUrl(article.image);
+}
+
+// Pre-upload every inline <img> in the body HTML and return a Map of
+// src URL → Sanity asset _id, consumed by htmlToPortableText to emit image
+// blocks. Uploads are deduped (a URL used twice uploads once).
+async function uploadBodyImages(html) {
+  const map = new Map();
+  if (!html) return map;
+  const srcs = [...html.matchAll(/<img[^>]+src=["']([^"']+)["']/gi)].map((m) => m[1]);
+  for (const src of [...new Set(srcs)]) {
+    if (map.has(src)) continue;
+    const assetId = await uploadImageByUrl(src);
+    if (assetId) map.set(src, assetId);
+  }
+  return map;
 }
 
 
@@ -253,6 +294,7 @@ async function uploadImageForArticle(article) {
 async function upsertArticle(article) {
   const catId = await ensureCategory(article.categoryLong);
   const imageAssetId = await uploadImageForArticle(article);
+  const bodyImages = await uploadBodyImages(article.body);
 
   const doc = {
     _id: articleDocId(article.slug),
@@ -267,7 +309,7 @@ async function upsertArticle(article) {
           alt: article.imageAlt || article.title,
         }
       : undefined,
-    body: htmlToPortableText(article.body),
+    body: htmlToPortableText(article.body, bodyImages),
     category: { _type: "reference", _ref: catId },
     author: article.author,
     publishedAt: article.publishedAt,

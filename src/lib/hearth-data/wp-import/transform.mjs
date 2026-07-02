@@ -28,7 +28,11 @@ const decode = (s) =>
     .replace(/&ndash;/g, "–")
     .replace(/&mdash;/g, "—")
     .replace(/&hellip;/g, "…")
-    .replace(/&apos;/g, "’");
+    .replace(/&apos;/g, "’")
+    // Catch-all for any remaining numeric / hex entities (e.g. &#8230; …)
+    // so nothing renders as a raw &#NNNN; on the site.
+    .replace(/&#x([0-9a-fA-F]+);/g, (_, h) => String.fromCodePoint(parseInt(h, 16)))
+    .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(parseInt(n, 10)));
 
 const stripHtml = (s) => decode(s.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim());
 
