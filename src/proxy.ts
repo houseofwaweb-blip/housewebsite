@@ -87,16 +87,28 @@ export function proxy(request: NextRequest) {
   // see PLAN.md §15 S6 for the spec.
   const isDev = process.env.NODE_ENV !== "production";
   const scriptEval = isDev ? " 'unsafe-eval'" : "";
+
+  // Third-party measurement + marketing tags. All are consent-gated at runtime,
+  // but the CSP must ALLOW them to load from their CDNs / send beacons when
+  // consent is granted. This proxy CSP is the one that actually reaches the
+  // browser (it overrides next.config.ts headers()), so these hosts MUST live
+  // here — keep in sync with next.config.ts. Omitting them silently blocks
+  // GA4, Clarity, Meta Pixel, etc. for every visitor.
+  const measureScript =
+    "https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://www.clarity.ms https://*.clarity.ms https://connect.facebook.net https://s.pinimg.com https://ct.pinterest.com https://cdn-cookieyes.com https://va.vercel-scripts.com";
+  const measureConnect =
+    "https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.clarity.ms https://*.clarity.ms https://*.facebook.com https://ct.pinterest.com https://log.cookieyes.com https://vitals.vercel-insights.com https://va.vercel-scripts.com";
+
   const csp = [
     "default-src 'self'",
-    `script-src 'self' 'unsafe-inline'${scriptEval} https://challenges.cloudflare.com ${obfHosts}`,
+    `script-src 'self' 'unsafe-inline'${scriptEval} https://challenges.cloudflare.com ${measureScript} ${obfHosts}`,
     `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com ${obfHosts}`,
-    `img-src 'self' data: blob: https://cdn.sanity.io https://cdn.shopify.com https://willowalexander.co.uk ${obfHosts}`,
+    "img-src 'self' data: blob: https:",
     "font-src 'self' data: https://fonts.gstatic.com",
-    `connect-src 'self' https://*.supabase.co https://*.sanity.io https://cdn.sanity.io https://*.upstash.io https://challenges.cloudflare.com https://*.sentry.io ${obfHosts}`,
-    `frame-src 'self' https://challenges.cloudflare.com ${obfHosts}`,
+    `connect-src 'self' https://*.supabase.co wss://*.supabase.co https://*.sanity.io https://cdn.sanity.io https://*.shopify.com https://*.upstash.io https://challenges.cloudflare.com https://*.sentry.io https://*.ingest.sentry.io ${measureConnect} ${obfHosts}`,
+    `frame-src 'self' https://challenges.cloudflare.com https://www.facebook.com ${obfHosts}`,
     "frame-ancestors 'none'",
-    "form-action 'self'",
+    `form-action 'self' ${obfHosts}`,
     "base-uri 'self'",
     "object-src 'none'",
     // Both shapes: legacy report-uri (still respected by most browsers) and
