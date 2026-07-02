@@ -120,6 +120,12 @@ const nextConfig: NextConfig = {
       // the correct new product or collection. Permanent 301s pass equity.
       { source: "/product/:slug*", destination: "/shop/:slug*", permanent: true },
       { source: "/shop/product/:slug*", destination: "/shop/:slug*", permanent: true },
+      // Nested WooCommerce category URLs (e.g. /product-category/outdoor-living/
+      // garden-furniture) map to the FLAT child collection (the last segment),
+      // since new-site collections are single-level. Must precede the generic
+      // rule below, which would otherwise produce a 2-level path that 404s.
+      { source: "/product-category/:a/:b/:c", destination: "/shop/collections/:c", permanent: true },
+      { source: "/product-category/:a/:b", destination: "/shop/collections/:b", permanent: true },
       { source: "/product-category/:slug*", destination: "/shop/collections/:slug*", permanent: true },
       // Legacy location × service SEO pages that weren't migrated 1:1 (the
       // migrated set is handled by wp-long-tail above, which wins by order).
