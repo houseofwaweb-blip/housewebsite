@@ -190,23 +190,28 @@ export async function handleFormSubmission(
         note?: string;
         sourcePage?: string;
       };
-      if (w.product === "howa_app") {
-        await subscribeToWaitlist({
-          email: w.email,
-          firstName: w.firstName,
-          lastName: w.lastName,
-          postcode: w.postcode,
-          tier: w.tier,
-          propertyType: w.propertyType,
-          note: w.note,
-          sourcePage: w.sourcePage,
-        }).catch(() => {});
-        await trackEvent({
-          email: w.email,
-          metric: "HoWA Waitlist Signup",
-          properties: { tier_interest: w.tier ?? "Undecided", signup_page: w.sourcePage },
-        }).catch(() => {});
-      }
+      // Every register-interest (insurance, protect, HoWA app, service, etc.)
+      // lands in Klaviyo. One list keeps it simple; the `product` property on
+      // the event lets Alex build a segment/flow per interest type in Klaviyo.
+      await subscribeToWaitlist({
+        email: w.email,
+        firstName: w.firstName,
+        lastName: w.lastName,
+        postcode: w.postcode,
+        tier: w.tier,
+        propertyType: w.propertyType,
+        note: w.note,
+        sourcePage: w.sourcePage,
+      }).catch(() => {});
+      await trackEvent({
+        email: w.email,
+        metric: "Register Interest",
+        properties: {
+          product: w.product,
+          tier_interest: w.tier ?? undefined,
+          signup_page: w.sourcePage,
+        },
+      }).catch(() => {});
     }
 
     await sendMetaCapiEvent({
