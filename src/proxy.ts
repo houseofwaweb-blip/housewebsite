@@ -95,9 +95,9 @@ export function proxy(request: NextRequest) {
   // here — keep in sync with next.config.ts. Omitting them silently blocks
   // GA4, Clarity, Meta Pixel, etc. for every visitor.
   const measureScript =
-    "https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://www.clarity.ms https://*.clarity.ms https://connect.facebook.net https://s.pinimg.com https://ct.pinterest.com https://cdn-cookieyes.com https://va.vercel-scripts.com";
+    "https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://www.clarity.ms https://*.clarity.ms https://connect.facebook.net https://s.pinimg.com https://ct.pinterest.com https://cdn-cookieyes.com https://va.vercel-scripts.com https://static.klaviyo.com https://*.klaviyo.com";
   const measureConnect =
-    "https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.clarity.ms https://*.clarity.ms https://*.facebook.com https://ct.pinterest.com https://log.cookieyes.com https://vitals.vercel-insights.com https://va.vercel-scripts.com";
+    "https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.clarity.ms https://*.clarity.ms https://*.facebook.com https://ct.pinterest.com https://log.cookieyes.com https://vitals.vercel-insights.com https://va.vercel-scripts.com https://a.klaviyo.com https://static.klaviyo.com https://*.klaviyo.com";
 
   const csp = [
     "default-src 'self'",
