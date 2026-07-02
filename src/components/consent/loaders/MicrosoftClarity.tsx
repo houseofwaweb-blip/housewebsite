@@ -8,7 +8,10 @@ import { useConsentGranted } from "../ConsentProvider";
 // Clarity masks form input by default which keeps us inside ICO guidance.
 export function MicrosoftClarity() {
   const granted = useConsentGranted("measurement");
-  const id = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID;
+  // Clarity project ID is public (ships in the client tag). Default to the
+  // Willow Alexander project so heatmaps work on launch even without the Vercel
+  // env set; NEXT_PUBLIC_CLARITY_PROJECT_ID overrides it.
+  const id = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID ?? "teosz3tmam";
   if (!granted || !id) return null;
   return (
     <Script id="clarity-init" strategy="afterInteractive">

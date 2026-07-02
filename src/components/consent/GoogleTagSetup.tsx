@@ -26,7 +26,10 @@ import { useConsent } from "./ConsentProvider";
  */
 export function GoogleTagSetup() {
   const { consent } = useConsent();
-  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+  // GA4 measurement ID is public (it ships in the client HTML). Default to the
+  // Willow Alexander GA4 stream so analytics fire on launch even if the Vercel
+  // env isn't set; NEXT_PUBLIC_GA_MEASUREMENT_ID overrides it per-environment.
+  const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-HN657RY0DT";
   const adsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
 
   // Update Consent Mode v2 state whenever wa-consent changes. Maps our
