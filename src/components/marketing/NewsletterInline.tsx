@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 import { submitForm } from "@/components/forms/submitForm";
+import { TurnstileField } from "@/components/forms/TurnstileField";
+import type { TurnstileInstance } from "@marsidev/react-turnstile";
 import type { NewsletterInterest } from "@/lib/forms/schemas";
 
 /**
@@ -73,6 +75,9 @@ export function NewsletterInline({
   const [interests, setInterests] = React.useState<NewsletterInterest[]>([]);
   const [state, setState] = React.useState<"idle" | "submitting" | "success" | "error">("idle");
   const honeyRef = React.useRef<HTMLInputElement>(null);
+  const turnstileRef = React.useRef<TurnstileInstance | null>(null);
+  const [turnstileToken, setTurnstileToken] = React.useState("");
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
 
   const toggleInterest = (id: NewsletterInterest) => {
     setInterests((prev) =>
@@ -89,9 +94,15 @@ export function NewsletterInline({
       interests,
       sourcePage,
       honey: honeyRef.current?.value ?? "",
-      turnstileToken: "",
+      turnstileToken: turnstileToken || (siteKey ? "" : "no-turnstile"),
     });
-    setState(result.ok ? "success" : "error");
+    if (result.ok) {
+      setState("success");
+      return;
+    }
+    setState("error");
+    turnstileRef.current?.reset();
+    setTurnstileToken("");
   };
 
   const isDark = variant === "dark";
@@ -279,14 +290,29 @@ export function NewsletterInline({
                   </div>
                 </fieldset>
 
+                <div className="mb-4">
+                  <TurnstileField
+                    ref={turnstileRef}
+                    siteKey={siteKey}
+                    onToken={setTurnstileToken}
+                    onExpire={() => setTurnstileToken("")}
+                  />
+                </div>
+
                 <button
                   type="submit"
-                  disabled={state === "submitting"}
-                  className="w-full text-house-cream font-sans text-[12px] tracking-[0.18em] uppercase px-5 py-3.5 border-0 cursor-pointer disabled:opacity-60 transition-colors duration-[var(--t-base)]"
+                  disabled={state === "submitting" || (!!siteKey && !turnstileToken)}
+                  className="w-full text-house-cream font-sans text-[12px] tracking-[0.18em] uppercase px-5 py-3.5 border-0 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed transition-colors duration-[var(--t-base)]"
                   style={{ background: "var(--house-gold-dark)" }}
                 >
                   {state === "submitting" ? "\u2026" : buttonLabel}
                 </button>
+
+                {state === "error" ? (
+                  <p role="alert" className={cn("font-sans text-[14px] mt-3", isDark ? "text-house-gold-light" : "text-error")}>
+                    Something went wrong. Please try again.
+                  </p>
+                ) : null}
               </form>
 
               <p

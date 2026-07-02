@@ -38,25 +38,28 @@ export function GoogleTagSetup() {
   // toggled together in practice.
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const dataLayer = (window as unknown as { dataLayer?: unknown[] }).dataLayer;
-    if (!dataLayer) return;
+    // Consent Mode updates MUST go through the gtag() command queue (an
+    // arguments object), NOT a raw array push. gtag.js ignores array-shaped
+    // dataLayer entries, so a raw push would leave a user who clicked
+    // "Accept" stuck in the default denied/cookieless state — no _ga cookie,
+    // GA4 recording only modelled pings. The head snippet defines
+    // `function gtag(){dataLayer.push(arguments)}`, so this queues correctly
+    // even before gtag.js finishes loading.
+    const gtag = (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag;
+    if (!gtag) return;
     const granted = consent ?? {
       functional: false,
       measurement: false,
       marketing: false,
     };
-    dataLayer.push([
-      "consent",
-      "update",
-      {
-        ad_storage: granted.marketing ? "granted" : "denied",
-        ad_user_data: granted.marketing ? "granted" : "denied",
-        ad_personalization: granted.marketing ? "granted" : "denied",
-        analytics_storage: granted.measurement ? "granted" : "denied",
-        functionality_storage: granted.functional ? "granted" : "denied",
-        personalization_storage: granted.functional ? "granted" : "denied",
-      },
-    ]);
+    gtag("consent", "update", {
+      ad_storage: granted.marketing ? "granted" : "denied",
+      ad_user_data: granted.marketing ? "granted" : "denied",
+      ad_personalization: granted.marketing ? "granted" : "denied",
+      analytics_storage: granted.measurement ? "granted" : "denied",
+      functionality_storage: granted.functional ? "granted" : "denied",
+      personalization_storage: granted.functional ? "granted" : "denied",
+    });
   }, [consent]);
 
   // No GA4 ID configured → don't load gtag at all (dev / preview without

@@ -4,6 +4,8 @@ import * as React from "react";
 import Image from "next/image";
 import { HearthTitle } from "./HearthTitle";
 import { submitForm } from "@/components/forms/submitForm";
+import { TurnstileField } from "@/components/forms/TurnstileField";
+import type { TurnstileInstance } from "@marsidev/react-turnstile";
 import { POPULAR as POPULAR_FALLBACK, type PopularItem } from "@/lib/hearth-data";
 
 /**
@@ -67,6 +69,9 @@ function SidebarNewsletter() {
   const [email, setEmail] = React.useState("");
   const [state, setState] = React.useState<"idle" | "submitting" | "success" | "error">("idle");
   const honeyRef = React.useRef<HTMLInputElement>(null);
+  const turnstileRef = React.useRef<TurnstileInstance | null>(null);
+  const [turnstileToken, setTurnstileToken] = React.useState("");
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
 
   const handle = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -75,9 +80,15 @@ function SidebarNewsletter() {
       email,
       sourcePage: "/the-hearth",
       honey: honeyRef.current?.value ?? "",
-      turnstileToken: "",
+      turnstileToken: turnstileToken || (siteKey ? "" : "no-turnstile"),
     });
-    setState(result.ok ? "success" : "error");
+    if (result.ok) {
+      setState("success");
+      return;
+    }
+    setState("error");
+    turnstileRef.current?.reset();
+    setTurnstileToken("");
   };
 
   return (
@@ -121,13 +132,23 @@ function SidebarNewsletter() {
           />
           <button
             type="submit"
-            disabled={state === "submitting"}
-            className="shrink-0 bg-house-black text-house-white font-hearth-sans text-[12px] tracking-[0.18em] uppercase px-[14px] py-[11px] border-0 cursor-pointer disabled:opacity-60"
+            disabled={state === "submitting" || (!!siteKey && !turnstileToken)}
+            className="shrink-0 bg-house-black text-house-white font-hearth-sans text-[12px] tracking-[0.18em] uppercase px-[14px] py-[11px] border-0 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {state === "submitting" ? "…" : "Sign up"}
           </button>
         </form>
       )}
+      {state !== "success" ? (
+        <div className="mt-3">
+          <TurnstileField
+            ref={turnstileRef}
+            siteKey={siteKey}
+            onToken={setTurnstileToken}
+            onExpire={() => setTurnstileToken("")}
+          />
+        </div>
+      ) : null}
       {state === "error" ? (
         <p
           role="alert"

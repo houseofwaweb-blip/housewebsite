@@ -8,6 +8,7 @@ import { getSupabaseAnonClient } from "@/lib/supabase/server";
 import { notifyFormSubmission } from "./notify";
 import { subscribeToNewsletter, subscribeToWaitlist, trackEvent, type InterestSurface, SURFACE_TO_INTEREST } from "@/lib/klaviyo";
 import { sendMetaCapiEvent, extractMetaIdentifiers, type MetaEventName } from "@/lib/meta/capi";
+import { readConsentFromCookieHeader } from "@/lib/consent";
 import { randomUUID } from "node:crypto";
 
 // Form-type → Meta standard event mapping. Lead is the catch-all for
@@ -146,6 +147,12 @@ export async function handleFormSubmission(
   const submission = parsed as Record<string, unknown>;
   const metaIdentifiers = extractMetaIdentifiers(req);
   const eventSourceUrl = req.headers.get("referer") ?? undefined;
+  // The Meta CAPI leg ships hashed PII + IP + user-agent to Meta. Only fire it
+  // when the visitor granted MARKETING consent (the browser pixel is already
+  // gated by the MetaPixel loader). Without this a user who rejected marketing
+  // still has their identifiers sent server-side — a GDPR/PECR exposure.
+  const marketingConsent =
+    readConsentFromCookieHeader(req.headers.get("cookie"))?.marketing === true;
 
   // Post-response side effects: inbox email, Klaviyo, Meta CAPI. These MUST run
   // inside after() — a plain fire-and-forget promise is killed when the response
@@ -215,23 +222,25 @@ export async function handleFormSubmission(
       }).catch(() => {});
     }
 
-    await sendMetaCapiEvent({
-      eventName: metaEventName,
-      eventSourceUrl: eventSourceUrl ?? "",
-      eventId: metaEventId,
-      userData: {
-        email: typeof submission.email === "string" ? submission.email : undefined,
-        phone: typeof submission.phone === "string" ? submission.phone : undefined,
-        firstName: typeof submission.name === "string"
-          ? String(submission.name).split(" ")[0]
-          : undefined,
-        lastName: typeof submission.name === "string" && String(submission.name).includes(" ")
-          ? String(submission.name).split(" ").slice(1).join(" ")
-          : undefined,
-        postcode: typeof submission.postcode === "string" ? submission.postcode : undefined,
-        ...metaIdentifiers,
-      },
-    }).catch(() => {});
+    if (marketingConsent) {
+      await sendMetaCapiEvent({
+        eventName: metaEventName,
+        eventSourceUrl: eventSourceUrl ?? "",
+        eventId: metaEventId,
+        userData: {
+          email: typeof submission.email === "string" ? submission.email : undefined,
+          phone: typeof submission.phone === "string" ? submission.phone : undefined,
+          firstName: typeof submission.name === "string"
+            ? String(submission.name).split(" ")[0]
+            : undefined,
+          lastName: typeof submission.name === "string" && String(submission.name).includes(" ")
+            ? String(submission.name).split(" ").slice(1).join(" ")
+            : undefined,
+          postcode: typeof submission.postcode === "string" ? submission.postcode : undefined,
+          ...metaIdentifiers,
+        },
+      }).catch(() => {});
+    }
   });
 
   return NextResponse.json({ ok: true, metaEventId });

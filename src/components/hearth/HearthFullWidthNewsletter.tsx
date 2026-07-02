@@ -3,6 +3,8 @@
 import * as React from "react";
 import Link from "next/link";
 import { submitForm } from "@/components/forms/submitForm";
+import { TurnstileField } from "@/components/forms/TurnstileField";
+import type { TurnstileInstance } from "@marsidev/react-turnstile";
 
 /**
  * HearthFullWidthNewsletter — per variant-A: full-bleed black band.
@@ -13,6 +15,9 @@ export function HearthFullWidthNewsletter() {
   const [email, setEmail] = React.useState("");
   const [state, setState] = React.useState<"idle" | "submitting" | "success" | "error">("idle");
   const honeyRef = React.useRef<HTMLInputElement>(null);
+  const turnstileRef = React.useRef<TurnstileInstance | null>(null);
+  const [turnstileToken, setTurnstileToken] = React.useState("");
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
 
   const handle = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,9 +26,15 @@ export function HearthFullWidthNewsletter() {
       email,
       sourcePage: "/the-hearth",
       honey: honeyRef.current?.value ?? "",
-      turnstileToken: "",
+      turnstileToken: turnstileToken || (siteKey ? "" : "no-turnstile"),
     });
-    setState(result.ok ? "success" : "error");
+    if (result.ok) {
+      setState("success");
+      return;
+    }
+    setState("error");
+    turnstileRef.current?.reset();
+    setTurnstileToken("");
   };
 
   return (
@@ -64,13 +75,29 @@ export function HearthFullWidthNewsletter() {
           />
           <button
             type="submit"
-            disabled={state === "submitting"}
-            className="shrink-0 bg-house-black text-house-white font-hearth-sans text-[12px] tracking-[0.2em] uppercase px-6 py-[14px] border-0 cursor-pointer disabled:opacity-60"
+            disabled={state === "submitting" || (!!siteKey && !turnstileToken)}
+            className="shrink-0 bg-house-black text-house-white font-hearth-sans text-[12px] tracking-[0.2em] uppercase px-6 py-[14px] border-0 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {state === "submitting" ? "…" : "Sign up"}
           </button>
         </form>
       )}
+
+      {state !== "success" ? (
+        <div className="flex justify-center mt-4">
+          <TurnstileField
+            ref={turnstileRef}
+            siteKey={siteKey}
+            onToken={setTurnstileToken}
+            onExpire={() => setTurnstileToken("")}
+          />
+        </div>
+      ) : null}
+      {state === "error" ? (
+        <p role="alert" className="font-hearth-sans text-[13px] text-house-gold-light mt-3">
+          Something went wrong. Please try again.
+        </p>
+      ) : null}
 
       <p className="font-hearth-sans text-[12px] tracking-[0.14em] uppercase text-house-white/45 mt-[18px]">
         Free · GDPR compliant · read more in our{" "}
