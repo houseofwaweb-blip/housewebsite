@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useCart } from "@/components/commerce/CartContext";
+import { gaEvent, parseAmount } from "@/lib/google/ga4";
 import type { ProductVariant } from "@/lib/shop-data/shopify-catalogue";
 
 /**
@@ -25,6 +26,19 @@ export function ProductBuy({
 
   const selected = variants.find((v) => v.id === variantId) ?? firstAvailable;
   const multi = variants.length > 1;
+
+  // GA4 view_item — once per product view. Same measurement ID as the WP site
+  // so shop reporting stays continuous across the cutover.
+  React.useEffect(() => {
+    gaEvent("view_item", {
+      currency: "GBP",
+      value: parseAmount(product.price),
+      items: [
+        { item_id: product.handle, item_name: product.title, price: parseAmount(product.price) },
+      ],
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [product.handle]);
 
   if (!selected) {
     return (

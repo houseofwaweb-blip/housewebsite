@@ -109,6 +109,8 @@ export function Header({
         <CartIcon dark={dark} onClick={openDrawer} />
         <Link
           href={ctaHref}
+          data-ga-event="booking_intent"
+          data-ga-cta={ctaLabel}
           className={cn(
             "booknow-button",
             "font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown bg-house-gold-ink border border-house-gold-dark px-5 py-2.5 no-underline",
@@ -166,6 +168,8 @@ export function Header({
           <div className="px-[5vw] pt-8 pb-12 flex flex-col gap-1">
             <Link
               href={ctaHref}
+              data-ga-event="booking_intent"
+              data-ga-cta={ctaLabel}
               onClick={() => setMobileOpen(false)}
               className="inline-block font-sans text-[15px] tracking-[0.18em] uppercase text-house-brown bg-house-gold-ink px-6 py-4 text-center mb-6 no-underline"
             >
@@ -253,6 +257,8 @@ export function Header({
               </a>
               <Link
                 href={ctaHref}
+                data-ga-event="booking_intent"
+                data-ga-cta={ctaLabel}
                 onClick={() => setMobileOpen(false)}
                 className="booknow-button font-sans text-[12px] tracking-[0.16em] uppercase opacity-60 no-underline"
               >

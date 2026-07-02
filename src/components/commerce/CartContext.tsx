@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { klaviyoTrack } from "@/lib/klaviyo/client";
+import { gaEvent, parseAmount } from "@/lib/google/ga4";
 
 /**
  * Cart — backed by the Shopify Storefront Cart (via /api/cart). The cart id
@@ -150,6 +151,22 @@ export function CartProvider({
       hideTimer.current = window.setTimeout(() => setToast(null), 3000);
       setDrawerOpen(true);
 
+      // GA4 add_to_cart (standard ecommerce event; same measurement ID as the
+      // WP site so the shop funnel stays continuous across cutover).
+      const addPrice = parseAmount(info.price);
+      gaEvent("add_to_cart", {
+        currency: "GBP",
+        value: addPrice !== undefined ? addPrice * quantity : undefined,
+        items: [
+          {
+            item_id: info.handle,
+            item_name: info.title,
+            price: addPrice,
+            quantity,
+          },
+        ],
+      });
+
       // Klaviyo "Added to Cart" — powers the abandoned-cart flow. No-ops unless
       // klaviyo.js is loaded (marketing consent granted). CheckoutURL is the
       // Shopify cart link, which recovers the basket cross-device from the email.
@@ -205,7 +222,20 @@ export function CartProvider({
 
   const checkout = React.useCallback(() => {
     if (!buyable) return; // catalog mode — checkout disabled
-    if (cart?.checkoutUrl) window.location.href = cart.checkoutUrl;
+    if (!cart?.checkoutUrl) return;
+    // GA4 begin_checkout — the last event we can fire before handing off to
+    // Shopify's hosted checkout (where `purchase` must be tracked, Shopify-side).
+    gaEvent("begin_checkout", {
+      currency: cart.subtotal?.currencyCode ?? "GBP",
+      value: parseAmount(cart.subtotal?.amount),
+      items: cart.lines.map((l) => ({
+        item_id: l.product.handle,
+        item_name: l.product.title,
+        price: parseAmount(l.product.price?.amount),
+        quantity: l.quantity,
+      })),
+    });
+    window.location.href = cart.checkoutUrl;
   }, [cart, buyable]);
 
   const openDrawer = React.useCallback(() => setDrawerOpen(true), []);

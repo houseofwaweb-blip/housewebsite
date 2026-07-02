@@ -14,6 +14,7 @@ import { CookieBanner } from "@/components/consent/CookieBanner";
 import { AnalyticsLoader } from "@/components/consent/AnalyticsLoader";
 import { SpeedInsightsLoader } from "@/components/consent/SpeedInsightsLoader";
 import { GoogleTagSetup } from "@/components/consent/GoogleTagSetup";
+import { GaClickEvents } from "@/components/analytics/GaClickEvents";
 import { MicrosoftClarity } from "@/components/consent/loaders/MicrosoftClarity";
 import { MetaPixel } from "@/components/consent/loaders/MetaPixel";
 import { PinterestTag } from "@/components/consent/loaders/PinterestTag";
@@ -159,6 +160,7 @@ export default async function RootLayout({
             <AnalyticsLoader />
             <SpeedInsightsLoader />
             <GoogleTagSetup />
+            <GaClickEvents />
             <MicrosoftClarity />
             <MetaPixel />
             <PinterestTag />

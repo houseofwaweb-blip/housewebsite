@@ -8,6 +8,7 @@ import {
 } from "@/lib/meta/pixel";
 import { trackGoogleAdsConversion } from "@/lib/google/conversions";
 import { readClickIds } from "@/lib/google/gclid";
+import { gaEvent } from "@/lib/google/ga4";
 
 /**
  * Thin client-side wrapper around the /api/forms/[type] endpoint.
@@ -41,6 +42,7 @@ export async function submitForm(
       if (!body.already) {
         if (body.metaEventId) fireMetaPixelEvent(type, body.metaEventId);
         void fireGoogleAdsConversion(type, payload, body.metaEventId);
+        fireGa4FormEvent(type, payload);
       }
       return { ok: true, already: body.already };
     }
@@ -84,6 +86,43 @@ function mapToConversionName(
       return "lead";
     case "newsletter":
       return "registration";
+  }
+}
+
+/**
+ * GA4 conversion events, with actual service enquiries kept separate from
+ * register-interest / waitlist signups:
+ *   - contact / consultation → `generate_lead` (real enquiries + booking requests)
+ *   - waitlist               → `register_interest` (distinct event, by product)
+ *   - newsletter             → `sign_up`
+ */
+function fireGa4FormEvent(type: FormType, payload: Record<string, unknown>) {
+  const str = (k: string) => (typeof payload[k] === "string" ? (payload[k] as string) : undefined);
+  switch (type) {
+    case "contact":
+      gaEvent("generate_lead", {
+        lead_type: "enquiry",
+        form_type: "contact",
+        topic: str("topic"),
+        service: str("serviceType"),
+      });
+      return;
+    case "consultation":
+      gaEvent("generate_lead", {
+        lead_type: "booking",
+        form_type: "consultation",
+        service: str("serviceType"),
+      });
+      return;
+    case "waitlist":
+      gaEvent("register_interest", {
+        product: str("product"),
+        source_page: str("sourcePage"),
+      });
+      return;
+    case "newsletter":
+      gaEvent("sign_up", { method: "newsletter" });
+      return;
   }
 }
 
