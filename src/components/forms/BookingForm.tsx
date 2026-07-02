@@ -201,7 +201,7 @@ export function BookingForm({
         </Button>
         <p className={`font-sans text-[15px] leading-[1.6] mt-3 ${dark ? "text-house-cream/55" : "text-house-brown/55"}`}>
           Online bookings are handled through HoWA and kept in your Home Record.
-          Prefer to speak to us? <a href="/contact" className="underline underline-offset-2">Call the House directly</a>.
+          Prefer to speak to us? <a href="tel:08000478738" className="underline underline-offset-2">Call the House directly</a>.
         </p>
         <FormStatus status={status} dark={dark} />
       </div>

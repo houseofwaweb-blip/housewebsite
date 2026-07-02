@@ -146,7 +146,7 @@ export default async function HomePage() {
             </div>
             <p className={s.heroBookingNote}>
               Online bookings are powered by HoWA, the Home Intelligence OS
-              created from the House. Prefer to speak to us? <Link href="/contact">Call the House directly</Link>.
+              created from the House. Prefer to speak to us? <a href="tel:08000478738">Call the House directly</a>.
             </p>
           </div>
         </div>
