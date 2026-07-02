@@ -75,7 +75,12 @@ export function GoogleTagSetup() {
       <Script id="gtag-init" strategy="afterInteractive">
         {`
           gtag('js', new Date());
-          ${gaId ? `gtag('config', '${gaId}', { anonymize_ip: true });` : ""}
+          // Enable GA4 DebugView automatically on preview hosts (vercel.app /
+          // localhost) so events can be verified without a browser extension.
+          // Production (willowalexander.co.uk) stays out of DebugView so real
+          // traffic isn't flagged as debug.
+          var __waDebug = /(localhost|vercel\\.app)/.test(location.hostname);
+          ${gaId ? `gtag('config', '${gaId}', { anonymize_ip: true, debug_mode: __waDebug });` : ""}
           ${adsId ? `gtag('config', '${adsId}');` : ""}
         `}
       </Script>
