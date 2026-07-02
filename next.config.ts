@@ -149,7 +149,7 @@ const nextConfig: NextConfig = {
       `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://accounts.willowalexander.co.uk https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://www.clarity.ms https://*.clarity.ms https://connect.facebook.net https://s.pinimg.com https://ct.pinterest.com https://cdn-cookieyes.com https://challenges.cloudflare.com https://*.sentry.io https://va.vercel-scripts.com https://static.klaviyo.com https://*.klaviyo.com`,
       `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.willowalexander.co.uk`,
       "img-src 'self' data: blob: https:",
-      "font-src 'self' data: https://fonts.gstatic.com",
+      `font-src 'self' data: https://fonts.gstatic.com ${OBF}`,
       `connect-src 'self' ${OBF} https://*.sanity.io https://cdn.sanity.io https://*.shopify.com https://*.supabase.co wss://*.supabase.co https://*.upstash.io https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.clarity.ms https://*.clarity.ms https://*.facebook.com https://ct.pinterest.com https://log.cookieyes.com https://*.ingest.sentry.io https://vitals.vercel-insights.com https://va.vercel-scripts.com https://a.klaviyo.com https://static.klaviyo.com https://*.klaviyo.com`,
       `frame-src 'self' ${OBF} https://challenges.cloudflare.com https://www.facebook.com`,
       "frame-ancestors 'none'",
