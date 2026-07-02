@@ -90,10 +90,12 @@ const schema = z.object({
   // (Call Handler, ServiceOS Agent) uses these same variable names —
   // keep them aligned for ops consistency.
   BREVO_API_KEY: z.string().optional(),
+  // sales@ is an authenticated sender in Brevo (the Call Handler uses it and
+  // its mail delivers); hello@ was accepted by the API but bounced on delivery.
   BREVO_FROM_EMAIL: z
     .string()
     .email()
-    .default("hello@willowalexander.co.uk"),
+    .default("sales@willowalexander.co.uk"),
   BREVO_FROM_NAME: z.string().default("House of Willow Alexander"),
 
   // Newsletter (Klaviyo). Newsletter signup writes to Supabase regardless;

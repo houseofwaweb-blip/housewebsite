@@ -1,5 +1,5 @@
 import "server-only";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse, after } from "next/server";
 import { ZodError } from "zod";
 import { formRegistry, type FormType } from "./schemas";
 import { verifyTurnstileToken } from "./turnstile";
@@ -140,113 +140,93 @@ export async function handleFormSubmission(
     );
   }
 
-  // Fire-and-forget notification. The submission is already persisted, so
-  // a failed email never surfaces as a 500 — we'd rather lose the alert
-  // than fail the user's form. Caller doesn't await.
-  void notifyFormSubmission(type, parsed as Record<string, unknown>).catch(() => {
-    // notify already logs internally
-  });
-
-  // Newsletter signups also push to Klaviyo for interest-based segmentation.
-  // Same fire-and-forget pattern — Supabase row is the source of truth.
-  if (type === "newsletter") {
-    const p = parsed as {
-      email: string;
-      name?: string;
-      interests?: string[];
-      sourcePage?: string;
-    };
-    const surfaces = (p.interests ?? []) as InterestSurface[];
-
-    void subscribeToNewsletter({
-      email: p.email,
-      firstName: p.name,
-      surfaces,
-      sourcePage: p.sourcePage,
-    }).catch(() => {
-      // klaviyo client already logs internally
-    });
-
-    // Post a custom event so Alex can build interest-aware welcome flows in
-    // the Klaviyo dashboard ("if event.interest_tags contains 'design',
-    // send Garden Design welcome series"). Without this they'd only have
-    // the list-add trigger, which can't see the interest tags.
-    const interestTags = Array.from(
-      new Set(surfaces.flatMap((s) => SURFACE_TO_INTEREST[s] ?? [])),
-    );
-    void trackEvent({
-      email: p.email,
-      metric: "Marketing Site Newsletter Signup",
-      properties: {
-        surfaces,
-        interest_tags: interestTags,
-        signup_page: p.sourcePage,
-      },
-    }).catch(() => {});
-  }
-
-  // HoWA app waitlist also subscribes to the shared Klaviyo list with a
-  // `tier_interest` profile property (matches askhowa.co.uk), so launch
-  // segments/flows work across both sites. Supabase row is the source of truth.
-  if (type === "waitlist") {
-    const w = parsed as {
-      email: string;
-      product: string;
-      firstName?: string;
-      lastName?: string;
-      postcode?: string;
-      tier?: string;
-      propertyType?: string;
-      note?: string;
-      sourcePage?: string;
-    };
-    if (w.product === "howa_app") {
-      void subscribeToWaitlist({
-        email: w.email,
-        firstName: w.firstName,
-        lastName: w.lastName,
-        postcode: w.postcode,
-        tier: w.tier,
-        propertyType: w.propertyType,
-        note: w.note,
-        sourcePage: w.sourcePage,
-      }).catch(() => {
-        // klaviyo client logs internally
-      });
-      void trackEvent({
-        email: w.email,
-        metric: "HoWA Waitlist Signup",
-        properties: { tier_interest: w.tier ?? "Undecided", signup_page: w.sourcePage },
-      }).catch(() => {});
-    }
-  }
-
-  // Meta Conversions API fire — server-side complement to the browser
-  // pixel. Returns an event_id so the client can fire fbq() with the
-  // matching eventID and Meta dedupes the two signals.
+  // Meta event id up front so the client can dedupe against the CAPI event.
   const metaEventName = FORM_TYPE_TO_META_EVENT[type];
   const metaEventId = randomUUID();
   const submission = parsed as Record<string, unknown>;
   const metaIdentifiers = extractMetaIdentifiers(req);
   const eventSourceUrl = req.headers.get("referer") ?? undefined;
-  // Fire-and-forget — never block the form response on Meta's API.
-  void sendMetaCapiEvent({
-    eventName: metaEventName,
-    eventSourceUrl: eventSourceUrl ?? "",
-    eventId: metaEventId,
-    userData: {
-      email: typeof submission.email === "string" ? submission.email : undefined,
-      phone: typeof submission.phone === "string" ? submission.phone : undefined,
-      firstName: typeof submission.name === "string"
-        ? String(submission.name).split(" ")[0]
-        : undefined,
-      lastName: typeof submission.name === "string" && String(submission.name).includes(" ")
-        ? String(submission.name).split(" ").slice(1).join(" ")
-        : undefined,
-      postcode: typeof submission.postcode === "string" ? submission.postcode : undefined,
-      ...metaIdentifiers,
-    },
-  }).catch(() => {});
+
+  // Post-response side effects: inbox email, Klaviyo, Meta CAPI. These MUST run
+  // inside after() — a plain fire-and-forget promise is killed when the response
+  // returns on Vercel's serverless runtime. The submission is already persisted
+  // to Supabase, so none of these can fail the user's form.
+  after(async () => {
+    await notifyFormSubmission(type, submission).catch(() => {});
+
+    if (type === "newsletter") {
+      const p = submission as {
+        email: string;
+        name?: string;
+        interests?: string[];
+        sourcePage?: string;
+      };
+      const surfaces = (p.interests ?? []) as InterestSurface[];
+      await subscribeToNewsletter({
+        email: p.email,
+        firstName: p.name,
+        surfaces,
+        sourcePage: p.sourcePage,
+      }).catch(() => {});
+      const interestTags = Array.from(
+        new Set(surfaces.flatMap((s) => SURFACE_TO_INTEREST[s] ?? [])),
+      );
+      await trackEvent({
+        email: p.email,
+        metric: "Marketing Site Newsletter Signup",
+        properties: { surfaces, interest_tags: interestTags, signup_page: p.sourcePage },
+      }).catch(() => {});
+    }
+
+    if (type === "waitlist") {
+      const w = submission as {
+        email: string;
+        product: string;
+        firstName?: string;
+        lastName?: string;
+        postcode?: string;
+        tier?: string;
+        propertyType?: string;
+        note?: string;
+        sourcePage?: string;
+      };
+      if (w.product === "howa_app") {
+        await subscribeToWaitlist({
+          email: w.email,
+          firstName: w.firstName,
+          lastName: w.lastName,
+          postcode: w.postcode,
+          tier: w.tier,
+          propertyType: w.propertyType,
+          note: w.note,
+          sourcePage: w.sourcePage,
+        }).catch(() => {});
+        await trackEvent({
+          email: w.email,
+          metric: "HoWA Waitlist Signup",
+          properties: { tier_interest: w.tier ?? "Undecided", signup_page: w.sourcePage },
+        }).catch(() => {});
+      }
+    }
+
+    await sendMetaCapiEvent({
+      eventName: metaEventName,
+      eventSourceUrl: eventSourceUrl ?? "",
+      eventId: metaEventId,
+      userData: {
+        email: typeof submission.email === "string" ? submission.email : undefined,
+        phone: typeof submission.phone === "string" ? submission.phone : undefined,
+        firstName: typeof submission.name === "string"
+          ? String(submission.name).split(" ")[0]
+          : undefined,
+        lastName: typeof submission.name === "string" && String(submission.name).includes(" ")
+          ? String(submission.name).split(" ").slice(1).join(" ")
+          : undefined,
+        postcode: typeof submission.postcode === "string" ? submission.postcode : undefined,
+        ...metaIdentifiers,
+      },
+    }).catch(() => {});
+  });
 
   return NextResponse.json({ ok: true, metaEventId });
   } catch (err) {
