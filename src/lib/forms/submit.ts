@@ -195,6 +195,7 @@ export async function handleFormSubmission(
       // the event lets Alex build a segment/flow per interest type in Klaviyo.
       await subscribeToWaitlist({
         email: w.email,
+        product: w.product,
         firstName: w.firstName,
         lastName: w.lastName,
         postcode: w.postcode,

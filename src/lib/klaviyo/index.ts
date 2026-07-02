@@ -159,6 +159,9 @@ const TIER_INTEREST: Record<string, string> = {
 
 export interface WaitlistSubscribeInput {
   email: string;
+  /** What they registered interest in (insurance, protect_review, howa_app,
+   *  steward, other) — stored as the `registered_interest` profile property. */
+  product?: string;
   firstName?: string;
   lastName?: string;
   /** UK postcode — uppercased before sending. */
@@ -213,6 +216,7 @@ export async function subscribeToWaitlist(
               ...(input.lastName ? { last_name: input.lastName } : {}),
               properties: {
                 tier_interest: tierInterest,
+                ...(input.product ? { registered_interest: input.product } : {}),
                 ...(input.postcode ? { postcode: input.postcode.toUpperCase() } : {}),
                 ...(input.propertyType ? { property_type: input.propertyType } : {}),
                 ...(input.note ? { steward_note: input.note } : {}),
