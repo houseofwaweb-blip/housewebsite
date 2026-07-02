@@ -7,6 +7,7 @@ import {
   trackSchedule,
 } from "@/lib/meta/pixel";
 import { trackGoogleAdsConversion } from "@/lib/google/conversions";
+import { readClickIds } from "@/lib/google/gclid";
 
 /**
  * Thin client-side wrapper around the /api/forms/[type] endpoint.
@@ -22,10 +23,13 @@ export async function submitForm(
   payload: Record<string, unknown>,
 ): Promise<{ ok: true; already?: boolean } | { ok: false; error: string }> {
   try {
+    // Attach first-touch attribution (UTM + landing + click IDs) to every
+    // submission so the sales trail / CRM sees where the enquiry came from.
+    const tracking = readClickIds() ?? undefined;
     const res = await fetch(`/api/forms/${type}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+      body: JSON.stringify({ ...payload, tracking }),
     });
     const body = (await res.json()) as {
       ok: boolean;

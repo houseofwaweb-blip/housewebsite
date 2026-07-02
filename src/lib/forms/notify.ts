@@ -27,11 +27,27 @@ interface Submission {
   name?: string;
 }
 
+// Fields that are anti-abuse plumbing, not enquiry content — never show these
+// to the sales team.
+const HIDE_FROM_EMAIL = new Set(["turnstileToken", "honey"]);
+
 function formatBody(submission: Submission): string {
-  return Object.entries(submission)
-    .filter(([, v]) => v !== undefined && v !== null && v !== "")
-    .map(([k, v]) => `${k}: ${typeof v === "object" ? JSON.stringify(v) : String(v)}`)
-    .join("\n");
+  const lines: string[] = [];
+  for (const [k, v] of Object.entries(submission)) {
+    if (HIDE_FROM_EMAIL.has(k) || v === undefined || v === null || v === "") continue;
+    if (k === "tracking" && typeof v === "object") {
+      const entries = Object.entries(v as Record<string, unknown>).filter(
+        ([, tv]) => tv !== undefined && tv !== null && tv !== "",
+      );
+      if (entries.length) {
+        lines.push("", "— Source / tracking —");
+        for (const [tk, tv] of entries) lines.push(`${tk}: ${String(tv)}`);
+      }
+    } else {
+      lines.push(`${k}: ${typeof v === "object" ? JSON.stringify(v) : String(v)}`);
+    }
+  }
+  return lines.join("\n");
 }
 
 export async function notifyFormSubmission(

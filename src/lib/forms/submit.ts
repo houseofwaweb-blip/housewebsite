@@ -83,10 +83,10 @@ export async function handleFormSubmission(
   }
 
   // Strip client-only fields before insert.
-  const { turnstileToken: _t, honey: _h, sourcePage, ...rest } = parsed as Record<
+  const { turnstileToken: _t, honey: _h, tracking: _tr, sourcePage, ...rest } = parsed as Record<
     string,
     unknown
-  > & { turnstileToken: string; honey?: string; sourcePage?: string };
+  > & { turnstileToken: string; honey?: string; tracking?: unknown; sourcePage?: string };
 
   const row: Record<string, unknown> = { ...rest, source_page: sourcePage ?? null };
 

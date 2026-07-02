@@ -27,6 +27,15 @@ export interface ClickIds {
   wbraid?: string;
   fbclid?: string;
   msclkid?: string;
+  // First-touch marketing attribution — the campaign + page they first landed
+  // on. Captured once and kept, so it survives navigation to a form later.
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+  utmTerm?: string;
+  utmContent?: string;
+  landingPage?: string;
+  referrer?: string;
   capturedAt: string;
 }
 
@@ -38,6 +47,9 @@ export interface ClickIds {
 export function captureClickIds(): void {
   if (typeof window === "undefined") return;
   const params = new URLSearchParams(window.location.search);
+  const existing = readClickIds();
+
+  // Click IDs — last-touch (a fresh ad click overwrites the previous one).
   const incoming: Partial<ClickIds> = {};
   const gclid = params.get("gclid");
   const gbraid = params.get("gbraid");
@@ -49,11 +61,29 @@ export function captureClickIds(): void {
   if (wbraid) incoming.wbraid = wbraid;
   if (fbclid) incoming.fbclid = fbclid;
   if (msclkid) incoming.msclkid = msclkid;
-  if (Object.keys(incoming).length === 0) return;
 
-  const existing = readClickIds() ?? { capturedAt: new Date().toISOString() };
+  // UTM + landing page + referrer — FIRST-touch (only recorded once, so the
+  // original source follows the visitor through to the form they submit).
+  const firstTouch: Partial<ClickIds> = {};
+  if (!existing?.landingPage) {
+    firstTouch.landingPage = window.location.href.slice(0, 600);
+    if (document.referrer) firstTouch.referrer = document.referrer.slice(0, 600);
+    const utm = (key: string) => params.get(key)?.slice(0, 200) || undefined;
+    firstTouch.utmSource = utm("utm_source");
+    firstTouch.utmMedium = utm("utm_medium");
+    firstTouch.utmCampaign = utm("utm_campaign");
+    firstTouch.utmTerm = utm("utm_term");
+    firstTouch.utmContent = utm("utm_content");
+  }
+
+  // Nothing new to record.
+  if (existing && Object.keys(incoming).length === 0 && Object.keys(firstTouch).length === 0) {
+    return;
+  }
+
   const merged: ClickIds = {
-    ...existing,
+    ...(existing ?? {}),
+    ...firstTouch,
     ...incoming,
     capturedAt: new Date().toISOString(),
   };

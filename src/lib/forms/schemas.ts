@@ -52,6 +52,28 @@ const honey = z
   .optional()
   .or(z.literal("").transform(() => undefined));
 
+// First-touch marketing attribution (UTM + landing page + referrer + ad click
+// IDs), captured client-side and attached to every submission. Stripped before
+// the Supabase insert; surfaced in the notification email for the sales trail.
+const tracking = z
+  .object({
+    gclid: z.string().max(400),
+    gbraid: z.string().max(400),
+    wbraid: z.string().max(400),
+    fbclid: z.string().max(400),
+    msclkid: z.string().max(400),
+    utmSource: z.string().max(200),
+    utmMedium: z.string().max(200),
+    utmCampaign: z.string().max(200),
+    utmTerm: z.string().max(200),
+    utmContent: z.string().max(200),
+    landingPage: z.string().max(600),
+    referrer: z.string().max(600),
+    capturedAt: z.string().max(40),
+  })
+  .partial()
+  .optional();
+
 // ---------------------------------------------------------------------------
 // Consultation booking
 // ---------------------------------------------------------------------------
@@ -78,6 +100,7 @@ export const consultationBookingSchema = z.object({
   sourcePage,
   turnstileToken,
   honey,
+  tracking,
 });
 
 export type ConsultationBookingInput = z.input<typeof consultationBookingSchema>;
@@ -104,6 +127,7 @@ export const waitlistInterestSchema = z.object({
   sourcePage,
   turnstileToken,
   honey,
+  tracking,
 });
 
 export type WaitlistInterestInput = z.input<typeof waitlistInterestSchema>;
@@ -130,6 +154,7 @@ export const contactSubmissionSchema = z.object({
   sourcePage,
   turnstileToken,
   honey,
+  tracking,
 });
 
 export type ContactSubmissionInput = z.input<typeof contactSubmissionSchema>;
@@ -170,6 +195,7 @@ export const newsletterSchema = z.object({
   sourcePage,
   turnstileToken,
   honey,
+  tracking,
 });
 
 export type NewsletterInput = z.input<typeof newsletterSchema>;
