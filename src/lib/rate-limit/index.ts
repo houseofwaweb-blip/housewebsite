@@ -61,14 +61,19 @@ export interface RateLimitResult {
 
 export async function checkFormRateLimit(identifier: string): Promise<RateLimitResult> {
   const limiter = getFormLimiter();
+  // Upstash not configured -> allow. Turnstile is the primary bot defense, so a
+  // missing optional rate-limiter must never block (or 500) real submissions.
   if (!limiter) {
-    if (process.env.NODE_ENV === "production") {
-      return { ok: false, remaining: 0, reset: Date.now() + 600_000 };
-    }
     return { ok: true, remaining: 99, reset: Date.now() + 600_000 };
   }
-  const { success, remaining, reset } = await limiter.limit(identifier);
-  return { ok: success, remaining, reset };
+  try {
+    const { success, remaining, reset } = await limiter.limit(identifier);
+    return { ok: success, remaining, reset };
+  } catch {
+    // A rate-limiter transport/config error must never surface as a 500 on a
+    // form submission — fail open (same as the search limiter).
+    return { ok: true, remaining: 99, reset: Date.now() + 600_000 };
+  }
 }
 
 /**

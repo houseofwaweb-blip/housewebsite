@@ -30,6 +30,7 @@ export async function handleFormSubmission(
   req: NextRequest,
   type: FormType,
 ): Promise<NextResponse> {
+  try {
   const entry = formRegistry[type];
   if (!entry) {
     return NextResponse.json({ ok: false, error: "unknown-form" }, { status: 404 });
@@ -248,4 +249,11 @@ export async function handleFormSubmission(
   }).catch(() => {});
 
   return NextResponse.json({ ok: true, metaEventId });
+  } catch (err) {
+    // Defense-in-depth: any unhandled throw returns clean JSON (never a bare
+    // 500, which the client shows as "Network trouble"). The submission may
+    // not have persisted, so surface a retryable error.
+    console.error("[forms:submit] unhandled error", err);
+    return NextResponse.json({ ok: false, error: "server-error" }, { status: 500 });
+  }
 }
