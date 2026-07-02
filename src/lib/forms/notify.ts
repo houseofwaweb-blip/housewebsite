@@ -27,18 +27,6 @@ interface Submission {
   name?: string;
 }
 
-function inbox(category: "default" | "design" | "services" | "protect" | "shop" | "press"): string {
-  const map = {
-    default: env.CONTACT_INBOX_DEFAULT,
-    design: env.CONTACT_INBOX_DESIGN ?? env.CONTACT_INBOX_DEFAULT,
-    services: env.CONTACT_INBOX_SERVICES ?? env.CONTACT_INBOX_DEFAULT,
-    protect: env.CONTACT_INBOX_PROTECT ?? env.CONTACT_INBOX_DEFAULT,
-    shop: env.CONTACT_INBOX_SHOP ?? env.CONTACT_INBOX_DEFAULT,
-    press: env.CONTACT_INBOX_PRESS ?? env.CONTACT_INBOX_DEFAULT,
-  } as const;
-  return map[category];
-}
-
 function formatBody(submission: Submission): string {
   return Object.entries(submission)
     .filter(([, v]) => v !== undefined && v !== null && v !== "")
@@ -53,23 +41,22 @@ export async function notifyFormSubmission(
   const email = typeof submission.email === "string" ? submission.email : undefined;
   const name = typeof submission.name === "string" ? submission.name : "—";
 
-  let to: string;
+  // All enquiries route to one inbox: CONTACT_INBOX_DEFAULT (set it to
+  // sales@willowalexander.co.uk in production, or a tester address for now).
+  // The subject prefix keeps per-type/topic filtering easy in the inbox.
   let subject: string;
 
   switch (type) {
     case "consultation":
-      to = inbox("design");
       subject = `[HoWA · consultation] ${name}`;
       break;
     case "waitlist": {
       const product = typeof submission.product === "string" ? submission.product : "?";
-      to = inbox("default");
       subject = `[HoWA · waitlist · ${product}] ${name}`;
       break;
     }
     case "contact": {
       const topic = typeof submission.topic === "string" ? submission.topic : "general";
-      to = topic === "press" ? inbox("press") : inbox("default");
       subject = `[HoWA · contact · ${topic}] ${name}`;
       break;
     }
@@ -79,6 +66,8 @@ export async function notifyFormSubmission(
     default:
       return;
   }
+
+  const to = env.CONTACT_INBOX_DEFAULT;
 
   await sendEmail({
     to,

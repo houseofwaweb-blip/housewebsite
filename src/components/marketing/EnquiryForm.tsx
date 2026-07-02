@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { cn } from "@/lib/cn";
 import { submitForm } from "@/components/forms/submitForm";
 import { TurnstileField } from "@/components/forms/TurnstileField";
@@ -78,6 +79,7 @@ export function EnquiryForm({
   const [notes, setNotes] = React.useState("");
   const [state, setState] = React.useState<"idle" | "submitting" | "success" | "error">("idle");
   const [error, setError] = React.useState("");
+  const router = useRouter();
   const honeyRef = React.useRef<HTMLInputElement>(null);
   const turnstileRef = React.useRef<TurnstileInstance | null>(null);
   const [turnstileToken, setTurnstileToken] = React.useState("");
@@ -103,11 +105,11 @@ export function EnquiryForm({
       turnstileToken: turnstileToken || (siteKey ? "" : "no-turnstile"),
     });
     if (result.ok) {
-      setState("success");
-    } else {
-      setState("error");
-      setError(result.error);
+      router.push("/thank-you");
+      return;
     }
+    setState("error");
+    setError(result.error);
     turnstileRef.current?.reset();
     setTurnstileToken("");
   };

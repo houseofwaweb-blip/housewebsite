@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { TurnstileInstance } from "@marsidev/react-turnstile";
@@ -74,6 +75,7 @@ const TOPICS: Array<{
 ];
 
 export function ContactForm({ turnstileSiteKey, sourcePage }: ContactFormProps) {
+  const router = useRouter();
   const turnstileRef = React.useRef<TurnstileInstance | null>(null);
   const [status, setStatus] = React.useState<FormStatusState>({ kind: "idle" });
   const [topic, setTopic] = React.useState<Topic | null>(null);
@@ -81,7 +83,6 @@ export function ContactForm({ turnstileSiteKey, sourcePage }: ContactFormProps) 
   const {
     register,
     handleSubmit,
-    reset,
     setValue,
     formState: { errors, isSubmitting },
   } = useForm<ContactSubmissionInput, unknown, ContactSubmissionOutput>({
@@ -108,17 +109,11 @@ export function ContactForm({ turnstileSiteKey, sourcePage }: ContactFormProps) 
     setStatus({ kind: "submitting" });
     const result = await submitForm("contact", data);
     if (result.ok) {
-      setStatus({
-        kind: "success",
-        message: "Thank you. Your message is with us. We'll reply within one working day.",
-      });
-      reset({ topic: "general", sourcePage, turnstileToken: "", honey: "" });
-      setTopic(null);
-      turnstileRef.current?.reset();
-    } else {
-      setStatus({ kind: "error", message: result.error });
-      turnstileRef.current?.reset();
+      router.push("/thank-you");
+      return;
     }
+    setStatus({ kind: "error", message: result.error });
+    turnstileRef.current?.reset();
   };
 
   return (
