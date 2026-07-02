@@ -140,7 +140,20 @@ export function CartProvider({
   const add = React.useCallback(
     async (merchandiseId: string, info: AddInfo, quantity = 1) => {
       if (!buyable) return; // catalog mode — browse only
-      const updated = await call({ action: "add", merchandiseId, quantity });
+      let updated: ApiCart | undefined;
+      try {
+        updated = await call({ action: "add", merchandiseId, quantity });
+      } catch {
+        updated = undefined;
+      }
+      // If the cart API failed, don't show a false "added" toast, open the
+      // drawer, or fire add_to_cart — surface a retry instead.
+      if (!updated) {
+        setToast({ id: crypto.randomUUID(), title: "Couldn't add to basket. Please try again." });
+        if (hideTimer.current) window.clearTimeout(hideTimer.current);
+        hideTimer.current = window.setTimeout(() => setToast(null), 3000);
+        return;
+      }
       setToast({
         id: crypto.randomUUID(),
         title: `${info.title} added.`,

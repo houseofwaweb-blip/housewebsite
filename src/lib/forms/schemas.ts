@@ -45,12 +45,11 @@ const sourcePage = z
   .optional()
   .or(z.literal("").transform(() => undefined));
 
-// Honeypot field — real users never fill this; bots usually do.
-const honey = z
-  .string()
-  .max(0, "Invalid submission")
-  .optional()
-  .or(z.literal("").transform(() => undefined));
+// Honeypot field — real users never fill this; bots usually do. Accept ANY
+// value at the schema level (no .max(0)) so a filled honeypot passes
+// validation and the handler can silently 200 it — rejecting here with a
+// named "honey" error just tells the bot which field is the trap.
+const honey = z.string().optional();
 
 // First-touch marketing attribution (UTM + landing page + referrer + ad click
 // IDs), captured client-side and attached to every submission. Stripped before
