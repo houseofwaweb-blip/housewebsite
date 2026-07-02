@@ -4,6 +4,8 @@ import * as React from "react";
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 import { submitForm } from "@/components/forms/submitForm";
+import { TurnstileField } from "@/components/forms/TurnstileField";
+import type { TurnstileInstance } from "@marsidev/react-turnstile";
 
 /**
  * EnquiryForm — the House's "get in touch / book a service" form.
@@ -77,6 +79,9 @@ export function EnquiryForm({
   const [state, setState] = React.useState<"idle" | "submitting" | "success" | "error">("idle");
   const [error, setError] = React.useState("");
   const honeyRef = React.useRef<HTMLInputElement>(null);
+  const turnstileRef = React.useRef<TurnstileInstance | null>(null);
+  const [turnstileToken, setTurnstileToken] = React.useState("");
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
 
   const isDark = variant === "dark";
 
@@ -93,7 +98,9 @@ export function EnquiryForm({
       notes: notes || undefined,
       sourcePage,
       honey: honeyRef.current?.value ?? "",
-      turnstileToken: "",
+      // Real Turnstile token when the widget is configured; the "no-turnstile"
+      // sentinel only matters in dev where TURNSTILE_SECRET_KEY is unset.
+      turnstileToken: turnstileToken || (siteKey ? "" : "no-turnstile"),
     });
     if (result.ok) {
       setState("success");
@@ -101,6 +108,8 @@ export function EnquiryForm({
       setState("error");
       setError(result.error);
     }
+    turnstileRef.current?.reset();
+    setTurnstileToken("");
   };
 
   const field = cn(
@@ -176,15 +185,25 @@ export function EnquiryForm({
 
               <textarea value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="How can we help? Tell us a little about your home." aria-label="Your message" rows={4} className={cn(field, "resize-y")} />
 
+              <div className="mt-1">
+                <TurnstileField
+                  ref={turnstileRef}
+                  siteKey={siteKey}
+                  theme={isDark ? "dark" : "light"}
+                  onToken={setTurnstileToken}
+                  onExpire={() => setTurnstileToken("")}
+                />
+              </div>
+
               {state === "error" ? (
                 <p className="font-sans text-[15px] text-[#8b3a3a]" role="alert">{error}</p>
               ) : null}
 
               <button
                 type="submit"
-                disabled={state === "submitting"}
-                className="w-full font-sans text-[12px] tracking-[0.18em] uppercase text-white border-0 px-5 py-4 cursor-pointer disabled:opacity-60 transition-colors"
-                style={{ background: "var(--color-house-gold-dark)" }}
+                disabled={state === "submitting" || (!!siteKey && !turnstileToken)}
+                className="w-full font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown border-0 px-5 py-4 cursor-pointer disabled:opacity-60 transition-colors"
+                style={{ background: "var(--color-house-gold-ink)" }}
               >
                 {state === "submitting" ? "Sending…" : buttonLabel}
               </button>
