@@ -104,7 +104,7 @@ export function proxy(request: NextRequest) {
     `script-src 'self' 'unsafe-inline'${scriptEval} https://challenges.cloudflare.com ${measureScript} ${obfHosts}`,
     `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com ${obfHosts}`,
     "img-src 'self' data: blob: https:",
-    `font-src 'self' data: https://fonts.gstatic.com ${obfHosts}`,
+    "font-src 'self' data: https:",
     `connect-src 'self' https://*.supabase.co wss://*.supabase.co https://*.sanity.io https://cdn.sanity.io https://*.shopify.com https://*.upstash.io https://challenges.cloudflare.com https://*.sentry.io https://*.ingest.sentry.io ${measureConnect} ${obfHosts}`,
     `frame-src 'self' https://challenges.cloudflare.com https://www.facebook.com ${obfHosts}`,
     "frame-ancestors 'none'",

@@ -11,7 +11,9 @@ export function MicrosoftClarity() {
   // Clarity project ID is public (ships in the client tag). Default to the
   // Willow Alexander project so heatmaps work on launch even without the Vercel
   // env set; NEXT_PUBLIC_CLARITY_PROJECT_ID overrides it.
-  const id = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID ?? "teosz3tmam";
+  // || not ?? — an empty-string env var must still fall back to the baked ID,
+  // otherwise id="" makes this render nothing and Clarity never loads.
+  const id = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID || "teosz3tmam";
   if (!granted || !id) return null;
   return (
     <Script id="clarity-init" strategy="afterInteractive">
