@@ -236,6 +236,9 @@ export default async function HomePage() {
             alt="Willow Alexander Gardens"
             width={3595}
             height={2184}
+            // Displayed small (~186px). Without `sizes`, Next served the full
+            // 3840px variant (~43KB) for a tiny logo. Cap it to the real size.
+            sizes="(min-width: 768px) 240px, 186px"
             className={s.originLogo}
           />
         </div>

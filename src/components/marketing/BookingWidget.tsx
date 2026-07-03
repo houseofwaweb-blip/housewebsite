@@ -77,45 +77,101 @@ declare global {
   interface Window {
     obfOptions?: ObfOptions;
     __obfLoaded?: boolean;
+    __obfReady?: boolean;
   }
 }
 
 export function BookingWidget() {
-  // ServiceOS is the booking platform — treated as ESSENTIAL / strictly
-  // necessary, so it is NOT consent-gated. It only actually runs when the
-  // visitor clicks a "Book" (#open-booking-form) CTA — a service they've
-  // explicitly asked for — so gating it behind optional (functional) consent
-  // would break booking for anyone who declines. Loaded on every page so the
-  // booking CTA always works.
+  // ServiceOS is the booking platform — ESSENTIAL / strictly necessary, so it
+  // is NOT consent-gated. BUT its client bundle is ~800KB, and loading it
+  // eagerly on every page starved the hero image of bandwidth on mobile and
+  // tanked LCP (Lighthouse). So we DEFER the load:
+  //   - Load on the visitor's first interaction (scroll / pointer / key /
+  //     touch), by which point they may be about to click "Book".
+  //   - If someone clicks a "Book" CTA before it has finished loading, load it
+  //     and replay the click once ready, so booking still opens on first click.
+  // A passive page view (e.g. a Lighthouse run, or a bounce) never downloads
+  // the 800KB — it only loads when a real visitor engages.
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (window.__obfLoaded) return;
-    window.__obfLoaded = true;
 
-    // Dynamic — match whatever origin the page is on. ServiceOS uses
-    // main_url for the host-allowlist check, so this must match the
-    // current site rather than be hardcoded.
-    const origin = window.location.origin;
-    window.obfOptions = {
-      ...OBF_BASE_CONFIG,
-      main_url: origin + "/",
-      logo_url: origin + "/brand/howa/howa-black.png",
+    const cleanups: Array<() => void> = [];
+    const runCleanups = () => {
+      while (cleanups.length) cleanups.pop()?.();
     };
 
-    const script = document.createElement("script");
-    script.id = "obfAbClient";
-    // Path matches the live WP plugin: /obf/client/client.min.js
-    // Trust model: SRI is impractical here (ServiceOS updates the bundle
-    // without notice, and the cache-busting query changes hourly). The
-    // CSP script-src allowlist + our ownership of accounts.willowalexander.co.uk
-    // is the security control. Compromise of that subdomain = full XSS,
-    // which is accepted because losing it implies losing the auth provider.
-    script.src =
-      "https://accounts.willowalexander.co.uk/obf/client/client.min.js?v=" +
-      Math.floor(Date.now() / 3_600_000);
-    script.async = true;
-    script.dataset.queryParamsTemplate = "true";
-    document.body.appendChild(script);
+    const loadObf = () => {
+      if (window.__obfLoaded) return;
+      window.__obfLoaded = true;
+      runCleanups();
+
+      // Dynamic — match whatever origin the page is on. ServiceOS uses
+      // main_url for the host-allowlist check.
+      const origin = window.location.origin;
+      window.obfOptions = {
+        ...OBF_BASE_CONFIG,
+        main_url: origin + "/",
+        logo_url: origin + "/brand/howa/howa-black.png",
+      };
+
+      const script = document.createElement("script");
+      script.id = "obfAbClient";
+      // Path matches the live WP plugin: /obf/client/client.min.js
+      // Trust model: SRI is impractical here (ServiceOS updates the bundle
+      // without notice, cache-buster changes hourly). The CSP script-src
+      // allowlist + our ownership of accounts.willowalexander.co.uk is the
+      // security control.
+      script.src =
+        "https://accounts.willowalexander.co.uk/obf/client/client.min.js?v=" +
+        Math.floor(Date.now() / 3_600_000);
+      script.async = true;
+      script.dataset.queryParamsTemplate = "true";
+      script.addEventListener(
+        "load",
+        () => {
+          window.__obfReady = true;
+          window.dispatchEvent(new Event("obf-ready"));
+        },
+        { once: true },
+      );
+      document.body.appendChild(script);
+    };
+
+    // 1) First real interaction → load the widget ahead of any Book click.
+    const events: Array<keyof WindowEventMap> = [
+      "pointerdown",
+      "touchstart",
+      "keydown",
+      "scroll",
+      "mousemove",
+    ];
+    for (const ev of events) {
+      window.addEventListener(ev, loadObf, { once: true, passive: true });
+      cleanups.push(() => window.removeEventListener(ev, loadObf));
+    }
+
+    // 2) Book CTA clicked before the script is ready → load now and replay the
+    //    click once ServiceOS has bound its handlers, so it still opens first-go.
+    const onBookClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      const link = target?.closest?.(
+        'a[href="#open-booking-form"]',
+      ) as HTMLElement | null;
+      if (!link) return;
+      if (window.__obfReady) return; // already loaded — let ServiceOS handle it
+      e.preventDefault();
+      loadObf();
+      const open = () => {
+        window.removeEventListener("obf-ready", open);
+        link.click();
+      };
+      window.addEventListener("obf-ready", open);
+    };
+    document.addEventListener("click", onBookClick, true);
+    cleanups.push(() => document.removeEventListener("click", onBookClick, true));
+
+    return runCleanups;
   }, []);
 
   // The widget injects its own DOM. No visible markup needed — clicks on
