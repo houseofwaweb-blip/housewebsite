@@ -36,6 +36,7 @@ export function WaitlistMini({
 }: WaitlistMiniProps) {
   const [firstName, setFirstName] = React.useState("");
   const [email, setEmail] = React.useState("");
+  const [marketingOptIn, setMarketingOptIn] = React.useState(false);
   const [state, setState] = React.useState<"idle" | "submitting" | "success" | "error">("idle");
   const [error, setError] = React.useState<string | null>(null);
   const honeyRef = React.useRef<HTMLInputElement>(null);
@@ -50,6 +51,7 @@ export function WaitlistMini({
     const result = await submitForm("waitlist", {
       email,
       firstName,
+      marketingOptIn,
       product,
       sourcePage,
       honey: honeyRef.current?.value ?? "",
@@ -118,6 +120,16 @@ export function WaitlistMini({
         aria-invalid={error ? true : undefined}
         className={field}
       />
+
+      <label className="flex items-start gap-2 cursor-pointer font-sans text-[13px] leading-[1.45] text-house-brown/70">
+        <input
+          type="checkbox"
+          checked={marketingOptIn}
+          onChange={(e) => setMarketingOptIn(e.target.checked)}
+          className="mt-0.5 h-3.5 w-3.5 shrink-0 accent-[var(--house-gold-ink)]"
+        />
+        <span>Email me occasional House of Willow Alexander updates and offers.</span>
+      </label>
 
       <TurnstileField
         ref={turnstileRef}

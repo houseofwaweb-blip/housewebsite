@@ -51,6 +51,11 @@ const sourcePage = z
 // named "honey" error just tells the bot which field is the trap.
 const honey = z.string().optional();
 
+// Explicit "opt into marketing" checkbox on enquiry forms → the
+// `marketing_consent` column in form_submissions. This is email-marketing
+// consent, distinct from the site's cookie/tracking consent.
+const marketingOptIn = z.boolean().optional();
+
 // First-touch marketing attribution (UTM + landing page + referrer + ad click
 // IDs), captured client-side and attached to every submission. Stripped before
 // the Supabase insert; surfaced in the notification email for the sales trail.
@@ -96,6 +101,7 @@ export const consultationBookingSchema = z.object({
     .default("general"),
   preferredDates: z.string().trim().max(240).optional(),
   notes: z.string().trim().max(2000).optional(),
+  marketingOptIn,
   sourcePage,
   turnstileToken,
   honey,
@@ -123,6 +129,7 @@ export const waitlistInterestSchema = z.object({
   propertyType: z.string().trim().max(60).optional(),
   note: z.string().trim().max(2000).optional().or(z.literal("").transform(() => undefined)),
   context: z.record(z.string(), z.unknown()).optional(),
+  marketingOptIn,
   sourcePage,
   turnstileToken,
   honey,
@@ -150,6 +157,7 @@ export const contactSubmissionSchema = z.object({
       "complaint",
     ])
     .default("general"),
+  marketingOptIn,
   sourcePage,
   turnstileToken,
   honey,

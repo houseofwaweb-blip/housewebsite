@@ -66,6 +66,8 @@ export async function handleFormSubmission(
     req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
     req.headers.get("x-real-ip") ||
     "unknown";
+  const userAgent = req.headers.get("user-agent") ?? "";
+  const consent = readConsentFromCookieHeader(req.headers.get("cookie"));
 
   const rl = await checkFormRateLimit(`${type}:${ip}`);
   if (!rl.ok) {
@@ -84,10 +86,14 @@ export async function handleFormSubmission(
   }
 
   // Strip client-only fields before insert.
-  const { turnstileToken: _t, honey: _h, tracking: _tr, sourcePage, ...rest } = parsed as Record<
-    string,
-    unknown
-  > & { turnstileToken: string; honey?: string; tracking?: unknown; sourcePage?: string };
+  const { turnstileToken: _t, honey: _h, tracking: _tr, sourcePage, marketingOptIn: _mo, ...rest } =
+    parsed as Record<string, unknown> & {
+      turnstileToken: string;
+      honey?: string;
+      tracking?: unknown;
+      sourcePage?: string;
+      marketingOptIn?: boolean;
+    };
 
   const row: Record<string, unknown> = { ...rest, source_page: sourcePage ?? null };
 
@@ -141,6 +147,19 @@ export async function handleFormSubmission(
     );
   }
 
+  // Mirror enquiry submissions into the unified `form_submissions` table — the
+  // 25-column shape the cross-site automation reads (dedupe / legitimacy /
+  // source-from-url+utm). Non-fatal: the per-type table above is the source of
+  // truth, so a problem here never fails the user's form.
+  const inboundRow = buildInboundRow(type, parsed as Record<string, unknown>, {
+    ip,
+    userAgent,
+  });
+  if (inboundRow) {
+    const { error: inboundErr } = await supabase.from("form_submissions").insert(inboundRow);
+    if (inboundErr) console.error("[forms:inbound-insert]", inboundErr.message);
+  }
+
   // Meta event id up front so the client can dedupe against the CAPI event.
   const metaEventName = FORM_TYPE_TO_META_EVENT[type];
   const metaEventId = randomUUID();
@@ -151,8 +170,7 @@ export async function handleFormSubmission(
   // when the visitor granted MARKETING consent (the browser pixel is already
   // gated by the MetaPixel loader). Without this a user who rejected marketing
   // still has their identifiers sent server-side — a GDPR/PECR exposure.
-  const marketingConsent =
-    readConsentFromCookieHeader(req.headers.get("cookie"))?.marketing === true;
+  const marketingConsent = consent?.marketing === true;
 
   // Post-response side effects: inbox email, Klaviyo, Meta CAPI. These MUST run
   // inside after() — a plain fire-and-forget promise is killed when the response
@@ -250,5 +268,93 @@ export async function handleFormSubmission(
     // not have persisted, so surface a retryable error.
     console.error("[forms:submit] unhandled error", err);
     return NextResponse.json({ ok: false, error: "server-error" }, { status: 500 });
+  }
+}
+
+/**
+ * Map a validated submission onto the unified `form_submissions` row (the
+ * 25-column cross-site shape + a `context` jsonb for House-only extras).
+ * Returns null for form types we don't mirror there — newsletter is a
+ * subscriber list, not an inbound enquiry.
+ *
+ * Field mapping:
+ *   consultation → service = serviceType, message = notes
+ *   contact      → service = topic,       message = message
+ *   waitlist     → service = product,     message = note, name = first+last
+ * UTM / gclid / referrer come from the first-touch `tracking` object; tier,
+ * propertyType and preferredDates go into `context`.
+ */
+function buildInboundRow(
+  type: FormType,
+  submission: Record<string, unknown>,
+  meta: { ip: string; userAgent: string },
+): Record<string, unknown> | null {
+  if (type === "newsletter") return null;
+
+  // marketing_consent is the explicit "opt into marketing" checkbox ON the
+  // form (email-marketing consent) — NOT the site's cookie/tracking consent.
+  const optedIn = submission.marketingOptIn === true;
+
+  const s = (k: string): string | null =>
+    typeof submission[k] === "string" && submission[k] ? (submission[k] as string) : null;
+  const tracking = (submission.tracking ?? {}) as Record<string, unknown>;
+  const t = (k: string): string | null =>
+    typeof tracking[k] === "string" && tracking[k] ? (tracking[k] as string) : null;
+
+  const context: Record<string, unknown> = { form_type: type };
+  if (t("gclid")) context.gclid = t("gclid");
+  if (t("referrer")) context.referrer = t("referrer");
+  if (s("tier")) context.tier = s("tier");
+  if (s("propertyType")) context.property_type = s("propertyType");
+  if (s("preferredDates")) context.preferred_dates = s("preferredDates");
+
+  const base: Record<string, unknown> = {
+    status: "new",
+    page_url: s("sourcePage") ?? t("landingPage"),
+    utm_source: t("utmSource"),
+    utm_medium: t("utmMedium"),
+    utm_campaign: t("utmCampaign"),
+    utm_content: t("utmContent"),
+    utm_term: t("utmTerm"),
+    user_agent: meta.userAgent || null,
+    ip: meta.ip && meta.ip !== "unknown" ? meta.ip : null,
+    marketing_consent: optedIn,
+    marketing_consent_at: optedIn ? new Date().toISOString() : null,
+    context,
+  };
+
+  switch (type) {
+    case "consultation":
+      return {
+        ...base,
+        source: "consultation",
+        name: s("name"),
+        email: s("email"),
+        phone: s("phone"),
+        postcode: s("postcode"),
+        service: s("serviceType"),
+        message: s("notes"),
+      };
+    case "contact":
+      return {
+        ...base,
+        source: "contact",
+        name: s("name"),
+        email: s("email"),
+        service: s("topic"),
+        message: s("message"),
+      };
+    case "waitlist":
+      return {
+        ...base,
+        source: "waitlist",
+        name: [s("firstName"), s("lastName")].filter(Boolean).join(" ") || null,
+        email: s("email"),
+        postcode: s("postcode"),
+        service: s("product"),
+        message: s("note"),
+      };
+    default:
+      return null;
   }
 }

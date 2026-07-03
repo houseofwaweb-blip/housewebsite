@@ -194,6 +194,15 @@ export function ContactForm({ turnstileSiteKey, sourcePage }: ContactFormProps) 
             {...register("message")}
           />
 
+          <label className="flex items-start gap-2.5 cursor-pointer font-sans text-[14px] leading-[1.5] text-house-stone">
+            <input
+              type="checkbox"
+              {...register("marketingOptIn")}
+              className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--house-gold-ink)]"
+            />
+            <span>I&rsquo;d like to hear from House of Willow Alexander occasionally about home, garden and seasonal tips and offers.</span>
+          </label>
+
           {turnstileSiteKey ? (
             <>
               <TurnstileField

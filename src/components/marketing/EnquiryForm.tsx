@@ -77,6 +77,7 @@ export function EnquiryForm({
     : "general") as ServiceType;
   const [serviceType, setServiceType] = React.useState<ServiceType>(initialService);
   const [notes, setNotes] = React.useState("");
+  const [marketingOptIn, setMarketingOptIn] = React.useState(false);
   const [state, setState] = React.useState<"idle" | "submitting" | "success" | "error">("idle");
   const [error, setError] = React.useState("");
   const router = useRouter();
@@ -98,6 +99,7 @@ export function EnquiryForm({
       postcode: postcode || undefined,
       serviceType,
       notes: notes || undefined,
+      marketingOptIn,
       sourcePage,
       honey: honeyRef.current?.value ?? "",
       // Real Turnstile token when the widget is configured; the "no-turnstile"
@@ -186,6 +188,16 @@ export function EnquiryForm({
               </select>
 
               <textarea value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="How can we help? Tell us a little about your home." aria-label="Your message" rows={4} className={cn(field, "resize-y")} />
+
+              <label className={cn("mt-1 flex items-start gap-2.5 cursor-pointer font-sans text-[14px] leading-[1.5]", isDark ? "text-house-cream/75" : "text-house-stone")}>
+                <input
+                  type="checkbox"
+                  checked={marketingOptIn}
+                  onChange={(e) => setMarketingOptIn(e.target.checked)}
+                  className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--house-gold-ink)]"
+                />
+                <span>I&rsquo;d like to hear from House of Willow Alexander occasionally about home, garden and seasonal tips and offers.</span>
+              </label>
 
               <div className="mt-1">
                 <TurnstileField
