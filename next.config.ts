@@ -129,10 +129,13 @@ const nextConfig: NextConfig = {
       { source: "/product-category/:slug*", destination: "/shop/collections/:slug*", permanent: true },
       // Old WooCommerce product URLs carried the category in the path
       // (/shop/<category>/<product>); the new shop is flat (/shop/<handle>).
-      // Redirect to the last segment. The (?!collections) guard keeps the real
-      // /shop/collections/<handle> route working.
-      { source: "/shop/:category((?!collections)[^/]+)/page/:n", destination: "/shop", permanent: true },
-      { source: "/shop/:category((?!collections)[^/]+)/:handle", destination: "/shop/:handle", permanent: true },
+      // Redirect to the last segment. The (?!collections|rooms) guard keeps the
+      // real /shop/collections/<handle> route AND the static room images
+      // (/shop/rooms/<name>.webp) working. The `:handle([^/.]+)` constraint
+      // excludes any segment with a file extension, so static assets under
+      // /shop/<dir>/ (e.g. .webp images) are never swallowed by this redirect.
+      { source: "/shop/:category((?!collections|rooms)[^/]+)/page/:n", destination: "/shop", permanent: true },
+      { source: "/shop/:category((?!collections|rooms)[^/]+)/:handle([^/.]+)", destination: "/shop/:handle", permanent: true },
       // Old / alternate service slugs → the launch service hubs.
       { source: "/services/cleaners", destination: "/services/cleaning", permanent: true },
       { source: "/services/gardeners", destination: "/services/gardening", permanent: true },
