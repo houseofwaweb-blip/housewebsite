@@ -3,9 +3,11 @@
  *
  * Four categories per UK ICO / PECR guidance + IAB TCF v2 alignment:
  *   - essential   — always on. Site can't work without these.
- *                   Session, security/CSRF, the consent cookie itself.
- *   - functional  — preferences and embedded tools. The ServiceOS
- *                   BookingWidget sets cookies in this category.
+ *                   Session, security/CSRF, the consent cookie itself, and the
+ *                   ServiceOS BookingWidget (strictly necessary: it only runs
+ *                   when the visitor clicks "Book", a service they requested, so
+ *                   it must not be blocked by declining optional categories).
+ *   - functional  — preferences and other embedded tools.
  *                   Default OFF until granted.
  *   - measurement — first-party understanding of the site. GA4, Microsoft
  *                   Clarity, Vercel Analytics, Speed Insights, Sentry.

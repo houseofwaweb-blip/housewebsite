@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import { useConsentGranted } from "@/components/consent/ConsentProvider";
 
 /**
  * Embed the ServiceOS Online Booking Form (OBF) as it currently runs on
@@ -82,14 +81,13 @@ declare global {
 }
 
 export function BookingWidget() {
-  // ServiceOS sets cookies and runs third-party JS — functional consent required
-  // before we load it. Users who haven't decided yet (or who declined) see the
-  // booking CTA but clicking it does nothing until they grant. The CookieBanner
-  // is non-dismissable until a choice is made, so this isn't a dead-end UX.
-  const functionalGranted = useConsentGranted("functional");
-
+  // ServiceOS is the booking platform — treated as ESSENTIAL / strictly
+  // necessary, so it is NOT consent-gated. It only actually runs when the
+  // visitor clicks a "Book" (#open-booking-form) CTA — a service they've
+  // explicitly asked for — so gating it behind optional (functional) consent
+  // would break booking for anyone who declines. Loaded on every page so the
+  // booking CTA always works.
   useEffect(() => {
-    if (!functionalGranted) return;
     if (typeof window === "undefined") return;
     if (window.__obfLoaded) return;
     window.__obfLoaded = true;
@@ -118,7 +116,7 @@ export function BookingWidget() {
     script.async = true;
     script.dataset.queryParamsTemplate = "true";
     document.body.appendChild(script);
-  }, [functionalGranted]);
+  }, []);
 
   // The widget injects its own DOM. No visible markup needed — clicks on
   // any `href="#open-booking-form"` anchor open the modal.

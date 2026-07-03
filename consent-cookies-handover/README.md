@@ -22,10 +22,17 @@ the live implementation (July 2026).
 
 | Category | What it covers | Example tags |
 |---|---|---|
-| `essential` | Always on. The site can't work without these. | Session, security/CSRF, the consent cookie itself |
-| `functional` | Preferences + embedded tools | ServiceOS booking widget |
+| `essential` | Always on. The site can't work without these. | Session, security/CSRF, the consent cookie itself, **the ServiceOS booking widget** |
+| `functional` | Preferences + other embedded tools | (preferences) |
 | `measurement` | First-party understanding of the site | GA4, Microsoft Clarity |
 | `marketing` | Advertising + retargeting | Meta Pixel, Pinterest, Klaviyo onsite |
+
+> **⚠️ ServiceOS booking = essential, NOT functional.** The booking widget only
+> runs when a visitor clicks a "Book" CTA (a service they've explicitly
+> requested), so it must load regardless of consent — otherwise anyone who
+> declines optional cookies can't book. It is deliberately **not** consent-gated.
+> *(This is the fix for the "booking doesn't open when optional consent is
+> declined" issue.)*
 
 Splitting **measurement** from **marketing** is deliberate: a visitor can let us
 understand the site (analytics) without consenting to advertising/retargeting.
