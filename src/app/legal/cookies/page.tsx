@@ -20,9 +20,9 @@ export default async function CookiesPage() {
             heading: "The four categories",
             body: `The banner asks you to pick from four categories. You can accept all, reject everything non-essential, or open "Customise" to mix and match.
 
-**Essential**: always on. Session, security, your cart, and your consent choice itself. Site can't work without these. We never ask permission for these because the law treats them as necessary.
+**Essential**: always on. Session, security, your cart, your consent choice itself, and the ServiceOS booking widget (so a "Book" button always works, even if you decline everything else). Site can't work without these. We never ask permission for these because the law treats them as necessary.
 
-**Functional**: embedded tools that remember a preference. The ServiceOS booking widget, postcode lookup, and language preference live here. Default off.
+**Functional**: embedded tools that remember a preference, such as postcode lookup and language preference. Default off.
 
 **Measurement**: first-party understanding of the site. Google Analytics 4, Microsoft Clarity, Vercel Speed Insights, Sentry. We use them to see which pages are useful, find broken things, and improve speed. Default off.
 
@@ -53,12 +53,8 @@ We don't sell data. We don't share with anyone outside the providers listed in o
 When you change a preference, the change applies immediately to scripts already loaded. Some third-party cookies set in previous sessions may still exist in your browser until they expire. Clearing your cookies is the surest way to start fresh.`,
           },
           {
-            heading: "One note about this page itself",
-            body: `This page (the one you're reading right now) loads a small script from CookieYes to render the full cookie disclosure table below. That script sets one CookieYes cookie. We deliberately scope it to this page only so it doesn't run anywhere else on the site. It's a different system from our own consent banner. We use it purely to auto-generate the table from monthly scans of the live site.`,
-          },
-          {
             heading: "Full cookie list",
-            body: `The table below is automatically generated from a monthly scan of this site by CookieYes. If something is set that isn't listed, please email info@willowalexander.co.uk and we'll investigate.`,
+            body: `The table below lists the cookies and similar storage this site uses, grouped by the category above. Measurement and marketing entries are only set once you accept the matching category. If you spot something set that isn't listed, please email info@willowalexander.co.uk and we'll investigate.`,
           },
         ]}
         updatedAt={sanityPage?.lastUpdated ?? "1 July 2026"}

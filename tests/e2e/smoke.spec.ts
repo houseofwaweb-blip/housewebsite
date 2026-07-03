@@ -15,9 +15,7 @@ const IGNORE_PATTERNS = [
   /Trusted(HTML|Script)/i,
   /Form submission canceled/i,
   /Failed to load resource.*\b401\b/i,
-  /CookieYes/i,
   /sentry/i, // dev server has no DSN; sentry no-ops noisily
-  /cookieyes/i,
 ];
 
 function shouldIgnore(msg: ConsoleMessage): boolean {
