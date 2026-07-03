@@ -47,14 +47,18 @@ const CAT_FIELDS = /* GraphQL */ `
   }
 `;
 
+// Collections fetch only product HANDLES, not full product data. Full product
+// records come once each from PRODUCTS_QUERY; we join them back by handle. This
+// avoids re-sending every product's description + images for each of the ~45
+// collections it belongs to — the duplication that blew the response past
+// Next's 2MB data-cache limit (the "items over 2MB can not be cached" error).
 const COLLECTIONS_QUERY = /* GraphQL */ `
-  ${CAT_FIELDS}
   query ShopCollections {
     collections(first: 100) {
       nodes {
         handle
         title
-        products(first: 250) { nodes { ...CatFields } }
+        products(first: 250) { nodes { handle } }
       }
     }
   }
@@ -63,7 +67,7 @@ const COLLECTIONS_QUERY = /* GraphQL */ `
 const PRODUCTS_QUERY = /* GraphQL */ `
   ${CAT_FIELDS}
   query ShopProducts($cursor: String) {
-    products(first: 250, after: $cursor) {
+    products(first: 100, after: $cursor) {
       nodes { ...CatFields }
       pageInfo { hasNextPage endCursor }
     }
@@ -92,7 +96,8 @@ interface SfProduct {
 }
 interface CatalogueData {
   collections: {
-    nodes: Array<{ handle: string; title: string; products: { nodes: SfProduct[] } }>;
+    // Collections carry only product handles now; full records join via byHandle.
+    nodes: Array<{ handle: string; title: string; products: { nodes: Array<{ handle: string }> } }>;
   };
 }
 
@@ -221,10 +226,14 @@ export const loadShopifyCatalogue = cache(async (): Promise<ShopifyCatalogue | n
       title: c.title,
       productCount: c.products.nodes.length,
     }));
+    // Join collection product handles back to the full records from byHandle
+    // (rather than re-mapping duplicated embedded data, which we no longer fetch).
     const collectionProducts = new Map<string, CatalogueProduct[]>(
       collectionNodes.map((c) => [
         c.handle,
-        c.products.nodes.map((p) => mapProduct(p, c.title)),
+        c.products.nodes
+          .map((n) => byHandle.get(n.handle))
+          .filter((p): p is CatalogueProduct => Boolean(p)),
       ]),
     );
 
