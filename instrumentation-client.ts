@@ -35,7 +35,15 @@ if (dsn && hasMeasurementConsent()) {
     // Low sampling in prod — Sentry pricing is per-event.
     tracesSampleRate: process.env.NEXT_PUBLIC_VERCEL_ENV === "production" ? 0.1 : 1.0,
     // Don't capture cancelled fetches caused by route changes — noisy.
-    ignoreErrors: ["AbortError", /ResizeObserver loop/i],
+    // `Cannot create property 'page_title' on string` is thrown inside
+    // gtag.js / third-party tags (not our code — our GA calls all pass proper
+    // objects and are try/caught); it's non-fatal and never reaches the user,
+    // so we drop it rather than alert on every occurrence.
+    ignoreErrors: [
+      "AbortError",
+      /ResizeObserver loop/i,
+      /Cannot create property 'page_title' on string/i,
+    ],
   });
 }
 
