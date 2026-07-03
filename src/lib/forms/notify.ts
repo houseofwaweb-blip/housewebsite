@@ -83,7 +83,11 @@ export async function notifyFormSubmission(
       return;
   }
 
-  const to = env.CONTACT_INBOX_DEFAULT;
+  // Fall back to sales@ if CONTACT_INBOX_DEFAULT is empty/unset. An empty `to`
+  // makes Brevo reject the whole send (400 "email is not valid in to"), which
+  // silently drops the enquiry notification — exactly what happened when the
+  // Vercel env var got cleared. Never let a missing env swallow a lead.
+  const to = env.CONTACT_INBOX_DEFAULT || "sales@willowalexander.co.uk";
 
   await sendEmail({
     to,
