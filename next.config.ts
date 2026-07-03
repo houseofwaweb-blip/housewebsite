@@ -127,6 +127,20 @@ const nextConfig: NextConfig = {
       { source: "/product-category/:a/:b/:c", destination: "/shop/collections/:c", permanent: true },
       { source: "/product-category/:a/:b", destination: "/shop/collections/:b", permanent: true },
       { source: "/product-category/:slug*", destination: "/shop/collections/:slug*", permanent: true },
+      // Old WooCommerce product URLs carried the category in the path
+      // (/shop/<category>/<product>); the new shop is flat (/shop/<handle>).
+      // Redirect to the last segment. The (?!collections) guard keeps the real
+      // /shop/collections/<handle> route working.
+      { source: "/shop/:category((?!collections)[^/]+)/page/:n", destination: "/shop", permanent: true },
+      { source: "/shop/:category((?!collections)[^/]+)/:handle", destination: "/shop/:handle", permanent: true },
+      // Old / alternate service slugs → the launch service hubs.
+      { source: "/services/cleaners", destination: "/services/cleaning", permanent: true },
+      { source: "/services/gardeners", destination: "/services/gardening", permanent: true },
+      { source: "/services/window-cleaner", destination: "/services/window-cleaning", permanent: true },
+      { source: "/services/gutter-cleaners", destination: "/services/gutter-cleaning", permanent: true },
+      // Handyman is a deferred service → services hub rather than a 404.
+      { source: "/services/handyman/:sub*", destination: "/services", permanent: true },
+      { source: "/services/handyman", destination: "/services", permanent: true },
       // Legacy location × service SEO pages that weren't migrated 1:1 (the
       // migrated set is handled by wp-long-tail above, which wins by order).
       // Route by service keyword to the right hub; anything else → /services.
