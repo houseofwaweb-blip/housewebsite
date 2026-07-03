@@ -1,5 +1,6 @@
 import { sanityFetch } from "./fetch";
 import { sanityClient } from "./client";
+import { getTopArticleSlugs } from "@/lib/hearth/views";
 import type { HearthArticle, PopularItem } from "@/lib/hearth-data";
 
 /**
@@ -177,13 +178,33 @@ export async function getHearthIndex(): Promise<HearthIndexSections> {
     tags: ["type:article", "type:articleCategory"],
   });
   const all = raw.all.map(toHearthArticle);
-  const popular: PopularItem[] = all.slice(10, 15).map((a) => ({
+
+  const toPopularItem = (a: HearthArticle): PopularItem => ({
     slug: a.slug,
     tag: a.category,
     title: a.title,
     titleEm: a.titleEm,
     image: a.image,
-  }));
+  });
+
+  // Most Popular = real top articles by views over the last 30 days (Supabase,
+  // first-party). Falls back to an editorial slice when there isn't enough view
+  // data yet (fresh launch) or Supabase is unavailable — so the rail is never
+  // blank and never all-fallback-looking once traffic builds.
+  const bySlug = new Map(all.map((a) => [a.slug, a]));
+  const topSlugs = await getTopArticleSlugs(30, 5);
+  const fromViews = topSlugs
+    .map((slug) => bySlug.get(slug))
+    .filter((a): a is HearthArticle => Boolean(a))
+    .map(toPopularItem);
+
+  // Top up to 5 with the editorial fallback (never duplicating a view-ranked one).
+  const seen = new Set(fromViews.map((p) => p.slug));
+  const fallback = all
+    .slice(10, 15)
+    .filter((a) => !seen.has(a.slug))
+    .map(toPopularItem);
+  const popular: PopularItem[] = [...fromViews, ...fallback].slice(0, 5);
   return {
     hero: { ...all[0], flag: "Feature" },
     secondary: all.slice(1, 4),

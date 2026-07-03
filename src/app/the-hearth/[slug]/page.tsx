@@ -10,6 +10,7 @@ import { HearthHowaHooks } from "@/components/hearth/HearthHowaHooks";
 import { HearthTitle } from "@/components/hearth/HearthTitle";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { HearthPaywall } from "@/components/hearth/HearthPaywall";
+import { HearthViewTracker } from "@/components/hearth/HearthViewTracker";
 import { ProgressBar } from "@/components/primitives/ProgressBar";
 import { ArticleJsonLd, BreadcrumbJsonLd } from "@/lib/seo/jsonLd";
 import { env } from "@/lib/env";
@@ -80,6 +81,7 @@ export default async function ArticlePage({
 
   return (
     <>
+      <HearthViewTracker slug={slug} />
       <ArticleJsonLd
         title={article.title}
         description={article.dek}

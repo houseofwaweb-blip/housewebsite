@@ -14,6 +14,7 @@ import { env } from "@/lib/env";
 let _redis: Redis | null = null;
 let _form: Ratelimit | null = null;
 let _search: Ratelimit | null = null;
+let _view: Ratelimit | null = null;
 
 function getRedis(): Redis | null {
   if (_redis) return _redis;
@@ -53,6 +54,21 @@ function getSearchLimiter(): Ratelimit | null {
   return _search;
 }
 
+function getViewLimiter(): Ratelimit | null {
+  if (_view) return _view;
+  const redis = getRedis();
+  if (!redis) return null;
+  // 60 view beacons per minute per identifier — generous (client already
+  // dedupes to once per article per session), blocks scripted inflation.
+  _view = new Ratelimit({
+    redis,
+    limiter: Ratelimit.slidingWindow(60, "1 m"),
+    analytics: true,
+    prefix: "howa:view",
+  });
+  return _view;
+}
+
 export interface RateLimitResult {
   ok: boolean;
   remaining: number;
@@ -83,6 +99,23 @@ export async function checkFormRateLimit(identifier: string): Promise<RateLimitR
  */
 export async function checkSearchRateLimit(identifier: string): Promise<RateLimitResult> {
   const limiter = getSearchLimiter();
+  if (!limiter) {
+    return { ok: true, remaining: 99, reset: Date.now() + 60_000 };
+  }
+  try {
+    const { success, remaining, reset } = await limiter.limit(identifier);
+    return { ok: success, remaining, reset };
+  } catch {
+    return { ok: true, remaining: 99, reset: Date.now() + 60_000 };
+  }
+}
+
+/**
+ * View-beacon rate limit for /api/hearth/view. Fails open — a rate-limiter
+ * blip must never break a page's view tracking (which is best-effort anyway).
+ */
+export async function checkViewRateLimit(identifier: string): Promise<RateLimitResult> {
+  const limiter = getViewLimiter();
   if (!limiter) {
     return { ok: true, remaining: 99, reset: Date.now() + 60_000 };
   }

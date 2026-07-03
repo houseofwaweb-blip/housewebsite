@@ -1,4 +1,5 @@
 import { defineField, defineType } from "sanity";
+import { ViewCountInput } from "../components/ViewCountInput";
 
 export const article = defineType({
   name: "article",
@@ -68,6 +69,15 @@ export const article = defineType({
       },
     }),
     defineField({ name: "seo", type: "seo" }),
+    defineField({
+      name: "viewStats",
+      title: "Views",
+      type: "string",
+      readOnly: true,
+      description:
+        "Live first-party view counts (Supabase). Read-only, and never shown on the public site.",
+      components: { input: ViewCountInput },
+    }),
   ],
   orderings: [
     {
