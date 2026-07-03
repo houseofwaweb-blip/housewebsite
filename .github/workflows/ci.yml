@@ -43,7 +43,12 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
-        run: npm ci --no-audit --no-fund
+        # --include=dev is required: the job sets NODE_ENV=production (below),
+        # which makes `npm ci` omit devDependencies by default — but eslint,
+        # typescript and the @types packages live in devDependencies and are
+        # needed to lint and typecheck. Without this the Lint step fails with
+        # exit 127 (eslint: command not found).
+        run: npm ci --include=dev --no-audit --no-fund
 
       - name: Lint
         run: npm run lint
