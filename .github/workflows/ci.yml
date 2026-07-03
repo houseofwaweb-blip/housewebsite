@@ -55,6 +55,15 @@ jobs:
         # Lint debt cleared 2026-05-18: 0 errors, only unused-vars warnings
         # remain. PRs now block on lint errors.
 
-      - name: TypeScript + production build
-        # `next build` does the typecheck. If types or build fail, PR fails.
-        run: npm run build
+      - name: TypeScript typecheck
+        # Typecheck only — NOT a full `next build`.
+        #
+        # A production `next build` statically generates 700+ pages, which
+        # requires live Sanity/Shopify read credentials to fetch page data.
+        # We deliberately don't put those secrets in CI (they live in Vercel).
+        # More importantly, Vercel already runs the full production build on
+        # every push to main and refuses to promote a broken build — so the
+        # real build+deploy gate is Vercel, not GitHub Actions. CI's job here
+        # is fast, secret-free, deterministic type safety. `tsc --noEmit` is
+        # exactly the typecheck `next build` runs, minus the data fetching.
+        run: npx tsc --noEmit
