@@ -30,6 +30,17 @@ const nextConfig: NextConfig = {
   // default; LAN IPs must be listed.
   allowedDevOrigins: ["192.168.1.149", "192.168.1.*", "*.local"],
   images: {
+    // Keep optimized images cached for 31 days (default is only 4h). On a
+    // low-traffic site the optimizer function goes cold and RE-optimizes every
+    // few idle hours — that's the 8-17s "images take ages to appear" cold path.
+    // A long TTL means each image/size is optimized once and then served from
+    // the edge cache, so real visitors almost never hit the slow path.
+    //
+    // Safe because: /public assets are immutable (change the filename when you
+    // swap one), and Sanity/Shopify images use content-hashed CDN URLs that
+    // change when the asset changes — so nothing goes stale for the user's
+    // content workflow.
+    minimumCacheTTL: 2678400, // 31 days
     remotePatterns: [
       // Live WordPress CDN — used by the Hearth until we migrate images into Sanity
       { protocol: "https", hostname: "willowalexander.co.uk", pathname: "/wp-content/**" },
