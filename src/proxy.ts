@@ -97,7 +97,7 @@ export function proxy(request: NextRequest) {
   const measureScript =
     "https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://www.clarity.ms https://*.clarity.ms https://connect.facebook.net https://s.pinimg.com https://ct.pinterest.com https://cdn-cookieyes.com https://va.vercel-scripts.com https://static.klaviyo.com https://*.klaviyo.com";
   const measureConnect =
-    "https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.clarity.ms https://*.clarity.ms https://*.facebook.com https://ct.pinterest.com https://log.cookieyes.com https://vitals.vercel-insights.com https://va.vercel-scripts.com https://a.klaviyo.com https://static.klaviyo.com https://*.klaviyo.com";
+    "https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://stats.g.doubleclick.net https://*.g.doubleclick.net https://www.google.com https://www.clarity.ms https://*.clarity.ms https://*.facebook.com https://ct.pinterest.com https://log.cookieyes.com https://vitals.vercel-insights.com https://va.vercel-scripts.com https://a.klaviyo.com https://static.klaviyo.com https://*.klaviyo.com";
 
   const csp = [
     "default-src 'self'",
