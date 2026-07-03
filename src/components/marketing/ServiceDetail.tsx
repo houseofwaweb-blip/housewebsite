@@ -303,7 +303,13 @@ export function ServiceDetail({ service }: { service: Service }) {
         </section>
       ) : null}
 
-      {!soon ? <ServiceCtaRow service={service.name} /> : null}
+      {/* Closing CTA for the sub-services carousel. Only render it when that
+          carousel actually appeared — otherwise it stacks directly on the CTA
+          after "How it works" above, producing a duplicate block on services
+          with no sub-services (e.g. gutter cleaning). */}
+      {!soon && service.subServices.length > 0 ? (
+        <ServiceCtaRow service={service.name} />
+      ) : null}
 
       {/* 6. Gallery */}
       <section className={s.gallery}>
