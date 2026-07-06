@@ -7,6 +7,7 @@ import path from "node:path";
 import { notFound } from "next/navigation";
 import { Accordion } from "@/components/primitives/Accordion";
 import { Gallery } from "@/components/primitives/Gallery";
+import { SERVICE_CONTENT_DEFAULTS } from "@/lib/services-data/service-content-defaults";
 import { ServiceCtaRow } from "@/components/marketing/ServiceCtaRow";
 import { SERVICES, SERVICE_ORDER, type ServiceSlug } from "@/lib/services-data";
 import s from "./sub-service.module.css";
@@ -145,10 +146,22 @@ export default async function SubServicePage({
     .filter((src) => src !== COMING_SOON)
     .map((src, i) => ({ src, alt: `${service.name}, recent work ${i + 1}`, caption: `${service.name} · London` }));
 
-  const hasAbout = Boolean(service.body) || Boolean(service.whyChoose?.length);
-  const hasIncluded = Boolean(service.included?.length);
+  // Resolve content with a fallback to service-level defaults so every LIVE
+  // sub-service page renders the same complete flow, even when the sub-service
+  // data is just a name + lede. A sub-service's own content always wins;
+  // `included` + `faq` inherit from the parent service, `body` + `whyChoose`
+  // from SERVICE_CONTENT_DEFAULTS. (Coming-soon subs stay minimal — gated on
+  // !heroSoon below.)
+  const defaults = SERVICE_CONTENT_DEFAULTS[parent.slug];
+  const aboutBody = service.body ?? defaults?.body ?? parent.lede;
+  const whyChoose = service.whyChoose?.length ? service.whyChoose : (defaults?.whyChoose ?? []);
+  const included = service.included?.length ? service.included : parent.sections.included;
+  const faq = service.faq?.length ? service.faq : parent.faq;
+
+  const hasAbout = !heroSoon && (Boolean(aboutBody) || whyChoose.length > 0);
+  const hasIncluded = !heroSoon && included.length > 0;
   const hasVisuals = !heroSoon && workImage !== COMING_SOON;
-  const hasFaq = Boolean(service.faq?.length);
+  const hasFaq = !heroSoon && faq.length > 0;
   const hasRelated = siblings.length > 0;
 
   return (
@@ -203,23 +216,23 @@ export default async function SubServicePage({
       {hasAbout ? (
         <section className={s.about}>
           <div className={s.aboutGrid}>
-            {service.body ? (
+            {aboutBody ? (
               <div className={s.aboutCol}>
                 <p className={s.sectionEy}>About this service</p>
                 <h2 className={s.sectionTitle}>
                   What you can <em>expect.</em>
                 </h2>
-                <p className={s.aboutBody}>{service.body}</p>
+                <p className={s.aboutBody}>{aboutBody}</p>
               </div>
             ) : null}
-            {service.whyChoose?.length ? (
+            {whyChoose.length > 0 ? (
               <div className={s.aboutCol}>
                 <p className={s.sectionEy}>Why choose us</p>
                 <h2 className={s.sectionTitle}>
                   The House <em>standard.</em>
                 </h2>
                 <ul className={s.list}>
-                  {service.whyChoose.map((point) => (
+                  {whyChoose.map((point) => (
                     <li key={point}>{point}</li>
                   ))}
                 </ul>
@@ -241,7 +254,7 @@ export default async function SubServicePage({
             </h2>
           </header>
           <ul className={s.includedList}>
-            {service.included!.map((inc) => (
+            {included.map((inc) => (
               <li key={inc}>{inc}</li>
             ))}
           </ul>
@@ -274,7 +287,7 @@ export default async function SubServicePage({
               />
             </div>
           </div>
-          {gallery.length >= 2 ? (
+          {gallery.length >= 1 ? (
             <div className={s.workGallery}>
               <Gallery
                 images={gallery}
@@ -299,7 +312,7 @@ export default async function SubServicePage({
           </header>
           <div className={s.faqInner}>
             <Accordion
-              items={service.faq!.map((f, i) => ({
+              items={faq.map((f, i) => ({
                 id: `sub-faq-${i}`,
                 summary: f.q,
                 body: <p>{f.a}</p>,
