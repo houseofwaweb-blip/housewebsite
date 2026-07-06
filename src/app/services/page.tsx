@@ -400,6 +400,11 @@ export default async function ServicesLanding() {
               </div>
             ))}
           </div>
+          <div className="mt-[clamp(32px,4vw,52px)] flex justify-center">
+            <Link href="#open-booking-form" className={s.btnFilled}>
+              Book through HoWA
+            </Link>
+          </div>
         </div>
       </section>
 

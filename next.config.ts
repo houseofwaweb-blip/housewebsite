@@ -152,9 +152,8 @@ const nextConfig: NextConfig = {
       { source: "/services/gardeners", destination: "/services/gardening", permanent: true },
       { source: "/services/window-cleaner", destination: "/services/window-cleaning", permanent: true },
       { source: "/services/gutter-cleaners", destination: "/services/gutter-cleaning", permanent: true },
-      // Handyman is a deferred service → services hub rather than a 404.
-      { source: "/services/handyman/:sub*", destination: "/services", permanent: true },
-      { source: "/services/handyman", destination: "/services", permanent: true },
+      // (Handyman renders its own coming-soon page like removals/energy/pet-care,
+      //  so it is NOT redirected to the hub — the nav links straight to it.)
       // Legacy location × service SEO pages that weren't migrated 1:1 (the
       // migrated set is handled by wp-long-tail above, which wins by order).
       // Route by service keyword to the right hub; anything else → /services.
