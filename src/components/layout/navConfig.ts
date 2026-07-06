@@ -1,5 +1,10 @@
 import type { MegaPanel } from "@/components/nav/MegaMenu";
 import shopNavData from "@/lib/shop-data/shop-nav.generated.json";
+import {
+  GARDENING_SUBS,
+  WINDOW_CLEANING_SUBS,
+  CLEANING_SUBS,
+} from "@/lib/services-data/sub-services";
 
 /**
  * Shop categories + sub-categories, generated from Shopify collections & tags
@@ -16,45 +21,28 @@ const SHOP_CATEGORIES = (
 
 /**
  * Services + their sub-services for the two-level Services mega-menu.
- * Sub-links mirror the sub-service pages in src/lib/services-data. The four
- * launch services carry their sub-services; the deferred ones are listed but
- * their sub-pages aren't surfaced yet (empty subs → "Browse all" link).
+ * Sub-links are built from the REAL sub-services (services-data/sub-services)
+ * so the menu always matches the actual /services/[slug]/[sub] pages.
+ *   - Gardening / Window cleaning / Cleaning carry their sub-services.
+ *   - Gutter cleaning's sub-service array is currently mis-populated with
+ *     handyman items (pre-existing data bug), so it links through until fixed.
+ *   - Deferred services link through too (empty subs → "Browse all").
  */
-const SERVICE_CATEGORIES = [
-  {
-    title: "Gardening",
-    href: "/services/gardening",
-    subs: [
-      { label: "One-off tidy", href: "/services/gardening/tidy" },
-      { label: "Seasonal care", href: "/services/gardening/seasonal" },
-      { label: "Steward Garden", href: "/services/gardening/steward-garden" },
-    ],
-  },
-  {
-    title: "Window cleaning",
-    href: "/services/window-cleaning",
-    subs: [
-      { label: "One-off clean", href: "/services/window-cleaning/oneoff-windows" },
-      { label: "Monthly care", href: "/services/window-cleaning/monthly-windows" },
-    ],
-  },
-  {
-    title: "Cleaning",
-    href: "/services/cleaning",
-    subs: [
-      { label: "One-off clean", href: "/services/cleaning/oneoff-clean" },
-      { label: "Weekly care", href: "/services/cleaning/weekly-clean" },
-      { label: "Steward Clean", href: "/services/cleaning/steward-clean" },
-    ],
-  },
-  {
-    title: "Gutter cleaning",
-    href: "/services/gutter-cleaning",
-    subs: [
-      { label: "One-off clear", href: "/services/gutter-cleaning/oneoff-gutter" },
-      { label: "Twice-yearly care", href: "/services/gutter-cleaning/twice-yearly-gutter" },
-    ],
-  },
+const toNavSubs = (
+  parent: string,
+  arr: ReadonlyArray<{ slug: string; name: string }>,
+): { label: string; href: string }[] =>
+  arr.map((s) => ({ label: s.name, href: `/services/${parent}/${s.slug}` }));
+
+const SERVICE_CATEGORIES: {
+  title: string;
+  href: string;
+  subs: { label: string; href: string }[];
+}[] = [
+  { title: "Gardening", href: "/services/gardening", subs: toNavSubs("gardening", GARDENING_SUBS) },
+  { title: "Window cleaning", href: "/services/window-cleaning", subs: toNavSubs("window-cleaning", WINDOW_CLEANING_SUBS) },
+  { title: "Cleaning", href: "/services/cleaning", subs: toNavSubs("cleaning", CLEANING_SUBS) },
+  { title: "Gutter cleaning", href: "/services/gutter-cleaning", subs: [] },
   { title: "Handyman", href: "/services/handyman", subs: [] },
   { title: "Removals", href: "/services/removals", subs: [] },
   { title: "Energy & Electrical", href: "/services/energy", subs: [] },
