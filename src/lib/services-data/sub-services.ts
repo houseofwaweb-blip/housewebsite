@@ -152,11 +152,13 @@ export const WINDOW_CLEANING_SUBS: SubService[] = [
     slug: "commercial-gutter-cleaning",
     name: "Commercial gutter cleaning",
     lede: "Industrial SkyVac systems for commercial properties. Scheduled maintenance contracts with photographic reporting.",
+    comingSoon: true,
   },
   {
     slug: "commercial-softwashing",
     name: "Commercial softwashing",
     lede: "Low-pressure exterior cleaning for commercial facades, render, and cladding. Planned maintenance or one-off restoration.",
+    comingSoon: true,
   },
   {
     slug: "commercial-exterior-maintenance",

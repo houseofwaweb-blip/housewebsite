@@ -34,6 +34,10 @@ export interface SubService {
   included?: string[];
   faq?: Array<{ q: string; a: string }>;
   image?: string;
+  /** Render the detail page as a coming-soon page (hero + "Service Coming
+   *  Soon", detail sections hidden) even if photography exists. Copy stays in
+   *  the data for when it launches. */
+  comingSoon?: boolean;
 }
 
 export interface Service {

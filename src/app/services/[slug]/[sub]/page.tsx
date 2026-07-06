@@ -128,7 +128,10 @@ export default async function SubServicePage({
 
   const requestedHero =
     service.image ?? `/services/photos/${parent.slug}/${service.slug}-hero.webp`;
-  const heroImage = fileOr(requestedHero, PLACEHOLDER_HERO);
+  // Coming soon = explicitly flagged in the data (copy kept for launch), or no
+  // real hero yet. Flagged subs use the branded placeholder so they match the
+  // other coming-soon pages exactly.
+  const heroImage = service.comingSoon ? COMING_SOON : fileOr(requestedHero, PLACEHOLDER_HERO);
   const heroSoon = heroImage === COMING_SOON;
 
   // One real shot of the team on this service (brief: replace the before/after
