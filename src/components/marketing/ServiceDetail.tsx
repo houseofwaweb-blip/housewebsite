@@ -326,6 +326,20 @@ export function ServiceDetail({ service }: { service: Service }) {
         />
       </section>
 
+      {/* Enquiry form — prefilled with this service. Placed after the gallery
+          so the contact form is prominent, not buried at the foot of a long page. */}
+      {!soon ? (
+        <div id="service-enquiry" className="scroll-mt-24">
+          <EnquiryForm
+            defaultService={service.slug}
+            sourcePage={`/services/${service.slug}`}
+            eyebrow="Enquire"
+            headline={`Ask about ${service.name.toLowerCase()}.`}
+            body="Tell us about your home and what you need. We come back to you personally, usually within one working day. Or book online in a couple of minutes."
+          />
+        </div>
+      ) : null}
+
       {/* Booking flow — the journey services should show (brief slide 8) */}
       <BookingFlowStrip />
 
@@ -416,17 +430,6 @@ export function ServiceDetail({ service }: { service: Service }) {
           We're expanding.
         </p>
       </section>
-
-      {/* Enquiry form — prefilled with this service */}
-      <div id="service-enquiry" className="scroll-mt-24">
-        <EnquiryForm
-          defaultService={service.slug}
-          sourcePage={`/services/${service.slug}`}
-          eyebrow="Enquire"
-          headline={`Ask about ${service.name.toLowerCase()}.`}
-          body="Tell us about your home and what you need. We come back to you personally, usually within one working day. Or book online in a couple of minutes."
-        />
-      </div>
 
       {/* 10. Closing */}
       <section className={s.closing}>
