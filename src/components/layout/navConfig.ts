@@ -15,6 +15,60 @@ const SHOP_CATEGORIES = (
 }));
 
 /**
+ * Services + their sub-services for the two-level Services mega-menu.
+ * Sub-links mirror the sub-service pages in src/lib/services-data. The four
+ * launch services carry their sub-services; the deferred ones are listed but
+ * their sub-pages aren't surfaced yet (empty subs → "Browse all" link).
+ */
+const SERVICE_CATEGORIES = [
+  {
+    title: "Gardening",
+    href: "/services/gardening",
+    subs: [
+      { label: "One-off tidy", href: "/services/gardening/tidy" },
+      { label: "Seasonal care", href: "/services/gardening/seasonal" },
+      { label: "Steward Garden", href: "/services/gardening/steward-garden" },
+    ],
+  },
+  {
+    title: "Window cleaning",
+    href: "/services/window-cleaning",
+    subs: [
+      { label: "One-off clean", href: "/services/window-cleaning/oneoff-windows" },
+      { label: "Monthly care", href: "/services/window-cleaning/monthly-windows" },
+    ],
+  },
+  {
+    title: "Cleaning",
+    href: "/services/cleaning",
+    subs: [
+      { label: "One-off clean", href: "/services/cleaning/oneoff-clean" },
+      { label: "Weekly care", href: "/services/cleaning/weekly-clean" },
+      { label: "Steward Clean", href: "/services/cleaning/steward-clean" },
+    ],
+  },
+  {
+    title: "Gutter cleaning",
+    href: "/services/gutter-cleaning",
+    subs: [
+      { label: "One-off clear", href: "/services/gutter-cleaning/oneoff-gutter" },
+      { label: "Twice-yearly care", href: "/services/gutter-cleaning/twice-yearly-gutter" },
+    ],
+  },
+  { title: "Handyman", href: "/services/handyman", subs: [] },
+  { title: "Removals", href: "/services/removals", subs: [] },
+  { title: "Energy & Electrical", href: "/services/energy", subs: [] },
+  { title: "Pet Care", href: "/services/pet-care", subs: [] },
+];
+
+/** Bottom row of the Services mega-menu — the managed-care / utility links. */
+const SERVICE_FOOTER = [
+  { label: "Steward Plans", href: "/steward-plans" },
+  { label: "House Credit", href: "/house-credit" },
+  { label: "Book a House Service", href: "#open-booking-form" },
+];
+
+/**
  * Primary navigation configuration.
  *
  * Order: The House · Services · Protect · Design · Marketplace · The Hearth · HoWA Platform
@@ -90,6 +144,12 @@ export const PRIMARY_NAV: MegaPanel[] = [
         ],
       },
     ],
+    // Desktop: two-level menu — hover a service, its sub-services appear beside
+    // it (same pattern as Marketplace). Mobile drawer still uses `groups`.
+    twoLevel: {
+      categories: SERVICE_CATEGORIES,
+      footer: SERVICE_FOOTER,
+    },
   },
 
   {
@@ -142,14 +202,14 @@ export const PRIMARY_NAV: MegaPanel[] = [
     id: "shop",
     trigger: "Marketplace",
     triggerHref: "/shop",
-    // Mobile drawer reads groups[0]; desktop uses the two-level `shop` menu.
+    // Mobile drawer reads groups[0]; desktop uses the two-level menu.
     groups: [
       {
         heading: "Categories",
         links: SHOP_CATEGORIES.map((c) => ({ label: c.title, href: c.href })),
       },
     ],
-    shop: {
+    twoLevel: {
       categories: SHOP_CATEGORIES,
       footer: [
         { label: "House Approved", href: "/shop/collections/house-approved" },

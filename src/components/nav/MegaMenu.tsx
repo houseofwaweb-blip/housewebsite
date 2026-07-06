@@ -33,16 +33,18 @@ export interface MegaLinkGroup {
   links: MegaLink[];
 }
 
-/** A main category in the Shop two-level menu, with its sub-categories. */
-export interface ShopMegaCategory {
+/** A category in a two-level mega-menu, with its sub-links. */
+export interface TwoLevelCategory {
   title: string;
   href: string;
   subs: MegaLink[];
 }
 
-/** Shop mega-menu: hover a category on the left, its sub-categories appear right. */
-export interface ShopMega {
-  categories: ShopMegaCategory[];
+/** Two-level mega-menu: hover a category on the left, its sub-links appear right.
+ *  Used by both Marketplace (collections → sub-collections) and Services
+ *  (services → sub-services). */
+export interface TwoLevelMega {
+  categories: TwoLevelCategory[];
   footer?: MegaLink[];
 }
 
@@ -60,8 +62,9 @@ export interface MegaPanel {
     heading: string;
     href?: string;
   };
-  /** When set, this panel renders the two-level Shop layout instead of groups+preview. */
-  shop?: ShopMega;
+  /** When set, this panel renders the two-level layout (categories → sub-links
+   *  revealed on hover) instead of groups+preview. Used by Marketplace + Services. */
+  twoLevel?: TwoLevelMega;
 }
 
 const HIDE_GRACE_MS = 200;
@@ -154,12 +157,12 @@ export function MegaMenu({
               "transition-[max-height,opacity,padding] ease-out",
               "[transition-duration:var(--t-xslow),var(--t-slow),var(--t-xslow)]",
               isOpen
-                ? cn(panel.shop ? "max-h-[560px]" : "max-h-[520px]", "opacity-100 px-[40px] pt-[28px] pb-[40px] pointer-events-auto")
+                ? cn(panel.twoLevel ? "max-h-[560px]" : "max-h-[520px]", "opacity-100 px-[40px] pt-[28px] pb-[40px] pointer-events-auto")
                 : "max-h-0 opacity-0 px-[40px] py-0 pointer-events-none",
             )}
           >
-            {panel.shop ? (
-              <ShopMegaPanel shop={panel.shop} isOpen={isOpen} />
+            {panel.twoLevel ? (
+              <TwoLevelMegaPanel data={panel.twoLevel} isOpen={isOpen} />
             ) : (
             <div className="grid grid-cols-1 md:grid-cols-[1fr_1.6fr] gap-[32px]">
               {/* Links */}
@@ -270,15 +273,16 @@ function MegaTrigger({
 }
 
 /**
- * ShopMegaPanel — two-level hover. Main categories list on the left; hovering
- * one reveals its sub-categories on the right. Utility links along the bottom.
+ * TwoLevelMegaPanel — two-level hover. Main categories list on the left; hovering
+ * one reveals its sub-links on the right. Utility links along the bottom.
+ * Shared by the Marketplace and Services mega-menus.
  */
-function ShopMegaPanel({ shop, isOpen }: { shop: ShopMega; isOpen: boolean }) {
+function TwoLevelMegaPanel({ data, isOpen }: { data: TwoLevelMega; isOpen: boolean }) {
   const [active, setActive] = React.useState(0);
   React.useEffect(() => {
     if (!isOpen) setActive(0);
   }, [isOpen]);
-  const cat = shop.categories[active] ?? shop.categories[0];
+  const cat = data.categories[active] ?? data.categories[0];
   return (
     <div
       className={cn(
@@ -289,7 +293,7 @@ function ShopMegaPanel({ shop, isOpen }: { shop: ShopMega; isOpen: boolean }) {
       <div className="grid grid-cols-[minmax(170px,210px)_1fr] gap-[40px]">
         {/* Main categories */}
         <ul className="flex flex-col gap-[1px] list-none m-0 p-0 border-r border-house-brown/8 pr-[24px]">
-          {shop.categories.map((c, i) => (
+          {data.categories.map((c, i) => (
             <li key={c.href} onMouseEnter={() => setActive(i)}>
               <Link
                 href={c.href}
@@ -338,9 +342,9 @@ function ShopMegaPanel({ shop, isOpen }: { shop: ShopMega; isOpen: boolean }) {
       </div>
 
       {/* Utility footer row */}
-      {shop.footer && shop.footer.length > 0 ? (
+      {data.footer && data.footer.length > 0 ? (
         <div className="mt-[22px] pt-[16px] border-t border-house-brown/10 flex flex-wrap items-center gap-x-[28px] gap-y-[8px]">
-          {shop.footer.map((f) => (
+          {data.footer.map((f) => (
             <Link
               key={f.href}
               href={f.href}
