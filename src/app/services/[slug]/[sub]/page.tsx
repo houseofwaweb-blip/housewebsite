@@ -242,8 +242,6 @@ export default async function SubServicePage({
         </section>
       ) : null}
 
-      {hasAbout && !heroSoon ? <ServiceCtaRow service={service.name} /> : null}
-
       {/* 3. What's included */}
       {hasIncluded ? (
         <section className={s.included}>
@@ -260,8 +258,6 @@ export default async function SubServicePage({
           </ul>
         </section>
       ) : null}
-
-      {hasIncluded && !heroSoon ? <ServiceCtaRow service={service.name} /> : null}
 
       {/* 4. From the work — a single real shot of the team on this service */}
       {hasVisuals ? (
@@ -299,7 +295,8 @@ export default async function SubServicePage({
         </section>
       ) : null}
 
-      {hasVisuals && !heroSoon ? <ServiceCtaRow service={service.name} /> : null}
+      {/* Single booking CTA — after the content, before the FAQ. */}
+      {!heroSoon ? <ServiceCtaRow service={service.name} /> : null}
 
       {/* 5. FAQ */}
       {hasFaq ? (
@@ -321,8 +318,6 @@ export default async function SubServicePage({
           </div>
         </section>
       ) : null}
-
-      {hasFaq && !heroSoon ? <ServiceCtaRow service={service.name} /> : null}
 
       {/* 6. Related */}
       {hasRelated ? (
