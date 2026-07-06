@@ -76,10 +76,10 @@ export const metadata: Metadata = {
       : undefined,
   },
   manifest: "/site.webmanifest",
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
-  },
+  // Favicon / touch icons come from the file conventions in src/app/
+  // (favicon.ico, icon.png, apple-icon.png) — Next generates the <link> tags
+  // automatically, so no manual `icons` block is needed (it would only
+  // duplicate them). The gold house-leaf badge is the single source of truth.
 };
 
 // Explicit viewport: Next 16 derives a sensible default, but stating it
