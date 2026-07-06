@@ -278,7 +278,9 @@ export function ServiceDetail({ service }: { service: Service }) {
                 SUB_SERVICE_IMAGES[`${service.slug}/${sub.slug}`] ??
                 sub.image ??
                 `/services/photos/${service.slug}/${sub.slug}-hero.webp`;
-              const img = fileOr(requested, COMING_SOON);
+              // Coming-soon subs show the placeholder + tag on the card so they
+              // don't read as live before you click through.
+              const img = sub.comingSoon ? COMING_SOON : fileOr(requested, COMING_SOON);
               const soon = img === COMING_SOON;
               return (
                 <Link
@@ -294,7 +296,7 @@ export function ServiceDetail({ service }: { service: Service }) {
                   <div className={s.subBody}>
                     <h3 className={s.subName}>{sub.name}</h3>
                     <p className={s.subBlurb}>{sub.lede}</p>
-                    <span className={s.subCta}>See detail →</span>
+                    <span className={s.subCta}>{soon ? "Coming soon" : "See detail"} →</span>
                   </div>
                 </Link>
               );
