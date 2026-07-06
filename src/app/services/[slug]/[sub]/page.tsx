@@ -242,24 +242,7 @@ export default async function SubServicePage({
         </section>
       ) : null}
 
-      {/* 3. What's included */}
-      {hasIncluded ? (
-        <section className={s.included}>
-          <header className={s.sectionHead}>
-            <p className={s.sectionEy}>What's included</p>
-            <h2 className={s.sectionTitle}>
-              Every <em>visit.</em>
-            </h2>
-          </header>
-          <ul className={s.includedList}>
-            {included.map((inc) => (
-              <li key={inc}>{inc}</li>
-            ))}
-          </ul>
-        </section>
-      ) : null}
-
-      {/* 4. From the work — a single real shot of the team on this service */}
+      {/* 3. From the work — a single real shot of the team on this service */}
       {hasVisuals ? (
         <section className={s.work}>
           <header className={s.sectionHead}>
@@ -295,7 +278,37 @@ export default async function SubServicePage({
         </section>
       ) : null}
 
-      {/* Single booking CTA — after the content, before the FAQ. */}
+      {/* 4. Enquiry form — conversion point right after the work photos. */}
+      {!heroSoon ? (
+        <div id="service-enquiry" className="scroll-mt-24">
+          <EnquiryForm
+            defaultService={parent.slug}
+            sourcePage={`/services/${parent.slug}/${service.slug}`}
+            eyebrow="Enquire"
+            headline={`Ask about ${service.name.toLowerCase()}.`}
+            body="Tell us about your home and what you need. We come back to you personally, usually within one working day. Or book online in a couple of minutes."
+          />
+        </div>
+      ) : null}
+
+      {/* 5. What's included */}
+      {hasIncluded ? (
+        <section className={s.included}>
+          <header className={s.sectionHead}>
+            <p className={s.sectionEy}>What's included</p>
+            <h2 className={s.sectionTitle}>
+              Every <em>visit.</em>
+            </h2>
+          </header>
+          <ul className={s.includedList}>
+            {included.map((inc) => (
+              <li key={inc}>{inc}</li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      {/* Single booking CTA — after What's included, before the FAQ. */}
       {!heroSoon ? <ServiceCtaRow service={service.name} /> : null}
 
       {/* 5. FAQ */}
@@ -346,14 +359,14 @@ export default async function SubServicePage({
         </section>
       ) : null}
 
-      {/* 7. Closing */}
-      <div id="service-enquiry" className="scroll-mt-24">
+      {/* 9. Closing enquiry form */}
+      <div className="scroll-mt-24">
         <EnquiryForm
           defaultService={parent.slug}
           sourcePage={`/services/${parent.slug}/${service.slug}`}
-          eyebrow="Enquire"
-          headline={`Ask about ${service.name.toLowerCase()}.`}
-          body="Tell us about your home and what you need. We come back to you personally, usually within one working day. Or book online in a couple of minutes."
+          eyebrow="Still deciding?"
+          headline={`Talk to us about ${service.name.toLowerCase()}.`}
+          body="Prefer to ask before you book? Tell us about your home and we'll come back to you personally, usually within one working day."
         />
       </div>
 
