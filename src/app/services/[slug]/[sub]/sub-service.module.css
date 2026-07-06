@@ -157,7 +157,7 @@
    ────────────────────────────────────────────────────────── */
 .about {
   background: var(--color-house-cream-dark);
-  padding: clamp(80px, 8vw, 128px) clamp(40px, 5vw, 88px);
+  padding: clamp(56px, 6vw, 92px) clamp(40px, 5vw, 88px);
   border-bottom: 1px solid rgba(48, 35, 28, 0.08);
 }
 .aboutGrid {
@@ -203,7 +203,7 @@
    ────────────────────────────────────────────────────────── */
 .included {
   background: var(--color-house-cream);
-  padding: clamp(80px, 8vw, 128px) clamp(40px, 5vw, 88px);
+  padding: clamp(56px, 6vw, 92px) clamp(40px, 5vw, 88px);
   border-bottom: 1px solid rgba(48, 35, 28, 0.08);
 }
 .includedList {
@@ -235,7 +235,7 @@
    ────────────────────────────────────────────────────────── */
 .work {
   background: var(--color-house-cream-dark);
-  padding: clamp(80px, 8vw, 128px) clamp(40px, 5vw, 88px);
+  padding: clamp(56px, 6vw, 92px) clamp(40px, 5vw, 88px);
   border-bottom: 1px solid rgba(48, 35, 28, 0.08);
 }
 .workBeforeAfter {
@@ -252,7 +252,7 @@
    ────────────────────────────────────────────────────────── */
 .faq {
   background: var(--color-house-cream);
-  padding: clamp(80px, 8vw, 128px) clamp(40px, 5vw, 88px);
+  padding: clamp(56px, 6vw, 92px) clamp(40px, 5vw, 88px);
   border-bottom: 1px solid rgba(48, 35, 28, 0.08);
 }
 .faqInner {
@@ -265,7 +265,7 @@
    ────────────────────────────────────────────────────────── */
 .related {
   background: var(--color-house-cream-dark);
-  padding: clamp(80px, 8vw, 128px) clamp(40px, 5vw, 88px);
+  padding: clamp(56px, 6vw, 92px) clamp(40px, 5vw, 88px);
   border-bottom: 1px solid rgba(48, 35, 28, 0.08);
 }
 .relatedGrid {
@@ -324,7 +324,7 @@
 .closing {
   background: var(--color-house-cream);
   text-align: center;
-  padding: clamp(96px, 9vw, 144px) clamp(24px, 5vw, 64px);
+  padding: clamp(64px, 7vw, 104px) clamp(24px, 5vw, 64px);
 }
 .closingKicker {
   font-family: var(--font-sans);
@@ -370,8 +370,8 @@
 @media (max-width: 600px) {
   .heroCopy { padding: 56px 24px; }
   .heroCopyInner { max-width: none; }
-  .about, .included, .work, .faq, .related { padding: 64px 24px; }
-  .closing { padding: 80px 24px; }
+  .about, .included, .work, .faq, .related { padding: 44px 24px; }
+  .closing { padding: 60px 24px; }
   .includedList { grid-template-columns: 1fr; }
   .relatedGrid { grid-template-columns: 1fr; }
 }
