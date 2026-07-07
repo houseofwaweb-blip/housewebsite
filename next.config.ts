@@ -30,6 +30,14 @@ const nextConfig: NextConfig = {
   // default; LAN IPs must be listed.
   allowedDevOrigins: ["192.168.1.149", "192.168.1.*", "*.local"],
   images: {
+    // Vercel Image Optimization quota was exhausted (402
+    // OPTIMIZED_IMAGE_REQUEST_PAYMENT_REQUIRED), which broke every uncached
+    // image site-wide. Our assets are already pre-optimized: /public files are
+    // right-sized WebP, Sanity URLs carry ?w=&auto=format (transformed free by
+    // Sanity's CDN), and service photos are sharp-resized WebP. So we bypass
+    // the Vercel optimizer entirely — images serve directly, no per-transform
+    // billing, no outage. Revert (remove this line) if the plan is upgraded.
+    unoptimized: true,
     // Keep optimized images cached for 31 days (default is only 4h). On a
     // low-traffic site the optimizer function goes cold and RE-optimizes every
     // few idle hours — that's the 8-17s "images take ages to appear" cold path.
