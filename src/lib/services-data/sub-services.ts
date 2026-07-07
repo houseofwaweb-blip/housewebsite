@@ -164,6 +164,7 @@ export const WINDOW_CLEANING_SUBS: SubService[] = [
     slug: "commercial-exterior-maintenance",
     name: "Commercial exterior maintenance",
     lede: "Full exterior care packages for businesses. Windows, gutters, fascias, and pressure washing on a managed schedule.",
+    comingSoon: true,
   },
 ];
 
