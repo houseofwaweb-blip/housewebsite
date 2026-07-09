@@ -71,7 +71,7 @@ export default async function AboutPage() {
         lede={cms(
           intro,
           "body",
-          "We began with gardens, soil and seasons, and grew into a House that tends the whole of a home. Today that means the design that shapes a house, the care that keeps it, and the records that remember it.",
+          "House of HoWA is the public institution built around HoWA: the Home Operating System for homes that need memory, judgement, evidence and rhythm. It begins with real gardens, homes, services and design standards, and opens into one clear public world: the House, the Score, the Home Record and the Household working together.",
         )}
         sections={editorialSections}
       />

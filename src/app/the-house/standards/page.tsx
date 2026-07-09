@@ -75,7 +75,7 @@ export default async function StandardsPage() {
       lede={cms(
         intro,
         "body",
-        "Everything the House does is measured against a specific standard. This page explains what that standard is, how it's maintained, and what we refuse to negotiate on.",
+        "HoWA gives the home memory. House of HoWA gives that memory a standard. Every provider, product, service and partner we approve is held to one question: would we trust this in a home we love?",
       )}
       sections={editorialSections}
       heroImage={{

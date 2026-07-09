@@ -77,7 +77,7 @@ export default async function SustainabilityPage() {
       lede={cms(
         intro,
         "body",
-        "We're wary of sustainability pages that don't name anything specific. This one tries to. It will be updated as we measure more things and as what we measure gets better.",
+        "A sustainable home is not only bought better. It is remembered better. House of HoWA treats sustainability as a matter of long-term stewardship: retaining the fabric, repairing before replacing, extending the life of materials and keeping the proof of care where the home can find it.",
       )}
       sections={editorialSections}
       heroImage={{

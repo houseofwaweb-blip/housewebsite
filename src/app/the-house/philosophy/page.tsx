@@ -77,7 +77,7 @@ export default async function PhilosophyPage() {
       lede={cms(
         intro,
         "body",
-        "We think homes deserve the same kind of quiet institution that schools, clubs, and estates have always had: somewhere to belong, somewhere to ask, somewhere that remembers.",
+        "A home is not a task list. It is the frame inside which a life happens. House of HoWA exists for the homes people mean to keep: the homes that need memory, standards, care, evidence and rhythm, not another supplier directory.",
       )}
       sections={editorialSections}
       heroImage={{
