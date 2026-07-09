@@ -1,742 +1,269 @@
 import Image from "next/image";
 import Link from "next/link";
-import s from "./home-v5/home-v5.module.css";
-import v from "./home-v4a.module.css";
 import { getLatestHearthArticles } from "@/lib/cms/hearth";
-import { shopifyProvider } from "@/lib/commerce/shopify";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
-import { HowaAppBanner } from "@/components/marketing/HowaAppBanner";
 import { EnquiryForm } from "@/components/marketing/EnquiryForm";
-import { BookingFlowStrip } from "@/components/marketing/BookingFlowStrip";
 
 /**
- * Homepage — House-led (v5).
+ * Homepage — House of HoWA (launch read section 4).
  *
- * Leads with House of Willow Alexander as a design authority and editorial
- * house; introduces HoWA mid-page as the intelligence layer (sections 5, 10,
- * 11 only). Section order follows howa-homepage-v5-brief.md.
+ * Leads with HoWA Score as the product moment, then the Home Record, the
+ * Household, and services as proof rails. Willow Alexander appears only as the
+ * founding partner family. Design system (cream ground, Didot display, gold
+ * ink) is unchanged.
  */
 
 export const metadata = {
-  title: { absolute: "House of Willow Alexander | Care, design and intelligence for home and garden" },
+  title: { absolute: "House of HoWA | The home, finally known" },
   description:
-    "House of Willow Alexander is the design authority behind every service, every standard, and the system that keeps your home in its best order.",
+    "House of HoWA is the institution behind HoWA, the Home Operating System that gives every home a living record, a HoWA Score and practical next actions.",
 };
 
-const PILLARS = [
-  { label: "Design & Care", title: "Design & Care", sub: "Design and care, held to the House standard.", image: "/home-v4/design-portrait.webp", href: "/design" },
-  { label: "The Marketplace", title: "The Marketplace", sub: "Objects with a place in the House.", image: "/home-v4/pillar-2.webp", href: "/shop" },
-  { label: "The Hearth", title: "The Hearth", sub: "The editorial soul of the House.", image: "/home-v4/pillar-3.webp", href: "/the-hearth" },
-  { label: "The House", title: "The House", sub: "The standard we hold ourselves to.", image: "/home-v4/pillar-4.webp", href: "#the-house" },
+const SCORE_REFLECTS = [
+  "Record completeness",
+  "Maintenance rhythm",
+  "Evidence strength",
+  "Risk readiness",
+  "Efficiency and utilities",
+  "Future stewardship",
 ];
 
-const HOWA_FEATURES = [
-  { lead: "A living record", rest: "the boiler date, the window clean, the warranty and the rose bed, all remembered in one place." },
-  { lead: "Risk surfaced early", rest: "the right specialist booked, the record updated, the next reminder set." },
-  { lead: "Every home has a rhythm", rest: "windows remembered, gutters before the storm, garden care kept in season." },
+const HOUSEHOLD = [
+  { role: "The Gardener", line: "reads gardens, seasons and planting." },
+  { role: "The Handyman", line: "helps you understand the fix before you book it." },
+  { role: "The Designer", line: "turns one photo into a direction." },
+  { role: "The Surveyor", line: "turns worry into a clear next step." },
+  { role: "The Archivist", line: "turns documents into dates, reminders and evidence." },
+  { role: "The Housekeeper", line: "keeps the everyday home in order." },
+  { role: "The Steward", line: "protects the home before failure." },
 ];
 
-const PRINCIPLES = [
-  { num: "I.", title: "Design-led thinking", body: "Every system, every service, every recommendation is held to a design standard. Not just functional, but considered." },
-  { num: "II.", title: "The living record", body: "Nothing should be lost to memory. The boiler service, the warranty, the planting plan, every decision and document, kept where the house can find them." },
-  { num: "III.", title: "Stewardship over transaction", body: "A home is not a product to be processed. It is where a life is kept. We treat it, and the people who care for it, that way." },
-  { num: "IV.", title: "House-vetted, always", body: "Every partner, every studio, every service carries the House Approved seal. No exceptions, no compromises." },
-];
+const FLOW = ["Booked", "Delivered", "Remembered", "Home Record", "HoWA Score"];
 
-const SERVICES = [
-  { name: "Gardening", href: "/services/gardening", image: "/services/subbrands/gardeners.webp" },
-  { name: "Window Cleaning", href: "/services/window-cleaning", image: "/services/subbrands/window-cleaner.webp" },
-  { name: "Cleaning", href: "/services/cleaning", image: "/services/subbrands/cleaners.webp" },
-  { name: "Gutter Cleaning", href: "/services/gutter-cleaning", image: "/services/subbrands/gutter-cleaning.webp" },
-];
-
-const SERVICE_BLURB: Record<string, string> = {
-  Gardening: "Lawns, borders and seasonal care",
-  "Window Cleaning": "Streak-free, inside and out",
-  Cleaning: "Regular or one-off, kept spotless",
-  "Gutter Cleaning": "Cleared, checked and flowing",
-};
-
-const INTEL_STATS = [
-  { label: "Risk surfaced", value: "early" },
-  { label: "The right specialist", value: "booked" },
-  { label: "The record", value: "updated" },
-  { label: "The next reminder", value: "set" },
-];
-
-const TIERS = [
-  { slug: "assistant", numeral: "I.", label: "HoWA Assistant", name: "The house, seen.", features: ["Notices what matters", "Tracks changes in real time", "Surfaces subtle signals"], href: "/howa#assistant" },
-  { slug: "housekeeper", numeral: "II.", label: "HoWA Housekeeper", name: "The house, in order.", features: ["Windows remembered", "Services in rhythm", "Nothing slips"], href: "/howa/housekeeper" },
-  { slug: "steward", numeral: "III.", label: "HoWA Steward", name: "The house, protected before failure.", features: ["Predicts risk", "Optimises systems", "Protects long-term value"], href: "/howa/steward" },
-];
-
-const POWERED = [
-  { icon: HomeIcon, lead: "House-vetted partners only", rest: ", every studio carries the seal." },
-  { icon: ShieldIcon, lead: "Held in your record", rest: ", every decision and document, kept." },
-  { icon: LeafIcon, lead: "Repair over replace", rest: ", retain the fabric, choose better, evidence the impact." },
-  { icon: AwardIcon, lead: "House Approved", rest: ", the standard, openly published." },
-];
-
-const PRODUCTS = [
-  { name: "Dark Grey Chunky Knit Throw", price: "£89.00", image: "https://cdn.shopify.com/s/files/1/1006/9449/1462/files/handmade-dark-grey-chunky-knit-throw.jpg", href: "/shop/collections/soft-furnishings" },
-  { name: "Soft Furnishings", price: "The collection", image: null, href: "/shop/collections/soft-furnishings" },
-  { name: "Home Accessories", price: "The collection", image: null, href: "/shop/collections/home-accessories" },
-  { name: "House Approved", price: "Shop all", image: null, href: "/shop" },
-];
-
-// A curated set of room collections for the homepage Marketplace teaser.
-// The full eight live on /shop.
-const HOME_ROOMS = [
-  { name: "Kitchen", handle: "kitchen", image: "/shop/rooms/kitchen.webp" },
-  { name: "Living Room", handle: "living-room", image: "/shop/rooms/living-room.webp" },
-  { name: "Bedroom", handle: "bedroom", image: "/shop/rooms/bedroom.webp" },
-  { name: "Garden & Outdoor", handle: "garden-outdoor", image: "/shop/rooms/garden.webp" },
-];
-
-const HEARTH_FALLBACK = [
-  "A guide to seasonal planting",
-  "How to read a house survey",
-  "The art of the considered interior",
-  "Five things your boiler is telling you",
-];
-
-function formatMoney(m: { amount: string; currencyCode: string }) {
-  const sym = m.currencyCode === "GBP" ? "£" : m.currencyCode === "USD" ? "$" : "";
-  return `${sym}${Number(m.amount).toFixed(2)}`;
-}
+const ctaPrimary =
+  "inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown bg-house-gold-ink border border-house-gold-dark px-6 py-3 no-underline transition-[filter] duration-[var(--t-slow)] ease-out hover:brightness-110";
+const ctaSecondary =
+  "inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown border border-house-brown/30 px-6 py-3 no-underline transition-colors duration-[var(--t-base)] hover:border-house-gold-ink hover:text-house-gold-ink";
 
 export default async function HomePage() {
-  const hearthArticles = await getLatestHearthArticles(4).catch(() => []);
-  const shopProducts = await shopifyProvider.listFeaturedProducts(4).catch(() => []);
-  const marketCards = shopProducts.length
-    ? shopProducts.slice(0, 4).map((p) => ({
-        name: p.title,
-        price: formatMoney(p.price),
-        image: p.images[0]?.url ?? null,
-        href: `/shop/${p.handle}`,
-      }))
-    : PRODUCTS;
+  const hearthArticles = await getLatestHearthArticles(3).catch(() => []);
 
   return (
-    <div className={s.page}>
-      {/* 1. Hero — House-led */}
-      <section className={s.hero}>
-        <div className={s.heroCopy}>
-          <FlowerWatermark color="gold" side="left" opacity={0.16} className="!top-auto bottom-[-12%] h-[74%]" />
-          <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>House of Willow Alexander</p>
-            <h1 className={s.heroTitle}>
-              That Feeling<br />
-              <em>You Call Home.</em>
-            </h1>
-            <p className={s.heroLede}>
-              A modern British House for the care, design and intelligence of
-              home and garden. We bring together House Approved services,
-              considered goods, editorial guidance and HoWA, the Home
-              Intelligence OS created to help every home be beautifully kept and
-              better understood over time.
-            </p>
-            <div className={s.heroCtas}>
-              <a href="#open-booking-form" className={s.btnFilled}>
-                Book through HoWA
-              </a>
-              <Link href="/shop" className={s.btnGhost}>
-                Shop the Marketplace
-              </Link>
-            </div>
-            <p className={s.heroBookingNote}>
-              Online bookings are powered by HoWA, the Home Intelligence OS
-              created from the House. Prefer to speak to us? <a href="tel:08000478738">Call the House directly</a>.
-            </p>
-          </div>
-        </div>
-        <div className={s.heroVisual}>
-          <div className={s.heroVisualFrame}>
-            <Image
-              src="/home-v4/hero-georgian-london.webp"
-              alt="A refined sage-green Georgian London townhouse with a classical portico entrance, urn planters and a hedge-lined front garden"
-              fill
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              priority
-              style={{ objectFit: "cover" }}
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* 2. Editorial quote band */}
-      <section className={s.quoteBand}>
-        <FlowerWatermark color="white" side="right" opacity={0.14} />
-        <div className={s.quoteInner}>
-          <span className={s.quoteLabel}>Est. as a House of design</span>
-          <p className={s.quoteText}>
-            “We hold our homes to a higher standard, in design, in care, in the
-            record kept over time.”
+    <div className="bg-house-cream text-house-brown">
+      {/* 1. Hero */}
+      <section className="relative overflow-hidden px-[5vw] pt-24 pb-20">
+        <FlowerWatermark color="gold" side="right" opacity={0.14} />
+        <div className="relative z-10 max-w-[1080px] mx-auto">
+          <p className="font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink mb-6">
+            House of HoWA
           </p>
-          <span className={s.quoteAttr}>House of Willow Alexander</span>
+          <h1 className="font-display text-[clamp(44px,7vw,92px)] leading-[1.0] tracking-[-0.015em] text-house-black max-w-[15ch]">
+            The home, <em className="italic">finally known.</em>
+          </h1>
+          <p className="font-display italic text-[clamp(20px,2.4vw,30px)] leading-[1.35] text-house-brown/85 mt-7 max-w-[30ch]">
+            Your house is trying to tell you something. House of HoWA is where it
+            is heard.
+          </p>
+          <p className="font-sans text-[18px] leading-[1.65] text-house-brown/80 mt-6 max-w-[60ch]">
+            Start with your address. HoWA builds the first portrait of your home,
+            gives it a living Score, and turns what it finds into clear next
+            actions: save this, check that, book the right help, protect what
+            matters.
+          </p>
+          <div className="mt-9 flex flex-wrap gap-4">
+            <Link href="/howa/assistant" className={ctaPrimary}>
+              Start with my address
+            </Link>
+            <Link href="/howa-score" className={ctaSecondary}>
+              Meet the HoWA Score
+            </Link>
+          </div>
+          <p className="font-sans text-[13px] tracking-[0.02em] text-house-stone mt-6">
+            The House sets the standard. HoWA remembers the home.
+          </p>
         </div>
       </section>
 
-      {/* 3. Four pillar cards — prominent, early */}
-      <section className={s.pillars}>
-        <div className={s.pillarsGrid}>
-          {PILLARS.map((p) => (
-            <Link key={p.label} href={p.href} className={s.pillarCard}>
-              <Image src={p.image} alt={p.title} fill sizes="(min-width: 1024px) 24vw, 78vw" className={s.pillarImg} />
-              <div className={s.pillarScrim} aria-hidden />
-              <div className={s.pillarBody}>
-                <p className={s.pillarLabel}>{p.label}</p>
-                <h3 className={s.pillarTitle}>{p.title}</h3>
-                <p className={s.pillarSub}>{p.sub}</p>
-                <span aria-hidden className={s.pillarArrow}>→</span>
-              </div>
+      {/* 2. The Score is the first thing you understand */}
+      <section className="px-[5vw] py-16 bg-house-cream-dark border-t border-b border-house-brown/8">
+        <div className="max-w-[1000px] mx-auto">
+          <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">
+            The HoWA Score
+          </p>
+          <h2 className="font-display text-[clamp(28px,3.6vw,46px)] leading-[1.08] text-house-black max-w-[20ch] mb-6">
+            The Score is the first thing you understand.
+          </h2>
+          <p className="font-sans text-[17px] leading-[1.7] text-house-brown/80 max-w-[62ch]">
+            A home can be valuable and still be unmanaged. Documents sit in
+            drawers. Services disappear into invoices. Repairs live in WhatsApp
+            threads. Small risks wait quietly until they cost money. HoWA gives
+            the home one clear measure of readiness: a living Score that improves
+            as the home becomes more known.
+          </p>
+          <ul className="grid gap-x-8 gap-y-2 sm:grid-cols-2 mt-8 max-w-[640px]">
+            {SCORE_REFLECTS.map((r) => (
+              <li
+                key={r}
+                className="font-sans text-[16px] text-house-brown/85 pl-5 relative before:content-['—'] before:absolute before:left-0 before:text-house-gold-ink"
+              >
+                {r}
+              </li>
+            ))}
+          </ul>
+          <div className="mt-9">
+            <Link href="/howa-score" className={ctaSecondary}>
+              See how the Score works →
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. One address. One record. */}
+      <section className="px-[5vw] py-20 max-w-[820px] mx-auto text-center">
+        <h2 className="font-display text-[clamp(28px,3.6vw,46px)] leading-[1.1] text-house-black mb-6">
+          One address. One record. <em className="italic">A home that remembers.</em>
+        </h2>
+        <p className="font-sans text-[18px] leading-[1.7] text-house-brown/80">
+          The Home Record is the living memory of the address. Rooms, assets,
+          documents, jobs, costs, photographs, warranties, visits, plans and
+          concerns all return to one place. The record belongs to the home, not
+          to one person&apos;s inbox.
+        </p>
+      </section>
+
+      {/* 4. Meet the Household */}
+      <section className="px-[5vw] py-16 bg-house-brown text-house-cream">
+        <div className="max-w-[1000px] mx-auto">
+          <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-light mb-4">
+            The Household
+          </p>
+          <h2 className="font-display text-[clamp(28px,3.6vw,46px)] leading-[1.08] text-house-cream max-w-[22ch] mb-6">
+            Most people don&apos;t arrive looking for a Home Operating System.
+          </h2>
+          <p className="font-sans text-[17px] leading-[1.7] text-house-cream/80 max-w-[60ch] mb-9">
+            They arrive with a garden, a crack, a quote, a room, a document, a
+            leak, a repair or a service they need to book. Start with the
+            specialist you need today, free.
+          </p>
+          <ul className="grid gap-x-10 gap-y-3 sm:grid-cols-2 mb-10">
+            {HOUSEHOLD.map((h) => (
+              <li key={h.role} className="font-sans text-[16px] leading-[1.5] text-house-cream/85">
+                <span className="text-house-gold-light">{h.role}</span> {h.line}
+              </li>
+            ))}
+          </ul>
+          <Link
+            href="/household"
+            className="inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown bg-house-gold-ink border border-house-gold-dark px-6 py-3 no-underline hover:brightness-110 transition-[filter]"
+          >
+            Meet the Household →
+          </Link>
+        </div>
+      </section>
+
+      {/* 5. Services are proof, not the pitch */}
+      <section className="px-[5vw] py-20 max-w-[1000px] mx-auto">
+        <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">
+          Services
+        </p>
+        <h2 className="font-display text-[clamp(28px,3.6vw,46px)] leading-[1.08] text-house-black max-w-[20ch] mb-3">
+          Services are proof, not the pitch.
+        </h2>
+        <p className="font-display italic text-[clamp(20px,2.2vw,28px)] text-house-brown/85 mb-6">
+          The House does the work. HoWA remembers it.
+        </p>
+        <p className="font-sans text-[17px] leading-[1.7] text-house-brown/80 max-w-[62ch] mb-10">
+          Gardens, windows, cleaning, gutters, design, repairs and approved
+          partner services become more valuable when the outcome is saved to the
+          Home Record. A visit is not just booked and delivered. It is
+          remembered.
+        </p>
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-10">
+          {FLOW.map((step, i) => (
+            <span key={step} className="flex items-center gap-3">
+              <span className="font-sans text-[13px] tracking-[0.12em] uppercase text-house-brown/80 border border-house-brown/15 px-3 py-1.5">
+                {step}
+              </span>
+              {i < FLOW.length - 1 ? (
+                <span aria-hidden className="text-house-gold-ink">→</span>
+              ) : null}
+            </span>
           ))}
         </div>
-      </section>
-
-      {/* 4. House introduction */}
-      <section id="the-house" className={s.houseIntro}>
-        <div>
-          <p className={s.eyebrow}>The House</p>
-          <h2 className={s.houseIntroHead}>
-            Care, design and intelligence,<br />
-            <em>held to one House standard.</em>
-          </h2>
-        </div>
-        <div className={s.houseIntroBody}>
-          <p>
-            House of Willow Alexander brings the many parts of home into one
-            considered standard: gardens and rooms, services and objects,
-            documents and records. Each is held to a single test, would we trust
-            this in a home we love?
-          </p>
-          <Link href="/the-house/philosophy" className={s.textLink}>
-            Discover the House standard <span aria-hidden className={s.arrow}>→</span>
+        <div className="flex flex-wrap gap-4">
+          <a href="#open-booking-form" className={ctaPrimary}>
+            Book through HoWA
+          </a>
+          <Link href="/services" className={ctaSecondary}>
+            See all services →
           </Link>
         </div>
       </section>
 
-      {/* Origin pulse — founder story brought up from About / Artwork (slide 12 #03, slide 18) */}
-      <section className={s.originBand}>
-        <FlowerWatermark color="white" side="right" opacity={0.1} />
-        <div className={s.origin}>
-        <div className={s.originVisual}>
-          <Image
-            src="/home/origin-studio.webp"
-            alt="The original Willow Alexander garden studio: soil, seasons and a single electric van"
-            width={1122}
-            height={1402}
-            sizes="(min-width: 860px) 42vw, 100vw"
-            style={{ width: "100%", height: "auto", display: "block" }}
-          />
-          <div className={s.originScrim} aria-hidden="true" />
-          <Image
-            src="/brand/wa-gardens-white.png"
-            alt="Willow Alexander Gardens"
-            width={3595}
-            height={2184}
-            // Displayed small (~186px). Without `sizes`, Next served the full
-            // 3840px variant (~43KB) for a tiny logo. Cap it to the real size.
-            sizes="(min-width: 768px) 240px, 186px"
-            className={s.originLogo}
-          />
-        </div>
-        <div className={s.originCopy}>
-          <p className={s.eyebrow}>Origin</p>
-          <h2 className={s.originTitle}>
-            Cultivated from a garden studio.<br />
-            <em>Built into a House.</em>
+      {/* 6. What happens in the first minute */}
+      <section className="px-[5vw] py-16 bg-house-cream-dark border-t border-b border-house-brown/8">
+        <div className="max-w-[820px] mx-auto text-center">
+          <h2 className="font-display text-[clamp(26px,3.2vw,42px)] leading-[1.1] text-house-black mb-5">
+            What happens in the first minute
           </h2>
-          <p className={s.originPara}>
-            House of Willow Alexander began with gardens. Soil, seasons, craft, a
-            single electric van and regenerative planting plans, founded by Samuel
-            Collett and Alexander Oakley on a simple belief, that care could be
-            beautiful.
+          <p className="font-sans text-[18px] leading-[1.7] text-house-brown/80 mb-4">
+            Type your address. HoWA introduces your home back to you: public
+            property facts where available, a first Home Portrait, a provisional
+            HoWA Score and one useful next action.
           </p>
-          <p className={s.originPara}>
-            The name was chosen like a dedication. Willow for resilience and quiet
-            magic, Alexander for something steady and classical. Cultivated, not
-            branded. From that studio it grew into a modern British House for the
-            whole home, part service standard, part design authority, part
-            editorial world, and the place HoWA was born.
+          <p className="font-display italic text-[20px] text-house-brown/85 mb-8">
+            No forms. No drawer hunt. No starting from zero.
           </p>
-          <Link href="/the-house/artwork" className={s.textLink}>
-            Read the Artwork of the House <span aria-hidden className={s.arrow}>→</span>
+          <Link href="/howa/assistant" className={ctaPrimary}>
+            Start free
           </Link>
         </div>
-        </div>
       </section>
 
-      {/* House principles — manifesto */}
-      <section className={s.principles}>
-        <div className={s.principlesInner}>
-          <p className={s.eyebrow}>The House standard</p>
-          <div className={s.principlesGrid}>
-            {PRINCIPLES.map((p) => (
-              <div key={p.num} className={s.principle}>
-                <p className={s.principleNum}>{p.num}</p>
-                <h3 className={s.principleTitle}>{p.title}</h3>
-                <p className={s.principleBody}>{p.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Services showcase — sits directly under The House standard */}
-      <section className={s.services}>
-        <div className={s.servicesInner}>
-          <div className={s.servicesHead}>
-            <p className={s.eyebrow}>The Services</p>
-            <h2 className={s.servicesTitle}>The practical care of home and garden.</h2>
-            <p className={s.sectionSub}>
-              Gardeners, cleaners, window care, design, repairs and specialist
-              partners, booked through HoWA, delivered to the House standard and
-              written back to your Home Record.
-            </p>
-            <div className={s.servicesCtas}>
-              <Link href="#open-booking-form" className={s.btnFilled}>
-                Book through HoWA
-              </Link>
-              <Link href="/services" className={s.btnGhost}>
-                See all services <span aria-hidden className={s.arrow}>→</span>
-              </Link>
-            </div>
-          </div>
-          <div className={s.servicesGrid}>
-            {SERVICES.map((svc) => (
-              <Link key={svc.name} href={svc.href} className={s.serviceTile}>
-                <Image
-                  src={svc.image}
-                  alt={svc.name}
-                  fill
-                  sizes="(min-width: 860px) 22vw, 50vw"
-                  className={s.serviceTileImg}
-                />
-                <span className={s.serviceTileName}>{svc.name}</span>
-                <span aria-hidden className={s.serviceTileArrow}>→</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Real crew proof on a forest-green ground (brief slide 5: real people,
-          real standards; moodboard section colour) */}
-      <section className="px-[5vw] py-[clamp(52px,7vw,104px)] bg-house-forest">
-        <div className="mx-auto max-w-[1200px]">
-          <p className="text-center" style={{ fontFamily: "var(--font-sans)", fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--color-house-gold-light)", margin: "0 0 14px", fontWeight: 500 }}>
-            On the road
-          </p>
-          <h2 className="text-center" style={{ fontFamily: "var(--font-display)", fontWeight: 400, fontSize: "clamp(26px,3.6vw,44px)", lineHeight: 1.1, color: "var(--color-house-cream)", margin: "0 0 clamp(28px,4vw,52px)" }}>
-            Real people, real standards, <em>one remembered home.</em>
-          </h2>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
-            {[
-              { src: "/services/photos/vans/asher-349.webp", alt: "A liveried House of Willow Alexander electric van" },
-              { src: "/services/photos/gardening/garden-tidy-hero.webp", alt: "Gardening team at work" },
-              { src: "/services/photos/window-cleaning/one-off-window-cleaning-hero.webp", alt: "Window cleaning in progress" },
-              { src: "/services/photos/cleaning/regular-cleaning-hero.webp", alt: "Home cleaning in progress" },
-            ].map((t) => (
-              <div key={t.src} className="relative aspect-[4/5] overflow-hidden bg-house-forest">
-                <Image src={t.src} alt={t.alt} fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover" />
-              </div>
-            ))}
-          </div>
-          <div className="mt-[clamp(28px,4vw,48px)] flex justify-center">
-            <a
-              href="#open-booking-form"
-              className="inline-flex items-center justify-center border border-house-gold-dark bg-house-gold-ink px-9 py-4 font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-[filter] hover:brightness-110"
-            >
-              Book through HoWA
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* HoWA — the intelligence layer, introduced before the execution layers (slide 12) */}
-      <section className={s.howaIntro}>
-        <div className={s.howaIntroInner}>
-          <div className={s.howaIntroVisual}>
-            <Image
-              src="/home/howa-app.webp"
-              alt="The HoWA app on a phone: a home's Home Health Score of 91%, today's plan, next best action and a home overview"
-              width={941}
-              height={1672}
-              sizes="(min-width: 1024px) 400px, 80vw"
-              className="w-full max-w-[400px] h-auto"
-            />
-          </div>
-          <div className={s.howaIntroCopy}>
-            <p className={s.eyebrow}>HoWA · Home Intelligence OS</p>
-            <h2 className={s.howaIntroTitle}>
-              Born inside the House.<br />
-              <em>Built for every home.</em>
-            </h2>
-            <p className={s.howaIntroPara}>
-              HoWA is the Home Intelligence OS created from House of Willow
-              Alexander. It begins with your address, builds the first portrait of
-              your home and keeps a living record of its services, documents, costs,
-              risks and care over time. House bookings are powered by HoWA, but
-              HoWA is not only for House services.
-            </p>
-            <p className={s.howaIntroPara}>
-              HoWA began as the House booking and home-record platform. It now also
-              lives independently as the Home Intelligence OS for any address.
-            </p>
-            <p className={s.howaIntroPara}>
-              <em>Technology in service of beauty, calm and flow, never technology for its own sake.</em>
-            </p>
-            <div className={s.howaFeatures}>
-              {HOWA_FEATURES.map((f) => (
-                <div key={f.lead} className={s.howaFeature}>
-                  <strong>{f.lead}:</strong> {f.rest}
-                </div>
-              ))}
-            </div>
-            <div className={s.howaIntroCtas}>
-              <Link href="/howa" className={s.btnFilled}>Start your Home Record</Link>
-              <Link href="/howa/how-it-works" className={s.btnGhost}>
-                See how it works <span aria-hidden className={s.arrow}>→</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Booking flow strip — make the "what happens next" loop explicit (brief 5/8) */}
-      <BookingFlowStrip />
-
-      {/* HoWA intelligence — what the house notices */}
-      <section className={s.intel}>
-        <div className={s.intelCopy}>
-          <h2 className={s.intelTitle}>
-            Your house is trying<br />
-            <em>to tell you something.</em>
-          </h2>
-          <p className={s.intelPara}>
-            The windows, the gutters, the laundry that never ends, the boiler
-            service you keep meaning to book, the warranty you know is somewhere.
-            Hand it to HoWA, and the house starts to remember for you, so the
-            next thing to do is simply there when you need it.
-          </p>
-          <div className={s.intelStats}>
-            {INTEL_STATS.map((stat) => (
-              <div key={stat.label} className={s.intelStat}>
-                <p className={s.intelStatLabel}>{stat.label}</p>
-                <p className={s.intelStatValue}>{stat.value}</p>
-              </div>
-            ))}
-          </div>
-          <Link href="/howa/how-it-works" className={s.btnGhostDark}>
-            See how HoWA works <span aria-hidden className={s.arrow}>→</span>
-          </Link>
-        </div>
-        <div className={s.intelVisual}>
-          <Image
-            src="/home-v4/pillar-1.webp"
-            alt="A warm parlour interior with a marble fireplace and flowers"
-            fill
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            style={{ objectFit: "cover" }}
-          />
-        </div>
-      </section>
-
-      {/* HoWA tiers — three ways HoWA serves the home (reuses v4a tier cards) */}
-      <section className={s.tiers}>
-        <header className={s.tiersHead}>
-          <p className={s.eyebrow}>HoWA</p>
-          <h2 className={s.tiersTitle}>Three ways HoWA serves the home.</h2>
-        </header>
-        <div className={v.tierGrid}>
-          {TIERS.map((tier) => (
-            <Link key={tier.slug} href={tier.href} className={`${v.tierCard} ${v[tier.slug]}`}>
-              <div className={v.tierBg} aria-hidden="true" />
-              <div className={v.tierOverlay}>
-                <header className={v.tierTop}>
-                  <p className={v.tierMeta}>{tier.numeral} {tier.label}</p>
-                  <h3 className={v.tierTagline}>{tier.name}</h3>
-                </header>
-                <footer className={v.tierFoot}>
-                  <ul className={v.tierFeatures}>
-                    {tier.features.map((f) => (
-                      <li key={f}>{f}</li>
-                    ))}
-                  </ul>
-                  <span className={v.tierLearn}>Learn more →</span>
-                </footer>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* HoWA app — compact get-the-app banner, closing the HoWA zone */}
-      <HowaAppBanner />
-
-      {/* Marketplace — shop by room (collections teaser; full grid lives a few sections below) */}
-      <section className={s.market}>
-        <div className={s.marketInner}>
-          <div className={s.marketHead}>
+      {/* From the Hearth — editorial teaser */}
+      {hearthArticles.length > 0 ? (
+        <section className="px-[5vw] py-16 max-w-[1200px] mx-auto">
+          <div className="flex items-end justify-between mb-8">
             <div>
-              <p className={s.eyebrow}>The Marketplace</p>
-              <h2 className={s.marketTitle}>A place for everything.</h2>
-              <p className={s.sectionSub}>
-                Step into a room to see what the House keeps there, from the
-                kitchen table to the garden bench. Every object earns its place.
+              <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-2">
+                The Hearth
               </p>
+              <h2 className="font-display italic text-[clamp(24px,2.8vw,36px)] text-house-black">
+                Notes for a home that remembers.
+              </h2>
             </div>
-            <Link href="/shop" className={s.btnGhost}>
-              All rooms <span aria-hidden className={s.arrow}>→</span>
+            <Link href="/the-hearth" className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-ink no-underline hidden sm:block">
+              Read the Hearth →
             </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {HOME_ROOMS.map((r) => (
-              <Link
-                key={r.handle}
-                href={`/shop/collections/${r.handle}`}
-                className="group relative block aspect-[4/5] overflow-hidden bg-house-cream-dark no-underline"
-              >
-                <Image
-                  src={r.image}
-                  alt={r.name}
-                  fill
-                  sizes="(min-width: 860px) 22vw, 50vw"
-                  className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.04]"
-                />
-                <span
-                  aria-hidden
-                  className="absolute inset-0"
-                  style={{ background: "linear-gradient(to top, rgba(26,19,13,0.72), rgba(26,19,13,0.05) 55%)" }}
-                />
-                <div className="absolute inset-x-0 bottom-0 p-4 text-center">
-                  <p className="font-display text-[clamp(17px,1.6vw,24px)] leading-[1.1] text-white">{r.name}</p>
-                  <p className="font-sans text-[12px] tracking-[0.2em] uppercase text-white/80 mt-1.5 transition-colors group-hover:text-white">
-                    Shop the room →
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* The Hearth — editorial break between the two Marketplace sections */}
-      <section className={s.hearth}>
-        <div className={s.hearthInner}>
-          <div className={s.hearthCopy}>
-            <p className={s.eyebrow + " " + s.eyebrowLight}>The Hearth</p>
-            <h2 className={s.hearthTitle}>
-              <em>The editorial</em> soul of the House.
-            </h2>
-            <p className={s.hearthPara}>
-              Essays, recipes, garden notes and design wisdom for the quiet art of
-              keeping a home. Published when there is something worth saying,
-              never when there isn&apos;t.
-            </p>
-            <Link href="/the-hearth" className={s.btnCream}>
-              Read the Hearth <span aria-hidden className={s.arrow}>→</span>
-            </Link>
-          </div>
-          <div className={s.hearthGrid}>
-            {(hearthArticles.length >= 4
-              ? hearthArticles.slice(0, 4).map((a) => ({ title: a.title, href: `/the-hearth/${a.slug}`, image: a.image }))
-              : HEARTH_FALLBACK.map((t, i) => ({ title: t, href: "/the-hearth", image: `/home-v4/pillar-${(i % 4) + 1}.webp` }))
-            ).map((card) => (
-              <Link key={card.title} href={card.href} className={s.hearthCard}>
-                <Image src={card.image} alt={card.title} fill sizes="(min-width: 1024px) 28vw, 45vw" className={s.hearthCardImg} />
-                <div className={s.hearthCardScrim} aria-hidden />
-                <span className={s.hearthCardLabel}>{card.title}</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* The House sets the standard — between the two Marketplace sections */}
-      <section className={s.powered}>
-        <FlowerWatermark color="gold" side="left" opacity={0.18} />
-        <p className={s.eyebrow}>The design authority behind it all</p>
-        <h2 className={s.poweredTitle}>The House sets the standard.</h2>
-        <div className={s.poweredGrid}>
-          {POWERED.map((line) => {
-            const Icon = line.icon;
-            return (
-              <div key={line.lead} className={s.poweredItem}>
-                <span className={s.poweredIcon}><Icon /></span>
-                <p className={s.poweredText}><strong>{line.lead}</strong>{line.rest}</p>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Marketplace feature */}
-      <section className={s.market}>
-        <div className={s.marketInner}>
-          <div className={s.marketHead}>
-            <div>
-              <p className={s.eyebrow}>The Marketplace</p>
-              <h2 className={s.marketTitle}>Objects with a place in the House.</h2>
-              <p className={s.sectionSub}>
-                Considered goods, home essentials, garden tools and House Approved
-                pieces, chosen for usefulness, beauty and longevity.
-              </p>
-            </div>
-            <Link href="/shop" className={s.btnGhost}>
-              Shop all <span aria-hidden className={s.arrow}>→</span>
-            </Link>
-          </div>
-          <div className={s.marketGrid}>
-            {marketCards.map((p) => (
-              <Link key={p.name} href={p.href} className={s.productCard}>
-                <div className={s.productImg}>
-                  {p.image ? (
-                    <Image src={p.image} alt={p.name} fill sizes="(min-width: 1024px) 24vw, 60vw" />
-                  ) : null}
-                </div>
-                <div className={s.productBody}>
-                  <p className={s.productName}>{p.name}</p>
-                  <p className={s.productPrice}>{p.price}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Services — second touchpoint with clear CTAs, beneath the House standard */}
-      <section className="px-[5vw] py-[clamp(48px,6vw,90px)] border-t border-house-brown/10" style={{ background: "var(--color-house-cream)" }}>
-        <div className="max-w-[1180px] mx-auto">
-          <div className="text-center max-w-[660px] mx-auto mb-11">
-            <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink mb-3">The Services</p>
-            <h2 className="font-display text-[clamp(26px,3vw,42px)] leading-[1.06] text-house-brown mb-4">
-              Whatever the home needs, booked in minutes.
-            </h2>
-            <p className="font-sans text-[15px] text-house-stone leading-[1.6]">
-              Vetted local specialists, delivered to the House standard and written
-              back to your Home Record.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-11">
-            {SERVICES.map((svc) => (
-              <Link
-                key={svc.name}
-                href={svc.href}
-                className="group flex flex-col border border-house-brown/12 bg-house-white no-underline transition-colors hover:border-house-gold"
-              >
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-house-cream-dark">
+          <div className="grid gap-6 md:grid-cols-3">
+            {hearthArticles.slice(0, 3).map((a) => (
+              <Link key={a.slug} href={`/the-hearth/${a.slug}`} className="group block no-underline">
+                <div className="relative aspect-[4/3] overflow-hidden bg-house-cream-dark mb-4">
                   <Image
-                    src={svc.image}
-                    alt={svc.name}
+                    src={a.image}
+                    alt=""
                     fill
-                    sizes="(min-width: 768px) 22vw, 50vw"
-                    className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.04]"
+                    sizes="(min-width:768px) 33vw, 100vw"
+                    className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.03]"
                   />
                 </div>
-                <div className="flex flex-col flex-1 p-6">
-                  <p className="font-display text-[19px] leading-tight text-house-brown mb-1.5">{svc.name}</p>
-                  <p className="font-sans text-[15px] text-house-stone leading-[1.5] mb-6 flex-1">{SERVICE_BLURB[svc.name]}</p>
-                  <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-ink transition-colors group-hover:text-house-brown">
-                    Book through HoWA →
-                  </span>
-                </div>
+                <h3 className="font-display text-[22px] leading-[1.15] text-house-black group-hover:text-house-gold-ink transition-colors">
+                  {a.title}
+                </h3>
               </Link>
             ))}
           </div>
+        </section>
+      ) : null}
 
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link href="#open-booking-form" className={s.btnFilled}>Book through HoWA</Link>
-            <Link href="/services" className={s.btnGhost}>
-              See all services <span aria-hidden className={s.arrow}>→</span>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Enquiry / book-a-service form — direct lead capture into the Home Record */}
+      {/* Speak to the House — lead capture into the Home Record */}
       <EnquiryForm
         sourcePage="/"
-        eyebrow="Get in touch"
-        headline="Speak to the House."
-        body="Ask a question or tell us which service you are after, and we will come back to you personally. Choose a service below, or leave it as a general enquiry."
+        eyebrow="Speak to the House"
+        headline="Tell us what the home needs."
+        body="A service, a design brief, a partner conversation or a question about HoWA. Choose a service below, or leave it as a general enquiry. We reply personally."
       />
-
-      {/* 13. Closing CTA */}
-      <section className={s.closing}>
-        <FlowerWatermark color="white" side="right" opacity={0.14} />
-        <p className={s.closingStatement}>
-          A House for the home you love, <em>kept to the standard a good home deserves.</em>
-        </p>
-        <div className={s.closingCtas}>
-          <Link href="#open-booking-form" className={s.btnFilled}>Book through HoWA</Link>
-          <Link href="/shop" className={s.btnGhostDark}>Shop the Marketplace</Link>
-        </div>
-      </section>
     </div>
   );
-}
-
-/* ----------------------------------------------------------------
-   HoWA app-preview widget — reused from v4a (house health 91/100).
----------------------------------------------------------------- */
-function HowaWidget() {
-  return (
-    <aside className={v.heroSideCard} aria-label="HoWA app preview">
-      <div className={v.appBrand}>
-        <Image src="/brand/howa/howa-black.svg" alt="HoWA" width={204} height={102} className={v.appBrandLogo} />
-      </div>
-      <header className={v.appHeader}>
-        <span className={v.appHeaderLeft}>
-          <span className={v.appDot} aria-hidden="true" />
-          <span className={v.appHeaderTitle}>Today, in your home</span>
-        </span>
-        <span className={v.appHeaderDate}>Thu · 09:00</span>
-      </header>
-      <div className={v.appHero}>
-        <p className={v.appHeroLabel}>House Health</p>
-        <div className={v.appHeroRow}>
-          <PieScore value={91} />
-          <p className={v.appHeroScore}>91<span className={v.appHeroScoreUnit}>/100</span></p>
-        </div>
-        <p className={v.appHeroSub}>Boiler, roof and garden, on track</p>
-      </div>
-      <ul className={v.appList}>
-        <li className={v.appRow}><span className={`${v.appStatus} ${v.appStatusOk}`} aria-hidden /><span className={v.appRowLabel}>Roof</span><span className={v.appRowValue}>Good order</span></li>
-        <li className={v.appRow}><span className={`${v.appStatus} ${v.appStatusAttn}`} aria-hidden /><span className={v.appRowLabel}>Boiler</span><span className={v.appRowValue}>14 days</span></li>
-        <li className={v.appRow}><span className={`${v.appStatus} ${v.appStatusOk}`} aria-hidden /><span className={v.appRowLabel}>Garden</span><span className={v.appRowValue}>Thursday</span></li>
-        <li className={v.appRow}><span className={`${v.appStatus} ${v.appStatusOk}`} aria-hidden /><span className={v.appRowLabel}>Cleaning</span><span className={v.appRowValue}>Tomorrow</span></li>
-        <li className={v.appRow}><span className={`${v.appStatus} ${v.appStatusOk}`} aria-hidden /><span className={v.appRowLabel}>Warranty</span><span className={v.appRowValue}>42 days</span></li>
-      </ul>
-      <footer className={v.appFooter}>
-        <Link href="/howa/coming-soon" className={v.appFooterCta}>Coming soon →</Link>
-      </footer>
-    </aside>
-  );
-}
-
-function PieScore({ value }: { value: number }) {
-  const pct = Math.max(0, Math.min(100, value));
-  return (
-    <svg viewBox="0 0 36 36" width="64" height="64" aria-hidden="true" className="shrink-0">
-      <circle cx="18" cy="18" r="15.5" fill="none" stroke="rgba(48,35,28,0.12)" strokeWidth="3.5" />
-      <circle cx="18" cy="18" r="15.5" fill="none" stroke="var(--color-house-gold-dark)" strokeWidth="3.5" strokeLinecap="round" pathLength={100} strokeDasharray={`${pct} 100`} transform="rotate(-90 18 18)" />
-    </svg>
-  );
-}
-
-function HomeIcon() {
-  return (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" width="22" height="22" aria-hidden="true"><path d="M3 11 L12 4 L21 11 V20 a1 1 0 0 1 -1 1 H4 a1 1 0 0 1 -1 -1 Z" /><path d="M9 21 V13 H15 V21" /></svg>);
-}
-function ShieldIcon() {
-  return (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" width="22" height="22" aria-hidden="true"><path d="M12 3 L20 6 V12 C20 16, 16 20, 12 22 C8 20, 4 16, 4 12 V6 Z" /><path d="M9 12 L11 14 L15 10" /></svg>);
-}
-function LeafIcon() {
-  return (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" width="22" height="22" aria-hidden="true"><path d="M5 21 C 5 12, 12 5, 21 5 C 21 14, 14 21, 5 21 Z" /><path d="M5 21 L 14 12" /></svg>);
-}
-function AwardIcon() {
-  return (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" width="22" height="22" aria-hidden="true"><circle cx="12" cy="9" r="6" /><path d="M9 14 L7 22 L12 19 L17 22 L15 14" /></svg>);
 }
