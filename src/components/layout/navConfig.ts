@@ -198,3 +198,16 @@ export const PRIMARY_NAV: MegaPanel[] = [
 
   { id: "partners", trigger: "Partners", triggerHref: "/partners", groups: [] },
 ];
+
+/**
+ * Secondary navigation (launch read section 3) — the House / institutional
+ * links, sitting quietly beneath the primary product nav.
+ */
+export const SECONDARY_NAV: { label: string; href: string }[] = [
+  { label: "The House", href: "/the-house/about" },
+  { label: "Artwork", href: "/the-house/artwork" },
+  { label: "Standards", href: "/the-house/standards" },
+  { label: "Sustainability", href: "/the-house/sustainability" },
+  { label: "About", href: "/the-house/about" },
+  { label: "Contact", href: "/contact" },
+];

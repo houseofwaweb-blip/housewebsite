@@ -8,7 +8,7 @@ import { MegaMenu, type MegaPanel } from "@/components/nav/MegaMenu";
 import { SearchModal } from "@/components/search/SearchModal";
 import { CartIcon } from "@/components/commerce/CartIcon";
 import { useCart } from "@/components/commerce/CartContext";
-import { PRIMARY_NAV } from "./navConfig";
+import { PRIMARY_NAV, SECONDARY_NAV } from "./navConfig";
 
 /**
  * Global site header.
@@ -53,13 +53,13 @@ export function Header({
     <header
       className={cn(
         "sticky top-0 z-40",
-        "flex items-center justify-between px-[5vw] py-3",
         "border-b",
         dark
           ? "bg-howa-navy/95 backdrop-blur text-house-cream border-[rgba(245,240,232,0.1)]"
           : "bg-house-cream text-house-brown border-[rgba(48,35,28,0.08)]",
       )}
     >
+      <div className="flex items-center justify-between px-[5vw] py-3">
       {/* Wordmark */}
       <Link
         href="/"
@@ -134,6 +134,28 @@ export function Header({
         <span className={cn("block w-5 h-px", dark ? "bg-house-cream" : "bg-house-brown")} />
         <span className={cn("block w-5 h-px", dark ? "bg-house-cream" : "bg-house-brown")} />
       </button>
+      </div>
+
+      {/* Secondary nav — House / institutional links (desktop only) */}
+      <div
+        className={cn(
+          "hidden lg:flex items-center justify-center gap-7 px-[5vw] py-2 border-t",
+          dark ? "border-[rgba(245,240,232,0.08)]" : "border-[rgba(48,35,28,0.06)]",
+        )}
+      >
+        {SECONDARY_NAV.map((l) => (
+          <Link
+            key={l.label + l.href}
+            href={l.href}
+            className={cn(
+              "font-sans text-[11px] tracking-[0.18em] uppercase no-underline opacity-55 hover:opacity-100 transition-opacity duration-[var(--t-base)]",
+              dark ? "text-house-cream" : "text-house-brown",
+            )}
+          >
+            {l.label}
+          </Link>
+        ))}
+      </div>
 
       {/* Mobile drawer — reuses MegaMenu config as accordions */}
       {mobileOpen ? (
@@ -235,7 +257,20 @@ export function Header({
               );
             })}
 
-            <div className="mt-8 flex flex-col gap-4 pt-6 border-t border-house-brown/10">
+            <div className="mt-6 flex flex-col gap-3 pt-5 border-t border-house-brown/10">
+              {SECONDARY_NAV.map((l) => (
+                <Link
+                  key={l.label + l.href}
+                  href={l.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="font-sans text-[15px] text-house-brown no-underline opacity-80"
+                >
+                  {l.label}
+                </Link>
+              ))}
+            </div>
+
+            <div className="mt-6 flex flex-col gap-4 pt-6 border-t border-house-brown/10">
               <button
                 type="button"
                 onClick={() => { setMobileOpen(false); setSearchOpen(true); }}
