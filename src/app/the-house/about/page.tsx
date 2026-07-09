@@ -3,9 +3,9 @@ import { EnquiryForm } from "@/components/marketing/EnquiryForm";
 import { getPageSections, cms } from "@/lib/cms/page-sections";
 
 export const metadata = {
-  title: "About",
+  title: "About House of HoWA",
   description:
-    "The small team who runs the House, and the partner studios who carry most of the work.",
+    "House of HoWA is a public institution for modern home stewardship, powered by HoWA and proven through trusted services and partners.",
 };
 
 // A real branded van beside the "Who we are" copy (which mentions electric
@@ -54,15 +54,15 @@ export default async function AboutPage() {
         }))
       : FALLBACK_SECTIONS;
 
-  const headline = cms(intro, "headline", "A modern British House for the");
-  const headlineEm = cms(intro, "headlineEm", "care, design and intelligence", "headline");
-  const headlineTail = cms(intro, "subheadline", "of home.");
+  const headline = cms(intro, "headline", "The institution behind a home that");
+  const headlineEm = cms(intro, "headlineEm", "remembers.", "headline");
+  const headlineTail = cms(intro, "subheadline", "");
 
   return (
     <>
       <EditorialPage
         watermark="gold"
-        eyebrow={cms(intro, "eyebrow", "The House · About")}
+        eyebrow={cms(intro, "eyebrow", "House of HoWA · About")}
         title={
           <>
             {headline} <em>{headlineEm}</em> {headlineTail}

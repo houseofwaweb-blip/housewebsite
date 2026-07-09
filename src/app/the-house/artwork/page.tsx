@@ -30,7 +30,7 @@ import { getArtworkPage } from "@/lib/cms/artwork";
  */
 
 export const metadata = {
-  title: "The Artwork of the House",
+  title: "The Artwork of House of HoWA",
   description:
     "A design-led story of heritage, craft, colour, and British domestic beauty. How the House of HoWA was cultivated, not branded.",
 };

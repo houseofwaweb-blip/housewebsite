@@ -17,7 +17,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  */
 
 export const metadata = {
-  title: "HoWA FAQ: What people usually ask",
+  title: "HoWA FAQ | What people usually ask",
   description:
     "Answers to the things people ask about Housekeeper and Steward, pricing, cancellation, privacy, the Assistant.",
 };

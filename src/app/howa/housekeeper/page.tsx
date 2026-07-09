@@ -20,7 +20,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  */
 
 export const metadata = {
-  title: { absolute: "Housekeeper by HoWA | Home logbook and maintenance calendar" },
+  title: { absolute: "HoWA Housekeeper | The home, in order" },
   description:
     "The connected membership for a home you mean to keep. £16.99 / month. Living Record, full Assistant, member pricing. Cancel anytime.",
 };

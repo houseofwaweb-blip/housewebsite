@@ -197,7 +197,7 @@ function TwoCollections() {
 }
 
 export const metadata = {
-  title: { absolute: "The House Marketplace | Shop home, garden and household" },
+  title: { absolute: "The House of HoWA Marketplace | Objects with a place in the home" },
   description:
     "Objects with a place in the House. Shop by room, kitchen, table, garden and more, or browse House Approved goods, best sellers and new arrivals.",
 };

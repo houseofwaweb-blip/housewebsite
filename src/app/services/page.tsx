@@ -39,7 +39,7 @@ function imgOr(p?: string): string {
  */
 
 export const metadata = {
-  title: "Home and garden services",
+  title: "House Services | Booked through HoWA, remembered by the home",
   description:
     "Four disciplines of home care, gardening, window cleaning, cleaning, gutter cleaning, to one House standard. One-off or on a Steward plan.",
 };
@@ -286,16 +286,16 @@ export default async function ServicesLanding() {
         <div className={s.heroCopy}>
           <FlowerWatermark color="gold" side="left" opacity={0.16} className="!top-auto bottom-[-12%] h-[74%]" />
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>{cms(hero, "eyebrow", "The House · Services")}</p>
+            <p className={s.heroEy}>{cms(hero, "eyebrow", "House Services")}</p>
             <h1 className={s.heroTitle}>
-              {cms(hero, "headline", "Care as craft,")}{" "}
-              <em>{cms(hero, "headlineEm", "season after season.", "headline")}</em>
+              {cms(hero, "headline", "Booked.")}{" "}
+              <em>{cms(hero, "headlineEm", "And remembered.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
               {cms(
                 hero,
                 "body",
-                "Gardens that grow character, homes that hold heart. The practical work of looking after a house and garden, held to one House standard. Lawns cut and beds planted, windows and sills cleared, gutters seen to before the weather turns, small repairs put right. Delivered by House of HoWA and the people we approve, booked through HoWA, and written back to your Home Record so the house remembers what was done.",
+                "The practical care of home and garden, delivered by founding partners and House Approved providers, booked through HoWA and saved to your Home Record. Services are not the whole story. They are how the standard proves itself in real homes.",
               )}
             </p>
             <div className={s.heroCtas}>

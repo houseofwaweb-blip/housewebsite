@@ -61,9 +61,9 @@ export default async function PhilosophyPage() {
         }))
       : FALLBACK_SECTIONS;
 
-  const headline = cms(intro, "headline", "Beautiful living,");
-  const headlineEm = cms(intro, "headlineEm", "intelligently", "headline");
-  const headlineTail = cms(intro, "subheadline", "stewarded.");
+  const headline = cms(intro, "headline", "Stewardship, not");
+  const headlineEm = cms(intro, "headlineEm", "maintenance.", "headline");
+  const headlineTail = cms(intro, "subheadline", "");
 
   return (
     <EditorialPage

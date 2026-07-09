@@ -17,7 +17,7 @@ import { env } from "@/lib/env";
  */
 
 export const metadata = {
-  title: "HoWA Steward: a steward for the home you intend to keep.",
+  title: "HoWA Steward | The home, protected before failure",
   description:
     "HoWA's most complete tier, £29.99 a month. The HoWA Score, risk register, predictive maintenance and evidence kept to a standard. Protected before failure. Managed Stewardship available by application.",
 };

@@ -23,7 +23,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  */
 
 export const metadata = {
-  title: "Preventative home protection",
+  title: "Protect by House of HoWA | The Steward protects before failure",
   description:
     "Preventative care for homes that are lived in properly. A new House service launching late 2026: Home Protection Review, coordinated setup, ongoing oversight.",
 };

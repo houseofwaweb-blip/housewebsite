@@ -59,9 +59,9 @@ export default async function StandardsPage() {
         }))
       : FALLBACK_SECTIONS;
 
-  const headline = cms(intro, "headline", "The");
-  const headlineEm = cms(intro, "headlineEm", "quiet", "headline");
-  const headlineTail = cms(intro, "subheadline", "bar.");
+  const headline = cms(intro, "headline", "The standard that makes the");
+  const headlineEm = cms(intro, "headlineEm", "software trusted.", "headline");
+  const headlineTail = cms(intro, "subheadline", "");
 
   return (
     <EditorialPage

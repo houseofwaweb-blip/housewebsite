@@ -25,7 +25,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  */
 
 export const metadata = {
-  title: "HoWA Assistant: the house, seen. Free, start with an address.",
+  title: "HoWA Assistant | Start free with an address",
   description:
     "The free way into HoWA. The portrait of your home in a minute, the Assistant diagnostic for anything that bothers you, repair, garden and room scans, quotes decoded, and the first save.",
 };

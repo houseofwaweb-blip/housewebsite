@@ -19,7 +19,7 @@ import { getHearthIndex } from "@/lib/cms/hearth";
  */
 
 export const metadata = {
-  title: { absolute: "The Hearth | Journal for homes and gardens" },
+  title: { absolute: "The Hearth by House of HoWA | Notes for a home that remembers" },
   description:
     "A journal on the keeping of homes and gardens. Essays, interiors, gardens, architecture, from House of HoWA.",
 };

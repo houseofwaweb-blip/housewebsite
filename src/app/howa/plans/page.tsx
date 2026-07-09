@@ -21,7 +21,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  */
 
 export const metadata = {
-  title: "Plans & Pricing: Housekeeper and Steward",
+  title: "HoWA Plans | Assistant, Housekeeper and Steward",
   description:
     "Assistant free, Housekeeper at £16.99 a month, Steward at £29.99 a month. One record, three depths of care.",
 };

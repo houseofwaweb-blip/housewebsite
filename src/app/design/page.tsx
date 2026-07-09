@@ -17,7 +17,7 @@ import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
  */
 
 export const metadata = {
-  title: "Design: Interiors and gardens, considered.",
+  title: "Design by House of HoWA | The Designer turns one photo into a direction",
   description:
     "Interiors and gardens by designers we've vetted and trust. Every project carries the House Approved seal.",
 };
