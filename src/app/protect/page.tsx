@@ -170,8 +170,8 @@ export default async function ProtectPage() {
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>{cms(hero, "eyebrow", "Protect · Late 2026")}</p>
             <h1 className={s.heroTitle}>
-              {cms(hero, "headline", "Catch the small things")}{" "}
-              <em>{cms(hero, "headlineEm", "before they become the big ones.", "headline")}</em>
+              {cms(hero, "headline", "Protected before")}{" "}
+              <em>{cms(hero, "headlineEm", "failure.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
               {cms(

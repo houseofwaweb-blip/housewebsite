@@ -100,8 +100,8 @@ export default async function DesignLanding() {
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>{cms(hero, "eyebrow", "The House · Design")}</p>
             <h1 className={s.heroTitle}>
-              {cms(hero, "headline", "Design by the")}{" "}
-              <em>{cms(hero, "headlineEm", "House.", "headline")}</em>
+              {cms(hero, "headline", "The Designer turns one photo into a")}{" "}
+              <em>{cms(hero, "headlineEm", "direction.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
               {cms(

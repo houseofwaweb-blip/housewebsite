@@ -16,7 +16,7 @@ export default function ContactPage() {
         <div className={s.heroInner}>
           <p className={s.heroEy}>Contact</p>
           <h1 className={s.heroTitle}>
-            Write to <em>the House.</em>
+            Speak to <em>the House.</em>
           </h1>
           <p className={s.heroLede}>
             Choose what this is about first. The form adapts so you only answer
