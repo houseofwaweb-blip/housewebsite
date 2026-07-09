@@ -11,6 +11,7 @@ import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { EnquiryForm } from "@/components/marketing/EnquiryForm";
 import { BookingFlowStrip } from "@/components/marketing/BookingFlowStrip";
 import { ServiceCtaRow } from "@/components/marketing/ServiceCtaRow";
+import { BookedAndRemembered, SafetyBoundary } from "@/components/marketing/HowaModules";
 
 const PUBLIC = path.join(process.cwd(), "public");
 // Services / sub-services without their own photography fall back to the
@@ -342,6 +343,9 @@ export function ServiceDetail({ service }: { service: Service }) {
         </div>
       ) : null}
 
+      {/* HoWA writeback promise */}
+      <BookedAndRemembered />
+
       {/* Booking flow — the journey services should show (brief slide 8) */}
       <BookingFlowStrip />
 
@@ -432,6 +436,9 @@ export function ServiceDetail({ service }: { service: Service }) {
           We're expanding.
         </p>
       </section>
+
+      {/* Safety boundary (launch read section 34/36) */}
+      <SafetyBoundary className="bg-house-cream border-t border-house-brown/8" />
 
       {/* 10. Closing */}
       <section className={s.closing}>

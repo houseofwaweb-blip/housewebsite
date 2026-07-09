@@ -86,11 +86,11 @@ export const SERVICES: Record<ServiceSlug, Service> = {
   gardening: {
     slug: "gardening",
     name: "Gardening",
-    lede: "Planting, maintenance, and seasonal care by gardeners who know the difference between a bay and a laurel.",
+    lede: "For the garden that needs reading before it needs doing. Scan the garden, understand the season, book the care and keep the plan in one record.",
     eyebrow: "Services · Gardening",
     heroImage: "/services/photos/gardening-hero.webp",
-    headline: "A garden you meant to have.",
-    headlineEm: "to have.",
+    headline: "The Gardener remembers your garden.",
+    headlineEm: "remembers your garden.",
     colour: "#3a4a35",
     sections: {
       included: [
@@ -166,11 +166,11 @@ export const SERVICES: Record<ServiceSlug, Service> = {
   "window-cleaning": {
     slug: "window-cleaning",
     name: "Window cleaning",
-    lede: "Pole and reach pure water system, powered by our electric fleet. No ladders, no squeegees, no streaks. Federation of Window Cleaners certified.",
+    lede: "Window cleaning is small until it is forgotten. HoWA keeps the rhythm visible. The visit, schedule and any condition notes can be saved to your Home Record.",
     eyebrow: "Services · Window cleaning",
     heroImage: "/services/photos/window-cleaning-hero.webp",
-    headline: "Light, properly let in.",
-    headlineEm: "properly let in.",
+    headline: "Clear glass. Clear record.",
+    headlineEm: "Clear record.",
     colour: "#3e2649",
     sections: {
       included: [
@@ -229,7 +229,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
   cleaning: {
     slug: "cleaning",
     name: "Cleaning",
-    lede: "Trained, uniformed cleaners using organic products that lift grime without leaving a chemical note in the air. Zero-emission fleet, battery-operated tools, fragrance-free on request.",
+    lede: "Cleaning works best when the home does not need to explain itself every time. HoWA can hold the rooms, surfaces, preferences, products, notes and rhythm, so each visit starts with more context than the last.",
     eyebrow: "Services · Cleaning",
     heroImage: "/services/photos/cleaning-hero.webp",
     headline: "A house that feels cared for.",
@@ -309,7 +309,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
   "gutter-cleaning": {
     slug: "gutter-cleaning",
     name: "Gutter cleaning",
-    lede: "SkyVac gutter cleaning system with camera-guided inspection. Clears blockages, debris, leaves, moss, and bird mess. Safe and ladder-free from the ground.",
+    lede: "Most damage does not announce itself. It begins quietly: a blocked gutter, standing water, damp tracking where nobody looks. Keep the evidence, photographs and next reminder in your Home Record.",
     eyebrow: "Services · Gutter cleaning",
     heroImage: "/services/photos/gutter-cleaning-hero.webp",
     headline: "A small job that saves a large one.",
@@ -370,9 +370,10 @@ export const SERVICES: Record<ServiceSlug, Service> = {
   handyman: {
     slug: "handyman",
     name: "Handyman",
-    lede: "General repairs, furniture assembly, picture hanging, shelf fitting, and the odd jobs a house always needs. Fully insured, on time.",
+    lede: "For the thing that is broken, dripping, loose, clicking, cracked or making you wonder who to call. Send a photo, get a plain-English view of what it may be, how urgent it looks, and what a fair next step should be.",
     eyebrow: "Services \u00b7 Handyman",
-    headline: "The small fixes that keep a house running.",
+    headline: "Understand the fix before you book it.",
+    headlineEm: "before you book it.",
     colour: "#5a2533",
     sections: {
       included: [
@@ -452,9 +453,10 @@ export const SERVICES: Record<ServiceSlug, Service> = {
   removals: {
     slug: "removals",
     name: "Removals",
-    lede: "Carbon-neutral house moves, packing, and storage coordination. Uniformed teams, fully insured, careful with the things that matter.",
+    lede: "A move is not only boxes. It is the transfer of how a home works. Plan the move, save the inventory, record access details and carry the useful memory of the home forward.",
     eyebrow: "Services \u00b7 Removals",
-    headline: "Moving, without the dread.",
+    headline: "Move with the home memory intact.",
+    headlineEm: "memory intact.",
     colour: "#7a2540",
     sections: {
       included: [
@@ -532,9 +534,10 @@ export const SERVICES: Record<ServiceSlug, Service> = {
   energy: {
     slug: "energy",
     name: "Energy & Electrical",
-    lede: "Solar installation, EV charging, electrical repairs, and safety inspections. NICEIC-registered, fully certified, electric fleet.",
+    lede: "Electrical work should not disappear into a folder you cannot find. Connect electrical, energy and utility work to the Home Record: certificates, installations, inspections, warranties and renewals.",
     eyebrow: "Services \u00b7 Energy & Electrical",
-    headline: "Power that works for the home.",
+    headline: "Power, proven and filed.",
+    headlineEm: "proven and filed.",
     sections: {
       included: [
         "Domestic and commercial electrical installation",
@@ -611,7 +614,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
   "pet-care": {
     slug: "pet-care",
     name: "Pet Care",
-    lede: "Trusted, insured dog walking and pet sitting by experienced handlers. GPS-tracked walks, photo updates, and visit notes filed to your HoWA record.",
+    lede: "A home rhythm includes the animals who live there. Keep routines, access notes, feeding instructions, handler details, visit notes and reminders in one place, so care does not rely on memory alone.",
     eyebrow: "Services \u00b7 Pet Care",
     headline: "Because the dog is part of the house.",
     colour: "#2a4f54",
