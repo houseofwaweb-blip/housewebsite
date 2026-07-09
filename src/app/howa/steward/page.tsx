@@ -250,7 +250,7 @@ export default async function StewardPage() {
       {/* 3b. Quote panel */}
       <section className={s.quotePanel}>
         <p className={s.quoteText}>Ownership is passive. <em>Stewardship is intentional.</em></p>
-        <p className={s.quoteAttr}>The House of Willow Alexander</p>
+        <p className={s.quoteAttr}>The House of HoWA</p>
       </section>
 
       {/* 4. The four pillars */}
@@ -506,7 +506,7 @@ export default async function StewardPage() {
         <Link href="/howa/plans" className={s.btnGhost}>Compare all tiers →</Link>
       </section>
       <section className={s.close}>
-        <p className={s.closeLine}>Stewardship, by the House of Willow Alexander.</p>
+        <p className={s.closeLine}>Stewardship, by the House of HoWA.</p>
       </section>
     </div>
   );

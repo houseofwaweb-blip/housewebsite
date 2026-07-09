@@ -7,7 +7,7 @@ import Image from "next/image";
  */
 export function VanBand({
   src = "/services/vans/asher-343.webp",
-  alt = "House of Willow Alexander branded vans, ready for the day's work",
+  alt = "House of HoWA branded vans, ready for the day's work",
   caption = "Real teams. Real vans. One House standard.",
 }: {
   src?: string;

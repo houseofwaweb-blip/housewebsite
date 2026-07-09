@@ -128,7 +128,7 @@ export function WaitlistMini({
           onChange={(e) => setMarketingOptIn(e.target.checked)}
           className="mt-0.5 h-3.5 w-3.5 shrink-0 accent-[var(--house-gold-ink)]"
         />
-        <span>Email me occasional House of Willow Alexander updates and offers.</span>
+        <span>Email me occasional House of HoWA updates and offers.</span>
       </label>
 
       <TurnstileField

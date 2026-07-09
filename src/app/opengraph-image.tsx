@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "House of Willow Alexander";
+export const alt = "House of HoWA";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -43,7 +43,7 @@ export default function OpenGraphImage() {
           }}
         >
           <span style={{ width: 36, height: 2, background: "#c2a660" }} />
-          House of Willow Alexander
+          House of HoWA
         </div>
         <div
           style={{

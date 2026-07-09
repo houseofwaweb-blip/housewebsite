@@ -14,7 +14,7 @@ const FALLBACK_SECTIONS: EditorialSection[] = [
 
 We bought our first homes not knowing much about how they were made, how they wanted to be looked after, or who to call when something went wrong. We had to learn it the expensive way. Every generation does.
 
-House of Willow Alexander exists so the next generation doesn't have to. The idea is simple: one calm institution that remembers your home, introduces the right people, keeps a proper record, and quietly gets things done on a schedule.`,
+House of HoWA exists so the next generation doesn't have to. The idea is simple: one calm institution that remembers your home, introduces the right people, keeps a proper record, and quietly gets things done on a schedule.`,
     quote: {
       text: "A home that carries you. Not a statement you have to keep up with.",
       attribution: "The House brief · 2025",

@@ -4,7 +4,7 @@ import s from "./gift-cards.module.css";
 export const metadata = {
   title: "Gift Cards | Give a well-kept home.",
   description:
-    "House of Willow Alexander gift cards: give the gift of home care, design, or anything from the House.",
+    "House of HoWA gift cards: give the gift of home care, design, or anything from the House.",
 };
 
 const DENOMINATIONS = [

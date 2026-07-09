@@ -32,7 +32,7 @@ import { getArtworkPage } from "@/lib/cms/artwork";
 export const metadata = {
   title: "The Artwork of the House",
   description:
-    "A design-led story of heritage, craft, colour, and British domestic beauty. How the House of Willow Alexander was cultivated, not branded.",
+    "A design-led story of heritage, craft, colour, and British domestic beauty. How the House of HoWA was cultivated, not branded.",
 };
 
 const ART = "/the-house/artwork";
@@ -171,12 +171,12 @@ export default async function ArtworkPage() {
     };
   });
 
-  const heroEyebrow = cmsPage?.heroEyebrow ?? "House of Willow Alexander · An origin story";
+  const heroEyebrow = cmsPage?.heroEyebrow ?? "House of HoWA · An origin story";
   const heroTitle = cmsPage?.heroTitle ?? "The Artwork";
   const heroTitleEm = cmsPage?.heroTitleEm ?? "of the House.";
   const heroLede =
     cmsPage?.heroLede ??
-    "A design-led story of heritage, craft, colour, and British domestic beauty. How the House of Willow Alexander was cultivated, not branded.";
+    "A design-led story of heritage, craft, colour, and British domestic beauty. How the House of HoWA was cultivated, not branded.";
   const heroScrollCue = cmsPage?.heroScrollCue ?? "↓ ten chapters";
 
   return (
@@ -417,7 +417,7 @@ export default async function ArtworkPage() {
       <section className={s.closingText} data-tone="dark">
         <ArtworkReveal className={s.closingTextInner}>
           <p className={s.closingKicker}>
-            {cmsPage?.closingKicker ?? "The House of Willow Alexander"}
+            {cmsPage?.closingKicker ?? "The House of HoWA"}
           </p>
           <p className={s.closingStatement}>
             {cmsPage?.closingStatement ? (

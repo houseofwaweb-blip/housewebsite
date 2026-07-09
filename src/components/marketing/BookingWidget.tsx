@@ -40,7 +40,7 @@ const OBF_BASE_CONFIG = {
   // proven config from the window-cleaner site). "on_load" does NOT wire the
   // click triggers, which is why the CTAs did nothing.
   init_event: "on_click",
-  website_name: "House of Willow Alexander",
+  website_name: "House of HoWA",
   phone: "0800 047 8738",
   // PUBLISHABLE widget key. This identifies the ServiceOS booking profile to
   // their CDN-served client.min.js and is the same key the WordPress plugin

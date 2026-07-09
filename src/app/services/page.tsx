@@ -233,7 +233,7 @@ const FAQ = [
 // a contained grid, not a full-bleed band. Does not touch the brand still-life
 // category cards (those are brand assets).
 const REAL_WORK = [
-  { src: "/services/photos/vans/asher-348.webp", alt: "A liveried House of Willow Alexander electric van" },
+  { src: "/services/photos/vans/asher-348.webp", alt: "A liveried House of HoWA electric van" },
   { src: "/services/photos/gardening/garden-clearance-hero.webp", alt: "Gardening team clearing a garden" },
   { src: "/services/photos/window-cleaning/regular-window-cleaning-hero.webp", alt: "Window cleaning in progress" },
   { src: "/services/photos/cleaning/regular-cleaning-hero.webp", alt: "Home cleaning in progress" },
@@ -295,7 +295,7 @@ export default async function ServicesLanding() {
               {cms(
                 hero,
                 "body",
-                "Gardens that grow character, homes that hold heart. The practical work of looking after a house and garden, held to one House standard. Lawns cut and beds planted, windows and sills cleared, gutters seen to before the weather turns, small repairs put right. Delivered by House of Willow Alexander and the people we approve, booked through HoWA, and written back to your Home Record so the house remembers what was done.",
+                "Gardens that grow character, homes that hold heart. The practical work of looking after a house and garden, held to one House standard. Lawns cut and beds planted, windows and sills cleared, gutters seen to before the weather turns, small repairs put right. Delivered by House of HoWA and the people we approve, booked through HoWA, and written back to your Home Record so the house remembers what was done.",
               )}
             </p>
             <div className={s.heroCtas}>

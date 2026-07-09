@@ -10,7 +10,7 @@ export const metadata = {
 const FALLBACK_SECTIONS: EditorialSection[] = [
   {
     heading: "In the press",
-    body: `House of Willow Alexander has been written about in House & Garden UK, The Financial Times How To Spend It, Country Life, and World of Interiors. Full archive to follow once the Journal is populated.`,
+    body: `House of HoWA has been written about in House & Garden UK, The Financial Times How To Spend It, Country Life, and World of Interiors. Full archive to follow once the Journal is populated.`,
   },
   {
     heading: "Recent work",

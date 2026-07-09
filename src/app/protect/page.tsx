@@ -514,7 +514,7 @@ export default async function ProtectPage() {
           {cms(
             fca,
             "body",
-            "House of Willow Alexander acts as an introducer for insurance products; we do not advise on, arrange, or conduct regulated activity. Introductions are passed to FCA-authorised partners for any subsequent discussion, quotation, or contract.",
+            "House of HoWA acts as an introducer for insurance products; we do not advise on, arrange, or conduct regulated activity. Introductions are passed to FCA-authorised partners for any subsequent discussion, quotation, or contract.",
           )}{" "}
           See our <Link href="/legal/privacy">privacy page</Link> for how your details are handled.
         </p>

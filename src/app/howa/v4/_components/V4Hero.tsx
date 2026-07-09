@@ -63,7 +63,7 @@ function HeroCopy() {
         See sample record <span aria-hidden>→</span>
       </a>
       <p className="mt-6 max-w-[460px] text-[15px] leading-[1.55] text-[color:var(--color-ink)]/55">
-        House of Willow Alexander is HoWA&apos;s founding service partner. House
+        House of HoWA is HoWA&apos;s founding service partner. House
         work is booked through HoWA and written back to your Home Record, and
         HoWA stands on its own for any home, with or without the House.
       </p>

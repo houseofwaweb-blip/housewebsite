@@ -63,7 +63,7 @@ export default function HowaPage() {
         <div className={s.subbarRight}>
           <span className={s.coveredBy}>
             <span className={s.coveredMark}>{HouseMark}</span>
-Created from <em>House of Willow Alexander</em>
+Created from <em>House of HoWA</em>
           </span>
           <Link href="/howa/coming-soon" className={s.subbarCta}>
             Join waitlist

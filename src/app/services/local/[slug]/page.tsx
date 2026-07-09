@@ -92,7 +92,7 @@ export async function generateMetadata({
   const taskLine = entry.task ? `${prettyTask(entry.task)} in ${location}` : `${prettyService(entry.service)} in ${location}`;
   return {
     title: taskLine,
-    description: `${prettyService(entry.service)}: ${taskLine.toLowerCase()}. ${entry.live ? "Available now from House of Willow Alexander." : "Coming when our team launches in your area. Register interest below."}`,
+    description: `${prettyService(entry.service)}: ${taskLine.toLowerCase()}. ${entry.live ? "Available now from House of HoWA." : "Coming when our team launches in your area. Register interest below."}`,
   };
 }
 

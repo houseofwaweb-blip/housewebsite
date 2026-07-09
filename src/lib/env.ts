@@ -96,7 +96,7 @@ const schema = z.object({
     .string()
     .email()
     .default("sales@willowalexander.co.uk"),
-  BREVO_FROM_NAME: z.string().default("House of Willow Alexander"),
+  BREVO_FROM_NAME: z.string().default("House of HoWA"),
 
   // Newsletter (Klaviyo). Newsletter signup writes to Supabase regardless;
   // Klaviyo subscribe is the secondary side-effect. Optional — when keys

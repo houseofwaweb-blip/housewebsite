@@ -12,7 +12,7 @@ export const metadata = {
 // vans) — portrait inline figure, not a full-bleed band.
 const VAN_FIGURE = {
   src: "/services/photos/vans/asher-347.webp",
-  alt: "A House of Willow Alexander electric van, liveried for garden and home care",
+  alt: "A House of HoWA electric van, liveried for garden and home care",
   caption: "Our electric vans, out across London and the South East.",
 } as const;
 
@@ -20,7 +20,7 @@ const FALLBACK_SECTIONS: EditorialSection[] = [
   {
     heading: "Who we are",
     image: VAN_FIGURE,
-    body: `House of Willow Alexander was founded by Samuel Collett and Alexander Oakley, from a belief that home and garden care could be more beautiful, more sustainable and more intelligently held.
+    body: `House of HoWA was founded by Samuel Collett and Alexander Oakley, from a belief that home and garden care could be more beautiful, more sustainable and more intelligently held.
 
 What began with gardens, soil, seasons, craft and electric vans, has grown into a modern British House: part service standard, part design authority, part editorial world, part marketplace, and part technology system through HoWA.
 

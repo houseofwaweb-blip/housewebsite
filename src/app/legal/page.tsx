@@ -3,7 +3,7 @@ import { Eyebrow } from "@/components/primitives/Eyebrow";
 
 export const metadata = {
   title: "Legal",
-  description: "Privacy, terms, and cookie policy for House of Willow Alexander.",
+  description: "Privacy, terms, and cookie policy for House of HoWA.",
 };
 
 const LEGAL_PAGES = [
@@ -27,7 +27,7 @@ export default function LegalIndex() {
             to us and we&apos;ll translate.
           </p>
           <p className="font-sans text-[15px] leading-[1.6] text-house-brown/55 mt-6 max-w-[64ch]">
-            House services are provided by House of Willow Alexander and its
+            House services are provided by House of HoWA and its
             approved partners. Online bookings, your account and the Home Record
             are powered by HoWA, a separate Home Intelligence OS for which House
             of Willow Alexander is the founding service partner. Information you

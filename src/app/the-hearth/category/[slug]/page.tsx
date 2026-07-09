@@ -38,7 +38,7 @@ export async function generateMetadata({
     title: `${label} | The Hearth`,
     description:
       category.description ??
-      `${label} from The Hearth, the House of Willow Alexander journal on homes and gardens.`,
+      `${label} from The Hearth, the House of HoWA journal on homes and gardens.`,
   };
 }
 

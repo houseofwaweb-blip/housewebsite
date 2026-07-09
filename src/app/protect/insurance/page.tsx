@@ -21,7 +21,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 export const metadata = {
   title: "House Approved Insurance: carefully protecting the things that matter.",
   description:
-    "Insurance introduced by the House of Willow Alexander. Cover that understands period homes, collections, and the things a standard policy misses.",
+    "Insurance introduced by the House of HoWA. Cover that understands period homes, collections, and the things a standard policy misses.",
 };
 
 const STAT_COLS = [

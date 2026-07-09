@@ -4,7 +4,7 @@ import { getLegalPage } from "@/lib/cms/legal";
 export const metadata = {
   title: "Privacy",
   description:
-    "How House of Willow Alexander collects, uses, and protects your personal data.",
+    "How House of HoWA collects, uses, and protects your personal data.",
 };
 
 export default async function PrivacyPage() {
@@ -14,7 +14,7 @@ export default async function PrivacyPage() {
     <EditorialPage
       eyebrow="Legal · Privacy"
       title={sanityPage?.title ?? "Privacy policy."}
-      lede="How House of Willow Alexander Ltd collects, uses, and protects your personal data, and the rights you have over it under UK data protection law."
+      lede="How House of HoWA Ltd collects, uses, and protects your personal data, and the rights you have over it under UK data protection law."
       sections={[
         {
           heading: "Overview",
@@ -26,7 +26,7 @@ Data you add to Housekeeper or the Assistant, such as photos and notes, is held 
         },
         {
           heading: "Who we are",
-          body: `House of Willow Alexander Ltd (registered in England & Wales, company number 15062693) is the data controller. Registered office: 12 Hatherley Road, Sidcup, Kent, DA14 4DT.
+          body: `House of HoWA Ltd (registered in England & Wales, company number 15062693) is the data controller. Registered office: 12 Hatherley Road, Sidcup, Kent, DA14 4DT.
 
 Contact: info@willowalexander.co.uk`,
         },

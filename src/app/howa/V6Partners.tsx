@@ -32,7 +32,7 @@ export function V6Partners() {
               When the work needs doing, the House steps in.
             </h2>
             <p className="mt-4 text-[clamp(17px,1.7vw,21px)] leading-[1.5] text-[color:var(--color-ink-soft)] max-w-[560px]">
-              HoWA recommends. The House of Willow Alexander and its specialists fulfil.
+              HoWA recommends. The House of HoWA and its specialists fulfil.
             </p>
 
             <div className="mt-9 grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-[520px]">
@@ -67,7 +67,7 @@ export function V6Partners() {
         <div className="max-w-[1240px] mx-auto px-6 sm:px-10 py-16 lg:py-20">
           <div className="text-center max-w-[660px] mx-auto">
             <SealMark className="mx-auto w-12 h-12 text-[color:var(--color-gold)] opacity-50 mb-5" />
-            <p className="smallcaps text-[12px] tracking-[0.18em] text-[color:var(--color-gold-deep)] mb-4">Partnerships &middot; by the House of Willow Alexander</p>
+            <p className="smallcaps text-[12px] tracking-[0.18em] text-[color:var(--color-gold-deep)] mb-4">Partnerships &middot; by the House of HoWA</p>
             <h2 className="font-italic-display text-[clamp(28px,3vw,44px)] leading-[1.1] text-[color:var(--color-ink)]">
               An exclusive circle of partners.
             </h2>

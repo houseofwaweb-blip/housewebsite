@@ -19,7 +19,7 @@ export default function ThankYouPage() {
       <FlowerWatermark color="gold" side="left" opacity={0.12} className="!top-auto bottom-[-10%] h-[70%]" />
       <section className="relative z-10 mx-auto flex min-h-[70vh] max-w-[760px] flex-col items-center justify-center px-[6vw] py-[clamp(80px,10vw,160px)] text-center">
         <p className="mb-5 font-sans text-[12px] uppercase tracking-[0.32em] text-house-gold-ink">
-          The House of Willow Alexander
+          The House of HoWA
         </p>
         <h1 className="font-display text-[clamp(48px,7vw,88px)] leading-[1.04] tracking-[-0.01em] text-house-brown">
           Thank you.

@@ -242,7 +242,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
     heroHeadline: "Consciously designed interiors.",
     heroHeadlineEm: "designed interiors.",
     heroSub:
-      "At the House of Willow Alexander, we believe that interiors are living expressions of the people who inhabit them. Beauty, balance, and intention \u2014 curated by Alana Miller and THE HOUSE EDIT.",
+      "At the House of HoWA, we believe that interiors are living expressions of the people who inhabit them. Beauty, balance, and intention \u2014 curated by Alana Miller and THE HOUSE EDIT.",
     heroImage: "/design/interiors/project-tunbridge-1.webp",
     heroCaption: "Tunbridge Wells \u00b7 Delve Interiors",
 

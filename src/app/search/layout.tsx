@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Search | House of Willow Alexander",
+  title: "Search | House of HoWA",
   robots: { index: false, follow: true },
 };
 

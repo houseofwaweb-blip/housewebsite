@@ -18,7 +18,7 @@ type Node = {
 const NODES: Node[] = [
   {
     id: "house",
-    name: "House of Willow Alexander",
+    name: "House of HoWA",
     description: "The institution. The editorial centre. The mother brand.",
     href: "/the-house",
     x: 50,

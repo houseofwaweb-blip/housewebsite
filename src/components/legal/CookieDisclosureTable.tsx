@@ -12,9 +12,9 @@ const GROUPS: { category: string; rows: Row[] }[] = [
   {
     category: "Essential — always on",
     rows: [
-      { name: "wa-consent", provider: "House of Willow Alexander", purpose: "Remembers your cookie consent choice", duration: "12 months" },
-      { name: "wa_click_ids", provider: "House of Willow Alexander", purpose: "Remembers the ad you arrived from, for attribution", duration: "90 days" },
-      { name: "wa_cart_id", provider: "House of Willow Alexander", purpose: "Keeps your shopping basket between visits", duration: "Local storage, until cleared" },
+      { name: "wa-consent", provider: "House of HoWA", purpose: "Remembers your cookie consent choice", duration: "12 months" },
+      { name: "wa_click_ids", provider: "House of HoWA", purpose: "Remembers the ad you arrived from, for attribution", duration: "90 days" },
+      { name: "wa_cart_id", provider: "House of HoWA", purpose: "Keeps your shopping basket between visits", duration: "Local storage, until cleared" },
       { name: "Turnstile / cf_*", provider: "Cloudflare", purpose: "Anti-bot verification on forms", duration: "Session" },
       { name: "ServiceOS booking", provider: "ServiceOS", purpose: "Runs the booking widget when you book a service", duration: "Session" },
     ],

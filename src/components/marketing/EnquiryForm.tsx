@@ -196,7 +196,7 @@ export function EnquiryForm({
                   onChange={(e) => setMarketingOptIn(e.target.checked)}
                   className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--house-gold-ink)]"
                 />
-                <span>I&rsquo;d like to hear from House of Willow Alexander occasionally about home, garden and seasonal tips and offers.</span>
+                <span>I&rsquo;d like to hear from House of HoWA occasionally about home, garden and seasonal tips and offers.</span>
               </label>
 
               <div className="mt-1">
