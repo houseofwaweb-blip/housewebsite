@@ -50,48 +50,46 @@ export default async function HomePage() {
 
   return (
     <div className="bg-house-cream text-house-brown">
-      {/* 1. Hero */}
-      <section className="relative overflow-hidden px-[5vw] pt-24 pb-20">
-        <FlowerWatermark color="gold" side="right" opacity={0.14} />
-        <div className="relative z-10 max-w-[1080px] mx-auto">
-          <p className="font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink mb-6">
-            House of HoWA
-          </p>
-          <h1 className="font-display text-[clamp(44px,7vw,92px)] leading-[1.0] tracking-[-0.015em] text-house-black max-w-[15ch]">
-            The home, <em className="italic">finally known.</em>
-          </h1>
-          <p className="font-display italic text-[clamp(20px,2.4vw,30px)] leading-[1.35] text-house-brown/85 mt-7 max-w-[30ch]">
-            Your house is trying to tell you something. House of HoWA is where it
-            is heard.
-          </p>
-          <p className="font-sans text-[18px] leading-[1.65] text-house-brown/80 mt-6 max-w-[60ch]">
-            Start with your address. HoWA builds the first portrait of your home,
-            gives it a living Score, and turns what it finds into clear next
-            actions: save this, check that, book the right help, protect what
-            matters.
-          </p>
-          <div className="mt-9 flex flex-wrap gap-4">
-            <Link href="/howa/assistant" className={ctaPrimary}>
-              Start with my address
-            </Link>
-            <Link href="/howa-score" className={ctaSecondary}>
-              Meet the HoWA Score
-            </Link>
+      {/* 1. Hero — full width, text left, image right */}
+      <section className="relative grid lg:grid-cols-2 border-b border-house-brown/8">
+        <div className="relative flex flex-col justify-center px-[5vw] py-20 lg:py-24 lg:pr-14">
+          <FlowerWatermark color="gold" side="left" opacity={0.1} />
+          <div className="relative z-10">
+            <p className="font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink mb-6">
+              House of HoWA
+            </p>
+            <h1 className="font-display text-[clamp(42px,5.4vw,80px)] leading-[1.0] tracking-[-0.015em] text-house-black max-w-[13ch]">
+              The home, <em className="italic">finally known.</em>
+            </h1>
+            <p className="font-display italic text-[clamp(19px,2.1vw,28px)] leading-[1.35] text-house-brown/85 mt-6 max-w-[30ch]">
+              Your house is trying to tell you something. House of HoWA is where
+              it is heard.
+            </p>
+            <p className="font-sans text-[17px] leading-[1.65] text-house-brown/80 mt-5 max-w-[48ch]">
+              Start with your address. HoWA builds the first portrait of your
+              home, gives it a living Score, and turns what it finds into clear
+              next actions: save this, check that, book the right help, protect
+              what matters.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link href="/howa/assistant" className={ctaPrimary}>
+                Start with my address
+              </Link>
+              <Link href="/howa-score" className={ctaSecondary}>
+                Meet the HoWA Score
+              </Link>
+            </div>
+            <p className="font-sans text-[13px] tracking-[0.02em] text-house-stone mt-6">
+              The House sets the standard. HoWA remembers the home.
+            </p>
           </div>
-          <p className="font-sans text-[13px] tracking-[0.02em] text-house-stone mt-6">
-            The House sets the standard. HoWA remembers the home.
-          </p>
         </div>
-      </section>
-
-      {/* Imagery band — the home, finally known */}
-      <section className="px-[5vw] pb-6 max-w-[1200px] mx-auto">
-        <div className="relative aspect-[16/9] overflow-hidden bg-house-cream-dark">
+        <div className="relative min-h-[54vh] lg:min-h-[84vh] bg-house-cream-dark">
           <Image
             src="/howa/features.webp"
             alt="House of HoWA: the home, finally known"
             fill
-            sizes="(min-width:1024px) 1140px, 100vw"
+            sizes="(min-width:1024px) 50vw, 100vw"
             className="object-cover"
             priority
           />
