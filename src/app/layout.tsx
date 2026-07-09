@@ -32,15 +32,15 @@ const ctaHref = "#open-booking-form";
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL),
   title: {
-    default: "House of Willow Alexander",
-    template: "%s | House of Willow Alexander",
+    default: "House of HoWA | The home, finally known",
+    template: "%s | House of HoWA",
   },
   description:
-    "A modern British institution for effortless intelligent living. Design, care, protection, and curated commerce, connected by HoWA.",
-  applicationName: "House of Willow Alexander",
-  authors: [{ name: "House of Willow Alexander" }],
-  creator: "House of Willow Alexander",
-  publisher: "House of Willow Alexander",
+    "House of HoWA is the institution behind HoWA, the Home Operating System that gives every home a living record, a HoWA Score and practical next actions.",
+  applicationName: "House of HoWA",
+  authors: [{ name: "House of HoWA" }],
+  creator: "House of HoWA",
+  publisher: "House of HoWA",
   formatDetection: {
     email: false,
     telephone: false,
@@ -50,10 +50,10 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_GB",
     url: env.NEXT_PUBLIC_SITE_URL,
-    siteName: "House of Willow Alexander",
-    title: "House of Willow Alexander",
+    siteName: "House of HoWA",
+    title: "House of HoWA | The home, finally known",
     description:
-      "A modern British institution for effortless intelligent living.",
+      "The institution behind HoWA, the Home Operating System for a home that remembers, scores and cares for itself.",
   },
   twitter: {
     card: "summary_large_image",

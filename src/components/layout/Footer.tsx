@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { CookiePreferencesLink } from "@/components/consent/CookiePreferencesLink";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 
@@ -20,14 +19,31 @@ export interface FooterColumn {
 // Footer architecture (v5 HoWA-separation review, 2026-06-18): the footer
 // quietly teaches the hierarchy — House -> Services/Protection/Marketplace ->
 // Bookings powered by HoWA -> Reading.
+// Footer architecture (House of HoWA rebrand, launch read section 35): leads
+// with HoWA, then the House (standard), Services (proof), Reading, Account.
 const COLS: FooterColumn[] = [
+  {
+    heading: "HoWA",
+    links: [
+      { label: "Start with your address", href: "/howa/assistant" },
+      { label: "HoWA Score", href: "/howa-score" },
+      { label: "Home Record", href: "/howa" },
+      { label: "The Household", href: "/household" },
+      { label: "Assistant", href: "/howa/assistant" },
+      { label: "Housekeeper", href: "/howa/housekeeper" },
+      { label: "Steward", href: "/howa/steward" },
+      { label: "Plans", href: "/howa/plans" },
+    ],
+  },
   {
     heading: "The House",
     links: [
+      { label: "About House of HoWA", href: "/the-house/about" },
       { label: "Philosophy", href: "/the-house/philosophy" },
+      { label: "Artwork", href: "/the-house/artwork" },
       { label: "Standards", href: "/the-house/standards" },
       { label: "Sustainability", href: "/the-house/sustainability" },
-      { label: "About", href: "/the-house/about" },
+      { label: "Partners", href: "/partners" },
       { label: "Contact", href: "/contact" },
     ],
   },
@@ -36,38 +52,11 @@ const COLS: FooterColumn[] = [
     links: [
       { label: "Gardening", href: "/services/gardening" },
       { label: "Cleaning", href: "/services/cleaning" },
-      { label: "Window Cleaning", href: "/services/window-cleaning" },
-      { label: "Gutter Cleaning", href: "/services/gutter-cleaning" },
+      { label: "Window cleaning", href: "/services/window-cleaning" },
+      { label: "Gutter cleaning", href: "/services/gutter-cleaning" },
+      { label: "Handyman", href: "/services/handyman" },
       { label: "Design", href: "/design" },
-      { label: "Housekeeping", href: "/services/housekeeping" },
-    ],
-  },
-  {
-    heading: "Protection",
-    links: [
-      { label: "Protect Review", href: "/protect/home-protection" },
-      { label: "Evidence Pack", href: "/protect" },
-      { label: "Insurance Readiness", href: "/protect/insurance" },
-      { label: "Register Interest", href: "/protect/insurance" },
-    ],
-  },
-  {
-    heading: "Marketplace",
-    links: [
-      { label: "Shop All", href: "/shop" },
-      { label: "Collections", href: "/shop/collections" },
-      { label: "House Approved", href: "/shop/collections/house-approved" },
-      { label: "Gift Cards", href: "/gift-cards" },
-    ],
-  },
-  {
-    heading: "Bookings & Account",
-    links: [
-      { label: "Book online through HoWA", href: "#open-booking-form" },
-      { label: "Sign in to HoWA", href: "https://accounts.willowalexander.co.uk/" },
-      { label: "Home Record", href: "/howa" },
-      { label: "Housekeeper", href: "/howa/housekeeper" },
-      { label: "Steward", href: "/howa/steward" },
+      { label: "Protect", href: "/protect" },
     ],
   },
   {
@@ -79,6 +68,14 @@ const COLS: FooterColumn[] = [
       { label: "News", href: "/news" },
     ],
   },
+  {
+    heading: "Account",
+    links: [
+      { label: "Sign in", href: "https://accounts.willowalexander.co.uk/" },
+      { label: "Book through HoWA", href: "#open-booking-form" },
+      { label: "Marketplace", href: "/shop" },
+    ],
+  },
 ];
 
 export interface FooterProps {
@@ -88,16 +85,16 @@ export interface FooterProps {
 
 export function Footer({ columns, tagline }: FooterProps) {
   const cols = columns && columns.length > 0 ? columns : COLS;
-  const tag = tagline || "Ownership is passive. Stewardship is intentional.";
+  const tag = tagline || "The House sets the standard. HoWA remembers the home.";
 
   return (
     <footer className="relative overflow-hidden bg-house-brown text-house-cream px-[5vw] py-16 mt-auto">
       <FlowerWatermark color="white" side="left" opacity={0.13} />
       <div className="relative z-10 max-w-[1280px] mx-auto">
         <p className="font-display italic text-[clamp(24px,3vw,38px)] leading-[1.15] text-house-cream/90 pb-12 max-w-[18ch]">
-          That Feeling You Call Home.
+          The home, finally known.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10 pb-12 border-b border-[rgba(245,240,232,0.12)]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 pb-12 border-b border-[rgba(245,240,232,0.12)]">
           {cols.map((col) => (
             <div key={col.heading}>
               <h4 className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-light mb-4">
@@ -120,20 +117,17 @@ export function Footer({ columns, tagline }: FooterProps) {
         </div>
 
         <p className="pt-8 font-sans text-[15px] leading-[1.6] text-house-cream/55 max-w-[760px]">
-          House services are delivered by House of Willow Alexander and HoWA
-          Approved trades up and down the country. Bookings and Home Records are
-          powered by HoWA.
+          House of HoWA is the institution behind HoWA: the Home Operating System
+          that gives every home a record, a Score and a next action. The House
+          sets the standard. HoWA remembers the home. Founding partners and House
+          Approved providers deliver the work.
         </p>
 
         <div className="pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-          <Link href="/" aria-label="House of Willow Alexander, home">
-            <Image
-              src="/brand/wordmark-white.svg"
-              alt="House of Willow Alexander"
-              width={296}
-              height={125}
-              className="h-[48px] w-auto opacity-90"
-            />
+          <Link href="/" aria-label="House of HoWA, home" className="no-underline">
+            <span className="font-display text-[28px] leading-none text-house-cream opacity-95">
+              House of HoWA
+            </span>
           </Link>
           <nav
             aria-label="Legal"

@@ -69,6 +69,11 @@ export interface MegaPanel {
 
 const HIDE_GRACE_MS = 200;
 
+/** A panel shows a dropdown only if it has grouped links or a two-level menu.
+ *  Otherwise its trigger renders as a plain top-level link. */
+const panelHasContent = (p: MegaPanel): boolean =>
+  Boolean(p.twoLevel) || (p.groups?.length ?? 0) > 0;
+
 export function MegaMenu({
   panels,
   className,
@@ -125,8 +130,8 @@ export function MegaMenu({
             <li
               key={panel.id}
               className="relative"
-              onMouseEnter={() => show(panel.id)}
-              onFocus={() => show(panel.id)}
+              onMouseEnter={panelHasContent(panel) ? () => show(panel.id) : undefined}
+              onFocus={panelHasContent(panel) ? () => show(panel.id) : undefined}
             >
               <MegaTrigger
                 panelId={panel.id}
@@ -143,6 +148,9 @@ export function MegaMenu({
       {/* Panels — absolutely positioned below the nav row, full-bleed */}
       {panels.map((panel) => {
         const isOpen = openId === panel.id;
+        // Simple top-level links (no groups, no two-level) render as a plain
+        // trigger link with no dropdown panel.
+        if (!panelHasContent(panel)) return null;
         return (
           <div
             key={panel.id}

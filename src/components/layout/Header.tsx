@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/cn";
 import { MegaMenu, type MegaPanel } from "@/components/nav/MegaMenu";
@@ -64,17 +63,17 @@ export function Header({
       {/* Wordmark */}
       <Link
         href="/"
-        aria-label="House of Willow Alexander, home"
-        className="flex items-center shrink-0"
+        aria-label="House of HoWA, home"
+        className="flex items-center shrink-0 no-underline"
       >
-        <Image
-          src={dark ? "/brand/wordmark-white.svg" : "/brand/wordmark.svg"}
-          alt="House of Willow Alexander"
-          width={296}
-          height={125}
-          priority
-          className="h-[52px] md:h-[64px] w-auto"
-        />
+        <span
+          className={cn(
+            "font-display leading-none tracking-[0.01em] text-[24px] md:text-[30px]",
+            dark ? "text-house-cream" : "text-house-brown",
+          )}
+        >
+          House of HoWA
+        </span>
       </Link>
 
       {/* Desktop MegaMenu */}
@@ -146,14 +145,10 @@ export function Header({
           className="lg:hidden fixed inset-0 z-50 bg-house-cream overflow-y-auto"
         >
           <div className="sticky top-0 flex items-center justify-between px-[5vw] py-3 bg-house-cream border-b border-house-brown/10">
-            <Link href="/" onClick={() => setMobileOpen(false)}>
-              <Image
-                src="/brand/wordmark.svg"
-                alt="House of Willow Alexander"
-                width={296}
-                height={125}
-                className="h-[44px] w-auto"
-              />
+            <Link href="/" onClick={() => setMobileOpen(false)} className="no-underline">
+              <span className="font-display text-[22px] leading-none text-house-brown">
+                House of HoWA
+              </span>
             </Link>
             <button
               type="button"

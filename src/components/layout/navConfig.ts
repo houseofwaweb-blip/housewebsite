@@ -66,39 +66,12 @@ const SERVICE_FOOTER = [
  * product (the online booking + Home Record layer), not a House vertical.
  */
 export const PRIMARY_NAV: MegaPanel[] = [
-  {
-    id: "the-house",
-    trigger: "The House",
-    // The standalone overview hub was retired; the dropdown's "See all" link and
-    // the bare /the-house route both lead to About (the section's overview).
-    triggerHref: "/the-house/about",
-    groups: [
-      {
-        heading: "What we stand for",
-        links: [
-          { label: "Philosophy", href: "/the-house/philosophy", description: "Our founding idea" },
-          { label: "The Artwork of the House", href: "/the-house/artwork", description: "Heritage, craft, colour" },
-          { label: "Standards", href: "/the-house/standards", description: "How we work" },
-          { label: "Sustainability", href: "/the-house/sustainability", description: "Our commitments" },
-        ],
-      },
-      {
-        heading: "From the House",
-        links: [
-          { label: "News", href: "/news", description: "Press, awards & announcements" },
-          { label: "Musings", href: "/musings", description: "Notes & practical advice" },
-          { label: "About", href: "/the-house/about", description: "The team behind the House" },
-        ],
-      },
-    ],
-    preview: {
-      image: "/home/hero-georgian.webp",
-      alt: "A Georgian terrace in Notting Hill",
-      tag: "The Philosophy",
-      heading: "Ownership is passive. Stewardship is intentional.",
-      href: "/the-house/philosophy",
-    },
-  },
+  // HoWA Score and The Household are the two lead product moments (launch read
+  // section 3). Simple top-level links, no dropdown. House content (About,
+  // Philosophy, Artwork, Standards, Sustainability, Contact) now lives in the
+  // footer / secondary surface.
+  { id: "howa-score", trigger: "HoWA Score", triggerHref: "/howa-score", groups: [] },
+  { id: "household", trigger: "The Household", triggerHref: "/household", groups: [] },
 
   {
     id: "services",
@@ -223,36 +196,5 @@ export const PRIMARY_NAV: MegaPanel[] = [
     ],
   },
 
-  {
-    id: "howa",
-    trigger: "Meet HoWA",
-    triggerHref: "/howa",
-    groups: [
-      {
-        heading: "Bookings & Home Record",
-        links: [
-          { label: "Overview", href: "/howa", description: "The Home Intelligence OS" },
-          { label: "Book online through HoWA", href: "#open-booking-form", description: "Online House bookings" },
-          { label: "HoWA (Assistant)", href: "/howa/assistant", description: "Free: start with an address" },
-          { label: "How it works", href: "/howa/how-it-works", description: "Four quiet jobs" },
-        ],
-      },
-      {
-        heading: "Tiers",
-        links: [
-          { label: "Housekeeper by HoWA", href: "/howa/housekeeper", description: "The membership: £16.99/mo" },
-          { label: "Steward", href: "/howa/steward", description: "The top tier: £29.99/mo" },
-          { label: "Plans & Pricing", href: "/howa/plans", description: "Compare tiers" },
-          { label: "FAQ", href: "/howa/faq" },
-        ],
-      },
-    ],
-    preview: {
-      image: "/home/hero-georgian.webp",
-      alt: "HoWA product interface",
-      tag: "The platform",
-      heading: "Online booking and the Home Record, powered by HoWA.",
-      href: "/howa",
-    },
-  },
+  { id: "partners", trigger: "Partners", triggerHref: "/partners", groups: [] },
 ];

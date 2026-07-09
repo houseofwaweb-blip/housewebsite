@@ -60,19 +60,6 @@ export const MAIN_FEED: HearthArticle[] = sections.mainFeed;
 export const POPULAR: PopularItem[] = sections.popular;
 export const MORE_FEED: HearthArticle[] = sections.moreFeed;
 
-// Collection band, curated editorial, independent of chronological feed.
-export const COLLECTION = {
-  season: "Spring MMXXVI",
-  title: "A spring collection",
-  titleEm: "spring",
-  body: "Twelve dispatches, one seasonal hand. Essays, photo notes, and a few recipes from the Hearth Collection, published weekly through April and May.",
-  ctaLabel: "Explore the Collection",
-  ctaHref: "/the-hearth/collection/spring-2026",
-  big: ALL_ARTICLES[0]?.image ?? "/hearth/art-lead.webp",
-  stackA: ALL_ARTICLES[1]?.image ?? "/hearth/art-sanctuary.webp",
-  stackB: ALL_ARTICLES[2]?.image ?? "/hearth/art-patina.webp",
-};
-
 // Derived from the WP taxonomies we actually saw in the import.
 export const CATEGORIES = [
   { slug: "all", label: "All" },
