@@ -228,6 +228,36 @@ export default async function HomePage() {
             </span>
           ))}
         </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
+          {[
+            { n: "Gardening", h: "/services/gardening", i: "/services/photos/gardening-hero.webp" },
+            { n: "Window cleaning", h: "/services/window-cleaning", i: "/services/photos/window-cleaning-hero.webp" },
+            { n: "Cleaning", h: "/services/cleaning", i: "/services/photos/cleaning-hero.webp" },
+            { n: "Gutter cleaning", h: "/services/gutter-cleaning", i: "/services/photos/gutter-cleaning-hero.webp" },
+          ].map((sv) => (
+            <Link
+              key={sv.n}
+              href={sv.h}
+              className="group relative block aspect-[4/5] overflow-hidden bg-house-cream-dark no-underline"
+            >
+              <Image
+                src={sv.i}
+                alt={sv.n}
+                fill
+                sizes="(min-width:768px) 22vw, 50vw"
+                className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.04]"
+              />
+              <span
+                aria-hidden
+                className="absolute inset-0"
+                style={{ background: "linear-gradient(to top, rgba(26,19,13,0.72), rgba(26,19,13,0.05) 55%)" }}
+              />
+              <span className="absolute inset-x-0 bottom-0 p-3 font-display text-[18px] leading-tight text-white">
+                {sv.n}
+              </span>
+            </Link>
+          ))}
+        </div>
         <div className="flex flex-wrap gap-4">
           <a href="#open-booking-form" className={ctaPrimary}>
             Book through HoWA
