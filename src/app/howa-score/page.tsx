@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 /**
  * /howa-score — HoWA Score (launch read section 5).
@@ -78,6 +79,20 @@ export default function HowaScorePage() {
           <Link href="/howa/how-it-works" className={ctaSecondary}>
             Improve my Score
           </Link>
+        </div>
+      </section>
+
+      {/* Score dashboard visual */}
+      <section className="px-[5vw] pb-4 max-w-[1080px] mx-auto">
+        <div className="relative aspect-[16/9] overflow-hidden bg-house-cream-dark border border-house-brown/10">
+          <Image
+            src="/howa/score-dashboard.webp"
+            alt="A HoWA Score dashboard: record completeness, maintenance rhythm, evidence, risk, efficiency and stewardship"
+            fill
+            sizes="(min-width:1024px) 1020px, 100vw"
+            className="object-cover"
+            priority
+          />
         </div>
       </section>
 

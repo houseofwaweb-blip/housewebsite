@@ -84,6 +84,20 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Imagery band — the home, finally known */}
+      <section className="px-[5vw] pb-6 max-w-[1200px] mx-auto">
+        <div className="relative aspect-[16/9] overflow-hidden bg-house-cream-dark">
+          <Image
+            src="/howa/features.webp"
+            alt="House of HoWA: the home, finally known"
+            fill
+            sizes="(min-width:1024px) 1140px, 100vw"
+            className="object-cover"
+            priority
+          />
+        </div>
+      </section>
+
       {/* 2. The Score is the first thing you understand */}
       <section className="px-[5vw] py-16 bg-house-cream-dark border-t border-b border-house-brown/8">
         <div className="max-w-[1000px] mx-auto">
@@ -115,6 +129,19 @@ export default async function HomePage() {
               See how the Score works →
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Score dashboard visual */}
+      <section className="px-[5vw] py-12 max-w-[1080px] mx-auto">
+        <div className="relative aspect-[16/9] overflow-hidden bg-house-cream-dark border border-house-brown/10">
+          <Image
+            src="/howa/score-dashboard.webp"
+            alt="A HoWA Score dashboard: one living number for a home well kept"
+            fill
+            sizes="(min-width:1024px) 1020px, 100vw"
+            className="object-cover"
+          />
         </div>
       </section>
 
@@ -158,6 +185,19 @@ export default async function HomePage() {
           >
             Meet the Household →
           </Link>
+        </div>
+      </section>
+
+      {/* Meet the Household visual */}
+      <section className="px-[5vw] py-12 max-w-[1200px] mx-auto">
+        <div className="relative aspect-[16/9] overflow-hidden bg-house-cream-dark">
+          <Image
+            src="/howa/homepage-household.webp"
+            alt="Meet the Household: seven ways into one home record"
+            fill
+            sizes="(min-width:1024px) 1140px, 100vw"
+            className="object-cover"
+          />
         </div>
       </section>
 
