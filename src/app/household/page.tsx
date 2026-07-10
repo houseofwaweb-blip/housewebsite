@@ -3,9 +3,10 @@ import Image from "next/image";
 
 /**
  * /household — The Household (launch read section 6).
- * Seven familiar roles are the human way into HoWA. Customers ask HoWA; the
- * Household works behind it. Copy stays true to the launch-read doc (seven roles
- * incl. the Archivist); layout/tone informed by the HoWA reference prototype.
+ * Layout + imagery aligned to the askhowa HoWA reference prototype (cutaway
+ * dollhouse illustrations, per-role colour accents, rounded cards, image-
+ * overlaid paid tiers) while keeping the launch-read copy and the House palette.
+ * Seven roles incl. the Archivist, per the docx spec.
  */
 
 export const metadata = {
@@ -18,55 +19,64 @@ const FREE_DOORS = [
   {
     role: "The Gardener",
     img: "/howa/household/gardener.webp",
+    color: "#5f6f3c",
     forLine: "For the garden that needs reading before it needs doing.",
-    line: "Scan the garden and learn what is thriving, what is struggling and what this season asks for next.",
-    cta: "Scan the garden free",
+    line: "Scan your garden. Learn what is thriving, what is struggling and what the season asks.",
+    cta: "Scan free",
   },
   {
     role: "The Handyman",
     img: "/howa/household/handyman.webp",
-    forLine: "For the thing that is broken, dripping, loose, clicking or making you wonder who to call.",
-    line: "Photograph a fault and get a plain-English view of what it likely is, how urgent it may be and what a fair fix should look like.",
-    cta: "Photograph a fault",
+    color: "#b3623a",
+    forLine: "For the thing that is broken, dripping, clicking or making people anxious.",
+    line: "Photo a fault. Learn what it likely is, how urgent it feels and what a fair fix might cost.",
+    cta: "Photo the fault",
   },
   {
     role: "The Designer",
     img: "/howa/household/designer.webp",
-    forLine: "For the room or garden you can imagine, but cannot yet see clearly.",
-    line: "Send one photo and receive a considered direction: mood, materials, planting, palette or layout.",
-    cta: "Send one photo",
+    color: "#7c5a78",
+    forLine: "For the room or garden someone can imagine, but cannot yet see clearly.",
+    line: "Send one photo. A room or garden becomes a considered direction, palette, planting, layout or mood.",
+    cta: "See yours",
   },
   {
     role: "The Surveyor",
     img: "/howa/household/surveyor.webp",
-    forLine: "For the crack, damp patch or quote that sits in the back of your mind.",
-    line: "Scan a crack, damp patch or quote and get a calmer explanation of what should be checked next.",
-    cta: "Decode it free",
+    color: "#4a5568",
+    forLine: "For the crack, damp patch or quote that sits in the back of someone's mind.",
+    line: "Decode a crack, damp patch, survey note or quote that has been sitting in your head.",
+    cta: "Decode free",
   },
   {
     role: "The Archivist",
     img: "/howa/household/archivist.webp",
+    color: "#8a7a3c",
     forLine: "For the paperwork that keeps disappearing.",
-    line: "Upload a document and turn it into dates, costs, reminders, warranty notes and evidence.",
+    line: "Send one document. Watch it become dates, costs and reminders.",
     cta: "Send one document",
   },
 ];
 
 const PAID_DEPTHS = [
   {
-    role: "Housekeeper",
+    role: "The Housekeeper",
     price: "£16.99/mo",
     img: "/howa/household/housekeeper.webp",
-    line: "Keeps the home in order: documents file themselves, tasks become rhythm, reminders arrive, and service history stays with the address.",
+    btn: "#c17a5f",
+    forLine: "For the household that wants everything kept in rhythm.",
+    line: "Housekeeper keeps documents, tasks, reminders, service history and the monthly home rhythm together.",
     cta: "Employ the Housekeeper",
     href: "/howa/housekeeper",
   },
   {
-    role: "Steward",
+    role: "The Steward",
     price: "£29.99/mo",
     img: "/howa/household/steward.webp",
-    line: "Protects before failure: Score oversight, risk watch, evidence packs, an annual report and future planning for the long term.",
-    cta: "Put the Steward on watch",
+    btn: "#c9a84a",
+    forLine: "For the homeowner who wants the asset watched, protected and properly evidenced over time.",
+    line: "Steward is the long-view intelligence layer: Score, risk watch, evidence, annual report and future planning.",
+    cta: "Protect the home",
     href: "/howa/steward",
   },
 ];
@@ -78,7 +88,7 @@ const ctaSecondary =
 
 export default function HouseholdPage() {
   return (
-    <div className="bg-house-cream text-house-brown">
+    <div className="howa-surface bg-house-cream text-house-brown">
       {/* Hero — full width, text left, image right */}
       <section className="relative grid lg:grid-cols-2 border-b border-house-brown/8">
         <div className="flex flex-col justify-center px-[5vw] py-20 lg:py-24 lg:pr-14">
@@ -89,9 +99,9 @@ export default function HouseholdPage() {
             Your home has <em className="italic">staff now.</em>
           </h1>
           <p className="font-sans text-[18px] leading-[1.65] text-house-brown/80 mt-7 max-w-[48ch]">
-            Not people in the hallway. A calm intelligence behind the home. You
-            ask one voice, HoWA, and the right household duty works behind it.
-            The result returns to the same Home Record.
+            One voice. Seven specialist duties. One memory. You do not pick bots.
+            You ask HoWA, and the right duty works behind it, using familiar roles
+            to make home intelligence feel simple, useful and human.
           </p>
           <div className="mt-9 flex flex-wrap gap-4">
             <Link href="/howa/assistant" className={ctaPrimary}>
@@ -114,101 +124,110 @@ export default function HouseholdPage() {
         </div>
       </section>
 
-      {/* One voice, seven duties, one memory */}
-      <section className="px-[5vw] py-16 max-w-[820px] mx-auto text-center">
-        <h2 className="font-display text-[clamp(28px,3.4vw,44px)] leading-[1.1] text-house-black mb-6">
-          One voice. Seven duties. <em className="italic">One memory.</em>
-        </h2>
-        <p className="font-sans text-[18px] leading-[1.7] text-house-brown/80">
-          The Household is not a menu of bots. You do not pick characters. You
-          ask HoWA, and the right duty works behind it, using familiar roles to
-          make complex home intelligence feel simple, useful and human. No matter
-          which specialist helps, the result returns to the same Home Record.
-        </p>
-      </section>
-
       {/* Free doors */}
-      <section className="px-[5vw] py-16 bg-house-cream-dark border-t border-b border-house-brown/8">
-        <div className="max-w-[1200px] mx-auto">
-          <p className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-ink mb-2">
-            The free doors
-          </p>
-          <h2 className="font-display text-[clamp(26px,3vw,40px)] leading-[1.12] text-house-black mb-10 max-w-[22ch]">
-            Start where the need is already alive.
-          </h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {FREE_DOORS.map((d) => (
-              <Link
-                key={d.role}
-                href="/howa/assistant"
-                className="group bg-house-cream border border-house-brown/12 overflow-hidden flex flex-col no-underline transition-colors hover:border-house-gold-ink/40"
-              >
-                <div className="relative aspect-[4/5] overflow-hidden bg-house-cream-dark">
-                  <Image
-                    src={d.img}
-                    alt={d.role}
-                    fill
-                    sizes="(min-width:1024px) 33vw, 50vw"
-                    className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.03]"
+      <section className="px-[5vw] py-16 max-w-[1360px] mx-auto">
+        <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-3">
+          The free doors
+        </p>
+        <p className="font-sans text-[19px] leading-[1.6] text-house-brown/80 max-w-[70ch] mb-10">
+          The five doors below are free because they solve real household moments.
+          The Housekeeper and Steward are the two you employ when the home needs
+          continuity.
+        </p>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+          {FREE_DOORS.map((d) => (
+            <Link
+              key={d.role}
+              href="/howa/assistant"
+              className="group flex flex-col overflow-hidden rounded-2xl bg-white border border-house-brown/8 shadow-[0_2px_22px_rgba(48,35,28,0.06)] no-underline transition-shadow hover:shadow-[0_6px_30px_rgba(48,35,28,0.1)]"
+            >
+              <div className="relative aspect-[4/5] bg-house-cream-dark">
+                <Image
+                  src={d.img}
+                  alt={d.role}
+                  fill
+                  sizes="(min-width:1024px) 20vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-5 flex flex-col flex-1">
+                <div className="flex items-center gap-2 mb-2">
+                  <span
+                    className="is-round w-2.5 h-2.5 shrink-0"
+                    style={{ background: d.color }}
+                    aria-hidden
                   />
-                </div>
-                <div className="p-6 flex flex-col flex-1">
-                  <h3 className="font-display text-[24px] leading-[1.1] text-house-black mb-2">
+                  <h3 className="font-display text-[21px] leading-none text-house-black">
                     {d.role}
                   </h3>
-                  <p className="font-display italic text-[15px] leading-[1.4] text-house-brown/70 mb-3">
-                    {d.forLine}
-                  </p>
-                  <p className="font-sans text-[15px] leading-[1.55] text-house-brown/75 mb-5 flex-1">
-                    {d.line}
-                  </p>
-                  <span className="font-sans text-[12px] tracking-[0.16em] uppercase text-house-gold-ink group-hover:text-house-brown transition-colors">
-                    {d.cta} →
-                  </span>
                 </div>
-              </Link>
-            ))}
-          </div>
+                <p
+                  className="font-display italic text-[14px] leading-[1.4] mb-3"
+                  style={{ color: d.color }}
+                >
+                  {d.forLine}
+                </p>
+                <p className="font-sans text-[14px] leading-[1.5] text-house-brown/72 mb-4 flex-1">
+                  {d.line}
+                </p>
+                <span
+                  className="font-sans text-[13px] font-medium"
+                  style={{ color: d.color }}
+                >
+                  {d.cta} →
+                </span>
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
 
-      {/* The senior staff (paid depths) */}
-      <section className="px-[5vw] py-16 max-w-[1100px] mx-auto">
-        <p className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-ink mb-2">
-          The senior staff
+      {/* The two you employ */}
+      <section className="px-[5vw] pb-20 max-w-[1360px] mx-auto">
+        <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-6">
+          The two you employ
         </p>
-        <h2 className="font-display text-[clamp(26px,3vw,40px)] leading-[1.12] text-house-black mb-10 max-w-[22ch]">
-          When the whole house needs rhythm and oversight.
-        </h2>
         <div className="grid gap-6 md:grid-cols-2">
           {PAID_DEPTHS.map((d) => (
             <Link
               key={d.role}
               href={d.href}
-              className="group block bg-house-cream-dark border border-house-brown/12 overflow-hidden no-underline transition-colors hover:border-house-gold-ink/40"
+              className="group relative flex min-h-[420px] flex-col justify-end overflow-hidden rounded-2xl no-underline"
             >
-              <div className="relative aspect-[16/10] overflow-hidden bg-house-cream-dark">
-                <Image
-                  src={d.img}
-                  alt={d.role}
-                  fill
-                  sizes="(min-width:768px) 50vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-8">
-                <div className="flex items-baseline justify-between gap-4 mb-3">
-                  <h3 className="font-display text-[30px] leading-[1.05] text-house-black group-hover:text-house-gold-ink transition-colors">
+              <Image
+                src={d.img}
+                alt={d.role}
+                fill
+                sizes="(min-width:768px) 50vw, 100vw"
+                className="object-cover"
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(20,14,10,0.86) 0%, rgba(20,14,10,0.35) 45%, rgba(20,14,10,0.05) 75%)",
+                }}
+              />
+              <div className="relative p-8 text-white">
+                <div className="flex items-baseline justify-between gap-4 mb-2">
+                  <h3 className="font-display text-[clamp(28px,3vw,38px)] leading-none">
                     {d.role}
                   </h3>
-                  <span className="font-sans text-[14px] tracking-[0.04em] text-house-brown/70">
+                  <span className="font-sans text-[15px] tracking-[0.02em] text-white/90 whitespace-nowrap">
                     {d.price}
                   </span>
                 </div>
-                <p className="font-sans text-[16px] leading-[1.6] text-house-brown/78 mb-4">
+                <p className="font-display italic text-[16px] leading-[1.4] text-white/85 mb-3 max-w-[44ch]">
+                  {d.forLine}
+                </p>
+                <p className="font-sans text-[15px] leading-[1.55] text-white/80 mb-5 max-w-[48ch]">
                   {d.line}
                 </p>
-                <span className="font-sans text-[12px] tracking-[0.16em] uppercase text-house-gold-ink">
+                <span
+                  className="inline-block rounded-xl px-5 py-3 font-sans text-[13px] font-medium text-house-black transition-[filter] group-hover:brightness-105"
+                  style={{ background: d.btn }}
+                >
                   {d.cta} →
                 </span>
               </div>
