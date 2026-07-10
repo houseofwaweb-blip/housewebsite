@@ -30,9 +30,9 @@ import { getArtworkPage } from "@/lib/cms/artwork";
  */
 
 export const metadata = {
-  title: "The Artwork of House of HoWA",
+  title: "The Artwork of House of HoWA | Heritage, craft and the intelligence layer",
   description:
-    "A design-led story of heritage, craft, colour, and British domestic beauty. How the House of HoWA was cultivated, not branded.",
+    "The visual story of House of HoWA: from garden studio, pattern and colour to the HoWA Score, Home Record and Household system.",
 };
 
 const ART = "/the-house/artwork";
@@ -172,11 +172,11 @@ export default async function ArtworkPage() {
   });
 
   const heroEyebrow = cmsPage?.heroEyebrow ?? "House of HoWA · An origin story";
-  const heroTitle = cmsPage?.heroTitle ?? "The Artwork";
-  const heroTitleEm = cmsPage?.heroTitleEm ?? "of the House.";
+  const heroTitle = cmsPage?.heroTitle ?? "The artwork of the House,";
+  const heroTitleEm = cmsPage?.heroTitleEm ?? "re-read for HoWA.";
   const heroLede =
     cmsPage?.heroLede ??
-    "A design-led story of heritage, craft, colour, and British domestic beauty. How the House of HoWA was cultivated, not branded.";
+    "A design-led story of heritage, craft, colour, British domestic beauty, and the intelligence layer now moving through it. HoWA adds the missing modern element: the home's memory made visible.";
   const heroScrollCue = cmsPage?.heroScrollCue ?? "↓ ten chapters";
 
   return (

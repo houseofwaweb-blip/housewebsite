@@ -46,15 +46,13 @@ export function V4Hero() {
 function HeroCopy() {
   return (
     <div className="max-w-[540px]">
-      <p className="smallcaps mb-4 text-[15px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">The Home Intelligence OS</p>
+      <p className="smallcaps mb-4 text-[15px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">The Home Operating System</p>
       <h1 className="font-display text-[clamp(40px,3.4vw,64px)] leading-[0.98] tracking-[-0.015em] text-[color:var(--color-ink)]">
-        Your house is
-        <br />
-        trying to
+        Homes forget.
       </h1>
-      <p className="mt-2.5 font-italic-display text-[clamp(40px,3.4vw,64px)] leading-[0.98] text-[#c5a960]">tell you something.</p>
-      <p className="mt-6 max-w-[420px] text-[17px] leading-[1.55] text-[color:var(--color-ink)]/85">
-        Enter your address. In sixty seconds, HoWA builds the first portrait of your home, what it is, what matters, what can wait, and what to do next.
+      <p className="mt-2.5 font-italic-display text-[clamp(40px,3.4vw,64px)] leading-[0.98] text-[#c5a960]">HoWA remembers.</p>
+      <p className="mt-6 max-w-[460px] text-[17px] leading-[1.55] text-[color:var(--color-ink)]/85">
+        Start with an address. HoWA builds the first portrait of your home, gives it a provisional Score and opens one record for the things that matter: rooms, assets, documents, visits, costs, risks, plans and proof.
       </p>
       <div className="mt-7">
         <V4AddressBar />

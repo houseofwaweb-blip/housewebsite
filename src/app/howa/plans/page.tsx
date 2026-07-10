@@ -131,14 +131,14 @@ export default async function PlansPage() {
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>{cms(hero, "eyebrow", "Plans & Pricing")}</p>
             <h1 className={s.heroTitle}>
-              {cms(hero, "headline", "Three ways to be")}{" "}
-              <em>{cms(hero, "headlineEm", "stewarded.", "headline")}</em>
+              {cms(hero, "headline", "One record.")}{" "}
+              <em>{cms(hero, "headlineEm", "Three depths of care.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
               {cms(
                 hero,
                 "body",
-                "One platform. Three entitlement levels. Upgrading always preserves the same home record. Assistant is the free way in. Housekeeper is the connected continuity and savings layer. Steward is the premium managed-care layer.",
+                "Start free. Keep the home in order. Protect it before failure. The record carries with you as the home becomes more known.",
               )}
             </p>
             <div className={s.heroCtas}>

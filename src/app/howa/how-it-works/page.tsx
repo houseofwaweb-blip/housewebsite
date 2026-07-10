@@ -11,7 +11,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  *   1. Hero, copy left, blueprint cross-section right (full-bleed bg, same
  *      gradient-scrim treatment as the steward hero)
  *   2. Stats strip, Four quiet jobs at a glance
- *   3. Verb sections, Understand / Recommend / Connect / Remember
+ *   3. Verb sections, Know / Score / Act / Remember
  *      Each is a 2-col image+copy split, alternating sides
  *   4. Compound effect, dark navy band
  *   5. Closing CTA, Start with the Assistant
@@ -33,9 +33,9 @@ const STAT_COLS = [
 const VERBS = [
   {
     numeral: "I.",
-    verb: "Understand",
+    verb: "Know",
     title: "It starts by knowing the home.",
-    lede: "HoWA reads every system in the home, fabric, services, garden, contents, and builds a record that compounds with every visit.",
+    lede: "The address begins the record. Public facts, rooms, assets, documents, services, photographs and decisions gather around one centre.",
     examples: [
       "Your boiler was installed in 2018. It has two years of expected life left before replacement becomes the smarter move.",
       "The crack above the kitchen door appeared after the extension. It's settlement, not structural. Fill with flexible caulk and check in six months.",
@@ -47,13 +47,13 @@ const VERBS = [
   },
   {
     numeral: "II.",
-    verb: "Recommend",
-    title: "Then it tells you what matters next.",
-    lede: "Seasonal prompts, surfaced risks and timely suggestions. The right thing, at the right moment, with no nagging.",
+    verb: "Score",
+    title: "Then it scores what is known.",
+    lede: "The HoWA Score shows what is known, what is missing and what needs attention. It sharpens as the record fills.",
     examples: [
-      "Gutters haven't been cleared since March. Autumn leaves are three weeks away. HoWA suggests booking now, before the rush.",
-      "Your Home Protection Review flagged the flat roof as a priority. HoWA routes that to your insurance record and recommends a surveyor quote before renewal.",
-      "The cleaning team noted limescale buildup on the bathroom glass. HoWA recommends a descale visit and adjusts the quarterly schedule.",
+      "Record completeness sits at 48%. Adding the boiler certificate and the last three invoices moves it most.",
+      "Maintenance rhythm is strong, evidence is thin. Two documents close the biggest gap.",
+      "The Score stays provisional until the first service writes back. One visit sharpens it.",
     ],
     image: "/home-v4/howa-remember.webp",
     imageAlt:
@@ -61,9 +61,9 @@ const VERBS = [
   },
   {
     numeral: "III.",
-    verb: "Connect",
-    title: "It matches you with the right hands.",
-    lede: "Trusted services, vetted partners, and the same trade twice when continuity matters. Booked, billed and filed in one place.",
+    verb: "Act",
+    title: "It turns signals into useful action.",
+    lede: "HoWA turns answers into tasks, reminders, plans, bookings or trusted routes. A useful answer should not become another thing to remember.",
     examples: [
       "You need a plumber for the radiator valve. HoWA matches you with a House-vetted tradesperson at the member rate. Booked for Tuesday.",
       "Your design brief needs an interiors specialist. HoWA connects you with Delve Interiors, whose studio focuses on period homes. First consultation this week.",
@@ -76,8 +76,8 @@ const VERBS = [
   {
     numeral: "IV.",
     verb: "Remember",
-    title: "And it never forgets.",
-    lede: "Every service, decision, and document, kept in a record that travels with the home. When you hand the keys on, you hand the story on too.",
+    title: "And it remembers the outcome.",
+    lede: "Every action, cost, photograph, certificate, supplier, note and outcome returns to the Home Record. When you hand the keys on, you hand the story on too.",
     examples: [
       "When you sell the house, the buyer inherits a complete record: every service, every repair, every improvement, every plan. That's provenance.",
       "Your decorator arrives and checks HoWA before starting. Paint colours, finish types, last painted date, all there. No guessing.",
@@ -134,19 +134,19 @@ export default async function HowItWorksPage() {
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>{cms(hero, "eyebrow", "How HoWA works")}</p>
             <h1 className={s.heroTitle}>
-              {cms(hero, "headline", "Four quiet jobs.")}<br />
-              <em>{cms(hero, "headlineEm", "Every home, every day.", "headline")}</em>
+              {cms(hero, "headline", "Know. Score.")}<br />
+              <em>{cms(hero, "headlineEm", "Act. Remember.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
               {cms(
                 hero,
                 "body",
-                "Whatever the tier, HoWA does the same four things, Understand, Recommend, Connect and Remember. Each one feeds the next, and the record compounds.",
+                "HoWA does four quiet jobs for the home. It learns what the home is, scores what is known, turns signals into useful action, and remembers the outcome.",
               )}
             </p>
             <div className={s.heroCtas}>
               <Link href={cms(hero, "ctaHref", "/api/howa-bounce")} className={s.btnFilled}>
-                {cms(hero, "ctaLabel", "Join the waitlist")}
+                {cms(hero, "ctaLabel", "Start free")}
               </Link>
               <Link href={cms(hero, "cta2Href", "/howa/housekeeper")} className={s.btnGhost}>
                 {cms(hero, "cta2Label", "See Housekeeper")}
@@ -161,7 +161,7 @@ export default async function HowItWorksPage() {
       <section className={s.statsStrip}>
         <div className={s.statsLede}>
           <p className={s.statsLedeLine1}>
-            {cms(stats, "headline", "Understand. Recommend. Connect. Remember.")}
+            {cms(stats, "headline", "Know. Score. Act. Remember.")}
           </p>
           <p className={s.statsLedeLine2}>
             {cms(stats, "subheadline", "One system. Four quiet jobs.")}
@@ -212,13 +212,13 @@ export default async function HowItWorksPage() {
       <section className={s.compoundBand}>
         <p className={s.compoundEy}>{cms(compound, "eyebrow", "The compound effect.")}</p>
         <h2 className={s.compoundTitle}>
-          Understand <span className={s.compoundDot}>·</span> Recommend <span className={s.compoundDot}>·</span> Connect <span className={s.compoundDot}>·</span> Remember.
+          Know <span className={s.compoundDot}>·</span> Score <span className={s.compoundDot}>·</span> Act <span className={s.compoundDot}>·</span> Remember.
         </h2>
         <p className={s.compoundBody}>
           {cms(
             compound,
             "body",
-            "Each verb feeds the next. The more HoWA understands, the better it recommends. The more connections it makes, the richer the record. Over time the home goes from unknown to deeply known, and maintenance shifts from reactive to calm.",
+            "The more the home is known, the more useful HoWA becomes. The more useful HoWA becomes, the more the owner returns. The record gets richer, the Score gets clearer, and the home becomes easier to keep.",
           )}
         </p>
         <Link href={cms(compound, "ctaHref", "/howa/housekeeper")} className={s.compoundLink}>
