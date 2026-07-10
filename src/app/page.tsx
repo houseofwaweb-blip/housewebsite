@@ -96,50 +96,48 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 2. The Score is the first thing you understand */}
+      {/* 2. The Score — copy left, the HoWA Score demo on the right */}
       <section className="px-[5vw] py-16 bg-house-cream-dark border-t border-b border-house-brown/8">
-        <div className="max-w-[1000px] mx-auto">
-          <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">
-            The HoWA Score
-          </p>
-          <h2 className="font-display text-[clamp(28px,3.6vw,46px)] leading-[1.08] text-house-black max-w-[20ch] mb-6">
-            The Score is the first thing you understand.
-          </h2>
-          <p className="font-sans text-[17px] leading-[1.7] text-house-brown/80 max-w-[62ch]">
-            A home can be valuable and still be unmanaged. Documents sit in
-            drawers. Services disappear into invoices. Repairs live in WhatsApp
-            threads. Small risks wait quietly until they cost money. HoWA gives
-            the home one clear measure of readiness: a living Score that improves
-            as the home becomes more known.
-          </p>
-          <ul className="grid gap-x-8 gap-y-2 sm:grid-cols-2 mt-8 max-w-[640px]">
-            {SCORE_REFLECTS.map((r) => (
-              <li
-                key={r}
-                className="font-sans text-[16px] text-house-brown/85 pl-5 relative before:content-['—'] before:absolute before:left-0 before:text-house-gold-ink"
-              >
-                {r}
-              </li>
-            ))}
-          </ul>
-          <div className="mt-9">
-            <Link href="/howa-score" className={ctaSecondary}>
-              See how the Score works →
-            </Link>
+        <div className="max-w-[1300px] mx-auto grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:items-center">
+          <div>
+            <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">
+              The HoWA Score
+            </p>
+            <h2 className="font-display text-[clamp(28px,3.6vw,46px)] leading-[1.08] text-house-black max-w-[20ch] mb-6">
+              The Score is the first thing you understand.
+            </h2>
+            <p className="font-sans text-[17px] leading-[1.7] text-house-brown/80 max-w-[54ch]">
+              A home can be valuable and still be unmanaged. Documents sit in
+              drawers. Services disappear into invoices. Repairs live in WhatsApp
+              threads. Small risks wait quietly until they cost money. HoWA gives
+              the home one clear measure of readiness: a living Score that
+              improves as the home becomes more known.
+            </p>
+            <ul className="grid gap-x-8 gap-y-2 sm:grid-cols-2 mt-8">
+              {SCORE_REFLECTS.map((r) => (
+                <li
+                  key={r}
+                  className="font-sans text-[16px] text-house-brown/85 pl-5 relative before:content-['—'] before:absolute before:left-0 before:text-house-gold-ink"
+                >
+                  {r}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-9">
+              <Link href="/howa-score" className={ctaSecondary}>
+                See how the Score works →
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Score dashboard visual */}
-      <section className="px-[5vw] py-12 max-w-[1080px] mx-auto">
-        <div className="relative aspect-[16/9] overflow-hidden bg-house-cream-dark border border-house-brown/10">
-          <Image
-            src="/howa/score-dashboard.webp"
-            alt="A HoWA Score dashboard: one living number for a home well kept"
-            fill
-            sizes="(min-width:1024px) 1020px, 100vw"
-            className="object-cover"
-          />
+          <div className="relative aspect-[16/9] overflow-hidden bg-house-cream border border-house-brown/12">
+            <Image
+              src="/howa/score-dashboard.webp"
+              alt="A HoWA Score dashboard: one living number for a home well kept, with what matters first"
+              fill
+              sizes="(min-width:1024px) 640px, 100vw"
+              className="object-cover"
+            />
+          </div>
         </div>
       </section>
 
