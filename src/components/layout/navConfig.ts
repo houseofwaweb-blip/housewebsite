@@ -71,7 +71,30 @@ export const PRIMARY_NAV: MegaPanel[] = [
   // Philosophy, Artwork, Standards, Sustainability, Contact) now lives in the
   // footer / secondary surface.
   { id: "howa-score", trigger: "HoWA Score", triggerHref: "/howa-score", groups: [] },
-  { id: "household", trigger: "The Household", triggerHref: "/household", groups: [] },
+  {
+    id: "household",
+    trigger: "The Household",
+    triggerHref: "/household",
+    groups: [
+      {
+        heading: "The free doors",
+        links: [
+          { label: "The Gardener", href: "/household/gardener", description: "Scan the garden" },
+          { label: "The Handyman", href: "/household/handyman", description: "Photograph a fault" },
+          { label: "The Designer", href: "/household/designer", description: "One photo, a direction" },
+          { label: "The Surveyor", href: "/household/surveyor", description: "Decode a crack or quote" },
+          { label: "The Archivist", href: "/household/archivist", description: "Turn documents into dates" },
+        ],
+      },
+      {
+        heading: "The senior staff",
+        links: [
+          { label: "The Housekeeper", href: "/howa/housekeeper", description: "£16.99/mo · the home in order" },
+          { label: "The Steward", href: "/howa/steward", description: "£29.99/mo · protected before failure" },
+        ],
+      },
+    ],
+  },
 
   {
     id: "services",
