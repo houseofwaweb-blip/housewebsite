@@ -162,10 +162,11 @@ export default async function HomePage() {
           <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-light mb-4">
             The Household
           </p>
-          <h2 className="font-display text-[clamp(28px,3.6vw,46px)] leading-[1.08] text-house-cream max-w-[22ch] mb-6">
-            Most people don&apos;t arrive looking for a Home Operating System.
+          <h2 className="font-display text-[clamp(28px,3.6vw,46px)] leading-[1.08] text-house-cream max-w-[18ch] mb-6">
+            Meet the <em className="italic">Household.</em>
           </h2>
-          <p className="font-sans text-[17px] leading-[1.7] text-house-cream/80 max-w-[60ch] mb-9">
+          <p className="font-sans text-[17px] leading-[1.7] text-house-cream/80 max-w-[62ch] mb-9">
+            Most people don&apos;t arrive looking for a Home Operating System.
             They arrive with a garden, a crack, a quote, a room, a document, a
             leak, a repair or a service they need to book. Start with the
             specialist you need today, free.
@@ -204,12 +205,9 @@ export default async function HomePage() {
         <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">
           Services
         </p>
-        <h2 className="font-display text-[clamp(28px,3.6vw,46px)] leading-[1.08] text-house-black max-w-[20ch] mb-3">
-          Services are proof, not the pitch.
+        <h2 className="font-display text-[clamp(28px,3.6vw,46px)] leading-[1.08] text-house-black max-w-[22ch] mb-5">
+          The House does the work. <em className="italic">HoWA remembers it.</em>
         </h2>
-        <p className="font-display italic text-[clamp(20px,2.2vw,28px)] text-house-brown/85 mb-6">
-          The House does the work. HoWA remembers it.
-        </p>
         <p className="font-sans text-[17px] leading-[1.7] text-house-brown/80 max-w-[62ch] mb-10">
           Gardens, windows, cleaning, gutters, design, repairs and approved
           partner services become more valuable when the outcome is saved to the
