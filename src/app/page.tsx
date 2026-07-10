@@ -23,12 +23,12 @@ export const metadata = {
 };
 
 const SERVICE_FAMILY = [
-  { name: "Willow Alexander Gardeners", line: "Garden maintenance, seasonal care and outdoor rhythm.", href: "/services/gardening" },
-  { name: "Willow Alexander Gardens", line: "Garden design, planting, landscaping and outdoor transformation.", href: "/design/gardens" },
-  { name: "Willow Alexander Cleaners", line: "Considered cleaning for homes that need regular care.", href: "/services/cleaning" },
-  { name: "Willow Alexander Window Cleaners", line: "Reliable window care, recorded as part of the home's maintenance rhythm.", href: "/services/window-cleaning" },
-  { name: "Willow Alexander Handyman", line: "Repairs, fixes, small works and practical help around the home.", href: "/services/handyman" },
-  { name: "Willow Alexander Removals", line: "Careful moving, preparation, handover and home transition support.", href: "/services/removals" },
+  { name: "Willow Alexander Gardeners", line: "Garden maintenance, seasonal care and outdoor rhythm.", href: "/services/gardening", img: "/services/subbrands/gardeners.webp" },
+  { name: "Willow Alexander Gardens", line: "Garden design, planting, landscaping and outdoor transformation.", href: "/design/gardens", img: "/design/gardens/full-design.webp" },
+  { name: "Willow Alexander Cleaners", line: "Considered cleaning for homes that need regular care.", href: "/services/cleaning", img: "/services/subbrands/cleaners.webp" },
+  { name: "Willow Alexander Window Cleaners", line: "Reliable window care, recorded as part of the home's maintenance rhythm.", href: "/services/window-cleaning", img: "/services/subbrands/window-cleaner.webp" },
+  { name: "Willow Alexander Handyman", line: "Repairs, fixes, small works and practical help around the home.", href: "/services/handyman", img: "/services/subbrands/handyman.webp" },
+  { name: "Willow Alexander Removals", line: "Careful moving, preparation, handover and home transition support.", href: "/services/removals", img: "/services/subbrands/removals.webp" },
 ];
 
 const REMEMBERED = [
@@ -121,13 +121,27 @@ export default async function HomePage() {
             and into the HoWA Home Record. Over time, approved professionals and
             partner brands will sit alongside them.
           </p>
-          <div className="grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-x-6 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">
             {SERVICE_FAMILY.map((s) => (
-              <Link key={s.name} href={s.href} className="group block no-underline border-t border-house-brown/15 pt-4">
-                <h3 className="font-display text-[20px] leading-[1.2] text-house-black group-hover:text-house-gold-ink transition-colors">
+              <Link key={s.name} href={s.href} className="group block no-underline">
+                <div className="relative aspect-[4/5] overflow-hidden bg-house-cream border border-house-brown/10">
+                  <Image
+                    src={s.img}
+                    alt={s.name}
+                    fill
+                    sizes="(min-width:1024px) 30vw, (min-width:640px) 46vw, 92vw"
+                    className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.04]"
+                  />
+                </div>
+                <h3 className="font-display text-[20px] leading-[1.2] text-house-black group-hover:text-house-gold-ink transition-colors mt-4">
                   {s.name}
                 </h3>
-                <p className="font-sans text-[14px] leading-[1.55] text-house-brown/70 mt-1.5">{s.line}</p>
+                <p className="font-sans text-[14px] leading-[1.55] text-house-brown/70 mt-1.5 max-w-[36ch]">
+                  {s.line}
+                </p>
+                <span className="inline-block font-sans text-[12px] tracking-[0.14em] uppercase text-house-gold-ink mt-3">
+                  View →
+                </span>
               </Link>
             ))}
           </div>
