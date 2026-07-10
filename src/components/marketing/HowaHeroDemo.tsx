@@ -1,63 +1,189 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import styles from "./HowaPhone.module.css";
 
 /**
  * HoWA hero demo — the askhowa reference hero: a cutaway blueprint house with a
- * floating phone mockup showing the Home Overview (HoWA Score, Living Record,
- * What matters first). Recreated in the House palette (cream cards, gold ring).
- * Pure server component (SVG + CSS). Rounding via the `howa-surface` scope.
+ * floating phone showing the Home Overview (HoWA Score, Living Record, What
+ * matters first). The phone is a faithful reproduction of the user-supplied
+ * howa-phone-mockup.html: exact palette, cards, SVG icons and the animated
+ * score gauge (counts 0 -> 62). Styling lives in HowaPhone.module.css so its
+ * radii survive the global border-radius reset.
  */
 
-function ScoreRing({ value }: { value: number }) {
-  const pct = Math.max(0, Math.min(100, value));
+const CIRC = 197.92; // 2 * PI * 31.5
+const TARGET = 62;
+
+function ScoreGauge() {
+  const [value, setValue] = useState(0);
+  const raf = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
+      setValue(TARGET);
+      return;
+    }
+    let start: number | null = null;
+    const dur = 1500;
+    const step = (ts: number) => {
+      if (start === null) start = ts;
+      const t = Math.min((ts - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      setValue(Math.round(eased * TARGET));
+      if (t < 1) raf.current = requestAnimationFrame(step);
+    };
+    raf.current = requestAnimationFrame(step);
+    return () => {
+      if (raf.current) cancelAnimationFrame(raf.current);
+    };
+  }, []);
+
   return (
-    <div className="relative w-14 h-14 shrink-0">
-      <svg viewBox="0 0 36 36" className="w-full h-full" aria-hidden>
-        <circle cx="18" cy="18" r="15.5" fill="none" stroke="rgba(48,35,28,0.12)" strokeWidth="2.6" />
-        <circle
-          cx="18"
-          cy="18"
-          r="15.5"
-          fill="none"
-          stroke="var(--color-house-gold-dark)"
-          strokeWidth="2.6"
-          strokeLinecap="round"
-          pathLength={100}
-          strokeDasharray={`${pct} 100`}
-          transform="rotate(-90 18 18)"
-        />
-      </svg>
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="font-display text-[16px] leading-none text-house-black">{value}</span>
-        <span className="font-sans text-[7px] tracking-[0.06em] text-house-stone">OF 100</span>
+    <div className={styles.gaugeWrap}>
+      <div className={styles.gauge}>
+        <svg width="68" height="68">
+          <circle cx="34" cy="34" r="31.5" fill="none" stroke="rgba(184,153,104,.22)" strokeWidth="5" />
+          <circle
+            cx="34"
+            cy="34"
+            r="31.5"
+            fill="none"
+            stroke="#b89968"
+            strokeWidth="5"
+            strokeLinecap="round"
+            strokeDasharray={CIRC}
+            strokeDashoffset={CIRC * (1 - value / 100)}
+          />
+        </svg>
+        <span className={`${styles.num} ${styles.serif}`}>{value}</span>
+      </div>
+      <span className={styles.of100}>of 100</span>
+    </div>
+  );
+}
+
+const ATTENTION = [
+  "Boiler service · due in 14 days",
+  "Gutter clean · before winter",
+  "Smoke alarms · tested OK",
+];
+
+function CheckIcon() {
+  return (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1f3a2b" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M8.5 12.5l2.5 2.5 4.5-5" />
+    </svg>
+  );
+}
+
+function HowaPhone() {
+  return (
+    <div className={styles.phone}>
+      <div className={styles.screen}>
+        <div className={styles.notch} />
+        <div className={styles.head}>
+          <div>
+            <p className={`${styles.serif} ${styles.brand}`}>HoWA</p>
+            <p className={styles.sub}>Home Overview</p>
+          </div>
+          <span className={styles.burger} aria-hidden>
+            <span />
+            <span />
+            <span />
+          </span>
+        </div>
+
+        <div className={styles.cards}>
+          {/* HoWA Score */}
+          <div className={styles.card}>
+            <p className={styles.label}>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8a6f3f" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z" />
+              </svg>
+              HoWA Score
+            </p>
+            <p className={styles.dim} style={{ fontSize: 13, marginTop: 4, marginBottom: 14 }}>
+              In order, with gaps
+            </p>
+            <div className={styles.scoreRow}>
+              <ScoreGauge />
+              <div className={styles.spark}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img alt="" src="/howa/phone-spark.webp" />
+              </div>
+            </div>
+          </div>
+
+          {/* Living Record */}
+          <div className={styles.card}>
+            <div className={styles.recRow}>
+              <div>
+                <p className={styles.label}>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8a6f3f" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 19c0-7 6-13 14-13 0 8-6 14-14 13z" />
+                    <path d="M5 19c4-4 7-6 11-7" />
+                  </svg>
+                  Living Record
+                </p>
+                <p className={styles.dim} style={{ fontSize: 13, marginTop: 4 }}>
+                  Updated today
+                </p>
+                <p className={styles.dim} style={{ fontSize: 13 }}>
+                  08:42
+                </p>
+                <span className={styles.link}>View record &rarr;</span>
+              </div>
+              <div className={styles.sketch}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img alt="" src="/howa/phone-sketch.webp" />
+              </div>
+            </div>
+          </div>
+
+          {/* What matters first */}
+          <div className={styles.card}>
+            <p className={styles.label} style={{ marginBottom: 8 }}>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8a6f3f" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="5" y="5" width="14" height="16" rx="2" />
+                <path d="M9 5V3h6v2M9 11h6M9 15h4" />
+              </svg>
+              What matters first
+            </p>
+            <p style={{ fontSize: 13.5, color: "#1a241d" }}>3 things need attention</p>
+            <p style={{ fontSize: 12.5, color: "rgba(58,53,44,.7)", marginBottom: 12 }}>
+              HoWA tells you what matters first
+            </p>
+            <ul className={styles.items}>
+              {ATTENTION.map((t) => (
+                <li key={t}>
+                  <CheckIcon />
+                  {t}
+                </li>
+              ))}
+            </ul>
+            <span className={styles.link} style={{ marginTop: 0 }}>
+              View plan &rarr;
+            </span>
+          </div>
+        </div>
+
+        <div className={styles.tabs}>
+          <span className={styles.on}>Home</span>
+          <span>Timeline</span>
+          <span>Record</span>
+          <span>Profile</span>
+        </div>
       </div>
     </div>
   );
 }
 
-function Sparkline() {
-  const pts = [
-    [0, 24], [12, 20], [24, 22], [36, 14], [48, 16], [60, 9], [72, 6],
-  ];
-  return (
-    <svg viewBox="0 0 80 30" className="flex-1 h-8" aria-hidden>
-      <polyline
-        points={pts.map((p) => p.join(",")).join(" ")}
-        fill="none"
-        stroke="var(--color-house-gold-dark)"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      {pts.map(([x, y], i) => (
-        <circle key={i} cx={x} cy={y} r="1.3" fill="var(--color-house-gold-dark)" />
-      ))}
-    </svg>
-  );
-}
-
 export function HowaHeroDemo() {
   return (
-    <div className="howa-surface relative min-h-[56vh] lg:min-h-[84vh] overflow-hidden bg-house-cream-dark">
+    <div className="relative min-h-[56vh] lg:min-h-[84vh] overflow-hidden bg-house-cream-dark">
       <Image
         src="/howa/hero-house.webp"
         alt="A HoWA home, seen in cutaway, with a live Home Overview"
@@ -67,95 +193,8 @@ export function HowaHeroDemo() {
         priority
       />
       {/* Floating phone */}
-      <div className="absolute left-[5%] top-1/2 -translate-y-1/2 w-[min(276px,42vw)]">
-        <div className="rounded-2xl bg-house-cream border-[6px] border-[#171009] shadow-[0_22px_54px_rgba(20,14,10,0.4)] overflow-hidden">
-          <div className="flex items-center justify-between px-4 pt-4 pb-2">
-            <div>
-              <div className="font-display text-[15px] leading-none text-house-black">HoWA</div>
-              <div className="font-sans text-[9px] tracking-[0.1em] uppercase text-house-stone mt-1">
-                Home Overview
-              </div>
-            </div>
-            <div className="flex flex-col gap-[3px]">
-              {[0, 1, 2].map((i) => (
-                <span key={i} className="w-4 h-px bg-house-brown/50" />
-              ))}
-            </div>
-          </div>
-
-          {/* Score */}
-          <div className="mx-3 mb-2 rounded-xl bg-white border border-house-brown/10 p-3">
-            <div className="font-sans text-[8px] tracking-[0.14em] uppercase text-house-stone">
-              HoWA Score
-            </div>
-            <div className="font-sans text-[10px] text-house-brown/70 mb-2">In order, with gaps</div>
-            <div className="flex items-center gap-3">
-              <ScoreRing value={62} />
-              <Sparkline />
-            </div>
-          </div>
-
-          {/* Living record */}
-          <div className="mx-3 mb-2 rounded-xl bg-white border border-house-brown/10 p-3 flex items-center justify-between gap-2">
-            <div>
-              <div className="font-sans text-[8px] tracking-[0.14em] uppercase text-house-stone">
-                Living Record
-              </div>
-              <div className="font-sans text-[10px] text-house-brown/70 mb-1">Updated today · 08:42</div>
-              <div className="font-sans text-[10px] text-house-gold-ink">View record →</div>
-            </div>
-            <div className="relative w-11 h-11 shrink-0 opacity-85">
-              <Image src="/howa/record-sketch.webp" alt="" fill sizes="44px" className="object-contain" />
-            </div>
-          </div>
-
-          {/* What matters first */}
-          <div className="mx-3 mb-3 rounded-xl bg-white border border-house-brown/10 p-3">
-            <div className="font-sans text-[8px] tracking-[0.14em] uppercase text-house-stone">
-              What matters first
-            </div>
-            <div className="font-sans text-[10px] font-medium text-house-black mt-0.5">
-              3 things need attention
-            </div>
-            <div className="font-sans text-[9px] text-house-stone mb-2">
-              HoWA tells you what matters first
-            </div>
-            <ul className="space-y-1.5">
-              {[
-                "Boiler service · due in 14 days",
-                "Gutter clean · before winter",
-                "Smoke alarms · tested OK",
-              ].map((t) => (
-                <li key={t} className="flex items-center gap-1.5 font-sans text-[10px] text-house-brown/75">
-                  <span
-                    className="is-round flex items-center justify-center w-3 h-3 shrink-0"
-                    style={{ background: "rgba(180,150,60,0.18)" }}
-                  >
-                    <svg viewBox="0 0 10 10" className="w-2 h-2" aria-hidden>
-                      <path
-                        d="M2 5 L4 7 L8 3"
-                        fill="none"
-                        stroke="var(--color-house-gold-dark)"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                  {t}
-                </li>
-              ))}
-            </ul>
-            <div className="font-sans text-[10px] text-house-gold-ink mt-2">View plan →</div>
-          </div>
-
-          <div className="flex justify-around border-t border-house-brown/10 py-2 font-sans text-[9px] text-house-stone">
-            <span className="text-house-black">Home</span>
-            <span>Timeline</span>
-            <span>Record</span>
-            <span>Profile</span>
-          </div>
-        </div>
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 lg:left-[8%] lg:translate-x-0 w-[min(300px,72vw)]">
+        <HowaPhone />
       </div>
     </div>
   );
