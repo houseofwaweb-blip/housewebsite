@@ -29,7 +29,7 @@ const ARTICLE_PROJECTION = /* groq */ `{
   author,
   publishedAt,
   "isPremium": coalesce(isPremium, false),
-  "bodyWordCount": length(pt::text(body))
+  "bodyWordCount": length(string::split(pt::text(body), " "))
 }`;
 
 const journalIndexQuery = /* groq */ `{
