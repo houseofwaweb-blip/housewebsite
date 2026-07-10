@@ -50,6 +50,29 @@ const SCORE_REFLECTS = [
   "Future stewardship",
 ];
 
+const PAID_DEPTHS = [
+  {
+    role: "The Housekeeper",
+    price: "£16.99/mo",
+    img: "/howa/household/housekeeper.webp",
+    btn: "#c17a5f",
+    forLine: "For the household that wants everything kept in rhythm.",
+    line: "Documents filed, tasks remembered, costs stored, seasonal work planned and the monthly picture made clear.",
+    cta: "Employ the Housekeeper",
+    href: "/howa/housekeeper",
+  },
+  {
+    role: "The Steward",
+    price: "£29.99/mo",
+    img: "/howa/household/steward.webp",
+    btn: "#c9a84a",
+    forLine: "For the homeowner who wants the long view.",
+    line: "Risk, evidence, approvals, annual reporting, smart-home instruments and protection before failure.",
+    cta: "Protect the home",
+    href: "/howa/steward",
+  },
+];
+
 const APPROVED_BENEFITS = [
   "Be discovered by homeowners through HoWA",
   "Receive jobs with better context",
@@ -286,34 +309,49 @@ export default async function HomePage() {
       </section>
 
       {/* 7. Housekeeper & Steward — two depths of care */}
-      <section className="px-[5vw] py-20 max-w-[1100px] mx-auto">
+      <section className="howa-surface px-[5vw] py-20 max-w-[1200px] mx-auto">
         <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">
           Housekeeper and Steward
         </p>
-        <h2 className="font-display text-[clamp(28px,3.6vw,46px)] leading-[1.08] text-house-black max-w-[20ch] mb-10">
+        <h2 className="font-display text-[clamp(28px,3.6vw,46px)] leading-[1.08] text-house-black max-w-[20ch] mb-8">
           The two depths of care.
         </h2>
-        <div className="grid gap-8 md:grid-cols-2">
-          <div className="border-t border-house-brown/15 pt-6">
-            <h3 className="font-display text-[26px] leading-[1.15] text-house-black mb-3">
-              The Housekeeper keeps the home in order.
-            </h3>
-            <p className="font-sans text-[16px] leading-[1.65] text-house-brown/78">
-              For the household that wants everything kept in rhythm: documents
-              filed, tasks remembered, costs stored, seasonal work planned and the
-              monthly picture made clear.
-            </p>
-          </div>
-          <div className="border-t border-house-brown/15 pt-6">
-            <h3 className="font-display text-[26px] leading-[1.15] text-house-black mb-3">
-              The Steward watches the whole home.
-            </h3>
-            <p className="font-sans text-[16px] leading-[1.65] text-house-brown/78">
-              For the homeowner who wants the long view: risk, evidence,
-              approvals, annual reporting, smart-home instruments and protection
-              before failure.
-            </p>
-          </div>
+        <div className="grid gap-6 md:grid-cols-2">
+          {PAID_DEPTHS.map((d) => (
+            <Link
+              key={d.role}
+              href={d.href}
+              className="group relative flex min-h-[440px] flex-col justify-end overflow-hidden rounded-2xl no-underline"
+            >
+              <Image src={d.img} alt={d.role} fill sizes="(min-width:768px) 50vw, 100vw" className="object-cover" />
+              <div
+                aria-hidden
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(20,14,10,0.88) 0%, rgba(20,14,10,0.38) 45%, rgba(20,14,10,0.05) 78%)",
+                }}
+              />
+              <div className="relative p-8 text-white">
+                <div className="flex items-baseline justify-between gap-4 mb-2">
+                  <h3 className="font-display text-[clamp(28px,3vw,38px)] leading-none">{d.role}</h3>
+                  <span className="font-sans text-[15px] tracking-[0.02em] text-white/90 whitespace-nowrap">
+                    {d.price}
+                  </span>
+                </div>
+                <p className="font-display italic text-[16px] leading-[1.4] text-white/85 mb-3 max-w-[44ch]">
+                  {d.forLine}
+                </p>
+                <p className="font-sans text-[15px] leading-[1.55] text-white/80 mb-5 max-w-[48ch]">{d.line}</p>
+                <span
+                  className="inline-block rounded-xl px-5 py-3 font-sans text-[13px] font-medium text-house-black transition-[filter] group-hover:brightness-105"
+                  style={{ background: d.btn }}
+                >
+                  {d.cta} →
+                </span>
+              </div>
+            </Link>
+          ))}
         </div>
         <p className="font-display italic text-[19px] leading-[1.45] text-house-brown/85 mt-9 max-w-[60ch]">
           Assistant helps you see. Housekeeper helps you stay ahead. Steward
