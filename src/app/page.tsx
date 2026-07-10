@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getLatestHearthArticles } from "@/lib/cms/hearth";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { EnquiryForm } from "@/components/marketing/EnquiryForm";
+import { HowaHeroDemo } from "@/components/marketing/HowaHeroDemo";
 
 /**
  * Homepage — House of HoWA (launch read section 4).
@@ -84,16 +85,7 @@ export default async function HomePage() {
             </p>
           </div>
         </div>
-        <div className="relative min-h-[54vh] lg:min-h-[84vh] bg-house-cream-dark">
-          <Image
-            src="/howa/features.webp"
-            alt="House of HoWA: the home, finally known"
-            fill
-            sizes="(min-width:1024px) 50vw, 100vw"
-            className="object-cover"
-            priority
-          />
-        </div>
+        <HowaHeroDemo />
       </section>
 
       {/* 2. The Score — copy left, the HoWA Score demo on the right */}

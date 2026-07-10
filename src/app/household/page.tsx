@@ -237,15 +237,26 @@ export default function HouseholdPage() {
       </section>
 
       {/* One Home Record */}
-      <section className="px-[5vw] py-20 bg-house-brown text-house-cream text-center">
-        <p className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-light mb-5">
+      <section className="px-[5vw] pt-16 pb-10 max-w-[1100px] mx-auto text-center">
+        <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">
           One Home Record
         </p>
-        <p className="font-display italic text-[clamp(24px,3vw,40px)] leading-[1.2] text-house-cream/95 max-w-[26ch] mx-auto">
-          Everything any member learns writes back to the same place: your
-          home&apos;s memory.
-        </p>
-        <p className="font-sans text-[16px] leading-[1.7] text-house-cream/75 max-w-[56ch] mx-auto mt-6">
+        <h2 className="font-display text-[clamp(26px,3.4vw,44px)] leading-[1.12] text-house-black max-w-[24ch] mx-auto">
+          Everything any member learns writes back to the same place:{" "}
+          <em className="italic">your home&apos;s memory.</em>
+        </h2>
+      </section>
+      <div className="relative w-full aspect-[16/9] bg-house-cream">
+        <Image
+          src="/howa/household-lineup.webp"
+          alt="The Household: seven cutaway houses, one shared home record"
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+      </div>
+      <section className="px-[5vw] py-16 max-w-[760px] mx-auto text-center">
+        <p className="font-sans text-[17px] leading-[1.7] text-house-brown/80">
           You never manage the Household. You talk to HoWA, one calm voice, and
           notice things are handled. Every journey should save, remind, book,
           plan or protect.
