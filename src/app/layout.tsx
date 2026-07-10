@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     template: "%s | House of HoWA",
   },
   description:
-    "House of HoWA is the institution behind HoWA, the Home Operating System that gives every home a living record, a HoWA Score and practical next actions.",
+    "House of HoWA brings together trusted home services, approved partners and the HoWA Home Operating System, so every home can be cared for, recorded and remembered.",
   applicationName: "House of HoWA",
   authors: [{ name: "House of HoWA" }],
   creator: "House of HoWA",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     siteName: "House of HoWA",
     title: "House of HoWA | The home, finally known",
     description:
-      "The institution behind HoWA, the Home Operating System for a home that remembers, scores and cares for itself.",
+      "A new House for home stewardship: trusted services, approved partners and the HoWA Home Operating System for a home that remembers, scores and cares for itself.",
   },
   twitter: {
     card: "summary_large_image",

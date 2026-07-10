@@ -7,19 +7,39 @@ import { HowaHeroDemo } from "@/components/marketing/HowaHeroDemo";
 import { HouseholdDoors } from "@/components/marketing/HouseholdDoors";
 
 /**
- * Homepage — House of HoWA (launch read section 4).
+ * Homepage — House of HoWA.
  *
- * Leads with HoWA Score as the product moment, then the Home Record, the
- * Household, and services as proof rails. Willow Alexander appears only as the
- * founding partner family. Design system (cream ground, Didot display, gold
- * ink) is unchanged.
+ * Applies the Homepage Copy & Structure amend: the House is the brand, service,
+ * partner and editorial layer (not an "institution"); HoWA is the operating
+ * system that remembers the work. Order: Hero → Founding service family →
+ * Booked. Delivered. Remembered. → HoWA Score → Home Record → Household →
+ * Housekeeper & Steward → House Approved → The Hearth → Final CTA.
  */
 
 export const metadata = {
-  title: { absolute: "House of HoWA | The home, finally known" },
+  title: { absolute: "House of HoWA | A new House for home stewardship" },
   description:
-    "House of HoWA is the institution behind HoWA, the Home Operating System that gives every home a living record, a HoWA Score and practical next actions.",
+    "House of HoWA brings together trusted home services, approved partners and the HoWA Home Operating System, so every home can be cared for, recorded and remembered.",
 };
+
+const SERVICE_FAMILY = [
+  { name: "Willow Alexander Gardeners", line: "Garden maintenance, seasonal care and outdoor rhythm.", href: "/services/gardening" },
+  { name: "Willow Alexander Gardens", line: "Garden design, planting, landscaping and outdoor transformation.", href: "/design/gardens" },
+  { name: "Willow Alexander Cleaners", line: "Considered cleaning for homes that need regular care.", href: "/services/cleaning" },
+  { name: "Willow Alexander Window Cleaners", line: "Reliable window care, recorded as part of the home's maintenance rhythm.", href: "/services/window-cleaning" },
+  { name: "Willow Alexander Handyman", line: "Repairs, fixes, small works and practical help around the home.", href: "/services/handyman" },
+  { name: "Willow Alexander Removals", line: "Careful moving, preparation, handover and home transition support.", href: "/services/removals" },
+];
+
+const REMEMBERED = [
+  "A garden visit can become seasonal notes and a next-care reminder.",
+  "A window clean can become part of the maintenance rhythm.",
+  "A handyman repair can become proof, cost history and a warranty note.",
+  "A move can become a home handover record.",
+  "A design brief can become project memory.",
+];
+
+const FLOW = ["Booked", "Delivered", "Remembered", "Home Record", "HoWA Score"];
 
 const SCORE_REFLECTS = [
   "Record completeness",
@@ -30,7 +50,14 @@ const SCORE_REFLECTS = [
   "Future stewardship",
 ];
 
-const FLOW = ["Booked", "Delivered", "Remembered", "Home Record", "HoWA Score"];
+const APPROVED_BENEFITS = [
+  "Be discovered by homeowners through HoWA",
+  "Receive jobs with better context",
+  "Work under a trusted House standard",
+  "Build proof through completed work",
+  "Contribute to the customer's Home Record",
+  "Grow with a platform, not a directory",
+];
 
 const ctaPrimary =
   "inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown bg-house-gold-ink border border-house-gold-dark px-6 py-3 no-underline transition-[filter] duration-[var(--t-slow)] ease-out hover:brightness-110";
@@ -42,7 +69,7 @@ export default async function HomePage() {
 
   return (
     <div className="bg-house-cream text-house-brown">
-      {/* 1. Hero — full width, text left, image right */}
+      {/* 1. Hero — full width, text left, phone demo right */}
       <section className="relative grid lg:grid-cols-2 border-b border-house-brown/8">
         <div className="relative flex flex-col justify-center px-[5vw] py-20 lg:py-24 lg:pr-14">
           <FlowerWatermark color="gold" side="left" opacity={0.1} />
@@ -50,25 +77,25 @@ export default async function HomePage() {
             <p className="font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink mb-6">
               House of HoWA
             </p>
-            <h1 className="font-display text-[clamp(42px,5.4vw,80px)] leading-[1.0] tracking-[-0.015em] text-house-black max-w-[13ch]">
-              The home, <em className="italic">finally known.</em>
+            <h1 className="font-display text-[clamp(40px,5vw,74px)] leading-[1.02] tracking-[-0.015em] text-house-black max-w-[15ch]">
+              A new House for <em className="italic">home stewardship.</em>
             </h1>
-            <p className="font-display italic text-[clamp(19px,2.1vw,28px)] leading-[1.35] text-house-brown/85 mt-6 max-w-[30ch]">
-              Your house is trying to tell you something. House of HoWA is where
-              it is heard.
+            <p className="font-sans text-[17px] leading-[1.65] text-house-brown/80 mt-6 max-w-[50ch]">
+              Trusted services, approved partners and the HoWA Home Operating
+              System, working together so every home can be cared for, recorded
+              and remembered.
             </p>
-            <p className="font-sans text-[17px] leading-[1.65] text-house-brown/80 mt-5 max-w-[48ch]">
-              Start with your address. HoWA builds the first portrait of your
-              home, gives it a living Score, and turns what it finds into clear
-              next actions: save this, check that, book the right help, protect
-              what matters.
+            <p className="font-sans text-[16px] leading-[1.6] text-house-brown/70 mt-4 max-w-[50ch]">
+              Book a garden visit. Clean the windows. Repair the thing that has
+              been waiting. Start a design brief. However you enter, the work is
+              saved into one Home Record and reflected in your HoWA Score.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Link href="/howa/assistant" className={ctaPrimary}>
-                Start with my address
-              </Link>
-              <Link href="/howa-score" className={ctaSecondary}>
-                Meet the HoWA Score
+              <a href="#open-booking-form" className={ctaPrimary}>
+                Book through HoWA
+              </a>
+              <Link href="/howa/assistant" className={ctaSecondary}>
+                Start with your address
               </Link>
             </div>
             <p className="font-sans text-[13px] tracking-[0.02em] text-house-stone mt-6">
@@ -79,7 +106,81 @@ export default async function HomePage() {
         <HowaHeroDemo />
       </section>
 
-      {/* 2. The Score — copy left, the HoWA Score demo on the right */}
+      {/* 2. Founding service family */}
+      <section className="px-[5vw] py-16 bg-house-cream-dark border-b border-house-brown/8">
+        <div className="max-w-[1300px] mx-auto">
+          <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">
+            The founding service family
+          </p>
+          <h2 className="font-display text-[clamp(26px,3.4vw,44px)] leading-[1.1] text-house-black max-w-[22ch] mb-5">
+            Willow Alexander began with real work in real homes.
+          </h2>
+          <p className="font-sans text-[17px] leading-[1.7] text-house-brown/80 max-w-[64ch] mb-10">
+            The Willow Alexander service family becomes the founding proof network
+            of House of HoWA: the first teams working through the House standard
+            and into the HoWA Home Record. Over time, approved professionals and
+            partner brands will sit alongside them.
+          </p>
+          <div className="grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+            {SERVICE_FAMILY.map((s) => (
+              <Link key={s.name} href={s.href} className="group block no-underline border-t border-house-brown/15 pt-4">
+                <h3 className="font-display text-[20px] leading-[1.2] text-house-black group-hover:text-house-gold-ink transition-colors">
+                  {s.name}
+                </h3>
+                <p className="font-sans text-[14px] leading-[1.55] text-house-brown/70 mt-1.5">{s.line}</p>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-10 flex flex-wrap gap-4">
+            <Link href="/services" className={ctaPrimary}>
+              Explore services
+            </Link>
+            <a href="#open-booking-form" className={ctaSecondary}>
+              Book through HoWA
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Booked. Delivered. Remembered. */}
+      <section className="px-[5vw] py-20 max-w-[1000px] mx-auto">
+        <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">
+          Service, up into HoWA
+        </p>
+        <h2 className="font-display text-[clamp(28px,3.6vw,46px)] leading-[1.08] text-house-black max-w-[22ch] mb-5">
+          Booked. Delivered. <em className="italic">Remembered.</em>
+        </h2>
+        <p className="font-sans text-[17px] leading-[1.7] text-house-brown/80 max-w-[62ch] mb-9">
+          Most home services end when the job is done. House of HoWA is built so
+          the job becomes part of the home. Every service becomes more valuable
+          when it is remembered.
+        </p>
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-10">
+          {FLOW.map((step, i) => (
+            <span key={step} className="flex items-center gap-3">
+              <span className="font-sans text-[13px] tracking-[0.12em] uppercase text-house-brown/80 border border-house-brown/15 px-3 py-1.5">
+                {step}
+              </span>
+              {i < FLOW.length - 1 ? <span aria-hidden className="text-house-gold-ink">→</span> : null}
+            </span>
+          ))}
+        </div>
+        <ul className="grid gap-y-3 sm:grid-cols-2 gap-x-10 mb-10">
+          {REMEMBERED.map((r) => (
+            <li key={r} className="font-sans text-[16px] leading-[1.55] text-house-brown/85 pl-5 relative before:content-['—'] before:absolute before:left-0 before:text-house-gold-ink">
+              {r}
+            </li>
+          ))}
+        </ul>
+        <p className="font-display italic text-[20px] leading-[1.4] text-house-brown/85 mb-8 max-w-[40ch]">
+          The work is real. The people are real. HoWA keeps the record.
+        </p>
+        <a href="#open-booking-form" className={ctaPrimary}>
+          Book through HoWA
+        </a>
+      </section>
+
+      {/* 4. The HoWA Score */}
       <section className="px-[5vw] py-16 bg-house-cream-dark border-t border-b border-house-brown/8">
         <div className="max-w-[1300px] mx-auto grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:items-center">
           <div>
@@ -87,14 +188,14 @@ export default async function HomePage() {
               The HoWA Score
             </p>
             <h2 className="font-display text-[clamp(28px,3.6vw,46px)] leading-[1.08] text-house-black max-w-[20ch] mb-6">
-              The Score is the first thing you understand.
+              The Score shows how well your home is being held.
             </h2>
             <p className="font-sans text-[17px] leading-[1.7] text-house-brown/80 max-w-[54ch]">
               A home can be valuable and still be unmanaged. Documents sit in
               drawers. Services disappear into invoices. Repairs live in WhatsApp
-              threads. Small risks wait quietly until they cost money. HoWA gives
-              the home one clear measure of readiness: a living Score that
-              improves as the home becomes more known.
+              threads. Small risks wait quietly until they cost money. The HoWA
+              Score gives the home one clear measure of readiness: a living Score
+              that improves as the home becomes more known.
             </p>
             <ul className="grid gap-x-8 gap-y-2 sm:grid-cols-2 mt-8">
               {SCORE_REFLECTS.map((r) => (
@@ -108,7 +209,7 @@ export default async function HomePage() {
             </ul>
             <div className="mt-9">
               <Link href="/howa-score" className={ctaSecondary}>
-                See how the Score works →
+                Meet the HoWA Score →
               </Link>
             </div>
           </div>
@@ -124,7 +225,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 3. One address. One record. */}
+      {/* 5. One address. One record. */}
       <section className="px-[5vw] py-20 max-w-[820px] mx-auto text-center">
         <h2 className="font-display text-[clamp(28px,3.6vw,46px)] leading-[1.1] text-house-black mb-6">
           One address. One record. <em className="italic">A home that remembers.</em>
@@ -133,29 +234,34 @@ export default async function HomePage() {
           The Home Record is the living memory of the address. Rooms, assets,
           documents, jobs, costs, photographs, warranties, visits, plans and
           concerns all return to one place. The record belongs to the home, not
-          to one person&apos;s inbox.
+          to one person&apos;s inbox. Every useful action should leave the home
+          clearer than it was before.
         </p>
+        <div className="mt-8">
+          <Link href="/howa/assistant" className={ctaPrimary}>
+            Start with your address
+          </Link>
+        </div>
       </section>
 
-      {/* 4. Meet the Household — cutaway-house cards */}
+      {/* 6. Meet the Household — cutaway-house cards */}
       <section className="howa-surface px-[5vw] py-16 max-w-[1360px] mx-auto">
         <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">
           The Household
         </p>
         <h2 className="font-display text-[clamp(30px,4vw,54px)] leading-[1.05] text-house-black max-w-[18ch] mb-5">
-          Seven specialist duties.{" "}
-          <em className="italic text-house-gold-ink">One calm intelligence.</em>
+          Meet the Household.
         </h2>
         <p className="font-sans text-[17px] leading-[1.7] text-house-brown/80 max-w-[68ch] mb-3">
-          You ask HoWA. Behind it, the right Household specialist reads the
-          context and turns the answer into something useful: a saved object,
-          task, reminder, plan, warning, quote note or evidence entry. You never
-          manage bots. You simply speak to HoWA and feel the Household working.
+          Nobody wakes up wanting a home intelligence layer. People wake up with
+          a garden that needs reading, a tap that is dripping, a room they want
+          to redesign, a quote they do not trust or a drawer full of documents
+          they keep meaning to sort. So HoWA meets people through the Household.
         </p>
         <p className="font-sans text-[16px] leading-[1.6] text-house-brown/70 max-w-[68ch] mb-10">
-          The five doors below are free because they solve real household
-          moments. The Housekeeper and Steward are the two you employ when the
-          home needs continuity.
+          The first doors are free because they solve real household moments. The
+          Housekeeper and Steward are the two you employ when the home needs
+          continuity.
         </p>
         <HouseholdDoors />
         <div className="mt-10">
@@ -165,93 +271,92 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 5. Services are proof, not the pitch */}
-      <section className="px-[5vw] py-20 max-w-[1000px] mx-auto">
+      {/* 7. Housekeeper & Steward — two depths of care */}
+      <section className="px-[5vw] py-20 max-w-[1100px] mx-auto">
         <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">
-          Services
+          Housekeeper and Steward
         </p>
-        <h2 className="font-display text-[clamp(28px,3.6vw,46px)] leading-[1.08] text-house-black max-w-[22ch] mb-5">
-          The House does the work. <em className="italic">HoWA remembers it.</em>
+        <h2 className="font-display text-[clamp(28px,3.6vw,46px)] leading-[1.08] text-house-black max-w-[20ch] mb-10">
+          The two depths of care.
         </h2>
-        <p className="font-sans text-[17px] leading-[1.7] text-house-brown/80 max-w-[62ch] mb-10">
-          Gardens, windows, cleaning, gutters, design, repairs and approved
-          partner services become more valuable when the outcome is saved to the
-          Home Record. A visit is not just booked and delivered. It is
-          remembered.
+        <div className="grid gap-8 md:grid-cols-2">
+          <div className="border-t border-house-brown/15 pt-6">
+            <h3 className="font-display text-[26px] leading-[1.15] text-house-black mb-3">
+              The Housekeeper keeps the home in order.
+            </h3>
+            <p className="font-sans text-[16px] leading-[1.65] text-house-brown/78">
+              For the household that wants everything kept in rhythm: documents
+              filed, tasks remembered, costs stored, seasonal work planned and the
+              monthly picture made clear.
+            </p>
+          </div>
+          <div className="border-t border-house-brown/15 pt-6">
+            <h3 className="font-display text-[26px] leading-[1.15] text-house-black mb-3">
+              The Steward watches the whole home.
+            </h3>
+            <p className="font-sans text-[16px] leading-[1.65] text-house-brown/78">
+              For the homeowner who wants the long view: risk, evidence,
+              approvals, annual reporting, smart-home instruments and protection
+              before failure.
+            </p>
+          </div>
+        </div>
+        <p className="font-display italic text-[19px] leading-[1.45] text-house-brown/85 mt-9 max-w-[60ch]">
+          Assistant helps you see. Housekeeper helps you stay ahead. Steward
+          protects before failure.
         </p>
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-10">
-          {FLOW.map((step, i) => (
-            <span key={step} className="flex items-center gap-3">
-              <span className="font-sans text-[13px] tracking-[0.12em] uppercase text-house-brown/80 border border-house-brown/15 px-3 py-1.5">
-                {step}
-              </span>
-              {i < FLOW.length - 1 ? (
-                <span aria-hidden className="text-house-gold-ink">→</span>
-              ) : null}
-            </span>
-          ))}
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
-          {[
-            { n: "Gardening", h: "/services/gardening", i: "/services/photos/gardening-hero.webp" },
-            { n: "Window cleaning", h: "/services/window-cleaning", i: "/services/photos/window-cleaning-hero.webp" },
-            { n: "Cleaning", h: "/services/cleaning", i: "/services/photos/cleaning-hero.webp" },
-            { n: "Gutter cleaning", h: "/services/gutter-cleaning", i: "/services/photos/gutter-cleaning-hero.webp" },
-          ].map((sv) => (
-            <Link
-              key={sv.n}
-              href={sv.h}
-              className="group relative block aspect-[4/5] overflow-hidden bg-house-cream-dark no-underline"
-            >
-              <Image
-                src={sv.i}
-                alt={sv.n}
-                fill
-                sizes="(min-width:768px) 22vw, 50vw"
-                className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.04]"
-              />
-              <span
-                aria-hidden
-                className="absolute inset-0"
-                style={{ background: "linear-gradient(to top, rgba(26,19,13,0.72), rgba(26,19,13,0.05) 55%)" }}
-              />
-              <span className="absolute inset-x-0 bottom-0 p-3 font-display text-[18px] leading-tight text-white">
-                {sv.n}
-              </span>
-            </Link>
-          ))}
-        </div>
-        <div className="flex flex-wrap gap-4">
-          <a href="#open-booking-form" className={ctaPrimary}>
-            Book through HoWA
-          </a>
-          <Link href="/services" className={ctaSecondary}>
-            See all services →
+        <div className="mt-7">
+          <Link href="/howa/plans" className={ctaSecondary}>
+            See memberships →
           </Link>
         </div>
       </section>
 
-      {/* 6. What happens in the first minute */}
-      <section className="px-[5vw] py-16 bg-house-cream-dark border-t border-b border-house-brown/8">
-        <div className="max-w-[820px] mx-auto text-center">
-          <h2 className="font-display text-[clamp(26px,3.2vw,42px)] leading-[1.1] text-house-black mb-5">
-            What happens in the first minute
-          </h2>
-          <p className="font-sans text-[18px] leading-[1.7] text-house-brown/80 mb-4">
-            Type your address. HoWA introduces your home back to you: public
-            property facts where available, a first Home Portrait, a provisional
-            HoWA Score and one useful next action.
-          </p>
-          <p className="font-display italic text-[20px] text-house-brown/85 mb-8">
-            No forms. No drawer hunt. No starting from zero.
-          </p>
-          <Link href="/howa/assistant" className={ctaPrimary}>
-            Start free
-          </Link>
+      {/* 8. House Approved — partner recruitment */}
+      <section className="px-[5vw] py-16 bg-house-black text-house-cream border-t border-house-brown/20">
+        <div className="max-w-[1100px] mx-auto grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+          <div>
+            <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-light mb-4">
+              For trusted professionals
+            </p>
+            <h2 className="font-display text-[clamp(28px,3.6vw,46px)] leading-[1.08] text-house-cream max-w-[16ch] mb-5">
+              Become House Approved.
+            </h2>
+            <p className="font-sans text-[16px] leading-[1.7] text-house-cream/80 max-w-[56ch] mb-4">
+              House of HoWA is building a trusted network of service providers,
+              contractors, designers, specialists and partner brands who want to
+              work inside a higher standard of home care.
+            </p>
+            <p className="font-sans text-[15px] leading-[1.65] text-house-cream/70 max-w-[56ch]">
+              This is not a lead-gen directory. It is a standard, a service layer
+              and a platform relationship.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link
+                href="/partners"
+                className="inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-house-black bg-house-gold-light border border-house-gold-light px-6 py-3 no-underline transition-[filter] hover:brightness-105"
+              >
+                Apply to become House Approved
+              </Link>
+              <Link
+                href="/partners"
+                className="inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-house-cream border border-house-cream/30 px-6 py-3 no-underline transition-colors hover:border-house-gold-light hover:text-house-gold-light"
+              >
+                Partner with the House
+              </Link>
+            </div>
+          </div>
+          <ul className="grid gap-3">
+            {APPROVED_BENEFITS.map((b) => (
+              <li key={b} className="font-sans text-[15px] leading-[1.5] text-house-cream/85 pl-5 relative before:content-['—'] before:absolute before:left-0 before:text-house-gold-light">
+                {b}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      {/* From the Hearth — editorial teaser */}
+      {/* 9. From the Hearth — editorial teaser */}
       {hearthArticles.length > 0 ? (
         <section className="px-[5vw] py-16 max-w-[1200px] mx-auto">
           <div className="flex items-end justify-between mb-8">
@@ -260,7 +365,7 @@ export default async function HomePage() {
                 The Hearth
               </p>
               <h2 className="font-display italic text-[clamp(24px,2.8vw,36px)] text-house-black">
-                Notes for a home that remembers.
+                Editorial that helps the home move.
               </h2>
             </div>
             <Link href="/the-hearth" className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-ink no-underline hidden sm:block">
@@ -287,6 +392,29 @@ export default async function HomePage() {
           </div>
         </section>
       ) : null}
+
+      {/* 10. Final CTA — start where your home needs you */}
+      <section className="px-[5vw] py-20 bg-house-cream-dark border-t border-house-brown/8 text-center">
+        <div className="max-w-[760px] mx-auto">
+          <h2 className="font-display text-[clamp(28px,3.6vw,46px)] leading-[1.1] text-house-black mb-6">
+            Start where your home needs you.
+          </h2>
+          <p className="font-sans text-[18px] leading-[1.7] text-house-brown/80 mb-8">
+            Book a service. Start with your address. Meet the Household. Apply to
+            become House Approved. However you enter, the aim is the same: your
+            home becomes easier to understand, easier to care for and harder to
+            forget.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <a href="#open-booking-form" className={ctaPrimary}>
+              Book through HoWA
+            </a>
+            <Link href="/howa/assistant" className={ctaSecondary}>
+              Start with your address
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* Speak to the House — lead capture into the Home Record */}
       <EnquiryForm

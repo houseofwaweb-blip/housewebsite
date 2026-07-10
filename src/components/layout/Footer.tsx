@@ -117,10 +117,11 @@ export function Footer({ columns, tagline }: FooterProps) {
         </div>
 
         <p className="pt-8 font-sans text-[15px] leading-[1.6] text-house-cream/55 max-w-[760px]">
-          House of HoWA is the institution behind HoWA: the Home Operating System
-          that gives every home a record, a Score and a next action. The House
-          sets the standard. HoWA remembers the home. Founding partners and House
-          Approved providers deliver the work.
+          House of HoWA is a new House for home stewardship: trusted services,
+          approved partners and the HoWA Home Operating System that gives every
+          home a record, a Score and a next action. The House sets the standard.
+          HoWA remembers the home. Founding partners and House Approved providers
+          deliver the work.
         </p>
 
         <div className="pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
