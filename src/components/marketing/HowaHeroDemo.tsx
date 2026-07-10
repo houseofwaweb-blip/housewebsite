@@ -96,18 +96,29 @@ export function HowaHeroDemo() {
           </div>
 
           {/* Living record */}
-          <div className="mx-3 mb-2 rounded-xl bg-white border border-house-brown/10 p-3">
-            <div className="font-sans text-[8px] tracking-[0.14em] uppercase text-house-stone">
-              Living Record
+          <div className="mx-3 mb-2 rounded-xl bg-white border border-house-brown/10 p-3 flex items-center justify-between gap-2">
+            <div>
+              <div className="font-sans text-[8px] tracking-[0.14em] uppercase text-house-stone">
+                Living Record
+              </div>
+              <div className="font-sans text-[10px] text-house-brown/70 mb-1">Updated today · 08:42</div>
+              <div className="font-sans text-[10px] text-house-gold-ink">View record →</div>
             </div>
-            <div className="font-sans text-[10px] text-house-brown/70">Updated today · 08:42</div>
-            <div className="font-sans text-[10px] text-house-gold-ink mt-1">View record →</div>
+            <div className="relative w-11 h-11 shrink-0 opacity-85">
+              <Image src="/howa/record-sketch.webp" alt="" fill sizes="44px" className="object-contain" />
+            </div>
           </div>
 
           {/* What matters first */}
           <div className="mx-3 mb-3 rounded-xl bg-white border border-house-brown/10 p-3">
-            <div className="font-sans text-[8px] tracking-[0.14em] uppercase text-house-stone mb-1.5">
+            <div className="font-sans text-[8px] tracking-[0.14em] uppercase text-house-stone">
               What matters first
+            </div>
+            <div className="font-sans text-[10px] font-medium text-house-black mt-0.5">
+              3 things need attention
+            </div>
+            <div className="font-sans text-[9px] text-house-stone mb-2">
+              HoWA tells you what matters first
             </div>
             <ul className="space-y-1.5">
               {[
@@ -116,7 +127,21 @@ export function HowaHeroDemo() {
                 "Smoke alarms · tested OK",
               ].map((t) => (
                 <li key={t} className="flex items-center gap-1.5 font-sans text-[10px] text-house-brown/75">
-                  <span className="is-round w-1.5 h-1.5 bg-house-gold-ink shrink-0" />
+                  <span
+                    className="is-round flex items-center justify-center w-3 h-3 shrink-0"
+                    style={{ background: "rgba(180,150,60,0.18)" }}
+                  >
+                    <svg viewBox="0 0 10 10" className="w-2 h-2" aria-hidden>
+                      <path
+                        d="M2 5 L4 7 L8 3"
+                        fill="none"
+                        stroke="var(--color-house-gold-dark)"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
                   {t}
                 </li>
               ))}

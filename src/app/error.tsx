@@ -42,8 +42,7 @@ export default function ErrorPage({
             className="text-house-brown underline decoration-house-gold underline-offset-4"
           >
             write to the House
-          </Link>
-          {error.digest ? ` and quote reference ${error.digest}` : ""}.
+          </Link>.
         </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-6">

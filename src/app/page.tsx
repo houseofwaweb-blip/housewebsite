@@ -4,6 +4,7 @@ import { getLatestHearthArticles } from "@/lib/cms/hearth";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { EnquiryForm } from "@/components/marketing/EnquiryForm";
 import { HowaHeroDemo } from "@/components/marketing/HowaHeroDemo";
+import { HouseholdDoors } from "@/components/marketing/HouseholdDoors";
 
 /**
  * Homepage — House of HoWA (launch read section 4).
@@ -27,16 +28,6 @@ const SCORE_REFLECTS = [
   "Risk readiness",
   "Efficiency and utilities",
   "Future stewardship",
-];
-
-const HOUSEHOLD = [
-  { role: "The Gardener", line: "reads gardens, seasons and planting." },
-  { role: "The Handyman", line: "helps you understand the fix before you book it." },
-  { role: "The Designer", line: "turns one photo into a direction." },
-  { role: "The Surveyor", line: "turns worry into a clear next step." },
-  { role: "The Archivist", line: "turns documents into dates, reminders and evidence." },
-  { role: "The Housekeeper", line: "keeps the everyday home in order." },
-  { role: "The Steward", line: "protects the home before failure." },
 ];
 
 const FLOW = ["Booked", "Delivered", "Remembered", "Home Record", "HoWA Score"];
@@ -146,47 +137,31 @@ export default async function HomePage() {
         </p>
       </section>
 
-      {/* 4. Meet the Household */}
-      <section className="px-[5vw] py-16 bg-house-brown text-house-cream">
-        <div className="max-w-[1000px] mx-auto">
-          <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-light mb-4">
-            The Household
-          </p>
-          <h2 className="font-display text-[clamp(28px,3.6vw,46px)] leading-[1.08] text-house-cream max-w-[18ch] mb-6">
-            Meet the <em className="italic">Household.</em>
-          </h2>
-          <p className="font-sans text-[17px] leading-[1.7] text-house-cream/80 max-w-[62ch] mb-9">
-            Most people don&apos;t arrive looking for a Home Operating System.
-            They arrive with a garden, a crack, a quote, a room, a document, a
-            leak, a repair or a service they need to book. Start with the
-            specialist you need today, free.
-          </p>
-          <ul className="grid gap-x-10 gap-y-3 sm:grid-cols-2 mb-10">
-            {HOUSEHOLD.map((h) => (
-              <li key={h.role} className="font-sans text-[16px] leading-[1.5] text-house-cream/85">
-                <span className="text-house-gold-light">{h.role}</span> {h.line}
-              </li>
-            ))}
-          </ul>
-          <Link
-            href="/household"
-            className="inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown bg-house-gold-ink border border-house-gold-dark px-6 py-3 no-underline hover:brightness-110 transition-[filter]"
-          >
-            Meet the Household →
+      {/* 4. Meet the Household — cutaway-house cards */}
+      <section className="howa-surface px-[5vw] py-16 max-w-[1360px] mx-auto">
+        <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">
+          The Household
+        </p>
+        <h2 className="font-display text-[clamp(30px,4vw,54px)] leading-[1.05] text-house-black max-w-[18ch] mb-5">
+          Seven specialist duties.{" "}
+          <em className="italic text-house-gold-ink">One calm intelligence.</em>
+        </h2>
+        <p className="font-sans text-[17px] leading-[1.7] text-house-brown/80 max-w-[68ch] mb-3">
+          You ask HoWA. Behind it, the right Household specialist reads the
+          context and turns the answer into something useful: a saved object,
+          task, reminder, plan, warning, quote note or evidence entry. You never
+          manage bots. You simply speak to HoWA and feel the Household working.
+        </p>
+        <p className="font-sans text-[16px] leading-[1.6] text-house-brown/70 max-w-[68ch] mb-10">
+          The five doors below are free because they solve real household
+          moments. The Housekeeper and Steward are the two you employ when the
+          home needs continuity.
+        </p>
+        <HouseholdDoors />
+        <div className="mt-10">
+          <Link href="/household" className={ctaSecondary}>
+            Meet the whole Household →
           </Link>
-        </div>
-      </section>
-
-      {/* Meet the Household visual */}
-      <section className="px-[5vw] py-12 max-w-[1200px] mx-auto">
-        <div className="relative aspect-[16/9] overflow-hidden bg-house-cream-dark">
-          <Image
-            src="/howa/homepage-household.webp"
-            alt="Meet the Household: seven ways into one home record"
-            fill
-            sizes="(min-width:1024px) 1140px, 100vw"
-            className="object-cover"
-          />
         </div>
       </section>
 

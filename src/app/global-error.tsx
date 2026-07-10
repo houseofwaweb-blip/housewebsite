@@ -76,8 +76,7 @@ export default function GlobalError({
             }}
           >
             Something failed at the root of the site. Try again, and if it
-            persists, write to hello@willowalexander.co.uk
-            {error.digest ? ` and quote reference ${error.digest}.` : "."}
+            persists, write to hello@willowalexander.co.uk.
           </p>
           <button
             type="button"
