@@ -24,7 +24,7 @@ export const metadata = {
 
 const SERVICE_FAMILY = [
   { name: "Willow Alexander Gardeners", line: "Garden maintenance, seasonal care and outdoor rhythm.", href: "/services/gardening", img: "/services/subbrands/gardeners.webp" },
-  { name: "Willow Alexander Gardens", line: "Garden design, planting, landscaping and outdoor transformation.", href: "/design/gardens", img: "/design/gardens/full-design.webp" },
+  { name: "Willow Alexander Gardens", line: "Garden design, planting, landscaping and outdoor transformation.", href: "/design/gardens", img: "/services/subbrands/gardens.webp" },
   { name: "Willow Alexander Cleaners", line: "Considered cleaning for homes that need regular care.", href: "/services/cleaning", img: "/services/subbrands/cleaners.webp" },
   { name: "Willow Alexander Window Cleaners", line: "Reliable window care, recorded as part of the home's maintenance rhythm.", href: "/services/window-cleaning", img: "/services/subbrands/window-cleaner.webp" },
   { name: "Willow Alexander Handyman", line: "Repairs, fixes, small works and practical help around the home.", href: "/services/handyman", img: "/services/subbrands/handyman.webp" },
