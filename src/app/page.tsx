@@ -158,18 +158,23 @@ export default async function HomePage() {
         <div className="mt-9"><Link href="/services" className={ctaSecondary}>See all services →</Link></div>
       </section>
 
-      {/* 4. HOUSE APPROVED PROOF */}
+      {/* 4. HOUSE APPROVED PROOF — text left, van image right */}
       <section className="px-[5vw] py-16 bg-house-cream-dark border-t border-b border-house-brown/8">
-        <div className="max-w-[900px] mx-auto text-center">
-          <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">House Approved</p>
-          <h2 className="font-display text-[clamp(26px,3.4vw,44px)] leading-[1.1] text-house-black max-w-[22ch] mx-auto mb-5">The mark on the van means something.</h2>
-          <p className="font-sans text-[17px] leading-[1.7] text-house-brown/80 max-w-[62ch] mx-auto mb-3">
-            House Approved is not an open directory. It is the standard for the professionals, studios and sellers the House is prepared to present.
-          </p>
-          <p className="font-sans text-[16px] leading-[1.6] text-house-brown/70 max-w-[58ch] mx-auto mb-8">
-            Named providers. Clear scopes. Current operating information. Work reviewed and approval capable of being withdrawn.
-          </p>
-          <Link href="/the-house/standards" className={ctaSecondary}>What House Approved means →</Link>
+        <div className="max-w-[1300px] mx-auto grid gap-10 lg:gap-14 lg:grid-cols-2 lg:items-center">
+          <div>
+            <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">House Approved</p>
+            <h2 className="font-display text-[clamp(26px,3.4vw,44px)] leading-[1.1] text-house-black max-w-[16ch] mb-5">The mark on the van means something.</h2>
+            <p className="font-sans text-[17px] leading-[1.7] text-house-brown/80 max-w-[52ch] mb-3">
+              House Approved is not an open directory. It is the standard for the professionals, studios and sellers the House is prepared to present.
+            </p>
+            <p className="font-sans text-[16px] leading-[1.6] text-house-brown/70 max-w-[52ch] mb-8">
+              Named providers. Clear scopes. Current operating information. Work reviewed and approval capable of being withdrawn.
+            </p>
+            <Link href="/the-house/standards" className={ctaSecondary}>What House Approved means →</Link>
+          </div>
+          <div className="relative aspect-[16/9] overflow-hidden border border-house-brown/10">
+            <Image src="/the-house/house-approved-van.webp" alt="A House Approved van with the mark on its side and the named provider beside it on a British street" fill sizes="(min-width:1024px) 50vw, 100vw" className="object-cover" />
+          </div>
         </div>
       </section>
 
