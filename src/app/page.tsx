@@ -233,14 +233,23 @@ export default async function HomePage() {
               <Link href="/howa/assistant" className="inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-house-black bg-house-gold-light border border-house-gold-light px-6 py-3 no-underline hover:brightness-105 transition-[filter]">Start with my address</Link>
               <Link href="/howa-score" className="inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-house-cream border border-house-cream/30 px-6 py-3 no-underline transition-colors hover:border-house-gold-light hover:text-house-gold-light">See how the HoWA Score works</Link>
             </div>
+            <div className="mt-7">
+              <p className="font-sans text-[11px] tracking-[0.14em] uppercase text-house-cream/50 mb-2.5">The HoWA app is coming. Pre-register now.</p>
+              <div className="flex items-center gap-3">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/brand/apple-app-store-badge.svg" alt="Coming soon to the App Store" className="h-[42px] w-auto" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/brand/google-play-prereg.png" alt="Pre-register on Google Play" className="h-[42px] w-auto" />
+              </div>
+            </div>
           </div>
 
-          {/* home image with the Score card floating over it */}
+          {/* home image (full 16:9, not cropped) with the Score card over it */}
           <div className="relative">
-            <div className="relative aspect-[4/3] overflow-hidden border border-house-cream/10 bg-house-cream-dark">
+            <div className="relative aspect-[16/9] overflow-hidden border border-house-cream/10 bg-house-cream-dark">
               <Image src="/howa/score-dashboard.webp" alt="A HoWA home, seen with its living overview" fill sizes="(min-width:1024px) 560px, 100vw" className="object-cover" />
             </div>
-            <div className="howa-surface relative z-10 -mt-24 w-[92%] mx-auto">
+            <div className="howa-surface relative z-10 -mt-14 w-[92%] mx-auto">
               <div className="rounded-2xl bg-house-cream text-house-brown overflow-hidden shadow-[0_30px_70px_-28px_rgba(0,0,0,0.65)]">
                 <div className="flex items-center justify-between gap-3 px-5 py-3 border-b border-house-brown/10">
                   <p className="font-sans text-[10px] tracking-[0.16em] uppercase text-house-gold-ink">HoWA Home Overview</p>

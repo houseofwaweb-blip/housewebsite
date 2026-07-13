@@ -37,16 +37,6 @@ const SENIORS = [
     cta: "Protect the home",
     href: "/howa/steward",
   },
-  {
-    name: "The Butler",
-    price: "Staged release",
-    img: "/howa/household/butler.webp",
-    btn: "#8a8f7a",
-    role: "Reads the instruments of the home and, with explicit permissions, helps operate supported connected systems.",
-    note: "Staged clearly: demonstration, then recommendations, then command. Never implies universal device compatibility.",
-    cta: "See how it works",
-    href: "/howa",
-  },
 ];
 
 const MEMBERS = [
@@ -57,6 +47,7 @@ const MEMBERS = [
   { name: "The Archivist", promise: "Turn paperwork into dates, costs, reminders and proof.", state: "Product beta", tone: "beta", img: "/howa/household/archivist.webp", href: "/household/archivist" },
   { name: "The Storekeeper", promise: "Keep considered goods organised by the rooms and needs of the home.", state: "The Stores", tone: "live", img: "/howa/household/storekeeper.webp", href: "/shop" },
   { name: "The Host", promise: "Welcome you into the culture and practical knowledge of keeping a home.", state: "Live", tone: "live", img: "/howa/household/host.webp", href: "/the-hearth" },
+  { name: "The Butler", promise: "Read the instruments of the home and, with permission, help operate supported connected systems.", state: "Staged release", tone: "beta", img: "/howa/household/butler.webp", href: "/howa" },
 ];
 
 const ctaPrimary =
@@ -91,8 +82,8 @@ export default function HouseholdPage() {
       {/* Senior Household — paid continuity, above the utility members */}
       <section className="px-[5vw] py-14 bg-house-cream-dark border-t border-b border-house-brown/8">
         <div className="max-w-[1300px] mx-auto">
-          <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-6">Senior Household</p>
-          <div className="grid gap-6 md:grid-cols-3">
+          <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-6">The two you employ</p>
+          <div className="grid gap-6 md:grid-cols-2">
             {SENIORS.map((d) => (
               <Link key={d.name} href={d.href} className="group relative flex min-h-[460px] flex-col justify-end overflow-hidden rounded-2xl no-underline">
                 <Image src={d.img} alt={d.name} fill sizes="(min-width:768px) 33vw, 100vw" className="object-cover" />
