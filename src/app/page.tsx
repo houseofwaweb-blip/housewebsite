@@ -44,10 +44,10 @@ const PAID_TIERS = [
   { role: "The Steward", price: "£29.99/mo when ready", img: "/howa/household/steward.webp", btn: "#c9a84a", forLine: "For the homeowner who wants the long view of the home.", line: "Score oversight, risk watch, evidence, annual report and future planning.", cta: "Protect the home", href: "/howa/steward" },
 ];
 
-const SCORE_DRIVERS = [
-  { label: "Records", value: "8 of 12 saved" },
-  { label: "Maintenance", value: "On rhythm" },
-  { label: "Evidence", value: "1 warranty missing" },
+const WHAT_MATTERS = [
+  "Boiler service · due in 14 days",
+  "Gutter clean · before winter",
+  "Smoke alarms · tested OK",
 ];
 
 const STORES_ROOMS = [
@@ -202,9 +202,11 @@ export default async function HomePage() {
               <Image src={d.img} alt={d.role} fill sizes="(min-width:768px) 50vw, 100vw" className="object-cover" />
               <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(20,14,10,0.88) 0%, rgba(20,14,10,0.38) 45%, rgba(20,14,10,0.05) 78%)" }} />
               <div className="relative p-8 text-white">
-                <div className="flex items-baseline justify-between gap-4 mb-2">
-                  <h3 className="font-display text-[clamp(28px,3vw,40px)] leading-none">{d.role}</h3>
-                  <span className="font-sans text-[14px] tracking-[0.02em] text-white/90 whitespace-nowrap">{d.price}</span>
+                <div className="flex items-start justify-between gap-4 mb-2">
+                  <h3 className="font-display text-[clamp(28px,3vw,40px)] leading-[1.04]">
+                    The<br />{d.role.replace("The ", "")}
+                  </h3>
+                  <span className="font-sans text-[14px] tracking-[0.02em] text-white/90 whitespace-nowrap mt-2">{d.price}</span>
                 </div>
                 <p className="font-display italic text-[17px] leading-[1.4] text-white/85 mb-3 max-w-[44ch]">{d.forLine}</p>
                 <p className="font-sans text-[15px] leading-[1.55] text-white/80 mb-6 max-w-[48ch]">{d.line}</p>
@@ -228,26 +230,51 @@ export default async function HomePage() {
           </p>
         </div>
 
-        {/* prominent example score */}
-        <div className="max-w-[1000px] mx-auto mt-12 bg-house-cream text-house-brown overflow-hidden">
-          <div className="flex items-center justify-between gap-4 px-6 sm:px-8 py-5 border-b border-house-brown/10">
-            <p className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-ink">Example HoWA Score</p>
-            <span className="font-display text-[clamp(30px,4vw,44px)] leading-none text-house-black">76<span className="font-sans text-[13px] text-house-stone tracking-[0.1em] uppercase ml-1.5">/ 100</span></span>
-          </div>
-          <div className="relative aspect-[16/9] bg-house-cream-dark">
-            <Image src="/howa/score-dashboard.webp" alt="A HoWA Score dashboard: records, maintenance rhythm and evidence, with what matters next" fill sizes="(min-width:1024px) 1000px, 100vw" className="object-cover" />
-          </div>
-          <div className="grid sm:grid-cols-3 gap-x-8 gap-y-2 px-6 sm:px-8 py-5 border-t border-house-brown/10">
-            {SCORE_DRIVERS.map((d) => (
-              <div key={d.label}>
-                <span className="font-sans text-[11px] tracking-[0.14em] uppercase text-house-stone">{d.label}</span>
-                <p className="font-sans text-[15px] text-house-brown">{d.value}</p>
+        {/* prominent example score — HoWA Home Overview bar (reference layout) */}
+        <div className="howa-surface max-w-[1040px] mx-auto mt-12">
+          <div className="rounded-2xl bg-house-cream text-house-brown overflow-hidden shadow-[0_30px_70px_-30px_rgba(0,0,0,0.5)]">
+            <div className="flex items-center justify-between gap-3 px-6 sm:px-8 py-4 border-b border-house-brown/10">
+              <p className="font-sans text-[11px] tracking-[0.18em] uppercase text-house-gold-ink">HoWA Home Overview</p>
+              <p className="font-sans text-[11px] tracking-[0.1em] uppercase text-house-stone">Example · Living Record</p>
+            </div>
+            <div className="grid md:grid-cols-[0.85fr_1.15fr]">
+              {/* score */}
+              <div className="flex items-center gap-5 px-6 sm:px-8 py-7 border-b md:border-b-0 md:border-r border-house-brown/10">
+                <div className="relative w-[96px] h-[96px] shrink-0">
+                  <svg viewBox="0 0 120 120" className="w-full h-full -rotate-90">
+                    <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(48,35,28,0.12)" strokeWidth="9" />
+                    <circle cx="60" cy="60" r="52" fill="none" stroke="var(--color-house-gold-dark)" strokeWidth="9" strokeLinecap="round" strokeDasharray={`${2 * Math.PI * 52 * 0.76} ${2 * Math.PI * 52}`} />
+                  </svg>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <span className="font-display text-[30px] leading-none text-house-black">76</span>
+                    <span className="font-sans text-[9px] tracking-[0.12em] uppercase text-house-stone mt-0.5">of 100</span>
+                  </div>
+                </div>
+                <div>
+                  <p className="font-sans text-[11px] tracking-[0.16em] uppercase text-house-stone mb-1">HoWA Score</p>
+                  <p className="font-display text-[30px] leading-none text-house-black">76<span className="font-sans text-[14px] text-house-stone ml-1.5">/ 100</span></p>
+                  <p className="font-sans text-[13.5px] text-house-brown/75 mt-1.5">In order, with gaps</p>
+                </div>
               </div>
-            ))}
+              {/* what matters first */}
+              <div className="px-6 sm:px-8 py-7">
+                <p className="font-sans text-[11px] tracking-[0.16em] uppercase text-house-gold-ink mb-3">What matters first</p>
+                <ul className="grid gap-2.5">
+                  {WHAT_MATTERS.map((w) => (
+                    <li key={w} className="flex items-center gap-3 rounded-xl bg-house-cream-dark/70 border border-house-brown/8 px-4 py-2.5">
+                      <span className="is-round w-2 h-2 shrink-0 bg-house-gold-dark" aria-hidden />
+                      <span className="font-sans text-[14px] text-house-brown">{w}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div className="px-6 sm:px-8 py-4 border-t border-house-brown/10">
+              <p className="font-sans text-[13.5px] leading-[1.55] text-house-brown/80">
+                <span className="font-medium text-house-black">Next action:</span> book the boiler service before winter, and save the certificate to the record.
+              </p>
+            </div>
           </div>
-          <p className="font-sans text-[14px] leading-[1.55] text-house-brown/80 px-6 sm:px-8 pb-6 pt-1">
-            <span className="font-medium text-house-black">Next action:</span> book the boiler service before winter, and save the certificate to the record.
-          </p>
         </div>
 
         <div className="mt-10 flex flex-wrap justify-center gap-4">
