@@ -36,7 +36,7 @@ const HOUSEHOLD = [
   { name: "The Archivist", line: "Turn one document into dates, costs and reminders.", state: "Product beta", tone: "beta", img: "/howa/household/archivist.webp", href: "/household/archivist" },
   { name: "The Storekeeper", line: "Find considered goods for the home.", state: "The Stores", tone: "live", img: "/howa/household/storekeeper.webp", href: "/shop" },
   { name: "The Host", line: "Find practical and cultural guidance worth keeping.", state: "Live", tone: "live", img: "/howa/household/host.webp", href: "/the-hearth" },
-  { name: "The Butler", line: "Read connected instruments and, by permission, help operate them.", state: "Staged release", tone: "beta", img: "/howa/household/butler.webp", href: "/household" },
+  { name: "The Butler", line: "Read connected instruments and, by permission, help operate them.", state: "Staged release", tone: "beta", img: "/howa/household/butler.webp", href: "/household/butler" },
 ];
 
 const PAID_TIERS = [

@@ -47,7 +47,7 @@ const MEMBERS = [
   { name: "The Archivist", promise: "Turn paperwork into dates, costs, reminders and proof.", state: "Product beta", tone: "beta", img: "/howa/household/archivist.webp", href: "/household/archivist" },
   { name: "The Storekeeper", promise: "Keep considered goods organised by the rooms and needs of the home.", state: "The Stores", tone: "live", img: "/howa/household/storekeeper.webp", href: "/shop" },
   { name: "The Host", promise: "Welcome you into the culture and practical knowledge of keeping a home.", state: "Live", tone: "live", img: "/howa/household/host.webp", href: "/the-hearth" },
-  { name: "The Butler", promise: "Read the instruments of the home and, with permission, help operate supported connected systems.", state: "Staged release", tone: "beta", img: "/howa/household/butler.webp", href: "/howa" },
+  { name: "The Butler", promise: "Read the instruments of the home and, with permission, help operate supported connected systems.", state: "Staged release", tone: "beta", img: "/howa/household/butler.webp", href: "/household/butler" },
 ];
 
 const ctaPrimary =
