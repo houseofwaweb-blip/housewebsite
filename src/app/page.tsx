@@ -32,16 +32,16 @@ const LIVE_SERVICES = [
 // The ten public members of the Household, each with a plain utility line and a
 // truthful launch state (Live / beta / paid-when-ready / staged).
 const HOUSEHOLD = [
-  { name: "The Gardener", line: "Understand the garden and book the work.", state: "Live where serviceable", tone: "live" },
-  { name: "The Handyman", line: "Photograph the fault and understand what to do next.", state: "Diagnosis beta", tone: "beta" },
-  { name: "The Designer", line: "Turn a room or garden into a clear brief and professional route.", state: "Live", tone: "live" },
-  { name: "The Surveyor", line: "Decode a crack, damp concern or quote in plain language.", state: "Guidance beta", tone: "beta" },
-  { name: "The Archivist", line: "Turn one document into dates, costs and reminders.", state: "Product beta", tone: "beta" },
-  { name: "The Storekeeper", line: "Find considered goods for the home.", state: "The Stores", tone: "live" },
-  { name: "The Host", line: "Find practical and cultural guidance worth keeping.", state: "Live", tone: "live" },
-  { name: "The Housekeeper", line: "Keep records, reminders and household rhythm in order.", state: "£16.99/mo when ready", tone: "paid" },
-  { name: "The Steward", line: "See risk, evidence and the long view of the home.", state: "£29.99/mo when ready", tone: "paid" },
-  { name: "The Butler", line: "Read connected instruments and, by permission, help operate them.", state: "Staged release", tone: "beta" },
+  { name: "The Gardener", line: "Understand the garden and book the work.", state: "Live where serviceable", tone: "live", img: "/howa/household/gardener.webp", href: "/household/gardener" },
+  { name: "The Handyman", line: "Photograph the fault and understand what to do next.", state: "Diagnosis beta", tone: "beta", img: "/howa/household/handyman.webp", href: "/household/handyman" },
+  { name: "The Designer", line: "Turn a room or garden into a clear brief and professional route.", state: "Live", tone: "live", img: "/howa/household/designer.webp", href: "/household/designer" },
+  { name: "The Surveyor", line: "Decode a crack, damp concern or quote in plain language.", state: "Guidance beta", tone: "beta", img: "/howa/household/surveyor.webp", href: "/household/surveyor" },
+  { name: "The Archivist", line: "Turn one document into dates, costs and reminders.", state: "Product beta", tone: "beta", img: "/howa/household/archivist.webp", href: "/household/archivist" },
+  { name: "The Storekeeper", line: "Find considered goods for the home.", state: "The Stores", tone: "live", img: "/shop/rooms/living-room.webp", href: "/shop" },
+  { name: "The Host", line: "Find practical and cultural guidance worth keeping.", state: "Live", tone: "live", img: "/hearth/art-sanctuary.webp", href: "/the-hearth" },
+  { name: "The Housekeeper", line: "Keep records, reminders and household rhythm in order.", state: "£16.99/mo when ready", tone: "paid", img: "/howa/household/housekeeper.webp", href: "/howa/housekeeper" },
+  { name: "The Steward", line: "See risk, evidence and the long view of the home.", state: "£29.99/mo when ready", tone: "paid", img: "/howa/household/steward.webp", href: "/howa/steward" },
+  { name: "The Butler", line: "Read connected instruments and, by permission, help operate them.", state: "Staged release", tone: "beta", img: "/home-v4/companion-hero.webp", href: "/household" },
 ];
 
 const SCORE_DRIVERS = [
@@ -189,18 +189,19 @@ export default async function HomePage() {
         <p className="font-sans text-[16px] leading-[1.65] text-house-brown/72 max-w-[70ch] mb-10">
           The Gardener reads the garden. The Handyman reads faults. The Designer shapes the brief. The Surveyor reads walls and quotes. The Archivist turns paperwork into dates. The Storekeeper keeps The Stores. The Host welcomes you in. The Housekeeper keeps the daily rhythm. The Steward protects the long view. The Butler reads the instruments of the home.
         </p>
-        <div className="grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-x-6 gap-y-9 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {HOUSEHOLD.map((m) => (
-            <div key={m.name} className="border-t border-house-brown/15 pt-4">
-              <div className="flex items-start justify-between gap-3 mb-1.5">
-                <h3 className="font-display text-[19px] leading-[1.2] text-house-black">{m.name}</h3>
-                <StateChip tone={m.tone}>{m.state}</StateChip>
+            <Link key={m.name} href={m.href} className="group block no-underline">
+              <div className="relative aspect-[4/5] overflow-hidden bg-house-cream-dark border border-house-brown/10">
+                <Image src={m.img} alt={m.name} fill sizes="(min-width:1280px) 18vw, (min-width:640px) 32vw, 92vw" className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.04]" />
+                <span className="absolute left-2.5 top-2.5"><StateChip tone={m.tone}>{m.state}</StateChip></span>
               </div>
-              <p className="font-sans text-[14px] leading-[1.5] text-house-brown/70">{m.line}</p>
-            </div>
+              <h3 className="font-display text-[19px] leading-[1.2] text-house-black group-hover:text-house-gold-ink transition-colors mt-3">{m.name}</h3>
+              <p className="font-sans text-[13.5px] leading-[1.5] text-house-brown/70 mt-1.5">{m.line}</p>
+            </Link>
           ))}
         </div>
-        <div className="mt-10"><Link href="/household" className={ctaSecondary}>Meet the Household →</Link></div>
+        <div className="mt-12 text-center"><Link href="/household" className={ctaSecondary}>Meet the Household →</Link></div>
       </section>
 
       {/* 6. HOWA REVEAL — the first dark/product band */}
@@ -228,34 +229,25 @@ export default async function HomePage() {
               </Link>
             </div>
           </div>
-          {/* labelled example score — never 0/100 */}
-          <div className="howa-surface">
-            <div className="rounded-2xl bg-house-cream text-house-brown p-8 border border-house-gold-dark/20">
-              <p className="font-sans text-[11px] tracking-[0.18em] uppercase text-house-gold-ink mb-4">Example HoWA Score</p>
-              <div className="flex items-center gap-6">
-                <div className="relative w-[112px] h-[112px] shrink-0">
-                  <svg viewBox="0 0 120 120" className="w-full h-full -rotate-90">
-                    <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(48,35,28,0.12)" strokeWidth="9" />
-                    <circle cx="60" cy="60" r="52" fill="none" stroke="var(--color-house-gold-dark)" strokeWidth="9" strokeLinecap="round" strokeDasharray={`${2 * Math.PI * 52 * 0.76} ${2 * Math.PI * 52}`} />
-                  </svg>
-                  <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span className="font-display text-[34px] leading-none text-house-black">76</span>
-                    <span className="font-sans text-[10px] tracking-[0.12em] uppercase text-house-stone">of 100</span>
-                  </div>
-                </div>
-                <ul className="flex-1 space-y-2">
-                  {SCORE_DRIVERS.map((d) => (
-                    <li key={d.label} className="flex items-baseline justify-between gap-3 border-b border-house-brown/10 pb-1.5">
-                      <span className="font-sans text-[13px] text-house-stone">{d.label}</span>
-                      <span className="font-sans text-[13px] text-house-brown text-right">{d.value}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <p className="font-sans text-[13px] leading-[1.5] text-house-brown/75 mt-5 pt-4 border-t border-house-brown/10">
-                <span className="font-medium text-house-black">Next action:</span> book the boiler service before winter, and save the certificate to the record.
-              </p>
+          {/* the Score, shown as a real labelled example — never 0/100 */}
+          <div className="bg-house-cream text-house-brown border border-house-gold-dark/25 overflow-hidden">
+            <div className="flex items-center justify-between gap-3 px-5 py-3 border-b border-house-brown/10">
+              <p className="font-sans text-[11px] tracking-[0.18em] uppercase text-house-gold-ink">Example HoWA Score</p>
+              <span className="font-display text-[20px] leading-none text-house-black">76<span className="font-sans text-[11px] text-house-stone tracking-[0.1em] uppercase ml-1">/100</span></span>
             </div>
+            <div className="relative aspect-[16/9] bg-house-cream-dark">
+              <Image src="/howa/score-dashboard.webp" alt="A HoWA Score dashboard: records, maintenance rhythm and evidence, with what matters next" fill sizes="(min-width:1024px) 520px, 100vw" className="object-cover" />
+            </div>
+            <div className="flex flex-wrap gap-x-6 gap-y-1.5 px-5 py-3 border-t border-house-brown/10">
+              {SCORE_DRIVERS.map((d) => (
+                <span key={d.label} className="font-sans text-[12px] text-house-stone">
+                  {d.label}: <span className="text-house-brown">{d.value}</span>
+                </span>
+              ))}
+            </div>
+            <p className="font-sans text-[13px] leading-[1.5] text-house-brown/78 px-5 pb-4 pt-1">
+              <span className="font-medium text-house-black">Next action:</span> book the boiler service before winter, and save the certificate to the record.
+            </p>
           </div>
         </div>
       </section>
@@ -276,45 +268,57 @@ export default async function HomePage() {
             </div>
           ))}
         </div>
-        <div className="mt-9"><a href="#open-booking-form" className={ctaPrimary}>Book a service</a></div>
+        <div className="mt-10 text-center"><a href="#open-booking-form" className={ctaPrimary}>Book a service</a></div>
       </section>
 
-      {/* 8. DESIGN */}
+      {/* 8. DESIGN — copy + two founding-discipline image cards */}
       <section className="px-[5vw] py-16 bg-house-cream-dark border-t border-b border-house-brown/8">
-        <div className="max-w-[1000px] mx-auto">
+        <div className="max-w-[1200px] mx-auto">
           <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">Design</p>
           <h2 className="font-display text-[clamp(26px,3.4vw,44px)] leading-[1.12] text-house-black max-w-[26ch] mb-5">
             Begin with the intelligence. Continue with the right human. Finish with trusted hands.
           </h2>
-          <p className="font-sans text-[17px] leading-[1.7] text-house-brown/80 max-w-[62ch] mb-4">
+          <p className="font-sans text-[17px] leading-[1.7] text-house-brown/80 max-w-[62ch] mb-3">
             Create a clear brief, explore a HoWA Concept or commission a founding House Approved interior or garden design studio.
           </p>
-          <p className="font-sans text-[16px] leading-[1.6] text-house-brown/70 max-w-[62ch] mb-8">
+          <p className="font-sans text-[16px] leading-[1.6] text-house-brown/70 max-w-[62ch] mb-10">
             When the design is ready, the House can help prepare it for quotation by selected landscapers and craftspeople.
           </p>
-          <div className="flex flex-wrap gap-4">
-            <Link href="/design/interiors" className={ctaPrimary}>Explore Interior Design</Link>
-            <Link href="/design/gardens" className={ctaSecondary}>Explore Garden Design</Link>
+          <div className="grid gap-6 md:grid-cols-2">
+            {[
+              { label: "Interior Design", line: "Founding House Approved studios.", href: "/design/interiors", img: "/design/interiors/project-living-room.webp" },
+              { label: "Garden Design", line: "Studios and Willow Alexander Gardeners.", href: "/design/gardens", img: "/design/gardens/full-design.webp" },
+            ].map((d) => (
+              <Link key={d.label} href={d.href} className="group relative flex min-h-[320px] flex-col justify-end overflow-hidden no-underline border border-house-brown/10">
+                <Image src={d.img} alt={d.label} fill sizes="(min-width:768px) 50vw, 100vw" className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.04]" />
+                <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(20,14,10,0.82) 0%, rgba(20,14,10,0.25) 55%, rgba(20,14,10,0) 85%)" }} />
+                <div className="relative p-7 text-white">
+                  <h3 className="font-display text-[clamp(24px,2.6vw,32px)] leading-none">{d.label}</h3>
+                  <p className="font-sans text-[14px] leading-[1.5] text-white/85 mt-2">{d.line}</p>
+                  <span className="font-sans text-[12px] tracking-[0.16em] uppercase text-house-gold-light mt-4 inline-block">Explore {d.label} →</span>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 9. THE STORES + THE HOST */}
+      {/* 9. THE STORES + THE HOST — image-led cards */}
       <section className="px-[5vw] py-16 max-w-[1200px] mx-auto grid gap-6 md:grid-cols-2">
-        <div className="border border-house-brown/12 p-8 bg-house-white">
-          <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-3">The Stores</p>
-          <p className="font-sans text-[16px] leading-[1.65] text-house-brown/80 mb-6">
-            A place for everything. Considered goods organised by room, seller clearly shown and useful purchases capable of joining the Home Record.
-          </p>
-          <Link href="/shop" className={ctaSecondary}>Shop the rooms →</Link>
-        </div>
-        <div className="border border-house-brown/12 p-8 bg-house-white">
-          <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-3">The Host</p>
-          <p className="font-sans text-[16px] leading-[1.65] text-house-brown/80 mb-6">
-            Come in. The Hearth, recipes, seasonal knowledge and practical guidance, kept because they are worth returning to.
-          </p>
-          <Link href="/the-hearth" className={ctaSecondary}>Ideas &amp; Advice →</Link>
-        </div>
+        {[
+          { eyebrow: "The Stores", body: "A place for everything. Considered goods organised by room, seller clearly shown and useful purchases capable of joining the Home Record.", cta: "Shop the rooms", href: "/shop", img: "/shop/rooms/dining.webp" },
+          { eyebrow: "The Host", body: "Come in. The Hearth, recipes, seasonal knowledge and practical guidance, kept because they are worth returning to.", cta: "Ideas & Advice", href: "/the-hearth", img: "/hearth/art-lead.webp" },
+        ].map((c) => (
+          <Link key={c.eyebrow} href={c.href} className="group relative flex min-h-[380px] flex-col justify-end overflow-hidden no-underline border border-house-brown/10">
+            <Image src={c.img} alt={c.eyebrow} fill sizes="(min-width:768px) 50vw, 100vw" className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.04]" />
+            <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(20,14,10,0.86) 0%, rgba(20,14,10,0.35) 50%, rgba(20,14,10,0.02) 85%)" }} />
+            <div className="relative p-8 text-white">
+              <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-light mb-2">{c.eyebrow}</p>
+              <p className="font-sans text-[16px] leading-[1.6] text-white/88 mb-4 max-w-[44ch]">{c.body}</p>
+              <span className="font-sans text-[12px] tracking-[0.16em] uppercase text-white">{c.cta} →</span>
+            </div>
+          </Link>
+        ))}
       </section>
 
       {/* 10. HOUSE STANDARD + ORIGIN */}
