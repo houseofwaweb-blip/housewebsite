@@ -21,59 +21,75 @@ export interface FooterColumn {
 // Bookings powered by HoWA -> Reading.
 // Footer architecture (House of HoWA rebrand, launch read section 35): leads
 // with HoWA, then the House (standard), Services (proof), Reading, Account.
+// Final Master Directive footer — seven columns.
 const COLS: FooterColumn[] = [
-  {
-    heading: "HoWA",
-    links: [
-      { label: "Start with your address", href: "/howa/assistant" },
-      { label: "HoWA Score", href: "/howa-score" },
-      { label: "Home Record", href: "/howa" },
-      { label: "The Household", href: "/household" },
-      { label: "Assistant", href: "/howa/assistant" },
-      { label: "Housekeeper", href: "/howa/housekeeper" },
-      { label: "Steward", href: "/howa/steward" },
-      { label: "Plans", href: "/howa/plans" },
-    ],
-  },
-  {
-    heading: "The House",
-    links: [
-      { label: "About House of HoWA", href: "/the-house/about" },
-      { label: "Philosophy", href: "/the-house/philosophy" },
-      { label: "Artwork", href: "/the-house/artwork" },
-      { label: "Standards", href: "/the-house/standards" },
-      { label: "Sustainability", href: "/the-house/sustainability" },
-      { label: "Partners", href: "/partners" },
-      { label: "Contact", href: "/contact" },
-    ],
-  },
   {
     heading: "Services",
     links: [
       { label: "Gardening", href: "/services/gardening" },
       { label: "Cleaning", href: "/services/cleaning" },
       { label: "Window cleaning", href: "/services/window-cleaning" },
-      { label: "Gutter cleaning", href: "/services/gutter-cleaning" },
-      { label: "Handyman", href: "/services/handyman" },
-      { label: "Design", href: "/design" },
-      { label: "Protect", href: "/protect" },
+      { label: "Gutter clearing", href: "/services/gutter-cleaning" },
+      { label: "All services", href: "/services" },
     ],
   },
   {
-    heading: "Reading",
+    heading: "Design",
     links: [
+      { label: "Interior Design", href: "/design/interiors" },
+      { label: "Garden Design", href: "/design/gardens" },
+      { label: "Founding studios", href: "/partners" },
+      { label: "HoWA Concepts", href: "/design/concepts" },
+    ],
+  },
+  {
+    heading: "The House",
+    links: [
+      { label: "About", href: "/the-house/about" },
+      { label: "Philosophy", href: "/the-house/philosophy" },
+      { label: "Standards", href: "/the-house/standards" },
+      { label: "House Approved", href: "/the-house/standards" },
+      { label: "Partners", href: "/partners" },
+      { label: "Contact", href: "/contact" },
+    ],
+  },
+  {
+    heading: "Shop & reading",
+    links: [
+      { label: "The Stores", href: "/shop" },
+      { label: "House Approved collection", href: "/shop/collections/house-approved" },
+      { label: "Gift cards", href: "/gift-cards" },
+      { label: "The Host", href: "/the-hearth" },
       { label: "The Hearth", href: "/the-hearth" },
-      { label: "Musings", href: "/musings" },
-      { label: "Recipes", href: "/recipes" },
-      { label: "News", href: "/news" },
     ],
   },
   {
-    heading: "Account",
+    heading: "HoWA",
     links: [
-      { label: "Sign in", href: "https://accounts.willowalexander.co.uk/" },
-      { label: "Book through HoWA", href: "#open-booking-form" },
-      { label: "Marketplace", href: "/shop" },
+      { label: "Start with my address", href: "/howa/assistant" },
+      { label: "HoWA Score", href: "/howa-score" },
+      { label: "Home Record", href: "/howa" },
+      { label: "Housekeeper", href: "/howa/housekeeper" },
+      { label: "Steward", href: "/howa/steward" },
+      { label: "Help", href: "/howa/faq" },
+    ],
+  },
+  {
+    heading: "Professionals",
+    links: [
+      { label: "Become House Approved", href: "/partners" },
+      { label: "Partner with the House", href: "/partners" },
+      { label: "Sign in to House Pro", href: "/become-a-house-pro" },
+    ],
+  },
+  {
+    heading: "Legal",
+    links: [
+      { label: "Privacy", href: "/legal/privacy" },
+      { label: "Consumer terms", href: "/legal/terms" },
+      { label: "Partner terms", href: "/legal/terms" },
+      { label: "Cookies", href: "/legal/cookies" },
+      { label: "Accessibility", href: "/legal" },
     ],
   },
 ];
@@ -85,7 +101,7 @@ export interface FooterProps {
 
 export function Footer({ columns, tagline }: FooterProps) {
   const cols = columns && columns.length > 0 ? columns : COLS;
-  const tag = tagline || "The House sets the standard. HoWA remembers the home.";
+  const tag = tagline || "The House sets the standard. The Household makes each need familiar. HoWA understands and remembers the home.";
 
   return (
     <footer className="relative overflow-hidden bg-house-brown text-house-cream px-[5vw] py-16 mt-auto">
@@ -94,7 +110,7 @@ export function Footer({ columns, tagline }: FooterProps) {
         <p className="font-display italic text-[clamp(24px,3vw,38px)] leading-[1.15] text-house-cream/90 pb-12 max-w-[18ch]">
           The home, finally known.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 pb-12 border-b border-[rgba(245,240,232,0.12)]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 pb-12 border-b border-[rgba(245,240,232,0.12)]">
           {cols.map((col) => (
             <div key={col.heading}>
               <h4 className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-light mb-4">
@@ -117,11 +133,9 @@ export function Footer({ columns, tagline }: FooterProps) {
         </div>
 
         <p className="pt-8 font-sans text-[15px] leading-[1.6] text-house-cream/55 max-w-[760px]">
-          House of HoWA is a new House for home stewardship: trusted services,
-          approved partners and the HoWA Home Operating System that gives every
-          home a record, a Score and a next action. The House sets the standard.
-          HoWA remembers the home. Founding partners and House Approved providers
-          deliver the work.
+          House services are delivered by the named provider shown at booking.
+          House of HoWA sets the standard around the experience; HoWA powers the
+          booking, Home Record and remembered outcome.
         </p>
 
         <div className="pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
