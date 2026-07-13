@@ -161,7 +161,7 @@ export default async function HomePage() {
       {/* 4. HOUSE APPROVED PROOF — text left, van image right */}
       <section className="px-[5vw] py-16 bg-house-cream-dark border-t border-b border-house-brown/8">
         <div className="max-w-[1300px] mx-auto grid gap-10 lg:gap-14 lg:grid-cols-2 lg:items-center">
-          <div>
+          <div className="lg:pl-[3vw]">
             <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">House Approved</p>
             <h2 className="font-display text-[clamp(26px,3.4vw,44px)] leading-[1.1] text-house-black max-w-[16ch] mb-5">The mark on the van means something.</h2>
             <p className="font-sans text-[17px] leading-[1.7] text-house-brown/80 max-w-[52ch] mb-3">
@@ -455,27 +455,28 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 13. PROFESSIONALS */}
-      <section className="px-[5vw] py-16 max-w-[900px] mx-auto">
-        <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">For professionals</p>
-        <h2 className="font-display text-[clamp(26px,3.4vw,42px)] leading-[1.12] text-house-black max-w-[20ch] mb-5">House Approved is not for everyone.</h2>
-        <p className="font-sans text-[17px] leading-[1.7] text-house-brown/80 max-w-[60ch] mb-3">
-          It is for designers, craftspeople and service businesses whose work the House is prepared to stand behind.
-        </p>
-        <p className="font-sans text-[16px] leading-[1.6] text-house-brown/70 max-w-[60ch] mb-8">
-          Approval is selective. Providers remain independent, choose the work they accept and are presented by name.
-        </p>
-        <div className="flex flex-wrap gap-4">
-          <Link href="/partners" className={ctaPrimary}>Apply for Approval</Link>
-          <Link href="/the-house/standards" className={ctaSecondary}>What the mark means</Link>
+      {/* 13. PROFESSIONALS — on cream-dark, so the cream contact form below reads as a clean break */}
+      <section className="px-[5vw] py-16 bg-house-cream-dark border-t border-house-brown/8">
+        <div className="max-w-[900px] mx-auto">
+          <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">For professionals</p>
+          <h2 className="font-display text-[clamp(26px,3.4vw,42px)] leading-[1.12] text-house-black max-w-[20ch] mb-5">House Approved is not for everyone.</h2>
+          <p className="font-sans text-[17px] leading-[1.7] text-house-brown/80 max-w-[60ch] mb-3">
+            It is for designers, craftspeople and service businesses whose work the House is prepared to stand behind.
+          </p>
+          <p className="font-sans text-[16px] leading-[1.6] text-house-brown/70 max-w-[60ch] mb-8">
+            Approval is selective. Providers remain independent, choose the work they accept and are presented by name.
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <Link href="/partners" className={ctaPrimary}>Apply for Approval</Link>
+            <Link href="/the-house/standards" className={ctaSecondary}>What the mark means</Link>
+          </div>
         </div>
       </section>
 
       {/* 14. CONTACT & CLOSE — single Speak to the House, dark for a clear break */}
       <EnquiryForm
         sourcePage="/"
-        variant="dark"
-        className="bg-house-black border-t border-house-cream/10"
+        className="border-t border-house-brown/10"
         eyebrow="Contact"
         headline="Speak to the House."
         body="Tell us what the home needs, ask about a design project or speak to us about HoWA. We reply personally. A House for the home you love, kept to the standard a good home deserves."
