@@ -218,68 +218,70 @@ export default async function HomePage() {
         <div className="mt-10 text-center"><Link href="/household" className={ctaSecondary}>Meet the whole Household →</Link></div>
       </section>
 
-      {/* 6. HOWA REVEAL — dark band, prominent example Score */}
+      {/* 6. HOWA REVEAL — text left, home image + Score card right */}
       <section className="px-[5vw] py-20 bg-house-black text-house-cream border-t border-house-brown/20">
-        <div className="max-w-[900px] mx-auto text-center">
-          <h2 className="font-display text-[clamp(30px,4vw,54px)] leading-[1.06] text-house-cream max-w-[22ch] mx-auto">Your house is trying to tell you something.</h2>
-          <p className="font-sans text-[17px] leading-[1.7] text-house-cream/80 mt-6 max-w-[60ch] mx-auto">
-            The windows, the gutters, the boiler service you keep meaning to book, the warranty you know is somewhere.
-          </p>
-          <p className="font-sans text-[17px] leading-[1.7] text-house-cream/80 mt-4 max-w-[60ch] mx-auto">
-            HoWA gives the address one Home Record, one HoWA Score and one calm place to understand what has happened, what is missing and what matters next.
-          </p>
-        </div>
-
-        {/* prominent example score — HoWA Home Overview bar (reference layout) */}
-        <div className="howa-surface max-w-[1040px] mx-auto mt-12">
-          <div className="rounded-2xl bg-house-cream text-house-brown overflow-hidden shadow-[0_30px_70px_-30px_rgba(0,0,0,0.5)]">
-            <div className="flex items-center justify-between gap-3 px-6 sm:px-8 py-4 border-b border-house-brown/10">
-              <p className="font-sans text-[11px] tracking-[0.18em] uppercase text-house-gold-ink">HoWA Home Overview</p>
-              <p className="font-sans text-[11px] tracking-[0.1em] uppercase text-house-stone">Example · Living Record</p>
-            </div>
-            <div className="grid md:grid-cols-[0.85fr_1.15fr]">
-              {/* score */}
-              <div className="flex items-center gap-5 px-6 sm:px-8 py-7 border-b md:border-b-0 md:border-r border-house-brown/10">
-                <div className="relative w-[96px] h-[96px] shrink-0">
-                  <svg viewBox="0 0 120 120" className="w-full h-full -rotate-90">
-                    <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(48,35,28,0.12)" strokeWidth="9" />
-                    <circle cx="60" cy="60" r="52" fill="none" stroke="var(--color-house-gold-dark)" strokeWidth="9" strokeLinecap="round" strokeDasharray={`${2 * Math.PI * 52 * 0.76} ${2 * Math.PI * 52}`} />
-                  </svg>
-                  <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span className="font-display text-[30px] leading-none text-house-black">76</span>
-                    <span className="font-sans text-[9px] tracking-[0.12em] uppercase text-house-stone mt-0.5">of 100</span>
-                  </div>
-                </div>
-                <div>
-                  <p className="font-sans text-[11px] tracking-[0.16em] uppercase text-house-stone mb-1">HoWA Score</p>
-                  <p className="font-display text-[30px] leading-none text-house-black">76<span className="font-sans text-[14px] text-house-stone ml-1.5">/ 100</span></p>
-                  <p className="font-sans text-[13.5px] text-house-brown/75 mt-1.5">In order, with gaps</p>
-                </div>
-              </div>
-              {/* what matters first */}
-              <div className="px-6 sm:px-8 py-7">
-                <p className="font-sans text-[11px] tracking-[0.16em] uppercase text-house-gold-ink mb-3">What matters first</p>
-                <ul className="grid gap-2.5">
-                  {WHAT_MATTERS.map((w) => (
-                    <li key={w} className="flex items-center gap-3 rounded-xl bg-house-cream-dark/70 border border-house-brown/8 px-4 py-2.5">
-                      <span className="is-round w-2 h-2 shrink-0 bg-house-gold-dark" aria-hidden />
-                      <span className="font-sans text-[14px] text-house-brown">{w}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <div className="px-6 sm:px-8 py-4 border-t border-house-brown/10">
-              <p className="font-sans text-[13.5px] leading-[1.55] text-house-brown/80">
-                <span className="font-medium text-house-black">Next action:</span> book the boiler service before winter, and save the certificate to the record.
-              </p>
+        <div className="max-w-[1240px] mx-auto grid gap-12 lg:gap-14 lg:grid-cols-2 lg:items-center">
+          <div>
+            <h2 className="font-display text-[clamp(30px,4vw,54px)] leading-[1.06] text-house-cream max-w-[18ch]">Your house is trying to tell you something.</h2>
+            <p className="font-sans text-[17px] leading-[1.7] text-house-cream/80 mt-6 max-w-[52ch]">
+              The windows, the gutters, the boiler service you keep meaning to book, the warranty you know is somewhere.
+            </p>
+            <p className="font-sans text-[17px] leading-[1.7] text-house-cream/80 mt-4 max-w-[52ch]">
+              HoWA gives the address one Home Record, one HoWA Score and one calm place to understand what has happened, what is missing and what matters next.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link href="/howa/assistant" className="inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-house-black bg-house-gold-light border border-house-gold-light px-6 py-3 no-underline hover:brightness-105 transition-[filter]">Start with my address</Link>
+              <Link href="/howa-score" className="inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-house-cream border border-house-cream/30 px-6 py-3 no-underline transition-colors hover:border-house-gold-light hover:text-house-gold-light">See how the HoWA Score works</Link>
             </div>
           </div>
-        </div>
 
-        <div className="mt-10 flex flex-wrap justify-center gap-4">
-          <Link href="/howa/assistant" className="inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-house-black bg-house-gold-light border border-house-gold-light px-6 py-3 no-underline hover:brightness-105 transition-[filter]">Start with my address</Link>
-          <Link href="/howa-score" className="inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-house-cream border border-house-cream/30 px-6 py-3 no-underline transition-colors hover:border-house-gold-light hover:text-house-gold-light">See how the HoWA Score works</Link>
+          {/* home image with the Score card floating over it */}
+          <div className="relative">
+            <div className="relative aspect-[4/3] overflow-hidden border border-house-cream/10 bg-house-cream-dark">
+              <Image src="/howa/score-dashboard.webp" alt="A HoWA home, seen with its living overview" fill sizes="(min-width:1024px) 560px, 100vw" className="object-cover" />
+            </div>
+            <div className="howa-surface relative z-10 -mt-24 w-[92%] mx-auto">
+              <div className="rounded-2xl bg-house-cream text-house-brown overflow-hidden shadow-[0_30px_70px_-28px_rgba(0,0,0,0.65)]">
+                <div className="flex items-center justify-between gap-3 px-5 py-3 border-b border-house-brown/10">
+                  <p className="font-sans text-[10px] tracking-[0.16em] uppercase text-house-gold-ink">HoWA Home Overview</p>
+                  <p className="font-sans text-[10px] tracking-[0.1em] uppercase text-house-stone">Example</p>
+                </div>
+                <div className="flex items-center gap-4 px-5 py-4 border-b border-house-brown/10">
+                  <div className="relative w-[72px] h-[72px] shrink-0">
+                    <svg viewBox="0 0 120 120" className="w-full h-full -rotate-90">
+                      <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(48,35,28,0.12)" strokeWidth="9" />
+                      <circle cx="60" cy="60" r="52" fill="none" stroke="var(--color-house-gold-dark)" strokeWidth="9" strokeLinecap="round" strokeDasharray={`${2 * Math.PI * 52 * 0.76} ${2 * Math.PI * 52}`} />
+                    </svg>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                      <span className="font-display text-[24px] leading-none text-house-black">76</span>
+                      <span className="font-sans text-[8px] tracking-[0.12em] uppercase text-house-stone mt-0.5">of 100</span>
+                    </div>
+                  </div>
+                  <div>
+                    <p className="font-sans text-[10px] tracking-[0.16em] uppercase text-house-stone mb-0.5">HoWA Score</p>
+                    <p className="font-display text-[24px] leading-none text-house-black">76<span className="font-sans text-[12px] text-house-stone ml-1.5">/ 100</span></p>
+                    <p className="font-sans text-[12.5px] text-house-brown/75 mt-1">In order, with gaps</p>
+                  </div>
+                </div>
+                <div className="px-5 py-4">
+                  <p className="font-sans text-[10px] tracking-[0.16em] uppercase text-house-gold-ink mb-2.5">What matters first</p>
+                  <ul className="grid gap-2">
+                    {WHAT_MATTERS.map((w) => (
+                      <li key={w} className="flex items-center gap-2.5 rounded-lg bg-house-cream-dark/70 border border-house-brown/8 px-3 py-2">
+                        <span className="is-round w-1.5 h-1.5 shrink-0 bg-house-gold-dark" aria-hidden />
+                        <span className="font-sans text-[13px] text-house-brown">{w}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="px-5 py-3 border-t border-house-brown/10">
+                  <p className="font-sans text-[12.5px] leading-[1.5] text-house-brown/80">
+                    <span className="font-medium text-house-black">Next action:</span> book the boiler service before winter, and save the certificate.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -459,6 +461,7 @@ export default async function HomePage() {
       <EnquiryForm
         sourcePage="/"
         variant="dark"
+        className="bg-house-black border-t border-house-cream/10"
         eyebrow="Contact"
         headline="Speak to the House."
         body="Tell us what the home needs, ask about a design project or speak to us about HoWA. We reply personally. A House for the home you love, kept to the standard a good home deserves."
