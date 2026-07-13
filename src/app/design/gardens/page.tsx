@@ -139,8 +139,8 @@ export default async function GardensPage() {
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>{cms(hero, "eyebrow", "Design · Gardens")}</p>
             <h1 className={s.heroTitle}>
-              {cms(hero, "headline", "Landscapes,")}{" "}
-              <em>{cms(hero, "headlineEm", "properly read.", "headline")}</em>
+              {cms(hero, "headline", "Gardens designed for")}{" "}
+              <em>{cms(hero, "headlineEm", "place, season and time.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
               {cms(

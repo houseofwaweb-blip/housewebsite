@@ -136,8 +136,8 @@ export default async function InteriorsPage() {
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>{cms(hero, "eyebrow", "Design · Interiors")}</p>
             <h1 className={s.heroTitle}>
-              {cms(hero, "headline", "Consciously designed")}{" "}
-              <em>{cms(hero, "headlineEm", "interiors.", "headline")}</em>
+              {cms(hero, "headline", "Rooms designed around")}{" "}
+              <em>{cms(hero, "headlineEm", "the life lived within them.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
               {cms(
