@@ -288,26 +288,26 @@ export default async function ServicesLanding() {
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>{cms(hero, "eyebrow", "House Services")}</p>
             <h1 className={s.heroTitle}>
-              {cms(hero, "headline", "Booked.")}{" "}
-              <em>{cms(hero, "headlineEm", "And remembered.", "headline")}</em>
+              {cms(hero, "headline", "Practical care for")}{" "}
+              <em>{cms(hero, "headlineEm", "home and garden.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
               {cms(
                 hero,
                 "body",
-                "The practical care of home and garden, delivered by founding partners and House Approved providers, booked through HoWA and saved to your Home Record. Services are not the whole story. They are how the standard proves itself in real homes.",
+                "Choose the work the home needs and check availability at your address. Every live service shows the provider, scope, and price or quotation route before you commit. Bookings are managed through HoWA, so the appointment and useful records stay connected to the home.",
               )}
             </p>
             <div className={s.heroCtas}>
               <Link href={cms(hero, "ctaHref", "#open-booking-form")} className={s.btnFilled}>
-                {cms(hero, "ctaLabel", "Book online through HoWA")}
+                {cms(hero, "ctaLabel", "Check my postcode")}
               </Link>
               <Link href={cms(hero, "cta2Href", "/contact")} className={s.btnGhost}>
-                {cms(hero, "cta2Label", "Call the House")}
+                {cms(hero, "cta2Label", "Speak to the House")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
-            <p className={s.heroMicro}>Online bookings create or update your Home Record.</p>
+            <p className={s.heroMicro}>Booked through HoWA. Delivered by a named provider shown before you confirm.</p>
           </div>
         </div>
         <div className={s.heroVisual}>
