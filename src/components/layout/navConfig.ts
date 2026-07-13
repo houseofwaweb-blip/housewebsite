@@ -123,7 +123,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
           { label: "About", href: "/the-house/about", description: "Origin & team" },
           { label: "Philosophy", href: "/the-house/philosophy" },
           { label: "Standards", href: "/the-house/standards" },
-          { label: "House Approved", href: "/the-house/standards", description: "What the mark means" },
+          { label: "House Approved", href: "/house-approved", description: "What the mark means" },
           { label: "Partners", href: "/partners" },
           { label: "Contact", href: "/contact" },
         ],

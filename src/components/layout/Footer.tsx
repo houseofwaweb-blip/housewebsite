@@ -48,7 +48,7 @@ const COLS: FooterColumn[] = [
       { label: "About", href: "/the-house/about" },
       { label: "Philosophy", href: "/the-house/philosophy" },
       { label: "Standards", href: "/the-house/standards" },
-      { label: "House Approved", href: "/the-house/standards" },
+      { label: "House Approved", href: "/house-approved" },
       { label: "Partners", href: "/partners" },
       { label: "Contact", href: "/contact" },
     ],
@@ -77,8 +77,8 @@ const COLS: FooterColumn[] = [
   {
     heading: "Professionals",
     links: [
-      { label: "Become House Approved", href: "/partners" },
-      { label: "Partner with the House", href: "/partners" },
+      { label: "Become House Approved", href: "/become-a-house-pro" },
+      { label: "Partner with the House", href: "/become-a-house-pro" },
       { label: "Sign in to House Pro", href: "/become-a-house-pro" },
     ],
   },

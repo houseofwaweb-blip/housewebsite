@@ -100,8 +100,8 @@ export default async function DesignLanding() {
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>{cms(hero, "eyebrow", "The House · Design")}</p>
             <h1 className={s.heroTitle}>
-              {cms(hero, "headline", "The Designer turns one photo into a")}{" "}
-              <em>{cms(hero, "headlineEm", "direction.", "headline")}</em>
+              {cms(hero, "headline", "Design, intelligently")}{" "}
+              <em>{cms(hero, "headlineEm", "matched.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
               {cms(
@@ -146,8 +146,8 @@ export default async function DesignLanding() {
         <header className={s.disciplinesHead}>
           <p className={s.disciplinesEy}>{cms(disciplines, "eyebrow", "The circle")}</p>
           <h2 className={s.disciplinesTitle}>
-            {cms(disciplines, "headline", "A small design world,")}{" "}
-            <em>{cms(disciplines, "headlineEm", "growing carefully.", "headline")}</em>
+            {cms(disciplines, "headline", "A small circle,")}{" "}
+            <em>{cms(disciplines, "headlineEm", "chosen deliberately.", "headline")}</em>
           </h2>
           <p style={{ fontFamily: "var(--font-sans)", fontSize: 16, lineHeight: 1.7, color: "rgba(48,35,28,0.72)", margin: "18px auto 0", maxWidth: "64ch" }}>
             {cms(

@@ -170,7 +170,7 @@ export default async function HomePage() {
             <p className="font-sans text-[16px] leading-[1.6] text-house-brown/70 max-w-[52ch] mb-8">
               Named providers. Clear scopes. Current operating information. Work reviewed and approval capable of being withdrawn.
             </p>
-            <Link href="/the-house/standards" className={ctaSecondary}>What House Approved means →</Link>
+            <Link href="/house-approved" className={ctaSecondary}>What House Approved means →</Link>
           </div>
           <div className="relative aspect-[16/9] overflow-hidden border border-house-brown/10">
             <Image src="/the-house/house-approved-van.webp" alt="A House Approved van with the mark on its side and the named provider beside it on a British street" fill sizes="(min-width:1024px) 50vw, 100vw" className="object-cover" />
@@ -467,8 +467,8 @@ export default async function HomePage() {
             Approval is selective. Providers remain independent, choose the work they accept and are presented by name.
           </p>
           <div className="flex flex-wrap gap-4">
-            <Link href="/partners" className={ctaPrimary}>Apply for Approval</Link>
-            <Link href="/the-house/standards" className={ctaSecondary}>What the mark means</Link>
+            <Link href="/become-a-house-pro" className={ctaPrimary}>Apply for Approval</Link>
+            <Link href="/house-approved" className={ctaSecondary}>What the mark means</Link>
           </div>
         </div>
       </section>
