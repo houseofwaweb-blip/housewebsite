@@ -40,7 +40,7 @@ const SENIORS = [
   {
     name: "The Butler",
     price: "Staged release",
-    img: "/home-v4/companion-hero.webp",
+    img: "/howa/household/butler.webp",
     btn: "#8a8f7a",
     role: "Reads the instruments of the home and, with explicit permissions, helps operate supported connected systems.",
     note: "Staged clearly: demonstration, then recommendations, then command. Never implies universal device compatibility.",
@@ -55,8 +55,8 @@ const MEMBERS = [
   { name: "The Designer", promise: "Turn one room or garden into a direction, a proper brief and the right studio route.", state: "Live", tone: "live", img: "/howa/household/designer.webp", href: "/household/designer" },
   { name: "The Surveyor", promise: "Read a crack, damp concern, report or quote in plain language.", state: "Guidance beta", tone: "beta", img: "/howa/household/surveyor.webp", href: "/household/surveyor" },
   { name: "The Archivist", promise: "Turn paperwork into dates, costs, reminders and proof.", state: "Product beta", tone: "beta", img: "/howa/household/archivist.webp", href: "/household/archivist" },
-  { name: "The Storekeeper", promise: "Keep considered goods organised by the rooms and needs of the home.", state: "The Stores", tone: "live", img: "/shop/rooms/living-room.webp", href: "/shop" },
-  { name: "The Host", promise: "Welcome you into the culture and practical knowledge of keeping a home.", state: "Live", tone: "live", img: "/hearth/art-sanctuary.webp", href: "/the-hearth" },
+  { name: "The Storekeeper", promise: "Keep considered goods organised by the rooms and needs of the home.", state: "The Stores", tone: "live", img: "/howa/household/storekeeper.webp", href: "/shop" },
+  { name: "The Host", promise: "Welcome you into the culture and practical knowledge of keeping a home.", state: "Live", tone: "live", img: "/howa/household/host.webp", href: "/the-hearth" },
 ];
 
 const ctaPrimary =

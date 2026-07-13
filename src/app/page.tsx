@@ -34,9 +34,9 @@ const HOUSEHOLD = [
   { name: "The Designer", line: "Turn a room or garden into a clear brief and professional route.", state: "Live", tone: "live", img: "/howa/household/designer.webp", href: "/household/designer" },
   { name: "The Surveyor", line: "Decode a crack, damp concern or quote in plain language.", state: "Guidance beta", tone: "beta", img: "/howa/household/surveyor.webp", href: "/household/surveyor" },
   { name: "The Archivist", line: "Turn one document into dates, costs and reminders.", state: "Product beta", tone: "beta", img: "/howa/household/archivist.webp", href: "/household/archivist" },
-  { name: "The Storekeeper", line: "Find considered goods for the home.", state: "The Stores", tone: "live", img: "/shop/rooms/living-room.webp", href: "/shop" },
-  { name: "The Host", line: "Find practical and cultural guidance worth keeping.", state: "Live", tone: "live", img: "/hearth/art-sanctuary.webp", href: "/the-hearth" },
-  { name: "The Butler", line: "Read connected instruments and, by permission, help operate them.", state: "Staged release", tone: "beta", img: "/home-v4/companion-hero.webp", href: "/household" },
+  { name: "The Storekeeper", line: "Find considered goods for the home.", state: "The Stores", tone: "live", img: "/howa/household/storekeeper.webp", href: "/shop" },
+  { name: "The Host", line: "Find practical and cultural guidance worth keeping.", state: "Live", tone: "live", img: "/howa/household/host.webp", href: "/the-hearth" },
+  { name: "The Butler", line: "Read connected instruments and, by permission, help operate them.", state: "Staged release", tone: "beta", img: "/howa/household/butler.webp", href: "/household" },
 ];
 
 const PAID_TIERS = [
