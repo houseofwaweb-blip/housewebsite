@@ -428,21 +428,14 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 14. CONTACT & CLOSE */}
-      <section className="px-[5vw] pt-16 pb-6 max-w-[820px] mx-auto text-center">
-        <h2 className="font-display text-[clamp(28px,3.6vw,46px)] leading-[1.1] text-house-black mb-5">Speak to the House.</h2>
-        <p className="font-sans text-[18px] leading-[1.7] text-house-brown/80 mb-4">
-          Tell us what the home needs, ask about a design project or speak to us about HoWA. We reply personally.
-        </p>
-        <p className="font-display italic text-[clamp(18px,2vw,24px)] leading-[1.35] text-house-brown/85">
-          A House for the home you love, kept to the standard a good home deserves.
-        </p>
-      </section>
+      {/* 14. CONTACT & CLOSE — single Speak to the House, dark for a clear break */}
       <EnquiryForm
         sourcePage="/"
-        eyebrow="Speak to the House"
-        headline="Tell us what the home needs."
-        body="General enquiry, gardening, cleaning, window cleaning, gutter clearing, interior design, garden design, the Stores, press or partnership. Choose below, or leave it as a general enquiry. We reply personally."
+        variant="dark"
+        eyebrow="Contact"
+        headline="Speak to the House."
+        body="Tell us what the home needs, ask about a design project or speak to us about HoWA. We reply personally. A House for the home you love, kept to the standard a good home deserves."
+        buttonLabel="Send an enquiry"
       />
     </div>
   );
