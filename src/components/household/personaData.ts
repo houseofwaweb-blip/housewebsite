@@ -269,6 +269,46 @@ export const PERSONAS: Record<string, Persona> = {
     saves: "The document, its key dates, costs, reminders and evidence.",
     nextAction: "Set a reminder, attach it to a room or asset, or build an evidence pack.",
   },
+
+  butler: {
+    slug: "butler",
+    name: "The Butler",
+    short: "Butler",
+    room: "Staged release",
+    accent: "#8a8f7a",
+    heroTitle: "The Butler reads the instruments of the home.",
+    heroBody:
+      "Meters, thermostats, sensors and connected systems each hold a small truth about the home. The Butler learns to read them, explains them in plain language, and, only with your explicit permission, helps operate the systems that support it.",
+    duty: "For the home whose systems should be understood before they are automated.",
+    toolCta: "See a demonstration",
+    toolKind: "address",
+    toolHint: "See how a connected home could be read. A demonstration, using clear examples, before anything is connected.",
+    resultHeading: "Here is what the instruments might say.",
+    resultLines: [
+      { k: "Heating", v: "The boiler is cycling more often than the weather explains, worth a look before winter." },
+      { k: "Damp risk", v: "Humidity in the north bedroom climbs after showers and is slow to clear." },
+      { k: "Energy", v: "Overnight standby draw is higher than the home in use, a saving worth checking." },
+    ],
+    resultNote: "A demonstration, not a live reading. Nothing is connected or operated without your explicit permission, and the Butler works only with supported systems.",
+    saveCta: "Save this demonstration",
+    saveMemoryLine: "The Butler will keep readings over time, the permissions you grant and the actions taken, as an audit trail in the Home Record.",
+    handsTitle: "Want it set up with you?",
+    handsBody:
+      "When supported connected systems and installers are ready, the House can help arrange a proper setup, with a named provider and your explicit, revocable permission.",
+    handsCta: "Register interest",
+    upsellBody: "The Butler reads the instruments. The Steward watches the whole home and, as it grows, includes supported Butler control.",
+    upsellCta: "Explore the Steward",
+    upsellHref: "/howa/steward",
+    cardLine: "Read the instruments of the home and, with permission, help operate supported connected systems.",
+    cardCta: "See how it works",
+    doorTag: "butler",
+    metaTitle: "AI Connected-Home Instruments & Controls | The Butler by HoWA",
+    metaDescription:
+      "See what a connected home could tell you. The Butler reads instruments, explains them in plain language and, with permission, helps operate supported systems.",
+    knows: ["Meters", "Heating", "Sensors", "Energy", "Damp risk", "Permissions"],
+    saves: "Readings over time, permissions granted and actions taken.",
+    nextAction: "Watch a system, grant a permission, or explore the Steward.",
+  },
 };
 
 export const PERSONA_ART: Record<string, PersonaArt> = {
@@ -325,6 +365,17 @@ export const PERSONA_ART: Record<string, PersonaArt> = {
       { t: "Warranty notes", d: "What is covered, for how long, and where the proof lives." },
       { t: "Reminders", d: "The home tells you before something lapses, not after." },
       { t: "Evidence packs", d: "Everything gathered for a claim, a sale or a handover, in one place." },
+    ],
+  },
+  butler: {
+    colourway: "slate and brass",
+    motto: "Reads. Explains. Operates, with permission.",
+    features: [
+      { t: "Instrument reading", d: "Meters, thermostats and sensors, read and explained in plain language." },
+      { t: "Staged release", d: "Demonstration first, then recommendations, then command, only where you allow it." },
+      { t: "Permission and control", d: "Nothing is operated without explicit, revocable permission, and only for supported systems." },
+      { t: "Audit trail", d: "Readings, permissions and actions kept together in the Home Record." },
+      { t: "Steward depth", d: "Deeper connected-home control grows inside the Steward, never implying universal compatibility." },
     ],
   },
 };
