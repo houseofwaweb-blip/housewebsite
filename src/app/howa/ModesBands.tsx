@@ -50,7 +50,7 @@ const MODES: Mode[] = [
     image: "/home-v4/tier-band-housekeeper.webp",
   },
   {
-    href: "/howa/steward",
+    href: "/household/steward",
     numeral: "III",
     name: "Steward",
     tagline: "The house, protected before failure.",

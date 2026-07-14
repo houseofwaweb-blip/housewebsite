@@ -33,7 +33,7 @@ const SUBS = [
     price: "£16.99",
     tag: "The house, in order.",
     body: "Filing at volume, reminders, household rhythm, cost memory, sharing and the Monthly Brief.",
-    href: "/howa/housekeeper",
+    href: "/household/housekeeper",
     btn: "#c17a5f",
   },
   {
@@ -41,7 +41,7 @@ const SUBS = [
     price: "£29.99",
     tag: "The house, protected before failure.",
     body: "A deeper risk view, evidence packs, annual report, transfer readiness and supported Butler control.",
-    href: "/howa/steward",
+    href: "/household/steward",
     btn: "#c9a84a",
   },
 ];

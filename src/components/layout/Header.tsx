@@ -48,7 +48,7 @@ export function Header({
   const isStoreRoute = pathname === "/shop" || pathname.startsWith("/shop/");
   // Routes that run on a dark navy surface. /howa/steward is blueprint mode;
   // the /howa landing is now HoWA mode (light) per 2026-04-22 audit.
-  const DARK_ROUTES = new Set(["/howa/steward"]);
+  const DARK_ROUTES = new Set(["/household/steward"]);
   const dark = darkProp ?? DARK_ROUTES.has(pathname);
 
   const { openDrawer } = useCart();

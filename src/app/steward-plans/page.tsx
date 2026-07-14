@@ -250,7 +250,7 @@ export default async function StewardPlansPage() {
             <span key={b} className={s.membershipBenefit}>{b}</span>
           ))}
         </div>
-        <Link href="/howa/steward" className={s.btnFilled}>
+        <Link href="/household/steward" className={s.btnFilled}>
           Become a House Steward
         </Link>
       </section>

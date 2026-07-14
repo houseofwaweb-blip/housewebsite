@@ -132,7 +132,7 @@ const TIERS: {
       { icon: GearIcon, text: "Optimises systems" },
       { icon: VaultIcon, text: "Protects long-term value" },
     ],
-    href: "/howa/steward",
+    href: "/household/steward",
   },
 ];
 

@@ -71,7 +71,7 @@ const SENIORS = [
     line: "Records, reminders, documents, service history and the monthly home rhythm, kept in order.",
     chips: chipsFor("housekeeper"),
     cta: "Employ the Housekeeper",
-    href: "/howa/housekeeper",
+    href: "/household/housekeeper",
   },
   {
     role: "The Steward",
@@ -82,7 +82,7 @@ const SENIORS = [
     line: "Score oversight, risk watch, evidence, annual report and future planning.",
     chips: [],
     cta: "Protect the home",
-    href: "/howa/steward",
+    href: "/household/steward",
   },
   {
     role: "The Butler",

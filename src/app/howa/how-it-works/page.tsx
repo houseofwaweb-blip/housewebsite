@@ -148,7 +148,7 @@ export default async function HowItWorksPage() {
               <Link href={cms(hero, "ctaHref", "/api/howa-bounce")} className={s.btnFilled}>
                 {cms(hero, "ctaLabel", "Start free")}
               </Link>
-              <Link href={cms(hero, "cta2Href", "/howa/housekeeper")} className={s.btnGhost}>
+              <Link href={cms(hero, "cta2Href", "/household/housekeeper")} className={s.btnGhost}>
                 {cms(hero, "cta2Label", "See Housekeeper")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
@@ -221,7 +221,7 @@ export default async function HowItWorksPage() {
             "The more the home is known, the more useful HoWA becomes. The more useful HoWA becomes, the more the owner returns. The record gets richer, the Score gets clearer, and the home becomes easier to keep.",
           )}
         </p>
-        <Link href={cms(compound, "ctaHref", "/howa/housekeeper")} className={s.compoundLink}>
+        <Link href={cms(compound, "ctaHref", "/household/housekeeper")} className={s.compoundLink}>
           {cms(compound, "ctaLabel", "See what Housekeeper includes")} →
         </Link>
       </section>

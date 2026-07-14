@@ -325,7 +325,7 @@ export default async function PlansPage() {
               </ul>
               <div className={s.tierCtas}>
                 <Link
-                  href={cms(tierSteward, "ctaHref", "/howa/steward")}
+                  href={cms(tierSteward, "ctaHref", "/household/steward")}
                   className={s.btnFilled}
                 >
                   {cms(tierSteward, "ctaLabel", "Explore Steward")}

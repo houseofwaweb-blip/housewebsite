@@ -45,8 +45,8 @@ export const PRIMARY_NAV: MegaPanel[] = [
       {
         heading: "Senior staff",
         links: [
-          { label: "The Housekeeper", href: "/howa/housekeeper", description: "Nothing slips." },
-          { label: "The Steward", href: "/howa/steward", description: "The house, protected before failure." },
+          { label: "The Housekeeper", href: "/household/housekeeper", description: "Nothing slips." },
+          { label: "The Steward", href: "/household/steward", description: "The house, protected before failure." },
           { label: "The Butler", href: "/household/butler", description: "The instruments of the house, read by anyone." },
         ],
       },
@@ -129,8 +129,8 @@ export const PRIMARY_NAV: MegaPanel[] = [
           { label: "HoWA Score", href: "/howa-score" },
           { label: "Home Record", href: "/howa" },
           { label: "Ask HoWA", href: "/howa/ask" },
-          { label: "Housekeeper", href: "/howa/housekeeper" },
-          { label: "Steward", href: "/howa/steward" },
+          { label: "Housekeeper", href: "/household/housekeeper" },
+          { label: "Steward", href: "/household/steward" },
           { label: "Help", href: "/howa/faq" },
         ],
       },

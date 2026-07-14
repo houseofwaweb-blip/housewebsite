@@ -46,8 +46,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/howa/ask`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/howa/how-it-works`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/howa/plans`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${base}/howa/housekeeper`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
-    { url: `${base}/howa/steward`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
+    { url: `${base}/household/housekeeper`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${base}/household/steward`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
     { url: `${base}/howa/faq`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
 
     // ---- Design ----

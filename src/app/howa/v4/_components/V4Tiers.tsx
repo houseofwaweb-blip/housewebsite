@@ -67,7 +67,7 @@ export function V4Tiers() {
                   ))}
                 </ul>
                 <a
-                  href={t.tierSlug === "steward" ? "/howa/steward" : `/howa/coming-soon?tier=${t.tierSlug}`}
+                  href={t.tierSlug === "steward" ? "/household/steward" : `/howa/coming-soon?tier=${t.tierSlug}`}
                   className={"mt-auto inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-[16px] transition-colors " + (dark ? "bg-[#c5a960] text-[#1d2a40] hover:bg-[#d4ba78]" : "text-white")}
                   style={dark ? undefined : { background: t.accent }}
                 >

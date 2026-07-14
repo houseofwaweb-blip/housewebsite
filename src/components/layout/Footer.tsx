@@ -38,8 +38,8 @@ const COLS: FooterColumn[] = [
   {
     heading: "The Household",
     links: [
-      { label: "The Housekeeper", href: "/howa/housekeeper" },
-      { label: "The Steward", href: "/howa/steward" },
+      { label: "The Housekeeper", href: "/household/housekeeper" },
+      { label: "The Steward", href: "/household/steward" },
       { label: "The Butler", href: "/household/butler" },
       { label: "The Gardener", href: "/household/gardener" },
       { label: "The Handyman", href: "/household/handyman" },
@@ -67,8 +67,8 @@ const COLS: FooterColumn[] = [
       { label: "Start with my address", href: "/howa" },
       { label: "HoWA Score", href: "/howa-score" },
       { label: "Home Record", href: "/howa" },
-      { label: "Housekeeper", href: "/howa/housekeeper" },
-      { label: "Steward", href: "/howa/steward" },
+      { label: "Housekeeper", href: "/household/housekeeper" },
+      { label: "Steward", href: "/household/steward" },
       { label: "Help", href: "/howa/faq" },
     ],
   },

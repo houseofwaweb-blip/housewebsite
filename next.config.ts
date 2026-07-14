@@ -72,8 +72,16 @@ const nextConfig: NextConfig = {
       // bridge. Companion points straight at /howa so we never chain redirects.
       { source: "/howa/assistant", destination: "/howa", permanent: true },
       { source: "/howa/companion", destination: "/howa", permanent: true },
-      // HoWA+ retired; the consumer continuity tier is now Housekeeper (2026-06-18)
-      { source: "/howa/plus", destination: "/howa/housekeeper", permanent: true },
+      // Directive v2 STEP 09 makes the Housekeeper and the Steward Household
+      // MEMBERS (09I /household/housekeeper, 09J /household/steward), not HoWA
+      // product pages. This also matches the Digital Estate contract: the House
+      // does not own deep product pricing, which stays canonical on howa.co.uk;
+      // what lives here is the member, the promise and the bridge.
+      { source: "/howa/housekeeper", destination: "/household/housekeeper", permanent: true },
+      { source: "/howa/steward", destination: "/household/steward", permanent: true },
+      // HoWA+ retired; the consumer continuity tier is now Housekeeper
+      // (2026-06-18). Points straight at the member page so it never chains.
+      { source: "/howa/plus", destination: "/household/housekeeper", permanent: true },
       // Directive v2 STEP 06 deletes Steward Plans and the Apartment/Essential/
       // Comprehensive/Premium bundles outright. Repeat care is now a frequency
       // chosen inside the booking journey, so /services is the honest successor

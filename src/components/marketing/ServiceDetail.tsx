@@ -381,7 +381,7 @@ export function ServiceDetail({
               are managed through HoWA Steward. One invoice, one contact, one
               system that remembers.
             </p>
-            <Link href="/howa/steward" className={s.btnGhostLight}>
+            <Link href="/household/steward" className={s.btnGhostLight}>
               Learn about Steward
             </Link>
           </article>

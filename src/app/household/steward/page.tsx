@@ -158,7 +158,7 @@ export default async function StewardPage() {
           <span className={s.subNavBrand}>HoWA</span>
           <div className={s.subNavLinks}>
             <Link href="/howa" className={s.subNavLink}>Overview</Link>
-            <Link href="/howa/housekeeper" className={s.subNavLink}>Housekeeper</Link>
+            <Link href="/household/housekeeper" className={s.subNavLink}>Housekeeper</Link>
             <span className={`${s.subNavLink} ${s.subNavLinkActive}`}>Steward</span>
             <Link href="/howa/how-it-works" className={s.subNavLink}>How it works</Link>
           </div>
@@ -494,7 +494,7 @@ export default async function StewardPage() {
           <div className={s.applyCard}>
             <StewardApplicationForm
               turnstileSiteKey={env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? ""}
-              sourcePage="/howa/steward"
+              sourcePage="/household/steward"
             />
           </div>
         </div>

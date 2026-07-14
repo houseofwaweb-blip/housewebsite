@@ -51,7 +51,7 @@ const MODES: Mode[] = [
     image: "/home-v4/tier-band-housekeeper-v3.webp",
   },
   {
-    href: "/howa/steward",
+    href: "/household/steward",
     numeral: "III",
     name: "Steward",
     price: "£29.99/mo",

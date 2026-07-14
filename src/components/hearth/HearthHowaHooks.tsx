@@ -8,7 +8,7 @@ const HOOKS: ReadonlyArray<{ label: string; href: string }> = [
   { label: "Save this guide to your HoWA seasonal plan", href: "/howa" },
   { label: "Book the mentioned service through HoWA", href: "#open-booking-form" },
   { label: "Check your HoWA Score", href: "/howa" },
-  { label: "Housekeeper members get full archive access", href: "/howa/housekeeper" },
+  { label: "Housekeeper members get full archive access", href: "/household/housekeeper" },
 ];
 
 export function HearthHowaHooks() {

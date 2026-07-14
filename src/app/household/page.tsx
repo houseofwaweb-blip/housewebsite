@@ -26,7 +26,7 @@ const SENIORS = [
     role: "Keeps the daily home in order: filing, reminders, rhythms, cost memory, a shared household view and the Monthly Brief.",
     note: "Membership pays for the software and continuity. Visits remain booked and paid separately.",
     cta: "Employ the Housekeeper",
-    href: "/howa/housekeeper",
+    href: "/household/housekeeper",
   },
   {
     name: "The Steward",
@@ -36,7 +36,7 @@ const SENIORS = [
     role: "Protects the long view: risk, evidence, annual reporting, transfer readiness and deeper connected-home permissions.",
     note: "Available when the product depth supports the promise.",
     cta: "Protect the home",
-    href: "/howa/steward",
+    href: "/household/steward",
   },
 ];
 
