@@ -40,8 +40,8 @@ const HOUSEHOLD = [
 ];
 
 const PAID_TIERS = [
-  { role: "The Housekeeper", price: "£16.99/mo when ready", img: "/howa/household/housekeeper.webp", btn: "#c17a5f", forLine: "For the household that wants everything kept in rhythm.", line: "Records, reminders, documents, service history and the monthly home rhythm, kept in order.", cta: "Employ the Housekeeper", href: "/howa/housekeeper" },
-  { role: "The Steward", price: "£29.99/mo when ready", img: "/howa/household/steward.webp", btn: "#c9a84a", forLine: "For the homeowner who wants the long view of the home.", line: "Score oversight, risk watch, evidence, annual report and future planning.", cta: "Protect the home", href: "/howa/steward" },
+  { role: "The Housekeeper", price: "Membership opens when the stated functions are live", img: "/howa/household/housekeeper.webp", btn: "#c17a5f", forLine: "For the household that wants everything kept in rhythm.", line: "Records, reminders, documents, service history and the monthly home rhythm, kept in order.", cta: "Employ the Housekeeper", href: "/howa/housekeeper" },
+  { role: "The Steward", price: "Opens when the product depth supports the promise", img: "/howa/household/steward.webp", btn: "#c9a84a", forLine: "For the homeowner who wants the long view of the home.", line: "Score oversight, risk watch, evidence, annual report and future planning.", cta: "Protect the home", href: "/howa/steward" },
 ];
 
 const WHAT_MATTERS = [
@@ -104,7 +104,7 @@ export default async function HomePage() {
               Book trusted services, commission considered design and begin a living record of your home, all held to one House standard and remembered by HoWA.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <a href="#open-booking-form" className={ctaPrimary}>Book a service</a>
+              <a href="#open-booking-form" className={ctaPrimary}>Book through HoWA</a>
               <Link href="/howa/assistant" className={ctaSecondary}>Start with my address</Link>
             </div>
             <p className="font-sans text-[13px] text-house-stone mt-6">
@@ -238,15 +238,9 @@ export default async function HomePage() {
               <Link href="/howa/assistant" className="inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-house-black bg-house-gold-light border border-house-gold-light px-6 py-3 no-underline hover:brightness-105 transition-[filter]">Start with my address</Link>
               <Link href="/howa-score" className="inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-house-cream border border-house-cream/30 px-6 py-3 no-underline transition-colors hover:border-house-gold-light hover:text-house-gold-light">See how the HoWA Score works</Link>
             </div>
-            <div className="mt-7">
-              <p className="font-sans text-[11px] tracking-[0.14em] uppercase text-house-cream/50 mb-2.5">The HoWA app is coming. Pre-register now.</p>
-              <div className="flex items-center gap-3">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/brand/apple-app-store-badge.svg" alt="Coming soon to the App Store" className="h-[42px] w-auto" />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/brand/google-play-prereg.png" alt="Pre-register on Google Play" className="h-[42px] w-auto" />
-              </div>
-            </div>
+            {/* Directive v2: no app-store badges unless a real store listing or a
+                working pre-registration flow exists. Neither is verified, so the
+                claim is removed rather than downgraded to marketing language. */}
           </div>
 
           {/* home image (full 16:9, not cropped) with the Score card over it */}
@@ -315,7 +309,7 @@ export default async function HomePage() {
             </div>
           ))}
         </div>
-        <div className="mt-10 text-center"><a href="#open-booking-form" className={ctaPrimary}>Book a service</a></div>
+        <div className="mt-10 text-center"><a href="#open-booking-form" className={ctaPrimary}>Book through HoWA</a></div>
       </section>
 
       {/* 8. DESIGN — two founding-discipline image cards */}
