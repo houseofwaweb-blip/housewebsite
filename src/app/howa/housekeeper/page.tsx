@@ -22,23 +22,16 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 export const metadata = {
   title: { absolute: "HoWA Housekeeper | The home, in order" },
   description:
-    "The connected membership for a home you mean to keep. £16.99 / month. Living Record, full Assistant, member pricing. Cancel anytime.",
+    "The connected membership for a home you mean to keep. £16.99 / month. The Living Record, the Household tools and the monthly rhythm of the home. Cancel anytime."
 };
 
 const STAT_COLS = [
   { value: "£16.99", label: "per month" },
-  { value: "10%", label: "off every House Service" },
   { value: "∞", label: "Living Record entries" },
   { value: "0", label: "minimum term" },
 ];
 
 const BENEFITS = [
-  {
-    icon: PercentIcon,
-    image: "/home-v4/plus-benefit-1.webp",
-    title: "10% off every House Service",
-    body: "Gardening, cleaning, windows, gutters, design packages, product bundles. Auto-applied at checkout, no codes, no fuss.",
-  },
   {
     icon: ClipboardIcon,
     image: "/home-v4/plus-benefit-2.webp",
@@ -49,9 +42,9 @@ const BENEFITS = [
   {
     icon: ScanIcon,
     image: "/home-v4/plus-benefit-3.webp",
-    title: "Full Assistant Diagnostic",
-    body: "Repair scan, instant quote, design moodboards. Capture home type, rooms, priorities, style, budget, saved straight to your record.",
-    cta: { label: "See the Assistant", href: "/howa" },
+    title: "The Household tools, in full",
+    body: "Repair scan, quote decode, design direction. Capture home type, rooms, priorities, style and budget, saved straight to your record as each tool goes live.",
+    cta: { label: "See HoWA", href: "/howa" },
   },
   {
     icon: BookIcon,
@@ -66,29 +59,27 @@ const BENEFITS = [
     body: "Priority across all House services and approved partners. Full editorial access to The Hearth, long-form writing on homes, gardens, and the craft of looking after a place.",
     cta: { label: "Browse the Hearth", href: "/the-hearth" },
   },
-  {
-    icon: LeafIcon,
-    image: "/home-v4/plus-benefit-6.webp",
-    title: "Carbon Fund & Early Access",
-    body: "A personal carbon offset fund tracked against your household. Early access to new HoWA features, House events and drops, and Protection Review introductions.",
-  },
 ];
 
 const COMPARE = [
   { feature: "Living Record entries", free: "Limited", plus: "Unlimited" },
-  { feature: "Service discount", free: "—", plus: "10% on everything" },
-  { feature: "Assistant diagnostic", free: "Lite", plus: "Full" },
+  { feature: "Household tools", free: "Lite", plus: "Full" },
   { feature: "Task centre & reminders", free: "—", plus: "Yes" },
   { feature: "Priority booking", free: "—", plus: "Yes" },
   { feature: "The Hearth magazine", free: "Excerpts", plus: "Full access" },
-  { feature: "Carbon offset fund", free: "—", plus: "Tracked" },
   { feature: "Cancel anytime", free: "—", plus: "Yes" },
 ];
 
-const INTELLIGENCE_STATS = [
-  { title: "First-year savings", highlight: "£840", subAfter: " typical" },
+// Directive v2 STEP 09I deletes "£840 savings, sale-uplift... without approved
+// economics/evidence". Both were presented as typical outcomes with no published
+// basis: "First-year savings £840 typical" and "Record at handover +£18,000 sale
+// uplift". A prospective member reads those as what they will get back, which is
+// a financial claim the House cannot currently evidence. The two remaining lines
+// are statements about how the product works, not promised returns.
+// Typed explicitly: with both evidenced-figure entries removed, TS would infer
+// a shape without `highlight` and the CMS overlay still supplies one.
+const INTELLIGENCE_STATS: { title: string; highlight?: string; subAfter: string }[] = [
   { title: "Issues caught", subAfter: "before they cost you" },
-  { title: "Record at handover", highlight: "+£18,000", subAfter: " sale uplift" },
   { title: "No long-term", subAfter: "commitment" },
 ];
 
@@ -115,7 +106,7 @@ const FAQS = [
   },
   {
     q: "What happens if I move?",
-    a: "Your record moves with you. You can also hand it to the new owner as part of the sale, adding £18,000 of average value in our pilot.",
+    a: "Your record moves with you. You can also hand it to the new owner as part of the sale, so the home arrives understood rather than starting again."
   },
 ];
 
@@ -179,7 +170,7 @@ export default async function HowaPlusV1PreviewPage() {
               {cms(
                 hero,
                 "body",
-                "The Living Record, full Assistant, member pricing, and a place that grows with the home. Cancel anytime.",
+                "The Living Record, the Household tools, and a place that grows with the home. Cancel anytime.",
               )}
             </p>
             <div className={s.heroCtas}>
