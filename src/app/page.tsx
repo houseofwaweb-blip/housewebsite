@@ -36,22 +36,71 @@ const LIVE_SERVICES = [
   { name: "Gutter clearing", href: "/services/gutter-cleaning", line: "Cleared, checked and ready for the weather, with notes returned to the home.", img: "/services/subbrands/gutter-cleaning.webp" },
 ];
 
-// Eight utility members (image cards) + two paid continuity tiers (own row).
-const HOUSEHOLD = [
-  { name: "The Gardener", line: "Understand the garden and book the work.", state: "Live where serviceable", tone: "live", img: "/howa/household/gardener.webp", href: "/household/gardener" },
-  { name: "The Handyman", line: "Photograph the fault and understand what to do next.", state: "Diagnosis beta", tone: "beta", img: "/howa/household/handyman.webp", href: "/household/handyman" },
-  { name: "The Designer", line: "Turn a room or garden into a clear brief and professional route.", state: "Live", tone: "live", img: "/howa/household/designer.webp", href: "/household/designer" },
-  { name: "The Surveyor", line: "Decode a crack, damp concern or quote in plain language.", state: "Guidance beta", tone: "beta", img: "/howa/household/surveyor.webp", href: "/household/surveyor" },
-  { name: "The Archivist", line: "Turn one document into dates, costs and reminders.", state: "Product beta", tone: "beta", img: "/howa/household/archivist.webp", href: "/household/archivist" },
-  { name: "The Storekeeper", line: "Find considered goods for the home.", state: "The Stores", tone: "live", img: "/howa/household/storekeeper.webp", href: "/shop" },
-  { name: "The Host", line: "Find practical and cultural guidance worth keeping.", state: "Live", tone: "live", img: "/howa/household/host.webp", href: "/the-hearth" },
-  { name: "The Butler", line: "Read connected instruments and, by permission, help operate them.", state: "Staged release", tone: "beta", img: "/howa/household/butler.webp", href: "/household/butler" },
+// The Household, grouped exactly as Directive v2 STEP 05 section 3 requires:
+// senior row (Housekeeper, Steward, Butler), then the six need-based members,
+// then The Host closing the section at the door. Ten in total, and all ten are
+// shown, but not as ten identical product tiles: seniors get editorial scale,
+// live need-based members carry their service chips, future members stay
+// quieter.
+//
+// Live care chips sit inside the card of the member who OWNS the work:
+// gardening under The Gardener, cleaning/windows/gutters under The
+// Housekeeper, both design routes under The Designer.
+const SENIORS = [
+  {
+    role: "The Housekeeper",
+    // No price until the sales gate passes: the holding label is the truth.
+    price: "Membership opens when the stated functions are live",
+    img: "/howa/household/housekeeper.webp",
+    btn: "#c17a5f",
+    forLine: "For the household that wants everything kept in rhythm.",
+    line: "Records, reminders, documents, service history and the monthly home rhythm, kept in order.",
+    chips: ["Cleaning", "Window cleaning", "Gutter clearing"],
+    cta: "Employ the Housekeeper",
+    href: "/howa/housekeeper",
+  },
+  {
+    role: "The Steward",
+    price: "Opens when the product depth supports the promise",
+    img: "/howa/household/steward.webp",
+    btn: "#c9a84a",
+    forLine: "For the homeowner who wants the long view of the home.",
+    line: "Score oversight, risk watch, evidence, annual report and future planning.",
+    chips: [],
+    cta: "Protect the home",
+    href: "/howa/steward",
+  },
+  {
+    role: "The Butler",
+    price: "Staged release",
+    img: "/howa/household/butler.webp",
+    btn: null, // Quieter: not yet available, so it gets no filled action.
+    forLine: "For the home whose instruments can be read.",
+    line: "Reads connected instruments and, by permission, helps operate them.",
+    chips: [],
+    cta: "Meet the Butler",
+    href: "/household/butler",
+  },
 ];
 
-const PAID_TIERS = [
-  { role: "The Housekeeper", price: "Membership opens when the stated functions are live", img: "/howa/household/housekeeper.webp", btn: "#c17a5f", forLine: "For the household that wants everything kept in rhythm.", line: "Records, reminders, documents, service history and the monthly home rhythm, kept in order.", cta: "Employ the Housekeeper", href: "/howa/housekeeper" },
-  { role: "The Steward", price: "Opens when the product depth supports the promise", img: "/howa/household/steward.webp", btn: "#c9a84a", forLine: "For the homeowner who wants the long view of the home.", line: "Score oversight, risk watch, evidence, annual report and future planning.", cta: "Protect the home", href: "/howa/steward" },
+const NEED_MEMBERS = [
+  { name: "The Gardener", line: "Understand the garden and book the work.", state: "Live where serviceable", tone: "live", img: "/howa/household/gardener.webp", href: "/household/gardener", chips: ["Gardening"] },
+  { name: "The Handyman", line: "Photograph the fault and understand what to do next.", state: "Diagnosis beta", tone: "beta", img: "/howa/household/handyman.webp", href: "/household/handyman", chips: [] },
+  { name: "The Designer", line: "Turn a room or garden into a clear brief and professional route.", state: "Live", tone: "live", img: "/howa/household/designer.webp", href: "/household/designer", chips: ["Interior Design", "Garden Design"] },
+  { name: "The Surveyor", line: "Decode a crack, damp concern or quote in plain language.", state: "Guidance beta", tone: "beta", img: "/howa/household/surveyor.webp", href: "/household/surveyor", chips: [] },
+  { name: "The Archivist", line: "Turn one document into dates, costs and reminders.", state: "Product beta", tone: "beta", img: "/howa/household/archivist.webp", href: "/household/archivist", chips: [] },
+  { name: "The Storekeeper", line: "Find considered goods for the home.", state: "The Stores", tone: "live", img: "/howa/household/storekeeper.webp", href: "/shop", chips: [] },
 ];
+
+// The Host closes the section at the door.
+const HOST_MEMBER = {
+  name: "The Host",
+  line: "Find practical and cultural guidance worth keeping.",
+  state: "Live",
+  tone: "live",
+  img: "/howa/household/host.webp",
+  href: "/host",
+};
 
 const WHAT_MATTERS = [
   "Boiler service · due in 14 days",
@@ -193,49 +242,87 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-      {/* 3. MEET THE HOUSEHOLD (8 utility cards + 2 paid tiers on their own row) */}
+      {/* 3. MEET THE HOUSEHOLD — all ten, senior row first, then the six
+          need-based members, then The Host at the door. */}
       <section className="px-[5vw] py-16 max-w-[1300px] mx-auto">
         <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">The Household</p>
         <h2 className="font-display text-[clamp(30px,4vw,52px)] leading-[1.05] text-house-black mb-5">Meet the Household.</h2>
         <p className="font-sans text-[18px] leading-[1.7] text-house-brown/82 max-w-[60ch] mb-3">Every home need feels different. HoWA keeps one record beneath them all.</p>
-        <p className="font-sans text-[16px] leading-[1.65] text-house-brown/72 max-w-[70ch] mb-10">
-          The Gardener reads the garden. The Handyman reads faults. The Designer shapes the brief. The Surveyor reads walls and quotes. The Archivist turns paperwork into dates. The Storekeeper keeps The Stores. The Host welcomes you in. The Butler reads the instruments of the home.
+        <p className="font-sans text-[16px] leading-[1.65] text-house-brown/72 max-w-[70ch] mb-3">
+          The Gardener reads the garden. The Handyman reads faults. The Designer shapes the brief. The Surveyor reads walls and quotes. The Archivist turns paperwork into dates. The Storekeeper keeps The Stores. The Host welcomes you in.
         </p>
-        <div className="grid gap-x-6 gap-y-9 sm:grid-cols-2 lg:grid-cols-4">
-          {HOUSEHOLD.map((m) => (
-            <Link key={m.name} href={m.href} className="group block no-underline">
-              <div className="relative aspect-[4/5] overflow-hidden bg-house-cream-dark border border-house-brown/10">
-                <Image src={m.img} alt={m.name} fill sizes="(min-width:1024px) 22vw, 46vw" className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.04]" />
-                <span className="absolute left-2.5 top-2.5"><StateChip tone={m.tone}>{m.state}</StateChip></span>
+        <p className="font-sans text-[16px] leading-[1.65] text-house-brown/72 max-w-[70ch] mb-10">
+          The Housekeeper keeps the daily rhythm. The Steward protects the long view. The Butler reads the instruments of the home.
+        </p>
+
+        {/* Senior staff — editorial scale */}
+        <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-6">Senior staff</p>
+        <div className="howa-surface grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {SENIORS.map((d) => (
+            <Link key={d.role} href={d.href} className="group relative flex min-h-[460px] flex-col justify-end overflow-hidden rounded-2xl no-underline">
+              <Image src={d.img} alt={d.role} fill sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw" className="object-cover" />
+              <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(20,14,10,0.88) 0%, rgba(20,14,10,0.38) 45%, rgba(20,14,10,0.05) 78%)" }} />
+              <div className="relative p-7 text-white">
+                <h3 className="font-display text-[clamp(26px,2.6vw,36px)] leading-[1.04] mb-2">
+                  The<br />{d.role.replace("The ", "")}
+                </h3>
+                <p className="font-sans text-[13px] leading-[1.45] text-white/85 mb-3">{d.price}</p>
+                <p className="font-display italic text-[16px] leading-[1.4] text-white/85 mb-3 max-w-[44ch]">{d.forLine}</p>
+                <p className="font-sans text-[14.5px] leading-[1.55] text-white/80 mb-4 max-w-[48ch]">{d.line}</p>
+                {d.chips.length > 0 && (
+                  <ul className="flex flex-wrap gap-1.5 mb-5 list-none p-0">
+                    {d.chips.map((chip) => (
+                      <li key={chip} className="font-sans text-[10.5px] tracking-[0.1em] uppercase text-white/90 border border-white/35 px-2 py-1">{chip}</li>
+                    ))}
+                  </ul>
+                )}
+                {d.btn ? (
+                  <span className="inline-block rounded-xl px-5 py-3 font-sans text-[13px] font-medium text-house-black transition-[filter] group-hover:brightness-105" style={{ background: d.btn }}>{d.cta} →</span>
+                ) : (
+                  <span className="inline-block px-5 py-3 font-sans text-[13px] text-white/90 border border-white/40 transition-colors group-hover:border-white">{d.cta} →</span>
+                )}
               </div>
-              <h3 className="font-display text-[19px] leading-[1.2] text-house-black group-hover:text-house-gold-ink transition-colors mt-3">{m.name}</h3>
-              <p className="font-sans text-[13.5px] leading-[1.5] text-house-brown/70 mt-1.5">{m.line}</p>
             </Link>
           ))}
         </div>
 
-        {/* The two you employ — paid tiers, own row, larger */}
-        <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mt-16 mb-6">The two you employ</p>
-        <div className="howa-surface grid gap-6 md:grid-cols-2">
-          {PAID_TIERS.map((d) => (
-            <Link key={d.role} href={d.href} className="group relative flex min-h-[460px] flex-col justify-end overflow-hidden rounded-2xl no-underline">
-              <Image src={d.img} alt={d.role} fill sizes="(min-width:768px) 50vw, 100vw" className="object-cover" />
-              <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(20,14,10,0.88) 0%, rgba(20,14,10,0.38) 45%, rgba(20,14,10,0.05) 78%)" }} />
-              <div className="relative p-8 text-white">
-                <div className="flex items-start justify-between gap-4 mb-2">
-                  <h3 className="font-display text-[clamp(28px,3vw,40px)] leading-[1.04]">
-                    The<br />{d.role.replace("The ", "")}
-                  </h3>
-                  <span className="font-sans text-[14px] tracking-[0.02em] text-white/90 whitespace-nowrap mt-2">{d.price}</span>
-                </div>
-                <p className="font-display italic text-[17px] leading-[1.4] text-white/85 mb-3 max-w-[44ch]">{d.forLine}</p>
-                <p className="font-sans text-[15px] leading-[1.55] text-white/80 mb-6 max-w-[48ch]">{d.line}</p>
-                <span className="inline-block rounded-xl px-5 py-3 font-sans text-[13px] font-medium text-house-black transition-[filter] group-hover:brightness-105" style={{ background: d.btn }}>{d.cta} →</span>
+        {/* The six need-based members */}
+        <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mt-16 mb-6">Start with what needs attention</p>
+        <div className="grid gap-x-6 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">
+          {NEED_MEMBERS.map((m) => (
+            <Link key={m.name} href={m.href} className="group block no-underline">
+              <div className="relative aspect-[4/5] overflow-hidden bg-house-cream-dark border border-house-brown/10">
+                <Image src={m.img} alt={m.name} fill sizes="(min-width:1024px) 30vw, 46vw" className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.04]" />
+                <span className="absolute left-2.5 top-2.5"><StateChip tone={m.tone}>{m.state}</StateChip></span>
               </div>
+              <h3 className="font-display text-[19px] leading-[1.2] text-house-black group-hover:text-house-gold-ink transition-colors mt-3">{m.name}</h3>
+              <p className="font-sans text-[13.5px] leading-[1.5] text-house-brown/70 mt-1.5">{m.line}</p>
+              {m.chips.length > 0 && (
+                <ul className="flex flex-wrap gap-1.5 mt-2.5 list-none p-0">
+                  {m.chips.map((chip) => (
+                    <li key={chip} className="font-sans text-[10.5px] tracking-[0.1em] uppercase text-house-moss border border-house-moss/35 px-2 py-1">{chip}</li>
+                  ))}
+                </ul>
+              )}
             </Link>
           ))}
         </div>
-        <div className="mt-10 text-center"><Link href="/household" className={ctaSecondary}>Meet the whole Household →</Link></div>
+
+        {/* The Host closes the section at the door */}
+        <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mt-16 mb-6">At the door</p>
+        <Link href={HOST_MEMBER.href} className="group grid gap-8 md:grid-cols-[1fr_1.4fr] items-center no-underline border border-house-brown/12 bg-house-cream-dark p-6">
+          <div className="relative aspect-[4/3] overflow-hidden bg-house-brown/5">
+            <Image src={HOST_MEMBER.img} alt={HOST_MEMBER.name} fill sizes="(min-width:768px) 34vw, 100vw" className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.03]" />
+            <span className="absolute left-2.5 top-2.5"><StateChip tone={HOST_MEMBER.tone}>{HOST_MEMBER.state}</StateChip></span>
+          </div>
+          <div>
+            <h3 className="font-display text-[clamp(24px,2.6vw,34px)] leading-[1.1] text-house-black group-hover:text-house-gold-ink transition-colors">{HOST_MEMBER.name}</h3>
+            <p className="font-sans text-[15.5px] leading-[1.6] text-house-brown/75 mt-2.5 max-w-[46ch]">{HOST_MEMBER.line}</p>
+            <span className="inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown/70 mt-5 transition-colors group-hover:text-house-gold-ink">Meet The Host →</span>
+          </div>
+        </Link>
+
+        <div className="mt-12 text-center"><Link href="/household" className={ctaSecondary}>Meet the Household →</Link></div>
       </section>
 
       {/* 4. FINDER, NESTED INSIDE THE HOUSEHOLD */}
