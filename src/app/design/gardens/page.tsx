@@ -245,6 +245,44 @@ export default async function GardensPage() {
         </div>
       </section>
 
+      {/* 3b. PROFESSIONAL BOUNDARIES — Directive v2 STEP 13.
+          Placed directly after the plans, because that is where the claims are:
+          the plans above sell "fully dimensioned plans", "construction-grade
+          detail", a "contractor liaison brief" and build management. Those read
+          close to a measured survey, a construction specification and planning
+          or structural input, and the directive is explicit that a design is
+          none of those unless a named qualified professional supplies them.
+          Saying so next to the price is the honest place, not the footer. */}
+      <section className="px-[5vw] py-14 bg-house-cream-dark border-t border-b border-house-brown/10">
+        <div className="max-w-[1100px] mx-auto">
+          <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-ink mb-4">
+            What a design is, and is not
+          </p>
+          <h2 className="font-display text-[clamp(22px,2.6vw,34px)] leading-[1.14] text-house-black max-w-[26ch]">
+            A design is not a <em className="italic">survey.</em>
+          </h2>
+          <div className="grid gap-8 md:grid-cols-3 mt-8">
+            <p className="font-sans text-[14.5px] leading-[1.65] text-house-brown/78">
+              A concept or plan is a design. It is not a measured survey,
+              planning advice, structural design, an arboricultural report,
+              drainage design or a construction specification, unless a named
+              qualified professional is engaged to provide it and says so.
+            </p>
+            <p className="font-sans text-[14.5px] leading-[1.65] text-house-brown/78">
+              Where the garden raises a question about trees, structures,
+              drainage, electrical work or planning, the studio will tell you and
+              route it to the right professional. Nobody here will guess at
+              something that needs a qualification.
+            </p>
+            <p className="font-sans text-[14.5px] leading-[1.65] text-house-brown/78">
+              A landscaper's quote to build the garden is separate from the
+              design commission, and you accept it separately. Commissioning a
+              design does not commit you to a build, or to a price for one.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* 4. Specialist services */}
       <section className={s.specialist}>
         <header className={s.specialistHead}>
