@@ -49,6 +49,26 @@ export interface PageSectionContent {
 export async function getPageSections(
   page: string,
 ): Promise<Map<string, PageSectionContent>> {
+  // REBRAND PREVIEW ESCAPE HATCH.
+  //
+  // Sanity page-section content overrides the hardcoded copy in each page, and
+  // there is ONE dataset shared by production and preview. So rebrand copy fixed
+  // in this branch can still be masked by a live Sanity document: the Housekeeper
+  // page kept selling "the full Assistant" from the CMS after the code no longer
+  // mentioned it anywhere.
+  //
+  // Editing those documents would change the live site, which is out of scope
+  // for the rebrand branch. Setting CMS_SECTIONS_OVERLAY=off makes this overlay
+  // return nothing, so every page renders its in-repo copy, which is the copy the
+  // directive governs. Set it on the Vercel PREVIEW environment only; production
+  // leaves it unset and keeps reading Sanity exactly as it does today.
+  //
+  // This affects the marketing page-section overlay ONLY. Articles, products and
+  // every other CMS read are untouched.
+  if (process.env.CMS_SECTIONS_OVERLAY === "off") {
+    return new Map();
+  }
+
   try {
     const sections = await sanityFetch<PageSectionContent[]>({
       query: pageSectionsQuery,
