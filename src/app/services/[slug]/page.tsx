@@ -177,8 +177,7 @@ export default async function ServicePage({
           contentCategory="service"
           contentType="product"
         />
-        <ServiceTruthBand slug={slug} />
-        <ServiceDetail service={local} />
+        <ServiceDetail service={local} afterHero={<ServiceTruthBand slug={slug} />} />
       </>
     );
   }

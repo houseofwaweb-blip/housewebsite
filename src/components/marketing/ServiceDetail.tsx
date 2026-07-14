@@ -111,7 +111,19 @@ const PLACEHOLDER_PARTNERS: Record<string, PartnerCardData[]> = {
   ],
 };
 
-export function ServiceDetail({ service }: { service: Service }) {
+export function ServiceDetail({
+  service,
+  afterHero,
+}: {
+  service: Service;
+  /**
+   * Rendered immediately after the hero. The directive's detail-page order puts
+   * availability, provider and price at section 2, directly beneath the hero,
+   * so the truth band is injected here rather than stacked above the hero (or
+   * dumped at the foot of the page).
+   */
+  afterHero?: React.ReactNode;
+}) {
   const partners = ({
     gardening:         { plural: "gardeners",          singular: "gardener" },
     "window-cleaning": { plural: "window cleaners",    singular: "window cleaner" },
@@ -168,8 +180,8 @@ export function ServiceDetail({ service }: { service: Service }) {
                   <Link href="#open-booking-form" className={s.btnFilled}>
                     Book through HoWA
                   </Link>
-                  <Link href="/steward-plans" className={s.btnGhostLight}>
-                    Explore Steward Plans
+                  <Link href="/services" className={s.btnGhostLight}>
+                    See live care
                   </Link>
                 </>
               )}
@@ -199,18 +211,18 @@ export function ServiceDetail({ service }: { service: Service }) {
                   <Link href="#open-booking-form" className={s.btnFilled}>
                     Book through HoWA
                   </Link>
-                  <Link href="/steward-plans" className={s.btnGhost}>
-                    Explore Steward Plans
+                  <Link href="/services" className={s.btnGhost}>
+                    See live care
                   </Link>
-                  {service.recurring ? (
-                    <span className={s.stewardBadge}>Steward-ready</span>
-                  ) : null}
+                  
                 </>
               )}
             </div>
           </div>
         </section>
       )}
+
+      {afterHero}
 
       {/* 2. Trust strip */}
       {service.trustBadges.length > 0 ? (
