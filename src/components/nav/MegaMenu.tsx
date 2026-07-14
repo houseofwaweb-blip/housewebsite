@@ -172,11 +172,19 @@ export function MegaMenu({
             {panel.twoLevel ? (
               <TwoLevelMegaPanel data={panel.twoLevel} isOpen={isOpen} />
             ) : (
-            <div className="grid grid-cols-1 md:grid-cols-[1fr_1.6fr] gap-[32px]">
-              {/* Links */}
+            <div
+              className={cn(
+                "grid grid-cols-1 gap-[32px]",
+                // Only reserve the preview column when a preview actually exists.
+                panel.preview ? "md:grid-cols-[1fr_1.6fr]" : "md:grid-cols-1",
+              )}
+            >
+              {/* Links — a compact room plan: groups flow into columns rather
+                  than stacking into a tall, clipped list (Directive v2 STEP 04). */}
               <div
                 className={cn(
-                  "flex flex-col gap-[20px] transition-[opacity,transform] duration-[var(--t-slow)] ease-out",
+                  "grid items-start gap-x-[40px] gap-y-[22px] transition-[opacity,transform] duration-[var(--t-slow)] ease-out",
+                  panel.preview ? "grid-cols-1" : "sm:grid-cols-2 lg:grid-cols-3",
                   isOpen ? "opacity-100 translate-y-0 delay-[150ms]" : "opacity-0 translate-y-3 delay-0",
                 )}
               >
