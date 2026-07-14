@@ -101,7 +101,7 @@ export function SafetyBoundary({
 /** "Save to my Home Record" pill — used across Hearth, services and product pages. */
 export function SaveToRecord({
   label = "Save to my Home Record",
-  href = "/howa/assistant",
+  href = "/howa",
 }: {
   label?: string;
   href?: string;

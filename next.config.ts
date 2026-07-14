@@ -74,6 +74,13 @@ const nextConfig: NextConfig = {
       { source: "/howa/companion", destination: "/howa", permanent: true },
       // HoWA+ retired; the consumer continuity tier is now Housekeeper (2026-06-18)
       { source: "/howa/plus", destination: "/howa/housekeeper", permanent: true },
+      // Directive v2 STEP 06 deletes Steward Plans and the Apartment/Essential/
+      // Comprehensive/Premium bundles outright. Repeat care is now a frequency
+      // chosen inside the booking journey, so /services is the honest successor
+      // for that intent; "Managed Stewardship" survives only as the bespoke
+      // human service, which has no page of its own yet.
+      { source: "/steward-plans", destination: "/services", permanent: true },
+      { source: "/steward-plans/:slug", destination: "/services", permanent: true },
       { source: "/protect/review", destination: "/protect/home-protection", permanent: true },
       { source: "/insurance", destination: "/protect/insurance", permanent: true },
       { source: "/press", destination: "/news", permanent: true },

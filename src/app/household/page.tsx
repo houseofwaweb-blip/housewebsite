@@ -76,7 +76,7 @@ export default function HouseholdPage() {
         <p className="font-sans text-[17px] leading-[1.65] text-house-brown/72 mt-4 max-w-[56ch]">
           They are not separate apps or separate records. HoWA understands and remembers the home beneath them all.
         </p>
-        <div className="mt-9"><Link href="/howa/assistant" className={ctaPrimary}>Start with my address</Link></div>
+        <div className="mt-9"><Link href="/howa" className={ctaPrimary}>Start with my address</Link></div>
       </section>
 
       {/* Senior Household — paid continuity, above the utility members */}
@@ -135,7 +135,7 @@ export default function HouseholdPage() {
             a new account or a set of disconnected assistants.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/howa/assistant" className={ctaPrimary}>Start with my address</Link>
+            <Link href="/howa" className={ctaPrimary}>Start with my address</Link>
             <Link href="/howa/plans" className={ctaSecondary}>See Housekeeper &amp; Steward</Link>
           </div>
           <p className="font-sans text-[13px] leading-[1.6] text-house-stone mt-10 max-w-[64ch] mx-auto">

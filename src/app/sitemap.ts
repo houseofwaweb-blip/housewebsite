@@ -64,7 +64,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/services/gutter-cleaning`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
 
     // ---- Steward Plans (managed recurring care) ----
-    { url: `${base}/steward-plans`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
 
     // ---- Protect ----
     { url: `${base}/protect`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },

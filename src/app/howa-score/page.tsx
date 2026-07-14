@@ -80,7 +80,7 @@ export default function HowaScorePage() {
           inspection. It is the home becoming legible over time.
         </p>
         <div className="mt-10 flex flex-wrap gap-4">
-          <Link href="/howa/assistant" className={ctaPrimary}>
+          <Link href="/howa" className={ctaPrimary}>
             Start with my address
           </Link>
           <Link href="/howa/how-it-works" className={ctaSecondary}>
@@ -298,7 +298,7 @@ export default function HowaScorePage() {
         </p>
         <div className="mt-9 flex flex-wrap justify-center gap-4">
           <Link
-            href="/howa/assistant"
+            href="/howa"
             className="inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown bg-house-gold-ink border border-house-gold-dark px-7 py-3 no-underline hover:brightness-110 transition-[filter]"
           >
             Start with my address

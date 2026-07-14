@@ -292,7 +292,7 @@ export default async function LocalServicePage({
           </p>
           <div className="flex items-center justify-center gap-4 flex-wrap mt-9">
             <Link
-              href="/howa/assistant"
+              href="/howa"
               className="inline-block font-sans text-[15px] tracking-[0.22em] uppercase text-house-brown bg-house-cream border border-house-cream px-7 py-4 no-underline transition-all duration-200 ease-out hover:bg-house-gold hover:border-house-gold"
             >
               Launch the Assistant
