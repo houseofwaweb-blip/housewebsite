@@ -3,7 +3,7 @@ import Link from "next/link";
 import { HowaDoorModule } from "./HowaDoorModule";
 import { PersonaFeatures } from "./PersonaFeatures";
 import { PERSONA_ART, personaImage, BOOK_HREF, type Persona } from "./personaData";
-import { HOUSEHOLD, PROFESSIONAL_BOUNDARY, LIVE_SERVICES } from "@/lib/truth";
+import { HOUSEHOLD, PROFESSIONAL_BOUNDARY, LIVE_SERVICES, WRITEBACK_OBJECTS } from "@/lib/truth";
 
 /**
  * The shared per-persona ("room") page. One template renders every
@@ -18,8 +18,11 @@ import { HOUSEHOLD, PROFESSIONAL_BOUNDARY, LIVE_SERVICES } from "@/lib/truth";
 export function PersonaPage({ persona }: { persona: Persona }) {
   // Service status comes from the truth layer so a member never offers work the
   // House cannot actually arrange (09A s5: no dead button).
-  const serviceLive =
-    HOUSEHOLD.find((m) => m.id === persona.slug)?.serviceStatus === "live";
+  const member = HOUSEHOLD.find((m) => m.id === persona.slug);
+  const serviceLive = member?.serviceStatus === "live";
+  // Drives the write-back wording: an in-build tool describes what it WILL keep.
+  const toolLive = member?.toolStatus === "live";
+  const records = WRITEBACK_OBJECTS[persona.slug] ?? [];
   /**
    * 09A s7: "Who fulfils the action: named provider/studio/seller cards, legal
    * seller and House Approved status."
@@ -98,6 +101,41 @@ export function PersonaPage({ persona }: { persona: Persona }) {
           <HowaDoorModule persona={persona} surface="persona-page" />
         </div>
       </section>
+
+      {/* 09A s6: what is remembered, as NAMED Home Record objects rather than a
+          prose line. The identifiers are the directive's own (09B-09K "Required
+          writeback"). Wording is driven by toolStatus: a tool that is in build
+          says what it "will keep", never what it keeps, because promising
+          write-back that is not running is the exact claim STEP 07's automatic
+          write-back rule exists to stop. */}
+      {records.length > 0 && (
+        <section className="border-t border-[#1a241d]/8 py-12 lg:py-14">
+          <div className="mx-auto max-w-[1180px] px-6 sm:px-10">
+            <p className="mb-3 font-sans text-[11px] uppercase tracking-[0.18em]" style={{ color: accent }}>
+              What is remembered
+            </p>
+            <h2 className="font-display text-[clamp(22px,2.4vw,32px)] leading-[1.14] text-[#1a241d]">
+              {toolLive ? "Kept against the address." : "What will be kept against the address."}
+            </h2>
+            <p className="mt-3 max-w-[64ch] text-[15px] leading-[1.6] text-[#3a352c]/75">
+              {toolLive
+                ? `${persona.name} writes these to the one Home Record for your address, not to a separate app or a record of its own.`
+                : `Once ${persona.name} is live, these are what it writes to the one Home Record for your address. Nothing is written today.`}
+            </p>
+            <ul className="mt-6 flex flex-wrap gap-2 p-0 list-none">
+              {records.map((r) => (
+                <li
+                  key={r}
+                  className="rounded-md border px-3 py-2 font-sans text-[12.5px] text-[#3a352c]/80"
+                  style={{ borderColor: `${accent}55` }}
+                >
+                  {r}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
 
       {/* 09A s7: who fulfils the action. Named seller before any booking
           decision, matching what the service pages say. */}

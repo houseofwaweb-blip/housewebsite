@@ -260,6 +260,33 @@ export const membershipLabelFor = (id: string) => {
   return m ? membershipLabel(m) : "";
 };
 
+
+/**
+ * HOME RECORD OBJECTS — what each member writes back (v2 STEP 09, the
+ * "Required writeback" line of each member section 09B-09K).
+ *
+ * 09A s6 requires the member page to name the Home Record objects rather than
+ * describe them vaguely. Rendered as readable labels; the identifiers here are
+ * the directive's own.
+ *
+ * These describe what a member writes back ONCE ITS TOOL IS LIVE. Most tools
+ * are in build, so the page must present this as what will be kept, never as
+ * something already happening. The truth layer's toolStatus drives that
+ * wording; nothing here should be read as a claim that write-back is running.
+ */
+export const WRITEBACK_OBJECTS: Record<string, string[]> = {
+  gardener: ["Garden scan", "Garden zone", "Seasonal task", "Service request", "Acquisition event", "Score update"],
+  handyman: ["Repair scan", "Issue", "Risk item", "Task", "Service request", "Evidence when completed"],
+  designer: ["Design scan", "Design brief", "Project", "Task", "Acquisition event", "Decisions and files"],
+  surveyor: ["Fabric scan", "Quote decode", "Risk item", "Task", "Referral service request"],
+  archivist: ["Document", "Extraction", "Renewal task", "Evidence item", "Score update"],
+  storekeeper: ["Order", "Asset, warranty, manual or room record for relevant goods"],
+  host: ["Saved guide", "Task", "Source attribution", "Acquisition event where supported"],
+  housekeeper: ["Tasks", "Reminders", "Monthly brief", "Cost item", "Permissions", "Subscription events"],
+  steward: ["Risk lifecycle", "Approval event", "Evidence pack", "Annual report", "Score event", "Subscription action"],
+  butler: ["Device map", "Utility and telemetry reading", "Automation proposal", "Approval", "Action audit"],
+};
+
 /** Commercial separation — PUBLISH-READY COPY, do not rewrite (v2 STEP 03). */
 /**
  * The professional boundary — PUBLISH-READY COPY, do not rewrite (v2 STEP 09).
