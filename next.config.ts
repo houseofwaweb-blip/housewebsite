@@ -67,8 +67,11 @@ const nextConfig: NextConfig = {
       // The House overview hub was retired; the section's de-facto overview is
       // the About page, so the bare route lands there (301, 2026-06-26).
       { source: "/the-house", destination: "/the-house/about", permanent: true },
-      // Companion folded into the free Assistant tier page (2026-06-17)
-      { source: "/howa/companion", destination: "/howa/assistant", permanent: true },
+      // The Assistant is retired as a public product/tier/route (Directive v2
+      // STEP 03): free is simply HoWA, and the address start lives on the
+      // bridge. Companion points straight at /howa so we never chain redirects.
+      { source: "/howa/assistant", destination: "/howa", permanent: true },
+      { source: "/howa/companion", destination: "/howa", permanent: true },
       // HoWA+ retired; the consumer continuity tier is now Housekeeper (2026-06-18)
       { source: "/howa/plus", destination: "/howa/housekeeper", permanent: true },
       { source: "/protect/review", destination: "/protect/home-protection", permanent: true },

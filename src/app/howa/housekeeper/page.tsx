@@ -51,7 +51,7 @@ const BENEFITS = [
     image: "/home-v4/plus-benefit-3.webp",
     title: "Full Assistant Diagnostic",
     body: "Repair scan, instant quote, design moodboards. Capture home type, rooms, priorities, style, budget, saved straight to your record.",
-    cta: { label: "See the Assistant", href: "/howa/assistant" },
+    cta: { label: "See the Assistant", href: "/howa" },
   },
   {
     icon: BookIcon,

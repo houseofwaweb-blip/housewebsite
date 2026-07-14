@@ -284,7 +284,7 @@ export default async function PlansPage() {
                 >
                   {cms(tierPlus, "ctaLabel", "Join the waitlist")}
                 </Link>
-                <Link href={cms(tierPlus, "cta2Href", "/howa/assistant")} className={s.tierLink}>
+                <Link href={cms(tierPlus, "cta2Href", "/howa")} className={s.tierLink}>
                   {cms(tierPlus, "cta2Label", "See the Assistant")} →
                 </Link>
               </div>

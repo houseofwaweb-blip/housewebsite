@@ -63,8 +63,8 @@ export type Persona = {
 export type PersonaFeature = { t: string; d: string };
 export type PersonaArt = { colourway: string; motto: string; features: PersonaFeature[] };
 
-/** Where the free-tool / app CTAs route on the House site (the free Assistant tier). */
-export const APP_HREF = "/howa/assistant";
+/** Where the free-tool / app CTAs route on the House site (the HoWA bridge). */
+export const APP_HREF = "/howa";
 /** Where "want hands" booking routes (the ServiceOS booking modal). */
 export const BOOK_HREF = "#open-booking-form";
 /** Per-persona cutaway-house image. */

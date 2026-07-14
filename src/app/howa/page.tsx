@@ -74,7 +74,7 @@ export default function HowaPage() {
           Free is simply HoWA. Housekeeper keeps the rhythm. Steward protects the long view. Every level deepens the
           same record.
         </p>
-        <div className="mt-9"><Link href="/howa/assistant" className={ctaPrimary}>Start with my address</Link></div>
+        <div className="mt-9"><Link href="/howa" className={ctaPrimary}>Start with my address</Link></div>
       </section>
 
       {/* The first minute */}
@@ -166,7 +166,7 @@ export default function HowaPage() {
             The Home Record keeps the work, documents, assets, warranties, costs, photographs and decisions connected to
             the address. When responsibility changes, the history does not have to disappear.
           </p>
-          <Link href="/howa/assistant" className={ctaPrimary}>Begin my Home Record</Link>
+          <Link href="/howa" className={ctaPrimary}>Begin my Home Record</Link>
         </div>
       </section>
 
@@ -213,7 +213,7 @@ export default function HowaPage() {
             ))}
           </div>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/howa/assistant" className="inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-house-black bg-house-gold-light border border-house-gold-light px-6 py-3 no-underline hover:brightness-105 transition-[filter]">Start with my address</Link>
+            <Link href="/howa" className="inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-house-black bg-house-gold-light border border-house-gold-light px-6 py-3 no-underline hover:brightness-105 transition-[filter]">Start with my address</Link>
             <Link href="/howa/plans" className="inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-house-cream border border-house-cream/30 px-6 py-3 no-underline transition-colors hover:border-house-gold-light hover:text-house-gold-light">Explore Housekeeper &amp; Steward</Link>
           </div>
           <p className="font-sans text-[13px] leading-[1.6] text-house-cream/55 mt-10 max-w-[64ch] mx-auto">

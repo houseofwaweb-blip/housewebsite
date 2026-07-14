@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import s from "./assistant.module.css";
+import s from "./ask.module.css";
 
 export interface AskChoice {
   label: string;

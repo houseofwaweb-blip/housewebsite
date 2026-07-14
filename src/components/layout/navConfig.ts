@@ -81,7 +81,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
         links: [
           { label: "Meet the whole Household", href: "/household" },
           { label: "See all services", href: "/services" },
-          { label: "Start with my address", href: "/howa/assistant" },
+          { label: "Start with my address", href: "/howa" },
         ],
       },
     ],
@@ -125,9 +125,10 @@ export const PRIMARY_NAV: MegaPanel[] = [
       {
         heading: "HoWA",
         links: [
-          { label: "Start with my address", href: "/howa/assistant" },
+          { label: "Start with my address", href: "/howa" },
           { label: "HoWA Score", href: "/howa-score" },
           { label: "Home Record", href: "/howa" },
+          { label: "Ask HoWA", href: "/howa/ask" },
           { label: "Housekeeper", href: "/howa/housekeeper" },
           { label: "Steward", href: "/howa/steward" },
           { label: "Help", href: "/howa/faq" },
