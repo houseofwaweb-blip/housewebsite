@@ -3,7 +3,7 @@ import Link from "next/link";
 import { HowaDoorModule } from "./HowaDoorModule";
 import { PersonaFeatures } from "./PersonaFeatures";
 import { PERSONA_ART, personaImage, BOOK_HREF, type Persona } from "./personaData";
-import { HOUSEHOLD, PROFESSIONAL_BOUNDARY } from "@/lib/truth";
+import { HOUSEHOLD, PROFESSIONAL_BOUNDARY, LIVE_SERVICES } from "@/lib/truth";
 
 /**
  * The shared per-persona ("room") page. One template renders every
@@ -20,6 +20,18 @@ export function PersonaPage({ persona }: { persona: Persona }) {
   // House cannot actually arrange (09A s5: no dead button).
   const serviceLive =
     HOUSEHOLD.find((m) => m.id === persona.slug)?.serviceStatus === "live";
+  /**
+   * 09A s7: "Who fulfils the action: named provider/studio/seller cards, legal
+   * seller and House Approved status."
+   *
+   * Derived from the truth layer by ownership, so a member names exactly the
+   * businesses that stand behind its live work, and names them the same way the
+   * service pages do. The Housekeeper owns three services across two companies;
+   * the Gardener owns one. A member with no live service names nobody rather
+   * than implying a provider exists.
+   */
+  const fulfilledBy = LIVE_SERVICES.filter((svc) => svc.householdOwner === persona.slug);
+  const sellers = Array.from(new Set(fulfilledBy.map((svc) => svc.sellerEntity).filter(Boolean)));
   const accent = persona.accent;
   const art = PERSONA_ART[persona.slug];
 
@@ -86,6 +98,39 @@ export function PersonaPage({ persona }: { persona: Persona }) {
           <HowaDoorModule persona={persona} surface="persona-page" />
         </div>
       </section>
+
+      {/* 09A s7: who fulfils the action. Named seller before any booking
+          decision, matching what the service pages say. */}
+      {sellers.length > 0 && (
+        <section className="border-t border-[#1a241d]/8 bg-[#f4f1e9] py-12 lg:py-14">
+          <div className="mx-auto max-w-[1180px] px-6 sm:px-10">
+            <p className="mb-5 font-sans text-[11px] uppercase tracking-[0.18em]" style={{ color: accent }}>
+              Who does the work
+            </p>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {sellers.map((seller) => (
+                <div key={seller} className="rounded-xl border border-[#b89968]/25 bg-white p-5">
+                  <p className="font-display text-[19px] leading-[1.2] text-[#1a241d]">{seller}</p>
+                  <p className="mt-1.5 font-sans text-[11px] uppercase tracking-[0.12em] text-[#8a6f3f]">
+                    House Approved · Founding service family
+                  </p>
+                  <p className="mt-3 text-[13.5px] leading-[1.55] text-[#3a352c]/75">
+                    {fulfilledBy
+                      .filter((svc) => svc.sellerEntity === seller)
+                      .map((svc) => svc.publicName)
+                      .join(" · ")}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <p className="mt-5 max-w-[70ch] text-[13px] leading-[1.55] text-[#3a352c]/65">
+              The named provider is shown before you confirm, and remains
+              responsible for its contract and delivery unless checkout states
+              otherwise.
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* INSIDE THE ROOM */}
       <section className="border-t border-[#1a241d]/8 py-14 lg:py-20">
