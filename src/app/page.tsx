@@ -5,13 +5,22 @@ import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { EnquiryForm } from "@/components/marketing/EnquiryForm";
 
 /**
- * Homepage — House of HoWA (Final Master Directive, 13 Jul 2026).
+ * Homepage — House of HoWA.
  *
- * Care-led. Order: hero → service finder → live care → House Approved proof →
- * Meet the Household (10) → HoWA reveal + Score → Booked. Done. Remembered. →
- * Design → The Stores → The Host → House standard → Origin → professionals →
- * contact & close. Layouts blend the live site (split hero, room cards, Hearth
- * grid, origin band) with the prior preview imagery.
+ * The section order is LOCKED by the Persona-Led Zero-Interpretation Directive
+ * v2, STEP 05, and overrides the earlier homepage sequence:
+ *
+ *   1 hero · 2 four rooms · 3 meet the Household · 4 finder (nested inside the
+ *   Household) · 5 live care organised by staff · 6 real people band ·
+ *   7 House Approved proof · 8 HoWA and Score reveal · 9 booked/done/
+ *   remembered · 10 The Designer · 11 The Stores and The Host · 12 standard and
+ *   origin · 13 professionals · 14 contact and close.
+ *
+ * The visitor must meet the Household BEFORE any service or design taxonomy,
+ * so the finder and live care sit after and inside the Household layer rather
+ * than in front of it. The page alternates reality -> intelligence -> reality:
+ * the real-people band and House Approved proof bracket the HoWA/Score reveal
+ * so it never becomes a run of campaign renders.
  */
 
 export const metadata = {
@@ -64,6 +73,25 @@ const STANDARDS = [
   { t: "House-vetted, always", d: "Every partner shown as House Approved must have a current evidence record and remain subject to review." },
 ];
 
+// The four rooms of the House (Directive v2 STEP 05, section 2). Destinations
+// and public roles are fixed by the directive table.
+const FOUR_ROOMS = [
+  { title: "Care and Design", href: "/household", role: "Meet the staff and the care they arrange.", image: "/howa/household/gardener.webp" },
+  { title: "The Stores", href: "/shop", role: "Objects with a place in the House.", image: "/howa/household/storekeeper.webp" },
+  { title: "The Host", href: "/host", role: "Guidance, The Hearth and House culture.", image: "/howa/household/host.webp" },
+  { title: "The House", href: "/the-house/about", role: "Origin, standard and the people behind it.", image: "/home/origin-studio.webp" },
+];
+
+// Real team and van photography for the band after live care. Real work only,
+// no campaign renders: the directive requires reality either side of the HoWA
+// intelligence layer.
+const REAL_PEOPLE = [
+  { src: "/services/photos/vans/asher-348.webp", alt: "A liveried House of HoWA electric van" },
+  { src: "/services/photos/gardening/garden-clearance-hero.webp", alt: "A gardener clearing a garden" },
+  { src: "/services/photos/window-cleaning/regular-window-cleaning-hero.webp", alt: "A window cleaner at work on a home" },
+  { src: "/services/photos/cleaning/regular-cleaning-hero.webp", alt: "A cleaner at work inside a home" },
+];
+
 const ctaPrimary =
   "inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown bg-house-gold-ink border border-house-gold-dark px-6 py-3 no-underline transition-[filter] duration-[var(--t-slow)] ease-out hover:brightness-110";
 const ctaSecondary =
@@ -105,7 +133,7 @@ export default async function HomePage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <a href="#open-booking-form" className={ctaPrimary}>Book through HoWA</a>
-              <Link href="/howa/assistant" className={ctaSecondary}>Start with my address</Link>
+              <Link href="/howa" className={ctaSecondary}>Start with my address</Link>
             </div>
             <p className="font-sans text-[13px] text-house-stone mt-6">
               Prefer to speak to us? <a href="/contact" className="underline underline-offset-4 hover:text-house-gold-ink">Call the House directly.</a>
@@ -122,63 +150,32 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 2. SERVICE FINDER */}
-      <section className="px-[5vw] py-14 bg-house-cream-dark border-b border-house-brown/8">
-        <div className="max-w-[1000px] mx-auto text-center">
-          <h2 className="font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-black mb-3">What does the home need?</h2>
-          <p className="font-sans text-[16px] leading-[1.6] text-house-brown/80 max-w-[58ch] mx-auto mb-7">
-            Tell us the service and postcode. We will show what is available, who may deliver it and the next appointment or quotation route.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/services" className={ctaPrimary}>Choose a service</Link>
-            <a href="#open-booking-form" className={ctaSecondary}>Check my postcode</a>
+
+      {/* 2. FOUR ROOMS OF THE HOUSE — the locked second section (Directive v2
+          STEP 05). Four destinations, no departmental taxonomy. */}
+      <section className="px-[5vw] py-16 bg-house-cream-dark border-b border-house-brown/8">
+        <div className="max-w-[1300px] mx-auto">
+          <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">Four rooms of the House</p>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {FOUR_ROOMS.map((room) => (
+              <Link key={room.title} href={room.href} className="group block">
+                <div className="relative aspect-[4/5] overflow-hidden bg-house-brown/5">
+                  <Image
+                    src={room.image}
+                    alt=""
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover transition-transform duration-[var(--t-slow)] ease-out group-hover:scale-[1.03]"
+                  />
+                </div>
+                <h3 className="font-display text-[22px] leading-[1.15] text-house-black mt-4">{room.title}</h3>
+                <p className="font-sans text-[14px] leading-[1.6] text-house-brown/75 mt-2">{room.role}</p>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
-
-      {/* 3. LIVE CARE */}
-      <section className="px-[5vw] py-16 max-w-[1300px] mx-auto">
-        <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">Live services</p>
-        <h2 className="font-display text-[clamp(28px,3.6vw,46px)] leading-[1.08] text-house-black max-w-[20ch] mb-4">Care for the home, booked clearly.</h2>
-        <p className="font-sans text-[17px] leading-[1.7] text-house-brown/80 max-w-[64ch] mb-10">
-          Start with the work the home needs now. Every live service is delivered by the named provider shown at booking, held to the House standard and connected to the same HoWA record.
-        </p>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {LIVE_SERVICES.map((s) => (
-            <Link key={s.name} href={s.href} className="group block no-underline">
-              <div className="relative aspect-[4/5] overflow-hidden bg-house-cream-dark border border-house-brown/10">
-                <Image src={s.img} alt={s.name} fill sizes="(min-width:1024px) 22vw, 46vw" className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.04]" />
-                <span className="absolute left-3 top-3"><StateChip tone="live">Available in selected postcodes</StateChip></span>
-              </div>
-              <h3 className="font-display text-[21px] leading-[1.15] text-house-black group-hover:text-house-gold-ink transition-colors mt-3">{s.name}</h3>
-              <p className="font-sans text-[14px] leading-[1.5] text-house-brown/70 mt-1.5">{s.line}</p>
-            </Link>
-          ))}
-        </div>
-        <div className="mt-9"><Link href="/services" className={ctaSecondary}>See all services →</Link></div>
-      </section>
-
-      {/* 4. HOUSE APPROVED PROOF — text left, van image right */}
-      <section className="px-[5vw] py-16 bg-house-cream-dark border-t border-b border-house-brown/8">
-        <div className="max-w-[1300px] mx-auto grid gap-10 lg:gap-14 lg:grid-cols-2 lg:items-center">
-          <div className="lg:pl-[3vw]">
-            <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">House Approved</p>
-            <h2 className="font-display text-[clamp(26px,3.4vw,44px)] leading-[1.1] text-house-black max-w-[16ch] mb-5">The mark on the van means something.</h2>
-            <p className="font-sans text-[17px] leading-[1.7] text-house-brown/80 max-w-[52ch] mb-3">
-              House Approved is not an open directory. It is the standard for the professionals, studios and sellers the House is prepared to present.
-            </p>
-            <p className="font-sans text-[16px] leading-[1.6] text-house-brown/70 max-w-[52ch] mb-8">
-              Named providers. Clear scopes. Current operating information. Work reviewed and approval capable of being withdrawn.
-            </p>
-            <Link href="/house-approved" className={ctaSecondary}>What House Approved means →</Link>
-          </div>
-          <div className="relative aspect-[16/9] overflow-hidden border border-house-brown/10">
-            <Image src="/the-house/house-approved-van.webp" alt="A House Approved van with the mark on its side and the named provider beside it on a British street" fill sizes="(min-width:1024px) 50vw, 100vw" className="object-cover" />
-          </div>
-        </div>
-      </section>
-
-      {/* 5. MEET THE HOUSEHOLD (8 utility cards + 2 paid tiers on their own row) */}
+      {/* 3. MEET THE HOUSEHOLD (8 utility cards + 2 paid tiers on their own row) */}
       <section className="px-[5vw] py-16 max-w-[1300px] mx-auto">
         <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">The Household</p>
         <h2 className="font-display text-[clamp(30px,4vw,52px)] leading-[1.05] text-house-black mb-5">Meet the Household.</h2>
@@ -223,7 +220,87 @@ export default async function HomePage() {
         <div className="mt-10 text-center"><Link href="/household" className={ctaSecondary}>Meet the whole Household →</Link></div>
       </section>
 
-      {/* 6. HOWA REVEAL — text left, home image + Score card right */}
+      {/* 4. FINDER, NESTED INSIDE THE HOUSEHOLD */}
+      <section className="px-[5vw] py-14 bg-house-cream-dark border-b border-house-brown/8">
+        <div className="max-w-[1000px] mx-auto text-center">
+          <h2 className="font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-black mb-3">What does the home need?</h2>
+          <p className="font-sans text-[16px] leading-[1.6] text-house-brown/80 max-w-[58ch] mx-auto mb-7">
+            Tell us the service and postcode. We will show what is available, who may deliver it and the next appointment or quotation route.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link href="/services" className={ctaPrimary}>Choose a service</Link>
+            <a href="#open-booking-form" className={ctaSecondary}>Check my postcode</a>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. LIVE CARE, ORGANISED BY STAFF */}
+      <section className="px-[5vw] py-16 max-w-[1300px] mx-auto">
+        <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">Live services</p>
+        <h2 className="font-display text-[clamp(28px,3.6vw,46px)] leading-[1.08] text-house-black max-w-[20ch] mb-4">Care for the home, booked clearly.</h2>
+        <p className="font-sans text-[17px] leading-[1.7] text-house-brown/80 max-w-[64ch] mb-10">
+          Start with the work the home needs now. Every live service is delivered by the named provider shown at booking, held to the House standard and connected to the same HoWA record.
+        </p>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {LIVE_SERVICES.map((s) => (
+            <Link key={s.name} href={s.href} className="group block no-underline">
+              <div className="relative aspect-[4/5] overflow-hidden bg-house-cream-dark border border-house-brown/10">
+                <Image src={s.img} alt={s.name} fill sizes="(min-width:1024px) 22vw, 46vw" className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.04]" />
+                <span className="absolute left-3 top-3"><StateChip tone="live">Available in selected postcodes</StateChip></span>
+              </div>
+              <h3 className="font-display text-[21px] leading-[1.15] text-house-black group-hover:text-house-gold-ink transition-colors mt-3">{s.name}</h3>
+              <p className="font-sans text-[14px] leading-[1.5] text-house-brown/70 mt-1.5">{s.line}</p>
+            </Link>
+          ))}
+        </div>
+        <div className="mt-9"><Link href="/services" className={ctaSecondary}>See all services →</Link></div>
+      </section>
+
+
+      {/* 6. REAL PEOPLE BAND — real team/van photography, placed immediately
+          after live care (Directive v2 STEP 05, section 5). Reality before the
+          HoWA intelligence layer. */}
+      <section className="px-[5vw] py-16 bg-house-black text-house-cream border-t border-house-brown/20">
+        <div className="max-w-[1300px] mx-auto">
+          <h2 className="font-display text-[clamp(26px,3.4vw,44px)] leading-[1.08] text-house-cream max-w-[24ch]">
+            Real people, real standards, one remembered home.
+          </h2>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 mt-9">
+            {REAL_PEOPLE.map((shot) => (
+              <div key={shot.src} className="relative aspect-[4/3] overflow-hidden bg-house-cream/5">
+                <Image
+                  src={shot.src}
+                  alt={shot.alt}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* 7. HOUSE APPROVED PROOF — text left, van image right */}
+      <section className="px-[5vw] py-16 bg-house-cream-dark border-t border-b border-house-brown/8">
+        <div className="max-w-[1300px] mx-auto grid gap-10 lg:gap-14 lg:grid-cols-2 lg:items-center">
+          <div className="lg:pl-[3vw]">
+            <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">House Approved</p>
+            <h2 className="font-display text-[clamp(26px,3.4vw,44px)] leading-[1.1] text-house-black max-w-[16ch] mb-5">The mark on the van means something.</h2>
+            <p className="font-sans text-[17px] leading-[1.7] text-house-brown/80 max-w-[52ch] mb-3">
+              House Approved is not an open directory. It is the standard for the professionals, studios and sellers the House is prepared to present.
+            </p>
+            <p className="font-sans text-[16px] leading-[1.6] text-house-brown/70 max-w-[52ch] mb-8">
+              Named providers. Clear scopes. Current operating information. Work reviewed and approval capable of being withdrawn.
+            </p>
+            <Link href="/house-approved" className={ctaSecondary}>What House Approved means →</Link>
+          </div>
+          <div className="relative aspect-[16/9] overflow-hidden border border-house-brown/10">
+            <Image src="/the-house/house-approved-van.webp" alt="A House Approved van with the mark on its side and the named provider beside it on a British street" fill sizes="(min-width:1024px) 50vw, 100vw" className="object-cover" />
+          </div>
+        </div>
+      </section>
+
+      {/* 8. HOWA AND SCORE REVEAL — text left, home image + Score card right */}
       <section className="px-[5vw] py-20 bg-house-black text-house-cream border-t border-house-brown/20">
         <div className="max-w-[1240px] mx-auto grid gap-12 lg:gap-14 lg:grid-cols-2 lg:items-center">
           <div>
@@ -235,7 +312,7 @@ export default async function HomePage() {
               HoWA gives the address one Home Record, one HoWA Score and one calm place to understand what has happened, what is missing and what matters next.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Link href="/howa/assistant" className="inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-house-black bg-house-gold-light border border-house-gold-light px-6 py-3 no-underline hover:brightness-105 transition-[filter]">Start with my address</Link>
+              <Link href="/howa" className="inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-house-black bg-house-gold-light border border-house-gold-light px-6 py-3 no-underline hover:brightness-105 transition-[filter]">Start with my address</Link>
               <Link href="/howa-score" className="inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-house-cream border border-house-cream/30 px-6 py-3 no-underline transition-colors hover:border-house-gold-light hover:text-house-gold-light">See how the HoWA Score works</Link>
             </div>
             {/* Directive v2: no app-store badges unless a real store listing or a
@@ -293,7 +370,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 7. BOOKED. DONE. REMEMBERED. */}
+      {/* 9. BOOKED. DONE. REMEMBERED. */}
       <section className="px-[5vw] py-16 max-w-[1000px] mx-auto">
         <h2 className="font-display text-[clamp(26px,3.4vw,42px)] leading-[1.1] text-house-black mb-10">What happens when you book</h2>
         <div className="grid gap-8 md:grid-cols-3">
@@ -312,7 +389,7 @@ export default async function HomePage() {
         <div className="mt-10 text-center"><a href="#open-booking-form" className={ctaPrimary}>Book through HoWA</a></div>
       </section>
 
-      {/* 8. DESIGN — two founding-discipline image cards */}
+      {/* 10. THE DESIGNER — two founding-discipline image cards */}
       <section className="px-[5vw] py-16 bg-house-cream-dark border-t border-b border-house-brown/8">
         <div className="max-w-[1200px] mx-auto">
           <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">Design</p>
@@ -344,7 +421,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 9. THE STORES — a place for everything (room cards) */}
+      {/* 11a. THE STORES — a place for everything (room cards) */}
       <section className="px-[5vw] py-16 max-w-[1300px] mx-auto">
         <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
           <div>
@@ -370,7 +447,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 10. THE HOST — editorial, dark band with Hearth grid */}
+      {/* 11b. THE HOST — editorial, dark band with Hearth grid */}
       {hearthArticles.length > 0 ? (
         <section className="px-[5vw] py-16 bg-house-brown text-house-cream">
           <div className="max-w-[1300px] mx-auto grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
@@ -400,7 +477,7 @@ export default async function HomePage() {
         </section>
       ) : null}
 
-      {/* 11. HOUSE STANDARD */}
+      {/* 12a. HOUSE STANDARD */}
       <section className="px-[5vw] py-16 max-w-[1100px] mx-auto">
         <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">The House standard</p>
         <h2 className="font-display text-[clamp(26px,3.4vw,44px)] leading-[1.1] text-house-black max-w-[24ch] mb-10">
@@ -417,7 +494,7 @@ export default async function HomePage() {
         <div className="mt-8"><Link href="/the-house/standards" className={ctaSecondary}>Read the standard →</Link></div>
       </section>
 
-      {/* 12. ORIGIN — image left, copy right (live-site band) */}
+      {/* 12b. ORIGIN — image left, copy right (live-site band) */}
       <section className="relative bg-house-forest text-house-cream overflow-hidden">
         <FlowerWatermark color="white" side="right" opacity={0.1} />
         <div className="relative z-10 grid lg:grid-cols-2 lg:items-center">
