@@ -7,6 +7,7 @@ import { serviceBySlugQuery } from "@/lib/cms/queries";
 import { urlFor } from "@/lib/cms/image";
 import { SERVICES, SERVICE_ORDER, type ServiceSlug } from "@/lib/services-data";
 import { ServiceTruthBand } from "@/components/services/ServiceTruthBand";
+import { SERVICES as TRUTH_SERVICES, isBookable, isIndexable } from "@/lib/truth";
 import { SOON_SERVICE_CARDS } from "../page";
 import { EnquiryForm } from "@/components/marketing/EnquiryForm";
 import { getAllServiceSlugs } from "@/lib/cms/services";
@@ -74,6 +75,32 @@ function isLocalSlug(slug: string): slug is ServiceSlug {
   return SERVICE_ORDER.includes(slug as ServiceSlug);
 }
 
+/** The truth-layer record for a route, matched by id or canonical route. */
+function truthFor(slug: string) {
+  return (
+    TRUTH_SERVICES.find((s) => s.id === slug) ??
+    TRUTH_SERVICES.find((s) => s.canonicalRoute === `/services/${slug}`)
+  );
+}
+
+/** Bookable per the truth layer — not merely "has a CMS document". */
+function isTruthfullyLive(slug: string): boolean {
+  const svc = truthFor(slug);
+  return svc ? isBookable(svc) : false;
+}
+
+/**
+ * STEP 08: future services are "normally noindex". Indexability is read from
+ * the truth layer's STATUS_RULES rather than set per page, so a service cannot
+ * stay indexable just because nobody remembered to change it when its status
+ * moved.
+ */
+function robotsFor(slug: string) {
+  const svc = truthFor(slug);
+  if (!svc) return undefined;
+  return isIndexable(svc) ? undefined : { index: false, follow: true };
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -85,6 +112,7 @@ export async function generateMetadata({
     return {
       title: local.name,
       description: local.lede,
+      robots: robotsFor(slug),
     };
   }
   const service = await loadSanityService(slug);
@@ -94,6 +122,8 @@ export async function generateMetadata({
       return {
         title: `${soon.name} (coming soon)`,
         description: `${soon.tagline} ${soon.body}`,
+        // Not yet deliverable, so it should not compete in search.
+        robots: robotsFor(slug) ?? { index: false, follow: true },
       };
     }
     return { title: "Service not found" };
@@ -101,6 +131,9 @@ export async function generateMetadata({
   return {
     title: service.seo?.title ?? service.name,
     description: service.seo?.description ?? service.lede,
+    // The truth layer decides indexability; an editor's noindex flag can only
+    // tighten it, never loosen it back on for a service that is not live.
+    robots: service.seo?.noindex ? { index: false, follow: true } : robotsFor(slug),
   };
 }
 
@@ -121,8 +154,14 @@ export default async function ServicePage({
 
   const baseUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
 
-  // 1. Local data — 4 launch services
-  if (isLocalSlug(slug)) {
+  // 1. Local data — but ONLY the truthfully live services get the live
+  //    template. SERVICE_ORDER also contains handyman, removals, energy and
+  //    pet care, so this branch was rendering the full bookable ServiceDetail
+  //    (real photography, "Book through HoWA", Service schema) for services
+  //    with no provider, no coverage and no published price. Directive v2 STEP
+  //    08 requires future services to be visually separate, free of booking
+  //    schema, and to route to a register-interest template instead.
+  if (isLocalSlug(slug) && isTruthfullyLive(slug)) {
     const local = SERVICES[slug];
     return (
       <>
@@ -144,6 +183,26 @@ export default async function ServicePage({
     );
   }
 
+  // 1b. A local service that is not live falls through to the honest
+  //     register-interest template rather than the booking one.
+  if (isLocalSlug(slug)) {
+    const soon = SOON_SERVICE_CARDS.find((c) => c.slug === slug);
+    const local = SERVICES[slug];
+    return (
+      <ComingSoonService
+        card={
+          soon ?? {
+            slug,
+            name: local.name,
+            tagline: local.lede,
+            body: local.lede,
+            image: "",
+          }
+        }
+      />
+    );
+  }
+
   // 2. Sanity fallback — lander framework
   const service = await loadSanityService(slug);
 
@@ -156,18 +215,26 @@ export default async function ServicePage({
 
   return (
     <div className={s.page}>
-      <ServiceJsonLd
-        name={service.name}
-        description={service.lede}
-        url={`${baseUrl}/services/${slug}`}
-        serviceType={service.category}
-        image={
-          service.hero?.image
-            ? urlFor(service.hero.image).width(1200).height(800).url()
-            : undefined
-        }
-        areaServed={service.availableAreas?.[0] ?? "London"}
-      />
+      {/* Directive v2 STEP 08: "No future route exposes booking schema or live
+          availability structured data." A service with a Sanity document still
+          renders this lander, so the schema is gated on the truth layer rather
+          than on whether an editor happened to create the document. Handyman,
+          removals, energy and pet care all had documents and were emitting
+          Service schema while not being bookable. */}
+      {isTruthfullyLive(slug) && (
+        <ServiceJsonLd
+          name={service.name}
+          description={service.lede}
+          url={`${baseUrl}/services/${slug}`}
+          serviceType={service.category}
+          image={
+            service.hero?.image
+              ? urlFor(service.hero.image).width(1200).height(800).url()
+              : undefined
+          }
+          areaServed={service.availableAreas?.[0] ?? "London"}
+        />
+      )}
       <MetaViewContent
         contentId={slug}
         contentName={service.name}
