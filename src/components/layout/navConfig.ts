@@ -1,117 +1,23 @@
 import type { MegaPanel } from "@/components/nav/MegaMenu";
-import shopNavData from "@/lib/shop-data/shop-nav.generated.json";
 
 /**
- * Navigation — Final Master Directive (13 Jul 2026).
+ * Navigation — Persona-Led Zero-Interpretation Directive v2 (STEP 04).
  *
- * Six conventional destinations + one primary action ("Book a service").
- * Conventional labels reduce first-visit cognitive cost; the branded worlds
- * (The Household, The Stores, The Host) are revealed inside each page.
+ * LOCKED primary navigation:
+ *   The House · The Household · The Stores · The Host · HoWA
+ *   + Search · Sign in · [Book through HoWA]
  *
- *   Services · Design · Shop · Ideas & Advice · The House · HoWA
+ * The Household is the organising layer. Services and Design are NOT peer
+ * primary labels: they remain reachable underneath the relevant member
+ * (Gardening under The Gardener; Cleaning/Window/Gutter under The Housekeeper;
+ * Interior/Garden Design under The Designer), plus search, paid routes and
+ * direct URLs. `/shop` stays the transactional root (public name: The Stores);
+ * `/the-hearth` stays the magazine, with `/host` as the welcome layer above it.
+ *
+ * No mega-menu. No basket outside The Stores. No agent/bot/free-door language.
  */
-const SHOP_CATEGORIES = (
-  shopNavData as Array<{ title: string; handle: string; subs: Array<{ title: string; handle: string }> }>
-).map((c) => ({
-  title: c.title,
-  href: `/shop/collections/${c.handle}`,
-  subs: c.subs.map((s) => ({ label: s.title, href: `/shop/collections/${s.handle}` })),
-}));
 
 export const PRIMARY_NAV: MegaPanel[] = [
-  {
-    id: "services",
-    trigger: "Services",
-    triggerHref: "/services",
-    groups: [
-      {
-        heading: "Live services",
-        links: [
-          { label: "Gardening", href: "/services/gardening", description: "Available in selected postcodes" },
-          { label: "Cleaning", href: "/services/cleaning" },
-          { label: "Window cleaning", href: "/services/window-cleaning" },
-          { label: "Gutter clearing", href: "/services/gutter-cleaning" },
-        ],
-      },
-      {
-        heading: "In build",
-        links: [
-          { label: "Handyman", href: "/services/handyman", description: "Diagnosis beta" },
-          { label: "Removals", href: "/services/removals", description: "Register interest" },
-          { label: "Energy & Electrical", href: "/services/energy", description: "Register interest" },
-          { label: "Pet Care", href: "/services/pet-care", description: "Register interest" },
-        ],
-      },
-      {
-        heading: "Getting started",
-        links: [
-          { label: "See all services", href: "/services" },
-          { label: "Book a service", href: "#open-booking-form" },
-        ],
-      },
-    ],
-  },
-  {
-    id: "design",
-    trigger: "Design",
-    triggerHref: "/design",
-    groups: [
-      {
-        heading: "Disciplines",
-        links: [
-          { label: "Interior Design", href: "/design/interiors", description: "Founding studios" },
-          { label: "Garden Design", href: "/design/gardens", description: "Studios + landscaping" },
-          { label: "HoWA Concepts", href: "/design/concepts", description: "Property-specific concept" },
-        ],
-      },
-      {
-        heading: "Founding studios",
-        links: [
-          { label: "Delve Interiors", href: "/partners/delve-interiors" },
-          { label: "Willow Alexander Gardens", href: "/partners/willow-alexander-gardens" },
-          { label: "All founding partners", href: "/partners" },
-        ],
-      },
-    ],
-    preview: {
-      image: "/home/hero-georgian.webp",
-      alt: "A considered British interior",
-      tag: "Design",
-      heading: "Begin with the right studio.",
-      href: "/design",
-    },
-  },
-  {
-    id: "shop",
-    trigger: "Shop",
-    triggerHref: "/shop",
-    groups: [
-      { heading: "The Stores", links: SHOP_CATEGORIES.map((c) => ({ label: c.title, href: c.href })) },
-    ],
-    twoLevel: {
-      categories: SHOP_CATEGORIES,
-      footer: [
-        { label: "House Approved", href: "/shop/collections/house-approved" },
-        { label: "All products", href: "/shop" },
-        { label: "Gift Cards", href: "/gift-cards" },
-      ],
-    },
-  },
-  {
-    id: "ideas-advice",
-    trigger: "Ideas & Advice",
-    triggerHref: "/the-hearth",
-    groups: [
-      {
-        heading: "The Host",
-        links: [
-          { label: "The Hearth", href: "/the-hearth", description: "Homes, gardens & design" },
-          { label: "Recipes", href: "/recipes", description: "Seasonal cooking" },
-          { label: "News", href: "/news" },
-        ],
-      },
-    ],
-  },
   {
     id: "the-house",
     trigger: "The House",
@@ -120,12 +26,93 @@ export const PRIMARY_NAV: MegaPanel[] = [
       {
         heading: "The House",
         links: [
-          { label: "About", href: "/the-house/about", description: "Origin & team" },
+          { label: "About", href: "/the-house/about" },
+          { label: "Origin", href: "/the-house/about#origin" },
           { label: "Philosophy", href: "/the-house/philosophy" },
           { label: "Standards", href: "/the-house/standards" },
-          { label: "House Approved", href: "/house-approved", description: "What the mark means" },
+          { label: "House Approved", href: "/house-approved" },
           { label: "Partners", href: "/partners" },
           { label: "Contact", href: "/contact" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "the-household",
+    trigger: "The Household",
+    triggerHref: "/household",
+    groups: [
+      {
+        heading: "Senior staff",
+        links: [
+          { label: "The Housekeeper", href: "/howa/housekeeper", description: "Nothing slips." },
+          { label: "The Steward", href: "/howa/steward", description: "The house, protected before failure." },
+          { label: "The Butler", href: "/household/butler", description: "The instruments of the house, read by anyone." },
+        ],
+      },
+      {
+        heading: "Start with what needs attention",
+        links: [
+          { label: "The Gardener", href: "/household/gardener", description: "Gardening" },
+          { label: "The Handyman", href: "/household/handyman", description: "A fault or repair" },
+          { label: "The Designer", href: "/household/designer", description: "Interior & Garden Design" },
+          { label: "The Surveyor", href: "/household/surveyor", description: "Cracks, damp and quotes" },
+          { label: "The Archivist", href: "/household/archivist", description: "Paperwork into dates" },
+          { label: "The Storekeeper", href: "/shop", description: "The Stores" },
+        ],
+      },
+      {
+        heading: "At the door",
+        links: [
+          { label: "The Host", href: "/host", description: "Come in. Everything worth knowing about keeping a home." },
+        ],
+      },
+      {
+        heading: "Live care",
+        links: [
+          { label: "Gardening", href: "/services/gardening", description: "Under The Gardener" },
+          { label: "Cleaning", href: "/services/cleaning", description: "Under The Housekeeper" },
+          { label: "Window cleaning", href: "/services/window-cleaning", description: "Under The Housekeeper" },
+          { label: "Gutter clearing", href: "/services/gutter-cleaning", description: "Under The Housekeeper" },
+        ],
+      },
+      {
+        heading: "Utilities",
+        links: [
+          { label: "Meet the whole Household", href: "/household" },
+          { label: "See all services", href: "/services" },
+          { label: "Start with my address", href: "/howa/assistant" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "the-stores",
+    trigger: "The Stores",
+    triggerHref: "/shop",
+    groups: [
+      {
+        heading: "The Stores",
+        links: [
+          { label: "Shop by room", href: "/shop" },
+          { label: "House Approved collection", href: "/shop/collections/house-approved" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "the-host",
+    trigger: "The Host",
+    triggerHref: "/host",
+    groups: [
+      {
+        heading: "The Host",
+        links: [
+          { label: "The Hearth", href: "/the-hearth" },
+          { label: "Seasonal guides", href: "/the-hearth" },
+          { label: "Practical advice", href: "/the-hearth" },
+          { label: "Recipes", href: "/recipes" },
+          { label: "House news", href: "/news" },
         ],
       },
     ],
@@ -136,19 +123,13 @@ export const PRIMARY_NAV: MegaPanel[] = [
     triggerHref: "/howa",
     groups: [
       {
-        heading: "The Home Operating System",
+        heading: "HoWA",
         links: [
           { label: "Start with my address", href: "/howa/assistant" },
           { label: "HoWA Score", href: "/howa-score" },
           { label: "Home Record", href: "/howa" },
-          { label: "The Household", href: "/household", description: "Ten members, one record" },
-        ],
-      },
-      {
-        heading: "Continuity",
-        links: [
-          { label: "The Housekeeper", href: "/howa/housekeeper", description: "£16.99/mo when ready" },
-          { label: "The Steward", href: "/howa/steward", description: "£29.99/mo when ready" },
+          { label: "Housekeeper", href: "/howa/housekeeper" },
+          { label: "Steward", href: "/howa/steward" },
           { label: "Help", href: "/howa/faq" },
         ],
       },
@@ -156,8 +137,5 @@ export const PRIMARY_NAV: MegaPanel[] = [
   },
 ];
 
-/**
- * No secondary nav row in the directive model — About / Philosophy / Standards
- * / Partners / Contact live inside the "The House" destination above.
- */
+/** No secondary nav row: the five destinations above are the whole shell. */
 export const SECONDARY_NAV: { label: string; href: string }[] = [];

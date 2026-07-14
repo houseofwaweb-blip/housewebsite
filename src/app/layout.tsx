@@ -26,7 +26,8 @@ import "./globals.css";
 // the House sells services, and booking opens the House booking modal
 // (#open-booking-form) which is always available regardless of the HoWA app
 // being live. HoWA online booking is reached from the HoWA Platform menu.
-const ctaLabel = "Book a service";
+// Directive v2 STEP 04: locked label on every physical-service action.
+const ctaLabel = "Book through HoWA";
 const ctaHref = "#open-booking-form";
 
 export const metadata: Metadata = {

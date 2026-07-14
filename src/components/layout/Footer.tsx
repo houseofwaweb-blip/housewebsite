@@ -21,31 +21,13 @@ export interface FooterColumn {
 // Bookings powered by HoWA -> Reading.
 // Footer architecture (House of HoWA rebrand, launch read section 35): leads
 // with HoWA, then the House (standard), Services (proof), Reading, Account.
-// Final Master Directive footer — seven columns.
+// Directive v2 STEP 04 — six columns, Household-led.
 const COLS: FooterColumn[] = [
-  {
-    heading: "Services",
-    links: [
-      { label: "Gardening", href: "/services/gardening" },
-      { label: "Cleaning", href: "/services/cleaning" },
-      { label: "Window cleaning", href: "/services/window-cleaning" },
-      { label: "Gutter clearing", href: "/services/gutter-cleaning" },
-      { label: "All services", href: "/services" },
-    ],
-  },
-  {
-    heading: "Design",
-    links: [
-      { label: "Interior Design", href: "/design/interiors" },
-      { label: "Garden Design", href: "/design/gardens" },
-      { label: "Founding studios", href: "/partners" },
-      { label: "HoWA Concepts", href: "/design/concepts" },
-    ],
-  },
   {
     heading: "The House",
     links: [
       { label: "About", href: "/the-house/about" },
+      { label: "Origin", href: "/the-house/about#origin" },
       { label: "Philosophy", href: "/the-house/philosophy" },
       { label: "Standards", href: "/the-house/standards" },
       { label: "House Approved", href: "/house-approved" },
@@ -54,13 +36,29 @@ const COLS: FooterColumn[] = [
     ],
   },
   {
-    heading: "Shop & reading",
+    heading: "The Household",
     links: [
-      { label: "The Stores", href: "/shop" },
+      { label: "The Housekeeper", href: "/howa/housekeeper" },
+      { label: "The Steward", href: "/howa/steward" },
+      { label: "The Butler", href: "/household/butler" },
+      { label: "The Gardener", href: "/household/gardener" },
+      { label: "The Handyman", href: "/household/handyman" },
+      { label: "The Designer", href: "/household/designer" },
+      { label: "The Surveyor", href: "/household/surveyor" },
+      { label: "The Archivist", href: "/household/archivist" },
+      { label: "The Storekeeper", href: "/shop" },
+      { label: "The Host", href: "/host" },
+    ],
+  },
+  {
+    heading: "The Stores and The Host",
+    links: [
+      { label: "Shop all rooms", href: "/shop" },
       { label: "House Approved collection", href: "/shop/collections/house-approved" },
       { label: "Gift cards", href: "/gift-cards" },
-      { label: "The Host", href: "/the-hearth" },
       { label: "The Hearth", href: "/the-hearth" },
+      { label: "Recipes", href: "/recipes" },
+      { label: "House news", href: "/news" },
     ],
   },
   {
@@ -77,7 +75,7 @@ const COLS: FooterColumn[] = [
   {
     heading: "Professionals",
     links: [
-      { label: "Become House Approved", href: "/become-a-house-pro" },
+      { label: "Apply for Approval", href: "/become-a-house-pro" },
       { label: "Partner with the House", href: "/become-a-house-pro" },
       { label: "Sign in to House Pro", href: "/become-a-house-pro" },
     ],
@@ -132,10 +130,14 @@ export function Footer({ columns, tagline }: FooterProps) {
           ))}
         </div>
 
-        <p className="pt-8 font-sans text-[15px] leading-[1.6] text-house-cream/55 max-w-[760px]">
-          House services are delivered by the named provider shown at booking.
-          House of HoWA sets the standard around the experience; HoWA powers the
-          booking, Home Record and remembered outcome.
+        {/* Directive v2 STEP 04 — PUBLISH-READY COPY, verbatim. */}
+        <p className="pt-8 font-display italic text-[19px] leading-[1.5] text-house-gold-light max-w-[760px]">
+          The House does the work. HoWA remembers it.
+        </p>
+        <p className="pt-4 font-sans text-[15px] leading-[1.6] text-house-cream/55 max-w-[760px]">
+          House of HoWA is a trading surface of HoWA Living Ltd. Physical services
+          are supplied by the named service company or independent provider shown
+          before confirmation.
         </p>
 
         <div className="pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
