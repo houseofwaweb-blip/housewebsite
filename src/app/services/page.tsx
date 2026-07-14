@@ -413,7 +413,7 @@ export default async function ServicesLanding() {
             <li key={sv.slug} className={s.futureCard}>
               <h3 className={s.futureName}>{sv.name}</h3>
               <p className={s.futureBody}>{sv.tagline}</p>
-              <Link href={sv.href ?? `/services/${sv.slug}`} className={s.futureLink}>
+              <Link href={`/services/${sv.slug}`} className={s.futureLink}>
                 Register interest →
               </Link>
             </li>
