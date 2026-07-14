@@ -1,11 +1,20 @@
 "use client";
 
 import { useState } from "react";
+import { HOUSEHOLD } from "@/lib/truth";
 import { gaEvent } from "@/lib/google/ga4";
 import { APP_HREF, BOOK_HREF, type Persona } from "./personaData";
 
 /**
- * The free Household tool: idle -> running -> result -> saved. The result is a
+  * The Household tool module.
+ *
+ * A tool only accepts real input when the truth layer says its toolStatus is
+ * "live" (STEP 09B: "Live only when the scan returns a real result"). Until
+ * then the module must not simulate a complete result, so it shows the scripted
+ * copy as an explicitly labelled worked example and never asks for a photo of
+ * the visitor's own home.
+ *
+ * When live: idle -> running -> result -> saved. The result is currently a
  * scripted demonstration (a setTimeout); swap the run() body for a real fetch
  * when the backend lands (handover §9). Every step fires a GA event, and every
  * CTA carries a door tag so the site-wide click delegate records intent.
@@ -29,6 +38,9 @@ const GREEN_DEEP = "#15291e";
 
 export function HowaDoorModule({ persona, surface = "persona-page" }: { persona: Persona; surface?: string }) {
   const [stage, setStage] = useState<Stage>("idle");
+  // Tool status comes from the truth layer, not from this component. A tool is
+  // only "live" when it returns a real result (STEP 09B LAUNCH TRUTH).
+  const toolLive = HOUSEHOLD.find((m) => m.id === persona.slug)?.toolStatus === "live";
   const accent = persona.accent;
   const tag = { "data-ga-door": persona.doorTag, "data-ga-surface": surface } as const;
 
@@ -54,11 +66,41 @@ export function HowaDoorModule({ persona, surface = "persona-page" }: { persona:
         <span className="font-sans text-[11px] uppercase tracking-[0.16em]" style={{ color: accent }}>
           {persona.name}
         </span>
-        <span className="font-sans text-[10px] uppercase tracking-[0.14em] text-[#3a352c]/55">Free tool</span>
+        <span className="font-sans text-[10px] uppercase tracking-[0.14em] text-[#3a352c]/55">{toolLive ? "Free tool" : "In build"}</span>
       </div>
 
       <div className="p-6 sm:p-8">
-        {stage === "idle" && (
+        {/* IN BUILD: no upload, no simulated reading of the visitor's own home.
+            Directive v2 STEP 09 card rules: "In-build tools must not simulate a
+            complete result." The old flow accepted a real photo of the
+            visitor's garden and returned a hardcoded reading ("a late-summer
+            border, mostly healthy...") that had nothing to do with what they
+            sent. A caption saying "demonstration result" does not make that
+            honest: the fix is not to run the simulation at all, and to show the
+            scripted copy as the worked example it always was. */}
+        {stage === "idle" && !toolLive && (
+          <div>
+            <p className="text-[15px] leading-[1.55] text-[#3a352c]">{persona.toolHint}</p>
+            <div className="mt-5 rounded-xl border border-dashed border-[#b89968]/45 bg-[#fbfaf5] px-6 py-8 text-center">
+              <span className="font-display text-[17px] text-[#1a241d]">{persona.toolCta} is in build</span>
+              <p className="mx-auto mt-2 max-w-[46ch] text-[13.5px] leading-[1.5] text-[#3a352c]/70">
+                It is not reading homes yet, so we will not pretend to read
+                yours. Below is a worked example of what it returns once live.
+              </p>
+            </div>
+            <button
+              onClick={() => setStage("result")}
+              {...tag}
+              data-ga-event="tool_example_opened"
+              className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-md border px-6 py-3.5 text-[16px] transition-colors"
+              style={{ borderColor: accent, color: accent }}
+            >
+              See a worked example <span aria-hidden>→</span>
+            </button>
+          </div>
+        )}
+
+        {stage === "idle" && toolLive && (
           <div>
             <p className="text-[15px] leading-[1.55] text-[#3a352c]">{persona.toolHint}</p>
             <label className="mt-5 flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-[#b89968]/45 bg-[#fbfaf5] px-6 py-10 text-center transition-colors hover:bg-[#f6f2e9]">
@@ -75,9 +117,6 @@ export function HowaDoorModule({ persona, surface = "persona-page" }: { persona:
             >
               {persona.toolCta} <span aria-hidden>→</span>
             </button>
-            <p className="mt-3 text-center text-[12px] text-[#3a352c]/55">
-              Demonstration result · your real result needs the app
-            </p>
           </div>
         )}
 
@@ -91,6 +130,11 @@ export function HowaDoorModule({ persona, surface = "persona-page" }: { persona:
 
         {(stage === "result" || stage === "saved") && (
           <div>
+            {!toolLive && (
+              <p className="mb-3 font-sans text-[10.5px] uppercase tracking-[0.16em] text-[#8a6f3f]">
+                Worked example, not a reading of your home
+              </p>
+            )}
             <h3 className="font-display text-[22px] leading-tight text-[#1a241d]">{persona.resultHeading}</h3>
             <ul className="mt-4 space-y-3">
               {persona.resultLines.map((l) => (
