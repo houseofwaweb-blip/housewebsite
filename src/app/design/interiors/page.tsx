@@ -16,7 +16,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  *   3. Three plans — Edit, Additions, Full Edit
  *   4. Projects gallery — asymmetric editorial grid
  *   5. Quote
- *   6. Assistant split — start with the Assistant
+ *   6. The Designer split — start the brief with The Designer
  *   7. Newsletter
  */
 
@@ -288,19 +288,20 @@ export default async function InteriorsPage() {
         </p>
       </section>
 
-      {/* 6. Assistant split */}
+      {/* 6. The Designer split. STEP 11/12: the brief belongs to The Designer;
+          the Assistant is retired as a public tier. */}
       <section className={s.companion}>
         <div className={s.companionCopy}>
-          <p className={s.companionEy}>{cms(companion, "eyebrow", "HoWA · Assistant")}</p>
+          <p className={s.companionEy}>{cms(companion, "eyebrow", "The Household · The Designer")}</p>
           <h2 className={s.companionTitle}>
-            {cms(companion, "headline", "Start with the")}{" "}
-            <em>{cms(companion, "headlineEm", "Assistant.", "headline")}</em>
+            {cms(companion, "headline", "Start with The")}{" "}
+            <em>{cms(companion, "headlineEm", "Designer.", "headline")}</em>
           </h2>
           <p className={s.companionLede}>
             {cms(
               companion,
               "body",
-              "Capture your room, ambition, timeline, budget and aesthetic direction. The Assistant builds a brief your designer can work from on day one, nothing lost, nothing repeated.",
+              "Capture your room, ambition, timeline, budget and aesthetic direction. The Designer shapes a brief your studio can work from on day one, nothing lost, nothing repeated.",
             )}
           </p>
           <p className={s.companionFootnote}>
@@ -319,7 +320,7 @@ export default async function InteriorsPage() {
             alt={cms(
               companion,
               "imageAlt",
-              "A living room project, the kind of room the Assistant helps you brief",
+              "A living room project, the kind of room The Designer helps you brief",
             )}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"

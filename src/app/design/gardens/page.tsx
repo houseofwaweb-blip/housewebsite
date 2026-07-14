@@ -18,7 +18,7 @@ import { GARDEN_PROJECTS } from "@/lib/gardens-projects";
  *   4. Specialist services strip — lighting / collaboration / full design
  *   5. Projects gallery — asymmetric editorial grid
  *   6. Quote
- *   7. Assistant split — start with the Assistant
+ *   7. The Designer split — start the brief with The Designer
  *   8. Newsletter
  */
 
@@ -326,19 +326,20 @@ export default async function GardensPage() {
         </p>
       </section>
 
-      {/* 7. Assistant split */}
+      {/* 7. The Designer split. STEP 11/12: the brief belongs to The Designer;
+          the Assistant is retired as a public tier. */}
       <section className={s.companion}>
         <div className={s.companionCopy}>
-          <p className={s.companionEy}>{cms(companion, "eyebrow", "HoWA · Assistant")}</p>
+          <p className={s.companionEy}>{cms(companion, "eyebrow", "The Household · The Designer")}</p>
           <h2 className={s.companionTitle}>
-            {cms(companion, "headline", "Start with the")}{" "}
-            <em>{cms(companion, "headlineEm", "Assistant.", "headline")}</em>
+            {cms(companion, "headline", "Start with The")}{" "}
+            <em>{cms(companion, "headlineEm", "Designer.", "headline")}</em>
           </h2>
           <p className={s.companionLede}>
             {cms(
               companion,
               "body",
-              "Capture your garden's light, soil, aspect, maintenance appetite and budget. The Assistant builds a brief your designer can work from on day one, nothing lost, nothing repeated.",
+              "Capture your garden's light, soil, aspect, maintenance appetite and budget. The Designer shapes a brief your studio can work from on day one, nothing lost, nothing repeated.",
             )}
           </p>
           <p className={s.companionFootnote}>
@@ -357,7 +358,7 @@ export default async function GardensPage() {
             alt={cms(
               companion,
               "imageAlt",
-              "A garden concept plan, the kind of brief the Assistant helps you build",
+              "A garden concept plan, the kind of brief The Designer helps you build",
             )}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
