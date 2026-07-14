@@ -82,6 +82,24 @@ const FOUR_ROOMS = [
   { title: "The House", href: "/the-house/about", role: "Origin, standard and the people behind it.", image: "/home/origin-studio.webp" },
 ];
 
+// The finder's nine choices, fixed by Directive v2 STEP 05 section 4. Each one
+// resolves FIRST to the Household member who owns the need, then on to the
+// service or tool route: the visitor meets the staff, never a bare taxonomy.
+// Cleaning, windows and gutters all sit under The Housekeeper; both design
+// routes under The Designer. "Something else" goes to Speak to the House
+// rather than a dead end.
+const FINDER_CHOICES = [
+  { label: "Garden care", owner: "The Gardener", href: "/household/gardener" },
+  { label: "Cleaning", owner: "The Housekeeper", href: "/services/cleaning" },
+  { label: "Windows", owner: "The Housekeeper", href: "/services/window-cleaning" },
+  { label: "Gutters", owner: "The Housekeeper", href: "/services/gutter-cleaning" },
+  { label: "Interior Design", owner: "The Designer", href: "/design/interiors" },
+  { label: "Garden Design", owner: "The Designer", href: "/design/gardens" },
+  { label: "A fault or repair", owner: "The Handyman", href: "/household/handyman" },
+  { label: "Paperwork", owner: "The Archivist", href: "/household/archivist" },
+  { label: "Something else", owner: "Speak to the House", href: "#speak-to-the-house" },
+];
+
 // Real team and van photography for the band after live care. Real work only,
 // no campaign renders: the directive requires reality either side of the HoWA
 // intelligence layer.
@@ -225,10 +243,27 @@ export default async function HomePage() {
         <div className="max-w-[1000px] mx-auto text-center">
           <h2 className="font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-black mb-3">What does the home need?</h2>
           <p className="font-sans text-[16px] leading-[1.6] text-house-brown/80 max-w-[58ch] mx-auto mb-7">
-            Tell us the service and postcode. We will show what is available, who may deliver it and the next appointment or quotation route.
+            Tell us the need and postcode. We will open the right member of the
+            Household, show what is available, who may deliver it and the next
+            appointment or quotation route.
           </p>
+          <ul className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 max-w-[820px] mx-auto mb-8 list-none p-0">
+            {FINDER_CHOICES.map((choice) => (
+              <li key={choice.label}>
+                <Link
+                  href={choice.href}
+                  className="group flex flex-col items-start gap-1 h-full bg-house-cream border border-house-brown/15 px-4 py-3 no-underline text-left transition-colors duration-[var(--t-base)] hover:border-house-gold-ink"
+                >
+                  <span className="font-sans text-[14px] leading-[1.3] text-house-black">{choice.label}</span>
+                  <span className="font-sans text-[11px] tracking-[0.08em] uppercase text-house-brown/60 transition-colors duration-[var(--t-base)] group-hover:text-house-gold-ink">
+                    {choice.owner}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/services" className={ctaPrimary}>Choose a service</Link>
+            <a href="#open-booking-form" className={ctaPrimary}>Choose what needs attention</a>
             <a href="#open-booking-form" className={ctaSecondary}>Check my postcode</a>
           </div>
         </div>
@@ -544,15 +579,19 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 14. CONTACT & CLOSE — single Speak to the House, dark for a clear break */}
-      <EnquiryForm
-        sourcePage="/"
-        className="border-t border-house-brown/10"
-        eyebrow="Contact"
-        headline="Speak to the House."
-        body="Tell us what the home needs, ask about a design project or speak to us about HoWA. We reply personally. A House for the home you love, kept to the standard a good home deserves."
-        buttonLabel="Send an enquiry"
-      />
+      {/* 14. CONTACT & CLOSE — single Speak to the House, dark for a clear
+          break. Anchored: the finder's "Something else" resolves here, because
+          the directive forbids a blank or dead-end result. */}
+      <div id="speak-to-the-house" className="scroll-mt-24">
+        <EnquiryForm
+          sourcePage="/"
+          className="border-t border-house-brown/10"
+          eyebrow="Contact"
+          headline="Speak to the House."
+          body="Tell us what the home needs, ask about a design project or speak to us about HoWA. We reply personally. A House for the home you love, kept to the standard a good home deserves."
+          buttonLabel="Send an enquiry"
+        />
+      </div>
     </div>
   );
 }
