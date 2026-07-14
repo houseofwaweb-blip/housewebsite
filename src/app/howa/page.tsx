@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { MetaViewContent } from "@/components/marketing/MetaViewContent";
+import { membershipLabelFor } from "@/lib/truth";
 
 /**
  * /howa — the HoWA bridge (Final Master Directive, Part IV).
@@ -27,10 +28,19 @@ const FIRST_MINUTE = [
 
 const WHAT_MATTERS = ["Boiler service · due in 14 days", "Gutter clean · before winter", "Smoke alarms · tested OK"];
 
+// STEP 10 tier honesty for Free HoWA: address, Home Portrait, provisional
+// Score, first useful saves, and only the tools that genuinely work.
+const FREE_HOWA = [
+  "One address, and the first portrait of the home it builds from it.",
+  "A provisional HoWA Score, with what is known and what is still missing.",
+  "One Home Record to keep documents, dates and decisions against.",
+  "Your booking confirmations, saved to the home rather than an inbox.",
+];
+
 const SUBS = [
   {
     name: "HoWA Housekeeper",
-    price: "£16.99",
+    price: membershipLabelFor("housekeeper"),
     tag: "The house, in order.",
     body: "Filing at volume, reminders, household rhythm, cost memory, sharing and the Monthly Brief.",
     href: "/household/housekeeper",
@@ -38,7 +48,7 @@ const SUBS = [
   },
   {
     name: "HoWA Steward",
-    price: "£29.99",
+    price: membershipLabelFor("steward"),
     tag: "The house, protected before failure.",
     body: "A deeper risk view, evidence packs, annual report, transfer readiness and supported Butler control.",
     href: "/household/steward",
@@ -170,7 +180,44 @@ export default function HowaPage() {
         </div>
       </section>
 
-      {/* The only two subscriptions */}
+      {/* 5. FREE HoWA — required by STEP 10 and missing entirely. The tiers were
+          being sold with no account of what free actually gives you.
+
+          "Free is called HoWA, not Assistant" is a PASS condition, and the tier
+          honesty table is specific: address, Home Portrait, provisional Score,
+          first useful saves and ONLY the tools that genuinely work. Since every
+          Household tool is currently in build or beta, this section says that
+          plainly rather than listing tools as though they run. */}
+      <section className="px-[5vw] py-16 bg-house-cream-dark border-t border-b border-house-brown/8">
+        <div className="max-w-[1100px] mx-auto">
+          <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">Free HoWA</p>
+          <h2 className="font-display text-[clamp(26px,3.4vw,44px)] leading-[1.1] text-house-black max-w-[22ch] mb-5">
+            Start with an address. <em className="italic">Pay nothing.</em>
+          </h2>
+          <p className="font-sans text-[17px] leading-[1.65] text-house-brown/80 max-w-[62ch]">
+            Free HoWA is not a trial and not a cut-down tier with a name of its
+            own. It is HoWA. Give the home an address and it introduces itself:
+            a first portrait, a provisional Score and one place to keep what
+            matters.
+          </p>
+          <ul className="mt-8 grid gap-x-10 gap-y-3 sm:grid-cols-2 max-w-[820px] list-none p-0">
+            {FREE_HOWA.map((f) => (
+              <li key={f} className="flex gap-3 font-sans text-[15.5px] leading-[1.6] text-house-brown/85">
+                <span aria-hidden className="text-house-gold-ink">·</span>
+                {f}
+              </li>
+            ))}
+          </ul>
+          <p className="font-sans text-[13.5px] leading-[1.6] text-house-brown/65 mt-7 max-w-[70ch]">
+            The Household tools are still in build. As each one starts returning a
+            real result it opens here first, free, rather than being held back for
+            a paid tier.
+          </p>
+          <div className="mt-8"><Link href="/howa" className={ctaPrimary}>Start with my address</Link></div>
+        </div>
+      </section>
+
+      {/* 6 + 7. The only two subscriptions */}
       <section className="px-[5vw] py-16 max-w-[1100px] mx-auto">
         <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">Membership</p>
         <h2 className="font-display text-[clamp(26px,3.4vw,44px)] leading-[1.1] text-house-black max-w-[20ch] mb-10">
