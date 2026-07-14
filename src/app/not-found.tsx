@@ -5,6 +5,12 @@ import { GhostLink } from "@/components/primitives/GhostLink";
 /**
  * Custom 404 page. Matches the House voice and is useful —
  * pointing to the places people are usually looking for.
+ *
+ * The Digital Estate register requires a branded 404 carrying service, address
+ * and contact recovery routes. This page will absorb the legacy Willow URLs
+ * that have no equivalent after the willowalexander.co.uk -> House of HoWA
+ * cutover, so the address route matters: it is the one recovery path that
+ * works when the visitor's original page has no successor at all.
  */
 
 export const metadata = {
@@ -40,8 +46,9 @@ export default function NotFound() {
           >
             Back to the House
           </Link>
-          <GhostLink href="/the-hearth">Read the Hearth</GhostLink>
+          <GhostLink href="/howa">Start with my address</GhostLink>
           <GhostLink href="/services">Browse services</GhostLink>
+          <GhostLink href="/contact">Speak to the House</GhostLink>
         </div>
       </div>
     </section>
