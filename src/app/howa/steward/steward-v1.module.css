@@ -489,10 +489,22 @@
    ============================================================ */
 
 /* 0. Sub-navigation */
+/* This sub-nav sits UNDER the site header, never over it.
+ *
+ * It previously used `top: 0; z-index: 40`, exactly matching the header's
+ * sticky z-40. With equal z-index the later element in DOM order wins, so this
+ * navy bar painted on top of the header's open mega-menu panel and covered the
+ * Household links. It also stuck to the same `top: 0`, so the two bars
+ * collided on scroll.
+ *
+ * z-index 30 keeps it below the header, and it sticks beneath the header's
+ * height rather than at the viewport top. The fallback matches the header's
+ * current height; --header-h can be set globally later without touching this.
+ */
 .subNav {
   position: sticky;
-  top: 0;
-  z-index: 40;
+  top: var(--header-h, 72px);
+  z-index: 30;
   background: rgba(20, 35, 61, 0.92);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(197, 169, 96, 0.22);
