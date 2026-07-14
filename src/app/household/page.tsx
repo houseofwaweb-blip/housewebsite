@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { membershipLabelFor, COMMERCIAL_SEPARATION } from "@/lib/truth";
+import { membershipLabelFor, COMMERCIAL_SEPARATION, HOUSEHOLD } from "@/lib/truth";
 import Image from "next/image";
 
 /**
@@ -40,16 +40,25 @@ const SENIORS = [
   },
 ];
 
-const MEMBERS = [
-  { name: "The Gardener", promise: "Show me the garden and I will help you see what the season asks.", state: "Live where serviceable", tone: "live", img: "/howa/household/gardener.webp", href: "/household/gardener" },
-  { name: "The Handyman", promise: "Photograph the fault and understand what it may be, how urgent it feels and what to ask next.", state: "Guidance beta", tone: "beta", img: "/howa/household/handyman.webp", href: "/household/handyman" },
-  { name: "The Designer", promise: "Turn one room or garden into a direction, a proper brief and the right studio route.", state: "Live", tone: "live", img: "/howa/household/designer.webp", href: "/household/designer" },
-  { name: "The Surveyor", promise: "Read a crack, damp concern, report or quote in plain language.", state: "Guidance beta", tone: "beta", img: "/howa/household/surveyor.webp", href: "/household/surveyor" },
-  { name: "The Archivist", promise: "Turn paperwork into dates, costs, reminders and proof.", state: "Product beta", tone: "beta", img: "/howa/household/archivist.webp", href: "/household/archivist" },
-  { name: "The Storekeeper", promise: "Keep considered goods organised by the rooms and needs of the home.", state: "The Stores", tone: "live", img: "/howa/household/storekeeper.webp", href: "/shop" },
-  { name: "The Host", promise: "Welcome you into the culture and practical knowledge of keeping a home.", state: "Live", tone: "live", img: "/howa/household/host.webp", href: "/the-hearth" },
-  { name: "The Butler", promise: "Read the instruments of the home and, with permission, help operate supported connected systems.", state: "Staged release", tone: "beta", img: "/howa/household/butler.webp", href: "/household/butler" },
-];
+// The eight non-senior members, read from the truth layer so the promises
+// match the directive's ONE-LINE PUBLIC PROMISES table in one place rather than
+// being retyped here. Route/image/state stay local presentation concerns.
+const MEMBER_VIEW: Record<string, { state: string; tone: string; href: string }> = {
+  gardener:    { state: "Live where serviceable", tone: "live", href: "/household/gardener" },
+  handyman:    { state: "Guidance beta",          tone: "beta", href: "/household/handyman" },
+  designer:    { state: "Live",                   tone: "live", href: "/household/designer" },
+  surveyor:    { state: "Guidance beta",          tone: "beta", href: "/household/surveyor" },
+  archivist:   { state: "Product beta",           tone: "beta", href: "/household/archivist" },
+  storekeeper: { state: "The Stores",             tone: "live", href: "/shop" },
+  host:        { state: "Live",                   tone: "live", href: "/host" },
+  butler:      { state: "Staged release",         tone: "beta", href: "/household/butler" },
+};
+const MEMBERS = HOUSEHOLD.filter((m) => MEMBER_VIEW[m.id]).map((m) => ({
+  name: m.publicName,
+  promise: m.promise,
+  img: m.image,
+  ...MEMBER_VIEW[m.id],
+}));
 
 const ctaPrimary =
   "inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown bg-house-gold-ink border border-house-gold-dark px-6 py-3 no-underline transition-[filter] hover:brightness-110";
