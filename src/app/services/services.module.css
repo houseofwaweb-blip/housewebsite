@@ -835,3 +835,175 @@
 
 .heroCopy { position: relative; overflow: hidden; }
 .heroCopyInner { position: relative; z-index: 1; }
+
+/* ---- STEP 06: how booking works ---------------------------------------- */
+.howGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: clamp(20px, 2.4vw, 36px);
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+.howCard {
+  border-top: 1px solid rgba(48, 35, 28, 0.16);
+  padding-top: 20px;
+}
+.howNum {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--color-house-gold-ink);
+  margin-bottom: 10px;
+}
+.howTitle {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.2vw, 28px);
+  line-height: 1.15;
+  color: var(--color-house-black, #1d1d1b);
+  margin: 0 0 10px;
+}
+.howBody {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(48, 35, 28, 0.75);
+  margin: 0;
+}
+
+/* ---- STEP 06: named provider disclosure -------------------------------- */
+.providerSection {
+  display: grid;
+  grid-template-columns: 1fr;
+  background: var(--color-house-cream-dark);
+  border-bottom: 1px solid rgba(48, 35, 28, 0.08);
+}
+@media (min-width: 1024px) {
+  .providerSection {
+    grid-template-columns: 1fr 0.85fr;
+    align-items: center;
+  }
+}
+.providerInner {
+  padding: clamp(56px, 6vw, 96px) clamp(40px, 5vw, 88px);
+  max-width: 68ch;
+}
+.providerTitle {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3.2vw, 42px);
+  line-height: 1.1;
+  color: var(--color-house-black, #1d1d1b);
+  margin: 0 0 20px;
+}
+.providerBody {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(48, 35, 28, 0.78);
+  margin: 0 0 16px;
+  max-width: 58ch;
+}
+.providerVisual {
+  position: relative;
+  min-height: 320px;
+  height: 100%;
+}
+
+/* ---- STEP 06: repeat frequency ----------------------------------------- */
+.freqRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.freqChip {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-house-brown);
+  border: 1px solid rgba(48, 35, 28, 0.28);
+  padding: 12px 24px;
+}
+
+/* ---- STEP 06: what is remembered, service by service -------------------- */
+.rememberGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: clamp(18px, 2vw, 30px);
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+.rememberCard {
+  background: var(--color-house-cream-dark);
+  padding: 26px 24px;
+}
+.rememberName {
+  font-family: var(--font-display);
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--color-house-black, #1d1d1b);
+  margin: 0 0 10px;
+}
+.rememberBody {
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: rgba(48, 35, 28, 0.75);
+  margin: 0;
+}
+
+/* ---- STEP 06: future services, visually separate from live care --------- */
+.futureSection {
+  background: var(--color-house-cream-dark);
+  padding: clamp(72px, 7vw, 112px) clamp(40px, 5vw, 88px);
+  border-top: 1px solid rgba(48, 35, 28, 0.12);
+  border-bottom: 1px solid rgba(48, 35, 28, 0.08);
+}
+.futureGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: clamp(16px, 1.8vw, 26px);
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+/* Deliberately quieter than a live card: no photography, no booking action. */
+.futureCard {
+  border: 1px dashed rgba(48, 35, 28, 0.28);
+  padding: 24px 22px;
+  background: transparent;
+}
+.futureName {
+  font-family: var(--font-display);
+  font-size: 19px;
+  line-height: 1.2;
+  color: rgba(48, 35, 28, 0.85);
+  margin: 0 0 8px;
+}
+.futureBody {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(48, 35, 28, 0.65);
+  margin: 0 0 16px;
+}
+.futureLink {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-house-gold-ink);
+  text-decoration: none;
+  transition: opacity var(--t-base, 200ms) ease;
+}
+.futureLink:hover {
+  opacity: 0.7;
+}
