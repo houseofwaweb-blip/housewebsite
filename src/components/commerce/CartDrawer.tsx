@@ -4,11 +4,21 @@ import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
+import { usePathname } from "next/navigation";
 import { useCart } from "./CartContext";
 
 export function CartDrawer() {
   const { lines, count, subtotal, drawerOpen, closeDrawer, updateQty, remove, buyable } =
     useCart();
+  const pathname = usePathname() ?? "";
+  /**
+   * Directive v2 STEP 04: "The basket is absent on non-Store routes."
+   * The drawer is mounted globally from the root layout (a server component, so
+   * it cannot read the path), which left this dialog markup in the DOM of every
+   * editorial and trust page even though nothing there could open it. The gate
+   * therefore lives here, alongside the CartIcon gate in the Header.
+   */
+  const isStoreRoute = pathname === "/shop" || pathname.startsWith("/shop/");
 
   React.useEffect(() => {
     if (!drawerOpen) return;
@@ -25,6 +35,10 @@ export function CartDrawer() {
       document.body.style.overflow = "";
     };
   }, [drawerOpen]);
+
+  // Placed after the hooks, not at the top of the component: an early return
+  // before them would break the rules of hooks.
+  if (!isStoreRoute) return null;
 
   return (
     <>

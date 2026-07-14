@@ -39,6 +39,13 @@ export function Header({
 }: HeaderProps) {
   const navPanels = nav ?? PRIMARY_NAV;
   const pathname = usePathname() ?? "";
+  /**
+   * Directive v2 STEP 04: "The basket is absent on non-Store routes."
+   * The House is a trust and editorial surface; a persistent basket on the
+   * homepage, a Household member or the About page reads as a shop and pulls
+   * against that. It belongs to The Stores, so it appears only there.
+   */
+  const isStoreRoute = pathname === "/shop" || pathname.startsWith("/shop/");
   // Routes that run on a dark navy surface. /howa/steward is blueprint mode;
   // the /howa landing is now HoWA mode (light) per 2026-04-22 audit.
   const DARK_ROUTES = new Set(["/howa/steward"]);
@@ -105,7 +112,7 @@ export function Header({
         >
           Sign in
         </a>
-        <CartIcon dark={dark} onClick={openDrawer} />
+        {isStoreRoute ? <CartIcon dark={dark} onClick={openDrawer} /> : null}
         <Link
           href={ctaHref}
           data-ga-event="booking_intent"
