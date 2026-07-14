@@ -40,7 +40,12 @@ export function HowaDoorModule({ persona, surface = "persona-page" }: { persona:
   const [stage, setStage] = useState<Stage>("idle");
   // Tool status comes from the truth layer, not from this component. A tool is
   // only "live" when it returns a real result (STEP 09B LAUNCH TRUTH).
-  const toolLive = HOUSEHOLD.find((m) => m.id === persona.slug)?.toolStatus === "live";
+  const member = HOUSEHOLD.find((m) => m.id === persona.slug);
+  const toolLive = member?.toolStatus === "live";
+  // Whether this member has a real, bookable human service behind it. Drives
+  // the STEP 09B fallback CTA and keeps us from rendering a dead book button
+  // for a member whose service is in build or future.
+  const serviceLive = member?.serviceStatus === "live";
   const accent = persona.accent;
   const tag = { "data-ga-door": persona.doorTag, "data-ga-surface": surface } as const;
 
@@ -88,11 +93,27 @@ export function HowaDoorModule({ persona, surface = "persona-page" }: { persona:
                 yours. Below is a worked example of what it returns once live.
               </p>
             </div>
+            {/* STEP 09B CTA rule: "If scan is not live, primary becomes Book
+                gardening and the scan is labelled In build." So when the tool
+                cannot help, the live human service leads and the example is
+                demoted to secondary. Only shown where the member's service is
+                actually live: no dead buttons (09A s5). */}
+            {serviceLive && (
+              <a
+                href={BOOK_HREF}
+                {...tag}
+                data-ga-event="booking_started"
+                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-md px-6 py-3.5 text-[16px] text-white no-underline transition-opacity hover:opacity-90"
+                style={{ background: accent }}
+              >
+                {persona.handsCta} <span aria-hidden>→</span>
+              </a>
+            )}
             <button
               onClick={() => setStage("result")}
               {...tag}
               data-ga-event="tool_example_opened"
-              className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-md border px-6 py-3.5 text-[16px] transition-colors"
+              className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-md border px-6 py-3.5 text-[16px] transition-colors"
               style={{ borderColor: accent, color: accent }}
             >
               See a worked example <span aria-hidden>→</span>

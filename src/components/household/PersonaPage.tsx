@@ -3,6 +3,7 @@ import Link from "next/link";
 import { HowaDoorModule } from "./HowaDoorModule";
 import { PersonaFeatures } from "./PersonaFeatures";
 import { PERSONA_ART, personaImage, BOOK_HREF, type Persona } from "./personaData";
+import { HOUSEHOLD } from "@/lib/truth";
 
 /**
  * The shared per-persona ("room") page. One template renders every
@@ -15,6 +16,10 @@ import { PERSONA_ART, personaImage, BOOK_HREF, type Persona } from "./personaDat
  * Wrapped in `.howa-surface` so the rounded cards survive the global reset.
  */
 export function PersonaPage({ persona }: { persona: Persona }) {
+  // Service status comes from the truth layer so a member never offers work the
+  // House cannot actually arrange (09A s5: no dead button).
+  const serviceLive =
+    HOUSEHOLD.find((m) => m.id === persona.slug)?.serviceStatus === "live";
   const accent = persona.accent;
   const art = PERSONA_ART[persona.slug];
 
@@ -100,16 +105,42 @@ export function PersonaPage({ persona }: { persona: Persona }) {
               {persona.handsTitle}
             </h2>
             <p className="mt-4 max-w-[520px] text-[16.5px] leading-[1.6] text-[#3a352c]">{persona.handsBody}</p>
-            <a
-              href={BOOK_HREF}
-              data-ga-event="booking_started"
-              data-ga-door={persona.doorTag}
-              data-ga-surface="persona-hands"
-              className="mt-6 inline-flex items-center gap-2 rounded-md px-6 py-3.5 text-[16px] text-white no-underline transition-opacity hover:opacity-90"
-              style={{ background: accent }}
-            >
-              {persona.handsCta} <span aria-hidden>→</span>
-            </a>
+            {/* 09A s5: "no dead button". This section offered "Book a repair"
+                and the like on every member, including ones whose human service
+                is in build or future, so the Handyman invited a booking nobody
+                could fulfil. The book CTA now appears only where the truth layer
+                says the member's service is live; otherwise the member offers
+                the honest register-interest route instead. */}
+            {serviceLive ? (
+              <a
+                href={BOOK_HREF}
+                data-ga-event="booking_started"
+                data-ga-door={persona.doorTag}
+                data-ga-surface="persona-hands"
+                className="mt-6 inline-flex items-center gap-2 rounded-md px-6 py-3.5 text-[16px] text-white no-underline transition-opacity hover:opacity-90"
+                style={{ background: accent }}
+              >
+                {persona.handsCta} <span aria-hidden>→</span>
+              </a>
+            ) : (
+              <div className="mt-6">
+                <p className="max-w-[520px] text-[15px] leading-[1.55] text-[#3a352c]/75">
+                  {persona.name} does not arrange this work yet. Register your
+                  interest and the House will write to you when a named provider
+                  covers your address.
+                </p>
+                <Link
+                  href="/contact"
+                  data-ga-event="register_interest"
+                  data-ga-door={persona.doorTag}
+                  data-ga-surface="persona-hands"
+                  className="mt-4 inline-flex items-center gap-2 rounded-md border px-6 py-3.5 text-[16px] no-underline transition-colors"
+                  style={{ borderColor: accent, color: accent }}
+                >
+                  Register interest <span aria-hidden>→</span>
+                </Link>
+              </div>
+            )}
           </div>
           <div className="rounded-2xl border border-[#b89968]/25 bg-white p-7">
             <p className="font-sans text-[11px] uppercase tracking-[0.16em] text-[#8a6f3f]">Then, the whole household</p>
