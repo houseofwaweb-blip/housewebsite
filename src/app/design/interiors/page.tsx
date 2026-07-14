@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { DesignerBreadcrumb } from "@/components/design/DesignerBreadcrumb";
 import Link from "next/link";
 import s from "./interiors.module.css";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
@@ -129,6 +130,7 @@ export default async function InteriorsPage() {
 
   return (
     <div className={s.page}>
+      <DesignerBreadcrumb current="Interiors" />
       {/* 1. Hero */}
       <section className={s.hero}>
         <div className={s.heroCopy}>

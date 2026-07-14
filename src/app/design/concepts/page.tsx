@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { DesignerBreadcrumb } from "@/components/design/DesignerBreadcrumb";
 
 /**
  * /design/concepts — the HoWA Concept product (Final Master Directive).
@@ -30,6 +31,7 @@ const ctaSecondary =
 export default function ConceptsPage() {
   return (
     <div className="bg-house-cream text-house-brown">
+      <DesignerBreadcrumb current="Concepts" />
       <section className="px-[5vw] pt-20 pb-14 max-w-[1100px] mx-auto">
         <p className="font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink mb-6">HoWA Concepts · Beta</p>
         <h1 className="font-display text-[clamp(38px,5vw,72px)] leading-[1.03] tracking-[-0.01em] text-house-black max-w-[16ch]">

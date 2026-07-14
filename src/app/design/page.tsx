@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { DesignerBreadcrumb } from "@/components/design/DesignerBreadcrumb";
 import Link from "next/link";
 import s from "./design.module.css";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
@@ -84,6 +85,7 @@ export default async function DesignLanding() {
 
   return (
     <div className={s.page}>
+      <DesignerBreadcrumb />
       {/* 1. Hero — full-width Interior Design sample board */}
       <section className={s.hero}>
         <div className={s.heroBg} aria-hidden="true">
@@ -281,8 +283,11 @@ export default async function DesignLanding() {
           <Link href={cms(closing, "ctaHref", "#open-booking-form")} className={s.closingBtnFilled}>
             {cms(closing, "ctaLabel", "Start a brief through HoWA")}
           </Link>
-          <Link href={cms(closing, "cta2Href", "/howa")} className={s.closingBtnGhost}>
-            {cms(closing, "cta2Label", "Or use the Assistant")} →
+          {/* STEP 11 deletes "Or use the Assistant" by name. The Assistant is
+              retired as a public tier; the Designer is the member who owns this
+              need, so the secondary route goes to them. */}
+          <Link href={cms(closing, "cta2Href", "/household/designer")} className={s.closingBtnGhost}>
+            {cms(closing, "cta2Label", "Meet The Designer")} →
           </Link>
         </div>
       </section>
