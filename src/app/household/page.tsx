@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { membershipLabelFor, COMMERCIAL_SEPARATION } from "@/lib/truth";
 import Image from "next/image";
 
 /**
@@ -19,7 +20,7 @@ export const metadata = {
 const SENIORS = [
   {
     name: "The Housekeeper",
-    price: "£16.99/mo when ready",
+    price: membershipLabelFor("housekeeper"),
     img: "/howa/household/housekeeper.webp",
     btn: "#c17a5f",
     role: "Keeps the daily home in order: filing, reminders, rhythms, cost memory, a shared household view and the Monthly Brief.",
@@ -29,7 +30,7 @@ const SENIORS = [
   },
   {
     name: "The Steward",
-    price: "£29.99/mo when ready",
+    price: membershipLabelFor("steward"),
     img: "/howa/household/steward.webp",
     btn: "#c9a84a",
     role: "Protects the long view: risk, evidence, annual reporting, transfer readiness and deeper connected-home permissions.",
@@ -102,6 +103,12 @@ export default function HouseholdPage() {
               </Link>
             ))}
           </div>
+          {/* Publish-ready commercial separation. Required wherever the £16.99
+              or £29.99 tiers are shown: the directive forbids any route that
+              implies a software subscription includes physical service visits. */}
+          <p className="font-sans text-[13.5px] leading-[1.65] text-house-brown/70 max-w-[78ch] mt-8">
+            {COMMERCIAL_SEPARATION}
+          </p>
         </div>
       </section>
 

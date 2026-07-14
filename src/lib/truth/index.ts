@@ -237,11 +237,28 @@ export interface Membership {
   salesGatePassed: boolean;
   holdingLabel: string;
 }
+/**
+ * The two paid tiers.
+ *
+ * The holding labels state the PRICE with a "when live" qualifier, which is
+ * what STEP 09's canonical members table specifies verbatim: "Paid software
+ * depth: £16.99/month when live" and "£29.99/month when live". An earlier pass
+ * hid the price behind a vaguer label ("Membership opens when the stated
+ * functions are live"); that was over-cautious and deviated from the directive.
+ * The price is not the unsafe part. STEP 03's rule is narrower: no route may
+ * imply £16.99 or £29.99 includes gardening, cleaning or other physical visits,
+ * which is what COMMERCIAL_SEPARATION below exists to prevent.
+ */
 export const MEMBERSHIPS: Membership[] = [
-  { id: "housekeeper", publicName: "HoWA Housekeeper", price: "£16.99/month", salesGatePassed: false, holdingLabel: "Membership opens when the stated functions are live" },
-  { id: "steward", publicName: "HoWA Steward", price: "£29.99/month", salesGatePassed: false, holdingLabel: "Opens when the product depth supports the promise" },
+  { id: "housekeeper", publicName: "HoWA Housekeeper", price: "£16.99/month", salesGatePassed: false, holdingLabel: "£16.99/month when live" },
+  { id: "steward", publicName: "HoWA Steward", price: "£29.99/month", salesGatePassed: false, holdingLabel: "£29.99/month when live" },
 ];
 export const membershipLabel = (m: Membership) => (m.salesGatePassed ? m.price : m.holdingLabel);
+/** Look up a tier's public label by id, for cards that only know the member. */
+export const membershipLabelFor = (id: string) => {
+  const m = MEMBERSHIPS.find((x) => x.id === id);
+  return m ? membershipLabel(m) : "";
+};
 
 /** Commercial separation — PUBLISH-READY COPY, do not rewrite (v2 STEP 03). */
 export const COMMERCIAL_SEPARATION =

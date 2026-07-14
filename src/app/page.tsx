@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getLatestHearthArticles } from "@/lib/cms/hearth";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { EnquiryForm } from "@/components/marketing/EnquiryForm";
-import { LIVE_SERVICES as TRUTH_LIVE_SERVICES } from "@/lib/truth";
+import { LIVE_SERVICES as TRUTH_LIVE_SERVICES, membershipLabelFor, COMMERCIAL_SEPARATION } from "@/lib/truth";
 
 /**
  * Homepage — House of HoWA.
@@ -62,8 +62,9 @@ const chipsFor = (owner: string) =>
 const SENIORS = [
   {
     role: "The Housekeeper",
-    // No price until the sales gate passes: the holding label is the truth.
-    price: "Membership opens when the stated functions are live",
+    // Label from truth: the directive states the price with a "when live"
+    // qualifier rather than hiding it.
+    price: membershipLabelFor("housekeeper"),
     img: "/howa/household/housekeeper.webp",
     btn: "#c17a5f",
     forLine: "For the household that wants everything kept in rhythm.",
@@ -74,7 +75,7 @@ const SENIORS = [
   },
   {
     role: "The Steward",
-    price: "Opens when the product depth supports the promise",
+    price: membershipLabelFor("steward"),
     img: "/howa/household/steward.webp",
     btn: "#c9a84a",
     forLine: "For the homeowner who wants the long view of the home.",
@@ -300,6 +301,10 @@ export default async function HomePage() {
         </div>
 
         {/* The six need-based members */}
+        {/* Required wherever the tiers are priced: a software subscription
+            must never read as including physical service visits. */}
+        <p className="font-sans text-[13.5px] leading-[1.65] text-house-brown/70 max-w-[78ch] mt-8">{COMMERCIAL_SEPARATION}</p>
+
         <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mt-16 mb-6">Start with what needs attention</p>
         <div className="grid gap-x-6 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">
           {NEED_MEMBERS.map((m) => (
