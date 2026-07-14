@@ -197,7 +197,7 @@ function TwoCollections() {
 }
 
 export const metadata = {
-  title: { absolute: "The House of HoWA Marketplace | Objects with a place in the home" },
+  title: { absolute: "The Stores | House of HoWA | Objects with a place in the home" },
   description:
     "Objects with a place in the House. Shop by room, kitchen, table, garden and more, or browse House Approved goods, best sellers and new arrivals.",
 };
@@ -255,7 +255,7 @@ export default async function ShopPage() {
         <FlowerWatermark color="gold" side="right" opacity={0.18} />
         <div className="relative z-10 max-w-[680px] mx-auto">
           <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink mb-3">
-            The House · Marketplace
+            The House · The Stores
           </p>
           <h1 className="font-display text-[clamp(30px,3.4vw,48px)] leading-[1.05] tracking-[-0.01em] text-house-brown">
             Objects with a place{" "}

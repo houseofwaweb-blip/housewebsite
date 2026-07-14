@@ -394,8 +394,9 @@ export function ServiceDetail({ service }: { service: Service }) {
           </article>
         </div>
         <p className={s.bookingBlurb} style={{ textAlign: "center", maxWidth: "62ch", margin: "clamp(20px,3vw,32px) auto 0" }}>
-          House-owned teams where we operate directly. HoWA Approved trades up and
-          down the country where specialist reach is needed. No unapproved hands.
+          The named provider shown before you confirm is responsible for its
+          contract and delivery. House Approved describes the standard and
+          operating framework around the introduction. No unapproved hands.
         </p>
       </section>
 

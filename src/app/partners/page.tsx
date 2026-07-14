@@ -58,7 +58,7 @@ const CATEGORIES = [
   },
   {
     id: "marketplace",
-    eyebrow: "Marketplace",
+    eyebrow: "The Stores",
     title: "Objects worth keeping.",
     titleEm: "keeping.",
     blurb:

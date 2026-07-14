@@ -16,7 +16,7 @@ const MAIN_CATEGORY_HANDLES = new Set([
 ]);
 
 export const metadata = {
-  title: { absolute: "All products | The House Marketplace" },
+  title: { absolute: "All products | The Stores | House of HoWA" },
   description:
     "Every House Approved object in one place. Filter by category, brand and House Approved seal.",
 };
@@ -32,7 +32,7 @@ export default async function ShopAllPage() {
       <section className="border-b border-house-brown/8 px-[5vw] pt-10 pb-7 text-center">
         <div className="max-w-[760px] mx-auto">
           <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink mb-3">
-            The House · Marketplace
+            The House · The Stores
           </p>
           <h1 className="font-display text-[clamp(28px,3vw,44px)] leading-[1.05] tracking-[-0.01em] text-house-brown">
             All products.
