@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { isApprovedPartner } from "@/lib/truth";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -96,6 +97,13 @@ export default async function PartnerPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+
+  // STEP 14 fact gate: publish only what has been approved. Checked before both
+  // the local and the Sanity lookups, because a partner profile can exist in
+  // either and an unapproved one must fail closed. /partners/house-ai was
+  // publishing from local data and /partners/jessica-durling-mcmahon from Sanity,
+  // neither of them approved.
+  if (!isApprovedPartner(slug)) notFound();
 
   if (isLocalSlug(slug)) {
     return <LocalPartnerPage partner={LAUNCH_PARTNERS[slug]} />;

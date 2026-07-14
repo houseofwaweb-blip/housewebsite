@@ -287,6 +287,36 @@ export const WRITEBACK_OBJECTS: Record<string, string[]> = {
   butler: ["Device map", "Utility and telemetry reading", "Automation proposal", "Approval", "Action audit"],
 };
 
+/**
+ * APPROVED PARTNERS — the fact gate for Directive v2 STEP 14.
+ *
+ * "Create the route architecture now, but publish only what has been approved."
+ *
+ * STEP 14's table lists named route SLOTS to prepare, not names cleared to
+ * publish: Delve Interiors, Willow Alexander Interiors, Willow Alexander
+ * Gardens, Coffee Girl Designs, Jessica Durling Design, Willow Alexander
+ * Gardeners. A slot existing is not evidence the studio does.
+ *
+ * Only these two are approved to publish (confirmed by Alex, 2026-07-14):
+ *   - Jessica was dropped some time ago. A profile was still being served from
+ *     Sanity under the old personal name "Jessica Durling-McMahon", which is not
+ *     even the entity the directive names ("Jessica Durling Design").
+ *   - Coffee Girl Designs has never been a partner. It appears in the slot table
+ *     only, and must not be created from it.
+ *   - House AI appears nowhere in the directive or the Digital Estate register.
+ *     It came from CLAUDE.md's pre-rebrand "Launch partners (4)" list, which the
+ *     directive supersedes.
+ *
+ * This gate is deliberately an allowlist rather than a blocklist, and it is
+ * checked on BOTH the local and the Sanity partner paths. Partner profiles can
+ * be created in the CMS at any time; an unknown slug must fail closed rather
+ * than publish itself. Add a slug here only when its fact pack is approved.
+ */
+export const APPROVED_PARTNERS = ["willow-alexander-gardens", "delve-interiors"] as const;
+
+export const isApprovedPartner = (slug: string): boolean =>
+  (APPROVED_PARTNERS as readonly string[]).includes(slug);
+
 /** Commercial separation — PUBLISH-READY COPY, do not rewrite (v2 STEP 03). */
 /**
  * The professional boundary — PUBLISH-READY COPY, do not rewrite (v2 STEP 09).
@@ -319,8 +349,8 @@ export interface HouseholdMember {
 }
 
 export const HOUSEHOLD: HouseholdMember[] = [
-  { id: "housekeeper", publicName: "The Housekeeper", promise: "Nothing slips.", group: "senior", toolStatus: "in_build", serviceStatus: "live", route: "/howa/housekeeper", image: "/howa/household/housekeeper.webp", action: "Employ the Housekeeper", membershipId: "housekeeper" },
-  { id: "steward", publicName: "The Steward", promise: "The house, protected before failure.", group: "senior", toolStatus: "in_build", serviceStatus: "in_build", route: "/howa/steward", image: "/howa/household/steward.webp", action: "Protect the home", membershipId: "steward" },
+  { id: "housekeeper", publicName: "The Housekeeper", promise: "Nothing slips.", group: "senior", toolStatus: "in_build", serviceStatus: "live", route: "/household/housekeeper", image: "/howa/household/housekeeper.webp", action: "Employ the Housekeeper", membershipId: "housekeeper" },
+  { id: "steward", publicName: "The Steward", promise: "The house, protected before failure.", group: "senior", toolStatus: "in_build", serviceStatus: "in_build", route: "/household/steward", image: "/howa/household/steward.webp", action: "Protect the home", membershipId: "steward" },
   { id: "butler", publicName: "The Butler", promise: "The instruments of the house, read by anyone, worked only on appointment.", group: "senior", toolStatus: "beta", serviceStatus: "future", route: "/household/butler", image: "/howa/household/butler.webp", action: "See how it works" },
 
   { id: "gardener", publicName: "The Gardener", promise: "Show me your garden and I'll tell you what it's asking for.", group: "need", toolStatus: "beta", serviceStatus: "live", route: "/household/gardener", image: "/howa/household/gardener.webp", action: "Scan the garden" },

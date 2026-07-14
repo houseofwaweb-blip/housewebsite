@@ -1,4 +1,5 @@
 import "server-only";
+import { isApprovedPartner } from "@/lib/truth";
 import type { MetadataRoute } from "next";
 import { sanityClient } from "@/lib/cms/client";
 import { env } from "@/lib/env";
@@ -122,14 +123,13 @@ export async function getCmsSitemapEntries(base: string): Promise<SitemapEntry[]
   // servicePackage docs are intentionally not surfaced as standalone URLs —
   // they render as anchors on /howa/plans, not their own pages. Add them
   // here only if we ever publish per-package landing pages.
-  const [articles, musings, newsItems, recipes, partners, stewardPlans, shopify, sanityProducts] =
+  const [articles, musings, newsItems, recipes, partners, shopify, sanityProducts] =
     await Promise.all([
       fetchSanitySlugs("article"),
       fetchSanitySlugs("musing"),
       fetchSanitySlugs("newsItem"),
       fetchSanitySlugs("recipe"),
       fetchSanitySlugs("partner"),
-      fetchSanitySlugs("stewardPlan"),
       fetchShopifyHandles(),
       fetchSanityProductHandles(),
     ]);
@@ -152,8 +152,17 @@ export async function getCmsSitemapEntries(base: string): Promise<SitemapEntry[]
     ...musings.map((m) => toEntry("/musings", m.slug, m._updatedAt, "monthly", 0.5)),
     ...newsItems.map((n) => toEntry("/news", n.slug, n._updatedAt, "monthly", 0.5)),
     ...recipes.map((r) => toEntry("/recipes", r.slug, r._updatedAt, "monthly", 0.5)),
-    ...partners.map((p) => toEntry("/partners", p.slug, p._updatedAt, "monthly", 0.7)),
-    ...stewardPlans.map((s) => toEntry("/steward-plans", s.slug, s._updatedAt, "monthly", 0.5)),
+    // STEP 14 fact gate. These slugs come from Sanity, so an unapproved partner
+    // document was putting itself in the sitemap: /partners/jessica-durling-mcmahon
+    // and /partners/house-ai were both submitted for indexing while the routes
+    // themselves now 404.
+    ...partners
+      .filter((p) => isApprovedPartner(p.slug))
+      .map((p) => toEntry("/partners", p.slug, p._updatedAt, "monthly", 0.7)),
+    // Steward Plans are deleted by STEP 06 and /steward-plans/:slug now 301s to
+    // /services. The stewardPlan documents still exist in Sanity, so without this
+    // the sitemap keeps submitting redirected URLs for a retired product.
+    // Intentionally not fetched into the sitemap at all.
     ...shopify.products.map((p) =>
       toEntry("/shop", p.handle, p.updatedAt, "weekly", 0.7),
     ),

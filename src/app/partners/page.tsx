@@ -5,6 +5,7 @@ import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { getNewsletterBlock } from "@/lib/cms/newsletter";
 import { LAUNCH_PARTNERS, PARTNER_ORDER } from "@/lib/partners-data";
+import { isApprovedPartner } from "@/lib/truth";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
@@ -78,7 +79,8 @@ const SEAL_LINES = [
 
 export default async function PartnersHub() {
   const nlBlock = await getNewsletterBlock("partners");
-  const partners = PARTNER_ORDER.map((slug) => LAUNCH_PARTNERS[slug]);
+  // STEP 14 fact gate: the listing may only show approved partners.
+  const partners = PARTNER_ORDER.filter(isApprovedPartner).map((slug) => LAUNCH_PARTNERS[slug]);
   const sections = await getPageSections("partners");
   const hero = sections.get("hero");
   const stats = sections.get("stats");
