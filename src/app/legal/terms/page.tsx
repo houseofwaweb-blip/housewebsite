@@ -33,6 +33,14 @@ You must not attempt to disrupt or misuse the service, including automated scrap
 Cancellation terms for each service are published on the service's page and confirmed at booking.`,
         },
         {
+          heading: "Payments",
+          body: `Payments for services, memberships and orders taken through HoWA are charged by HoWA Living Ltd. HoWA Living Ltd is the entity that takes the payment and is the name you should expect to see on your card or bank statement.
+
+Being charged by HoWA Living Ltd does not change who is responsible for the work. As set out above, your contract for a physical service is with the named provider shown before you confirm, and that provider remains responsible for its contract and delivery unless checkout states otherwise.
+
+Memberships are a software subscription. Physical service visits are booked and paid for separately.`,
+        },
+        {
           heading: "Liability",
           body: `Nothing in these terms excludes liability we can't legally exclude: things like gross negligence or fraud.
 
