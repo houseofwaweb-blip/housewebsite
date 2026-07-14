@@ -49,7 +49,7 @@ const MEMBER_VIEW: Record<string, { state: string; tone: string; href: string }>
   designer:    { state: "Live",                   tone: "live", href: "/household/designer" },
   surveyor:    { state: "Guidance beta",          tone: "beta", href: "/household/surveyor" },
   archivist:   { state: "Product beta",           tone: "beta", href: "/household/archivist" },
-  storekeeper: { state: "The Stores",             tone: "live", href: "/shop" },
+  storekeeper: { state: "The Stores",             tone: "live", href: "/household/storekeeper" },
   host:        { state: "Live",                   tone: "live", href: "/host" },
   butler:      { state: "Staged release",         tone: "beta", href: "/household/butler" },
 };

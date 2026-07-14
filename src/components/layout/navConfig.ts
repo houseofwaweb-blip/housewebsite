@@ -58,7 +58,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
           { label: "The Designer", href: "/household/designer", description: "Interior & Garden Design" },
           { label: "The Surveyor", href: "/household/surveyor", description: "Cracks, damp and quotes" },
           { label: "The Archivist", href: "/household/archivist", description: "Paperwork into dates" },
-          { label: "The Storekeeper", href: "/shop", description: "The Stores" },
+          { label: "The Storekeeper", href: "/household/storekeeper", description: "The Stores" },
         ],
       },
       {
