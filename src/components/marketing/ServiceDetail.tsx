@@ -3,7 +3,6 @@ import fs from "node:fs";
 import path from "node:path";
 import { Accordion } from "@/components/primitives/Accordion";
 import { Gallery, type GalleryImage } from "@/components/primitives/Gallery";
-import { PartnerCarousel, type PartnerCardData } from "./PartnerCarousel";
 import type { Service } from "@/lib/services-data";
 import { SERVICE_AREAS } from "@/lib/services-data/sub-services";
 import s from "./ServiceDetail.module.css";
@@ -11,7 +10,7 @@ import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { EnquiryForm } from "@/components/marketing/EnquiryForm";
 import { BookingFlowStrip } from "@/components/marketing/BookingFlowStrip";
 import { ServiceCtaRow } from "@/components/marketing/ServiceCtaRow";
-import { BookedAndRemembered, SafetyBoundary } from "@/components/marketing/HowaModules";
+import { SafetyBoundary } from "@/components/marketing/HowaModules";
 
 const PUBLIC = path.join(process.cwd(), "public");
 // Services / sub-services without their own photography fall back to the
@@ -88,28 +87,6 @@ const PLACEHOLDER_GALLERY_BY_SERVICE: Record<string, GalleryImage[]> = {
   ],
 };
 
-const PLACEHOLDER_PARTNERS: Record<string, PartnerCardData[]> = {
-  gardening: [
-    { slug: "willow-alexander-gardens", name: "Willow Alexander Gardens", type: "design-studio", shortBio: "Planting schemes and landscapes rooted in the garden's existing character.", specialties: ["Naturalistic planting", "Seasonal plans"], houseApprovedSeal: true },
-    { slug: "greenthumb-london", name: "GreenThumb London", type: "craftsman", shortBio: "Lawn and hedge specialists. Weekly and seasonal.", specialties: ["Lawn care", "Hedging"] },
-    { slug: "heritage-tree-care", name: "Heritage Tree Care", type: "craftsman", shortBio: "Arboriculture and canopy management.", specialties: ["Tree surgery", "Crown reduction"] },
-    { slug: "the-plant-people", name: "The Plant People", type: "craftsman", shortBio: "Seasonal planting and container schemes.", specialties: ["Planting", "Containers"] },
-  ],
-  "window-cleaning": [
-    { slug: "clearview-london", name: "ClearView London", type: "craftsman", shortBio: "Pure-water pole specialists. Up to four storeys.", specialties: ["Residential", "Commercial"] },
-    { slug: "federation-certified", name: "Federation-certified", type: "craftsman", shortBio: "FWC members. Insured and vetted.", specialties: ["FWC"] },
-    { slug: "shine-brigade", name: "Shine Brigade", type: "craftsman", shortBio: "Residential and commercial window care.", specialties: ["Interior", "Exterior"] },
-  ],
-  cleaning: [
-    { slug: "house-standard-cleaning", name: "House Standard Cleaning", type: "craftsman", shortBio: "Weekly and fortnightly domestic care.", specialties: ["Domestic", "Weekly"] },
-    { slug: "pristine-london", name: "Pristine London", type: "craftsman", shortBio: "Deep clean specialists. End-of-tenancy and seasonal.", specialties: ["Deep clean"] },
-    { slug: "green-clean-co", name: "Green Clean Co.", type: "craftsman", shortBio: "Eco-friendly products and methods.", specialties: ["Eco-friendly"] },
-  ],
-  "gutter-cleaning": [
-    { slug: "topdown-maintenance", name: "TopDown Maintenance", type: "craftsman", shortBio: "Vacuum-pole gutter care and inspection.", specialties: ["Vacuum-pole"] },
-    { slug: "roofline-pro", name: "Roofline Pro", type: "craftsman", shortBio: "Gutters, fascias, and soffits.", specialties: ["Fascias", "Soffits"] },
-  ],
-};
 
 export function ServiceDetail({
   service,
@@ -124,18 +101,6 @@ export function ServiceDetail({
    */
   afterHero?: React.ReactNode;
 }) {
-  const partners = ({
-    gardening:         { plural: "gardeners",          singular: "gardener" },
-    "window-cleaning": { plural: "window cleaners",    singular: "window cleaner" },
-    cleaning:          { plural: "cleaners",           singular: "cleaner" },
-    "gutter-cleaning": { plural: "gutter specialists", singular: "gutter specialist" },
-    handyman:          { plural: "handypeople",        singular: "handyperson" },
-    removals:          { plural: "movers",             singular: "mover" },
-    energy:            { plural: "electricians",       singular: "electrician" },
-    "pet-care":        { plural: "pet carers",         singular: "pet carer" },
-  } as Record<string, { plural: string; singular: string }>)[service.slug] ?? { plural: "partners", singular: "partner" };
-  const partnerName = partners.plural;
-  const partnerNameSingular = partners.singular;
 
   const heroImage = fileOr(service.heroImage, PLACEHOLDER_HERO);
   // No real photography => this service isn't live yet. Same signal that drives
@@ -224,28 +189,38 @@ export function ServiceDetail({
 
       {afterHero}
 
-      {/* 2. Trust strip */}
-      {service.trustBadges.length > 0 ? (
-        <section className={s.trust}>
-          {service.trustBadges.map((badge) => (
-            <span key={badge} className={s.trustItem}>{badge}</span>
-          ))}
-        </section>
-      ) : null}
+      {/* 2. REMOVED: the trust badge strip.
+          It rendered SERVICE_TRUST_BADGES — "House & Garden 'The List'",
+          "Guild of Master Craftsmen", "Carbon Neutral Certified", "Fully
+          Insured & Accredited", "Safe Contractor Approved" — identically on
+          every service, regardless of which company actually does the work. So
+          window cleaning and gutter clearing claimed a gardening directory
+          listing and a craftsmen's guild membership.
 
-      {/* 3. Partner carousel — dark band. Hidden for coming-soon services:
-          they have no vetted partners yet and we don't want a book-this CTA. */}
-      {soon ? null : (
-        <PartnerCarousel
-          eyebrow={`Our ${partnerName}`}
-          heading={`Meet our ${partnerName}.`}
-          headingEm={partnerName + "."}
-          lede={`Every ${partnerNameSingular} who works through the House has been vetted, insured, and meets the standard we'd hold ourselves to.`}
-          partners={PLACEHOLDER_PARTNERS[service.slug] ?? []}
-          dark
-          bookingMode
-        />
-      )}
+          The directive: "No generic rating, national coverage or badge wall
+          without attributable evidence." These may well be real for a specific
+          operating business; if so they belong on that provider's evidenced
+          fact pack (business name, approved scope, service area, evidence
+          checked, review date), not blanket-applied across four companies. */}
+
+      {/* 3. REMOVED: the "Meet our gardeners" partner carousel.
+          It rendered PLACEHOLDER_PARTNERS — invented businesses (GreenThumb
+          London, Heritage Tree Care, ClearView London, Pristine London,
+          TopDown Maintenance and others) presented as real House Approved
+          providers, under the claim that every one of them "has been vetted,
+          insured, and meets the standard we'd hold ourselves to". None exist.
+
+          It also contradicted the page directly above it: the truth band names
+          ONE responsible seller for the service, while this listed four
+          competing companies for the same work.
+
+          The directive allows no part of this: a service names its provider
+          (STEP 07 s4), House Approved is "not an open directory", and proof
+          requires "business name, approved scope, service area, evidence
+          checked, review date and profile link" with "no generic rating,
+          national coverage or badge wall without attributable evidence". The
+          real launch partners are a fact-gated set handled in STEP 14; they do
+          not belong here as invented filler. */}
 
       {/* 4. What's included + How it works */}
       <section className={s.what}>
@@ -355,10 +330,16 @@ export function ServiceDetail({
         </div>
       ) : null}
 
-      {/* HoWA writeback promise */}
-      <BookedAndRemembered />
+      {/* REMOVED: <BookedAndRemembered />. The page was saying the same thing
+          three times: this promise band, the BookingFlowStrip immediately below
+          it ("Booked, delivered, remembered"), and the truth band's Home Record
+          note under the hero. The directive's detail-page order allows one "how
+          it works" (section 6) and one service-specific Home Record behaviour
+          (section 9). The truth band now carries the Home Record copy, and it
+          reflects the real write-back mode rather than a fixed promise, so the
+          flow strip below is the only "how it works" left. */}
 
-      {/* Booking flow — the journey services should show (brief slide 8) */}
+      {/* 6. How it works: choose -> confirm -> attend -> evidence/record */}
       <BookingFlowStrip />
 
       {/* 7. Booking — two-block CTA */}
