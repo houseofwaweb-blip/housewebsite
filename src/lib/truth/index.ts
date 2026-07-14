@@ -261,6 +261,15 @@ export const membershipLabelFor = (id: string) => {
 };
 
 /** Commercial separation — PUBLISH-READY COPY, do not rewrite (v2 STEP 03). */
+/**
+ * The professional boundary — PUBLISH-READY COPY, do not rewrite (v2 STEP 09).
+ * Required by the shared member template (09A s5). It is the line that keeps a
+ * Household member from reading as a substitute for the qualified professional
+ * who is actually responsible and actually liable.
+ */
+export const PROFESSIONAL_BOUNDARY =
+  "Your contract is with the named provider shown in HoWA. The Household helps understand and route the need; it does not replace the professional responsible for the work.";
+
 export const COMMERCIAL_SEPARATION =
   "HoWA Housekeeper and HoWA Steward are software subscriptions. Physical service visits are booked and paid for separately. The named service provider remains responsible for its contract and delivery unless checkout states otherwise.";
 

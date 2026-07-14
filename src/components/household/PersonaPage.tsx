@@ -3,7 +3,7 @@ import Link from "next/link";
 import { HowaDoorModule } from "./HowaDoorModule";
 import { PersonaFeatures } from "./PersonaFeatures";
 import { PERSONA_ART, personaImage, BOOK_HREF, type Persona } from "./personaData";
-import { HOUSEHOLD } from "@/lib/truth";
+import { HOUSEHOLD, PROFESSIONAL_BOUNDARY } from "@/lib/truth";
 
 /**
  * The shared per-persona ("room") page. One template renders every
@@ -25,8 +25,22 @@ export function PersonaPage({ persona }: { persona: Persona }) {
 
   return (
     <div className="howa-surface bg-[#fbfaf5] text-[#3a352c]">
+      {/* 09A s1: Household marker and breadcrumb. Every member route must show
+          where it sits in the House, the same way the service routes do. */}
+      <nav aria-label="Breadcrumb" className="mx-auto max-w-[1180px] px-6 pt-8 sm:px-10">
+        <ol className="m-0 flex flex-wrap items-center gap-2 p-0 font-sans text-[11.5px] uppercase tracking-[0.14em] text-[#3a352c]/55 list-none">
+          <li>
+            <Link href="/household" className="text-[#3a352c]/55 no-underline hover:text-[#8a6f3f]">
+              The Household
+            </Link>
+          </li>
+          <li aria-hidden="true">·</li>
+          <li style={{ color: accent }}>{persona.name}</li>
+        </ol>
+      </nav>
+
       {/* HERO + TOOL */}
-      <section className="pt-14 pb-14 lg:pt-20 lg:pb-20">
+      <section className="pt-8 pb-14 lg:pt-10 lg:pb-20">
         <div className="mx-auto grid max-w-[1180px] items-start gap-10 px-6 sm:px-10 lg:grid-cols-[1fr_0.92fr] lg:gap-16">
           <div>
             <p className="mb-3 font-sans text-[12px] uppercase tracking-[0.2em]" style={{ color: accent }}>
@@ -60,6 +74,13 @@ export function PersonaPage({ persona }: { persona: Persona }) {
               </p>
               <p className="mt-1.5 text-[13.5px] leading-[1.5] text-[#3a352c]/85">{persona.nextAction}</p>
             </div>
+
+            {/* 09A s5: professional boundary. Publish-ready copy, do not
+                rewrite. A member must never read as a substitute for the
+                qualified professional who is responsible and liable. */}
+            <p className="mt-7 max-w-[560px] border-l-2 pl-4 text-[13.5px] leading-[1.55] text-[#3a352c]/70" style={{ borderColor: accent }}>
+              {PROFESSIONAL_BOUNDARY}
+            </p>
           </div>
 
           <HowaDoorModule persona={persona} surface="persona-page" />
