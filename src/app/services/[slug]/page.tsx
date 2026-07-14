@@ -6,6 +6,7 @@ import { sanityFetch } from "@/lib/cms/fetch";
 import { serviceBySlugQuery } from "@/lib/cms/queries";
 import { urlFor } from "@/lib/cms/image";
 import { SERVICES, SERVICE_ORDER, type ServiceSlug } from "@/lib/services-data";
+import { ServiceTruthBand } from "@/components/services/ServiceTruthBand";
 import { SOON_SERVICE_CARDS } from "../page";
 import { EnquiryForm } from "@/components/marketing/EnquiryForm";
 import { getAllServiceSlugs } from "@/lib/cms/services";
@@ -137,6 +138,7 @@ export default async function ServicePage({
           contentCategory="service"
           contentType="product"
         />
+        <ServiceTruthBand slug={slug} />
         <ServiceDetail service={local} />
       </>
     );

@@ -80,10 +80,33 @@ export const isBookable = (o: PublicOffering) => STATUS_RULES[resolveStatus(o)].
 export const isIndexable = (o: PublicOffering) => STATUS_RULES[resolveStatus(o)].indexable;
 
 /** Named provider entities. Nothing may claim `live` without one of these. */
+// The named legal sellers. Display names and the fact that each is a separate
+// operating business come from the Digital Estate service-site register, which
+// lists willowalexandergardeners.co.uk, willowalexandercleaners.co.uk and
+// willowalexanderwindowcleaners.co.uk as distinct brands that keep their own
+// names, domains and delivery identities.
+//
+// There is deliberately NO provider here for gutter clearing: the estate
+// register contains no gutter brand or domain, so the actual seller is not
+// established. resolveStatus() therefore downgrades gutter clearing off the
+// live grid rather than let it claim a provider we cannot evidence. Add the
+// entry once the operating business is confirmed and it returns to live.
 export const PROVIDERS = {
   waGardeners: {
     id: "waGardeners",
     displayName: "Willow Alexander Gardeners",
+    providerClass: "Founding service family",
+    profileRoute: "/partners/willow-alexander-gardens",
+  },
+  waCleaners: {
+    id: "waCleaners",
+    displayName: "Willow Alexander Cleaners",
+    providerClass: "Founding service family",
+    profileRoute: "/partners/willow-alexander-gardens",
+  },
+  waWindowCleaners: {
+    id: "waWindowCleaners",
+    displayName: "Willow Alexander Window Cleaners",
     providerClass: "Founding service family",
     profileRoute: "/partners/willow-alexander-gardens",
   },
@@ -113,7 +136,7 @@ export const SERVICES: PublicOffering[] = [
     publicName: "Cleaning",
     status: "live",
     householdOwner: "housekeeper",
-    sellerEntity: PROVIDERS.waGardeners.displayName,
+    sellerEntity: PROVIDERS.waCleaners.displayName,
     postcodeRules: ["SW", "W", "KT", "W4", "W6", "TW"],
     priceMode: "quote",
     bookable: true,
@@ -127,7 +150,7 @@ export const SERVICES: PublicOffering[] = [
     publicName: "Window cleaning",
     status: "live",
     householdOwner: "housekeeper",
-    sellerEntity: PROVIDERS.waGardeners.displayName,
+    sellerEntity: PROVIDERS.waWindowCleaners.displayName,
     postcodeRules: ["SW", "W", "KT", "W4", "W6", "TW"],
     priceMode: "quote",
     bookable: true,
@@ -141,7 +164,8 @@ export const SERVICES: PublicOffering[] = [
     publicName: "Gutter clearing",
     status: "live",
     householdOwner: "housekeeper",
-    sellerEntity: PROVIDERS.waGardeners.displayName,
+    // No evidenced seller: the estate register lists no gutter brand.
+    // resolveStatus() downgrades this to register_interest until confirmed.
     postcodeRules: ["SW", "W", "KT", "SE", "BR", "DA", "TN"],
     priceMode: "quote",
     bookable: true,
