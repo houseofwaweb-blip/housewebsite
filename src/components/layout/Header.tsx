@@ -96,7 +96,7 @@ export function Header({
           Search
         </button>
         <a
-          href="https://accounts.willowalexander.co.uk/"
+          href="/api/howa-bounce?source=sign-in"
           className={cn(
             "font-sans text-[12px] tracking-[0.16em] uppercase no-underline opacity-[0.55] hover:opacity-100",
             "transition-opacity duration-[var(--t-base)]",
@@ -279,7 +279,7 @@ export function Header({
                 Search
               </button>
               <a
-                href="https://accounts.willowalexander.co.uk/"
+                href="/api/howa-bounce?source=sign-in"
                 onClick={() => setMobileOpen(false)}
                 className="font-sans text-[12px] tracking-[0.16em] uppercase opacity-60 no-underline"
               >

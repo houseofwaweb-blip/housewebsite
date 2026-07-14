@@ -113,7 +113,7 @@ export function HearthPaywall() {
           <p className="mt-4 font-hearth-serif text-[15px] text-house-stone">
             Already a member?{" "}
             <a
-              href="https://accounts.willowalexander.co.uk/"
+              href="/api/howa-bounce?source=sign-in"
               className="font-hearth-sans text-[12px] tracking-[0.16em] uppercase text-house-brown no-underline border-b border-dotted border-house-brown pb-px transition-colors hover:text-house-gold-ink hover:border-house-gold"
             >
               Log in

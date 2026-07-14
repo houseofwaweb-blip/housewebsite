@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getLatestHearthArticles } from "@/lib/cms/hearth";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { EnquiryForm } from "@/components/marketing/EnquiryForm";
+import { LIVE_SERVICES as TRUTH_LIVE_SERVICES } from "@/lib/truth";
 
 /**
  * Homepage — House of HoWA.
@@ -29,12 +30,24 @@ export const metadata = {
     "A modern British House for the care, design and intelligence of home and garden. Book trusted services, commission considered design and begin a living record of your home, remembered by HoWA.",
 };
 
-const LIVE_SERVICES = [
-  { name: "Gardening", href: "/services/gardening", line: "Seasonal care, lawns, borders, hedges, planting and garden restoration.", img: "/services/subbrands/gardeners.webp" },
-  { name: "Cleaning", href: "/services/cleaning", line: "Regular or one-off care, with the scope and provider made clear before booking.", img: "/services/subbrands/cleaners.webp" },
-  { name: "Window cleaning", href: "/services/window-cleaning", line: "Reliable window care, recorded as part of the home's maintenance rhythm.", img: "/services/subbrands/window-cleaner.webp" },
-  { name: "Gutter clearing", href: "/services/gutter-cleaning", line: "Cleared, checked and ready for the weather, with notes returned to the home.", img: "/services/subbrands/gutter-cleaning.webp" },
-];
+// Read from the single truth layer, never a local list. A service appears here
+// only while resolveStatus() still returns "live": strip its seller, coverage,
+// price route or bookability and it downgrades itself off the homepage rather
+// than sitting here as an unsupported claim.
+const LIVE_SERVICES = TRUTH_LIVE_SERVICES.map((svc) => ({
+  name: svc.publicName,
+  href: svc.canonicalRoute,
+  line: svc.line ?? "",
+  img: svc.image ?? "/services/service-placeholder.webp",
+}));
+
+// Live care chips are DERIVED from truth by householdOwner, not hand-listed.
+// The directive's ownership table (gardening under The Gardener; cleaning,
+// windows and gutters under The Housekeeper) is already encoded there, and
+// deriving it means a service that downgrades loses its chip automatically
+// instead of leaving the member advertising work nobody can deliver.
+const chipsFor = (owner: string) =>
+  TRUTH_LIVE_SERVICES.filter((svc) => svc.householdOwner === owner).map((svc) => svc.publicName);
 
 // The Household, grouped exactly as Directive v2 STEP 05 section 3 requires:
 // senior row (Housekeeper, Steward, Butler), then the six need-based members,
@@ -55,7 +68,7 @@ const SENIORS = [
     btn: "#c17a5f",
     forLine: "For the household that wants everything kept in rhythm.",
     line: "Records, reminders, documents, service history and the monthly home rhythm, kept in order.",
-    chips: ["Cleaning", "Window cleaning", "Gutter clearing"],
+    chips: chipsFor("housekeeper"),
     cta: "Employ the Housekeeper",
     href: "/howa/housekeeper",
   },
@@ -84,7 +97,7 @@ const SENIORS = [
 ];
 
 const NEED_MEMBERS = [
-  { name: "The Gardener", line: "Understand the garden and book the work.", state: "Live where serviceable", tone: "live", img: "/howa/household/gardener.webp", href: "/household/gardener", chips: ["Gardening"] },
+  { name: "The Gardener", line: "Understand the garden and book the work.", state: "Live where serviceable", tone: "live", img: "/howa/household/gardener.webp", href: "/household/gardener", chips: chipsFor("gardener") },
   { name: "The Handyman", line: "Photograph the fault and understand what to do next.", state: "Diagnosis beta", tone: "beta", img: "/howa/household/handyman.webp", href: "/household/handyman", chips: [] },
   { name: "The Designer", line: "Turn a room or garden into a clear brief and professional route.", state: "Live", tone: "live", img: "/howa/household/designer.webp", href: "/household/designer", chips: ["Interior Design", "Garden Design"] },
   { name: "The Surveyor", line: "Decode a crack, damp concern or quote in plain language.", state: "Guidance beta", tone: "beta", img: "/howa/household/surveyor.webp", href: "/household/surveyor", chips: [] },

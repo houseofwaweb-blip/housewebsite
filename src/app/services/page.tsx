@@ -6,6 +6,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 import { ServiceCarousel } from "./ServiceCarousel";
 import { HouseStandardStrip } from "@/components/marketing/HouseStandardStrip";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
+import { LIVE_SERVICES as TRUTH_LIVE_SERVICES } from "@/lib/truth";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -218,9 +219,26 @@ export default async function ServicesLanding() {
     href: pick(c.ctaHref, base?.href ?? "#"),
     state: base?.state ?? ("live" as const),
   }));
-  // The live grid is driven by verified public status, never by the CMS adding
-  // a card. A fifth service appears here only once its launch gate passes.
-  const liveCards = serviceCards.filter((svc) => svc.state === "live");
+  // The live grid is driven by the single truth layer, never by this file's
+  // local list or by the CMS adding a card. resolveStatus() downgrades any
+  // service missing a seller, coverage, price route or bookability, so it drops
+  // out of the grid by itself rather than needing anyone to remember. A fifth
+  // service appears here only once its launch gate passes.
+  //
+  // Status and route come from truth; the longer selling copy is still editable
+  // in this file / the CMS and is matched on by slug.
+  const liveCards = TRUTH_LIVE_SERVICES.map((svc) => {
+    const copy = serviceCards.find((c) => c.href === svc.canonicalRoute);
+    return {
+      slug: svc.id,
+      name: svc.publicName,
+      tagline: copy?.tagline ?? svc.line ?? "",
+      body: copy?.body ?? svc.line ?? "",
+      image: copy?.image ?? svc.image ?? COMING_SOON,
+      href: svc.canonicalRoute,
+      state: "live" as const,
+    };
+  });
   const faqItems = cmsCards(faqHead, FAQ, (c, base) => ({
     q: pick(c.title, base?.q ?? ""),
     a: pick(c.body, base?.a ?? ""),

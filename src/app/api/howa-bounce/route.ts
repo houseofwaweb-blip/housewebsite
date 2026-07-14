@@ -12,6 +12,7 @@ import { env } from "@/lib/env";
  */
 
 const ALLOWED_SOURCES = new Set([
+  "sign-in",
   "header",
   "footer",
   "nav-cta",

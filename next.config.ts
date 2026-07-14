@@ -128,10 +128,19 @@ const nextConfig: NextConfig = {
       { source: "/sale", destination: "/shop", permanent: true },
       { source: "/basket", destination: "/shop", permanent: true },
       { source: "/checkout", destination: "/shop", permanent: true },
-      { source: "/my-account", destination: "https://accounts.willowalexander.co.uk/", permanent: true },
+      // Directive v2 STEP 04: sign in must never route to a Willow Alexander
+      // account. Both go through the HoWA bounce, which sends visitors to the
+      // product when HOWA_APP_LIVE and to /howa/coming-soon otherwise.
+      //
+      // Deliberately NOT a blind 301 to a new sign-in host: the Digital Estate
+      // register treats accounts.willowalexander.co.uk as a temporary
+      // compatibility endpoint and requires authentication, callbacks, sessions
+      // and transactional links to be proven before account traffic is moved.
+      // The bounce is a controlled, revocable route rather than a permanent
+      // redirect cached in browsers.
+      { source: "/my-account", destination: "/api/howa-bounce?source=sign-in", permanent: false },
+      { source: "/sign-in", destination: "/api/howa-bounce?source=sign-in", permanent: false },
       { source: "/:s([^/]*-shop)", destination: "/shop", permanent: true },
-      // Sign-in moved to external accounts subdomain
-      { source: "/sign-in", destination: "https://accounts.willowalexander.co.uk/", permanent: true },
       // Booking is a modal triggered by `#open-booking-form` from any page;
       // legacy /book-consultation now redirects to homepage with the trigger.
       { source: "/book-consultation", destination: "/#open-booking-form", permanent: true },
