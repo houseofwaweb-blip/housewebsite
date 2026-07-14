@@ -86,11 +86,9 @@ export const isIndexable = (o: PublicOffering) => STATUS_RULES[resolveStatus(o)]
 // willowalexanderwindowcleaners.co.uk as distinct brands that keep their own
 // names, domains and delivery identities.
 //
-// There is deliberately NO provider here for gutter clearing: the estate
-// register contains no gutter brand or domain, so the actual seller is not
-// established. resolveStatus() therefore downgrades gutter clearing off the
-// live grid rather than let it claim a provider we cannot evidence. Add the
-// entry once the operating business is confirmed and it returns to live.
+// Gutter clearing has no brand of its own in the register because it is
+// delivered by the window cleaning business, so it sells under
+// waWindowCleaners rather than getting a fabricated entity of its own.
 export const PROVIDERS = {
   waGardeners: {
     id: "waGardeners",
@@ -164,8 +162,10 @@ export const SERVICES: PublicOffering[] = [
     publicName: "Gutter clearing",
     status: "live",
     householdOwner: "housekeeper",
-    // No evidenced seller: the estate register lists no gutter brand.
-    // resolveStatus() downgrades this to register_interest until confirmed.
+    // Gutter clearing is delivered by the window cleaning business (confirmed
+    // by Alex, 2026-07-14). The estate register lists no separate gutter brand
+    // because there isn't one: same operating company, same reach-and-vac kit.
+    sellerEntity: PROVIDERS.waWindowCleaners.displayName,
     postcodeRules: ["SW", "W", "KT", "SE", "BR", "DA", "TN"],
     priceMode: "quote",
     bookable: true,
