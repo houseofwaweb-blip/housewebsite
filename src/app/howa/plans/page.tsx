@@ -42,12 +42,10 @@ const ASSISTANT_INCLUSIONS = [
 ];
 
 const HOWAPLUS_INCLUSIONS = [
-  "10% off all House services, auto-applied at checkout",
   "Full Living Record continuity and task centre with seasonal prompts",
   "Richer document and home logbook history",
   "Priority booking across House services",
   "Full access to The Hearth magazine",
-  "Personal carbon offset fund",
   "Saved guides and seasonal reminders",
   "Early access to new HoWA features",
   "Exclusive House events and drops",

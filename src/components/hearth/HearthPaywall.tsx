@@ -53,7 +53,6 @@ export function HearthPaywall() {
                   "Every article, in full",
                   "The weekly Hearth letter",
                   "Full archive access",
-                  "10% off the House shop",
                 ].map((item) => (
                   <li
                     key={item}

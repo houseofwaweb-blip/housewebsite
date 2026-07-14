@@ -79,16 +79,13 @@ const SCORE_STEPS = [
 ];
 
 const VALUE_STATS = [
-  { big: "£840+", label: "Typical first-year service savings with member pricing" },
   { big: "1 to 3", label: "Issues typically caught before they cost more" },
-  { big: "+£18,000", label: "Average sale uplift from a properly evidenced home record" },
   { big: "£29.99", label: "Per month. Less than a single emergency call-out" },
 ];
 
 const COMPARE_ROWS = [
   { label: "Living Record & Task Centre", plus: "yes", steward: "yes" },
-  { label: "Assistant Diagnostic", plus: "Full", steward: "Full" },
-  { label: "10% off House Services", plus: "yes", steward: "yes" },
+  { label: "Household tools", plus: "Full", steward: "Full" },
   { label: "Priority Booking", plus: "yes", steward: "yes" },
   { label: "The Hearth", plus: "yes", steward: "yes" },
   { label: "HoWA Score", plus: "no", steward: "yes" },
@@ -124,7 +121,6 @@ const FEATURE_GROUPS = [
     label: "Everything in Housekeeper, included",
     items: [
       "Full Living Record, Task Centre, Document Logbook",
-      "10% off all House services",
       "Priority booking across House and partners",
       "Full Hearth magazine access",
       "Priority HoWA support channel",

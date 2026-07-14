@@ -44,7 +44,7 @@ const COMING = [
   {
     icon: "III.",
     title: "Bookings & member pricing",
-    body: "Priority across House services and approved partners. 10% off everything. One contact, one invoice, the same trade twice when continuity matters.",
+    body: "Priority across House services and approved partners. One contact, one invoice, the same trade twice when continuity matters.",
   },
 ];
 

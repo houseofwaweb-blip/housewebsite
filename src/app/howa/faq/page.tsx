@@ -133,7 +133,7 @@ const SECTIONS: { heading: string; items: { q: string; a: string }[] }[] = [
     items: [
       {
         q: "How much do Housekeeper members save?",
-        a: "Typically 10 to 15% off service bookings vs. calling direct, plus 10% off everything in the House shop. A single gutter clear and window clean often covers the monthly fee.",
+        a: "The membership pays for the software and the continuity: the Home Record, the reminders and the rhythm of the home. Service visits are booked and paid for separately, and the provider shown before you confirm remains responsible for the work.",
       },
       {
         q: "What is The Hearth?",

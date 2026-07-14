@@ -142,7 +142,10 @@ export async function getCmsSitemapEntries(base: string): Promise<SitemapEntry[]
     priority: number,
   ): SitemapEntry => ({
     url: `${base}${path}/${slug}`,
-    lastModified: updatedAt ? new Date(updatedAt) : new Date(),
+    // No invented timestamp: _updatedAt when Sanity has one, otherwise omit.
+    // The old `: new Date()` fallback made every revalidation differ and
+    // charged an ISR write for content that had not changed.
+    ...(updatedAt ? { lastModified: new Date(updatedAt) } : {}),
     changeFrequency,
     priority,
   });

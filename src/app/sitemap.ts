@@ -24,9 +24,25 @@ import { getCmsSitemapEntries } from "@/lib/sitemap-slugs";
  * tolerant, so a Sanity or Shopify outage will degrade the sitemap to
  * static + WP long-tail rather than 500ing the whole route.
  */
+/** Evaluated once at build, so ISR revalidation produces identical output. */
+const BUILD_TIME = new Date();
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
-  const now = new Date();
+  /**
+   * Deterministic, deliberately.
+   *
+   * This was `new Date()`, which is non-deterministic ISR output: every
+   * revalidation produced a different lastModified for every static route, so
+   * Vercel saw the sitemap as changed and charged an ISR write each time, even
+   * when nothing had actually changed. Vercel's own ISR guidance names this
+   * exact cause ("check that you're not using new Date() in the ISR output").
+   *
+   * A build-time constant changes only when we deploy, which is also the only
+   * time these static routes can actually change. Crawlers get a truthful
+   * signal instead of a timestamp that moves on its own.
+   */
+  const now = BUILD_TIME;
 
   const staticRoutes: MetadataRoute.Sitemap = [
     // ---- Homepage ----
