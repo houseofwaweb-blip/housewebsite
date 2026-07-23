@@ -78,8 +78,16 @@ declare global {
     obfOptions?: ObfOptions;
     __obfLoaded?: boolean;
     __obfReady?: boolean;
+    /** Set by client.min.js a beat AFTER its script onload, once it has bound
+     *  its delegated body click handler. This is the true "ready" signal:
+     *  firing a trigger click before it exists just follows the anchor and
+     *  nothing opens (see SERVICEOS_EXTERNAL_BOOKING_LINK.md §4). */
+    __obfCtaClickHandler?: unknown;
   }
 }
+
+const TRIGGER_HREF = "#open-booking-form";
+const TRIGGER_SELECTOR = 'a[href="#open-booking-form"],[data-obf-trigger]';
 
 export function BookingWidget() {
   // ServiceOS is the booking platform — ESSENTIAL / strictly necessary, so it
@@ -138,6 +146,31 @@ export function BookingWidget() {
       document.body.appendChild(script);
     };
 
+    // Fire a real click on a trigger, but ONLY once the client's delegated
+    // handler exists (poll — never a fixed delay; the handler is registered a
+    // beat after script onload). Reuse the passed element (its data-* may
+    // preselect a service), else any on-page Book link, else a hidden one.
+    const openWhenReady = (target?: HTMLElement | null) => {
+      let tries = 0;
+      const iv = window.setInterval(() => {
+        tries += 1;
+        const ready = typeof window.__obfCtaClickHandler === "function";
+        if (ready || tries > 100) { // ~10s fallback
+          window.clearInterval(iv);
+          let el = target ?? document.querySelector<HTMLElement>(TRIGGER_SELECTOR);
+          if (!el) {
+            const a = document.createElement("a");
+            a.href = TRIGGER_HREF;
+            a.setAttribute("data-obf-trigger", "");
+            a.style.display = "none";
+            document.body.appendChild(a);
+            el = a;
+          }
+          el.click();
+        }
+      }, 100);
+    };
+
     // 1) First real interaction → load the widget ahead of any Book click.
     const events: Array<keyof WindowEventMap> = [
       "pointerdown",
@@ -152,29 +185,47 @@ export function BookingWidget() {
     }
 
     // 2) Book CTA clicked before the script is ready → load now and replay the
-    //    click once ServiceOS has bound its handlers, so it still opens first-go.
+    //    click once ServiceOS has bound its handler, so it still opens first-go.
     const onBookClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null;
-      const link = target?.closest?.(
-        'a[href="#open-booking-form"]',
-      ) as HTMLElement | null;
+      const link = target?.closest?.(TRIGGER_SELECTOR) as HTMLElement | null;
       if (!link) return;
       if (window.__obfReady) return; // already loaded — let ServiceOS handle it
       e.preventDefault();
       loadObf();
-      const open = () => {
-        window.removeEventListener("obf-ready", open);
-        link.click();
-      };
-      window.addEventListener("obf-ready", open);
+      openWhenReady(link);
     };
     document.addEventListener("click", onBookClick, true);
     cleanups.push(() => document.removeEventListener("click", onBookClick, true));
 
+    // 3) External-link path (SERVICEOS_EXTERNAL_BOOKING_LINK.md): landing on any
+    //    page with `?book=1` (or the #open-booking-form hash) auto-opens a fresh
+    //    booking, so "Book online" links work from emails, ads, QR codes, Google
+    //    Business, third-party listings, etc. Then tidy the URL so a refresh
+    //    doesn't reopen it and the param doesn't leak into shares/analytics.
+    //    NOTE: this only opens on a ServiceOS-allow-listed origin (the live
+    //    domain), not localhost or a per-deploy preview host.
+    const url = new URL(window.location.href);
+    const wantsBooking =
+      url.searchParams.get("book") === "1" || url.hash === TRIGGER_HREF;
+    if (wantsBooking) {
+      loadObf();
+      openWhenReady();
+      url.searchParams.delete("book");
+      const search = url.searchParams.toString();
+      const hash = url.hash === TRIGGER_HREF ? "" : url.hash;
+      window.history.replaceState(
+        null,
+        "",
+        url.pathname + (search ? `?${search}` : "") + hash,
+      );
+    }
+
     return runCleanups;
   }, []);
 
-  // The widget injects its own DOM. No visible markup needed — clicks on
-  // any `href="#open-booking-form"` anchor open the modal.
+  // The widget injects its own DOM. No visible markup needed — clicks on any
+  // `href="#open-booking-form"` anchor open the modal, and a `?book=1` link
+  // opens it on page load.
   return null;
 }
