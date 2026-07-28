@@ -4,6 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
+import { shopifyImage } from "@/lib/commerce/shopify-image";
 import { useCart } from "./CartContext";
 
 export function CartDrawer() {
@@ -96,7 +97,7 @@ export function CartDrawer() {
                 <div className="w-[72px] h-[90px] flex-shrink-0 overflow-hidden bg-house-cream">
                   {line.image ? (
                     <Image
-                      src={line.image}
+                      src={shopifyImage(line.image, 200)}
                       alt={line.title}
                       width={144}
                       height={180}

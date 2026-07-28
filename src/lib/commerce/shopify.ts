@@ -35,7 +35,12 @@ async function storefront<T>(
       "X-Shopify-Storefront-Access-Token": env.SHOPIFY_STOREFRONT_TOKEN,
     },
     body: JSON.stringify({ query, variables }),
-    next: { tags, revalidate: 300 },
+    // Product/collection reads are cached and tag-keyed: the Shopify webhook
+    // (/api/webhooks/shopify) calls revalidateTag on products/collections/
+    // inventory changes, so listings stay instantly fresh. The time-based
+    // revalidate is only a missed-webhook safety net — 1 week, not 5 minutes —
+    // so we don't refetch + regenerate the whole catalogue every few minutes.
+    next: { tags, revalidate: 604800 },
   });
   if (!res.ok) {
     throw new Error(`Shopify ${res.status} ${res.statusText}`);

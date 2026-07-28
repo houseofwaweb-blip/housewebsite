@@ -3,6 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { shopifyImage } from "@/lib/commerce/shopify-image";
 import { AddToCartButton } from "@/components/commerce/AddToCartButton";
 
 export type Slide = {
@@ -81,7 +82,7 @@ export function ProductSlider({ title, slides }: { title: string; slides: Slide[
             className="group order-1 md:order-2 relative aspect-[4/5] block overflow-hidden bg-house-cream-dark no-underline"
           >
             <Image
-              src={s.image}
+              src={shopifyImage(s.image, 900)}
               alt={s.alt}
               fill
               sizes="(min-width: 768px) 45vw, 90vw"

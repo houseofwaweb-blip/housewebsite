@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/cn";
+import { shopifyImage } from "@/lib/commerce/shopify-image";
 import { QuickAdd } from "./QuickAdd";
 
 /**
@@ -53,7 +54,7 @@ export function ProductCard({
       {/* Image */}
       <div className="relative aspect-[4/5] w-full overflow-hidden bg-house-cream-dark mb-4">
         <Image
-          src={product.image}
+          src={shopifyImage(product.image, 800)}
           alt={product.imageAlt || product.title}
           fill
           sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"

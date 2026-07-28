@@ -316,7 +316,14 @@ export default async function ProductPage({
 
 // Pages not listed here (the 500+ Sanity/catalogue products) render on first
 // request and are then cached. dynamicParams defaults to true.
-export const revalidate = 3600;
+//
+// ISR write budget: a short time-based revalidate makes every product page
+// rewrite its cache entry each window it gets a request — across 500+ products
+// that burns Vercel's "ISR Writes" quota fast. Real content changes are already
+// pushed on-demand by the Shopify + Sanity webhooks (`revalidateTag`), so the
+// time-based window only needs to be a slow safety net for a missed webhook.
+// 1 week keeps writes near zero; the webhooks keep prices/stock instantly fresh.
+export const revalidate = 604800;
 
 // Prebuild only the curated showpieces at build time. Prebuilding all 500+
 // products exhausted build memory; the rest are served on-demand via ISR.

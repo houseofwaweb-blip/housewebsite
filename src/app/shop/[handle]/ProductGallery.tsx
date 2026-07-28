@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
+import { shopifyImage } from "@/lib/commerce/shopify-image";
 import s from "./product.module.css";
 
 /**
@@ -40,7 +41,7 @@ export function ProductGallery({
                 className={i === active ? `${s.thumb} ${s.thumbActive}` : s.thumb}
               >
                 <Image
-                  src={img.src}
+                  src={shopifyImage(img.src, 200)}
                   alt=""
                   width={160}
                   height={160}
@@ -53,7 +54,7 @@ export function ProductGallery({
 
         <div className={s.mainWrap}>
           <Image
-            src={main.src}
+            src={shopifyImage(main.src, 1400)}
             alt={main.alt}
             width={1400}
             height={1750}

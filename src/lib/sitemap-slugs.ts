@@ -96,7 +96,7 @@ async function fetchShopifyHandles(): Promise<{
           collections(first: 250) { nodes { handle updatedAt } }
         }`,
       }),
-      next: { tags: ["sitemap:shopify"], revalidate: 3600 },
+      next: { tags: ["sitemap:shopify"], revalidate: 604800 },
     });
     if (!res.ok) throw new Error(`Shopify ${res.status}`);
     const json = (await res.json()) as {

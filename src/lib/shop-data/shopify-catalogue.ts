@@ -175,7 +175,7 @@ export const loadShopifyCatalogue = cache(async (): Promise<ShopifyCatalogue | n
           "X-Shopify-Storefront-Access-Token": env.SHOPIFY_STOREFRONT_TOKEN as string,
         },
         body: JSON.stringify({ query, variables }),
-        next: { tags: ["shopify:catalogue"], revalidate: 300 },
+        next: { tags: ["shopify:catalogue"], revalidate: 604800 },
       });
       if (!res.ok) return null;
       const json = (await res.json()) as { data?: unknown };
@@ -281,7 +281,7 @@ export const getProductVariants = cache(async (handle: string): Promise<ProductV
           "X-Shopify-Storefront-Access-Token": env.SHOPIFY_STOREFRONT_TOKEN,
         },
         body: JSON.stringify({ query: VARIANTS_QUERY, variables: { handle } }),
-        next: { tags: [`variants:${handle}`], revalidate: 300 },
+        next: { tags: [`variants:${handle}`], revalidate: 604800 },
       },
     );
     if (!res.ok) return [];
