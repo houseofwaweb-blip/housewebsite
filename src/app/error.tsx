@@ -43,7 +43,7 @@ export default function ErrorPage({
           >
             write to the House
           </Link>
-          {error.digest ? ` and quote reference ${error.digest}` : ""}.
+          .
         </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-6">

@@ -22,17 +22,32 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 export const metadata = {
   title: "Interiors: Consciously designed.",
   description:
-    "Consciously designed interiors through The House Edit. Digital plans, full-home edits, and styling sessions, every scheme House Approved.",
+    "Consciously designed interiors through The House Edit. Digital plans, full-home edits, and styling sessions, every scheme HoWA Approved.",
 };
 
 const STAT_COLS = [
-  { value: "3", label: "Plans to begin" },
+  { value: "4", label: "Plans to begin" },
   { value: "1:1", label: "Designer access" },
-  { value: "15%", label: "House Store discount" },
+  { value: "15%", label: "House Shop discount" },
   { value: "0", label: "Cookie-cutter schemes" },
 ];
 
 const PLANS = [
+  {
+    // DIRECTIVE §10 — Interior design leads with HoWA First Design at £400
+    // (the mapped first output). Human packages follow after the first output.
+    name: "HoWA First Interior Design",
+    tagline: "The mapped first design, £400.",
+    price: "£400",
+    inclusions: [
+      "Starts from your address and a HoWA read of the room",
+      "A first scheme and material direction, mapped to your home",
+      "A written design you own, kept in your home record",
+      "A clear route to continue with Delve Interiors when you want a human studio",
+    ],
+    image: "/design/interiors/project-living-room.webp",
+    featured: true,
+  },
   {
     name: "The House Edit",
     tagline: "A 90-minute studio session.",
@@ -41,10 +56,10 @@ const PLANS = [
       "A 90-minute one-to-one online styling session",
       "Thoughtful guidance on palette, layout and sourcing",
       "A personalised PDF moodboard with curated links",
-      "10% House Store discount",
+      "10% House Shop discount",
     ],
-    image: "/design/interiors/project-living-room.webp",
-    featured: true,
+    image: "/design/interiors/project-bedroom.webp",
+    featured: false,
   },
   {
     name: "Additions to Your Edit",
@@ -68,7 +83,7 @@ const PLANS = [
       "Sourcing for two rooms",
       "A tactile material pack posted to you",
       "30-minute follow-up call",
-      "15% House Store discount",
+      "15% House Shop discount",
     ],
     image: "/design/interiors/project-detail.webp",
   },
@@ -143,15 +158,21 @@ export default async function InteriorsPage() {
               {cms(
                 hero,
                 "body",
-                "Rooms read for the people who live in them, not decorated at them. Worked out in plaster, paint, joinery and the light a room actually gets, with Delve Interiors, our House Approved studio who know period fabric and how a house wears over years.",
+                "Rooms read for the people who live in them, not decorated at them. Worked out in plaster, paint, joinery and the light a room actually gets, with Delve Interiors, our HoWA Approved studio who know period fabric and how a house wears over years.",
               )}
+            </p>
+            {/* DIRECTIVE §10 — surface the £400 first design + scan framing in the hero. */}
+            <p className={s.heroLede} style={{ fontWeight: 600, marginTop: 4 }}>
+              Scan your room and see the first direction before the first
+              consultation. HoWA First Interior Design, £400: a mapped concept,
+              palette, indicative budget and written brief.
             </p>
             <div className={s.heroCtas}>
               <Link href={cms(hero, "ctaHref", "#plans")} className={s.btnFilled}>
-                {cms(hero, "ctaLabel", "See the plans")}
+                {cms(hero, "ctaLabel", "Start my interior design")}
               </Link>
-              <Link href={cms(hero, "cta2Href", "/partners/delve-interiors")} className={s.btnGhost}>
-                {cms(hero, "cta2Label", "Meet Delve Interiors")}
+              <Link href={cms(hero, "cta2Href", "#projects")} className={s.btnGhost}>
+                {cms(hero, "cta2Label", "View interior projects")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
@@ -178,7 +199,7 @@ export default async function InteriorsPage() {
         <div className={s.statsLede}>
           <p className={s.statsLedeLine1}>{cms(stats, "headline", "Beauty. Balance. Intention.")}</p>
           <p className={s.statsLedeLine2}>
-            {cms(stats, "subheadline", "Every scheme through Delve Interiors, House Approved.")}
+            {cms(stats, "subheadline", "Every scheme through Delve Interiors, HoWA Approved.")}
           </p>
         </div>
         {statCols.map((stat) => (
@@ -194,7 +215,7 @@ export default async function InteriorsPage() {
         <header className={s.plansHead}>
           <p className={s.plansEy}>{cms(plans, "eyebrow", "Digital Plans")}</p>
           <h2 className={s.plansTitle}>
-            {cms(plans, "headline", "Three ways")}{" "}
+            {cms(plans, "headline", "Four ways")}{" "}
             <em>{cms(plans, "headlineEm", "to begin.", "headline")}</em>
           </h2>
           <p className={s.plansLede}>
@@ -241,7 +262,7 @@ export default async function InteriorsPage() {
       </section>
 
       {/* 4. Projects gallery */}
-      <section className={s.projects}>
+      <section id="projects" className={s.projects}>
         <header className={s.projectsHead}>
           <p className={s.projectsEy}>{cms(projects, "eyebrow", "Our projects")}</p>
           <h2 className={s.projectsTitle}>
@@ -286,30 +307,41 @@ export default async function InteriorsPage() {
         </p>
       </section>
 
-      {/* 6. Assistant split */}
+      {/* 6. The Designer doorway (DIRECTIVE §07/§09 — the Designer persona maps
+          the room for the £400 first design. NOT the Assistant, which is a HoWA
+          tier and does not belong in the House design path.) */}
       <section className={s.companion}>
         <div className={s.companionCopy}>
-          <p className={s.companionEy}>{cms(companion, "eyebrow", "HoWA · Assistant")}</p>
+          <p className={s.companionEy}>{cms(companion, "eyebrow", "HoWA · The Designer")}</p>
           <h2 className={s.companionTitle}>
             {cms(companion, "headline", "Start with the")}{" "}
-            <em>{cms(companion, "headlineEm", "Assistant.", "headline")}</em>
+            <em>{cms(companion, "headlineEm", "Designer.", "headline")}</em>
           </h2>
           <p className={s.companionLede}>
             {cms(
               companion,
               "body",
-              "Capture your room, ambition, timeline, budget and aesthetic direction. The Assistant builds a brief your designer can work from on day one, nothing lost, nothing repeated.",
+              "Use the Designer to map your room, ambition, timeline, budget and aesthetic direction. You get a first direction and an indicative budget you own, a brief Delve can work from on day one, nothing lost, nothing repeated.",
             )}
           </p>
           <p className={s.companionFootnote}>
-            {cms(companion, "caption", "Available to all HoWA members.")}
+            {cms(companion, "caption", "This is HoWA First Interior Design, £400.")}
           </p>
           <Link
-            href={cms(companion, "ctaHref", "/api/howa-bounce?source=interiors-companion")}
+            href={cms(companion, "ctaHref", "#plans")}
             className={s.btnFilled}
           >
-            {cms(companion, "ctaLabel", "Coming soon")}
+            {cms(companion, "ctaLabel", "Start my interior design")}
           </Link>
+          {/* DIRECTIVE §10 — "See a sample output". */}
+          <div style={{ marginTop: 16 }}>
+            <Link
+              href="/design/sample"
+              style={{ fontFamily: "var(--font-sans)", fontSize: 12, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--color-house-gold-ink)", textDecoration: "underline", textUnderlineOffset: "3px" }}
+            >
+              See a sample output →
+            </Link>
+          </div>
         </div>
         <div className={s.companionImage}>
           <Image
@@ -317,7 +349,7 @@ export default async function InteriorsPage() {
             alt={cms(
               companion,
               "imageAlt",
-              "A living room project, the kind of room the Assistant helps you brief",
+              "A living room project, the kind of room the Designer helps you brief",
             )}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"

@@ -98,9 +98,9 @@ const TIERS: {
   {
     slug: "assistant",
     numeral: "I.",
-    label: "Assistant",
+    label: "Free",
     tagline: "The house, seen.",
-    visual: { kind: "illustration", src: "/home-v4/assistant-dollhouse.webp", alt: "Doll house, Assistant tier" },
+    visual: { kind: "illustration", src: "/home-v4/assistant-dollhouse.webp", alt: "Doll house, Free tier" },
     features: [
       { icon: LeafIcon, text: "Notices what matters" },
       { icon: PulseIcon, text: "Tracks changes in real time" },

@@ -253,7 +253,7 @@ const components: PortableTextComponents = {
     inlineCollection: ({ value }: { value: InlineCollectionBlock }) => (
       <div className="my-10 border-t border-b border-house-brown/12 py-6">
         <div className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-ink mb-2">
-          A House-approved collection
+          From The House Selection
         </div>
         <Link
           href={`/shop/collections/${value.handle}`}

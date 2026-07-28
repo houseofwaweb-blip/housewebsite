@@ -12,7 +12,7 @@ const FALLBACK_SECTIONS: EditorialSection[] = [
     heading: "Our framing",
     body: `Most of what makes a home sustainable happens before you decorate it. Retain the fabric. Repair over replace. Extend the life of what was already made. The most sustainable piece of furniture is the one already in the room.
 
-Our partner studios are asked to plan for a thirty-year horizon, not a style cycle. Our services are designed to keep things going longer. The Steward logic exists precisely because long-lived homes need fewer one-off interventions.`,
+Our studios are asked to plan for a thirty-year horizon, not a style cycle. Our services are designed to keep things going longer. The stewardship logic exists precisely because long-lived homes need fewer one-off interventions.`,
     image: {
       src: "/the-house/editorial/garden-doors-roses.webp",
       alt: "Open sage garden doors framed by climbing roses, a room that opens to green.",
@@ -23,7 +23,7 @@ Our partner studios are asked to plan for a thirty-year horizon, not a style cyc
     heading: "What we measure",
     body: `We track three things at the moment, and intend to add more.
 
-Materials provenance for House Approved products: where the raw materials came from, who worked them, and the distance travelled to reach the store.
+Materials provenance for the House Selection: where the raw materials came from, who worked them, and the distance travelled to reach the store.
 
 Travel impact for our own operations: miles driven by services teams, consolidated where possible into single trips.
 

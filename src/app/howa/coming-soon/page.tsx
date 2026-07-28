@@ -19,7 +19,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 export const metadata = {
   title: "HoWA: Coming soon",
   description:
-    "HoWA Product is where stewardship becomes operational: home records, the Assistant, bookings, and a single place for the House to reach you. Join the waitlist.",
+    "HoWA Product is where stewardship becomes operational: home records, Ask HoWA, bookings, and a single place for the House to reach you. Join the waitlist.",
   robots: { index: false, follow: true },
 };
 
@@ -38,7 +38,7 @@ const COMING = [
   },
   {
     icon: "II.",
-    title: "The Assistant",
+    title: "Ask HoWA",
     body: "Repair scan, instant quote, design moodboards. Capture home type, rooms, priorities, style and budget. Calm, specific, honest about what it doesn't know.",
   },
   {
@@ -90,7 +90,7 @@ export default async function HowaComingSoonPage() {
               {cms(
                 hero,
                 "body",
-                "HoWA Product is where stewardship becomes operational, home records, the Assistant diagnostic, bookings, and one place for the House to reach you. We'll write the moment it opens.",
+                "HoWA Product is where stewardship becomes operational, home records, the Ask HoWA diagnostic, bookings, and one place for the House to reach you. We'll write the moment it opens.",
               )}
             </p>
             <div className={s.waitlistWrap}>

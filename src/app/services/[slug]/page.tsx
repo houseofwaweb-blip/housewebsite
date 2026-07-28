@@ -6,10 +6,12 @@ import { sanityFetch } from "@/lib/cms/fetch";
 import { serviceBySlugQuery } from "@/lib/cms/queries";
 import { urlFor } from "@/lib/cms/image";
 import { SERVICES, SERVICE_ORDER, type ServiceSlug } from "@/lib/services-data";
-import { SOON_SERVICE_CARDS } from "../page";
 import { EnquiryForm } from "@/components/marketing/EnquiryForm";
 import { getAllServiceSlugs } from "@/lib/cms/services";
-import { ServiceDetail } from "@/components/marketing/ServiceDetail";
+import { ServiceDetail, type ServiceDetailMode } from "@/components/marketing/ServiceDetail";
+import { SingleServiceDetail } from "@/components/marketing/SingleServiceDetail";
+import { getRequestableService, REQUESTABLE_SERVICES } from "@/lib/services-data/requestable";
+import { getSingleServiceView } from "@/lib/services-data/requestable-detail";
 import { PortableText } from "@/components/cms/PortableText";
 import type { PortableTextBlock } from "@portabletext/types";
 import { ServiceJsonLd } from "@/lib/seo/jsonLd";
@@ -73,6 +75,19 @@ function isLocalSlug(slug: string): slug is ServiceSlug {
   return SERVICE_ORDER.includes(slug as ServiceSlug);
 }
 
+/**
+ * REVISIONS v3 §4 module 3 — how the page asks for the business.
+ *
+ * A service in the requestable catalogue that is not `bookable` is a real
+ * service the House arranges but cannot price from a postcode alone, so it
+ * renders in quote mode: same template, same sections, CTAs that ask for a
+ * request. Anything outside the catalogue keeps the original booking mode.
+ */
+function modeFor(slug: string): ServiceDetailMode {
+  const entry = getRequestableService(slug);
+  return entry && !entry.bookable ? "quote" : "book";
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -86,17 +101,12 @@ export async function generateMetadata({
       description: local.lede,
     };
   }
-  const service = await loadSanityService(slug);
-  if (!service) {
-    const soon = SOON_SERVICE_CARDS.find((c) => c.slug === slug);
-    if (soon) {
-      return {
-        title: `${soon.name} (coming soon)`,
-        description: `${soon.tagline} ${soon.body}`,
-      };
-    }
-    return { title: "Service not found" };
+  const singleView = getSingleServiceView(slug);
+  if (singleView) {
+    return { title: singleView.name, description: singleView.lede };
   }
+  const service = await loadSanityService(slug);
+  if (!service) return { title: "Service not found" };
   return {
     title: service.seo?.title ?? service.name,
     description: service.seo?.description ?? service.lede,
@@ -104,7 +114,7 @@ export async function generateMetadata({
 }
 
 const CTA_LABEL: Record<ServicePackage["cta"], string> = {
-  bookNow: "Book through HoWA",
+  bookNow: "Book a service",
   payNow: "Pay now",
   quoteEntry: "Get a quote",
   applicationOnly: "Apply to join",
@@ -137,7 +147,34 @@ export default async function ServicePage({
           contentCategory="service"
           contentType="product"
         />
-        <ServiceDetail service={local} />
+        <ServiceDetail service={local} mode={modeFor(slug)} />
+      </>
+    );
+  }
+
+  // 1b. Wider catalogue — services the House arranges but cannot price from a
+  // postcode. These are LEAF services (no sub-services of their own), so they
+  // render through the shared single-service template, the same layout as a
+  // sub-service page like /services/gardening/garden-clearance, rather than the
+  // richer category template. Category pages (gardening, cleaning …) keep
+  // ServiceDetail because they genuinely have sub-services to carousel.
+  const singleView = getSingleServiceView(slug);
+  if (singleView) {
+    return (
+      <>
+        <ServiceJsonLd
+          name={singleView.name}
+          description={singleView.lede}
+          url={`${baseUrl}/services/${slug}`}
+          serviceType={singleView.name}
+        />
+        <MetaViewContent
+          contentId={slug}
+          contentName={singleView.name}
+          contentCategory="service"
+          contentType="product"
+        />
+        <SingleServiceDetail view={singleView} />
       </>
     );
   }
@@ -147,8 +184,6 @@ export default async function ServicePage({
 
   // 3. Coming-soon services (linked from the index + footer, no full page yet)
   if (!service) {
-    const soon = SOON_SERVICE_CARDS.find((c) => c.slug === slug);
-    if (soon) return <ComingSoonService card={soon} />;
     notFound();
   }
 
@@ -181,20 +216,28 @@ export default async function ServicePage({
               {service.hero?.headline ?? service.name}
             </h1>
             <p className={s.heroLede}>{service.lede}</p>
+            {/* DIRECTIVE §08 — a price method in the hero. */}
+            <p className={s.heroLede} style={{ fontSize: 14, fontWeight: 600, margin: "0 0 14px" }}>
+              Enter your postcode for prices and availability.
+            </p>
             <div className={s.heroCtas}>
               <Link href="#open-booking-form" className={s.btnFilled}>
-                Book this service through HoWA
+                See prices &amp; availability
               </Link>
               {service.recurring ? (
-                <span className={s.heroBadge}>Steward-ready</span>
+                <span className={s.heroBadge}>Recurring available</span>
               ) : null}
             </div>
+            {/* DIRECTIVE §08 — provider disclosure in the hero. */}
+            <p className={s.heroLede} style={{ fontSize: 13, opacity: 0.85, marginTop: 12 }}>
+              Delivered by House of Willow Alexander. Booking, scheduling and Home Record powered by HoWA.
+            </p>
           </div>
         </div>
         {service.hero?.image ? (
           <div className={s.heroVisual}>
             <Image
-              src={urlFor(service.hero.image).width(960).height(1200).url()}
+              src={urlFor(service.hero.image).width(1600).height(1200).url()}
               alt={service.hero.image.alt ?? service.hero.imageAlt ?? ""}
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
@@ -252,7 +295,7 @@ export default async function ServicePage({
               <article key={pkg._id} className={s.packageCard}>
                 <p className={s.packageTier}>
                   {pkg.tier === "steward"
-                    ? "Steward plan"
+                    ? "Recurring plan"
                     : pkg.tier === "care"
                       ? "Care plan"
                       : "One-off"}
@@ -296,55 +339,9 @@ export default async function ServicePage({
   );
 }
 
-/** Coming-soon page for a deferred service: still informative, still captures
- *  interest, never a 404. */
-function ComingSoonService({
-  card,
-}: {
-  card: { slug: string; name: string; tagline: string; body: string; image: string };
-}) {
-  return (
-    <div className={s.page}>
-      <section className={s.hero}>
-        <div className={s.heroCopy}>
-          <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>Coming soon</p>
-            <h1 className={s.heroTitle}>{card.name}</h1>
-            <p className={s.heroLede}>
-              {card.tagline} {card.body}
-            </p>
-            <div className={s.heroCtas}>
-              <Link href="/services" className={s.btnGhost}>
-                Browse live services →
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className={s.heroVisual}>
-          <Image
-            src={card.image}
-            alt={card.name}
-            fill
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            priority
-            style={{ objectFit: "cover" }}
-          />
-        </div>
-      </section>
-
-      <EnquiryForm
-        defaultService="general"
-        sourcePage={`/services/${card.slug}`}
-        eyebrow="Register interest"
-        headline={`${card.name} is coming to the House.`}
-        body={`We are bringing ${card.name.toLowerCase()} to the House. Leave your details and we will tell you the moment it opens, and answer anything in the meantime.`}
-      />
-    </div>
-  );
-}
-
 export async function generateStaticParams() {
   const slugs = await getAllServiceSlugs();
-  const soon = SOON_SERVICE_CARDS.map((c) => c.slug);
-  return Array.from(new Set([...slugs, ...soon])).map((slug) => ({ slug }));
+  // v3 §5 — the wider catalogue gets real, prerendered service URLs too.
+  const quoteable = REQUESTABLE_SERVICES.filter((s) => !s.bookable).map((s) => s.slug);
+  return Array.from(new Set([...slugs, ...quoteable])).map((slug) => ({ slug }));
 }

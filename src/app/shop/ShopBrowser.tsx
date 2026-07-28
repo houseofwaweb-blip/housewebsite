@@ -360,7 +360,7 @@ export function ShopBrowser({
         {/* Toggles — collapsible */}
         <FilterSection title="Filters">
           <Toggle on={inStockOnly} onToggle={() => setInStockOnly(!inStockOnly)} label="In stock only" />
-          <Toggle on={approvedOnly} onToggle={() => setApprovedOnly(!approvedOnly)} label="House Approved only" />
+          <Toggle on={approvedOnly} onToggle={() => setApprovedOnly(!approvedOnly)} label="House Selection only" />
         </FilterSection>
 
         {hasFilters ? (
@@ -445,7 +445,7 @@ export function ShopBrowser({
                   />
                   {p.houseApproved ? (
                     <span className="absolute top-2 left-2 z-20 font-sans text-[8px] tracking-[0.2em] uppercase text-house-gold-ink bg-white/92 px-2 py-1 border border-house-gold/30">
-                      House Approved
+                      Chosen by the House
                     </span>
                   ) : null}
                   {p.onSale ? (

@@ -19,7 +19,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 export const metadata = {
   title: "HoWA FAQ: What people usually ask",
   description:
-    "Answers to the things people ask about Housekeeper and Steward, pricing, cancellation, privacy, the Assistant.",
+    "Answers to the things people ask about Housekeeper and Steward, pricing, cancellation, privacy, Ask HoWA.",
 };
 
 const STAT_COLS = [
@@ -35,7 +35,7 @@ const SECTIONS: { heading: string; items: { q: string; a: string }[] }[] = [
     items: [
       {
         q: "Who is HoWA for?",
-        a: "Anyone who lives in a home they mean to keep. You don't need to be commissioning a designer or booking a gardener to get value, the record and the Assistant work on day one.",
+        a: "Anyone who lives in a home they mean to keep. You don't need to be commissioning a designer or booking a gardener to get value, the record and Ask HoWA work on day one.",
       },
       {
         q: "When does Housekeeper open?",
@@ -61,10 +61,10 @@ const SECTIONS: { heading: string; items: { q: string; a: string }[] }[] = [
     ],
   },
   {
-    heading: "The Assistant",
+    heading: "Ask HoWA",
     items: [
       {
-        q: "How accurate is the Assistant?",
+        q: "How accurate is Ask HoWA?",
         a: "Useful for the 80% of home issues that recur across British housing stock. It will tell you when it isn't confident, and route you to a surveyor or trade when it should. It's a diagnostic, not a replacement for qualified eyes on site.",
       },
       {
@@ -107,7 +107,7 @@ const SECTIONS: { heading: string; items: { q: string; a: string }[] }[] = [
       },
       {
         q: "If I cancel Housekeeper, do I lose my data?",
-        a: "No. Your record stays with you on the free tier. You lose access to the Assistant, member pricing, and The Hearth, but the record of everything done to your home is yours to keep or export.",
+        a: "No. Your record stays with you on the free tier. You lose access to Ask HoWA, member pricing, and The Hearth, but the record of everything done to your home is yours to keep or export.",
       },
     ],
   },
@@ -119,8 +119,8 @@ const SECTIONS: { heading: string; items: { q: string; a: string }[] }[] = [
         a: "UK and EU servers, subject to UK GDPR. We minimise what we collect, keep audit trails on who accessed your record, and never sell personal data.",
       },
       {
-        q: "What happens to the photos I upload to the Assistant?",
-        a: "Stored encrypted in your private record. We don't sell, share, or train public models on them. Used only to generate your Assistant answer and kept for reference unless you delete them.",
+        q: "What happens to the photos I upload to Ask HoWA?",
+        a: "Stored encrypted in your private record. We don't sell, share, or train public models on them. Used only to generate your Ask HoWA answer and kept for reference unless you delete them.",
       },
       {
         q: "Can I export my data?",
@@ -175,7 +175,7 @@ export default async function FaqPage() {
               {cms(
                 hero,
                 "body",
-                "Questions grouped by topic, pricing, cancellation, privacy, the Assistant, the Steward roadmap. If yours isn't here, write to us; and if enough people ask the same one, it ends up on this page.",
+                "Questions grouped by topic, pricing, cancellation, privacy, Ask HoWA, the Steward roadmap. If yours isn't here, write to us; and if enough people ask the same one, it ends up on this page.",
               )}
             </p>
           </div>

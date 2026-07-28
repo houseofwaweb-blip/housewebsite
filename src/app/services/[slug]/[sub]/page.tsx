@@ -16,7 +16,9 @@ const PUBLIC = path.join(process.cwd(), "public");
 // Sub-services without their own photography get the "Coming Soon" placeholder
 // with a "Service Coming Soon" label over the hero.
 const COMING_SOON = "/services/service-placeholder.webp";
-const PLACEHOLDER_HERO = COMING_SOON;
+// v4 §5 — no coming-soon sub-services. The neutral House still-life stands in
+// where a photograph is missing; the "Coming Soon" card image must never be a hero.
+const PLACEHOLDER_HERO = "/services/subbrands/handyman.webp";
 const PLACEHOLDER_GALLERY_TILE = "/services/photos/placeholders/gallery-4x3-v2.webp";
 const PLACEHOLDER_BA = "/services/photos/placeholders/before-after-3x2-v2.webp";
 
@@ -64,7 +66,7 @@ const PARENT_GALLERY: Record<string, Array<{ src: string; alt: string; caption?:
   cleaning: [
     { src: "/services/photos/cleaning-gallery-1.webp", alt: "Cleaning team on site", caption: "London · 2025" },
     { src: "/services/photos/cleaning-gallery-2.webp", alt: "Bathroom detail", caption: "London · 2025" },
-    { src: "/services/photos/cleaning-gallery-3.webp", alt: "House-approved products", caption: "London · 2025" },
+    { src: "/services/photos/cleaning-gallery-3.webp", alt: "House-standard products", caption: "London · 2025" },
   ],
   "gutter-cleaning": [
     { src: "/services/photos/gutter-cleaning-gallery-1.webp", alt: "SkyVac in action", caption: "London · 2025" },
@@ -131,8 +133,10 @@ export default async function SubServicePage({
   // Coming soon = explicitly flagged in the data (copy kept for launch), or no
   // real hero yet. Flagged subs use the branded placeholder so they match the
   // other coming-soon pages exactly.
-  const heroImage = service.comingSoon ? COMING_SOON : fileOr(requestedHero, PLACEHOLDER_HERO);
-  const heroSoon = heroImage === COMING_SOON;
+  const heroImage = fileOr(requestedHero, PLACEHOLDER_HERO);
+  // Every sub-service is bookable. Kept as a constant so the removed branches
+// below read as a deliberate decision rather than an accident.
+const heroSoon = false;
 
   // One real shot of the team on this service (brief: replace the before/after
   // slider + the generic re-captioned gallery with a single static image).
@@ -185,6 +189,12 @@ export default async function SubServicePage({
               {service.name}<em>.</em>
             </h1>
             <p className={s.heroLede}>{service.lede}</p>
+            {/* DIRECTIVE §08 — a price method in the hero. */}
+            {!heroSoon ? (
+              <p className={s.heroLede} style={{ fontSize: 14, fontWeight: 600, margin: "0 0 14px" }}>
+                Enter your postcode for prices and availability.
+              </p>
+            ) : null}
             <div className={s.heroCtas}>
               {heroSoon ? (
                 <span className={s.btnFilled} style={{ cursor: "default" }}>
@@ -192,7 +202,7 @@ export default async function SubServicePage({
                 </span>
               ) : (
                 <Link href="#open-booking-form" className={s.btnFilled}>
-                  Book through HoWA
+                  Book a service
                 </Link>
               )}
               <Link href={`/services/${parent.slug}`} className={s.btnGhost}>
@@ -200,6 +210,12 @@ export default async function SubServicePage({
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
+            {/* DIRECTIVE §08 — provider disclosure in the hero. */}
+            {!heroSoon ? (
+              <p className={s.heroLede} style={{ fontSize: 13, opacity: 0.85, marginTop: 12 }}>
+                Delivered by House of Willow Alexander. Booking, scheduling and Home Record powered by HoWA.
+              </p>
+            ) : null}
           </div>
         </div>
         <div className={s.heroVisual}>
@@ -262,7 +278,7 @@ export default async function SubServicePage({
             <div style={{ position: "relative", width: "100%", aspectRatio: "3 / 2", overflow: "hidden" }}>
               <Image
                 src={workImage}
-                alt={`${service.name} — our team at work`}
+                alt={`${service.name}, our team at work`}
                 fill
                 sizes="(min-width: 1024px) 80vw, 100vw"
                 style={{ objectFit: "cover" }}
@@ -335,29 +351,41 @@ export default async function SubServicePage({
         </section>
       ) : null}
 
-      {/* 6. Related */}
+      {/* 6. Related — over this service's own photo behind a black gradient. */}
       {hasRelated ? (
         <section className={s.related}>
-          <header className={s.sectionHead}>
-            <p className={s.sectionEy}>
-              Other {parent.name.toLowerCase()} services
-            </p>
-            <h2 className={s.sectionTitle}>
-              Everything under <em>{parent.name.toLowerCase()}.</em>
-            </h2>
-          </header>
-          <div className={s.relatedGrid}>
-            {siblings.map((sib) => (
-              <Link
-                key={sib.slug}
-                href={`/services/${parent.slug}/${sib.slug}`}
-                className={s.relatedCard}
-              >
-                <h3 className={s.relatedName}>{sib.name}</h3>
-                <p className={s.relatedBlurb}>{sib.lede}</p>
-                <span className={s.relatedCta}>See detail →</span>
-              </Link>
-            ))}
+          <div className={s.relatedBg}>
+            <Image
+              src={workImage}
+              alt=""
+              fill
+              sizes="100vw"
+              style={{ objectFit: "cover" }}
+            />
+          </div>
+          <div aria-hidden className={s.relatedScrim} />
+          <div className={s.relatedInner}>
+            <header className={s.sectionHead}>
+              <p className={s.sectionEy}>
+                Other {parent.name.toLowerCase()} services
+              </p>
+              <h2 className={s.sectionTitle}>
+                Everything under <em>{parent.name.toLowerCase()}.</em>
+              </h2>
+            </header>
+            <div className={s.relatedGrid}>
+              {siblings.map((sib) => (
+                <Link
+                  key={sib.slug}
+                  href={`/services/${parent.slug}/${sib.slug}`}
+                  className={s.relatedCard}
+                >
+                  <h3 className={s.relatedName}>{sib.name}</h3>
+                  <p className={s.relatedBlurb}>{sib.lede}</p>
+                  <span className={s.relatedCta}>See detail →</span>
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
       ) : null}
@@ -393,7 +421,7 @@ export default async function SubServicePage({
             </span>
           ) : (
             <Link href="#open-booking-form" className={s.btnFilled}>
-              Book through HoWA
+              Book a service
             </Link>
           )}
           <Link href={heroSoon ? "/services" : `/services/${parent.slug}`} className={s.btnGhost}>

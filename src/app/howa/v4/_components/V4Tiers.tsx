@@ -16,7 +16,7 @@ type Tier = {
 
 const TIERS: Tier[] = [
   {
-    name: "Assistant", price: "Free", tagline: "The house, seen.", tierSlug: "assistant", accent: "#5f6a49", cta: "Choose Assistant", image: "/home-v4/v6-tier-assistant-v2.webp",
+    name: "Free", price: "£0", tagline: "The house, seen.", tierSlug: "assistant", accent: "#5f6a49", cta: "Choose Free", image: "/home-v4/v6-tier-assistant-v2.webp",
     points: ["Instant address portrait", "Ask HoWA", "Repair, garden & room scans", "Quote and invoice understanding", "First saved home record"],
   },
   {
@@ -50,7 +50,7 @@ export function V4Tiers() {
                 className={"scroll-mt-24 flex flex-col overflow-hidden rounded-2xl border " + (dark ? "border-[color:var(--color-gold)]/30 bg-[#1d2a40] text-[#f3ede0] shadow-[0_24px_60px_-30px_rgba(15,22,35,0.7)]" : "border-[color:var(--color-gold)]/25 bg-white shadow-[0_16px_40px_-28px_rgba(40,30,10,0.32)]")}
               >
                 <div className="relative aspect-[16/10] w-full">
-                  <Image src={t.image} alt={`HoWA ${t.name}, the cutaway dollhouse.`} fill sizes="(max-width:768px) 92vw, 380px" className="object-cover" />
+                  <Image src={t.image} alt={`${t.name}, the cutaway dollhouse.`} fill sizes="(max-width:768px) 92vw, 380px" className="object-cover" />
                 </div>
                 <div className="flex flex-1 flex-col p-7">
                 <div className="flex items-baseline justify-between">

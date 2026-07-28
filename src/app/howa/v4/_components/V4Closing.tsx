@@ -3,7 +3,7 @@
    address-first CTA. (Brief v2, slides 24 & 29.) */
 
 const FAQS: Array<[string, string]> = [
-  ["How much will it cost?", "Assistant is free. Housekeeper is £16.99/month. Steward is £29.99/month. Managed Stewardship is bespoke and by application, where a home needs human coordination."],
+  ["How much will it cost?", "The free tier costs nothing. Housekeeper is £16.99/month. Steward is £29.99/month. Managed Stewardship is bespoke and by application, where a home needs human coordination."],
   ["Is HoWA a service-booking app?", "No. HoWA is the intelligence and record layer for the home. Services are optional and only appear when they help you act on something the home record has surfaced."],
   ["Is Steward insurance?", "No. Steward is not insurance and does not provide regulated advice. It helps build evidence, reminders and readiness so the home is better understood, maintained and documented."],
   ["Is my home data private?", "Yes. Your record lives in the UK, encrypted at rest, owned by you. Every source, share and partner access is visible, consented and reversible. We don't sell it or train models on it."],

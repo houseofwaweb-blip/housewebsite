@@ -87,7 +87,7 @@ const VALUE_STATS = [
 
 const COMPARE_ROWS = [
   { label: "Living Record & Task Centre", plus: "yes", steward: "yes" },
-  { label: "Assistant Diagnostic", plus: "Full", steward: "Full" },
+  { label: "Ask HoWA Diagnostic", plus: "Full", steward: "Full" },
   { label: "10% off House Services", plus: "yes", steward: "yes" },
   { label: "Priority Booking", plus: "yes", steward: "yes" },
   { label: "The Hearth", plus: "yes", steward: "yes" },

@@ -101,7 +101,7 @@ const CHAPTERS: Chapter[] = [
     headline: "Linework, as a language.",
     body: [
       "The floral pattern now functions as one of the House's most important design devices. It speaks differently depending on where it lives.",
-      "For the institution: gold or white linework, used sparingly, as a frame, a border, a whisper, the visual equivalent of a monogram. For the service brands: white pattern set boldly over their Beeton-inspired colourways, a visual genealogy linking each discipline back to the House. For editorial and the marketplace: the pattern deepens, softens, expands; becomes atmosphere, textile, mood.",
+      "For the institution: gold or white linework, used sparingly, as a frame, a border, a whisper, the visual equivalent of a monogram. For the service brands: white pattern set boldly over their Beeton-inspired colourways, a visual genealogy linking each discipline back to the House. For editorial and the Shop: the pattern deepens, softens, expands; becomes atmosphere, textile, mood.",
       "The pattern does what the House does. It unites many worlds with quiet authority.",
     ],
   },

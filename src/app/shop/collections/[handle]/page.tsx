@@ -69,7 +69,7 @@ async function resolveCollection(handle: string): Promise<ResolvedCollection | n
     const all = await getShopProducts();
     const sealed = all.filter((p) => p.houseApproved);
     const products = sealed.length > 0 ? sealed : all;
-    if (products.length > 0) return { title: "House Approved", products };
+    if (products.length > 0) return { title: "The House Selection", products };
   }
   // Fall back to Sanity (or static catalogue beneath it)
   const sourced = await getShopCollection(handle);

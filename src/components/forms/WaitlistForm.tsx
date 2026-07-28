@@ -31,7 +31,7 @@ export interface WaitlistFormProps {
 }
 
 const TIER_OPTIONS = [
-  { value: "assistant", label: "Assistant, free" },
+  { value: "assistant", label: "Free" },
   { value: "housekeeper", label: "Housekeeper, £16.99/mo" },
   { value: "steward", label: "Steward, £29.99/mo" },
 ] as const;

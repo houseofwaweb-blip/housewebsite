@@ -152,19 +152,16 @@ export const WINDOW_CLEANING_SUBS: SubService[] = [
     slug: "commercial-gutter-cleaning",
     name: "Commercial gutter cleaning",
     lede: "Industrial SkyVac systems for commercial properties. Scheduled maintenance contracts with photographic reporting.",
-    comingSoon: true,
   },
   {
     slug: "commercial-softwashing",
     name: "Commercial softwashing",
     lede: "Low-pressure exterior cleaning for commercial facades, render, and cladding. Planned maintenance or one-off restoration.",
-    comingSoon: true,
   },
   {
     slug: "commercial-exterior-maintenance",
     name: "Commercial exterior maintenance",
     lede: "Full exterior care packages for businesses. Windows, gutters, fascias, and pressure washing on a managed schedule.",
-    comingSoon: true,
   },
 ];
 
@@ -177,7 +174,7 @@ export const CLEANING_SUBS: SubService[] = [
     whyChoose: [
       "Named team who learns the home over time",
       "Scheduled through HoWA, no per-visit admin",
-      "All products House-approved; fragrance-free on request",
+      "All products House-standard; fragrance-free on request",
       "Vetted, insured, and DBS-checked as standard",
     ],
     included: [
@@ -266,6 +263,7 @@ export const HANDYMAN_SUBS: SubService[] = [
     slug: "painting-and-decorating",
     name: "Painting & decorating",
     lede: "Touch-ups, single rooms, and feature walls. Clean edges, proper prep, dust sheets down.",
+    image: "/services/home/painting-and-decorating.webp",
   },
   {
     slug: "tv-wall-mounting",
@@ -439,6 +437,7 @@ export const PET_CARE_SUBS: SubService[] = [
   {
     slug: "dog-walking",
     name: "Dog walking",
+    image: "/services/pet/dog-walking.webp",
     lede: "Solo walks by experienced, insured handlers. GPS-tracked routes, photo updates, and behaviour notes after every visit.",
     body: "Every walk is solo unless you request otherwise. Your handler learns the dog's temperament, favourite routes, and recall level. Walks are GPS-tracked with a live map you can check from your phone. After each walk, you receive a photo, a route summary, and a short behaviour note, all filed to your HoWA record.",
     whyChoose: [
@@ -462,6 +461,7 @@ export const PET_CARE_SUBS: SubService[] = [
   {
     slug: "dog-sitting",
     name: "Dog sitting",
+    image: "/services/pet/dog-sitting.webp",
     lede: "In-home care while you're away. Feeding, walks, medication, and daily updates. Your home or the sitter's.",
     body: "Our sitters stay in your home or host your dog in theirs, whichever suits the dog's temperament. They follow your instructions for feeding, medication, exercise, and bedtime routine. You receive daily photo updates and can message the sitter directly through the platform. Emergency vet details are held on file.",
     whyChoose: [

@@ -51,11 +51,6 @@ function FeedArticle({ article }: { article: HearthArticle }) {
         </div>
         <span className="inline-block mb-2 font-hearth-sans text-[12px] tracking-[0.22em] uppercase text-house-black">
           {article.categoryLong ?? article.category}
-          {article.isPremium ? (
-            <span className="ml-1.5 text-house-gold-ink text-[12px] tracking-[0.22em] before:content-['◆'] before:text-[8px] before:mr-[2px]">
-              Housekeeper
-            </span>
-          ) : null}
         </span>
         <h4 className="font-hearth-serif font-medium text-[22px] leading-[1.15] tracking-[-0.005em] text-house-black mb-2 transition-colors duration-[var(--t-slow)] ease-out group-hover:text-house-gold-ink">
           <HearthTitle title={article.title} em={article.titleEm} />

@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { SERVICE_TYPE_VALUES } from "@/lib/services-data/requestable";
 
 /**
  * Form schemas. Used by client-side RHF and server-side API routes (same source of truth).
@@ -86,19 +87,12 @@ export const consultationBookingSchema = z.object({
   email,
   phone: ukPhone,
   postcode: ukPostcode,
-  serviceType: z
-    .enum([
-      "design-interiors",
-      "design-gardens",
-      "gardening",
-      "window-cleaning",
-      "cleaning",
-      "gutter-cleaning",
-      "steward",
-      "protect",
-      "general",
-    ])
-    .default("general"),
+  // REVISIONS v3 — accepted values come from the requestable catalogue, so an
+  // enquiry for a service the House cannot yet fulfil is stored against its
+  // real slug instead of collapsing to "general". That slug is what makes the
+  // lead segmentable in Klaviyo, which is the whole point of listing services
+  // we cannot deliver today.
+  serviceType: z.enum(SERVICE_TYPE_VALUES).default("general"),
   preferredDates: z.string().trim().max(240).optional(),
   notes: z.string().trim().max(2000).optional(),
   marketingOptIn,

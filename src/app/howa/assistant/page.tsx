@@ -25,7 +25,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  */
 
 export const metadata = {
-  title: "HoWA Assistant: the house, seen. Free, start with an address.",
+  title: "The Assistant: the house, seen. Free, start with an address.",
   description:
     "The free way into HoWA. The portrait of your home in a minute, the Assistant diagnostic for anything that bothers you, repair, garden and room scans, quotes decoded, and the first save.",
 };
@@ -192,7 +192,7 @@ export default async function AssistantPage() {
     <div className={s.page}>
       <MetaViewContent
         contentId="howa_assistant"
-        contentName="HoWA Assistant"
+        contentName="Assistant"
         contentCategory="howa_tier"
       />
       {/* 1. Hero */}
@@ -249,7 +249,7 @@ export default async function AssistantPage() {
             alt={cms(
               hero,
               "imageAlt",
-              "The HoWA Assistant dollhouse, an olive-toned cutaway Georgian home on a single-colour ground.",
+              "The Assistant dollhouse, an olive-toned cutaway Georgian home on a single-colour ground.",
             )}
             fill
             sizes="(min-width: 1024px) 55vw, 100vw"

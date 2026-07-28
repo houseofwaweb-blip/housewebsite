@@ -32,9 +32,14 @@ export interface HeaderProps {
   nav?: MegaPanel[];
 }
 
+/** REVISIONS v3 §3 — "Find a service" is the persistent primary action, and
+ *  "My Home in HoWA" is a named utility action beside it. */
+const MY_HOME_HREF = "https://accounts.willowalexander.co.uk/";
+const PHONE = "08000478738";
+
 export function Header({
-  ctaLabel = "Start HoWA",
-  ctaHref = "/api/howa-bounce",
+  ctaLabel = "Find a service",
+  ctaHref = "/services",
   dark: darkProp,
   nav,
 }: HeaderProps) {
@@ -96,15 +101,28 @@ export function Header({
         >
           Search
         </button>
+        {/* v3 §3 module 1 — the telephone is a utility action and belongs in
+            the persistent header, not in a second strip that scrolls away and
+            repeats "My Home in HoWA" a few pixels below it. */}
         <a
-          href="https://accounts.willowalexander.co.uk/"
+          href={`tel:${PHONE}`}
           className={cn(
-            "font-sans text-[12px] tracking-[0.16em] uppercase no-underline opacity-[0.55] hover:opacity-100",
-            "transition-opacity duration-[var(--t-base)]",
+            "font-sans text-[12px] tracking-[0.16em] no-underline opacity-[0.55] hover:opacity-100",
+            "transition-opacity duration-[var(--t-base)] whitespace-nowrap",
             dark ? "text-house-cream" : "text-house-brown",
           )}
         >
-          Sign in
+          0800 047 8738
+        </a>
+        <a
+          href={MY_HOME_HREF}
+          className={cn(
+            "font-sans text-[12px] tracking-[0.16em] uppercase no-underline opacity-[0.55] hover:opacity-100",
+            "transition-opacity duration-[var(--t-base)] whitespace-nowrap",
+            dark ? "text-house-cream" : "text-house-brown",
+          )}
+        >
+          My Home in HoWA
         </a>
         <CartIcon dark={dark} onClick={openDrawer} />
         <Link
@@ -178,7 +196,6 @@ export function Header({
 
             {navPanels.map((panel) => {
               const expanded = mobileExpanded === panel.id;
-              const firstGroup = panel.groups[0];
               return (
                 <div key={panel.id} className="border-b border-house-brown/10">
                   <button
@@ -213,25 +230,37 @@ export function Header({
                         expanded ? "opacity-100 pb-4" : "opacity-0 pb-0",
                       )}
                     >
-                      <div className="flex flex-col gap-3 pl-1">
+                      <div className="flex flex-col gap-4 pl-1">
                         {panel.triggerHref ? (
                           <Link
                             href={panel.triggerHref}
                             onClick={() => setMobileOpen(false)}
-                            className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-ink no-underline mb-1"
+                            className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-ink no-underline"
                           >
-                            See all {panel.trigger.toLowerCase()} →
+                            {panel.trigger} overview →
                           </Link>
                         ) : null}
-                        {firstGroup?.links.map((link) => (
-                          <Link
-                            key={link.href}
-                            href={link.href}
-                            onClick={() => setMobileOpen(false)}
-                            className="font-sans text-[17px] text-house-brown no-underline"
-                          >
-                            {link.label}
-                          </Link>
+                        {/* v3 §3 — the mobile menu exposes the SAME destinations
+                            as desktop, so every group renders, not just the
+                            first. */}
+                        {panel.groups.map((group) => (
+                          <div key={group.heading} className="flex flex-col gap-2.5">
+                            {panel.groups.length > 1 ? (
+                              <div className="font-sans text-[11px] tracking-[0.24em] uppercase text-house-stone">
+                                {group.heading}
+                              </div>
+                            ) : null}
+                            {group.links.map((link) => (
+                              <Link
+                                key={link.href}
+                                href={link.href}
+                                onClick={() => setMobileOpen(false)}
+                                className="font-sans text-[17px] text-house-brown no-underline"
+                              >
+                                {link.label}
+                              </Link>
+                            ))}
+                          </div>
                         ))}
                       </div>
                     </div>
@@ -240,30 +269,37 @@ export function Header({
               );
             })}
 
-            <div className="mt-8 flex flex-col gap-4 pt-6 border-t border-house-brown/10">
+            {/* v3 §3 — persistent mobile actions: Find a service, Call the
+                House, Open My Home in HoWA. */}
+            <div className="mt-8 flex flex-col gap-3 pt-6 border-t border-house-brown/10">
+              <Link
+                href="/services"
+                onClick={() => setMobileOpen(false)}
+                className="font-sans text-[14px] tracking-[0.16em] uppercase text-house-brown border border-house-brown/25 px-5 py-3.5 text-center no-underline"
+              >
+                Find a service
+              </Link>
+              <a
+                href={`tel:${PHONE}`}
+                onClick={() => setMobileOpen(false)}
+                className="font-sans text-[14px] tracking-[0.16em] uppercase text-house-brown border border-house-brown/25 px-5 py-3.5 text-center no-underline"
+              >
+                Call the House
+              </a>
+              <a
+                href={MY_HOME_HREF}
+                onClick={() => setMobileOpen(false)}
+                className="font-sans text-[14px] tracking-[0.16em] uppercase text-house-brown border border-house-brown/25 px-5 py-3.5 text-center no-underline"
+              >
+                Open My Home in HoWA
+              </a>
               <button
                 type="button"
                 onClick={() => { setMobileOpen(false); setSearchOpen(true); }}
-                className="text-left bg-transparent border-0 cursor-pointer font-sans text-[12px] tracking-[0.16em] uppercase opacity-60"
+                className="text-left bg-transparent border-0 cursor-pointer font-sans text-[12px] tracking-[0.16em] uppercase opacity-60 mt-2"
               >
                 Search
               </button>
-              <a
-                href="https://accounts.willowalexander.co.uk/"
-                onClick={() => setMobileOpen(false)}
-                className="font-sans text-[12px] tracking-[0.16em] uppercase opacity-60 no-underline"
-              >
-                Sign in
-              </a>
-              <Link
-                href={ctaHref}
-                data-ga-event="booking_intent"
-                data-ga-cta={ctaLabel}
-                onClick={() => setMobileOpen(false)}
-                className="booknow-button font-sans text-[12px] tracking-[0.16em] uppercase opacity-60 no-underline"
-              >
-                {ctaLabel}
-              </Link>
             </div>
           </div>
         </div>

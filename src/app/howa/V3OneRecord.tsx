@@ -24,7 +24,7 @@ export function V3OneRecord() {
         </div>
         <div className="lg:col-span-5">
           <div className="relative aspect-[4/3] w-full">
-            <Image src="/home-v4/v6-one-record-v3.webp" alt="Three phones in the Assistant, Housekeeper and Steward colourways, with the dollhouse softly behind." fill sizes="(max-width:1024px) 92vw, 45vw" className="object-contain" />
+            <Image src="/home-v4/v6-one-record-v3.webp" alt="Three phones in the Free, Housekeeper and Steward colourways, with the dollhouse softly behind." fill sizes="(max-width:1024px) 92vw, 45vw" className="object-contain" />
           </div>
         </div>
         <div className="space-y-6 lg:col-span-4">

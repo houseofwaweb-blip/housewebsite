@@ -3,6 +3,7 @@ import Link from "next/link";
 import s from "./design.module.css";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
+import { SampleDesignShowcase } from "@/components/design/SampleDesignShowcase";
 
 /**
  * /design — landing page.
@@ -12,25 +13,26 @@ import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
  *   2. Stats strip
  *   3. Two disciplines — Interiors / Gardens (large editorial panels)
  *   4. Four launch partners — editorial grid
- *   5. House Approved — what the seal means
+ *   5. HoWA Approved — what the seal means
  *   6. Closing CTA — commission a space
  */
 
 export const metadata = {
   title: "Design: Interiors and gardens, considered.",
   description:
-    "Interiors and gardens by designers we've vetted and trust. Every project carries the House Approved seal.",
+    "Interiors and gardens by designers we've vetted and trust. Every project carries the HoWA Approved seal.",
 };
 
 const STAT_COLS = [
   { value: "2", label: "Live design routes" },
   { value: "1", label: "In-house garden studio" },
-  { value: "1", label: "House Approved interiors partner" },
-  { value: "+", label: "Invited by standard, not volume" },
+  { value: "1", label: "HoWA Approved interiors partner" },
+  { value: "0", label: "Open directories" },
 ];
 
-// Two live routes plus HoWA's design layer. The wider House Approved circle
-// grows by standard, not volume — no directory, no Jessica/House-AI padding.
+// DIRECTIVE §09 — two named routes (Delve, Willow Alexander) plus HoWA's
+// design layer. No House studio "circle", no partner directory, no
+// "invited by the House" hierarchy. Named studios chosen to a standard.
 const CARDS = [
   {
     name: "Willow Alexander Gardens",
@@ -56,7 +58,7 @@ const SEAL_LINES = [
   "Chosen for taste, care and communication.",
   "Judged on whether they leave a home better understood than they found it.",
   "Held to the test we set ourselves: would we trust this in a home we love?",
-  "Invited into the House Approved circle by standard, not by volume.",
+  "Named studios chosen to a standard, never a padded directory.",
 ];
 
 export default async function DesignLanding() {
@@ -100,14 +102,14 @@ export default async function DesignLanding() {
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>{cms(hero, "eyebrow", "The House · Design")}</p>
             <h1 className={s.heroTitle}>
-              {cms(hero, "headline", "Design by the")}{" "}
-              <em>{cms(hero, "headlineEm", "House.", "headline")}</em>
+              {cms(hero, "headline", "Design through the House,")}{" "}
+              <em>{cms(hero, "headlineEm", "begun in HoWA.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
               {cms(
                 hero,
                 "body",
-                "Rooms, gardens, and the quiet work of making a home feel properly known. Begin with a conversation through HoWA: we learn the home, the brief, the budget, the rhythm of the household and the feeling you are trying to create, then guide you towards the right design route.",
+                "Rooms, gardens, and the quiet work of making a home feel properly known. Start with a mapped plan, not a cold consultation: map the space in HoWA for a first direction and indicative budget, then take it forward with the right human studio.",
               )}
             </p>
             <div className={s.heroCtas}>
@@ -130,7 +132,7 @@ export default async function DesignLanding() {
             {cms(stats, "headline", "Considered. Connected. Filed to the record.")}
           </p>
           <p className={s.statsLedeLine2}>
-            {cms(stats, "subheadline", "Every project, through a House-Approved studio.")}
+            {cms(stats, "subheadline", "Every project mapped in HoWA, delivered by a named studio.")}
           </p>
         </div>
         {statCols.map((stat) => (
@@ -144,16 +146,16 @@ export default async function DesignLanding() {
       {/* 3. Two disciplines */}
       <section className={s.disciplines}>
         <header className={s.disciplinesHead}>
-          <p className={s.disciplinesEy}>{cms(disciplines, "eyebrow", "The circle")}</p>
+          <p className={s.disciplinesEy}>{cms(disciplines, "eyebrow", "Our studios")}</p>
           <h2 className={s.disciplinesTitle}>
-            {cms(disciplines, "headline", "A small design world,")}{" "}
-            <em>{cms(disciplines, "headlineEm", "growing carefully.", "headline")}</em>
+            {cms(disciplines, "headline", "Two named studios,")}{" "}
+            <em>{cms(disciplines, "headlineEm", "chosen with care.", "headline")}</em>
           </h2>
           <p style={{ fontFamily: "var(--font-sans)", fontSize: 16, lineHeight: 1.7, color: "rgba(48,35,28,0.72)", margin: "18px auto 0", maxWidth: "64ch" }}>
             {cms(
               disciplines,
               "body",
-              "The House does not operate as an open directory of designers. We work with our own garden design studio and a small number of House Approved design partners, chosen for taste, care, communication and the ability to leave a home better understood than they found it. At launch, design begins through two clear routes: Willow Alexander Gardens for gardens and outdoor spaces, and Delve Interiors for considered interiors. More designers and makers will be invited into the House Approved circle as the standard proves itself.",
+              "The House does not operate as an open directory of designers. Design begins through two clear routes: Willow Alexander Gardens, the House's own garden studio, for gardens and outdoor spaces, and Delve Interiors, a HoWA Approved partner, for considered interiors. Any studio we add later joins by standard, never to fill a directory.",
             )}
           </p>
         </header>
@@ -165,13 +167,13 @@ export default async function DesignLanding() {
           <p className={s.partnersEy}>{cms(partners, "eyebrow", "How design begins")}</p>
           <h2 className={s.partnersTitle}>
             {cms(partners, "headline", "Two live routes.")}{" "}
-            <em>{cms(partners, "headlineEm", "One growing circle.", "headline")}</em>
+            <em>{cms(partners, "headlineEm", "Both begun in HoWA.", "headline")}</em>
           </h2>
           <p className={s.partnersLede}>
             {cms(
               partners,
               "body",
-              "Design begins with what is real: our garden studio, our first interiors partner, and HoWA's design intelligence layer. The wider House Approved design circle will grow slowly, not to fill a directory, but to protect the standard.",
+              "Design begins with what is real: our garden studio, our interiors partner, and HoWA's design intelligence. Map the space in HoWA for a first direction and indicative budget, then take it forward with the right named studio.",
             )}
           </p>
         </header>
@@ -192,6 +194,10 @@ export default async function DesignLanding() {
                 <p className={s.partnerType}>{p.type}</p>
                 <h3 className={s.partnerName}>{p.name}</h3>
                 <p className={s.partnerBlurb}>{p.blurb}</p>
+                {/* DIRECTIVE §09 module 3 — the £400 first stage visible on the route card. */}
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: 12, letterSpacing: "0.06em", color: "var(--color-house-gold-ink)", margin: "10px 0 0", fontWeight: 600 }}>
+                  Begins with HoWA First Design, £400
+                </p>
                 <span className={s.partnerCta}>{p.cta} →</span>
               </div>
             </Link>
@@ -199,7 +205,85 @@ export default async function DesignLanding() {
         </div>
       </section>
 
-      {/* 5. House Approved — what the seal means */}
+      {/* 4a. How HoWA First Design works (DIRECTIVE §09 modules 2, 4, 7) — the
+          literal explanation, what it includes and does not include, and how the
+          brief carries into the studio without repeated discovery. */}
+      <section className="px-[5vw] py-[clamp(56px,7vw,104px)]" style={{ background: "var(--color-house-cream)" }}>
+        <div className="mx-auto max-w-[1120px]">
+          <div className="text-center max-w-[680px] mx-auto mb-11">
+            <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink mb-3">How HoWA First Design works</p>
+            <h2 className="font-display text-[clamp(26px,3.4vw,44px)] leading-[1.08] text-house-brown mb-4">
+              A mapped plan, <em>for £400.</em>
+            </h2>
+            <p className="font-sans text-[15px] text-house-stone leading-[1.6]">
+              Every design begins in HoWA. You scan or map the space, describe the
+              ambition, constraints and budget, and receive a first direction and
+              an indicative budget. That brief carries straight to a human studio.
+            </p>
+          </div>
+
+          {/* 4 steps */}
+          <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 list-none p-0 m-0 mb-12">
+            {[
+              { n: "1", t: "Scan or map", b: "Photograph or scan the room or garden, and answer a few questions on how you live in it." },
+              { n: "2", t: "First concept", b: "HoWA returns a first direction: layout or zones, a visual concept and a palette." },
+              { n: "3", t: "Indicative budget", b: "A realistic budget range for the full commission, so there are no surprises later." },
+              { n: "4", t: "Structured brief", b: "A written brief you own, kept in your home record, and one correction pass." },
+            ].map((step) => (
+              <li key={step.n} className="border border-house-brown/12 bg-house-white p-6">
+                <span className="font-display text-[26px] text-house-gold-ink leading-none">{step.n}</span>
+                <h3 className="font-display text-[18px] leading-tight text-house-brown mt-3 mb-2">{step.t}</h3>
+                <p className="font-sans text-[14px] leading-[1.55] text-house-stone">{step.b}</p>
+              </li>
+            ))}
+          </ol>
+
+          {/* Includes / does not include (§09 module 4, scope disclaimer) */}
+          <div className="grid gap-5 md:grid-cols-2">
+            <div className="border border-house-brown/12 bg-house-white p-7">
+              <p className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-ink mb-3">What you get for £400</p>
+              <ul className="flex flex-col gap-2 list-none p-0 m-0">
+                {["A space map of the room or garden", "A first design direction and visual concept", "Layout or zoning, and a palette or planting direction", "An indicative budget range for the full work", "A written, structured brief you own", "One correction pass"].map((i) => (
+                  <li key={i} className="font-sans text-[14px] leading-[1.5] text-house-brown flex gap-2.5"><span aria-hidden className="text-house-gold-ink">·</span><span>{i}</span></li>
+                ))}
+              </ul>
+            </div>
+            <div className="border border-house-brown/12 bg-house-white p-7">
+              <p className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-stone mb-3">What it is not</p>
+              <ul className="flex flex-col gap-2 list-none p-0 m-0">
+                {["A technical drawing set", "Planning advice", "A structural assessment", "A construction specification", "A tender package", "A contractor's final quotation"].map((i) => (
+                  <li key={i} className="font-sans text-[14px] leading-[1.5] text-house-stone flex gap-2.5"><span aria-hidden>·</span><span>{i}</span></li>
+                ))}
+              </ul>
+              <p className="font-sans text-[13px] leading-[1.55] text-house-stone mt-5">
+                The £400 output is a first-round concept and indicative budget. The
+                full design and technical work follow with your chosen studio, from
+                the same brief, so you never repeat yourself.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4b. See a sample output — the £400 first design, live (DIRECTIVE §10). */}
+      <section id="sample" className="px-[5vw] py-[clamp(56px,7vw,104px)]" style={{ background: "var(--color-house-white)" }}>
+        <div className="mx-auto max-w-[1120px]">
+          <div className="text-center max-w-[680px] mx-auto mb-9">
+            <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink mb-3">See a sample output</p>
+            <h2 className="font-display text-[clamp(26px,3.4vw,44px)] leading-[1.06] text-house-brown mb-4">
+              Watch a £400 first design <em>come together.</em>
+            </h2>
+            <p className="font-sans text-[15px] text-house-stone leading-[1.6]">
+              Scan the space, and HoWA maps it, sets a first direction, a palette,
+              an indicative budget and a written brief. Here is a worked example,
+              start to finish.
+            </p>
+          </div>
+          <SampleDesignShowcase />
+        </div>
+      </section>
+
+      {/* 5. HoWA Approved — what the seal means */}
       <section className={s.seal}>
         <div className={s.sealImage}>
           <Image
@@ -215,7 +299,7 @@ export default async function DesignLanding() {
           />
         </div>
         <div className={s.sealCopy}>
-          <p className={s.sealEy}>{cms(seal, "eyebrow", "House Approved")}</p>
+          <p className={s.sealEy}>{cms(seal, "eyebrow", "HoWA Approved")}</p>
           <h2 className={s.sealTitle}>
             {cms(seal, "headline", "The seal means")}{" "}
             <em>{cms(seal, "headlineEm", "four things.", "headline")}</em>
@@ -269,6 +353,34 @@ export default async function DesignLanding() {
         </div>
       </section>
 
+      {/* 5b. House portfolio (DIRECTIVE §09 module 6) — real work, linking to the
+          full interior and garden project galleries. */}
+      <section className="px-[5vw] py-[clamp(48px,6vw,92px)]" style={{ background: "var(--color-house-cream)" }}>
+        <div className="mx-auto max-w-[1180px]">
+          <div className="text-center max-w-[640px] mx-auto mb-9">
+            <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink mb-3">The work</p>
+            <h2 className="font-display text-[clamp(26px,3vw,42px)] leading-[1.06] text-house-brown">
+              Real rooms, <em>real gardens.</em>
+            </h2>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2">
+            {[
+              { title: "Interior projects", href: "/design/interiors#projects", image: "/design/interiors/project-dining.webp", cta: "View interior projects" },
+              { title: "Garden projects", href: "/design/gardens#projects", image: "/design/gardens/hero.jpg", cta: "View garden projects" },
+            ].map((card) => (
+              <Link key={card.title} href={card.href} className="group relative block aspect-[16/10] overflow-hidden bg-house-cream-dark no-underline">
+                <Image src={card.image} alt={card.title} fill sizes="(min-width: 768px) 46vw, 100vw" className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.03]" />
+                <span aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(26,19,13,0.72), rgba(26,19,13,0.05) 58%)" }} />
+                <div className="absolute inset-x-0 bottom-0 p-6">
+                  <p className="font-display text-[clamp(20px,2.2vw,28px)] leading-tight text-white">{card.title}</p>
+                  <p className="font-sans text-[12px] tracking-[0.2em] uppercase text-white/85 mt-1.5 group-hover:text-white transition-colors">{card.cta} →</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 6. Closing */}
       <section className={s.closing}>
         <FlowerWatermark color="white" side="right" opacity={0.13} />
@@ -279,10 +391,10 @@ export default async function DesignLanding() {
         </p>
         <div className={s.closingCtas}>
           <Link href={cms(closing, "ctaHref", "#open-booking-form")} className={s.closingBtnFilled}>
-            {cms(closing, "ctaLabel", "Start a brief through HoWA")}
+            {cms(closing, "ctaLabel", "Start a design brief")}
           </Link>
-          <Link href={cms(closing, "cta2Href", "/howa/assistant")} className={s.closingBtnGhost}>
-            {cms(closing, "cta2Label", "Or use the Assistant")} →
+          <Link href={cms(closing, "cta2Href", "/design/interiors")} className={s.closingBtnGhost}>
+            {cms(closing, "cta2Label", "Explore interiors")} →
           </Link>
         </div>
       </section>

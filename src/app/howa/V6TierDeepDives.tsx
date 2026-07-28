@@ -44,10 +44,10 @@ const TIERS: Tier[] = [
   {
     id: "tier-assistant",
     numeral: "01",
-    name: "Assistant",
-    price: "Free",
+    name: "Free",
+    price: "£0",
     title: "Awareness for every day.",
-    body: "HoWA Assistant helps you see your home clearly, so you can act with confidence.",
+    body: "It helps you see your home clearly, so you can act with confidence.",
     points: [
       { t: "One Home Record, your address starts to have a memory" },
       { t: "Ask HoWA, questions about your home, garden and documents" },
@@ -58,7 +58,7 @@ const TIERS: Tier[] = [
     imageRight: true,
     note: "Everything you need to know, right when you need it.",
     accent: "var(--color-howa-green)",
-    card: { title: "Home Health", items: ["91% Optimal", "3 items due soon", "2 risks monitored"] },
+    card: { title: "HoWA Score", items: ["91% Optimal", "3 items due soon", "2 risks monitored"] },
   },
   {
     id: "tier-housekeeper",
@@ -67,7 +67,7 @@ const TIERS: Tier[] = [
     price: "£16.99/mo",
     title: "Practical care, beautifully run.",
     body: "HoWA Housekeeper keeps your home running smoothly with the right people, parts and plans.",
-    plus: "Everything in Assistant, plus",
+    plus: "Everything in Free, plus",
     points: [
       { t: "Full logbook, rooms, assets, warranties, service history" },
       { t: "Maintenance calendar and seasonal garden plan" },
@@ -188,7 +188,7 @@ export function V6TierDeepDives() {
                 {/* Image + floating card + note */}
                 <div className={"lg:col-span-7 relative " + (t.imageRight ? "lg:order-2" : "lg:order-1")}>
                   <div className="relative w-full aspect-[4/3]">
-                    <Image src={t.image} alt={`HoWA ${t.name}, the dollhouse.`} fill sizes="(max-width:1024px) 92vw, 55vw" className="object-cover rounded-md" />
+                    <Image src={t.image} alt={`${t.name}, the dollhouse.`} fill sizes="(max-width:1024px) 92vw, 55vw" className="object-cover rounded-md" />
                     {/* floating UI card — sits over the empty colour field beside the
                         house, so nothing in the cutaway gets covered */}
                     <div className="hidden sm:block absolute top-1/2 -translate-y-1/2 left-4 lg:left-6 w-[166px] rounded-md bg-[#faf7f0] border border-[color:var(--color-gold)]/35 shadow-[0_16px_38px_-16px_rgba(20,15,5,0.5)] px-4 py-4">

@@ -29,7 +29,7 @@ We think the best homes feel worn-in, not decorated. Useful, not performative. T
 Everything the House does, the design commissions, the services, the Hearth, HoWA, is in service of that kind of home. The one you mean to stay in.`,
     image: {
       src: "/the-house/editorial/library-tools.webp",
-      alt: "A green library with a yellow armchair, books and House Approved tools.",
+      alt: "A green library with a yellow armchair, books and tools chosen by the House.",
       caption: "Worn-in, not decorated. A house meant to be kept.",
     },
   },

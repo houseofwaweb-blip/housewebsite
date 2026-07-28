@@ -67,12 +67,47 @@ const nextConfig: NextConfig = {
       // The House overview hub was retired; the section's de-facto overview is
       // the About page, so the bare route lands there (301, 2026-06-26).
       { source: "/the-house", destination: "/the-house/about", permanent: true },
-      // Companion folded into the free Assistant tier page (2026-06-17)
-      { source: "/howa/companion", destination: "/howa/assistant", permanent: true },
-      // HoWA+ retired; the consumer continuity tier is now Housekeeper (2026-06-18)
-      { source: "/howa/plus", destination: "/howa/housekeeper", permanent: true },
-      { source: "/protect/review", destination: "/protect/home-protection", permanent: true },
-      { source: "/insurance", destination: "/protect/insurance", permanent: true },
+      // DIRECTIVE §01/§06/§14 — the HoWA PRODUCT (tiers, Score, personas,
+      // pricing, roadmap) lives on the separate site howa.co.uk. The House keeps
+      // ONLY the small /howa "How the House uses HoWA" utility page; every
+      // /howa/* sub-page (assistant, housekeeper, steward, plans, faq,
+      // how-it-works, coming-soon, companion, plus...) 301s to its canonical
+      // home on howa.co.uk. /howa itself does not match /howa/:path* so the
+      // utility page is preserved.
+      // The negative lookahead excludes any path ending in a file extension
+      // (.webp, .png, ...), so static assets served from /public/howa/* are not
+      // swallowed by this external redirect. Without it, /howa/household/*.webp
+      // 308s to howa.co.uk and the images break. Same guard as /partners and
+      // /protect below.
+      { source: "/howa/:path((?!.*\\.[a-zA-Z0-9]+$).+)", destination: "https://howa.co.uk/:path", permanent: true },
+      // DIRECTIVE §11/§14 — Insurance is the canonical House pillar route.
+      // The old /protect/* section moved to /insurance/*; these carry the
+      // legacy URLs (and their link equity) to the new homes.
+      { source: "/protect", destination: "/insurance", permanent: true },
+      { source: "/protect/insurance", destination: "/insurance", permanent: true },
+      { source: "/protect/home-protection", destination: "/insurance/home-protection", permanent: true },
+      { source: "/protect/review", destination: "/insurance/home-protection", permanent: true },
+      // Exclude static assets (public/protect/*.webp) — the negative lookahead
+      // skips any path ending in a file extension so images still serve; real
+      // /protect/* pages still 301 to /insurance.
+      { source: "/protect/:path((?!.*\\.[a-zA-Z0-9]+$).*)", destination: "/insurance", permanent: true },
+      // DIRECTIVE §14 — structural removals from the House site.
+      // Steward Plans (HoWA tier) leaves the House journey; managed/recurring
+      // care is reachable through Services.
+      { source: "/steward-plans", destination: "/services", permanent: true },
+      { source: "/steward-plans/:path*", destination: "/services", permanent: true },
+      // Design is a full House pillar again; the "studios collective" route
+      // folds back to the Design gateway.
+      { source: "/design/studios", destination: "/design", permanent: true },
+      // No House contractor/partner directory. Proof merges into the Design
+      // pages; the rest folds to Services.
+      { source: "/partners/delve-interiors", destination: "/design/interiors", permanent: true },
+      { source: "/partners/willow-alexander-gardens", destination: "/design/gardens", permanent: true },
+      { source: "/partners", destination: "/services", permanent: true },
+      // Exclude static assets (public/partners/*.webp, used by the newsletter
+      // block and the partner carousel on service pages) — negative lookahead
+      // skips any path ending in a file extension; real /partners/* pages 301.
+      { source: "/partners/:path((?!.*\\.[a-zA-Z0-9]+$).*)", destination: "/services", permanent: true },
       { source: "/press", destination: "/news", permanent: true },
       // Journal renamed to The Hearth (2026-05-14)
       { source: "/journal", destination: "/the-hearth", permanent: true },
@@ -99,24 +134,28 @@ const nextConfig: NextConfig = {
       { source: "/interior-design", destination: "/design/interiors", permanent: true },
       { source: "/interior-design-2", destination: "/design/interiors", permanent: true },
       { source: "/interior-design-5", destination: "/design/interiors", permanent: true },
-      { source: "/how-it-works", destination: "/howa/how-it-works", permanent: true },
+      { source: "/how-it-works", destination: "https://howa.co.uk/how-it-works", permanent: true },
       { source: "/join-howa", destination: "/howa", permanent: true },
-      { source: "/howa-membership", destination: "/howa/housekeeper", permanent: true },
-      { source: "/house-member-subscriptions", destination: "/howa/housekeeper", permanent: true },
+      { source: "/howa-membership", destination: "https://howa.co.uk/housekeeper", permanent: true },
+      { source: "/house-member-subscriptions", destination: "https://howa.co.uk/housekeeper", permanent: true },
       { source: "/howa-services", destination: "/services", permanent: true },
       { source: "/luxury-home-concierge", destination: "/howa", permanent: true },
-      { source: "/the-house-companion", destination: "/howa/assistant", permanent: true },
-      { source: "/house-companion-1", destination: "/howa/assistant", permanent: true },
-      { source: "/house-plans", destination: "/steward-plans", permanent: true },
-      { source: "/house-plans/property-managers", destination: "/steward-plans", permanent: true },
-      { source: "/home-and-garden-services-subscriptions-packages", destination: "/steward-plans", permanent: true },
-      { source: "/home-garden-subscriptions-how-works", destination: "/steward-plans", permanent: true },
+      { source: "/the-house-companion", destination: "https://howa.co.uk/assistant", permanent: true },
+      { source: "/house-companion-1", destination: "https://howa.co.uk/assistant", permanent: true },
+      // DIRECTIVE §14 — /steward-plans is removed from the House site (HoWA tier
+      // content is not sold as a House prerequisite). Managed/recurring care is a
+      // service outcome, so these legacy plan URLs land on /services directly
+      // (no two-hop chain through the retired /steward-plans route).
+      { source: "/house-plans", destination: "/services", permanent: true },
+      { source: "/house-plans/property-managers", destination: "/services", permanent: true },
+      { source: "/home-and-garden-services-subscriptions-packages", destination: "/services", permanent: true },
+      { source: "/home-garden-subscriptions-how-works", destination: "/services", permanent: true },
       { source: "/commercial-property-management", destination: "/services", permanent: true },
       { source: "/airbnb-and-short-let", destination: "/services", permanent: true },
       { source: "/in-the-press", destination: "/news", permanent: true },
       { source: "/magazine", destination: "/the-hearth", permanent: true },
-      { source: "/insurance-by-the-house", destination: "/protect/insurance", permanent: true },
-      { source: "/home-protection-risk-reduction", destination: "/protect/home-protection", permanent: true },
+      { source: "/insurance-by-the-house", destination: "/insurance", permanent: true },
+      { source: "/home-protection-risk-reduction", destination: "/insurance/home-protection", permanent: true },
       { source: "/privacy-policy", destination: "/legal/privacy", permanent: true },
       { source: "/cookie-policy", destination: "/legal/cookies", permanent: true },
       { source: "/gift-cards-2", destination: "/gift-cards", permanent: true },
@@ -148,13 +187,13 @@ const nextConfig: NextConfig = {
       { source: "/product-category/:slug*", destination: "/shop/collections/:slug*", permanent: true },
       // Old WooCommerce product URLs carried the category in the path
       // (/shop/<category>/<product>); the new shop is flat (/shop/<handle>).
-      // Redirect to the last segment. The (?!collections|rooms) guard keeps the
+      // Redirect to the last segment. The (?!collections|rooms|task) guard keeps the
       // real /shop/collections/<handle> route AND the static room images
       // (/shop/rooms/<name>.webp) working. The `:handle([^/.]+)` constraint
       // excludes any segment with a file extension, so static assets under
       // /shop/<dir>/ (e.g. .webp images) are never swallowed by this redirect.
-      { source: "/shop/:category((?!collections|rooms)[^/]+)/page/:n", destination: "/shop", permanent: true },
-      { source: "/shop/:category((?!collections|rooms)[^/]+)/:handle([^/.]+)", destination: "/shop/:handle", permanent: true },
+      { source: "/shop/:category((?!collections|rooms|task)[^/]+)/page/:n", destination: "/shop", permanent: true },
+      { source: "/shop/:category((?!collections|rooms|task)[^/]+)/:handle([^/.]+)", destination: "/shop/:handle", permanent: true },
       // Old / alternate service slugs → the launch service hubs.
       { source: "/services/cleaners", destination: "/services/cleaning", permanent: true },
       { source: "/services/gardeners", destination: "/services/gardening", permanent: true },
@@ -191,7 +230,7 @@ const nextConfig: NextConfig = {
       `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.willowalexander.co.uk`,
       "img-src 'self' data: blob: https:",
       "font-src 'self' data: https:",
-      `connect-src 'self' ${OBF} https://*.sanity.io https://cdn.sanity.io https://*.shopify.com https://*.supabase.co wss://*.supabase.co https://*.upstash.io https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://stats.g.doubleclick.net https://*.g.doubleclick.net https://www.google.com https://www.google.co.uk https://www.clarity.ms https://*.clarity.ms https://*.facebook.com https://ct.pinterest.com https://*.ingest.sentry.io https://vitals.vercel-insights.com https://va.vercel-scripts.com https://a.klaviyo.com https://static.klaviyo.com https://*.klaviyo.com`,
+      `connect-src 'self' ${OBF} https://api.postcodes.io https://*.tile.openstreetmap.org https://*.sanity.io https://cdn.sanity.io https://*.shopify.com https://*.supabase.co wss://*.supabase.co https://*.upstash.io https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://stats.g.doubleclick.net https://*.g.doubleclick.net https://www.google.com https://www.google.co.uk https://www.clarity.ms https://*.clarity.ms https://*.facebook.com https://ct.pinterest.com https://*.ingest.sentry.io https://vitals.vercel-insights.com https://va.vercel-scripts.com https://a.klaviyo.com https://static.klaviyo.com https://*.klaviyo.com`,
       `frame-src 'self' ${OBF} https://challenges.cloudflare.com https://www.facebook.com`,
       "frame-ancestors 'none'",
       `form-action 'self' ${OBF}`,

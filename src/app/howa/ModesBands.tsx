@@ -32,7 +32,7 @@ const MODES: Mode[] = [
   {
     href: "/howa/coming-soon",
     numeral: "I",
-    name: "Assistant",
+    name: "Free",
     tagline: "The house, seen.",
     desc: "Quiet awareness. Thoughtful action.",
     points: ["Repair scan", "Seasonal reminders", "System notifications"],
@@ -101,7 +101,6 @@ export function ModesBands() {
                   {m.numeral}.
                 </span>
                 <h3 className="font-display text-[clamp(23px,1.8vw,30px)] leading-[1.05]">
-                  HoWA{" "}
                   <span className="font-italic-display">{m.name}</span>
                 </h3>
               </div>

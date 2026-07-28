@@ -3,6 +3,7 @@ import { didot, effra, cormorant, jost } from "@/lib/fonts";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/lib/seo/jsonLd";
 import { env } from "@/lib/env";
 import { Header } from "@/components/layout/Header";
+import { MobileActionBar } from "@/components/layout/MobileActionBar";
 import { getNavigation, getFooterColumns } from "@/lib/cms/navigation";
 import { Footer } from "@/components/layout/Footer";
 import { CartProvider } from "@/components/commerce/CartContext";
@@ -22,12 +23,12 @@ import { Klaviyo } from "@/components/consent/loaders/Klaviyo";
 import { ClickIdCapture } from "@/components/marketing/ClickIdCapture";
 import "./globals.css";
 
-// The primary header CTA is House-led (v5 HoWA-separation review, 2026-06-18):
-// the House sells services, and booking opens the House booking modal
-// (#open-booking-form) which is always available regardless of the HoWA app
-// being live. HoWA online booking is reached from the HoWA Platform menu.
-const ctaLabel = "Book through HoWA";
-const ctaHref = "#open-booking-form";
+// REVISIONS v3 §3 — "Find a service" is the persistent primary action, and it
+// leads to the service catalogue rather than straight into a booking modal:
+// the first customer action is choosing a service, not filling in a form.
+// "My Home in HoWA" sits beside it as the named account utility.
+const ctaLabel = "Find a service";
+const ctaHref = "/services";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL),
@@ -153,6 +154,9 @@ export default async function RootLayout({
             <Header ctaLabel={ctaLabel} ctaHref={ctaHref} nav={nav} />
             <main id="main">{children}</main>
             <Footer columns={footerCols} />
+            {/* Spacer so the fixed mobile action bar never covers footer content. */}
+            <div aria-hidden className="lg:hidden h-[64px]" />
+            <MobileActionBar ctaLabel={ctaLabel} ctaHref={ctaHref} />
             <CartToast />
             <CartDrawer />
             <BookingWidget />

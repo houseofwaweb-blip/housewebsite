@@ -64,7 +64,7 @@ const NODES: Node[] = [
   {
     id: "future",
     name: "Future categories",
-    description: "Homeware. Textiles. Academy. Retail pods. AI design tools.",
+    description: "Homeware. Textiles. Academy. Retail pods. Design intelligence.",
     x: 50,
     y: 95,
     tone: "future",

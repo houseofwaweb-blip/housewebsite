@@ -87,13 +87,10 @@ export function ServiceCarousel({ cards }: { cards: ServiceCardData[] }) {
                 sizes="(min-width: 1024px) 320px, 80vw"
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
-              {svc.soon ? (
-                <span className={s.serviceComingSoon}>Service Coming Soon</span>
-              ) : (
-                <span className={s.serviceState}>
-                  {svc.state === "live" ? "Available now" : "Coming soon"}
-                </span>
-              )}
+              {/* v4 §5 — no coming-soon service categories. Every service in
+                  the catalogue is open for business; a thin photo library is a
+                  photography gap, not a trading status. */}
+              <span className={s.serviceState}>Available now</span>
             </div>
             <div className={s.serviceBody}>
               <h3 className={s.serviceName}>{svc.name}</h3>

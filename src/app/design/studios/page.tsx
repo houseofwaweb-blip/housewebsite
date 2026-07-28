@@ -11,7 +11,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  *   1. Hero — copy left, 2x2 studio mosaic right
  *   2. Stats strip
  *   3. The circle — the House's design routes as editorial cards with image
- *   4. Selection — three tests, House Approved meaning
+ *   4. Selection — three tests, HoWA Approved meaning
  *   5. How to commission — 4 step process
  *   6. Closing CTA
  */
@@ -19,13 +19,13 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 export const metadata = {
   title: "The Studios: chosen with care.",
   description:
-    "The studios and designers the House works with. How we select, what House Approved means in design, and how to commission a project.",
+    "The studios and designers the House works with. How we select, what HoWA Approved means in design, and how to commission a project.",
 };
 
 const STAT_COLS = [
   { value: "2", label: "Live design routes" },
   { value: "1", label: "In-house garden studio" },
-  { value: "1", label: "House Approved interiors partner" },
+  { value: "1", label: "HoWA Approved interiors partner" },
   { value: "+", label: "Invited by standard, not volume" },
 ];
 
@@ -74,12 +74,12 @@ const COMMISSION_STEPS = [
   {
     n: "01.",
     name: "Begin with a conversation",
-    body: "The HoWA Assistant asks the right questions to understand your home, your priorities, and what feels right. About two minutes.",
+    body: "Ask HoWA works through the right questions to understand your home, your priorities, and what feels right. About two minutes.",
   },
   {
     n: "02.",
     name: "Matched, not assigned",
-    body: "We propose the design route that fits the project, our garden studio, our interiors partner, or both. You pick. The Assistant creates the design brief on your home record.",
+    body: "We propose the design route that fits the project, our garden studio, our interiors partner, or both. You pick. Ask HoWA creates the design brief on your home record.",
   },
   {
     n: "03.",
@@ -133,7 +133,7 @@ export default async function DesignStudiosPage() {
               {cms(
                 hero,
                 "body",
-                "Every studio working under the House Approved seal is chosen for taste, care, and the ability to leave a home better understood than they found it. We keep the circle small on purpose: a few people we trust, not a directory.",
+                "Every studio working under the HoWA Approved seal is chosen for taste, care, and the ability to leave a home better understood than they found it. We keep the circle small on purpose: a few people we trust, not a directory.",
               )}
             </p>
             <div className={s.heroCtas}>
@@ -193,7 +193,7 @@ export default async function DesignStudiosPage() {
             {cms(
               studios,
               "body",
-              "Each carries the House Approved seal under the same three tests, and stays in the circle only as long as those tests hold.",
+              "Each carries the HoWA Approved seal under the same three tests, and stays in the circle only as long as those tests hold.",
             )}
           </p>
         </header>
@@ -236,7 +236,7 @@ export default async function DesignStudiosPage() {
       {/* 4. Selection tests */}
       <section className={s.tests}>
         <header className={s.testsHead}>
-          <p className={s.testsEy}>{cms(tests, "eyebrow", "What House Approved means in design")}</p>
+          <p className={s.testsEy}>{cms(tests, "eyebrow", "What HoWA Approved means in design")}</p>
           <h2 className={s.testsTitle}>
             {cms(tests, "headline", "Three tests,")}{" "}
             <em>{cms(tests, "headlineEm", "every time.", "headline")}</em>
@@ -272,7 +272,7 @@ export default async function DesignStudiosPage() {
             {cms(
               commission,
               "body",
-              "You don't pick a studio cold. The Assistant learns enough to put two or three in front of you that fit, and the design brief lives on your home record from day one.",
+              "You don't pick a studio cold. Ask HoWA learns enough to put two or three in front of you that fit, and the design brief lives on your home record from day one.",
             )}
           </p>
         </header>
@@ -301,7 +301,7 @@ export default async function DesignStudiosPage() {
           {cms(
             closing,
             "body",
-            "The Assistant takes about two minutes. The studios match to the brief. You only meet the ones we think fit.",
+            "Ask HoWA takes about two minutes. The studios match to the brief. You only meet the ones we think fit.",
           )}
         </p>
         <div className={s.closingCtas}>

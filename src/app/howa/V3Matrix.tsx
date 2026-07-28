@@ -20,7 +20,7 @@ const ROWS: { f: string; c: [Cell, Cell, Cell] }[] = [
 
 export function V3Matrix({ middleLabel = "Housekeeper", showTitle = true }: { middleLabel?: string; showTitle?: boolean } = {}) {
   const TIERS = [
-    { name: "Assistant", price: "Free", accent: "#5f6a49" },
+    { name: "Free", price: "£0", accent: "#5f6a49" },
     { name: middleLabel, price: "£16.99/mo", accent: "#b56a5c" },
     { name: "Steward", price: "£29.99/mo", accent: "#c5a960" },
   ];

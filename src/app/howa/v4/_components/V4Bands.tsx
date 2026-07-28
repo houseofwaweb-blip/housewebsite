@@ -31,7 +31,7 @@ const MODES: Mode[] = [
   {
     href: "#tier-assistant",
     numeral: "I",
-    name: "Assistant",
+    name: "Free",
     price: "Free",
     tagline: "The house, seen.",
     desc: "Awareness, and what to do about it.",
@@ -104,7 +104,6 @@ export function V4Bands() {
                   {m.numeral}.
                 </span>
                 <h3 className="font-display text-[clamp(23px,1.8vw,30px)] leading-[1.05]">
-                  HoWA{" "}
                   <span className="font-italic-display" style={m.accent ? { color: m.accent } : undefined}>{m.name}</span>
                 </h3>
               </div>

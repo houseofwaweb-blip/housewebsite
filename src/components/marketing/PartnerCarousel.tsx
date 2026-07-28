@@ -144,7 +144,7 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = 
                 </span>
                 {p.houseApprovedSeal && (
                   <span className="font-sans text-[12px] tracking-[0.16em] uppercase text-house-moss border border-house-moss/30 px-2 py-0.5">
-                    House Approved
+                    HoWA Approved
                   </span>
                 )}
               </div>
@@ -173,7 +173,7 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = 
 
               {/* CTA */}
               <span className="inline-flex items-center gap-2 font-sans text-[15px] tracking-[0.16em] uppercase" style={{ color: "var(--house-gold-ink)" }}>
-                {bookingMode ? "Book through HoWA" : "View profile"}
+                {bookingMode ? "Book a service" : "View profile"}
                 <span className="inline-block transition-transform duration-[var(--t-slow)] ease-out group-hover:translate-x-2">&rarr;</span>
               </span>
             </Link>
@@ -211,7 +211,7 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = 
             )}
             style={dark ? undefined : { color: "var(--house-gold-ink)", borderColor: "var(--house-gold-dark)" }}
           >
-            {bookingMode ? "Book this service through HoWA" : "See all House Approved partners"}
+            {bookingMode ? "Book a service" : "See all HoWA Approved partners"}
             <span>&rarr;</span>
           </Link>
         </div>

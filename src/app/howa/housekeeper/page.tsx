@@ -22,7 +22,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 export const metadata = {
   title: { absolute: "Housekeeper by HoWA | Home logbook and maintenance calendar" },
   description:
-    "The connected membership for a home you mean to keep. £16.99 / month. Living Record, full Assistant, member pricing. Cancel anytime.",
+    "The connected membership for a home you mean to keep. £16.99 / month. Living Record, full Ask HoWA, member pricing. Cancel anytime.",
 };
 
 const STAT_COLS = [
@@ -49,9 +49,9 @@ const BENEFITS = [
   {
     icon: ScanIcon,
     image: "/home-v4/plus-benefit-3.webp",
-    title: "Full Assistant Diagnostic",
+    title: "Full Ask HoWA Diagnostic",
     body: "Repair scan, instant quote, design moodboards. Capture home type, rooms, priorities, style, budget, saved straight to your record.",
-    cta: { label: "See the Assistant", href: "/howa/assistant" },
+    cta: { label: "See Ask HoWA", href: "/howa/assistant" },
   },
   {
     icon: BookIcon,
@@ -77,7 +77,7 @@ const BENEFITS = [
 const COMPARE = [
   { feature: "Living Record entries", free: "Limited", plus: "Unlimited" },
   { feature: "Service discount", free: "—", plus: "10% on everything" },
-  { feature: "Assistant diagnostic", free: "Lite", plus: "Full" },
+  { feature: "Ask HoWA diagnostic", free: "Lite", plus: "Full" },
   { feature: "Task centre & reminders", free: "—", plus: "Yes" },
   { feature: "Priority booking", free: "—", plus: "Yes" },
   { feature: "The Hearth magazine", free: "Excerpts", plus: "Full access" },
@@ -179,7 +179,7 @@ export default async function HowaPlusV1PreviewPage() {
               {cms(
                 hero,
                 "body",
-                "The Living Record, full Assistant, member pricing, and a place that grows with the home. Cancel anytime.",
+                "The Living Record, full Ask HoWA, member pricing, and a place that grows with the home. Cancel anytime.",
               )}
             </p>
             <div className={s.heroCtas}>

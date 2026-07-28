@@ -61,7 +61,7 @@ export function ProductCard({
         />
         {product.houseApproved ? (
           <span className="absolute top-3 left-3 z-20 font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-ink bg-white/90 px-2.5 py-1 border border-house-gold/30">
-            House Approved
+            Chosen by the House
           </span>
         ) : null}
 

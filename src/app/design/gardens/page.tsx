@@ -36,6 +36,21 @@ const STAT_COLS = [
 
 const PLANS = [
   {
+    // DIRECTIVE §10 — Garden design leads with HoWA First Design at £400
+    // (the mapped first output). Human packages follow after the first output.
+    name: "HoWA First Garden Design",
+    tagline: "The mapped first design, £400.",
+    price: "£400",
+    inclusions: [
+      "Starts from your address and a HoWA read of light, soil and aspect",
+      "A first planting and layout direction, mapped to your garden",
+      "A written design you own, kept in your home record",
+      "A clear route to continue with Willow Alexander Gardens when you want a human studio",
+    ],
+    image: "/design/gardens/full-design.webp",
+    featured: true,
+  },
+  {
     name: "Planting Plans",
     tagline: "Light, soil and aspect, properly read.",
     price: "from £495",
@@ -59,7 +74,6 @@ const PLANS = [
       "Three rounds of revisions",
     ],
     image: "/design/gardens/concept-plans.jpg",
-    featured: true,
   },
   {
     name: "2D & 3D Plans",
@@ -85,7 +99,7 @@ const SPECIALIST = [
   },
   {
     name: "Signature Collaboration",
-    price: "Coming soon",
+    price: "On enquiry",
     body: "A full creative partnership with one of our leading studios: artistic direction, materials and build liaison.",
     image: "/design/gardens/collaboration.jpg",
   },
@@ -149,12 +163,18 @@ export default async function GardensPage() {
                 "Designed around what the garden already wants to do: light, shade, drainage, the soil it has. The brief is to make the garden feel inevitable, ten years from now. Led by Willow Alexander Gardens, the House's own garden studio, with specialist partners brought in for build.",
               )}
             </p>
+            {/* DIRECTIVE §10 — surface the £400 first design + scan framing in the hero. */}
+            <p className={s.heroLede} style={{ fontWeight: 600, marginTop: 4 }}>
+              Scan your garden and get a first concept and indicative budget before
+              commissioning the full plan. HoWA First Garden Design, £400: zones,
+              planting direction, a budget range and a written brief.
+            </p>
             <div className={s.heroCtas}>
               <Link href={cms(hero, "ctaHref", "#plans")} className={s.btnFilled}>
-                {cms(hero, "ctaLabel", "See the plans")}
+                {cms(hero, "ctaLabel", "Start my garden design")}
               </Link>
-              <Link href={cms(hero, "cta2Href", "/partners/willow-alexander-gardens")} className={s.btnGhost}>
-                {cms(hero, "cta2Label", "The lead studio")}
+              <Link href={cms(hero, "cta2Href", "#projects")} className={s.btnGhost}>
+                {cms(hero, "cta2Label", "View garden projects")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
@@ -181,7 +201,7 @@ export default async function GardensPage() {
         <div className={s.statsLede}>
           <p className={s.statsLedeLine1}>{cms(stats, "headline", "Light. Soil. Aspect. Time.")}</p>
           <p className={s.statsLedeLine2}>
-            {cms(stats, "subheadline", "Every scheme through a House-Approved studio.")}
+            {cms(stats, "subheadline", "Every scheme mapped in HoWA, delivered by a named studio.")}
           </p>
         </div>
         {statCols.map((stat) => (
@@ -197,7 +217,7 @@ export default async function GardensPage() {
         <header className={s.plansHead}>
           <p className={s.plansEy}>{cms(plans, "eyebrow", "Garden Plans")}</p>
           <h2 className={s.plansTitle}>
-            {cms(plans, "headline", "Three ways")}{" "}
+            {cms(plans, "headline", "Four ways")}{" "}
             <em>{cms(plans, "headlineEm", "to begin.", "headline")}</em>
           </h2>
           <p className={s.plansLede}>
@@ -276,7 +296,7 @@ export default async function GardensPage() {
       </section>
 
       {/* 5. Projects gallery */}
-      <section className={s.projects}>
+      <section id="projects" className={s.projects}>
         <header className={s.projectsHead}>
           <p className={s.projectsEy}>{cms(projects, "eyebrow", "From the studio")}</p>
           <h2 className={s.projectsTitle}>
@@ -324,30 +344,41 @@ export default async function GardensPage() {
         </p>
       </section>
 
-      {/* 7. Assistant split */}
+      {/* 7. The Designer doorway (DIRECTIVE §07/§09 — the Designer persona maps
+          the space for the £400 first design. NOT the Assistant, which is a HoWA
+          tier and does not belong in the House design path.) */}
       <section className={s.companion}>
         <div className={s.companionCopy}>
-          <p className={s.companionEy}>{cms(companion, "eyebrow", "HoWA · Assistant")}</p>
+          <p className={s.companionEy}>{cms(companion, "eyebrow", "HoWA · The Designer")}</p>
           <h2 className={s.companionTitle}>
             {cms(companion, "headline", "Start with the")}{" "}
-            <em>{cms(companion, "headlineEm", "Assistant.", "headline")}</em>
+            <em>{cms(companion, "headlineEm", "Designer.", "headline")}</em>
           </h2>
           <p className={s.companionLede}>
             {cms(
               companion,
               "body",
-              "Capture your garden's light, soil, aspect, maintenance appetite and budget. The Assistant builds a brief your designer can work from on day one, nothing lost, nothing repeated.",
+              "Use the Designer to map your garden's light, soil, aspect, maintenance appetite and budget. You get a first direction and an indicative budget you own, a brief Willow Alexander can work from on day one, nothing lost, nothing repeated.",
             )}
           </p>
           <p className={s.companionFootnote}>
-            {cms(companion, "caption", "Available to all HoWA members.")}
+            {cms(companion, "caption", "This is HoWA First Garden Design, £400.")}
           </p>
           <Link
-            href={cms(companion, "ctaHref", "/api/howa-bounce?source=gardens-companion")}
+            href={cms(companion, "ctaHref", "#plans")}
             className={s.btnFilled}
           >
-            {cms(companion, "ctaLabel", "Coming soon")}
+            {cms(companion, "ctaLabel", "Start my garden design")}
           </Link>
+          {/* DIRECTIVE §10 — "See a sample output". */}
+          <div style={{ marginTop: 16 }}>
+            <Link
+              href="/design/sample"
+              style={{ fontFamily: "var(--font-sans)", fontSize: 12, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--color-house-gold-ink)", textDecoration: "underline", textUnderlineOffset: "3px" }}
+            >
+              See a sample output →
+            </Link>
+          </div>
         </div>
         <div className={s.companionImage}>
           <Image
@@ -355,7 +386,7 @@ export default async function GardensPage() {
             alt={cms(
               companion,
               "imageAlt",
-              "A garden concept plan, the kind of brief the Assistant helps you build",
+              "A garden concept plan, the kind of brief the Designer helps you build",
             )}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"

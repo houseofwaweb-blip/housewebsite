@@ -1,0 +1,52 @@
+/*
+ * Coverage map — "House survey" styling.
+ *
+ * Raw OSM tiles are bright, blue-green and generic; they read as a generic web
+ * map. Desaturating them to a warm grey-sepia and drawing the patch in gold is
+ * what makes the map read as a House survey drawing instead.
+ */
+
+.canvas {
+  width: 100%;
+  height: 300px;
+  border: 1px solid rgba(48, 35, 28, 0.12);
+  background: var(--color-house-cream-dark);
+}
+
+.canvas :global(.leaflet-container) {
+  font-family: var(--font-sans);
+  background: var(--color-house-cream-dark);
+}
+
+/* The whole point: warm the tiles down onto the cream palette. */
+.canvas :global(.leaflet-tile-pane) {
+  filter: grayscale(1) sepia(0.5) brightness(1.05) contrast(0.9) saturate(1.15);
+}
+
+/* No Leaflet logo, attribution or zoom chrome — the map is decorative here. */
+.canvas :global(.leaflet-control-attribution),
+.canvas :global(.leaflet-control-zoom) {
+  display: none !important;
+}
+
+.canvas :global(.leaflet-tooltip) {
+  background: var(--color-house-brown);
+  border: none;
+  color: var(--color-house-cream);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: none;
+  padding: 5px 9px;
+}
+
+.canvas :global(.leaflet-tooltip-top::before) {
+  border-top-color: var(--color-house-brown);
+}
+
+@media (max-width: 1040px) {
+  .canvas {
+    height: 240px;
+  }
+}

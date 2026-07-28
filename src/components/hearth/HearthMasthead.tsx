@@ -31,7 +31,7 @@ export function HearthMasthead({ className }: { className?: string }) {
         gardens and thresholds worth keeping well.
       </p>
       <p className="font-hearth-sans text-[12px] tracking-[0.16em] uppercase text-house-stone/70 mt-[10px]">
-        Housekeeper members receive full archive access and seasonal guides.
+        Published by House of Willow Alexander, and open to everyone.
       </p>
     </header>
   );

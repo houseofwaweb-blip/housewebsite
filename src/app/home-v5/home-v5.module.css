@@ -226,7 +226,8 @@
   max-width: 1180px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* Six House doorways (DIRECTIVE §05) — 3 across on desktop, 2 mid, 1 mobile. */
+  grid-template-columns: repeat(3, 1fr);
   gap: 22px;
 }
 .pillarCard {
@@ -243,7 +244,9 @@
 .pillarScrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(20, 14, 8, 0.08) 0%, rgba(20, 14, 8, 0.12) 45%, rgba(20, 14, 8, 0.78) 100%);
+  /* Ramp the darkening up sooner and stronger so the whole text block (label →
+     title → sub → CTA) sits on a solid dark base, not the bright mid-image. */
+  background: linear-gradient(180deg, rgba(20, 14, 8, 0) 0%, rgba(20, 14, 8, 0.28) 40%, rgba(20, 14, 8, 0.74) 68%, rgba(20, 14, 8, 0.94) 100%);
 }
 .pillarBody {
   position: absolute;
@@ -251,6 +254,8 @@
   right: 22px;
   bottom: 22px;
   z-index: 2;
+  /* Legibility floor for all text over the photo, including the gold. */
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
 }
 .pillarLabel {
   font-family: var(--font-sans);

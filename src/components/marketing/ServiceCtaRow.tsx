@@ -19,7 +19,7 @@ export function ServiceCtaRow({ service }: { service: string }) {
             href="#open-booking-form"
             className="inline-flex items-center bg-house-gold-ink px-5 py-2.5 font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-[filter] hover:brightness-110"
           >
-            Book through HoWA
+            Book a service
           </a>
           <a
             href={PHONE_HREF}

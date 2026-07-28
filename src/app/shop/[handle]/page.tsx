@@ -193,7 +193,7 @@ export default async function ProductPage({
                 <span className={s.collection}>{product.collection}</span>
               ) : null}
               {product.houseApproved ? (
-                <span className={s.seal}>House Approved</span>
+                <span className={s.seal}>Chosen by the House</span>
               ) : null}
             </div>
           ) : null}
@@ -251,7 +251,7 @@ export default async function ProductPage({
             </p>
             <dl className="m-0 space-y-2.5">
               {[
-                ["Supplier", product.brand?.trim() || "House Approved maker"],
+                ["Supplier", product.brand?.trim() || "House-selected maker"],
                 ["Care", product.careNotes?.trim() || "Surface-appropriate care notes, saved with the item."],
                 ["Warranty", "Receipt and any warranty stored at purchase."],
                 ["Replacement", "HoWA reminds you when it is due for renewal."],
@@ -273,7 +273,7 @@ export default async function ProductPage({
               ? "Need this fitted, hung, cleaned or maintained? "
               : "Planning work on your home? "}
             <a href="#open-booking-form" className="text-house-gold-ink underline underline-offset-[3px]">
-              Book through HoWA
+              Book a service
             </a>{" "}
             and it is kept in your Home Record.
           </p>

@@ -114,7 +114,7 @@ export function V6OneRecord() {
         </div>
         <div className="lg:col-span-5">
           <div className="relative w-full aspect-[4/3]">
-            <Image src="/home-v4/v6-one-record-v2.webp" alt="Three phones in the Assistant, Housekeeper and Steward colourways, with the dollhouse softly behind." fill sizes="(max-width:1024px) 92vw, 45vw" className="object-contain" />
+            <Image src="/home-v4/v6-one-record-v2.webp" alt="Three phones in the Free, Housekeeper and Steward colourways, with the dollhouse softly behind." fill sizes="(max-width:1024px) 92vw, 45vw" className="object-contain" />
           </div>
         </div>
         <div className="lg:col-span-4 space-y-6">

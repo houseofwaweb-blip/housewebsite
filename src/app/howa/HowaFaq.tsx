@@ -12,7 +12,7 @@ const FAQS: [string, string][] = [
   ],
   [
     "How much will it cost?",
-    "Assistant mode is free. Housekeeper membership is £16.99 / month. Steward is by application. Pricing locks at sign-up for waitlist members.",
+    "The free tier costs nothing. Housekeeper membership is £16.99 / month. Steward is by application. Pricing locks at sign-up for waitlist members.",
   ],
   [
     "What if I'm not in the UK?",

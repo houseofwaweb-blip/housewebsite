@@ -197,7 +197,7 @@ export function BookingForm({
           loading={isSubmitting}
           disabled={isSubmitting}
         >
-          Book through HoWA
+          Book a service
         </Button>
         <p className={`font-sans text-[15px] leading-[1.6] mt-3 ${dark ? "text-house-cream/55" : "text-house-brown/55"}`}>
           Online bookings are handled through HoWA and kept in your Home Record.
@@ -219,7 +219,7 @@ const SERVICE_OPTIONS: Array<{
   { value: "window-cleaning", label: "Windows" },
   { value: "cleaning", label: "Cleaning" },
   { value: "gutter-cleaning", label: "Gutters" },
-  { value: "steward", label: "Steward" },
-  { value: "protect", label: "Protect" },
+  { value: "steward", label: "Recurring care" },
+  { value: "protect", label: "Insurance" },
   { value: "general", label: "General" },
 ];

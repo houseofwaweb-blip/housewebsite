@@ -3,7 +3,7 @@
    (Brief v2, slide 16.) */
 type Cell = "yes" | "no" | "starter";
 const TIERS = [
-  { name: "Assistant", price: "Free", accent: "#5f6a49", slug: "assistant" },
+  { name: "Free", price: "£0", accent: "#5f6a49", slug: "assistant" },
   { name: "Housekeeper", price: "£16.99/mo", accent: "#b56a5c", slug: "housekeeper" },
   { name: "Steward", price: "£29.99/mo", accent: "#c5a960", slug: "steward" },
 ];
@@ -46,7 +46,7 @@ export function V4Matrix() {
               </ul>
               <div className="px-5 pb-5">
                 <a href={`/howa/coming-soon?tier=${t.slug}`} className="block rounded-md py-2.5 text-center text-[14.5px]" style={{ background: t.accent, color: t.accent === "#c5a960" ? "#1d2a40" : "#fff" }}>
-                  {t.name === "Assistant" ? "Choose Assistant" : `Start ${t.name}`}
+                  {t.name === "Free" ? "Choose Free" : `Start ${t.name}`}
                 </a>
               </div>
             </div>

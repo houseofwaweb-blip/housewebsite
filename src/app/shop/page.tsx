@@ -9,6 +9,8 @@ import { getShopProducts } from "@/lib/shop-data/source";
 import type { CatalogueProduct } from "@/lib/shop-data/catalogue";
 import { AddToCartButton } from "@/components/commerce/AddToCartButton";
 import { ProductSlider, type Slide } from "./ProductSlider";
+import { SHOP_TASKS } from "@/lib/shop-data/tasks";
+import { HouseCrossLinks, SHOP_CROSS_LINKS } from "@/components/marketing/HouseCrossLinks";
 
 /**
  * Marketplace landing — "collections as rooms" (Designer Handover Guide, slide 25).
@@ -90,7 +92,7 @@ function Rail({ title, cards, viewAllHref }: { title: string; cards: Card[]; vie
                 />
                 {c.houseApproved ? (
                   <span className="absolute top-3 left-3 font-sans text-[8px] tracking-[0.18em] uppercase text-white bg-house-brown/70 px-2 py-1">
-                    House Approved
+                    Chosen by the House
                   </span>
                 ) : null}
               </div>
@@ -197,9 +199,9 @@ function TwoCollections() {
 }
 
 export const metadata = {
-  title: { absolute: "The House Marketplace | Shop home, garden and household" },
+  title: { absolute: "The House Shop | Shop home, garden and household" },
   description:
-    "Objects with a place in the House. Shop by room, kitchen, table, garden and more, or browse House Approved goods, best sellers and new arrivals.",
+    "Objects with a place in the House. Shop by room, kitchen, table, garden and more, or browse the House Selection, best sellers and new arrivals.",
 };
 
 export default async function ShopPage() {
@@ -255,7 +257,7 @@ export default async function ShopPage() {
         <FlowerWatermark color="gold" side="right" opacity={0.18} />
         <div className="relative z-10 max-w-[680px] mx-auto">
           <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink mb-3">
-            The House · Marketplace
+            The House · Shop
           </p>
           <h1 className="font-display text-[clamp(30px,3.4vw,48px)] leading-[1.05] tracking-[-0.01em] text-house-brown">
             Objects with a place{" "}
@@ -264,7 +266,7 @@ export default async function ShopPage() {
             </em>
           </h1>
           <p className="font-sans text-[15px] text-house-stone max-w-[460px] mx-auto mt-4 leading-[1.6]">
-            An edited cabinet, not a catalogue. Each thing here is House Approved,
+            An edited cabinet, not a catalogue. Each thing here is chosen by the House,
             chosen for how it is made, how long it lasts, and whether it can be
             mended rather than replaced.
           </p>
@@ -340,8 +342,50 @@ export default async function ShopPage() {
         </div>
       </section>
 
+      {/* Shop by task (DIRECTIVE §12) — merchandise by task as well as room. */}
+      <section className="px-[5vw] py-[clamp(44px,6vw,80px)] border-b border-house-brown/8">
+        <div className="max-w-[1280px] mx-auto">
+          <div className="mb-8">
+            <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink mb-2">
+              By the task
+            </p>
+            <h2 className="font-display italic text-[clamp(26px,3vw,40px)] leading-[1.05] text-house-brown">
+              Shop for what you are doing.
+            </h2>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {SHOP_TASKS.map((t) => (
+              <Link
+                key={t.slug}
+                href={`/shop/task/${t.slug}`}
+                className="group relative block aspect-[4/5] overflow-hidden bg-house-cream-dark no-underline"
+              >
+                <Image
+                  src={t.image}
+                  alt={t.title}
+                  fill
+                  sizes="(min-width: 1024px) 22vw, 45vw"
+                  className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.04]"
+                />
+                <span
+                  aria-hidden
+                  className="absolute inset-0"
+                  style={{ background: "linear-gradient(to top, rgba(26,19,13,0.74), rgba(26,19,13,0.06) 58%)" }}
+                />
+                <div className="absolute inset-x-0 bottom-0 p-5 text-center">
+                  <p className="font-display text-[clamp(19px,2.1vw,28px)] leading-[1.1] text-white">{t.title}</p>
+                  <p className="font-sans text-[12px] tracking-[0.2em] uppercase text-white/80 mt-2 transition-colors group-hover:text-white">
+                    Shop the edit →
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Broken-up commerce zone: grid → single feature → dual pickers → slider → grid */}
-      <Rail title="House Approved." cards={houseApproved} viewAllHref="/shop/collections/house-approved" />
+      <Rail title="The House Selection." cards={houseApproved} viewAllHref="/shop/collections/house-approved" />
       <Rail title="Best sellers." cards={bestSellers} viewAllHref="/shop/all" />
       <FeaturedProduct p={featured} />
       <TwoCollections />
@@ -349,6 +393,10 @@ export default async function ShopPage() {
       <Rail title="New in." cards={newIn} viewAllHref="/shop/all" />
 
       <HouseStandardStrip points={["Vetted against real family use", "Care notes for use and repair", "Chosen to last, made to mend"]} />
+
+      {/* DIRECTIVE §12 — connect products to service aftercare, a design output
+          and Hearth guidance. */}
+      <HouseCrossLinks cards={SHOP_CROSS_LINKS} />
     </div>
   );
 }

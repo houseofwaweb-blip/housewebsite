@@ -22,7 +22,7 @@ const FEATURES = [
   {
     title: "Works across the House",
     description:
-      "Use House Credit for anything: a kitchen renovation, a year of garden care, or a full Steward plan.",
+      "Use House Credit for anything: a kitchen renovation, a year of garden care, or a full recurring care plan.",
   },
   {
     title: "No hidden fees",

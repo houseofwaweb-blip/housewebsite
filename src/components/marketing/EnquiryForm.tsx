@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/cn";
 import { submitForm } from "@/components/forms/submitForm";
+import { REQUESTABLE_SERVICES, SERVICE_GROUPS } from "@/lib/services-data/requestable";
 import { TurnstileField } from "@/components/forms/TurnstileField";
 import type { TurnstileInstance } from "@marsidev/react-turnstile";
 
@@ -21,28 +22,41 @@ import type { TurnstileInstance } from "@marsidev/react-turnstile";
  * separate ServiceOS modal opened via href="#open-booking-form".
  */
 
-type ServiceType =
-  | "general"
-  | "gardening"
-  | "window-cleaning"
-  | "cleaning"
-  | "gutter-cleaning"
-  | "design-gardens"
-  | "design-interiors"
-  | "steward"
-  | "protect";
+/**
+ * REVISIONS v3 — the select carries the WHOLE requestable catalogue, grouped,
+ * including the services the House cannot fulfil today. Those enquiries are
+ * the point: they arrive tagged with a real service slug, so the lead is
+ * segmentable and retargetable, rather than being lost behind a "coming soon"
+ * card that captures nothing.
+ *
+ * Options derive from REQUESTABLE_SERVICES, the same list that drives the API
+ * schema, so the select and the server validation can never drift apart.
+ */
+type ServiceType = string;
 
-const SERVICE_OPTIONS: ReadonlyArray<{ value: ServiceType; label: string }> = [
-  { value: "general", label: "General enquiry" },
-  { value: "gardening", label: "Gardening" },
-  { value: "window-cleaning", label: "Window cleaning" },
-  { value: "cleaning", label: "Cleaning" },
-  { value: "gutter-cleaning", label: "Gutter cleaning" },
-  { value: "design-gardens", label: "Garden design" },
-  { value: "design-interiors", label: "Interior design" },
-  { value: "steward", label: "Steward (managed care)" },
-  { value: "protect", label: "Protect / home protection" },
+const SERVICE_GROUP_OPTIONS: ReadonlyArray<{
+  heading: string;
+  options: ReadonlyArray<{ value: string; label: string }>;
+}> = [
+  {
+    heading: "General",
+    options: [
+      { value: "general", label: "General enquiry" },
+      { value: "protect", label: "Home protection review" },
+    ],
+  },
+  ...SERVICE_GROUPS.map((group) => ({
+    heading: group,
+    options: REQUESTABLE_SERVICES.filter((s) => s.group === group).map((s) => ({
+      value: s.slug,
+      label: s.name,
+    })),
+  })),
 ];
+
+const VALID_SERVICE_VALUES = new Set(
+  SERVICE_GROUP_OPTIONS.flatMap((g) => g.options.map((o) => o.value)),
+);
 
 export interface EnquiryFormProps {
   /** Any service slug; coerced to a known option, else "general". */
@@ -72,7 +86,7 @@ export function EnquiryForm({
   const [email, setEmail] = React.useState("");
   const [phone, setPhone] = React.useState("");
   const [postcode, setPostcode] = React.useState("");
-  const initialService = (SERVICE_OPTIONS.some((o) => o.value === defaultService)
+  const initialService = (VALID_SERVICE_VALUES.has(defaultService)
     ? defaultService
     : "general") as ServiceType;
   const [serviceType, setServiceType] = React.useState<ServiceType>(initialService);
@@ -145,7 +159,7 @@ export function EnquiryForm({
           <p className={cn("font-sans text-[15px] mt-6", isDark ? "text-house-cream/60" : "text-house-stone")}>
             Prefer to book online?{" "}
             <a href="#open-booking-form" className={cn("underline underline-offset-[3px]", isDark ? "text-house-gold-light" : "text-house-gold-ink")}>
-              Book through HoWA
+              Book a service
             </a>
             .
           </p>
@@ -182,8 +196,12 @@ export function EnquiryForm({
                 className={cn(field, "cursor-pointer appearance-none bg-[length:12px] bg-[right_1rem_center] bg-no-repeat")}
                 style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none' stroke='%2330231c'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E\")" }}
               >
-                {SERVICE_OPTIONS.map((o) => (
-                  <option key={o.value} value={o.value}>{o.label}</option>
+                {SERVICE_GROUP_OPTIONS.map((g) => (
+                  <optgroup key={g.heading} label={g.heading}>
+                    {g.options.map((o) => (
+                      <option key={o.value} value={o.value}>{o.label}</option>
+                    ))}
+                  </optgroup>
                 ))}
               </select>
 

@@ -98,7 +98,7 @@ const PLACEHOLDER_PROJECTS: PartnerProject[] = [
   {
     title: "A kitchen in the Cotswolds",
     caption: "Interiors · 2024",
-    meta: "House Approved",
+    meta: "HoWA Approved",
     image: "/partners/project-2.webp",
   },
   {
@@ -148,7 +148,7 @@ const DEFAULT_DESIGN_PACKAGES: PartnerPackage[] = [
     inclusions: [
       "Style diagnostic & mood direction",
       "Bespoke scheme (colour, fabric, light)",
-      "Sourcing list via House Approved",
+      "Sourcing list via HoWA Approved",
       "One revision round",
       "Delivered into HoWA as a live project",
     ],
@@ -181,7 +181,7 @@ const DEFAULT_DESIGN_PACKAGES: PartnerPackage[] = [
       "Shoppable moodboard",
       "Full material & sample pack",
       "Designer follow-up call",
-      "House Approved procurement",
+      "HoWA Approved procurement",
       "Aftercare extension",
     ],
     ctaLabel: "Add in HoWA →",
@@ -198,7 +198,7 @@ const DEFAULT_FAQ = [
     a: "Yes. Room Edit is Pay Now. Full House Edit is consultation-first.",
   },
   {
-    q: "What does \u201cHouse Approved\u201d sourcing mean?",
+    q: "What does \u201cHoWA Approved\u201d sourcing mean?",
     a: "A curated roster of makers and suppliers vetted by the House for craft and quality.",
   },
   {
@@ -242,7 +242,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
     heroHeadline: "Consciously designed interiors.",
     heroHeadlineEm: "designed interiors.",
     heroSub:
-      "At the House of Willow Alexander, we believe that interiors are living expressions of the people who inhabit them. Beauty, balance, and intention \u2014 curated by Alana Miller and THE HOUSE EDIT.",
+      "At the House of Willow Alexander, we believe that interiors are living expressions of the people who inhabit them. Beauty, balance, and intention, curated by Alana Miller and THE HOUSE EDIT.",
     heroImage: "/design/interiors/project-tunbridge-1.webp",
     heroCaption: "Tunbridge Wells \u00b7 Delve Interiors",
 
@@ -251,7 +251,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
       "Timeless design with heritage charm and modern ease. Layered interiors that feel both elegant and effortless.",
     longBio: [
       "With a refined eye for timeless design, Alana Miller is the creative force behind THE HOUSE EDIT. Trained at the KLC School of Design, she blends heritage charm with modern ease, curating layered interiors that feel both elegant and effortless.",
-      "Her signature style embraces tactile warmth, sustainable finds, and an intuitive sense of flow \u2014 spaces that tell a story and invite you to live beautifully. Guided by collaboration and care, Alana crafts homes that are as soulful as they are functional, always one-of-a-kind \u2014 whether restoring an Edwardian cottage or reimagining a family home.",
+      "Her signature style embraces tactile warmth, sustainable finds, and an intuitive sense of flow, spaces that tell a story and invite you to live beautifully. Guided by collaboration and care, Alana crafts homes that are as soulful as they are functional, always one-of-a-kind, whether restoring an Edwardian cottage or reimagining a family home.",
     ],
     portraitImage: "/design/interiors/designer-portrait.jpg",
     founded: "2018",
@@ -261,7 +261,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
     packagesHeading: "Three ways to commission.",
     packagesHeadingEm: "One living record.",
     packagesLede:
-      "Every package writes back into your HoWA home record, so decisions, materials, and moodboards stay with the house \u2014 not in an email thread.",
+      "Every package writes back into your HoWA home record, so decisions, materials, and moodboards stay with the house, not in an email thread.",
     packages: DEFAULT_DESIGN_PACKAGES,
 
     projectsHeading: "From the studio.",
@@ -282,7 +282,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
       { q: "Does everything save to HoWA?", a: "Every meaningful decision. Moodboards, sourcing lists, material packs, and project notes all write to your living record." },
     ],
     closingLine:
-      "Every space should feel intentional \u2014 shaped by thoughtful choices and natural materials.",
+      "Every space should feel intentional, shaped by thoughtful choices and natural materials.",
     closingLineEm: "shaped by thoughtful choices and natural materials.",
 
     specialties: ["Layered interiors", "Heritage restoration", "Sustainable sourcing", "Textile-forward schemes"],
@@ -294,7 +294,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
       { name: "The House Edit", price: "\u00a3295", description: "A 90-minute one-to-one online styling session. Personalised PDF moodboard with curated links. 10% House Store discount." },
       { name: "Additions to Your Edit", price: "from \u00a3195", description: "Shoppable moodboard, sourcing per room, material pack (swatches, samples, scents), 30-minute follow-up call." },
       { name: "The Full House Edit", price: "from \u00a3795", description: "Initial 90-minute consultation, moodboards for up to three rooms, sourcing for two rooms, a tactile material pack, 30-minute follow-up, 15% House Store discount." },
-      { name: "Room Edit", price: "from \u00a32,400", description: "A single-room refresh with full scheme, colour, fabric, light, and sourcing via House Approved." },
+      { name: "Room Edit", price: "from \u00a32,400", description: "A single-room refresh with full scheme, colour, fabric, light, and sourcing via HoWA Approved." },
       { name: "Full House Edit (Studio)", price: "from \u00a312,000", description: "A coherent language across every room. Full architectural scheme, room-by-room sourcing, site visits, install coordination, aftercare." },
       { name: "The Style Diagnostic", price: "Coming Soon", description: "A guided style journey that reveals your personal home moodboard. Free mini style summary, shoppable digital moodboard, AI & designer session upgrade." },
     ],
@@ -318,7 +318,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
     shortBio:
       "Planting schemes and landscapes rooted in the garden's existing character.",
     longBio: [
-      "Willow Alexander Gardens is the design practice the House originally grew out of. It runs full landscape commissions \u2014 from concept through build to planting \u2014 and the seasonal management that keeps the finished thing looking like it was always there.",
+      "Willow Alexander Gardens is the design practice the House originally grew out of. It runs full landscape commissions, from concept through build to planting, and the seasonal management that keeps the finished thing looking like it was always there.",
       "The studio also underwrites the Gardening service operationally: the same team that designs gardens is the team that quietly looks after them.",
     ],
     portraitImage: "/partners/portrait.webp",
@@ -340,7 +340,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
         inclusions: [
           "Garden walk + brief",
           "Seasonal planting plan",
-          "Sourcing list via House Approved",
+          "Sourcing list via HoWA Approved",
           "One revision round",
           "Delivered into HoWA as a live project",
         ],
@@ -372,7 +372,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
           "Seasonal review visit",
           "Container & pot planting",
           "Lighting scheme",
-          "House Approved procurement",
+          "HoWA Approved procurement",
           "Aftercare extension",
         ],
         ctaLabel: "Add in HoWA \u2192",
@@ -385,7 +385,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
 
     faq: GARDEN_FAQ,
     closingLine:
-      "A garden you want to live in \u2014 planted once, tended forever.",
+      "A garden you want to live in, planted once, tended forever.",
     closingLineEm: "planted once, tended forever.",
 
     specialties: ["Naturalistic planting", "Restoration of neglected gardens", "Seasonal plans"],
@@ -405,7 +405,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
     heroHeadline: "Intelligence that disappears into the architecture.",
     heroHeadlineEm: "disappears into the architecture.",
     heroSub:
-      "Automation, lighting schemes, audio, and heating controls \u2014 designed with our interior studios from the first brief. The brains behind the HoWA Assistant as well.",
+      "Automation, lighting schemes, audio, and heating controls, designed with our interior studios from the first brief. The brains behind Ask HoWA as well.",
     heroImage: "/home-v4/design-portrait.webp",
     heroCaption: "Integrated lighting scheme \u00b7 House AI",
 
@@ -414,7 +414,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
       "Automation, lighting, audio, and quiet technology that disappears into the architecture.",
     longBio: [
       "House AI is our specialist partner for anything electrical, automated, or intelligent inside a home. They build systems that are meant to be invisible: lighting that does the right thing without thinking about it, audio you don't see, heating that learns.",
-      "They work with our design studios from early concept so the technology doesn't feel bolted on. House AI also powers the back-end of the HoWA Assistant \u2014 the model behind the diagnostic.",
+      "They work with our design studios from early concept so the technology doesn't feel bolted on. House AI also powers the back-end of Ask HoWA, the model behind the diagnostic.",
     ],
     portraitImage: "/partners/portrait.webp",
     founded: "2021",
@@ -424,7 +424,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
     packagesHeading: "Three ways to engage.",
     packagesHeadingEm: "One home intelligence.",
     packagesLede:
-      "Every integration writes back into your HoWA record \u2014 wiring diagrams, settings, firmware, scenes. No black boxes.",
+      "Every integration writes back into your HoWA record, wiring diagrams, settings, firmware, scenes. No black boxes.",
     packages: [
       {
         tier: "I. Advisory",
@@ -447,7 +447,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
         priceFrom: "£18,000",
         priceUnit: "bespoke scope",
         bestFor:
-          "Lighting, audio, heating, security \u2014 planned and installed coherently.",
+          "Lighting, audio, heating, security, planned and installed coherently.",
         inclusions: [
           "Full technology scheme",
           "Lighting \u00b7 audio \u00b7 heating \u00b7 security",
@@ -469,7 +469,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
           "Firmware refresh",
           "Annual health check",
           "Smart-home audit",
-          "Assistant-linked alerts",
+          "Ask HoWA-linked alerts",
         ],
         ctaLabel: "Add in HoWA \u2192",
       },
@@ -481,10 +481,10 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
 
     faq: DEFAULT_FAQ,
     closingLine:
-      "Technology worth not thinking about \u2014 specified once, updated forever.",
+      "Technology worth not thinking about, specified once, updated forever.",
     closingLineEm: "specified once, updated forever.",
 
-    specialties: ["Lighting schemes", "Audio & AV", "Heating & controls", "Assistant models"],
+    specialties: ["Lighting schemes", "Audio & AV", "Heating & controls", "Ask HoWA models"],
     serviceAreas: ["UK-wide"],
     houseApprovedSeal: true,
     awaitingAssets: true,

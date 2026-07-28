@@ -17,57 +17,62 @@ export interface FooterColumn {
   links: Array<{ label: string; href: string }>;
 }
 
-// Footer architecture (v5 HoWA-separation review, 2026-06-18): the footer
-// quietly teaches the hierarchy — House -> Services/Protection/Marketplace ->
-// Bookings powered by HoWA -> Reading.
+// Footer architecture (REVISIONS v3 §12): the footer must carry Services, Home
+// Insurance, Pet Insurance, HoWA and Our House, and must NOT carry obsolete
+// plan links. v3 §9 removes maintenance plans, ongoing plans, House maintenance
+// memberships and Steward or Housekeeper service plans from this site, so
+// nothing may link to /steward-plans or the HoWA tier pages from here.
+// Forbidden language (§11): "Book through HoWA", "House Approved products",
+// "House Approved Insurance", "HoWA Store", "Marketplace".
 const COLS: FooterColumn[] = [
   {
-    heading: "The House",
+    heading: "Our House",
     links: [
+      { label: "About the House", href: "/the-house/about" },
       { label: "Philosophy", href: "/the-house/philosophy" },
+      // v4 §6 — customer-facing provider transparency.
+      { label: "How we choose our people", href: "/the-house/how-we-choose" },
       { label: "Standards", href: "/the-house/standards" },
       { label: "Sustainability", href: "/the-house/sustainability" },
-      { label: "About", href: "/the-house/about" },
       { label: "Contact", href: "/contact" },
     ],
   },
   {
     heading: "Services",
     links: [
-      { label: "Gardening", href: "/services/gardening" },
-      { label: "Cleaning", href: "/services/cleaning" },
-      { label: "Window Cleaning", href: "/services/window-cleaning" },
-      { label: "Gutter Cleaning", href: "/services/gutter-cleaning" },
+      { label: "Find a service", href: "/services" },
+      { label: "Garden care", href: "/services/gardening" },
+      { label: "Cleaning & housekeeping", href: "/services/cleaning" },
+      { label: "Window cleaning", href: "/services/window-cleaning" },
+      { label: "Gutter cleaning", href: "/services/gutter-cleaning" },
+      { label: "Handyman & repairs", href: "/services/handyman" },
       { label: "Design", href: "/design" },
-      { label: "Housekeeping", href: "/services/housekeeping" },
     ],
   },
   {
-    heading: "Protection",
+    heading: "Insurance",
     links: [
-      { label: "Protect Review", href: "/protect/home-protection" },
-      { label: "Evidence Pack", href: "/protect" },
-      { label: "Insurance Readiness", href: "/protect/insurance" },
-      { label: "Register Interest", href: "/protect/insurance" },
+      { label: "Insurance introductions", href: "/insurance" },
+      { label: "Home Insurance", href: "/insurance/home" },
+      { label: "Pet Insurance", href: "/insurance/pet" },
+      { label: "Home Protection Review", href: "/insurance/home-protection" },
     ],
   },
   {
-    heading: "Marketplace",
+    heading: "Shop",
     links: [
       { label: "Shop All", href: "/shop" },
       { label: "Collections", href: "/shop/collections" },
-      { label: "House Approved", href: "/shop/collections/house-approved" },
+      { label: "The House Selection", href: "/shop/collections/house-approved" },
       { label: "Gift Cards", href: "/gift-cards" },
     ],
   },
   {
-    heading: "Bookings & Account",
+    heading: "Powered by HoWA",
     links: [
-      { label: "Book online through HoWA", href: "#open-booking-form" },
-      { label: "Sign in to HoWA", href: "https://accounts.willowalexander.co.uk/" },
-      { label: "Home Record", href: "/howa" },
-      { label: "Housekeeper", href: "/howa/housekeeper" },
-      { label: "Steward", href: "/howa/steward" },
+      { label: "How it works", href: "/howa" },
+      { label: "Open My Home in HoWA", href: "https://accounts.willowalexander.co.uk/" },
+      { label: "Discover the wider HoWA", href: "https://howa.co.uk" },
     ],
   },
   {
@@ -120,9 +125,10 @@ export function Footer({ columns, tagline }: FooterProps) {
         </div>
 
         <p className="pt-8 font-sans text-[15px] leading-[1.6] text-house-cream/55 max-w-[760px]">
-          House services are delivered by House of Willow Alexander and HoWA
-          Approved trades up and down the country. Bookings and Home Records are
-          powered by HoWA.
+          House services are delivered by House of Willow Alexander's own teams
+          across London and the South East, with a named HoWA Approved
+          professional only where one genuinely does the work. Bookings and Home
+          Records are powered by HoWA.
         </p>
 
         <div className="pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">

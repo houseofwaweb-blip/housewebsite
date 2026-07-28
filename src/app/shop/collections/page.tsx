@@ -6,7 +6,7 @@ import s from "./collections-index.module.css";
 export const metadata = {
   title: "Collections | Shop",
   description:
-    "Every curated edit in the House Shop. House Approved, garden, home, and the categories that follow.",
+    "Every curated edit in the House Shop. The House Selection, garden, home, and the categories that follow.",
 };
 
 type CollectionListItem = {
@@ -73,7 +73,7 @@ export default async function CollectionsIndexPage() {
         </h1>
         <p className={s.heroLede}>
           Every category in the House Shop, gathered as edits. Start with what
-          we wear the House Approved seal beside.
+          we mark as Chosen by the House.
         </p>
         <p className={s.heroCount}>
           {collections.length} collections · {totalPieces} pieces

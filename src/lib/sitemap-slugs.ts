@@ -122,14 +122,17 @@ export async function getCmsSitemapEntries(base: string): Promise<SitemapEntry[]
   // servicePackage docs are intentionally not surfaced as standalone URLs —
   // they render as anchors on /howa/plans, not their own pages. Add them
   // here only if we ever publish per-package landing pages.
-  const [articles, musings, newsItems, recipes, partners, stewardPlans, shopify, sanityProducts] =
+  // REVISIONS v3 §9 — stewardPlan documents are no longer fetched here.
+  // /steward-plans/* is removed from the House site and 301s to /services, and
+  // removed plan pages must not be left indexed. The Sanity documents remain
+  // untouched; they simply no longer produce sitemap URLs. Partner slugs are
+  // omitted for the same reason: /partners/* 301s to /services or /design.
+  const [articles, musings, newsItems, recipes, shopify, sanityProducts] =
     await Promise.all([
       fetchSanitySlugs("article"),
       fetchSanitySlugs("musing"),
       fetchSanitySlugs("newsItem"),
       fetchSanitySlugs("recipe"),
-      fetchSanitySlugs("partner"),
-      fetchSanitySlugs("stewardPlan"),
       fetchShopifyHandles(),
       fetchSanityProductHandles(),
     ]);
@@ -152,8 +155,6 @@ export async function getCmsSitemapEntries(base: string): Promise<SitemapEntry[]
     ...musings.map((m) => toEntry("/musings", m.slug, m._updatedAt, "monthly", 0.5)),
     ...newsItems.map((n) => toEntry("/news", n.slug, n._updatedAt, "monthly", 0.5)),
     ...recipes.map((r) => toEntry("/recipes", r.slug, r._updatedAt, "monthly", 0.5)),
-    ...partners.map((p) => toEntry("/partners", p.slug, p._updatedAt, "monthly", 0.7)),
-    ...stewardPlans.map((s) => toEntry("/steward-plans", s.slug, s._updatedAt, "monthly", 0.5)),
     ...shopify.products.map((p) =>
       toEntry("/shop", p.handle, p.updatedAt, "weekly", 0.7),
     ),

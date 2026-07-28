@@ -39,16 +39,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/the-house/proof`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/the-house/sustainability`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/the-house/about`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    // v4 §6 — customer standards page. Replaces any "House Approved Partners"
+    // page; professional recruitment lives on the HoWA site.
+    { url: `${base}/the-house/how-we-choose`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/the-house/artwork`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
 
-    // ---- HoWA ----
+    // ---- HoWA (REVISIONS v3 §6) ----
+    // Only the House-context page belongs to this site. Every /howa/* product
+    // page (plans, tiers, Assistant, Steward, FAQ) 301s to howa.co.uk, so
+    // listing them here would advertise redirects.
     { url: `${base}/howa`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${base}/howa/assistant`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${base}/howa/how-it-works`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${base}/howa/plans`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${base}/howa/housekeeper`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
-    { url: `${base}/howa/steward`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
-    { url: `${base}/howa/faq`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
 
     // ---- Design ----
     { url: `${base}/design`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
@@ -56,20 +56,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/design/gardens`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/design/studios`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
 
-    // ---- Services (4 launch) ----
+    // ---- Services (v3 §5: the whole-home catalogue, not four) ----
     { url: `${base}/services`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/services/gardening`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
     { url: `${base}/services/window-cleaning`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
     { url: `${base}/services/cleaning`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
     { url: `${base}/services/gutter-cleaning`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${base}/services/handyman`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
 
-    // ---- Steward Plans (managed recurring care) ----
-    { url: `${base}/steward-plans`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
+    // v3 §9 — /steward-plans is removed and 301s to /services. It must not be
+    // indexed, linked from the footer, or left on old service cards.
 
-    // ---- Protect ----
-    { url: `${base}/protect`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${base}/protect/home-protection`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${base}/protect/insurance`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    // ---- Insurance (v3 §8: hub + two dedicated journeys) ----
+    { url: `${base}/insurance`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}/insurance/home`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}/insurance/pet`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}/insurance/home-protection`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
 
     // ---- Shop ----
     { url: `${base}/shop`, lastModified: now, changeFrequency: "daily", priority: 0.8 },

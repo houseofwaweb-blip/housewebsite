@@ -1,15 +1,10 @@
 import type { MegaPanel } from "@/components/nav/MegaMenu";
 import shopNavData from "@/lib/shop-data/shop-nav.generated.json";
-import {
-  GARDENING_SUBS,
-  WINDOW_CLEANING_SUBS,
-  CLEANING_SUBS,
-} from "@/lib/services-data/sub-services";
 
 /**
  * Shop categories + sub-categories, generated from Shopify collections & tags
  * (src/lib/shop-data/shop-nav.generated.json). Regenerate when categories
- * change. Drives the two-level Marketplace mega-menu.
+ * change. Drives the two-level Shop mega-menu.
  */
 const SHOP_CATEGORIES = (
   shopNavData as Array<{ title: string; handle: string; subs: Array<{ title: string; handle: string }> }>
@@ -20,139 +15,144 @@ const SHOP_CATEGORIES = (
 }));
 
 /**
- * Services + their sub-services for the two-level Services mega-menu.
- * Sub-links are built from the REAL sub-services (services-data/sub-services)
- * so the menu always matches the actual /services/[slug]/[sub] pages.
- *   - Gardening / Window cleaning / Cleaning carry their sub-services.
- *   - Gutter cleaning's sub-service array is currently mis-populated with
- *     handyman items (pre-existing data bug), so it links through until fixed.
- *   - Deferred services link through too (empty subs → "Browse all").
+ * REVISIONS v3 §5 — the Services menu is a WHOLE-HOME mega-menu grouped
+ * Garden · Home · Exterior · Help me choose. The earlier four-service
+ * limitation (v2 §04) is explicitly reversed: it was meant to stop dead
+ * "coming soon" cards, but it must not stop the House presenting a credible
+ * whole-home offer fulfilled through House teams AND disclosed HoWA Approved
+ * professionals. Every link below resolves to a real page.
  */
-const toNavSubs = (
-  parent: string,
-  arr: ReadonlyArray<{ slug: string; name: string }>,
-): { label: string; href: string }[] =>
-  arr.map((s) => ({ label: s.name, href: `/services/${parent}/${s.slug}` }));
-
 const SERVICE_CATEGORIES: {
   title: string;
   href: string;
   subs: { label: string; href: string }[];
 }[] = [
-  { title: "Gardening", href: "/services/gardening", subs: toNavSubs("gardening", GARDENING_SUBS) },
-  { title: "Window cleaning", href: "/services/window-cleaning", subs: toNavSubs("window-cleaning", WINDOW_CLEANING_SUBS) },
-  { title: "Cleaning", href: "/services/cleaning", subs: toNavSubs("cleaning", CLEANING_SUBS) },
-  { title: "Gutter cleaning", href: "/services/gutter-cleaning", subs: [] },
-  { title: "Handyman", href: "/services/handyman", subs: [] },
-  { title: "Removals", href: "/services/removals", subs: [] },
-  { title: "Energy & Electrical", href: "/services/energy", subs: [] },
-  { title: "Pet Care", href: "/services/pet-care", subs: [] },
+  {
+    title: "Garden",
+    href: "/services/gardening",
+    subs: [
+      { label: "Garden care", href: "/services/gardening" },
+      { label: "Garden clearance", href: "/services/gardening/garden-clearance" },
+      { label: "Hedges & seasonal cutting", href: "/services/gardening/hedge-and-boundary-maintenance" },
+      { label: "Planting & garden improvements", href: "/services/gardening/planting" },
+      { label: "Trees & specialist garden work", href: "/services/gardening/tree-work" },
+      { label: "Lawn care", href: "/services/gardening/lawn-care" },
+      { label: "Turf laying", href: "/services/gardening/turf-laying" },
+    ],
+  },
+  {
+    title: "Home",
+    href: "/services/cleaning",
+    subs: [
+      { label: "Cleaning & housekeeping", href: "/services/cleaning" },
+      { label: "Regular cleaning", href: "/services/cleaning/regular-cleaning" },
+      { label: "End-of-tenancy cleaning", href: "/services/cleaning/end-of-tenancy-cleaning" },
+      { label: "Handyman & repairs", href: "/services/handyman" },
+      { label: "Home maintenance", href: "/services/handyman/general-repairs" },
+      { label: "Painting & decorating", href: "/services/handyman/painting-and-decorating" },
+      { label: "Other home services", href: "/services" },
+    ],
+  },
+  {
+    title: "Exterior",
+    href: "/services/window-cleaning",
+    subs: [
+      { label: "Window cleaning", href: "/services/window-cleaning" },
+      { label: "Gutter cleaning", href: "/services/gutter-cleaning" },
+      { label: "Pressure & exterior cleaning", href: "/services/window-cleaning/jet-washing" },
+      { label: "Softwashing", href: "/services/window-cleaning/softwashing" },
+    ],
+  },
+  {
+    // §5 "Help me choose" — for customers who do not know the service name.
+    // §11 do-not-use: never "Gardener app" / "Handyman app"; they are named
+    // journeys inside HoWA, described by what they do for the customer.
+    title: "Help me choose",
+    href: "/services#help-me-choose",
+    subs: [
+      { label: "Describe a problem", href: "/services#help-me-choose" },
+      { label: "Use the Handyman to diagnose an issue", href: "/services/handyman" },
+      { label: "Use the Gardener to scan the garden", href: "/services/gardening" },
+      { label: "Everything the House can arrange", href: "/services#everything" },
+      { label: "View all services", href: "/services" },
+    ],
+  },
 ];
 
-/** Bottom row of the Services mega-menu — the managed-care / utility links. */
+/**
+ * Bottom row of the Services mega-menu.
+ *
+ * REVISIONS v3 §5 — CTA language is the customer's action ("Find a service"),
+ * never "Book through HoWA". HoWA is the system handling the booking, not the
+ * thing being bought.
+ */
 const SERVICE_FOOTER = [
-  { label: "Steward Plans", href: "/steward-plans" },
-  { label: "House Credit", href: "/house-credit" },
-  { label: "Book a House Service", href: "#open-booking-form" },
+  { label: "Find a service", href: "/services" },
+  { label: "See prices & availability", href: "#open-booking-form" },
 ];
 
 /**
  * Primary navigation configuration.
  *
- * Order: The House · Services · Protect · Design · Marketplace · The Hearth · HoWA Platform
+ * Order (REVISIONS v3 §3):
+ *   Services · Design · Insurance · Shop · The Hearth · HoWA · Our House
  *
- * Per the v5 HoWA-separation review (2026-06-18): the House sells first.
- * HoWA sits last and is labelled "HoWA Platform" so it reads as a separate
- * product (the online booking + Home Record layer), not a House vertical.
+ * Seven items. v3 §3 explicitly RESTORES HoWA as a visible navigation
+ * destination — v2's demotion to a footer link went too far. The HoWA item
+ * leads to the House-context page "The House uses HoWA" (/howa), never
+ * straight into a pricing comparison or the full HoWA product catalogue.
  */
 export const PRIMARY_NAV: MegaPanel[] = [
-  {
-    id: "the-house",
-    trigger: "The House",
-    // The standalone overview hub was retired; the dropdown's "See all" link and
-    // the bare /the-house route both lead to About (the section's overview).
-    triggerHref: "/the-house/about",
-    groups: [
-      {
-        heading: "What we stand for",
-        links: [
-          { label: "Philosophy", href: "/the-house/philosophy", description: "Our founding idea" },
-          { label: "The Artwork of the House", href: "/the-house/artwork", description: "Heritage, craft, colour" },
-          { label: "Standards", href: "/the-house/standards", description: "How we work" },
-          { label: "Sustainability", href: "/the-house/sustainability", description: "Our commitments" },
-        ],
-      },
-      {
-        heading: "From the House",
-        links: [
-          { label: "News", href: "/news", description: "Press, awards & announcements" },
-          { label: "Musings", href: "/musings", description: "Notes & practical advice" },
-          { label: "About", href: "/the-house/about", description: "The team behind the House" },
-        ],
-      },
-    ],
-    preview: {
-      image: "/home/hero-georgian.webp",
-      alt: "A Georgian terrace in Notting Hill",
-      tag: "The Philosophy",
-      heading: "Ownership is passive. Stewardship is intentional.",
-      href: "/the-house/philosophy",
-    },
-  },
-
   {
     id: "services",
     trigger: "Services",
     triggerHref: "/services",
+    // Mobile drawer renders every group, so these mirror the desktop
+    // mega-menu groups (v3 §3: the mobile menu must expose the same
+    // destinations).
     groups: [
       {
-        heading: "Home care",
+        heading: "Garden",
         links: [
-          { label: "Gardening", href: "/services/gardening", description: "Seasonal & one-off" },
+          { label: "Garden care", href: "/services/gardening" },
+          { label: "Garden clearance", href: "/services/gardening/garden-clearance" },
+          { label: "Hedges & seasonal cutting", href: "/services/gardening/hedge-and-boundary-maintenance" },
+          { label: "Planting & garden improvements", href: "/services/gardening/planting" },
+          { label: "Trees & specialist garden work", href: "/services/gardening/tree-work" },
+        ],
+      },
+      {
+        heading: "Home",
+        links: [
+          { label: "Cleaning & housekeeping", href: "/services/cleaning" },
+          { label: "Handyman & repairs", href: "/services/handyman" },
+          { label: "Home maintenance", href: "/services/handyman/general-repairs" },
+          { label: "Other home services", href: "/services" },
+        ],
+      },
+      {
+        heading: "Exterior",
+        links: [
           { label: "Window cleaning", href: "/services/window-cleaning" },
-          { label: "Cleaning", href: "/services/cleaning" },
           { label: "Gutter cleaning", href: "/services/gutter-cleaning" },
-          { label: "Handyman", href: "/services/handyman" },
-          { label: "Removals", href: "/services/removals" },
+          { label: "Pressure & exterior cleaning", href: "/services/window-cleaning/jet-washing" },
         ],
       },
       {
-        heading: "Specialist",
+        heading: "Help me choose",
         links: [
-          { label: "Energy & Electrical", href: "/services/energy", description: "Solar, EV, rewires" },
-          { label: "Pet Care", href: "/services/pet-care", description: "Walking & sitting" },
-        ],
-      },
-      {
-        heading: "Managed care",
-        links: [
-          { label: "Steward Plans", href: "/steward-plans", description: "Recurring, intentional" },
-          { label: "House Credit", href: "/house-credit", description: "Interest-free finance" },
-          { label: "Book a House Service", href: "#open-booking-form" },
+          { label: "Describe a problem", href: "/services#help-me-choose" },
+          { label: "Everything the House can arrange", href: "/services#everything" },
+          { label: "Find a service", href: "/services", description: "See prices & availability" },
         ],
       },
     ],
     // Desktop: two-level menu — hover a service, its sub-services appear beside
-    // it (same pattern as Marketplace). Mobile drawer still uses `groups`.
+    // it (same pattern as Shop). Mobile drawer still uses `groups`.
     twoLevel: {
       categories: SERVICE_CATEGORIES,
       footer: SERVICE_FOOTER,
     },
-  },
-
-  {
-    id: "protect",
-    trigger: "Protect",
-    triggerHref: "/protect",
-    groups: [
-      {
-        heading: "Protection",
-        links: [
-          { label: "Home Protection", href: "/protect/home-protection", description: "Register interest" },
-          { label: "House Approved Insurance", href: "/protect/insurance", description: "Register interest" },
-        ],
-      },
-    ],
   },
 
   {
@@ -168,12 +168,15 @@ export const PRIMARY_NAV: MegaPanel[] = [
         ],
       },
       {
-        heading: "Our studios",
+        // DIRECTIVE §09/§10 — Design begins with HoWA First Design (£400), the
+        // mapped first output; a named human studio continues the work. No
+        // "House studio collective" and no "House Approved" designer directory
+        // (that language is reserved for professionals, not used here).
+        heading: "How design begins",
         links: [
-          { label: "How design begins", href: "/design/studios", description: "The House's design routes" },
-          { label: "Partner directory", href: "/partners", description: "House Approved designers & makers" },
-          { label: "Delve Interiors", href: "/partners/delve-interiors" },
-          { label: "Willow Alexander Gardens", href: "/partners/willow-alexander-gardens" },
+          { label: "HoWA First Design", href: "/design", description: "The mapped first design" },
+          { label: "Delve Interiors", href: "/design/interiors", description: "Human interior continuation" },
+          { label: "Willow Alexander Gardens", href: "/design/gardens", description: "Human garden continuation" },
         ],
       },
     ],
@@ -187,8 +190,34 @@ export const PRIMARY_NAV: MegaPanel[] = [
   },
 
   {
+    id: "insurance",
+    trigger: "Insurance",
+    triggerHref: "/insurance",
+    groups: [
+      {
+        // REVISIONS v3 §8 — Home and Pet are SEPARATE journeys with their own
+        // pages. Never one generic insurance card. No "House Approved
+        // Insurance" language anywhere.
+        heading: "Insurance",
+        links: [
+          { label: "Home Insurance", href: "/insurance/home", description: "Request an introduction" },
+          { label: "Pet Insurance", href: "/insurance/pet", description: "Request an introduction" },
+        ],
+      },
+      {
+        // §8 — a Home Protection Review is an operational House service, kept
+        // clearly apart from the regulated insurance products.
+        heading: "Home protection",
+        links: [
+          { label: "Home Protection Review", href: "/insurance/home-protection", description: "Book an assessment" },
+        ],
+      },
+    ],
+  },
+
+  {
     id: "shop",
-    trigger: "Marketplace",
+    trigger: "Shop",
     triggerHref: "/shop",
     // Mobile drawer reads groups[0]; desktop uses the two-level menu.
     groups: [
@@ -200,7 +229,10 @@ export const PRIMARY_NAV: MegaPanel[] = [
     twoLevel: {
       categories: SHOP_CATEGORIES,
       footer: [
-        { label: "House Approved", href: "/shop/collections/house-approved" },
+        // DIRECTIVE §12 — visible label is "The House Selection" / "Chosen by
+        // the House"; the underlying curated collection keeps its live handle so
+        // the real Shopify data still resolves. Only the label is renamed.
+        { label: "The House Selection", href: "/shop/collections/house-approved" },
         { label: "All products", href: "/shop" },
         { label: "All collections", href: "/shop/collections" },
         { label: "Gift Cards", href: "/gift-cards" },
@@ -212,47 +244,96 @@ export const PRIMARY_NAV: MegaPanel[] = [
     id: "the-hearth",
     trigger: "The Hearth",
     triggerHref: "/the-hearth",
+    // DIRECTIVE §04 site tree — The Hearth second level exposes the categories.
     groups: [
       {
-        heading: "The Hearth Magazine",
+        heading: "The Hearth",
         links: [
-          { label: "Read the magazine", href: "/the-hearth", description: "Editorial writing on homes & gardens" },
+          { label: "The Latest", href: "/the-hearth", description: "Editorial writing on homes & gardens" },
           { label: "Recipes", href: "/recipes", description: "Seasonal cooking" },
+        ],
+      },
+      {
+        heading: "Categories",
+        links: [
+          { label: "Interiors & Styling", href: "/the-hearth/category/interiors-and-styling" },
+          { label: "Gardens & Exteriors", href: "/the-hearth/category/gardens-and-exteriors" },
+          { label: "Design & Architecture", href: "/the-hearth/category/design-and-architecture" },
+          { label: "Colour & Materials", href: "/the-hearth/category/colour-and-materials" },
+          { label: "Heritage & Culture", href: "/the-hearth/category/heritage-and-culture" },
         ],
       },
     ],
   },
 
   {
+    /**
+     * REVISIONS v3 §3 + 23rd amendments (Powered by HoWA handoff §14) — the
+     * relationship pillar. Labelled "Powered by HoWA", never a bare "HoWA"
+     * tab, and never shown as an equal masterbrand. It leads to the service-led
+     * /howa page (scan, design, quote, book). The full HoWA product,
+     * memberships, Score and persona system stay on howa.co.uk.
+     */
     id: "howa",
-    trigger: "Meet HoWA",
+    trigger: "Powered by HoWA",
     triggerHref: "/howa",
     groups: [
       {
-        heading: "Bookings & Home Record",
+        heading: "Start with what you need",
         links: [
-          { label: "Overview", href: "/howa", description: "The Home Intelligence OS" },
-          { label: "Book online through HoWA", href: "#open-booking-form", description: "Online House bookings" },
-          { label: "HoWA (Assistant)", href: "/howa/assistant", description: "Free: start with an address" },
-          { label: "How it works", href: "/howa/how-it-works", description: "Four quiet jobs" },
+          { label: "Garden Scan", href: "/howa#choose", description: "Scan your garden" },
+          { label: "Repair Scan", href: "/howa#choose", description: "Show us a repair" },
+          { label: "AI Design", href: "/design/sample", description: "Scan the space" },
+          { label: "Book a service", href: "#open-booking-form" },
         ],
       },
       {
-        heading: "Tiers",
+        heading: "The relationship",
         links: [
-          { label: "Housekeeper by HoWA", href: "/howa/housekeeper", description: "The membership: £16.99/mo" },
-          { label: "Steward", href: "/howa/steward", description: "The top tier: £29.99/mo" },
-          { label: "Plans & Pricing", href: "/howa/plans", description: "Compare tiers" },
-          { label: "FAQ", href: "/howa/faq" },
+          { label: "How it works", href: "/howa", description: "The House invites, HoWA understands" },
+          { label: "Open My Home in HoWA", href: "https://accounts.willowalexander.co.uk/" },
+          { label: "Discover the wider HoWA", href: "https://howa.co.uk", description: "The full Home Intelligence" },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: "the-house",
+    // §3 — the pillar is "Our House".
+    trigger: "Our House",
+    // The standalone overview hub was retired; the dropdown's "See all" link and
+    // the bare /the-house route both lead to About (the section's overview).
+    triggerHref: "/the-house/about",
+    groups: [
+      {
+        heading: "What we stand for",
+        links: [
+          { label: "Philosophy", href: "/the-house/philosophy", description: "Our founding idea" },
+          // v4 §6 — the customer-facing provider-transparency page. There is no
+          // "House Approved Partners" page: professional accreditation belongs
+          // to HoWA Approved, and recruitment lives on the HoWA site.
+          { label: "How we choose", href: "/the-house/how-we-choose", description: "Who cares for your home" },
+          { label: "The Artwork of the House", href: "/the-house/artwork", description: "Heritage, craft, colour" },
+          { label: "Standards", href: "/the-house/standards", description: "How we work" },
+          { label: "Sustainability", href: "/the-house/sustainability", description: "Our commitments" },
+        ],
+      },
+      {
+        heading: "From the House",
+        links: [
+          { label: "About", href: "/the-house/about", description: "The team behind the House" },
+          { label: "News", href: "/news", description: "Press, awards & announcements" },
+          { label: "Contact", href: "/contact", description: "Talk to the House" },
         ],
       },
     ],
     preview: {
       image: "/home/hero-georgian.webp",
-      alt: "HoWA product interface",
-      tag: "The platform",
-      heading: "Online booking and the Home Record, powered by HoWA.",
-      href: "/howa",
+      alt: "A Georgian terrace in Notting Hill",
+      tag: "The Philosophy",
+      heading: "Ownership is passive. Stewardship is intentional.",
+      href: "/the-house/philosophy",
     },
   },
 ];

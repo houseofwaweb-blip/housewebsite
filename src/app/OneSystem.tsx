@@ -11,7 +11,7 @@ const PHONES: { tier: Tier; src: string; alt: string }[] = [
   {
     tier: "assistant",
     src: "/home-v4/phone-assistant-full.webp",
-    alt: "HoWA Assistant phone screen",
+    alt: "Free tier phone screen",
   },
   {
     tier: "housekeeper",

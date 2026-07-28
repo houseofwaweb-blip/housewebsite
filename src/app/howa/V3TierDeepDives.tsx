@@ -25,8 +25,8 @@ type Tier = {
 const ASSISTANT: Tier = {
   id: "tier-assistant",
   numeral: "01",
-  name: "Assistant",
-  price: "Free",
+  name: "Free",
+  price: "£0",
   title: "Awareness for every day.",
   body: "See your home clearly, so you can act with confidence.",
   points: [
@@ -36,7 +36,7 @@ const ASSISTANT: Tier = {
   ],
   image: "/home-v4/v6-tier-assistant-v2.webp",
   accent: "var(--color-howa-green)",
-  card: { title: "Home Health", items: ["91% Optimal", "3 items due soon", "2 risks monitored"] },
+  card: { title: "HoWA Score", items: ["91% Optimal", "3 items due soon", "2 risks monitored"] },
 };
 
 const HOUSEKEEPER: Tier = {
@@ -46,7 +46,7 @@ const HOUSEKEEPER: Tier = {
   price: "£16.99/mo",
   title: "Practical care, beautifully run.",
   body: "Keep your home running smoothly with the right people, parts and plans.",
-  plus: "Everything in Assistant, plus",
+  plus: "Everything in Free, plus",
   points: [
     "Full logbook: rooms, assets, warranties, service history",
     "Maintenance calendar and seasonal garden plan",
@@ -100,7 +100,7 @@ function TierCard({ t }: { t: Tier }) {
       className="scroll-mt-24 flex flex-col overflow-hidden rounded-md border border-[color:var(--color-gold)]/20 bg-white shadow-[0_16px_40px_-28px_rgba(40,30,10,0.32)] transition-transform duration-[420ms] ease-[cubic-bezier(0.65,0,0.35,1)] hover:scale-[1.01]"
     >
       <div className="relative aspect-[16/10] w-full">
-        <Image src={t.image} alt={`HoWA ${t.name}, the dollhouse.`} fill sizes="(max-width:1024px) 92vw, 46vw" className="object-cover" />
+        <Image src={t.image} alt={`${t.name}, the dollhouse.`} fill sizes="(max-width:1024px) 92vw, 46vw" className="object-cover" />
         <div className="absolute left-4 top-1/2 hidden w-[158px] -translate-y-1/2 rounded-md border border-[color:var(--color-gold)]/35 bg-[#faf7f0] px-4 py-3.5 shadow-[0_16px_38px_-16px_rgba(20,15,5,0.5)] sm:block">
           <p className="smallcaps mb-2.5 text-[12px] tracking-[0.16em] text-[color:var(--color-gold-deep)]">{t.card.title}</p>
           <ul className="space-y-2">
@@ -171,7 +171,7 @@ function TierWide({ t }: { t: Tier }) {
         </div>
         <div className="relative lg:order-2 lg:col-span-7">
           <div className="relative aspect-[4/3] w-full">
-            <Image src={t.image} alt={`HoWA ${t.name}, the dollhouse.`} fill sizes="(max-width:1024px) 92vw, 55vw" className="rounded-md object-cover" />
+            <Image src={t.image} alt={`${t.name}, the dollhouse.`} fill sizes="(max-width:1024px) 92vw, 55vw" className="rounded-md object-cover" />
             <div className="absolute left-4 top-1/2 hidden w-[166px] -translate-y-1/2 rounded-md border border-[color:var(--color-gold)]/35 bg-[#faf7f0] px-4 py-4 shadow-[0_16px_38px_-16px_rgba(20,15,5,0.5)] sm:block lg:left-6">
               <p className="smallcaps mb-2.5 text-[12px] tracking-[0.16em] text-[color:var(--color-gold-deep)]">{t.card.title}</p>
               <ul className="space-y-2">

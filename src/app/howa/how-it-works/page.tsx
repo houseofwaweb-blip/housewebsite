@@ -228,7 +228,7 @@ export default async function HowItWorksPage() {
 
       {/* 8. Closing */}
       <section className={s.closing}>
-        <p className={s.closingKicker}>{cms(closing, "eyebrow", "Begin with the Assistant.")}</p>
+        <p className={s.closingKicker}>{cms(closing, "eyebrow", "Begin with Ask HoWA.")}</p>
         <p className={s.closingStatement}>
           <em>{cms(closing, "headlineEm", "Two minutes. The first piece of the record.", "headline")}</em>
         </p>

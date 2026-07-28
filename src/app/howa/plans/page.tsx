@@ -23,7 +23,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 export const metadata = {
   title: "Plans & Pricing: Housekeeper and Steward",
   description:
-    "Assistant free, Housekeeper at £16.99 a month, Steward at £29.99 a month. One record, three depths of care.",
+    "Free to start, Housekeeper at £16.99 a month, Steward at £29.99 a month. One record, three depths of care.",
 };
 
 const STAT_COLS = [
@@ -68,7 +68,7 @@ const STEWARD_INCLUSIONS = [
 const FAQS = [
   {
     q: "When does Housekeeper go live?",
-    a: "Housekeeper opens with the new site. HoWA itself (bookings, records, the Assistant) is the surface that unlocks the paid features. If HoWA isn't live at the moment you try to start, the “Start HoWA” button routes to a waitlist until we're ready.",
+    a: "Housekeeper opens with the new site. HoWA itself (bookings, records, Ask HoWA) is the surface that unlocks the paid features. If HoWA isn't live at the moment you try to start, the “Start HoWA” button routes to a waitlist until we're ready.",
   },
   {
     q: "What about Steward plans?",
@@ -138,7 +138,7 @@ export default async function PlansPage() {
               {cms(
                 hero,
                 "body",
-                "One platform. Three entitlement levels. Upgrading always preserves the same home record. Assistant is the free way in. Housekeeper is the connected continuity and savings layer. Steward is the premium managed-care layer.",
+                "One platform. Three entitlement levels. Upgrading always preserves the same home record. The free tier is the way in. Housekeeper is the connected continuity and savings layer. Steward is the premium managed-care layer.",
               )}
             </p>
             <div className={s.heroCtas}>
@@ -161,7 +161,7 @@ export default async function PlansPage() {
             alt={cms(
               hero,
               "imageAlt",
-              "Three phones in the Assistant, Housekeeper and Steward colourways, with the cutaway dollhouse softly behind.",
+              "Three phones in the Free, Housekeeper and Steward colourways, with the cutaway dollhouse softly behind.",
             )}
             fill
             sizes="(min-width: 1024px) 55vw, 100vw"
@@ -212,7 +212,7 @@ export default async function PlansPage() {
               <div className={s.tierBadge} data-state="live">
                 {cms(tierAssistant, "eyebrow", "Free · the way in")}
               </div>
-              <h3 className={s.tierName}>{cms(tierAssistant, "headline", "Assistant")}</h3>
+              <h3 className={s.tierName}>{cms(tierAssistant, "headline", "Free")}</h3>
               <p className={s.tierTagline}>
                 {cms(
                   tierAssistant,
@@ -285,7 +285,7 @@ export default async function PlansPage() {
                   {cms(tierPlus, "ctaLabel", "Join the waitlist")}
                 </Link>
                 <Link href={cms(tierPlus, "cta2Href", "/howa/assistant")} className={s.tierLink}>
-                  {cms(tierPlus, "cta2Label", "See the Assistant")} →
+                  {cms(tierPlus, "cta2Label", "See the free tier")} →
                 </Link>
               </div>
             </div>
@@ -357,7 +357,7 @@ export default async function PlansPage() {
         <div className="mx-auto mb-10 max-w-[860px] lg:mb-12">
           <Image
             src="/home-v4/v6-one-record-feature.webp"
-            alt="Three phones in the Assistant, Housekeeper and Steward colourways, showing one continuous home record across the tiers."
+            alt="Three phones in the Free, Housekeeper and Steward colourways, showing one continuous home record across the tiers."
             width={1448}
             height={1086}
             sizes="(min-width: 1024px) 860px, 100vw"
