@@ -39,8 +39,12 @@ export async function POST(req: NextRequest) {
     // Non-JSON payloads for some topics — fine.
   }
 
-  const tags: string[] = [`shopify:${topic}`];
-  if (body.handle) tags.push(`product:${body.handle}`);
+  // Any product/collection/inventory change also affects the full catalogue
+  // listing and the sitemap, so invalidate those tags too — otherwise, with the
+  // long (1-week) safety-net revalidate on those fetches, the shop grid and
+  // sitemap would lag real changes. Product + its variants are keyed by handle.
+  const tags: string[] = [`shopify:${topic}`, "shopify:catalogue", "sitemap:shopify"];
+  if (body.handle) tags.push(`product:${body.handle}`, `variants:${body.handle}`);
 
   for (const tag of tags) revalidateTag(tag, "max");
   return NextResponse.json({ ok: true, revalidated: tags });

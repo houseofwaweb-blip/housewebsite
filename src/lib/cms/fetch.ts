@@ -18,6 +18,6 @@ export async function sanityFetch<T>({
   const client = preview ? sanityPreviewClient : sanityClient;
   return client.fetch<T>(query, params, {
     cache: preview ? "no-store" : "force-cache",
-    next: { tags, revalidate: preview ? 0 : 3600 },
+    next: { tags, revalidate: preview ? 0 : 604800 },
   });
 }

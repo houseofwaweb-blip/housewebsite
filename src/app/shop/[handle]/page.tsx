@@ -316,7 +316,7 @@ export default async function ProductPage({
 
 // Pages not listed here (the 500+ Sanity/catalogue products) render on first
 // request and are then cached. dynamicParams defaults to true.
-export const revalidate = 3600;
+export const revalidate = 604800;
 
 // Prebuild only the curated showpieces at build time. Prebuilding all 500+
 // products exhausted build memory; the rest are served on-demand via ISR.

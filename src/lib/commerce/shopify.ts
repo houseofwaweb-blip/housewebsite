@@ -35,7 +35,7 @@ async function storefront<T>(
       "X-Shopify-Storefront-Access-Token": env.SHOPIFY_STOREFRONT_TOKEN,
     },
     body: JSON.stringify({ query, variables }),
-    next: { tags, revalidate: 300 },
+    next: { tags, revalidate: 604800 },
   });
   if (!res.ok) {
     throw new Error(`Shopify ${res.status} ${res.statusText}`);
