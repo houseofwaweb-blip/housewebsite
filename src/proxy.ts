@@ -74,6 +74,15 @@ export function proxy(request: NextRequest) {
   // query params past the route's whitelist.
   const response = NextResponse.next();
 
+  // ── Preview hosts (*.vercel.app) must not be indexed ──────────────────
+  // A *.vercel.app deployment is a duplicate copy of willowalexander.co.uk with
+  // no canonical pointing home, so Google can index it as a separate site. Keep
+  // it reachable for testing, but tell crawlers to stay out. The real host never
+  // ends in .vercel.app, so it is completely unaffected.
+  if (request.headers.get("host")?.endsWith(".vercel.app")) {
+    response.headers.set("x-robots-tag", "noindex, nofollow");
+  }
+
   // ServiceOS booking widget — mounted globally in root layout, opens
   // on click of any `#open-booking-form` anchor. The widget sets cookies,
   // makes XHR requests to its API, and may iframe checkout.
