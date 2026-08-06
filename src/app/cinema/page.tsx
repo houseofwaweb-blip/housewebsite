@@ -1,59 +1,85 @@
-import { CinemaClient, type Film } from "@/components/cinema/CinemaClient";
+import Image from "next/image";
+import Link from "next/link";
+import { FILMS, FEATURED } from "@/lib/cinema-data";
 
 /**
- * /cinema — the House screening room. Films are hosted (unlisted) on YouTube for
- * free and played through a House-branded Plyr player (see CinemaClient).
- *
- * TO ADD REAL FILMS: replace each `youtubeId` below with the YouTube video ID
- * (the part after watch?v= or youtu.be/). The placeholder id currently points at
- * a public demo clip so the player works out of the box.
+ * /cinema — the House film index. A featured film autoplays (muted) at the top;
+ * clicking it, or any film below, opens that film's own page (/cinema/[slug]),
+ * laid out like a Hearth article. Films are hosted free on YouTube.
  */
-
 export const metadata = {
   title: "Cinema | Films and video from the House",
   description:
     "The House screening room: gardens through the seasons, rooms coming together, and the makers behind the objects we choose.",
 };
 
-// Test films (unlisted YouTube). Add more by dropping in the video ID from a
-// youtu.be/<ID> or watch?v=<ID> link.
-const V1 = "uPeHiJd2DCc";
-const V2 = "RVx47CNdcco";
-
-const FEATURED: Film = {
-  title: "A garden, through the seasons",
-  category: "Gardens",
-  blurb:
-    "A year in a single London garden, from bare winter structure to high-summer borders, filmed month by month.",
-  duration: "8 min",
-  poster: "/home-v4/pillar-1.webp",
-  youtubeId: V1,
-};
-
-const FILMS: Film[] = [
-  { title: "A room comes together", category: "Interiors", blurb: "An empty room, dressed and lived into over a single afternoon.", duration: "5 min", poster: "/design/interiors/project-living-room.webp", youtubeId: V2 },
-  { title: "The makers", category: "Objects", blurb: "The people and workshops behind the objects the House chooses.", duration: "11 min", poster: "/home-v4/pillar-3.webp", youtubeId: V1 },
-  { title: "Cutting back", category: "Gardens", blurb: "An overgrown garden read, cleared and given its shape again.", duration: "6 min", poster: "/services/photos/gardening/garden-clearance-hero.webp", youtubeId: V2 },
-  { title: "Colour, up close", category: "Colour & Materials", blurb: "Pigment, plaster and paint, and how light changes them through the day.", duration: "4 min", poster: "/home-v4/pillar-4.webp", youtubeId: V1 },
-  { title: "The kitchen table", category: "Food & Hosting", blurb: "A slow lunch, laid and shared, in a house that likes to gather.", duration: "9 min", poster: "/shop/rooms/kitchen.webp", youtubeId: V2 },
-  { title: "Living room, evening light", category: "Interiors", blurb: "One room as the light falls, and how a scheme holds at dusk.", duration: "3 min", poster: "/shop/rooms/living-room.webp", youtubeId: V1 },
-];
-
 export default function CinemaPage() {
+  const rest = FILMS.filter((f) => f.slug !== FEATURED.slug);
+
   return (
-    <div className="bg-house-black text-house-cream">
-      <section className="px-[5vw] pt-20 pb-10 text-center">
-        <p className="font-sans text-[12px] tracking-[0.32em] uppercase text-house-gold-light">The House · Cinema</p>
-        <h1 className="mx-auto mt-4 max-w-[18ch] font-display text-[clamp(40px,6vw,80px)] leading-[1.02] text-house-cream">
-          The screening <em className="text-house-gold-light">room.</em>
-        </h1>
-        <p className="mx-auto mt-6 max-w-[58ch] font-sans text-[17px] leading-[1.65] text-house-cream/75">
-          Films and short video from the House: gardens through the seasons, rooms
-          coming together, and the makers behind the objects we choose.
-        </p>
+    <div className="bg-house-cream text-house-brown">
+      {/* Header */}
+      <section className="px-[5vw] pt-16 pb-8">
+        <div className="mx-auto max-w-[1200px]">
+          <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink">The House · Cinema</p>
+          <h1 className="mt-3 max-w-[16ch] font-display text-[clamp(34px,5vw,68px)] leading-[1.03] text-house-black">
+            Films from <em>the House.</em>
+          </h1>
+          <p className="mt-5 max-w-[58ch] font-sans text-[17px] leading-[1.6] text-house-stone">
+            Gardens through the seasons, rooms coming together, and the makers
+            behind the objects we choose.
+          </p>
+        </div>
       </section>
 
-      <CinemaClient featured={FEATURED} films={FILMS} />
+      {/* Featured film — autoplays muted; clicking opens its page. */}
+      <section className="px-[5vw] pb-14">
+        <div className="mx-auto max-w-[1200px]">
+          <Link
+            href={`/cinema/${FEATURED.slug}`}
+            className="group relative block aspect-video w-full overflow-hidden border border-house-brown/12 bg-house-black no-underline"
+          >
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${FEATURED.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${FEATURED.youtubeId}&controls=0&modestbranding=1&playsinline=1&rel=0&disablekb=1`}
+              title={FEATURED.title}
+              allow="autoplay; encrypted-media"
+              className="pointer-events-none absolute inset-0 h-full w-full"
+            />
+            <span aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(15,12,9,0.85), rgba(15,12,9,0.05) 55%, rgba(15,12,9,0.25))" }} />
+            <span className="absolute inset-x-0 bottom-0 p-[clamp(20px,4vw,48px)]">
+              <span className="inline-flex items-center gap-2.5 font-sans text-[12px] tracking-[0.22em] uppercase text-house-cream">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full border border-house-cream/70 text-[11px]">▶</span>
+                Watch · {FEATURED.category} · {FEATURED.duration}
+              </span>
+              <span className="mt-3 block max-w-[24ch] font-display text-[clamp(26px,3.6vw,50px)] leading-[1.05] text-house-cream">
+                {FEATURED.title}
+              </span>
+            </span>
+          </Link>
+        </div>
+      </section>
+
+      {/* The rest — cards link to each film's page. */}
+      <section className="px-[5vw] pb-24">
+        <div className="mx-auto max-w-[1200px]">
+          <p className="mb-6 font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink">More films</p>
+          <div className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            {rest.map((f) => (
+              <Link key={f.slug} href={`/cinema/${f.slug}`} className="group no-underline">
+                <div className="relative aspect-video w-full overflow-hidden border border-house-brown/12 bg-house-cream-dark">
+                  <Image src={f.poster} alt={f.title} fill sizes="(min-width: 1024px) 31vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
+                  <span aria-hidden className="absolute inset-0 flex items-center justify-center">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-full border border-house-cream/80 bg-house-black/35 text-house-cream backdrop-blur-sm transition-colors group-hover:border-house-gold group-hover:text-house-gold">▶</span>
+                  </span>
+                  <span className="absolute bottom-2 right-2 bg-house-black/70 px-2 py-1 font-sans text-[11px] tracking-[0.08em] text-house-cream/90">{f.duration}</span>
+                </div>
+                <p className="mt-3 font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-ink">{f.category}</p>
+                <h3 className="mt-1 font-display text-[22px] leading-tight text-house-brown transition-colors group-hover:text-house-gold-ink">{f.title}</h3>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
