@@ -108,14 +108,18 @@ export function proxy(request: NextRequest) {
   const measureConnect =
     "https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://stats.g.doubleclick.net https://*.g.doubleclick.net https://www.google.com https://www.google.co.uk https://www.clarity.ms https://*.clarity.ms https://*.facebook.com https://ct.pinterest.com https://vitals.vercel-insights.com https://va.vercel-scripts.com https://a.klaviyo.com https://static.klaviyo.com https://*.klaviyo.com";
 
+  // Cinema (Plyr + YouTube). Plyr loads the YouTube iframe API and embeds the
+  // player from youtube / youtube-nocookie; thumbnails come from ytimg.
+  const cinemaHosts = "https://www.youtube.com https://www.youtube-nocookie.com https://i.ytimg.com https://s.ytimg.com";
+
   const csp = [
     "default-src 'self'",
-    `script-src 'self' 'unsafe-inline'${scriptEval} https://challenges.cloudflare.com ${measureScript} ${obfHosts}`,
+    `script-src 'self' 'unsafe-inline'${scriptEval} https://challenges.cloudflare.com ${measureScript} ${cinemaHosts} ${obfHosts}`,
     `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com ${obfHosts}`,
     "img-src 'self' data: blob: https:",
     "font-src 'self' data: https:",
-    `connect-src 'self' https://api.postcodes.io https://*.tile.openstreetmap.org https://*.supabase.co wss://*.supabase.co https://*.sanity.io https://cdn.sanity.io https://*.shopify.com https://*.upstash.io https://challenges.cloudflare.com https://*.sentry.io https://*.ingest.sentry.io ${measureConnect} ${obfHosts}`,
-    `frame-src 'self' https://challenges.cloudflare.com https://www.facebook.com ${obfHosts}`,
+    `connect-src 'self' https://api.postcodes.io https://*.tile.openstreetmap.org https://*.supabase.co wss://*.supabase.co https://*.sanity.io https://cdn.sanity.io https://*.shopify.com https://*.upstash.io https://challenges.cloudflare.com https://*.sentry.io https://*.ingest.sentry.io ${measureConnect} ${cinemaHosts} ${obfHosts}`,
+    `frame-src 'self' https://challenges.cloudflare.com https://www.facebook.com ${cinemaHosts} ${obfHosts}`,
     "frame-ancestors 'none'",
     `form-action 'self' ${obfHosts}`,
     "base-uri 'self'",
