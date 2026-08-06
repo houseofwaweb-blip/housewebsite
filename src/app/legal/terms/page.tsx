@@ -28,7 +28,7 @@ You must not attempt to disrupt or misuse the service, including automated scrap
         },
         {
           heading: "Services & bookings",
-          body: `Bookings made through HoWA create a contract between you and the service provider; the House facilitates the introduction and the scheduling. We stand behind the standard (HoWA Approved) and will help resolve disputes, but we're not the contracting party for the work itself.
+          body: `Bookings made through HoWA create a contract between you and the service provider; the House facilitates the introduction and the scheduling. We stand behind the standard (House Approved) and will help resolve disputes, but we're not the contracting party for the work itself.
 
 Cancellation terms for each service are published on the service's page and confirmed at booking.`,
         },

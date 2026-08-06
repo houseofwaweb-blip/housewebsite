@@ -275,7 +275,11 @@ export default async function ProductPage({
             <a href="#open-booking-form" className="text-house-gold-ink underline underline-offset-[3px]">
               Book a service
             </a>{" "}
-            and it is kept in your Home Record.
+            or{" "}
+            <Link href="/house-companion" className="text-house-gold-ink underline underline-offset-[3px]">
+              ask House Companion
+            </Link>
+            , and it is kept in your Home Record.
           </p>
         </div>
       </div>

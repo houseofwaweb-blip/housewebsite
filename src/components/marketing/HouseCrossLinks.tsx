@@ -17,8 +17,15 @@ export interface CrossLinkCard {
   href: string;
 }
 
-/** Default set used on the Shop: aftercare, design output, Hearth guidance. */
+/** Default set used on the Shop: guidance, aftercare, design output, Hearth. */
 export const SHOP_CROSS_LINKS: CrossLinkCard[] = [
+  {
+    eyebrow: "Not sure?",
+    title: "Planning work on your home?",
+    body: "Show House Companion a room, a photo or an idea. It shapes the brief and keeps every next step in HoWA.",
+    cta: "Ask House Companion",
+    href: "/house-companion",
+  },
   {
     eyebrow: "Inspiration",
     title: "Looking for ideas?",
@@ -55,7 +62,7 @@ export function HouseCrossLinks({
         <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink mb-8">
           {heading}
         </p>
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {cards.map((c) => (
             <Link
               key={c.title}

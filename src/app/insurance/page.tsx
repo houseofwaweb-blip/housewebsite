@@ -148,12 +148,23 @@ export default function InsuranceHubPage() {
             House. It is not insurance, it is not regulated, and it is not a
             condition of any introduction.
           </p>
-          <Link
-            href="/insurance/home-protection"
-            className="inline-flex items-center gap-2 border border-house-brown/25 px-7 py-3.5 font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-colors hover:border-house-gold"
-          >
-            See Home Protection Review <span aria-hidden>→</span>
-          </Link>
+          <div className="btn-row">
+            <Link
+              href="/insurance/home-protection"
+              className="inline-flex items-center gap-2 border border-house-brown/25 px-7 py-3.5 font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-colors hover:border-house-gold"
+            >
+              See Home Protection Review <span aria-hidden>→</span>
+            </Link>
+            {/* Aug 2026 reframe (§09): turn a concern about the home into a
+                structured House Companion task. Sits in the House-service
+                section, clear of the regulated insurance products. */}
+            <Link
+              href="/house-companion"
+              className="inline-flex items-center gap-2 border border-house-gold-dark bg-house-gold-ink px-7 py-3.5 font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-[filter] hover:brightness-110"
+            >
+              Worried about your home? Ask House Companion <span aria-hidden>→</span>
+            </Link>
+          </div>
         </div>
       </section>
 

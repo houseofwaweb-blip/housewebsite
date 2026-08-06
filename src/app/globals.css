@@ -178,6 +178,10 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  /* Clip (not hidden) absorbs the few px of horizontal overflow the body zoom
+     below can introduce on full-bleed sections, without creating a scrollbar
+     and without breaking the sticky header (hidden would). */
+  overflow-x: clip;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -193,6 +197,11 @@ body {
   background: var(--house-cream);
   color: var(--house-brown);
   font-family: var(--font-sans);
+  /* Aug 2026 — a uniform ~5% scale so the fixed-px type across the site reads
+     larger everywhere (a root font-size bump alone can't touch the many
+     px-defined sizes). Kept at 5% so the tiny horizontal overflow stays within
+     the sections' 5vw side padding; html overflow-x: clip absorbs the rest. */
+  zoom: 1.05;
   /* Body base was 300 (Light), but only Effra Regular/Medium are loaded so it
      rendered at 400. Step up to Medium (500) for a slightly firmer, more
      legible body voice. */
@@ -598,4 +607,23 @@ body {
 .features-fade { animation: features-fade-in 280ms ease-out both; }
 @media (prefers-reduced-motion: reduce) {
   .features-fade { animation: none; }
+}
+
+/* Button groups — every button the same width and always on one line. Uses an
+   inline-grid with equal (1fr) tracks, so both buttons size to the WIDER label
+   (not stretched to the full container). Stacks on small screens, sits side by
+   side once there is room. Apply `.btn-row` to a container of button links. */
+.btn-row {
+  display: inline-grid;
+  gap: 12px;
+  grid-auto-flow: row;
+  grid-auto-columns: 1fr;
+}
+.btn-row > * {
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+}
+@media (min-width: 640px) {
+  .btn-row { grid-auto-flow: column; }
 }

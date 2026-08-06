@@ -13,7 +13,7 @@ import type { RequestableDetail } from "./requestable-detail";
  *   - No em dashes. Use a comma, or start a new sentence.
  *   - Never the word "AI".
  *   - Work is carried out by a House of Willow Alexander team or by a named
- *     HoWA Approved professional, disclosed before anyone commits. Never claim
+ *     House Approved professional, disclosed before anyone commits. Never claim
  *     it is always our own crews.
  *   - Electrical work (EV chargers, solar and battery, alarms) is carried out
  *     by a qualified, registered electrician who issues the certificate.
@@ -255,7 +255,7 @@ export const MOVING_DETAIL: Record<string, RequestableDetail> = {
       },
       {
         q: "Will it be your own team?",
-        a: "Sometimes, and sometimes it is a HoWA Approved professional we work with regularly. Either way you are told who is doing the work before you commit, and the House stays responsible for the arrangement from enquiry to the last box.",
+        a: "Sometimes, and sometimes it is a House Approved professional we work with regularly. Either way you are told who is doing the work before you commit, and the House stays responsible for the arrangement from enquiry to the last box.",
       },
     ],
     practical: {
@@ -297,7 +297,7 @@ export const MOVING_DETAIL: Record<string, RequestableDetail> = {
       },
       {
         q: "Who actually does the work?",
-        a: "A qualified, registered electrician, either from a House of Willow Alexander team or a named HoWA Approved professional. You are told which before you commit. The certificate is issued in their name and the installation is notified as it should be.",
+        a: "A qualified, registered electrician, either from a House of Willow Alexander team or a named House Approved professional. You are told which before you commit. The certificate is issued in their name and the installation is notified as it should be.",
       },
       {
         q: "What if my supply will not take it?",

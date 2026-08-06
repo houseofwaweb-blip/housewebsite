@@ -26,7 +26,7 @@ export interface FooterColumn {
 // "House Approved Insurance", "HoWA Store", "Marketplace".
 const COLS: FooterColumn[] = [
   {
-    heading: "Our House",
+    heading: "The House",
     links: [
       { label: "About the House", href: "/the-house/about" },
       { label: "Philosophy", href: "/the-house/philosophy" },
@@ -38,19 +38,21 @@ const COLS: FooterColumn[] = [
     ],
   },
   {
-    heading: "Services",
+    heading: "Services & Design",
     links: [
-      { label: "Find a service", href: "/services" },
+      { label: "Ask House Companion", href: "/house-companion" },
+      { label: "Book a House service", href: "/services" },
       { label: "Garden care", href: "/services/gardening" },
       { label: "Cleaning & housekeeping", href: "/services/cleaning" },
-      { label: "Window cleaning", href: "/services/window-cleaning" },
-      { label: "Gutter cleaning", href: "/services/gutter-cleaning" },
       { label: "Handyman & repairs", href: "/services/handyman" },
-      { label: "Design", href: "/design" },
+      { label: "Garden Design", href: "/design/gardens" },
+      { label: "Home & Interior Design", href: "/design/interiors" },
+      { label: "House Approved", href: "/house-approved" },
+      { label: "Join the Network", href: "/house-pro" },
     ],
   },
   {
-    heading: "Insurance",
+    heading: "Protect",
     links: [
       { label: "Insurance introductions", href: "/insurance" },
       { label: "Home Insurance", href: "/insurance/home" },
@@ -59,7 +61,7 @@ const COLS: FooterColumn[] = [
     ],
   },
   {
-    heading: "Shop",
+    heading: "Marketplace",
     links: [
       { label: "Shop All", href: "/shop" },
       { label: "Collections", href: "/shop/collections" },
@@ -68,11 +70,12 @@ const COLS: FooterColumn[] = [
     ],
   },
   {
-    heading: "Powered by HoWA",
+    heading: "HoWA",
     links: [
-      { label: "How it works", href: "/howa" },
-      { label: "Open My Home in HoWA", href: "https://accounts.willowalexander.co.uk/" },
-      { label: "Discover the wider HoWA", href: "https://howa.co.uk" },
+      { label: "Meet HoWA", href: "/howa" },
+      { label: "Start Home Record", href: "https://accounts.willowalexander.co.uk/" },
+      { label: "Open Home Record", href: "https://accounts.willowalexander.co.uk/" },
+      { label: "Explore HoWA", href: "https://howa.co.uk" },
     ],
   },
   {
@@ -126,7 +129,7 @@ export function Footer({ columns, tagline }: FooterProps) {
 
         <p className="pt-8 font-sans text-[15px] leading-[1.6] text-house-cream/55 max-w-[760px]">
           House services are delivered by House of Willow Alexander's own teams
-          across London and the South East, with a named HoWA Approved
+          across London and the South East, with a named House Approved
           professional only where one genuinely does the work. Bookings and Home
           Records are powered by HoWA.
         </p>
@@ -153,6 +156,9 @@ export function Footer({ columns, tagline }: FooterProps) {
             </Link>
             <Link href="/legal/cookies" className="no-underline hover:text-house-cream transition-colors">
               Cookie policy
+            </Link>
+            <Link href="/house-pro" className="no-underline hover:text-house-cream transition-colors">
+              House Pro sign in
             </Link>
             <CookiePreferencesLink />
           </nav>

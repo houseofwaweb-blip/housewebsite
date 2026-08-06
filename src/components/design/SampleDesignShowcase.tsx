@@ -66,9 +66,14 @@ const GARDEN: SampleData = {
   continueHref: "/design/gardens",
 };
 
-export function SampleDesignShowcase() {
-  const [discipline, setDiscipline] = useState<"Interior" | "Garden">("Interior");
+export function SampleDesignShowcase({ only }: { only?: "Interior" | "Garden" }) {
+  const [discipline, setDiscipline] = useState<"Interior" | "Garden">(only ?? "Interior");
   const data = discipline === "Interior" ? INTERIOR : GARDEN;
+
+  // When locked to one discipline (per-feature scan pages), hide the toggle.
+  if (only) {
+    return <SampleDesignReveal key={only} data={only === "Interior" ? INTERIOR : GARDEN} />;
+  }
 
   return (
     <div>

@@ -6,12 +6,16 @@ import Link from "next/link";
  * DIRECTIVE §12 — Hearth articles should deepen the service, design, insurance
  * and Shop journeys through relevant in-article actions, NOT blanket HoWA
  * promotion. No HoWA Score, no tier/archive promise (that lives on howa.co.uk).
+ *
+ * Aug 2026 reframe (§09) — lead with the contextual trio: Ask House Companion /
+ * Book a service / Start a Home Record, so inspiration or concern becomes a
+ * structured HoWA task or project.
  */
 const HOOKS: ReadonlyArray<{ label: string; href: string }> = [
+  { label: "Ask House Companion about your home", href: "/house-companion" },
   { label: "Book the service mentioned here", href: "#open-booking-form" },
-  { label: "Find related pieces in the Shop", href: "/shop" },
-  { label: "Start a HoWA First Design for your home", href: "/design" },
-  { label: "Keep this in your home record", href: "/howa" },
+  { label: "Start a design for your home", href: "/design" },
+  { label: "Start a Home Record", href: "/howa" },
 ];
 
 export function HearthHowaHooks() {

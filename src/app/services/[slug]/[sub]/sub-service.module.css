@@ -134,6 +134,7 @@
   border-top: 1px solid rgba(48, 35, 28, 0.14);
 }
 .heroCtas { display: flex; gap: 12px; flex-wrap: wrap; }
+.heroCtas > a { flex: 1 1 220px; justify-content: center; white-space: nowrap; }
 .heroVisual { position: relative; background: var(--color-house-cream-dark); }
 .comingSoonTag {
   position: absolute;

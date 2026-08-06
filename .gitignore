@@ -11,6 +11,10 @@
 # someone runs `bun add` — ignore it so the two lockfiles can't drift.
 bun.lock
 
+# local dev logs
+.devwa.log
+*.devwa.log
+
 # testing
 /coverage
 /test-results

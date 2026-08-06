@@ -23,12 +23,13 @@ import { Klaviyo } from "@/components/consent/loaders/Klaviyo";
 import { ClickIdCapture } from "@/components/marketing/ClickIdCapture";
 import "./globals.css";
 
-// REVISIONS v3 §3 — "Find a service" is the persistent primary action, and it
-// leads to the service catalogue rather than straight into a booking modal:
-// the first customer action is choosing a service, not filling in a form.
-// "My Home in HoWA" sits beside it as the named account utility.
-const ctaLabel = "Find a service";
-const ctaHref = "/services";
+// Aug 2026 House Companion reframe — "Ask House Companion" is the promoted
+// primary action (the House-branded intelligent front door, powered by HoWA).
+// Direct booking stays one click away via the Services pillar and every
+// service page, so an ordinary booking is never forced through Companion.
+// "Open Home Record" sits beside it as the named HoWA account utility.
+const ctaLabel = "Ask House Companion";
+const ctaHref = "/house-companion";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL),

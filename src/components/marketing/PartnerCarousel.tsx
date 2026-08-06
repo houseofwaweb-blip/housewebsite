@@ -144,7 +144,7 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = 
                 </span>
                 {p.houseApprovedSeal && (
                   <span className="font-sans text-[12px] tracking-[0.16em] uppercase text-house-moss border border-house-moss/30 px-2 py-0.5">
-                    HoWA Approved
+                    House Approved
                   </span>
                 )}
               </div>
@@ -211,7 +211,7 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = 
             )}
             style={dark ? undefined : { color: "var(--house-gold-ink)", borderColor: "var(--house-gold-dark)" }}
           >
-            {bookingMode ? "Book a service" : "See all HoWA Approved partners"}
+            {bookingMode ? "Book a service" : "See all House Approved partners"}
             <span>&rarr;</span>
           </Link>
         </div>

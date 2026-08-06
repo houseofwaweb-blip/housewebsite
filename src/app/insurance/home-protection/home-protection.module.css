@@ -97,7 +97,10 @@
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+  align-items: stretch;
 }
+/* Grouped buttons grow equally so they are the same width, side by side or stacked. */
+.heroCtas > a { flex: 1 1 200px; justify-content: center; }
 .btnFilled,
 .btnGhost {
   display: inline-flex;

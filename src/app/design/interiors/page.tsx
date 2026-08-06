@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import s from "./interiors.module.css";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
+import { BeforeAfterSlider } from "@/components/marketing/BeforeAfterSlider";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { getNewsletterBlock } from "@/lib/cms/newsletter";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
@@ -22,7 +23,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 export const metadata = {
   title: "Interiors: Consciously designed.",
   description:
-    "Consciously designed interiors through The House Edit. Digital plans, full-home edits, and styling sessions, every scheme HoWA Approved.",
+    "Consciously designed interiors through The House Edit. Digital plans, full-home edits, and styling sessions, every scheme House Approved.",
 };
 
 const STAT_COLS = [
@@ -141,6 +142,10 @@ export default async function InteriorsPage() {
     image: pick(c.imageUrl, base?.image ?? ""),
     featured: base?.featured ?? false,
   }));
+  // Spell out the plan-pack count so the heading can never disagree with the cards.
+  const planWays =
+    ["", "One way", "Two ways", "Three ways", "Four ways", "Five ways", "Six ways", "Seven ways"][planCards.length] ??
+    `${planCards.length} ways`;
 
   return (
     <div className={s.page}>
@@ -149,7 +154,7 @@ export default async function InteriorsPage() {
         <div className={s.heroCopy}>
           <FlowerWatermark color="gold" side="left" opacity={0.16} className="!top-auto bottom-[-12%] h-[74%]" />
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>{cms(hero, "eyebrow", "Design · Interiors")}</p>
+            <p className={s.heroEy}>{cms(hero, "eyebrow", "Home & Interior Design · House Companion powered by HoWA")}</p>
             <h1 className={s.heroTitle}>
               {cms(hero, "headline", "Consciously designed")}{" "}
               <em>{cms(hero, "headlineEm", "interiors.", "headline")}</em>
@@ -158,7 +163,7 @@ export default async function InteriorsPage() {
               {cms(
                 hero,
                 "body",
-                "Rooms read for the people who live in them, not decorated at them. Worked out in plaster, paint, joinery and the light a room actually gets, with Delve Interiors, our HoWA Approved studio who know period fabric and how a house wears over years.",
+                "Rooms read for the people who live in them, not decorated at them. Worked out in plaster, paint, joinery and the light a room actually gets, with Delve Interiors, our House Approved studio who know period fabric and how a house wears over years.",
               )}
             </p>
             {/* DIRECTIVE §10 — surface the £400 first design + scan framing in the hero. */}
@@ -169,13 +174,16 @@ export default async function InteriorsPage() {
             </p>
             <div className={s.heroCtas}>
               <Link href={cms(hero, "ctaHref", "#plans")} className={s.btnFilled}>
-                {cms(hero, "ctaLabel", "Start my interior design")}
+                {cms(hero, "ctaLabel", "See the plan packs")}
               </Link>
-              <Link href={cms(hero, "cta2Href", "#projects")} className={s.btnGhost}>
-                {cms(hero, "cta2Label", "View interior projects")}
+              <Link href={cms(hero, "cta2Href", "/contact")} className={s.btnGhost}>
+                {cms(hero, "cta2Label", "Work with an interior studio")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
+            <p style={{ marginTop: 20, fontFamily: "var(--font-sans)", fontSize: 13, lineHeight: 1.55, color: "var(--color-house-stone)", maxWidth: "58ch" }}>
+              House Companion shapes the brief. HoWA creates the project, plan and next action. House Pro manages verification and delivery.
+            </p>
           </div>
         </div>
         <div className={s.heroVisual}>
@@ -194,12 +202,35 @@ export default async function InteriorsPage() {
         </div>
       </section>
 
+      {/* 1b. Interior journey (Copy Pack §09) — design around the life already happening. */}
+      <section className="border-t border-house-brown/10 px-[5vw] py-[clamp(48px,6vw,88px)]" style={{ background: "var(--color-house-white)" }}>
+        <div className="mx-auto max-w-[1080px]">
+          <div className="mx-auto mb-9 max-w-[640px] text-center">
+            <p className="mb-3 font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink">The interior journey</p>
+            <h2 className="mb-4 font-display text-[clamp(26px,3.2vw,42px)] leading-[1.08] text-house-brown">
+              Design around <em>the life already happening.</em>
+            </h2>
+            <p className="font-sans text-[15px] leading-[1.6] text-house-stone">
+              House Companion learns how the room must work and feel; HoWA holds the project, decisions and files.
+            </p>
+          </div>
+          <ol className="grid list-none gap-x-8 gap-y-4 p-0 sm:grid-cols-2 lg:grid-cols-5">
+            {["People and routines", "Storage and access", "Items to keep", "Light and measurements", "Taste and materials", "Layouts", "Selected scheme", "Sourcing", "Technical review", "Installation"].map((step, i) => (
+              <li key={step} className="border-t border-house-brown/15 pt-3">
+                <span className="font-display text-[16px] text-house-gold-ink">{String(i + 1).padStart(2, "0")}</span>
+                <p className="mt-1 font-sans text-[14px] leading-[1.4] text-house-brown">{step}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
       {/* 2. Stats strip */}
       <section className={s.statsStrip}>
         <div className={s.statsLede}>
           <p className={s.statsLedeLine1}>{cms(stats, "headline", "Beauty. Balance. Intention.")}</p>
           <p className={s.statsLedeLine2}>
-            {cms(stats, "subheadline", "Every scheme through Delve Interiors, HoWA Approved.")}
+            {cms(stats, "subheadline", "Every scheme through Delve Interiors, House Approved.")}
           </p>
         </div>
         {statCols.map((stat) => (
@@ -215,8 +246,8 @@ export default async function InteriorsPage() {
         <header className={s.plansHead}>
           <p className={s.plansEy}>{cms(plans, "eyebrow", "Digital Plans")}</p>
           <h2 className={s.plansTitle}>
-            {cms(plans, "headline", "Four ways")}{" "}
-            <em>{cms(plans, "headlineEm", "to begin.", "headline")}</em>
+            {planWays}{" "}
+            <em>to begin.</em>
           </h2>
           <p className={s.plansLede}>
             {cms(
@@ -252,7 +283,7 @@ export default async function InteriorsPage() {
                     <li key={inc}>{inc}</li>
                   ))}
                 </ul>
-                <Link href="#open-booking-form" className={s.planCta}>
+                <Link href="/contact" className={s.planCta}>
                   Book this edit →
                 </Link>
               </div>
@@ -312,23 +343,23 @@ export default async function InteriorsPage() {
           tier and does not belong in the House design path.) */}
       <section className={s.companion}>
         <div className={s.companionCopy}>
-          <p className={s.companionEy}>{cms(companion, "eyebrow", "HoWA · The Designer")}</p>
+          <p className={s.companionEy}>{cms(companion, "eyebrow", "House Companion · Powered by HoWA")}</p>
           <h2 className={s.companionTitle}>
-            {cms(companion, "headline", "Start with the")}{" "}
-            <em>{cms(companion, "headlineEm", "Designer.", "headline")}</em>
+            {cms(companion, "headline", "Start with")}{" "}
+            <em>{cms(companion, "headlineEm", "House Companion.", "headline")}</em>
           </h2>
           <p className={s.companionLede}>
             {cms(
               companion,
               "body",
-              "Use the Designer to map your room, ambition, timeline, budget and aesthetic direction. You get a first direction and an indicative budget you own, a brief Delve can work from on day one, nothing lost, nothing repeated.",
+              "Use House Companion to map your room, ambition, timeline, budget and aesthetic direction. You get a first direction and an indicative budget you own, a brief Delve can work from on day one, nothing lost, nothing repeated.",
             )}
           </p>
           <p className={s.companionFootnote}>
             {cms(companion, "caption", "This is HoWA First Interior Design, £400.")}
           </p>
           <Link
-            href={cms(companion, "ctaHref", "#plans")}
+            href={cms(companion, "ctaHref", "/house-companion/room")}
             className={s.btnFilled}
           >
             {cms(companion, "ctaLabel", "Start my interior design")}
@@ -344,17 +375,35 @@ export default async function InteriorsPage() {
           </div>
         </div>
         <div className={s.companionImage}>
-          <Image
-            src={cms(companion, "imageUrl", "/design/interiors/project-living-room.webp")}
-            alt={cms(
-              companion,
-              "imageAlt",
-              "A living room project, the kind of room the Designer helps you brief",
-            )}
-            fill
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            style={{ objectFit: "cover", objectPosition: "center" }}
+          <BeforeAfterSlider
+            beforeSrc="/design/interiors/interior-before.png"
+            afterSrc="/design/interiors/interior-after.png"
+            beforeAlt="A living room and dining space before design"
+            afterAlt="The same room reimagined by House Companion: statement pendant, reimagined built-ins with integrated lighting, a new chandelier, custom banquette and lounge chairs"
+            beforeLabel="Your room"
+            afterLabel="Companion's read"
           />
+        </div>
+      </section>
+
+      {/* 6b. Delivery / House Approved (Copy Pack §09) — carry the scheme into the real room. */}
+      <section className="border-t border-house-brown/10 px-[5vw] py-[clamp(48px,6vw,88px)]" style={{ background: "var(--color-house-cream-dark)" }}>
+        <div className="mx-auto max-w-[900px] text-center">
+          <p className="mb-3 font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink">Delivery · House Approved</p>
+          <h2 className="mb-5 font-display text-[clamp(26px,3.2vw,42px)] leading-[1.08] text-house-brown">
+            Carry the scheme into <em>the real room.</em>
+          </h2>
+          <p className="mx-auto mb-8 max-w-[62ch] font-sans text-[16px] leading-[1.65] text-house-stone">
+            Invite House Approved designers, joiners, decorators and trades to review, quote or deliver the selected scope. The House coordinates the work, and HoWA keeps the final choices, costs, photographs, warranties and care information with your address.
+          </p>
+          <div className="btn-row">
+            <Link href="/contact" className="inline-flex items-center justify-center gap-2 border border-house-gold-dark bg-house-gold-ink px-8 py-4 text-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-[filter] hover:brightness-110">
+              Request professional support <span aria-hidden>→</span>
+            </Link>
+            <Link href="/house-approved" className="inline-flex items-center justify-center gap-2 border border-house-brown/25 px-8 py-4 text-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-colors hover:border-house-gold">
+              Explore House Approved
+            </Link>
+          </div>
         </div>
       </section>
 

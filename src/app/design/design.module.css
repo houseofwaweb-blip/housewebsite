@@ -86,10 +86,14 @@
   padding-top: 24px;
   border-top: 1px solid rgba(245, 240, 232, 0.2);
 }
-.heroCtas { display: flex; gap: 12px; flex-wrap: wrap; align-items: stretch; }
-/* Both hero CTAs grow equally and stretch to a shared height, so the filled and
-   ghost buttons are the same size whether side by side or wrapped. */
-.heroCtas > a { flex: 1 1 200px; }
+/* Equal-width buttons, each on ONE line: inline-grid with equal columns sized to
+   the widest label, so nothing wraps and both stay the same width. Stacks on
+   narrow screens. */
+.heroCtas { display: inline-grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 12px; align-items: stretch; }
+.heroCtas > a { justify-content: center; text-align: center; white-space: nowrap; }
+@media (max-width: 560px) {
+  .heroCtas { grid-auto-flow: row; width: 100%; }
+}
 .btnFilled,
 .btnGhost {
   display: inline-flex;

@@ -61,6 +61,9 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       // Structural moves
+      // House Credit is removed under the Aug 2026 House Companion reframe
+      // (no role in the simplified architecture). 301 to Services.
+      { source: "/house-credit", destination: "/services", permanent: true },
       // "Marketplace" is the public label for the Shop.
       { source: "/marketplace", destination: "/shop", permanent: true },
       { source: "/marketplace/:path*", destination: "/shop/:path*", permanent: true },

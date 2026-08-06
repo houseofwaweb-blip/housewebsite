@@ -492,24 +492,28 @@ export const SERVICE_TRUST_BADGES = [
   "Safe Contractor Approved",
 ];
 
-export const SERVICE_AREAS = [
-  "Chelsea",
+// Coverage is London AND Kent (plus the near Surrey border). Keep the two named
+// groups balanced so the map copy never reads as London-only and put off Kent
+// customers, who are squarely in the patch (BR / DA / TN postcodes).
+export const SERVICE_AREAS_LONDON = [
+  "Notting Hill",
   "Kensington",
   "Fulham",
-  "Hammersmith",
-  "Battersea",
-  "Clapham",
-  "Notting Hill",
-  "Chiswick",
-  "Kingston",
-  "Dulwich",
+  "Brixton",
   "Greenwich",
-  "Blackheath",
-  "Bromley",
-  "Beckenham",
-  "Sevenoaks",
-  "Orpington",
+  "Croydon",
 ];
+
+export const SERVICE_AREAS_KENT = [
+  "Bromley",
+  "Orpington",
+  "Bexley",
+  "Dartford",
+  "Sevenoaks",
+  "Westerham",
+];
+
+export const SERVICE_AREAS = [...SERVICE_AREAS_LONDON, ...SERVICE_AREAS_KENT];
 
 export const SERVICE_FAQ_SHARED = [
   { q: "Are you insured?", a: "Yes. Every team is fully insured, vetted, and accredited. Proof of cover is available on request." },

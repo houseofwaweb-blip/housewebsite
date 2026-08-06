@@ -13,20 +13,20 @@ import { SampleDesignShowcase } from "@/components/design/SampleDesignShowcase";
  *   2. Stats strip
  *   3. Two disciplines — Interiors / Gardens (large editorial panels)
  *   4. Four launch partners — editorial grid
- *   5. HoWA Approved — what the seal means
+ *   5. House Approved — what the seal means
  *   6. Closing CTA — commission a space
  */
 
 export const metadata = {
   title: "Design: Interiors and gardens, considered.",
   description:
-    "Interiors and gardens by designers we've vetted and trust. Every project carries the HoWA Approved seal.",
+    "Interiors and gardens by designers we've vetted and trust. Every project carries the House Approved seal.",
 };
 
 const STAT_COLS = [
   { value: "2", label: "Live design routes" },
   { value: "1", label: "In-house garden studio" },
-  { value: "1", label: "HoWA Approved interiors partner" },
+  { value: "1", label: "House Approved interiors partner" },
   { value: "0", label: "Open directories" },
 ];
 
@@ -100,24 +100,24 @@ export default async function DesignLanding() {
         </div>
         <div className={s.heroCopy}>
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>{cms(hero, "eyebrow", "The House · Design")}</p>
+            <p className={s.heroEy}>{cms(hero, "eyebrow", "House Design · Powered by HoWA")}</p>
             <h1 className={s.heroTitle}>
-              {cms(hero, "headline", "Design through the House,")}{" "}
-              <em>{cms(hero, "headlineEm", "begun in HoWA.", "headline")}</em>
+              {cms(hero, "headline", "Design that begins with")}{" "}
+              <em>{cms(hero, "headlineEm", "how you live.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
               {cms(
                 hero,
                 "body",
-                "Rooms, gardens, and the quiet work of making a home feel properly known. Start with a mapped plan, not a cold consultation: map the space in HoWA for a first direction and indicative budget, then take it forward with the right human studio.",
+                "Start with a room, a garden, a photograph or simply the feeling you are trying to create. House Companion shapes the brief. HoWA holds the scan, design project, decisions and plans. The House and House Approved studios can verify and deliver the work.",
               )}
             </p>
             <div className={s.heroCtas}>
-              <Link href={cms(hero, "ctaHref", "#open-booking-form")} className={s.btnFilled}>
-                {cms(hero, "ctaLabel", "Start a design brief")}
+              <Link href={cms(hero, "ctaHref", "/house-companion")} className={s.btnFilled}>
+                {cms(hero, "ctaLabel", "Start with House Companion")}
               </Link>
               <Link href={cms(hero, "cta2Href", "#routes")} className={s.btnGhost}>
-                {cms(hero, "cta2Label", "Explore interiors and gardens")}
+                {cms(hero, "cta2Label", "Meet the studios")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
@@ -155,7 +155,7 @@ export default async function DesignLanding() {
             {cms(
               disciplines,
               "body",
-              "The House does not operate as an open directory of designers. Design begins through two clear routes: Willow Alexander Gardens, the House's own garden studio, for gardens and outdoor spaces, and Delve Interiors, a HoWA Approved partner, for considered interiors. Any studio we add later joins by standard, never to fill a directory.",
+              "The House does not operate as an open directory of designers. Design begins through two clear routes: Willow Alexander Gardens, the House's own garden studio, for gardens and outdoor spaces, and Delve Interiors, a House Approved partner, for considered interiors. Any studio we add later joins by standard, never to fill a directory.",
             )}
           </p>
         </header>
@@ -177,6 +177,24 @@ export default async function DesignLanding() {
             )}
           </p>
         </header>
+        {/* Copy Pack §07 — the two explicit routes, both on one Home Record. */}
+        <div className="mx-auto mb-12 grid max-w-[1000px] gap-5 md:grid-cols-2">
+          <div className="flex flex-col border border-house-brown/12 bg-house-cream p-8">
+            <p className="mb-2 font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-ink">Route one</p>
+            <h3 className="mb-3 font-display text-[24px] leading-tight text-house-brown">Create with House Companion</h3>
+            <p className="mb-6 flex-1 font-sans text-[15px] leading-[1.55] text-house-stone">Taste capture, guided site or room information, AI-assisted options, defined plan packs and optional professional review. Powered by HoWA.</p>
+            <Link href="/house-companion" className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-ink no-underline transition-colors hover:text-house-brown">Start with House Companion →</Link>
+          </div>
+          <div className="flex flex-col border border-house-brown/12 bg-house-cream p-8">
+            <p className="mb-2 font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-ink">Route two</p>
+            <h3 className="mb-3 font-display text-[24px] leading-tight text-house-brown">Work with a House Approved studio</h3>
+            <p className="mb-6 flex-1 font-sans text-[15px] leading-[1.55] text-house-stone">Bespoke human direction, site visits, complex briefs, technical responsibility, tendering and project leadership.</p>
+            <Link href="/house-approved" className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-ink no-underline transition-colors hover:text-house-brown">Explore House Approved →</Link>
+          </div>
+        </div>
+        <p className="mx-auto mb-12 max-w-[52ch] text-center font-sans text-[14px] leading-[1.55] text-house-stone/80">
+          Both routes stay connected to the same Home Record.
+        </p>
         <div className={s.partnersGrid}>
           {routeCards.map((p) => (
             <Link key={p.name} href={p.href} className={s.partnerCard}>
@@ -283,7 +301,7 @@ export default async function DesignLanding() {
         </div>
       </section>
 
-      {/* 5. HoWA Approved — what the seal means */}
+      {/* 5. House Approved — what the seal means */}
       <section className={s.seal}>
         <div className={s.sealImage}>
           <Image
@@ -299,7 +317,7 @@ export default async function DesignLanding() {
           />
         </div>
         <div className={s.sealCopy}>
-          <p className={s.sealEy}>{cms(seal, "eyebrow", "HoWA Approved")}</p>
+          <p className={s.sealEy}>{cms(seal, "eyebrow", "House Approved")}</p>
           <h2 className={s.sealTitle}>
             {cms(seal, "headline", "The seal means")}{" "}
             <em>{cms(seal, "headlineEm", "four things.", "headline")}</em>

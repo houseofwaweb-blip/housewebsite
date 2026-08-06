@@ -99,7 +99,7 @@ const TIERS: Tier[] = [
       { t: "Leak detection and water-prevention, with evidence", coming: true },
       { t: "Insurance readiness, prefill and evidence, not advice", coming: true },
       { t: "Annual Home Report and Home Transfer Pack", coming: true },
-      { t: "Steward Plans, managed care, £300 to £1,040 a month", coming: true },
+      { t: "Managed Home Care, £300 to £1,040 a month", coming: true },
     ],
     fine: "HoWA prepares evidence and prefills your details for renewal. It does not give insurance advice or arrange cover.",
     image: "/home-v4/v6-tier-steward.webp",

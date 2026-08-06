@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { SERVICE_AREAS } from "@/lib/services-data/sub-services";
+import { SERVICE_AREAS_LONDON, SERVICE_AREAS_KENT } from "@/lib/services-data/sub-services";
 import styles from "./CoverageMap.module.css";
 
 /**
@@ -19,11 +19,33 @@ const MapCanvas = dynamic(() => import("./MapCanvas"), {
 });
 
 /**
- * The postcode areas the teams actually cover, taken from the `availableAreas`
- * arrays on the real service data. Kept as a literal rather than derived so the
- * map does not import the whole service catalogue into the client bundle.
+ * The postcode areas the teams cover in FULL, set to match the drawn coverage
+ * boundary (London across to north-west Kent):
+ *   - CR (Croydon) is inside the line and was previously, wrongly, excluded.
+ *   - KT (Kingston) and TW (Twickenham) sit WEST of the line, so they are out.
+ * Any district in these areas counts as covered.
  */
-const COVERED_AREAS = ["SW", "W", "KT", "TW", "SE", "BR", "DA", "TN"] as const;
+const COVERED_AREAS = ["SW", "W", "SE", "CR", "BR", "DA"] as const;
+
+/**
+ * Areas the boundary only clips, so they are covered at DISTRICT level, not for
+ * the whole area. TN is the case that matters: the patch reaches Sevenoaks
+ * (TN13/14/15) and Westerham (TN16), but NOT Edenbridge (TN8), Tonbridge
+ * (TN9-11) or Tunbridge Wells (TN1-4). A postcode whose area appears here is
+ * covered only if its outcode is listed.
+ */
+const COVERED_DISTRICTS = ["TN13", "TN14", "TN15", "TN16"] as const;
+
+/** True if the outcode falls inside the patch, area- or district-level. */
+function isCovered(outcode: string): boolean {
+  const oc = outcode.toUpperCase();
+  const area = areaOf(oc);
+  // A part-covered area (e.g. TN) is decided by its specific districts.
+  if (COVERED_DISTRICTS.some((d) => areaOf(d) === area)) {
+    return (COVERED_DISTRICTS as readonly string[]).includes(oc);
+  }
+  return (COVERED_AREAS as readonly string[]).includes(area);
+}
 
 type Lookup =
   | { state: "idle" }
@@ -86,9 +108,7 @@ export function CoverageMap() {
           lng: r.longitude,
           outcode: r.outcode,
           district: r.admin_district ?? r.region ?? "",
-          covered: COVERED_AREAS.includes(
-            areaOf(r.outcode) as (typeof COVERED_AREAS)[number],
-          ),
+          covered: isCovered(r.outcode),
         });
       } catch (err) {
         // An aborted request is the debounce doing its job, not a failure.
@@ -117,7 +137,7 @@ export function CoverageMap() {
           Where we work
         </h3>
         <p className="mt-3 max-w-[38ch] text-[14px] leading-relaxed text-house-stone">
-          House teams and vetted specialists, out across London and the South East.
+          House teams and vetted specialists, out across London and Kent.
         </p>
 
         <label
@@ -161,15 +181,22 @@ export function CoverageMap() {
                 className="text-house-gold-dark underline underline-offset-4"
               >
                 Write to us
-              </Link>{" "}
-              &mdash; we&rsquo;re expanding.
+              </Link>
+              , we&rsquo;re expanding.
             </span>
           )}
         </p>
 
-        <p className="mt-5 max-w-[42ch] text-[13px] leading-relaxed text-house-stone">
-          {SERVICE_AREAS.slice(0, 8).join(", ")} and more.
-        </p>
+        <div className="mt-5 max-w-[44ch] space-y-1.5 text-[13px] leading-relaxed text-house-stone">
+          <p>
+            <span className="font-sans text-[11px] uppercase tracking-[0.14em] text-house-gold-dark">London</span>
+            {" "}{SERVICE_AREAS_LONDON.join(", ")}.
+          </p>
+          <p>
+            <span className="font-sans text-[11px] uppercase tracking-[0.14em] text-house-gold-dark">Kent</span>
+            {" "}{SERVICE_AREAS_KENT.join(", ")}, and more.
+          </p>
+        </div>
         <a
           href="#open-booking-form"
           className="mt-4 inline-flex items-center gap-2 font-sans text-[12px] uppercase tracking-[0.14em] text-house-gold-dark transition hover:text-house-gold"

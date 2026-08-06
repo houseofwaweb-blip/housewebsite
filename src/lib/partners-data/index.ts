@@ -98,7 +98,7 @@ const PLACEHOLDER_PROJECTS: PartnerProject[] = [
   {
     title: "A kitchen in the Cotswolds",
     caption: "Interiors · 2024",
-    meta: "HoWA Approved",
+    meta: "House Approved",
     image: "/partners/project-2.webp",
   },
   {
@@ -148,7 +148,7 @@ const DEFAULT_DESIGN_PACKAGES: PartnerPackage[] = [
     inclusions: [
       "Style diagnostic & mood direction",
       "Bespoke scheme (colour, fabric, light)",
-      "Sourcing list via HoWA Approved",
+      "Sourcing list via House Approved",
       "One revision round",
       "Delivered into HoWA as a live project",
     ],
@@ -181,7 +181,7 @@ const DEFAULT_DESIGN_PACKAGES: PartnerPackage[] = [
       "Shoppable moodboard",
       "Full material & sample pack",
       "Designer follow-up call",
-      "HoWA Approved procurement",
+      "House Approved procurement",
       "Aftercare extension",
     ],
     ctaLabel: "Add in HoWA →",
@@ -198,7 +198,7 @@ const DEFAULT_FAQ = [
     a: "Yes. Room Edit is Pay Now. Full House Edit is consultation-first.",
   },
   {
-    q: "What does \u201cHoWA Approved\u201d sourcing mean?",
+    q: "What does \u201cHouse Approved\u201d sourcing mean?",
     a: "A curated roster of makers and suppliers vetted by the House for craft and quality.",
   },
   {
@@ -294,7 +294,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
       { name: "The House Edit", price: "\u00a3295", description: "A 90-minute one-to-one online styling session. Personalised PDF moodboard with curated links. 10% House Store discount." },
       { name: "Additions to Your Edit", price: "from \u00a3195", description: "Shoppable moodboard, sourcing per room, material pack (swatches, samples, scents), 30-minute follow-up call." },
       { name: "The Full House Edit", price: "from \u00a3795", description: "Initial 90-minute consultation, moodboards for up to three rooms, sourcing for two rooms, a tactile material pack, 30-minute follow-up, 15% House Store discount." },
-      { name: "Room Edit", price: "from \u00a32,400", description: "A single-room refresh with full scheme, colour, fabric, light, and sourcing via HoWA Approved." },
+      { name: "Room Edit", price: "from \u00a32,400", description: "A single-room refresh with full scheme, colour, fabric, light, and sourcing via House Approved." },
       { name: "Full House Edit (Studio)", price: "from \u00a312,000", description: "A coherent language across every room. Full architectural scheme, room-by-room sourcing, site visits, install coordination, aftercare." },
       { name: "The Style Diagnostic", price: "Coming Soon", description: "A guided style journey that reveals your personal home moodboard. Free mini style summary, shoppable digital moodboard, AI & designer session upgrade." },
     ],
@@ -340,7 +340,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
         inclusions: [
           "Garden walk + brief",
           "Seasonal planting plan",
-          "Sourcing list via HoWA Approved",
+          "Sourcing list via House Approved",
           "One revision round",
           "Delivered into HoWA as a live project",
         ],
@@ -372,7 +372,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
           "Seasonal review visit",
           "Container & pot planting",
           "Lighting scheme",
-          "HoWA Approved procurement",
+          "House Approved procurement",
           "Aftercare extension",
         ],
         ctaLabel: "Add in HoWA \u2192",

@@ -77,12 +77,12 @@ const PLANS = [
   },
   {
     name: "2D & 3D Plans",
-    tagline: "Drawn, dimensioned, build-ready.",
+    tagline: "Drawn, dimensioned and detailed.",
     price: "from £2,950",
     inclusions: [
       "Fully dimensioned plans",
       "3D renders of key views",
-      "Construction-grade detail",
+      "Technical detail, subject to site verification",
       "Contractor liaison brief",
       "On-site walk-through",
     ],
@@ -137,6 +137,10 @@ export default async function GardensPage() {
     image: pick(c.imageUrl, base?.image ?? ""),
     featured: base?.featured ?? false,
   }));
+  // Spell out the plan-pack count so the heading can never disagree with the cards.
+  const planWays =
+    ["", "One way", "Two ways", "Three ways", "Four ways", "Five ways", "Six ways", "Seven ways"][planCards.length] ??
+    `${planCards.length} ways`;
   const specialistCards = cmsCards(specialist, SPECIALIST, (c, base) => ({
     name: pick(c.title, base?.name ?? ""),
     price: pick(c.value, base?.price ?? ""),
@@ -151,7 +155,7 @@ export default async function GardensPage() {
         <div className={s.heroCopy}>
           <FlowerWatermark color="gold" side="left" opacity={0.16} className="!top-auto bottom-[-12%] h-[74%]" />
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>{cms(hero, "eyebrow", "Design · Gardens")}</p>
+            <p className={s.heroEy}>{cms(hero, "eyebrow", "Garden Design · House Companion powered by HoWA")}</p>
             <h1 className={s.heroTitle}>
               {cms(hero, "headline", "Landscapes,")}{" "}
               <em>{cms(hero, "headlineEm", "properly read.", "headline")}</em>
@@ -171,13 +175,16 @@ export default async function GardensPage() {
             </p>
             <div className={s.heroCtas}>
               <Link href={cms(hero, "ctaHref", "#plans")} className={s.btnFilled}>
-                {cms(hero, "ctaLabel", "Start my garden design")}
+                {cms(hero, "ctaLabel", "See the plan packs")}
               </Link>
-              <Link href={cms(hero, "cta2Href", "#projects")} className={s.btnGhost}>
-                {cms(hero, "cta2Label", "View garden projects")}
+              <Link href={cms(hero, "cta2Href", "/contact")} className={s.btnGhost}>
+                {cms(hero, "cta2Label", "Work with a garden studio")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
+            <p style={{ marginTop: 20, fontFamily: "var(--font-sans)", fontSize: 13, lineHeight: 1.55, color: "var(--color-house-stone)", maxWidth: "58ch" }}>
+              House Companion shapes the brief. HoWA creates the project, plan and next action. House Pro manages verification and delivery.
+            </p>
           </div>
         </div>
         <div className={s.heroVisual}>
@@ -193,6 +200,29 @@ export default async function GardensPage() {
             priority
             style={{ objectFit: "cover", objectPosition: "center" }}
           />
+        </div>
+      </section>
+
+      {/* 1b. Garden journey (Copy Pack §08) — taste to aftercare. */}
+      <section className="border-t border-house-brown/10 px-[5vw] py-[clamp(48px,6vw,88px)]" style={{ background: "var(--color-house-white)" }}>
+        <div className="mx-auto max-w-[1080px]">
+          <div className="mx-auto mb-9 max-w-[640px] text-center">
+            <p className="mb-3 font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink">The garden journey</p>
+            <h2 className="mb-4 font-display text-[clamp(26px,3.2vw,42px)] leading-[1.08] text-house-brown">
+              From the first idea to <em>the garden that grows.</em>
+            </h2>
+            <p className="font-sans text-[15px] leading-[1.6] text-house-stone">
+              House Companion shapes the brief and HoWA holds the project, so each stage builds on the last.
+            </p>
+          </div>
+          <ol className="grid list-none gap-x-8 gap-y-4 p-0 sm:grid-cols-2 lg:grid-cols-5">
+            {["Taste and use", "Site capture", "Measurable model", "Concept directions", "Chosen plan", "Planting and material schedules", "Professional verification", "Quotations", "Delivery", "Aftercare"].map((step, i) => (
+              <li key={step} className="border-t border-house-brown/15 pt-3">
+                <span className="font-display text-[16px] text-house-gold-ink">{String(i + 1).padStart(2, "0")}</span>
+                <p className="mt-1 font-sans text-[14px] leading-[1.4] text-house-brown">{step}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
@@ -217,8 +247,8 @@ export default async function GardensPage() {
         <header className={s.plansHead}>
           <p className={s.plansEy}>{cms(plans, "eyebrow", "Garden Plans")}</p>
           <h2 className={s.plansTitle}>
-            {cms(plans, "headline", "Four ways")}{" "}
-            <em>{cms(plans, "headlineEm", "to begin.", "headline")}</em>
+            {planWays}{" "}
+            <em>to begin.</em>
           </h2>
           <p className={s.plansLede}>
             {cms(
@@ -254,7 +284,7 @@ export default async function GardensPage() {
                     <li key={inc}>{inc}</li>
                   ))}
                 </ul>
-                <Link href="#open-booking-form" className={s.planCta}>
+                <Link href="/contact" className={s.planCta}>
                   Enquire →
                 </Link>
               </div>
@@ -349,16 +379,16 @@ export default async function GardensPage() {
           tier and does not belong in the House design path.) */}
       <section className={s.companion}>
         <div className={s.companionCopy}>
-          <p className={s.companionEy}>{cms(companion, "eyebrow", "HoWA · The Designer")}</p>
+          <p className={s.companionEy}>{cms(companion, "eyebrow", "House Companion · Powered by HoWA")}</p>
           <h2 className={s.companionTitle}>
-            {cms(companion, "headline", "Start with the")}{" "}
-            <em>{cms(companion, "headlineEm", "Designer.", "headline")}</em>
+            {cms(companion, "headline", "Start with")}{" "}
+            <em>{cms(companion, "headlineEm", "House Companion.", "headline")}</em>
           </h2>
           <p className={s.companionLede}>
             {cms(
               companion,
               "body",
-              "Use the Designer to map your garden's light, soil, aspect, maintenance appetite and budget. You get a first direction and an indicative budget you own, a brief Willow Alexander can work from on day one, nothing lost, nothing repeated.",
+              "Use House Companion to map your garden's light, soil, aspect, maintenance appetite and budget. You get a first direction and an indicative budget you own, a brief Willow Alexander can work from on day one, nothing lost, nothing repeated.",
             )}
           </p>
           <p className={s.companionFootnote}>
@@ -386,12 +416,33 @@ export default async function GardensPage() {
             alt={cms(
               companion,
               "imageAlt",
-              "A garden concept plan, the kind of brief the Designer helps you build",
+              "A garden concept plan, the kind of brief House Companion helps you build",
             )}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
             style={{ objectFit: "cover", objectPosition: "center" }}
           />
+        </div>
+      </section>
+
+      {/* 7b. Delivery / House Approved (Copy Pack §08) — the plan becomes the work. */}
+      <section className="border-t border-house-brown/10 px-[5vw] py-[clamp(48px,6vw,88px)]" style={{ background: "var(--color-house-cream-dark)" }}>
+        <div className="mx-auto max-w-[900px] text-center">
+          <p className="mb-3 font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink">Delivery · House Approved</p>
+          <h2 className="mb-5 font-display text-[clamp(26px,3.2vw,42px)] leading-[1.08] text-house-brown">
+            Let the same plan <em>become the work.</em>
+          </h2>
+          <p className="mx-auto mb-8 max-w-[62ch] font-sans text-[16px] leading-[1.65] text-house-stone">
+            Invite House Approved garden designers, landscapers and project managers to verify or quote the locked scope. The House carries the brief and programme through to completion, while HoWA remembers the finished garden and its care.
+          </p>
+          <div className="btn-row">
+            <Link href="/contact" className="inline-flex items-center justify-center gap-2 border border-house-gold-dark bg-house-gold-ink px-8 py-4 text-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-[filter] hover:brightness-110">
+              Request House Approved quotations <span aria-hidden>→</span>
+            </Link>
+            <Link href="/house-approved" className="inline-flex items-center justify-center gap-2 border border-house-brown/25 px-8 py-4 text-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-colors hover:border-house-gold">
+              Meet a garden studio
+            </Link>
+          </div>
         </div>
       </section>
 

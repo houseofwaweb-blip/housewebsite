@@ -97,7 +97,7 @@ export function ServiceCarousel({ cards }: { cards: ServiceCardData[] }) {
               <p className={s.serviceTagline}>{svc.tagline}</p>
               <p className={s.serviceText}>{svc.body}</p>
               <span className={s.serviceCta}>
-                {svc.state === "live" ? `See ${svc.name.toLowerCase()} →` : "Register interest →"}
+                {svc.state === "live" ? "Book this service →" : "Register interest →"}
               </span>
             </div>
           </Link>

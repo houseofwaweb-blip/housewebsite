@@ -14,7 +14,7 @@ import type { RequestableDetail } from "./requestable-detail";
  *   - No em dashes. Use a comma, or start a new sentence.
  *   - Never invent a price, a response time, a guarantee or an accreditation.
  *     Describe the pricing method instead.
- *   - The work is carried out by a House team or by a named HoWA Approved
+ *   - The work is carried out by a House team or by a named House Approved
  *     professional, and which one is always disclosed before you commit.
  *   - Coverage is London and the South East. The House number is 0800 047 8738.
  *
@@ -254,7 +254,7 @@ export const HOME_DETAIL: Record<string, RequestableDetail> = {
       },
       {
         q: "Who actually carries out the work?",
-        a: "Gas work is only ever carried out by a registered engineer, either a House team member or a named HoWA Approved professional. You will be told which before you commit, along with their name.",
+        a: "Gas work is only ever carried out by a registered engineer, either a House team member or a named House Approved professional. You will be told which before you commit, along with their name.",
       },
     ],
     practical: {

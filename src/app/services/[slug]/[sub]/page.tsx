@@ -202,11 +202,11 @@ const heroSoon = false;
                 </span>
               ) : (
                 <Link href="#open-booking-form" className={s.btnFilled}>
-                  Book a service
+                  Book this service
                 </Link>
               )}
-              <Link href={`/services/${parent.slug}`} className={s.btnGhost}>
-                {heroSoon ? "Book another service" : `All ${parent.name.toLowerCase()}`}
+              <Link href="/house-companion" className={s.btnGhost}>
+                {heroSoon ? "Ask House Companion" : "Not sure? Ask House Companion"}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>

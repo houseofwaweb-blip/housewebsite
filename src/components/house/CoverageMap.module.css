@@ -11,6 +11,13 @@
   height: 300px;
   border: 1px solid rgba(48, 35, 28, 0.12);
   background: var(--color-house-cream-dark);
+  /* Leaflet sets very high z-indexes internally (panes up to 700, controls
+     1000). Without a stacking context here they leak above the sticky header
+     on scroll. position + z-index:0 traps all of Leaflet's z-indexes inside a
+     context that sits below the header. */
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
 }
 
 .canvas :global(.leaflet-container) {

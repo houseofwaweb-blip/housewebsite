@@ -59,7 +59,7 @@ const DESTINATIONS = [
     want: "Care for my home or garden",
     title: "Services",
     line: "Trusted practical help for the home and garden.",
-    cta: "Find a service",
+    cta: "Book a service",
     href: "/services",
     image: "/services/photos/gardening/lawn-care-hero.webp",
     alt: "Two House gardeners mowing and clearing a large lawn",
@@ -130,7 +130,7 @@ const POPULAR_SERVICES = [
  * rather than another abstract brand manifesto.
  */
 const PROOF_POINTS = [
-  { k: "Real teams, named providers", v: "A House of Willow Alexander team, or a named HoWA Approved professional. You are told which, and who, before you commit." },
+  { k: "Real teams, named providers", v: "A House of Willow Alexander team, or a named House Approved professional. You are told which, and who, before you commit." },
   { k: "Published standards", v: "The standard every provider works to is written down and applied consistently, not implied by a badge." },
   { k: "Vetting and cover", v: "Identity and reference checked, and covered by public liability insurance." },
   { k: "Real work, real photography", v: "The photographs on this site are our own crews, vans and gardens. Nothing is stock." },
@@ -225,20 +225,19 @@ export default async function HomePage() {
               <em>you call home.</em>
             </h1>
             <p className={s.heroLede}>
-              Home and garden services, thoughtful design, insurance, considered
-              goods and Home Intelligence, brought together by House of Willow
-              Alexander and managed through HoWA.
+              Care, design and trusted people for the whole home, guided by House
+              Companion and remembered by HoWA.
             </p>
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <a href="#house-help" className={s.btnFilled} style={{ justifyContent: "center", textAlign: "center" }}>
-                What does your home need?
+            <div className="mt-7 btn-row">
+              <a href="/house-companion" className={s.btnFilled} style={{ justifyContent: "center", textAlign: "center" }}>
+                Ask House Companion
               </a>
-              <a href="#popular-services" className={s.btnGhost} style={{ justifyContent: "center", textAlign: "center" }}>
-                Explore the House
+              <a href="/services" className={s.btnGhost} style={{ justifyContent: "center", textAlign: "center" }}>
+                Book a House service
               </a>
             </div>
             <p className={s.heroBookingNote}>
-              <a href="https://accounts.willowalexander.co.uk/">Open My Home in HoWA</a>, or{" "}
+              <a href="https://accounts.willowalexander.co.uk/">Open Home Record</a>, or{" "}
               <a href="tel:08000478738">call the House directly</a>.
             </p>
           </div>
@@ -253,6 +252,102 @@ export default async function HomePage() {
               priority
               style={{ objectFit: "cover" }}
             />
+          </div>
+        </div>
+      </section>
+
+      {/* 6a. House Companion feature (Aug 2026 reframe) — the promoted intelligent
+          front door, powered by HoWA. Replaces the old HoWA tier band. */}
+      <section className="px-[5vw] py-[clamp(48px,6vw,92px)]" style={{ background: "var(--color-house-white)" }}>
+        <div className="mx-auto max-w-[1240px]">
+          <div className="grid gap-[clamp(28px,5vw,72px)] lg:grid-cols-[1fr_1fr] lg:items-center">
+            <div className="relative aspect-[4/3] w-full overflow-hidden lg:order-last">
+              <Image
+                src="/powered-by-howa/hero.webp"
+                alt="House Companion understanding what a home needs and how it should feel, its findings kept quietly alongside"
+                fill
+                sizes="(max-width:1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
+            <div>
+              <p className="mb-4 font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink">
+                House Companion · Powered by HoWA
+              </p>
+              <h2 className="mb-5 font-display text-[clamp(28px,3.6vw,50px)] leading-[1.06] text-house-brown">
+                Your home, <em>understood beautifully.</em>
+              </h2>
+              <p className="mb-6 max-w-[54ch] font-sans text-[16px] leading-[1.65] text-house-stone">
+                Begin with a photograph, a problem or an idea. House Companion
+                understands what you need and how you want the home to feel. It can
+                shape a brief, guide a design or recommend the right House service,
+                while HoWA keeps every decision and next action with your home.
+              </p>
+              <ul className="mb-8 grid list-none gap-2 p-0 sm:grid-cols-2">
+                {[
+                  { t: "Understand", b: "what the home needs" },
+                  { t: "Design", b: "a room or garden" },
+                  { t: "Act", b: "with the right service" },
+                  { t: "Remember", b: "it all in HoWA" },
+                ].map((o) => (
+                  <li key={o.t} className="flex gap-2.5 font-sans text-[15px] leading-[1.45] text-house-brown">
+                    <span aria-hidden className="text-house-gold-ink">·</span>
+                    <span><strong className="font-medium">{o.t}</strong> {o.b}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="btn-row">
+                <Link href="/house-companion" className="inline-flex items-center justify-center gap-2 border border-house-gold-dark bg-house-gold-ink px-8 py-4 text-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-[filter] hover:brightness-110">
+                  Ask House Companion <span aria-hidden>→</span>
+                </Link>
+                <Link href="/house-companion#start" className="inline-flex items-center justify-center gap-2 border border-house-brown/25 px-8 py-4 text-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-colors hover:border-house-gold">
+                  See how it works
+                </Link>
+              </div>
+              <p className="mt-5 font-sans text-[13px] leading-[1.5] text-house-stone/75">
+                Powered by HoWA, the Home Intelligence for your address.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Beat 3 (Visual Brief slide 14 / Change Report §6) — three clean ways to
+          begin, not one overloaded product story. */}
+      <section className="border-t border-house-brown/10 px-[5vw] py-[clamp(48px,6vw,92px)]" style={{ background: "var(--color-house-cream-dark)" }}>
+        <div className="mx-auto max-w-[1180px]">
+          <div className="mx-auto mb-11 max-w-[700px] text-center">
+            <p className="mb-3 font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink">Three ways to begin</p>
+            <h2 className="mb-4 font-display text-[clamp(28px,3.4vw,46px)] leading-[1.06] text-house-brown">
+              Known need, or <em>unsure?</em>
+            </h2>
+            <p className="font-sans text-[16px] leading-[1.6] text-house-stone">
+              Book what you already know, ask House Companion when the need is
+              unclear or design-led, or go straight to the Home Intelligence for
+              your address. One Home Record underneath all three.
+            </p>
+          </div>
+          <div className="grid gap-5 md:grid-cols-3">
+            {[
+              { n: "01", t: "Book a House service", b: "You already know the work you need. Choose a service and book it directly.", cta: "Book a service", href: "/services", external: false },
+              { n: "02", t: "Ask House Companion", b: "Unsure, or starting from a photo, a room, a garden or a feeling. It shapes the brief and the route.", cta: "Ask House Companion", href: "/house-companion", external: false },
+              { n: "03", t: "Open your Home Record", b: "You want the full intelligence of your address. Claim it and start in HoWA.", cta: "Open Home Record", href: "https://accounts.willowalexander.co.uk/", external: true },
+            ].map((r) => {
+              const cls = "group flex flex-col border border-house-brown/12 bg-house-white p-8 no-underline transition-colors hover:border-house-gold";
+              const inner = (
+                <>
+                  <span className="font-display text-[22px] text-house-gold-ink">{r.n}</span>
+                  <h3 className="mb-2 mt-2 font-display text-[24px] leading-tight text-house-brown">{r.t}</h3>
+                  <p className="mb-6 flex-1 font-sans text-[15px] leading-[1.55] text-house-stone">{r.b}</p>
+                  <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-ink transition-colors group-hover:text-house-brown">{r.cta} →</span>
+                </>
+              );
+              return r.external ? (
+                <a key={r.n} href={r.href} className={cls}>{inner}</a>
+              ) : (
+                <Link key={r.n} href={r.href} className={cls}>{inner}</Link>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -484,130 +579,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 6. The House runs on HoWA (v4 §3 module 6) — genuine application
-          imagery, practical customer benefits, no tier or membership
-          comparison. */}
-      <section className="bg-house-forest py-[clamp(56px,7vw,104px)]">
-        <div className="mx-auto max-w-[1240px] px-[5vw]">
-          <div className="grid gap-[clamp(28px,5vw,72px)] lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-            <div>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: 11, letterSpacing: "0.26em", textTransform: "uppercase", color: "var(--color-house-gold-light)", margin: "0 0 14px", fontWeight: 500 }}>
-                The app behind every booking
-              </p>
-              <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 400, fontSize: "clamp(28px,3.8vw,50px)", lineHeight: 1.08, color: "var(--color-house-cream)", margin: "0 0 20px" }}>
-                The House runs on <em>HoWA.</em>
-              </h2>
-              <p style={{ fontFamily: "var(--font-sans)", fontSize: 16, lineHeight: 1.65, color: "rgba(245,240,232,0.86)", maxWidth: "56ch", margin: "0 0 28px" }}>
-                HoWA is the Home Intelligence app we use to manage every customer
-                relationship. Quotes, bookings, appointments, messages,
-                photographs, invoices and completed work remain connected to your
-                home in one intelligent record.
-              </p>
-
-              <div className="grid gap-3 sm:max-w-[420px]">
-                <a
-                  href="https://accounts.willowalexander.co.uk/"
-                  className="inline-flex items-center justify-center gap-2 border border-house-gold-dark bg-house-gold-ink px-8 py-4 text-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-[filter] hover:brightness-110"
-                >
-                  Open My Home in HoWA <span aria-hidden>→</span>
-                </a>
-                <Link
-                  href="/howa"
-                  className="inline-flex items-center justify-center gap-2 border border-house-gold-dark/60 px-8 py-4 text-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-cream no-underline transition-colors hover:bg-house-gold-ink hover:text-house-brown"
-                >
-                  See how the House uses HoWA <span aria-hidden>→</span>
-                </Link>
-              </div>
-            </div>
-
-            <div className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
-              {[
-                { t: "Quotes and bookings", b: "The price, the scope and the slot, agreed and held in one place." },
-                { t: "Appointments and messages", b: "Confirmed times, arrival updates and a direct line to the team coming." },
-                { t: "Documents and payments", b: "Invoices, receipts, certificates and warranties, filed against the address." },
-                { t: "Your connected Home Record", b: "What has been done, what it cost, and what the home needs next." },
-              ].map((f) => (
-                <div key={f.t} className="border-t border-house-gold-dark/40 pt-4">
-                  <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 400, fontSize: 19, lineHeight: 1.2, color: "var(--color-house-cream)", margin: "0 0 6px" }}>{f.t}</h3>
-                  <p style={{ fontFamily: "var(--font-sans)", fontSize: 14, lineHeight: 1.55, color: "rgba(245,240,232,0.75)", margin: 0 }}>{f.b}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* The "Three ways HoWA works for your home" bands, ported from the
-            live howa.co.uk component (V4Bands / three-ways-handover). Full-bleed
-            edge to edge: it sits OUTSIDE the max-w content above so the strip
-            spans the whole viewport, the one place colour lives, exactly as on
-            howa.co.uk. Each tinted cutaway house bleeds off the RIGHT edge and
-            dissolves into the band colour via an #RRGGBBAA gradient (fade to the
-            SAME colour at zero alpha, ending ~45%, never to `transparent`). Copy
-            on the left, straddling pill above. Steward is the anchor with a gold
-            name accent. No CTAs on the bands (removed by request); the section's
-            own buttons above lead into HoWA. howa-surface opts the pill out of
-            the global border-radius:0 reset so it renders round. */}
-        <div className="howa-surface relative mt-[clamp(48px,6vw,84px)]">
-            {/* Header pill straddling the top boundary of the strip. */}
-            <span className="absolute left-1/2 top-0 z-30 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border border-house-gold/30 bg-house-cream px-7 py-3 font-display text-[clamp(16px,1.6vw,24px)] italic leading-none text-house-brown shadow-[0_10px_28px_-12px_rgba(60,40,15,0.4)]">
-              Three ways HoWA works for your home.
-            </span>
-
-            <div className="flex snap-x snap-mandatory overflow-x-auto bg-[#1d2a40] [scrollbar-width:none] lg:grid lg:grid-cols-3 lg:overflow-visible [&::-webkit-scrollbar]:hidden">
-              {[
-                { num: "I", name: "Free", tagline: "The house, seen.", desc: "Awareness, and what to do about it.", points: ["Instant address portrait", "Ask HoWA", "Repair, garden & room scans"], bg: "#5f6a49", image: "tier-band-assistant-v2" },
-                { num: "II", name: "Housekeeper", tagline: "The house, in order.", desc: "Every detail. Every task. Perfectly handled.", points: ["Full logbook", "Maintenance & garden calendar", "Renewal & warranty reminders"], bg: "#b56a5c", image: "tier-band-housekeeper-v3" },
-                { num: "III", name: "Steward", tagline: "The house, protected before failure.", desc: "Intelligence and control, before things go wrong.", points: ["HoWA Score & risk register", "Predictive maintenance", "Sensor & smart-meter interpretation"], bg: "#1d2a40", image: "tier-band-steward-v2", accent: "#c5a960" },
-              ].map((m) => (
-                <article
-                  key={m.name}
-                  className="relative min-h-[420px] w-[88%] shrink-0 snap-center overflow-hidden text-[#f3ede0] transition-transform duration-[420ms] ease-[cubic-bezier(0.65,0,0.35,1)] hover:z-20 hover:scale-[1.025] lg:-ml-px lg:min-h-[clamp(440px,42vw,560px)] lg:w-auto lg:first:ml-0"
-                  style={{ background: m.bg }}
-                >
-                  {/* House fills the right side and bleeds off the edge. */}
-                  <div className="absolute inset-y-0 right-0 w-[58%] opacity-95" style={{ background: m.bg }}>
-                    <Image
-                      src={`/home-v4/${m.image}.webp`}
-                      alt={`${m.name} mode, a cutaway Georgian house.`}
-                      fill
-                      sizes="(max-width: 1024px) 60vw, 22vw"
-                      className="object-cover object-left"
-                    />
-                    <div
-                      aria-hidden
-                      className="absolute inset-0"
-                      style={{ background: `linear-gradient(to right, ${m.bg} 0%, ${m.bg}00 45%)` }}
-                    />
-                  </div>
-
-                  {/* Copy */}
-                  <div className="relative z-10 flex h-full max-w-[62%] flex-col px-7 py-9 lg:px-8 lg:py-11">
-                    <div className="mb-4 flex items-baseline gap-3">
-                      <span className="font-display text-[27px] italic leading-none text-[#f3ede0]/70">{m.num}.</span>
-                      <h3 className="font-display text-[clamp(23px,1.8vw,30px)] leading-[1.05]">
-                        <span className="italic" style={m.accent ? { color: m.accent } : undefined}>{m.name}</span>
-                      </h3>
-                    </div>
-                    <p className="mb-4 mt-1 font-display text-[clamp(18px,1.5vw,23px)] italic text-[#f3ede0]">{m.tagline}</p>
-                    <p className="mb-6 max-w-[230px] font-sans text-[16px] leading-[1.5] text-[#f3ede0]/95">{m.desc}</p>
-                    <ul className="mb-7 list-none space-y-2 p-0">
-                      {m.points.map((p) => (
-                        <li key={p} className="flex items-center gap-2.5 font-sans text-[15.5px] text-[#f3ede0]">
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-[#f3ede0]/70" aria-hidden>
-                            <circle cx="12" cy="12" r="9" />
-                            <path d="M8.5 12.5l2.5 2.5 4.5-5" />
-                          </svg>
-                          {p}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-      </section>
-
       {/* 7. Design (v4 §3 module 7) — interior and garden together, keeping the
           distinction between HoWA mapping and human continuation. */}
       <section className="px-[5vw] py-[clamp(48px,6vw,92px)]" style={{ background: "var(--color-house-cream)" }}>
@@ -648,6 +619,128 @@ export default async function HomePage() {
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6b. The Home Intelligence behind the House (Aug 2026 reframe) — one
+          concise HoWA relationship section, not a tier comparison. */}
+      <section className="bg-house-forest py-[clamp(56px,7vw,104px)]">
+        <div className="mx-auto max-w-[1240px] px-[5vw]">
+          <div className="grid gap-[clamp(28px,5vw,72px)] lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+            <div>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: 11, letterSpacing: "0.26em", textTransform: "uppercase", color: "var(--color-house-gold-light)", margin: "0 0 14px", fontWeight: 500 }}>
+                The Home Intelligence behind the House
+              </p>
+              <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 400, fontSize: "clamp(28px,3.8vw,50px)", lineHeight: 1.08, color: "var(--color-house-cream)", margin: "0 0 20px" }}>
+                Good work should leave the home <em>better known.</em>
+              </h2>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: 16, lineHeight: 1.65, color: "rgba(245,240,232,0.86)", maxWidth: "56ch", margin: "0 0 28px" }}>
+                HoWA is the Home Intelligence we use to understand the address, carry
+                the brief and remember what happened. Appointments, photographs,
+                plans, findings, documents, costs and next actions can remain in one
+                Home Record, so care compounds rather than disappearing into messages
+                and invoices.
+              </p>
+
+              <div className="grid gap-3 sm:max-w-[420px] sm:grid-cols-2">
+                <Link
+                  href="/howa"
+                  className="inline-flex items-center justify-center gap-2 border border-house-gold-dark bg-house-gold-ink px-8 py-4 text-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-[filter] hover:brightness-110"
+                >
+                  Meet HoWA <span aria-hidden>→</span>
+                </Link>
+                <a
+                  href="https://accounts.willowalexander.co.uk/"
+                  className="inline-flex items-center justify-center gap-2 border border-house-gold-dark/60 px-8 py-4 text-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-cream no-underline transition-colors hover:bg-house-gold-ink hover:text-house-brown"
+                >
+                  Open Home Record
+                </a>
+              </div>
+            </div>
+
+            <div>
+              <div className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
+                {[
+                  { t: "Before the visit", b: "Property context, preferences, prior work and access notes make a clearer brief." },
+                  { t: "During the work", b: "The task, team, scope, photographs, findings and decisions stay with the address." },
+                  { t: "After the work", b: "Completion evidence, costs, warranty and next action return to the Home Record." },
+                  { t: "Over time", b: "The home learns from care and projects instead of beginning again with each provider." },
+                ].map((f) => (
+                  <div key={f.t} className="border-t border-house-gold-dark/40 pt-4">
+                    <h3 style={{ fontFamily: "var(--font-display)", fontWeight: 400, fontSize: 19, lineHeight: 1.2, color: "var(--color-house-cream)", margin: "0 0 6px" }}>{f.t}</h3>
+                    <p style={{ fontFamily: "var(--font-sans)", fontSize: 14, lineHeight: 1.55, color: "rgba(245,240,232,0.75)", margin: 0 }}>{f.b}</p>
+                  </div>
+                ))}
+              </div>
+              {/* HoWA product showcase: the home, finally known (Aug 2026 image). */}
+              <div className="mt-9 overflow-hidden border border-house-gold-dark/40">
+                <Image
+                  src="/powered-by-howa/understanding-to-action.png"
+                  alt="A cross-section of a Georgian home beside HoWA on tablet and phone, showing the HoWA Score and one Home Record: the home, finally known."
+                  width={1536}
+                  height={1024}
+                  sizes="(max-width: 1024px) 100vw, 560px"
+                  className="h-auto w-full"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6c. House Approved (Aug 2026, Visual Brief slide 14 beat 6) — the
+          delivery network that makes the intelligence real: the right people,
+          beautifully briefed. Closes the one-scroll relationship spine. */}
+      <section className="border-t border-house-brown/10 px-[5vw] py-[clamp(48px,6vw,92px)]" style={{ background: "var(--color-house-cream-dark)" }}>
+        <div className="mx-auto max-w-[1080px]">
+          <div className="grid gap-[clamp(28px,5vw,64px)] lg:grid-cols-[1fr_1fr] lg:items-start">
+            <div>
+              <p className="mb-4 font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink">House Approved</p>
+              <h2 className="mb-5 font-display text-[clamp(28px,3.6vw,48px)] leading-[1.06] text-house-brown">
+                The right people, <em>beautifully briefed.</em>
+              </h2>
+              <p className="mb-7 max-w-[52ch] font-sans text-[16px] leading-[1.65] text-house-stone">
+                Whoever arrives, arrives to one House standard, with a brief that
+                does not weaken when it reaches the person doing the work. House
+                Companion shapes it, HoWA carries the context, and House Approved
+                designers, gardeners and trades bring it to life.
+              </p>
+              <div className="btn-row">
+                <Link href="/house-approved" className="inline-flex items-center justify-center gap-2 border border-house-gold-dark bg-house-gold-ink px-8 py-4 text-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-[filter] hover:brightness-110">
+                  Meet House Approved <span aria-hidden>→</span>
+                </Link>
+                <Link href="/house-pro" className="inline-flex items-center justify-center gap-2 border border-house-brown/25 px-8 py-4 text-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-colors hover:border-house-gold">
+                  Join the network
+                </Link>
+              </div>
+            </div>
+            <div>
+              <div className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
+                {[
+                  { t: "One standard", b: "Every professional held to the same House standard and methodology." },
+                  { t: "A brief that holds", b: "Scope, taste and context travel intact from Companion to the person on site." },
+                  { t: "Qualified people", b: "Vetted designers, gardeners, cleaners and trades, chosen for the work." },
+                  { t: "Evidence returns", b: "Photographs, findings, costs and warranties come back to your Home Record." },
+                ].map((f) => (
+                  <div key={f.t} className="border-t border-house-brown/15 pt-4">
+                    <h3 className="mb-1.5 font-display text-[19px] leading-tight text-house-brown">{f.t}</h3>
+                    <p className="font-sans text-[14px] leading-[1.55] text-house-stone">{f.b}</p>
+                  </div>
+                ))}
+              </div>
+              {/* House Approved showcase: the branded van and a named professional (Aug 2026 image). */}
+              <div className="mt-9 overflow-hidden border border-house-brown/15">
+                <Image
+                  src="/powered-by-howa/house-approved-showcase.png"
+                  alt="A House Approved branded van and a well-dressed professional on a London street: the right people, beautifully briefed."
+                  width={1672}
+                  height={941}
+                  sizes="(max-width: 1024px) 100vw, 560px"
+                  className="h-auto w-full"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -872,7 +965,7 @@ export default async function HomePage() {
             Call the House
           </a>
           <a href="https://accounts.willowalexander.co.uk/" className={s.btnGhostDark} style={{ justifyContent: "center", textAlign: "center" }}>
-            Open My Home in HoWA
+            Open Home Record
           </a>
         </div>
       </section>

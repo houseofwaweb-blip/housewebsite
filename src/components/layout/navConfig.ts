@@ -19,7 +19,7 @@ const SHOP_CATEGORIES = (
  * Garden · Home · Exterior · Help me choose. The earlier four-service
  * limitation (v2 §04) is explicitly reversed: it was meant to stop dead
  * "coming soon" cards, but it must not stop the House presenting a credible
- * whole-home offer fulfilled through House teams AND disclosed HoWA Approved
+ * whole-home offer fulfilled through House teams AND disclosed House Approved
  * professionals. Every link below resolves to a real page.
  */
 const SERVICE_CATEGORIES: {
@@ -87,7 +87,7 @@ const SERVICE_CATEGORIES: {
  * thing being bought.
  */
 const SERVICE_FOOTER = [
-  { label: "Find a service", href: "/services" },
+  { label: "Book a House service", href: "/services" },
   { label: "See prices & availability", href: "#open-booking-form" },
 ];
 
@@ -103,6 +103,45 @@ const SERVICE_FOOTER = [
  * straight into a pricing comparison or the full HoWA product catalogue.
  */
 export const PRIMARY_NAV: MegaPanel[] = [
+  {
+    id: "the-house",
+    // Aug 2026 directive §08 — the pillar label is "The House".
+    trigger: "The House",
+    // The standalone overview hub was retired; the dropdown's "See all" link and
+    // the bare /the-house route both lead to About (the section's overview).
+    triggerHref: "/the-house/about",
+    groups: [
+      {
+        heading: "What we stand for",
+        links: [
+          { label: "Philosophy", href: "/the-house/philosophy", description: "Our founding idea" },
+          // v4 §6 — the customer-facing provider-transparency page. There is no
+          // "House Approved Partners" page: professional accreditation belongs
+          // to House Approved, and recruitment lives on the HoWA site.
+          { label: "How we choose", href: "/the-house/how-we-choose", description: "Who cares for your home" },
+          { label: "The Artwork of the House", href: "/the-house/artwork", description: "Heritage, craft, colour" },
+          { label: "Standards", href: "/the-house/standards", description: "How we work" },
+          { label: "Sustainability", href: "/the-house/sustainability", description: "Our commitments" },
+        ],
+      },
+      {
+        heading: "From the House",
+        links: [
+          { label: "About", href: "/the-house/about", description: "The team behind the House" },
+          { label: "News", href: "/news", description: "Press, awards & announcements" },
+          { label: "Contact", href: "/contact", description: "Talk to the House" },
+        ],
+      },
+    ],
+    preview: {
+      image: "/home/hero-georgian.webp",
+      alt: "A Georgian terrace in Notting Hill",
+      tag: "The Philosophy",
+      heading: "Ownership is passive. Stewardship is intentional.",
+      href: "/the-house/philosophy",
+    },
+  },
+
   {
     id: "services",
     trigger: "Services",
@@ -143,7 +182,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
         links: [
           { label: "Describe a problem", href: "/services#help-me-choose" },
           { label: "Everything the House can arrange", href: "/services#everything" },
-          { label: "Find a service", href: "/services", description: "See prices & availability" },
+          { label: "Book a House service", href: "/services", description: "See prices & availability" },
         ],
       },
     ],
@@ -181,17 +220,54 @@ export const PRIMARY_NAV: MegaPanel[] = [
       },
     ],
     preview: {
-      image: "/home/hero-georgian.webp",
-      alt: "Interior detail",
-      tag: "Featured",
-      heading: "A house, re-read.",
-      href: "/design",
+      image: "/design/interiors/project-living-room.webp",
+      alt: "A Delve Interiors living room in deep navy, with a period fireplace, built-in shelving and a green velvet chair",
+      tag: "Delve Interiors",
+      heading: "Interiors, considered.",
+      href: "/design/interiors",
+    },
+  },
+
+  {
+    /**
+     * Aug 2026 House Companion reframe — the promoted House-branded intelligent
+     * front door, powered by HoWA. Begins with a photo, problem, room, garden or
+     * idea; shapes the brief and routes into HoWA. Landing page: /house-companion.
+     */
+    id: "house-companion",
+    trigger: "House Companion",
+    triggerHref: "/house-companion",
+    groups: [
+      {
+        heading: "What are you trying to do?",
+        links: [
+          { label: "Care or repair", href: "/house-companion/repair", description: "A fault, photo or question" },
+          { label: "Design a garden", href: "/house-companion/garden", description: "How it should feel" },
+          { label: "Design a room or home", href: "/house-companion/room", description: "How it should work" },
+          { label: "Plan something bigger", href: "/howa", description: "Whole-home guidance" },
+        ],
+      },
+      {
+        heading: "Powered by HoWA",
+        links: [
+          { label: "Ask House Companion", href: "/house-companion", description: "Start with a photo, problem or idea" },
+          { label: "Book a House service", href: "/services", description: "Know what you need already" },
+        ],
+      },
+    ],
+    preview: {
+      image: "/powered-by-howa/hero.webp",
+      alt: "House Companion",
+      tag: "Powered by HoWA",
+      heading: "Your home, understood beautifully.",
+      href: "/house-companion",
     },
   },
 
   {
     id: "insurance",
-    trigger: "Insurance",
+    // Aug 2026 directive §08 — the pillar label is "Protect" (route stays /insurance).
+    trigger: "Protect",
     triggerHref: "/insurance",
     groups: [
       {
@@ -217,7 +293,8 @@ export const PRIMARY_NAV: MegaPanel[] = [
 
   {
     id: "shop",
-    trigger: "Shop",
+    // Aug 2026 directive §08 — the pillar label is "Marketplace" (route stays /shop).
+    trigger: "Marketplace",
     triggerHref: "/shop",
     // Mobile drawer reads groups[0]; desktop uses the two-level menu.
     groups: [
@@ -268,72 +345,24 @@ export const PRIMARY_NAV: MegaPanel[] = [
 
   {
     /**
-     * REVISIONS v3 §3 + 23rd amendments (Powered by HoWA handoff §14) — the
-     * relationship pillar. Labelled "Powered by HoWA", never a bare "HoWA"
-     * tab, and never shown as an equal masterbrand. It leads to the service-led
-     * /howa page (scan, design, quote, book). The full HoWA product,
-     * memberships, Score and persona system stay on howa.co.uk.
+     * Aug 2026 House Companion reframe — HoWA is the Home Intelligence
+     * DESTINATION, referenced not re-sold on the House site. The pillar leads to
+     * the "Meet HoWA" page (why the House uses HoWA + Home Record actions); the
+     * full HoWA product, plans and Score detail live on howa.co.uk.
      */
     id: "howa",
-    trigger: "Powered by HoWA",
+    trigger: "Meet HoWA",
     triggerHref: "/howa",
     groups: [
       {
-        heading: "Start with what you need",
+        heading: "The Home Intelligence behind the House",
         links: [
-          { label: "Garden Scan", href: "/howa#choose", description: "Scan your garden" },
-          { label: "Repair Scan", href: "/howa#choose", description: "Show us a repair" },
-          { label: "AI Design", href: "/design/sample", description: "Scan the space" },
-          { label: "Book a service", href: "#open-booking-form" },
-        ],
-      },
-      {
-        heading: "The relationship",
-        links: [
-          { label: "How it works", href: "/howa", description: "The House invites, HoWA understands" },
-          { label: "Open My Home in HoWA", href: "https://accounts.willowalexander.co.uk/" },
-          { label: "Discover the wider HoWA", href: "https://howa.co.uk", description: "The full Home Intelligence" },
+          { label: "Meet HoWA", href: "/howa", description: "Why the House uses HoWA" },
+          { label: "Start my Home Record", href: "https://accounts.willowalexander.co.uk/", description: "Give your address a memory" },
+          { label: "Open Home Record", href: "https://accounts.willowalexander.co.uk/" },
+          { label: "Explore HoWA", href: "https://howa.co.uk", description: "The independent Home Intelligence" },
         ],
       },
     ],
-  },
-
-  {
-    id: "the-house",
-    // §3 — the pillar is "Our House".
-    trigger: "Our House",
-    // The standalone overview hub was retired; the dropdown's "See all" link and
-    // the bare /the-house route both lead to About (the section's overview).
-    triggerHref: "/the-house/about",
-    groups: [
-      {
-        heading: "What we stand for",
-        links: [
-          { label: "Philosophy", href: "/the-house/philosophy", description: "Our founding idea" },
-          // v4 §6 — the customer-facing provider-transparency page. There is no
-          // "House Approved Partners" page: professional accreditation belongs
-          // to HoWA Approved, and recruitment lives on the HoWA site.
-          { label: "How we choose", href: "/the-house/how-we-choose", description: "Who cares for your home" },
-          { label: "The Artwork of the House", href: "/the-house/artwork", description: "Heritage, craft, colour" },
-          { label: "Standards", href: "/the-house/standards", description: "How we work" },
-          { label: "Sustainability", href: "/the-house/sustainability", description: "Our commitments" },
-        ],
-      },
-      {
-        heading: "From the House",
-        links: [
-          { label: "About", href: "/the-house/about", description: "The team behind the House" },
-          { label: "News", href: "/news", description: "Press, awards & announcements" },
-          { label: "Contact", href: "/contact", description: "Talk to the House" },
-        ],
-      },
-    ],
-    preview: {
-      image: "/home/hero-georgian.webp",
-      alt: "A Georgian terrace in Notting Hill",
-      tag: "The Philosophy",
-      heading: "Ownership is passive. Stewardship is intentional.",
-      href: "/the-house/philosophy",
-    },
   },
 ];

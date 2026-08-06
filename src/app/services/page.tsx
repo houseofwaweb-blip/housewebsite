@@ -7,6 +7,7 @@ import { ServiceCarousel } from "./ServiceCarousel";
 import { HouseStandardStrip } from "@/components/marketing/HouseStandardStrip";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { HeroServiceFinder } from "@/components/marketing/HeroServiceFinder";
+import { CoverageMap } from "@/components/house/CoverageMap";
 import { REQUESTABLE_SERVICES, SERVICE_GROUPS } from "@/lib/services-data/requestable";
 import fs from "node:fs";
 import path from "node:path";
@@ -33,7 +34,7 @@ function imgOr(p?: string): string {
  *
  * §5 requires this page to carry: a service and postcode finder; the full live
  * catalogue; problem-led help for people who do not know the service name; a
- * clear distinction between House teams and HoWA Approved professionals; a
+ * clear distinction between House teams and House Approved professionals; a
  * price method on every service; one-off and recurring frequency; proof,
  * coverage and reviews; how the booking is managed through HoWA; and a final
  * finder plus telephone route.
@@ -45,7 +46,7 @@ function imgOr(p?: string): string {
 export const metadata = {
   title: "Home and garden services",
   description:
-    "Garden care, cleaning and housekeeping, window and gutter cleaning, handyman and repairs, clearance and specialist garden work. Delivered by House teams and named HoWA Approved professionals, booked and managed through HoWA.",
+    "Garden care, cleaning and housekeeping, window and gutter cleaning, handyman and repairs, clearance and specialist garden work. Delivered by House teams and named House Approved professionals, booked and managed through HoWA.",
 };
 
 const STAT_COLS = [
@@ -104,7 +105,7 @@ const SERVICES = [
       "A trusted set of hands for the long list. Shelves, fixes, draught-proofing, tile replacements, the things that bother you.",
     image: "/services/subbrands/handyman.webp",
     href: "/services/handyman",
-    // v3 §5 — handyman work is live, delivered through disclosed HoWA Approved
+    // v3 §5 — handyman work is live, delivered through disclosed House Approved
     // professionals. It has full pricing and sub-services, so it must not sit
     // behind a "coming soon" card.
     state: "live" as const,
@@ -216,7 +217,7 @@ const FAQ = [
   },
   {
     q: "Who actually comes to the home?",
-    a: "Our own teams where we operate directly. Where we don't, a named HoWA Approved professional, disclosed up front and held to the same standard.",
+    a: "Our own teams where we operate directly. Where we don't, a named House Approved professional, disclosed up front and held to the same standard.",
   },
   {
     q: "What writes into HoWA?",
@@ -297,6 +298,10 @@ export default async function ServicesLanding() {
                 services index, with the price/availability promise. */}
             <HeroServiceFinder />
             <div className={s.heroCtas} style={{ marginTop: 16 }}>
+              <Link href="/house-companion" className={s.btnGhost}>
+                Not sure? Ask House Companion
+                <span aria-hidden="true" className={s.btnArrow}>→</span>
+              </Link>
               <a href="tel:08000478738" className={s.btnGhost}>
                 {cms(hero, "cta2Label", "Call the House")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
@@ -351,7 +356,7 @@ export default async function ServicesLanding() {
             {cms(
               servicesHead,
               "body",
-              "The whole home and garden, from one House. Some work is done by our own teams; some is done by a named HoWA Approved professional. You are always told which before you commit.",
+              "The whole home and garden, from one House. Some work is done by our own teams; some is done by a named House Approved professional. You are always told which before you commit.",
             )}
           </p>
         </header>
@@ -367,8 +372,17 @@ export default async function ServicesLanding() {
         </p>
       </section>
 
+      {/* 3a. Where we work — the coverage map + postcode check, right under the
+          catalogue so visitors can confirm we cover them before reading on
+          (user request 2026-08). */}
+      <section className="border-t border-house-brown/10 px-[5vw] py-[clamp(48px,6vw,88px)]" style={{ background: "var(--color-house-cream)" }}>
+        <div className="mx-auto max-w-[1100px]">
+          <CoverageMap />
+        </div>
+      </section>
+
       {/* 3b. Who actually turns up (v3 §5 requirement 4) — the distinction
-          between a House team and a disclosed HoWA Approved professional,
+          between a House team and a disclosed House Approved professional,
           stated plainly rather than buried in small print. */}
       <section className="border-t border-house-brown/10 px-[5vw] py-[clamp(44px,5.5vw,84px)]" style={{ background: "var(--color-house-white)" }}>
         <div className="mx-auto max-w-[1080px]">
@@ -390,20 +404,20 @@ export default async function ServicesLanding() {
               </p>
             </article>
             <article className="border border-house-brown/15 bg-house-cream p-8">
-              <h3 className="mb-3 font-display text-[22px] leading-tight text-house-brown">A named HoWA Approved professional</h3>
+              <h3 className="mb-3 font-display text-[22px] leading-tight text-house-brown">A named House Approved professional</h3>
               <p className="mb-4 font-sans text-[15px] leading-[1.6] text-house-stone">
                 For specialist and wider-area work, a vetted professional we
                 have approved and named. You are told who they are before you
                 pay or commit, never after.
               </p>
               <p className="font-sans text-[14px] leading-[1.55] text-house-brown">
-                Delivered by a named HoWA Approved professional. Booked and
+                Delivered by a named House Approved professional. Booked and
                 managed through HoWA.
               </p>
             </article>
           </div>
           <p className="mt-6 max-w-[70ch] font-sans text-[14px] leading-[1.6] text-house-stone/85">
-            HoWA manages the booking and the operating record. It is not the
+            HoWA manages the booking and keeps the record of the work. It is not the
             physical service provider, and it never appears at your door.
           </p>
         </div>
@@ -458,7 +472,7 @@ export default async function ServicesLanding() {
           </div>
 
           <p className="mt-11 max-w-[64ch] font-sans text-[14px] leading-[1.6] text-house-stone/85">
-            Where a job is carried out by a named HoWA Approved professional
+            Where a job is carried out by a named House Approved professional
             rather than a House team, you are told who they are before you pay
             or commit to anything.
           </p>
@@ -480,9 +494,9 @@ export default async function ServicesLanding() {
           </p>
           <div className="grid gap-4 md:grid-cols-3">
             {[
-              { t: "Describe a problem", b: "Tell us what is wrong, in plain words. We will tell you which service it is and what it costs.", href: "#open-booking-form", cta: "Describe a problem" },
-              { t: "Diagnose an issue", b: "Photograph the repair and have it identified before anyone books a survey visit.", href: "/services/handyman", cta: "Diagnose the problem" },
-              { t: "Scan the garden", b: "Have the garden read back to you, then turn what it finds into a visit or a design brief.", href: "/services/gardening", cta: "Scan my garden" },
+              { t: "Describe a problem", b: "Tell us what is wrong, in plain words. House Companion tells you which service it is and what it costs.", href: "/house-companion", cta: "Ask House Companion" },
+              { t: "Diagnose an issue", b: "Photograph the repair and have it identified before anyone books a survey visit.", href: "/house-companion/repair", cta: "Diagnose the problem" },
+              { t: "Scan the garden", b: "Have the garden read back to you, then turn what it finds into a visit or a design brief.", href: "/house-companion/garden", cta: "Scan my garden" },
             ].map((c) => (
               <Link
                 key={c.t}

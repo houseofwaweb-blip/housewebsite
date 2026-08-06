@@ -60,7 +60,9 @@
   border-top: 1px solid rgba(48, 35, 28, 0.14);
 }
 .heroVisual { position: relative; background: var(--color-house-cream-dark); }
-.heroCtas { display: flex; gap: 12px; flex-wrap: wrap; }
+.heroCtas { display: flex; gap: 12px; flex-wrap: wrap; align-items: stretch; max-width: 520px; }
+/* Grouped buttons grow equally and stay on one line, so they are the same size side by side or stacked. */
+.heroCtas > a { flex: 1 1 200px; justify-content: center; white-space: nowrap; }
 .btnFilled, .btnGhost {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 13px 26px;
@@ -182,10 +184,12 @@
   margin: 0;
 }
 .plansGrid {
-  max-width: 1280px;
+  /* Four edit cards, so a 2x2 grid keeps them balanced (a 3-col grid orphaned
+     the fourth on its own row). */
+  max-width: 1040px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: clamp(20px, 2.4vw, 32px);
 }
 .planCard {
@@ -563,7 +567,7 @@
   color: rgba(48, 35, 28, 0.72);
   margin: 0 0 24px;
 }
-.companionImage { position: relative; background: var(--color-house-cream-dark); }
+.companionImage { position: relative; background: var(--color-house-cream-dark); display: flex; align-items: center; justify-content: center; }
 
 /* Responsive */
 @media (max-width: 1024px) {

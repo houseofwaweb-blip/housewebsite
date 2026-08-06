@@ -56,7 +56,7 @@ const FOUNDERS: Array<{
 ];
 
 const TODAY = [
-  { title: "Services", body: "Garden care, cleaning and housekeeping, window and gutter cleaning, handyman and repairs, clearance and specialist garden work.", href: "/services", cta: "Find a service" },
+  { title: "Services", body: "Garden care, cleaning and housekeeping, window and gutter cleaning, handyman and repairs, clearance and specialist garden work.", href: "/services", cta: "Book a House service" },
   { title: "Design", body: "Interior and garden design, beginning with a mapped first direction and continuing with a named human studio.", href: "/design", cta: "See design" },
   { title: "Home and Pet Insurance", body: "Introductions to an authorised, FCA-regulated partner. Two separate routes, because they are two different conversations.", href: "/insurance", cta: "See insurance" },
   { title: "The Shop", body: "Considered goods for the work and pleasure of keeping a home, chosen for usefulness, beauty and longevity.", href: "/shop", cta: "Visit the Shop" },
@@ -66,7 +66,7 @@ const TODAY = [
 
 const STANDARDS = [
   { title: "Care, held to one standard", body: "Every team and every studio is held to the same test: would we trust this in a home we love? If the answer changes, so does the arrangement." },
-  { title: "Provider transparency", body: "You are always told who is coming before you commit. A House of Willow Alexander team, or a named HoWA Approved professional. Never an anonymous subcontractor." },
+  { title: "Provider transparency", body: "You are always told who is coming before you commit. A House of Willow Alexander team, or a named House Approved professional. Never an anonymous subcontractor." },
   { title: "Responsible cultivation", body: "Electric vans and battery tools, peat-free where we can source it, planting chosen for the soil and the season rather than the catalogue, and green waste taken by a licensed carrier." },
   { title: "Style, and the sense to use it", body: "Taste is not decoration. It is knowing what a house already is, and refusing to do the thing that would spoil it." },
   { title: "Stewardship over transaction", body: "A home is not a job number. It is where a life is kept, and the record we hold should still make sense to whoever keeps it next." },

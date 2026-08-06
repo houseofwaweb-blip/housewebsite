@@ -1,10 +1,10 @@
 import Link from "next/link";
+import Image from "next/image";
 import fs from "node:fs";
 import path from "node:path";
 import { Accordion } from "@/components/primitives/Accordion";
 import { Gallery, type GalleryImage } from "@/components/primitives/Gallery";
 import type { Service } from "@/lib/services-data";
-import { getQuotePractical } from "@/lib/services-data/requestable-detail";
 import { CoverageMap } from "@/components/house/CoverageMap";
 import s from "./ServiceDetail.module.css";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
@@ -94,38 +94,34 @@ const PLACEHOLDER_GALLERY_BY_SERVICE: Record<string, GalleryImage[]> = {
 
 
 /**
- * Practical details + exclusions per service (DIRECTIVE §08 module 3 — "What is
- * included" must cover duration, materials, access, parking, and exclusions).
- * Falls back to sensible generics for services without a specific entry.
+ * Real action shots per service, keyed by slug. `team` sits in the dark
+ * "Delivered by our own team" band; `doorway` sits in the persona doorway. Only
+ * services with real photography appear here; the rest keep the dashed
+ * "Action shot" placeholder until their images arrive.
  */
-const PRACTICAL: Record<string, { duration: string; materials: string; access: string; parking: string; excluded: string[] }> = {
+type ActionShot = { src: string; alt: string; w: number; h: number };
+const ACTION_SHOTS: Record<string, { team?: ActionShot; doorway?: ActionShot }> = {
   gardening: {
-    duration: "Half a day to a full day, by the size of the garden.",
-    materials: "Green waste removed or composted; you supply plants unless quoted.",
-    access: "Side or rear access to the garden.",
-    parking: "A space near the property helps for tools and waste.",
-    excluded: ["Tree work needing a certified arborist", "Design and planting plans (see Design)", "Hard landscaping and construction"],
+    team: { src: "/services/photos/gardening/gardening-team-action.jpg", alt: "A House of Willow Alexander gardener raking a prepared seedbed", w: 3210, h: 4012 },
+    // The doorway is the "scan your garden" moment, so it shows the House
+    // Companion garden scan with the design drawn over the photo (4:3, fits the
+    // box with no crop), not a plain work photo.
+    doorway: { src: "/powered-by-howa/companion-sketch-garden-1.png", alt: "House Companion reading a garden back with the proposed design drawn over the photo: pergola and seating, layered planting, defined borders", w: 1448, h: 1086 },
   },
   "window-cleaning": {
-    duration: "Usually under an hour for a typical home.",
-    materials: "Pure-water reach-and-wash; no chemicals on the glass.",
-    access: "Clear access to the windows, front and back.",
-    parking: "On-street or drive parking near the property.",
-    excluded: ["High-level interior glass needing scaffold", "Conservatory roof valeting (quoted separately)", "Painting or repairs to frames"],
+    team: { src: "/services/photos/window-cleaning/window-cleaning-team-action.jpg", alt: "A House window cleaner reaching an upper sash with a pure-water pole", w: 3017, h: 5364 },
   },
   cleaning: {
-    duration: "Two to four hours for a regular clean, by the size of the home.",
-    materials: "House-standard, fragrance-free products; we can use yours.",
-    access: "Someone home, or a key or entry arrangement.",
-    parking: "A nearby space for the team.",
-    excluded: ["Exterior windows (see Window Cleaning)", "Clearance and heavy waste removal", "Specialist stone or upholstery restoration"],
+    team: { src: "/services/photos/cleaning/cleaning-team-action.jpg", alt: "A House cleaner working through a room to the House standard", w: 2048, h: 1638 },
   },
   "gutter-cleaning": {
-    duration: "Around an hour for a typical house.",
-    materials: "Ground-based vacuum; no ladders where they can be avoided.",
-    access: "Clear ground access along the gutter line.",
-    parking: "A space near the property for the equipment.",
-    excluded: ["Gutter repairs or replacement", "Roof tile or fascia repairs", "Internal downpipe works"],
+    team: { src: "/services/photos/gutter-cleaning/gutter-cleaning-team-action.jpg", alt: "A House team clearing a gutter line from the ground", w: 1365, h: 2048 },
+  },
+  handyman: {
+    team: { src: "/services/photos/handyman/handyman-team-action.jpg", alt: "A House handyperson at work on a repair", w: 4000, h: 6000 },
+    // The doorway is the "what's causing the problem?" moment, so it shows the
+    // House Companion repair scan with the diagnosis drawn over the photo.
+    doorway: { src: "/powered-by-howa/companion-sketch-repair-1.png", alt: "House Companion diagnosing a broken chair from a photo: stress on the front leg, failed joint, and a drawn repair proposal", w: 1448, h: 1086 },
   },
 };
 
@@ -183,18 +179,6 @@ export function ServiceDetail({
   const galleryRaw = PLACEHOLDER_GALLERY_BY_SERVICE[service.slug];
   const gallery = (galleryRaw ?? []).map((g) => ({ ...g, src: fileOr(g.src, PLACEHOLDER_GALLERY) }));
 
-  // The four launch services have hand-written practical detail here; the
-  // wider catalogue carries its own alongside its page content. Either way the
-  // "Good to know" block is real rather than generic.
-  const practical = PRACTICAL[service.slug] ??
-    getQuotePractical(service.slug) ?? {
-      duration: "By property and scope.",
-      materials: "Provided by the team unless quoted.",
-      access: "Reasonable access to the work area.",
-      parking: "A nearby space helps.",
-      excluded: [] as string[],
-    };
-
   // DIRECTIVE §08/§16 — a plain price-method line in the hero (method varies by
   // service; the exact price is confirmed by postcode in the booking flow).
   const firstPrice = service.packages[0]?.price ?? "";
@@ -216,21 +200,26 @@ export function ServiceDetail({
   const doorway = (
     {
       gardening: {
-        eyebrow: "The Gardener",
+        eyebrow: "House Companion",
         problem: "What does your garden need?",
         capability:
-          "Use the Gardener to scan your garden, identify the work and reach the right quote or estimate route, no guesswork before you book.",
+          "Use House Companion to scan your garden, identify the work and reach the right quote or estimate route, no guesswork before you book.",
         cta: "Scan my garden",
+        href: "/house-companion/garden",
       },
       handyman: {
-        eyebrow: "The Handyman",
+        eyebrow: "House Companion",
         problem: "What is causing the problem?",
         capability:
-          "Use the Handyman to describe the issue, understand how urgent it is and book the right House repair.",
+          "Use House Companion to describe the issue, understand how urgent it is and book the right House repair.",
         cta: "Diagnose the problem",
+        href: "/house-companion/repair",
       },
-    } as Record<string, { eyebrow: string; problem: string; capability: string; cta: string }>
+    } as Record<string, { eyebrow: string; problem: string; capability: string; cta: string; href: string }>
   )[service.slug];
+
+  // Real action photography for this service, where we hold it.
+  const action = ACTION_SHOTS[service.slug];
 
   return (
     <div className={s.page}>
@@ -266,11 +255,11 @@ export function ServiceDetail({
                 ) : (
                   <>
                     <Link href="#open-booking-form" className={s.btnFilled}>
-                      See prices &amp; availability
+                      Book this service
                     </Link>
-                    <a href="tel:08000478738" className={s.btnGhost}>
-                      Call the House
-                    </a>
+                    <Link href="/house-companion" className={s.btnGhost}>
+                      Not sure? Ask House Companion
+                    </Link>
                     {service.recurring ? (
                       <span className={s.stewardBadge}>Recurring available</span>
                     ) : null}
@@ -280,7 +269,7 @@ export function ServiceDetail({
               {/* DIRECTIVE §08 — provider disclosure in the hero. */}
               {!soon ? (
                 <p className={s.heroLede} style={{ fontSize: 13, opacity: 0.85, marginTop: 14, paddingTop: 0, borderTop: "none" }}>
-                  {quote ? "Delivered by a House team or a named HoWA Approved professional, disclosed before you commit. Booking and Home Record powered by HoWA." : "Delivered by House of Willow Alexander. Booking, scheduling and Home Record powered by HoWA."}
+                  {quote ? "Delivered by a House team or a named House Approved professional, disclosed before you commit. Booking and Home Record powered by HoWA." : "Delivered by House of Willow Alexander. Booking, scheduling and Home Record powered by HoWA."}
                 </p>
               ) : null}
             </div>
@@ -317,11 +306,11 @@ export function ServiceDetail({
               ) : (
                 <>
                   <Link href="#open-booking-form" className={s.btnFilled}>
-                    See prices &amp; availability
+                    Book this service
                   </Link>
-                  <a href="tel:08000478738" className={s.btnGhost}>
-                    Call the House
-                  </a>
+                  <Link href="/house-companion" className={s.btnGhost}>
+                    Not sure? Ask House Companion
+                  </Link>
                   {service.recurring ? (
                     <span className={s.stewardBadge}>Recurring available</span>
                   ) : null}
@@ -331,7 +320,7 @@ export function ServiceDetail({
             {/* DIRECTIVE §08 — provider disclosure in the hero. */}
             {!soon ? (
               <p className={s.heroLede} style={{ fontSize: 13, opacity: 0.85, marginTop: 14 }}>
-                {quote ? "Delivered by a House team or a named HoWA Approved professional, disclosed before you commit. Booking and Home Record powered by HoWA." : "Delivered by House of Willow Alexander. Booking, scheduling and Home Record powered by HoWA."}
+                {quote ? "Delivered by a House team or a named House Approved professional, disclosed before you commit. Booking and Home Record powered by HoWA." : "Delivered by House of Willow Alexander. Booking, scheduling and Home Record powered by HoWA."}
               </p>
             ) : null}
           </div>
@@ -405,31 +394,49 @@ export function ServiceDetail({
       {/* 3. Delivered by our own teams (DIRECTIVE §02/§03/§07).
           House of Willow Alexander delivers services with its own teams, not a
           third-party contractor directory. The House's own team is never
-          labelled "HoWA Approved" (§03); a named external HoWA Approved
+          labelled "House Approved" (§03); a named external House Approved
           professional is disclosed only where one genuinely does the work. */}
       {soon ? null : (
         <section className="px-[5vw] py-[clamp(48px,7vw,96px)] bg-house-forest">
-          <div className="mx-auto max-w-[900px] text-center">
-            <p className="font-sans text-[11px] tracking-[0.26em] uppercase text-house-gold-light mb-4">
-              Our team
-            </p>
-            <h2 className="font-display text-[clamp(26px,3.6vw,44px)] leading-[1.1] text-house-cream mb-5">
-              Delivered by our own <em>{partnerName}.</em>
-            </h2>
-            <p className="font-sans text-[15px] leading-[1.65] text-[rgba(245,240,232,0.82)] max-w-[58ch] mx-auto">
-              Every {partnerNameSingular} who works for the House is held to our
-              standard, vetted, insured and briefed on your home before they
-              arrive. You deal with the House, not a directory of strangers, and
-              the visit, notes and next steps are kept in your home record.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4 justify-center">
-              <a
-                href="#open-booking-form"
-                className="inline-flex items-center gap-2 font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown bg-house-gold-ink border border-house-gold-dark px-8 py-4 no-underline transition-[filter] hover:brightness-110"
-              >
-                Book a service →
-              </a>
+          <div className="mx-auto grid max-w-[1180px] items-center gap-[clamp(28px,5vw,64px)] lg:grid-cols-2">
+            <div>
+              <p className="font-sans text-[11px] tracking-[0.26em] uppercase text-house-gold-light mb-4">
+                Our team
+              </p>
+              <h2 className="font-display text-[clamp(26px,3.6vw,44px)] leading-[1.1] text-house-cream mb-5">
+                Delivered by our own <em>{partnerName}.</em>
+              </h2>
+              <p className="font-sans text-[15px] leading-[1.65] text-[rgba(245,240,232,0.82)] max-w-[54ch]">
+                Every {partnerNameSingular} who works for the House is held to our
+                standard, vetted, insured and briefed on your home before they
+                arrive. You deal with the House, not a directory of strangers, and
+                the visit, notes and next steps are kept in your home record.
+              </p>
+              <div className="mt-8">
+                <a
+                  href="#open-booking-form"
+                  className="inline-flex items-center gap-2 font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown bg-house-gold-ink border border-house-gold-dark px-8 py-4 no-underline transition-[filter] hover:brightness-110"
+                >
+                  Book a service →
+                </a>
+              </div>
             </div>
+            {action?.team ? (
+              /* Shown at its natural ratio, never cropped. */
+              <Image
+                src={action.team.src}
+                alt={action.team.alt}
+                width={action.team.w}
+                height={action.team.h}
+                sizes="(min-width: 1024px) 46vw, 100vw"
+                className="h-auto w-full"
+              />
+            ) : (
+              /* PLACEHOLDER image — a shot of the team on the job, to be added. */
+              <div className="flex aspect-[4/3] w-full items-center justify-center border border-dashed border-house-gold-dark/50 bg-[rgba(245,240,232,0.06)]">
+                <span className="font-sans text-[11px] tracking-[0.2em] uppercase text-house-cream/40">Action shot</span>
+              </div>
+            )}
           </div>
         </section>
       )}
@@ -461,32 +468,12 @@ export function ServiceDetail({
         </div>
       </section>
 
-      {/* 4b. Good to know — duration, materials, access, parking, exclusions
-          (DIRECTIVE §08 module 3 completeness). */}
+      {/* 4c. Where we work — moved up from the foot of the page so visitors see
+          coverage without scrolling past everything (user request 2026-08). */}
       {!soon ? (
         <section className="px-[5vw] py-[clamp(40px,5vw,72px)] border-t border-house-brown/10" style={{ background: "var(--color-house-cream)" }}>
-          <div className="mx-auto max-w-[1180px] grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-            <div>
-              <p className="font-sans text-[11px] tracking-[0.24em] uppercase text-house-gold-ink mb-4">Good to know</p>
-              <dl className="grid gap-x-8 gap-y-5 sm:grid-cols-2 m-0">
-                {[["Duration", practical.duration], ["Materials", practical.materials], ["Access", practical.access], ["Parking", practical.parking]].map(([k, v]) => (
-                  <div key={k}>
-                    <dt className="font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown mb-1">{k}</dt>
-                    <dd className="font-sans text-[14px] leading-[1.55] text-house-stone m-0">{v}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-            {practical.excluded.length ? (
-              <div className="lg:border-l lg:border-house-brown/12 lg:pl-8">
-                <p className="font-sans text-[11px] tracking-[0.24em] uppercase text-house-stone mb-4">Not included</p>
-                <ul className="flex flex-col gap-2 list-none p-0 m-0">
-                  {practical.excluded.map((e) => (
-                    <li key={e} className="font-sans text-[14px] leading-[1.5] text-house-stone flex gap-2.5"><span aria-hidden>·</span><span>{e}</span></li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
+          <div className="mx-auto max-w-[1100px]">
+            <CoverageMap />
           </div>
         </section>
       ) : null}
@@ -497,19 +484,39 @@ export function ServiceDetail({
           one action; placed after What's included / How the visit works. */}
       {!soon && doorway ? (
         <section className="px-[5vw] py-[clamp(40px,5vw,72px)]" style={{ background: "var(--color-house-white)" }}>
-          <div className="mx-auto max-w-[900px] border border-house-brown/12 bg-house-cream p-8 md:p-10 text-center">
-            <p className="font-sans text-[11px] tracking-[0.24em] uppercase text-house-gold-ink mb-3">
-              {doorway.eyebrow}
-            </p>
-            <h2 className="font-display text-[clamp(24px,3vw,38px)] leading-[1.08] text-house-brown mb-4">
-              {doorway.problem}
-            </h2>
-            <p className="font-sans text-[15px] leading-[1.6] text-house-stone max-w-[54ch] mx-auto mb-7">
-              {doorway.capability}
-            </p>
-            <Link href="#open-booking-form" className={s.btnFilled}>
-              {doorway.cta}
-            </Link>
+          <div className="mx-auto grid max-w-[1080px] items-stretch overflow-hidden border border-house-brown/12 bg-house-cream lg:grid-cols-[0.85fr_1.15fr]">
+            {action?.doorway ? (
+              /* Fills the card column. Best with a landscape source so little is
+                 lost to the crop; a tall portrait gets clipped here. */
+              <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-house-brown/12 lg:aspect-auto lg:border-b-0 lg:border-r">
+                <Image
+                  src={action.doorway.src}
+                  alt={action.doorway.alt}
+                  fill
+                  sizes="(min-width: 1024px) 42vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+            ) : (
+              /* PLACEHOLDER image — alternates to the left of the copy. */
+              <div className="flex aspect-[4/3] w-full items-center justify-center border-b border-house-brown/12 bg-house-cream-dark lg:aspect-auto lg:border-b-0 lg:border-r">
+                <span className="font-sans text-[11px] tracking-[0.2em] uppercase text-house-brown/40">Action shot</span>
+              </div>
+            )}
+            <div className="p-8 md:p-10">
+              <p className="font-sans text-[11px] tracking-[0.24em] uppercase text-house-gold-ink mb-3">
+                {doorway.eyebrow}
+              </p>
+              <h2 className="font-display text-[clamp(24px,3vw,38px)] leading-[1.08] text-house-brown mb-4">
+                {doorway.problem}
+              </h2>
+              <p className="font-sans text-[15px] leading-[1.6] text-house-stone max-w-[54ch] mb-7">
+                {doorway.capability}
+              </p>
+              <Link href={doorway.href} className={s.btnFilled}>
+                {doorway.cta}
+              </Link>
+            </div>
           </div>
         </section>
       ) : null}
@@ -716,14 +723,14 @@ export function ServiceDetail({
           {quote ? (
             <>
               Depending on the job and where you are, this is carried out by a
-              House of Willow Alexander team or by a named HoWA Approved
+              House of Willow Alexander team or by a named House Approved
               professional. You are always told which, and who they are, before
               you pay or commit to anything.
             </>
           ) : (
             <>
               Delivered by our own teams across London and the South East. Where a
-              specialist is genuinely needed, we introduce a named HoWA Approved
+              specialist is genuinely needed, we introduce a named House Approved
               professional, disclosed up front. No unapproved hands.
             </>
           )}
@@ -753,21 +760,13 @@ export function ServiceDetail({
 
       {!soon ? <ServiceCtaRow service={service.name} /> : null}
 
-      {/* 9. Coverage map + postcode checker (DIRECTIVE §08 — coverage and a
-          postcode check on the service page). */}
-      <section className="px-[5vw] py-[clamp(48px,6vw,88px)]" style={{ background: "var(--color-house-cream)" }}>
-        <div className="mx-auto max-w-[1100px]">
-          <CoverageMap />
-        </div>
-      </section>
-
       {/* 10. Closing */}
       <section className={s.closing}>
         <FlowerWatermark color="gold" side="right" opacity={0.18} />
         <p className={s.closingStatement}>
           <em>A well-kept home</em> starts with one conversation.
         </p>
-        <div className={s.heroCtas} style={{ justifyContent: "center" }}>
+        <div className={s.heroCtas} style={{ justifyContent: "center", marginInline: "auto" }}>
           <Link href="#open-booking-form" className={s.btnFilled}>
             Book a service
           </Link>

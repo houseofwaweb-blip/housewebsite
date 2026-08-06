@@ -18,7 +18,7 @@ import type { RequestableDetail } from "./requestable-detail";
  *   - Work at height, gas, electrical and structural work is named plainly as
  *     requiring a qualified or certificated specialist.
  *   - The work is carried out by a House of Willow Alexander team or by a named
- *     HoWA Approved professional, disclosed before anyone commits.
+ *     House Approved professional, disclosed before anyone commits.
  */
 export const OUTDOOR_DETAIL: Record<string, RequestableDetail> = {
   // ---------------------------------------------------------------- Garden --

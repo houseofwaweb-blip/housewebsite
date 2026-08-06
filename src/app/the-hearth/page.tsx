@@ -8,6 +8,7 @@ import { HearthCollectionBand } from "@/components/hearth/HearthCollectionBand";
 import { HearthMoreFeed } from "@/components/hearth/HearthMoreFeed";
 import { HearthFullWidthNewsletter } from "@/components/hearth/HearthFullWidthNewsletter";
 import { HearthColophon } from "@/components/hearth/HearthColophon";
+import { HearthHowaHooks } from "@/components/hearth/HearthHowaHooks";
 import { getHearthIndex } from "@/lib/cms/hearth";
 
 /**
@@ -50,6 +51,7 @@ export default async function JournalPage() {
 
       <HearthCollectionBand />
       <HearthMoreFeed articles={sections.moreFeed} heading="More" emText="from the studios" />
+      <HearthHowaHooks />
       <HearthFullWidthNewsletter />
       <HearthColophon />
     </div>

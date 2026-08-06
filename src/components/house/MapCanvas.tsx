@@ -25,7 +25,9 @@ const TILE_URL = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 
 /** Roughly the centre of the patch — London and the near South East. */
 const PATCH_CENTRE: L.LatLngTuple = [51.31, -0.11];
-const PATCH_RADIUS_M = 46_000;
+/** ~30 km. 46 km reached Brighton, which badly overstated the patch; this
+ *  covers London out to Dartford and Sevenoaks without ballooning south. */
+const PATCH_RADIUS_M = 30_000;
 
 export type MapCanvasProps = {
   /** Geocoded postcode to drop a pin on, or null for the patch overview. */

@@ -13,20 +13,20 @@ import Link from "next/link";
  *   - This page (House site) is for CUSTOMERS. It is about trust and provider
  *     transparency: who turns up, what standard they are held to, and how the
  *     work is recorded and put right if it goes wrong.
- *   - "Become HoWA Approved" (professional recruitment) belongs on the HoWA
+ *   - "Become House Approved" (professional recruitment) belongs on the HoWA
  *     site and is linked, not duplicated, from here.
  *
  * It is explicitly NOT a speculative directory of partners who do not yet
  * exist, and it must not imply an operational nationwide network.
  *
  * Locked rule (v4 §6): customers buy services from the House. Professionals
- * join the HoWA Approved network. HoWA connects and operates the relationship.
+ * join the House Approved network. HoWA connects and operates the relationship.
  */
 
 export const metadata = {
   title: "How we choose the people who care for your home",
   description:
-    "Who turns up, what standard they are held to, and how the work is recorded. House of Willow Alexander teams and named HoWA Approved professionals, with the provider always disclosed before you commit.",
+    "Who turns up, what standard they are held to, and how the work is recorded. House of Willow Alexander teams and named House Approved professionals, with the provider always disclosed before you commit.",
 };
 
 const PROVIDERS = [
@@ -36,9 +36,9 @@ const PROVIDERS = [
     line: "Delivered by House of Willow Alexander. Booking, scheduling and Home Record powered by HoWA.",
   },
   {
-    title: "A named HoWA Approved professional",
+    title: "A named House Approved professional",
     body: "For specialist work, and for jobs beyond the reach of our own crews, we use a professional we have approved. They are named. You are never handed to an anonymous subcontractor and told it is the same thing.",
-    line: "Delivered by [Provider], a HoWA Approved professional. Booked and managed through HoWA.",
+    line: "Delivered by [Provider], a House Approved professional. Booked and managed through HoWA.",
   },
 ];
 
@@ -72,7 +72,7 @@ const STANDARDS = [
 const AFTERCARE = [
   {
     q: "Something was not right. What happens?",
-    a: "Tell us, through HoWA or by telephone, and we will put it right. Where the work was carried out by a named HoWA Approved professional, the House still owns the conversation with you. You are not sent away to argue with someone you did not choose.",
+    a: "Tell us, through HoWA or by telephone, and we will put it right. Where the work was carried out by a named House Approved professional, the House still owns the conversation with you. You are not sent away to argue with someone you did not choose.",
   },
   {
     q: "Can I change or cancel an appointment?",
@@ -139,7 +139,7 @@ export default function HowWeChoosePage() {
             ))}
           </div>
           <p className="mt-7 max-w-[70ch] font-sans text-[14px] leading-[1.6] text-house-stone/85">
-            HoWA manages the booking and the operating record. It is not the
+            HoWA manages the booking and keeps the record of the work. It is not the
             physical service provider, and it never appears at your door.
           </p>
         </div>
@@ -227,7 +227,7 @@ export default function HowWeChoosePage() {
             href="https://howa.co.uk/approved"
             className="inline-flex items-center justify-center gap-2 border border-house-brown/25 px-8 py-4 text-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-colors hover:border-house-gold"
           >
-            Become HoWA Approved <span aria-hidden>→</span>
+            Become House Approved <span aria-hidden>→</span>
           </a>
         </div>
       </section>
@@ -243,7 +243,7 @@ export default function HowWeChoosePage() {
               href="/services"
               className="inline-flex items-center justify-center gap-2 border border-house-gold-dark bg-house-gold-ink px-8 py-4 text-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-[filter] hover:brightness-110"
             >
-              Find a service
+              Book a House service
             </Link>
             <a
               href="tel:08000478738"

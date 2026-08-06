@@ -38,8 +38,8 @@ const MY_HOME_HREF = "https://accounts.willowalexander.co.uk/";
 const PHONE = "08000478738";
 
 export function Header({
-  ctaLabel = "Find a service",
-  ctaHref = "/services",
+  ctaLabel = "Ask House Companion",
+  ctaHref = "/house-companion",
   dark: darkProp,
   nav,
 }: HeaderProps) {
@@ -122,7 +122,7 @@ export function Header({
             dark ? "text-house-cream" : "text-house-brown",
           )}
         >
-          My Home in HoWA
+          Open Home Record
         </a>
         <CartIcon dark={dark} onClick={openDrawer} />
         <Link
@@ -269,15 +269,22 @@ export function Header({
               );
             })}
 
-            {/* v3 §3 — persistent mobile actions: Find a service, Call the
-                House, Open My Home in HoWA. */}
+            {/* Aug 2026 reframe — persistent mobile actions: Ask House Companion,
+                Book a House service, Call the House, Open Home Record. */}
             <div className="mt-8 flex flex-col gap-3 pt-6 border-t border-house-brown/10">
+              <Link
+                href="/house-companion"
+                onClick={() => setMobileOpen(false)}
+                className="font-sans text-[14px] tracking-[0.16em] uppercase text-house-brown bg-house-gold-ink border border-house-gold-dark px-5 py-3.5 text-center no-underline"
+              >
+                Ask House Companion
+              </Link>
               <Link
                 href="/services"
                 onClick={() => setMobileOpen(false)}
                 className="font-sans text-[14px] tracking-[0.16em] uppercase text-house-brown border border-house-brown/25 px-5 py-3.5 text-center no-underline"
               >
-                Find a service
+                Book a House service
               </Link>
               <a
                 href={`tel:${PHONE}`}
@@ -291,7 +298,7 @@ export function Header({
                 onClick={() => setMobileOpen(false)}
                 className="font-sans text-[14px] tracking-[0.16em] uppercase text-house-brown border border-house-brown/25 px-5 py-3.5 text-center no-underline"
               >
-                Open My Home in HoWA
+                Open Home Record
               </a>
               <button
                 type="button"

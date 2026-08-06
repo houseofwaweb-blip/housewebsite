@@ -87,7 +87,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // ---- Utility ----
     { url: `${base}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${base}/house-credit`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: `${base}/gift-cards`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
 
     // ---- Legal ----

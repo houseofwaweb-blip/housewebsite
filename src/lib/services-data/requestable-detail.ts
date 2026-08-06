@@ -26,7 +26,7 @@ import type { SingleServiceView } from "@/components/marketing/SingleServiceDeta
  *   - Never promise a capability we have not confirmed. Where the honest
  *     answer is "it depends" or "we would need to look", say that.
  *   - Never imply the House does the work with its own crews where a named
- *     HoWA Approved professional would actually do it (§2).
+ *     House Approved professional would actually do it (§2).
  */
 
 export interface RequestableDetail {
@@ -193,7 +193,7 @@ const WORK_BY_SLUG: Record<string, { work: string; gallery: string[] }> = {
 /** Why these hold true for every arranged service, so the "Why choose us"
  *  column reads the same on each leaf service page. */
 const WHY_HOUSE = [
-  "Delivered by a House team or a named HoWA Approved professional, disclosed before you commit",
+  "Delivered by a House team or a named House Approved professional, disclosed before you commit",
   "The price method explained up front, never a hidden call-out fee",
   "Booked, scheduled and remembered in your Home Record through HoWA",
   "Vetted, insured, and held to the House standard",
