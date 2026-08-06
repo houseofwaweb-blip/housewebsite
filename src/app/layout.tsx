@@ -9,7 +9,6 @@ import { Footer } from "@/components/layout/Footer";
 import { CartProvider } from "@/components/commerce/CartContext";
 import { CartToast } from "@/components/commerce/CartToast";
 import { CartDrawer } from "@/components/commerce/CartDrawer";
-import { BookingWidget } from "@/components/marketing/BookingWidget";
 import { ConsentProvider } from "@/components/consent/ConsentProvider";
 import { CookieBanner } from "@/components/consent/CookieBanner";
 import { AnalyticsLoader } from "@/components/consent/AnalyticsLoader";
@@ -23,13 +22,11 @@ import { Klaviyo } from "@/components/consent/loaders/Klaviyo";
 import { ClickIdCapture } from "@/components/marketing/ClickIdCapture";
 import "./globals.css";
 
-// Aug 2026 House Companion reframe — "Ask House Companion" is the promoted
-// primary action (the House-branded intelligent front door, powered by HoWA).
-// Direct booking stays one click away via the Services pillar and every
-// service page, so an ordinary booking is never forced through Companion.
-// "Open Home Record" sits beside it as the named HoWA account utility.
-const ctaLabel = "Ask House Companion";
-const ctaHref = "/house-companion";
+// Aug 2026 eComm/Insurance refocus — the House pares down to the Marketplace,
+// Insurance, The Hearth and Cinema, with links out to the service businesses.
+// The header CTA is the commerce front door.
+const ctaLabel = "Shop";
+const ctaHref = "/shop";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL),
@@ -38,7 +35,7 @@ export const metadata: Metadata = {
     template: "%s | House of Willow Alexander",
   },
   description:
-    "A modern British institution for effortless intelligent living. Design, care, protection, and curated commerce, connected by HoWA.",
+    "A modern British home institution: home insurance, a curated marketplace, editorial journal and film, and the Willow Alexander home-service businesses.",
   applicationName: "House of Willow Alexander",
   authors: [{ name: "House of Willow Alexander" }],
   creator: "House of Willow Alexander",
@@ -160,7 +157,6 @@ export default async function RootLayout({
             <MobileActionBar ctaLabel={ctaLabel} ctaHref={ctaHref} />
             <CartToast />
             <CartDrawer />
-            <BookingWidget />
             <CookieBanner />
             <AnalyticsLoader />
             <SpeedInsightsLoader />

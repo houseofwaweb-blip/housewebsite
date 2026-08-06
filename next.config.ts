@@ -83,6 +83,14 @@ const nextConfig: NextConfig = {
       // 308s to howa.co.uk and the images break. Same guard as /partners and
       // /protect below.
       { source: "/howa/:path((?!.*\\.[a-zA-Z0-9]+$).+)", destination: "https://howa.co.uk/:path", permanent: true },
+      // Aug 2026 eComm/Insurance refocus — the HoWA product utility page, the
+      // House Companion (AI) pages and the House Pro / House Approved network
+      // pages are all removed. Old URLs 301 to their nearest home.
+      { source: "/howa", destination: "https://howa.co.uk", permanent: true },
+      { source: "/house-companion", destination: "/services", permanent: true },
+      { source: "/house-companion/:path*", destination: "/services", permanent: true },
+      { source: "/house-pro", destination: "https://howa.co.uk", permanent: true },
+      { source: "/house-approved", destination: "/design", permanent: true },
       // DIRECTIVE §11/§14 — Insurance is the canonical House pillar route.
       // The old /protect/* section moved to /insurance/*; these carry the
       // legacy URLs (and their link equity) to the new homes.

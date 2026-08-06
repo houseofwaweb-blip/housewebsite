@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import s from "./interiors.module.css";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
-import { BeforeAfterSlider } from "@/components/marketing/BeforeAfterSlider";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { getNewsletterBlock } from "@/lib/cms/newsletter";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
@@ -338,51 +337,24 @@ export default async function InteriorsPage() {
         </p>
       </section>
 
-      {/* 6. The Designer doorway (DIRECTIVE §07/§09 — the Designer persona maps
-          the room for the £400 first design. NOT the Assistant, which is a HoWA
-          tier and does not belong in the House design path.) */}
-      <section className={s.companion}>
-        <div className={s.companionCopy}>
-          <p className={s.companionEy}>{cms(companion, "eyebrow", "House Companion · Powered by HoWA")}</p>
-          <h2 className={s.companionTitle}>
-            {cms(companion, "headline", "Start with")}{" "}
-            <em>{cms(companion, "headlineEm", "House Companion.", "headline")}</em>
+      {/* 6. Commission / voucher — interior design is delivered by Delve
+          Interiors; purchase is via a design voucher in the Marketplace. */}
+      <section className="border-t border-house-brown/10 px-[5vw] py-[clamp(48px,6vw,92px)]" style={{ background: "var(--color-house-cream-dark)" }}>
+        <div className="mx-auto max-w-[900px] text-center">
+          <p className="mb-3 font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink">Interior Design</p>
+          <h2 className="mb-5 font-display text-[clamp(28px,3.4vw,46px)] leading-[1.08] text-house-brown">
+            Commission a scheme, <em>or give one.</em>
           </h2>
-          <p className={s.companionLede}>
-            {cms(
-              companion,
-              "body",
-              "Use House Companion to map your room, ambition, timeline, budget and aesthetic direction. You get a first direction and an indicative budget you own, a brief Delve can work from on day one, nothing lost, nothing repeated.",
-            )}
+          <p className="mx-auto mb-8 max-w-[58ch] font-sans text-[16px] leading-[1.65] text-house-stone">
+            Interior design is delivered by Delve Interiors. Buy a design voucher
+            in the Marketplace and redeem it against a scheme, or give it to
+            someone setting up a home.
           </p>
-          <p className={s.companionFootnote}>
-            {cms(companion, "caption", "This is HoWA First Interior Design, £400.")}
-          </p>
-          <Link
-            href={cms(companion, "ctaHref", "/house-companion/room")}
-            className={s.btnFilled}
-          >
-            {cms(companion, "ctaLabel", "Start my interior design")}
-          </Link>
-          {/* DIRECTIVE §10 — "See a sample output". */}
-          <div style={{ marginTop: 16 }}>
-            <Link
-              href="/design/sample"
-              style={{ fontFamily: "var(--font-sans)", fontSize: 12, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--color-house-gold-ink)", textDecoration: "underline", textUnderlineOffset: "3px" }}
-            >
-              See a sample output →
-            </Link>
+          <div className="flex flex-wrap justify-center gap-3">
+            {/* TODO: point at the Shopify design-vouchers collection once created. */}
+            <Link href="/shop" className={s.btnFilled}>Buy a design voucher</Link>
+            <Link href="/contact" className={s.btnGhost}>Enquire about a commission</Link>
           </div>
-        </div>
-        <div className={s.companionImage}>
-          <BeforeAfterSlider
-            beforeSrc="/design/interiors/interior-before.png"
-            afterSrc="/design/interiors/interior-after.png"
-            beforeAlt="A living room and dining space before design"
-            afterAlt="The same room reimagined by House Companion: statement pendant, reimagined built-ins with integrated lighting, a new chandelier, custom banquette and lounge chairs"
-            beforeLabel="Your room"
-            afterLabel="Companion's read"
-          />
         </div>
       </section>
 

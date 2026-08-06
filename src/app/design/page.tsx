@@ -3,7 +3,6 @@ import Link from "next/link";
 import s from "./design.module.css";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
-import { SampleDesignShowcase } from "@/components/design/SampleDesignShowcase";
 
 /**
  * /design — landing page.
@@ -109,15 +108,15 @@ export default async function DesignLanding() {
               {cms(
                 hero,
                 "body",
-                "Start with a room, a garden, a photograph or simply the feeling you are trying to create. House Companion shapes the brief. HoWA holds the scan, design project, decisions and plans. The House and House Approved studios can verify and deliver the work.",
+                "Considered interiors and gardens, worked out with the studios we trust: Delve Interiors for rooms, and Willow Alexander Gardens for gardens. Commission a scheme, or give one as a voucher.",
               )}
             </p>
             <div className={s.heroCtas}>
-              <Link href={cms(hero, "ctaHref", "/house-companion")} className={s.btnFilled}>
-                {cms(hero, "ctaLabel", "Start with House Companion")}
+              <Link href={cms(hero, "ctaHref", "#routes")} className={s.btnFilled}>
+                {cms(hero, "ctaLabel", "Meet the studios")}
               </Link>
-              <Link href={cms(hero, "cta2Href", "#routes")} className={s.btnGhost}>
-                {cms(hero, "cta2Label", "Meet the studios")}
+              <Link href={cms(hero, "cta2Href", "/shop")} className={s.btnGhost}>
+                {cms(hero, "cta2Label", "Buy a design voucher")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
@@ -177,24 +176,6 @@ export default async function DesignLanding() {
             )}
           </p>
         </header>
-        {/* Copy Pack §07 — the two explicit routes, both on one Home Record. */}
-        <div className="mx-auto mb-12 grid max-w-[1000px] gap-5 md:grid-cols-2">
-          <div className="flex flex-col border border-house-brown/12 bg-house-cream p-8">
-            <p className="mb-2 font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-ink">Route one</p>
-            <h3 className="mb-3 font-display text-[24px] leading-tight text-house-brown">Create with House Companion</h3>
-            <p className="mb-6 flex-1 font-sans text-[15px] leading-[1.55] text-house-stone">Taste capture, guided site or room information, AI-assisted options, defined plan packs and optional professional review. Powered by HoWA.</p>
-            <Link href="/house-companion" className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-ink no-underline transition-colors hover:text-house-brown">Start with House Companion →</Link>
-          </div>
-          <div className="flex flex-col border border-house-brown/12 bg-house-cream p-8">
-            <p className="mb-2 font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-ink">Route two</p>
-            <h3 className="mb-3 font-display text-[24px] leading-tight text-house-brown">Work with a House Approved studio</h3>
-            <p className="mb-6 flex-1 font-sans text-[15px] leading-[1.55] text-house-stone">Bespoke human direction, site visits, complex briefs, technical responsibility, tendering and project leadership.</p>
-            <Link href="/house-approved" className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-ink no-underline transition-colors hover:text-house-brown">Explore House Approved →</Link>
-          </div>
-        </div>
-        <p className="mx-auto mb-12 max-w-[52ch] text-center font-sans text-[14px] leading-[1.55] text-house-stone/80">
-          Both routes stay connected to the same Home Record.
-        </p>
         <div className={s.partnersGrid}>
           {routeCards.map((p) => (
             <Link key={p.name} href={p.href} className={s.partnerCard}>
@@ -212,10 +193,6 @@ export default async function DesignLanding() {
                 <p className={s.partnerType}>{p.type}</p>
                 <h3 className={s.partnerName}>{p.name}</h3>
                 <p className={s.partnerBlurb}>{p.blurb}</p>
-                {/* DIRECTIVE §09 module 3 — the £400 first stage visible on the route card. */}
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: 12, letterSpacing: "0.06em", color: "var(--color-house-gold-ink)", margin: "10px 0 0", fontWeight: 600 }}>
-                  Begins with HoWA First Design, £400
-                </p>
                 <span className={s.partnerCta}>{p.cta} →</span>
               </div>
             </Link>
@@ -223,81 +200,24 @@ export default async function DesignLanding() {
         </div>
       </section>
 
-      {/* 4a. How HoWA First Design works (DIRECTIVE §09 modules 2, 4, 7) — the
-          literal explanation, what it includes and does not include, and how the
-          brief carries into the studio without repeated discovery. */}
-      <section className="px-[5vw] py-[clamp(56px,7vw,104px)]" style={{ background: "var(--color-house-cream)" }}>
-        <div className="mx-auto max-w-[1120px]">
-          <div className="text-center max-w-[680px] mx-auto mb-11">
-            <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink mb-3">How HoWA First Design works</p>
-            <h2 className="font-display text-[clamp(26px,3.4vw,44px)] leading-[1.08] text-house-brown mb-4">
-              A mapped plan, <em>for £400.</em>
-            </h2>
-            <p className="font-sans text-[15px] text-house-stone leading-[1.6]">
-              Every design begins in HoWA. You scan or map the space, describe the
-              ambition, constraints and budget, and receive a first direction and
-              an indicative budget. That brief carries straight to a human studio.
-            </p>
+      {/* 4a. Commission / voucher — design is delivered by the studios above;
+          purchase is via a design voucher in the Marketplace. */}
+      <section className="px-[5vw] py-[clamp(48px,6vw,92px)]" style={{ background: "var(--color-house-cream)" }}>
+        <div className="mx-auto max-w-[820px] text-center">
+          <p className="mb-3 font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink">Commission or give</p>
+          <h2 className="mb-4 font-display text-[clamp(26px,3.4vw,44px)] leading-[1.08] text-house-brown">
+            A scheme to commission, <em>or to give.</em>
+          </h2>
+          <p className="mx-auto mb-8 max-w-[58ch] font-sans text-[15px] leading-[1.6] text-house-stone">
+            Design is delivered by the studios above. Buy a design voucher in the
+            Marketplace and redeem it against a commission, or give it to someone
+            making a home their own.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            {/* TODO: point at the Shopify design-vouchers collection once created. */}
+            <Link href="/shop" className={s.btnFilled}>Buy a design voucher</Link>
+            <Link href="#routes" className={s.btnGhost}>Meet the studios</Link>
           </div>
-
-          {/* 4 steps */}
-          <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 list-none p-0 m-0 mb-12">
-            {[
-              { n: "1", t: "Scan or map", b: "Photograph or scan the room or garden, and answer a few questions on how you live in it." },
-              { n: "2", t: "First concept", b: "HoWA returns a first direction: layout or zones, a visual concept and a palette." },
-              { n: "3", t: "Indicative budget", b: "A realistic budget range for the full commission, so there are no surprises later." },
-              { n: "4", t: "Structured brief", b: "A written brief you own, kept in your home record, and one correction pass." },
-            ].map((step) => (
-              <li key={step.n} className="border border-house-brown/12 bg-house-white p-6">
-                <span className="font-display text-[26px] text-house-gold-ink leading-none">{step.n}</span>
-                <h3 className="font-display text-[18px] leading-tight text-house-brown mt-3 mb-2">{step.t}</h3>
-                <p className="font-sans text-[14px] leading-[1.55] text-house-stone">{step.b}</p>
-              </li>
-            ))}
-          </ol>
-
-          {/* Includes / does not include (§09 module 4, scope disclaimer) */}
-          <div className="grid gap-5 md:grid-cols-2">
-            <div className="border border-house-brown/12 bg-house-white p-7">
-              <p className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-ink mb-3">What you get for £400</p>
-              <ul className="flex flex-col gap-2 list-none p-0 m-0">
-                {["A space map of the room or garden", "A first design direction and visual concept", "Layout or zoning, and a palette or planting direction", "An indicative budget range for the full work", "A written, structured brief you own", "One correction pass"].map((i) => (
-                  <li key={i} className="font-sans text-[14px] leading-[1.5] text-house-brown flex gap-2.5"><span aria-hidden className="text-house-gold-ink">·</span><span>{i}</span></li>
-                ))}
-              </ul>
-            </div>
-            <div className="border border-house-brown/12 bg-house-white p-7">
-              <p className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-stone mb-3">What it is not</p>
-              <ul className="flex flex-col gap-2 list-none p-0 m-0">
-                {["A technical drawing set", "Planning advice", "A structural assessment", "A construction specification", "A tender package", "A contractor's final quotation"].map((i) => (
-                  <li key={i} className="font-sans text-[14px] leading-[1.5] text-house-stone flex gap-2.5"><span aria-hidden>·</span><span>{i}</span></li>
-                ))}
-              </ul>
-              <p className="font-sans text-[13px] leading-[1.55] text-house-stone mt-5">
-                The £400 output is a first-round concept and indicative budget. The
-                full design and technical work follow with your chosen studio, from
-                the same brief, so you never repeat yourself.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4b. See a sample output — the £400 first design, live (DIRECTIVE §10). */}
-      <section id="sample" className="px-[5vw] py-[clamp(56px,7vw,104px)]" style={{ background: "var(--color-house-white)" }}>
-        <div className="mx-auto max-w-[1120px]">
-          <div className="text-center max-w-[680px] mx-auto mb-9">
-            <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink mb-3">See a sample output</p>
-            <h2 className="font-display text-[clamp(26px,3.4vw,44px)] leading-[1.06] text-house-brown mb-4">
-              Watch a £400 first design <em>come together.</em>
-            </h2>
-            <p className="font-sans text-[15px] text-house-stone leading-[1.6]">
-              Scan the space, and HoWA maps it, sets a first direction, a palette,
-              an indicative budget and a written brief. Here is a worked example,
-              start to finish.
-            </p>
-          </div>
-          <SampleDesignShowcase />
         </div>
       </section>
 

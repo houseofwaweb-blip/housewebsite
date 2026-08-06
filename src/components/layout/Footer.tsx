@@ -40,15 +40,12 @@ const COLS: FooterColumn[] = [
   {
     heading: "Services & Design",
     links: [
-      { label: "Ask House Companion", href: "/house-companion" },
-      { label: "Book a House service", href: "/services" },
-      { label: "Garden care", href: "/services/gardening" },
-      { label: "Cleaning & housekeeping", href: "/services/cleaning" },
-      { label: "Handyman & repairs", href: "/services/handyman" },
+      { label: "All services", href: "/services" },
+      { label: "Gardening", href: "/services/gardening" },
+      { label: "Cleaning", href: "/services/cleaning" },
+      { label: "Handyman", href: "/services/handyman" },
       { label: "Garden Design", href: "/design/gardens" },
       { label: "Home & Interior Design", href: "/design/interiors" },
-      { label: "House Approved", href: "/house-approved" },
-      { label: "Join the Network", href: "/house-pro" },
     ],
   },
   {
@@ -67,15 +64,6 @@ const COLS: FooterColumn[] = [
       { label: "Collections", href: "/shop/collections" },
       { label: "The House Selection", href: "/shop/collections/house-approved" },
       { label: "Gift Cards", href: "/gift-cards" },
-    ],
-  },
-  {
-    heading: "HoWA",
-    links: [
-      { label: "Meet HoWA", href: "/howa" },
-      { label: "Start Home Record", href: "https://accounts.willowalexander.co.uk/" },
-      { label: "Open Home Record", href: "https://accounts.willowalexander.co.uk/" },
-      { label: "Explore HoWA", href: "https://howa.co.uk" },
     ],
   },
   {
@@ -156,9 +144,6 @@ export function Footer({ columns, tagline }: FooterProps) {
             </Link>
             <Link href="/legal/cookies" className="no-underline hover:text-house-cream transition-colors">
               Cookie policy
-            </Link>
-            <Link href="/house-pro" className="no-underline hover:text-house-cream transition-colors">
-              House Pro sign in
             </Link>
             <CookiePreferencesLink />
           </nav>

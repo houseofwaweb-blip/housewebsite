@@ -71,8 +71,8 @@ const SERVICE_CATEGORIES: {
     href: "/services#help-me-choose",
     subs: [
       { label: "Describe a problem", href: "/services#help-me-choose" },
-      { label: "Use the Handyman to diagnose an issue", href: "/services/handyman" },
-      { label: "Use the Gardener to scan the garden", href: "/services/gardening" },
+      { label: "Handyman & repairs", href: "/services/handyman" },
+      { label: "Garden care & design", href: "/services/gardening" },
       { label: "Everything the House can arrange", href: "/services#everything" },
       { label: "View all services", href: "/services" },
     ],
@@ -87,20 +87,23 @@ const SERVICE_CATEGORIES: {
  * thing being bought.
  */
 const SERVICE_FOOTER = [
-  { label: "Book a House service", href: "/services" },
-  { label: "See prices & availability", href: "#open-booking-form" },
+  { label: "All services", href: "/services" },
+  { label: "Book via HoWA", href: "https://howa.co.uk" },
 ];
 
 /**
  * Primary navigation configuration.
  *
- * Order (REVISIONS v3 §3):
- *   Services · Design · Insurance · Shop · The Hearth · HoWA · Our House
+ * Aug 2026 eComm/Insurance refocus — the House pares down to Shop, Insurance,
+ * The Hearth and (soon) Cinema, with light links out to the service businesses.
+ * Order:
+ *   The House · Services · Design · Protect · Marketplace · The Hearth
  *
- * Seven items. v3 §3 explicitly RESTORES HoWA as a visible navigation
- * destination — v2's demotion to a footer link went too far. The HoWA item
- * leads to the House-context page "The House uses HoWA" (/howa), never
- * straight into a pricing comparison or the full HoWA product catalogue.
+ * House Companion and Meet HoWA were removed as pillars: the HoWA product is no
+ * longer re-sold here (booking is a plain outbound link to howa.co.uk), and the
+ * AI design/companion layer is gone. Design stays as a commissioned service
+ * (purchased via a Marketplace voucher). A Cinema pillar will be added once the
+ * video area is built.
  */
 export const PRIMARY_NAV: MegaPanel[] = [
   {
@@ -182,7 +185,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
         links: [
           { label: "Describe a problem", href: "/services#help-me-choose" },
           { label: "Everything the House can arrange", href: "/services#everything" },
-          { label: "Book a House service", href: "/services", description: "See prices & availability" },
+          { label: "All services", href: "/services" },
         ],
       },
     ],
@@ -207,15 +210,14 @@ export const PRIMARY_NAV: MegaPanel[] = [
         ],
       },
       {
-        // DIRECTIVE §09/§10 — Design begins with HoWA First Design (£400), the
-        // mapped first output; a named human studio continues the work. No
-        // "House studio collective" and no "House Approved" designer directory
-        // (that language is reserved for professionals, not used here).
-        heading: "How design begins",
+        // Design is a commissioned service through named human studios. Purchase
+        // is via a voucher in the Marketplace; the AI "first design" layer was
+        // removed in the Aug 2026 eComm/Insurance refocus.
+        heading: "The studios",
         links: [
-          { label: "HoWA First Design", href: "/design", description: "The mapped first design" },
-          { label: "Delve Interiors", href: "/design/interiors", description: "Human interior continuation" },
-          { label: "Willow Alexander Gardens", href: "/design/gardens", description: "Human garden continuation" },
+          { label: "Delve Interiors", href: "/design/interiors", description: "Considered interior schemes" },
+          { label: "Willow Alexander Gardens", href: "/design/gardens", description: "Garden design & landscapes" },
+          { label: "How we choose studios", href: "/design/studios", description: "The circle we work with" },
         ],
       },
     ],
@@ -225,42 +227,6 @@ export const PRIMARY_NAV: MegaPanel[] = [
       tag: "Delve Interiors",
       heading: "Interiors, considered.",
       href: "/design/interiors",
-    },
-  },
-
-  {
-    /**
-     * Aug 2026 House Companion reframe — the promoted House-branded intelligent
-     * front door, powered by HoWA. Begins with a photo, problem, room, garden or
-     * idea; shapes the brief and routes into HoWA. Landing page: /house-companion.
-     */
-    id: "house-companion",
-    trigger: "House Companion",
-    triggerHref: "/house-companion",
-    groups: [
-      {
-        heading: "What are you trying to do?",
-        links: [
-          { label: "Care or repair", href: "/house-companion/repair", description: "A fault, photo or question" },
-          { label: "Design a garden", href: "/house-companion/garden", description: "How it should feel" },
-          { label: "Design a room or home", href: "/house-companion/room", description: "How it should work" },
-          { label: "Plan something bigger", href: "/howa", description: "Whole-home guidance" },
-        ],
-      },
-      {
-        heading: "Powered by HoWA",
-        links: [
-          { label: "Ask House Companion", href: "/house-companion", description: "Start with a photo, problem or idea" },
-          { label: "Book a House service", href: "/services", description: "Know what you need already" },
-        ],
-      },
-    ],
-    preview: {
-      image: "/powered-by-howa/hero.webp",
-      alt: "House Companion",
-      tag: "Powered by HoWA",
-      heading: "Your home, understood beautifully.",
-      href: "/house-companion",
     },
   },
 
@@ -344,25 +310,17 @@ export const PRIMARY_NAV: MegaPanel[] = [
   },
 
   {
-    /**
-     * Aug 2026 House Companion reframe — HoWA is the Home Intelligence
-     * DESTINATION, referenced not re-sold on the House site. The pillar leads to
-     * the "Meet HoWA" page (why the House uses HoWA + Home Record actions); the
-     * full HoWA product, plans and Score detail live on howa.co.uk.
-     */
-    id: "howa",
-    trigger: "Meet HoWA",
-    triggerHref: "/howa",
+    id: "cinema",
+    trigger: "Cinema",
+    triggerHref: "/cinema",
     groups: [
       {
-        heading: "The Home Intelligence behind the House",
+        heading: "The Cinema",
         links: [
-          { label: "Meet HoWA", href: "/howa", description: "Why the House uses HoWA" },
-          { label: "Start my Home Record", href: "https://accounts.willowalexander.co.uk/", description: "Give your address a memory" },
-          { label: "Open Home Record", href: "https://accounts.willowalexander.co.uk/" },
-          { label: "Explore HoWA", href: "https://howa.co.uk", description: "The independent Home Intelligence" },
+          { label: "The screening room", href: "/cinema", description: "Films and short video from the House" },
         ],
       },
     ],
   },
+
 ];
