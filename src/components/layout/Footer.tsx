@@ -116,10 +116,9 @@ export function Footer({ columns, tagline }: FooterProps) {
         </div>
 
         <p className="pt-8 font-sans text-[15px] leading-[1.6] text-house-cream/55 max-w-[760px]">
-          House services are delivered by House of Willow Alexander's own teams
-          across London and the South East, with a named House Approved
-          professional only where one genuinely does the work. Bookings and Home
-          Records are powered by HoWA.
+          Home and garden work is delivered by the Willow Alexander service
+          businesses across London and Kent. Book with each business directly, or
+          online through HoWA.
         </p>
 
         <div className="pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">

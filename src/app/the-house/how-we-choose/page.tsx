@@ -33,7 +33,7 @@ const PROVIDERS = [
   {
     title: "A House of Willow Alexander team",
     body: "Our own employed crews, in our own liveried electric vans, trained to the House standard. Most garden, cleaning, window and gutter work across our core postcodes is done this way.",
-    line: "Delivered by House of Willow Alexander. Booking, scheduling and Home Record powered by HoWA.",
+    line: "Delivered by the Willow Alexander service businesses. Book directly, or online through HoWA.",
   },
   {
     title: "A named House Approved professional",

@@ -109,18 +109,20 @@ export default async function HomePage() {
               A curated marketplace, home and pet insurance, an editorial journal
               and film, and the trusted people who look after home and garden.
             </p>
-            <div className="mt-7 btn-row">
-              <Link href="/shop" className={s.btnFilled} style={{ justifyContent: "center", textAlign: "center" }}>
-                Shop the Marketplace
+            <div className="mt-7 grid max-w-[520px] grid-cols-2 gap-3">
+              <Link href="/shop" className={s.btnFilled} style={{ justifyContent: "center", textAlign: "center", whiteSpace: "nowrap" }}>
+                Marketplace
               </Link>
-              <Link href="/insurance" className={s.btnGhost} style={{ justifyContent: "center", textAlign: "center" }}>
-                Explore Insurance
+              <Link href="/insurance" className={s.btnGhost} style={{ justifyContent: "center", textAlign: "center", whiteSpace: "nowrap" }}>
+                Insurance
+              </Link>
+              <Link href="/the-hearth" className={s.btnGhost} style={{ justifyContent: "center", textAlign: "center", whiteSpace: "nowrap" }}>
+                The Hearth
+              </Link>
+              <Link href="/services" className={s.btnFilled} style={{ justifyContent: "center", textAlign: "center", whiteSpace: "nowrap" }}>
+                Home services
               </Link>
             </div>
-            <p className={s.heroBookingNote}>
-              Read <a href="/the-hearth">The Hearth</a>, or{" "}
-              <a href="/services">find a home service</a>.
-            </p>
           </div>
         </div>
         <div className={s.heroVisual}>

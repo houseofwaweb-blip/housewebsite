@@ -38,8 +38,8 @@ const MY_HOME_HREF = "https://accounts.willowalexander.co.uk/";
 const PHONE = "08000478738";
 
 export function Header({
-  ctaLabel = "Ask House Companion",
-  ctaHref = "/house-companion",
+  ctaLabel = "Shop",
+  ctaHref = "/shop",
   dark: darkProp,
   nav,
 }: HeaderProps) {
@@ -113,16 +113,6 @@ export function Header({
           )}
         >
           0800 047 8738
-        </a>
-        <a
-          href={MY_HOME_HREF}
-          className={cn(
-            "font-sans text-[12px] tracking-[0.16em] uppercase no-underline opacity-[0.55] hover:opacity-100",
-            "transition-opacity duration-[var(--t-base)] whitespace-nowrap",
-            dark ? "text-house-cream" : "text-house-brown",
-          )}
-        >
-          Open Home Record
         </a>
         <CartIcon dark={dark} onClick={openDrawer} />
         <Link
@@ -269,22 +259,21 @@ export function Header({
               );
             })}
 
-            {/* Aug 2026 reframe — persistent mobile actions: Ask House Companion,
-                Book a House service, Call the House, Open Home Record. */}
+            {/* Persistent mobile actions (Aug 2026 eComm/Insurance refocus). */}
             <div className="mt-8 flex flex-col gap-3 pt-6 border-t border-house-brown/10">
               <Link
-                href="/house-companion"
+                href="/shop"
                 onClick={() => setMobileOpen(false)}
                 className="font-sans text-[14px] tracking-[0.16em] uppercase text-house-brown bg-house-gold-ink border border-house-gold-dark px-5 py-3.5 text-center no-underline"
               >
-                Ask House Companion
+                Shop the Marketplace
               </Link>
               <Link
-                href="/services"
+                href="/insurance"
                 onClick={() => setMobileOpen(false)}
                 className="font-sans text-[14px] tracking-[0.16em] uppercase text-house-brown border border-house-brown/25 px-5 py-3.5 text-center no-underline"
               >
-                Book a House service
+                Explore Insurance
               </Link>
               <a
                 href={`tel:${PHONE}`}
@@ -292,13 +281,6 @@ export function Header({
                 className="font-sans text-[14px] tracking-[0.16em] uppercase text-house-brown border border-house-brown/25 px-5 py-3.5 text-center no-underline"
               >
                 Call the House
-              </a>
-              <a
-                href={MY_HOME_HREF}
-                onClick={() => setMobileOpen(false)}
-                className="font-sans text-[14px] tracking-[0.16em] uppercase text-house-brown border border-house-brown/25 px-5 py-3.5 text-center no-underline"
-              >
-                Open Home Record
               </a>
               <button
                 type="button"

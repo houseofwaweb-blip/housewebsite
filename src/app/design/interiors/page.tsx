@@ -153,7 +153,7 @@ export default async function InteriorsPage() {
         <div className={s.heroCopy}>
           <FlowerWatermark color="gold" side="left" opacity={0.16} className="!top-auto bottom-[-12%] h-[74%]" />
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>{cms(hero, "eyebrow", "Home & Interior Design · House Companion powered by HoWA")}</p>
+            <p className={s.heroEy}>{cms(hero, "eyebrow", "Home & Interior Design · Delve Interiors")}</p>
             <h1 className={s.heroTitle}>
               {cms(hero, "headline", "Consciously designed")}{" "}
               <em>{cms(hero, "headlineEm", "interiors.", "headline")}</em>
@@ -181,7 +181,7 @@ export default async function InteriorsPage() {
               </Link>
             </div>
             <p style={{ marginTop: 20, fontFamily: "var(--font-sans)", fontSize: 13, lineHeight: 1.55, color: "var(--color-house-stone)", maxWidth: "58ch" }}>
-              House Companion shapes the brief. HoWA creates the project, plan and next action. House Pro manages verification and delivery.
+              Designed and delivered by Delve Interiors, from first direction to the finished room.
             </p>
           </div>
         </div>
@@ -210,7 +210,7 @@ export default async function InteriorsPage() {
               Design around <em>the life already happening.</em>
             </h2>
             <p className="font-sans text-[15px] leading-[1.6] text-house-stone">
-              House Companion learns how the room must work and feel; HoWA holds the project, decisions and files.
+              A considered process, so each stage builds on the last.
             </p>
           </div>
           <ol className="grid list-none gap-x-8 gap-y-4 p-0 sm:grid-cols-2 lg:grid-cols-5">

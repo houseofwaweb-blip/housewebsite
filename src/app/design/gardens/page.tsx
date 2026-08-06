@@ -155,7 +155,7 @@ export default async function GardensPage() {
         <div className={s.heroCopy}>
           <FlowerWatermark color="gold" side="left" opacity={0.16} className="!top-auto bottom-[-12%] h-[74%]" />
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>{cms(hero, "eyebrow", "Garden Design · House Companion powered by HoWA")}</p>
+            <p className={s.heroEy}>{cms(hero, "eyebrow", "Garden Design · Willow Alexander Gardens")}</p>
             <h1 className={s.heroTitle}>
               {cms(hero, "headline", "Landscapes,")}{" "}
               <em>{cms(hero, "headlineEm", "properly read.", "headline")}</em>
@@ -167,12 +167,6 @@ export default async function GardensPage() {
                 "Designed around what the garden already wants to do: light, shade, drainage, the soil it has. The brief is to make the garden feel inevitable, ten years from now. Led by Willow Alexander Gardens, the House's own garden studio, with specialist partners brought in for build.",
               )}
             </p>
-            {/* DIRECTIVE §10 — surface the £400 first design + scan framing in the hero. */}
-            <p className={s.heroLede} style={{ fontWeight: 600, marginTop: 4 }}>
-              Scan your garden and get a first concept and indicative budget before
-              commissioning the full plan. HoWA First Garden Design, £400: zones,
-              planting direction, a budget range and a written brief.
-            </p>
             <div className={s.heroCtas}>
               <Link href={cms(hero, "ctaHref", "#plans")} className={s.btnFilled}>
                 {cms(hero, "ctaLabel", "See the plan packs")}
@@ -183,7 +177,7 @@ export default async function GardensPage() {
               </Link>
             </div>
             <p style={{ marginTop: 20, fontFamily: "var(--font-sans)", fontSize: 13, lineHeight: 1.55, color: "var(--color-house-stone)", maxWidth: "58ch" }}>
-              House Companion shapes the brief. HoWA creates the project, plan and next action. House Pro manages verification and delivery.
+              Designed and delivered by Willow Alexander Gardens, from first concept to planting and aftercare.
             </p>
           </div>
         </div>
@@ -212,7 +206,7 @@ export default async function GardensPage() {
               From the first idea to <em>the garden that grows.</em>
             </h2>
             <p className="font-sans text-[15px] leading-[1.6] text-house-stone">
-              House Companion shapes the brief and HoWA holds the project, so each stage builds on the last.
+              A considered process, so each stage builds on the last.
             </p>
           </div>
           <ol className="grid list-none gap-x-8 gap-y-4 p-0 sm:grid-cols-2 lg:grid-cols-5">
@@ -374,54 +368,24 @@ export default async function GardensPage() {
         </p>
       </section>
 
-      {/* 7. The Designer doorway (DIRECTIVE §07/§09 — the Designer persona maps
-          the space for the £400 first design. NOT the Assistant, which is a HoWA
-          tier and does not belong in the House design path.) */}
-      <section className={s.companion}>
-        <div className={s.companionCopy}>
-          <p className={s.companionEy}>{cms(companion, "eyebrow", "House Companion · Powered by HoWA")}</p>
-          <h2 className={s.companionTitle}>
-            {cms(companion, "headline", "Start with")}{" "}
-            <em>{cms(companion, "headlineEm", "House Companion.", "headline")}</em>
+      {/* 7. Commission / voucher — garden design is delivered by Willow
+          Alexander Gardens; purchase is via a design voucher in the Marketplace. */}
+      <section className="border-t border-house-brown/10 px-[5vw] py-[clamp(48px,6vw,92px)]" style={{ background: "var(--color-house-cream-dark)" }}>
+        <div className="mx-auto max-w-[900px] text-center">
+          <p className="mb-3 font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink">Garden Design</p>
+          <h2 className="mb-5 font-display text-[clamp(28px,3.4vw,46px)] leading-[1.08] text-house-brown">
+            Commission a garden, <em>or give one.</em>
           </h2>
-          <p className={s.companionLede}>
-            {cms(
-              companion,
-              "body",
-              "Use House Companion to map your garden's light, soil, aspect, maintenance appetite and budget. You get a first direction and an indicative budget you own, a brief Willow Alexander can work from on day one, nothing lost, nothing repeated.",
-            )}
+          <p className="mx-auto mb-8 max-w-[58ch] font-sans text-[16px] leading-[1.65] text-house-stone">
+            Garden design is delivered by Willow Alexander Gardens. Buy a design
+            voucher in the Marketplace and redeem it against a scheme, or give it
+            to someone starting on their garden.
           </p>
-          <p className={s.companionFootnote}>
-            {cms(companion, "caption", "This is HoWA First Garden Design, £400.")}
-          </p>
-          <Link
-            href={cms(companion, "ctaHref", "#plans")}
-            className={s.btnFilled}
-          >
-            {cms(companion, "ctaLabel", "Start my garden design")}
-          </Link>
-          {/* DIRECTIVE §10 — "See a sample output". */}
-          <div style={{ marginTop: 16 }}>
-            <Link
-              href="/design/sample"
-              style={{ fontFamily: "var(--font-sans)", fontSize: 12, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--color-house-gold-ink)", textDecoration: "underline", textUnderlineOffset: "3px" }}
-            >
-              See a sample output →
-            </Link>
+          <div className="flex flex-wrap justify-center gap-3">
+            {/* TODO: point at the Shopify design-vouchers collection once created. */}
+            <Link href="/shop" className={s.btnFilled}>Buy a design voucher</Link>
+            <Link href="/contact" className={s.btnGhost}>Enquire about a commission</Link>
           </div>
-        </div>
-        <div className={s.companionImage}>
-          <Image
-            src={cms(companion, "imageUrl", "/design/gardens/concept-plans.jpg")}
-            alt={cms(
-              companion,
-              "imageAlt",
-              "A garden concept plan, the kind of brief House Companion helps you build",
-            )}
-            fill
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            style={{ objectFit: "cover", objectPosition: "center" }}
-          />
         </div>
       </section>
 

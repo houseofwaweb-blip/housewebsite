@@ -5,7 +5,6 @@ import { ProductCard } from "@/components/commerce/ProductCard";
 import { PRODUCTS, findProduct } from "@/lib/shop-data";
 import { getShopProduct, getShopProducts } from "@/lib/shop-data/source";
 import { RecentlyViewed } from "./RecentlyViewed";
-import { HomeRecordButton } from "@/components/commerce/HomeRecordButton";
 import { getProductByHandle } from "@/lib/cms/products";
 import { getProductVariants } from "@/lib/shop-data/shopify-catalogue";
 import { ProductBuy } from "./ProductBuy";
@@ -227,34 +226,19 @@ export default async function ProductPage({
             </div>
           )}
 
-          {/* Save / wishlist into the Home Record (brief slide 9/10) */}
           <div className="mb-9">
-            <HomeRecordButton
-              handle={product.handle}
-              title={product.title}
-              price={product.price}
-              image={product.image}
-            />
-            <p className="mt-2 font-sans text-[15px] leading-[1.5] text-house-stone">
-              Save it to your Home Record to keep its details, care notes and warranty in one place.
-            </p>
+            <ProductCopy product={product} />
           </div>
 
-          <ProductCopy product={product} />
-
-          {/* Warranty, care, supplier, replacement — what the Home Record keeps
-              for this object (brief slide 9/10). Supplier is real product data;
-              the rest is framed as what HoWA stores at and after purchase. */}
+          {/* Product details — supplier and care (real product data). */}
           <div className="mt-7 border-t border-house-brown/12 pt-6">
             <p className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-ink mb-3">
-              Kept in your Home Record
+              Product details
             </p>
             <dl className="m-0 space-y-2.5">
               {[
                 ["Supplier", product.brand?.trim() || "House-selected maker"],
-                ["Care", product.careNotes?.trim() || "Surface-appropriate care notes, saved with the item."],
-                ["Warranty", "Receipt and any warranty stored at purchase."],
-                ["Replacement", "HoWA reminds you when it is due for renewal."],
+                ["Care", product.careNotes?.trim() || "Surface-appropriate care notes for the item."],
               ].map(([k, v]) => (
                 <div key={k} className="flex gap-4 font-sans text-[15px] leading-[1.5]">
                   <dt className="w-[92px] shrink-0 text-house-stone">{k}</dt>
@@ -264,22 +248,15 @@ export default async function ProductPage({
             </dl>
           </div>
 
-          {/* Secondary CTA (brief slide 9) — present on every product, but the
-              wording adapts: installable/maintainable goods get the fitting line,
-              everything else gets a calmer House-services line (a mug isn't
-              "fitted or cleaned"). */}
+          {/* Secondary CTA — a calm link to the home services. */}
           <p className="mt-6 font-sans text-[15px] leading-[1.6] text-house-stone">
             {serviceable
               ? "Need this fitted, hung, cleaned or maintained? "
               : "Planning work on your home? "}
-            <a href="#open-booking-form" className="text-house-gold-ink underline underline-offset-[3px]">
-              Book a service
-            </a>{" "}
-            or{" "}
-            <Link href="/house-companion" className="text-house-gold-ink underline underline-offset-[3px]">
-              ask House Companion
+            <Link href="/services" className="text-house-gold-ink underline underline-offset-[3px]">
+              Find a home service
             </Link>
-            , and it is kept in your Home Record.
+            .
           </p>
         </div>
       </div>

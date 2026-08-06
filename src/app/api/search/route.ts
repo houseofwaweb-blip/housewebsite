@@ -35,15 +35,8 @@ const STATIC_PAGES: SearchResult[] = [
   // House-context page. Every /howa/* product page 301s to howa.co.uk, and the
   // plan and tier pages are removed from the House site entirely, so they must
   // not be surfaced by search.
-  // House Companion is the promoted House-site route into HoWA (Aug 2026). It
-  // must be the first result for companion/assistant/design-help/"what service"
-  // style queries, so it carries synonym keywords and a pin.
-  { id: "sp-house-companion", type: "House Companion", title: "Ask House Companion", excerpt: "Share a photo, a problem, a room, a garden or an idea. House Companion understands what the home needs and prepares the right design, service or next step in HoWA.", href: "/house-companion", pin: true, keywords: "companion assistant ai design help not sure what service what do i need diagnose diagnosis advice guidance ask style stylist scan repair garden room" },
-  { id: "sp-companion-repair", type: "House Companion", title: "Fix or repair with House Companion", excerpt: "Photograph a fault and see the likely issue, an indicative cost and the right route.", href: "/house-companion/repair", keywords: "repair fix fault damp leak broken diagnose companion" },
-  { id: "sp-companion-garden", type: "House Companion", title: "Design a garden with House Companion", excerpt: "Scan the garden and shape a first concept, planting direction and budget.", href: "/house-companion/garden", keywords: "garden design companion scan concept planting" },
-  { id: "sp-companion-room", type: "House Companion", title: "Design a room with House Companion", excerpt: "Scan the room and build a first direction, palette and budget.", href: "/house-companion/room", keywords: "room interior design companion scan palette scheme" },
-  { id: "sp-howa", type: "HoWA", title: "The House uses HoWA", excerpt: "The Home Intelligence app behind every House booking, appointment, document and Home Record.", href: "/howa", keywords: "home record open home record home intelligence" },
-  { id: "sp-services", type: "Services", title: "Book a House service", excerpt: "Garden care, cleaning, window and gutter cleaning, handyman and repairs, clearance and specialist garden work.", href: "/services", keywords: "book service what service find a service" },
+  { id: "sp-services", type: "Services", title: "Home & garden services", excerpt: "Gardening, cleaning, window and gutter cleaning, and handyman, delivered by the Willow Alexander service businesses.", href: "/services", keywords: "book service what service find a service garden cleaning window gutter handyman" },
+  { id: "sp-cinema", type: "Cinema", title: "The Cinema", excerpt: "Films and short video from the House: gardens, rooms and the makers behind the objects we choose.", href: "/cinema", keywords: "cinema film video watch screening room" },
   { id: "sp-handyman", type: "Services", title: "Handyman and repairs", excerpt: "Hourly and half-day visits for the jobs that have been waiting.", href: "/services/handyman" },
   { id: "sp-interiors", type: "Design", title: "Interior Design", excerpt: "Whole-house renovations and single-room reads.", href: "/design/interiors" },
   { id: "sp-gardens", type: "Design", title: "Garden Design", excerpt: "Landscape work led by Willow Alexander Gardens.", href: "/design/gardens" },

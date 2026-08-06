@@ -46,7 +46,7 @@ export default function ThankYouPage() {
         </div>
 
         <p className="mt-10 font-sans text-[13px] text-house-brown/50">
-          A copy of your enquiry has been logged to your Home Record.
+          We&rsquo;ll be in touch soon.
         </p>
       </section>
     </div>

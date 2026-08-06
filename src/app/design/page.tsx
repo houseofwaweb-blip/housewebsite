@@ -99,7 +99,7 @@ export default async function DesignLanding() {
         </div>
         <div className={s.heroCopy}>
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>{cms(hero, "eyebrow", "House Design · Powered by HoWA")}</p>
+            <p className={s.heroEy}>{cms(hero, "eyebrow", "House Design")}</p>
             <h1 className={s.heroTitle}>
               {cms(hero, "headline", "Design that begins with")}{" "}
               <em>{cms(hero, "headlineEm", "how you live.", "headline")}</em>
@@ -271,7 +271,7 @@ export default async function DesignLanding() {
               { n: "02", t: "Moodboard", d: "A direction to react to before anything is committed." },
               { n: "03", t: "Quote", d: "Clear costs, scope and timing." },
               { n: "04", t: "Sample", d: "Finishes, paint, planting, seen before they are ordered." },
-              { n: "05", t: "Handover", d: "The finished space, written to your Home Record." },
+              { n: "05", t: "Handover", d: "The finished space, and a full record of how it was made." },
             ].map((step) => (
               <li key={step.n} className="text-center sm:text-left">
                 <span style={{ fontFamily: "var(--font-display)", fontStyle: "italic", fontSize: 28, color: "var(--color-house-gold-ink)", display: "block", marginBottom: 8 }}>{step.n}</span>
@@ -285,7 +285,7 @@ export default async function DesignLanding() {
               The Design Record
             </p>
             <p style={{ fontFamily: "var(--font-hearth-serif)", fontSize: "clamp(17px,1.7vw,21px)", lineHeight: 1.5, color: "var(--color-house-cream)", margin: 0, maxWidth: "62ch" }}>
-              Every brief, drawing, supplier, finish, paint reference, planting scheme, warranty and aftercare note is saved to your Home Record, so the house remembers how it was made long after the studio leaves.
+              Every brief, drawing, supplier, finish, paint reference, planting scheme, warranty and aftercare note is kept in a design record you own, so the house remembers how it was made long after the studio leaves.
             </p>
           </div>
         </div>
