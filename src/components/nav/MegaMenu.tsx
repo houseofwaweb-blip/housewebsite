@@ -163,7 +163,7 @@ export function MegaMenu({
           >
             {panel.twoLevel ? (
               <TwoLevelMegaPanel data={panel.twoLevel} isOpen={isOpen} />
-            ) : (
+            ) : panel.preview ? (
             <div className="grid grid-cols-1 md:grid-cols-[1fr_1.6fr] gap-[32px]">
               {/* Links */}
               <div
@@ -173,48 +173,65 @@ export function MegaMenu({
                 )}
               >
                 {panel.groups.map((group) => (
-                  <div key={group.heading}>
-                    <div className="font-sans text-[12px] tracking-[0.28em] uppercase text-house-stone mb-[10px]">
-                      {group.heading}
-                    </div>
-                    <ul className="flex flex-col gap-[8px] list-none m-0 p-0">
-                      {group.links.map((link) => (
-                        <li key={link.href}>
-                          <Link
-                            href={link.href}
-                            className="group inline-flex items-baseline font-sans text-[12px] tracking-[0.14em] uppercase text-house-brown no-underline transition-[color,padding-left] duration-[var(--t-base)] ease-out hover:text-house-gold-ink hover:pl-[4px]"
-                          >
-                            <span>{link.label}</span>
-                            {link.description ? (
-                              <span className="font-sans normal-case text-[12px] tracking-[0.02em] text-house-stone ml-[8px]">
-                                {link.description}
-                              </span>
-                            ) : null}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <MegaGroup key={group.heading} group={group} />
                 ))}
               </div>
 
               {/* Preview */}
-              {panel.preview ? (
-                <div
-                  className={cn(
-                    "relative min-h-[220px] overflow-hidden transition-[opacity,transform] duration-[var(--t-slow)] ease-out",
-                    isOpen ? "opacity-100 translate-y-0 delay-[250ms]" : "opacity-0 translate-y-3 delay-0",
-                  )}
-                >
-                  <PreviewBlock preview={panel.preview} />
-                </div>
-              ) : null}
+              <div
+                className={cn(
+                  "relative min-h-[220px] overflow-hidden transition-[opacity,transform] duration-[var(--t-slow)] ease-out",
+                  isOpen ? "opacity-100 translate-y-0 delay-[250ms]" : "opacity-0 translate-y-3 delay-0",
+                )}
+              >
+                <PreviewBlock preview={panel.preview} />
+              </div>
+            </div>
+            ) : (
+            /* No preview → spread the groups across full-width columns so the
+               panel stays wide and short instead of one tall stack. */
+            <div
+              className={cn(
+                "grid grid-cols-2 lg:grid-cols-4 gap-x-[44px] gap-y-[26px] transition-[opacity,transform] duration-[var(--t-slow)] ease-out",
+                isOpen ? "opacity-100 translate-y-0 delay-[150ms]" : "opacity-0 translate-y-3 delay-0",
+              )}
+            >
+              {panel.groups.map((group) => (
+                <MegaGroup key={group.heading} group={group} />
+              ))}
             </div>
             )}
           </div>
         );
       })}
     </nav>
+  );
+}
+
+function MegaGroup({ group }: { group: MegaLinkGroup }) {
+  return (
+    <div>
+      <div className="font-sans text-[12px] tracking-[0.28em] uppercase text-house-stone mb-[10px]">
+        {group.heading}
+      </div>
+      <ul className="flex flex-col gap-[8px] list-none m-0 p-0">
+        {group.links.map((link) => (
+          <li key={link.href}>
+            <Link
+              href={link.href}
+              className="group inline-flex items-baseline font-sans text-[12px] tracking-[0.14em] uppercase text-house-brown no-underline transition-[color,padding-left] duration-[var(--t-base)] ease-out hover:text-house-gold-ink hover:pl-[4px]"
+            >
+              <span>{link.label}</span>
+              {link.description ? (
+                <span className="font-sans normal-case text-[12px] tracking-[0.02em] text-house-stone ml-[8px]">
+                  {link.description}
+                </span>
+              ) : null}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 

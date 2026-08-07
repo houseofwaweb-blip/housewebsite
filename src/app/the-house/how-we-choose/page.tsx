@@ -72,11 +72,11 @@ const STANDARDS = [
 const AFTERCARE = [
   {
     q: "Something was not right. What happens?",
-    a: "Tell us, through HoWA or by telephone, and we will put it right. Where the work was carried out by a named House Approved professional, the House still owns the conversation with you. You are not sent away to argue with someone you did not choose.",
+    a: "Tell us, online or by telephone, and we will put it right. Where the work was carried out by a named House Approved professional, the House still owns the conversation with you. You are not sent away to argue with someone you did not choose.",
   },
   {
     q: "Can I change or cancel an appointment?",
-    a: "Yes, from My Home in HoWA or by calling us. You will see the confirmed time, who is coming and the agreed scope, so a change is a couple of taps rather than a phone queue.",
+    a: "Yes, online or by calling us. You will see the confirmed time, who is coming and the agreed scope, so a change is a couple of taps rather than a phone queue.",
   },
   {
     q: "Will I get the same people each time?",
@@ -84,7 +84,7 @@ const AFTERCARE = [
   },
   {
     q: "Who holds my records?",
-    a: "The work carried out on your home is kept in your Home Record in HoWA, the Home Intelligence app the House uses. It stays with the address, so the next visit picks up where the last one left off.",
+    a: "The work carried out on your home is kept on record by the House. It stays with the address, so the next visit picks up where the last one left off.",
   },
 ];
 
@@ -139,8 +139,8 @@ export default function HowWeChoosePage() {
             ))}
           </div>
           <p className="mt-7 max-w-[70ch] font-sans text-[14px] leading-[1.6] text-house-stone/85">
-            HoWA manages the booking and keeps the record of the work. It is not the
-            physical service provider, and it never appears at your door.
+            Online booking is handled through HoWA. It is not the physical service
+            provider, and it never appears at your door.
           </p>
         </div>
       </section>
@@ -216,12 +216,11 @@ export default function HowWeChoosePage() {
             Are you a professional?
           </p>
           <h2 className="mb-4 font-display text-[clamp(22px,2.6vw,34px)] leading-[1.12] text-house-brown">
-            Professionals join through HoWA.
+            Join the House Approved network.
           </h2>
           <p className="mx-auto mb-8 max-w-[58ch] font-sans text-[16px] leading-[1.65] text-house-stone">
-            Customers buy services from the House. Professionals join the HoWA
-            Approved network, and HoWA connects and operates the relationship
-            between the two. Applications are handled on the HoWA site.
+            Customers buy services from the House. Professionals apply to join the
+            House Approved network; applications are handled on the HoWA platform.
           </p>
           <a
             href="https://howa.co.uk/approved"

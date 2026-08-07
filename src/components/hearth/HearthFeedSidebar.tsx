@@ -100,8 +100,8 @@ function SidebarNewsletter() {
         A letter <em className="italic font-normal">from the House.</em>
       </h4>
       <p className="font-hearth-serif italic text-[15px] leading-[1.5] text-house-stone mb-[14px]">
-        Our best reading from the week, plus seasonal notes and a standing
-        invitation into HoWA. No clutter.
+        Our best reading from the week, plus seasonal notes from the House. No
+        clutter.
       </p>
 
       {state === "success" ? (

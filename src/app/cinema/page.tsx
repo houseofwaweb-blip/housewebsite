@@ -1,6 +1,7 @@
-import Image from "next/image";
+import { FilmThumb } from "@/components/cinema/FilmThumb";
 import Link from "next/link";
-import { FILMS, FEATURED } from "@/lib/cinema-data";
+import { resolveFilms, resolveFeatured } from "@/lib/cinema-data";
+import { CinemaFeatured } from "@/components/cinema/CinemaFeatured";
 
 /**
  * /cinema — the House film index. A featured film autoplays (muted) at the top;
@@ -13,8 +14,10 @@ export const metadata = {
     "The House screening room: gardens through the seasons, rooms coming together, and the makers behind the objects we choose.",
 };
 
-export default function CinemaPage() {
-  const rest = FILMS.filter((f) => f.slug !== FEATURED.slug);
+export default async function CinemaPage() {
+  const films = await resolveFilms();
+  const FEATURED = await resolveFeatured();
+  const rest = films.filter((f) => f.slug !== FEATURED.slug);
 
   return (
     <div className="bg-house-cream text-house-brown">
@@ -32,30 +35,16 @@ export default function CinemaPage() {
         </div>
       </section>
 
-      {/* Featured film — autoplays muted; clicking opens its page. */}
+      {/* Featured film — autoplays muted; clicking opens its page and resumes
+          from where the ambient loop had reached. */}
       <section className="px-[5vw] pb-14">
         <div className="mx-auto max-w-[1200px]">
-          <Link
-            href={`/cinema/${FEATURED.slug}`}
-            className="group relative block aspect-video w-full overflow-hidden border border-house-brown/12 bg-house-black no-underline"
-          >
-            <iframe
-              src={`https://www.youtube-nocookie.com/embed/${FEATURED.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${FEATURED.youtubeId}&controls=0&modestbranding=1&playsinline=1&rel=0&disablekb=1`}
-              title={FEATURED.title}
-              allow="autoplay; encrypted-media"
-              className="pointer-events-none absolute inset-0 h-full w-full"
-            />
-            <span aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(15,12,9,0.85), rgba(15,12,9,0.05) 55%, rgba(15,12,9,0.25))" }} />
-            <span className="absolute inset-x-0 bottom-0 p-[clamp(20px,4vw,48px)]">
-              <span className="inline-flex items-center gap-2.5 font-sans text-[12px] tracking-[0.22em] uppercase text-house-cream">
-                <span className="flex h-8 w-8 items-center justify-center rounded-full border border-house-cream/70 text-[11px]">▶</span>
-                Watch · {FEATURED.category} · {FEATURED.duration}
-              </span>
-              <span className="mt-3 block max-w-[24ch] font-display text-[clamp(26px,3.6vw,50px)] leading-[1.05] text-house-cream">
-                {FEATURED.title}
-              </span>
-            </span>
-          </Link>
+          <CinemaFeatured
+            youtubeId={FEATURED.youtubeId}
+            slug={FEATURED.slug}
+            title={FEATURED.title}
+            category={FEATURED.category}
+          />
         </div>
       </section>
 
@@ -67,11 +56,11 @@ export default function CinemaPage() {
             {rest.map((f) => (
               <Link key={f.slug} href={`/cinema/${f.slug}`} className="group no-underline">
                 <div className="relative aspect-video w-full overflow-hidden border border-house-brown/12 bg-house-cream-dark">
-                  <Image src={f.poster} alt={f.title} fill sizes="(min-width: 1024px) 31vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
+                  <FilmThumb youtubeId={f.youtubeId} poster={f.poster} alt={f.title} className="transition-transform duration-500 group-hover:scale-[1.04]" />
                   <span aria-hidden className="absolute inset-0 flex items-center justify-center">
                     <span className="flex h-12 w-12 items-center justify-center rounded-full border border-house-cream/80 bg-house-black/35 text-house-cream backdrop-blur-sm transition-colors group-hover:border-house-gold group-hover:text-house-gold">▶</span>
                   </span>
-                  <span className="absolute bottom-2 right-2 bg-house-black/70 px-2 py-1 font-sans text-[11px] tracking-[0.08em] text-house-cream/90">{f.duration}</span>
+                  {f.duration ? <span className="absolute bottom-2 right-2 bg-house-black/70 px-2 py-1 font-sans text-[11px] tracking-[0.08em] text-house-cream/90">{f.duration}</span> : null}
                 </div>
                 <p className="mt-3 font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-ink">{f.category}</p>
                 <h3 className="mt-1 font-display text-[22px] leading-tight text-house-brown transition-colors group-hover:text-house-gold-ink">{f.title}</h3>

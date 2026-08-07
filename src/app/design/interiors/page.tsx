@@ -5,6 +5,7 @@ import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { getNewsletterBlock } from "@/lib/cms/newsletter";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
+import { BuyVoucherButton } from "@/components/design/BuyVoucherButton";
 
 /**
  * /design/interiors — lander framework.
@@ -26,28 +27,13 @@ export const metadata = {
 };
 
 const STAT_COLS = [
-  { value: "4", label: "Plans to begin" },
+  { value: "3", label: "Plans to begin" },
   { value: "1:1", label: "Designer access" },
   { value: "15%", label: "House Shop discount" },
   { value: "0", label: "Cookie-cutter schemes" },
 ];
 
 const PLANS = [
-  {
-    // DIRECTIVE §10 — Interior design leads with HoWA First Design at £400
-    // (the mapped first output). Human packages follow after the first output.
-    name: "HoWA First Interior Design",
-    tagline: "The mapped first design, £400.",
-    price: "£400",
-    inclusions: [
-      "Starts from your address and a HoWA read of the room",
-      "A first scheme and material direction, mapped to your home",
-      "A written design you own, kept in your home record",
-      "A clear route to continue with Delve Interiors when you want a human studio",
-    ],
-    image: "/design/interiors/project-living-room.webp",
-    featured: true,
-  },
   {
     name: "The House Edit",
     tagline: "A 90-minute studio session.",
@@ -59,7 +45,7 @@ const PLANS = [
       "10% House Shop discount",
     ],
     image: "/design/interiors/project-bedroom.webp",
-    featured: false,
+    featured: true,
   },
   {
     name: "Additions to Your Edit",
@@ -127,7 +113,6 @@ export default async function InteriorsPage() {
   const plans = sections.get("plans");
   const projects = sections.get("projects");
   const quote = sections.get("quote");
-  const companion = sections.get("companion");
 
   const statCols = cmsCards(stats, STAT_COLS, (c, base) => ({
     value: pick(c.value ?? c.label, base?.value ?? ""),
@@ -164,12 +149,6 @@ export default async function InteriorsPage() {
                 "body",
                 "Rooms read for the people who live in them, not decorated at them. Worked out in plaster, paint, joinery and the light a room actually gets, with Delve Interiors, our House Approved studio who know period fabric and how a house wears over years.",
               )}
-            </p>
-            {/* DIRECTIVE §10 — surface the £400 first design + scan framing in the hero. */}
-            <p className={s.heroLede} style={{ fontWeight: 600, marginTop: 4 }}>
-              Scan your room and see the first direction before the first
-              consultation. HoWA First Interior Design, £400: a mapped concept,
-              palette, indicative budget and written brief.
             </p>
             <div className={s.heroCtas}>
               <Link href={cms(hero, "ctaHref", "#plans")} className={s.btnFilled}>
@@ -282,9 +261,7 @@ export default async function InteriorsPage() {
                     <li key={inc}>{inc}</li>
                   ))}
                 </ul>
-                <Link href="/contact" className={s.planCta}>
-                  Book this edit →
-                </Link>
+                <BuyVoucherButton name={p.name} className={s.planCta} />
               </div>
             </article>
           ))}
@@ -346,35 +323,13 @@ export default async function InteriorsPage() {
             Commission a scheme, <em>or give one.</em>
           </h2>
           <p className="mx-auto mb-8 max-w-[58ch] font-sans text-[16px] leading-[1.65] text-house-stone">
-            Interior design is delivered by Delve Interiors. Buy a design voucher
-            in the Marketplace and redeem it against a scheme, or give it to
-            someone setting up a home.
+            Interior design is delivered by Delve Interiors. Buy any of the
+            packages above as a voucher and redeem it against a scheme, or give
+            it to someone setting up a home.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            {/* TODO: point at the Shopify design-vouchers collection once created. */}
-            <Link href="/shop" className={s.btnFilled}>Buy a design voucher</Link>
+            <Link href="#plans" className={s.btnFilled}>Choose a voucher</Link>
             <Link href="/contact" className={s.btnGhost}>Enquire about a commission</Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 6b. Delivery / House Approved (Copy Pack §09) — carry the scheme into the real room. */}
-      <section className="border-t border-house-brown/10 px-[5vw] py-[clamp(48px,6vw,88px)]" style={{ background: "var(--color-house-cream-dark)" }}>
-        <div className="mx-auto max-w-[900px] text-center">
-          <p className="mb-3 font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink">Delivery · House Approved</p>
-          <h2 className="mb-5 font-display text-[clamp(26px,3.2vw,42px)] leading-[1.08] text-house-brown">
-            Carry the scheme into <em>the real room.</em>
-          </h2>
-          <p className="mx-auto mb-8 max-w-[62ch] font-sans text-[16px] leading-[1.65] text-house-stone">
-            Invite House Approved designers, joiners, decorators and trades to review, quote or deliver the selected scope. The House coordinates the work, and HoWA keeps the final choices, costs, photographs, warranties and care information with your address.
-          </p>
-          <div className="btn-row">
-            <Link href="/contact" className="inline-flex items-center justify-center gap-2 border border-house-gold-dark bg-house-gold-ink px-8 py-4 text-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-[filter] hover:brightness-110">
-              Request professional support <span aria-hidden>→</span>
-            </Link>
-            <Link href="/house-approved" className="inline-flex items-center justify-center gap-2 border border-house-brown/25 px-8 py-4 text-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-colors hover:border-house-gold">
-              Explore House Approved
-            </Link>
           </div>
         </div>
       </section>

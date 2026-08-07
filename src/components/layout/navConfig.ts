@@ -233,25 +233,49 @@ export const PRIMARY_NAV: MegaPanel[] = [
   {
     id: "insurance",
     // Aug 2026 directive §08 — the pillar label is "Protect" (route stays /insurance).
+    // Insurance Site Build spec (hub-and-spoke): the top nav routes into the
+    // /insurance hub, and the dropdown surfaces the main destinations. Only
+    // built pages are linked; Business + Guides join as they ship. The House is
+    // an introducer only — no "House Approved Insurance" language anywhere.
     trigger: "Protect",
     triggerHref: "/insurance",
     groups: [
       {
-        // REVISIONS v3 §8 — Home and Pet are SEPARATE journeys with their own
-        // pages. Never one generic insurance card. No "House Approved
-        // Insurance" language anywhere.
         heading: "Insurance",
         links: [
-          { label: "Home Insurance", href: "/insurance/home", description: "Request an introduction" },
-          { label: "Pet Insurance", href: "/insurance/pet", description: "Request an introduction" },
+          { label: "Private client", href: "/insurance/private-client", description: "Advised cover for high-value homes" },
+          { label: "Everyday cover", href: "/insurance/everyday", description: "Home, car, pet and travel" },
+          { label: "Business insurance", href: "/insurance/business", description: "Trades, indemnity and commercial" },
         ],
       },
       {
-        // §8 — a Home Protection Review is an operational House service, kept
-        // clearly apart from the regulated insurance products.
-        heading: "Home protection",
+        heading: "Specialist property",
         links: [
+          { label: "Listed buildings", href: "/insurance/listed-buildings" },
+          { label: "Thatched properties", href: "/insurance/thatched-properties" },
+          { label: "Non-standard construction", href: "/insurance/non-standard-construction" },
+          { label: "Second & holiday homes", href: "/insurance/second-homes" },
+          { label: "Unoccupied & probate", href: "/insurance/unoccupied-property" },
+          { label: "Renovation & works", href: "/insurance/renovation-and-extension" },
+        ],
+      },
+      {
+        heading: "Assets & advice",
+        links: [
+          { label: "Fine art & collections", href: "/insurance/fine-art-and-collections" },
+          { label: "Classic & prestige motor", href: "/insurance/classic-and-prestige-motor" },
           { label: "Home Protection Review", href: "/insurance/home-protection", description: "Book an assessment" },
+          { label: "How this works", href: "/insurance/how-this-works", description: "And how we are paid" },
+        ],
+      },
+      {
+        heading: "Guides",
+        links: [
+          { label: "The underinsurance gap", href: "/insurance/guides/underinsurance" },
+          { label: "What a rebuild cost is", href: "/insurance/guides/rebuild-cost" },
+          { label: "Insuring a listed building", href: "/insurance/guides/listed-building-insurance" },
+          { label: "Insurance during building work", href: "/insurance/guides/renovation-insurance" },
+          { label: "When to renew", href: "/insurance/guides/renewal" },
         ],
       },
     ],

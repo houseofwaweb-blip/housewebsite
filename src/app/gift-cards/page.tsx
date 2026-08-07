@@ -32,8 +32,8 @@ export default function GiftCardsPage() {
             Give the gift of <em>a well-kept home.</em>
           </h1>
           <p className={s.heroLede}>
-            House gift cards work across everything: services, the shop, design
-            consultations, and HoWA memberships. Delivered by email, redeemed
+            House gift cards work across everything: the shop, design
+            commissions, and the service businesses. Delivered by email, redeemed
             online or in person.
           </p>
         </div>

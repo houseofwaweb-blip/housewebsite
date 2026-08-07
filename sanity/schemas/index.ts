@@ -27,6 +27,7 @@ import { pageSection } from "./pageSection";
 import { artworkPage } from "./artworkPage";
 import { subbrandTile } from "./subbrandTile";
 import { product } from "./product";
+import { cinemaFilm } from "./cinemaFilm";
 
 import { seo } from "./objects/seo";
 import { cta } from "./objects/cta";
@@ -74,6 +75,7 @@ export const schemaTypes = [
   artworkPage,
   subbrandTile,
   product,
+  cinemaFilm,
   seo,
   cta,
   heroBlock,

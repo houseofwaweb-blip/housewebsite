@@ -115,7 +115,7 @@ export default async function DesignLanding() {
               <Link href={cms(hero, "ctaHref", "#routes")} className={s.btnFilled}>
                 {cms(hero, "ctaLabel", "Meet the studios")}
               </Link>
-              <Link href={cms(hero, "cta2Href", "/shop")} className={s.btnGhost}>
+              <Link href={cms(hero, "cta2Href", "#routes")} className={s.btnGhost}>
                 {cms(hero, "cta2Label", "Buy a design voucher")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
@@ -131,7 +131,7 @@ export default async function DesignLanding() {
             {cms(stats, "headline", "Considered. Connected. Filed to the record.")}
           </p>
           <p className={s.statsLedeLine2}>
-            {cms(stats, "subheadline", "Every project mapped in HoWA, delivered by a named studio.")}
+            {cms(stats, "subheadline", "Every project delivered by a named studio you can meet.")}
           </p>
         </div>
         {statCols.map((stat) => (
@@ -160,19 +160,19 @@ export default async function DesignLanding() {
         </header>
       </section>
 
-      {/* 4. Two live routes + HoWA design intelligence */}
+      {/* 4. Two live routes */}
       <section id="routes" className={s.partners}>
         <header className={s.partnersHead}>
           <p className={s.partnersEy}>{cms(partners, "eyebrow", "How design begins")}</p>
           <h2 className={s.partnersTitle}>
             {cms(partners, "headline", "Two live routes.")}{" "}
-            <em>{cms(partners, "headlineEm", "Both begun in HoWA.", "headline")}</em>
+            <em>{cms(partners, "headlineEm", "Both begin with you.", "headline")}</em>
           </h2>
           <p className={s.partnersLede}>
             {cms(
               partners,
               "body",
-              "Design begins with what is real: our garden studio, our interiors partner, and HoWA's design intelligence. Map the space in HoWA for a first direction and indicative budget, then take it forward with the right named studio.",
+              "Design begins with what is real: our garden studio and our interiors partner. Start with a brief for a first direction and indicative budget, then take it forward with the right named studio.",
             )}
           </p>
         </header>
@@ -209,14 +209,13 @@ export default async function DesignLanding() {
             A scheme to commission, <em>or to give.</em>
           </h2>
           <p className="mx-auto mb-8 max-w-[58ch] font-sans text-[15px] leading-[1.6] text-house-stone">
-            Design is delivered by the studios above. Buy a design voucher in the
-            Marketplace and redeem it against a commission, or give it to someone
-            making a home their own.
+            Design is delivered by the studios above. Choose interiors or gardens
+            to buy a package as a voucher, redeem it against a commission, or give
+            it to someone making a home their own.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            {/* TODO: point at the Shopify design-vouchers collection once created. */}
-            <Link href="/shop" className={s.btnFilled}>Buy a design voucher</Link>
-            <Link href="#routes" className={s.btnGhost}>Meet the studios</Link>
+            <Link href="#routes" className={s.btnFilled}>Choose a discipline</Link>
+            <Link href="/contact" className={s.btnGhost}>Enquire about a commission</Link>
           </div>
         </div>
       </section>
@@ -328,7 +327,7 @@ export default async function DesignLanding() {
           <em>{cms(closing, "headlineEm", "A whole house, properly read.", "headline")}</em>
         </p>
         <div className={s.closingCtas}>
-          <Link href={cms(closing, "ctaHref", "#open-booking-form")} className={s.closingBtnFilled}>
+          <Link href={cms(closing, "ctaHref", "/contact")} className={s.closingBtnFilled}>
             {cms(closing, "ctaLabel", "Start a design brief")}
           </Link>
           <Link href={cms(closing, "cta2Href", "/design/interiors")} className={s.closingBtnGhost}>

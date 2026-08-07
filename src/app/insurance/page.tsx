@@ -1,175 +1,163 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import s from "./insurance.module.css";
+import { env } from "@/lib/env";
+import { RenewalReminderForm } from "@/components/insurance/RenewalReminderForm";
+import { InsuranceDisclosure } from "@/components/insurance/InsuranceDisclosure";
+import { CoverCards } from "@/components/insurance/CoverCards";
+import { insuranceOg } from "@/lib/insurance/og";
 
 /**
- * /insurance — the Insurance hub (REVISIONS v3 §8).
- *
- * v3 makes Insurance a PARENT hub with two principal routes, Home and Pet.
- * This page must:
- *   - explain the House's role;
- *   - identify the authorised insurance provider or partner;
- *   - present Home Insurance and Pet Insurance as separate choices;
- *   - state whether the action is an introduction, enquiry or quotation;
- *   - avoid implying the House underwrites, arranges or advises.
- *
- * A Home Protection Review is an operational House service and is kept clearly
- * apart from the regulated insurance products (§8).
- *
- * Forbidden here (§11 do-not-use): "House Approved Insurance", generic
- * statements implying all insurance is the same product, claims-management
- * promises, and any suggestion HoWA gives regulated advice.
- *
- * COMPLIANCE GATE: all insurance copy requires approval from the authorised
- * insurance partner before launch.
+ * A1 · /insurance, the hub. Orientation and routing. Two doors: advised
+ * private client (the lead) and everyday cover (self-serve). The argument once.
+ * No product list above the fold. No comparison language. No urgency. HoWA
+ * appears nowhere. Renewal-reminder capture as a tertiary CTA.
  */
-
-export const metadata = {
-  title: "Insurance introductions from the House",
+export const metadata: Metadata = {
+  title: "Insurance from the House",
   description:
-    "House of Willow Alexander introduces you to an authorised, FCA-regulated insurance partner. Two separate routes: Home Insurance and Pet Insurance.",
+    "Insurance introduced by House of Willow Alexander and arranged by Provenance. Advised cover for homes worth insuring properly, and everyday cover for everything that does not need a conversation.",
+  ...insuranceOg("insurance", "Insurance from the House"),
 };
 
-const ROUTES = [
-  {
-    title: "Home Insurance",
-    lede: "For period homes, listed fabric, non-standard construction and contents that need valuing properly.",
-    body: "A named specialist who reads the house rather than the postcode, and who can work with the things a high-street policy quietly excludes.",
-    href: "/insurance/home",
-    cta: "Request a Home Insurance introduction",
-    image: "/home-v4/protect-insurance.webp",
-    alt: "An Edwardian London townhouse at golden hour",
-    pos: "center",
-  },
-  {
-    title: "Pet Insurance",
-    lede: "For dogs, cats, older animals and pets other insurers have already declined.",
-    body: "Lifetime, maximum benefit, time-limited and accident-only cover explained plainly, so the choice is not made on price alone.",
-    href: "/insurance/pet",
-    cta: "Request a Pet Insurance introduction",
-    image: "/services/subbrands/dog-walking.webp",
-    alt: "A dog lead, waste-bag holder and travel bowl laid out on a wooden table",
-    pos: "center bottom",
-  },
-];
-
-const ROLE = [
-  { k: "What the House does", v: "Makes an introduction, and passes on what you have told us with your consent. That is the whole of our role." },
-  { k: "What the House does not do", v: "We do not underwrite, arrange or advise on insurance, we do not quote, and we do not handle claims." },
-  { k: "Who does the regulated work", v: "Provenance Insurance Brokers, authorised and regulated by the Financial Conduct Authority." },
-  { k: "What the action is", v: "An introduction. Not a quotation, and not a policy. Any quote comes from the partner after they have spoken to you." },
-];
-
-export default function InsuranceHubPage() {
+export default function InsuranceHub() {
+  const turnstileSiteKey = env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
   return (
-    <div className={s.page}>
-      {/* Hub hero — the House's role, stated first. */}
-      <section className="px-[5vw] pt-[clamp(48px,6vw,96px)] pb-[clamp(36px,4.5vw,68px)]">
-        <div className="mx-auto max-w-[880px] text-center">
-          <p className="mb-5 font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink">
-            Insurance · Introduced by the House
-          </p>
-          <h1 className="font-display text-[clamp(32px,5vw,60px)] leading-[1.06] text-house-brown">
-            We make the introduction. <em>They do the regulated work.</em>
-          </h1>
-          <p className="mx-auto mt-7 max-w-[64ch] font-sans text-[17px] leading-[1.65] text-house-stone">
-            House of Willow Alexander introduces you to an authorised,
-            FCA-regulated insurance partner. Home and Pet are two different
-            products with two different conversations, so they have two
-            different routes below.
-          </p>
-        </div>
-      </section>
-
-      {/* The two principal routes (§8) — never one generic insurance card. */}
-      <section className="px-[5vw] pb-[clamp(48px,6vw,92px)]">
-        <div className="mx-auto grid max-w-[1180px] gap-5 md:grid-cols-2">
-          {ROUTES.map((r) => (
-            <Link
-              key={r.title}
-              href={r.href}
-              className="group flex flex-col border border-house-brown/12 bg-house-white no-underline transition-colors hover:border-house-gold"
-            >
-              <div className="relative aspect-[16/10] w-full overflow-hidden bg-house-cream-dark">
-                <Image
-                  src={r.image}
-                  alt={r.alt}
-                  fill
-                  sizes="(min-width: 768px) 44vw, 100vw"
-                  style={{ objectPosition: r.pos }}
-                  className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.03]"
-                />
-              </div>
-              <div className="flex flex-1 flex-col p-8">
-                <h2 className="mb-3 font-display text-[28px] leading-tight text-house-brown">{r.title}</h2>
-                <p className="mb-3 font-sans text-[16px] leading-[1.55] text-house-brown">{r.lede}</p>
-                <p className="mb-7 flex-1 font-sans text-[15px] leading-[1.55] text-house-stone">{r.body}</p>
-                <span className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-ink transition-colors group-hover:text-house-brown">
-                  {r.cta} →
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* The House's role, in plain terms (§8 hub requirements). */}
-      <section className="border-t border-house-brown/10 px-[5vw] py-[clamp(44px,5.5vw,84px)]" style={{ background: "var(--color-house-cream)" }}>
-        <div className="mx-auto max-w-[1080px]">
-          <p className="mb-3 font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink">Our role</p>
-          <h2 className="mb-9 font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-brown">
-            So there is no confusion about who does what.
-          </h2>
-          <dl className="grid gap-x-10 gap-y-7 sm:grid-cols-2">
-            {ROLE.map((r) => (
-              <div key={r.k} className="border-t border-house-brown/15 pt-4">
-                <dt className="mb-2 font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-ink">{r.k}</dt>
-                <dd className="m-0 font-sans text-[15px] leading-[1.6] text-house-stone">{r.v}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
-
-      {/* Home Protection Review — a House SERVICE, kept clearly apart from the
-          regulated insurance products (§8). */}
-      <section className="border-t border-house-brown/10 px-[5vw] py-[clamp(44px,5.5vw,84px)]" style={{ background: "var(--color-house-white)" }}>
-        <div className="mx-auto max-w-[880px]">
-          <p className="mb-3 font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink">
-            A House service, not an insurance product
-          </p>
-          <h2 className="mb-4 font-display text-[clamp(23px,2.8vw,36px)] leading-[1.1] text-house-brown">
-            Home Protection Review
-          </h2>
-          <p className="mb-6 max-w-[62ch] font-sans text-[16px] leading-[1.65] text-house-stone">
-            An in-person review of the property by House-vetted specialists: a
-            condition survey, an evidence pack and a prioritised works list,
-            filed to your Home Record in HoWA. It is a service you book from the
-            House. It is not insurance, it is not regulated, and it is not a
-            condition of any introduction.
-          </p>
-          <div className="btn-row">
-            <Link
-              href="/insurance/home-protection"
-              className="inline-flex items-center gap-2 border border-house-gold-dark bg-house-gold-ink px-7 py-3.5 font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-[filter] hover:brightness-110"
-            >
-              See Home Protection Review <span aria-hidden>→</span>
-            </Link>
+    <div className="bg-house-cream text-house-brown">
+      {/* Hero, split: proposition left, the House's world right */}
+      <section className="px-[5vw] pt-20 pb-14">
+        <div className="mx-auto grid max-w-[1180px] items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-[color:var(--ins-ink)]">The House · Insurance</p>
+            <h1 className="mt-4 font-display text-[clamp(36px,6vw,72px)] leading-[1.02] text-house-black">
+              Covered. <em className="italic">And remembered.</em>
+            </h1>
+            <p className="mt-6 max-w-[52ch] font-sans text-[19px] leading-[1.6] text-house-stone">
+              The House knows what your home is made of and what has been done to it. That is exactly what it takes to insure it properly. We introduce you to a specialist; the cover is arranged by Provenance.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="/insurance/private-client" className="inline-flex items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110">
+                Speak to a specialist
+              </Link>
+              <Link href="/insurance/everyday" className="inline-flex items-center justify-center whitespace-nowrap border border-house-brown/30 px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown no-underline transition-colors hover:border-[color:var(--ins-ink)]">
+                Everyday cover
+              </Link>
+              <a href="#reminder" className="inline-flex items-center justify-center whitespace-nowrap px-2 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-ink)] no-underline hover:text-house-brown">
+                Remind me before my renewal →
+              </a>
+            </div>
+          </div>
+          <div className="relative aspect-[4/5] w-full overflow-hidden">
+            <Image
+              src="/insurance/hub-hero.webp"
+              alt="An olive-green Georgian London townhouse with white sash windows, clipped box topiary and a black front door, framed by summer trees."
+              fill
+              sizes="(min-width: 1180px) 560px, 90vw"
+              priority
+              style={{ objectFit: "cover", objectPosition: "center" }}
+            />
           </div>
         </div>
       </section>
 
-      {/* Regulatory disclosure. */}
-      <section className={s.fca}>
-        <p>
-          House of Willow Alexander acts as an introducer only. Insurance
-          products arranged via Provenance Insurance Brokers, authorised and
-          regulated by the FCA. We do not advise on, arrange, or conduct
-          regulated insurance activity. Introductions are passed to
-          FCA-authorised partners for any subsequent discussion, quotation, or
-          contract.{" "}
-          See our <Link href="/legal/privacy">privacy page</Link> for how your details are handled.
-        </p>
+      {/* Two doors */}
+      <section className="px-[5vw] pb-14">
+        <div className="mx-auto grid max-w-[1080px] gap-6 lg:grid-cols-5">
+          {/* Advised, the lead, larger, warmer */}
+          <Link href="/insurance/private-client" className="group flex flex-col justify-between border border-house-brown/15 bg-house-white p-8 no-underline lg:col-span-3">
+            <div>
+              <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-[color:var(--ins-ink)]">Advised · Private client</p>
+              <h2 className="mt-3 font-display text-[clamp(24px,3vw,36px)] leading-[1.1] text-house-black group-hover:text-[color:var(--ins-ink)]">
+                For a home worth insuring properly.
+              </h2>
+              <p className="mt-4 max-w-[48ch] font-sans text-[16px] leading-[1.6] text-house-stone">
+                A named specialist, a conversation about the house, and a policy built around it rather than around a comparison engine. One estate, one renewal date.
+              </p>
+            </div>
+            <span className="mt-6 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-ink)]">Speak to a specialist →</span>
+          </Link>
+          {/* Everyday, self-serve, secondary */}
+          <Link href="/insurance/everyday" className="group flex flex-col justify-between border border-house-brown/15 bg-house-cream-dark/40 p-8 no-underline lg:col-span-2">
+            <div>
+              <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-[color:var(--ins-ink)]">Everyday cover</p>
+              <h2 className="mt-3 font-display text-[clamp(22px,2.6vw,30px)] leading-[1.1] text-house-black group-hover:text-[color:var(--ins-ink)]">
+                For everything that does not need a conversation.
+              </h2>
+              <p className="mt-4 font-sans text-[15px] leading-[1.6] text-house-stone">
+                Home, car, pet and travel, arranged online through the service Provenance operates.
+              </p>
+            </div>
+            <span className="mt-6 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-ink)]">Everyday cover →</span>
+          </Link>
+        </div>
+      </section>
+
+      {/* The argument, once */}
+      <section className="border-t border-house-brown/10 px-[5vw] py-14" style={{ background: "var(--color-house-cream-dark)" }}>
+        <div className="mx-auto grid max-w-[980px] items-center gap-10 md:grid-cols-2">
+          <div className="flex gap-6">
+            <p className="font-display text-[clamp(56px,10vw,110px)] leading-none text-[color:var(--ins-ink)]">70%</p>
+            <p className="pt-3 font-sans text-[15px] leading-[1.6] text-house-brown/85">
+              of UK properties are insured below their rebuild cost, at an average of 66% of what they should be. Rebuild costs rose around 40% between 2020 and 2024, and index-linking runs behind.
+            </p>
+          </div>
+          <p className="max-w-[42ch] font-display text-[clamp(20px,2.4vw,28px)] leading-[1.3] text-house-brown">
+            The House already knows what your home is made of. That is the difference between a guess and a figure.
+          </p>
+        </div>
+        <p className="mx-auto mt-4 max-w-[980px] font-sans text-[11.5px] text-house-stone/70">Figures indicative and pending Provenance compliance sign-off.</p>
+      </section>
+
+      {/* What can be arranged, grouped by life, as cards */}
+      <section className="px-[5vw] py-14">
+        <div className="mx-auto max-w-[1180px]">
+          <h2 className="mb-2 font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-black">What can be arranged</h2>
+          <p className="mb-9 max-w-[56ch] font-sans text-[15px] leading-[1.6] text-house-stone">
+            Five kinds of cover the House introduces, each arranged by Provenance. Start wherever your home does.
+          </p>
+          <CoverCards />
+        </div>
+      </section>
+
+      {/* Who arranges it */}
+      <section className="border-t border-house-brown/10 px-[5vw] py-12">
+        <div className="mx-auto max-w-[760px]">
+          <p className="font-sans text-[12px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">Who arranges it</p>
+          <p className="mt-4 font-sans text-[17px] leading-[1.7] text-house-brown/85">
+            Cover is arranged and administered by Provenance, authorised and regulated by the FCA, part of the Benefact group, a charity-owned insurer whose profits go to charitable causes. The House introduces you; it does not advise on, arrange, administer or compare insurance.
+          </p>
+          <Link href="/insurance/how-this-works" className="mt-4 inline-block font-sans text-[13px] tracking-[0.04em] text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">
+            How this works, and how we are paid →
+          </Link>
+        </div>
+      </section>
+
+      {/* The published commitment */}
+      <section className="px-[5vw] pb-14">
+        <div className="mx-auto max-w-[760px] border-l-2 border-[color:var(--ins-ink)] pl-6">
+          <p className="font-display text-[clamp(20px,2.6vw,30px)] leading-[1.3] text-house-brown">
+            No fear. No urgency. No pressure. We will not chase you, and we will not manufacture a deadline.
+          </p>
+        </div>
+      </section>
+
+      {/* Renewal reminder */}
+      <section id="reminder" className="scroll-mt-20 border-t border-house-brown/10 px-[5vw] py-14" style={{ background: "var(--color-house-cream-dark)" }}>
+        <div className="mx-auto max-w-[620px]">
+          <p className="font-sans text-[12px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">Not ready today?</p>
+          <h2 className="mt-3 font-display text-[clamp(24px,3vw,36px)] leading-[1.1] text-house-black">Remind me before my renewal.</h2>
+          <p className="mt-4 mb-7 max-w-[52ch] font-sans text-[16px] leading-[1.6] text-house-stone">
+            Insurance is bought at one moment in the year, and most people miss it. Tell us your renewal month and we will send one email at the right time. Not a newsletter.
+          </p>
+          <RenewalReminderForm turnstileSiteKey={turnstileSiteKey} sourcePage="/insurance" />
+        </div>
+      </section>
+
+      {/* Page-level disclosure */}
+      <section className="px-[5vw] pb-16">
+        <div className="mx-auto max-w-[760px]">
+          <InsuranceDisclosure />
+        </div>
       </section>
     </div>
   );

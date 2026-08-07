@@ -4,7 +4,7 @@ import { HearthHeroLead } from "@/components/hearth/HearthHeroLead";
 import { HearthSecondaryLeads } from "@/components/hearth/HearthSecondaryLeads";
 import { HearthMainFeed } from "@/components/hearth/HearthMainFeed";
 import { HearthFeedSidebar } from "@/components/hearth/HearthFeedSidebar";
-import { HearthCollectionBand } from "@/components/hearth/HearthCollectionBand";
+import { HearthShopRooms } from "@/components/hearth/HearthShopRooms";
 import { HearthMoreFeed } from "@/components/hearth/HearthMoreFeed";
 import { HearthFullWidthNewsletter } from "@/components/hearth/HearthFullWidthNewsletter";
 import { HearthColophon } from "@/components/hearth/HearthColophon";
@@ -49,7 +49,7 @@ export default async function JournalPage() {
         </div>
       </section>
 
-      <HearthCollectionBand />
+      <HearthShopRooms />
       <HearthMoreFeed articles={sections.moreFeed} heading="More" emText="from the studios" />
       <HearthHowaHooks />
       <HearthFullWidthNewsletter />

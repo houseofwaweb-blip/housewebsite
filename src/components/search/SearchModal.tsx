@@ -38,7 +38,6 @@ const TABS = [
   { id: "design", label: "Design" },
   { id: "journal", label: "Journal" },
   { id: "the house", label: "The House" },
-  { id: "howa", label: "HoWA" },
 ];
 
 async function fetchResults(query: string, tab: string): Promise<SearchResult[]> {

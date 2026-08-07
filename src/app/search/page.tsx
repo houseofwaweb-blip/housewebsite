@@ -26,7 +26,6 @@ const TABS = [
   { id: "design", label: "Design" },
   { id: "journal", label: "Journal" },
   { id: "the house", label: "The House" },
-  { id: "howa", label: "HoWA" },
 ];
 
 export default function SearchPage() {

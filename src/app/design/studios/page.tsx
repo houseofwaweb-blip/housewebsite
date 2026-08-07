@@ -74,17 +74,17 @@ const COMMISSION_STEPS = [
   {
     n: "01.",
     name: "Begin with a conversation",
-    body: "Ask HoWA works through the right questions to understand your home, your priorities, and what feels right. About two minutes.",
+    body: "Tell us about your home, your priorities, and what feels right. A short brief is enough to start.",
   },
   {
     n: "02.",
     name: "Matched, not assigned",
-    body: "We propose the design route that fits the project, our garden studio, our interiors partner, or both. You pick. Ask HoWA creates the design brief on your home record.",
+    body: "We propose the design route that fits the project, our garden studio, our interiors partner, or both. You pick, and we write up the brief.",
   },
   {
     n: "03.",
     name: "Commission",
-    body: "Project lives in HoWA throughout: drawings, mood boards, decisions, samples, costs, supplier records. You stay in the loop without managing it.",
+    body: "Throughout the project we keep a clear record: drawings, mood boards, decisions, samples, costs and supplier records. You stay in the loop without managing it.",
   },
   {
     n: "04.",
@@ -272,7 +272,7 @@ export default async function DesignStudiosPage() {
             {cms(
               commission,
               "body",
-              "You don't pick a studio cold. Ask HoWA learns enough to put two or three in front of you that fit, and the design brief lives on your home record from day one.",
+              "You don't pick a studio cold. Tell us about the project and we put the studio that fits in front of you, with a clear brief from day one.",
             )}
           </p>
         </header>
@@ -301,12 +301,12 @@ export default async function DesignStudiosPage() {
           {cms(
             closing,
             "body",
-            "Ask HoWA takes about two minutes. The studios match to the brief. You only meet the ones we think fit.",
+            "It starts with a short brief. The studios match to it. You only meet the ones we think fit.",
           )}
         </p>
         <div className={s.closingCtas}>
-          <Link href={cms(closing, "ctaHref", "/api/howa-bounce?source=design-studios")} className={s.btnFilled}>
-            {cms(closing, "ctaLabel", "Coming soon")}
+          <Link href={cms(closing, "ctaHref", "/contact")} className={s.btnFilled}>
+            {cms(closing, "ctaLabel", "Start a design brief")}
           </Link>
           <Link href={cms(closing, "cta2Href", "/design")} className={s.btnGhost}>
             {cms(closing, "cta2Label", "Back to Design")}

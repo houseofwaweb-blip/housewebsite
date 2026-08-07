@@ -56,6 +56,8 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "cdn.sanity.io" },
       // Shopify image CDN
       { protocol: "https", hostname: "cdn.shopify.com" },
+      // YouTube thumbnails for the Cinema (auto-pulled from the video ID)
+      { protocol: "https", hostname: "i.ytimg.com" },
     ],
   },
   async redirects() {
@@ -91,10 +93,10 @@ const nextConfig: NextConfig = {
       { source: "/house-companion/:path*", destination: "/services", permanent: true },
       { source: "/house-pro", destination: "https://howa.co.uk", permanent: true },
       { source: "/house-approved", destination: "/design", permanent: true },
-      // DIRECTIVE §11/§14 — Insurance is the canonical House pillar route.
-      // The old /protect/* section moved to /insurance/*; these carry the
-      // legacy URLs (and their link equity) to the new homes.
-      { source: "/protect", destination: "/insurance", permanent: true },
+      // DIRECTIVE §11/§14 + Insurance Site Build spec F3 — Insurance is the
+      // canonical House pillar route, BUT /protect itself is preserved as a page
+      // (it holds existing rankings and the boundary statement; the spec says do
+      // not redirect it). Its legacy sub-paths still 301 to their new homes.
       { source: "/protect/insurance", destination: "/insurance", permanent: true },
       { source: "/protect/home-protection", destination: "/insurance/home-protection", permanent: true },
       { source: "/protect/review", destination: "/insurance/home-protection", permanent: true },
@@ -102,6 +104,10 @@ const nextConfig: NextConfig = {
       // skips any path ending in a file extension so images still serve; real
       // /protect/* pages still 301 to /insurance.
       { source: "/protect/:path((?!.*\\.[a-zA-Z0-9]+$).*)", destination: "/insurance", permanent: true },
+      // Insurance Site Build spec — the old register-interest home/pet pages are
+      // superseded by the advised (private-client) and everyday journeys.
+      { source: "/insurance/home", destination: "/insurance/private-client", permanent: true },
+      { source: "/insurance/pet", destination: "/insurance/everyday", permanent: true },
       // DIRECTIVE §14 — structural removals from the House site.
       // Steward Plans (HoWA tier) leaves the House journey; managed/recurring
       // care is reachable through Services.

@@ -5,15 +5,15 @@ import { WaitlistMini } from "@/components/marketing/WaitlistMini";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
- * /insurance/home-protection — Home Protection Review.
+ * /insurance/home-protection, Home Protection Review.
  *
  * Section order:
- *   1. Hero — surreal helmet image full-width, copy left
- *   2. Stats strip — what the day delivers
- *   3. What the review covers — three editorial cards
- *   4. How it works — 4-step timeline
+ *   1. Hero, surreal helmet image full-width, copy left
+ *   2. Stats strip, what the day delivers
+ *   3. What the review covers, three editorial cards
+ *   4. How it works, 4-step timeline
  *   5. Waitlist + still-life image
- *   6. Cross-sell — insurance + Living Record
+ *   6. Cross-sell, insurance + Living Record
  *   7. Closing tagline
  */
 
@@ -37,7 +37,7 @@ const COVERS = [
   },
   {
     title: "Evidence pack",
-    body: "Photographs, detailed notes, and a prioritised works list. Everything documented, nothing left to memory. Filed to your HoWA record for ongoing reference.",
+    body: "Photographs, detailed notes, and a prioritised works list. Everything documented, nothing left to memory. Kept on record for ongoing reference.",
   },
   {
     title: "Insurance documentation",
@@ -59,7 +59,7 @@ const STEPS = [
   {
     n: "III.",
     title: "Report",
-    body: "Within a week, your evidence pack and prioritised works list arrive in your HoWA record. Clear, actionable, properly documented.",
+    body: "Within a week, your evidence pack and prioritised works list arrive as a clear pack you keep. Clear, actionable, properly documented.",
   },
   {
     n: "IV.",
@@ -117,7 +117,7 @@ export default async function HomeProtectionPage() {
               {cms(
                 hero,
                 "body",
-                "A one-day in-person review by House-vetted specialists. A condition review, an evidence pack, and insurance-ready documentation, filed to your HoWA record and ready for whatever comes next.",
+                "A one-day in-person review by House-vetted specialists. A condition review, an evidence pack, and insurance-ready documentation, kept on record and ready for whatever comes next.",
               )}
             </p>
             <div className={s.heroCtas}>
@@ -248,8 +248,8 @@ export default async function HomeProtectionPage() {
           </Link>
         </article>
         <article className={s.crossCard}>
-          <p className={s.crossEy}>{cms(crossSell, "subheadline", "Connected via HoWA")}</p>
-          <h3 className={s.crossTitle}>{cms(crossSell, "headlineEm", "The Living Record", "headline")}</h3>
+          <p className={s.crossEy}>{cms(crossSell, "subheadline", "One record, kept")}</p>
+          <h3 className={s.crossTitle}>{cms(crossSell, "headlineEm", "Joined up, not repeated", "headline")}</h3>
           <p className={s.crossBody}>
             {cms(
               crossSell,
@@ -257,8 +257,8 @@ export default async function HomeProtectionPage() {
               "Your Home Protection evidence feeds directly into the insurance introduction. One conversation, one record, no starting from scratch.",
             )}
           </p>
-          <Link href={cms(crossSell, "cta2Href", "/howa")} className={s.crossLink}>
-            {cms(crossSell, "cta2Label", "See HoWA")} →
+          <Link href={cms(crossSell, "cta2Href", "#register")} className={s.crossLink}>
+            {cms(crossSell, "cta2Label", "Register interest")} →
           </Link>
         </article>
       </section>

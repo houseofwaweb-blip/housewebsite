@@ -627,3 +627,29 @@ body {
 @media (min-width: 640px) {
   .btn-row { grid-auto-flow: column; }
 }
+
+/* ---------------------------------------------------------------------------
+   Insurance colour worlds — Marketing Directive §7.
+   Advised + specialist = burgundy ("the protect world", the default here).
+   Everyday + guides = plain neutral (quieter, must not rival the advised route).
+   Business = warm. Insurance components read these vars, so a page just sets
+   its world on the wrapper and the shared form/disclosure/cards follow.
+--------------------------------------------------------------------------- */
+:root {
+  --ins-accent: #6e2233;   /* burgundy — button fill */
+  --ins-ink:    #7c2a3b;   /* burgundy — eyebrows, links, accents on cream */
+  --ins-dark:   #571a28;   /* burgundy — button border / hover */
+  --ins-on:     #f5f0e8;   /* cream text on the burgundy fill */
+}
+.ins-everyday {
+  --ins-accent: #4a463d;   /* graphite — plainer, quieter */
+  --ins-ink:    #6a6458;   /* stone */
+  --ins-dark:   #3a372f;
+  --ins-on:     #f5f0e8;
+}
+.ins-business {
+  --ins-accent: #c5a960;   /* warm gold */
+  --ins-ink:    #7a6229;
+  --ins-dark:   #7a6229;
+  --ins-on:     #30231c;   /* brown text on gold */
+}

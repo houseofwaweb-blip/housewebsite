@@ -3,21 +3,19 @@ import Link from "next/link";
 /**
  * MobileActionBar — the sticky action bar on mobile.
  *
- * REVISIONS v3 §3/§14: the mobile experience must preserve the service finder,
- * the call action AND My Home in HoWA. Fixed to the bottom of the viewport,
- * mobile only (hidden at lg). The retail Basket stays in the header, so it does
- * not compete with the service action here.
+ * Aug 2026 strip-back: the HoWA account ("My Home") button is removed; the bar
+ * now carries the service finder and the call action only. Fixed to the bottom
+ * of the viewport, mobile only (hidden at lg). The retail Basket stays in the
+ * header, so it does not compete with the service action here.
  */
 export function MobileActionBar({
   ctaHref = "/services",
   ctaLabel = "Find a service",
   phone = "08000478738",
-  myHomeHref = "https://accounts.willowalexander.co.uk/",
 }: {
   ctaHref?: string;
   ctaLabel?: string;
   phone?: string;
-  myHomeHref?: string;
 }) {
   return (
     <div
@@ -38,13 +36,6 @@ export function MobileActionBar({
         className="shrink-0 font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown bg-house-white border border-house-brown/25 px-4 py-3.5 no-underline"
       >
         Call
-      </a>
-      <a
-        href={myHomeHref}
-        aria-label="Open My Home in HoWA"
-        className="shrink-0 font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown bg-house-white border border-house-brown/25 px-4 py-3.5 no-underline"
-      >
-        My Home
       </a>
     </div>
   );

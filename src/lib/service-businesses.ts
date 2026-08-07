@@ -15,8 +15,8 @@ export type SubService = { label: string; href: string };
 export type ServiceBusiness = {
   slug: string; // /services/[slug]
   name: string; // the service, e.g. "Window Cleaning"
-  business: string; // the business that delivers it
-  businessUrl: string; // business homepage
+  business: string; // the business (or "House Approved") that delivers it
+  businessUrl?: string; // business homepage; omitted for HoWA-only services
   bookUrl: string; // best page to start (may be a deep link)
   blurb: string;
   image: string; // existing House hero photo
@@ -34,7 +34,14 @@ export const SERVICE_BUSINESSES: ServiceBusiness[] = [
       "Lawns, borders, hedges, planting and seasonal care, by a dedicated garden team across London and Kent.",
     image: "/services/subbrands/gardeners.webp",
     subs: [
-      { label: "Garden design", href: "https://willowalexandergardeners.co.uk/garden-design" },
+      { label: "Lawn care & mowing", href: "https://willowalexandergardeners.co.uk/gardeners/lawn-care-mowing" },
+      { label: "Garden maintenance", href: "https://willowalexandergardeners.co.uk/gardeners/garden-maintenance" },
+      { label: "Garden clearance", href: "https://willowalexandergardeners.co.uk/gardeners/garden-clearance" },
+      { label: "Garden tidy", href: "https://willowalexandergardeners.co.uk/gardeners/garden-tidy" },
+      { label: "Garden restoration", href: "https://willowalexandergardeners.co.uk/gardeners/garden-restoration" },
+      { label: "Hedge & boundary", href: "https://willowalexandergardeners.co.uk/gardeners/hedge-boundary-maintenance" },
+      { label: "Tree surgery", href: "https://willowalexandergardeners.co.uk/gardeners/tree-surgery" },
+      { label: "Planting", href: "https://willowalexandergardeners.co.uk/gardeners/planting" },
     ],
   },
   {
@@ -92,6 +99,47 @@ export const SERVICE_BUSINESSES: ServiceBusiness[] = [
     blurb:
       "Repairs, maintenance and the long list of small jobs around the home, properly done.",
     image: "/services/subbrands/handyman.webp",
+    subs: [],
+  },
+  // HoWA-booked services — no standalone website, so the only CTA is Book via HoWA.
+  {
+    slug: "electrical",
+    name: "Electrical",
+    business: "House Approved",
+    bookUrl: HOWA_BOOK_URL,
+    blurb:
+      "Domestic electrical work by vetted electricians: sockets, lighting, fault-finding and safety checks, across London and Kent.",
+    image: "/services/subbrands/electrical.webp",
+    subs: [],
+  },
+  {
+    slug: "housekeeping",
+    name: "Housekeeping",
+    business: "House Approved",
+    bookUrl: HOWA_BOOK_URL,
+    blurb:
+      "Regular housekeeping that learns the rhythm of your home: laundry, linens, tidying and the everyday order that keeps a house calm.",
+    image: "/services/subbrands/housekeeping.webp",
+    subs: [],
+  },
+  {
+    slug: "dog-walking",
+    name: "Dog Walking",
+    business: "House Approved",
+    bookUrl: HOWA_BOOK_URL,
+    blurb:
+      "Reliable, insured dog walking and drop-in visits, by people who treat your dog like their own.",
+    image: "/services/subbrands/dog-walking.webp",
+    subs: [],
+  },
+  {
+    slug: "removals",
+    name: "Removals",
+    business: "House Approved",
+    bookUrl: HOWA_BOOK_URL,
+    blurb:
+      "Careful home removals and packing, by a team that handles the things you care about like they matter.",
+    image: "/services/subbrands/removals.webp",
     subs: [],
   },
 ];

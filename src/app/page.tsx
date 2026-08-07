@@ -25,8 +25,8 @@ export const metadata = {
 const DESTINATIONS = [
   { want: "Find something for my home", title: "The Marketplace", line: "Considered goods for the work and pleasure of home.", cta: "Shop the House", href: "/shop", image: "/shop/rooms/kitchen.webp", alt: "A kitchen dressed with House-selected pieces" },
   { want: "Protect my home or pet", title: "Insurance", line: "Dedicated Home and Pet Insurance introductions.", cta: "Explore Insurance", href: "/insurance", image: "/home-v4/protect-insurance.webp", alt: "An Edwardian London townhouse at golden hour" },
-  { want: "Read and be inspired", title: "The Hearth", line: "Stories, gardens, recipes and the culture of home.", cta: "Enter The Hearth", href: "/the-hearth", image: "/home-v4/pillar-3.webp", alt: "An editorial still life from The Hearth" },
-  { want: "Watch and unwind", title: "Cinema", line: "Films and short video from the House.", cta: "Enter the Cinema", href: "/cinema", image: "/home-v4/pillar-2.webp", alt: "A cinematic, low-lit interior scene" },
+  { want: "Read and be inspired", title: "The Hearth", line: "Stories, gardens, recipes and the culture of home.", cta: "Enter The Hearth", href: "/the-hearth", image: "/home-v4/hearth-grid.webp", alt: "A green velvet wing chair with open books in a sunlit, plant-filled library nook", pos: "center bottom" },
+  { want: "Watch and unwind", title: "Cinema", line: "Films and short video from the House.", cta: "Enter the Cinema", href: "/cinema", image: "/home-v4/cinema-grid.webp", alt: "A yellow wing chair with stacked film reels in a sunlit archive of film canisters", pos: "center bottom" },
   { want: "Design a room or garden", title: "Design", line: "Considered interiors and gardens by our studios.", cta: "Explore Design", href: "/design", image: "/home-v4/design-portrait.webp", alt: "A considered interior scheme by the House studios" },
   { want: "Care for my home or garden", title: "Services", line: "The Willow Alexander home-service businesses.", cta: "See the services", href: "/services", image: "/services/photos/gardening/lawn-care-hero.webp", alt: "Two gardeners mowing and clearing a large lawn" },
 ];
@@ -83,18 +83,6 @@ export default async function HomePage() {
 
   return (
     <div className={s.page}>
-      {/* 1. Utility strip */}
-      <div className="border-b border-house-brown/10 bg-house-cream-dark/40 px-[5vw] py-2">
-        <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-center gap-x-6 gap-y-1 text-center">
-          <p className="m-0 font-sans text-[12px] tracking-[0.06em] text-house-stone">
-            A curated marketplace, insurance and The Hearth
-          </p>
-          <a href="tel:08000478738" className="font-sans text-[12px] tracking-[0.06em] text-house-brown no-underline hover:text-house-gold-ink">
-            0800 047 8738
-          </a>
-        </div>
-      </div>
-
       {/* 2. Hero */}
       <section className={s.hero}>
         <div className={s.heroCopy}>
@@ -161,8 +149,8 @@ export default async function HomePage() {
                 href={d.href}
                 className="group flex w-[78vw] shrink-0 snap-start flex-col border border-house-brown/12 bg-house-cream no-underline transition-colors hover:border-house-gold sm:w-[52vw] lg:w-auto"
               >
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-house-cream-dark">
-                  <Image src={d.image} alt={d.alt} fill sizes="(min-width: 1024px) 31vw, 78vw" className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.03]" />
+                <div className="relative aspect-[4/5] w-full overflow-hidden bg-house-cream-dark">
+                  <Image src={d.image} alt={d.alt} fill sizes="(min-width: 1024px) 31vw, 78vw" style={{ objectPosition: d.pos ?? "center" }} className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.03]" />
                 </div>
                 <div className="flex flex-1 flex-col p-7">
                   <p className="mb-2 font-sans text-[11px] tracking-[0.18em] uppercase text-house-gold-ink">{d.want}</p>
@@ -326,8 +314,8 @@ export default async function HomePage() {
               Enter the Cinema →
             </Link>
           </div>
-          <div className="relative aspect-[16/9] w-full overflow-hidden border border-house-gold-dark/40">
-            <Image src="/home-v4/pillar-2.webp" alt="A low-lit cinematic interior" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+          <div className="relative aspect-[4/5] w-full overflow-hidden border border-house-gold-dark/40">
+            <Image src="/home-v4/cinema-grid.webp" alt="A yellow wing chair with stacked film reels in a sunlit archive of film canisters" fill sizes="(min-width: 1024px) 50vw, 100vw" style={{ objectPosition: "center bottom" }} className="object-cover" />
             <span aria-hidden className="absolute inset-0 flex items-center justify-center">
               <span className="flex h-16 w-16 items-center justify-center rounded-full border border-house-cream/70 bg-house-black/40 text-house-cream backdrop-blur-sm">▶</span>
             </span>

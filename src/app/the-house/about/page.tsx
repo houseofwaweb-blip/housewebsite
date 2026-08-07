@@ -46,7 +46,7 @@ const FOUNDERS: Array<{
   {
     name: "Samuel Collett",
     role: "Co-founder · Design, brand and the intelligence behind it",
-    body: "Samuel is responsible for how the House looks, sounds and thinks. Design direction, the editorial voice, the standard applied to everything the House puts its name to, and the thinking that became HoWA. He is the reason a service business ended up building a Home Record rather than another booking form.",
+    body: "Samuel is responsible for how the House looks, sounds and thinks. Design direction, the editorial voice, and the standard applied to everything the House puts its name to. He is the reason a service business ended up thinking like a design house rather than a booking form.",
   },
   {
     name: "Alexander Lloyd Oakley",
@@ -189,48 +189,6 @@ export default function AboutPage() {
             the boiler last serviced. Who planted this and will it come back.
             Nobody knew, because nobody had ever been asked to keep the answer.
           </p>
-        </div>
-      </section>
-
-      {/* 5. Why HoWA was created (§7.5) — the relationship, explained in words.
-          No diagram, per §7. */}
-      <section className="border-t border-house-brown/10 px-[5vw] py-[clamp(48px,6vw,92px)]" style={{ background: "var(--color-house-white)" }}>
-        <div className="mx-auto grid max-w-[1180px] gap-[clamp(28px,4.5vw,64px)] lg:grid-cols-2 lg:items-center">
-          <div>
-            <p className="mb-3 font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink">Why HoWA was created</p>
-            <h2 className="mb-5 font-display text-[clamp(24px,3vw,40px)] leading-[1.1] text-house-brown">
-              So a home would stop <em>starting from scratch.</em>
-            </h2>
-            <p className="mb-4 max-w-[56ch] font-sans text-[16px] leading-[1.7] text-house-stone">
-              HoWA was created in response to what the House learned. It is a
-              separate Home Intelligence system designed to connect the
-              information, decisions and work surrounding a home. Today, House of
-              Willow Alexander proudly uses HoWA to manage its customers&rsquo;
-              bookings, schedules, communications and Home Records.
-            </p>
-            <p className="mb-7 max-w-[56ch] font-sans text-[16px] leading-[1.7] text-house-stone">
-              The order matters. The House did not set out to build software. It
-              set out to look after homes, kept finding the same gap, and
-              eventually built the thing that would close it.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/howa"
-                className="inline-flex items-center gap-2 border border-house-gold-dark bg-house-gold-ink px-7 py-3.5 font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-[filter] hover:brightness-110"
-              >
-                See how the House uses HoWA <span aria-hidden>→</span>
-              </Link>
-            </div>
-          </div>
-          <div className="relative aspect-[4/3] w-full overflow-hidden bg-house-cream-dark">
-            <Image
-              src="/home-v4/howa-why-created-lab.webp"
-              alt="The HoWA Lab: a cutaway model of a House on a plinth in a Victorian records and survey room, with a HoWA Score gauge, sample trays of plaster, soil, water and timber, and cabinets of records, seasons, systems and listening"
-              fill
-              sizes="(min-width: 1024px) 46vw, 100vw"
-              className="object-cover"
-            />
-          </div>
         </div>
       </section>
 

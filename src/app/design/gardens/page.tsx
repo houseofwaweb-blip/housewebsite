@@ -6,6 +6,7 @@ import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { getNewsletterBlock } from "@/lib/cms/newsletter";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 import { GARDEN_PROJECTS } from "@/lib/gardens-projects";
+import { BuyVoucherButton } from "@/components/design/BuyVoucherButton";
 
 /**
  * /design/gardens — lander framework.
@@ -28,28 +29,13 @@ export const metadata = {
 };
 
 const STAT_COLS = [
-  { value: "4", label: "Ways to begin" },
+  { value: "3", label: "Ways to begin" },
   { value: "1", label: "Lead studio" },
   { value: "10yr", label: "Design horizon" },
   { value: "0", label: "Off-the-shelf schemes" },
 ];
 
 const PLANS = [
-  {
-    // DIRECTIVE §10 — Garden design leads with HoWA First Design at £400
-    // (the mapped first output). Human packages follow after the first output.
-    name: "HoWA First Garden Design",
-    tagline: "The mapped first design, £400.",
-    price: "£400",
-    inclusions: [
-      "Starts from your address and a HoWA read of light, soil and aspect",
-      "A first planting and layout direction, mapped to your garden",
-      "A written design you own, kept in your home record",
-      "A clear route to continue with Willow Alexander Gardens when you want a human studio",
-    ],
-    image: "/design/gardens/full-design.webp",
-    featured: true,
-  },
   {
     name: "Planting Plans",
     tagline: "Light, soil and aspect, properly read.",
@@ -61,6 +47,7 @@ const PLANS = [
       "30-minute follow-up call",
     ],
     image: "/design/gardens/planting-plans.jpg",
+    featured: true,
   },
   {
     name: "Concept Plans",
@@ -123,7 +110,6 @@ export default async function GardensPage() {
   const specialist = sections.get("specialist");
   const projects = sections.get("projects");
   const quote = sections.get("quote");
-  const companion = sections.get("companion");
 
   const statCols = cmsCards(stats, STAT_COLS, (c, base) => ({
     value: pick(c.value ?? c.label, base?.value ?? ""),
@@ -225,7 +211,7 @@ export default async function GardensPage() {
         <div className={s.statsLede}>
           <p className={s.statsLedeLine1}>{cms(stats, "headline", "Light. Soil. Aspect. Time.")}</p>
           <p className={s.statsLedeLine2}>
-            {cms(stats, "subheadline", "Every scheme mapped in HoWA, delivered by a named studio.")}
+            {cms(stats, "subheadline", "Every scheme led by a named studio, Willow Alexander Gardens.")}
           </p>
         </div>
         {statCols.map((stat) => (
@@ -278,9 +264,7 @@ export default async function GardensPage() {
                     <li key={inc}>{inc}</li>
                   ))}
                 </ul>
-                <Link href="/contact" className={s.planCta}>
-                  Enquire →
-                </Link>
+                <BuyVoucherButton name={p.name} className={s.planCta} />
               </div>
             </article>
           ))}
@@ -377,35 +361,13 @@ export default async function GardensPage() {
             Commission a garden, <em>or give one.</em>
           </h2>
           <p className="mx-auto mb-8 max-w-[58ch] font-sans text-[16px] leading-[1.65] text-house-stone">
-            Garden design is delivered by Willow Alexander Gardens. Buy a design
-            voucher in the Marketplace and redeem it against a scheme, or give it
-            to someone starting on their garden.
+            Garden design is delivered by Willow Alexander Gardens. Buy any of the
+            plans above as a voucher and redeem it against a scheme, or give it to
+            someone starting on their garden.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            {/* TODO: point at the Shopify design-vouchers collection once created. */}
-            <Link href="/shop" className={s.btnFilled}>Buy a design voucher</Link>
+            <Link href="#plans" className={s.btnFilled}>Choose a voucher</Link>
             <Link href="/contact" className={s.btnGhost}>Enquire about a commission</Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 7b. Delivery / House Approved (Copy Pack §08) — the plan becomes the work. */}
-      <section className="border-t border-house-brown/10 px-[5vw] py-[clamp(48px,6vw,88px)]" style={{ background: "var(--color-house-cream-dark)" }}>
-        <div className="mx-auto max-w-[900px] text-center">
-          <p className="mb-3 font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink">Delivery · House Approved</p>
-          <h2 className="mb-5 font-display text-[clamp(26px,3.2vw,42px)] leading-[1.08] text-house-brown">
-            Let the same plan <em>become the work.</em>
-          </h2>
-          <p className="mx-auto mb-8 max-w-[62ch] font-sans text-[16px] leading-[1.65] text-house-stone">
-            Invite House Approved garden designers, landscapers and project managers to verify or quote the locked scope. The House carries the brief and programme through to completion, while HoWA remembers the finished garden and its care.
-          </p>
-          <div className="btn-row">
-            <Link href="/contact" className="inline-flex items-center justify-center gap-2 border border-house-gold-dark bg-house-gold-ink px-8 py-4 text-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-[filter] hover:brightness-110">
-              Request House Approved quotations <span aria-hidden>→</span>
-            </Link>
-            <Link href="/house-approved" className="inline-flex items-center justify-center gap-2 border border-house-brown/25 px-8 py-4 text-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-colors hover:border-house-gold">
-              Meet a garden studio
-            </Link>
           </div>
         </div>
       </section>

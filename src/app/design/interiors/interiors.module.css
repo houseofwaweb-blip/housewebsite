@@ -184,12 +184,11 @@
   margin: 0;
 }
 .plansGrid {
-  /* Four edit cards, so a 2x2 grid keeps them balanced (a 3-col grid orphaned
-     the fourth on its own row). */
-  max-width: 1040px;
+  /* Three edit cards in a single row, matching the gardens plan grid. */
+  max-width: 1280px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: clamp(20px, 2.4vw, 32px);
 }
 .planCard {

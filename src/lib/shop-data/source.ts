@@ -17,6 +17,7 @@ import {
   type CatalogueBrand,
 } from "./catalogue";
 import { loadShopifyCatalogue } from "./shopify-catalogue";
+import { DESIGN_VOUCHERS } from "@/lib/design-vouchers";
 
 /**
  * Unified shop-data source. Precedence: live Shopify (the system of record
@@ -101,8 +102,13 @@ function portableToPlain(body: unknown[] | null): string {
  * filtered.
  */
 const PLAN_TITLE = /apartment\s*\+|home\s*&\s*garden\s*\+|full house edit|\bplans?\b/i;
+// Design-voucher products are sold only from their design page and must never
+// appear in a marketplace listing (they still resolve at /shop/{handle}).
+const VOUCHER_HANDLES = new Set(
+  Object.values(DESIGN_VOUCHERS).map((v) => v.handle).filter(Boolean) as string[],
+);
 function isPlanProduct(p: CatalogueProduct): boolean {
-  return PLAN_TITLE.test(p.title);
+  return PLAN_TITLE.test(p.title) || VOUCHER_HANDLES.has(p.handle);
 }
 function isPlanCollection(c: CatalogueCollection): boolean {
   return /plan|apartment\+|home-?\s*&?-?\s*garden-?\s*\+/i.test(`${c.handle} ${c.title}`);
