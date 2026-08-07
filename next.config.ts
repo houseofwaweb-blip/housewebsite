@@ -23,6 +23,14 @@ const wpLongTailRedirects = (wpLongTail as LongTailEntry[]).map((e) => ({
 }));
 
 const nextConfig: NextConfig = {
+  // Keep static public assets OUT of the serverless function bundles. Vercel
+  // serves everything in public/ from its CDN; nothing here is read inside a
+  // function at runtime. Without this, Next traces the whole ~250MB public/
+  // folder into every ISR function, and design/gardens/projects/[slug] blows
+  // past Vercel's 250MB uncompressed function limit and the deploy fails.
+  outputFileTracingExcludes: {
+    "*": ["public/**"],
+  },
   // Allow the dev server's runtime (HMR + React Refresh) to be reached from
   // other devices on the LAN — without this, accessing the site via the
   // machine's IP (e.g. for same-WiFi demos) loads the HTML but blocks the
