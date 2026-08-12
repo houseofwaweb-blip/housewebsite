@@ -653,8 +653,72 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
   },
 ];
 
+/**
+ * "Explore related cover" cross-sell pools, injected by category so a visitor
+ * who lands on one risk sees the related ones (the directive's single-estate
+ * argument). The template excludes the current page and caps the grid at three.
+ */
+const RELATED_PROPERTY = {
+  title: "Explore related cover",
+  items: [
+    { name: "Private client", body: "Advised cover for period & high-value homes.", href: "/insurance/private-client", image: "/insurance/cat-house.webp", imageAlt: "A period house insured on its true rebuild cost." },
+    { name: "Listed buildings", body: "Grade I, II* and II homes.", href: "/insurance/listed-buildings", image: "/insurance/listed.webp", imageAlt: "A listed period home." },
+    { name: "Thatched properties", body: "Thatch, read on its real risk.", href: "/insurance/thatched-properties", image: "/insurance/thatched.webp", imageAlt: "A thatched cottage." },
+    { name: "Non-standard construction", body: "Timber, cob, flint and more.", href: "/insurance/non-standard-construction", image: "/insurance/non-standard.webp", imageAlt: "A home of non-standard construction." },
+    { name: "Second & holiday homes", body: "Cover that fits real occupancy.", href: "/insurance/second-homes", image: "/insurance/holiday-home.webp", imageAlt: "A quiet holiday home." },
+    { name: "Unoccupied & probate", body: "Empty homes, calmly covered.", href: "/insurance/unoccupied-property", image: "/insurance/probate.webp", imageAlt: "A home standing empty during probate." },
+    { name: "Renovation & works", body: "One policy for the works.", href: "/insurance/renovation-and-extension", image: "/insurance/renovation.webp", imageAlt: "A home under renovation." },
+  ],
+};
+const RELATED_ASSETS = {
+  title: "The rest of the estate",
+  items: [
+    { name: "Private client", body: "The whole estate on one policy.", href: "/insurance/private-client", image: "/insurance/cat-house.webp", imageAlt: "A period house." },
+    { name: "Fine art & collections", body: "Art, jewellery, watches and wine.", href: "/insurance/fine-art-and-collections", image: "/insurance/cat-fine-art.webp", imageAlt: "Fine art and collected pieces." },
+    { name: "Classic & prestige motor", body: "The car, on one renewal date.", href: "/insurance/classic-and-prestige-motor", image: "/insurance/cat-cars.webp", imageAlt: "A classic car." },
+    { name: "Listed & period homes", body: "The house it all sits in.", href: "/insurance/listed-buildings", image: "/insurance/listed.webp", imageAlt: "A listed period home." },
+  ],
+};
+const RELATED_HOMECOVER = {
+  title: "Explore related cover",
+  items: [
+    { name: "Boiler & heating cover", body: "When the heating stops.", href: "/insurance/boiler-cover", image: "/insurance/boiler-cover.webp", imageAlt: "A well-kept home interior." },
+    { name: "Appliance cover", body: "The machines a home runs on.", href: "/insurance/appliance-cover", image: "/insurance/appliance-cover.webp", imageAlt: "A considered British kitchen." },
+    { name: "Home insurance", body: "Buildings and contents.", href: "/insurance/everyday/home", image: "/insurance/ev-home.webp", imageAlt: "A well-kept everyday home." },
+    { name: "Private client", body: "Advised cover for high-value homes.", href: "/insurance/private-client", image: "/insurance/cat-house.webp", imageAlt: "A period house." },
+  ],
+};
+const RELATED_BUSINESS = {
+  title: "Explore business cover",
+  items: [
+    { name: "Business insurance", body: "The commercial overview.", href: "/insurance/business", image: "/insurance/cat-business.webp", imageAlt: "The trades and studios in the House's network." },
+    { name: "Trades & contractors", body: "Liability, tools and works.", href: "/insurance/business/trades-and-contractors", image: "/insurance/interior-editorial.webp", imageAlt: "A period interior a House Approved trade works in." },
+    { name: "Professional indemnity", body: "Cover for advice given.", href: "/insurance/business/professional-indemnity", image: "/insurance/interior-editorial.webp", imageAlt: "A refined period interior." },
+  ],
+};
+
+const PROPERTY_SLUGS = new Set([
+  "listed-buildings", "thatched-properties", "non-standard-construction",
+  "second-homes", "unoccupied-property", "renovation-and-extension",
+]);
+const ASSET_SLUGS = new Set(["fine-art-and-collections", "classic-and-prestige-motor"]);
+const HOMECOVER_SLUGS = new Set(["boiler-cover", "appliance-cover"]);
+
+/** Attach the right cross-sell pool to a page (unless it already has one). */
+function withRelated(page: SpecialistPage | undefined): SpecialistPage | undefined {
+  if (!page || page.relatedCovers) return page;
+  const rc = PROPERTY_SLUGS.has(page.slug)
+    ? RELATED_PROPERTY
+    : ASSET_SLUGS.has(page.slug)
+      ? RELATED_ASSETS
+      : HOMECOVER_SLUGS.has(page.slug)
+        ? RELATED_HOMECOVER
+        : undefined;
+  return rc ? { ...page, relatedCovers: rc } : page;
+}
+
 export function getSpecialistPage(slug: string): SpecialistPage | undefined {
-  return SPECIALIST_PAGES.find((p) => p.slug === slug);
+  return withRelated(SPECIALIST_PAGES.find((p) => p.slug === slug));
 }
 
 export const SPECIALIST_SLUGS = SPECIALIST_PAGES.map((p) => p.slug);
@@ -1078,7 +1142,8 @@ export const BUSINESS_SPECIALIST_PAGES: SpecialistPage[] = [
 ];
 
 export function getBusinessSpecialistPage(slug: string): SpecialistPage | undefined {
-  return BUSINESS_SPECIALIST_PAGES.find((p) => p.slug === slug);
+  const page = BUSINESS_SPECIALIST_PAGES.find((p) => p.slug === slug);
+  return page && !page.relatedCovers ? { ...page, relatedCovers: RELATED_BUSINESS } : page;
 }
 
 export const BUSINESS_SPECIALIST_SUB_SLUGS = BUSINESS_SPECIALIST_PAGES.filter((p) => p.slug !== "business").map((p) => p.slug);

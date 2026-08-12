@@ -213,7 +213,7 @@ export function SpecialistPage({
               {data.relatedCovers.title}
             </h2>
             <div className="grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
-              {data.relatedCovers.items.filter((c) => !c.href.endsWith(`/${data.slug}`)).map((c) => (
+              {data.relatedCovers.items.filter((c) => !c.href.endsWith(`/${data.slug}`)).slice(0, 3).map((c) => (
                 <Link
                   key={c.name}
                   href={c.href}
