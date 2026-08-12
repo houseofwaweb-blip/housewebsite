@@ -69,14 +69,14 @@ export default function PrivateClient() {
         </div>
       </section>
 
-      {/* Home Record advantage — green-tinted band */}
+      {/* The specialist difference — green-tinted band (no "record the House holds") */}
       <section className="px-[5vw] py-12" style={{ background: "var(--house-green-soft)" }}>
         <div className="mx-auto grid max-w-[1120px] items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <div className="max-w-[600px]">
             <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-[color:var(--ins-ink)]">The difference the House brings</p>
-            <h2 className="mt-3 font-display text-[clamp(22px,2.8vw,34px)] leading-[1.12] text-house-black">Care recorded becomes risk understood.</h2>
+            <h2 className="mt-3 font-display text-[clamp(22px,2.8vw,34px)] leading-[1.12] text-house-black">A policy built on the house, not a form.</h2>
             <p className="mt-4 font-sans text-[17px] leading-[1.7] text-house-brown/85">
-              A specialist can only insure a home as well as it is described. The House already holds the description: what the property is made of, the works done to it, the maintenance kept up, the things inside it and what they are worth. A record that names the lime mortar, the rewire in 2022, the chimney lining and the scheduled watches is the difference between a home a specialist can price with confidence and one they have to guess at. And because the record is kept, sums insured, declared values and reinstatement costs are reviewed every renewal, not just when a claim forces the question.
+              A specialist can only insure a home as well as it is described. That is why the House introduces you to one who takes the time: the lime mortar, the rewire, the chimney lining, the things worth scheduling. Describing those properly is the difference between a home a specialist can price with confidence and one they have to guess at. And because a specialist relationship is ongoing, sums insured and reinstatement costs are reviewed every renewal, not only when a claim forces the question.
             </p>
           </div>
           <div className="relative aspect-[4/5] w-full overflow-hidden">

@@ -42,7 +42,7 @@ export default function HowThisWorks() {
           <div className="relative aspect-[4/5] w-full overflow-hidden">
             <Image
               src="/insurance/house-record.webp"
-              alt="A worn House Record ledger beside a brass globe sconce, a fountain pen and a pink peony on a sage surface, the record the House keeps in return for its share."
+              alt="A worn ledger beside a brass globe sconce, a fountain pen and a pink peony on a sage surface, a quiet still life for a page about how the arrangement works."
               fill
               sizes="(min-width: 1120px) 540px, 90vw"
               priority
@@ -67,7 +67,7 @@ export default function HowThisWorks() {
             <p>The House receives a share of the commission Provenance earns, at inception and on renewal. We would rather say the shape of it plainly than pretend the introduction is free: an introduction that pays nobody tends not to last, and a lasting relationship is the point.</p>
           </Block>
           <Block eyebrow="What the House contributes in return">
-            <p>The House brings the part a comparison form cannot: the record of what your home is made of, the inventory of what is in it, the rebuild assessments, and the renewal timing. That is what turns care recorded into risk understood, and it is what earns the share.</p>
+            <p>The House brings the part a comparison form cannot: a considered introduction to a genuine specialist, the ongoing care of the home through its Home Protection service, and the renewal timing kept in view. That is the work, and it is what earns the share.</p>
           </Block>
           <Block eyebrow="If something goes wrong">
             <p>Complaints about the arranged cover are handled by Provenance under its FCA permissions, and eligible complainants can refer a matter to the Financial Ombudsman Service. The full regulatory notice and complaints route are set out on the{" "}

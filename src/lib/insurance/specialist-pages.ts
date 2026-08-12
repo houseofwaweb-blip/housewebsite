@@ -60,7 +60,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       title: "What changes with the grade",
       points: [
         { h: "The grades", p: "Grade II, Grade II* and Grade I each carry different repair obligations, and the premium reflects that. Listed property typically costs more than an equivalent unlisted home; the higher grades more so again. Figures are indicative and confirmed case by case." },
-        { h: "The rebuild assessment", p: "Because a listed rebuild cannot be estimated from a table, a proper reinstatement assessment is worth commissioning. The House can arrange one, and the record of what your home is made of is exactly what a heritage underwriter wants to see." },
+        { h: "The rebuild assessment", p: "Because a listed rebuild cannot be estimated from a table, a proper reinstatement assessment is worth commissioning. The House can arrange one; it is exactly what a heritage underwriter wants to see." },
         { h: "The underinsurance trap", p: "Reinstatement for listed fabric can outrun index-linked cover by a meaningful margin. The point of the review is to find that gap before a claim does." },
       ],
     },
@@ -100,7 +100,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       heading: "What underwriters actually look at",
       body: [
         "The concern with thatch is fire, and the questions that follow are specific: the chimney and any wood-burner, the presence of a lining and spark arrestor, sweeping records, an up-to-date electrical inspection, and the type and age of the thatch itself.",
-        "This is the strongest version of the House's argument anywhere on the site: a maintained record of exactly these things is what turns a declined risk into an insurable one.",
+        "This is the strongest version of the House's argument anywhere on the site: documenting exactly these things is what turns a declined risk into an insurable one.",
       ],
     },
     detail: {
@@ -314,7 +314,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     },
     placed: {
       heading: "What Provenance can place",
-      body: "Provenance arranges scheduled cover for art and collections, and can fold it into a household policy on one renewal date. The House introduces you and can supply the inventory it already holds; Provenance arranges and administers the cover.",
+      body: "Provenance arranges scheduled cover for art and collections, and can fold it into a household policy on one renewal date. The House introduces you to the specialist who schedules and values them properly; Provenance arranges and administers the cover.",
     },
     evidence: [{ stat: "129%", label: "average over-insurance where properties are over-covered" }],
     enquiryType: "fine-art-and-collections",
@@ -390,12 +390,12 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       points: [
         { h: "Boiler and controls", p: "Cover for the boiler, the controls and the central heating, with the annual service usually included." },
         { h: "Annual or monthly", p: "Pay yearly or spread it monthly. The House introduces you; the plan is arranged and administered by the partner." },
-        { h: "Service history helps", p: "A documented service record keeps cover straightforward, and the House already holds what it knows about your home." },
+        { h: "Service history helps", p: "A documented service record keeps cover straightforward, so it is worth keeping the paperwork to hand." },
       ],
     },
     placed: {
       heading: "What the partner can place",
-      body: "Cover is arranged and administered by a regulated partner. The House introduces you and can supply what it already knows about the home; the partner arranges the cover.",
+      body: "Cover is arranged and administered by a regulated partner. The House makes the introduction; the partner arranges the cover.",
     },
     crossLinks: [{ label: "Appliance cover", href: "/insurance/appliance-cover" }],
     enquiryType: "boiler-cover",
@@ -429,12 +429,12 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       points: [
         { h: "One item or many", p: "Cover a single high-value appliance, or bundle the kitchen and utility room together." },
         { h: "Repair or replace", p: "Plans cover repair, and replacement where a machine cannot be economically fixed." },
-        { h: "Kept records help", p: "Purchase dates and values make cover simpler, and the House holds what it knows about your home." },
+        { h: "Kept records help", p: "Purchase dates and values make cover simpler, so it is worth keeping receipts to hand." },
       ],
     },
     placed: {
       heading: "What the partner can place",
-      body: "Cover is arranged and administered by a regulated partner. The House introduces you and supplies what it already holds; the partner arranges the cover.",
+      body: "Cover is arranged and administered by a regulated partner. The House makes the introduction; the partner arranges the cover.",
     },
     crossLinks: [{ label: "Boiler and heating cover", href: "/insurance/boiler-cover" }],
     enquiryType: "appliance-cover",

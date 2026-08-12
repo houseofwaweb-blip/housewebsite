@@ -33,7 +33,7 @@ export default function InsuranceHub() {
               Covered. <em className="italic">And remembered.</em>
             </h1>
             <p className="mt-6 max-w-[52ch] font-sans text-[19px] leading-[1.6] text-house-stone">
-              The House knows what your home is made of and what has been done to it. That is exactly what it takes to insure it properly. We introduce you to a specialist; the cover is arranged by Provenance.
+              Insuring a home well means understanding what it is made of and what has been done to it. The House introduces you to a specialist who takes the time to ask; the cover is arranged by Provenance.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/insurance/private-client" className="inline-flex items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110">
@@ -102,7 +102,7 @@ export default function InsuranceHub() {
             </p>
           </div>
           <p className="max-w-[42ch] font-display text-[clamp(20px,2.4vw,28px)] leading-[1.3] text-house-cream">
-            The House already knows what your home is made of. That is the difference between a guess and a figure.
+            A specialist who understands what your home is made of is the difference between a guess and a figure. That is what the House introduces you to.
           </p>
         </div>
         <p className="mx-auto mt-4 max-w-[980px] font-sans text-[11.5px] text-house-cream/55">Figures indicative and pending Provenance compliance sign-off.</p>

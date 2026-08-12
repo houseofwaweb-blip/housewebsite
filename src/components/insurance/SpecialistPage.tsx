@@ -7,8 +7,9 @@ import { PROVENANCE } from "@/lib/insurance/config";
 /**
  * SpecialistPage — the shared template for specialist property/asset and home-
  * cover pages. Rebuilt (aug12 feedback) to reassure a buyer, not just to read
- * as editorial: a trust strip under the hero, the Home Record "readiness"
- * argument, a Benefact proof line, and alternating colour bands so sections
+ * as editorial: a trust strip under the hero, the "why a specialist not a form"
+ * argument (never claiming the House holds a record of your home), a Benefact
+ * proof line, and alternating colour bands so sections
  * stop bleeding into one cream scroll. Burgundy "protect world". No compare
  * language, no advice, no urgency.
  */
@@ -131,15 +132,15 @@ export function SpecialistPage({
         </div>
       </section>
 
-      {/* The Home Record readiness argument — the reassurance + differentiator */}
+      {/* Why a specialist, not a form — argued from what a specialist asks, never from any "record" the House holds */}
       <section className="px-[5vw] py-14" style={{ background: "var(--color-house-cream-dark)" }}>
         <div className="mx-auto max-w-[1040px]">
-          <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-[color:var(--ins-ink)]">The House Record</p>
-          <h2 className="mt-3 max-w-[24ch] font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-black">
-            What we already know about your home.
+          <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-[color:var(--ins-ink)]">The difference</p>
+          <h2 className="mt-3 max-w-[26ch] font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-black">
+            The questions a comparison form never asks.
           </h2>
           <p className="mt-4 max-w-[62ch] font-sans text-[16px] leading-[1.7] text-house-brown/85">
-            A home insured well is a home described well. Most insurance is arranged by people who have never been asked a single question about the house. The House already holds the answers, and hands them to the specialist so your cover is built on fact rather than a guess.
+            Most insurance is priced by people who never ask a single thing about the house. The House introduces you to a specialist who starts from what the home actually is, so the cover is built on the real risk rather than a guess.
           </p>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {READINESS.map((r) => (
@@ -149,8 +150,8 @@ export function SpecialistPage({
               </div>
             ))}
           </div>
-          <p className="mt-7 max-w-[40ch] font-display text-[clamp(19px,2.2vw,26px)] italic leading-[1.3] text-[color:var(--ins-ink)]">
-            Care recorded becomes risk understood.
+          <p className="mt-7 max-w-[44ch] font-display text-[clamp(19px,2.2vw,26px)] italic leading-[1.3] text-[color:var(--ins-ink)]">
+            A specialist asks. A comparison engine assumes.
           </p>
         </div>
       </section>
