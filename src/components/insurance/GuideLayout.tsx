@@ -34,7 +34,7 @@ export function GuideLayout({
   const toc = guide.sections.map((s) => ({ id: slugify(s.heading), label: s.heading }));
 
   return (
-    <div className="ins-everyday bg-house-cream text-house-brown">
+    <div className="bg-house-cream text-house-brown">
       {/* Hero, split: text left, image right */}
       <section className="px-[5vw] pt-20 pb-10">
         <div className="mx-auto grid max-w-[1120px] items-center gap-10 lg:grid-cols-2 lg:gap-16">
@@ -111,9 +111,9 @@ export function GuideLayout({
               </section>
             ))}
 
-            {/* Comparison table */}
+            {/* Comparison table — on a tinted panel so it reads as a distinct block */}
             {guide.table ? (
-              <section className="mt-12">
+              <section className="mt-12 px-6 py-7 sm:px-8" style={{ background: "var(--color-house-cream-dark)" }}>
                 {guide.table.title ? (
                   <h2 className="font-display text-[clamp(22px,2.6vw,30px)] leading-[1.15] text-house-black">{guide.table.title}</h2>
                 ) : null}
