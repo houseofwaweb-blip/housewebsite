@@ -15,6 +15,7 @@ import { AnalyticsLoader } from "@/components/consent/AnalyticsLoader";
 import { SpeedInsightsLoader } from "@/components/consent/SpeedInsightsLoader";
 import { GoogleTagSetup } from "@/components/consent/GoogleTagSetup";
 import { GaClickEvents } from "@/components/analytics/GaClickEvents";
+import { ScrollDepth } from "@/components/analytics/ScrollDepth";
 import { MicrosoftClarity } from "@/components/consent/loaders/MicrosoftClarity";
 import { MetaPixel } from "@/components/consent/loaders/MetaPixel";
 import { PinterestTag } from "@/components/consent/loaders/PinterestTag";
@@ -162,6 +163,7 @@ export default async function RootLayout({
             <SpeedInsightsLoader />
             <GoogleTagSetup />
             <GaClickEvents />
+            <ScrollDepth />
             <MicrosoftClarity />
             <MetaPixel />
             <PinterestTag />
