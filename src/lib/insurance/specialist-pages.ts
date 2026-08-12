@@ -392,6 +392,12 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       dimensions: "1600 × 1067px landscape (3:2), WebP",
       filename: "/insurance/renovation-why.webp",
     },
+    whyImage: "/insurance/renovation-why.webp",
+    whyImageAlt:
+      "A home mid-renovation, scaffold and bare plaster, the period a standard policy was not written for.",
+    differenceImage: "/insurance/renovation-difference.webp",
+    differenceImageAlt:
+      "A house under building works, the contract and existing structure a specialist covers together.",
     differenceIntro:
       "A comparison form prices a finished, occupied home. During building work almost none of those assumptions hold, and the questions that matter are about the works themselves.",
     readiness: [
