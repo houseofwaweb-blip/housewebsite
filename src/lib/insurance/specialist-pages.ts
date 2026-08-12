@@ -704,7 +704,7 @@ const RELATED_BUSINESS = {
   title: "Explore business cover",
   items: [
     { name: "Business insurance", body: "The commercial overview.", href: "/insurance/business", image: "/insurance/cat-business.webp", imageAlt: "The trades and studios in the House's network." },
-    { name: "Trades & contractors", body: "Liability, tools and works.", href: "/insurance/business/trades-and-contractors", image: "/insurance/interior-editorial.webp", imageAlt: "A period interior a House Approved trade works in." },
+    { name: "Trades & contractors", body: "Liability, tools and works.", href: "/insurance/business/trades-and-contractors", image: "/insurance/trades-hero.webp", imageAlt: "A House Approved trade at work." },
     { name: "Professional indemnity", body: "Cover for advice given.", href: "/insurance/business/professional-indemnity", image: "/insurance/interior-editorial.webp", imageAlt: "A refined period interior." },
   ],
 };
