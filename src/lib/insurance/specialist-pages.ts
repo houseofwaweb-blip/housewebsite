@@ -822,6 +822,12 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
     },
     image: "/insurance/ev-motor.webp",
     imageAlt: "A car and van at a home, standing for everyday motor cover including temporary use.",
+    whyImage: "/insurance/motor-everyday-why.webp",
+    whyImageAlt:
+      "An everyday car and van, the vehicle and use a short conversation prices on the real risk.",
+    differenceImage: "/insurance/motor-everyday-difference.webp",
+    differenceImageAlt:
+      "Everyday motor cover, the class of use a comparison form flattens to a postcode.",
     whyImageSpec: {
       description: "An everyday car and van on a home driveway, or keys and a licence on a hall table. Practical and unglamorous.",
       dimensions: "1600 × 1067px landscape (3:2), WebP",

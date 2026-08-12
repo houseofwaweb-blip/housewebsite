@@ -16,14 +16,20 @@ export function CoverFinder() {
   const query = q.trim().toLowerCase();
 
   const results = React.useMemo(() => {
-    if (!query) return ALL_COVERS;
-    // Match at word boundaries so "art" hits "art"/"fine art" but not
-    // "ap-art-ment" or "st-art" (home start).
-    const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const re = new RegExp("\\b" + escaped);
-    return ALL_COVERS.filter((c) =>
-      re.test(`${c.name} ${c.blurb} ${c.group} ${c.tags.join(" ")}`.toLowerCase())
-    );
+    // Drop filler words so "car insurance" / "cover for my necklace" still work.
+    const STOP = new Set(["insurance", "cover", "policy", "quote", "for", "my", "the", "and", "an", "of", "to", "get", "want", "need", "looking", "some", "help", "with"]);
+    const tokens = query
+      .split(/\s+/)
+      .map((t) => t.trim())
+      .filter((t) => t.length >= 2 && !STOP.has(t));
+    if (tokens.length === 0) return ALL_COVERS;
+    // Every word must match a WHOLE word: "car" hits "car"/"classic car" but not
+    // "carpenter" or "caravan"; multi-word queries ("gold necklace") need all words.
+    const regexes = tokens.map((t) => new RegExp("\\b" + t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b"));
+    return ALL_COVERS.filter((c) => {
+      const hay = `${c.name} ${c.blurb} ${c.group} ${c.tags.join(" ")}`.toLowerCase();
+      return regexes.every((re) => re.test(hay));
+    });
   }, [query]);
 
   return (
