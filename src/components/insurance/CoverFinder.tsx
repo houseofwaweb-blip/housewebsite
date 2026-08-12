@@ -17,12 +17,12 @@ export function CoverFinder() {
 
   const results = React.useMemo(() => {
     if (!query) return ALL_COVERS;
-    return ALL_COVERS.filter(
-      (c) =>
-        c.name.toLowerCase().includes(query) ||
-        c.blurb.toLowerCase().includes(query) ||
-        c.group.toLowerCase().includes(query) ||
-        c.tags.some((t) => t.includes(query))
+    // Match at word boundaries so "art" hits "art"/"fine art" but not
+    // "ap-art-ment" or "st-art" (home start).
+    const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const re = new RegExp("\\b" + escaped);
+    return ALL_COVERS.filter((c) =>
+      re.test(`${c.name} ${c.blurb} ${c.group} ${c.tags.join(" ")}`.toLowerCase())
     );
   }, [query]);
 

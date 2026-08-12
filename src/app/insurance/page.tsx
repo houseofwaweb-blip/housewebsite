@@ -4,7 +4,6 @@ import Link from "next/link";
 import { env } from "@/lib/env";
 import { RenewalReminderForm } from "@/components/insurance/RenewalReminderForm";
 import { InsuranceDisclosure } from "@/components/insurance/InsuranceDisclosure";
-import { CoverCards } from "@/components/insurance/CoverCards";
 import { CoverFinder } from "@/components/insurance/CoverFinder";
 import { insuranceOg } from "@/lib/insurance/og";
 
@@ -115,17 +114,6 @@ export default function InsuranceHub() {
           </p>
         </div>
         <p className="mx-auto mt-4 max-w-[980px] font-sans text-[11.5px] text-house-cream/55">Figures indicative and pending Provenance compliance sign-off.</p>
-      </section>
-
-      {/* What can be arranged, grouped by life, as cards */}
-      <section className="px-[5vw] py-14">
-        <div className="mx-auto max-w-[1180px]">
-          <h2 className="mb-2 font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-black">What can be arranged</h2>
-          <p className="mb-9 max-w-[56ch] font-sans text-[16.5px] leading-[1.6] text-house-stone">
-            Five kinds of cover the House introduces, each arranged by Provenance. Start wherever your home does.
-          </p>
-          <CoverCards />
-        </div>
       </section>
 
       {/* Who arranges it */}
