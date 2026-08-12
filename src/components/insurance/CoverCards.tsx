@@ -41,12 +41,12 @@ export const COVER_CARDS = [
     cta: "Renovation & works",
   },
   {
-    heading: "The business",
-    body: "Trades, professional indemnity and commercial cover for the House's own network.",
-    image: "/insurance/cat-business.webp",
-    imageAlt: "The trades and studios in the House's own network, covered for commercial and professional risk.",
-    href: "/insurance/business",
-    cta: "Business insurance",
+    heading: "The boat, yacht or aircraft",
+    body: "Marine and aviation cover, from a family boat to complex Lloyd's placements, arranged alongside the home.",
+    image: "/insurance/boat-yacht-aviation.webp",
+    imageAlt: "A classic yacht's brass and teak detail, the kind of asset arranged on one policy with the home.",
+    href: "/insurance/speak-to-a-specialist",
+    cta: "Speak to a specialist",
   },
 ];
 

@@ -48,7 +48,7 @@ const SHOP_ROOMS = [
 
 const ECOSYSTEM = [
   { name: "Delve Interiors", scope: "Interior design", href: "/design/interiors" },
-  { name: "Willow Gardens", scope: "Garden design", href: "/design/gardens" },
+  { name: "Willow Alexander Gardens", scope: "Garden design", href: "/design/gardens" },
   { name: "Gardening", scope: "Book local help", href: "/services/gardening" },
   { name: "Cleaning", scope: "Book a clean", href: "/services/cleaning" },
   { name: "Window cleaning", scope: "Book a visit", href: "/services/window-cleaning" },
