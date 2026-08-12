@@ -5,6 +5,7 @@ import { env } from "@/lib/env";
 import { RenewalReminderForm } from "@/components/insurance/RenewalReminderForm";
 import { InsuranceDisclosure } from "@/components/insurance/InsuranceDisclosure";
 import { CoverCards } from "@/components/insurance/CoverCards";
+import { CoverFinder } from "@/components/insurance/CoverFinder";
 import { insuranceOg } from "@/lib/insurance/og";
 
 /**
@@ -89,6 +90,14 @@ export default function InsuranceHub() {
             </div>
             <span className="mt-6 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-ink)]">Everyday cover →</span>
           </Link>
+        </div>
+      </section>
+
+      {/* Find your cover — self-serve search across every cover */}
+      <section className="px-[5vw] py-14" style={{ background: "var(--color-house-cream-dark)" }}>
+        <div className="mx-auto max-w-[1180px]">
+          <p className="mb-2 font-sans text-[16.5px] leading-[1.6] text-house-brown/85">Know what you are looking for? Search every cover the House introduces.</p>
+          <CoverFinder />
         </div>
       </section>
 
