@@ -50,7 +50,7 @@ export default function InsuranceHub() {
           <div className="relative aspect-[4/5] w-full overflow-hidden">
             <Image
               src="/insurance/hub-hero.webp"
-              alt="An olive-green Georgian London townhouse with white sash windows, clipped box topiary and a black front door, framed by summer trees."
+              alt="A cream Georgian townhouse facade in golden evening light: a columned black panelled door between lantern lights and clipped box topiary."
               fill
               sizes="(min-width: 1180px) 560px, 90vw"
               priority
