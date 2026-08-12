@@ -17,9 +17,9 @@ function slugify(s: string) {
 
 function StatCallout({ value, label }: { value: string; label: string }) {
   return (
-    <div className="my-8 flex items-center gap-5 border-l-2 border-[color:var(--ins-ink)] bg-house-white px-6 py-5">
-      <p className="font-display text-[clamp(34px,5vw,56px)] leading-none text-[color:var(--ins-ink)]">{value}</p>
-      <p className="font-sans text-[15px] leading-[1.5] text-house-brown/85">{label}</p>
+    <div className="my-9 flex items-center gap-6 px-7 py-7 text-house-cream" style={{ background: "var(--ins-accent)" }}>
+      <p className="font-display text-[clamp(40px,6vw,64px)] leading-none text-house-gold-light">{value}</p>
+      <p className="font-sans text-[16px] leading-[1.5] text-house-cream/90">{label}</p>
     </div>
   );
 }
