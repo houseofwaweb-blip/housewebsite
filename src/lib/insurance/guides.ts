@@ -227,9 +227,9 @@ export const GUIDES: Guide[] = [
       "What happens to a household policy during works, who is responsible under a JCT contract, non-negligence cover explained, and when to arrange it.",
     intro:
       "A home is at its most exposed while it is being worked on, and that is exactly when a standard household policy may stop responding. Here is what changes during works, and what to have in place before the contractor starts.",
-    image: "/insurance/townhouse-golden.webp",
+    image: "/insurance/guide-renovation.webp",
     imageAlt:
-      "A white townhouse entrance dressed in wisteria and white roses in golden evening light, a finished home of the kind building work leaves temporarily exposed.",
+      "A home mid-renovation, the period when a standard household policy may no longer respond.",
     sections: [
       { heading: "What happens to a household policy", paras: [
         "Standard home insurance assumes a finished, occupied house. Once the building is open, unoccupied for periods, or under the control of contractors, several of its conditions may no longer be met, and cover can quietly fall away.",
