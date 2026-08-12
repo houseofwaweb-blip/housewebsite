@@ -560,6 +560,10 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     },
     image: "/insurance/boat-yacht-aviation.webp",
     imageAlt: "A classic yacht's brass and teak detail, an asset arranged alongside the home on one policy.",
+    whyImage: "/insurance/boat-yacht-aviation-why.webp",
+    whyImageAlt: "A marine or aviation detail, the vessel a specialist prices on what it is and how it is used.",
+    differenceImage: "/insurance/boat-yacht-aviation-difference.webp",
+    differenceImageAlt: "A boat or aircraft detail, the usage and mooring a household policy never asks about.",
     whyImageSpec: {
       description: "A marine or aviation detail: a yacht's brass and teak fittings, a compass on a chart, a folded sail, or a wing or propeller. Warm and editorial, never a glossy superyacht in motion.",
       dimensions: "1600 × 1067px landscape (3:2), WebP",
