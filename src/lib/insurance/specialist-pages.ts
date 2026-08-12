@@ -925,6 +925,12 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
     },
     image: "/insurance/ev-breakdown.webp",
     imageAlt: "A bicycle kept ready by the door, standing for breakdown and bicycle cover.",
+    whyImage: "/insurance/breakdown-why.webp",
+    whyImageAlt:
+      "A bicycle and the smaller everyday kit, the level of cover a short conversation sets right.",
+    differenceImage: "/insurance/breakdown-difference.webp",
+    differenceImageAlt:
+      "Breakdown and bicycle cover, the level and use a comparison form flattens to a default.",
     whyImageSpec: {
       description: "A bicycle by a front door or in a hallway, or a car on a quiet road at dusk. Everyday and calm.",
       dimensions: "1600 × 1067px landscape (3:2), WebP",
