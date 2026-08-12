@@ -68,6 +68,7 @@ export type SpecialistPage = {
     body?: string;
     submitLabel?: string;
     withCompany?: boolean;
+    withProjectStart?: boolean;
   };
   /** Attribution path override; defaults to /insurance/[slug]. */
   sourcePath?: string;
@@ -426,6 +427,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       body: "Provenance arranges renovation and contract works cover for the life of a project, and the House can route straight in from the works it already manages. The House introduces you; Provenance arranges and administers the cover.",
     },
     crossLinks: [{ label: "Guide: insurance during building work", href: "/insurance/guides/renovation-insurance" }],
+    enquiry: { withProjectStart: true },
     enquiryType: "renovation-and-extension",
   },
   {

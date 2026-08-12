@@ -35,6 +35,7 @@ const schema = z.object({
   postcode: z.string().trim().min(1, "Required").max(12),
   renewalMonth: z.string().min(1, "Please choose"),
   companyName: z.string().trim().max(160).optional(),
+  projectStartMonth: z.string().optional(),
   marketingOptIn: z.boolean().optional(),
   turnstileToken: z.string().min(1, "Verification required"),
   honey: z.string().optional(),
@@ -47,6 +48,7 @@ export function InsuranceEnquiryForm({
   sourcePage,
   submitLabel = "Speak to a specialist",
   withCompany = false,
+  withProjectStart = false,
   initialPostcode,
 }: {
   /** For attribution, e.g. "listed-buildings", "private-client", "trades". */
@@ -56,6 +58,8 @@ export function InsuranceEnquiryForm({
   submitLabel?: string;
   /** B2B pages add a company-name field. */
   withCompany?: boolean;
+  /** Renovation adds an optional project-start-month field. */
+  withProjectStart?: boolean;
   /** Prefilled from the homepage quote-starter (?postcode=). */
   initialPostcode?: string;
 }) {
@@ -96,6 +100,7 @@ export function InsuranceEnquiryForm({
         phone: data.phone,
         renewal_month: data.renewalMonth,
         ...(withCompany && data.companyName ? { company: data.companyName } : {}),
+        ...(withProjectStart && data.projectStartMonth ? { project_start_month: data.projectStartMonth } : {}),
         ...getAttribution(),
       },
     });
@@ -149,6 +154,19 @@ export function InsuranceEnquiryForm({
           ) : null}
         </div>
       </div>
+      {withProjectStart ? (
+        <div>
+          <label htmlFor="ins-project-start" className="mb-1.5 block font-sans text-[16.5px] tracking-[0.04em] text-house-brown/70">
+            Project start month <span className="text-house-brown/45">(optional)</span>
+          </label>
+          <select id="ins-project-start" defaultValue="" className={selectCls} {...register("projectStartMonth")}>
+            <option value="">Not sure yet</option>
+            {RENEWAL_MONTHS.map((m) => (
+              <option key={m} value={m}>{m}</option>
+            ))}
+          </select>
+        </div>
+      ) : null}
 
       <label className="flex items-start gap-2.5 font-sans text-[14.5px] leading-[1.5] text-house-brown/75">
         <input type="checkbox" className="mt-1" {...register("marketingOptIn")} />

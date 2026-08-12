@@ -78,6 +78,8 @@ export function SpecialistPage({
             <div className="mt-8">
               <a
                 href="#enquire"
+                data-ga-event="cta_click"
+                data-ga-cta="speak_to_specialist"
                 className="inline-flex items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110"
               >
                 {data.heroCta ?? "Speak to a specialist"}
@@ -137,6 +139,8 @@ export function SpecialistPage({
               </p>
               <a
                 href="#enquire"
+                data-ga-event="cta_click"
+                data-ga-cta="speak_to_specialist"
                 className="mt-4 inline-flex items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110"
               >
                 Speak to a specialist
@@ -205,6 +209,8 @@ export function SpecialistPage({
             </p>
             <a
               href="#enquire"
+              data-ga-event="cta_click"
+              data-ga-cta="speak_to_specialist"
               className="inline-flex items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110"
             >
               {data.heroCta ?? "Speak to a specialist"}
@@ -257,6 +263,8 @@ export function SpecialistPage({
             <div className="mt-7">
               <a
                 href="#enquire"
+                data-ga-event="cta_click"
+                data-ga-cta="speak_to_specialist"
                 className="inline-flex items-center justify-center whitespace-nowrap border border-house-cream bg-house-cream px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-accent)] no-underline transition-[filter] hover:brightness-95"
               >
                 {data.heroCta ?? "Speak to a specialist"}
@@ -297,6 +305,7 @@ export function SpecialistPage({
               sourcePage={data.sourcePath ?? `/insurance/${data.slug}`}
               submitLabel={data.enquiry?.submitLabel}
               withCompany={data.enquiry?.withCompany}
+              withProjectStart={data.enquiry?.withProjectStart}
             />
           </div>
         </div>
