@@ -35,14 +35,16 @@ export default function InsuranceHub() {
             <p className="mt-6 max-w-[52ch] font-sans text-[19px] leading-[1.6] text-house-stone">
               Insuring a home well means understanding what it is made of and what has been done to it. The House introduces you to a specialist who takes the time to ask; the cover is arranged by Provenance.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/insurance/private-client" className="inline-flex items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110">
-                Speak to a specialist
-              </Link>
-              <Link href="/insurance/everyday" className="inline-flex items-center justify-center whitespace-nowrap border border-house-brown/30 px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown no-underline transition-colors hover:border-[color:var(--ins-ink)]">
-                Everyday cover
-              </Link>
-              <a href="#reminder" className="inline-flex items-center justify-center whitespace-nowrap px-2 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-ink)] no-underline hover:text-house-brown">
+            <div className="mt-8 flex flex-col gap-4">
+              <div className="flex flex-col gap-3 sm:flex-row sm:max-w-[460px]">
+                <Link href="/insurance/private-client" className="inline-flex w-full items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110 sm:flex-1">
+                  Speak to a specialist
+                </Link>
+                <Link href="/insurance/everyday" className="inline-flex w-full items-center justify-center whitespace-nowrap border border-house-brown/30 px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown no-underline transition-colors hover:border-[color:var(--ins-ink)] sm:flex-1">
+                  Everyday cover
+                </Link>
+              </div>
+              <a href="#reminder" className="inline-flex w-fit items-center whitespace-nowrap font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-ink)] no-underline hover:text-house-brown">
                 Remind me before my renewal →
               </a>
             </div>
