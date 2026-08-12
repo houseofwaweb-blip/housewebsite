@@ -691,6 +691,12 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
     },
     image: "/insurance/ev-home.webp",
     imageAlt: "A well-kept everyday home, the kind covered by straightforward buildings and contents insurance.",
+    whyImage: "/insurance/home-why.webp",
+    whyImageAlt:
+      "A calm, well-kept British home, the everyday house a standard policy is built for.",
+    differenceImage: "/insurance/home-difference.webp",
+    differenceImageAlt:
+      "A lived-in British home, the everyday details a short conversation gets right.",
     whyImageSpec: {
       description: "A calm, well-kept British home from the outside, or a lived-in room in soft daylight. Ordinary and cared for.",
       dimensions: "1600 × 1067px landscape (3:2), WebP",
