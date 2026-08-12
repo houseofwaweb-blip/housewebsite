@@ -37,7 +37,7 @@ export function EverydayPreframe({ data }: { data: EverydayPage }) {
       {data.covered.length > 0 ? (
         <section className="px-[5vw] pb-8">
           <div className="mx-auto max-w-[760px]">
-            <h2 className="font-sans text-[13px] font-semibold tracking-[0.06em] uppercase text-[color:var(--ins-ink)]">At a glance</h2>
+            <h2 className="font-sans text-[14px] font-semibold tracking-[0.06em] uppercase text-[color:var(--ins-ink)]">At a glance</h2>
             <ul className="mt-4 grid gap-2 p-0 sm:grid-cols-2">
               {data.covered.map((c) => (
                 <li key={c} className="flex gap-2.5 font-sans text-[16px] leading-[1.55] text-house-brown/85">
@@ -55,7 +55,7 @@ export function EverydayPreframe({ data }: { data: EverydayPage }) {
             {data.products.map((p) => (
               <div key={p.name} className="border border-house-brown/15 bg-house-white p-5">
                 <h3 className="font-display text-[19px] leading-tight text-house-black">{p.name}</h3>
-                <p className="mt-1.5 font-sans text-[15px] leading-[1.55] text-house-stone">{p.body}</p>
+                <p className="mt-1.5 font-sans text-[16.5px] leading-[1.55] text-house-stone">{p.body}</p>
               </div>
             ))}
           </div>
@@ -75,8 +75,8 @@ export function EverydayPreframe({ data }: { data: EverydayPage }) {
             ].map((step) => (
               <li key={step.n} className="list-none">
                 <p className="font-display text-[30px] leading-none text-house-cream/35">{step.n}</p>
-                <p className="mt-2 font-sans text-[15px] font-semibold text-house-cream">{step.h}</p>
-                <p className="mt-1 font-sans text-[13.5px] leading-[1.5] text-house-cream/70">{step.p}</p>
+                <p className="mt-2 font-sans text-[16.5px] font-semibold text-house-cream">{step.h}</p>
+                <p className="mt-1 font-sans text-[14.5px] leading-[1.5] text-house-cream/70">{step.p}</p>
               </li>
             ))}
           </ol>
@@ -100,7 +100,7 @@ export function EverydayPreframe({ data }: { data: EverydayPage }) {
       {/* Hand-off statement */}
       <section className="px-[5vw] pb-8">
         <div className="mx-auto max-w-[760px] border-l-2 border-[color:var(--ins-ink)] bg-house-cream-dark/50 px-5 py-4">
-          <p className="m-0 font-sans text-[14px] leading-[1.6] text-house-brown/85">
+          <p className="m-0 font-sans text-[15px] leading-[1.6] text-house-brown/85">
             This is a self-serve service operated by Provenance, authorised and regulated by the FCA. The House is an introducer only: it does not advise on, arrange, administer or compare insurance. Clicking through takes you into Provenance's regulated service.
           </p>
         </div>

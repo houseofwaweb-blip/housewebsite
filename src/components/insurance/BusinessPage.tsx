@@ -33,7 +33,7 @@ export function BusinessPage({
               <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 p-0">
                 {data.subLinks.map((l) => (
                   <li key={l.href} className="list-none">
-                    <Link href={l.href} className="font-sans text-[14px] text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">{l.label} →</Link>
+                    <Link href={l.href} className="font-sans text-[15px] text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">{l.label} →</Link>
                   </li>
                 ))}
               </ul>
@@ -84,8 +84,8 @@ export function BusinessPage({
           <div className="grid gap-x-10 gap-y-8 md:grid-cols-3">
             {data.detail.points.map((pt) => (
               <div key={pt.h}>
-                <h3 className="font-sans text-[13px] font-semibold tracking-[0.04em] text-[color:var(--ins-ink)]">{pt.h}</h3>
-                <p className="mt-2 font-sans text-[15px] leading-[1.6] text-house-brown/85">{pt.p}</p>
+                <h3 className="font-sans text-[14px] font-semibold tracking-[0.04em] text-[color:var(--ins-ink)]">{pt.h}</h3>
+                <p className="mt-2 font-sans text-[16.5px] leading-[1.6] text-house-brown/85">{pt.p}</p>
               </div>
             ))}
           </div>

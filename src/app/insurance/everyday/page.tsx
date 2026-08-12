@@ -69,7 +69,7 @@ export default function EverydayHub() {
               </div>
               <div className="flex flex-1 flex-col p-6">
                 <h2 className="font-display text-[21px] leading-tight text-house-black transition-colors group-hover:text-[color:var(--ins-ink)]">{p.name}</h2>
-                <p className="mt-2 mb-7 font-sans text-[14.5px] leading-[1.6] text-house-stone">{p.body}</p>
+                <p className="mt-2 mb-7 font-sans text-[16px] leading-[1.6] text-house-stone">{p.body}</p>
                 <span className="mt-auto inline-flex w-fit items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-6 py-3 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] transition-[filter] group-hover:brightness-110">
                   View cover →
                 </span>
@@ -82,7 +82,7 @@ export default function EverydayHub() {
       {/* The hand-off, stated plainly */}
       <section className="px-[5vw] pb-10">
         <div className="mx-auto max-w-[760px] border-l-2 border-[color:var(--ins-ink)] bg-house-cream-dark/50 px-5 py-4">
-          <p className="m-0 font-sans text-[14px] leading-[1.6] text-house-brown/85">
+          <p className="m-0 font-sans text-[15px] leading-[1.6] text-house-brown/85">
             This is a self-serve service operated by Provenance, who are authorised and regulated by the FCA. The House introduces you and is an introducer only: it does not advise on, arrange, administer or compare insurance. When you click through, you leave the House and enter Provenance's regulated service.
           </p>
         </div>

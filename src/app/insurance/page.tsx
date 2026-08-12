@@ -83,7 +83,7 @@ export default function InsuranceHub() {
               <h2 className="mt-3 font-display text-[clamp(22px,2.6vw,30px)] leading-[1.1] text-house-black group-hover:text-[color:var(--ins-ink)]">
                 For everything that does not need a conversation.
               </h2>
-              <p className="mt-4 font-sans text-[15px] leading-[1.6] text-house-stone">
+              <p className="mt-4 font-sans text-[16.5px] leading-[1.6] text-house-stone">
                 Home, car, pet and travel, arranged online through the service Provenance operates.
               </p>
             </div>
@@ -97,7 +97,7 @@ export default function InsuranceHub() {
         <div className="mx-auto grid max-w-[980px] items-center gap-10 md:grid-cols-2">
           <div className="flex gap-6">
             <p className="font-display text-[clamp(56px,10vw,110px)] leading-none text-[color:var(--house-green-soft)]">70%</p>
-            <p className="pt-3 font-sans text-[15px] leading-[1.6] text-house-cream/80">
+            <p className="pt-3 font-sans text-[16.5px] leading-[1.6] text-house-cream/80">
               of UK properties are insured below their rebuild cost, at an average of 66% of what they should be. Rebuild costs rose around 40% between 2020 and 2024, and index-linking runs behind.
             </p>
           </div>
@@ -112,7 +112,7 @@ export default function InsuranceHub() {
       <section className="px-[5vw] py-14">
         <div className="mx-auto max-w-[1180px]">
           <h2 className="mb-2 font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-black">What can be arranged</h2>
-          <p className="mb-9 max-w-[56ch] font-sans text-[15px] leading-[1.6] text-house-stone">
+          <p className="mb-9 max-w-[56ch] font-sans text-[16.5px] leading-[1.6] text-house-stone">
             Five kinds of cover the House introduces, each arranged by Provenance. Start wherever your home does.
           </p>
           <CoverCards />
@@ -126,7 +126,7 @@ export default function InsuranceHub() {
           <p className="mt-4 font-sans text-[17px] leading-[1.7] text-house-brown/85">
             Cover is arranged and administered by Provenance, authorised and regulated by the FCA, part of the Benefact group, a charity-owned insurer whose profits go to charitable causes. The House introduces you; it does not advise on, arrange, administer or compare insurance.
           </p>
-          <Link href="/insurance/how-this-works" className="mt-4 inline-block font-sans text-[13px] tracking-[0.04em] text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">
+          <Link href="/insurance/how-this-works" className="mt-4 inline-block font-sans text-[14px] tracking-[0.04em] text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">
             How this works, and how we are paid →
           </Link>
         </div>

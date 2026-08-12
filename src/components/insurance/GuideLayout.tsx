@@ -60,7 +60,7 @@ export function GuideLayout({
       </article>
 
       {/* Foot CTA — green-tinted band, a colour close after the cream article */}
-      <section className="px-[5vw] py-14" style={{ background: "var(--house-green-soft)" }}>
+      <section className="px-[5vw] py-14" style={{ background: "var(--color-house-cream-dark)" }}>
         <div className="mx-auto max-w-[760px]">
           {guide.footCta === "renewal" ? (
             <>
@@ -84,9 +84,9 @@ export function GuideLayout({
           )}
 
           {guide.related ? (
-            <p className="mt-8 font-sans text-[14px] text-house-brown/80">
+            <p className="mt-8 font-sans text-[15px] text-house-brown/80">
               Related:{" "}
-              <Link href={guide.related.href} className="text-[color:var(--house-green-ink)] underline underline-offset-2 hover:text-house-brown">{guide.related.label} →</Link>
+              <Link href={guide.related.href} className="text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">{guide.related.label} →</Link>
             </p>
           ) : null}
         </div>

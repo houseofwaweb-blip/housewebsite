@@ -135,7 +135,7 @@ export function InsuranceEnquiryForm({
           <Input label="Postcode" required autoComplete="postal-code" error={errors.postcode?.message} {...register("postcode")} />
         </div>
         <div className="flex-1">
-          <label htmlFor="ins-renewal" className="mb-1.5 block font-sans text-[15px] tracking-[0.04em] text-house-brown/70">
+          <label htmlFor="ins-renewal" className="mb-1.5 block font-sans text-[16.5px] tracking-[0.04em] text-house-brown/70">
             Renewal month
           </label>
           <select id="ins-renewal" required defaultValue="" className={selectCls} {...register("renewalMonth")}>
@@ -145,12 +145,12 @@ export function InsuranceEnquiryForm({
             ))}
           </select>
           {errors.renewalMonth?.message ? (
-            <p className="mt-1 font-sans text-[15px] text-red-700">{errors.renewalMonth.message}</p>
+            <p className="mt-1 font-sans text-[16.5px] text-red-700">{errors.renewalMonth.message}</p>
           ) : null}
         </div>
       </div>
 
-      <label className="flex items-start gap-2.5 font-sans text-[13.5px] leading-[1.5] text-house-brown/75">
+      <label className="flex items-start gap-2.5 font-sans text-[14.5px] leading-[1.5] text-house-brown/75">
         <input type="checkbox" className="mt-1" {...register("marketingOptIn")} />
         <span>Keep me posted with occasional notes from the House. You can stop any time.</span>
       </label>
@@ -163,7 +163,7 @@ export function InsuranceEnquiryForm({
         onExpire={() => setValue("turnstileToken", "")}
       />
       {errors.turnstileToken ? (
-        <p className="font-sans text-[15px] text-red-700">{errors.turnstileToken.message}</p>
+        <p className="font-sans text-[16.5px] text-red-700">{errors.turnstileToken.message}</p>
       ) : null}
 
       {/* Mandated disclosure sits directly above the primary action. */}

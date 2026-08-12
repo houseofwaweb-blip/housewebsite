@@ -663,5 +663,5 @@ body {
   --house-green:      #2f4133;  /* deep green — dark module bg / primary button */
   --house-green-deep: #22301f;  /* darker green — footers, hovers */
   --house-green-ink:  #35472e;  /* green as type on cream (AA) */
-  --house-green-soft: #e0e5d8;  /* pale green tint band */
+  --house-green-soft: #ccd6bd;  /* sage tint band — clearly green, not another cream */
 }

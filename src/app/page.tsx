@@ -156,7 +156,7 @@ export default async function HomePage() {
           <div className="mb-6 grid grid-cols-2 gap-px overflow-hidden border border-house-cream/15 bg-house-cream/15 lg:grid-cols-4">
             {TRUST.map((t) => (
               <div key={t.h} className="bg-[var(--house-green)] px-5 py-4">
-                <p className="font-sans text-[14px] font-semibold text-house-cream">{t.h}</p>
+                <p className="font-sans text-[15px] font-semibold text-house-cream">{t.h}</p>
                 <p className="mt-0.5 font-sans text-[12.5px] leading-[1.45] text-house-cream/65">{t.p}</p>
               </div>
             ))}
@@ -164,8 +164,8 @@ export default async function HomePage() {
 
           {/* Quote starter — plain GET hand-off to the enquiry page */}
           <form action="/insurance/speak-to-a-specialist" method="get" className="mb-8 flex flex-col gap-3 border border-house-cream/15 bg-house-cream/5 p-3 sm:flex-row sm:items-stretch">
-            <input name="postcode" placeholder="Enter your postcode" aria-label="Postcode" className="min-w-0 flex-1 border border-house-cream/20 bg-house-cream px-4 py-3 font-sans text-[15px] text-house-brown outline-none placeholder:text-house-stone focus:border-house-cream" />
-            <select name="cover" aria-label="Cover type" defaultValue="" className="flex-1 border border-house-cream/20 bg-house-cream px-4 py-3 font-sans text-[15px] text-house-brown outline-none focus:border-house-cream">
+            <input name="postcode" placeholder="Enter your postcode" aria-label="Postcode" className="min-w-0 flex-1 border border-house-cream/20 bg-house-cream px-4 py-3 font-sans text-[16.5px] text-house-brown outline-none placeholder:text-house-stone focus:border-house-cream" />
+            <select name="cover" aria-label="Cover type" defaultValue="" className="flex-1 border border-house-cream/20 bg-house-cream px-4 py-3 font-sans text-[16.5px] text-house-brown outline-none focus:border-house-cream">
               <option value="" disabled>Choose cover type…</option>
               <option value="home">Home insurance</option>
               <option value="pet">Pet insurance</option>
@@ -186,7 +186,7 @@ export default async function HomePage() {
                 </div>
                 <div className="flex flex-1 flex-col p-5">
                   <h3 className="font-display text-[21px] leading-tight text-house-black">{p.title}</h3>
-                  <p className="mt-2 flex-1 font-sans text-[13.5px] leading-[1.55] text-house-brown/80">{p.who}</p>
+                  <p className="mt-2 flex-1 font-sans text-[14.5px] leading-[1.55] text-house-brown/80">{p.who}</p>
                   <p className="mt-4 font-sans text-[10.5px] tracking-[0.16em] uppercase text-[color:var(--house-green-ink)]">{p.signal}</p>
                   <span className="mt-2 font-sans text-[12.5px] font-semibold text-[color:var(--house-green-ink)] group-hover:underline">{p.cta} →</span>
                 </div>
@@ -194,7 +194,7 @@ export default async function HomePage() {
             ))}
           </div>
 
-          <p className="mt-6 max-w-[80ch] font-sans text-[13px] leading-[1.6] text-house-cream/70">
+          <p className="mt-6 max-w-[80ch] font-sans text-[14px] leading-[1.6] text-house-cream/70">
             House of Willow Alexander acts as an introducer. Insurance and cover are arranged and provided by regulated third parties, including Provenance Insurance Brokers Ltd (FCA FRN 804047). Full details are shown before you leave the site.
           </p>
         </div>
@@ -246,8 +246,8 @@ export default async function HomePage() {
                 <div className="relative aspect-square w-full overflow-hidden bg-house-cream-dark">
                   {p.image ? <Image src={p.image} alt={p.name} fill sizes="(min-width:640px) 22vw, 50vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" /> : null}
                 </div>
-                <p className="mt-3 font-sans text-[14px] leading-tight text-house-brown">{p.name}</p>
-                <p className="mt-0.5 font-sans text-[13px] text-house-stone">{p.price}</p>
+                <p className="mt-3 font-sans text-[15px] leading-tight text-house-brown">{p.name}</p>
+                <p className="mt-0.5 font-sans text-[14px] text-house-stone">{p.price}</p>
               </Link>
             ))}
             <Link href="/shop" className="flex items-center justify-center border border-house-brown/20 bg-house-white p-6 text-center font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown no-underline transition-colors hover:border-house-brown">
@@ -281,7 +281,7 @@ export default async function HomePage() {
               <div className="p-6">
                 <p className="font-sans text-[10.5px] tracking-[0.2em] uppercase text-house-gold-dark">Seasonal home guide</p>
                 <h3 className="mt-2 font-display text-[clamp(22px,2.4vw,32px)] leading-[1.12] text-house-brown group-hover:text-[color:var(--house-green-ink)]">{lead.title}</h3>
-                {lead.dek ? <p className="mt-3 max-w-[54ch] font-sans text-[15px] leading-[1.6] text-house-stone">{lead.dek}</p> : null}
+                {lead.dek ? <p className="mt-3 max-w-[54ch] font-sans text-[16.5px] leading-[1.6] text-house-stone">{lead.dek}</p> : null}
                 <span className="mt-4 inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--house-green-ink)]">Read the story →</span>
               </div>
             </Link>
@@ -331,7 +331,7 @@ export default async function HomePage() {
               { label: "Food and hosting", href: "/recipes" },
               { label: "Films", href: "/cinema" },
             ].map((c) => (
-              <Link key={c.label} href={c.href} className="font-sans text-[13px] text-house-stone no-underline underline-offset-4 hover:text-house-brown hover:underline">{c.label}</Link>
+              <Link key={c.label} href={c.href} className="font-sans text-[14px] text-house-stone no-underline underline-offset-4 hover:text-house-brown hover:underline">{c.label}</Link>
             ))}
           </div>
         </div>
@@ -354,7 +354,7 @@ export default async function HomePage() {
             ].map((e) => (
               <div key={e.h}>
                 <p className="font-display text-[19px] leading-tight text-house-cream">{e.h}</p>
-                <p className="mt-1.5 font-sans text-[13px] leading-[1.5] text-house-cream/70">{e.p}</p>
+                <p className="mt-1.5 font-sans text-[14px] leading-[1.5] text-house-cream/70">{e.p}</p>
               </div>
             ))}
           </div>

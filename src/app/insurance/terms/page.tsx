@@ -15,8 +15,8 @@ export const metadata: Metadata = {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="border-t border-house-brown/10 py-7">
-      <h2 className="mb-3 font-sans text-[14px] font-semibold tracking-[0.03em] text-house-brown">{title}</h2>
-      <div className="space-y-3 font-sans text-[15px] leading-[1.7] text-house-brown/85">{children}</div>
+      <h2 className="mb-3 font-sans text-[15px] font-semibold tracking-[0.03em] text-house-brown">{title}</h2>
+      <div className="space-y-3 font-sans text-[16.5px] leading-[1.7] text-house-brown/85">{children}</div>
     </div>
   );
 }
@@ -33,7 +33,7 @@ export default function InsuranceTerms() {
 
           <div className="mt-6 border-l-2 border-[color:var(--ins-ink)] bg-house-cream-dark/50 px-4 py-3">
             <p className="m-0 font-sans text-[12px] tracking-[0.06em] uppercase text-[color:var(--ins-ink)]">Pending Provenance compliance</p>
-            <p className="mt-1 mb-0 font-sans text-[13.5px] leading-[1.55] text-house-brown/80">
+            <p className="mt-1 mb-0 font-sans text-[14.5px] leading-[1.55] text-house-brown/80">
               The wording below is indicative. The published version is issued by Provenance compliance verbatim before launch.
             </p>
           </div>

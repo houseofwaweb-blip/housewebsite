@@ -45,7 +45,7 @@ export default async function SpeakToASpecialist({
               Leave your details and a specialist will call. We ask only what we need to make the introduction, nothing about sums insured, contents or your current insurer.
             </p>
             {chosen || postcode ? (
-              <p className="mb-8 inline-block border-l-2 border-[color:var(--ins-ink)] bg-house-cream-dark/50 px-4 py-2 font-sans text-[14px] text-house-brown">
+              <p className="mb-8 inline-block border-l-2 border-[color:var(--ins-ink)] bg-house-cream-dark/50 px-4 py-2 font-sans text-[15px] text-house-brown">
                 Starting {chosen ? `a ${chosen.label} enquiry` : "your enquiry"}{postcode ? ` for ${postcode.toUpperCase()}` : ""}.
               </p>
             ) : null}

@@ -156,12 +156,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
         ],
       },
     ],
-    preview: {
-      image: "/home/hero-georgian.webp",
-      alt: "A Georgian terrace in Notting Hill",
-      tag: "The House",
-      heading: "A modern British home tradition.",
-      href: "/the-house/about",
-    },
+    // No preview — three groups render side-by-side in the wide grid (clearer
+    // than one long stacked column).
   },
 ];

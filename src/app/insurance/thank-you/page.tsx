@@ -50,13 +50,13 @@ export default function InsuranceThankYou() {
           <div className="mt-12 border-t border-house-brown/12 pt-8">
             <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-[color:var(--ins-ink)]">While you are here</p>
             <h2 className="mt-2 font-display text-[clamp(20px,2.4vw,28px)] leading-[1.2] text-house-black">Set a reminder for your renewal.</h2>
-            <p className="mt-3 mb-6 max-w-[52ch] font-sans text-[15px] leading-[1.6] text-house-stone">
+            <p className="mt-3 mb-6 max-w-[52ch] font-sans text-[16.5px] leading-[1.6] text-house-stone">
               If you told us your renewal month already, you are set. If not, one line here means we can write at the right moment next year.
             </p>
             <RenewalReminderForm turnstileSiteKey={turnstileSiteKey} sourcePage="/insurance/thank-you" />
           </div>
 
-          <p className="mt-10 font-sans text-[14px] text-house-stone">
+          <p className="mt-10 font-sans text-[15px] text-house-stone">
             <Link href="/the-hearth" className="text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">Read something from the Hearth</Link> while you wait.
           </p>
         </div>

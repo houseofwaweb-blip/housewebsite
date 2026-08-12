@@ -52,7 +52,7 @@ export default function PrivateClient() {
           </div>
           <div className="border border-house-brown/15 bg-house-white p-7">
             <h2 className="font-display text-[24px] leading-tight text-house-black">Speak to a specialist</h2>
-            <p className="mt-2 mb-6 font-sans text-[14px] leading-[1.55] text-house-stone">Five details, and a specialist will call. Nothing about sums insured or your current insurer.</p>
+            <p className="mt-2 mb-6 font-sans text-[15px] leading-[1.55] text-house-stone">Five details, and a specialist will call. Nothing about sums insured or your current insurer.</p>
             <InsuranceEnquiryForm enquiryType="private-client" turnstileSiteKey={turnstileSiteKey} sourcePage="/insurance/private-client" />
           </div>
         </div>
@@ -70,7 +70,7 @@ export default function PrivateClient() {
       </section>
 
       {/* The specialist difference — green-tinted band (no "record the House holds") */}
-      <section className="px-[5vw] py-12" style={{ background: "var(--house-green-soft)" }}>
+      <section className="px-[5vw] py-12" style={{ background: "var(--color-house-cream-dark)" }}>
         <div className="mx-auto grid max-w-[1120px] items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <div className="max-w-[600px]">
             <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-[color:var(--ins-ink)]">The difference the House brings</p>
@@ -101,8 +101,8 @@ export default function PrivateClient() {
               { s: "40%", l: "rise in rebuild costs, 2020 to 2024" },
             ].map((e) => (
               <div key={e.l}>
-                <p className="font-display text-[clamp(28px,3.4vw,44px)] leading-none text-[color:var(--house-green-soft)]">{e.s}</p>
-                <p className="mt-2 font-sans text-[13px] leading-[1.5] text-house-cream/75">{e.l}</p>
+                <p className="font-display text-[clamp(28px,3.4vw,44px)] leading-none text-house-gold-light">{e.s}</p>
+                <p className="mt-2 font-sans text-[14px] leading-[1.5] text-house-cream/75">{e.l}</p>
               </div>
             ))}
           </div>
@@ -118,8 +118,8 @@ export default function PrivateClient() {
             {PROCESS.map((s) => (
               <li key={s.n} className="border-t border-house-brown/15 pt-4">
                 <span className="font-display text-[20px] text-[color:var(--ins-ink)]">{s.n}</span>
-                <h3 className="mt-1 font-sans text-[14px] font-semibold text-house-brown">{s.h}</h3>
-                <p className="mt-2 font-sans text-[14px] leading-[1.55] text-house-brown/85">{s.p}</p>
+                <h3 className="mt-1 font-sans text-[15px] font-semibold text-house-brown">{s.h}</h3>
+                <p className="mt-2 font-sans text-[15px] leading-[1.55] text-house-brown/85">{s.p}</p>
               </li>
             ))}
           </ol>
