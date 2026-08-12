@@ -41,8 +41,8 @@ export default function HowThisWorks() {
           </div>
           <div className="relative aspect-[4/5] w-full overflow-hidden">
             <Image
-              src="/insurance/house-record.webp"
-              alt="A worn ledger beside a brass globe sconce, a fountain pen and a pink peony on a sage surface, a quiet still life for a page about how the arrangement works."
+              src="/insurance/provenance-can-place.webp"
+              alt="A ledger lettered Provenance Insurance beside architectural drawings, a brass globe sconce and a pink peony, a quiet still life for a page about how the arrangement works."
               fill
               sizes="(min-width: 1120px) 540px, 90vw"
               priority
