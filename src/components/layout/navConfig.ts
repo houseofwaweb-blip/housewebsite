@@ -55,8 +55,8 @@ export const PRIMARY_NAV: MegaPanel[] = [
         links: [
           { label: "Fine art & collections", href: "/insurance/fine-art-and-collections" },
           { label: "Classic & prestige motor", href: "/insurance/classic-and-prestige-motor" },
+          { label: "Boat, yacht & aviation", href: "/insurance/boat-yacht-aviation" },
           { label: "Business insurance", href: "/insurance/business" },
-          { label: "How this works", href: "/insurance/how-this-works", description: "And how we are paid" },
         ],
       },
       {
@@ -67,6 +67,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
           { label: "Insuring a listed building", href: "/insurance/guides/listed-building-insurance" },
           { label: "Insurance during building work", href: "/insurance/guides/renovation-insurance" },
           { label: "When to renew", href: "/insurance/guides/renewal" },
+          { label: "How this works", href: "/insurance/how-this-works", description: "And how we are paid" },
         ],
       },
     ],
