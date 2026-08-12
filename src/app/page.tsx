@@ -258,7 +258,7 @@ export default async function HomePage() {
 
           {/* Real product rail with prices */}
           <div className="mb-4 mt-12 flex items-end justify-between gap-4 border-t border-house-brown/12 pt-6">
-            <h3 className="font-display text-[clamp(20px,2.2vw,28px)] leading-[1.06] text-house-brown">Fresh from the shelves</h3>
+            <h3 className="font-display text-[clamp(20px,2.2vw,28px)] leading-[1.06] text-house-brown">New in the shop</h3>
             <Link href="/shop" className="whitespace-nowrap font-sans text-[12px] tracking-[0.16em] uppercase text-house-gold-dark no-underline transition-colors hover:text-house-brown">
               Shop all →
             </Link>
