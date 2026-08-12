@@ -18,6 +18,7 @@ const STRIP = [
   { slug: "colour-and-materials", label: "Colour & Materials", href: "/the-hearth/category/colour-and-materials" },
   { slug: "heritage-and-culture", label: "Heritage & Culture", href: "/the-hearth/category/heritage-and-culture" },
   { slug: "trends-and-inspiration", label: "Trends & Inspiration", href: "/the-hearth/category/trends-and-inspiration" },
+  { slug: "cinema", label: "Cinema", href: "/cinema" },
 ];
 
 export function HearthCategoryStrip({ activeSlug = "all" }: { activeSlug?: string }) {
