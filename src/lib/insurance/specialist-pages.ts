@@ -562,3 +562,209 @@ export function getSpecialistPage(slug: string): SpecialistPage | undefined {
 }
 
 export const SPECIALIST_SLUGS = SPECIALIST_PAGES.map((p) => p.slug);
+
+/**
+ * Everyday cover products, rendered on the SAME SpecialistPage template as the
+ * specialist pages (per direction: every insurance product page shares the
+ * fine-art structure). They keep their /insurance/everyday/[slug] URLs. Each
+ * carries its own "questions a comparison form never asks" set so none of them
+ * inherit the property (roof/fabric) default.
+ */
+export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
+  {
+    slug: "home",
+    title: "Home insurance",
+    metaTitle: "Home insurance",
+    metaDescription:
+      "Straightforward buildings and contents cover, introduced by the House and arranged by Provenance. Period and high-value homes are routed to the advised service.",
+    hero: {
+      eyebrow: "Everyday cover",
+      heading: "Home insurance, for a standard home.",
+      lede: "For a straightforward house or flat, cover built around what the home actually is. The House introduces you; Provenance arranges the policy.",
+    },
+    image: "/insurance/ev-home.webp",
+    imageAlt: "A well-kept everyday home, the kind covered by straightforward buildings and contents insurance.",
+    whyImageSpec: {
+      description: "A calm, well-kept British home from the outside, or a lived-in room in soft daylight. Ordinary and cared for.",
+      dimensions: "1600 × 1067px landscape (3:2), WebP",
+      filename: "/insurance/home-why.webp",
+    },
+    whyDifferent: {
+      heading: "Cover built on the home, not a postcode",
+      body: [
+        "Most home cover is priced from a postcode and a short set of tick-boxes, then sold on price. It works, until a claim finds the gap between what was assumed and what is true.",
+        "A short conversation sets the buildings and contents at the right level, and flags the add-ons worth having before they are needed rather than after.",
+      ],
+    },
+    differenceIntro:
+      "Even a standard home is priced by most insurers from a postcode and a few boxes. A short conversation catches the things a form skips.",
+    readiness: [
+      { h: "Buildings or contents", p: "What needs covering: the structure, what is inside, or both." },
+      { h: "The rebuild figure", p: "What it would cost to rebuild, which is not the market value." },
+      { h: "The everyday risks", p: "Escape of water, accidental damage and the add-ons worth having." },
+      { h: "How it is lived in", p: "How the home is used day to day, which quietly changes the cover." },
+    ],
+    detail: {
+      title: "What is covered",
+      points: [
+        { h: "Buildings", p: "Cover for the structure of the home itself." },
+        { h: "Contents", p: "Cover for what is inside, set at a level that fits." },
+        { h: "Sensible add-ons", p: "Accidental damage and similar, added only where they earn their place." },
+      ],
+    },
+    placed: {
+      heading: "What Provenance can place",
+      body: "Provenance arranges straightforward buildings and contents cover, and can route a period, listed or high-value home to the advised service where that fits better. The House introduces you; Provenance arranges and administers the cover.",
+    },
+    crossLinks: [{ label: "A period or listed home? Speak to a specialist", href: "/insurance/private-client" }],
+    enquiryType: "home",
+  },
+  {
+    slug: "motor",
+    title: "Car, van and motorbike",
+    metaTitle: "Car, van and motorbike insurance",
+    metaDescription:
+      "Everyday motor cover for car, van and motorbike, plus temporary cover from one hour to 28 days. Introduced by the House, arranged by Provenance.",
+    hero: {
+      eyebrow: "Everyday cover",
+      heading: "Car, van and motorbike.",
+      lede: "Everyday motor cover in one place, including the temporary cover that is genuinely useful and rarely marketed.",
+    },
+    image: "/insurance/ev-motor.webp",
+    imageAlt: "A car and van at a home, standing for everyday motor cover including temporary use.",
+    whyImageSpec: {
+      description: "An everyday car and van on a home driveway, or keys and a licence on a hall table. Practical and unglamorous.",
+      dimensions: "1600 × 1067px landscape (3:2), WebP",
+      filename: "/insurance/motor-everyday-why.webp",
+    },
+    whyDifferent: {
+      heading: "Cover that fits how you actually drive",
+      body: [
+        "A comparison engine prices the vehicle and the postcode. It rarely asks how the car is used, who else drives it, or whether a short temporary policy would do the job better.",
+        "Everyday motor is quick to arrange, and a short conversation keeps the level of cover and the extras honest.",
+      ],
+    },
+    differenceIntro:
+      "Most motor quotes are priced off a table and a registration. A short conversation makes sure the cover fits how the vehicle is actually used.",
+    readiness: [
+      { h: "Car, van or bike", p: "The vehicle and the class of use, priced on the real risk." },
+      { h: "Level of cover", p: "Third-party, third-party fire and theft, or comprehensive." },
+      { h: "Temporary needs", p: "Cover from one hour to 28 days, for borrowing or lending." },
+      { h: "Extras worth having", p: "Breakdown, legal and key cover, added only where useful." },
+    ],
+    detail: {
+      title: "What can be arranged",
+      points: [
+        { h: "Car", p: "Standard private car cover." },
+        { h: "Van and motorbike", p: "Private and light-commercial van use, and bikes and scooters." },
+        { h: "Temporary cover", p: "From one hour to 28 days, for borrowing, lending or a short need." },
+      ],
+    },
+    placed: {
+      heading: "What Provenance can place",
+      body: "Provenance arranges everyday motor cover across car, van, motorbike and temporary use. The House introduces you; Provenance arranges and administers the cover.",
+    },
+    crossLinks: [{ label: "A classic or prestige vehicle? Speak to a specialist", href: "/insurance/classic-and-prestige-motor" }],
+    enquiryType: "motor",
+  },
+  {
+    slug: "pet-and-travel",
+    title: "Pet and travel",
+    metaTitle: "Pet and travel insurance",
+    metaDescription:
+      "Pet cover, and single-trip or annual travel including specialist medical. Introduced by the House, arranged by Provenance.",
+    hero: {
+      eyebrow: "Everyday cover",
+      heading: "Pet and travel.",
+      lede: "Two low-fuss covers in one place, both built around the animal and the trip rather than a tick-box.",
+    },
+    image: "/insurance/ev-pet.webp",
+    imageAlt: "A pet's collar, leash and travel things on a table, standing for everyday pet and travel cover.",
+    whyImageSpec: {
+      description: "A dog or cat at home in soft light, or a packed weekend bag by the door. Warm and domestic.",
+      dimensions: "1600 × 1067px landscape (3:2), WebP",
+      filename: "/insurance/pet-why.webp",
+    },
+    whyDifferent: {
+      heading: "Cover shaped by the animal and the trip",
+      body: [
+        "Pet and travel are the covers most often bought on price and regretted at claim time, usually over an excluded condition or a missing declaration.",
+        "A short conversation gets the vet-bill level and the travel declarations right, so the cover holds when it is needed.",
+      ],
+    },
+    differenceIntro:
+      "Most pet and travel cover is bought in a rush and the exclusions read later. A short conversation makes sure it fits the animal and the trip.",
+    readiness: [
+      { h: "The animal", p: "The pet, its age and breed, and the vet-bill cover that suits." },
+      { h: "Existing conditions", p: "Whether cover is needed where a condition already exists." },
+      { h: "One trip or many", p: "Single-trip, or annual multi-trip for several journeys a year." },
+      { h: "Specialist medical", p: "Travel cover where existing medical conditions need declaring." },
+    ],
+    detail: {
+      title: "What can be arranged",
+      points: [
+        { h: "Pet", p: "Cover for vet bills and the usual pet risks, for cats and dogs." },
+        { h: "Travel", p: "Single-trip for one holiday, or annual multi-trip for several a year." },
+        { h: "Specialist medical travel", p: "Where existing medical conditions need covering." },
+      ],
+    },
+    placed: {
+      heading: "What Provenance can place",
+      body: "Provenance arranges pet cover and single-trip or annual travel, including specialist medical travel. The House introduces you; Provenance arranges and administers the cover.",
+    },
+    enquiryType: "pet-and-travel",
+  },
+  {
+    slug: "breakdown-and-bicycle",
+    title: "Breakdown and bicycle",
+    metaTitle: "Breakdown and bicycle cover",
+    metaDescription:
+      "Roadside, recovery and home-start breakdown cover, and cover for road, mountain, electric and high-value bicycles. Introduced by the House, arranged by Provenance.",
+    hero: {
+      eyebrow: "Everyday cover",
+      heading: "Breakdown and bicycle.",
+      lede: "The smaller everyday covers, arranged simply and set at the level that fits how you travel.",
+    },
+    image: "/insurance/ev-breakdown.webp",
+    imageAlt: "A bicycle kept ready by the door, standing for breakdown and bicycle cover.",
+    whyImageSpec: {
+      description: "A bicycle by a front door or in a hallway, or a car on a quiet road at dusk. Everyday and calm.",
+      dimensions: "1600 × 1067px landscape (3:2), WebP",
+      filename: "/insurance/breakdown-why.webp",
+    },
+    whyDifferent: {
+      heading: "Small covers, set at the right level",
+      body: [
+        "Breakdown and bicycle cover are cheap enough that most people pick a default and move on, then find the level does not match how they actually travel.",
+        "A short conversation matches the breakdown tier and the bicycle value to real use, so the cover is neither thin nor wasteful.",
+      ],
+    },
+    differenceIntro:
+      "The smaller covers are the easiest to buy badly. A short conversation makes sure the level fits how you travel.",
+    readiness: [
+      { h: "Level of breakdown", p: "Roadside, recovery and home start, matched to how far you go." },
+      { h: "Where you break down", p: "At home, roadside or national recovery, priced accordingly." },
+      { h: "The bike", p: "Road, mountain, electric or high-value, each a different figure." },
+      { h: "Away from home", p: "Whether the bike is covered away from home and in transit." },
+    ],
+    detail: {
+      title: "What can be arranged",
+      points: [
+        { h: "Breakdown", p: "Roadside assistance, recovery and home start." },
+        { h: "Bicycle", p: "Road, mountain, electric and high-value bikes." },
+        { h: "The right level", p: "Matched to how far and how often you travel, rather than a default." },
+      ],
+    },
+    placed: {
+      heading: "What Provenance can place",
+      body: "Provenance arranges breakdown cover and bicycle cover across the full range of bikes. The House introduces you; Provenance arranges and administers the cover.",
+    },
+    enquiryType: "breakdown-and-bicycle",
+  },
+];
+
+export function getEverydaySpecialistPage(slug: string): SpecialistPage | undefined {
+  return EVERYDAY_SPECIALIST_PAGES.find((p) => p.slug === slug);
+}
+
+export const EVERYDAY_SPECIALIST_SLUGS = EVERYDAY_SPECIALIST_PAGES.map((p) => p.slug);
