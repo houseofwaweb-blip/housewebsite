@@ -26,6 +26,12 @@ export function CoverFinder() {
     import("@/lib/insurance/cover-index").then((m) => setCovers(m.ALL_COVERS));
   }, [covers]);
 
+  // Load just after the page is interactive (not in the initial bundle), so all
+  // covers are visible to browse straight away without having to click/type.
+  React.useEffect(() => {
+    load();
+  }, [load]);
+
   const results = React.useMemo(() => {
     if (!covers) return [];
     const STOP = new Set(["insurance", "cover", "policy", "quote", "for", "my", "the", "and", "an", "of", "to", "get", "want", "need", "looking", "some", "help", "with"]);
