@@ -83,7 +83,7 @@ export function CoverFinder() {
       ) : null}
 
       {covers && results.length > 0 ? (
-        <div className="mt-8 grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-x-10 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
           {results.map((c) => (
             <Link
               key={c.href}
