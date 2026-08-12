@@ -154,7 +154,7 @@ export default async function RootLayout({
             <Footer columns={footerCols} />
             {/* Spacer so the fixed mobile action bar never covers footer content. */}
             <div aria-hidden className="lg:hidden h-[64px]" />
-            <MobileActionBar ctaLabel={ctaLabel} ctaHref={ctaHref} />
+            <MobileActionBar />
             <CartToast />
             <CartDrawer />
             <CookieBanner />

@@ -9,8 +9,8 @@ import Link from "next/link";
  * header, so it does not compete with the service action here.
  */
 export function MobileActionBar({
-  ctaHref = "/services",
-  ctaLabel = "Find a service",
+  ctaHref = "/insurance",
+  ctaLabel = "Get covered",
   phone = "08000478738",
 }: {
   ctaHref?: string;
@@ -24,9 +24,10 @@ export function MobileActionBar({
     >
       <Link
         href={ctaHref}
-        data-ga-event="booking_intent"
+        data-ga-event="cta_click"
         data-ga-cta={ctaLabel}
-        className="flex-1 text-center font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown bg-house-gold-ink border border-house-gold-dark py-3.5 no-underline"
+        className="flex-1 text-center font-sans text-[12px] tracking-[0.16em] uppercase text-house-cream border py-3.5 no-underline"
+        style={{ background: "var(--house-green)", borderColor: "var(--house-green-deep)" }}
       >
         {ctaLabel}
       </Link>
