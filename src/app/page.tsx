@@ -282,11 +282,11 @@ export default async function HomePage() {
             <div>
               <p className="mb-3 font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-dark">The Magazine</p>
               <h2 className="font-display text-[clamp(26px,3.2vw,44px)] leading-[1.06] text-house-brown">
-                Read, watch, <em>then act when useful.</em>
+                Read, watch, <em>take what's useful.</em>
               </h2>
             </div>
             <p className="max-w-[46ch] font-sans text-[16px] leading-[1.65] text-house-stone">
-              The Hearth and Cinema, one editorial destination that draws readers back and guides them onward.
+              The Hearth and Cinema: stories, films and seasonal guides for looking after your home.
             </p>
           </div>
 

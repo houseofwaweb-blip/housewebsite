@@ -90,7 +90,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       "A Grade II listed period home, the kind repaired like for like with original materials and specialist trades.",
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
-      "A worn House Record ledger propped against a heritage rebuild drawing, a brass sconce and a pink peony beside it, evoking the documented history a heritage underwriter wants to see.",
+      "A worn leather ledger propped against a heritage rebuild drawing, a brass sconce and a pink peony beside it, evoking the documented history a heritage underwriter wants to see.",
     whyImage: "/insurance/listed-why.webp",
     whyImageAlt:
       "A weathered listed-building facade: a carved stone cartouche, a sash window and aged brickwork, the heritage fabric a like-for-like rebuild must match.",
@@ -113,7 +113,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       title: "What changes with the grade",
       points: [
         { h: "The grades", p: "Grade II, Grade II* and Grade I each carry different repair obligations, and the premium reflects that. Listed property typically costs more than an equivalent unlisted home; the higher grades more so again. Figures are indicative and confirmed case by case." },
-        { h: "The rebuild assessment", p: "Because a listed rebuild cannot be estimated from a table, a proper reinstatement assessment is worth commissioning. The House can arrange one; it is exactly what a heritage underwriter wants to see." },
+        { h: "The rebuild assessment", p: "Because a listed rebuild cannot be estimated from a table, a proper reinstatement assessment is worth commissioning. The House can help you commission one; it is exactly what a heritage underwriter wants to see." },
         { h: "The underinsurance trap", p: "Reinstatement for listed fabric can outrun index-linked cover by a meaningful margin. The point of the review is to find that gap before a claim does." },
       ],
     },
@@ -148,7 +148,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       "A thatched cottage in a country garden, the kind of home standard insurers often decline or load heavily.",
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
-      "A House Record book beside a brass globe sconce and a pink peony, standing in for the sweeping records and maintenance history a thatch underwriter reviews.",
+      "A leather ledger beside a brass globe sconce and a pink peony, standing in for the sweeping records and maintenance history a thatch underwriter reviews.",
     whyImage: "/insurance/thatched-why.webp",
     whyImageAlt:
       "A thatched roof detail with a brick chimney and an eyebrow window, the craft and maintenance a thatch underwriter reads.",
@@ -172,7 +172,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       heading: "What underwriters actually look at",
       body: [
         "The concern with thatch is fire, and the questions that follow are specific: the chimney and any wood-burner, the presence of a lining and spark arrestor, sweeping records, an up-to-date electrical inspection, and the type and age of the thatch itself.",
-        "This is the strongest version of the House's argument anywhere on the site: documenting exactly these things is what turns a declined risk into an insurable one.",
+        "Documenting exactly these things is what can turn a risk a standard insurer declines into one a specialist will cover.",
       ],
     },
     detail: {
@@ -180,7 +180,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       points: [
         { h: "The risk factors", p: "Lining, spark arrestors, sweeping frequency and electrical safety are what a specialist underwriter weighs. Documented maintenance is directly relevant to the terms offered." },
         { h: "Premium reality", p: "Thatch typically adds to a household premium, and because most thatched homes are also listed, the two effects compound. Ranges are indicative and settled case by case." },
-        { h: "Fire, discussed plainly", p: "This page treats fire as a factual underwriting matter, not a fear. No disaster imagery, no pressure." },
+        { h: "Fire, discussed plainly", p: "Fire is a factual underwriting matter, not a fear. No disaster imagery, no pressure." },
       ],
     },
     placed: {
@@ -210,7 +210,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       "A home of non-standard construction, the kind an automated quote cannot read and a specialist underwriter must.",
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
-      "A House Record ledger and a construction drawing on a sage sill, representing the detail of how a non-standard home is built that an underwriter needs described.",
+      "A leather ledger and a construction drawing on a sage sill, representing the detail of how a non-standard home is built that an underwriter needs described.",
     whyImageSpec: {
       description: "A detail of an unusual wall build: exposed cob, flint, timber frame or single-skin stone, showing the fabric an automated quote cannot read.",
       dimensions: "1600 × 1067px landscape (3:2), WebP",
@@ -267,7 +267,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       "A holiday home standing quiet, the kind left unoccupied for periods where standard policies most often decline a claim.",
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
-      "A House Record book and drawings on a sill, standing for the occupancy and use details that let a second or holiday home sit within one arranged policy.",
+      "A leather ledger and drawings on a sill, standing for the occupancy and use details that let a second or holiday home sit within one arranged policy.",
     whyImage: "/insurance/second-homes-why.webp",
     whyImageAlt:
       "A second home shut up quietly for the season, the kind of place standard cover is not built for.",
@@ -321,14 +321,14 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     hero: {
       eyebrow: "Specialist property",
       heading: "An empty house is still a home, and it still needs cover.",
-      lede: "There are 309,856 long-term empty homes in England. Behind most of them is a difficult moment: probate, a move that has not completed, a house between phases of work. This is a calm, practical page, not a sales one.",
+      lede: "There are 309,856 long-term empty homes in England. Behind most of them is a difficult moment: probate, a move that has not completed, a house between phases of work. Calm and practical, with nothing to sell you.",
     },
     image: "/insurance/probate.webp",
     imageAlt:
       "A home standing empty during probate or between owners, shut up and still.",
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
-      "A House Record ledger and a fountain pen resting on a calm sage surface, evoking the inspection notes and conditions kept for an empty or probate property.",
+      "A leather ledger and a fountain pen resting on a calm sage surface, evoking the inspection notes and conditions kept for an empty or probate property.",
     whyImageSpec: {
       description: "An empty room in calm daylight, dust sheets over furniture. A home between chapters, dignified and still, nothing bleak.",
       dimensions: "1600 × 1067px landscape (3:2), WebP",
@@ -360,7 +360,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       points: [
         { h: "Why the old policy may have lapsed", p: "Standard cover typically ends once a home passes its unoccupancy limit, so a house that has been empty for a while is often uninsured exactly when it is most exposed." },
         { h: "What insurers ask for", p: "Regular inspections, water systems drained down, secure boarding where needed, and heating managed through winter are the usual conditions. A specialist policy sets these out plainly." },
-        { h: "No urgency here", p: "There is no countdown on this page and there never will be. When you are ready, a specialist will talk it through." },
+        { h: "No urgency here", p: "There is no countdown here, and there never will be. When you are ready, a specialist will talk it through." },
       ],
     },
     placed: {
@@ -386,7 +386,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       "A home mid-renovation, insured under one policy over the existing structure and the contract works for the life of the project.",
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
-      "A House Record book beside building drawings on a sill, standing for the contract and works documents a single renovation policy is written around.",
+      "A leather ledger beside building drawings on a sill, standing for the contract and works documents a single renovation policy is written around.",
     whyImageSpec: {
       description: "A home mid-works from inside: scaffold, bare plaster, protected floors and daylight through an opening. Ordered rather than chaotic.",
       dimensions: "1600 × 1067px landscape (3:2), WebP",
@@ -444,7 +444,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       "Fine art and collected pieces, the things worth scheduling and valuing individually rather than leaving to a general contents limit.",
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
-      "A House Record book and a fountain pen on a sage surface, standing for the inventory of scheduled and valued items a specialist policy is built around.",
+      "A leather ledger and a fountain pen on a sage surface, standing for the inventory of scheduled and valued items a specialist policy is built around.",
     whyImage: "/insurance/fine-art-why.webp",
     whyImageAlt:
       "An open leather jewellery box of gold rings, chains and a locket, the scheduled pieces a general contents limit rarely covers.",
@@ -474,7 +474,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     detail: {
       title: "How it is handled",
       points: [
-        { h: "Valuation", p: "Scheduled items should be valued, and revalued as markets move. The House does not appraise or advise on value; it records what you hold and introduces the specialist who can." },
+        { h: "Valuation", p: "Scheduled items should be valued, and revalued as markets move. The House does not appraise or advise on value; it simply introduces the specialist who can." },
         { h: "The ancillary network", p: "Provenance's proposition extends beyond the policy to collection management, restoration, security and valuation partners." },
         { h: "Newer asset classes", p: "Watches, wine, streetwear and design are handled seriously and without condescension." },
       ],
@@ -502,7 +502,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       "A classic car, treated as part of the same estate as the home and consolidated onto one renewal date.",
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
-      "A House Record book and pen on a sage surface, standing for the agreed-value schedule that lets a prestige vehicle sit on one renewal date with the home.",
+      "A leather ledger and pen on a sage surface, standing for the agreed-value schedule that lets a prestige vehicle sit on one renewal date with the home.",
     whyImage: "/insurance/motor-why.webp",
     whyImageAlt:
       "A classic green sports car in a manor garage with driving gloves on the bonnet and the house beyond, an estate rather than a showroom.",
@@ -523,7 +523,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       filename: "/insurance/motor-why.webp",
     },
     whyDifferent: {
-      heading: "The consolidation argument",
+      heading: "One estate, one renewal date",
       body: [
         "This is a mature, competitive niche, and the honest reason to arrange a prestige or classic vehicle through the House is not price. It is that the vehicle sits on the same renewal date as the home, with one specialist across the whole estate.",
         "Agreed value is the mechanism that matters: the figure the vehicle is insured for is settled up front, not argued after a loss.",
@@ -611,7 +611,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       "A warm, well-kept British home interior, standing for a home whose heating is looked after.",
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
-      "A House Record book beside service notes, standing for the boiler service history a cover plan is built around.",
+      "A leather ledger beside service notes, standing for the boiler service history a cover plan is built around.",
     whyImage: "/insurance/boiler-why.webp",
     whyImageAlt:
       "A well-kept boiler and heating system, the age and service history a cover plan is built around.",
@@ -669,7 +669,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       "A considered British kitchen interior, standing for the household appliances a home relies on.",
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
-      "A House Record book and receipts, standing for the appliance details a cover plan is built around.",
+      "A leather ledger and receipts, standing for the appliance details a cover plan is built around.",
     whyImage: "/insurance/appliance-why.webp",
     whyImageAlt:
       "A considered British kitchen, the household appliances a cover plan is built around.",
@@ -1053,7 +1053,7 @@ export const BUSINESS_SPECIALIST_PAGES: SpecialistPage[] = [
     hero: {
       eyebrow: "Business",
       heading: "The cover a working business needs, without the aggregator guesswork.",
-      lede: "Brokers hold most of the UK commercial market for a reason: business risk does not fit a comparison form. Introductions here are warm B2B, through a network the House already knows.",
+      lede: "Brokers hold most of the UK commercial market for a reason: business risk does not fit a comparison form. These are introductions through a network the House already knows and trusts.",
     },
     image: "/insurance/cat-business.webp",
     imageAlt: "The trades and studios in the House's own network, covered for commercial, liability and professional risk.",
@@ -1084,10 +1084,10 @@ export const BUSINESS_SPECIALIST_PAGES: SpecialistPage[] = [
       { h: "What is already held", p: "The cover in place today, reviewed for gaps and overlaps." },
     ],
     detail: {
-      title: "The silent review",
+      title: "A free review of the cover you hold",
       points: [
         { h: "A free review of what you hold", p: "Provenance will review your existing arrangements and identify gaps, underinsurance and where the premium can be benchmarked. No obligation, and nothing changes unless you decide it should." },
-        { h: "Built for relationships, not rate", p: "The UK commercial market is soft, so this is built for the long relationship and the cross-sell, not for a quick saving. That is the honest position." },
+        { h: "Built for relationships, not rate", p: "The UK commercial market is soft, so this is built for a lasting relationship rather than a one-off saving. That is the honest position." },
         { h: "One conversation across the estate", p: "Where a member's home and business both need cover, they can sit with one adviser rather than two." },
       ],
     },
@@ -1113,7 +1113,7 @@ export const BUSINESS_SPECIALIST_PAGES: SpecialistPage[] = [
     hero: {
       eyebrow: "Business",
       heading: "Being properly insured and being House Approved are the same conversation.",
-      lede: "Construction is the largest single sector of UK small business, and it is the House's own supply chain, which makes it the warmest introduction route there is.",
+      lede: "Construction is the largest single sector of UK small business, and these are the trades the House already works with, which makes the introduction a natural one.",
     },
     image: "/insurance/trades-hero.webp",
     imageAlt: "A House Approved trade at work, the kind of professional the House introduces for commercial cover.",

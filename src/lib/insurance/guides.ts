@@ -147,7 +147,7 @@ export const GUIDES: Guide[] = [
       "Insurance is bought at exactly one moment in the year, and the price moves depending on when you buy. A little timing is one of the few genuinely free savings available.",
     image: "/insurance/house-record.webp",
     imageAlt:
-      "A House Record book and a fountain pen on a sage surface beside a brass sconce and a peony, evoking the single diarised note that catches the right renewal window.",
+      "A leather ledger and a fountain pen on a sage surface beside a brass sconce and a peony, evoking the single diarised note that catches the right renewal window.",
     sections: [
       { heading: "The window", paras: [
         "Cover tends to be cheapest between 5 and 25 days before renewal, with the sweet spot around 15 days out. Bought on renewal day itself it averages meaningfully more than bought at the right moment; the difference is real money for doing nothing but timing it.",

@@ -244,7 +244,7 @@ export function SpecialistPage({
             </h2>
             <p className="mt-5 font-sans text-[17px] leading-[1.7] text-house-cream/85">{data.placed.body}</p>
             <p className="mt-5 font-sans text-[15px] leading-[1.6] text-house-cream/70">
-              Provenance is authorised and regulated by the FCA (FRN {PROVENANCE.frn}), a member of BIBA, and part of the {PROVENANCE.group} group, owned by {PROVENANCE.backer} — whose profits go to charitable causes.
+              Provenance is authorised and regulated by the FCA (FRN {PROVENANCE.frn}), a member of BIBA, and part of the {PROVENANCE.group} group, owned by {PROVENANCE.backer}, whose profits go to charitable causes.
             </p>
             {data.crossLinks && data.crossLinks.length > 0 ? (
               <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 p-0">

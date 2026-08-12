@@ -64,7 +64,7 @@ export default function HowThisWorks() {
             <p>Provenance places business with markets in the {PROVENANCE.backer} group, a charity-owned insurer. Benefact gave £28.3m to charitable causes in 2025 and more than £275m since 2014, is the third-largest corporate donor in the UK, and is AM Best A rated. Benefact gives all its available profits to good causes, so every policy placed supports UK charities, at no extra cost to you. This is verifiable, and it is unusual, and it is the part we are happiest to put in writing.</p>
           </Block>
           <Block eyebrow="How the House is paid">
-            <p>The House receives a share of the commission Provenance earns, at inception and on renewal. We would rather say the shape of it plainly than pretend the introduction is free: an introduction that pays nobody tends not to last, and a lasting relationship is the point.</p>
+            <p>As the introducer, the House receives a share of Provenance's commission when a policy starts and at renewal. We would rather tell you that plainly than leave it unsaid.</p>
           </Block>
           <Block eyebrow="What the House contributes in return">
             <p>The House brings the part a comparison form cannot: a considered introduction to a genuine specialist, the ongoing care of the home through its Home Protection service, and the renewal timing kept in view. That is the work, and it is what earns the share.</p>
