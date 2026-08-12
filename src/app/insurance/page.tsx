@@ -93,7 +93,7 @@ export default function InsuranceHub() {
       </section>
 
       {/* Find your cover — self-serve search across every cover */}
-      <section className="px-[5vw] py-14" style={{ background: "var(--color-house-cream-dark)" }}>
+      <section id="find-cover" className="scroll-mt-24 px-[5vw] py-14" style={{ background: "var(--color-house-cream-dark)" }}>
         <div className="mx-auto max-w-[1180px]">
           <p className="mb-2 font-sans text-[16.5px] leading-[1.6] text-house-brown/85">Know what you are looking for? Search every cover the House introduces.</p>
           <CoverFinder />

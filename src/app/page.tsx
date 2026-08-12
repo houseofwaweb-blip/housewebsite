@@ -194,6 +194,12 @@ export default async function HomePage() {
             ))}
           </div>
 
+          <div className="mt-7">
+            <Link href="/insurance#find-cover" className="inline-flex items-center justify-center whitespace-nowrap border border-house-cream/40 px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-house-cream no-underline transition-colors hover:border-house-cream hover:bg-house-cream/10">
+              View all covers →
+            </Link>
+          </div>
+
           <p className="mt-6 max-w-[80ch] font-sans text-[14px] leading-[1.6] text-house-cream/70">
             House of Willow Alexander acts as an introducer. Insurance and cover are arranged and provided by regulated third parties, including Provenance Insurance Brokers Ltd (FCA FRN 804047). Full details are shown before you leave the site.
           </p>
