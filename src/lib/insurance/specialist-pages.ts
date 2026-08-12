@@ -567,6 +567,9 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     whyImage: "/insurance/boiler-why.webp",
     whyImageAlt:
       "A well-kept boiler and heating system, the age and service history a cover plan is built around.",
+    differenceImage: "/insurance/boiler-difference.webp",
+    differenceImageAlt:
+      "A boiler and heating detail, the system and its service history a plan is priced on.",
     whyImageSpec: {
       description: "A heating engineer's hands servicing a boiler, or a neat, well-kept plant room or airing cupboard. Competent and reassuring.",
       dimensions: "1600 × 1067px landscape (3:2), WebP",
@@ -619,6 +622,12 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
       "A House Record book and receipts, standing for the appliance details a cover plan is built around.",
+    whyImage: "/insurance/appliance-why.webp",
+    whyImageAlt:
+      "A considered British kitchen, the household appliances a cover plan is built around.",
+    differenceImage: "/insurance/appliance-difference.webp",
+    differenceImageAlt:
+      "A kitchen appliance detail, the age and replacement cost a specialist asks about.",
     whyImageSpec: {
       description: "A calm British kitchen detail: integrated appliances in a considered kitchen, or a hand loading a washing machine. Everyday and well-kept.",
       dimensions: "1600 × 1067px landscape (3:2), WebP",
