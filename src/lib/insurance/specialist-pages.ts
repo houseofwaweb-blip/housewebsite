@@ -795,6 +795,12 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
     },
     image: "/insurance/ev-pet.webp",
     imageAlt: "A pet's collar, leash and travel things on a table, standing for everyday pet and travel cover.",
+    whyImage: "/insurance/pet-why.webp",
+    whyImageAlt:
+      "A pet at home in soft light, the animal a short conversation shapes the cover around.",
+    differenceImage: "/insurance/pet-difference.webp",
+    differenceImageAlt:
+      "A pet and travel still life, the animal and the trip a comparison form never asks about.",
     whyImageSpec: {
       description: "A dog or cat at home in soft light, or a packed weekend bag by the door. Warm and domestic.",
       dimensions: "1600 × 1067px landscape (3:2), WebP",
