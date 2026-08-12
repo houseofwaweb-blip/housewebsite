@@ -23,9 +23,13 @@ export function CoverFinder() {
       .map((t) => t.trim())
       .filter((t) => t.length >= 2 && !STOP.has(t));
     if (tokens.length === 0) return ALL_COVERS;
-    // Every word must match a WHOLE word: "car" hits "car"/"classic car" but not
-    // "carpenter" or "caravan"; multi-word queries ("gold necklace") need all words.
-    const regexes = tokens.map((t) => new RegExp("\\b" + t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b"));
+    // Short words (≤3: car, pet, art) match a whole word so "car" doesn't hit
+    // "carpenter"; longer words (≥4) match a word PREFIX so half-written queries
+    // work ("neckla" → necklace, "toyot" → toyota). All words must match.
+    const regexes = tokens.map((t) => {
+      const esc = t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      return t.length >= 4 ? new RegExp("\\b" + esc) : new RegExp("\\b" + esc + "\\b");
+    });
     return ALL_COVERS.filter((c) => {
       const hay = `${c.name} ${c.blurb} ${c.group} ${c.tags.join(" ")}`.toLowerCase();
       return regexes.every((re) => re.test(hay));
