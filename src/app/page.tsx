@@ -117,9 +117,9 @@ export default async function HomePage() {
             <p className="mt-6 max-w-[52ch] font-sans text-[clamp(17px,1.9vw,20px)] leading-[1.6] text-house-brown">
               <strong className="font-semibold text-house-black">Home &amp; pet insurance</strong> and <strong className="font-semibold text-house-black">boiler &amp; appliance cover</strong>, a <strong className="font-semibold text-house-black">curated home &amp; garden shop</strong>, and a <strong className="font-semibold text-house-black">journal</strong> on looking after your home.
             </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Link href="/insurance" className={BTN_PRIMARY}>Get covered</Link>
-              <Link href="/shop" className={BTN_SECONDARY}>Shop all products</Link>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:max-w-[500px]">
+              <Link href="/insurance" className={`${BTN_PRIMARY} w-full sm:flex-1`}>Get covered</Link>
+              <Link href="/shop" className={`${BTN_SECONDARY} w-full sm:flex-1`}>Shop all products</Link>
             </div>
           </div>
         </div>
