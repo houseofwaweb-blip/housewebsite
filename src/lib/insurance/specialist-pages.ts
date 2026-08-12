@@ -94,6 +94,9 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       dimensions: "1600 × 1067px landscape (3:2), WebP",
       filename: "/insurance/listed-why.webp",
     },
+    differenceImage: "/insurance/listed-difference.webp",
+    differenceImageAlt:
+      "A stone archway set in a weathered red-brick listed facade, the heritage fabric a specialist reads that a comparison form cannot.",
     whyDifferent: {
       heading: "Why a listed building is a different risk",
       body: [
@@ -208,6 +211,9 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       dimensions: "1600 × 1067px landscape (3:2), WebP",
       filename: "/insurance/non-standard-why.webp",
     },
+    whyImage: "/insurance/non-standard-why.webp",
+    whyImageAlt:
+      "A detail of non-standard construction: timber framing, cob infill and a stone plinth, the fabric an automated quote cannot read.",
     differenceIntro:
       "A comparison engine asks a fixed set of questions and prices off the answers. Non-standard construction is exactly the case those questions were never written for.",
     readiness: [
