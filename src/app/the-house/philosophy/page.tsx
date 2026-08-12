@@ -40,8 +40,8 @@ Everything the House does, the design commissions, the services, the Hearth, is 
 Institutions replace that, at scale and across generations. They hold memory, standards, and trust in one place so every new member doesn't have to rebuild them from scratch. The House is that idea, applied to a home.`,
     image: {
       src: "/the-house/editorial/record-book-peony.webp",
-      alt: "A writing-desk still life: the house record book, a globe, a brass sconce and a peony.",
-      caption: "Memory, standards and trust, kept in one place.",
+      alt: "A writing-desk still life: a leather ledger, a globe, a brass sconce and a peony.",
+      caption: "Standards, care and continuity, in one place.",
     },
   },
 ];

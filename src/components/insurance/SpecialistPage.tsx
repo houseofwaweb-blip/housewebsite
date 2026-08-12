@@ -226,7 +226,7 @@ export function SpecialistPage({
       </section>
 
       {/* 7. What Provenance can place — dark burgundy band, the bottom anchor.
-          Split with the shared "House Record" still-life on every page. */}
+          Split with the shared "Provenance Insurance" still-life on every page. */}
       <section className="px-[5vw] py-14 text-house-cream" style={{ background: "var(--ins-accent)" }}>
         <div className="mx-auto grid max-w-[1120px] items-center gap-10 lg:grid-cols-[1fr_0.66fr] lg:gap-16">
           <div className="max-w-[64ch]">

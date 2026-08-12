@@ -43,7 +43,7 @@ export const BUSINESS_PAGES: BusinessPage[] = [
       "The trades and studios in the House's own network, covered for commercial, liability and professional risk.",
     whoImage: "/insurance/house-record.webp",
     whoImageAlt:
-      "A House Record ledger, brass sconce and a fountain pen on a sage surface, standing for the free silent review of the cover a working business already holds.",
+      "A leather ledger, brass sconce and a fountain pen on a sage surface, standing for the free silent review of the cover a working business already holds.",
     who: {
       heading: "Who this is for",
       body: [
@@ -86,7 +86,7 @@ export const BUSINESS_PAGES: BusinessPage[] = [
       "A sunlit period drawing room with a marble fireplace, gilt-framed pictures and armfuls of cut flowers, the kind of home a House Approved trade is trusted to work in.",
     whoImage: "/insurance/house-record.webp",
     whoImageAlt:
-      "A House Record book and a fountain pen resting on a sage surface, standing for the liability, tools and contract-works cover a trade needs set down clearly.",
+      "A leather ledger and a fountain pen resting on a sage surface, standing for the liability, tools and contract-works cover a trade needs set down clearly.",
     who: {
       heading: "What a trade actually needs",
       body: [
@@ -124,7 +124,7 @@ export const BUSINESS_PAGES: BusinessPage[] = [
       "A refined period interior with a marble chimneypiece, framed pictures and abundant fresh flowers, the kind of work architects and designers carry lasting liability for.",
     whoImage: "/insurance/house-record.webp",
     whoImageAlt:
-      "A House Record book and drawings on a sage sill, standing for the drawings and specifications whose professional-indemnity exposure outlives the job.",
+      "A leather ledger and drawings on a sage sill, standing for the drawings and specifications whose professional-indemnity exposure outlives the job.",
     who: {
       heading: "Who it is for",
       body: [

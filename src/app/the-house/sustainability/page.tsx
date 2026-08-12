@@ -30,8 +30,8 @@ Travel impact for our own operations: miles driven by services teams, consolidat
 End-of-life plans for everything we sell: how it's repaired, how it's returned if it ever needs to be, and what happens to it when the next owner has had their turn.`,
     image: {
       src: "/the-house/editorial/record-book-toolkit.webp",
-      alt: "The house record book beside a toolkit on a sage cloth.",
-      caption: "Tracked, recorded, kept honest.",
+      alt: "A leather ledger beside a toolkit on a sage cloth.",
+      caption: "Made, repaired, kept honest.",
     },
   },
   {
