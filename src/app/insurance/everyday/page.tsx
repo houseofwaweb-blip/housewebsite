@@ -51,19 +51,19 @@ export default function EverydayHub() {
 
       {/* Products, each an image card that hands off to the Provenance-operated service */}
       <section className="px-[5vw] pt-10 pb-10">
-        <div className="mx-auto grid max-w-[760px] gap-6 sm:grid-cols-2">
+        <div className="mx-auto grid max-w-[1120px] gap-x-8 gap-y-10 sm:grid-cols-2">
           {PRODUCTS.map((p) => (
             <Link
               key={p.name}
               href={`/insurance/everyday/${p.slug}`}
               className="group flex flex-col overflow-hidden border border-house-brown/12 bg-house-white no-underline transition-[border-color,box-shadow] hover:border-[color:var(--ins-ink)] hover:shadow-[0_14px_40px_-24px_rgba(0,0,0,0.4)]"
             >
-              <div className="relative aspect-[4/5] w-full overflow-hidden">
+              <div className="relative aspect-[4/3] w-full overflow-hidden">
                 <Image
                   src={p.image}
                   alt={p.imageAlt}
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 280px"
+                  sizes="(max-width: 640px) 100vw, 540px"
                   className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                 />
               </div>

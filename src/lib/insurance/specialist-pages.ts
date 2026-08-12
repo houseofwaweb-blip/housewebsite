@@ -54,6 +54,18 @@ export type SpecialistPage = {
   crossLinks?: { label: string; href: string }[];
   /** For form attribution. */
   enquiryType: string;
+  /** Hero CTA label; defaults to "Speak to a specialist" (business uses "Request a review"). */
+  heroCta?: string;
+  /** Enquiry section overrides — lets B2B pages reframe and add a company field. */
+  enquiry?: {
+    eyebrow?: string;
+    heading?: string;
+    body?: string;
+    submitLabel?: string;
+    withCompany?: boolean;
+  };
+  /** Attribution path override; defaults to /insurance/[slug]. */
+  sourcePath?: string;
 };
 
 export const SPECIALIST_PAGES: SpecialistPage[] = [
@@ -74,6 +86,9 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
       "A worn House Record ledger propped against a heritage rebuild drawing, a brass sconce and a pink peony beside it, evoking the documented history a heritage underwriter wants to see.",
+    whyImage: "/insurance/listed-why.webp",
+    whyImageAlt:
+      "A weathered listed-building facade: a carved stone cartouche, a sash window and aged brickwork, the heritage fabric a like-for-like rebuild must match.",
     whyImageSpec: {
       description: "A close, tactile detail of heritage repair done properly: a stonemason re-pointing lime mortar, or original sash joinery being restored by hand. Warm and documentary, no faces needed.",
       dimensions: "1600 × 1067px landscape (3:2), WebP",
@@ -126,6 +141,20 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
       "A House Record book beside a brass globe sconce and a pink peony, standing in for the sweeping records and maintenance history a thatch underwriter reviews.",
+    whyImage: "/insurance/thatched-why.webp",
+    whyImageAlt:
+      "A thatched roof detail with a brick chimney and an eyebrow window, the craft and maintenance a thatch underwriter reads.",
+    differenceIntro:
+      "Most insurers see the word 'thatch' and either decline it or load it. The House introduces you to a specialist who asks the questions that actually price the risk.",
+    readiness: [
+      { h: "The thatch", p: "Its type, age and condition, and when it was last re-ridged." },
+      { h: "The chimney", p: "Any wood-burner, its lining and a spark arrestor." },
+      { h: "Sweeping records", p: "How often the chimney is swept, which underwriters weigh directly." },
+      { h: "The electrics", p: "An up-to-date inspection, the other common source of fire risk." },
+    ],
+    differenceImage: "/insurance/thatched-difference.webp",
+    differenceImageAlt:
+      "A thatched property detail, standing for the specific risk factors a thatch specialist reviews.",
     whyImageSpec: {
       description: "A thatcher at work on a roof ridge, or a crisp detail of a freshly combed straw ridge against sky. Craft and maintenance, not fire.",
       dimensions: "1600 × 1067px landscape (3:2), WebP",
@@ -179,6 +208,14 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       dimensions: "1600 × 1067px landscape (3:2), WebP",
       filename: "/insurance/non-standard-why.webp",
     },
+    differenceIntro:
+      "A comparison engine asks a fixed set of questions and prices off the answers. Non-standard construction is exactly the case those questions were never written for.",
+    readiness: [
+      { h: "What it's built of", p: "Timber frame, cob, stone, flint, single-skin or steel, read individually, not by category." },
+      { h: "The walls", p: "Solid-wall and single-skin construction that sits outside cavity-wall assumptions." },
+      { h: "The system", p: "For post-war and prefabricated types, the specific system and its known issues." },
+      { h: "What's been done", p: "Repairs, retrofits and how the fabric has been kept sound." },
+    ],
     whyDifferent: {
       heading: "Why a form cannot handle it",
       body: [
@@ -360,6 +397,9 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       dimensions: "1600 × 1067px landscape (3:2), WebP",
       filename: "/insurance/fine-art-why.webp",
     },
+    differenceImage: "/insurance/fine-art-difference.webp",
+    differenceImageAlt:
+      "A gilt-framed landscape painting, a bronze rearing horse on marble and a floral urn on dark wood, the kind of collected things a comparison form never asks about.",
     differenceIntro:
       "Most contents cover is priced from a single figure and a postcode, and never asks what the valuable things actually are. The House introduces you to a specialist who starts from the pieces themselves.",
     readiness: [
@@ -768,3 +808,188 @@ export function getEverydaySpecialistPage(slug: string): SpecialistPage | undefi
 }
 
 export const EVERYDAY_SPECIALIST_SLUGS = EVERYDAY_SPECIALIST_PAGES.map((p) => p.slug);
+
+/**
+ * Business (B2B) pages, rendered on the SAME SpecialistPage template. They keep
+ * the "Request a review" silent-review device (hero CTA + enquiry), add a
+ * company field, and carry their own commercial "questions a comparison form
+ * never asks" set. The hub lives at /insurance/business; the rest under it.
+ */
+const BUSINESS_ENQUIRY = {
+  eyebrow: "Request a review",
+  heading: "A free review, not a hard sell.",
+  body: "Leave your details and a specialist will call to arrange a free, no-obligation review of the cover you already hold. We ask only what we need to make the introduction; the detail belongs on your first call with Provenance.",
+  submitLabel: "Request a review",
+  withCompany: true,
+} as const;
+
+export const BUSINESS_SPECIALIST_PAGES: SpecialistPage[] = [
+  {
+    slug: "business",
+    title: "Business insurance",
+    metaTitle: "Business insurance broker introductions",
+    metaDescription:
+      "Warm B2B insurance introductions for the House's contractor, supplier and member network. A free silent review of existing cover. Introduced by the House, arranged by Provenance.",
+    hero: {
+      eyebrow: "Business",
+      heading: "The cover a working business needs, without the aggregator guesswork.",
+      lede: "Brokers hold most of the UK commercial market for a reason: business risk does not fit a comparison form. Introductions here are warm B2B, through a network the House already knows.",
+    },
+    image: "/insurance/cat-business.webp",
+    imageAlt: "The trades and studios in the House's own network, covered for commercial, liability and professional risk.",
+    whyImageSpec: {
+      description: "A working studio or workshop in the House's network: hands at a bench, a site meeting, or tools in use. Real work, well kept.",
+      dimensions: "1600 × 1067px landscape (3:2), WebP",
+      filename: "/insurance/business-why.webp",
+    },
+    whyDifferent: {
+      heading: "Who this is for",
+      body: [
+        "The House's contractor and supplier network, members running their own businesses, and the House's own operating companies.",
+        "If you already work with the House, you are a known quantity, which is the strongest starting point a specialist broker can have.",
+      ],
+    },
+    differenceIntro:
+      "Business risk is the one thing a comparison form genuinely cannot price. A broker reads the actual exposure of the actual business.",
+    readiness: [
+      { h: "What the business does", p: "The real activities, sites and headcount, not a category code." },
+      { h: "The liabilities", p: "Public, employers' and product liability, sized to the work." },
+      { h: "The moving parts", p: "Tools, stock, fleet, premises and cyber, wherever the exposure sits." },
+      { h: "What is already held", p: "The cover in place today, reviewed for gaps and overlaps." },
+    ],
+    detail: {
+      title: "The silent review",
+      points: [
+        { h: "A free review of what you hold", p: "Provenance will review your existing arrangements and identify gaps, underinsurance and where the premium can be benchmarked. No obligation, and nothing changes unless you decide it should." },
+        { h: "Built for relationships, not rate", p: "The UK commercial market is soft, so this is built for the long relationship and the cross-sell, not for a quick saving. That is the honest position." },
+        { h: "One conversation across the estate", p: "Where a member's home and business both need cover, they can sit with one adviser rather than two." },
+      ],
+    },
+    placed: {
+      heading: "What Provenance can place",
+      body: "Business combined, professional indemnity, directors' and officers', property owners, fleet from two vehicles, motor trade and cyber. The House introduces you; Provenance arranges and administers the cover.",
+    },
+    crossLinks: [
+      { label: "Trades & contractors", href: "/insurance/business/trades-and-contractors" },
+      { label: "Professional indemnity", href: "/insurance/business/professional-indemnity" },
+    ],
+    heroCta: "Request a review",
+    enquiry: BUSINESS_ENQUIRY,
+    sourcePath: "/insurance/business",
+    enquiryType: "business",
+  },
+  {
+    slug: "trades-and-contractors",
+    title: "Trades and contractors",
+    metaTitle: "Tradesman and contractor insurance",
+    metaDescription:
+      "Public and employers' liability, tools, contract works and professional indemnity for trades and contractors. The House's own supply chain. Introduced by the House, arranged by Provenance.",
+    hero: {
+      eyebrow: "Business",
+      heading: "Being properly insured and being House Approved are the same conversation.",
+      lede: "Construction is the largest single sector of UK small business, and it is the House's own supply chain, which makes it the warmest introduction route there is.",
+    },
+    image: "/insurance/interior-editorial.webp",
+    imageAlt: "A sunlit period drawing room with a marble fireplace, gilt-framed pictures and armfuls of cut flowers, the kind of home a House Approved trade is trusted to work in.",
+    whyImageSpec: {
+      description: "A House Approved trade at work in a fine period home: careful hands, dust sheets, tools laid out with care.",
+      dimensions: "1600 × 1067px landscape (3:2), WebP",
+      filename: "/insurance/trades-why.webp",
+    },
+    whyDifferent: {
+      heading: "What a trade actually needs",
+      body: [
+        "Public and employers' liability, tools cover, contract works, and professional indemnity where design is part of the job. A specialist puts the right combination together rather than a one-size policy.",
+        "For anyone on, or applying to, the House Approved list, this is the same standard-and-cover conversation.",
+      ],
+    },
+    differenceIntro:
+      "A trade's risk changes with every job, site and hire. A comparison form prices a category; a specialist prices the work.",
+    readiness: [
+      { h: "The work", p: "The trades carried out, and the sites and clients they are done for." },
+      { h: "Liability limits", p: "Public and employers' liability set against real jobs and headcount." },
+      { h: "Tools and works", p: "The tools that earn the living, and the contract works while live." },
+      { h: "Design exposure", p: "Professional indemnity where any design or specification is involved." },
+    ],
+    detail: {
+      title: "The detail",
+      points: [
+        { h: "Liability, sized to the work", p: "Public and employers' liability limits are set against the actual jobs, sites and headcount, not a default figure." },
+        { h: "Tools and contract works", p: "Cover for the tools that earn the living, and for the works themselves while a project is live." },
+        { h: "Indicative premiums", p: "Tradesperson cover typically runs around £360 to £540 a year. Figures are indicative and confirmed case by case, pending Provenance sign-off." },
+      ],
+    },
+    placed: {
+      heading: "What Provenance can place",
+      body: "Liability, tools, contract works, professional indemnity and the wider commercial combined cover a trade needs. The House introduces you; Provenance arranges and administers the cover.",
+    },
+    crossLinks: [
+      { label: "Professional indemnity", href: "/insurance/business/professional-indemnity" },
+      { label: "Business insurance overview", href: "/insurance/business" },
+    ],
+    heroCta: "Request a review",
+    enquiry: BUSINESS_ENQUIRY,
+    sourcePath: "/insurance/business/trades-and-contractors",
+    enquiryType: "trades-and-contractors",
+  },
+  {
+    slug: "professional-indemnity",
+    title: "Professional indemnity",
+    metaTitle: "Professional indemnity insurance",
+    metaDescription:
+      "Professional indemnity for architects, designers, surveyors and consultants, with limits set against real exposure. Introduced by the House, arranged by Provenance.",
+    hero: {
+      eyebrow: "Business",
+      heading: "Cover for advice given, sized to the exposure that actually exists.",
+      lede: "Architects, designers, surveyors and consultants: exactly the professional network around a home-management business, and exactly where a standard limit is often the wrong one.",
+    },
+    image: "/insurance/interior-editorial.webp",
+    imageAlt: "A refined period interior with a marble chimneypiece, framed pictures and abundant fresh flowers, the kind of work architects and designers carry lasting liability for.",
+    whyImageSpec: {
+      description: "An architect's or designer's desk: drawings, a scale rule, a laptop and material samples. Considered professional work.",
+      dimensions: "1600 × 1067px landscape (3:2), WebP",
+      filename: "/insurance/pi-why.webp",
+    },
+    whyDifferent: {
+      heading: "Who it is for",
+      body: [
+        "The professions whose advice, drawings and specifications carry liability long after the job is done.",
+        "Provenance sets the limit against real exposure rather than a round number, which is where most policies are quietly wrong.",
+      ],
+    },
+    differenceIntro:
+      "Professional indemnity is priced on advice and exposure, not a postcode. The right limit is a function of the work, never a round number.",
+    readiness: [
+      { h: "The advice given", p: "The drawings, specifications and consultancy the practice is liable for." },
+      { h: "The right limit", p: "Set against real exposure, contracts and clients, not a default figure." },
+      { h: "Design and construct", p: "Where designing and building overlap, and liability quietly grows." },
+      { h: "Claims-made cover", p: "Continuity across renewals, because gaps in cover bite later." },
+    ],
+    detail: {
+      title: "The detail",
+      points: [
+        { h: "Limits against exposure", p: "How much cover is enough is a function of the work, the contracts and the clients, not a standard figure pulled from a table." },
+        { h: "The design-and-construct trap", p: "The overlap between designing and building catches architects out. A specialist reads where the liability actually sits." },
+        { h: "Renewal continuity", p: "Professional indemnity is claims-made, so continuity of cover matters. It is worth reviewing before, not at, renewal." },
+      ],
+    },
+    placed: {
+      heading: "What Provenance can place",
+      body: "Professional indemnity across the built-environment and consulting professions, alongside the wider business cover a practice needs. The House introduces you; Provenance arranges and administers the cover.",
+    },
+    crossLinks: [
+      { label: "Trades & contractors", href: "/insurance/business/trades-and-contractors" },
+      { label: "Business insurance overview", href: "/insurance/business" },
+    ],
+    heroCta: "Request a review",
+    enquiry: BUSINESS_ENQUIRY,
+    sourcePath: "/insurance/business/professional-indemnity",
+    enquiryType: "professional-indemnity",
+  },
+];
+
+export function getBusinessSpecialistPage(slug: string): SpecialistPage | undefined {
+  return BUSINESS_SPECIALIST_PAGES.find((p) => p.slug === slug);
+}
+
+export const BUSINESS_SPECIALIST_SUB_SLUGS = BUSINESS_SPECIALIST_PAGES.filter((p) => p.slug !== "business").map((p) => p.slug);

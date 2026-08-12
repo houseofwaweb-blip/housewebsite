@@ -26,18 +26,6 @@ const READINESS_DEFAULT = [
 const DIFFERENCE_INTRO_DEFAULT =
   "Most insurance is priced by people who never ask a single thing about the house. The House introduces you to a specialist who starts from what the home actually is, so the cover is built on the real risk rather than a guess.";
 
-/** Landscape image for "The questions a comparison form never asks", beside the
-    header and above the readiness cards. Empty src → on-page placeholder shows. */
-const DIFFERENCE_IMG = "/insurance/the-difference.webp";
-const DIFFERENCE_IMG_ALT =
-  "A gilt-framed landscape painting, a bronze rearing horse on marble and a floral urn on dark wood: the kind of collected things a comparison form never asks about.";
-const DIFFERENCE_IMG_SPEC = {
-  description:
-    "Landscape: a specialist and homeowner in conversation at a kitchen table, or a surveyor's hands with a notebook and tape at a period house. Warm, human, unhurried.",
-  dimensions: "1600 × 1200px landscape (4:3), WebP",
-  filename: "/insurance/the-difference.webp",
-};
-
 /** Shared still-life for the burgundy "What Provenance can place" band, on every page. */
 const PROVENANCE_IMG = "/insurance/provenance-can-place.webp";
 const PROVENANCE_IMG_ALT =
@@ -98,7 +86,7 @@ export function SpecialistPage({
                 href="#enquire"
                 className="inline-flex items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110"
               >
-                Speak to a specialist
+                {data.heroCta ?? "Speak to a specialist"}
               </a>
             </div>
           </div>
@@ -203,12 +191,19 @@ export function SpecialistPage({
                 {data.differenceIntro ?? DIFFERENCE_INTRO_DEFAULT}
               </p>
             </div>
-            {(data.differenceImage ?? DIFFERENCE_IMG) ? (
+            {data.differenceImage ? (
               <div className="relative aspect-[4/3] w-full overflow-hidden">
-                <Image src={data.differenceImage ?? DIFFERENCE_IMG} alt={data.differenceImageAlt ?? DIFFERENCE_IMG_ALT} fill sizes="(min-width: 1120px) 540px, 90vw" style={{ objectFit: "cover", objectPosition: "center" }} />
+                <Image src={data.differenceImage} alt={data.differenceImageAlt ?? ""} fill sizes="(min-width: 1120px) 540px, 90vw" style={{ objectFit: "cover", objectPosition: "center" }} />
               </div>
             ) : (
-              <ImagePlaceholder spec={DIFFERENCE_IMG_SPEC} ratio="aspect-[4/3]" />
+              <ImagePlaceholder
+                spec={{
+                  description: "This page's own landscape image for the 'questions a comparison form never asks' section, chosen to suit this cover.",
+                  dimensions: "1600 × 1067px landscape (3:2), WebP",
+                  filename: `/insurance/${data.slug}-difference.webp`,
+                }}
+                ratio="aspect-[4/3]"
+              />
             )}
           </div>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -259,17 +254,19 @@ export function SpecialistPage({
       <section id="enquire" className="scroll-mt-20 px-[5vw] py-14" style={{ background: "var(--color-house-cream-dark)" }}>
         <div className="mx-auto max-w-[1120px]">
           <div className="max-w-[620px]">
-            <p className="font-sans text-[12px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">Speak to a specialist</p>
+            <p className="font-sans text-[12px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">{data.enquiry?.eyebrow ?? "Speak to a specialist"}</p>
             <h2 className="mt-3 font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-black">
-              A short conversation, not a comparison engine.
+              {data.enquiry?.heading ?? "A short conversation, not a comparison engine."}
             </h2>
             <p className="mt-4 mb-8 max-w-[54ch] font-sans text-[16px] leading-[1.6] text-house-stone">
-              Leave your details and a specialist will call. We ask only what we need to make the introduction, nothing about sums insured, contents or your current insurer. That conversation belongs on your first call with Provenance.
+              {data.enquiry?.body ?? "Leave your details and a specialist will call. We ask only what we need to make the introduction, nothing about sums insured, contents or your current insurer. That conversation belongs on your first call with Provenance."}
             </p>
             <InsuranceEnquiryForm
               enquiryType={data.enquiryType}
               turnstileSiteKey={turnstileSiteKey}
-              sourcePage={`/insurance/${data.slug}`}
+              sourcePage={data.sourcePath ?? `/insurance/${data.slug}`}
+              submitLabel={data.enquiry?.submitLabel}
+              withCompany={data.enquiry?.withCompany}
             />
           </div>
         </div>

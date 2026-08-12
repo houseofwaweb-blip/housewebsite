@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { env } from "@/lib/env";
-import { getBusinessPage } from "@/lib/insurance/business-pages";
-import { BusinessPage } from "@/components/insurance/BusinessPage";
+import { getBusinessSpecialistPage } from "@/lib/insurance/specialist-pages";
+import { SpecialistPage } from "@/components/insurance/SpecialistPage";
 import { insuranceOg } from "@/lib/insurance/og";
 
-/** E1 · /insurance/business, the commercial hub (warm B2B, the silent review). */
+/** E1 · /insurance/business, the commercial hub (warm B2B, the silent review).
+    Renders on the shared SpecialistPage template. */
 export function generateMetadata(): Metadata {
-  const page = getBusinessPage("business");
+  const page = getBusinessSpecialistPage("business");
   return {
     title: page?.metaTitle ?? "Business insurance",
     description: page?.metaDescription,
@@ -16,7 +17,7 @@ export function generateMetadata(): Metadata {
 }
 
 export default function BusinessHub() {
-  const page = getBusinessPage("business");
+  const page = getBusinessSpecialistPage("business");
   if (!page) notFound();
-  return <BusinessPage data={page} turnstileSiteKey={env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? ""} />;
+  return <SpecialistPage data={page} turnstileSiteKey={env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? ""} />;
 }
