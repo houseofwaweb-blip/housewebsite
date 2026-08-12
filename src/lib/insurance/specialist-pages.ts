@@ -564,6 +564,9 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
       "A House Record book beside service notes, standing for the boiler service history a cover plan is built around.",
+    whyImage: "/insurance/boiler-why.webp",
+    whyImageAlt:
+      "A well-kept boiler and heating system, the age and service history a cover plan is built around.",
     whyImageSpec: {
       description: "A heating engineer's hands servicing a boiler, or a neat, well-kept plant room or airing cupboard. Competent and reassuring.",
       dimensions: "1600 × 1067px landscape (3:2), WebP",
