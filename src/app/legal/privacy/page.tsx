@@ -18,7 +18,7 @@ export default async function PrivacyPage() {
       sections={[
         {
           heading: "Overview",
-          body: `We collect only the data we need to provide the site, shop, and services, and we do not sell your personal data. Data you add to your Home Record remains yours; you can export or delete it at any time.
+          body: `We collect only the data we need to provide the site, shop, and services, and we do not sell your personal data. Any information you add through the site remains yours; you can export or delete it at any time.
 
 We share your data with the service providers that operate the site (Sanity, Shopify, Supabase, Vercel, Sentry, Cloudflare) under contract. We use measurement and advertising services from Google, Microsoft, Meta and Pinterest only where you have consented via the cookie banner, and only with hashed identifiers, never raw email or phone. Detail is set out in the [Cookie policy](/legal/cookies).
 

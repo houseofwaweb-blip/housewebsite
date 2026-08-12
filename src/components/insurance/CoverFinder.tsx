@@ -83,12 +83,12 @@ export function CoverFinder() {
       ) : null}
 
       {covers && results.length > 0 ? (
-        <div className="mt-8 grid gap-x-10 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 flex flex-wrap justify-center gap-x-10 gap-y-14">
           {results.map((c) => (
             <Link
               key={c.href}
               href={c.href}
-              className="group flex flex-col overflow-hidden border border-house-brown/12 bg-house-white no-underline transition-[border-color,box-shadow] hover:border-[color:var(--ins-ink)] hover:shadow-[0_14px_40px_-24px_rgba(0,0,0,0.4)]"
+              className="group flex w-full flex-col overflow-hidden border border-house-brown/12 bg-house-white no-underline transition-[border-color,box-shadow] hover:border-[color:var(--ins-ink)] hover:shadow-[0_14px_40px_-24px_rgba(0,0,0,0.4)] sm:w-[calc(50%-1.25rem)] lg:w-[calc(33.333%-1.667rem)]"
             >
               <div className="relative aspect-[4/3] w-full overflow-hidden">
                 <Image src={c.image} alt="" fill sizes="(max-width: 640px) 100vw, 360px" className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" />

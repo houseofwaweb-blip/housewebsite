@@ -37,7 +37,7 @@ const COVERS = [
   },
   {
     title: "Evidence pack",
-    body: "Photographs, detailed notes, and a prioritised works list. Everything documented, nothing left to memory. Kept on record for ongoing reference.",
+    body: "Photographs, detailed notes, and a prioritised works list. Everything documented, nothing left to memory. Yours to keep for ongoing reference.",
   },
   {
     title: "Insurance documentation",
@@ -117,7 +117,7 @@ export default async function HomeProtectionPage() {
               {cms(
                 hero,
                 "body",
-                "A one-day in-person review by House-vetted specialists. A condition review, an evidence pack, and insurance-ready documentation, kept on record and ready for whatever comes next.",
+                "A one-day in-person review by House-vetted specialists. A condition review, an evidence pack, and insurance-ready documentation, yours to keep and ready for whatever comes next.",
               )}
             </p>
             <div className={s.heroCtas}>
@@ -140,7 +140,7 @@ export default async function HomeProtectionPage() {
       <section className={s.statsStrip}>
         <div className={s.statsLede}>
           <p className={s.statsLedeLine1}>
-            {cms(stats, "headline", "One day on-site. One record. Years of clarity.")}
+            {cms(stats, "headline", "One day on-site. One clear pack. Years of clarity.")}
           </p>
           <p className={s.statsLedeLine2}>
             {cms(stats, "subheadline", "The first practical act of Home Protection.")}
@@ -248,13 +248,13 @@ export default async function HomeProtectionPage() {
           </Link>
         </article>
         <article className={s.crossCard}>
-          <p className={s.crossEy}>{cms(crossSell, "subheadline", "One record, kept")}</p>
+          <p className={s.crossEy}>{cms(crossSell, "subheadline", "One pack, joined up")}</p>
           <h3 className={s.crossTitle}>{cms(crossSell, "headlineEm", "Joined up, not repeated", "headline")}</h3>
           <p className={s.crossBody}>
             {cms(
               crossSell,
               "body2",
-              "Your Home Protection evidence feeds directly into the insurance introduction. One conversation, one record, no starting from scratch.",
+              "Your Home Protection evidence feeds directly into the insurance introduction. One conversation, one shared pack, no starting from scratch.",
             )}
           </p>
           <Link href={cms(crossSell, "cta2Href", "#register")} className={s.crossLink}>

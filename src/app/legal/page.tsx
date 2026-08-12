@@ -28,10 +28,10 @@ export default function LegalIndex() {
           </p>
           <p className="font-sans text-[15px] leading-[1.6] text-house-brown/55 mt-6 max-w-[64ch]">
             House services are provided by House of Willow Alexander and its
-            approved partners. Online bookings, your account and the Home Record
-            are powered by HoWA, a separate Home Intelligence service for which
-            House of Willow Alexander is the founding service partner. Information you
-            add to your Home Record is held within HoWA under its own terms.
+            approved partners. Online bookings and your account are handled
+            through HoWA, a separate service operated under its own terms.
+            Information you add there is held within that service, not by
+            House of Willow Alexander.
           </p>
         </div>
       </section>
