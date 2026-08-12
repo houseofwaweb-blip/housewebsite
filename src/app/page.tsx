@@ -4,6 +4,7 @@ import s from "./home-v5/home-v5.module.css";
 import { getLatestHearthArticles } from "@/lib/cms/hearth";
 import { shopifyProvider } from "@/lib/commerce/shopify";
 import { MiniNewsletter } from "@/components/marketing/MiniNewsletter";
+import { DESIGN_VOUCHERS } from "@/lib/design-vouchers";
 
 /**
  * Homepage — Aug 2026 rework (aug12 feedback, variant 1).
@@ -78,9 +79,18 @@ const BTN_SECONDARY = "inline-flex items-center justify-center whitespace-nowrap
 
 export default async function HomePage() {
   const hearthArticles = await getLatestHearthArticles(4).catch(() => []);
-  const shopProducts = await shopifyProvider.listFeaturedProducts(3).catch(() => []);
-  const marketCards = shopProducts.length
-    ? shopProducts.slice(0, 3).map((p) => ({
+  const shopProducts = await shopifyProvider.listFeaturedProducts(12).catch(() => []);
+  // Design edits/plans and care vouchers are sold on their own pages, never as
+  // homeware — keep them out of the Shop rail (same rule as /shop's isPlanProduct).
+  const voucherHandles = new Set(
+    Object.values(DESIGN_VOUCHERS).map((v) => v.handle).filter(Boolean) as string[],
+  );
+  const PLAN_TITLE = /\b(edit|plan|plans|apartment\+|home & garden\+|full house)\b/i;
+  const realProducts = shopProducts.filter(
+    (p) => !voucherHandles.has(p.handle) && !PLAN_TITLE.test(p.title),
+  );
+  const marketCards = realProducts.length
+    ? realProducts.slice(0, 3).map((p) => ({
         name: p.title,
         price: formatMoney(p.price),
         image: p.images[0]?.url ?? null,
