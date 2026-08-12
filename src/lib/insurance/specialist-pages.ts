@@ -705,7 +705,7 @@ const RELATED_BUSINESS = {
   items: [
     { name: "Business insurance", body: "The commercial overview.", href: "/insurance/business", image: "/insurance/cat-business.webp", imageAlt: "The trades and studios in the House's network." },
     { name: "Trades & contractors", body: "Liability, tools and works.", href: "/insurance/business/trades-and-contractors", image: "/insurance/trades-hero.webp", imageAlt: "A House Approved trade at work." },
-    { name: "Professional indemnity", body: "Cover for advice given.", href: "/insurance/business/professional-indemnity", image: "/insurance/interior-editorial.webp", imageAlt: "A refined period interior." },
+    { name: "Professional indemnity", body: "Cover for advice given.", href: "/insurance/business/professional-indemnity", image: "/insurance/pi-hero.webp", imageAlt: "A professional's desk and drawings." },
   ],
 };
 
@@ -1126,8 +1126,14 @@ export const BUSINESS_SPECIALIST_PAGES: SpecialistPage[] = [
       heading: "Cover for advice given, sized to the exposure that actually exists.",
       lede: "Architects, designers, surveyors and consultants: exactly the professional network around a home-management business, and exactly where a standard limit is often the wrong one.",
     },
-    image: "/insurance/interior-editorial.webp",
-    imageAlt: "A refined period interior with a marble chimneypiece, framed pictures and abundant fresh flowers, the kind of work architects and designers carry lasting liability for.",
+    image: "/insurance/pi-hero.webp",
+    imageAlt: "A professional's desk and drawings, the advice and specifications that carry lasting liability.",
+    whyImage: "/insurance/pi-why.webp",
+    whyImageAlt:
+      "An architect's or designer's work, the exposure a specialist sizes against real contracts and clients.",
+    differenceImage: "/insurance/pi-difference.webp",
+    differenceImageAlt:
+      "Professional drawings and advice, the exposure a round-number limit rarely reflects.",
     whyImageSpec: {
       description: "An architect's or designer's desk: drawings, a scale rule, a laptop and material samples. Considered professional work.",
       dimensions: "1600 × 1067px landscape (3:2), WebP",

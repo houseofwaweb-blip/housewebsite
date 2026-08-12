@@ -42,7 +42,7 @@ const BASE_COVERS: CoverIndexEntry[] = [
   { name: "Classic & prestige motor", blurb: "The car, on one renewal date.", href: "/insurance/classic-and-prestige-motor", image: "/insurance/cat-cars.webp", group: "Assets & advice", tags: ["classic car", "classic", "prestige", "supercar", "agreed value"] },
   { name: "Business insurance", blurb: "Warm B2B introductions.", href: "/insurance/business", image: "/insurance/cat-business.webp", group: "Assets & advice", tags: ["business", "commercial", "b2b", "company", "cyber"] },
   { name: "Trades & contractors", blurb: "Liability, tools and contract works.", href: "/insurance/business/trades-and-contractors", image: "/insurance/trades-hero.webp", group: "Assets & advice", tags: ["trades", "trade", "contractor", "liability", "tools"] },
-  { name: "Professional indemnity", blurb: "Cover for advice given.", href: "/insurance/business/professional-indemnity", image: "/insurance/interior-editorial.webp", group: "Assets & advice", tags: ["professional indemnity", "pi", "advice", "negligence"] },
+  { name: "Professional indemnity", blurb: "Cover for advice given.", href: "/insurance/business/professional-indemnity", image: "/insurance/pi-hero.webp", group: "Assets & advice", tags: ["professional indemnity", "pi", "advice", "negligence"] },
 ];
 
 /** Exhaustive brand / breed / model / item keywords, merged into the base tags. */
