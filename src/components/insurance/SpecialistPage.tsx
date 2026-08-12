@@ -212,8 +212,8 @@ export function SpecialistPage({
             <h2 className="mb-8 font-display text-[clamp(22px,2.8vw,34px)] leading-[1.12] text-house-black">
               {data.relatedCovers.title}
             </h2>
-            <div className="grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
-              {data.relatedCovers.items.map((c) => (
+            <div className="grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+              {data.relatedCovers.items.filter((c) => !c.href.endsWith(`/${data.slug}`)).map((c) => (
                 <Link
                   key={c.name}
                   href={c.href}
