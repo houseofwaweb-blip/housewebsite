@@ -1066,8 +1066,14 @@ export const BUSINESS_SPECIALIST_PAGES: SpecialistPage[] = [
       heading: "Being properly insured and being House Approved are the same conversation.",
       lede: "Construction is the largest single sector of UK small business, and it is the House's own supply chain, which makes it the warmest introduction route there is.",
     },
-    image: "/insurance/interior-editorial.webp",
-    imageAlt: "A sunlit period drawing room with a marble fireplace, gilt-framed pictures and armfuls of cut flowers, the kind of home a House Approved trade is trusted to work in.",
+    image: "/insurance/trades-hero.webp",
+    imageAlt: "A House Approved trade at work, the kind of professional the House introduces for commercial cover.",
+    whyImage: "/insurance/trades-why.webp",
+    whyImageAlt:
+      "A trade's tools and work in a fine home, the liability and contract works a specialist sizes to the job.",
+    differenceImage: "/insurance/trades-difference.webp",
+    differenceImageAlt:
+      "A working trade at close quarters, the jobs and sites a comparison form prices as a category.",
     whyImageSpec: {
       description: "A House Approved trade at work in a fine period home: careful hands, dust sheets, tools laid out with care.",
       dimensions: "1600 × 1067px landscape (3:2), WebP",

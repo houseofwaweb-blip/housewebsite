@@ -3,38 +3,48 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ALL_COVERS } from "@/lib/insurance/cover-index";
+import type { CoverIndexEntry } from "@/lib/insurance/cover-index";
 
 /**
  * "Find your cover" — a self-serve door mechanic. Someone who knows what they
- * want ("van", "listed", "boiler", "art") types it and is filtered straight to
- * the right cover cards. No query shows everything, grouped visually by the
- * order in the index. Introducer-safe: it only routes to House pages.
+ * want ("van", "listed", "necklace", "toyota", "plumber") types it and is
+ * filtered straight to the right cover cards.
+ *
+ * The cover index (with its exhaustive keyword tags) is dynamically imported the
+ * first time the box is focused, so it is NOT in the initial page bundle and the
+ * hub loads with zero extra bytes until someone actually searches.
  */
 export function CoverFinder() {
   const [q, setQ] = React.useState("");
+  const [covers, setCovers] = React.useState<CoverIndexEntry[] | null>(null);
+  const loading = React.useRef(false);
   const query = q.trim().toLowerCase();
 
+  const load = React.useCallback(() => {
+    if (loading.current || covers) return;
+    loading.current = true;
+    import("@/lib/insurance/cover-index").then((m) => setCovers(m.ALL_COVERS));
+  }, [covers]);
+
   const results = React.useMemo(() => {
-    // Drop filler words so "car insurance" / "cover for my necklace" still work.
+    if (!covers) return [];
     const STOP = new Set(["insurance", "cover", "policy", "quote", "for", "my", "the", "and", "an", "of", "to", "get", "want", "need", "looking", "some", "help", "with"]);
     const tokens = query
       .split(/\s+/)
       .map((t) => t.trim())
       .filter((t) => t.length >= 2 && !STOP.has(t));
-    if (tokens.length === 0) return ALL_COVERS;
-    // Short words (≤3: car, pet, art) match a whole word so "car" doesn't hit
-    // "carpenter"; longer words (≥4) match a word PREFIX so half-written queries
-    // work ("neckla" → necklace, "toyot" → toyota). All words must match.
+    if (tokens.length === 0) return covers;
+    // ≤3-char words match a whole word (so "car" ≠ "carpenter"); 4+ char words
+    // match a word prefix so half-written queries resolve ("neckla" → necklace).
     const regexes = tokens.map((t) => {
       const esc = t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
       return t.length >= 4 ? new RegExp("\\b" + esc) : new RegExp("\\b" + esc + "\\b");
     });
-    return ALL_COVERS.filter((c) => {
+    return covers.filter((c) => {
       const hay = `${c.name} ${c.blurb} ${c.group} ${c.tags.join(" ")}`.toLowerCase();
       return regexes.every((re) => re.test(hay));
     });
-  }, [query]);
+  }, [query, covers]);
 
   return (
     <div>
@@ -45,13 +55,17 @@ export function CoverFinder() {
         id="cover-finder"
         type="search"
         value={q}
-        onChange={(e) => setQ(e.target.value)}
-        placeholder="Try ‘van’, ‘listed’, ‘boiler’, ‘art’, ‘empty house’…"
+        onFocus={load}
+        onChange={(e) => {
+          load();
+          setQ(e.target.value);
+        }}
+        placeholder="Try ‘van’, ‘listed’, ‘necklace’, ‘toyota’, ‘plumber’…"
         className="mt-3 w-full max-w-[560px] border border-house-brown/25 bg-house-white px-5 py-4 font-sans text-[17px] text-house-brown placeholder:text-house-stone/70 outline-none transition-colors focus:border-[color:var(--ins-ink)]"
         autoComplete="off"
       />
 
-      {results.length === 0 ? (
+      {covers && results.length === 0 ? (
         <p className="mt-8 max-w-[52ch] font-sans text-[16px] leading-[1.65] text-house-stone">
           Nothing matches “{q}”.{" "}
           <Link href="/insurance/private-client" className="text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">
@@ -59,7 +73,9 @@ export function CoverFinder() {
           </Link>{" "}
           and we will point you the right way.
         </p>
-      ) : (
+      ) : null}
+
+      {covers && results.length > 0 ? (
         <div className="mt-8 grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
           {results.map((c) => (
             <Link
@@ -79,7 +95,7 @@ export function CoverFinder() {
             </Link>
           ))}
         </div>
-      )}
+      ) : null}
     </div>
   );
 }
