@@ -53,7 +53,11 @@ export const EVERYDAY_PAGES: EverydayPage[] = [
     image: "/insurance/ev-motor.webp",
     imageAlt:
       "A car and van at a home, standing for everyday motor cover including temporary use.",
-    covered: [],
+    covered: [
+      "Third-party, third-party fire and theft, or comprehensive",
+      "Optional breakdown, legal and key cover",
+      "Temporary cover from one hour to 28 days",
+    ],
     journey: "Choose the journey that fits, answer a few questions on the Provenance-operated service, and get a quote.",
     products: [
       { name: "Car", body: "Standard private car cover." },
@@ -73,7 +77,11 @@ export const EVERYDAY_PAGES: EverydayPage[] = [
     image: "/insurance/ev-pet.webp",
     imageAlt:
       "A family pet at home, standing for everyday pet and travel cover.",
-    covered: [],
+    covered: [
+      "Vet-bill cover for cats and dogs",
+      "Single-trip and annual multi-trip travel",
+      "Travel cover where existing conditions apply",
+    ],
     journey: "Pick pet or travel, answer a few questions, and get a quote.",
     products: [
       { name: "Pet", body: "Cover for vet bills and the usual pet risks." },
@@ -93,7 +101,11 @@ export const EVERYDAY_PAGES: EverydayPage[] = [
     image: "/insurance/ev-breakdown.webp",
     imageAlt:
       "A bicycle kept ready by the door, standing for breakdown and bicycle cover.",
-    covered: [],
+    covered: [
+      "Roadside assistance, recovery and home start",
+      "Cover for road, mountain, electric and high-value bikes",
+      "Arranged online in a couple of minutes",
+    ],
     journey: "Choose the cover, answer a few questions, and get a quote.",
     products: [
       { name: "Breakdown", body: "Roadside assistance, recovery and home start." },

@@ -3,57 +3,65 @@ import Link from "next/link";
 import s from "./home-v5/home-v5.module.css";
 import { getLatestHearthArticles } from "@/lib/cms/hearth";
 import { shopifyProvider } from "@/lib/commerce/shopify";
-import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
+import { MiniNewsletter } from "@/components/marketing/MiniNewsletter";
 
 /**
- * Homepage — Aug 2026 eComm/Insurance refocus.
+ * Homepage — Aug 2026 rework (aug12 feedback, variant 1).
  *
- * The House pares down to a curated marketplace, home insurance, The Hearth,
- * Cinema (video), and light links out to the Willow Alexander service
- * businesses. The booking platform, HoWA product marketing and AI design/
- * companion layer are all gone. Booking a service is a plain outbound step
- * (the business sites, or howa.co.uk).
+ * A front door with clearly signposted rooms, not a brand portal. The hero
+ * carries the feeling and a plain-English proposition; a dark Protect module
+ * sits immediately below the fold (the highest-intent, previously-buried line);
+ * Shop shows real prices; the Magazine folds Cinema in and carries the only
+ * email capture; a proof strip, a short House block and one ecosystem strip
+ * close it out. Palette mixes the House cream/gold with deep green (Protect)
+ * and burgundy (proof). Gold is demoted from CTA duty to ornament.
  */
 
 export const metadata = {
-  title: { absolute: "House of Willow Alexander | Marketplace, insurance, The Hearth and film" },
+  title: { absolute: "House of Willow Alexander | Home & pet insurance, boiler & appliance cover, shop and journal" },
   description:
-    "A curated marketplace, home and pet insurance introductions, editorial journal and film, and the Willow Alexander home-service businesses.",
+    "Home and pet insurance introductions, boiler and appliance cover, a curated home and garden shop, and a journal about looking after your home. London & Kent and beyond.",
 };
 
-/** The House's destinations — six image-led cards, all visible on desktop. */
-const DESTINATIONS = [
-  { want: "Find something for my home", title: "The Marketplace", line: "Considered goods for the work and pleasure of home.", cta: "Shop the House", href: "/shop", image: "/shop/rooms/kitchen.webp", alt: "A kitchen dressed with House-selected pieces" },
-  { want: "Protect my home or pet", title: "Insurance", line: "Dedicated Home and Pet Insurance introductions.", cta: "Explore Insurance", href: "/insurance", image: "/home-v4/protect-insurance.webp", alt: "An Edwardian London townhouse at golden hour" },
-  { want: "Read and be inspired", title: "The Hearth", line: "Stories, gardens, recipes and the culture of home.", cta: "Enter The Hearth", href: "/the-hearth", image: "/home-v4/hearth-grid.webp", alt: "A green velvet wing chair with open books in a sunlit, plant-filled library nook", pos: "center bottom" },
-  { want: "Watch and unwind", title: "Cinema", line: "Films and short video from the House.", cta: "Enter the Cinema", href: "/cinema", image: "/home-v4/cinema-grid.webp", alt: "A yellow wing chair with stacked film reels in a sunlit archive of film canisters", pos: "center bottom" },
-  { want: "Design a room or garden", title: "Design", line: "Considered interiors and gardens by our studios.", cta: "Explore Design", href: "/design", image: "/home-v4/design-portrait.webp", alt: "A considered interior scheme by the House studios" },
-  { want: "Care for my home or garden", title: "Services", line: "The Willow Alexander home-service businesses.", cta: "See the services", href: "/services", image: "/services/photos/gardening/lawn-care-hero.webp", alt: "Two gardeners mowing and clearing a large lawn" },
+/** The four Protect products. Boiler and appliance are home-cover products with
+ *  their own pages; home and pet route to the insurance introductions. */
+const PROTECT = [
+  { title: "Home Insurance", who: "Period homes, non-standard construction and valuable contents that do not fit a comparison form.", signal: "Advised, arranged by our partner", cta: "Get a home insurance quote", href: "/insurance/private-client", image: "/insurance/hub-hero.webp", alt: "An olive-green Georgian townhouse" },
+  { title: "Pet Insurance", who: "Dogs and cats. Lifetime, time-limited and accident-only cover, explained plainly.", signal: "For cats and dogs", cta: "Get a pet quote", href: "/insurance/everyday/pet-and-travel", image: "/insurance/ev-pet.webp", alt: "A family pet at home" },
+  { title: "Boiler Cover", who: "Help when the heating stops, with cover for boilers and central heating.", signal: "Annual and monthly options", cta: "Check boiler cover", href: "/insurance/boiler-cover", image: "/insurance/boiler-cover.webp", alt: "A warm, well-kept home" },
+  { title: "Appliance Cover", who: "Protect the household appliances you rely on, from washing machines to ovens.", signal: "Single or multiple items", cta: "Cover an appliance", href: "/insurance/appliance-cover", image: "/insurance/appliance-cover.webp", alt: "A considered home interior" },
 ];
 
-/** A curated snapshot of the service businesses. Cards link to the service
- *  page, which links out to each business + HoWA. */
-const POPULAR_SERVICES = [
-  { name: "Gardening", href: "/services/gardening", scope: "Lawns, borders and hedges kept in order through the season.", image: "/services/photos/gardening/garden-tidy-hero.webp" },
-  { name: "Cleaning", href: "/services/cleaning", scope: "A cleaner who learns your home and holds it to the same standard.", image: "/services/photos/cleaning/regular-cleaning-hero.webp" },
-  { name: "Window cleaning", href: "/services/window-cleaning", scope: "Reach-and-wash exterior cleaning across London and Kent.", image: "/services/photos/window-cleaning/one-off-window-cleaning-hero.webp" },
-  { name: "Handyman", href: "/services/handyman", scope: "Repairs, maintenance and the jobs that have been waiting.", image: "/services/photos/handyman-hero.webp" },
+const TRUST = [
+  { h: "Built around your home", p: "not a comparison-site form" },
+  { h: "Start in two minutes", p: "a postcode, then a call back" },
+  { h: "London & Kent, and beyond", p: "wherever your home is" },
+  { h: "Arranged by Provenance", p: "FCA-regulated, profits to charity" },
 ];
 
-const SHOP_EDIT = [
+const SHOP_ROOMS = [
   { name: "Kitchen", handle: "kitchen", image: "/shop/rooms/kitchen.webp" },
   { name: "Living Room", handle: "living-room", image: "/shop/rooms/living-room.webp" },
   { name: "Garden & Outdoor", handle: "garden-outdoor", image: "/shop/rooms/garden.webp" },
 ];
 
-const PRODUCTS = [
-  { name: "Dark Grey Chunky Knit Throw", price: "£89.00", image: "https://cdn.shopify.com/s/files/1/1006/9449/1462/files/handmade-dark-grey-chunky-knit-throw.jpg", href: "/shop/collections/soft-furnishings" },
-  { name: "Soft Furnishings", price: "The collection", image: null, href: "/shop/collections/soft-furnishings" },
-  { name: "Home Accessories", price: "The collection", image: null, href: "/shop/collections/home-accessories" },
+const ECOSYSTEM = [
+  { name: "Delve Interiors", scope: "Interior design", href: "/design/interiors" },
+  { name: "Willow Gardens", scope: "Garden design", href: "/design/gardens" },
+  { name: "Gardening", scope: "Book local help", href: "/services/gardening" },
+  { name: "Cleaning", scope: "Book a clean", href: "/services/cleaning" },
+  { name: "Window cleaning", scope: "Book a visit", href: "/services/window-cleaning" },
+  { name: "Handyman", scope: "Arrange a visit", href: "/services/handyman" },
+];
+
+const PRODUCTS_FALLBACK = [
+  { name: "Hand-thrown mug", price: "£24.00", image: null as string | null, href: "/shop/collections/home-accessories" },
+  { name: "Woven linen cushion", price: "£38.00", image: null as string | null, href: "/shop/collections/soft-furnishings" },
+  { name: "Painted stem vase", price: "£32.00", image: null as string | null, href: "/shop/collections/home-accessories" },
 ];
 
 const HEARTH_FALLBACK = [
-  { title: "A guide to seasonal planting", dek: "What to put in the ground now so the garden earns its keep in spring.", image: "/home-v4/pillar-1.webp" },
+  { title: "The August home checklist: a calm guide to late summer", dek: "Practical jobs, quieter rooms and the small decisions that make a home easier to live in.", image: "/home-v4/pillar-1.webp" },
   { title: "How to read a house survey", dek: "The findings that matter, and the ones that read worse than they are.", image: "/home-v4/pillar-2.webp" },
   { title: "The art of the considered interior", dek: "Why the best rooms look as though nobody tried.", image: "/home-v4/pillar-3.webp" },
   { title: "Five things your boiler is telling you", dek: "The noises worth acting on before the cold arrives.", image: "/home-v4/pillar-4.webp" },
@@ -63,6 +71,10 @@ function formatMoney(m: { amount: string; currencyCode: string }) {
   const sym = m.currencyCode === "GBP" ? "£" : m.currencyCode === "USD" ? "$" : "";
   return `${sym}${Number(m.amount).toFixed(2)}`;
 }
+
+// Button styles — gold is off CTA duty; primary is solid green, secondary is ink outline.
+const BTN_PRIMARY = "inline-flex items-center justify-center whitespace-nowrap border border-[color:var(--house-green-deep)] bg-[var(--house-green)] px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-house-cream no-underline transition-[filter] hover:brightness-110";
+const BTN_SECONDARY = "inline-flex items-center justify-center whitespace-nowrap border border-house-brown/40 px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown no-underline transition-colors hover:border-house-brown";
 
 export default async function HomePage() {
   const hearthArticles = await getLatestHearthArticles(4).catch(() => []);
@@ -74,7 +86,7 @@ export default async function HomePage() {
         image: p.images[0]?.url ?? null,
         href: `/shop/${p.handle}`,
       }))
-    : PRODUCTS;
+    : PRODUCTS_FALLBACK;
 
   const stories = hearthArticles.length >= 4
     ? hearthArticles.slice(0, 4).map((a) => ({ title: a.title, dek: a.dek ?? "", href: `/the-hearth/${a.slug}`, image: a.image, alt: a.imageAlt ?? a.title }))
@@ -83,33 +95,21 @@ export default async function HomePage() {
 
   return (
     <div className={s.page}>
-      {/* 2. Hero */}
+      {/* 1. Hero — feeling + plain proposition + one primary CTA */}
       <section className={s.hero}>
         <div className={s.heroCopy}>
-          <FlowerWatermark color="gold" side="left" opacity={0.16} className="!top-auto bottom-[-12%] h-[74%]" />
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>House of Willow Alexander</p>
+            <p className="font-sans text-[11px] tracking-[0.28em] uppercase text-house-gold-dark">The British home, covered and cared for</p>
             <h1 className={s.heroTitle}>
               That feeling<br />
               <em>you call home.</em>
             </h1>
-            <p className={s.heroLede}>
-              A curated marketplace, home and pet insurance, an editorial journal
-              and film, and the trusted people who look after home and garden.
+            <p className="mt-6 max-w-[52ch] font-sans text-[clamp(17px,1.9vw,20px)] leading-[1.6] text-house-brown">
+              <strong className="font-semibold text-house-black">Home &amp; pet insurance</strong> and <strong className="font-semibold text-house-black">boiler &amp; appliance cover</strong>, a <strong className="font-semibold text-house-black">curated home &amp; garden shop</strong>, and a <strong className="font-semibold text-house-black">journal</strong> on looking after your home.
             </p>
-            <div className="mt-7 grid max-w-[520px] grid-cols-2 gap-3">
-              <Link href="/shop" className={s.btnFilled} style={{ justifyContent: "center", textAlign: "center", whiteSpace: "nowrap" }}>
-                Marketplace
-              </Link>
-              <Link href="/insurance" className={s.btnGhost} style={{ justifyContent: "center", textAlign: "center", whiteSpace: "nowrap" }}>
-                Insurance
-              </Link>
-              <Link href="/the-hearth" className={s.btnGhost} style={{ justifyContent: "center", textAlign: "center", whiteSpace: "nowrap" }}>
-                The Hearth
-              </Link>
-              <Link href="/services" className={s.btnFilled} style={{ justifyContent: "center", textAlign: "center", whiteSpace: "nowrap" }}>
-                Home services
-              </Link>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Link href="/insurance" className={BTN_PRIMARY}>Explore protection</Link>
+              <Link href="/shop" className={BTN_SECONDARY}>Shop all products</Link>
             </div>
           </div>
         </div>
@@ -127,170 +127,199 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 3. Destination chooser */}
-      <section id="house-help" className="px-[5vw] py-[clamp(48px,6vw,92px)]" style={{ background: "var(--color-house-white)" }}>
-        <div className="mx-auto max-w-[1280px]">
-          <div className="mx-auto mb-10 max-w-[680px] text-center">
-            <h2 className="mb-4 font-display text-[clamp(28px,3.4vw,46px)] leading-[1.06] text-house-brown">
-              How can the House help?
-            </h2>
-            <p className="font-sans text-[16px] leading-[1.6] text-house-stone">
-              Shop, protect, read, watch, design, or find trusted help for the
-              home and garden.
-            </p>
-          </div>
-          <p className="mb-3 font-sans text-[11px] tracking-[0.2em] uppercase text-house-stone/70 lg:hidden">
-            Swipe for all six
-          </p>
-          <div className="-mx-[5vw] flex snap-x snap-mandatory gap-4 overflow-x-auto px-[5vw] pb-3 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-5 lg:overflow-visible lg:px-0 lg:pb-0">
-            {DESTINATIONS.map((d) => (
-              <Link
-                key={d.title}
-                href={d.href}
-                className="group flex w-[78vw] shrink-0 snap-start flex-col border border-house-brown/12 bg-house-cream no-underline transition-colors hover:border-house-gold sm:w-[52vw] lg:w-auto"
-              >
-                <div className="relative aspect-[4/5] w-full overflow-hidden bg-house-cream-dark">
-                  <Image src={d.image} alt={d.alt} fill sizes="(min-width: 1024px) 31vw, 78vw" style={{ objectPosition: d.pos ?? "center" }} className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.03]" />
-                </div>
-                <div className="flex flex-1 flex-col p-7">
-                  <p className="mb-2 font-sans text-[11px] tracking-[0.18em] uppercase text-house-gold-ink">{d.want}</p>
-                  <h3 className="mb-2.5 font-display text-[26px] leading-tight text-house-brown">{d.title}</h3>
-                  <p className="mb-6 flex-1 font-sans text-[15px] leading-[1.55] text-house-stone">{d.line}</p>
-                  <span className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-ink transition-colors group-hover:text-house-brown">{d.cta} →</span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 4. The Shop */}
-      <section className="px-[5vw] py-[clamp(48px,6vw,92px)]" style={{ background: "var(--color-house-cream)" }}>
-        <div className="mx-auto max-w-[1280px]">
-          <div className="mb-10 flex flex-wrap items-end justify-between gap-5">
-            <div className="max-w-[560px]">
-              <p className="mb-3 font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink">The Marketplace</p>
-              <h2 className="mb-4 font-display text-[clamp(26px,3.2vw,44px)] leading-[1.06] text-house-brown">
-                Chosen for <em>the House.</em>
+      {/* 2. Protect — dark green module, immediately below the fold */}
+      <section className="px-[5vw] py-[clamp(44px,6vw,84px)] text-house-cream" style={{ background: "var(--house-green)" }}>
+        <div className="mx-auto max-w-[1200px]">
+          <div className="mb-8 grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+            <div>
+              <p className="mb-3 font-sans text-[11px] tracking-[0.28em] uppercase text-house-cream/60">Protection for home and those who live there</p>
+              <h2 className="font-display text-[clamp(26px,3.4vw,44px)] leading-[1.08] text-house-cream">
+                Cover made clear, <em className="text-[color:var(--house-green-soft)]">when it matters.</em>
               </h2>
-              <p className="font-sans text-[16px] leading-[1.6] text-house-stone">
-                Useful and beautiful things for the work and pleasure of keeping a
-                home. Every object earns its place.
-              </p>
             </div>
-            <Link href="/shop" className={s.btnGhost}>
-              Shop the House <span aria-hidden className={s.arrow}>→</span>
-            </Link>
-          </div>
-          <div className="mb-5 grid grid-cols-1 gap-4 sm:grid-cols-3">
-            {SHOP_EDIT.map((r) => (
-              <Link key={r.handle} href={`/shop/collections/${r.handle}`} className="group relative block aspect-[4/3] overflow-hidden bg-house-cream-dark no-underline">
-                <Image src={r.image} alt={r.name} fill sizes="(min-width: 640px) 31vw, 100vw" className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.04]" />
-                <span aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(26,19,13,0.72), rgba(26,19,13,0.05) 55%)" }} />
-                <div className="absolute inset-x-0 bottom-0 p-5 text-center">
-                  <p className="font-display text-[clamp(18px,1.8vw,26px)] leading-[1.1] text-white">{r.name}</p>
-                  <p className="mt-1.5 font-sans text-[12px] tracking-[0.2em] uppercase text-white/80 transition-colors group-hover:text-white">Shop the room →</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-            {marketCards.map((p) => (
-              <Link key={p.name} href={p.href} className={s.productCard}>
-                <div className={s.productImg}>
-                  {p.image ? <Image src={p.image} alt={p.name} fill sizes="(min-width: 640px) 31vw, 100vw" /> : null}
-                </div>
-                <div className={s.productBody}>
-                  <p className={s.productName}>{p.name}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5. Insurance */}
-      <section className="border-t border-house-brown/10 px-[5vw] py-[clamp(48px,6vw,92px)]" style={{ background: "var(--color-house-white)" }}>
-        <div className="mx-auto max-w-[1180px]">
-          <div className="mx-auto mb-10 max-w-[660px] text-center">
-            <p className="mb-3 font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink">Insurance</p>
-            <h2 className="mb-4 font-display text-[clamp(26px,3.2vw,44px)] leading-[1.06] text-house-brown">
-              Protection for home <em>and those who live there.</em>
-            </h2>
-            <p className="font-sans text-[16px] leading-[1.6] text-house-stone">
-              The House introduces you to an authorised partner. The regulated
-              advice, the quotation and the policy come from them, not from us.
+            <p className="max-w-[46ch] font-sans text-[16px] leading-[1.65] text-house-cream/80">
+              Start with what you need. We introduce you to a trusted, regulated partner and make the hand-off explicit, so you always know whose form you are filling in.
             </p>
           </div>
-          <div className="grid gap-5 md:grid-cols-2">
-            {[
-              { title: "Home Insurance", body: "For period homes, non-standard construction, valuable contents and households that do not fit a comparison-site form.", href: "/insurance/home", cta: "Explore Home Insurance", image: "/home-v4/protect-insurance.webp", alt: "An Edwardian London townhouse at golden hour", pos: "center" },
-              { title: "Pet Insurance", body: "For dogs, cats and the animals that make a house a home. Lifetime, time-limited and accident-only cover explained plainly.", href: "/insurance/pet", cta: "Explore Pet Insurance", image: "/services/subbrands/dog-walking.webp", alt: "A dog lead, waste-bag holder and travel bowl laid out on a wooden table", pos: "bottom" },
-            ].map((card) => (
-              <Link key={card.title} href={card.href} className="group flex flex-col border border-house-brown/12 bg-house-cream no-underline transition-colors hover:border-house-gold">
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-house-cream-dark">
-                  <Image src={card.image} alt={card.alt} fill sizes="(min-width: 768px) 44vw, 100vw" style={{ objectPosition: card.pos }} className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.03]" />
+
+          {/* Trust strip */}
+          <div className="mb-6 grid grid-cols-2 gap-px overflow-hidden border border-house-cream/15 bg-house-cream/15 lg:grid-cols-4">
+            {TRUST.map((t) => (
+              <div key={t.h} className="bg-[var(--house-green)] px-5 py-4">
+                <p className="font-sans text-[14px] font-semibold text-house-cream">{t.h}</p>
+                <p className="mt-0.5 font-sans text-[12.5px] leading-[1.45] text-house-cream/65">{t.p}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Quote starter — plain GET hand-off to the enquiry page */}
+          <form action="/insurance/speak-to-a-specialist" method="get" className="mb-8 flex flex-col gap-3 border border-house-cream/15 bg-house-cream/5 p-3 sm:flex-row sm:items-stretch">
+            <input name="postcode" placeholder="Enter your postcode" aria-label="Postcode" className="min-w-0 flex-1 border border-house-cream/20 bg-house-cream px-4 py-3 font-sans text-[15px] text-house-brown outline-none placeholder:text-house-stone focus:border-house-cream" />
+            <select name="cover" aria-label="Cover type" defaultValue="" className="flex-1 border border-house-cream/20 bg-house-cream px-4 py-3 font-sans text-[15px] text-house-brown outline-none focus:border-house-cream">
+              <option value="" disabled>Choose cover type…</option>
+              <option value="home">Home insurance</option>
+              <option value="pet">Pet insurance</option>
+              <option value="boiler">Boiler cover</option>
+              <option value="appliance">Appliance cover</option>
+            </select>
+            <button type="submit" className="inline-flex items-center justify-center whitespace-nowrap border border-house-cream bg-house-cream px-7 py-3 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--house-green-deep)] transition-[filter] hover:brightness-95">
+              Start a quote
+            </button>
+          </form>
+
+          {/* Four product cards */}
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {PROTECT.map((p) => (
+              <Link key={p.title} href={p.href} className="group flex flex-col overflow-hidden bg-house-cream no-underline transition-[filter] hover:brightness-[1.02]">
+                <div className="relative aspect-[4/3] w-full overflow-hidden">
+                  <Image src={p.image} alt={p.alt} fill sizes="(min-width:1024px) 22vw, (min-width:640px) 46vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
                 </div>
-                <div className="flex flex-1 flex-col p-7">
-                  <h3 className="mb-2 font-display text-[24px] leading-tight text-house-brown">{card.title}</h3>
-                  <p className="mb-6 flex-1 font-sans text-[15px] leading-[1.55] text-house-stone">{card.body}</p>
-                  <span className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-ink transition-colors group-hover:text-house-brown">{card.cta} →</span>
+                <div className="flex flex-1 flex-col p-5">
+                  <h3 className="font-display text-[21px] leading-tight text-house-black">{p.title}</h3>
+                  <p className="mt-2 flex-1 font-sans text-[13.5px] leading-[1.55] text-house-brown/80">{p.who}</p>
+                  <p className="mt-4 font-sans text-[10.5px] tracking-[0.16em] uppercase text-[color:var(--house-green-ink)]">{p.signal}</p>
+                  <span className="mt-2 font-sans text-[12.5px] font-semibold text-[color:var(--house-green-ink)] group-hover:underline">{p.cta} →</span>
                 </div>
               </Link>
             ))}
           </div>
-          <p className="mx-auto mt-8 max-w-[70ch] text-center font-sans text-[12px] leading-[1.5] text-house-stone/80">
-            House of Willow Alexander is an introducer only and does not provide,
-            arrange or advise on insurance. Cover is arranged and provided by an
-            authorised, FCA-regulated insurance partner.
+
+          <p className="mt-6 max-w-[80ch] font-sans text-[13px] leading-[1.6] text-house-cream/70">
+            House of Willow Alexander acts as an introducer. Insurance and cover are arranged and provided by regulated third parties, including Provenance Insurance Brokers Ltd (FCA FRN 804047). Full details are shown before you leave the site.
           </p>
         </div>
       </section>
 
-      {/* 6. Editorial feature from The Hearth */}
-      <section className="px-[5vw] py-[clamp(52px,6.5vw,100px)]" style={{ background: "var(--color-house-cream)" }}>
+      {/* 3. Shop — real products, real prices */}
+      <section className="px-[5vw] py-[clamp(44px,6vw,84px)]" style={{ background: "var(--color-house-cream)" }}>
         <div className="mx-auto max-w-[1280px]">
-          <div className="mb-10 max-w-[640px]">
-            <p className="mb-3 font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink">From The Hearth</p>
-            <h2 className="mb-4 font-display text-[clamp(26px,3.2vw,44px)] leading-[1.06] text-house-brown">
-              Notes on the life <em>of the home.</em>
-            </h2>
-            <p className="font-sans text-[16px] leading-[1.6] text-house-stone">
-              Stories, observations and useful knowledge for the way we live,
-              gather, cultivate and care for the places we call home.
+          <div className="mb-8 grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+            <div>
+              <p className="mb-3 font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-dark">The Shop</p>
+              <h2 className="font-display text-[clamp(26px,3.2vw,44px)] leading-[1.06] text-house-brown">
+                Useful, beautiful, <em>honestly priced.</em>
+              </h2>
+            </div>
+            <p className="max-w-[46ch] font-sans text-[16px] leading-[1.65] text-house-stone">
+              A considered edit of everyday pieces at real prices, with a smaller House Selection for the objects with a story worth telling.
             </p>
           </div>
-          <div className="grid gap-6 lg:grid-cols-[1.35fr_1fr] lg:gap-8">
-            <Link href={lead.href} className="group flex flex-col no-underline">
-              <div className="relative aspect-[3/2] w-full overflow-hidden bg-house-cream-dark">
-                <Image src={lead.image} alt={lead.alt} fill sizes="(min-width: 1024px) 56vw, 100vw" className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.02]" />
-              </div>
-              <h3 className="mt-6 font-display text-[clamp(24px,2.8vw,38px)] leading-[1.12] text-house-brown transition-colors group-hover:text-house-gold-ink">{lead.title}</h3>
-              {lead.dek ? <p className="mt-3 max-w-[54ch] font-sans text-[16px] leading-[1.6] text-house-stone">{lead.dek}</p> : null}
-              <span className="mt-4 font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-ink">Read the story →</span>
+
+          {/* Shop by room — three clean tiles across */}
+          <div className="grid gap-4 sm:grid-cols-3">
+            {SHOP_ROOMS.map((r) => (
+              <Link key={r.handle} href={`/shop/collections/${r.handle}`} className="group relative block aspect-[4/3] overflow-hidden bg-house-cream-dark no-underline">
+                <Image src={r.image} alt={r.name} fill sizes="(min-width:640px) 31vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
+                <span aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(26,19,13,0.7), rgba(26,19,13,0.03) 55%)" }} />
+                <div className="absolute inset-x-0 bottom-0 p-5">
+                  <p className="font-display text-[clamp(18px,1.8vw,24px)] leading-[1.1] text-white">{r.name}</p>
+                  <p className="mt-1 font-sans text-[11px] tracking-[0.18em] uppercase text-white/85">Shop the room →</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          {/* House Selection — full-width editorial band */}
+          <Link href="/shop/collections/house-approved" className="group relative mt-4 flex min-h-[180px] items-end overflow-hidden bg-house-black p-6 text-house-cream no-underline sm:min-h-[220px] sm:p-8">
+            <Image src="/home-v4/pillar-3.webp" alt="An editorial still life from the House Selection" fill sizes="100vw" className="object-cover opacity-40 transition-transform duration-500 group-hover:scale-[1.03]" />
+            <div className="relative max-w-[38ch]">
+              <p className="font-sans text-[10.5px] tracking-[0.22em] uppercase text-house-gold-light">The House Selection</p>
+              <p className="mt-2 font-display text-[clamp(22px,2.6vw,34px)] leading-[1.05]">Objects that earn their place.</p>
+              <p className="mt-3 font-sans text-[12.5px] tracking-[0.16em] uppercase text-house-cream/85 group-hover:text-house-cream">Explore the selection →</p>
+            </div>
+          </Link>
+
+          {/* Real product rail with prices */}
+          <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
+            {marketCards.map((p) => (
+              <Link key={p.name} href={p.href} className="group block no-underline">
+                <div className="relative aspect-square w-full overflow-hidden bg-house-cream-dark">
+                  {p.image ? <Image src={p.image} alt={p.name} fill sizes="(min-width:640px) 22vw, 50vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" /> : null}
+                </div>
+                <p className="mt-3 font-sans text-[14px] leading-tight text-house-brown">{p.name}</p>
+                <p className="mt-0.5 font-sans text-[13px] text-house-stone">{p.price}</p>
+              </Link>
+            ))}
+            <Link href="/shop" className="flex items-center justify-center border border-house-brown/20 bg-house-white p-6 text-center font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown no-underline transition-colors hover:border-house-brown">
+              Shop all products →
             </Link>
-            <div className="flex flex-col gap-6">
-              {secondary.map((story, i) => (
-                <Link key={story.title} href={story.href} className={i === 0 ? "group flex flex-col no-underline" : "group grid grid-cols-[100px_1fr] items-start gap-4 no-underline sm:grid-cols-[132px_1fr]"}>
-                  <div className={i === 0 ? "relative aspect-[16/9] w-full overflow-hidden bg-house-cream-dark" : "relative aspect-square w-full overflow-hidden bg-house-cream-dark"}>
-                    <Image src={story.image} alt={story.alt} fill sizes={i === 0 ? "(min-width: 1024px) 40vw, 100vw" : "132px"} className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.03]" />
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Magazine — Hearth + Cinema folded in + email capture */}
+      <section className="px-[5vw] py-[clamp(44px,6vw,84px)]" style={{ background: "var(--color-house-cream-dark)" }}>
+        <div className="mx-auto max-w-[1280px]">
+          <div className="mb-8 grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+            <div>
+              <p className="mb-3 font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-dark">The Magazine</p>
+              <h2 className="font-display text-[clamp(26px,3.2vw,44px)] leading-[1.06] text-house-brown">
+                Read, watch, <em>then act when useful.</em>
+              </h2>
+            </div>
+            <p className="max-w-[46ch] font-sans text-[16px] leading-[1.65] text-house-stone">
+              The Hearth and Cinema, one editorial destination that draws readers back and guides them onward.
+            </p>
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr] lg:gap-8">
+            {/* Lead article */}
+            <Link href={lead.href} className="group flex flex-col bg-house-white no-underline">
+              <div className="relative aspect-[16/10] w-full overflow-hidden">
+                <Image src={lead.image} alt={lead.alt} fill sizes="(min-width:1024px) 56vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.02]" />
+              </div>
+              <div className="p-6">
+                <p className="font-sans text-[10.5px] tracking-[0.2em] uppercase text-house-gold-dark">Seasonal home guide</p>
+                <h3 className="mt-2 font-display text-[clamp(22px,2.4vw,32px)] leading-[1.12] text-house-brown group-hover:text-[color:var(--house-green-ink)]">{lead.title}</h3>
+                {lead.dek ? <p className="mt-3 max-w-[54ch] font-sans text-[15px] leading-[1.6] text-house-stone">{lead.dek}</p> : null}
+                <span className="mt-4 inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--house-green-ink)]">Read the story →</span>
+              </div>
+            </Link>
+
+            <div className="flex flex-col gap-4">
+              {/* Cinema folded in as a video item */}
+              <Link href="/cinema" className="group grid grid-cols-[120px_1fr] items-center gap-4 bg-house-white p-3 no-underline sm:grid-cols-[150px_1fr]">
+                <div className="relative aspect-square w-full overflow-hidden">
+                  <Image src="/home-v4/cinema-grid.webp" alt="A film still from the House Cinema" fill sizes="150px" style={{ objectPosition: "center bottom" }} className="object-cover" />
+                  <span aria-hidden className="absolute inset-0 flex items-center justify-center">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/80 bg-black/35 text-[12px] text-white">▶</span>
+                  </span>
+                </div>
+                <div>
+                  <p className="font-sans text-[10px] tracking-[0.18em] uppercase text-house-gold-dark">Film</p>
+                  <h4 className="mt-1 font-display text-[18px] leading-tight text-house-brown group-hover:text-[color:var(--house-green-ink)]">A room made for reading</h4>
+                  <span className="mt-1 inline-block font-sans text-[11px] tracking-[0.14em] uppercase text-[color:var(--house-green-ink)]">Watch the film →</span>
+                </div>
+              </Link>
+              {/* Two secondary articles */}
+              {secondary.slice(0, 2).map((story) => (
+                <Link key={story.title} href={story.href} className="group grid grid-cols-[120px_1fr] items-center gap-4 bg-house-white p-3 no-underline sm:grid-cols-[150px_1fr]">
+                  <div className="relative aspect-square w-full overflow-hidden">
+                    <Image src={story.image} alt={story.alt} fill sizes="150px" className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
                   </div>
-                  <div className={i === 0 ? "mt-4" : undefined}>
-                    <h3 className={i === 0 ? "font-display text-[22px] leading-tight text-house-brown transition-colors group-hover:text-house-gold-ink" : "font-display text-[18px] leading-tight text-house-brown transition-colors group-hover:text-house-gold-ink"}>{story.title}</h3>
-                    {i === 0 && story.dek ? <p className="mt-2 font-sans text-[15px] leading-[1.55] text-house-stone">{story.dek}</p> : null}
-                    <span className="mt-2 inline-block font-sans text-[11px] tracking-[0.18em] uppercase text-house-gold-ink">Continue reading →</span>
+                  <div>
+                    <p className="font-sans text-[10px] tracking-[0.18em] uppercase text-house-gold-dark">Home care</p>
+                    <h4 className="mt-1 font-display text-[18px] leading-tight text-house-brown group-hover:text-[color:var(--house-green-ink)]">{story.title}</h4>
+                    <span className="mt-1 inline-block font-sans text-[11px] tracking-[0.14em] uppercase text-[color:var(--house-green-ink)]">Read the guide →</span>
                   </div>
                 </Link>
               ))}
+              {/* Email capture — the only sign-up on the page */}
+              <div className="bg-[var(--house-green)] p-5 text-house-cream">
+                <p className="font-display text-[19px] leading-tight">A useful note, once a week.</p>
+                <p className="mt-1 mb-3 font-sans text-[12.5px] leading-[1.5] text-house-cream/70">Seasonal advice, new stories and selected objects. No daily noise.</p>
+                <MiniNewsletter sourcePage="/" />
+              </div>
             </div>
           </div>
-          <div className="mt-11 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-house-brown/12 pt-7">
-            <Link href="/the-hearth" className={s.btnGhost}>Enter The Hearth <span aria-hidden className={s.arrow}>→</span></Link>
+
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-house-brown/12 pt-6">
+            <Link href="/the-hearth" className="font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--house-green-ink)] no-underline hover:text-house-brown">Read the magazine →</Link>
             {[
               { label: "Interiors", href: "/the-hearth/category/interiors-and-styling" },
               { label: "Gardens", href: "/the-hearth/category/gardens-and-exteriors" },
               { label: "Food and hosting", href: "/recipes" },
-              { label: "Objects and materials", href: "/the-hearth/category/colour-and-materials" },
+              { label: "Films", href: "/cinema" },
             ].map((c) => (
               <Link key={c.label} href={c.href} className="font-sans text-[13px] text-house-stone no-underline underline-offset-4 hover:text-house-brown hover:underline">{c.label}</Link>
             ))}
@@ -298,141 +327,61 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 7. Cinema teaser */}
-      <section className="relative overflow-hidden bg-house-black px-[5vw] py-[clamp(56px,8vw,120px)] text-house-cream">
-        <div className="mx-auto grid max-w-[1200px] items-center gap-[clamp(28px,5vw,72px)] lg:grid-cols-2">
+      {/* 5. Proof strip — dark burgundy */}
+      <section className="px-[5vw] py-[clamp(40px,5vw,72px)] text-house-cream" style={{ background: "var(--ins-accent)" }}>
+        <div className="mx-auto grid max-w-[1180px] items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <p className="mb-4 font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-light">The Cinema</p>
-            <h2 className="mb-5 font-display text-[clamp(28px,3.8vw,52px)] leading-[1.05] text-house-cream">
-              Sit back. <em className="text-house-gold-light">Watch the House.</em>
+            <p className="mb-3 font-sans text-[11px] tracking-[0.28em] uppercase text-house-cream/60">The House, in practice</p>
+            <h2 className="font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-cream">
+              Trusted with the practical parts of <em className="text-[color:var(--house-green-soft)]">home.</em>
             </h2>
-            <p className="mb-8 max-w-[52ch] font-sans text-[16px] leading-[1.7] text-house-cream/80">
-              Films and short video from the House: gardens through the seasons,
-              rooms coming together, and the makers behind the objects we choose.
-            </p>
-            <Link href="/cinema" className="inline-flex items-center gap-2 border border-house-gold bg-house-gold px-8 py-4 font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-[filter] hover:brightness-110">
-              Enter the Cinema →
-            </Link>
           </div>
-          <div className="relative aspect-[4/5] w-full overflow-hidden border border-house-gold-dark/40">
-            <Image src="/home-v4/cinema-grid.webp" alt="A yellow wing chair with stacked film reels in a sunlit archive of film canisters" fill sizes="(min-width: 1024px) 50vw, 100vw" style={{ objectPosition: "center bottom" }} className="object-cover" />
-            <span aria-hidden className="absolute inset-0 flex items-center justify-center">
-              <span className="flex h-16 w-16 items-center justify-center rounded-full border border-house-cream/70 bg-house-black/40 text-house-cream backdrop-blur-sm">▶</span>
-            </span>
-          </div>
-        </div>
-      </section>
-
-      {/* 8. Design */}
-      <section className="px-[5vw] py-[clamp(48px,6vw,92px)]" style={{ background: "var(--color-house-cream)" }}>
-        <div className="mx-auto max-w-[1180px]">
-          <div className="mx-auto mb-11 max-w-[680px] text-center">
-            <p className="mb-3 font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink">Design</p>
-            <h2 className="mb-4 font-display text-[clamp(26px,3.2vw,44px)] leading-[1.06] text-house-brown">
-              Interiors and gardens, <em>considered.</em>
-            </h2>
-            <p className="font-sans text-[16px] leading-[1.6] text-house-stone">
-              Considered interior and garden design by the studios we work with.
-              Commission a scheme, or give one as a voucher.
-            </p>
-          </div>
-          <div className="grid gap-5 md:grid-cols-2">
+          <div className="grid gap-6 sm:grid-cols-3">
             {[
-              { title: "Interior Design", body: "Rooms read for the people who live in them, by Delve Interiors.", href: "/design/interiors", image: "/design/interiors/project-bedroom.webp", cta: "Explore Interior Design" },
-              { title: "Garden Design", body: "Gardens designed from concept to plan, by Willow Alexander Gardens.", href: "/design/gardens", image: "/design/gardens/projects/contemporary-tiered-garden-design/01.webp", cta: "Explore Garden Design" },
-            ].map((card) => (
-              <Link key={card.title} href={card.href} className="group flex flex-col border border-house-brown/12 bg-house-white no-underline transition-colors hover:border-house-gold">
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-house-cream-dark">
-                  <Image src={card.image} alt={card.title} fill sizes="(min-width: 768px) 44vw, 100vw" className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.03]" />
-                </div>
-                <div className="flex flex-1 flex-col p-7">
-                  <h3 className="mb-2 font-display text-[24px] leading-tight text-house-brown">{card.title}</h3>
-                  <p className="mb-6 flex-1 font-sans text-[15px] leading-[1.55] text-house-stone">{card.body}</p>
-                  <span className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-ink transition-colors group-hover:text-house-brown">{card.cta} →</span>
-                </div>
-              </Link>
+              { h: "FCA-regulated partner", p: "cover arranged by Provenance, not by us" },
+              { h: "Named support", p: "real people when you need them" },
+              { h: "London & Kent", p: "service areas shown before you begin" },
+            ].map((e) => (
+              <div key={e.h}>
+                <p className="font-display text-[19px] leading-tight text-house-cream">{e.h}</p>
+                <p className="mt-1.5 font-sans text-[13px] leading-[1.5] text-house-cream/70">{e.p}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 9. Services snapshot */}
-      <section id="popular-services" className="border-t border-house-brown/10 px-[5vw] py-[clamp(48px,6vw,92px)]" style={{ background: "var(--color-house-white)" }}>
-        <div className="mx-auto max-w-[1280px]">
-          <div className="mb-10 max-w-[620px]">
-            <p className="mb-3 font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink">The Services</p>
-            <h2 className="mb-4 font-display text-[clamp(26px,3.2vw,44px)] leading-[1.06] text-house-brown">
-              Trusted people for <em>home and garden.</em>
-            </h2>
-            <p className="font-sans text-[16px] leading-[1.6] text-house-stone">
-              The Willow Alexander service businesses look after the practical work
-              of the home. Book on their own sites, or online through HoWA.
-            </p>
-          </div>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {POPULAR_SERVICES.map((svc) => (
-              <Link key={svc.name} href={svc.href} className="group flex flex-col border border-house-brown/12 bg-house-cream no-underline transition-colors hover:border-house-gold">
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-house-cream-dark">
-                  <Image src={svc.image} alt={svc.name} fill sizes="(min-width: 1024px) 23vw, 100vw" className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.03]" />
-                </div>
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="mb-2 font-display text-[21px] leading-tight text-house-brown">{svc.name}</h3>
-                  <p className="mb-5 flex-1 font-sans text-[14px] leading-[1.55] text-house-stone">{svc.scope}</p>
-                  <span className="font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-ink transition-colors group-hover:text-house-brown">See the service →</span>
-                </div>
-              </Link>
-            ))}
-          </div>
-          <div className="mx-auto mt-11 flex max-w-[380px] justify-center">
-            <Link href="/services" className={s.btnFilled} style={{ justifyContent: "center", textAlign: "center" }}>
-              See all services
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 10. Founders */}
-      <section className="px-[5vw] py-[clamp(52px,6.5vw,100px)]" style={{ background: "var(--color-house-cream)" }}>
-        <div className="mx-auto grid max-w-[1180px] gap-[clamp(28px,4.5vw,64px)] lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      {/* 6. The House — short */}
+      <section className="px-[5vw] py-[clamp(44px,6vw,84px)]" style={{ background: "var(--color-house-cream)" }}>
+        <div className="mx-auto grid max-w-[1120px] items-center gap-[clamp(28px,4.5vw,60px)] lg:grid-cols-[0.9fr_1.1fr]">
           <div className="relative aspect-[4/5] w-full overflow-hidden bg-house-cream-dark">
-            <Image src="/home/origin-studio.webp" alt="The original Willow Alexander garden studio: soil, seasons and a single electric van" fill sizes="(min-width: 1024px) 42vw, 100vw" className="object-cover" />
+            <Image src="/home/origin-studio.webp" alt="The original Willow Alexander garden studio: soil, seasons and a single electric van" fill sizes="(min-width:1024px) 42vw, 100vw" className="object-cover" />
           </div>
           <div>
-            <p className="mb-3 font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink">The House</p>
-            <h2 className="mb-5 font-display text-[clamp(26px,3.2vw,42px)] leading-[1.08] text-house-brown">
-              A modern British <em>home institution.</em>
+            <p className="mb-3 font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-dark">The House</p>
+            <h2 className="mb-4 font-display text-[clamp(24px,3vw,40px)] leading-[1.08] text-house-brown">
+              A modern British <em>home tradition.</em>
             </h2>
-            <p className="mb-4 max-w-[56ch] font-sans text-[16px] leading-[1.7] text-house-stone">
-              House of Willow Alexander began with the practical care of real homes
-              and gardens, and grew into a curated marketplace, insurance
-              introductions, and an editorial journal for the life of the home.
+            <p className="mb-5 max-w-[56ch] font-sans text-[16px] leading-[1.7] text-house-stone">
+              House of Willow Alexander brings protection, useful objects and thoughtful editorial under one roof. The proposition is practical; the point of view remains distinctly ours.
             </p>
-            <Link href="/the-house/about" className={s.btnGhost}>
-              Our story <span aria-hidden className={s.arrow}>→</span>
-            </Link>
+            <Link href="/the-house/about" className={BTN_SECONDARY}>Read our story</Link>
           </div>
         </div>
       </section>
 
-      {/* 11. Final chooser */}
-      <section className={s.closing}>
-        <FlowerWatermark color="white" side="right" opacity={0.14} />
-        <p className={s.closingStatement}>
-          Where would you <em>like to begin?</em>
-        </p>
-        <div className="mx-auto mt-8 grid w-full max-w-[380px] gap-3 sm:max-w-[760px] sm:grid-cols-2 lg:grid-cols-4">
-          <Link href="/shop" className={s.btnFilled} style={{ justifyContent: "center", textAlign: "center" }}>
-            Shop
-          </Link>
-          <Link href="/insurance" className={s.btnGhostDark} style={{ justifyContent: "center", textAlign: "center" }}>
-            Insurance
-          </Link>
-          <Link href="/the-hearth" className={s.btnGhostDark} style={{ justifyContent: "center", textAlign: "center" }}>
-            The Hearth
-          </Link>
-          <Link href="/cinema" className={s.btnGhostDark} style={{ justifyContent: "center", textAlign: "center" }}>
-            Cinema
-          </Link>
+      {/* 7. Ecosystem strip — one compact row */}
+      <section className="border-t border-house-brown/10 px-[5vw] py-[clamp(28px,4vw,52px)]" style={{ background: "var(--color-house-white)" }}>
+        <div className="mx-auto max-w-[1180px]">
+          <p className="mb-6 text-center font-display text-[clamp(18px,2vw,26px)] leading-tight text-house-brown">Interiors, gardens and trusted local services</p>
+          <div className="grid grid-cols-2 gap-px overflow-hidden border border-house-brown/12 bg-house-brown/12 sm:grid-cols-3 lg:grid-cols-6">
+            {ECOSYSTEM.map((e) => (
+              <Link key={e.name} href={e.href} className="group flex flex-col items-center bg-house-white px-4 py-6 text-center no-underline transition-colors hover:bg-house-cream">
+                <span className="font-display text-[16px] leading-tight text-house-brown group-hover:text-[color:var(--house-green-ink)]">{e.name}</span>
+                <span className="mt-1 font-sans text-[11.5px] text-house-stone">{e.scope}</span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
     </div>

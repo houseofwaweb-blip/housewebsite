@@ -62,11 +62,25 @@ export function EverydayPreframe({ data }: { data: EverydayPage }) {
         </section>
       ) : null}
 
-      {/* The journey + hand-off */}
-      <section className="px-[5vw] pb-8">
-        <div className="mx-auto max-w-[760px]">
-          <p className="font-sans text-[16px] leading-[1.65] text-house-brown/85">{data.journey}</p>
-          <div className="mt-6">
+      {/* How it works + hand-off — dark graphite band (plain everyday world, not burgundy) */}
+      <section className="mt-4 px-[5vw] py-12 text-house-cream" style={{ background: "var(--ins-dark)" }}>
+        <div className="mx-auto max-w-[880px]">
+          <h2 className="font-display text-[clamp(22px,2.6vw,30px)] leading-tight text-house-cream">How it works</h2>
+          <p className="mt-3 max-w-[54ch] font-sans text-[15.5px] leading-[1.6] text-house-cream/75">{data.journey}</p>
+          <ol className="mt-7 grid gap-6 p-0 sm:grid-cols-3">
+            {[
+              { n: "1", h: "Choose your cover", p: "Pick the option that fits from the choices above." },
+              { n: "2", h: "Answer a few questions", p: "On the service Provenance operates, not a form on the House." },
+              { n: "3", h: "Get your quote", p: "In a few minutes, and buy there and then if it suits." },
+            ].map((step) => (
+              <li key={step.n} className="list-none">
+                <p className="font-display text-[30px] leading-none text-house-cream/35">{step.n}</p>
+                <p className="mt-2 font-sans text-[15px] font-semibold text-house-cream">{step.h}</p>
+                <p className="mt-1 font-sans text-[13.5px] leading-[1.5] text-house-cream/70">{step.p}</p>
+              </li>
+            ))}
+          </ol>
+          <div className="mt-8">
             <a
               href={QUOTE_SERVICE_URL}
               target="_blank"
@@ -74,10 +88,11 @@ export function EverydayPreframe({ data }: { data: EverydayPage }) {
               data-ga-event="outbound_click"
               data-ga-destination="provenance-quote"
               data-ga-product={data.slug}
-              className="inline-flex items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110"
+              className="inline-flex items-center justify-center whitespace-nowrap border border-house-cream bg-house-cream px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-dark)] no-underline transition-[filter] hover:brightness-95"
             >
               Continue to the quote service ↗
             </a>
+            <p className="mt-3 font-sans text-[12.5px] text-house-cream/55">You leave the House here and enter Provenance&apos;s regulated service.</p>
           </div>
         </div>
       </section>

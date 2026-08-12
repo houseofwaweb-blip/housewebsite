@@ -16,8 +16,22 @@ export const metadata: Metadata = {
   ...insuranceOg("speak-to-a-specialist", "Speak to a specialist"),
 };
 
-export default function SpeakToASpecialist() {
+const COVER: Record<string, { label: string; type: string }> = {
+  home: { label: "home insurance", type: "home" },
+  pet: { label: "pet insurance", type: "pet" },
+  boiler: { label: "boiler cover", type: "boiler-cover" },
+  appliance: { label: "appliance cover", type: "appliance-cover" },
+};
+
+export default async function SpeakToASpecialist({
+  searchParams,
+}: {
+  searchParams: Promise<{ postcode?: string; cover?: string }>;
+}) {
   const turnstileSiteKey = env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
+  const sp = await searchParams;
+  const postcode = typeof sp.postcode === "string" ? sp.postcode.trim().slice(0, 12) : undefined;
+  const chosen = typeof sp.cover === "string" ? COVER[sp.cover] : undefined;
   return (
     <div className="bg-house-cream text-house-brown">
       <section className="px-[5vw] pt-24 pb-16">
@@ -27,10 +41,15 @@ export default function SpeakToASpecialist() {
             <h1 className="mt-4 font-display text-[clamp(30px,4.6vw,52px)] leading-[1.05] text-house-black">
               Speak to a specialist.
             </h1>
-            <p className="mt-5 mb-8 max-w-[52ch] font-sans text-[17px] leading-[1.6] text-house-stone">
+            <p className="mt-5 mb-4 max-w-[52ch] font-sans text-[17px] leading-[1.6] text-house-stone">
               Leave your details and a specialist will call. We ask only what we need to make the introduction, nothing about sums insured, contents or your current insurer.
             </p>
-            <InsuranceEnquiryForm enquiryType="general" turnstileSiteKey={turnstileSiteKey} sourcePage="/insurance/speak-to-a-specialist" submitLabel="Send" />
+            {chosen || postcode ? (
+              <p className="mb-8 inline-block border-l-2 border-[color:var(--ins-ink)] bg-house-cream-dark/50 px-4 py-2 font-sans text-[14px] text-house-brown">
+                Starting {chosen ? `a ${chosen.label} enquiry` : "your enquiry"}{postcode ? ` for ${postcode.toUpperCase()}` : ""}.
+              </p>
+            ) : null}
+            <InsuranceEnquiryForm enquiryType={chosen?.type ?? "general"} turnstileSiteKey={turnstileSiteKey} sourcePage="/insurance/speak-to-a-specialist" submitLabel="Send" initialPostcode={postcode} />
           </div>
           <div className="relative aspect-[4/5] w-full overflow-hidden lg:mt-2">
             <Image

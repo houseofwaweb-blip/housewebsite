@@ -41,7 +41,7 @@ export function GuideLayout({
         </div>
       </section>
 
-      <article className="mx-auto max-w-[760px] px-[5vw] pb-16">
+      <article className="mx-auto max-w-[760px] px-[5vw] pb-8">
         {guide.sections.map((s) => (
           <section key={s.heading} className="mt-10">
             <h2 className="font-display text-[clamp(22px,2.6vw,30px)] leading-[1.15] text-house-black">{s.heading}</h2>
@@ -57,8 +57,11 @@ export function GuideLayout({
           </p>
         ) : null}
 
-        {/* Foot CTA */}
-        <div className="mt-12 border-t border-house-brown/12 pt-10">
+      </article>
+
+      {/* Foot CTA — green-tinted band, a colour close after the cream article */}
+      <section className="px-[5vw] py-14" style={{ background: "var(--house-green-soft)" }}>
+        <div className="mx-auto max-w-[760px]">
           {guide.footCta === "renewal" ? (
             <>
               <h2 className="font-display text-[clamp(22px,2.6vw,30px)] leading-[1.15] text-house-black">Remind me before my renewal.</h2>
@@ -81,13 +84,13 @@ export function GuideLayout({
           )}
 
           {guide.related ? (
-            <p className="mt-8 font-sans text-[14px] text-house-stone">
+            <p className="mt-8 font-sans text-[14px] text-house-brown/80">
               Related:{" "}
-              <Link href={guide.related.href} className="text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">{guide.related.label} →</Link>
+              <Link href={guide.related.href} className="text-[color:var(--house-green-ink)] underline underline-offset-2 hover:text-house-brown">{guide.related.label} →</Link>
             </p>
           ) : null}
         </div>
-      </article>
+      </section>
     </div>
   );
 }

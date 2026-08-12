@@ -47,6 +47,7 @@ export function InsuranceEnquiryForm({
   sourcePage,
   submitLabel = "Speak to a specialist",
   withCompany = false,
+  initialPostcode,
 }: {
   /** For attribution, e.g. "listed-buildings", "private-client", "trades". */
   enquiryType: string;
@@ -55,6 +56,8 @@ export function InsuranceEnquiryForm({
   submitLabel?: string;
   /** B2B pages add a company-name field. */
   withCompany?: boolean;
+  /** Prefilled from the homepage quote-starter (?postcode=). */
+  initialPostcode?: string;
 }) {
   const router = useRouter();
   const turnstileRef = React.useRef<TurnstileInstance | null>(null);
@@ -68,7 +71,7 @@ export function InsuranceEnquiryForm({
     formState: { errors, isSubmitting },
   } = useForm<Values>({
     resolver: zodResolver(schema),
-    defaultValues: { turnstileToken: "", honey: "" },
+    defaultValues: { postcode: initialPostcode ?? "", turnstileToken: "", honey: "" },
   });
 
   const onFirstInput = () => {

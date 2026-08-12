@@ -653,3 +653,15 @@ body {
   --ins-dark:   #7a6229;
   --ins-on:     #30231c;   /* brown text on gold */
 }
+
+/* ---------------------------------------------------------------------------
+   Deep British green — the third note in the homepage palette (with the House
+   cream/gold and the burgundy protect world). Used for the dark Protect module,
+   proof strip and green primary CTAs. Aug-12 homepage rework.
+--------------------------------------------------------------------------- */
+:root {
+  --house-green:      #2f4133;  /* deep green — dark module bg / primary button */
+  --house-green-deep: #22301f;  /* darker green — footers, hovers */
+  --house-green-ink:  #35472e;  /* green as type on cream (AA) */
+  --house-green-soft: #e0e5d8;  /* pale green tint band */
+}

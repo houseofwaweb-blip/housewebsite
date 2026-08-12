@@ -92,20 +92,20 @@ export default function InsuranceHub() {
         </div>
       </section>
 
-      {/* The argument, once */}
-      <section className="border-t border-house-brown/10 px-[5vw] py-14" style={{ background: "var(--color-house-cream-dark)" }}>
+      {/* The argument, once — dark burgundy anchor */}
+      <section className="px-[5vw] py-14 text-house-cream" style={{ background: "var(--ins-accent)" }}>
         <div className="mx-auto grid max-w-[980px] items-center gap-10 md:grid-cols-2">
           <div className="flex gap-6">
-            <p className="font-display text-[clamp(56px,10vw,110px)] leading-none text-[color:var(--ins-ink)]">70%</p>
-            <p className="pt-3 font-sans text-[15px] leading-[1.6] text-house-brown/85">
+            <p className="font-display text-[clamp(56px,10vw,110px)] leading-none text-[color:var(--house-green-soft)]">70%</p>
+            <p className="pt-3 font-sans text-[15px] leading-[1.6] text-house-cream/80">
               of UK properties are insured below their rebuild cost, at an average of 66% of what they should be. Rebuild costs rose around 40% between 2020 and 2024, and index-linking runs behind.
             </p>
           </div>
-          <p className="max-w-[42ch] font-display text-[clamp(20px,2.4vw,28px)] leading-[1.3] text-house-brown">
+          <p className="max-w-[42ch] font-display text-[clamp(20px,2.4vw,28px)] leading-[1.3] text-house-cream">
             The House already knows what your home is made of. That is the difference between a guess and a figure.
           </p>
         </div>
-        <p className="mx-auto mt-4 max-w-[980px] font-sans text-[11.5px] text-house-stone/70">Figures indicative and pending Provenance compliance sign-off.</p>
+        <p className="mx-auto mt-4 max-w-[980px] font-sans text-[11.5px] text-house-cream/55">Figures indicative and pending Provenance compliance sign-off.</p>
       </section>
 
       {/* What can be arranged, grouped by life, as cards */}

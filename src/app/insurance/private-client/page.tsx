@@ -69,8 +69,8 @@ export default function PrivateClient() {
         </div>
       </section>
 
-      {/* Home Record advantage, split: text left, image right */}
-      <section className="border-t border-house-brown/10 px-[5vw] py-12" style={{ background: "var(--color-house-cream-dark)" }}>
+      {/* Home Record advantage — green-tinted band */}
+      <section className="px-[5vw] py-12" style={{ background: "var(--house-green-soft)" }}>
         <div className="mx-auto grid max-w-[1120px] items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <div className="max-w-[600px]">
             <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-[color:var(--ins-ink)]">The difference the House brings</p>
@@ -91,22 +91,22 @@ export default function PrivateClient() {
         </div>
       </section>
 
-      {/* Underinsurance evidence */}
-      <section className="border-t border-house-brown/10 px-[5vw] py-12">
+      {/* Underinsurance evidence — dark burgundy anchor */}
+      <section className="px-[5vw] py-14 text-house-cream" style={{ background: "var(--ins-accent)" }}>
         <div className="mx-auto max-w-[880px]">
-          <div className="grid gap-6 border-y border-house-brown/12 py-8 sm:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-3">
             {[
               { s: "70%", l: "of UK properties insured below rebuild cost" },
               { s: "66%", l: "the average level they are insured at" },
               { s: "40%", l: "rise in rebuild costs, 2020 to 2024" },
             ].map((e) => (
               <div key={e.l}>
-                <p className="font-display text-[clamp(28px,3.4vw,44px)] leading-none text-[color:var(--ins-ink)]">{e.s}</p>
-                <p className="mt-2 font-sans text-[13px] leading-[1.5] text-house-stone">{e.l}</p>
+                <p className="font-display text-[clamp(28px,3.4vw,44px)] leading-none text-[color:var(--house-green-soft)]">{e.s}</p>
+                <p className="mt-2 font-sans text-[13px] leading-[1.5] text-house-cream/75">{e.l}</p>
               </div>
             ))}
           </div>
-          <p className="mt-3 font-sans text-[11.5px] text-house-stone/70">Figures indicative and pending Provenance compliance sign-off.</p>
+          <p className="mt-4 font-sans text-[11.5px] text-house-cream/55">Figures indicative and pending Provenance compliance sign-off.</p>
         </div>
       </section>
 

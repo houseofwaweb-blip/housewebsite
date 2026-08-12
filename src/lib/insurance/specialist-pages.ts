@@ -361,6 +361,84 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     ],
     enquiryType: "classic-and-prestige-motor",
   },
+  {
+    slug: "boiler-cover",
+    title: "Boiler and heating cover",
+    metaTitle: "Boiler and central heating cover",
+    metaDescription:
+      "Cover for when the boiler or central heating stops, with annual and monthly options. Introduced by the House, arranged by a regulated partner.",
+    hero: {
+      eyebrow: "Home cover",
+      heading: "When the heating stops, the cover should already be in place.",
+      lede: "A boiler that fails in the cold is one of the few home problems that cannot wait. Cover for the repair, and for the annual service that prevents most failures, arranged through a regulated partner.",
+    },
+    image: "/insurance/boiler-cover.webp",
+    imageAlt:
+      "A warm, well-kept British home interior, standing for a home whose heating is looked after.",
+    placedImage: "/insurance/house-record.webp",
+    placedImageAlt:
+      "A House Record book beside service notes, standing for the boiler service history a cover plan is built around.",
+    whyDifferent: {
+      heading: "What boiler cover actually covers",
+      body: [
+        "Boiler and central-heating cover pays for the engineer, the parts and the labour when the system fails, and most plans include an annual service that catches the faults that would otherwise become a mid-winter breakdown.",
+        "The detail that matters is the boiler's age and service history: a maintained record is what keeps a system insurable and the terms sensible.",
+      ],
+    },
+    detail: {
+      title: "The options, in plain terms",
+      points: [
+        { h: "Boiler and controls", p: "Cover for the boiler, the controls and the central heating, with the annual service usually included." },
+        { h: "Annual or monthly", p: "Pay yearly or spread it monthly. The House introduces you; the plan is arranged and administered by the partner." },
+        { h: "Service history helps", p: "A documented service record keeps cover straightforward, and the House already holds what it knows about your home." },
+      ],
+    },
+    placed: {
+      heading: "What the partner can place",
+      body: "Cover is arranged and administered by a regulated partner. The House introduces you and can supply what it already knows about the home; the partner arranges the cover.",
+    },
+    crossLinks: [{ label: "Appliance cover", href: "/insurance/appliance-cover" }],
+    enquiryType: "boiler-cover",
+  },
+  {
+    slug: "appliance-cover",
+    title: "Appliance cover",
+    metaTitle: "Household appliance cover",
+    metaDescription:
+      "Cover for the household appliances you rely on, a single item or the whole kitchen, from washing machines to ovens. Introduced by the House, arranged by a regulated partner.",
+    hero: {
+      eyebrow: "Home cover",
+      heading: "The appliances a home runs on, covered before they fail.",
+      lede: "A washing machine, an oven, a fridge-freezer: the everyday machines whose failure is an expensive surprise. Cover for repair or replacement, on a single item or across the home.",
+    },
+    image: "/insurance/appliance-cover.webp",
+    imageAlt:
+      "A considered British kitchen interior, standing for the household appliances a home relies on.",
+    placedImage: "/insurance/house-record.webp",
+    placedImageAlt:
+      "A House Record book and receipts, standing for the appliance details a cover plan is built around.",
+    whyDifferent: {
+      heading: "Single item or the whole kitchen",
+      body: [
+        "Appliance cover pays for repair or replacement when a machine fails outside its manufacturer warranty. It can sit on a single valued item or across every appliance in the home.",
+        "What the House brings is the record: what you own, when it was bought, and what it would cost to put back.",
+      ],
+    },
+    detail: {
+      title: "How it is arranged",
+      points: [
+        { h: "One item or many", p: "Cover a single high-value appliance, or bundle the kitchen and utility room together." },
+        { h: "Repair or replace", p: "Plans cover repair, and replacement where a machine cannot be economically fixed." },
+        { h: "Kept records help", p: "Purchase dates and values make cover simpler, and the House holds what it knows about your home." },
+      ],
+    },
+    placed: {
+      heading: "What the partner can place",
+      body: "Cover is arranged and administered by a regulated partner. The House introduces you and supplies what it already holds; the partner arranges the cover.",
+    },
+    crossLinks: [{ label: "Boiler and heating cover", href: "/insurance/boiler-cover" }],
+    enquiryType: "appliance-cover",
+  },
 ];
 
 export function getSpecialistPage(slug: string): SpecialistPage | undefined {
