@@ -908,6 +908,12 @@ export const BUSINESS_SPECIALIST_PAGES: SpecialistPage[] = [
     },
     image: "/insurance/cat-business.webp",
     imageAlt: "The trades and studios in the House's own network, covered for commercial, liability and professional risk.",
+    whyImage: "/insurance/business-why.webp",
+    whyImageAlt:
+      "A working studio or workshop in the House's network, the real work a commercial policy is built around.",
+    differenceImage: "/insurance/business-difference.webp",
+    differenceImageAlt:
+      "A working business at close quarters, the exposure a comparison form cannot price.",
     whyImageSpec: {
       description: "A working studio or workshop in the House's network: hands at a bench, a site meeting, or tools in use. Real work, well kept.",
       dimensions: "1600 × 1067px landscape (3:2), WebP",
