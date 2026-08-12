@@ -18,9 +18,22 @@ export type SpecialistPage = {
   /** Optional hero image, rendered in the split hero beside the heading block. */
   image?: string;
   imageAlt?: string;
-  /** Optional image for the "What Provenance can place" split section. */
+  /**
+   * Shared "House Record" still-life, rendered in the burgundy "What Provenance
+   * can place" section on every page (book text edited to drop the literal
+   * "House Record" wording).
+   */
   placedImage?: string;
   placedImageAlt?: string;
+  /**
+   * Section 3 ("Why it is different") image. Until a per-page asset is supplied,
+   * `whyImageSpec` drives an on-page placeholder telling the client exactly what
+   * to shoot and what to name the file. Once `whyImage` is set it renders in
+   * place of the placeholder.
+   */
+  whyImage?: string;
+  whyImageAlt?: string;
+  whyImageSpec?: { description: string; dimensions: string; filename: string };
   whyDifferent: { heading: string; body: string[] };
   detail: { title: string; points: { h: string; p: string }[] };
   placed: { heading: string; body: string };
@@ -49,6 +62,11 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
       "A worn House Record ledger propped against a heritage rebuild drawing, a brass sconce and a pink peony beside it, evoking the documented history a heritage underwriter wants to see.",
+    whyImageSpec: {
+      description: "A close, tactile detail of heritage repair done properly: a stonemason re-pointing lime mortar, or original sash joinery being restored by hand. Warm and documentary, no faces needed.",
+      dimensions: "1000 × 1250px portrait (4:5), WebP",
+      filename: "/insurance/listed-why.webp",
+    },
     whyDifferent: {
       heading: "Why a listed building is a different risk",
       body: [
@@ -96,6 +114,11 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
       "A House Record book beside a brass globe sconce and a pink peony, standing in for the sweeping records and maintenance history a thatch underwriter reviews.",
+    whyImageSpec: {
+      description: "A thatcher at work on a roof ridge, or a crisp detail of a freshly combed straw ridge against sky. Craft and maintenance, not fire.",
+      dimensions: "1000 × 1250px portrait (4:5), WebP",
+      filename: "/insurance/thatched-why.webp",
+    },
     whyDifferent: {
       heading: "What underwriters actually look at",
       body: [
@@ -139,6 +162,11 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
       "A House Record ledger and a construction drawing on a sage sill, representing the detail of how a non-standard home is built that an underwriter needs described.",
+    whyImageSpec: {
+      description: "A detail of an unusual wall build: exposed cob, flint, timber frame or single-skin stone, showing the fabric an automated quote cannot read.",
+      dimensions: "1000 × 1250px portrait (4:5), WebP",
+      filename: "/insurance/non-standard-why.webp",
+    },
     whyDifferent: {
       heading: "Why a form cannot handle it",
       body: [
@@ -177,6 +205,11 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
       "A House Record book and drawings on a sill, standing for the occupancy and use details that let a second or holiday home sit within one arranged policy.",
+    whyImageSpec: {
+      description: "A second home shut up for the season in soft light: a coastal or country house with the curtains drawn, quietly waiting.",
+      dimensions: "1000 × 1250px portrait (4:5), WebP",
+      filename: "/insurance/second-homes-why.webp",
+    },
     whyDifferent: {
       heading: "Why it is a different risk",
       body: [
@@ -219,6 +252,11 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
       "A House Record ledger and a fountain pen resting on a calm sage surface, evoking the inspection notes and conditions kept for an empty or probate property.",
+    whyImageSpec: {
+      description: "An empty room in calm daylight, dust sheets over furniture. A home between chapters, dignified and still, nothing bleak.",
+      dimensions: "1000 × 1250px portrait (4:5), WebP",
+      filename: "/insurance/unoccupied-why.webp",
+    },
     whyDifferent: {
       heading: "The three situations",
       body: [
@@ -258,6 +296,11 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
       "A House Record book beside building drawings on a sill, standing for the contract and works documents a single renovation policy is written around.",
+    whyImageSpec: {
+      description: "A home mid-works from inside: scaffold, bare plaster, protected floors and daylight through an opening. Ordered rather than chaotic.",
+      dimensions: "1000 × 1250px portrait (4:5), WebP",
+      filename: "/insurance/renovation-why.webp",
+    },
     whyDifferent: {
       heading: "The gap most owners do not know exists",
       body: [
@@ -297,6 +340,11 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
       "A House Record book and a fountain pen on a sage surface, standing for the inventory of scheduled and valued items a specialist policy is built around.",
+    whyImageSpec: {
+      description: "A close still life of scheduled pieces: a framed painting corner, a watch and jewellery on a tray, being handled or valued.",
+      dimensions: "1000 × 1250px portrait (4:5), WebP",
+      filename: "/insurance/fine-art-why.webp",
+    },
     whyDifferent: {
       heading: "Why scheduled items are different",
       body: [
@@ -336,6 +384,11 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
       "A House Record book and pen on a sage surface, standing for the agreed-value schedule that lets a prestige vehicle sit on one renewal date with the home.",
+    whyImageSpec: {
+      description: "A classic car detail: a chrome badge or wire wheel, or the car in a private garage with the house beyond. Estate rather than showroom.",
+      dimensions: "1000 × 1250px portrait (4:5), WebP",
+      filename: "/insurance/motor-why.webp",
+    },
     whyDifferent: {
       heading: "The consolidation argument",
       body: [
@@ -378,6 +431,11 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
       "A House Record book beside service notes, standing for the boiler service history a cover plan is built around.",
+    whyImageSpec: {
+      description: "A heating engineer's hands servicing a boiler, or a neat, well-kept plant room or airing cupboard. Competent and reassuring.",
+      dimensions: "1000 × 1250px portrait (4:5), WebP",
+      filename: "/insurance/boiler-why.webp",
+    },
     whyDifferent: {
       heading: "What boiler cover actually covers",
       body: [
@@ -417,11 +475,16 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
       "A House Record book and receipts, standing for the appliance details a cover plan is built around.",
+    whyImageSpec: {
+      description: "A calm British kitchen detail: integrated appliances in a considered kitchen, or a hand loading a washing machine. Everyday and well-kept.",
+      dimensions: "1000 × 1250px portrait (4:5), WebP",
+      filename: "/insurance/appliance-why.webp",
+    },
     whyDifferent: {
       heading: "Single item or the whole kitchen",
       body: [
         "Appliance cover pays for repair or replacement when a machine fails outside its manufacturer warranty. It can sit on a single valued item or across every appliance in the home.",
-        "What the House brings is the record: what you own, when it was bought, and what it would cost to put back.",
+        "Cover is simplest when you know what you own, when it was bought, and what it would cost to replace, so it is worth keeping the receipts and model details to hand.",
       ],
     },
     detail: {

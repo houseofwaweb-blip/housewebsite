@@ -22,9 +22,9 @@ export const SHOP_CROSS_LINKS: CrossLinkCard[] = [
   {
     eyebrow: "Not sure?",
     title: "Planning work on your home?",
-    body: "Show House Companion a room, a photo or an idea. It shapes the brief and keeps every next step in HoWA.",
-    cta: "Ask House Companion",
-    href: "/house-companion",
+    body: "Tell the House the room and what you have in mind, and we will point you to the right service or studio, from a single visit to a full redesign.",
+    cta: "Explore services",
+    href: "/services",
   },
   {
     eyebrow: "Inspiration",
@@ -36,7 +36,7 @@ export const SHOP_CROSS_LINKS: CrossLinkCard[] = [
   {
     eyebrow: "Aftercare",
     title: "Want the work done?",
-    body: "The House books the gardeners, cleaners and specialists, and keeps it all in your home record.",
+    body: "The House books the gardeners, cleaners and specialists, and coordinates the whole job for you.",
     cta: "Book a service",
     href: "#open-booking-form",
   },

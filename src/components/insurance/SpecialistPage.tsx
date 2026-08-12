@@ -22,6 +22,42 @@ const READINESS = [
   { h: "The cost to rebuild", p: "The reinstatement figure, not the market value." },
 ];
 
+/** Landscape image for "The questions a comparison form never asks", beside the
+    header and above the readiness cards. Empty src → on-page placeholder shows. */
+const DIFFERENCE_IMG = "";
+const DIFFERENCE_IMG_SPEC = {
+  description:
+    "Landscape: a specialist and homeowner in conversation at a kitchen table, or a surveyor's hands with a notebook and tape at a period house. Warm, human, unhurried.",
+  dimensions: "1600 × 1200px landscape (4:3), WebP",
+  filename: "/insurance/the-difference.webp",
+};
+
+/** Shared still-life for the burgundy "What Provenance can place" band, on every page. */
+const PROVENANCE_IMG = "/insurance/provenance-can-place.webp";
+const PROVENANCE_IMG_ALT =
+  "A worn ledger lettered Provenance Insurance beside architectural drawings, a brass globe sconce, a fountain pen and a pink peony on a sage sill.";
+
+/** On-page brief for an image not yet supplied: description, size, filename. */
+function ImagePlaceholder({
+  spec,
+  ratio,
+}: {
+  spec: { description: string; dimensions: string; filename: string };
+  ratio: string;
+}) {
+  return (
+    <div className={`${ratio} flex w-full flex-col items-center justify-center border-2 border-dashed border-house-brown/30 bg-house-white/60 p-6 text-center`}>
+      <p className="font-sans text-[11px] tracking-[0.22em] uppercase text-[color:var(--ins-ink)]">Image placeholder</p>
+      <p className="mt-3 max-w-[42ch] font-sans text-[14px] leading-[1.55] text-house-brown/80">{spec.description}</p>
+      <p className="mt-4 font-sans text-[12.5px] leading-[1.5] text-house-brown/55">
+        {spec.dimensions}
+        <br />
+        save as <span className="font-semibold text-house-brown/80">{spec.filename}</span>
+      </p>
+    </div>
+  );
+}
+
 export function SpecialistPage({
   data,
   turnstileSiteKey,
@@ -91,27 +127,42 @@ export function SpecialistPage({
               <p key={i} className="mt-5 font-sans text-[17px] leading-[1.7] text-house-brown/85">{para}</p>
             ))}
           </div>
-          {data.placedImage ? (
+          {data.whyImage ? (
             <div className="relative aspect-[4/5] w-full overflow-hidden">
-              <Image src={data.placedImage} alt={data.placedImageAlt ?? ""} fill sizes="(min-width: 1120px) 500px, 90vw" style={{ objectFit: "cover", objectPosition: "center" }} />
+              <Image src={data.whyImage} alt={data.whyImageAlt ?? ""} fill sizes="(min-width: 1120px) 500px, 90vw" style={{ objectFit: "cover", objectPosition: "center" }} />
             </div>
+          ) : data.whyImageSpec ? (
+            <ImagePlaceholder spec={data.whyImageSpec} ratio="aspect-[4/5]" />
           ) : null}
         </div>
       </section>
 
-      {/* 4. Evidence — sage band (if present) */}
+      {/* 4. Evidence — sage band (if present), with a CTA alongside the figures */}
       {data.evidence && data.evidence.length > 0 ? (
         <section className="px-[5vw] py-11" style={{ background: "var(--color-house-cream-dark)" }}>
-          <div className="mx-auto max-w-[1120px]">
-            <div className="grid max-w-[880px] gap-6 sm:grid-cols-3">
-              {data.evidence.map((e) => (
-                <div key={e.label}>
-                  <p className="font-display text-[clamp(28px,3.4vw,44px)] leading-none text-[color:var(--ins-ink)]">{e.stat}</p>
-                  <p className="mt-2 font-sans text-[14px] leading-[1.5] text-house-brown/75">{e.label}</p>
-                </div>
-              ))}
+          <div className="mx-auto grid max-w-[1120px] items-center gap-8 lg:grid-cols-[1fr_auto] lg:gap-12">
+            <div>
+              <div className="grid gap-6 sm:grid-cols-3">
+                {data.evidence.map((e) => (
+                  <div key={e.label}>
+                    <p className="font-display text-[clamp(28px,3.4vw,44px)] leading-none text-[color:var(--ins-ink)]">{e.stat}</p>
+                    <p className="mt-2 font-sans text-[14px] leading-[1.5] text-house-brown/75">{e.label}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-5 font-sans text-[11.5px] text-house-brown/55">Figures are indicative and pending Provenance compliance sign-off.</p>
             </div>
-            <p className="mt-4 font-sans text-[11.5px] text-house-brown/55">Figures are indicative and pending Provenance compliance sign-off.</p>
+            <div className="lg:border-l lg:border-house-brown/15 lg:pl-12">
+              <p className="max-w-[22ch] font-display text-[clamp(18px,2vw,24px)] leading-[1.25] text-house-black">
+                Find out where your own cover stands.
+              </p>
+              <a
+                href="#enquire"
+                className="mt-4 inline-flex items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110"
+              >
+                Speak to a specialist
+              </a>
+            </div>
           </div>
         </section>
       ) : null}
@@ -136,14 +187,25 @@ export function SpecialistPage({
       {/* 6. Why a specialist, not a form — sage band (argued from what a specialist asks) */}
       <section className="px-[5vw] py-14" style={{ background: "var(--color-house-cream-dark)" }}>
         <div className="mx-auto max-w-[1120px]">
-          <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-[color:var(--ins-ink)]">The difference</p>
-          <h2 className="mt-3 max-w-[26ch] font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-black">
-            The questions a comparison form never asks.
-          </h2>
-          <p className="mt-4 max-w-[62ch] font-sans text-[16px] leading-[1.7] text-house-brown/85">
-            Most insurance is priced by people who never ask a single thing about the house. The House introduces you to a specialist who starts from what the home actually is, so the cover is built on the real risk rather than a guess.
-          </p>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+            <div>
+              <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-[color:var(--ins-ink)]">The difference</p>
+              <h2 className="mt-3 max-w-[26ch] font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-black">
+                The questions a comparison form never asks.
+              </h2>
+              <p className="mt-4 max-w-[52ch] font-sans text-[16px] leading-[1.7] text-house-brown/85">
+                Most insurance is priced by people who never ask a single thing about the house. The House introduces you to a specialist who starts from what the home actually is, so the cover is built on the real risk rather than a guess.
+              </p>
+            </div>
+            {DIFFERENCE_IMG ? (
+              <div className="relative aspect-[4/3] w-full overflow-hidden">
+                <Image src={DIFFERENCE_IMG} alt={DIFFERENCE_IMG_SPEC.description} fill sizes="(min-width: 1120px) 540px, 90vw" style={{ objectFit: "cover", objectPosition: "center" }} />
+              </div>
+            ) : (
+              <ImagePlaceholder spec={DIFFERENCE_IMG_SPEC} ratio="aspect-[4/3]" />
+            )}
+          </div>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {READINESS.map((r) => (
               <div key={r.h} className="border border-house-brown/12 bg-house-white p-5">
                 <p className="font-display text-[18px] leading-tight text-house-black">{r.h}</p>
@@ -157,9 +219,10 @@ export function SpecialistPage({
         </div>
       </section>
 
-      {/* 7. What Provenance can place — dark burgundy band, the bottom anchor */}
+      {/* 7. What Provenance can place — dark burgundy band, the bottom anchor.
+          Split with the shared "House Record" still-life on every page. */}
       <section className="px-[5vw] py-14 text-house-cream" style={{ background: "var(--ins-accent)" }}>
-        <div className="mx-auto max-w-[1120px]">
+        <div className="mx-auto grid max-w-[1120px] items-center gap-10 lg:grid-cols-[1fr_0.66fr] lg:gap-16">
           <div className="max-w-[64ch]">
             <h2 className="font-display text-[clamp(24px,3vw,38px)] leading-[1.12] text-house-cream">
               {data.placed.heading}
@@ -179,6 +242,9 @@ export function SpecialistPage({
                 ))}
               </ul>
             ) : null}
+          </div>
+          <div className="relative aspect-[4/5] w-full overflow-hidden">
+            <Image src={PROVENANCE_IMG} alt={PROVENANCE_IMG_ALT} fill sizes="(min-width: 1120px) 420px, 90vw" style={{ objectFit: "cover", objectPosition: "center" }} />
           </div>
         </div>
       </section>

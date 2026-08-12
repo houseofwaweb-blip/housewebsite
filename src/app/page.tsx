@@ -218,7 +218,7 @@ export default async function HomePage() {
           {/* Shop by room — labelled, with a route to the full room index */}
           <div className="mb-4 mt-12 flex items-end justify-between gap-4 border-t border-house-brown/12 pt-6">
             <h3 className="font-display text-[clamp(20px,2.2vw,28px)] leading-[1.06] text-house-brown">Shop by room</h3>
-            <Link href="/shop/collections" className="whitespace-nowrap font-sans text-[12px] tracking-[0.16em] uppercase text-house-gold-dark no-underline transition-colors hover:text-house-brown">
+            <Link href="/shop" className="whitespace-nowrap font-sans text-[12px] tracking-[0.16em] uppercase text-house-gold-dark no-underline transition-colors hover:text-house-brown">
               All rooms →
             </Link>
           </div>

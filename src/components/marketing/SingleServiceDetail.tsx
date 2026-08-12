@@ -89,14 +89,14 @@ export function SingleServiceDetail({ view }: { view: SingleServiceView }) {
               <Link href="#open-booking-form" className={s.btnFilled}>
                 Book this service
               </Link>
-              <Link href="/house-companion" className={s.btnGhost}>
-                Not sure? Ask House Companion
+              <Link href="/services" className={s.btnGhost}>
+                Not sure? Browse all services
               </Link>
             </div>
             <p className={s.heroLede} style={{ fontSize: 13, opacity: 0.85, marginTop: 12 }}>
               {quote
-                ? "Delivered by a House team or a named House Approved professional, disclosed before you commit. Booking and Home Record powered by HoWA."
-                : "Delivered by House of Willow Alexander. Booking, scheduling and Home Record powered by HoWA."}
+                ? "Delivered by a House team or a named House Approved professional, disclosed before you commit. Booking and scheduling powered by HoWA."
+                : "Delivered by House of Willow Alexander. Booking and scheduling powered by HoWA."}
             </p>
           </div>
         </div>
