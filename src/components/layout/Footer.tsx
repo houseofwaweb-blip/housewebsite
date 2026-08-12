@@ -57,7 +57,6 @@ const COLS: FooterColumn[] = [
       { label: "Pet Insurance", href: "/insurance/everyday/pet-and-travel" },
       { label: "Boiler Cover", href: "/insurance/boiler-cover" },
       { label: "Appliance Cover", href: "/insurance/appliance-cover" },
-      { label: "Home Protection Review", href: "/insurance/home-protection" },
     ],
   },
   {

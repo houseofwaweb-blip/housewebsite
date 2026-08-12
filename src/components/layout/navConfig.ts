@@ -37,7 +37,6 @@ export const PRIMARY_NAV: MegaPanel[] = [
           { label: "Boiler Cover", href: "/insurance/boiler-cover", description: "When the heating stops" },
           { label: "Appliance Cover", href: "/insurance/appliance-cover", description: "The machines a home runs on" },
           { label: "Everyday cover", href: "/insurance/everyday", description: "Home, car, pet and travel" },
-          { label: "Home Protection Review", href: "/insurance/home-protection", description: "Book an assessment" },
         ],
       },
       {
