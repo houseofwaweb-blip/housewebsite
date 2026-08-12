@@ -69,6 +69,9 @@ const PRODUCT_FRAGMENT = /* GraphQL */ `
     images(first: 6) {
       nodes { url altText width height }
     }
+    variants(first: 2) {
+      nodes { id }
+    }
     houseApproved: metafield(namespace: "howa", key: "houseApproved") { value }
     careNotes: metafield(namespace: "howa", key: "careNotes") { value }
     linkedPartner: metafield(namespace: "howa", key: "linkedPartner") { value }
@@ -87,6 +90,7 @@ interface ShopifyProductNode {
   priceRange: { minVariantPrice: { amount: string; currencyCode: string } };
   compareAtPriceRange?: { minVariantPrice: { amount: string; currencyCode: string } };
   images: { nodes: Array<{ url: string; altText: string | null; width?: number; height?: number }> };
+  variants?: { nodes: Array<{ id: string }> };
   houseApproved?: { value: string } | null;
   careNotes?: { value: string } | null;
   linkedPartner?: { value: string } | null;
@@ -105,6 +109,8 @@ function mapProduct(p: ShopifyProductNode): CommerceProduct {
     compareAtPrice: p.compareAtPriceRange?.minVariantPrice,
     images: p.images.nodes,
     availableForSale: p.availableForSale,
+    variantId: p.variants?.nodes[0]?.id,
+    variantCount: p.variants?.nodes.length,
     tags: p.tags,
     metafields: {
       houseApproved: p.houseApproved?.value === "true",

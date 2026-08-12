@@ -4,6 +4,7 @@ import s from "./home-v5/home-v5.module.css";
 import { getLatestHearthArticles } from "@/lib/cms/hearth";
 import { shopifyProvider } from "@/lib/commerce/shopify";
 import { MiniNewsletter } from "@/components/marketing/MiniNewsletter";
+import { ProductRailCard } from "@/components/marketing/ProductRailCard";
 import { DESIGN_VOUCHERS } from "@/lib/design-vouchers";
 
 /**
@@ -56,9 +57,9 @@ const ECOSYSTEM = [
 ];
 
 const PRODUCTS_FALLBACK = [
-  { name: "Hand-thrown mug", price: "£24.00", image: null as string | null, href: "/shop/collections/home-accessories" },
-  { name: "Woven linen cushion", price: "£38.00", image: null as string | null, href: "/shop/collections/soft-furnishings" },
-  { name: "Painted stem vase", price: "£32.00", image: null as string | null, href: "/shop/collections/home-accessories" },
+  { name: "Hand-thrown mug", price: "£24.00", image: null as string | null, href: "/shop/collections/home-accessories", handle: "", variantId: undefined as string | undefined, multiVariant: true, inStock: true },
+  { name: "Woven linen cushion", price: "£38.00", image: null as string | null, href: "/shop/collections/soft-furnishings", handle: "", variantId: undefined as string | undefined, multiVariant: true, inStock: true },
+  { name: "Painted stem vase", price: "£32.00", image: null as string | null, href: "/shop/collections/home-accessories", handle: "", variantId: undefined as string | undefined, multiVariant: true, inStock: true },
 ];
 
 const HEARTH_FALLBACK = [
@@ -95,6 +96,10 @@ export default async function HomePage() {
         price: formatMoney(p.price),
         image: p.images[0]?.url ?? null,
         href: `/shop/${p.handle}`,
+        handle: p.handle,
+        variantId: p.variantId,
+        multiVariant: (p.variantCount ?? 1) > 1,
+        inStock: p.availableForSale,
       }))
     : PRODUCTS_FALLBACK;
 
@@ -260,13 +265,7 @@ export default async function HomePage() {
           </div>
           <div className="grid grid-cols-2 gap-5 sm:grid-cols-4">
             {marketCards.map((p) => (
-              <Link key={p.name} href={p.href} className="group block no-underline">
-                <div className="relative aspect-square w-full overflow-hidden bg-house-cream-dark">
-                  {p.image ? <Image src={p.image} alt={p.name} fill sizes="(min-width:640px) 22vw, 50vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" /> : null}
-                </div>
-                <p className="mt-3 font-sans text-[15px] leading-tight text-house-brown">{p.name}</p>
-                <p className="mt-0.5 font-sans text-[14px] text-house-stone">{p.price}</p>
-              </Link>
+              <ProductRailCard key={p.name} {...p} />
             ))}
             <Link href="/shop" className="flex items-center justify-center border border-house-brown/20 bg-house-white p-6 text-center font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown no-underline transition-colors hover:border-house-brown">
               Shop all products →

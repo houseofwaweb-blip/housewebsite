@@ -26,6 +26,10 @@ export interface CommerceProduct {
   compareAtPrice?: CommerceMoney;
   images: CommerceImage[];
   availableForSale: boolean;
+  /** First variant id, for one-click add-to-basket on grid cards. */
+  variantId?: string;
+  /** Number of variants (>1 means send to the product page to choose options). */
+  variantCount?: number;
   tags: string[];
   metafields: {
     houseApproved?: boolean;
