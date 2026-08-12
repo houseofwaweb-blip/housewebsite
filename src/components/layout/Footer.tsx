@@ -43,7 +43,7 @@ const COLS: FooterColumn[] = [
       { label: "All services", href: "/services" },
       { label: "Gardening", href: "/services/gardening" },
       { label: "Cleaning", href: "/services/cleaning" },
-      { label: "Handyman", href: "/services/handyman" },
+      { label: "Window cleaning", href: "/services/window-cleaning" },
       { label: "Garden Design", href: "/design/gardens" },
       { label: "Home & Interior Design", href: "/design/interiors" },
     ],
@@ -52,13 +52,15 @@ const COLS: FooterColumn[] = [
     heading: "Protect",
     links: [
       { label: "Insurance introductions", href: "/insurance" },
-      { label: "Home Insurance", href: "/insurance/home" },
-      { label: "Pet Insurance", href: "/insurance/pet" },
+      { label: "Home Insurance", href: "/insurance/private-client" },
+      { label: "Pet Insurance", href: "/insurance/everyday/pet-and-travel" },
+      { label: "Boiler Cover", href: "/insurance/boiler-cover" },
+      { label: "Appliance Cover", href: "/insurance/appliance-cover" },
       { label: "Home Protection Review", href: "/insurance/home-protection" },
     ],
   },
   {
-    heading: "Marketplace",
+    heading: "Shop",
     links: [
       { label: "Shop All", href: "/shop" },
       { label: "Collections", href: "/shop/collections" },
@@ -84,7 +86,7 @@ export interface FooterProps {
 
 export function Footer({ columns, tagline }: FooterProps) {
   const cols = columns && columns.length > 0 ? columns : COLS;
-  const tag = tagline || "Ownership is passive. Stewardship is intentional.";
+  const tag = tagline || "The British home, cared for.";
 
   return (
     <footer className="relative overflow-hidden bg-house-brown text-house-cream px-[5vw] py-16 mt-auto">

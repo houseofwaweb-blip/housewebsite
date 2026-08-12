@@ -52,7 +52,7 @@ const ECOSYSTEM = [
   { name: "Gardening", scope: "Book local help", href: "/services/gardening" },
   { name: "Cleaning", scope: "Book a clean", href: "/services/cleaning" },
   { name: "Window cleaning", scope: "Book a visit", href: "/services/window-cleaning" },
-  { name: "Handyman", scope: "Arrange a visit", href: "/services/handyman" },
+  { name: "Gutter cleaning", scope: "Book a visit", href: "/services/gutter-cleaning" },
 ];
 
 const PRODUCTS_FALLBACK = [
@@ -215,8 +215,14 @@ export default async function HomePage() {
             </p>
           </div>
 
-          {/* Shop by room — three clean tiles across */}
-          <div className="grid gap-4 sm:grid-cols-3">
+          {/* Shop by room — labelled, with a route to the full room index */}
+          <div className="mb-4 mt-12 flex items-end justify-between gap-4 border-t border-house-brown/12 pt-6">
+            <h3 className="font-display text-[clamp(20px,2.2vw,28px)] leading-[1.06] text-house-brown">Shop by room</h3>
+            <Link href="/shop/collections" className="whitespace-nowrap font-sans text-[12px] tracking-[0.16em] uppercase text-house-gold-dark no-underline transition-colors hover:text-house-brown">
+              All rooms →
+            </Link>
+          </div>
+          <div className="grid gap-5 sm:grid-cols-3">
             {SHOP_ROOMS.map((r) => (
               <Link key={r.handle} href={`/shop/collections/${r.handle}`} className="group relative block aspect-[4/3] overflow-hidden bg-house-cream-dark no-underline">
                 <Image src={r.image} alt={r.name} fill sizes="(min-width:640px) 31vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
@@ -230,7 +236,7 @@ export default async function HomePage() {
           </div>
 
           {/* House Selection — full-width editorial band */}
-          <Link href="/shop/collections/house-approved" className="group relative mt-4 flex min-h-[180px] items-end overflow-hidden bg-house-black p-6 text-house-cream no-underline sm:min-h-[220px] sm:p-8">
+          <Link href="/shop/collections/house-approved" className="group relative mt-12 flex min-h-[180px] items-end overflow-hidden bg-house-black p-6 text-house-cream no-underline sm:min-h-[240px] sm:p-8">
             <Image src="/home-v4/pillar-3.webp" alt="An editorial still life from the House Selection" fill sizes="100vw" className="object-cover opacity-40 transition-transform duration-500 group-hover:scale-[1.03]" />
             <div className="relative max-w-[38ch]">
               <p className="font-sans text-[10.5px] tracking-[0.22em] uppercase text-house-gold-light">The House Selection</p>
@@ -240,7 +246,13 @@ export default async function HomePage() {
           </Link>
 
           {/* Real product rail with prices */}
-          <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div className="mb-4 mt-12 flex items-end justify-between gap-4 border-t border-house-brown/12 pt-6">
+            <h3 className="font-display text-[clamp(20px,2.2vw,28px)] leading-[1.06] text-house-brown">Fresh from the shelves</h3>
+            <Link href="/shop" className="whitespace-nowrap font-sans text-[12px] tracking-[0.16em] uppercase text-house-gold-dark no-underline transition-colors hover:text-house-brown">
+              Shop all →
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 gap-5 sm:grid-cols-4">
             {marketCards.map((p) => (
               <Link key={p.name} href={p.href} className="group block no-underline">
                 <div className="relative aspect-square w-full overflow-hidden bg-house-cream-dark">
