@@ -90,7 +90,7 @@ export default async function HomePage() {
     (p) => !voucherHandles.has(p.handle) && !PLAN_TITLE.test(p.title),
   );
   const marketCards = realProducts.length
-    ? realProducts.slice(0, 6).map((p) => ({
+    ? realProducts.slice(0, 7).map((p) => ({
         name: p.title,
         price: formatMoney(p.price),
         image: p.images[0]?.url ?? null,

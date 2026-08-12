@@ -173,9 +173,9 @@ export const GUIDES: Guide[] = [
       "The grades, what listed building consent means for repair after a claim, rebuild cost for heritage fabric, and working with conservation officers.",
     intro:
       "A listed building is insured differently because it is repaired differently. This guide covers the grades, consent, rebuild cost for heritage fabric, and the people you end up working with when something goes wrong.",
-    image: "/insurance/private-client.webp",
+    image: "/insurance/guide-listed-building.webp",
     imageAlt:
-      "A sage-green period country house at sunset, wisteria over its portico above a cottage garden, the sort of heritage home repaired like for like after a loss.",
+      "A period listed building, the kind of heritage home repaired like for like with original materials after a loss.",
     sections: [
       { heading: "The grades", paras: [
         "Grade II, Grade II* and Grade I reflect increasing significance, and increasing obligation. The higher the grade, the more tightly repair is controlled and the more a rebuild costs, which the premium reflects.",
