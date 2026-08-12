@@ -221,7 +221,7 @@ function MegaGroup({ group }: { group: MegaLinkGroup }) {
               href={link.href}
               className="group inline-flex items-baseline font-sans text-[12px] tracking-[0.14em] uppercase text-house-brown no-underline transition-[color,padding-left] duration-[var(--t-base)] ease-out hover:text-house-gold-ink hover:pl-[4px]"
             >
-              <span>{link.label}</span>
+              <span className="whitespace-nowrap">{link.label}</span>
               {link.description ? (
                 <span className="font-sans normal-case text-[12px] tracking-[0.02em] text-house-stone ml-[8px]">
                   {link.description}

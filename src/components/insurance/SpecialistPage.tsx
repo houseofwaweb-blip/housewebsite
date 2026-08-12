@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { SpecialistPage as SpecialistPageData } from "@/lib/insurance/specialist-pages";
 import { InsuranceEnquiryForm } from "./InsuranceEnquiryForm";
+import { InsuranceTrustStrip } from "./InsuranceTrustStrip";
 import { PROVENANCE } from "@/lib/insurance/config";
 
 /**
@@ -59,13 +60,6 @@ export function SpecialistPage({
   data: SpecialistPageData;
   turnstileSiteKey: string;
 }) {
-  const TRUST = [
-    { h: "FCA-regulated", p: `Arranged by ${PROVENANCE.legalName.split(" ").slice(0, 2).join(" ")} (FRN ${PROVENANCE.frn})` },
-    { h: "Claims handled for you", p: "From first notification to settlement" },
-    { h: "A named specialist", p: "One person who knows the file, not a call centre" },
-    { h: "Profits to charity", p: `Provenance sits within the ${PROVENANCE.group} group` },
-  ];
-
   return (
     <div className="bg-house-cream text-house-brown">
       {/* 1. Hero — cream, split */}
@@ -99,16 +93,7 @@ export function SpecialistPage({
       </section>
 
       {/* 2. Trust strip — dark green band, the top anchor */}
-      <section className="px-[5vw] py-7 text-house-cream" style={{ background: "var(--house-green)" }}>
-        <div className="mx-auto grid max-w-[1120px] gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-4">
-          {TRUST.map((t) => (
-            <div key={t.h} className="flex flex-col">
-              <span className="font-sans text-[14.5px] font-semibold tracking-[0.01em] text-house-cream">{t.h}</span>
-              <span className="mt-0.5 font-sans text-[12.5px] leading-[1.45] text-house-cream/70">{t.p}</span>
-            </div>
-          ))}
-        </div>
-      </section>
+      <InsuranceTrustStrip />
 
       {/* 3. Why it is different — split with the second image, mid-page */}
       <section className="px-[5vw] py-14">
@@ -219,6 +204,35 @@ export function SpecialistPage({
           </p>
         </div>
       </section>
+
+      {/* 6b. Related covers — optional cross-sell grid (e.g. the everyday covers) */}
+      {data.relatedCovers ? (
+        <section className="px-[5vw] py-14" style={{ background: "var(--color-house-white)" }}>
+          <div className="mx-auto max-w-[1120px]">
+            <h2 className="mb-8 font-display text-[clamp(22px,2.8vw,34px)] leading-[1.12] text-house-black">
+              {data.relatedCovers.title}
+            </h2>
+            <div className="grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+              {data.relatedCovers.items.map((c) => (
+                <Link
+                  key={c.name}
+                  href={c.href}
+                  className="group flex flex-col overflow-hidden border border-house-brown/12 bg-house-cream no-underline transition-[border-color,box-shadow] hover:border-[color:var(--ins-ink)] hover:shadow-[0_14px_40px_-24px_rgba(0,0,0,0.4)]"
+                >
+                  <div className="relative aspect-[4/3] w-full overflow-hidden">
+                    <Image src={c.image} alt={c.imageAlt ?? ""} fill sizes="(max-width: 640px) 100vw, 260px" className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
+                  </div>
+                  <div className="flex flex-1 flex-col p-5">
+                    <h3 className="font-display text-[19px] leading-tight text-house-black transition-colors group-hover:text-[color:var(--ins-ink)]">{c.name}</h3>
+                    {c.body ? <p className="mt-2 font-sans text-[14.5px] leading-[1.55] text-house-stone">{c.body}</p> : null}
+                    <span className="mt-4 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-ink)]">View cover →</span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       {/* 7. What Provenance can place — dark burgundy band, the bottom anchor.
           Split with the shared "Provenance Insurance" still-life on every page. */}

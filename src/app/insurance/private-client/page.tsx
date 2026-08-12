@@ -3,6 +3,7 @@ import Image from "next/image";
 import { env } from "@/lib/env";
 import { InsuranceEnquiryForm } from "@/components/insurance/InsuranceEnquiryForm";
 import { CoverCards } from "@/components/insurance/CoverCards";
+import { InsuranceTrustStrip } from "@/components/insurance/InsuranceTrustStrip";
 import { insuranceOg } from "@/lib/insurance/og";
 
 /**
@@ -58,8 +59,11 @@ export default function PrivateClient() {
         </div>
       </section>
 
+      {/* Trust strip — dark green band */}
+      <InsuranceTrustStrip />
+
       {/* What can be placed */}
-      <section className="border-t border-house-brown/10 px-[5vw] py-12">
+      <section className="px-[5vw] py-12">
         <div className="mx-auto max-w-[1180px]">
           <h2 className="font-display text-[clamp(22px,2.8vw,34px)] leading-[1.12] text-house-black">One lifestyle policy, one renewal date.</h2>
           <p className="mb-9 mt-4 max-w-[60ch] font-sans text-[17px] leading-[1.7] text-house-brown/85">

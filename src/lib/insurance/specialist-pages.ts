@@ -52,6 +52,11 @@ export type SpecialistPage = {
   /** Sourced figures, rendered as an evidence strip where present. */
   evidence?: { stat: string; label: string }[];
   crossLinks?: { label: string; href: string }[];
+  /** Optional cross-sell grid of related covers (e.g. the four everyday covers). */
+  relatedCovers?: {
+    title: string;
+    items: { name: string; body?: string; href: string; image: string; imageAlt?: string }[];
+  };
   /** For form attribution. */
   enquiryType: string;
   /** Hero CTA label; defaults to "Speak to a specialist" (business uses "Request a review"). */
@@ -214,6 +219,9 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     whyImage: "/insurance/non-standard-why.webp",
     whyImageAlt:
       "A detail of non-standard construction: timber framing, cob infill and a stone plinth, the fabric an automated quote cannot read.",
+    differenceImage: "/insurance/non-standard-difference.webp",
+    differenceImageAlt:
+      "A close view of non-standard construction, the kind of fabric a specialist reads individually rather than by category.",
     differenceIntro:
       "A comparison engine asks a fixed set of questions and prices off the answers. Non-standard construction is exactly the case those questions were never written for.",
     readiness: [
@@ -260,6 +268,20 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
       "A House Record book and drawings on a sill, standing for the occupancy and use details that let a second or holiday home sit within one arranged policy.",
+    whyImage: "/insurance/second-homes-why.webp",
+    whyImageAlt:
+      "A second home shut up quietly for the season, the kind of place standard cover is not built for.",
+    differenceImage: "/insurance/second-homes-difference.webp",
+    differenceImageAlt:
+      "A quiet holiday home standing empty, the occupancy a comparison form never asks about.",
+    differenceIntro:
+      "A comparison form prices a home that is lived in. A second home is empty for stretches, sometimes let, and that changes the risk entirely.",
+    readiness: [
+      { h: "How often it's empty", p: "The stretches unoccupied, which most standard policies quietly limit." },
+      { h: "How it's used", p: "Second home, holiday home or holiday let, three different things to an insurer." },
+      { h: "Security while away", p: "Alarms, key-holding and how the home is checked between visits." },
+      { h: "Where it is", p: "Coastal, rural or overseas, each carrying its own exposure." },
+    ],
     whyImageSpec: {
       description: "A second home shut up for the season in soft light: a coastal or country house with the curtains drawn, quietly waiting.",
       dimensions: "1600 × 1067px landscape (3:2), WebP",
@@ -312,6 +334,20 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       dimensions: "1600 × 1067px landscape (3:2), WebP",
       filename: "/insurance/unoccupied-why.webp",
     },
+    whyImage: "/insurance/unoccupied-why.webp",
+    whyImageAlt:
+      "An empty room in calm daylight, dust sheets over the furniture, a home between chapters.",
+    differenceImage: "/insurance/unoccupied-difference.webp",
+    differenceImageAlt:
+      "A quiet, unoccupied home standing still, the condition and security a specialist asks about.",
+    differenceIntro:
+      "A comparison form prices a home that is lived in. An empty house is a different risk, and the questions that matter are about how it is left and looked after.",
+    readiness: [
+      { h: "How long it's empty", p: "The period unoccupied, which most standard policies stop covering." },
+      { h: "How it's secured", p: "Locks, boarding where needed, alarms and who holds a key." },
+      { h: "Water and heating", p: "Systems drained, or heating kept on through winter to prevent burst pipes." },
+      { h: "How often it's checked", p: "Regular inspections, the condition insurers usually require." },
+    ],
     whyDifferent: {
       heading: "The three situations",
       body: [
@@ -356,6 +392,14 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       dimensions: "1600 × 1067px landscape (3:2), WebP",
       filename: "/insurance/renovation-why.webp",
     },
+    differenceIntro:
+      "A comparison form prices a finished, occupied home. During building work almost none of those assumptions hold, and the questions that matter are about the works themselves.",
+    readiness: [
+      { h: "The works", p: "What is being done, and whether the home is open to the weather or structurally in flux." },
+      { h: "Who is on site", p: "The contractors, their own cover, and the JCT contract position." },
+      { h: "The existing structure", p: "Cover for the standing building as well as the contract works." },
+      { h: "How long", p: "The length of the project, which sets the period cover is needed for." },
+    ],
     whyDifferent: {
       heading: "The gap most owners do not know exists",
       body: [
@@ -616,6 +660,17 @@ export const SPECIALIST_SLUGS = SPECIALIST_PAGES.map((p) => p.slug);
  * carries its own "questions a comparison form never asks" set so none of them
  * inherit the property (roof/fabric) default.
  */
+/** The four everyday covers, shown as a cross-sell grid on each everyday page. */
+const EVERYDAY_COVERS_GRID = {
+  title: "Explore everyday cover",
+  items: [
+    { name: "Home", body: "Buildings and contents.", href: "/insurance/everyday/home", image: "/insurance/ev-home.webp", imageAlt: "A well-kept everyday home." },
+    { name: "Car, van & motorbike", body: "Including temporary cover.", href: "/insurance/everyday/motor", image: "/insurance/ev-motor.webp", imageAlt: "A car and van outside a home." },
+    { name: "Pet & travel", body: "Pet, and single or annual travel.", href: "/insurance/everyday/pet-and-travel", image: "/insurance/ev-pet.webp", imageAlt: "A pet's collar and travel things on a table." },
+    { name: "Breakdown & bicycle", body: "Roadside, and bicycle cover.", href: "/insurance/everyday/breakdown-and-bicycle", image: "/insurance/ev-breakdown.webp", imageAlt: "A bicycle kept ready by the door." },
+  ],
+};
+
 export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
   {
     slug: "home",
@@ -663,6 +718,7 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
       body: "Provenance arranges straightforward buildings and contents cover, and can route a period, listed or high-value home to the advised service where that fits better. The House introduces you; Provenance arranges and administers the cover.",
     },
     crossLinks: [{ label: "A period or listed home? Speak to a specialist", href: "/insurance/private-client" }],
+    relatedCovers: EVERYDAY_COVERS_GRID,
     enquiryType: "home",
   },
   {
@@ -711,6 +767,7 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
       body: "Provenance arranges everyday motor cover across car, van, motorbike and temporary use. The House introduces you; Provenance arranges and administers the cover.",
     },
     crossLinks: [{ label: "A classic or prestige vehicle? Speak to a specialist", href: "/insurance/classic-and-prestige-motor" }],
+    relatedCovers: EVERYDAY_COVERS_GRID,
     enquiryType: "motor",
   },
   {
@@ -758,6 +815,7 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
       heading: "What Provenance can place",
       body: "Provenance arranges pet cover and single-trip or annual travel, including specialist medical travel. The House introduces you; Provenance arranges and administers the cover.",
     },
+    relatedCovers: EVERYDAY_COVERS_GRID,
     enquiryType: "pet-and-travel",
   },
   {
@@ -805,6 +863,7 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
       heading: "What Provenance can place",
       body: "Provenance arranges breakdown cover and bicycle cover across the full range of bikes. The House introduces you; Provenance arranges and administers the cover.",
     },
+    relatedCovers: EVERYDAY_COVERS_GRID,
     enquiryType: "breakdown-and-bicycle",
   },
 ];
