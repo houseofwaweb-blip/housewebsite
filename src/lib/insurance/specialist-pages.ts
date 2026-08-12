@@ -548,6 +548,54 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     enquiryType: "classic-and-prestige-motor",
   },
   {
+    slug: "boat-yacht-aviation",
+    title: "Boat, yacht & aviation",
+    metaTitle: "Boat, yacht and aviation insurance",
+    metaDescription:
+      "Cover for boats, yachts and aircraft, from a family boat to complex Lloyd's placements, arranged alongside the home on one relationship. Introduced by the House, arranged by Provenance.",
+    hero: {
+      eyebrow: "Specialist assets",
+      heading: "The boat, the yacht, the aircraft, on the same estate.",
+      lede: "Marine and aviation risks sit outside a household policy and are underwritten by specialist markets. The House introduces you to one, so the boat or aircraft is arranged alongside the home rather than managed apart.",
+    },
+    image: "/insurance/boat-yacht-aviation.webp",
+    imageAlt: "A classic yacht's brass and teak detail, an asset arranged alongside the home on one policy.",
+    whyImageSpec: {
+      description: "A marine or aviation detail: a yacht's brass and teak fittings, a compass on a chart, a folded sail, or a wing or propeller. Warm and editorial, never a glossy superyacht in motion.",
+      dimensions: "1600 × 1067px landscape (3:2), WebP",
+      filename: "/insurance/boat-yacht-aviation-why.webp",
+    },
+    whyDifferent: {
+      heading: "Why marine and aviation are their own world",
+      body: [
+        "A boat, a yacht or an aircraft is not a possession a home insurer covers. Each is underwritten by specialist marine and aviation markets, on its own terms, with its own surveys, moorings, usage and crew considerations.",
+        "The reason to arrange it through the House is not price. It is that the asset sits within one relationship, on one renewal date, with the home and the rest of the estate, rather than as a separate policy nobody joins up.",
+      ],
+    },
+    differenceIntro:
+      "A household policy stops at the water's edge and the runway. The House introduces you to a specialist who prices the vessel or aircraft on what it is and how it is used.",
+    readiness: [
+      { h: "What it is", p: "The make, length or type, and value, surveyed rather than estimated." },
+      { h: "How it's used", p: "Cruising ground, racing, charter or private flying, each a different risk." },
+      { h: "Where it's kept", p: "Mooring, marina, hangar or dry storage, and the security that goes with it." },
+      { h: "Crew and skipper", p: "Who operates it, their experience and any professional crew." },
+    ],
+    detail: {
+      title: "What can be arranged",
+      points: [
+        { h: "Boats and yachts", p: "From a family motorboat or sailing yacht to a bluewater cruiser, on agreed value." },
+        { h: "Aviation", p: "Private aircraft and helicopters, through the specialist and Lloyd's markets." },
+        { h: "On one estate", p: "Arranged alongside the home, cars and collections on a single renewal date." },
+      ],
+    },
+    placed: {
+      heading: "What Provenance can place",
+      body: "Provenance works with the specialist marine and aviation markets, from the standard market through to complex Lloyd's of London placements, and can consolidate the vessel or aircraft with the household policy. The House introduces you; Provenance arranges and administers the cover.",
+    },
+    crossLinks: [{ label: "Private client insurance", href: "/insurance/private-client" }],
+    enquiryType: "boat-yacht-aviation",
+  },
+  {
     slug: "boiler-cover",
     title: "Boiler and heating cover",
     metaTitle: "Boiler and central heating cover",
@@ -688,6 +736,7 @@ const RELATED_ASSETS = {
     { name: "Private client", body: "The whole estate on one policy.", href: "/insurance/private-client", image: "/insurance/cat-house.webp", imageAlt: "A period house." },
     { name: "Fine art & collections", body: "Art, jewellery, watches and wine.", href: "/insurance/fine-art-and-collections", image: "/insurance/cat-fine-art.webp", imageAlt: "Fine art and collected pieces." },
     { name: "Classic & prestige motor", body: "The car, on one renewal date.", href: "/insurance/classic-and-prestige-motor", image: "/insurance/cat-cars.webp", imageAlt: "A classic car." },
+    { name: "Boat, yacht & aviation", body: "Marine and aviation, on the estate.", href: "/insurance/boat-yacht-aviation", image: "/insurance/boat-yacht-aviation.webp", imageAlt: "A classic yacht detail." },
     { name: "Listed & period homes", body: "The house it all sits in.", href: "/insurance/listed-buildings", image: "/insurance/listed.webp", imageAlt: "A listed period home." },
   ],
 };
@@ -713,7 +762,7 @@ const PROPERTY_SLUGS = new Set([
   "listed-buildings", "thatched-properties", "non-standard-construction",
   "second-homes", "unoccupied-property", "renovation-and-extension",
 ]);
-const ASSET_SLUGS = new Set(["fine-art-and-collections", "classic-and-prestige-motor"]);
+const ASSET_SLUGS = new Set(["fine-art-and-collections", "classic-and-prestige-motor", "boat-yacht-aviation"]);
 const HOMECOVER_SLUGS = new Set(["boiler-cover", "appliance-cover"]);
 
 /** Attach the right cross-sell pool to a page (unless it already has one). */

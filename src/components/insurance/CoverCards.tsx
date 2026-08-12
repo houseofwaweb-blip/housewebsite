@@ -45,8 +45,8 @@ export const COVER_CARDS = [
     body: "Marine and aviation cover, from a family boat to complex Lloyd's placements, arranged alongside the home.",
     image: "/insurance/boat-yacht-aviation.webp",
     imageAlt: "A classic yacht's brass and teak detail, the kind of asset arranged on one policy with the home.",
-    href: "/insurance/speak-to-a-specialist",
-    cta: "Speak to a specialist",
+    href: "/insurance/boat-yacht-aviation",
+    cta: "Boat, yacht & aviation",
   },
 ];
 
