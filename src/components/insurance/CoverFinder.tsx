@@ -40,11 +40,12 @@ export function CoverFinder() {
       .map((t) => t.trim())
       .filter((t) => t.length >= 2 && !STOP.has(t));
     if (tokens.length === 0) return covers;
-    // ≤3-char words match a whole word (so "car" ≠ "carpenter"); 4+ char words
-    // match a word prefix so half-written queries resolve ("neckla" → necklace).
+    // 2-char words match a whole word (so "pi"/"tv" stay precise); 3+ char words
+    // match a word PREFIX so half-typing resolves ("wat" → watch, "neckla" →
+    // necklace). Word-boundary anchored, so "art" hits "fine art" not "apartment".
     const regexes = tokens.map((t) => {
       const esc = t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      return t.length >= 4 ? new RegExp("\\b" + esc) : new RegExp("\\b" + esc + "\\b");
+      return t.length >= 3 ? new RegExp("\\b" + esc) : new RegExp("\\b" + esc + "\\b");
     });
     return covers.filter((c) => {
       const hay = `${c.name} ${c.blurb} ${c.group} ${c.tags.join(" ")}`.toLowerCase();
