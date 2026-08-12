@@ -110,6 +110,9 @@ export default function PrivateClient() {
               </div>
             ))}
           </div>
+          <p className="mt-6 max-w-[60ch] font-sans text-[16px] leading-[1.6] text-house-cream/85">
+            Listed buildings, high-value homes and extended properties are the categories worst affected, and index-linking alone rarely keeps pace. A specialist sets the figure against the real cost of rebuilding your home.
+          </p>
           <p className="mt-4 font-sans text-[11.5px] text-house-cream/55">Figures indicative and pending Provenance compliance sign-off.</p>
         </div>
       </section>
