@@ -90,7 +90,7 @@ export default async function HomePage() {
     (p) => !voucherHandles.has(p.handle) && !PLAN_TITLE.test(p.title),
   );
   const marketCards = realProducts.length
-    ? realProducts.slice(0, 3).map((p) => ({
+    ? realProducts.slice(0, 6).map((p) => ({
         name: p.title,
         price: formatMoney(p.price),
         image: p.images[0]?.url ?? null,
@@ -118,7 +118,7 @@ export default async function HomePage() {
               <strong className="font-semibold text-house-black">Home &amp; pet insurance</strong> and <strong className="font-semibold text-house-black">boiler &amp; appliance cover</strong>, a <strong className="font-semibold text-house-black">curated home &amp; garden shop</strong>, and a <strong className="font-semibold text-house-black">journal</strong> on looking after your home.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <Link href="/insurance" className={BTN_PRIMARY}>Explore protection</Link>
+              <Link href="/insurance" className={BTN_PRIMARY}>Get covered</Link>
               <Link href="/shop" className={BTN_SECONDARY}>Shop all products</Link>
             </div>
           </div>

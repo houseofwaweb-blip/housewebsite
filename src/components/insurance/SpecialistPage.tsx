@@ -199,9 +199,17 @@ export function SpecialistPage({
               </div>
             ))}
           </div>
-          <p className="mt-7 max-w-[44ch] font-display text-[clamp(19px,2.2vw,26px)] italic leading-[1.3] text-[color:var(--ins-ink)]">
-            A specialist asks. A comparison engine assumes.
-          </p>
+          <div className="mt-7 flex flex-wrap items-center gap-x-8 gap-y-4">
+            <p className="max-w-[44ch] font-display text-[clamp(19px,2.2vw,26px)] italic leading-[1.3] text-[color:var(--ins-ink)]">
+              A specialist asks. A comparison engine assumes.
+            </p>
+            <a
+              href="#enquire"
+              className="inline-flex items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110"
+            >
+              {data.heroCta ?? "Speak to a specialist"}
+            </a>
+          </div>
         </div>
       </section>
 
@@ -246,6 +254,14 @@ export function SpecialistPage({
             <p className="mt-5 font-sans text-[15px] leading-[1.6] text-house-cream/70">
               Provenance is authorised and regulated by the FCA (FRN {PROVENANCE.frn}), a member of BIBA, and part of the {PROVENANCE.group} group, owned by {PROVENANCE.backer}, whose profits go to charitable causes.
             </p>
+            <div className="mt-7">
+              <a
+                href="#enquire"
+                className="inline-flex items-center justify-center whitespace-nowrap border border-house-cream bg-house-cream px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-accent)] no-underline transition-[filter] hover:brightness-95"
+              >
+                {data.heroCta ?? "Speak to a specialist"}
+              </a>
+            </div>
             {data.crossLinks && data.crossLinks.length > 0 ? (
               <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 p-0">
                 {data.crossLinks.map((l) => (
