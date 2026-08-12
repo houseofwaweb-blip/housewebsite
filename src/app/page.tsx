@@ -20,9 +20,10 @@ import { DESIGN_VOUCHERS } from "@/lib/design-vouchers";
  */
 
 export const metadata = {
-  title: { absolute: "House of Willow Alexander | Home & pet insurance, boiler & appliance cover, shop and journal" },
+  title: { absolute: "House of Willow Alexander | Home & pet insurance, boiler & appliance cover, shop and magazine" },
   description:
-    "Home and pet insurance introductions, boiler and appliance cover, a curated home and garden shop, and a journal about looking after your home. London & Kent and beyond.",
+    "Home and pet insurance introductions, boiler and appliance cover, a curated home and garden shop, and a magazine about looking after your home. London & Kent and beyond.",
+  alternates: { canonical: "/" },
 };
 
 /** The four Protect products. Boiler and appliance are home-cover products with
@@ -39,6 +40,20 @@ const TRUST = [
   { h: "Start in two minutes", p: "a postcode, then a call back" },
   { h: "London & Kent, and beyond", p: "wherever your home is" },
   { h: "Arranged by Provenance", p: "FCA-regulated, profits to charity" },
+];
+
+// Proof band. NUMBERS AND NAMES BELOW ARE PLACEHOLDERS — Alex to supply
+// verified figures, real specialist names + headshots, and press/partner
+// logos. Structured so real data drops straight in.
+const PROOF_STATS = [
+  { n: "4.9/5", l: "Average customer rating", sub: "across 300+ reviews" },
+  { n: "1,200+", l: "British homes looked after" },
+  { n: "12 yrs", l: "Caring for homes in London & Kent" },
+];
+const PROOF_PEOPLE = [
+  { name: "A named specialist", role: "Home insurance", img: null as string | null },
+  { name: "A named specialist", role: "Private client", img: null as string | null },
+  { name: "A named specialist", role: "Home & garden services", img: null as string | null },
 ];
 
 const SHOP_ROOMS = [
@@ -116,7 +131,7 @@ export default async function HomePage() {
           <div className={s.heroCopyInner}>
             <p className="font-sans text-[11px] tracking-[0.28em] uppercase text-house-gold-dark">The British home, covered and cared for</p>
             <h1 className={s.heroTitle}>
-              That feeling<br />
+              That feeling{" "}<br />
               <em>you call home.</em>
             </h1>
             <p className="mt-6 max-w-[52ch] font-sans text-[clamp(17px,1.9vw,20px)] leading-[1.6] text-house-brown">
@@ -169,8 +184,8 @@ export default async function HomePage() {
 
           {/* Quote starter — plain GET hand-off to the enquiry page */}
           <form action="/insurance/speak-to-a-specialist" method="get" className="mb-8 flex flex-col gap-3 border border-house-cream/15 bg-house-cream/5 p-3 sm:flex-row sm:items-stretch">
-            <input name="postcode" placeholder="Enter your postcode" aria-label="Postcode" className="min-w-0 flex-1 border border-house-cream/20 bg-house-cream px-4 py-3 font-sans text-[16.5px] text-house-brown outline-none placeholder:text-house-stone focus:border-house-cream" />
-            <select name="cover" aria-label="Cover type" defaultValue="" className="flex-1 border border-house-cream/20 bg-house-cream px-4 py-3 font-sans text-[16.5px] text-house-brown outline-none focus:border-house-cream">
+            <input name="postcode" required placeholder="Enter your postcode" aria-label="Postcode" className="min-w-0 flex-1 border border-house-cream/20 bg-house-cream px-4 py-3 font-sans text-[16.5px] text-house-brown outline-none placeholder:text-house-stone focus:border-house-cream" />
+            <select name="cover" required aria-label="Cover type" defaultValue="" className="flex-1 border border-house-cream/20 bg-house-cream px-4 py-3 font-sans text-[16.5px] text-house-brown outline-none focus:border-house-cream">
               <option value="" disabled>Choose cover type…</option>
               <option value="home">Home insurance</option>
               <option value="pet">Pet insurance</option>
@@ -354,27 +369,73 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 5. Proof strip — dark burgundy */}
-      <section className="px-[5vw] py-[clamp(40px,5vw,72px)] text-house-cream" style={{ background: "var(--ins-accent)" }}>
-        <div className="mx-auto grid max-w-[1180px] items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <p className="mb-3 font-sans text-[11px] tracking-[0.28em] uppercase text-house-cream/60">The House, in practice</p>
-            <h2 className="font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-cream">
-              Trusted with the practical parts of <em className="text-[color:var(--house-green-soft)]">home.</em>
-            </h2>
+      {/* 5. Proof strip — dark burgundy. FIGURES + FACES ARE PLACEHOLDER. */}
+      <section className="px-[5vw] py-[clamp(44px,6vw,80px)] text-house-cream" style={{ background: "var(--ins-accent)" }}>
+        <div className="mx-auto max-w-[1180px]">
+          <div className="grid items-end gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+            <div>
+              <p className="mb-3 font-sans text-[11px] tracking-[0.28em] uppercase text-house-cream/60">The House, in practice</p>
+              <h2 className="font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-cream">
+                Trusted with the practical parts of <em className="text-[color:var(--house-green-soft)]">home.</em>
+              </h2>
+            </div>
+            <div className="grid gap-6 sm:grid-cols-3">
+              {[
+                { h: "FCA-regulated partner", p: "cover arranged by Provenance, not by us" },
+                { h: "Named support", p: "real people when you need them" },
+                { h: "London & Kent", p: "service areas shown before you begin" },
+              ].map((e) => (
+                <div key={e.h}>
+                  <p className="font-display text-[19px] leading-tight text-house-cream">{e.h}</p>
+                  <p className="mt-1.5 font-sans text-[14px] leading-[1.5] text-house-cream/70">{e.p}</p>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="grid gap-6 sm:grid-cols-3">
-            {[
-              { h: "FCA-regulated partner", p: "cover arranged by Provenance, not by us" },
-              { h: "Named support", p: "real people when you need them" },
-              { h: "London & Kent", p: "service areas shown before you begin" },
-            ].map((e) => (
-              <div key={e.h}>
-                <p className="font-display text-[19px] leading-tight text-house-cream">{e.h}</p>
-                <p className="mt-1.5 font-sans text-[14px] leading-[1.5] text-house-cream/70">{e.p}</p>
+
+          {/* Hard numbers — placeholder pending verified figures */}
+          <div className="mt-10 grid grid-cols-1 gap-px overflow-hidden border border-house-cream/15 bg-house-cream/15 sm:grid-cols-3">
+            {PROOF_STATS.map((stat) => (
+              <div key={stat.l} className="bg-[var(--ins-accent)] px-6 py-7 text-center">
+                <p className="font-display text-[clamp(32px,4vw,48px)] leading-none text-house-cream">{stat.n}</p>
+                <p className="mt-2 font-sans text-[13.5px] leading-[1.4] text-house-cream/85">{stat.l}</p>
+                {stat.sub ? <p className="mt-0.5 font-sans text-[12px] text-house-cream/55">{stat.sub}</p> : null}
               </div>
             ))}
           </div>
+
+          {/* Named people — placeholder avatars until real headshots arrive */}
+          <div className="mt-8 flex flex-col gap-6 border-t border-house-cream/15 pt-8 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-wrap items-center gap-5">
+              {PROOF_PEOPLE.map((person, i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <span aria-hidden className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full border border-house-cream/30 bg-house-cream/10">
+                    {person.img ? (
+                      <Image src={person.img} alt="" width={44} height={44} className="h-full w-full object-cover" />
+                    ) : (
+                      <span className="font-display text-[15px] text-house-cream/70">WA</span>
+                    )}
+                  </span>
+                  <span>
+                    <span className="block font-sans text-[13.5px] text-house-cream">{person.name}</span>
+                    <span className="block font-sans text-[11.5px] text-house-cream/55">{person.role}</span>
+                  </span>
+                </div>
+              ))}
+            </div>
+            {/* Press / partner logos — placeholder slots */}
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+              {["As featured in", "Partner", "Accreditation"].map((label) => (
+                <span key={label} className="flex h-9 items-center border border-dashed border-house-cream/25 px-4 font-sans text-[11px] tracking-[0.14em] uppercase text-house-cream/45">
+                  {label}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <p className="mt-6 font-sans text-[12px] leading-[1.55] text-house-cream/45">
+            Rating, review count, homes-covered figure, named specialists and logos shown here are placeholders, to be replaced with verified data before launch.
+          </p>
         </div>
       </section>
 

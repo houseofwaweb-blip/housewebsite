@@ -4,6 +4,7 @@ import { unifiedSearchQuery } from "@/lib/cms/queries";
 import { servicesReady } from "@/lib/env";
 import { searchCatalogue } from "@/lib/shop-data/catalogue";
 import { checkSearchRateLimit } from "@/lib/rate-limit";
+import { ALL_COVERS } from "@/lib/insurance/cover-index";
 
 const MAX_QUERY_LENGTH = 100;
 
@@ -40,8 +41,8 @@ const STATIC_PAGES: SearchResult[] = [
   { id: "sp-handyman", type: "Services", title: "Handyman and repairs", excerpt: "Hourly and half-day visits for the jobs that have been waiting.", href: "/services/handyman" },
   { id: "sp-interiors", type: "Design", title: "Interior Design", excerpt: "Whole-house renovations and single-room reads.", href: "/design/interiors" },
   { id: "sp-gardens", type: "Design", title: "Garden Design", excerpt: "Landscape work led by Willow Alexander Gardens.", href: "/design/gardens" },
-  { id: "sp-insurance-home", type: "Insurance", title: "Home Insurance", excerpt: "Buildings and contents for a standard home. Introduced by the House, arranged by Provenance.", href: "/insurance/everyday/home" },
-  { id: "sp-insurance-pet", type: "Insurance", title: "Pet Insurance", excerpt: "Lifetime, time-limited and accident-only cover explained plainly. Introduced by the House.", href: "/insurance/pet" },
+  { id: "sp-insurance", type: "Insurance", title: "Insurance from the House", excerpt: "Home and pet insurance introductions, boiler and appliance cover, and specialist cover. Introduced by the House, arranged by Provenance.", href: "/insurance", keywords: "insurance cover quote protect home car pet boiler appliance specialist private client" },
+  { id: "sp-insurance-how", type: "Insurance", title: "How this works, and how we are paid", excerpt: "Introducer status, the FCA firm reference, and how the House is paid. Cover arranged by Provenance.", href: "/insurance/how-this-works", keywords: "how this works how we are paid commission fca provenance introducer regulated fee" },
   { id: "sp-philosophy", type: "The House", title: "Philosophy", excerpt: "What a house is actually for.", href: "/the-house/philosophy" },
   { id: "sp-standards", type: "The House", title: "Standards", excerpt: "How we work, and what the House standard means.", href: "/the-house/standards" },
   { id: "sp-contact", type: "The House", title: "Contact", excerpt: "Write to the House. Book a House Service.", href: "/contact" },
@@ -60,6 +61,28 @@ function searchStaticPages(q: string): SearchResult[] {
       (p.excerpt && p.excerpt.toLowerCase().includes(lower)) ||
       (p.keywords && p.keywords.toLowerCase().includes(lower)),
   );
+}
+
+// Every insurance cover the House introduces, from the keyword-tagged index
+// that powers the /insurance "Find your cover" search. Without this, a query
+// like "boiler" or "listed" returns nothing even though the pages exist.
+function searchInsuranceCovers(q: string): SearchResult[] {
+  const lower = q.toLowerCase();
+  return ALL_COVERS.filter(
+    (c) =>
+      c.name.toLowerCase().includes(lower) ||
+      c.blurb.toLowerCase().includes(lower) ||
+      c.group.toLowerCase().includes(lower) ||
+      c.tags.some((t) => t.toLowerCase().includes(lower)),
+  ).map((c) => ({
+    id: `ins-${c.href}`,
+    type: "Insurance",
+    title: c.name,
+    excerpt: c.blurb,
+    href: c.href,
+    image: c.image,
+    keywords: c.tags.join(" "),
+  }));
 }
 
 interface SanitySearchResult {
@@ -207,6 +230,9 @@ export async function GET(request: NextRequest) {
 
   // 3. Static pages
   allResults.push(...searchStaticPages(q));
+
+  // 4. Insurance covers (boiler, appliance, specialist, everyday, business)
+  allResults.push(...searchInsuranceCovers(q));
 
   // Filter by tab if not "all"
   let filtered = allResults;
