@@ -15,16 +15,22 @@ import { PROVENANCE } from "@/lib/insurance/config";
  * holds a record of your home.
  */
 
-const READINESS = [
+/** Default "questions a comparison form never asks" for PROPERTY pages. Asset,
+    motor and cover pages override via data.readiness / data.differenceIntro. */
+const READINESS_DEFAULT = [
   { h: "The roof", p: "What it is, and when it was last treated." },
   { h: "What it's built of", p: "The fabric behind the walls, not a guess from a table." },
   { h: "What's been added", p: "Every extension, rewire and works project." },
   { h: "The cost to rebuild", p: "The reinstatement figure, not the market value." },
 ];
+const DIFFERENCE_INTRO_DEFAULT =
+  "Most insurance is priced by people who never ask a single thing about the house. The House introduces you to a specialist who starts from what the home actually is, so the cover is built on the real risk rather than a guess.";
 
 /** Landscape image for "The questions a comparison form never asks", beside the
     header and above the readiness cards. Empty src → on-page placeholder shows. */
-const DIFFERENCE_IMG = "";
+const DIFFERENCE_IMG = "/insurance/the-difference.webp";
+const DIFFERENCE_IMG_ALT =
+  "A gilt-framed landscape painting, a bronze rearing horse on marble and a floral urn on dark wood: the kind of collected things a comparison form never asks about.";
 const DIFFERENCE_IMG_SPEC = {
   description:
     "Landscape: a specialist and homeowner in conversation at a kitchen table, or a surveyor's hands with a notebook and tape at a period house. Warm, human, unhurried.",
@@ -128,11 +134,11 @@ export function SpecialistPage({
             ))}
           </div>
           {data.whyImage ? (
-            <div className="relative aspect-[4/5] w-full overflow-hidden">
-              <Image src={data.whyImage} alt={data.whyImageAlt ?? ""} fill sizes="(min-width: 1120px) 500px, 90vw" style={{ objectFit: "cover", objectPosition: "center" }} />
+            <div className="relative aspect-[3/2] w-full overflow-hidden">
+              <Image src={data.whyImage} alt={data.whyImageAlt ?? ""} fill sizes="(min-width: 1120px) 520px, 90vw" style={{ objectFit: "cover", objectPosition: "center" }} />
             </div>
           ) : data.whyImageSpec ? (
-            <ImagePlaceholder spec={data.whyImageSpec} ratio="aspect-[4/5]" />
+            <ImagePlaceholder spec={data.whyImageSpec} ratio="aspect-[3/2]" />
           ) : null}
         </div>
       </section>
@@ -194,19 +200,19 @@ export function SpecialistPage({
                 The questions a comparison form never asks.
               </h2>
               <p className="mt-4 max-w-[52ch] font-sans text-[16px] leading-[1.7] text-house-brown/85">
-                Most insurance is priced by people who never ask a single thing about the house. The House introduces you to a specialist who starts from what the home actually is, so the cover is built on the real risk rather than a guess.
+                {data.differenceIntro ?? DIFFERENCE_INTRO_DEFAULT}
               </p>
             </div>
-            {DIFFERENCE_IMG ? (
+            {(data.differenceImage ?? DIFFERENCE_IMG) ? (
               <div className="relative aspect-[4/3] w-full overflow-hidden">
-                <Image src={DIFFERENCE_IMG} alt={DIFFERENCE_IMG_SPEC.description} fill sizes="(min-width: 1120px) 540px, 90vw" style={{ objectFit: "cover", objectPosition: "center" }} />
+                <Image src={data.differenceImage ?? DIFFERENCE_IMG} alt={data.differenceImageAlt ?? DIFFERENCE_IMG_ALT} fill sizes="(min-width: 1120px) 540px, 90vw" style={{ objectFit: "cover", objectPosition: "center" }} />
               </div>
             ) : (
               <ImagePlaceholder spec={DIFFERENCE_IMG_SPEC} ratio="aspect-[4/3]" />
             )}
           </div>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {READINESS.map((r) => (
+            {(data.readiness ?? READINESS_DEFAULT).map((r) => (
               <div key={r.h} className="border border-house-brown/12 bg-house-white p-5">
                 <p className="font-display text-[18px] leading-tight text-house-black">{r.h}</p>
                 <p className="mt-2 font-sans text-[14.5px] leading-[1.5] text-house-stone">{r.p}</p>

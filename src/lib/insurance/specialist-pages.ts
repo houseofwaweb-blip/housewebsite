@@ -35,6 +35,18 @@ export type SpecialistPage = {
   whyImageAlt?: string;
   whyImageSpec?: { description: string; dimensions: string; filename: string };
   whyDifferent: { heading: string; body: string[] };
+  /**
+   * "The questions a comparison form never asks" section. Property pages share
+   * the default (roof / fabric / added / rebuild); asset, motor and cover pages
+   * supply their own so a car page doesn't talk about roofs. Omit to use the
+   * property default.
+   */
+  differenceIntro?: string;
+  readiness?: { h: string; p: string }[];
+  /** Per-page landscape image for the "difference" section. Falls back to the
+      shared still-life when absent. */
+  differenceImage?: string;
+  differenceImageAlt?: string;
   detail: { title: string; points: { h: string; p: string }[] };
   placed: { heading: string; body: string };
   /** Sourced figures, rendered as an evidence strip where present. */
@@ -64,7 +76,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       "A worn House Record ledger propped against a heritage rebuild drawing, a brass sconce and a pink peony beside it, evoking the documented history a heritage underwriter wants to see.",
     whyImageSpec: {
       description: "A close, tactile detail of heritage repair done properly: a stonemason re-pointing lime mortar, or original sash joinery being restored by hand. Warm and documentary, no faces needed.",
-      dimensions: "1000 × 1250px portrait (4:5), WebP",
+      dimensions: "1600 × 1067px landscape (3:2), WebP",
       filename: "/insurance/listed-why.webp",
     },
     whyDifferent: {
@@ -116,7 +128,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       "A House Record book beside a brass globe sconce and a pink peony, standing in for the sweeping records and maintenance history a thatch underwriter reviews.",
     whyImageSpec: {
       description: "A thatcher at work on a roof ridge, or a crisp detail of a freshly combed straw ridge against sky. Craft and maintenance, not fire.",
-      dimensions: "1000 × 1250px portrait (4:5), WebP",
+      dimensions: "1600 × 1067px landscape (3:2), WebP",
       filename: "/insurance/thatched-why.webp",
     },
     whyDifferent: {
@@ -164,7 +176,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       "A House Record ledger and a construction drawing on a sage sill, representing the detail of how a non-standard home is built that an underwriter needs described.",
     whyImageSpec: {
       description: "A detail of an unusual wall build: exposed cob, flint, timber frame or single-skin stone, showing the fabric an automated quote cannot read.",
-      dimensions: "1000 × 1250px portrait (4:5), WebP",
+      dimensions: "1600 × 1067px landscape (3:2), WebP",
       filename: "/insurance/non-standard-why.webp",
     },
     whyDifferent: {
@@ -207,7 +219,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       "A House Record book and drawings on a sill, standing for the occupancy and use details that let a second or holiday home sit within one arranged policy.",
     whyImageSpec: {
       description: "A second home shut up for the season in soft light: a coastal or country house with the curtains drawn, quietly waiting.",
-      dimensions: "1000 × 1250px portrait (4:5), WebP",
+      dimensions: "1600 × 1067px landscape (3:2), WebP",
       filename: "/insurance/second-homes-why.webp",
     },
     whyDifferent: {
@@ -254,7 +266,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       "A House Record ledger and a fountain pen resting on a calm sage surface, evoking the inspection notes and conditions kept for an empty or probate property.",
     whyImageSpec: {
       description: "An empty room in calm daylight, dust sheets over furniture. A home between chapters, dignified and still, nothing bleak.",
-      dimensions: "1000 × 1250px portrait (4:5), WebP",
+      dimensions: "1600 × 1067px landscape (3:2), WebP",
       filename: "/insurance/unoccupied-why.webp",
     },
     whyDifferent: {
@@ -298,7 +310,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       "A House Record book beside building drawings on a sill, standing for the contract and works documents a single renovation policy is written around.",
     whyImageSpec: {
       description: "A home mid-works from inside: scaffold, bare plaster, protected floors and daylight through an opening. Ordered rather than chaotic.",
-      dimensions: "1000 × 1250px portrait (4:5), WebP",
+      dimensions: "1600 × 1067px landscape (3:2), WebP",
       filename: "/insurance/renovation-why.webp",
     },
     whyDifferent: {
@@ -340,11 +352,22 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
       "A House Record book and a fountain pen on a sage surface, standing for the inventory of scheduled and valued items a specialist policy is built around.",
+    whyImage: "/insurance/fine-art-why.webp",
+    whyImageAlt:
+      "An open leather jewellery box of gold rings, chains and a locket, the scheduled pieces a general contents limit rarely covers.",
     whyImageSpec: {
       description: "A close still life of scheduled pieces: a framed painting corner, a watch and jewellery on a tray, being handled or valued.",
-      dimensions: "1000 × 1250px portrait (4:5), WebP",
+      dimensions: "1600 × 1067px landscape (3:2), WebP",
       filename: "/insurance/fine-art-why.webp",
     },
+    differenceIntro:
+      "Most contents cover is priced from a single figure and a postcode, and never asks what the valuable things actually are. The House introduces you to a specialist who starts from the pieces themselves.",
+    readiness: [
+      { h: "What it is", p: "The maker, the period and the materials, not a line on a contents schedule." },
+      { h: "What it is worth now", p: "A current valuation, because markets move, rather than the price you paid." },
+      { h: "Where it lives", p: "On the wall, in a safe, worn daily or in storage, each a different risk." },
+      { h: "In and out of the home", p: "Whether it travels, is exhibited or lent, which standard cover rarely allows." },
+    ],
     whyDifferent: {
       heading: "Why scheduled items are different",
       body: [
@@ -384,9 +407,23 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     placedImage: "/insurance/house-record.webp",
     placedImageAlt:
       "A House Record book and pen on a sage surface, standing for the agreed-value schedule that lets a prestige vehicle sit on one renewal date with the home.",
+    whyImage: "/insurance/motor-why.webp",
+    whyImageAlt:
+      "A classic green sports car in a manor garage with driving gloves on the bonnet and the house beyond, an estate rather than a showroom.",
+    differenceIntro:
+      "Most motor quotes are priced off a table and a registration, and never ask what the car actually is or how it is used. The House introduces you to a specialist who starts from the vehicle.",
+    readiness: [
+      { h: "What it is", p: "Make, model, year and condition, valued as the car it is rather than a category." },
+      { h: "The agreed value", p: "The figure settled up front, not argued after a total loss." },
+      { h: "How it is used", p: "Weekend, show, limited-mileage or daily, each priced on the real risk." },
+      { h: "Where it is kept", p: "Garaging and security, which a comparison form flattens to a postcode." },
+    ],
+    differenceImage: "/insurance/motor-difference.webp",
+    differenceImageAlt:
+      "The wood-rimmed wheel and dashboard dials of a classic car seen through the side window, a country house beyond.",
     whyImageSpec: {
       description: "A classic car detail: a chrome badge or wire wheel, or the car in a private garage with the house beyond. Estate rather than showroom.",
-      dimensions: "1000 × 1250px portrait (4:5), WebP",
+      dimensions: "1600 × 1067px landscape (3:2), WebP",
       filename: "/insurance/motor-why.webp",
     },
     whyDifferent: {
@@ -433,9 +470,17 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       "A House Record book beside service notes, standing for the boiler service history a cover plan is built around.",
     whyImageSpec: {
       description: "A heating engineer's hands servicing a boiler, or a neat, well-kept plant room or airing cupboard. Competent and reassuring.",
-      dimensions: "1000 × 1250px portrait (4:5), WebP",
+      dimensions: "1600 × 1067px landscape (3:2), WebP",
       filename: "/insurance/boiler-why.webp",
     },
+    differenceIntro:
+      "Most cover is sold on price alone and never asks about the system itself. What matters is the boiler and how it has been looked after.",
+    readiness: [
+      { h: "The boiler's age", p: "How old the system is, and whether it is still economically worth repairing." },
+      { h: "The service history", p: "Whether it has been serviced, which keeps a system insurable and the terms sensible." },
+      { h: "What's included", p: "The engineer, parts and labour, and whether an annual service is part of the plan." },
+      { h: "Controls and heating", p: "The controls and central heating, not the boiler in isolation." },
+    ],
     whyDifferent: {
       heading: "What boiler cover actually covers",
       body: [
@@ -477,9 +522,17 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       "A House Record book and receipts, standing for the appliance details a cover plan is built around.",
     whyImageSpec: {
       description: "A calm British kitchen detail: integrated appliances in a considered kitchen, or a hand loading a washing machine. Everyday and well-kept.",
-      dimensions: "1000 × 1250px portrait (4:5), WebP",
+      dimensions: "1600 × 1067px landscape (3:2), WebP",
       filename: "/insurance/appliance-why.webp",
     },
+    differenceIntro:
+      "Most cover is sold per box with the small print unread. What matters is which appliances, how old they are, and what they would cost to replace.",
+    readiness: [
+      { h: "Which appliances", p: "A single valued machine, or the whole kitchen and utility room together." },
+      { h: "Age and warranty", p: "Whether each is in or out of its manufacturer warranty." },
+      { h: "Repair or replace", p: "Repair where sensible, replacement where a machine cannot be economically fixed." },
+      { h: "The replacement cost", p: "What it would cost to put back, not what you paid." },
+    ],
     whyDifferent: {
       heading: "Single item or the whole kitchen",
       body: [

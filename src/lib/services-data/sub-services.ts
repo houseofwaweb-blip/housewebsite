@@ -169,8 +169,8 @@ export const CLEANING_SUBS: SubService[] = [
   {
     slug: "regular-cleaning",
     name: "Regular cleaning",
-    lede: "Weekly or fortnightly domestic care. Same team each visit, your preferences on file in HoWA.",
-    body: "Our regular cleaning service is built on consistency. We assign a named team who learns the home, your surfaces, your products, your preferences. Visits are scheduled through HoWA and logged with a short note after each one. If your regular cleaner is away, we send a cover team briefed from your record.",
+    lede: "Weekly or fortnightly domestic care. The same team each visit, who learn your preferences.",
+    body: "Our regular cleaning service is built on consistency. We assign a named team who learns the home, your surfaces, your products, your preferences. Visits are scheduled through HoWA and logged with a short note after each one. If your regular cleaner is away, we send a cover team briefed on your preferences.",
     whyChoose: [
       "Named team who learns the home over time",
       "Scheduled through HoWA, no per-visit admin",
@@ -429,7 +429,7 @@ export const ENERGY_SUBS: SubService[] = [
   {
     slug: "electrical-testing",
     name: "Electrical testing & inspections",
-    lede: "EICR reports, PAT testing, and pre-purchase electrical surveys. Certification filed to your HoWA record.",
+    lede: "EICR reports, PAT testing, and pre-purchase electrical surveys. Certification sent straight to you.",
   },
 ];
 
