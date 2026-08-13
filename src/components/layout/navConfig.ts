@@ -58,7 +58,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
         // mega-menu at a balanced four groups.
         heading: "Assets & business",
         links: [
-          { label: "Fine art & collections", href: "/insurance/fine-art-and-collections" },
+          { label: "Fine art, jewellery & collections", href: "/insurance/fine-art-and-collections" },
           { label: "Classic & prestige motor", href: "/insurance/classic-and-prestige-motor" },
           { label: "Boat, yacht & aviation", href: "/insurance/boat-yacht-aviation" },
           { label: "Business insurance", href: "/insurance/business" },

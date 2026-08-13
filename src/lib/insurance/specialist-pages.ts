@@ -740,7 +740,7 @@ const RELATED_ASSETS = {
   title: "The rest of the estate",
   items: [
     { name: "Private client", body: "The whole estate on one policy.", href: "/insurance/private-client", image: "/insurance/cat-house.webp", imageAlt: "A period house." },
-    { name: "Fine art & collections", body: "Art, jewellery, watches and wine.", href: "/insurance/fine-art-and-collections", image: "/insurance/cat-fine-art.webp", imageAlt: "Fine art and collected pieces." },
+    { name: "Fine art, jewellery & collections", body: "Art, jewellery, watches and wine.", href: "/insurance/fine-art-and-collections", image: "/insurance/cat-fine-art.webp", imageAlt: "Fine art and collected pieces." },
     { name: "Classic & prestige motor", body: "The car, on one renewal date.", href: "/insurance/classic-and-prestige-motor", image: "/insurance/cat-cars.webp", imageAlt: "A classic car." },
     { name: "Boat, yacht & aviation", body: "Marine and aviation, on the estate.", href: "/insurance/boat-yacht-aviation", image: "/insurance/boat-yacht-aviation.webp", imageAlt: "A classic yacht detail." },
     { name: "Listed & period homes", body: "The house it all sits in.", href: "/insurance/listed-buildings", image: "/insurance/listed.webp", imageAlt: "A listed period home." },

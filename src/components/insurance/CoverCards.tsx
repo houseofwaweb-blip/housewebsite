@@ -22,7 +22,7 @@ export const COVER_CARDS = [
     image: "/insurance/cat-fine-art.webp",
     imageAlt: "Fine art and collected pieces, the contents a household policy tends to under-value.",
     href: "/insurance/fine-art-and-collections",
-    cta: "Fine art & collections",
+    cta: "Fine art, jewellery & collections",
   },
   {
     heading: "The cars",
