@@ -784,8 +784,100 @@ function withRelated(page: SpecialistPage | undefined): SpecialistPage | undefin
   return rc ? { ...page, relatedCovers: rc } : page;
 }
 
+/**
+ * The two contextual links under each page's "What Provenance can place" band:
+ * one relevant sibling cover and one relevant guide. Centralised so every page
+ * carries the same pair (a cover + a guide), not an ad-hoc single link.
+ */
+const CROSS_LINKS: Record<string, { label: string; href: string }[]> = {
+  // Specialist property
+  "listed-buildings": [
+    { label: "Thatched property insurance", href: "/insurance/thatched-properties" },
+    { label: "Guide: insuring a listed building", href: "/insurance/guides/listed-building-insurance" },
+  ],
+  "thatched-properties": [
+    { label: "Listed building insurance", href: "/insurance/listed-buildings" },
+    { label: "Guide: insuring a listed building", href: "/insurance/guides/listed-building-insurance" },
+  ],
+  "non-standard-construction": [
+    { label: "Listed building insurance", href: "/insurance/listed-buildings" },
+    { label: "Guide: what a rebuild cost is", href: "/insurance/guides/rebuild-cost" },
+  ],
+  "second-homes": [
+    { label: "Unoccupied & probate cover", href: "/insurance/unoccupied-property" },
+    { label: "Guide: when to renew", href: "/insurance/guides/renewal" },
+  ],
+  "unoccupied-property": [
+    { label: "Second & holiday home insurance", href: "/insurance/second-homes" },
+    { label: "Guide: when to renew", href: "/insurance/guides/renewal" },
+  ],
+  "renovation-and-extension": [
+    { label: "Non-standard construction cover", href: "/insurance/non-standard-construction" },
+    { label: "Guide: insurance during building work", href: "/insurance/guides/renovation-insurance" },
+  ],
+  // Assets
+  "fine-art-and-collections": [
+    { label: "Private client & estate insurance", href: "/insurance/private-client" },
+    { label: "Guide: the underinsurance gap", href: "/insurance/guides/underinsurance" },
+  ],
+  "classic-and-prestige-motor": [
+    { label: "Boat, yacht & aviation insurance", href: "/insurance/boat-yacht-aviation" },
+    { label: "Guide: the underinsurance gap", href: "/insurance/guides/underinsurance" },
+  ],
+  "boat-yacht-aviation": [
+    { label: "Classic & prestige motor insurance", href: "/insurance/classic-and-prestige-motor" },
+    { label: "Guide: the underinsurance gap", href: "/insurance/guides/underinsurance" },
+  ],
+  // Home cover
+  "boiler-cover": [
+    { label: "Appliance cover", href: "/insurance/appliance-cover" },
+    { label: "Guide: when to renew", href: "/insurance/guides/renewal" },
+  ],
+  "appliance-cover": [
+    { label: "Boiler & heating cover", href: "/insurance/boiler-cover" },
+    { label: "Guide: when to renew", href: "/insurance/guides/renewal" },
+  ],
+  // Everyday
+  "home": [
+    { label: "Private client & estate insurance", href: "/insurance/private-client" },
+    { label: "Guide: what a rebuild cost is", href: "/insurance/guides/rebuild-cost" },
+  ],
+  "motor": [
+    { label: "Classic & prestige motor insurance", href: "/insurance/classic-and-prestige-motor" },
+    { label: "Guide: when to renew", href: "/insurance/guides/renewal" },
+  ],
+  "pet-and-travel": [
+    { label: "Breakdown & bicycle cover", href: "/insurance/everyday/breakdown-and-bicycle" },
+    { label: "Guide: when to renew", href: "/insurance/guides/renewal" },
+  ],
+  "breakdown-and-bicycle": [
+    { label: "Car, van & motorbike insurance", href: "/insurance/everyday/motor" },
+    { label: "Guide: when to renew", href: "/insurance/guides/renewal" },
+  ],
+  // Business
+  "business": [
+    { label: "Trades & contractors insurance", href: "/insurance/business/trades-and-contractors" },
+    { label: "Guide: when to renew", href: "/insurance/guides/renewal" },
+  ],
+  "trades-and-contractors": [
+    { label: "Professional indemnity insurance", href: "/insurance/business/professional-indemnity" },
+    { label: "Guide: when to renew", href: "/insurance/guides/renewal" },
+  ],
+  "professional-indemnity": [
+    { label: "Trades & contractors insurance", href: "/insurance/business/trades-and-contractors" },
+    { label: "Guide: when to renew", href: "/insurance/guides/renewal" },
+  ],
+};
+
+/** Attach the contextual cover + guide pair for a page. */
+function withCrossLinks(page: SpecialistPage | undefined): SpecialistPage | undefined {
+  if (!page) return page;
+  const cl = CROSS_LINKS[page.slug];
+  return cl ? { ...page, crossLinks: cl } : page;
+}
+
 export function getSpecialistPage(slug: string): SpecialistPage | undefined {
-  return withRelated(SPECIALIST_PAGES.find((p) => p.slug === slug));
+  return withCrossLinks(withRelated(SPECIALIST_PAGES.find((p) => p.slug === slug)));
 }
 
 export const SPECIALIST_SLUGS = SPECIALIST_PAGES.map((p) => p.slug);
@@ -1030,7 +1122,7 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
 ];
 
 export function getEverydaySpecialistPage(slug: string): SpecialistPage | undefined {
-  return EVERYDAY_SPECIALIST_PAGES.find((p) => p.slug === slug);
+  return withCrossLinks(EVERYDAY_SPECIALIST_PAGES.find((p) => p.slug === slug));
 }
 
 export const EVERYDAY_SPECIALIST_SLUGS = EVERYDAY_SPECIALIST_PAGES.map((p) => p.slug);
@@ -1234,7 +1326,8 @@ export const BUSINESS_SPECIALIST_PAGES: SpecialistPage[] = [
 
 export function getBusinessSpecialistPage(slug: string): SpecialistPage | undefined {
   const page = BUSINESS_SPECIALIST_PAGES.find((p) => p.slug === slug);
-  return page && !page.relatedCovers ? { ...page, relatedCovers: RELATED_BUSINESS } : page;
+  const withRc = page && !page.relatedCovers ? { ...page, relatedCovers: RELATED_BUSINESS } : page;
+  return withCrossLinks(withRc);
 }
 
 export const BUSINESS_SPECIALIST_SUB_SLUGS = BUSINESS_SPECIALIST_PAGES.filter((p) => p.slug !== "business").map((p) => p.slug);
