@@ -62,6 +62,8 @@ export const PRIMARY_NAV: MegaPanel[] = [
           { label: "Classic & prestige motor", href: "/insurance/classic-and-prestige-motor" },
           { label: "Boat, yacht & aviation", href: "/insurance/boat-yacht-aviation" },
           { label: "Business insurance", href: "/insurance/business" },
+          { label: "Trades & contractors", href: "/insurance/business/trades-and-contractors" },
+          { label: "Professional indemnity", href: "/insurance/business/professional-indemnity" },
         ],
       },
       {
