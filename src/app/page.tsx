@@ -5,6 +5,7 @@ import { getLatestHearthArticles } from "@/lib/cms/hearth";
 import { shopifyProvider } from "@/lib/commerce/shopify";
 import { MiniNewsletter } from "@/components/marketing/MiniNewsletter";
 import { ProductRailCard } from "@/components/marketing/ProductRailCard";
+import { ProvenanceLockup } from "@/components/insurance/ProvenanceLockup";
 import { DESIGN_VOUCHERS } from "@/lib/design-vouchers";
 
 /**
@@ -219,6 +220,8 @@ export default async function HomePage() {
               View all covers →
             </Link>
           </div>
+
+          <ProvenanceLockup variant="onDark" className="mt-7" />
 
           <p className="mt-6 max-w-[80ch] font-sans text-[14px] leading-[1.6] text-house-cream/70">
             House of Willow Alexander acts as an introducer. Insurance and cover are arranged and provided by regulated third parties, including Provenance Insurance Brokers Ltd (FCA FRN 804047). Full details are shown before you leave the site.
