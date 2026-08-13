@@ -106,8 +106,8 @@ export default function PrivateClient() {
           </div>
           <div className="relative aspect-[4/5] w-full overflow-hidden">
             <Image
-              src="/insurance/private-client.webp"
-              alt="A sage-green period country house at sunset, its windows and portico draped in wisteria above a cottage garden of foxgloves and hydrangeas, a home a specialist can describe in full."
+              src="/insurance/private-client-difference.webp"
+              alt="A grand Jacobean stone manor house on a gravel drive with a green Aston Martin, a Range Rover, a saloon car and a wooden classic speedboat on a trailer, the house, cars and boat a single estate policy can hold together."
               fill
               sizes="(min-width: 1120px) 480px, 90vw"
               style={{ objectFit: "cover", objectPosition: "center" }}
