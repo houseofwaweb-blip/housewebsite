@@ -192,7 +192,7 @@ export function MegaMenu({
                panel stays wide and short instead of one tall stack. */
             <div
               className={cn(
-                "grid grid-cols-2 lg:grid-cols-4 gap-x-[44px] gap-y-[26px] transition-[opacity,transform] duration-[var(--t-slow)] ease-out",
+                "grid grid-cols-2 lg:grid-cols-4 gap-x-[56px] gap-y-[26px] transition-[opacity,transform] duration-[var(--t-slow)] ease-out",
                 isOpen ? "opacity-100 translate-y-0 delay-[150ms]" : "opacity-0 translate-y-3 delay-0",
               )}
             >
@@ -214,16 +214,16 @@ function MegaGroup({ group }: { group: MegaLinkGroup }) {
       <div className="font-sans text-[12px] tracking-[0.28em] uppercase text-house-stone mb-[10px]">
         {group.heading}
       </div>
-      <ul className="flex flex-col gap-[8px] list-none m-0 p-0">
+      <ul className="flex flex-col gap-[13px] list-none m-0 p-0">
         {group.links.map((link) => (
           <li key={link.href}>
             <Link
               href={link.href}
-              className="group inline-flex items-baseline font-sans text-[12px] tracking-[0.14em] uppercase text-house-brown no-underline transition-[color,padding-left] duration-[var(--t-base)] ease-out hover:text-house-gold-ink hover:pl-[4px]"
+              className="group flex flex-col gap-[3px] font-sans text-house-brown no-underline transition-[color,padding-left] duration-[var(--t-base)] ease-out hover:text-house-gold-ink hover:pl-[4px]"
             >
-              <span className="whitespace-nowrap">{link.label}</span>
+              <span className="text-[12px] tracking-[0.14em] uppercase leading-snug">{link.label}</span>
               {link.description ? (
-                <span className="font-sans normal-case text-[12px] tracking-[0.02em] text-house-stone ml-[8px]">
+                <span className="font-sans normal-case text-[11.5px] tracking-[0.01em] leading-snug text-house-stone">
                   {link.description}
                 </span>
               ) : null}
