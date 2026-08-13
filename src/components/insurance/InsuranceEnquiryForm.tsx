@@ -14,12 +14,15 @@ import { submitForm } from "@/components/forms/submitForm";
 import { gaEvent } from "@/lib/google/ga4";
 import { getAttribution } from "@/lib/attribution";
 import { InsuranceDisclosure } from "./InsuranceDisclosure";
-import { RENEWAL_MONTHS } from "@/lib/insurance/config";
+import { RENEWAL_MONTHS, INSURANCE_COVER_GROUPS, INSURANCE_COVER_LABEL } from "@/lib/insurance/config";
 
 /**
- * InsuranceEnquiryForm, the shared 5-field specialist enquiry (name, email,
- * phone, postcode, renewal month). One component across every specialist page
- * so a field change happens once. NEVER add pre-purchase questions (sums
+ * InsuranceEnquiryForm, the shared specialist enquiry (name, email, phone,
+ * postcode, and the cover they need — pre-selected to the page's cover so the
+ * recipient knows what to quote, changeable, with an optional free-text box for
+ * additional/multiple covers). One component across every specialist page so a
+ * field change happens once.
+ * NEVER add pre-purchase questions (sums
  * insured, contents value, claims history, existing insurer), Article 33B
  * limits the House to passing information it already holds, and form length
  * kills conversion. Business pages may add a company name (6 fields).
@@ -33,7 +36,8 @@ const schema = z.object({
   email: z.string().trim().toLowerCase().email("Enter a valid email address").max(254),
   phone: z.string().trim().regex(/^[0-9+()\-\s]{7,20}$/u, "Enter a valid phone number"),
   postcode: z.string().trim().min(1, "Required").max(12),
-  renewalMonth: z.string().min(1, "Please choose"),
+  cover: z.string().min(1, "Please choose the cover you need"),
+  additionalInfo: z.string().trim().max(2000).optional(),
   companyName: z.string().trim().max(160).optional(),
   projectStartMonth: z.string().optional(),
   marketingOptIn: z.boolean().optional(),
@@ -68,6 +72,9 @@ export function InsuranceEnquiryForm({
   const started = React.useRef(false);
   const [status, setStatus] = React.useState<FormStatusState>({ kind: "idle" });
 
+  // Pre-select the cover for the page the visitor is on (enquiryType === slug).
+  const coverDefault = INSURANCE_COVER_LABEL[enquiryType] ? enquiryType : "";
+
   const {
     register,
     handleSubmit,
@@ -75,7 +82,7 @@ export function InsuranceEnquiryForm({
     formState: { errors, isSubmitting },
   } = useForm<Values>({
     resolver: zodResolver(schema),
-    defaultValues: { postcode: initialPostcode ?? "", turnstileToken: "", honey: "" },
+    defaultValues: { postcode: initialPostcode ?? "", cover: coverDefault, turnstileToken: "", honey: "" },
   });
 
   const onFirstInput = () => {
@@ -98,7 +105,8 @@ export function InsuranceEnquiryForm({
       context: {
         enquiry_type: enquiryType,
         phone: data.phone,
-        renewal_month: data.renewalMonth,
+        cover: INSURANCE_COVER_LABEL[data.cover] ?? data.cover,
+        ...(data.additionalInfo ? { additional_info: data.additionalInfo } : {}),
         ...(withCompany && data.companyName ? { company: data.companyName } : {}),
         ...(withProjectStart && data.projectStartMonth ? { project_start_month: data.projectStartMonth } : {}),
         ...getAttribution(),
@@ -140,17 +148,21 @@ export function InsuranceEnquiryForm({
           <Input label="Postcode" required autoComplete="postal-code" error={errors.postcode?.message} {...register("postcode")} />
         </div>
         <div className="flex-1">
-          <label htmlFor="ins-renewal" className="mb-1.5 block font-sans text-[16.5px] tracking-[0.04em] text-house-brown/70">
-            Renewal month
+          <label htmlFor="ins-cover" className="mb-1.5 block font-sans text-[16.5px] tracking-[0.04em] text-house-brown/70">
+            The cover you need
           </label>
-          <select id="ins-renewal" required defaultValue="" className={selectCls} {...register("renewalMonth")}>
-            <option value="" disabled>Choose a month…</option>
-            {RENEWAL_MONTHS.map((m) => (
-              <option key={m} value={m}>{m}</option>
+          <select id="ins-cover" className={selectCls} {...register("cover")}>
+            <option value="" disabled>Choose cover…</option>
+            {INSURANCE_COVER_GROUPS.map((g) => (
+              <optgroup key={g.group} label={g.group}>
+                {g.options.map((o) => (
+                  <option key={o.value} value={o.value}>{o.label}</option>
+                ))}
+              </optgroup>
             ))}
           </select>
-          {errors.renewalMonth?.message ? (
-            <p className="mt-1 font-sans text-[16.5px] text-red-700">{errors.renewalMonth.message}</p>
+          {errors.cover?.message ? (
+            <p className="mt-1 font-sans text-[16.5px] text-red-700">{errors.cover.message}</p>
           ) : null}
         </div>
       </div>
@@ -167,6 +179,19 @@ export function InsuranceEnquiryForm({
           </select>
         </div>
       ) : null}
+
+      <div>
+        <label htmlFor="ins-notes" className="mb-1.5 block font-sans text-[16.5px] tracking-[0.04em] text-house-brown/70">
+          Additional information <span className="text-house-brown/45">(optional)</span>
+        </label>
+        <textarea
+          id="ins-notes"
+          rows={3}
+          placeholder="Need cover for more than one thing, or anything else we should know? Add it here."
+          className="w-full resize-y border border-house-brown/30 bg-white px-3 py-2.5 text-[16px] leading-[1.5] text-house-brown outline-none transition-colors focus:border-[color:var(--ins-accent)]"
+          {...register("additionalInfo")}
+        />
+      </div>
 
       <label className="flex items-start gap-2.5 font-sans text-[14.5px] leading-[1.5] text-house-brown/75">
         <input type="checkbox" className="mt-1" {...register("marketingOptIn")} />
