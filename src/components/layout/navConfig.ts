@@ -29,14 +29,19 @@ export const PRIMARY_NAV: MegaPanel[] = [
     triggerHref: "/insurance",
     groups: [
       {
-        heading: "Home & pet cover",
+        // Car/van/motorbike and Breakdown/bicycle promoted out of the Everyday
+        // hub to their own links so ad traffic lands without hunting. The
+        // Everyday cover link stays as the self-serve umbrella.
+        heading: "Home, motor & pet",
         links: [
           { label: "Home Insurance", href: "/insurance/everyday/home", description: "Buildings and contents" },
           { label: "Private client", href: "/insurance/private-client", description: "Advised, high-value homes" },
+          { label: "Car, van & motorbike", href: "/insurance/everyday/motor", description: "Including temporary cover" },
           { label: "Pet Insurance", href: "/insurance/everyday/pet-and-travel", description: "Cats and dogs" },
+          { label: "Breakdown & bicycle", href: "/insurance/everyday/breakdown-and-bicycle", description: "Roadside, recovery and bikes" },
           { label: "Boiler Cover", href: "/insurance/boiler-cover", description: "When the heating stops" },
           { label: "Appliance Cover", href: "/insurance/appliance-cover", description: "The machines a home runs on" },
-          { label: "Everyday cover", href: "/insurance/everyday", description: "Home, car, pet and travel" },
+          { label: "Everyday cover", href: "/insurance/everyday", description: "The self-serve hub" },
         ],
       },
       {
