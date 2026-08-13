@@ -47,8 +47,8 @@ export default function EverydayHub() {
           </div>
           <div className="relative aspect-[4/5] w-full overflow-hidden">
             <Image
-              src="/insurance/townhouse-golden.webp"
-              alt="A white townhouse doorway with a black panelled door, framed by wisteria and white climbing roses in warm evening light, a well-kept everyday home."
+              src="/insurance/everyday-hero.webp"
+              alt="A dark green study desk arranged with a gold-lettered 'Everyday Cover' book, a model stone cottage, two model Mini cars, a dog collar and bowl, house keys, a folded map and a 'Cover Schedule' folder, the everyday things a household insures."
               fill
               sizes="(min-width: 1120px) 540px, 90vw"
               priority
