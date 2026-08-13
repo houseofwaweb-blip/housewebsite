@@ -4,6 +4,7 @@ import type { SpecialistPage as SpecialistPageData } from "@/lib/insurance/speci
 import { InsuranceEnquiryForm } from "./InsuranceEnquiryForm";
 import { InsuranceTrustStrip } from "./InsuranceTrustStrip";
 import { PROVENANCE } from "@/lib/insurance/config";
+import { ProvenanceLockup } from "./ProvenanceLockup";
 
 /**
  * SpecialistPage — shared template for specialist property/asset and home-cover
@@ -281,13 +282,8 @@ export function SpecialistPage({
                 ))}
               </ul>
             ) : null}
-            {/* Provenance lockup — on a cream chip so the navy mark reads on burgundy */}
-            <div className="mt-8 flex items-center gap-3">
-              <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-house-cream/55">Arranged by</span>
-              <span className="inline-flex bg-house-cream px-3.5 py-2">
-                <Image src="/insurance/provenance-logo.webp" alt="Provenance Insurance Brokers" width={168} height={28} className="h-7 w-auto" />
-              </span>
-            </div>
+            {/* Provenance lockup — cream chip so the navy mark reads on burgundy */}
+            <ProvenanceLockup variant="onDark" className="mt-8" />
           </div>
           <div className="relative aspect-[4/5] w-full overflow-hidden">
             <Image src={PROVENANCE_IMG} alt={PROVENANCE_IMG_ALT} fill sizes="(min-width: 1120px) 420px, 90vw" style={{ objectFit: "cover", objectPosition: "center" }} />

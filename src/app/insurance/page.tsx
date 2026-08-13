@@ -5,6 +5,7 @@ import { env } from "@/lib/env";
 import { RenewalReminderForm } from "@/components/insurance/RenewalReminderForm";
 import { InsuranceDisclosure } from "@/components/insurance/InsuranceDisclosure";
 import { CoverFinder } from "@/components/insurance/CoverFinder";
+import { ProvenanceLockup } from "@/components/insurance/ProvenanceLockup";
 import { insuranceOg } from "@/lib/insurance/og";
 
 /**
@@ -125,7 +126,8 @@ export default function InsuranceHub() {
           <p className="mt-4 font-sans text-[17px] leading-[1.7] text-house-brown/85">
             Cover is arranged and administered by Provenance, authorised and regulated by the FCA, part of the Benefact group, a charity-owned insurer whose profits go to charitable causes. The House introduces you; it does not advise on, arrange, administer or compare insurance.
           </p>
-          <Link href="/insurance/how-this-works" className="mt-4 inline-block font-sans text-[14px] tracking-[0.04em] text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">
+          <ProvenanceLockup className="mt-6" />
+          <Link href="/insurance/how-this-works" className="mt-6 inline-block font-sans text-[14px] tracking-[0.04em] text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">
             How this works, and how we are paid →
           </Link>
         </div>

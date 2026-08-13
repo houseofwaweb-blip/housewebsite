@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { PROVENANCE } from "@/lib/insurance/config";
+import { ProvenanceLockup } from "@/components/insurance/ProvenanceLockup";
 import { insuranceOg } from "@/lib/insurance/og";
 
 /**
@@ -59,6 +60,7 @@ export default function HowThisWorks() {
           </Block>
           <Block eyebrow="Who arranges the cover">
             <p>{PROVENANCE.legalName} is authorised and regulated by the Financial Conduct Authority, firm reference number {PROVENANCE.frn}, and is part of {PROVENANCE.group}. Provenance advises, arranges, administers and, when the time comes, handles claims on your behalf.</p>
+            <ProvenanceLockup className="mt-5" />
           </Block>
           <Block eyebrow="Why Benefact matters">
             <p>Provenance places business with markets in the {PROVENANCE.backer} group, a charity-owned insurer. Benefact gave £28.3m to charitable causes in 2025 and more than £275m since 2014, is the third-largest corporate donor in the UK, and is AM Best A rated. Benefact gives all its available profits to good causes, so every policy placed supports UK charities, at no extra cost to you. This is verifiable, and it is unusual, and it is the part we are happiest to put in writing.</p>

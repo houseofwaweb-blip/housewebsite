@@ -4,6 +4,7 @@ import Link from "next/link";
 import { insuranceOg } from "@/lib/insurance/og";
 import { InsuranceTrustStrip } from "@/components/insurance/InsuranceTrustStrip";
 import { InsuranceDisclosure } from "@/components/insurance/InsuranceDisclosure";
+import { ProvenanceLockup } from "@/components/insurance/ProvenanceLockup";
 
 /**
  * D1 · /insurance/everyday, the everyday-cover hub. Rebuilt to share the
@@ -125,6 +126,7 @@ export default function EverydayHub() {
           <p className="max-w-[52ch] font-display text-[clamp(20px,2.4vw,30px)] leading-[1.25] text-house-cream">
             No fear, no urgency, no pressure. The House introduces you; Provenance arranges and administers the cover.
           </p>
+          <ProvenanceLockup variant="onDark" className="mt-8" />
         </div>
       </section>
 

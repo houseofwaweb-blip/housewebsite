@@ -4,6 +4,7 @@ import { env } from "@/lib/env";
 import { InsuranceEnquiryForm } from "@/components/insurance/InsuranceEnquiryForm";
 import { CoverCards } from "@/components/insurance/CoverCards";
 import { InsuranceTrustStrip } from "@/components/insurance/InsuranceTrustStrip";
+import { ProvenanceLockup } from "@/components/insurance/ProvenanceLockup";
 import { insuranceOg } from "@/lib/insurance/og";
 
 /**
@@ -90,6 +91,7 @@ export default function PrivateClient() {
           <p className="mb-9 mt-4 max-w-[60ch] font-sans text-[17px] leading-[1.7] text-house-brown/85">
             Provenance's proposition treats the estate as one thing rather than a folder of separate policies. Each of these can sit within it:
           </p>
+          <ProvenanceLockup className="mb-9" />
           <CoverCards />
         </div>
       </section>
