@@ -36,13 +36,15 @@ export default function PrivateClient() {
   const turnstileSiteKey = env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
   return (
     <div className="bg-house-cream text-house-brown">
-      {/* Hero + form (form above the fold on mobile) */}
+      {/* Hero — editorial: the estate as one considered whole */}
       <section className="px-[5vw] pt-20 pb-12">
-        <div className="mx-auto grid max-w-[1080px] gap-12 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="mx-auto grid max-w-[1120px] items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
           <div>
             <p className="font-sans text-[12px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">Insurance · Private client & estate</p>
             <h1 className="mt-4 font-display text-[clamp(32px,5vw,58px)] leading-[1.04] text-house-black">
-              A house worth insuring properly deserves to be asked about.
+              A life this considered{" "}<br />
+              shouldn&apos;t be insured{" "}<br />
+              in separate pieces.
             </h1>
             <p className="mt-6 max-w-[54ch] font-sans text-[18px] leading-[1.62] text-house-stone">
               Advised means three things: a named specialist, a real conversation about the house, and a policy built around it rather than around a comparison engine. One estate, one renewal date.
@@ -50,12 +52,31 @@ export default function PrivateClient() {
             <p className="mt-5 max-w-[48ch] font-display text-[clamp(18px,2vw,24px)] leading-[1.3] text-house-brown">
               Insurance built around you. Structured properly, managed personally.
             </p>
+            <div className="mt-8">
+              <a href="#enquire" className="inline-flex items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110">
+                Speak to a specialist
+              </a>
+            </div>
           </div>
-          <div className="border border-house-brown/15 bg-house-white p-7">
-            <h2 className="font-display text-[24px] leading-tight text-house-black">Speak to a specialist</h2>
-            <p className="mt-2 mb-6 font-sans text-[15px] leading-[1.55] text-house-stone">Five details, and a specialist will call. Nothing about sums insured or your current insurer.</p>
-            <InsuranceEnquiryForm enquiryType="private-client" turnstileSiteKey={turnstileSiteKey} sourcePage="/insurance/private-client" />
+          <div className="relative aspect-[4/5] w-full overflow-hidden">
+            <Image
+              src="/insurance/private-client-hero.webp"
+              alt="A dark study desk laid with the pieces of one estate: a leather-bound Private Client estate volume, a framed manor-house portrait, a model stone house, a classic sports car, a tray of watch, cufflinks and jewellery, a dog collar, a compass and a confidential cover schedule."
+              fill
+              sizes="(min-width: 1120px) 520px, 90vw"
+              priority
+              style={{ objectFit: "cover", objectPosition: "center" }}
+            />
           </div>
+        </div>
+      </section>
+
+      {/* Speak to a specialist — the conversion surface, on its own */}
+      <section id="enquire" className="scroll-mt-24 px-[5vw] pb-14">
+        <div className="mx-auto max-w-[680px] border border-house-brown/15 bg-house-white p-7 sm:p-9">
+          <h2 className="font-display text-[26px] leading-tight text-house-black">Speak to a specialist</h2>
+          <p className="mt-2 mb-6 font-sans text-[15px] leading-[1.55] text-house-stone">Five details, and a specialist will call. Nothing about sums insured or your current insurer.</p>
+          <InsuranceEnquiryForm enquiryType="private-client" turnstileSiteKey={turnstileSiteKey} sourcePage="/insurance/private-client" />
         </div>
       </section>
 
