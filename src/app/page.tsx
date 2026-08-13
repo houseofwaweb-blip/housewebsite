@@ -30,7 +30,7 @@ export const metadata = {
 /** The four Protect products. Boiler and appliance are home-cover products with
  *  their own pages; home and pet route to the insurance introductions. */
 const PROTECT = [
-  { title: "Home Insurance", who: "Buildings and contents for a standard home. Period, listed and high-value homes go to our advised service.", signal: "Introduced by the House, arranged by Provenance", cta: "Get a home insurance quote", href: "/insurance/everyday/home", image: "/insurance/ev-home.webp", alt: "A well-kept British home" },
+  { title: "Home Insurance", who: "Buildings and contents for a standard home. Period, listed and high-value homes go to our advised service.", signal: "For a standard home", cta: "Get a home insurance quote", href: "/insurance/everyday/home", image: "/insurance/ev-home.webp", alt: "A well-kept British home" },
   { title: "Pet Insurance", who: "Dogs and cats. Lifetime, time-limited and accident-only cover, explained plainly.", signal: "For cats and dogs", cta: "Get a pet quote", href: "/insurance/everyday/pet-and-travel", image: "/insurance/ev-pet.webp", alt: "A family pet at home" },
   { title: "Boiler Cover", who: "Help when the heating stops, with cover for boilers and central heating.", signal: "Annual and monthly options", cta: "Check boiler cover", href: "/insurance/boiler-cover", image: "/insurance/boiler-cover.webp", alt: "A warm, well-kept home" },
   { title: "Appliance Cover", who: "Protect the household appliances you rely on, from washing machines to ovens.", signal: "Single or multiple items", cta: "Cover an appliance", href: "/insurance/appliance-cover", image: "/insurance/appliance-cover.webp", alt: "A considered home interior" },
