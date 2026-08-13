@@ -35,7 +35,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
         heading: "Home, motor & pet",
         links: [
           { label: "Home Insurance", href: "/insurance/everyday/home", description: "Buildings and contents" },
-          { label: "Private client", href: "/insurance/private-client", description: "Advised, high-value homes" },
+          { label: "Private client & estate", href: "/insurance/private-client", description: "One advised policy for the whole estate" },
           { label: "Car, van & motorbike", href: "/insurance/everyday/motor", description: "Including temporary cover" },
           { label: "Pet Insurance", href: "/insurance/everyday/pet-and-travel", description: "Cats and dogs" },
           { label: "Breakdown & bicycle", href: "/insurance/everyday/breakdown-and-bicycle", description: "Roadside, recovery and bikes" },

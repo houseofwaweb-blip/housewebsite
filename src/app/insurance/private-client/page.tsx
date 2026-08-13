@@ -13,9 +13,9 @@ import { insuranceOg } from "@/lib/insurance/og";
  * factual claim pending Provenance sign-off.
  */
 export const metadata: Metadata = {
-  title: "Private client insurance, high-value homes",
-  description: "Advised, arranged insurance for high-value and period homes: a named specialist, a policy built around the house, one estate on one renewal date. Introduced by the House, arranged by Provenance.",
-  ...insuranceOg("private-client", "Private client insurance, high-value homes"),
+  title: "Private client & estate insurance, high-value homes",
+  description: "Advised, arranged insurance for high-value and period homes: one policy for the whole estate, a named specialist, and one renewal date. Introduced by the House, arranged by Provenance.",
+  ...insuranceOg("private-client", "Private client & estate insurance, high-value homes"),
 };
 
 const PROCESS = [
@@ -40,7 +40,7 @@ export default function PrivateClient() {
       <section className="px-[5vw] pt-20 pb-12">
         <div className="mx-auto grid max-w-[1080px] gap-12 lg:grid-cols-[1.15fr_0.85fr]">
           <div>
-            <p className="font-sans text-[12px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">Insurance · Private client</p>
+            <p className="font-sans text-[12px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">Insurance · Private client & estate</p>
             <h1 className="mt-4 font-display text-[clamp(32px,5vw,58px)] leading-[1.04] text-house-black">
               A house worth insuring properly deserves to be asked about.
             </h1>

@@ -53,7 +53,7 @@ const COLS: FooterColumn[] = [
     links: [
       { label: "Insurance introductions", href: "/insurance" },
       { label: "Home Insurance", href: "/insurance/everyday/home" },
-      { label: "Private client", href: "/insurance/private-client" },
+      { label: "Private client & estate", href: "/insurance/private-client" },
       { label: "Pet Insurance", href: "/insurance/everyday/pet-and-travel" },
       { label: "Boiler Cover", href: "/insurance/boiler-cover" },
       { label: "Appliance Cover", href: "/insurance/appliance-cover" },

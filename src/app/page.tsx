@@ -52,7 +52,7 @@ const PROOF_STATS = [
 ];
 const PROOF_PEOPLE = [
   { name: "A named specialist", role: "Home insurance", img: null as string | null },
-  { name: "A named specialist", role: "Private client", img: null as string | null },
+  { name: "A named specialist", role: "Private client & estate", img: null as string | null },
   { name: "A named specialist", role: "Home & garden services", img: null as string | null },
 ];
 

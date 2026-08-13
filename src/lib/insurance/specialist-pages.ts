@@ -727,7 +727,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
 const RELATED_PROPERTY = {
   title: "Explore related cover",
   items: [
-    { name: "Private client", body: "Advised cover for period & high-value homes.", href: "/insurance/private-client", image: "/insurance/cat-house.webp", imageAlt: "A period house insured on its true rebuild cost." },
+    { name: "Private client & estate", body: "Advised cover for period & high-value homes.", href: "/insurance/private-client", image: "/insurance/cat-house.webp", imageAlt: "A period house insured on its true rebuild cost." },
     { name: "Listed buildings", body: "Grade I, II* and II homes.", href: "/insurance/listed-buildings", image: "/insurance/listed.webp", imageAlt: "A listed period home." },
     { name: "Thatched properties", body: "Thatch, read on its real risk.", href: "/insurance/thatched-properties", image: "/insurance/thatched.webp", imageAlt: "A thatched cottage." },
     { name: "Non-standard construction", body: "Timber, cob, flint and more.", href: "/insurance/non-standard-construction", image: "/insurance/non-standard.webp", imageAlt: "A home of non-standard construction." },
@@ -739,7 +739,7 @@ const RELATED_PROPERTY = {
 const RELATED_ASSETS = {
   title: "The rest of the estate",
   items: [
-    { name: "Private client", body: "The whole estate on one policy.", href: "/insurance/private-client", image: "/insurance/cat-house.webp", imageAlt: "A period house." },
+    { name: "Private client & estate", body: "The whole estate on one policy.", href: "/insurance/private-client", image: "/insurance/cat-house.webp", imageAlt: "A period house." },
     { name: "Fine art, jewellery & collections", body: "Art, jewellery, watches and wine.", href: "/insurance/fine-art-and-collections", image: "/insurance/cat-fine-art.webp", imageAlt: "Fine art and collected pieces." },
     { name: "Classic & prestige motor", body: "The car, on one renewal date.", href: "/insurance/classic-and-prestige-motor", image: "/insurance/cat-cars.webp", imageAlt: "A classic car." },
     { name: "Boat, yacht & aviation", body: "Marine and aviation, on the estate.", href: "/insurance/boat-yacht-aviation", image: "/insurance/boat-yacht-aviation.webp", imageAlt: "A classic yacht detail." },
@@ -752,7 +752,7 @@ const RELATED_HOMECOVER = {
     { name: "Boiler & heating cover", body: "When the heating stops.", href: "/insurance/boiler-cover", image: "/insurance/boiler-cover.webp", imageAlt: "A well-kept home interior." },
     { name: "Appliance cover", body: "The machines a home runs on.", href: "/insurance/appliance-cover", image: "/insurance/appliance-cover.webp", imageAlt: "A considered British kitchen." },
     { name: "Home insurance", body: "Buildings and contents.", href: "/insurance/everyday/home", image: "/insurance/ev-home.webp", imageAlt: "A well-kept everyday home." },
-    { name: "Private client", body: "Advised cover for high-value homes.", href: "/insurance/private-client", image: "/insurance/cat-house.webp", imageAlt: "A period house." },
+    { name: "Private client & estate", body: "Advised cover for high-value homes.", href: "/insurance/private-client", image: "/insurance/cat-house.webp", imageAlt: "A period house." },
   ],
 };
 const RELATED_BUSINESS = {

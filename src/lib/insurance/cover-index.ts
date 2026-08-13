@@ -27,7 +27,7 @@ const BASE_COVERS: CoverIndexEntry[] = [
   { name: "Appliance cover", blurb: "The machines a home runs on.", href: "/insurance/appliance-cover", image: "/insurance/appliance-cover.webp", group: "Home cover", tags: ["appliance", "kitchen", "white goods"] },
 
   // Advised
-  { name: "Private client", blurb: "Advised cover for period & high-value homes.", href: "/insurance/private-client", image: "/insurance/cat-house.webp", group: "Advised", tags: ["advised", "private client", "estate", "luxury", "one policy", "renewal"] },
+  { name: "Private client & estate", blurb: "One advised policy for period & high-value homes.", href: "/insurance/private-client", image: "/insurance/cat-house.webp", group: "Advised", tags: ["advised", "private client", "estate", "estate insurance", "whole estate", "luxury", "one policy", "renewal"] },
 
   // Specialist property
   { name: "Listed buildings", blurb: "Grade I, II* and II homes.", href: "/insurance/listed-buildings", image: "/insurance/listed.webp", group: "Specialist property", tags: ["listed", "grade", "heritage", "period", "conservation"] },

@@ -68,7 +68,7 @@ export default function InsuranceHub() {
           {/* Advised, the lead, larger, warmer */}
           <Link href="/insurance/private-client" className="group flex flex-col justify-between border border-house-brown/15 bg-house-white p-8 no-underline lg:col-span-3">
             <div>
-              <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-[color:var(--ins-ink)]">Advised · Private client</p>
+              <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-[color:var(--ins-ink)]">Advised · Private client & estate</p>
               <h2 className="mt-3 font-display text-[clamp(24px,3vw,36px)] leading-[1.1] text-house-black group-hover:text-[color:var(--ins-ink)]">
                 For a home worth insuring properly.
               </h2>
