@@ -33,6 +33,7 @@ interface SearchModalProps {
 
 const TABS = [
   { id: "all", label: "All" },
+  { id: "insurance", label: "Insurance" },
   { id: "service", label: "Services" },
   { id: "shop", label: "Shop" },
   { id: "design", label: "Design" },
@@ -206,25 +207,6 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
 
       {/* Results — staggered slide-in, matching Playground */}
       <div className="px-[5vw] pb-[80px] max-w-[860px] mx-auto">
-        {/* View all results — ghost button with arrow, visible when there are results */}
-        {results.length > 0 ? (
-          <div className="flex justify-end mb-[16px]">
-            <Link
-              href={`/search${query ? `?q=${encodeURIComponent(query)}` : ""}`}
-              onClick={onClose}
-              className="group inline-flex items-center gap-[8px] font-sans text-[15px] tracking-[0.18em] uppercase no-underline text-house-brown border-b border-solid border-house-gold pb-[3px] transition-[color,border-style] duration-[var(--t-slow)] ease-out hover:text-house-gold-ink hover:border-dotted"
-            >
-              <span>View all results</span>
-              <span
-                aria-hidden="true"
-                className="inline-block transition-transform duration-[var(--t-slow)] ease-out group-hover:translate-x-[8px]"
-              >
-                →
-              </span>
-            </Link>
-          </div>
-        ) : null}
-
         <div key={refreshKey} className="flex flex-col">
           {loading ? (
             <p className="font-display italic text-[16px] text-house-brown/50 py-[40px] text-center">
