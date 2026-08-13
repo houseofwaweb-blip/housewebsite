@@ -62,6 +62,14 @@ export const article = defineType({
       initialValue: false,
     }),
     defineField({
+      name: "featured",
+      title: "Featured on The Hearth",
+      type: "boolean",
+      description:
+        "Pin as the main feature (hero) on The Hearth landing page. If several are ticked, the most recently published one wins. Leave off to let the newest article lead.",
+      initialValue: false,
+    }),
+    defineField({
       name: "season",
       type: "string",
       options: {
