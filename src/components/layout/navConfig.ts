@@ -51,7 +51,12 @@ export const PRIMARY_NAV: MegaPanel[] = [
         ],
       },
       {
-        heading: "Assets & advice",
+        // "Advice" (How this works) moved to Guides, so this is now assets +
+        // business. Fine art / classic motor / boat are personal assets;
+        // business insurance is its own audience with a hub that fans out to
+        // trades and professional indemnity. Kept in one column to hold the
+        // mega-menu at a balanced four groups.
+        heading: "Assets & business",
         links: [
           { label: "Fine art & collections", href: "/insurance/fine-art-and-collections" },
           { label: "Classic & prestige motor", href: "/insurance/classic-and-prestige-motor" },
