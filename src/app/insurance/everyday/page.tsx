@@ -44,6 +44,14 @@ export default function EverydayHub() {
             <p className="mt-6 max-w-[52ch] font-sans text-[18px] leading-[1.6] text-house-stone">
               Straightforward cover for the everyday things. Tell us what you need and a specialist will arrange it. The House introduces you; Provenance arranges the cover.
             </p>
+            <div className="mt-8">
+              <a
+                href="#choose-a-cover"
+                className="inline-flex items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110"
+              >
+                Choose a cover
+              </a>
+            </div>
           </div>
           <div className="relative aspect-[4/5] w-full overflow-hidden">
             <Image
@@ -62,7 +70,7 @@ export default function EverydayHub() {
       <InsuranceTrustStrip />
 
       {/* 3. The product grid, near the top */}
-      <section className="px-[5vw] pt-14 pb-10">
+      <section id="choose-a-cover" className="scroll-mt-24 px-[5vw] pt-14 pb-10">
         <div className="mx-auto max-w-[1120px]">
           <h2 className="mb-8 font-display text-[clamp(22px,2.8vw,34px)] leading-[1.12] text-house-black">Choose a cover.</h2>
           <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2">
