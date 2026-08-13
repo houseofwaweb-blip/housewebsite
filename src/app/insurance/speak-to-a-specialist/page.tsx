@@ -46,7 +46,7 @@ export default async function SpeakToASpecialist({
             </p>
             {chosen || postcode ? (
               <p className="mb-8 inline-block border-l-2 border-[color:var(--ins-ink)] bg-house-cream-dark/50 px-4 py-2 font-sans text-[15px] text-house-brown">
-                Starting {chosen ? `a ${chosen.label} enquiry` : "your enquiry"}{postcode ? ` for ${postcode.toUpperCase()}` : ""}.
+                Starting {chosen ? `${/^[aeiou]/i.test(chosen.label) ? "an" : "a"} ${chosen.label} enquiry` : "your enquiry"}{postcode ? ` for ${postcode.toUpperCase()}` : ""}.
               </p>
             ) : null}
             <InsuranceEnquiryForm enquiryType={chosen?.type ?? "general"} turnstileSiteKey={turnstileSiteKey} sourcePage="/insurance/speak-to-a-specialist" submitLabel="Send" initialPostcode={postcode} />
