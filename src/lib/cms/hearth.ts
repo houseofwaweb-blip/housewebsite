@@ -29,6 +29,7 @@ const ARTICLE_PROJECTION = /* groq */ `{
   author,
   publishedAt,
   "isPremium": coalesce(isPremium, false),
+  "featured": coalesce(featured, false),
   "bodyWordCount": length(string::split(pt::text(body), " "))
 }`;
 
@@ -129,6 +130,7 @@ interface RawSanityArticle {
   author: string;
   publishedAt: string;
   isPremium: boolean;
+  featured?: boolean;
   bodyWordCount?: number;
   body?: unknown;
   seo?: { title?: string; description?: string; noindex?: boolean };
@@ -179,6 +181,14 @@ export async function getHearthIndex(): Promise<HearthIndexSections> {
   });
   const all = raw.all.map(toHearthArticle);
 
+  // A "Featured on The Hearth" toggle (Sanity Studio) pins one article as the
+  // hero. If several are ticked, the most recently published wins (raw.all is
+  // already publishedAt desc). Nothing ticked → the newest article leads.
+  const featuredSlug = raw.all.find((a) => a.featured)?.slug;
+  const heroArticle =
+    (featuredSlug ? all.find((a) => a.slug === featuredSlug) : undefined) ?? all[0];
+  const rest = all.filter((a) => a.slug !== heroArticle.slug);
+
   const toPopularItem = (a: HearthArticle): PopularItem => ({
     slug: a.slug,
     tag: a.category,
@@ -196,21 +206,22 @@ export async function getHearthIndex(): Promise<HearthIndexSections> {
   const fromViews = topSlugs
     .map((slug) => bySlug.get(slug))
     .filter((a): a is HearthArticle => Boolean(a))
+    .filter((a) => a.slug !== heroArticle.slug)
     .map(toPopularItem);
 
   // Top up to 5 with the editorial fallback (never duplicating a view-ranked one).
   const seen = new Set(fromViews.map((p) => p.slug));
-  const fallback = all
+  const fallback = rest
     .slice(10, 15)
     .filter((a) => !seen.has(a.slug))
     .map(toPopularItem);
   const popular: PopularItem[] = [...fromViews, ...fallback].slice(0, 5);
   return {
-    hero: { ...all[0], flag: "Feature" },
-    secondary: all.slice(1, 4),
-    mainFeed: all.slice(4, 10),
+    hero: { ...heroArticle, flag: "Feature" },
+    secondary: rest.slice(0, 3),
+    mainFeed: rest.slice(3, 9),
     popular,
-    moreFeed: all.slice(15, 19),
+    moreFeed: rest.slice(14, 18),
     all,
   };
 }
