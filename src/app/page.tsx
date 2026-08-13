@@ -43,20 +43,6 @@ const TRUST = [
   { h: "Arranged by Provenance", p: "FCA-regulated, profits to charity" },
 ];
 
-// Proof band. NUMBERS AND NAMES BELOW ARE PLACEHOLDERS — Alex to supply
-// verified figures, real specialist names + headshots, and press/partner
-// logos. Structured so real data drops straight in.
-const PROOF_STATS = [
-  { n: "4.9/5", l: "Average customer rating", sub: "across 300+ reviews" },
-  { n: "1,200+", l: "British homes looked after" },
-  { n: "12 yrs", l: "Caring for homes in London & Kent" },
-];
-const PROOF_PEOPLE = [
-  { name: "A named specialist", role: "Home insurance", img: null as string | null },
-  { name: "A named specialist", role: "Private client & estate", img: null as string | null },
-  { name: "A named specialist", role: "Home & garden services", img: null as string | null },
-];
-
 const SHOP_ROOMS = [
   { name: "Kitchen", handle: "kitchen", image: "/shop/rooms/kitchen.webp" },
   { name: "Living Room", handle: "living-room", image: "/shop/rooms/living-room.webp" },
@@ -372,73 +358,34 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 5. Proof strip — dark burgundy. FIGURES + FACES ARE PLACEHOLDER. */}
+      {/* 5. Proof strip — dark burgundy. Clean: real 5-star + trust points. */}
       <section className="px-[5vw] py-[clamp(44px,6vw,80px)] text-house-cream" style={{ background: "var(--ins-accent)" }}>
-        <div className="mx-auto max-w-[1180px]">
-          <div className="grid items-end gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-            <div>
-              <p className="mb-3 font-sans text-[11px] tracking-[0.28em] uppercase text-house-cream/60">The House, in practice</p>
-              <h2 className="font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-cream">
-                Trusted with the practical parts of <em className="text-[color:var(--house-green-soft)]">home.</em>
-              </h2>
-            </div>
-            <div className="grid gap-6 sm:grid-cols-3">
-              {[
-                { h: "FCA-regulated partner", p: "cover arranged by Provenance, not by us" },
-                { h: "Named support", p: "real people when you need them" },
-                { h: "London & Kent", p: "service areas shown before you begin" },
-              ].map((e) => (
-                <div key={e.h}>
-                  <p className="font-display text-[19px] leading-tight text-house-cream">{e.h}</p>
-                  <p className="mt-1.5 font-sans text-[14px] leading-[1.5] text-house-cream/70">{e.p}</p>
-                </div>
-              ))}
-            </div>
+        <div className="mx-auto grid max-w-[1180px] items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <p className="mb-3 font-sans text-[11px] tracking-[0.28em] uppercase text-house-cream/60">The House, in practice</p>
+            <h2 className="font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-cream">
+              Trusted with the practical parts of <em className="text-[color:var(--house-green-soft)]">home.</em>
+            </h2>
           </div>
-
-          {/* Hard numbers — placeholder pending verified figures */}
-          <div className="mt-10 grid grid-cols-1 gap-px overflow-hidden border border-house-cream/15 bg-house-cream/15 sm:grid-cols-3">
-            {PROOF_STATS.map((stat) => (
-              <div key={stat.l} className="bg-[var(--ins-accent)] px-6 py-7 text-center">
-                <p className="font-display text-[clamp(32px,4vw,48px)] leading-none text-house-cream">{stat.n}</p>
-                <p className="mt-2 font-sans text-[13.5px] leading-[1.4] text-house-cream/85">{stat.l}</p>
-                {stat.sub ? <p className="mt-0.5 font-sans text-[12px] text-house-cream/55">{stat.sub}</p> : null}
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {/* Rating — real five-star, no review count shown */}
+            <div>
+              <p className="font-display text-[26px] leading-none text-house-cream">
+                5.0 <span className="text-house-gold-light">★★★★★</span>
+              </p>
+              <p className="mt-2 font-sans text-[14px] leading-[1.5] text-house-cream/70">Verified customer rating</p>
+            </div>
+            {[
+              { h: "FCA-regulated partner", p: "Cover arranged by Provenance, not by us" },
+              { h: "Named support", p: "Real people when you need them" },
+              { h: "Clear coverage", p: "Service areas shown before you begin" },
+            ].map((e) => (
+              <div key={e.h}>
+                <p className="font-display text-[19px] leading-tight text-house-cream">{e.h}</p>
+                <p className="mt-1.5 font-sans text-[14px] leading-[1.5] text-house-cream/70">{e.p}</p>
               </div>
             ))}
           </div>
-
-          {/* Named people — placeholder avatars until real headshots arrive */}
-          <div className="mt-8 flex flex-col gap-6 border-t border-house-cream/15 pt-8 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex flex-wrap items-center gap-5">
-              {PROOF_PEOPLE.map((person, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <span aria-hidden className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full border border-house-cream/30 bg-house-cream/10">
-                    {person.img ? (
-                      <Image src={person.img} alt="" width={44} height={44} className="h-full w-full object-cover" />
-                    ) : (
-                      <span className="font-display text-[15px] text-house-cream/70">WA</span>
-                    )}
-                  </span>
-                  <span>
-                    <span className="block font-sans text-[13.5px] text-house-cream">{person.name}</span>
-                    <span className="block font-sans text-[11.5px] text-house-cream/55">{person.role}</span>
-                  </span>
-                </div>
-              ))}
-            </div>
-            {/* Press / partner logos — placeholder slots */}
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-              {["As featured in", "Partner", "Accreditation"].map((label) => (
-                <span key={label} className="flex h-9 items-center border border-dashed border-house-cream/25 px-4 font-sans text-[11px] tracking-[0.14em] uppercase text-house-cream/45">
-                  {label}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <p className="mt-6 font-sans text-[12px] leading-[1.55] text-house-cream/45">
-            Rating, review count, homes-covered figure, named specialists and logos shown here are placeholders, to be replaced with verified data before launch.
-          </p>
         </div>
       </section>
 
