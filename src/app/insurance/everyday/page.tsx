@@ -53,6 +53,7 @@ export default function EverydayHub() {
                 Choose a cover
               </a>
             </div>
+            <ProvenanceLockup className="mt-6" />
           </div>
           <div className="relative aspect-[4/5] w-full overflow-hidden">
             <Image

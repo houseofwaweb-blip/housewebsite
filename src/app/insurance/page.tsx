@@ -48,6 +48,7 @@ export default function InsuranceHub() {
               <a href="#reminder" className="inline-flex w-fit items-center whitespace-nowrap font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-ink)] no-underline hover:text-house-brown">
                 Remind me before my renewal →
               </a>
+              <ProvenanceLockup className="mt-2" />
             </div>
           </div>
           <div className="relative aspect-[4/5] w-full overflow-hidden">

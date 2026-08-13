@@ -86,6 +86,7 @@ export function SpecialistPage({
                 {data.heroCta ?? "Speak to a specialist"}
               </a>
             </div>
+            <ProvenanceLockup className="mt-6" />
           </div>
           {data.image ? (
             <div className="relative aspect-[4/5] w-full overflow-hidden">
