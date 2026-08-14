@@ -181,7 +181,7 @@ export default async function HomePage() {
                   <h3 className="font-display text-[21px] leading-tight text-house-black">{p.title}</h3>
                   <p className="mt-2 flex-1 font-sans text-[14.5px] leading-[1.55] text-house-brown/80">{p.who}</p>
                   <p className="mt-4 font-sans text-[10.5px] tracking-[0.16em] uppercase text-[color:var(--house-green-ink)]">{p.signal}</p>
-                  <span className="mt-2 font-sans text-[12.5px] font-semibold text-[color:var(--house-green-ink)] group-hover:underline">{p.cta} →</span>
+                  <span className="mt-3 block w-full border border-[color:var(--house-green-deep)] bg-[var(--house-green)] px-4 py-2.5 text-center font-sans text-[11px] tracking-[0.14em] uppercase text-house-cream transition-[filter] group-hover:brightness-110">{p.cta}</span>
                 </div>
               </Link>
             ))}
