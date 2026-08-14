@@ -90,7 +90,7 @@
 .hero {
   display: grid;
   grid-template-columns: 1.22fr 1fr;
-  min-height: 86vh;
+  min-height: 68vh;
 }
 .heroCopy {
   display: flex;

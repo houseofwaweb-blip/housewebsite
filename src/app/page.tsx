@@ -53,12 +53,9 @@ const SHOP_ROOMS = [
 ];
 
 const ECOSYSTEM = [
-  { name: "Delve Interiors", scope: "Interior design", href: "/design/interiors" },
-  { name: "Willow Alexander Gardens", scope: "Garden design", href: "/design/gardens" },
-  { name: "Gardening", scope: "Book local help", href: "/services/gardening" },
-  { name: "Cleaning", scope: "Book a clean", href: "/services/cleaning" },
-  { name: "Window cleaning", scope: "Book a visit", href: "/services/window-cleaning" },
-  { name: "Gutter cleaning", scope: "Book a visit", href: "/services/gutter-cleaning" },
+  { name: "Interior Design", href: "/design/interiors" },
+  { name: "Garden Design", href: "/design/gardens" },
+  { name: "Home Services", href: "/services" },
 ];
 
 const PRODUCTS_FALLBACK = [
@@ -148,7 +145,7 @@ export default async function HomePage() {
       </section>
 
       {/* 2. Protect — dark green module, immediately below the fold */}
-      <section className="px-[5vw] py-[clamp(44px,6vw,84px)] text-house-cream" style={{ background: "var(--house-green)" }}>
+      <section className="px-[5vw] pt-[clamp(28px,4vw,52px)] pb-[clamp(44px,6vw,84px)] text-house-cream" style={{ background: "var(--house-green)" }}>
         <div className="mx-auto max-w-[1200px]">
           {/* Trust row — the proof signals, at the top of the green module */}
           <div className="grid grid-cols-2 gap-x-6 gap-y-6 border-b border-house-cream/15 pb-8 sm:grid-cols-4">
@@ -160,13 +157,13 @@ export default async function HomePage() {
             ))}
           </div>
 
-          {/* Heading — centered, gives clear direction */}
-          <div className="mx-auto mt-10 mb-9 max-w-[640px] text-center">
+          {/* Heading — centered layout, original copy */}
+          <div className="mx-auto mt-10 mb-9 max-w-[680px] text-center">
             <h2 className="font-display text-[clamp(28px,3.6vw,44px)] leading-[1.08] text-house-cream">
-              Protection for <em className="text-[color:var(--house-green-soft)]">what matters.</em>
+              Cover made clear, <em className="text-[color:var(--house-green-soft)]">when it matters.</em>
             </h2>
             <p className="mt-4 font-sans text-[16.5px] leading-[1.6] text-house-cream/80">
-              Simple, reliable cover for your home, pets and the things that keep it running.
+              Start with what you need. We introduce you to a trusted, regulated partner and make the hand-off explicit, so you always know whose form you are filling in.
             </p>
           </div>
 
@@ -181,7 +178,7 @@ export default async function HomePage() {
                   <h3 className="font-display text-[21px] leading-tight text-house-black">{p.title}</h3>
                   <p className="mt-2 flex-1 font-sans text-[14.5px] leading-[1.55] text-house-brown/80">{p.who}</p>
                   <p className="mt-4 font-sans text-[10.5px] tracking-[0.16em] uppercase text-[color:var(--house-green-ink)]">{p.signal}</p>
-                  <span className="mt-3 block w-full border border-[color:var(--house-green-deep)] bg-[var(--house-green)] px-4 py-2.5 text-center font-sans text-[11px] tracking-[0.14em] uppercase text-house-cream transition-[filter] group-hover:brightness-110">{p.cta}</span>
+                  <span className="mt-2 font-sans text-[12.5px] font-semibold text-[color:var(--house-green-ink)] group-hover:underline">{p.cta} →</span>
                 </div>
               </Link>
             ))}
@@ -198,62 +195,42 @@ export default async function HomePage() {
       {/* 3. Shop — real products, real prices */}
       <section className="px-[5vw] py-[clamp(44px,6vw,84px)]" style={{ background: "var(--color-house-cream)" }}>
         <div className="mx-auto max-w-[1280px]">
-          <div className="mb-8 grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-            <div>
+          {/* Row 1 — heading + rooms + House Selection, one line */}
+          <div className="grid grid-cols-2 gap-5 lg:grid-cols-5 lg:items-stretch">
+            {/* Heading block */}
+            <div className="col-span-2 flex flex-col justify-center lg:col-span-1">
               <p className="mb-3 font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-dark">The Shop</p>
-              <h2 className="font-display text-[clamp(26px,3.2vw,44px)] leading-[1.06] text-house-brown">
+              <h2 className="font-display text-[clamp(24px,2.4vw,32px)] leading-[1.08] text-house-brown">
                 Useful, beautiful, <em>honestly priced.</em>
               </h2>
+              <Link href="/shop" className="mt-4 inline-flex w-fit items-center font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--house-green-ink)] no-underline transition-colors hover:text-house-brown">
+                Shop all products →
+              </Link>
             </div>
-            <p className="max-w-[46ch] font-sans text-[16px] leading-[1.65] text-house-stone">
-              A considered edit of everyday pieces at real prices, with a smaller House Selection for the objects with a story worth telling.
-            </p>
-          </div>
-
-          {/* Shop by room — labelled, with a route to the full room index */}
-          <div className="mb-4 mt-12 flex items-end justify-between gap-4 border-t border-house-brown/12 pt-6">
-            <h3 className="font-display text-[clamp(20px,2.2vw,28px)] leading-[1.06] text-house-brown">Shop by room</h3>
-            <Link href="/shop" className="whitespace-nowrap font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--house-green-ink)] no-underline transition-colors hover:text-house-brown">
-              All rooms →
-            </Link>
-          </div>
-          <div className="grid gap-5 sm:grid-cols-3">
+            {/* Room cards */}
             {SHOP_ROOMS.map((r) => (
-              <Link key={r.handle} href={`/shop/collections/${r.handle}`} className="group relative block aspect-[4/3] overflow-hidden bg-house-cream-dark no-underline">
-                <Image src={r.image} alt={r.name} fill sizes="(min-width:640px) 31vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
-                <span aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(26,19,13,0.7), rgba(26,19,13,0.03) 55%)" }} />
-                <div className="absolute inset-x-0 bottom-0 p-5">
-                  <p className="font-display text-[clamp(18px,1.8vw,24px)] leading-[1.1] text-white">{r.name}</p>
-                  <p className="mt-1 font-sans text-[11px] tracking-[0.18em] uppercase text-white/85">Shop the room →</p>
+              <Link key={r.handle} href={`/shop/collections/${r.handle}`} className="group relative block h-full min-h-[220px] overflow-hidden bg-house-cream-dark no-underline">
+                <Image src={r.image} alt={r.name} fill sizes="(min-width:1024px) 18vw, 46vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
+                <span aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(26,19,13,0.72), rgba(26,19,13,0.03) 55%)" }} />
+                <div className="absolute inset-x-0 bottom-0 p-4">
+                  <p className="font-display text-[clamp(17px,1.6vw,22px)] leading-[1.1] text-white">{r.name}</p>
+                  <p className="mt-1 font-sans text-[10.5px] tracking-[0.18em] uppercase text-white/85">Shop now →</p>
                 </div>
               </Link>
             ))}
-          </div>
-
-          {/* House Selection — full-width editorial band */}
-          <Link href="/shop/collections/house-approved" className="group relative mt-12 flex min-h-[180px] items-end overflow-hidden bg-house-black p-6 text-house-cream no-underline sm:min-h-[240px] sm:p-8">
-            <Image src="/home-v4/pillar-3.webp" alt="An editorial still life from the House Selection" fill sizes="100vw" className="object-cover opacity-40 transition-transform duration-500 group-hover:scale-[1.03]" />
-            <div className="relative max-w-[38ch]">
-              <p className="font-sans text-[10.5px] tracking-[0.22em] uppercase text-house-gold-light">The House Selection</p>
-              <p className="mt-2 font-display text-[clamp(22px,2.6vw,34px)] leading-[1.05]">Objects that earn their place.</p>
-              <p className="mt-3 font-sans text-[12.5px] tracking-[0.16em] uppercase text-house-cream/85 group-hover:text-house-cream">Explore the selection →</p>
-            </div>
-          </Link>
-
-          {/* Real product rail with prices */}
-          <div className="mb-4 mt-12 flex items-end justify-between gap-4 border-t border-house-brown/12 pt-6">
-            <h3 className="font-display text-[clamp(20px,2.2vw,28px)] leading-[1.06] text-house-brown">New in the shop</h3>
-            <Link href="/shop" className="whitespace-nowrap font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--house-green-ink)] no-underline transition-colors hover:text-house-brown">
-              Shop all →
+            {/* House Selection */}
+            <Link href="/shop/collections/house-approved" className="group col-span-2 flex flex-col justify-center bg-house-cream-dark/55 p-5 no-underline lg:col-span-1">
+              <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-dark">House Selection</p>
+              <p className="mt-2 font-sans text-[15px] leading-[1.5] text-house-stone">Our edit of considered pieces for your home.</p>
+              <span className="mt-4 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--house-green-ink)] transition-colors group-hover:text-house-brown">Explore the collection →</span>
             </Link>
           </div>
-          <div className="grid grid-cols-2 gap-5 sm:grid-cols-4">
-            {marketCards.map((p) => (
+
+          {/* Row 2 — products, plain cards */}
+          <div className="mt-10 grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-4">
+            {marketCards.slice(0, 4).map((p) => (
               <ProductRailCard key={p.name} {...p} />
             ))}
-            <Link href="/shop" className="flex items-center justify-center border border-house-brown/20 bg-house-white p-6 text-center font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown no-underline transition-colors hover:border-house-brown">
-              Shop all products →
-            </Link>
           </div>
         </div>
       </section>
@@ -358,18 +335,15 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 7. Ecosystem strip — one compact row */}
-      <section className="border-t border-house-brown/10 px-[5vw] py-[clamp(28px,4vw,52px)]" style={{ background: "var(--color-house-white)" }}>
-        <div className="mx-auto max-w-[1180px]">
-          <p className="mb-6 text-center font-display text-[clamp(18px,2vw,26px)] leading-tight text-house-brown">Interiors, gardens and trusted local services</p>
-          <div className="grid grid-cols-2 gap-px overflow-hidden border border-house-brown/12 bg-house-brown/12 sm:grid-cols-3 lg:grid-cols-6">
-            {ECOSYSTEM.map((e) => (
-              <Link key={e.name} href={e.href} className="group flex flex-col items-center bg-house-white px-4 py-6 text-center no-underline transition-colors hover:bg-house-cream">
-                <span className="font-display text-[16px] leading-tight text-house-brown group-hover:text-[color:var(--house-green-ink)]">{e.name}</span>
-                <span className="mt-1 font-sans text-[11.5px] text-house-stone">{e.scope}</span>
-              </Link>
-            ))}
-          </div>
+      {/* 7. Ecosystem strip — one thin inline row */}
+      <section className="border-t border-house-brown/12 px-[5vw] py-[clamp(20px,3vw,34px)]" style={{ background: "var(--color-house-white)" }}>
+        <div className="mx-auto flex max-w-[1180px] flex-wrap items-center justify-center gap-x-8 gap-y-3">
+          <span className="font-sans text-[12px] tracking-[0.16em] uppercase text-house-stone">More from the House</span>
+          {ECOSYSTEM.map((e) => (
+            <Link key={e.name} href={e.href} className="font-sans text-[14.5px] text-house-brown no-underline transition-colors hover:text-[color:var(--house-green-ink)]">
+              {e.name} →
+            </Link>
+          ))}
         </div>
       </section>
     </div>
