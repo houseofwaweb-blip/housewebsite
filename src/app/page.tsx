@@ -235,82 +235,63 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 4. Magazine — Hearth + Cinema folded in + email capture */}
-      <section className="px-[5vw] py-[clamp(44px,6vw,84px)]" style={{ background: "var(--color-house-cream-dark)" }}>
-        <div className="mx-auto max-w-[1280px]">
-          <div className="mb-8 grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-            <div>
-              <p className="mb-3 font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-dark">The Magazine</p>
-              <h2 className="font-display text-[clamp(26px,3.2vw,44px)] leading-[1.06] text-house-brown">
-                Read, watch, <em>take what's useful.</em>
+      {/* 4. Magazine — dark green, horizontal row (heading · lead · 3 cards · email) */}
+      <section className="px-[5vw] py-[clamp(44px,6vw,80px)] text-house-cream" style={{ background: "var(--house-green)" }}>
+        <div className="mx-auto max-w-[1320px]">
+          <div className="grid gap-6 lg:grid-cols-[0.85fr_1.9fr_2.4fr_1.2fr] lg:items-stretch">
+            {/* Heading */}
+            <div className="flex flex-col justify-center">
+              <p className="mb-3 font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-light">From the Magazine</p>
+              <h2 className="font-display text-[clamp(24px,2.4vw,32px)] leading-[1.1] text-house-cream">
+                Read, watch, <em className="text-[color:var(--house-green-soft)]">take what&apos;s useful.</em>
               </h2>
+              <Link href="/the-hearth" className="mt-4 inline-flex w-fit items-center font-sans text-[12px] tracking-[0.16em] uppercase text-house-gold-light no-underline transition-colors hover:text-house-cream">
+                Visit the magazine →
+              </Link>
             </div>
-            <p className="max-w-[46ch] font-sans text-[16px] leading-[1.65] text-house-stone">
-              The Hearth and Cinema: stories, films and seasonal guides for looking after your home.
-            </p>
-          </div>
 
-          <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr] lg:gap-8">
-            {/* Lead article */}
-            <Link href={lead.href} className="group flex flex-col bg-house-white no-underline">
-              <div className="relative aspect-[16/10] w-full overflow-hidden">
-                <Image src={lead.image} alt={lead.alt} fill sizes="(min-width:1024px) 56vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.02]" />
+            {/* Lead card — text left, image right */}
+            <Link href={lead.href} className="group grid grid-cols-1 overflow-hidden bg-house-cream/[0.06] no-underline sm:grid-cols-2">
+              <div className="order-2 flex flex-col justify-center p-5 sm:order-1">
+                <span className="w-fit border border-house-cream/40 px-2 py-1 font-sans text-[10px] tracking-[0.16em] uppercase text-house-cream/85">Home</span>
+                <h3 className="mt-3 font-display text-[clamp(19px,1.8vw,25px)] leading-[1.14] text-house-cream group-hover:text-house-gold-light">{lead.title}</h3>
+                {lead.dek ? <p className="mt-2 font-sans text-[13px] leading-[1.5] text-house-cream/70">{lead.dek}</p> : null}
+                <span className="mt-4 font-sans text-[10.5px] tracking-[0.14em] uppercase text-house-gold-light">Read the story →</span>
               </div>
-              <div className="p-6">
-                <p className="font-sans text-[10.5px] tracking-[0.2em] uppercase text-house-gold-dark">Seasonal home guide</p>
-                <h3 className="mt-2 font-display text-[clamp(22px,2.4vw,32px)] leading-[1.12] text-house-brown group-hover:text-[color:var(--house-green-ink)]">{lead.title}</h3>
-                {lead.dek ? <p className="mt-3 max-w-[54ch] font-sans text-[16.5px] leading-[1.6] text-house-stone">{lead.dek}</p> : null}
-                <span className="mt-4 inline-block font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--house-green-ink)]">Read the story →</span>
+              <div className="relative order-1 min-h-[200px] sm:order-2">
+                <Image src={lead.image} alt={lead.alt} fill sizes="(min-width:1024px) 24vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
               </div>
             </Link>
 
-            <div className="flex flex-col gap-4">
-              {/* Cinema folded in as a video item */}
-              <Link href="/cinema" className="group grid grid-cols-[120px_1fr] items-center gap-4 bg-house-white p-3 no-underline sm:grid-cols-[150px_1fr]">
-                <div className="relative aspect-square w-full overflow-hidden">
-                  <Image src="/home-v4/cinema-grid.webp" alt="A film still from the House Cinema" fill sizes="150px" style={{ objectPosition: "center bottom" }} className="object-cover" />
-                  <span aria-hidden className="absolute inset-0 flex items-center justify-center">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/80 bg-black/35 text-[12px] text-white">▶</span>
-                  </span>
-                </div>
-                <div>
-                  <p className="font-sans text-[10px] tracking-[0.18em] uppercase text-house-gold-dark">Film</p>
-                  <h4 className="mt-1 font-display text-[18px] leading-tight text-house-brown group-hover:text-[color:var(--house-green-ink)]">A room made for reading</h4>
-                  <span className="mt-1 inline-block font-sans text-[11px] tracking-[0.14em] uppercase text-[color:var(--house-green-ink)]">Watch the film →</span>
-                </div>
-              </Link>
-              {/* Two secondary articles */}
-              {secondary.slice(0, 2).map((story) => (
-                <Link key={story.title} href={story.href} className="group grid grid-cols-[120px_1fr] items-center gap-4 bg-house-white p-3 no-underline sm:grid-cols-[150px_1fr]">
-                  <div className="relative aspect-square w-full overflow-hidden">
-                    <Image src={story.image} alt={story.alt} fill sizes="150px" className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
+            {/* 3 small cards */}
+            <div className="grid grid-cols-3 gap-4">
+              {[
+                { cat: "Interiors", title: secondary[0]?.title, href: secondary[0]?.href, image: secondary[0]?.image, alt: secondary[0]?.alt, cta: "Read more →", video: false },
+                { cat: "Garden", title: secondary[1]?.title, href: secondary[1]?.href, image: secondary[1]?.image, alt: secondary[1]?.alt, cta: "Read more →", video: false },
+                { cat: "Lifestyle", title: "A room made for reading", href: "/cinema", image: "/home-v4/cinema-grid.webp", alt: "A film still from the House Cinema", cta: "Watch now →", video: true },
+              ].map((c) => (
+                <Link key={c.cat} href={c.href ?? "/the-hearth"} className="group flex flex-col no-underline">
+                  <div className="relative aspect-[4/5] w-full overflow-hidden">
+                    <Image src={c.image ?? "/home-v4/pillar-1.webp"} alt={c.alt ?? ""} fill sizes="(min-width:1024px) 15vw, 33vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
+                    {c.video ? (
+                      <span aria-hidden className="absolute inset-0 flex items-center justify-center">
+                        <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/80 bg-black/35 text-[12px] text-white">▶</span>
+                      </span>
+                    ) : null}
                   </div>
-                  <div>
-                    <p className="font-sans text-[10px] tracking-[0.18em] uppercase text-house-gold-dark">Home care</p>
-                    <h4 className="mt-1 font-display text-[18px] leading-tight text-house-brown group-hover:text-[color:var(--house-green-ink)]">{story.title}</h4>
-                    <span className="mt-1 inline-block font-sans text-[11px] tracking-[0.14em] uppercase text-[color:var(--house-green-ink)]">Read the guide →</span>
-                  </div>
+                  <p className="mt-2.5 font-sans text-[10px] tracking-[0.18em] uppercase text-house-gold-light">{c.cat}</p>
+                  <h4 className="mt-1 font-display text-[15.5px] leading-tight text-house-cream group-hover:text-house-gold-light">{c.title}</h4>
+                  <span className="mt-1 inline-block font-sans text-[10.5px] tracking-[0.12em] uppercase text-house-cream/60">{c.cta}</span>
                 </Link>
               ))}
-              {/* Email capture — the only sign-up on the page */}
-              <div className="bg-[var(--house-green)] p-5 text-house-cream">
-                <p className="font-display text-[19px] leading-tight">A useful note, once a week.</p>
-                <p className="mt-1 mb-3 font-sans text-[12.5px] leading-[1.5] text-house-cream/70">Seasonal advice, new stories and selected objects. No daily noise.</p>
-                <MiniNewsletter sourcePage="/" />
-              </div>
             </div>
-          </div>
 
-          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-house-brown/12 pt-6">
-            <Link href="/the-hearth" className="font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--house-green-ink)] no-underline hover:text-house-brown">Read the magazine →</Link>
-            {[
-              { label: "Interiors", href: "/the-hearth/category/interiors-and-styling" },
-              { label: "Gardens", href: "/the-hearth/category/gardens-and-exteriors" },
-              { label: "Food and hosting", href: "/recipes" },
-              { label: "Films", href: "/cinema" },
-            ].map((c) => (
-              <Link key={c.label} href={c.href} className="font-sans text-[14px] text-house-stone no-underline underline-offset-4 hover:text-house-brown hover:underline">{c.label}</Link>
-            ))}
+            {/* Email box */}
+            <div className="flex flex-col justify-center bg-house-cream/[0.06] p-5">
+              <p className="font-display text-[19px] leading-tight text-house-cream">Get useful notes, straight to your inbox.</p>
+              <p className="mt-1.5 mb-3 font-sans text-[12.5px] leading-[1.5] text-house-cream/70">Practical ideas, timely advice and new things we love.</p>
+              <MiniNewsletter sourcePage="/" />
+            </div>
           </div>
         </div>
       </section>
