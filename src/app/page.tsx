@@ -238,7 +238,7 @@ export default async function HomePage() {
       {/* 4. Magazine — dark green, horizontal row (heading · lead · 3 cards · email) */}
       <section className="px-[5vw] py-[clamp(44px,6vw,80px)] text-house-cream" style={{ background: "var(--house-green)" }}>
         <div className="mx-auto max-w-[1320px]">
-          <div className="grid gap-6 lg:grid-cols-[0.85fr_1.9fr_2.4fr_1.2fr] lg:items-stretch">
+          <div className="grid gap-6 lg:h-[400px] lg:grid-cols-[0.8fr_1.9fr_2.6fr_1.2fr] lg:items-stretch">
             {/* Heading */}
             <div className="flex flex-col justify-center">
               <p className="mb-3 font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-light">From the Magazine</p>
@@ -254,11 +254,11 @@ export default async function HomePage() {
             <Link href={lead.href} className="group grid grid-cols-1 overflow-hidden bg-house-cream/[0.06] no-underline sm:grid-cols-2">
               <div className="order-2 flex flex-col justify-center p-5 sm:order-1">
                 <span className="w-fit border border-house-cream/40 px-2 py-1 font-sans text-[10px] tracking-[0.16em] uppercase text-house-cream/85">Home</span>
-                <h3 className="mt-3 font-display text-[clamp(19px,1.8vw,25px)] leading-[1.14] text-house-cream group-hover:text-house-gold-light">{lead.title}</h3>
-                {lead.dek ? <p className="mt-2 font-sans text-[13px] leading-[1.5] text-house-cream/70">{lead.dek}</p> : null}
+                <h3 className="mt-3 line-clamp-3 font-display text-[clamp(18px,1.7vw,23px)] leading-[1.16] text-house-cream group-hover:text-house-gold-light">{lead.title}</h3>
+                {lead.dek ? <p className="mt-2 line-clamp-3 font-sans text-[13px] leading-[1.5] text-house-cream/70">{lead.dek}</p> : null}
                 <span className="mt-4 font-sans text-[10.5px] tracking-[0.14em] uppercase text-house-gold-light">Read the story →</span>
               </div>
-              <div className="relative order-1 min-h-[200px] sm:order-2">
+              <div className="relative order-1 min-h-[200px] sm:order-2 lg:h-full">
                 <Image src={lead.image} alt={lead.alt} fill sizes="(min-width:1024px) 24vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
               </div>
             </Link>
@@ -270,8 +270,8 @@ export default async function HomePage() {
                 { cat: "Garden", title: secondary[1]?.title, href: secondary[1]?.href, image: secondary[1]?.image, alt: secondary[1]?.alt, cta: "Read more →", video: false },
                 { cat: "Lifestyle", title: "A room made for reading", href: "/cinema", image: "/home-v4/cinema-grid.webp", alt: "A film still from the House Cinema", cta: "Watch now →", video: true },
               ].map((c) => (
-                <Link key={c.cat} href={c.href ?? "/the-hearth"} className="group flex flex-col no-underline">
-                  <div className="relative aspect-[4/5] w-full overflow-hidden">
+                <Link key={c.cat} href={c.href ?? "/the-hearth"} className="group flex h-full flex-col no-underline">
+                  <div className="relative aspect-[4/5] min-h-0 w-full overflow-hidden lg:aspect-auto lg:flex-1">
                     <Image src={c.image ?? "/home-v4/pillar-1.webp"} alt={c.alt ?? ""} fill sizes="(min-width:1024px) 15vw, 33vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
                     {c.video ? (
                       <span aria-hidden className="absolute inset-0 flex items-center justify-center">
@@ -280,7 +280,7 @@ export default async function HomePage() {
                     ) : null}
                   </div>
                   <p className="mt-2.5 font-sans text-[10px] tracking-[0.18em] uppercase text-house-gold-light">{c.cat}</p>
-                  <h4 className="mt-1 font-display text-[15.5px] leading-tight text-house-cream group-hover:text-house-gold-light">{c.title}</h4>
+                  <h4 className="mt-1 line-clamp-2 font-display text-[15px] leading-tight text-house-cream group-hover:text-house-gold-light">{c.title}</h4>
                   <span className="mt-1 inline-block font-sans text-[10.5px] tracking-[0.12em] uppercase text-house-cream/60">{c.cta}</span>
                 </Link>
               ))}
