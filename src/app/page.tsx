@@ -36,11 +36,14 @@ const PROTECT = [
   { title: "Appliance Cover", who: "Protect the household appliances you rely on, from washing machines to ovens.", signal: "Single or multiple items", cta: "Cover an appliance", href: "/insurance/appliance-cover", image: "/insurance/appliance-cover.webp", alt: "A considered home interior" },
 ];
 
-const TRUST = [
-  { h: "Built around your home", p: "not a comparison-site form" },
-  { h: "Start in two minutes", p: "a postcode, then a call back" },
-  { h: "London & Kent, and beyond", p: "wherever your home is" },
-  { h: "Arranged by Provenance", p: "FCA-regulated, profits to charity" },
+// Trust row at the top of the green module. Rating is our real 5-star (no
+// count shown); the rest are honest, verifiable signals — no fabricated
+// review counts or "homes protected" figures.
+const TRUST: { h: string; p: string; gold?: boolean }[] = [
+  { h: "5.0 ★★★★★", p: "Verified customer rating", gold: true },
+  { h: "FCA-regulated partner", p: "Cover arranged by Provenance" },
+  { h: "Named support", p: "Real people, not a call centre" },
+  { h: "London & Kent, and beyond", p: "Wherever your home is" },
 ];
 
 const SHOP_ROOMS = [
@@ -147,42 +150,25 @@ export default async function HomePage() {
       {/* 2. Protect — dark green module, immediately below the fold */}
       <section className="px-[5vw] py-[clamp(44px,6vw,84px)] text-house-cream" style={{ background: "var(--house-green)" }}>
         <div className="mx-auto max-w-[1200px]">
-          <div className="mb-8 grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-            <div>
-              <p className="mb-3 font-sans text-[11px] tracking-[0.28em] uppercase text-house-cream/60">Protection for home and those who live there</p>
-              <h2 className="font-display text-[clamp(26px,3.4vw,44px)] leading-[1.08] text-house-cream">
-                Cover made clear, <em className="text-[color:var(--house-green-soft)]">when it matters.</em>
-              </h2>
-            </div>
-            <p className="max-w-[46ch] font-sans text-[16px] leading-[1.65] text-house-cream/80">
-              Start with what you need. We introduce you to a trusted, regulated partner and make the hand-off explicit, so you always know whose form you are filling in.
-            </p>
-          </div>
-
-          {/* Trust strip */}
-          <div className="mb-6 grid grid-cols-2 gap-px overflow-hidden border border-house-cream/15 bg-house-cream/15 lg:grid-cols-4">
+          {/* Trust row — the proof signals, at the top of the green module */}
+          <div className="grid grid-cols-2 gap-x-6 gap-y-6 border-b border-house-cream/15 pb-8 sm:grid-cols-4">
             {TRUST.map((t) => (
-              <div key={t.h} className="bg-[var(--house-green)] px-5 py-4">
-                <p className="font-sans text-[15px] font-semibold text-house-cream">{t.h}</p>
-                <p className="mt-0.5 font-sans text-[12.5px] leading-[1.45] text-house-cream/65">{t.p}</p>
+              <div key={t.h} className="text-center">
+                <p className={`font-display text-[clamp(16px,1.8vw,19px)] leading-tight ${t.gold ? "text-house-gold-light" : "text-house-cream"}`}>{t.h}</p>
+                <p className="mt-1.5 font-sans text-[12.5px] leading-[1.4] text-house-cream/65">{t.p}</p>
               </div>
             ))}
           </div>
 
-          {/* Quote starter — plain GET hand-off to the enquiry page */}
-          <form action="/insurance/speak-to-a-specialist" method="get" className="mb-8 flex flex-col gap-3 border border-house-cream/15 bg-house-cream/5 p-3 sm:flex-row sm:items-stretch">
-            <input name="postcode" required placeholder="Enter your postcode" aria-label="Postcode" className="min-w-0 flex-1 border border-house-cream/20 bg-house-cream px-4 py-3 font-sans text-[16.5px] text-house-brown outline-none placeholder:text-house-stone focus:border-house-cream" />
-            <select name="cover" required aria-label="Cover type" defaultValue="" className="flex-1 border border-house-cream/20 bg-house-cream px-4 py-3 font-sans text-[16.5px] text-house-brown outline-none focus:border-house-cream">
-              <option value="" disabled>Choose cover type…</option>
-              <option value="home">Home insurance</option>
-              <option value="pet">Pet insurance</option>
-              <option value="boiler">Boiler cover</option>
-              <option value="appliance">Appliance cover</option>
-            </select>
-            <button type="submit" className="inline-flex items-center justify-center whitespace-nowrap border border-house-cream bg-house-cream px-7 py-3 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--house-green-deep)] transition-[filter] hover:brightness-95">
-              Start a quote
-            </button>
-          </form>
+          {/* Heading — centered, gives clear direction */}
+          <div className="mx-auto mt-10 mb-9 max-w-[640px] text-center">
+            <h2 className="font-display text-[clamp(28px,3.6vw,44px)] leading-[1.08] text-house-cream">
+              Protection for <em className="text-[color:var(--house-green-soft)]">what matters.</em>
+            </h2>
+            <p className="mt-4 font-sans text-[16.5px] leading-[1.6] text-house-cream/80">
+              Simple, reliable cover for your home, pets and the things that keep it running.
+            </p>
+          </div>
 
           {/* Four product cards */}
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -201,13 +187,7 @@ export default async function HomePage() {
             ))}
           </div>
 
-          <div className="mt-7">
-            <Link href="/insurance#find-cover" className="inline-flex items-center justify-center whitespace-nowrap border border-house-cream/40 px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-house-cream no-underline transition-colors hover:border-house-cream hover:bg-house-cream/10">
-              View all covers →
-            </Link>
-          </div>
-
-          <ProvenanceLockup variant="onDark" className="mt-7" />
+          <ProvenanceLockup variant="onDark" className="mt-8" />
 
           <p className="mt-6 max-w-[80ch] font-sans text-[14px] leading-[1.6] text-house-cream/70">
             House of Willow Alexander acts as an introducer. Insurance and cover are arranged and provided by regulated third parties, including Provenance Insurance Brokers Ltd (FCA FRN 804047). Full details are shown before you leave the site.
@@ -358,36 +338,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 5. Proof strip — dark burgundy. Clean: real 5-star + trust points. */}
-      <section className="px-[5vw] py-[clamp(44px,6vw,80px)] text-house-cream" style={{ background: "var(--ins-accent)" }}>
-        <div className="mx-auto grid max-w-[1180px] items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <p className="mb-3 font-sans text-[11px] tracking-[0.28em] uppercase text-house-cream/60">The House, in practice</p>
-            <h2 className="font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-cream">
-              Trusted with the practical parts of <em className="text-[color:var(--house-green-soft)]">home.</em>
-            </h2>
-          </div>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {/* Rating — real five-star, no review count shown */}
-            <div>
-              <p className="font-display text-[26px] leading-none text-house-cream">
-                5.0 <span className="text-house-gold-light">★★★★★</span>
-              </p>
-              <p className="mt-2 font-sans text-[14px] leading-[1.5] text-house-cream/70">Verified customer rating</p>
-            </div>
-            {[
-              { h: "FCA-regulated partner", p: "Cover arranged by Provenance, not by us" },
-              { h: "Named support", p: "Real people when you need them" },
-              { h: "Clear coverage", p: "Service areas shown before you begin" },
-            ].map((e) => (
-              <div key={e.h}>
-                <p className="font-display text-[19px] leading-tight text-house-cream">{e.h}</p>
-                <p className="mt-1.5 font-sans text-[14px] leading-[1.5] text-house-cream/70">{e.p}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* 6. The House — short */}
       <section className="px-[5vw] py-[clamp(44px,6vw,84px)]" style={{ background: "var(--color-house-cream)" }}>
