@@ -238,7 +238,7 @@ export default async function HomePage() {
       {/* 4. Magazine — dark green, horizontal row (heading · lead · 3 cards · email) */}
       <section className="px-[5vw] py-[clamp(44px,6vw,80px)] text-house-cream" style={{ background: "var(--house-green)" }}>
         <div className="mx-auto max-w-[1320px]">
-          <div className="grid gap-6 lg:h-[400px] lg:grid-cols-[0.8fr_1.9fr_2.6fr_1.2fr] lg:items-stretch">
+          <div className="grid gap-10 xl:h-[420px] xl:grid-cols-[0.8fr_1.9fr_2.7fr_1.25fr] xl:items-stretch xl:gap-9">
             {/* Heading */}
             <div className="flex flex-col justify-center">
               <p className="mb-3 font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-light">From the Magazine</p>
@@ -258,20 +258,20 @@ export default async function HomePage() {
                 {lead.dek ? <p className="mt-2 line-clamp-3 font-sans text-[13px] leading-[1.5] text-house-cream/70">{lead.dek}</p> : null}
                 <span className="mt-4 font-sans text-[10.5px] tracking-[0.14em] uppercase text-house-gold-light">Read the story →</span>
               </div>
-              <div className="relative order-1 min-h-[200px] sm:order-2 lg:h-full">
+              <div className="relative order-1 min-h-[240px] sm:order-2 xl:h-full">
                 <Image src={lead.image} alt={lead.alt} fill sizes="(min-width:1024px) 24vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
               </div>
             </Link>
 
             {/* 3 small cards */}
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-6">
               {[
                 { cat: "Interiors", title: secondary[0]?.title, href: secondary[0]?.href, image: secondary[0]?.image, alt: secondary[0]?.alt, cta: "Read more →", video: false },
                 { cat: "Garden", title: secondary[1]?.title, href: secondary[1]?.href, image: secondary[1]?.image, alt: secondary[1]?.alt, cta: "Read more →", video: false },
                 { cat: "Lifestyle", title: "A room made for reading", href: "/cinema", image: "/home-v4/cinema-grid.webp", alt: "A film still from the House Cinema", cta: "Watch now →", video: true },
               ].map((c) => (
                 <Link key={c.cat} href={c.href ?? "/the-hearth"} className="group flex h-full flex-col no-underline">
-                  <div className="relative aspect-[4/5] min-h-0 w-full overflow-hidden lg:aspect-auto lg:flex-1">
+                  <div className="relative aspect-[4/5] min-h-0 w-full overflow-hidden xl:aspect-auto xl:flex-1">
                     <Image src={c.image ?? "/home-v4/pillar-1.webp"} alt={c.alt ?? ""} fill sizes="(min-width:1024px) 15vw, 33vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
                     {c.video ? (
                       <span aria-hidden className="absolute inset-0 flex items-center justify-center">
