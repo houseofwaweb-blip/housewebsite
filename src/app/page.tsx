@@ -201,7 +201,7 @@ export default async function HomePage() {
             <div className="col-span-2 flex flex-col justify-center lg:col-span-1">
               <p className="mb-3 font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-dark">The Shop</p>
               <h2 className="font-display text-[clamp(24px,2.4vw,32px)] leading-[1.08] text-house-brown">
-                Useful, beautiful, <em>honestly priced.</em>
+                Chosen for <em>the House.</em>
               </h2>
               <Link href="/shop" className="mt-4 inline-flex w-fit items-center font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--house-green-ink)] no-underline transition-colors hover:text-house-brown">
                 Shop all products →
