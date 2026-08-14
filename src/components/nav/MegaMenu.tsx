@@ -115,7 +115,7 @@ export function MegaMenu({
   return (
     <nav
       aria-label="Primary"
-      className={cn("relative", className)}
+      className={cn(className)}
       onMouseLeave={softHide}
     >
       <ul className="flex items-center gap-8 list-none m-0 p-0">
@@ -161,6 +161,7 @@ export function MegaMenu({
                 : "max-h-0 opacity-0 px-[40px] py-0 pointer-events-none",
             )}
           >
+            <div className="mx-auto w-full max-w-[1200px]">
             {panel.twoLevel ? (
               <TwoLevelMegaPanel data={panel.twoLevel} isOpen={isOpen} />
             ) : panel.preview ? (
@@ -201,6 +202,7 @@ export function MegaMenu({
               ))}
             </div>
             )}
+            </div>
           </div>
         );
       })}
