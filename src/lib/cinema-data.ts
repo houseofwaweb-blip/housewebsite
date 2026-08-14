@@ -193,7 +193,9 @@ async function buildFromSanity(docs: SanityFilmDoc[], key?: string): Promise<Fil
     const id = extractYoutubeId(d.youtubeUrl);
     if (!id) continue;
     const title = stripHashtags(d.titleOverride ?? meta[id]?.title ?? "") || "Untitled film";
-    let slug = slugify(title);
+    // A permanent slug override (FILM_META, keyed by video id) wins over the
+    // title-derived slug, so a URL stays stable even if the title changes.
+    let slug = FILM_META[id]?.slug ?? slugify(title);
     while (seen.has(slug)) slug = `${slug}-${id.slice(0, 4).toLowerCase()}`;
     seen.add(slug);
     films.push({
