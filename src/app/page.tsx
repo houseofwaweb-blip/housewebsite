@@ -184,6 +184,12 @@ export default async function HomePage() {
             ))}
           </div>
 
+          <div className="mt-9 flex justify-center">
+            <Link href="/insurance" className="inline-flex items-center justify-center whitespace-nowrap border border-house-cream/50 px-8 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-house-cream no-underline transition-colors hover:border-house-cream hover:bg-house-cream/10">
+              See all cover →
+            </Link>
+          </div>
+
           <ProvenanceLockup variant="onDark" className="mt-8" />
 
           <p className="mt-6 max-w-[80ch] font-sans text-[14px] leading-[1.6] text-house-cream/70">
