@@ -26,11 +26,14 @@ const PRICE_RANGES = [
   { label: "£250+", min: 250, max: Infinity },
 ];
 
+// Spec sort set (§12): Featured, New, Price low→high, Price high→low.
+// Featured keeps the source (Shopify) order with House Approved pieces nudged to
+// the front — Array.sort is stable, so ties hold their incoming order.
 const SORT_OPTIONS = [
-  { label: "Newest", fn: () => 0 },
+  { label: "Featured", fn: (a: CatalogueProduct, b: CatalogueProduct) => Number(b.houseApproved) - Number(a.houseApproved) },
+  { label: "New", fn: () => 0 },
   { label: "Price: low → high", fn: (a: CatalogueProduct, b: CatalogueProduct) => parsePrice(a.price) - parsePrice(b.price) },
   { label: "Price: high → low", fn: (a: CatalogueProduct, b: CatalogueProduct) => parsePrice(b.price) - parsePrice(a.price) },
-  { label: "Name A to Z", fn: (a: CatalogueProduct, b: CatalogueProduct) => a.title.localeCompare(b.title) },
 ];
 
 function parsePrice(p: string): number {
@@ -131,7 +134,18 @@ export function ShopBrowser({
   const [approvedOnly, setApprovedOnly] = React.useState(false);
   const [transitioning, setTransitioning] = React.useState(false);
   const [page, setPage] = React.useState(1);
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
   const prevFilterRef = React.useRef("");
+
+  // Lock body scroll while the mobile filter drawer is open.
+  React.useEffect(() => {
+    if (!drawerOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [drawerOpen]);
 
   function toggleSet<T>(set: Set<T>, value: T): Set<T> {
     const next = new Set(set);
@@ -207,11 +221,48 @@ export function ShopBrowser({
   }
 
   const hasFilters = search || activeCollections.size > 0 || activeBrands.size > 0 || priceIdx > 0 || inStockOnly || approvedOnly;
+  const activeFilterCount =
+    activeCollections.size +
+    activeBrands.size +
+    (priceIdx > 0 ? 1 : 0) +
+    (inStockOnly ? 1 : 0) +
+    (approvedOnly ? 1 : 0) +
+    (search ? 1 : 0);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-[240px_1fr] min-h-[80vh]">
-      {/* ══════ SIDEBAR ══════ */}
-      <aside className="md:sticky md:top-[89px] md:h-[calc(100vh-89px)] md:overflow-y-auto md:border-r md:border-house-brown/8 bg-house-white px-6 md:pl-[3.5vw] py-5 max-md:border-b max-md:border-house-brown/8 max-md:px-[5vw] max-md:py-4">
+      {/* Mobile drawer backdrop */}
+      {drawerOpen ? (
+        <button
+          type="button"
+          aria-label="Close filters"
+          onClick={() => setDrawerOpen(false)}
+          className="md:hidden fixed inset-0 z-40 bg-house-brown/40 border-0 cursor-pointer"
+        />
+      ) : null}
+
+      {/* ══════ SIDEBAR / MOBILE DRAWER ══════ */}
+      <aside
+        className={cn(
+          "bg-house-white px-6 md:pl-[3.5vw] py-5",
+          "md:sticky md:top-[89px] md:h-[calc(100vh-89px)] md:overflow-y-auto md:border-r md:border-house-brown/8 md:translate-x-0",
+          "max-md:fixed max-md:top-0 max-md:left-0 max-md:bottom-0 max-md:z-50 max-md:w-[86%] max-md:max-w-[340px] max-md:overflow-y-auto max-md:pb-24 max-md:shadow-2xl max-md:transition-transform max-md:duration-[var(--t-slow)] max-md:ease-out",
+          drawerOpen ? "max-md:translate-x-0" : "max-md:-translate-x-full",
+        )}
+      >
+        {/* Drawer header (mobile only) */}
+        <div className="md:hidden flex items-center justify-between mb-4 pb-3 border-b border-house-brown/10">
+          <span className="font-display text-[20px] text-house-brown">Filters</span>
+          <button
+            type="button"
+            onClick={() => setDrawerOpen(false)}
+            aria-label="Close filters"
+            className="font-sans text-[22px] leading-none text-house-brown bg-transparent border-0 cursor-pointer w-8 h-8"
+          >
+            ×
+          </button>
+        </div>
+
         {/* Search */}
         <div className="mb-4">
           <div className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-ink mb-2">
@@ -367,11 +418,22 @@ export function ShopBrowser({
           <button
             type="button"
             onClick={clearFilters}
-            className="mt-3 font-sans text-[12px] tracking-[0.14em] uppercase text-house-gold-ink bg-transparent border-0 cursor-pointer border-b border-dotted border-house-gold pb-0.5 hover:border-solid transition-all max-md:hidden"
+            className="mt-3 font-sans text-[12px] tracking-[0.14em] uppercase text-house-gold-ink bg-transparent border-0 cursor-pointer border-b border-dotted border-house-gold pb-0.5 hover:border-solid transition-all"
           >
             Clear all filters ×
           </button>
         ) : null}
+
+        {/* Drawer apply (mobile only) — pinned to the foot of the drawer */}
+        <div className="md:hidden fixed bottom-0 left-0 w-[86%] max-w-[340px] bg-house-white border-t border-house-brown/10 px-6 py-3">
+          <button
+            type="button"
+            onClick={() => setDrawerOpen(false)}
+            className="w-full font-sans text-[12px] tracking-[0.18em] uppercase text-house-cream bg-house-brown border border-house-brown px-6 py-3.5 cursor-pointer transition-colors hover:bg-house-gold hover:text-house-brown hover:border-house-gold"
+          >
+            View {filtered.length} {filtered.length === 1 ? "piece" : "pieces"}
+          </button>
+        </div>
       </aside>
 
       {/* ══════ GRID ══════ */}
@@ -391,6 +453,18 @@ export function ShopBrowser({
             ) : null}
           </span>
           <div className="flex items-center gap-4">
+            <button
+              type="button"
+              onClick={() => setDrawerOpen(true)}
+              className="md:hidden inline-flex items-center gap-2 font-sans text-[12px] tracking-[0.14em] uppercase text-house-brown bg-transparent border border-house-brown/20 px-3.5 py-2 cursor-pointer"
+            >
+              Filters
+              {activeFilterCount > 0 ? (
+                <span className="inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 text-[10px] leading-none text-house-cream bg-house-gold-ink">
+                  {activeFilterCount}
+                </span>
+              ) : null}
+            </button>
             <select
               value={sortIdx}
               onChange={(e) => setSortIdx(Number(e.target.value))}
@@ -464,8 +538,11 @@ export function ShopBrowser({
                   />
                 </div>
                 <div className="pt-3 pb-1">
-                  <div className="font-sans text-[8px] tracking-[0.2em] uppercase text-house-stone/70 mb-1">
-                    {p.collection}
+                  {/* Maker / brand (spec §12 card), falls back to category
+                      only when a product genuinely carries no vendor. Kept at a
+                      legible eyebrow size (was 8px — illegible, read as absent). */}
+                  <div className="font-sans text-[11px] tracking-[0.16em] uppercase text-house-stone/70 mb-1">
+                    {(p.brand && p.brand.trim()) || p.collection}
                   </div>
                   <div className="font-display text-[15px] leading-snug text-house-brown group-hover:text-[var(--house-gold-dark)] transition-colors duration-[var(--t-base)] mb-1">
                     {p.title}
@@ -481,6 +558,17 @@ export function ShopBrowser({
                     ) : (
                       p.price
                     )}
+                  </div>
+                  {/* Delivery / stock status (spec card) */}
+                  <div className="font-sans text-[12px] text-house-stone mt-1.5 flex items-center gap-1.5">
+                    <span
+                      aria-hidden
+                      className={cn(
+                        "inline-block w-1.5 h-1.5 is-round",
+                        p.inStock ? "bg-house-gold-ink" : "bg-house-stone/50",
+                      )}
+                    />
+                    {p.inStock ? "In stock · ready to send" : "Available to order"}
                   </div>
                 </div>
                 <Link

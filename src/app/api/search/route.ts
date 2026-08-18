@@ -27,18 +27,12 @@ export interface SearchResult {
 
 // Static pages that should be searchable but aren't in any CMS
 const STATIC_PAGES: SearchResult[] = [
-  { id: "sp-howa", type: "HoWA", title: "HoWA: The Intelligence Layer", excerpt: "The installed-per-home stewardship system. Memory, context, continuity.", href: "/howa" },
-  { id: "sp-plans", type: "HoWA", title: "Plans & Pricing", excerpt: "Housekeeper at £16.99/mo. Steward plans coming soon.", href: "/howa/plans" },
-  { id: "sp-companion", type: "HoWA", title: "HoWA Assistant (free)", excerpt: "The free way in. The portrait from an address, the Assistant diagnostic, repair, garden and room scans, quotes decoded.", href: "/howa/assistant" },
-  { id: "sp-steward", type: "HoWA", title: "HoWA Steward", excerpt: "Managed home intelligence. Predictive maintenance, managed recurring care.", href: "/howa/steward" },
-  { id: "sp-how", type: "HoWA", title: "How HoWA Works", excerpt: "Four quiet jobs: Understand, Recommend, Connect, Remember.", href: "/howa/how-it-works" },
-  { id: "sp-interiors", type: "Design", title: "Interior Design", excerpt: "Whole-house renovations and single-room reads.", href: "/design/interiors" },
-  { id: "sp-gardens", type: "Design", title: "Garden Design", excerpt: "Landscape work led by Willow Alexander Gardens.", href: "/design/gardens" },
-  { id: "sp-protect", type: "Protect", title: "Home Protection", excerpt: "Review, plan, and insure. Care recorded is risk reduced.", href: "/protect" },
-  { id: "sp-insurance", type: "Protect", title: "Insurance by the House", excerpt: "Cover that understands period homes. Provenance partnership.", href: "/protect/insurance" },
+  { id: "sp-how", type: "The House", title: "How the House works", excerpt: "Ask the House, the House arranges it, your Home Record remembers it. Booking and home intelligence powered by HoWA.", href: "/how-it-works" },
+  { id: "sp-services", type: "Services", title: "Home and garden services", excerpt: "A specialist for every corner. Gardeners, cleaners, window and gutter cleaning, repairs, and more.", href: "/services" },
+  { id: "sp-offers", type: "The House", title: "House Offers", excerpt: "Seasonal packages, multi-service care, and member benefits, shown in full.", href: "/offers" },
   { id: "sp-philosophy", type: "The House", title: "Philosophy", excerpt: "What a house is actually for.", href: "/the-house/philosophy" },
   { id: "sp-standards", type: "The House", title: "Standards", excerpt: "How we work, and what House Approved means.", href: "/the-house/standards" },
-  { id: "sp-contact", type: "The House", title: "Contact", excerpt: "Write to the House. Book a House Service.", href: "/contact" },
+  { id: "sp-contact", type: "The House", title: "Contact", excerpt: "Write to the House. Book a House service.", href: "/contact" },
 ];
 
 function capitalize(s: string): string {

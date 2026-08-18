@@ -169,8 +169,7 @@ export default async function LocalServicePage({
             <div>
               <p className="font-sans text-[16px] leading-[1.7] text-house-brown/85 mb-6 max-w-[58ch]">
                 Our handyman team is in setup, not booking yet. Leave your email and
-                we&apos;ll write the moment we&apos;re working in {location}. Housekeeper members
-                go to the front of the list when bookings open.
+                we&apos;ll write the moment we&apos;re working in {location}.
               </p>
               <WaitlistMini
                 product="other"
@@ -195,8 +194,8 @@ export default async function LocalServicePage({
               What the House <em>does</em> cover in {location}.
             </h2>
             <p className="font-sans text-[16px] leading-[1.7] text-house-brown/72 mt-5">
-              Four launch services, each delivered by House Approved teams, each booked
-              and recorded through HoWA.
+              Four launch services, each delivered by House of Willow Alexander's own
+              teams, each booked and recorded through HoWA.
             </p>
           </header>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-house-brown/10">
@@ -249,8 +248,8 @@ export default async function LocalServicePage({
           {[
             {
               n: "I.",
-              h: "House Approved teams",
-              b: "Every team operating under the House seal has been visited, vetted, and reviewed annually. We refuse to compromise on this.",
+              h: "Our own teams",
+              b: "Every team is employed and held to the House standard, visited, vetted, and reviewed annually. We refuse to compromise on this.",
             },
             {
               n: "II.",
@@ -260,7 +259,7 @@ export default async function LocalServicePage({
             {
               n: "III.",
               h: "One conversation",
-              b: "Whether you book one job or move to a Steward Plan, you talk to the House. We hold the relationship; the partner does the work.",
+              b: "Whether you book one job or a recurring plan, you talk to the House. We hold the relationship; our team does the work.",
             },
           ].map((c) => (
             <article key={c.n} className="bg-house-cream p-9">
@@ -288,14 +287,14 @@ export default async function LocalServicePage({
             Step into <em>stewardship.</em>
           </h2>
           <p className="font-display italic text-[clamp(17px,1.8vw,21px)] leading-[1.5] text-house-cream/85 mt-6">
-            Two minutes with the Assistant. A lifetime of looking after.
+            Two minutes to book. A lifetime of looking after.
           </p>
           <div className="flex items-center justify-center gap-4 flex-wrap mt-9">
             <Link
-              href="/howa/assistant"
+              href="#open-booking-form"
               className="inline-block font-sans text-[15px] tracking-[0.22em] uppercase text-house-brown bg-house-cream border border-house-cream px-7 py-4 no-underline transition-all duration-200 ease-out hover:bg-house-gold hover:border-house-gold"
             >
-              Launch the Assistant
+              Book a service
             </Link>
             <Link
               href="/services"

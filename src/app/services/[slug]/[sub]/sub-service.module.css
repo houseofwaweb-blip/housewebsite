@@ -134,6 +134,7 @@
   border-top: 1px solid rgba(48, 35, 28, 0.14);
 }
 .heroCtas { display: flex; gap: 12px; flex-wrap: wrap; }
+.heroCtas > a { flex: 1 1 220px; justify-content: center; white-space: nowrap; }
 .heroVisual { position: relative; background: var(--color-house-cream-dark); }
 .comingSoonTag {
   position: absolute;
@@ -264,10 +265,35 @@
    6. Related sub-services — cream-dark, 3-up
    ────────────────────────────────────────────────────────── */
 .related {
-  background: var(--color-house-cream-dark);
+  position: relative;
+  overflow: hidden;
+  /* Dark fallback in case a page passes no background image. */
+  background: var(--color-house-forest);
   padding: clamp(56px, 6vw, 92px) clamp(40px, 5vw, 88px);
   border-bottom: 1px solid rgba(48, 35, 28, 0.08);
 }
+/* The section's own service photo, passed per page, sits behind a low-opacity
+   black gradient. The cards keep their cream background and dark text on top,
+   so they stay perfectly legible. */
+.relatedBg { position: absolute; inset: 0; z-index: 0; }
+.relatedBg img { object-fit: cover; }
+.relatedScrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(rgba(20, 14, 10, 0.62), rgba(20, 14, 10, 0.74));
+}
+.relatedInner {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+/* Lift the section heading onto the dark ground (scoped to .related only, so
+   the other sections' headings are untouched). */
+.related .sectionEy { color: var(--color-house-gold-light); }
+.related .sectionTitle { color: var(--color-house-cream); }
+.related .sectionTitle em { color: var(--color-house-gold-light); }
 .relatedGrid {
   max-width: 1280px;
   margin: 0 auto;

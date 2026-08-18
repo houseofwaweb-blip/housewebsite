@@ -3,7 +3,7 @@ import { didot, effra, cormorant, jost } from "@/lib/fonts";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/lib/seo/jsonLd";
 import { env } from "@/lib/env";
 import { Header } from "@/components/layout/Header";
-import { getNavigation, getFooterColumns } from "@/lib/cms/navigation";
+import { getNavigation } from "@/lib/cms/navigation";
 import { Footer } from "@/components/layout/Footer";
 import { CartProvider } from "@/components/commerce/CartContext";
 import { CartToast } from "@/components/commerce/CartToast";
@@ -22,11 +22,11 @@ import { Klaviyo } from "@/components/consent/loaders/Klaviyo";
 import { ClickIdCapture } from "@/components/marketing/ClickIdCapture";
 import "./globals.css";
 
-// The primary header CTA is House-led (v5 HoWA-separation review, 2026-06-18):
-// the House sells services, and booking opens the House booking modal
-// (#open-booking-form) which is always available regardless of the HoWA app
-// being live. HoWA online booking is reached from the HoWA Platform menu.
-const ctaLabel = "Book through HoWA";
+// The primary header CTA is House-led (Aug-17 rebuild, spec L397–403): the
+// House sells services first, so the CTA is "Book a service" and opens the
+// House booking modal (#open-booking-form), always available regardless of the
+// HoWA app being live. HoWA is present only as a "Powered by HoWA" utility.
+const ctaLabel = "Book a service";
 const ctaHref = "#open-booking-form";
 
 export const metadata: Metadata = {
@@ -96,10 +96,9 @@ export const viewport: Viewport = {
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const [nav, footerCols] = await Promise.all([
-    getNavigation(),
-    getFooterColumns(),
-  ]);
+  // Footer columns come from the doc §6.3 five-column structure (Footer's own
+  // COLS), not Sanity, during the Aug-17 rebuild.
+  const nav = await getNavigation();
   return (
     <html
       lang="en-GB"
@@ -152,7 +151,7 @@ export default async function RootLayout({
             </a>
             <Header ctaLabel={ctaLabel} ctaHref={ctaHref} nav={nav} />
             <main id="main">{children}</main>
-            <Footer columns={footerCols} />
+            <Footer />
             <CartToast />
             <CartDrawer />
             <BookingWidget />

@@ -35,7 +35,7 @@ export function ProductCopy({ product: p }: { product: ShopProduct }) {
       summary: <span className={SUMMARY}>Shipping &amp; returns</span>,
       body: (
         <p>
-          {p.delivery ?? "Free UK delivery on every order."} Returns accepted within 30 days in original condition.
+          {p.delivery ?? "Delivery options and costs are shown at checkout."} Returns are handled in line with the store's current returns policy.
         </p>
       ),
     },

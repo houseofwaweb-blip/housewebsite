@@ -77,7 +77,7 @@ const schema = z.object({
   // Contact routing
   CONTACT_INBOX_DEFAULT: z
     .string()
-    .default("hello@willowalexander.co.uk"),
+    .default("sales@willowalexander.co.uk"),
   CONTACT_INBOX_DESIGN: z.string().optional(),
   CONTACT_INBOX_SERVICES: z.string().optional(),
   CONTACT_INBOX_PROTECT: z.string().optional(),

@@ -43,7 +43,7 @@ export function ProductSlider({ title, slides }: { title: string; slides: Slide[
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-[clamp(24px,4vw,60px)] items-center">
+        <div className="grid md:grid-cols-2 gap-[clamp(24px,4vw,60px)] items-start">
           {/* Text — left */}
           <div className="order-2 md:order-1">
             <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink mb-4">

@@ -23,15 +23,15 @@ export function HearthMasthead({ className }: { className?: string }) {
         </h1>
       </Link>
       <p className="font-hearth-serif italic text-[clamp(17px,1.8vw,22px)] text-house-gold-ink mt-[12px]">
-        The editorial soul of the House.
+        The magazine of the House.
       </p>
-      <p className="font-hearth-serif italic text-[15px] text-house-stone mt-[8px] max-w-[640px] mx-auto">
+      <p className="font-hearth-sans text-[11px] tracking-[0.24em] uppercase text-house-stone mt-[10px]">
+        Issue No. 01 · Late Summer 2026
+      </p>
+      <p className="font-hearth-serif italic text-[15px] text-house-stone mt-[10px] max-w-[640px] mx-auto">
         Essays, recipes, garden notes and design wisdom, gathered through the
         seasons. Quiet observations on the art of keeping a home, and the rooms,
         gardens and thresholds worth keeping well.
-      </p>
-      <p className="font-hearth-sans text-[12px] tracking-[0.16em] uppercase text-house-stone/70 mt-[10px]">
-        Housekeeper members receive full archive access and seasonal guides.
       </p>
     </header>
   );

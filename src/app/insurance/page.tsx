@@ -1,0 +1,325 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { env } from "@/lib/env";
+import { RenewalReminderForm } from "@/components/insurance/RenewalReminderForm";
+import { InsuranceDisclosure } from "@/components/insurance/InsuranceDisclosure";
+import { CoverFinder } from "@/components/insurance/CoverFinder";
+import { ProvenanceLockup } from "@/components/insurance/ProvenanceLockup";
+import { WhyHouseCover } from "@/components/insurance/WhyHouseCover";
+import { WhatMayBeCovered } from "@/components/insurance/WhatMayBeCovered";
+import { ClaimsHelpBand } from "@/components/insurance/ClaimsHelp";
+import { InsuranceCtaBand } from "@/components/insurance/InsuranceCtaBand";
+import { Accordion } from "@/components/primitives/Accordion";
+import { PROVENANCE } from "@/lib/insurance/config";
+import { insuranceOg } from "@/lib/insurance/og";
+
+/**
+ * A1 · /insurance, the hub. Orientation and routing. Two doors: advised
+ * private client (the lead) and everyday cover (enquiry-led). The argument once.
+ * No product list above the fold. No comparison language. No urgency. HoWA
+ * appears nowhere. Renewal-reminder capture as a tertiary CTA.
+ */
+export const metadata: Metadata = {
+  title: "Insurance from the House",
+  description:
+    "Insurance introduced by House of Willow Alexander and arranged by Provenance. Advised cover for homes worth insuring properly, and everyday cover for everything that does not need a conversation.",
+  ...insuranceOg("insurance", "Insurance from the House"),
+};
+
+export default function InsuranceHub() {
+  const turnstileSiteKey = env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
+  return (
+    <div className="bg-house-cream text-house-brown">
+      {/* Hero, split: proposition left, the House's world right */}
+      <section className="px-[5vw] pt-20 pb-14">
+        <div className="mx-auto grid max-w-[1180px] items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-[color:var(--ins-ink)]">The House · Insurance</p>
+            <h1 className="mt-4 font-display text-[clamp(36px,6vw,72px)] leading-[1.02] text-house-black">
+              Cover for the house. <em className="italic">And everyone who lives in it.</em>
+            </h1>
+            <p className="mt-6 max-w-[52ch] font-sans text-[19px] leading-[1.6] text-house-stone">
+              Insuring a home well means understanding what it is made of and what has been done to it. The House introduces you to a specialist who takes the time to ask; the cover is arranged by Provenance.
+            </p>
+            <div className="mt-8 flex flex-col gap-4">
+              <div className="flex flex-col gap-3 sm:flex-row sm:max-w-[460px]">
+                <Link href="/insurance/private-client" className="inline-flex w-full items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110 sm:flex-1">
+                  Speak to a specialist
+                </Link>
+                <Link href="/insurance/everyday" className="inline-flex w-full items-center justify-center whitespace-nowrap border border-house-brown/30 px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown no-underline transition-colors hover:border-[color:var(--ins-ink)] sm:flex-1">
+                  Everyday cover
+                </Link>
+              </div>
+              <ProvenanceLockup className="mt-2" />
+            </div>
+          </div>
+          <div className="relative aspect-[4/5] w-full overflow-hidden">
+            <Image
+              src="/insurance/hub-hero.webp"
+              alt="A cream Georgian townhouse facade in golden evening light: a columned black panelled door between lantern lights and clipped box topiary."
+              fill
+              sizes="(min-width: 1180px) 560px, 90vw"
+              priority
+              style={{ objectFit: "cover", objectPosition: "center" }}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Choose what to cover — the doc's Home / Pet / Home & Pet step */}
+      <section className="px-[5vw] pb-4">
+        <div className="mx-auto max-w-[1080px]">
+          <p className="font-sans text-[12px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">Choose what to cover</p>
+          <div className="mt-4 grid gap-4 sm:grid-cols-3">
+            {[
+              { label: "Home", body: "Buildings and contents, from a standard house to a period one.", href: "/insurance/everyday/home" },
+              { label: "Pet", body: "Cover for the animal, shaped around it rather than a tick-box.", href: "/insurance/everyday/pet-and-travel" },
+              { label: "Home and pet", body: "Both in one conversation, on one renewal date.", href: "/insurance/speak-to-a-specialist" },
+            ].map((c) => (
+              <Link
+                key={c.label}
+                href={c.href}
+                className="group flex flex-col justify-between border border-house-brown/15 bg-house-white p-6 no-underline transition-[border-color] hover:border-[color:var(--ins-ink)]"
+              >
+                <div>
+                  <h2 className="font-display text-[22px] leading-tight text-house-black group-hover:text-[color:var(--ins-ink)]">{c.label}</h2>
+                  <p className="mt-2 font-sans text-[15px] leading-[1.55] text-house-stone">{c.body}</p>
+                </div>
+                <span className="mt-5 font-sans text-[11px] tracking-[0.16em] uppercase text-[color:var(--ins-ink)]">Cover {c.label.toLowerCase()} →</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Two doors */}
+      <section className="px-[5vw] pb-14">
+        <div className="mx-auto grid max-w-[1080px] gap-6 lg:grid-cols-5">
+          {/* Advised, the lead, larger, warmer */}
+          <Link href="/insurance/private-client" className="group flex flex-col justify-between border border-house-brown/15 bg-house-white p-8 no-underline lg:col-span-3">
+            <div>
+              <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-[color:var(--ins-ink)]">Advised · Private client & estate</p>
+              <h2 className="mt-3 font-display text-[clamp(24px,3vw,36px)] leading-[1.1] text-house-black group-hover:text-[color:var(--ins-ink)]">
+                For a home worth insuring properly.
+              </h2>
+              <p className="mt-4 max-w-[48ch] font-sans text-[16px] leading-[1.6] text-house-stone">
+                A named specialist, a conversation about the house, and a policy built around it rather than around a comparison engine. One estate, one renewal date.
+              </p>
+            </div>
+            <span className="mt-6 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-ink)]">Speak to a specialist →</span>
+          </Link>
+          {/* Everyday, enquiry-led, secondary */}
+          <Link href="/insurance/everyday" className="group flex flex-col justify-between border border-house-brown/15 bg-house-cream-dark/40 p-8 no-underline lg:col-span-2">
+            <div>
+              <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-[color:var(--ins-ink)]">Everyday cover</p>
+              <h2 className="mt-3 font-display text-[clamp(22px,2.6vw,30px)] leading-[1.1] text-house-black group-hover:text-[color:var(--ins-ink)]">
+                For everything that does not need a conversation.
+              </h2>
+              <p className="mt-4 font-sans text-[16.5px] leading-[1.6] text-house-stone">
+                Home, car, pet and travel. Tell us what you need and a specialist arranges it.
+              </p>
+            </div>
+            <span className="mt-6 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-ink)]">Everyday cover →</span>
+          </Link>
+        </div>
+      </section>
+
+      {/* Why House cover — benefit pillars, spec §11.3 */}
+      <WhyHouseCover />
+
+      {/* What may be covered — scannable examples + route to policy wording, spec §11.4 */}
+      <WhatMayBeCovered />
+
+      {/* Find your cover — self-serve search across every cover */}
+      <section id="find-cover" className="scroll-mt-24 px-[5vw] py-14" style={{ background: "var(--color-house-cream-dark)" }}>
+        <div className="mx-auto max-w-[1180px]">
+          <p className="mb-2 font-sans text-[16.5px] leading-[1.6] text-house-brown/85">Know what you are looking for? Search every cover the House introduces.</p>
+          <CoverFinder />
+        </div>
+      </section>
+
+      {/* What is not covered / key limitations — spec §11, never buried. */}
+      <section className="px-[5vw] py-14">
+        <div className="mx-auto max-w-[1080px] border-l-4 border-[color:var(--ins-accent)] bg-house-cream-dark/50 p-7 sm:p-9">
+          <p className="font-sans text-[12px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">Read this before you rely on cover</p>
+          <h2 className="mt-3 max-w-[26ch] font-display text-[clamp(24px,3.4vw,40px)] leading-[1.1] text-house-black">
+            What is not covered, and what to check.
+          </h2>
+          <p className="mt-4 max-w-[64ch] font-sans text-[16.5px] leading-[1.65] text-house-brown/85">
+            Every policy has limits and exclusions. This is a general guide, never the full picture, so the policy wording is what to read before you commit. The specifics for each cover sit on its own page.
+          </p>
+          <div className="mt-8 grid gap-x-10 gap-y-7 md:grid-cols-2">
+            {[
+              { h: "Wear, tear and gradual damage", p: "Ordinary ageing, gradual deterioration and a lack of maintenance are not insured events. Cover is for sudden and unforeseen loss." },
+              { h: "Anything already known", p: "A loss, fault or condition that already exists when cover starts is not picked up by a new policy." },
+              { h: "Under-insurance", p: "Set the sum insured too low and a claim can be reduced in proportion. The rebuild figure is not the market value." },
+              { h: "Limits and excesses", p: "Section limits, single-item limits and the excess all shape what is paid. Valuables above the limit usually need listing separately." },
+              { h: "Unoccupied and let homes", p: "Standard cover can fall away once a home is left empty beyond a set period, or let out, unless the policy is written for it." },
+              { h: "The House does not advise", p: "The House introduces you to Provenance and does not advise on, arrange or decide your cover. The terms that bind are in the policy documents." },
+            ].map((pt) => (
+              <div key={pt.h} className="border-t border-[color:var(--ins-accent)]/40 pt-4">
+                <h3 className="font-sans text-[14px] font-semibold tracking-[0.02em] text-[color:var(--ins-ink)]">{pt.h}</h3>
+                <p className="mt-2 font-sans text-[16px] leading-[1.6] text-house-brown/85">{pt.p}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-7 font-sans text-[13.5px] leading-[1.6] text-house-brown/70">
+            The policy wording, key facts and exclusions are provided by Provenance before you commit to anything.
+          </p>
+        </div>
+      </section>
+
+      {/* Claims and help — prominent route for existing customers, spec §11.7 */}
+      <ClaimsHelpBand />
+
+      {/* The argument, once — dark burgundy anchor */}
+      <section className="px-[5vw] py-14 text-house-cream" style={{ background: "var(--ins-accent)" }}>
+        <div className="mx-auto grid max-w-[980px] items-center gap-10 md:grid-cols-2">
+          <div className="flex flex-col gap-3">
+            <p className="font-display text-[clamp(28px,4vw,44px)] leading-[1.1] text-[color:var(--house-green-soft)]">Rebuild cost</p>
+            <p className="font-sans text-[16.5px] leading-[1.6] text-house-cream/80">
+              The cost of rebuilding a home is not the same as its market value. For specialist, period or altered properties, it is worth checking that the figure used for insurance reflects the property itself.
+            </p>
+          </div>
+          <p className="max-w-[42ch] font-display text-[clamp(20px,2.4vw,28px)] leading-[1.3] text-house-cream">
+            A specialist who understands what your home is made of is the difference between a guess and a figure. That is what the House introduces you to.
+          </p>
+        </div>
+      </section>
+
+      {/* Who arranges it */}
+      <section className="border-t border-house-brown/10 px-[5vw] py-12">
+        <div className="mx-auto max-w-[760px]">
+          <p className="font-sans text-[12px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">Who arranges it</p>
+          <p className="mt-4 font-sans text-[17px] leading-[1.7] text-house-brown/85">
+            Cover is arranged and administered by {PROVENANCE.legalName}, authorised and regulated by the FCA (FRN {PROVENANCE.frn}), part of {PROVENANCE.group} and the {PROVENANCE.backer} group. {PROVENANCE.backer} is charity-owned and gives its available profits to good causes. The House introduces you; it does not advise on, arrange, administer or compare insurance.
+          </p>
+          <ProvenanceLockup className="mt-6" />
+          <Link href="/insurance/how-this-works" className="mt-6 inline-block font-sans text-[14px] tracking-[0.04em] text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">
+            How this works, and how we are paid →
+          </Link>
+        </div>
+      </section>
+
+      {/* The published commitment */}
+      <section className="px-[5vw] pb-14">
+        <div className="mx-auto max-w-[760px] border-l-2 border-[color:var(--ins-ink)] pl-6">
+          <p className="font-display text-[clamp(20px,2.6vw,30px)] leading-[1.3] text-house-brown">
+            No fear, no urgency, no pressure. We will not chase you or manufacture a deadline. Take the time to understand the cover, the exclusions and the policy documents before you decide.
+          </p>
+        </div>
+      </section>
+
+      {/* Frequently asked questions (spec §11.8) */}
+      <section id="faqs" className="scroll-mt-24 border-t border-house-brown/10 px-[5vw] py-14">
+        <div className="mx-auto max-w-[820px]">
+          <p className="font-sans text-[12px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">
+            Good to know
+          </p>
+          <h2 className="mt-3 mb-8 font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-black">
+            Questions people ask before they arrange cover.
+          </h2>
+          <Accordion
+            items={[
+              {
+                id: "faq-who",
+                summary: "Who provides the insurance?",
+                body: (
+                  <p>
+                    The House introduces you to Provenance, an FCA-authorised
+                    firm that arranges and administers the cover. The House does
+                    not underwrite or sell the policy itself.
+                  </p>
+                ),
+              },
+              {
+                id: "faq-what",
+                summary: "What can I cover?",
+                body: (
+                  <p>
+                    Home and pet, together or separately. Speak to a specialist
+                    about the whole estate, or choose an everyday cover and a
+                    specialist will arrange it for you.
+                  </p>
+                ),
+              },
+              {
+                id: "faq-claim",
+                summary: "How do I make a claim?",
+                body: (
+                  <p>
+                    Claims and existing-policy help go directly to Provenance.
+                    The claims route and contact details are set out in your
+                    policy documents and in the Claims and help section.
+                  </p>
+                ),
+              },
+              {
+                id: "faq-notcovered",
+                summary: "What is not covered?",
+                body: (
+                  <p>
+                    Every policy has limits and exclusions. These are set out
+                    plainly before you decide, and in full in the policy wording.
+                    Read them alongside what may be covered.
+                  </p>
+                ),
+              },
+              {
+                id: "faq-pressure",
+                summary: "Is there any pressure to buy?",
+                body: (
+                  <p>
+                    No. We will not chase you or manufacture a deadline. Take the
+                    time to understand the cover, the exclusions and the policy
+                    documents before you decide.
+                  </p>
+                ),
+              },
+              {
+                id: "faq-renewal",
+                summary: "Can you remind me before my renewal?",
+                body: (
+                  <p>
+                    Yes. Tell us your renewal month and we will send one email at
+                    the right time. It is a reminder, not a newsletter.
+                  </p>
+                ),
+              },
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* Strong closing CTA band — always an action before the footer */}
+      <InsuranceCtaBand
+        eyebrow="Insure it properly"
+        heading="Ready to arrange cover that understands your home?"
+        body="Speak to a specialist about the whole estate, or choose an everyday cover and a specialist will arrange it. The House introduces you; Provenance arranges and administers the cover."
+        primaryLabel="Request a quote"
+        primaryHref="/insurance/private-client"
+        tertiary={{ label: "Everyday cover", href: "/insurance/everyday" }}
+      />
+
+      {/* Renewal reminder */}
+      <section id="reminder" className="scroll-mt-20 border-t border-house-brown/10 px-[5vw] py-14" style={{ background: "var(--color-house-cream-dark)" }}>
+        <div className="mx-auto max-w-[620px]">
+          <p className="font-sans text-[12px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">Not ready today?</p>
+          <h2 className="mt-3 font-display text-[clamp(24px,3vw,36px)] leading-[1.1] text-house-black">Remind me before my renewal.</h2>
+          <p className="mt-4 mb-7 max-w-[52ch] font-sans text-[16px] leading-[1.6] text-house-stone">
+            Insurance is bought at one moment in the year, and most people miss it. Tell us your renewal month and we will send one email at the right time. Not a newsletter.
+          </p>
+          <RenewalReminderForm turnstileSiteKey={turnstileSiteKey} sourcePage="/insurance" />
+        </div>
+      </section>
+
+      {/* Page-level disclosure */}
+      <section className="px-[5vw] pb-16">
+        <div className="mx-auto max-w-[760px]">
+          <InsuranceDisclosure />
+        </div>
+      </section>
+    </div>
+  );
+}

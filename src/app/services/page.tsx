@@ -3,9 +3,15 @@ import Link from "next/link";
 import s from "./services.module.css";
 import { FaqList } from "@/components/marketing/FaqList";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
-import { ServiceCarousel } from "./ServiceCarousel";
+import { ServiceGrid } from "@/components/services/ServiceGrid";
+import { serviceAccent } from "@/components/services/service-meta";
+import { SERVICES as SERVICE_DATA, basisPhrase, type ServiceSlug } from "@/lib/services-data";
 import { HouseStandardStrip } from "@/components/marketing/HouseStandardStrip";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
+import { HeroServiceFinder } from "@/components/marketing/HeroServiceFinder";
+// CoverageMap temporarily disabled (needs the `leaflet` dependency — re-enable
+// after `npm i leaflet @types/leaflet`).
+import { REQUESTABLE_SERVICES, SERVICE_GROUPS } from "@/lib/services-data/requestable";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -22,39 +28,58 @@ function imgOr(p?: string): string {
 }
 
 /**
- * /services — landing page in the lander framework.
+ * The charging-basis line for a service's headline package, e.g. "Priced per
+ * hour". The House does not publish figures, so the card shows HOW a service is
+ * charged, never a £ number. Undefined where the slug has no priced package
+ * (e.g. request-only services), so the card falls back to "Priced on enquiry".
+ * The recurring/steward tier is skipped, as it never reaches the customer as a
+ * headline.
+ */
+function fromPriceFor(slug: string): string | undefined {
+  const svc = SERVICE_DATA[slug as ServiceSlug];
+  if (!svc) return undefined;
+  const priced = svc.packages.filter((p) => p.tier !== "steward");
+  const pkg = priced[0] ?? svc.packages[0];
+  if (!pkg) return undefined;
+  return basisPhrase(pkg.basis);
+}
+
+/**
+ * /services — the service index (REVISIONS v3 §5).
  *
- * Per CLAUDE.md launch decisions: 4 services only — Gardening, Window
- * Cleaning, Cleaning, Gutter Cleaning. Handyman / Removals / Energy /
- * Pet care all deferred.
+ * v3 reverses the earlier four-service limitation. That limit existed to stop
+ * dead "coming soon" categories, but it must not stop the House presenting a
+ * credible whole-home offer fulfilled through House teams AND disclosed HoWA
+ * Approved professionals.
  *
- * Section order:
- *   1. Hero — image right, copy left (cream)
- *   2. Stats strip
- *   3. Four service cards
- *   4. Steward Plans ladder — 4 plans, House Essential featured
- *   5. Brief builder — Assistant mock
- *   6. FAQ
- *   7. Closing
+ * §5 requires this page to carry: a service and postcode finder; the full live
+ * catalogue; problem-led help for people who do not know the service name; a
+ * clear distinction between House teams and House Approved professionals; a
+ * price method on every service; one-off and recurring frequency; proof,
+ * coverage and reviews; how the booking is managed through HoWA; and a final
+ * finder plus telephone route.
+ *
+ * CTA language is the customer's action ("Find a service", "See prices and
+ * availability", "Describe a problem"). Never "Book a service" (§5, §11).
  */
 
 export const metadata = {
   title: "Home and garden services",
   description:
-    "Four disciplines of home care, gardening, window cleaning, cleaning, gutter cleaning, to one House standard. One-off or on a Steward plan.",
+    "Garden care, cleaning and housekeeping, window and gutter cleaning, handyman and repairs, clearance and specialist garden work. Delivered by House teams and named House Approved professionals, powered by HoWA.",
 };
 
 const STAT_COLS = [
-  { value: "4", label: "Disciplines at launch" },
-  { value: "17", label: "House standards" },
-  { value: "1", label: "Calendar to trust" },
-  { value: "No", label: "Unapproved hands" },
+  { value: "1", label: "House standard" },
+  { value: "17", label: "Published standards" },
+  { value: "One", label: "Calendar, everything in step" },
+  { value: "Every", label: "Professional House-vetted" },
 ];
 
 const SERVICES = [
   {
     slug: "gardening",
-    name: "Gardening",
+    name: "Gardeners",
     tagline: "Lawn, beds, and seasonal care.",
     body:
       "Routine cuts, hedge work, planting plans and seasonal tidies, by gardeners who know the difference between cutting back and cutting down.",
@@ -64,7 +89,7 @@ const SERVICES = [
   },
   {
     slug: "window-cleaning",
-    name: "Window Cleaning",
+    name: "Window cleaners",
     tagline: "Spotless glass, frames, and sills.",
     body:
       "Pure-water reach-and-wash on the outside, traditional cloth on the inside, with a sash-window method that respects the original timber.",
@@ -74,10 +99,10 @@ const SERVICES = [
   },
   {
     slug: "cleaning",
-    name: "Cleaning",
+    name: "Cleaners",
     tagline: "Domestic cleaning, properly briefed.",
     body:
-      "A regular team that learns the home: surfaces, finishes, what to use, what to leave. Same hands twice. Filed to your record after every visit.",
+      "A regular team that gets to know the home: surfaces, finishes, what to use, what to leave. Same hands twice. Filed to your record after every visit.",
     image: "/services/subbrands/cleaners.webp",
     href: "/services/cleaning",
     state: "live" as const,
@@ -94,13 +119,16 @@ const SERVICES = [
   },
   {
     slug: "handyman",
-    name: "Handyman",
+    name: "Repairs",
     tagline: "Small jobs, properly done.",
     body:
       "A trusted set of hands for the long list. Shelves, fixes, draught-proofing, tile replacements, the things that bother you.",
     image: "/services/subbrands/handyman.webp",
     href: "/services/handyman",
-    state: "soon" as const,
+    // v3 §5 — handyman work is live, delivered through disclosed House Approved
+    // professionals. It has full pricing and sub-services, so it must not sit
+    // behind a "coming soon" card.
+    state: "live" as const,
   },
   {
     slug: "housekeeping",
@@ -110,95 +138,87 @@ const SERVICES = [
       "Daily or weekly housekeeping, laundry, linen, kitchen, light cooking, for households that prefer the home kept beautifully without managing it.",
     image: "/services/subbrands/housekeeping.webp",
     href: "/services/housekeeping",
-    state: "soon" as const,
+    state: "live" as const,
   },
   {
     slug: "removals",
     name: "Removals",
     tagline: "Moves, briefed by the record.",
     body:
-      "Moves briefed by your record, with packers who handle period interiors with care. The Living Record makes the unpack at the other end clean and quick.",
+      "Moves briefed by your record, with packers who handle period interiors with care. Your Home Record makes the unpack at the other end clean and quick.",
     image: "/services/subbrands/removals.webp",
     href: "/services/removals",
-    state: "soon" as const,
+    state: "live" as const,
   },
   {
     slug: "energy",
-    name: "Energy & Electrical",
-    tagline: "EICRs, EV chargers, retrofit advice.",
+    name: "Electrical & energy",
+    tagline: "Safety checks, EV chargers, energy advice.",
     body:
-      "Vetted electricians, EICRs filed to your HoWA record, and energy-efficiency planning so the home performs as well as it looks.",
+      "Vetted electricians, EICRs filed to your Home Record, and energy-efficiency planning so the home performs as well as it looks.",
     image: "/services/subbrands/electrical.webp",
     href: "/services/energy",
-    state: "soon" as const,
+    state: "live" as const,
   },
   {
     slug: "pet-care",
-    name: "Pet Care",
+    name: "Dog walking & pet care",
     tagline: "Dog walking, sitting and check-ins.",
     body:
-      "House-approved walkers and sitters who know the door codes, the leash habits, and the after-walk routine.",
-    image: "/services/subbrands/dog-walking.webp",
+      "Vetted walkers and sitters who know the door codes, the leash habits, and the after-walk routine.",
+    image: "/services/subbrands/dog-walking.jpg",
     href: "/services/pet-care",
-    state: "soon" as const,
+    state: "live" as const,
   },
 ];
 
-/** The deferred services, exposed so /services/[slug] can render a coming-soon
- *  page for them instead of 404ing (they're linked from here + the footer). */
-export const SOON_SERVICE_CARDS = SERVICES.filter((sv) => sv.state === "soon").map((sv) => ({
-  slug: sv.slug,
-  name: sv.name,
-  tagline: sv.tagline,
-  body: sv.body,
-  image: sv.image,
-}));
+/**
+ * Formerly the deferred, "coming soon" services. Every service in the index is
+ * now presented as live and bookable, so this list is empty by design: nothing
+ * on the site should tell a customer to come back later when we would happily
+ * take the job today.
+ *
+ * The export is kept because `/services/[slug]` still consults it as its last
+ * resolution step before 404ing. Emptying it here retires the coming-soon page
+ * type without unpicking that route's fallback chain.
+ */
+export const SOON_SERVICE_CARDS: Array<{
+  slug: string;
+  name: string;
+  tagline: string;
+  body: string;
+  image: string;
+}> = [];
 
-const PLANS = [
+/**
+ * REVISIONS v3 §9 — the named monthly plan ladder ("Apartment Plan", "House
+ * Essential", "House Comprehensive", "House Premium") is REMOVED. v3 forbids
+ * maintenance plans, ongoing plans, House maintenance memberships, and Steward
+ * or Housekeeper service plans on the House site, along with any plan that is
+ * not operationally live, priced, staffed and contractually defined.
+ *
+ * Recurring care is now presented as what it actually is: a booking frequency
+ * chosen inside the service. These are frequencies, not memberships, and none
+ * of them requires a subscription of any kind.
+ */
+const FREQUENCIES = [
   {
-    name: "Apartment Plan",
-    priceFrom: "£160",
-    inclusions: [
-      "Weekly cleaning",
-      "Monthly windows",
-      "Seasonal deep clean",
-      "HoWA record & reminders",
-    ],
-    featured: false,
+    name: "One-off visit",
+    lede: "A single booking, for a single job.",
+    body: "A tidy before guests, a clean between tenants, a gutter clear before winter. Priced for the visit, with nothing to cancel afterwards.",
+    examples: ["Garden tidy", "One-off clean", "End-of-tenancy clean", "Gutter clear"],
   },
   {
-    name: "House Essential",
-    priceFrom: "£280",
-    inclusions: [
-      "Weekly cleaning",
-      "Monthly windows",
-      "Fortnightly gardening",
-      "Spring + autumn gutters",
-      "HoWA record & reminders",
-    ],
-    featured: true,
+    name: "Regular service",
+    lede: "The same work, on a rhythm you set.",
+    body: "Weekly, fortnightly or monthly, with the same team where we can manage it. Change the frequency, pause it or stop it whenever you like.",
+    examples: ["Weekly cleaning", "Fortnightly garden care", "Monthly window cleaning"],
   },
   {
-    name: "House Comprehensive",
-    priceFrom: "£440",
-    inclusions: [
-      "Everything in Essential, plus",
-      "Weekly gardening in season",
-      "Quarterly deep clean",
-      "Priority scheduling",
-    ],
-    featured: false,
-  },
-  {
-    name: "House Premium",
-    priceFrom: "£640",
-    inclusions: [
-      "Everything in Comprehensive",
-      "Daily availability",
-      "Weekly windows",
-      "Dedicated House team",
-    ],
-    featured: false,
+    name: "Seasonal care",
+    lede: "Work that only makes sense at certain times of year.",
+    body: "Booked once, then remembered for you. HoWA holds the date and tells you when it is coming round again, so it does not get missed.",
+    examples: ["Spring and autumn gutters", "Hedge cutting in season", "Spring clean", "Winter garden prep"],
   },
 ];
 
@@ -206,26 +226,26 @@ const BRIEF_LINES = [
   { num: "I.", label: "Property", value: "Victorian terrace, SE3 · 3 bedrooms, garden" },
   { num: "II.", label: "Priorities", value: "Cleaning, gardening, gutters before winter" },
   { num: "III.", label: "Rhythm", value: "Weekly cleaning · fortnightly garden" },
-  { num: "IV.", label: "Budget", value: "£280 / month" },
-  { num: "V.", label: "Recommendation", value: "House Essential · starting Monday", highlight: true },
+  { num: "IV.", label: "Budget", value: "A comfortable monthly budget, shaped with you" },
+  { num: "V.", label: "Recommendation", value: "Weekly cleaning + fortnightly garden · starting Monday", highlight: true },
 ];
 
 const FAQ = [
   {
-    q: "Can I book one-off, or only on a plan?",
-    a: "Either. Plans hold a rhythm; one-offs sit alongside without a commitment.",
+    q: "Can I book a one-off, or only on a regular rhythm?",
+    a: "Either. A regular rhythm holds the same work on a schedule you set; one-offs sit alongside without any commitment.",
   },
   {
     q: "Who actually comes to the home?",
-    a: "House-owned teams where we operate directly, House Approved contractors elsewhere, same standards either way.",
+    a: "Our own teams where we operate directly. Where we don't, a named House Approved professional, disclosed up front and held to the same standard.",
   },
   {
-    q: "What writes into HoWA?",
-    a: "Visits, notes, photographs on request, products used, team assigned. Filed to the home record automatically.",
+    q: "What's kept in my Home Record?",
+    a: "Visits, notes, photographs on request, products used, team assigned. Filed to your Home Record automatically.",
   },
   {
     q: "Do you cover my postcode?",
-    a: "London + Home Counties at launch. Register interest for other regions.",
+    a: "London and Kent at launch. Register interest for other regions.",
   },
 ];
 
@@ -244,7 +264,6 @@ export default async function ServicesLanding() {
   const hero = sections.get("hero");
   const stats = sections.get("stats");
   const servicesHead = sections.get("services");
-  const plansHead = sections.get("plans");
   const brief = sections.get("brief");
   const faqHead = sections.get("faq");
   const closing = sections.get("closing");
@@ -262,12 +281,9 @@ export default async function ServicesLanding() {
     href: pick(c.ctaHref, base?.href ?? "#"),
     state: base?.state ?? ("live" as const),
   }));
-  const planCards = cmsCards(plansHead, PLANS, (c, base) => ({
-    name: pick(c.title, base?.name ?? ""),
-    priceFrom: pick(c.value, base?.priceFrom ?? ""),
-    inclusions: c.items && c.items.length ? c.items : base?.inclusions ?? [],
-    featured: base?.featured ?? false,
-  }));
+  // v3 §9 — the plan ladder is gone, so there are no plan cards to hydrate from
+  // Sanity. The frequency block is static by design: a booking frequency is not
+  // an editable product.
   const briefLines = cmsCards(brief, BRIEF_LINES, (c, base) => ({
     num: pick(c.label, base?.num ?? ""),
     label: pick(c.title, base?.label ?? ""),
@@ -288,26 +304,30 @@ export default async function ServicesLanding() {
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>{cms(hero, "eyebrow", "The House · Services")}</p>
             <h1 className={s.heroTitle}>
-              {cms(hero, "headline", "Care as craft,")}{" "}
-              <em>{cms(hero, "headlineEm", "season after season.", "headline")}</em>
+              {cms(hero, "headline", "A specialist for")}{" "}
+              <em>{cms(hero, "headlineEm", "every corner.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
               {cms(
                 hero,
                 "body",
-                "Gardens that grow character, homes that hold heart. The practical work of looking after a house and garden, held to one House standard. Lawns cut and beds planted, windows and sills cleared, gutters seen to before the weather turns, small repairs put right. Delivered by House of Willow Alexander and the people we approve, booked through HoWA, and written back to your Home Record so the house remembers what was done.",
+                "Trusted home and garden services, each with its own expertise and all held to the same House standard. Lawns cut and beds planted, windows and sills cleared, gutters seen to before the weather turns, small repairs put right. Delivered by House of Willow Alexander's own teams and named House Approved professionals, booked and written back to your Home Record so the house remembers what was done.",
               )}
             </p>
-            <div className={s.heroCtas}>
-              <Link href={cms(hero, "ctaHref", "#open-booking-form")} className={s.btnFilled}>
-                {cms(hero, "ctaLabel", "Book online through HoWA")}
-              </Link>
-              <Link href={cms(hero, "cta2Href", "/contact")} className={s.btnGhost}>
-                {cms(hero, "cta2Label", "Call the House")}
+            {/* DIRECTIVE §08 #1 — a literal service + postcode finder leads the
+                services index, with the price/availability promise. */}
+            <HeroServiceFinder />
+            <div className={s.heroCtas} style={{ marginTop: 16 }}>
+              <Link href="/contact" className={s.btnGhost}>
+                Not sure? Ask the House
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
+              <a href="tel:08000478738" className={s.btnGhost}>
+                {cms(hero, "cta2Label", "Call the House")}
+                <span aria-hidden="true" className={s.btnArrow}>→</span>
+              </a>
             </div>
-            <p className={s.heroMicro}>Online bookings create or update your Home Record.</p>
+            <p className={s.heroMicro}>Enter a postcode for coverage and your price. Bookings create or update your Home Record.</p>
           </div>
         </div>
         <div className={s.heroVisual}>
@@ -344,10 +364,10 @@ export default async function ServicesLanding() {
         ))}
       </section>
 
-      {/* 3. Service carousel — all subbrands, live + coming-soon */}
-      <section className={s.services}>
+      {/* 3. The full live catalogue (v3 §5 requirement 2). */}
+      <section id="service-catalogue" className={s.services}>
         <header className={s.servicesHead}>
-          <p className={s.servicesEy}>{cms(servicesHead, "eyebrow", "The disciplines")}</p>
+          <p className={s.servicesEy}>{cms(servicesHead, "eyebrow", "The catalogue")}</p>
           <h2 className={s.servicesTitle}>
             {cms(servicesHead, "headline", "The hands that")}{" "}
             <em>{cms(servicesHead, "headlineEm", "keep a house in good order.", "headline")}</em>
@@ -356,23 +376,204 @@ export default async function ServicesLanding() {
             {cms(
               servicesHead,
               "body",
-              "Nine disciplines, one way of working. Four are live now. The rest open through 2026 as we approve the people we would have in our own homes.",
+              "The whole home and garden, from one House. Some work is done by our own teams; some is done by a named House Approved professional. You are always told which before you commit.",
             )}
           </p>
         </header>
-        <ServiceCarousel
-          cards={serviceCards.map((svc) => {
-            const cardImg = imgOr(svc.image);
-            return { ...svc, image: cardImg, soon: cardImg === COMING_SOON };
-          })}
+        {/* §9 — a colour-coded editorial grid of still lifes, each following the
+            card copy model (name, one-sentence, from-price, service-area, view). */}
+        <ServiceGrid
+          cards={serviceCards.map((svc) => ({
+            slug: svc.slug,
+            name: svc.name,
+            tagline: svc.tagline || svc.body,
+            image: imgOr(svc.image),
+            href: svc.href,
+            accent: serviceAccent(svc.slug),
+            fromPrice: fromPriceFor(svc.slug),
+            area: "London and Kent",
+          }))}
         />
         <p className={s.servicesFootnote}>
-          {cms(
-            servicesHead,
-            "caption",
-            "Scroll for more. Further disciplines open through 2026 as we approve the people behind them.",
-          )}
+          Do not see the job you need?{" "}
+          <Link href="/contact" className="text-house-brown underline underline-offset-2 hover:text-house-gold-ink">
+            Tell the House
+          </Link>{" "}
+          and we will find who does it, what it costs and when we can come.
         </p>
+      </section>
+
+      {/* 3a. How booking works (§9) — the step sequence from choosing a service
+          to the visit landing in your Home Record. */}
+      <section className="border-t border-house-brown/10 px-[5vw] py-[clamp(44px,5.5vw,84px)]" style={{ background: "var(--color-house-white)" }}>
+        <div className="mx-auto max-w-[1080px]">
+          <p className="mb-3 font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink">How booking works</p>
+          <h2 className="mb-9 font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-brown">
+            Four steps, <em>start to finish.</em>
+          </h2>
+          <ol className="grid list-none gap-6 p-0 md:grid-cols-4">
+            {[
+              { n: "01", t: "Select the service", b: "Choose the service and enter your postcode, so everything after this is real for your address." },
+              { n: "02", t: "See availability and price", b: "The charging basis and the next available times, or a short quote step where a job is priced on the details." },
+              { n: "03", t: "Confirm", b: "Pick the slot that suits you and confirm. You are told who is coming, House team or named House Approved professional." },
+              { n: "04", t: "Added to My House", b: "The booking, notes and history are written to your service record in My House, powered by HoWA." },
+            ].map((step) => (
+              <li key={step.n} className="border-t border-house-brown/20 pt-4">
+                <span className="font-display text-[1.5rem] leading-none text-house-gold-ink">{step.n}</span>
+                <h3 className="mb-2 mt-3 font-sans text-[16px] font-medium text-house-brown">{step.t}</h3>
+                <p className="font-sans text-[14px] leading-[1.55] text-house-stone">{step.b}</p>
+              </li>
+            ))}
+          </ol>
+          {/* §9 related Hearth guide. */}
+          <Link
+            href="/the-hearth"
+            className="group mt-10 inline-flex items-baseline gap-3 border-t border-house-brown/15 pt-6 no-underline"
+          >
+            <span className="font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-ink">From the Hearth</span>
+            <span className="font-hearth-serif text-[18px] text-house-brown transition-colors group-hover:text-house-gold-ink">
+              How to choose the right kind of help for your home.
+              <span aria-hidden className="ml-2 text-house-gold-ink">&rarr;</span>
+            </span>
+          </Link>
+        </div>
+      </section>
+
+      {/* 3a. Where we work — the coverage map + postcode check, right under the
+          catalogue so visitors can confirm we cover them before reading on
+          (user request 2026-08). */}
+
+      {/* 3b. Who actually turns up (v3 §5 requirement 4) — the distinction
+          between a House team and a disclosed House Approved professional,
+          stated plainly rather than buried in small print. */}
+      <section className="border-t border-house-brown/10 px-[5vw] py-[clamp(44px,5.5vw,84px)]" style={{ background: "var(--color-house-white)" }}>
+        <div className="mx-auto max-w-[1080px]">
+          <p className="mb-3 font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink">Who turns up</p>
+          <h2 className="mb-8 font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-brown">
+            Two kinds of hands, <em>one standard.</em>
+          </h2>
+          <div className="grid gap-5 md:grid-cols-2">
+            <article className="border border-house-brown/15 bg-house-cream p-8">
+              <h3 className="mb-3 font-display text-[22px] leading-tight text-house-brown">A House of Willow Alexander team</h3>
+              <p className="mb-4 font-sans text-[15px] leading-[1.6] text-house-stone">
+                Our own employed crews, in our own liveried electric vans,
+                trained to the House standard. Most garden, cleaning, window and
+                gutter work across our core postcodes is done this way.
+              </p>
+              <p className="font-sans text-[14px] leading-[1.55] text-house-brown">
+                Delivered by House of Willow Alexander. Booking, scheduling and
+                Home Record powered by HoWA.
+              </p>
+            </article>
+            <article className="border border-house-brown/15 bg-house-cream p-8">
+              <h3 className="mb-3 font-display text-[22px] leading-tight text-house-brown">A named House Approved professional</h3>
+              <p className="mb-4 font-sans text-[15px] leading-[1.6] text-house-stone">
+                For specialist and wider-area work, a vetted professional we
+                have approved and named. You are told who they are before you
+                pay or commit, never after.
+              </p>
+              <p className="font-sans text-[14px] leading-[1.55] text-house-brown">
+                Delivered by a named House Approved professional. Booking and
+                Home Record powered by HoWA.
+              </p>
+            </article>
+          </div>
+          <p className="mt-6 max-w-[70ch] font-sans text-[14px] leading-[1.6] text-house-stone/85">
+            HoWA manages the booking and keeps the record of the work. It is not the
+            physical service provider, and it never appears at your door.
+          </p>
+        </div>
+      </section>
+
+      {/* 3b-ii. Everything the House can arrange (v3 §5 requirement 2 + §4
+          module 3). The full whole-home catalogue, grouped. Services we fulfil
+          link to their page; the rest link to a named request page with a form,
+          because a customer we cannot serve this week is still a lead worth
+          capturing. Nothing here is a dead card and nothing says "coming
+          soon". */}
+      <section id="everything" className="border-t border-house-brown/10 px-[5vw] py-[clamp(48px,6vw,92px)]" style={{ background: "var(--color-house-cream)" }}>
+        <div className="mx-auto max-w-[1180px]">
+          <p className="mb-3 font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink">
+            Everything the House can arrange
+          </p>
+          <h2 className="mb-4 font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-brown">
+            If it belongs to the home, <em>ask us about it.</em>
+          </h2>
+          <p className="mb-11 max-w-[64ch] font-sans text-[16px] leading-[1.65] text-house-stone">
+            Some of this we do ourselves and you can see the price now. The rest
+            we arrange through professionals we have approved. Either way, tell
+            us what you need and you will have a real answer within one working
+            day, including an honest no if that is the answer.
+          </p>
+
+          <div className="grid gap-x-10 gap-y-11 md:grid-cols-2">
+            {SERVICE_GROUPS.map((group) => (
+              <div key={group}>
+                <h3 className="mb-4 border-b border-house-brown/20 pb-2 font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink">
+                  {group}
+                </h3>
+                <ul className="m-0 grid list-none gap-0 p-0">
+                  {REQUESTABLE_SERVICES.filter((sv) => sv.group === group).map((sv) => (
+                    <li key={sv.slug} className="border-b border-house-brown/10 last:border-b-0">
+                      <Link
+                        href={sv.href ?? `/services/${sv.slug}`}
+                        className="group flex items-baseline justify-between gap-4 py-3 no-underline"
+                      >
+                        <span className="font-sans text-[16px] leading-[1.4] text-house-brown transition-colors group-hover:text-house-gold-ink">
+                          {sv.name}
+                        </span>
+                        <span className="shrink-0 font-sans text-[11px] tracking-[0.16em] uppercase text-house-stone/75 transition-colors group-hover:text-house-gold-ink">
+                          See prices
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-11 max-w-[64ch] font-sans text-[14px] leading-[1.6] text-house-stone/85">
+            Where a job is carried out by a named House Approved professional
+            rather than a House team, you are told who they are before you pay
+            or commit to anything.
+          </p>
+        </div>
+      </section>
+
+      {/* 3c. Help me choose (v3 §5 requirement 3) — problem-led help for
+          customers who do not know the service name. */}
+      <section id="help-me-choose" className="border-t border-house-brown/10 px-[5vw] py-[clamp(44px,5.5vw,84px)]" style={{ background: "var(--color-house-cream)" }}>
+        <div className="mx-auto max-w-[1080px]">
+          <p className="mb-3 font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink">Help me choose</p>
+          <h2 className="mb-4 font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-brown">
+            You do not have to know <em>what it is called.</em>
+          </h2>
+          <p className="mb-9 max-w-[62ch] font-sans text-[16px] leading-[1.65] text-house-stone">
+            Most people do not arrive knowing whether they need softwashing or
+            jet washing, a tidy or a clearance. Describe the problem in your own
+            words and we will name it for you.
+          </p>
+          <div className="grid gap-4 md:grid-cols-3">
+            {[
+              { t: "Describe a problem", b: "Tell us what is wrong, in plain words. The House tells you which service it is and what it costs.", href: "/contact", cta: "Ask the House" },
+              { t: "Diagnose an issue", b: "Photograph the repair and have it identified before anyone books a survey visit.", href: "/contact/repair", cta: "Diagnose the problem" },
+              { t: "Scan the garden", b: "Have the garden read back to you, then turn what it finds into a visit or a design brief.", href: "/contact/garden", cta: "Scan my garden" },
+            ].map((c) => (
+              <Link
+                key={c.t}
+                href={c.href}
+                className="group flex flex-col border border-house-brown/15 bg-house-white p-7 no-underline transition-colors hover:border-house-gold"
+              >
+                <h3 className="mb-2.5 font-display text-[21px] leading-tight text-house-brown">{c.t}</h3>
+                <p className="mb-7 flex-1 font-sans text-[15px] leading-[1.55] text-house-stone">{c.b}</p>
+                <span className="font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-ink transition-colors group-hover:text-house-brown">
+                  {c.cta} →
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
       </section>
 
       <HouseStandardStrip />
@@ -402,90 +603,72 @@ export default async function ServicesLanding() {
           </div>
           <div className="mt-[clamp(32px,4vw,52px)] flex justify-center">
             <Link href="#open-booking-form" className={s.btnFilled}>
-              Book through HoWA
+              Book a service
             </Link>
           </div>
         </div>
       </section>
 
-      {/* 4. Steward Plans ladder */}
+      {/* 4. Frequency, not membership (v3 §9). */}
       <section id="plans" className={s.plans}>
         <header className={s.plansHead}>
           <p className={s.plansEy}>
-            {cms(plansHead, "eyebrow", "HoWA Steward · ")}
-            <span className={s.plansEyHighlight}>
-              {cms(plansHead, "subheadline", "Available with Steward only")}
-            </span>
+            How often ·{" "}
+            <span className={s.plansEyHighlight}>Not a membership</span>
           </p>
           <h2 className={s.plansTitle}>
-            {cms(plansHead, "headline", "Care, on a rhythm")}{" "}
-            <em>{cms(plansHead, "headlineEm", "the home can trust.", "headline")}</em>
+            Choose how often, <em>not which plan to join.</em>
           </h2>
           <p className={s.plansLede}>
-            Steward Plans bundle the services into a recurring rhythm. HoWA
-            holds the calendar, remembers what's due, and sends the right hands
-            at the right time. <strong>Open to HoWA Steward customers only.</strong>{" "}
-            <Link href="/howa/steward" className={s.plansLink}>
-              learn about Steward →
-            </Link>
+            There is no House maintenance plan to sign up to and no subscription
+            to hold. You choose a service, then choose how often you want it.
+            That is the whole arrangement, and you can change it at any point.
           </p>
         </header>
-        <div className={s.plansGrid}>
-          {planCards.map((p) => (
-            <article
-              key={p.name}
-              className={`${s.planCard} ${p.featured ? s.planCardFeatured : ""}`}
-            >
-              {p.featured ? (
-                <span className={s.planRibbon}>Recommended</span>
-              ) : null}
-              <h3 className={s.planName}>{p.name}</h3>
-              <div className={s.planPrice}>
-                <span className={s.planPriceFrom}>From</span>
-                <span className={s.planPriceAmount}>{p.priceFrom}</span>
-                <span className={s.planPriceUnit}>/ month</span>
-              </div>
-              <ul className={s.planList}>
-                {p.inclusions.map((inc) => (
-                  <li key={inc}>{inc}</li>
+        <div className="mx-auto grid max-w-[1180px] gap-5 px-[5vw] md:grid-cols-3">
+          {FREQUENCIES.map((f) => (
+            <article key={f.name} className="flex flex-col border border-house-brown/15 bg-house-white p-8">
+              <h3 className="mb-2 font-display text-[24px] leading-tight text-house-brown">{f.name}</h3>
+              <p className="mb-3 font-sans text-[15px] leading-[1.5] text-house-brown">{f.lede}</p>
+              <p className="mb-6 flex-1 font-sans text-[14px] leading-[1.6] text-house-stone">{f.body}</p>
+              <ul className="m-0 mb-7 grid list-none gap-1.5 p-0">
+                {f.examples.map((e) => (
+                  <li key={e} className="flex gap-2.5 font-sans text-[14px] leading-[1.45] text-house-stone">
+                    <span aria-hidden className="text-house-gold-ink">·</span>
+                    {e}
+                  </li>
                 ))}
               </ul>
-              <Link
-                href="/howa/steward"
-                className={p.featured ? s.btnFilled : s.btnGhostDark}
-              >
-                Open with Steward →
+              <Link href="/services#service-catalogue" className={s.btnGhostDark}>
+                See prices &amp; availability →
               </Link>
             </article>
           ))}
         </div>
         <p className={s.plansFootnote}>
-          Plans require an active Steward subscription. Adjust the rhythm any
-          month from your HoWA dashboard. Not yet a Steward customer?{" "}
-          <Link href="/howa/steward" className={s.plansLink}>
-            Read about Steward
-          </Link>
-          .
+          Every service carries its own charging basis: per visit, per hour,
+          per item, per job or a quote. Booking, scheduling and your Home Record
+          are powered by HoWA.
         </p>
       </section>
 
       {/* 5. Brief builder */}
       <section className={s.brief}>
         <div className={s.briefCopy}>
-          <p className={s.briefEy}>{cms(brief, "eyebrow", "The Assistant · in two minutes")}</p>
+          <p className={s.briefEy}>{cms(brief, "eyebrow", "Tell us what you need · in two minutes")}</p>
           <h2 className={s.briefTitle}>
             {cms(brief, "headline", "Tell us about the home.")}{" "}
-            <em>{cms(brief, "headlineEm", "HoWA proposes the plan.", "headline")}</em>
+            <em>{cms(brief, "headlineEm", "We'll shape the plan.", "headline")}</em>
           </h2>
           <p className={s.briefLede}>
             {cms(
               brief,
               "body",
-              "A short conversation and the Assistant sketches a plan that fits the home, the rhythm, and the budget. Adjust before booking, or book straight in.",
+              "A short conversation and the House shapes a plan that fits the home, the rhythm, and the budget. Adjust before booking, or book straight in.",
             )}
           </p>
-          <Link href={cms(brief, "ctaHref", "/howa/assistant")} className={s.btnFilled}>
-            {cms(brief, "ctaLabel", "Try the Assistant")}
+          <Link href={cms(brief, "ctaHref", "#open-booking-form")} className={s.btnFilled}>
+            {cms(brief, "ctaLabel", "Book a service")}
           </Link>
         </div>
         <div className={s.briefMock}>
@@ -533,8 +716,8 @@ export default async function ServicesLanding() {
           <Link href={cms(closing, "ctaHref", "#open-booking-form")} className={s.closingBtnFilled}>
             {cms(closing, "ctaLabel", "Book a service")}
           </Link>
-          <Link href={cms(closing, "cta2Href", "/howa")} className={s.closingBtnGhost}>
-            {cms(closing, "cta2Label", "See HoWA")} →
+          <Link href={cms(closing, "cta2Href", "/how-it-works")} className={s.closingBtnGhost}>
+            {cms(closing, "cta2Label", "See how it works")} →
           </Link>
         </div>
       </section>

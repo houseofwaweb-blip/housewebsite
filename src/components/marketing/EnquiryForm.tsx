@@ -145,7 +145,7 @@ export function EnquiryForm({
           <p className={cn("font-sans text-[15px] mt-6", isDark ? "text-house-cream/60" : "text-house-stone")}>
             Prefer to book online?{" "}
             <a href="#open-booking-form" className={cn("underline underline-offset-[3px]", isDark ? "text-house-gold-light" : "text-house-gold-ink")}>
-              Book through HoWA
+              Book a service
             </a>
             .
           </p>

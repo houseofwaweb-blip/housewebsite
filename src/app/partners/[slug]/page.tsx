@@ -14,7 +14,11 @@ import {
   type PartnerSlug,
 } from "@/lib/partners-data";
 import { getAllPartnerSlugs } from "@/lib/cms/partners";
+import { PartnerLocalBusinessJsonLd } from "@/lib/seo/jsonLd";
+import { env } from "@/lib/env";
 import s from "./partner.module.css";
+
+const SITE_URL = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
 
 /**
  * /partners/[slug] — lander framework.
@@ -104,7 +108,7 @@ export default async function PartnerPage({
   const partner = await loadSanityPartner(slug);
   if (!partner) notFound();
 
-  return <SanityPartnerPage partner={partner} />;
+  return <SanityPartnerPage partner={partner} slug={slug} />;
 }
 
 /** Splits `raw` at the `em` substring and italicises the tail. */
@@ -123,6 +127,14 @@ function withEm(raw: string, em?: string) {
 function LocalPartnerPage({ partner: p }: { partner: LaunchPartner }) {
   return (
     <div className={s.page}>
+      <PartnerLocalBusinessJsonLd
+        name={p.name}
+        description={p.shortBio}
+        url={`${SITE_URL}/partners/${p.slug}`}
+        image={`${SITE_URL}${p.heroImage}`}
+        serviceType={p.typeLabel}
+        areaServed={p.serviceAreas}
+      />
       {/* 1. Hero */}
       <section className={s.hero}>
         <div className={s.heroImage}>
@@ -349,9 +361,29 @@ function Meta({ label, value }: { label: string; value: string }) {
 }
 
 /* Sanity fallback — minimal lander-style profile for authored partners */
-function SanityPartnerPage({ partner }: { partner: SanityPartnerDoc }) {
+function SanityPartnerPage({
+  partner,
+  slug,
+}: {
+  partner: SanityPartnerDoc;
+  slug: string;
+}) {
   return (
     <div className={s.page}>
+      <PartnerLocalBusinessJsonLd
+        name={partner.name}
+        description={partner.shortBio}
+        url={`${SITE_URL}/partners/${slug}`}
+        image={
+          partner.heroImage
+            ? urlFor(partner.heroImage).width(960).height(1200).url()
+            : undefined
+        }
+        serviceType={TYPE_LABEL[partner.type]}
+        {...(partner.serviceAreas?.length
+          ? { areaServed: partner.serviceAreas }
+          : {})}
+      />
       <section className={s.simpleHero}>
         <div className={s.simpleHeroCopy}>
           <p className={s.heroEy}>{TYPE_LABEL[partner.type]}</p>

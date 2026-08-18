@@ -236,6 +236,16 @@ export async function getLatestHearthArticles(limit = 3): Promise<HearthArticle[
   return raw.map(toHearthArticle);
 }
 
+/** Every article, newest first — for the full archive index. */
+export async function getAllHearthArticles(): Promise<HearthArticle[]> {
+  const query = /* groq */ `*[_type == "article"] | order(publishedAt desc) ${ARTICLE_PROJECTION}`;
+  const raw = await sanityFetch<RawSanityArticle[]>({
+    query,
+    tags: ["type:article"],
+  });
+  return raw.map(toHearthArticle);
+}
+
 export async function getAllArticleSlugs(): Promise<string[]> {
   // Called from generateStaticParams at build time — can't use the
   // draft-aware sanityFetch here because draftMode() isn't available

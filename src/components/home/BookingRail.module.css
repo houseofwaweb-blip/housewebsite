@@ -1,0 +1,153 @@
+/* BookingRail — homepage §3 "What needs doing?" (Aug-17 rebuild).
+   The primary "start here" module on the homepage: deliberately large and
+   set apart so booking begins above the fold. */
+.rail {
+  background: var(--house-cream-light);
+  border-top: 1px solid var(--house-line);
+  border-bottom: 1px solid var(--house-line);
+  padding: clamp(40px, 5vw, 72px) 5vw;
+}
+.inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.4vw, 32px);
+}
+
+/* Heading block */
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--house-gold-dark);
+  font-weight: 600;
+  margin: 0;
+}
+.title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  color: var(--house-ink);
+  margin: 0;
+}
+.sub {
+  font-family: var(--font-sans);
+  font-size: clamp(15px, 1.3vw, 17px);
+  line-height: 1.55;
+  color: var(--house-brown);
+  max-width: 52ch;
+  margin: 0;
+}
+
+/* Service chips */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.chip {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--house-chalk);
+  background: var(--chip-color, var(--house-brown));
+  border: 1px solid transparent;
+  padding: 11px 18px;
+  cursor: pointer;
+  line-height: 1.15;
+  transition: filter var(--t-base) var(--ease-out),
+    box-shadow var(--t-base) var(--ease-out);
+}
+.chip:hover {
+  filter: brightness(1.14);
+}
+.chip[aria-pressed="true"] {
+  box-shadow: 0 0 0 2px var(--house-cream-light), 0 0 0 3px var(--chip-color);
+}
+
+/* Fields — set in a framed panel so the tool reads as distinct */
+.fields {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+  background: var(--house-chalk);
+  border: 1px solid var(--house-line);
+  padding: clamp(18px, 2vw, 26px);
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1 1 200px;
+}
+.label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--house-stone);
+}
+.select,
+.input {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--house-ink);
+  background: var(--house-cream-light);
+  border: 1px solid var(--house-line);
+  padding: 14px 16px;
+  min-width: 180px;
+  width: 100%;
+}
+.select:focus,
+.input:focus {
+  outline: none;
+  border-color: var(--house-gold-dark);
+}
+.submit {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--house-chalk);
+  background: var(--house-ink);
+  border: 1px solid var(--house-ink);
+  padding: 16px 32px;
+  text-decoration: none;
+  white-space: nowrap;
+  flex: 0 0 auto;
+  transition: filter var(--t-slow) var(--ease-out);
+}
+.submit:hover {
+  filter: brightness(1.3);
+}
+.trust {
+  max-width: 1180px;
+  margin: 16px auto 0;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+  color: var(--house-stone);
+}
+
+@media (max-width: 720px) {
+  .select,
+  .input {
+    min-width: 0;
+  }
+  .submit {
+    width: 100%;
+    text-align: center;
+  }
+}

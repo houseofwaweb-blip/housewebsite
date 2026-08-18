@@ -4,6 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
+import { PostcodeField } from "@/components/forms/PostcodeField";
 
 /**
  * MegaMenu — hover-revealed panel beneath a nav item.
@@ -26,6 +27,8 @@ export interface MegaLink {
   href: string;
   /** Short italic descriptor shown after the label. */
   description?: string;
+  /** Optional service colour swatch (spec §6.1) — a CSS colour or var(). */
+  colour?: string;
 }
 
 export interface MegaLinkGroup {
@@ -38,6 +41,8 @@ export interface TwoLevelCategory {
   title: string;
   href: string;
   subs: MegaLink[];
+  /** Optional service colour swatch (spec §6.1). */
+  colour?: string;
 }
 
 /** Two-level mega-menu: hover a category on the left, its sub-links appear right.
@@ -46,6 +51,15 @@ export interface TwoLevelCategory {
 export interface TwoLevelMega {
   categories: TwoLevelCategory[];
   footer?: MegaLink[];
+  /**
+   * Services mega-menu enrichments (spec §6.1). The menu must carry, alongside
+   * the colour-swatched service list: one featured editorial still life, one
+   * quick postcode field ("See services near you"), and one House Approved
+   * trust statement. Rendered as a cream right rail; colour stays as swatches.
+   */
+  featured?: { image: string; alt: string; tag?: string; heading?: string; href?: string };
+  postcode?: { label?: string; action?: string };
+  trust?: string;
 }
 
 export interface MegaPanel {
@@ -182,8 +196,15 @@ export function MegaMenu({
                         <li key={link.href}>
                           <Link
                             href={link.href}
-                            className="group inline-flex items-baseline font-sans text-[12px] tracking-[0.14em] uppercase text-house-brown no-underline transition-[color,padding-left] duration-[var(--t-base)] ease-out hover:text-house-gold-ink hover:pl-[4px]"
+                            className="group inline-flex items-center font-sans text-[12px] tracking-[0.14em] uppercase text-house-brown no-underline transition-[color,padding-left] duration-[var(--t-base)] ease-out hover:text-house-gold-ink hover:pl-[4px]"
                           >
+                            {link.colour ? (
+                              <span
+                                aria-hidden
+                                className="inline-block w-[9px] h-[9px] mr-[9px] shrink-0"
+                                style={{ backgroundColor: link.colour }}
+                              />
+                            ) : null}
                             <span>{link.label}</span>
                             {link.description ? (
                               <span className="font-sans normal-case text-[12px] tracking-[0.02em] text-house-stone ml-[8px]">
@@ -283,6 +304,7 @@ function TwoLevelMegaPanel({ data, isOpen }: { data: TwoLevelMega; isOpen: boole
     if (!isOpen) setActive(0);
   }, [isOpen]);
   const cat = data.categories[active] ?? data.categories[0];
+  const hasRail = Boolean(data.featured || data.postcode || data.trust);
   return (
     <div
       className={cn(
@@ -290,7 +312,14 @@ function TwoLevelMegaPanel({ data, isOpen }: { data: TwoLevelMega; isOpen: boole
         isOpen ? "opacity-100 translate-y-0 delay-[120ms]" : "opacity-0 translate-y-3",
       )}
     >
-      <div className="grid grid-cols-[minmax(170px,210px)_1fr] gap-[40px]">
+      <div
+        className={cn(
+          "grid gap-[40px]",
+          hasRail
+            ? "grid-cols-[minmax(160px,190px)_1fr] lg:grid-cols-[minmax(160px,190px)_1fr_minmax(220px,260px)]"
+            : "grid-cols-[minmax(170px,210px)_1fr]",
+        )}
+      >
         {/* Main categories */}
         <ul className="flex flex-col gap-[1px] list-none m-0 p-0 border-r border-house-brown/8 pr-[24px]">
           {data.categories.map((c, i) => (
@@ -302,7 +331,12 @@ function TwoLevelMegaPanel({ data, isOpen }: { data: TwoLevelMega; isOpen: boole
                   i === active ? "text-house-gold-ink" : "text-house-brown hover:text-house-gold-ink",
                 )}
               >
-                <span>{c.title}</span>
+                <span className="inline-flex items-center">
+                  {c.colour ? (
+                    <span aria-hidden className="inline-block w-[9px] h-[9px] mr-[9px] shrink-0" style={{ backgroundColor: c.colour }} />
+                  ) : null}
+                  {c.title}
+                </span>
                 <span aria-hidden="true" className={cn("text-[15px] transition-opacity duration-[var(--t-base)]", i === active ? "opacity-100" : "opacity-0")}>→</span>
               </Link>
             </li>
@@ -339,6 +373,56 @@ function TwoLevelMegaPanel({ data, isOpen }: { data: TwoLevelMega; isOpen: boole
             </Link>
           )}
         </div>
+
+        {/* Cream right rail — featured still life, postcode finder, trust line
+            (spec §6.1). Only rendered for menus that supply enrichments. */}
+        {hasRail ? (
+          <aside className="hidden lg:flex flex-col gap-[16px] bg-house-cream-light border-l border-house-brown/8 pl-[28px]">
+            {data.featured ? (
+              <Link
+                href={data.featured.href ?? cat.href}
+                className="group relative block aspect-[4/3] overflow-hidden no-underline"
+              >
+                <Image
+                  src={data.featured.image}
+                  alt={data.featured.alt}
+                  fill
+                  sizes="260px"
+                  className="object-cover transition-transform duration-[var(--t-slow)] ease-out group-hover:scale-[1.03]"
+                />
+                {data.featured.tag || data.featured.heading ? (
+                  <>
+                    <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,rgba(29,29,27,0.6)_100%)]" />
+                    <div className="absolute left-[12px] right-[12px] bottom-[12px] z-10 text-house-cream">
+                      {data.featured.tag ? (
+                        <div className="font-sans text-[9px] tracking-[0.22em] uppercase text-house-gold-light mb-[3px]">
+                          {data.featured.tag}
+                        </div>
+                      ) : null}
+                      {data.featured.heading ? (
+                        <div className="font-display text-[15px] leading-[1.25]">{data.featured.heading}</div>
+                      ) : null}
+                    </div>
+                  </>
+                ) : null}
+              </Link>
+            ) : null}
+
+            {data.trust ? (
+              <p className="font-sans text-[12px] leading-[1.5] text-house-brown/75 flex items-start gap-2">
+                <span aria-hidden="true" className="mt-[2px] inline-block w-[9px] h-[9px] shrink-0 bg-house-gold" />
+                <span>{data.trust}</span>
+              </p>
+            ) : null}
+
+            {data.postcode ? (
+              <PostcodeField
+                label={data.postcode.label ?? "See services near you"}
+                action={data.postcode.action ?? "/services"}
+              />
+            ) : null}
+          </aside>
+        ) : null}
       </div>
 
       {/* Utility footer row */}

@@ -17,7 +17,7 @@ import { GARDEN_PROJECTS } from "@/lib/gardens-projects";
  *   4. Specialist services strip — lighting / collaboration / full design
  *   5. Projects gallery — asymmetric editorial grid
  *   6. Quote
- *   7. Assistant split — start with the Assistant
+ *   7. Powered by HoWA split — build a useful garden brief
  *   8. Newsletter
  */
 
@@ -38,7 +38,7 @@ const PLANS = [
   {
     name: "Planting Plans",
     tagline: "Light, soil and aspect, properly read.",
-    price: "from £495",
+    price: "Priced on enquiry",
     inclusions: [
       "Site survey of light, soil and aspect",
       "Full plant list with seasonal palette",
@@ -50,7 +50,7 @@ const PLANS = [
   {
     name: "Concept Plans",
     tagline: "The whole garden, considered.",
-    price: "from £1,495",
+    price: "Priced on enquiry",
     inclusions: [
       "Layout design and zoning",
       "Materials palette and hardscape",
@@ -64,7 +64,7 @@ const PLANS = [
   {
     name: "2D & 3D Plans",
     tagline: "Drawn, dimensioned, build-ready.",
-    price: "from £2,950",
+    price: "Priced on enquiry",
     inclusions: [
       "Fully dimensioned plans",
       "3D renders of key views",
@@ -79,7 +79,7 @@ const PLANS = [
 const SPECIALIST = [
   {
     name: "Lighting Plans",
-    price: "from £395",
+    price: "Priced on enquiry",
     body: "A professional lighting layout: fixture map, specification list and circuit guide.",
     image: "/design/gardens/lighting-plans.jpg",
   },
@@ -324,23 +324,24 @@ export default async function GardensPage() {
         </p>
       </section>
 
-      {/* 7. Assistant split */}
+      {/* 7. Powered by HoWA split (§2.2 naming rule: HoWA is felt, not fronted;
+          no elevated "Assistant" sub-brand). */}
       <section className={s.companion}>
         <div className={s.companionCopy}>
-          <p className={s.companionEy}>{cms(companion, "eyebrow", "HoWA · Assistant")}</p>
+          <p className={s.companionEy}>{cms(companion, "eyebrow", "Powered by HoWA")}</p>
           <h2 className={s.companionTitle}>
-            {cms(companion, "headline", "Start with the")}{" "}
-            <em>{cms(companion, "headlineEm", "Assistant.", "headline")}</em>
+            {cms(companion, "headline", "Build a useful garden")}{" "}
+            <em>{cms(companion, "headlineEm", "brief.", "headline")}</em>
           </h2>
           <p className={s.companionLede}>
             {cms(
               companion,
               "body",
-              "Capture your garden's light, soil, aspect, maintenance appetite and budget. The Assistant builds a brief your designer can work from on day one, nothing lost, nothing repeated.",
+              "Capture your garden's light, soil, aspect, maintenance appetite and budget. HoWA builds a brief your designer can work from on day one, nothing lost, nothing repeated.",
             )}
           </p>
           <p className={s.companionFootnote}>
-            {cms(companion, "caption", "Available to all HoWA members.")}
+            {cms(companion, "caption", "Available where the feature is enabled.")}
           </p>
           <Link
             href={cms(companion, "ctaHref", "/api/howa-bounce?source=gardens-companion")}
@@ -355,7 +356,7 @@ export default async function GardensPage() {
             alt={cms(
               companion,
               "imageAlt",
-              "A garden concept plan, the kind of brief the Assistant helps you build",
+              "A garden concept plan, the kind of brief HoWA helps you build",
             )}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"

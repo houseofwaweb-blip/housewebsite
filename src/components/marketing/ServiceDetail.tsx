@@ -3,21 +3,22 @@ import fs from "node:fs";
 import path from "node:path";
 import { Accordion } from "@/components/primitives/Accordion";
 import { Gallery, type GalleryImage } from "@/components/primitives/Gallery";
-import { PartnerCarousel, type PartnerCardData } from "./PartnerCarousel";
-import type { Service } from "@/lib/services-data";
-import { SERVICE_AREAS } from "@/lib/services-data/sub-services";
+import { basisPhrase, type Service } from "@/lib/services-data";
 import s from "./ServiceDetail.module.css";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { EnquiryForm } from "@/components/marketing/EnquiryForm";
-import { BookingFlowStrip } from "@/components/marketing/BookingFlowStrip";
 import { ServiceCtaRow } from "@/components/marketing/ServiceCtaRow";
+import { HouseStandardStrip } from "@/components/marketing/HouseStandardStrip";
+import { BookingPanel } from "@/components/services/BookingPanel";
+import { buildBookingUrl } from "@/components/booking/postcode";
+import { SERVICEOS_SERVICE_ID } from "@/lib/serviceos-links";
 
 const PUBLIC = path.join(process.cwd(), "public");
-// Services / sub-services without their own photography fall back to the
-// "Coming Soon" placeholder, with a "Service Coming Soon" label over it.
-const COMING_SOON = "/services/service-placeholder.webp";
-const PLACEHOLDER_HERO = COMING_SOON;
-const PLACEHOLDER_GALLERY = COMING_SOON;
+// Generic still-life fallback used only when a service's own photography is not
+// yet on disk. There is no "coming soon" state: every service is live and
+// bookable, so a missing file is a photography gap, never a trading status.
+const PLACEHOLDER_HERO = "/services/service-placeholder.webp";
+const PLACEHOLDER_GALLERY = "/services/service-placeholder.webp";
 
 function fileOr(localPath: string | undefined, fallback: string) {
   if (!localPath) return fallback;
@@ -45,24 +46,29 @@ function withEm(text: string, em?: string) {
 }
 
 /**
- * ServiceDetail — top-level service page template, lander framework.
+ * ServiceDetail — top-level (category) service page template, rebuilt to the
+ * rebuild specification §10.
  *
- * Section order:
- *   1. Hero — full-bleed image with scrim OR text-only
- *   2. Trust strip
- *   3. Partner carousel (dark)
- *   4. What's included + How it works (2-column)
- *   5. Sub-services — horizontal scroll-snap carousel
- *   6. Gallery — recent work
- *   7. Booking — two-block CTA (one-off vs Steward)
- *   8. FAQ — accordion
- *   9. Service areas — brown band
- *  10. Closing CTA
+ * `mode`:
+ *   "book"  — priced from a postcode. Primary CTA: "See times and prices".
+ *   "quote" — priced on the job. Primary CTA: "Get a quote". Never a survey;
+ *             survey wording is reserved for design commissions.
+ *
+ * Section order (doc §10):
+ *   1. Hero + booking panel (7/5 split, service preselected)
+ *   2. What we can help with
+ *   3. What is included / not included
+ *   4. Pricing and frequency
+ *   5. How the visit works
+ *   6. Meet the House standard
+ *   7. Recent verified reviews
+ *   8. Service area and availability
+ *   9. FAQs
+ *  10. Related service / cover / article
+ *  11. Final CTA
  */
 
-/** Sub-service tile images on the parent service's horizontal scroller.
- *  Resolution order: this map → /services/photos/{parent}/{sub}-hero.webp → placeholder. */
-const SUB_SERVICE_IMAGES: Record<string, string> = {};
+export type ServiceDetailMode = "book" | "quote";
 
 const PLACEHOLDER_GALLERY_BY_SERVICE: Record<string, GalleryImage[]> = {
   gardening: [
@@ -87,131 +93,111 @@ const PLACEHOLDER_GALLERY_BY_SERVICE: Record<string, GalleryImage[]> = {
   ],
 };
 
-const PLACEHOLDER_PARTNERS: Record<string, PartnerCardData[]> = {
-  gardening: [
-    { slug: "willow-alexander-gardens", name: "Willow Alexander Gardens", type: "design-studio", shortBio: "Planting schemes and landscapes rooted in the garden's existing character.", specialties: ["Naturalistic planting", "Seasonal plans"], houseApprovedSeal: true },
-    { slug: "greenthumb-london", name: "GreenThumb London", type: "craftsman", shortBio: "Lawn and hedge specialists. Weekly and seasonal.", specialties: ["Lawn care", "Hedging"] },
-    { slug: "heritage-tree-care", name: "Heritage Tree Care", type: "craftsman", shortBio: "Arboriculture and canopy management.", specialties: ["Tree surgery", "Crown reduction"] },
-    { slug: "the-plant-people", name: "The Plant People", type: "craftsman", shortBio: "Seasonal planting and container schemes.", specialties: ["Planting", "Containers"] },
-  ],
-  "window-cleaning": [
-    { slug: "clearview-london", name: "ClearView London", type: "craftsman", shortBio: "Pure-water pole specialists. Up to four storeys.", specialties: ["Residential", "Commercial"] },
-    { slug: "federation-certified", name: "Federation-certified", type: "craftsman", shortBio: "FWC members. Insured and vetted.", specialties: ["FWC"] },
-    { slug: "shine-brigade", name: "Shine Brigade", type: "craftsman", shortBio: "Residential and commercial window care.", specialties: ["Interior", "Exterior"] },
-  ],
-  cleaning: [
-    { slug: "house-standard-cleaning", name: "House Standard Cleaning", type: "craftsman", shortBio: "Weekly and fortnightly domestic care.", specialties: ["Domestic", "Weekly"] },
-    { slug: "pristine-london", name: "Pristine London", type: "craftsman", shortBio: "Deep clean specialists. End-of-tenancy and seasonal.", specialties: ["Deep clean"] },
-    { slug: "green-clean-co", name: "Green Clean Co.", type: "craftsman", shortBio: "Eco-friendly products and methods.", specialties: ["Eco-friendly"] },
-  ],
-  "gutter-cleaning": [
-    { slug: "topdown-maintenance", name: "TopDown Maintenance", type: "craftsman", shortBio: "Vacuum-pole gutter care and inspection.", specialties: ["Vacuum-pole"] },
-    { slug: "roofline-pro", name: "Roofline Pro", type: "craftsman", shortBio: "Gutters, fascias, and soffits.", specialties: ["Fascias", "Soffits"] },
-  ],
-};
-
-export function ServiceDetail({ service }: { service: Service }) {
-  const partners = ({
-    gardening:         { plural: "gardeners",          singular: "gardener" },
-    "window-cleaning": { plural: "window cleaners",    singular: "window cleaner" },
-    cleaning:          { plural: "cleaners",           singular: "cleaner" },
-    "gutter-cleaning": { plural: "gutter specialists", singular: "gutter specialist" },
-    handyman:          { plural: "handypeople",        singular: "handyperson" },
-    removals:          { plural: "movers",             singular: "mover" },
-    energy:            { plural: "electricians",       singular: "electrician" },
-    "pet-care":        { plural: "pet carers",         singular: "pet carer" },
-  } as Record<string, { plural: string; singular: string }>)[service.slug] ?? { plural: "partners", singular: "partner" };
-  const partnerName = partners.plural;
-  const partnerNameSingular = partners.singular;
+export function ServiceDetail({
+  service,
+  mode = "book",
+}: {
+  service: Service;
+  mode?: ServiceDetailMode;
+}) {
+  const quote = mode === "quote";
 
   const heroImage = fileOr(service.heroImage, PLACEHOLDER_HERO);
-  // No real photography => this service isn't live yet. Same signal that drives
-  // the "Service Coming Soon" image overlay. When true we suppress the
-  // book-this-service CTA and point people at services they can actually book.
-  const soon = heroImage === COMING_SOON;
+  // Service colour comes from the data layer (never a hardcoded hex here); it
+  // frames the still-life and accents the panel. Falls back to House brown so
+  // services without a brand volume still render on-palette.
+  const accent = service.colour ?? "var(--color-house-brown)";
+
   const galleryRaw =
     PLACEHOLDER_GALLERY_BY_SERVICE[service.slug] ?? PLACEHOLDER_GALLERY_BY_SERVICE.gardening;
   const gallery = galleryRaw.map((g) => ({ ...g, src: fileOr(g.src, PLACEHOLDER_GALLERY) }));
 
+  // Pricing — the retired "steward" tier never reaches the customer. Recurring
+  // care is presented as a booking frequency, not a subscription tier.
+  const priced = service.packages.filter((p) => p.tier !== "steward");
+  const fromPrice = priced[0]?.price ?? service.packages[0]?.price;
+
+  const primaryLabel = quote ? "Get a quote" : "See times and prices";
+  const nameLower = service.name.toLowerCase();
+
+  const pkgCtaLabel = (cta: "bookNow" | "quoteEntry" | "waitlist") => {
+    if (cta === "quoteEntry") return "Get a quote";
+    if (cta === "waitlist") return "Register interest";
+    return primaryLabel;
+  };
+  // Package CTAs open the ServiceOS booking platform with THIS service already
+  // picked (deep-link), except "waitlist" which routes to the on-page callback
+  // form. bookNow/quoteEntry must be a full-page <a> nav (below) so the OBF
+  // re-initialises and reads the service_id.
+  const pkgCtaHref = (cta: "bookNow" | "quoteEntry" | "waitlist") =>
+    cta === "waitlist"
+      ? "#service-enquiry"
+      : buildBookingUrl("", SERVICEOS_SERVICE_ID[service.slug]);
+
   return (
     <div className={s.page}>
-      {/* 1. Hero — image hero always shows (coming-soon services fall back to
-          the "Service Coming Soon" placeholder so the top never sits bare). */}
-      {service.heroImage || soon ? (
-        <section className={s.heroImageSection}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={heroImage}
-            alt={service.headline}
-            className={s.heroImage}
-          />
-          <div className={s.heroScrim} aria-hidden="true" />
-          <div className={s.heroCopyOnImage}>
-            <p className={s.heroEyLight}>{service.eyebrow}</p>
-            <h1 className={s.heroTitleLight}>
-              {withEm(service.headline, service.headlineEm)}
-            </h1>
-            <p className={s.heroLedeLight}>{service.lede}</p>
-            <div className={s.heroCtas}>
-              {soon ? (
-                <>
-                  <span className={s.btnFilled} style={{ cursor: "default" }}>
-                    Service Coming Soon
-                  </span>
-                  <Link href="/services" className={s.btnGhostLight}>
-                    Book another service →
-                  </Link>
-                </>
-              ) : (
-                <>
-                  <Link href="#open-booking-form" className={s.btnFilled}>
-                    Book through HoWA
-                  </Link>
-                  <Link href="/steward-plans" className={s.btnGhostLight}>
-                    Explore Steward Plans
-                  </Link>
-                </>
-              )}
-            </div>
-          </div>
-        </section>
-      ) : (
-        <section className={s.heroTextSection}>
-          <div className={s.heroTextInner}>
-            <p className={s.heroEy}>{service.eyebrow}</p>
-            <h1 className={s.heroTitle}>
-              {withEm(service.headline, service.headlineEm)}
-            </h1>
-            <p className={s.heroLede}>{service.lede}</p>
-            <div className={s.heroCtas}>
-              {soon ? (
-                <>
-                  <span className={s.btnFilled} style={{ cursor: "default" }}>
-                    Service Coming Soon
-                  </span>
-                  <Link href="/services" className={s.btnGhost}>
-                    Book another service →
-                  </Link>
-                </>
-              ) : (
-                <>
-                  <Link href="#open-booking-form" className={s.btnFilled}>
-                    Book through HoWA
-                  </Link>
-                  <Link href="/steward-plans" className={s.btnGhost}>
-                    Explore Steward Plans
-                  </Link>
-                  {service.recurring ? (
-                    <span className={s.stewardBadge}>Steward-ready</span>
-                  ) : null}
-                </>
-              )}
-            </div>
-          </div>
-        </section>
-      )}
+      {/* 1. Hero + booking panel — 7/5 split, House cream first */}
+      <section className="bg-house-cream px-[5vw] pt-[clamp(40px,6vw,88px)] pb-[clamp(48px,6vw,96px)] border-b border-house-brown/10">
+        <div className="mx-auto grid max-w-[1280px] items-start gap-[clamp(28px,4vw,56px)] lg:grid-cols-12">
+          {/* Left — copy, proof, still-life (7 cols) */}
+          <div className="lg:col-span-7">
+            <nav aria-label="Breadcrumb" className="mb-6 font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink">
+              <Link href="/services" className="no-underline text-house-gold-ink hover:text-house-brown">
+                Services
+              </Link>
+              <span aria-hidden className="mx-2 text-house-stone">/</span>
+              <span className="text-house-brown/70">{service.name}</span>
+            </nav>
 
-      {/* 2. Trust strip */}
+            <h1 className="mb-5 font-hearth-serif font-normal text-[clamp(40px,5.4vw,74px)] leading-[1.04] tracking-[-0.018em] text-house-brown [&_em]:italic [&_em]:text-house-gold-ink">
+              {withEm(service.headline, service.headlineEm)}
+            </h1>
+            <p className="mb-6 max-w-[54ch] border-t border-house-brown/15 pt-5 font-sans text-[17px] leading-[1.65] text-house-brown/75">
+              {service.lede}
+            </p>
+
+            {/* Key proof — evidence, not decorative badges (doc §7.4). No review
+                score is shown here: a rating renders only from a live, attributable
+                source, and there is none wired in yet, so we do not print a figure. */}
+            <ul className="m-0 flex flex-wrap gap-x-8 gap-y-3 list-none p-0">
+              {fromPrice ? (
+                <li className="font-sans text-[14px] text-house-brown/80">
+                  <span className="mr-2 text-house-gold-ink" aria-hidden>◆</span>
+                  {fromPrice}
+                </li>
+              ) : null}
+              <li className="font-sans text-[14px] text-house-brown/80">
+                <span className="mr-2 text-house-gold-ink" aria-hidden>◆</span>
+                Serving London and Kent
+              </li>
+            </ul>
+
+            {/* Service colour / still-life frame */}
+            <div
+              className="mt-8 overflow-hidden border"
+              style={{ borderColor: accent }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={heroImage}
+                alt={service.headline}
+                className="block aspect-[16/10] w-full object-cover"
+              />
+            </div>
+          </div>
+
+          {/* Right — booking panel (5 cols), shared with the leaf template */}
+          <BookingPanel
+            serviceName={service.name}
+            slug={service.slug}
+            accent={accent}
+            mode={mode}
+            fromPrice={fromPrice}
+          />
+        </div>
+      </section>
+
+      {/* Trust strip */}
       {service.trustBadges.length > 0 ? (
         <section className={s.trust}>
           {service.trustBadges.map((badge) => (
@@ -220,68 +206,19 @@ export function ServiceDetail({ service }: { service: Service }) {
         </section>
       ) : null}
 
-      {/* 3. Partner carousel — dark band. Hidden for coming-soon services:
-          they have no vetted partners yet and we don't want a book-this CTA. */}
-      {soon ? null : (
-        <PartnerCarousel
-          eyebrow={`Our ${partnerName}`}
-          heading={`Meet our ${partnerName}.`}
-          headingEm={partnerName + "."}
-          lede={`Every ${partnerNameSingular} who works through the House has been vetted, insured, and meets the standard we'd hold ourselves to.`}
-          partners={PLACEHOLDER_PARTNERS[service.slug] ?? []}
-          dark
-          bookingMode
-        />
-      )}
-
-      {/* 4. What's included + How it works */}
-      <section className={s.what}>
-        <div className={s.whatInner}>
-          <div className={s.whatCol}>
-            <p className={s.whatEy}>What's included</p>
-            <h2 className={s.whatTitle}>Every <em>visit.</em></h2>
-            <ul className={s.whatList}>
-              {service.sections.included.map((inc) => (
-                <li key={inc}>{inc}</li>
-              ))}
-            </ul>
-          </div>
-          <div className={s.whatCol}>
-            <p className={s.whatEy}>How it works</p>
-            <h2 className={s.whatTitle}>From first message <em>to first visit.</em></h2>
-            <ol className={s.whatSteps}>
-              {service.sections.how.map((step, i) => (
-                <li key={step}>
-                  <span className={s.whatStepN}>{String(i + 1).padStart(2, "0")}</span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </div>
-      </section>
-
-      {!soon ? <ServiceCtaRow service={service.name} /> : null}
-
-      {/* 5. Sub-services carousel */}
+      {/* 2. What we can help with */}
       {service.subServices.length > 0 ? (
         <section className={s.sub}>
           <header className={s.subHead}>
-            <p className={s.subEy}>Our {service.name.toLowerCase()} services</p>
+            <p className={s.subEy}>What we can help with</p>
             <h2 className={s.subTitle}>
-              Everything under <em>{service.name.toLowerCase()}.</em>
+              Everything under <em>{nameLower}.</em>
             </h2>
           </header>
           <div className={s.subScroller}>
             {service.subServices.map((sub) => {
-              const requested =
-                SUB_SERVICE_IMAGES[`${service.slug}/${sub.slug}`] ??
-                sub.image ??
-                `/services/photos/${service.slug}/${sub.slug}-hero.webp`;
-              // Coming-soon subs show the placeholder + tag on the card so they
-              // don't read as live before you click through.
-              const img = sub.comingSoon ? COMING_SOON : fileOr(requested, COMING_SOON);
-              const soon = img === COMING_SOON;
+              const requested = sub.image ?? `/services/photos/${service.slug}/${sub.slug}-hero.webp`;
+              const img = fileOr(requested, PLACEHOLDER_HERO);
               return (
                 <Link
                   key={sub.slug}
@@ -291,12 +228,11 @@ export function ServiceDetail({ service }: { service: Service }) {
                   <div className={s.subImage}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={img} alt={sub.name} />
-                    {soon ? <span className={s.comingSoonTag}>Service Coming Soon</span> : null}
                   </div>
                   <div className={s.subBody}>
                     <h3 className={s.subName}>{sub.name}</h3>
                     <p className={s.subBlurb}>{sub.lede}</p>
-                    <span className={s.subCta}>{soon ? "Coming soon" : "See detail"} →</span>
+                    <span className={s.subCta}>See detail →</span>
                   </div>
                 </Link>
               );
@@ -305,97 +241,181 @@ export function ServiceDetail({ service }: { service: Service }) {
         </section>
       ) : null}
 
-      {/* Closing CTA for the sub-services carousel. Only render it when that
-          carousel actually appeared — otherwise it stacks directly on the CTA
-          after "How it works" above, producing a duplicate block on services
-          with no sub-services (e.g. gutter cleaning). */}
-      {!soon && service.subServices.length > 0 ? (
-        <ServiceCtaRow service={service.name} />
-      ) : null}
-
-      {/* 6. Gallery */}
-      <section className={s.gallery}>
-        <header className={s.galleryHead}>
-          <p className={s.galleryEy}>Recent work</p>
-          <h2 className={s.galleryTitle}>
-            From the <em>field.</em>
-          </h2>
-        </header>
-        <Gallery
-          images={gallery}
-          columns={3}
-          aspectRatio="4/3"
-        />
+      {/* 3. What is included / not included */}
+      <section className={s.what}>
+        <div className={s.whatInner}>
+          <div className={s.whatCol}>
+            <p className={s.whatEy}>What&apos;s included</p>
+            <h2 className={s.whatTitle}>Every <em>visit.</em></h2>
+            <ul className={s.whatList}>
+              {service.sections.included.map((inc) => (
+                <li key={inc}>{inc}</li>
+              ))}
+            </ul>
+          </div>
+          <div className={s.whatCol}>
+            <p className={s.whatEy}>What&apos;s not included</p>
+            <h2 className={s.whatTitle}>So there are <em>no surprises.</em></h2>
+            <ul className={s.whatList}>
+              <li>Materials, parts and waste disposal unless stated, always itemised in your price.</li>
+              <li>Regulated works needing separate certification are referred to a named specialist.</li>
+              <li>Anything beyond the agreed scope is quoted and agreed before we start.</li>
+              <li>VAT treatment is shown in your price summary, never hidden.</li>
+            </ul>
+          </div>
+        </div>
       </section>
 
-      {/* Enquiry form — prefilled with this service. Placed after the gallery
-          so the contact form is prominent, not buried at the foot of a long page. */}
-      {!soon ? (
-        <div id="service-enquiry" className="scroll-mt-24">
-          <EnquiryForm
-            defaultService={service.slug}
-            sourcePage={`/services/${service.slug}`}
-            eyebrow="Enquire"
-            headline={`Ask about ${service.name.toLowerCase()}.`}
-            body="Tell us about your home and what you need. We come back to you personally, usually within one working day. Or book online in a couple of minutes."
-          />
-        </div>
+      {/* 4. Pricing and frequency — offer-card treatment: the service still-life
+          fades into a dark house-brown box, packages read in cream and gold on
+          the dark ground (matches OfferCard, spec §7.3 card family 4). */}
+      {priced.length > 0 ? (
+        <section className={s.booking}>
+          <div className="mx-auto max-w-[1120px] overflow-hidden border border-house-gold/30 bg-house-brown text-house-cream">
+            {/* Visual header — still-life fading into the box */}
+            <div className="relative w-full overflow-hidden bg-house-ink h-[clamp(200px,24vw,300px)]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={heroImage}
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              {/* Scrim — fades the image into the house-brown ground */}
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 z-10"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(48,35,28,1) 0%, rgba(48,35,28,0.78) 30%, rgba(48,35,28,0.28) 66%, rgba(48,35,28,0) 100%)",
+                }}
+              />
+              <div className="absolute inset-x-[clamp(24px,4vw,48px)] bottom-[clamp(20px,3vw,32px)] z-20">
+                <p className="font-sans text-[11px] tracking-[0.32em] uppercase text-house-gold-light">
+                  Pricing and frequency
+                </p>
+                <h2 className="mt-2.5 font-hearth-serif text-[clamp(24px,2.8vw,34px)] leading-[1.1] text-house-cream [&_em]:italic [&_em]:text-house-gold-light">
+                  How we price <em>{nameLower}.</em>
+                </h2>
+              </div>
+            </div>
+
+            {/* Packages, on the dark ground */}
+            <div className="p-[clamp(28px,4vw,48px)]">
+              <div
+                className="grid gap-[clamp(24px,2.6vw,40px)]"
+                style={{ gridTemplateColumns: `repeat(${Math.min(priced.length, 3)}, 1fr)` }}
+              >
+                {priced.map((pkg) => (
+                  <article key={pkg.slug} className="flex flex-col gap-3 border-t border-house-cream/15 pt-6">
+                    <p className="font-sans text-[11px] tracking-[0.28em] uppercase text-house-gold-light">
+                      How you&apos;re charged
+                    </p>
+                    <h3 className="font-hearth-serif text-[clamp(20px,2.2vw,26px)] leading-[1.15] text-house-cream">
+                      {pkg.name}
+                    </h3>
+                    <p className="font-sans text-[20px] font-medium text-house-cream">{basisPhrase(pkg.basis)}</p>
+                    {pkg.bestFor ? (
+                      <p className="font-sans text-[14px] text-house-cream/65">Best for {pkg.bestFor}</p>
+                    ) : null}
+                    <ul className="m-0 mt-1 flex list-none flex-col gap-2 p-0">
+                      {pkg.inclusions.map((inc) => (
+                        <li key={inc} className="flex gap-2.5 font-sans text-[14px] leading-[1.5] text-house-cream/90">
+                          <span
+                            aria-hidden="true"
+                            className="mt-[0.5em] block h-[5px] w-[5px] shrink-0 rotate-45 bg-house-gold-light"
+                          />
+                          <span>{inc}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <a
+                      href={pkgCtaHref(pkg.cta)}
+                      className="mt-auto inline-block self-start bg-house-gold px-6 py-3 font-sans text-[11px] tracking-[0.16em] uppercase text-house-brown no-underline transition hover:brightness-110"
+                    >
+                      {pkgCtaLabel(pkg.cta)}
+                    </a>
+                  </article>
+                ))}
+              </div>
+              <p className="mt-[clamp(24px,3vw,36px)] max-w-[64ch] font-sans text-[15px] leading-[1.65] text-house-cream/75">
+                Book a one-off, or set a regular rhythm, weekly, fortnightly or seasonal.
+                There is no subscription to hold; change, pause or stop it whenever you
+                like. Minimum booking values and any extras are shown before you confirm.
+              </p>
+            </div>
+          </div>
+        </section>
       ) : null}
 
-      {/* Booking flow — the journey services should show (brief slide 8) */}
-      <BookingFlowStrip />
-
-      {/* 7. Booking — two-block CTA */}
-      <section className={s.booking}>
-        <div className={s.bookingGrid}>
-          <article className={s.bookingCard}>
-            <p className={s.bookingEy}>One-off &amp; pay-as-you-go</p>
-            <h3 className={s.bookingTitle}>
-              Book one-off care <em>through HoWA.</em>
-            </h3>
-            <p className={s.bookingBlurb}>
-              Single visits, seasonal jobs, or a one-off tidy, booked through
-              HoWA. Visit notes, photos, products used, costs and next reminders
-              are saved to your Home Record. No subscription required.
+      {/* 5. How the visit works — contained split, copy left / image right, brown panel */}
+      <section className="bg-house-brown px-[5vw] py-[clamp(56px,7vw,112px)] border-b border-house-brown/10">
+        <div className="mx-auto grid max-w-[1180px] items-center gap-10 lg:grid-cols-[1fr_0.85fr] lg:gap-16">
+          {/* Copy */}
+          <div className="text-house-chalk">
+            <p className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-light">
+              How the visit works
             </p>
-            {soon ? (
-              <div className={s.heroCtas}>
-                <span className={s.btnFilled} style={{ cursor: "default" }}>
-                  Service Coming Soon
-                </span>
-                <Link href="/services" className={s.btnGhost}>
-                  Book another service →
-                </Link>
-              </div>
-            ) : (
-              <Link href="#open-booking-form" className={s.btnFilled}>
-                Book through HoWA
-              </Link>
-            )}
-          </article>
-
-          <article className={s.bookingCardNavy}>
-            <p className={s.bookingEyLight}>Recurring care</p>
-            <h3 className={s.bookingTitleLight}>
-              Subscriptions only available <em>through Steward.</em>
-            </h3>
-            <p className={s.bookingBlurbLight}>
-              Weekly, fortnightly, or seasonal {service.name.toLowerCase()} plans
-              are managed through HoWA Steward. One invoice, one contact, one
-              system that remembers.
-            </p>
-            <Link href="/howa/steward" className={s.btnGhostLight}>
-              Learn about Steward
-            </Link>
-          </article>
+            <h2 className="mt-3 font-display text-[clamp(1.9rem,2.8vw,2.8rem)] leading-[1.05] text-house-chalk">
+              From first message to first visit.
+            </h2>
+            <ol className="mt-9 grid gap-6">
+              {service.sections.how.map((step, i) => (
+                <li key={step} className="flex gap-5">
+                  <span className="font-display text-[1.5rem] leading-none text-house-gold-light w-9 shrink-0">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="font-sans text-[16px] leading-relaxed text-house-chalk/90">{step}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+          {/* Image */}
+          <div className="relative aspect-[4/5] w-full overflow-hidden lg:aspect-[3/4]" style={{ border: "1px solid rgba(190,169,106,0.35)" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/home/visit-arrival.webp"
+              alt="A House professional arriving at a client's home for a first visit"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          </div>
         </div>
-        <p className={s.bookingBlurb} style={{ textAlign: "center", maxWidth: "62ch", margin: "clamp(20px,3vw,32px) auto 0" }}>
-          House-owned teams where we operate directly. HoWA Approved trades up and
-          down the country where specialist reach is needed. No unapproved hands.
+      </section>
+
+      <ServiceCtaRow
+        service={service.name}
+        mode={mode}
+        bookHref={buildBookingUrl("", SERVICEOS_SERVICE_ID[service.slug])}
+      />
+
+      {/* 6. Meet the House standard */}
+      <HouseStandardStrip />
+
+      {/* 7. Request a callback — high-intent capture placed mid-page so it is
+          easy to reach without scrolling to the foot of the page. */}
+      <div id="service-enquiry" className="scroll-mt-24">
+        <EnquiryForm
+          defaultService={service.slug}
+          sourcePage={`/services/${service.slug}`}
+          eyebrow="Request a callback"
+          headline={`Prefer a callback about ${nameLower}?`}
+          body="Leave your number and a little about your home, and the House will call you back, usually within one working day. Or book online in a couple of minutes."
+        />
+      </div>
+
+      {/* 8. Service area and availability */}
+      <section className={s.areas}>
+        <p className={s.areasEy}>Where we work</p>
+        <div className={s.areasList}>
+          <span>London and Kent</span>
+        </div>
+        <p className={s.areasFoot}>
+          Outside the area?{" "}
+          <Link href="/contact" className={s.areasLink}>Write to us.</Link>{" "}
+          We&apos;re expanding.
         </p>
       </section>
 
-      {/* 8. FAQ */}
+      {/* 9. FAQs */}
       {service.faq.length > 0 ? (
         <section className={s.faq}>
           <header className={s.faqHead}>
@@ -416,42 +436,59 @@ export function ServiceDetail({ service }: { service: Service }) {
         </section>
       ) : null}
 
-      {!soon ? <ServiceCtaRow service={service.name} /> : null}
-
-      {/* 9. Service areas — brown band */}
-      <section className={s.areas}>
-        <p className={s.areasEy}>Where we work</p>
-        <div className={s.areasList}>
-          {SERVICE_AREAS.map((area) => (
-            <span key={area}>{area}</span>
-          ))}
+      {/* 10. Related service / cover / article */}
+      <section className={s.gallery}>
+        <header className={s.galleryHead}>
+          <p className={s.galleryEy}>Also from the House</p>
+          <h2 className={s.galleryTitle}>
+            One House, <em>many hands.</em>
+          </h2>
+        </header>
+        <div className="mx-auto grid max-w-[1080px] gap-4 md:grid-cols-3">
+          <Link href="/services" className="group flex flex-col border border-house-brown/15 bg-house-cream-light p-7 no-underline transition-colors hover:border-house-gold">
+            <p className="mb-2 font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-ink">Service</p>
+            <h3 className="mb-2.5 font-hearth-serif text-[21px] leading-tight text-house-brown">More home and garden care</h3>
+            <p className="mb-6 flex-1 font-sans text-[15px] leading-[1.55] text-house-brown/70">Browse every discipline the House keeps in good order, held to one standard.</p>
+            <span className="font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-ink group-hover:text-house-brown">See all services →</span>
+          </Link>
+          <Link href="/insurance" className="group flex flex-col border border-house-brown/15 bg-house-cream-light p-7 no-underline transition-colors hover:border-house-gold">
+            <p className="mb-2 font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-ink">Cover</p>
+            <h3 className="mb-2.5 font-hearth-serif text-[21px] leading-tight text-house-brown">Insurance and cover</h3>
+            <p className="mb-6 flex-1 font-sans text-[15px] leading-[1.55] text-house-brown/70">Cover for the house and everyone who lives in it, a House proposition.</p>
+            <span className="font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-ink group-hover:text-house-brown">Explore cover →</span>
+          </Link>
+          <Link href="/the-hearth" className="group flex flex-col border border-house-brown/15 bg-house-cream-light p-7 no-underline transition-colors hover:border-house-gold">
+            <p className="mb-2 font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-ink">Read</p>
+            <h3 className="mb-2.5 font-hearth-serif text-[21px] leading-tight text-house-brown">From the magazine</h3>
+            <p className="mb-6 flex-1 font-sans text-[15px] leading-[1.55] text-house-brown/70">Guides and ideas for looking after a home and garden, well.</p>
+            <span className="font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-ink group-hover:text-house-brown">Read the Hearth →</span>
+          </Link>
         </div>
-        <p className={s.areasFoot}>
-          Not listed?{" "}
-          <Link href="/contact" className={s.areasLink}>Write to us.</Link>{" "}
-          We're expanding.
-        </p>
       </section>
 
-      {/* 10. Closing */}
+      {/* Recent work gallery */}
+      <section className={s.gallery} style={{ borderTop: "none" }}>
+        <header className={s.galleryHead}>
+          <p className={s.galleryEy}>Recent work</p>
+          <h2 className={s.galleryTitle}>
+            From the <em>field.</em>
+          </h2>
+        </header>
+        <Gallery images={gallery} columns={3} aspectRatio="4/3" />
+      </section>
+
+      {/* 11. Final CTA */}
       <section className={s.closing}>
         <FlowerWatermark color="gold" side="right" opacity={0.18} />
         <p className={s.closingStatement}>
           <em>A well-kept home</em> starts with one conversation.
         </p>
-        {soon ? (
-          <Link href="/services" className={s.btnFilled}>
-            Book another service →
-          </Link>
-        ) : (
-          <Link href="#open-booking-form" className={s.btnFilled}>
-            Book through HoWA
-          </Link>
-        )}
+        <Link href="#open-booking-form" className={s.btnFilled}>
+          {primaryLabel}
+        </Link>
         <p className={s.closingNote}>
-          We are proud founding partners of HoWA, which handles our online
-          bookings and keeps your appointment, notes, invoices and service
-          history in one Home Record.
+          Booking, scheduling and your Home Record are powered by HoWA, so your
+          appointment, notes, invoices and service history stay in one place.
         </p>
       </section>
     </div>

@@ -9,6 +9,7 @@ import { getShopProducts } from "@/lib/shop-data/source";
 import type { CatalogueProduct } from "@/lib/shop-data/catalogue";
 import { AddToCartButton } from "@/components/commerce/AddToCartButton";
 import { ProductSlider, type Slide } from "./ProductSlider";
+import { getLatestHearthArticles } from "@/lib/cms/hearth";
 
 /**
  * Marketplace landing — "collections as rooms" (Designer Handover Guide, slide 25).
@@ -32,6 +33,21 @@ function formatMoney(m: { amount: string; currencyCode: string }) {
   return `${sym}${Number(m.amount).toFixed(2)}`;
 }
 
+/** URL-safe slug from a collection display name (mirrors the catalogue helper). */
+function slugify(s: string) {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-+$/, "");
+}
+
+/** Northern-hemisphere season for the current date — drives the seasonal hero
+    so the edit reads as "of this moment" without a copy edit each quarter. */
+function currentSeason(d = new Date()): string {
+  const m = d.getMonth();
+  if (m === 11 || m <= 1) return "winter";
+  if (m <= 4) return "spring";
+  if (m <= 7) return "summer";
+  return "autumn";
+}
+
 type Card = { handle: string; title: string; price: string; image: string; alt: string; houseApproved?: boolean };
 
 function toCards(products: CommerceProduct[]): Card[] {
@@ -45,6 +61,37 @@ function toCards(products: CommerceProduct[]): Card[] {
       houseApproved: p.metafields?.houseApproved,
     }))
     .filter((c) => c.image);
+}
+
+/** Curated section picker — products in any of `handles` (matched by collection
+    handle or by the slugified collection name), skipping anything already shown.
+    Chosen handles are added to `exclude` so curated rails stay distinct. */
+function pickByCollection(
+  products: CatalogueProduct[],
+  handles: string[],
+  n: number,
+  exclude?: Set<string>,
+): Card[] {
+  const wanted = new Set(handles);
+  const out: Card[] = [];
+  for (const p of products) {
+    if (!p.image || out.length >= n) continue;
+    if (exclude?.has(p.handle)) continue;
+    const inCollection =
+      (p.collectionHandles && p.collectionHandles.some((h) => wanted.has(h))) ||
+      wanted.has(slugify(p.collection));
+    if (!inCollection) continue;
+    exclude?.add(p.handle);
+    out.push({
+      handle: p.handle,
+      title: p.title,
+      price: p.price,
+      image: p.image,
+      alt: p.title,
+      houseApproved: p.houseApproved,
+    });
+  }
+  return out;
 }
 
 /** Rich slide/feature data (excerpt + variant for add-to-basket) from the catalogue. */
@@ -63,13 +110,35 @@ function toSlide(cp: CatalogueProduct): Slide {
   };
 }
 
-function Rail({ title, cards, viewAllHref }: { title: string; cards: Card[]; viewAllHref: string }) {
+function Rail({
+  title,
+  cards,
+  viewAllHref,
+  eyebrow,
+  intro,
+}: {
+  title: string;
+  cards: Card[];
+  viewAllHref: string;
+  eyebrow?: string;
+  intro?: string;
+}) {
   if (cards.length === 0) return null;
   return (
     <section className="px-[5vw] py-[clamp(36px,4.5vw,60px)] border-b border-house-brown/8">
       <div className="max-w-[1280px] mx-auto">
         <div className="flex items-end justify-between flex-wrap gap-3 mb-7">
-          <h2 className="font-display italic text-[clamp(22px,2.6vw,32px)] text-house-brown">{title}</h2>
+          <div className="max-w-[560px]">
+            {eyebrow ? (
+              <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink mb-2">
+                {eyebrow}
+              </p>
+            ) : null}
+            <h2 className="font-display italic text-[clamp(22px,2.6vw,32px)] text-house-brown">{title}</h2>
+            {intro ? (
+              <p className="font-sans text-[15px] leading-[1.6] text-house-stone mt-3">{intro}</p>
+            ) : null}
+          </div>
           <Link
             href={viewAllHref}
             className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-ink no-underline border-b border-house-gold/40 pb-1"
@@ -196,6 +265,93 @@ function TwoCollections() {
   );
 }
 
+type HearthCard = { slug: string; title: string; image: string; category?: string; dek?: string };
+
+/** Related Hearth story — the editorial cross-link the store owes the reader
+    (spec §12). Leads with one feature, with a couple of quieter follow-ons.
+    Renders nothing when the magazine has no articles yet. */
+function RelatedHearth({ articles }: { articles: HearthCard[] }) {
+  if (articles.length === 0) return null;
+  const [lead, ...rest] = articles;
+  return (
+    <section className="px-[5vw] py-[clamp(44px,6vw,80px)] border-b border-house-brown/8">
+      <div className="max-w-[1280px] mx-auto">
+        <div className="mb-8">
+          <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink mb-2">
+            From The Hearth
+          </p>
+          <h2 className="font-display italic text-[clamp(26px,3vw,40px)] leading-[1.05] text-house-brown">
+            Read before you choose.
+          </h2>
+        </div>
+        <div className="grid md:grid-cols-[1.4fr_1fr] gap-x-10 gap-y-8 items-start">
+          <Link href={`/the-hearth/${lead.slug}`} className="group block no-underline">
+            <div className="relative aspect-[16/10] w-full overflow-hidden bg-house-cream-dark mb-4">
+              <Image
+                src={lead.image}
+                alt={lead.title}
+                fill
+                sizes="(min-width: 768px) 55vw, 90vw"
+                className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.03]"
+              />
+            </div>
+            {lead.category ? (
+              <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-2">
+                {lead.category}
+              </p>
+            ) : null}
+            <p className="font-display text-[clamp(20px,2.4vw,30px)] leading-[1.15] text-house-brown group-hover:text-house-gold-ink transition-colors">
+              {lead.title}
+            </p>
+            {lead.dek ? (
+              <p className="font-sans text-[15px] leading-[1.6] text-house-stone mt-2 max-w-[52ch] line-clamp-2">
+                {lead.dek}
+              </p>
+            ) : null}
+          </Link>
+          {rest.length > 0 ? (
+            <div className="flex flex-col">
+              {rest.map((a) => (
+                <Link
+                  key={a.slug}
+                  href={`/the-hearth/${a.slug}`}
+                  className="group flex gap-4 items-start no-underline py-4 border-b border-house-brown/8 first:pt-0"
+                >
+                  <div className="relative w-[92px] shrink-0 aspect-square overflow-hidden bg-house-cream-dark">
+                    <Image
+                      src={a.image}
+                      alt={a.title}
+                      fill
+                      sizes="92px"
+                      className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.04]"
+                    />
+                  </div>
+                  <div>
+                    {a.category ? (
+                      <p className="font-sans text-[8px] tracking-[0.24em] uppercase text-house-gold-ink mb-1">
+                        {a.category}
+                      </p>
+                    ) : null}
+                    <p className="font-display text-[16px] leading-[1.25] text-house-brown group-hover:text-house-gold-ink transition-colors">
+                      {a.title}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+              <Link
+                href="/the-hearth"
+                className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-ink no-underline border-b border-house-gold/40 pb-1 mt-5 self-start"
+              >
+                Visit The Hearth →
+              </Link>
+            </div>
+          ) : null}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export const metadata = {
   title: { absolute: "The House Marketplace | Shop home, garden and household" },
   description:
@@ -203,11 +359,18 @@ export const metadata = {
 };
 
 export default async function ShopPage() {
-  const [shopProducts, best, fresh] = await Promise.all([
+  const [shopProducts, best, fresh, hearth] = await Promise.all([
     getShopProducts().catch(() => []),
     shopifyProvider.listBestSellers(40).catch(() => []),
     shopifyProvider.listNewArrivals(40).catch(() => []),
+    getLatestHearthArticles(3).catch(() => []),
   ]);
+
+  const season = currentSeason();
+  const seasonLabel = season.charAt(0).toUpperCase() + season.slice(1);
+  const hearthCards: HearthCard[] = hearth
+    .filter((a) => a.image)
+    .map((a) => ({ slug: a.slug, title: a.title, image: a.image, category: a.category, dek: a.dek }));
 
   // De-dupe across rails so each shows distinct products.
   const seen = new Set<string>();
@@ -248,32 +411,57 @@ export default async function ShopPage() {
   const bestSellers = take(bestCards, 8);
   const newIn = take(toCards(fresh), 8);
 
+  // Curated spec sections (§12). Each draws from a category, skipping anything
+  // already shown above so the rails stay distinct. All return null when empty.
+  const curatedSeen = new Set(seen);
+  const usefulStaples = pickByCollection(shopProducts, ["household-essentials"], 4, curatedSeen);
+  const gardenLiving = pickByCollection(
+    shopProducts,
+    ["gardening", "outdoor-living", "garden-outdoor"],
+    4,
+    curatedSeen,
+  );
+  const giftsExperiences = pickByCollection(
+    shopProducts,
+    ["gifts-stationery", "gifts", "stationery"],
+    4,
+    curatedSeen,
+  );
+
   return (
     <div className={s.page}>
-      {/* Brand intro */}
+      {/* Editorial hero — one seasonal collection, not a standing statement (spec §12) */}
       <section className="relative overflow-hidden border-b border-house-brown/8 px-[5vw] pt-12 pb-9 text-center">
         <FlowerWatermark color="gold" side="right" opacity={0.18} />
         <div className="relative z-10 max-w-[680px] mx-auto">
           <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink mb-3">
-            The House · Marketplace
+            The House · The {season} edit
           </p>
           <h1 className="font-display text-[clamp(30px,3.4vw,48px)] leading-[1.05] tracking-[-0.01em] text-house-brown">
-            Objects with a place{" "}
+            The {seasonLabel}{" "}
             <em className="italic" style={{ fontFamily: "var(--font-display)" }}>
-              in the House.
+              collection.
             </em>
           </h1>
           <p className="font-sans text-[15px] text-house-stone max-w-[460px] mx-auto mt-4 leading-[1.6]">
-            An edited cabinet, not a catalogue. Each thing here is House Approved,
-            chosen for how it is made, how long it lasts, and whether it can be
-            mended rather than replaced.
+            The pieces we are reaching for this {season}. An edited cabinet, not
+            a catalogue, gathered for how it is made, how long it lasts, and
+            whether it can be mended rather than replaced.
           </p>
-          <Link
-            href="/shop/all"
-            className="inline-flex items-center justify-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown bg-house-gold border border-house-gold px-7 py-3.5 no-underline transition-colors hover:bg-house-gold-ink hover:border-house-gold-dark mt-7"
-          >
-            Shop all products
-          </Link>
+          <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-4 mt-7">
+            <Link
+              href="/shop/collections/house-approved"
+              className="inline-flex items-center justify-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown bg-house-gold border border-house-gold px-7 py-3.5 no-underline transition-colors hover:bg-house-gold-ink hover:border-house-gold-dark"
+            >
+              Explore the edit
+            </Link>
+            <Link
+              href="/shop/all"
+              className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-ink no-underline border-b border-house-gold/40 pb-1"
+            >
+              Shop all products →
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -340,13 +528,42 @@ export default async function ShopPage() {
         </div>
       </section>
 
-      {/* Broken-up commerce zone: grid → single feature → dual pickers → slider → grid */}
-      <Rail title="House Approved." cards={houseApproved} viewAllHref="/shop/collections/house-approved" />
+      {/* Curated store sections (spec §12): House Edit → staples → best sellers →
+          feature → garden → gifts → slider → new in → related Hearth story */}
+      <Rail
+        title="The House Edit."
+        eyebrow="Chosen by the House"
+        intro="A curator-led shelf, kept small on purpose. Each piece here carries the House Approved seal, chosen for craft, provenance and a long life."
+        cards={houseApproved}
+        viewAllHref="/shop/collections/house-approved"
+      />
+      <Rail
+        title="Useful staples."
+        eyebrow="The everyday things"
+        intro="The quiet, well-made basics a household leans on. Bought once, kept for years."
+        cards={usefulStaples}
+        viewAllHref="/shop/collections/household-essentials"
+      />
       <Rail title="Best sellers." cards={bestSellers} viewAllHref="/shop/all" />
       <FeaturedProduct p={featured} />
+      <Rail
+        title="Garden and outdoor living."
+        eyebrow="Beyond the back door"
+        intro="Tools, pots and the pieces that make the outdoor rooms of the House worth spending time in."
+        cards={gardenLiving}
+        viewAllHref="/shop/collections/garden-outdoor"
+      />
       <TwoCollections />
+      <Rail
+        title="Gifts and experiences."
+        eyebrow="For someone you like"
+        intro="Considered things to give, and small pleasures to keep. Wrapped with care, chosen to be remembered."
+        cards={giftsExperiences}
+        viewAllHref="/shop/collections/gifts-stationery"
+      />
       <ProductSlider title="More worth keeping." slides={sliderSlides} />
       <Rail title="New in." cards={newIn} viewAllHref="/shop/all" />
+      <RelatedHearth articles={hearthCards} />
 
       <HouseStandardStrip points={["Vetted against real family use", "Care notes for use and repair", "Chosen to last, made to mend"]} />
     </div>

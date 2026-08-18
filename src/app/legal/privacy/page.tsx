@@ -28,7 +28,7 @@ Data you add to Housekeeper or the Assistant, such as photos and notes, is held 
           heading: "Who we are",
           body: `House of Willow Alexander Ltd (registered in England & Wales, company number 15062693) is the data controller. Registered office: 12 Hatherley Road, Sidcup, Kent, DA14 4DT.
 
-Contact: info@willowalexander.co.uk`,
+Contact: sales@willowalexander.co.uk`,
         },
         {
           heading: "What we collect, and why",

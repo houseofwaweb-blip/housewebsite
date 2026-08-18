@@ -6,7 +6,8 @@ import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { GhostLink } from "@/components/primitives/GhostLink";
 import { PortableText } from "@/components/cms/PortableText";
 import { HearthMasthead } from "@/components/hearth/HearthMasthead";
-import { HearthHowaHooks } from "@/components/hearth/HearthHowaHooks";
+import { HearthUsefulDetails } from "@/components/hearth/HearthUsefulDetails";
+import { HearthNextAction } from "@/components/hearth/HearthNextAction";
 import { HearthTitle } from "@/components/hearth/HearthTitle";
 import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { HearthPaywall } from "@/components/hearth/HearthPaywall";
@@ -151,7 +152,7 @@ export default async function ArticlePage({
               {article.categoryLong ?? article.category}
               {article.isPremium ? (
                 <span className="ml-2 text-house-gold-ink text-[12px] tracking-[0.22em] uppercase before:content-['◆'] before:text-[8px] before:mr-0.5">
-                  Housekeeper
+                  Members
                 </span>
               ) : null}
             </div>
@@ -218,6 +219,18 @@ export default async function ArticlePage({
                   Body content coming soon.
                 </p>
               )}
+
+              {/* §13.7 — the useful details fact box, derived from the piece. */}
+              <HearthUsefulDetails
+                category={article.categoryLong ?? article.category}
+                author={article.author}
+                date={formattedDate}
+                readTime={article.readTimeMinutes}
+                topics={article.tags}
+              />
+
+              {/* §13.8 — one contextual next action, after the body, never a form. */}
+              <HearthNextAction categorySlug={article.categorySlug} />
             </div>
           </div>
         </article>
@@ -260,9 +273,6 @@ export default async function ArticlePage({
             <span className="flex-1" />
           )}
         </nav>
-
-        {/* Soft conversion into HoWA action (brief slide 14) */}
-        <HearthHowaHooks />
 
         {/* Post-read signup — captures the reader at peak interest. Cream
             variant matches the Hearth surface; sourcePage carries the slug

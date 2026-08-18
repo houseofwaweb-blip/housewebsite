@@ -1,0 +1,203 @@
+/* CabinetHero — homepage §2 (Aug-17 rebuild). CSS Module. */
+
+.hero {
+  position: relative;
+  background: var(--house-cream);
+  padding: clamp(12px, 2.2vw, 30px) 2.5vw;
+}
+/* Stage = the contained cabinet box. Plaque positions against THIS (not the
+   full-width cream ground), and container units size the plaque to the frame. */
+.stage {
+  position: relative;
+  max-width: 1620px;
+  margin: 0 auto;
+  container-type: inline-size;
+}
+.frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1672 / 941;
+  overflow: hidden;
+}
+.img {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Hotspots */
+.hotspots {
+  position: absolute;
+  inset: 0;
+}
+.hotspot {
+  position: absolute;
+  display: block;
+  border: 1px solid transparent;
+  transition: background-color var(--t-base) var(--ease-out),
+    border-color var(--t-base) var(--ease-out);
+}
+.hotspot:hover,
+.hotspot:focus-visible {
+  background-color: rgba(255, 253, 248, 0.14);
+  border-color: rgba(190, 169, 106, 0.75);
+  outline: none;
+}
+.hotspotLabel {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: var(--house-ink);
+  color: var(--house-chalk);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--t-base) var(--ease-out);
+}
+.hotspot:hover .hotspotLabel,
+.hotspot:focus-visible .hotspotLabel {
+  opacity: 1;
+}
+
+/* Plaque — a real solid cream card, centred on the frame. Sized generously
+   (works with a box-less hero image; overlaps the old baked panel until the
+   new image is swapped in). Gold inset rule via ::before for the framed look. */
+.plaque {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(42cqw, 650px);
+  text-align: center;
+  background: var(--house-cream-light);
+  border: 1px solid rgba(190, 169, 106, 0.6);
+  box-shadow: 0 22px 60px rgba(36, 27, 23, 0.34);
+  padding: clamp(26px, 3.4cqw, 52px) clamp(24px, 3.4cqw, 58px);
+}
+.plaque::before {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border: 1px solid rgba(190, 169, 106, 0.45);
+  pointer-events: none;
+}
+.eyebrow {
+  margin-bottom: 0.7rem;
+  font-family: var(--font-sans);
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--house-gold-dark);
+}
+.title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--house-ink);
+  font-size: clamp(1.9rem, 3.5cqw, 3.2rem);
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.sub {
+  margin-top: 0.9rem;
+  font-family: var(--font-sans);
+  color: rgba(48, 35, 28, 0.85);
+  font-size: clamp(0.98rem, 1.6cqw, 1.3rem);
+  line-height: 1.45;
+}
+/* Two equal-width buttons */
+.ctas {
+  margin-top: clamp(18px, 2.2cqw, 28px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  justify-content: center;
+  max-width: 460px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 15px 22px;
+  text-decoration: none;
+  transition: filter var(--t-slow) var(--ease-out),
+    background-color var(--t-slow) var(--ease-out),
+    color var(--t-slow) var(--ease-out);
+}
+.ctaFilled {
+  background: var(--house-ink);
+  color: var(--house-chalk);
+  border: 1px solid var(--house-ink);
+}
+.ctaFilled:hover {
+  filter: brightness(1.3);
+}
+.ctaGhost {
+  background: transparent;
+  color: var(--house-ink);
+  border: 1px solid rgba(36, 27, 23, 0.5);
+}
+.ctaGhost:hover {
+  background: var(--house-ink);
+  color: var(--house-chalk);
+}
+.trust {
+  margin-top: 14px;
+  font-family: var(--font-sans);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(48, 35, 28, 0.62);
+}
+
+/* ---- Mobile: image on top (4:5 crop), plaque as a real cream block below ---- */
+@media (max-width: 767px) {
+  .hero {
+    padding: 0;
+  }
+  .frame {
+    aspect-ratio: 4 / 5;
+  }
+  .img {
+    object-position: 58% center;
+  }
+  .hotspots {
+    display: none;
+  }
+  .plaque {
+    position: static;
+    transform: none;
+    left: auto;
+    top: auto;
+    width: auto;
+    max-width: none;
+    background: var(--house-cream);
+    border: 0;
+    box-shadow: none;
+    padding: 30px 6vw 36px;
+  }
+  .plaque::before {
+    display: none;
+  }
+  .title {
+    font-size: clamp(1.6rem, 7.5cqw, 2.1rem);
+  }
+  .sub {
+    font-size: 0.95rem;
+    margin-top: 0.7rem;
+  }
+  .ctas {
+    margin-top: 20px;
+  }
+}

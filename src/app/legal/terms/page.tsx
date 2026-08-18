@@ -16,7 +16,7 @@ export default async function TermsPage() {
       sections={[
         {
           heading: "The basics",
-          body: `This site and HoWA are operated by House of Willow Alexander Ltd, registered in England & Wales (company number 15062693), registered office 12 Hatherley Road, Sidcup, Kent, DA14 4DT. You can reach us at info@willowalexander.co.uk. By using the site, HoWA, or our services, you agree to these terms. If you do not agree, you should not use them.
+          body: `This site and HoWA are operated by House of Willow Alexander Ltd, registered in England & Wales (company number 15062693), registered office 12 Hatherley Road, Sidcup, Kent, DA14 4DT. You can reach us at sales@willowalexander.co.uk. By using the site, HoWA, or our services, you agree to these terms. If you do not agree, you should not use them.
 
 We may update these terms from time to time. We will notify you of significant changes in the product. The "Last updated" date at the foot of this page is the operative version.`,
         },

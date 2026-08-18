@@ -211,14 +211,59 @@ export function BookingWidget() {
     if (wantsBooking) {
       loadObf();
       openWhenReady();
-      url.searchParams.delete("book");
-      const search = url.searchParams.toString();
-      const hash = url.hash === TRIGGER_HREF ? "" : url.hash;
+
+      // CRITICAL: rewrite the URL by editing the RAW query string, never via
+      // URLSearchParams.toString(). ServiceOS reads the postcode from the literal
+      // selector `fs_payload[covering_postcode]`; toString() re-encodes those
+      // brackets to %5B/%5D (and spaces to +), and because this cleanup runs
+      // synchronously BEFORE the async OBF client loads and parses the URL, the
+      // OBF would then see the mangled key and never apply the postcode. Raw
+      // string editing preserves every surviving param byte-for-byte.
+      const rewriteRawQuery = (drop: (key: string) => boolean) => {
+        const raw = window.location.search.replace(/^\?/, "");
+        const kept = raw
+          .split("&")
+          .filter((seg) => {
+            if (!seg) return false;
+            const key = decodeURIComponent(seg.split("=")[0] ?? "");
+            return !drop(key);
+          })
+          .join("&");
+        return kept;
+      };
+
+      // Strip OUR trigger param immediately (book=1), keeping the OBF's params
+      // untouched so it can still read service_id / fs_payload[covering_postcode].
+      const keptNow = rewriteRawQuery((k) => k === "book");
+      const hashNow = window.location.hash === TRIGGER_HREF ? "" : window.location.hash;
       window.history.replaceState(
         null,
         "",
-        url.pathname + (search ? `?${search}` : "") + hash,
+        window.location.pathname + (keptNow ? `?${keptNow}` : "") + hashNow,
       );
+
+      // ServiceOS's OWN params (service_id / covering_postcode / fs_payload[*])
+      // are removed too, but only AFTER the OBF client has had time to read them,
+      // so a later refresh / share doesn't leak them. We no longer emit
+      // fs_screen (that caused the Back-into-URL re-open loop), but strip it too
+      // in case an inbound link still carries it.
+      window.setTimeout(() => {
+        const kept = rewriteRawQuery(
+          (k) =>
+            k === "fs_screen" ||
+            k === "service_id" ||
+            k === "covering_postcode" ||
+            k.startsWith("fs_payload"),
+        );
+        const raw = window.location.search.replace(/^\?/, "");
+        if (kept !== raw) {
+          window.history.replaceState(
+            null,
+            "",
+            window.location.pathname + (kept ? `?${kept}` : "") + window.location.hash,
+          );
+        }
+      }, 5000);
     }
 
     return runCleanups;

@@ -54,7 +54,7 @@ When you change a preference, the change applies immediately to scripts already 
           },
           {
             heading: "Full cookie list",
-            body: `The table below lists the cookies and similar storage this site uses, grouped by the category above. Measurement and marketing entries are only set once you accept the matching category. If you spot something set that isn't listed, please email info@willowalexander.co.uk and we'll investigate.`,
+            body: `The table below lists the cookies and similar storage this site uses, grouped by the category above. Measurement and marketing entries are only set once you accept the matching category. If you spot something set that isn't listed, please email sales@willowalexander.co.uk and we'll investigate.`,
           },
         ]}
         updatedAt={sanityPage?.lastUpdated ?? "1 July 2026"}

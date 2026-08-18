@@ -173,7 +173,7 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = 
 
               {/* CTA */}
               <span className="inline-flex items-center gap-2 font-sans text-[15px] tracking-[0.16em] uppercase" style={{ color: "var(--house-gold-ink)" }}>
-                {bookingMode ? "Book through HoWA" : "View profile"}
+                {bookingMode ? "Book a service" : "View profile"}
                 <span className="inline-block transition-transform duration-[var(--t-slow)] ease-out group-hover:translate-x-2">&rarr;</span>
               </span>
             </Link>

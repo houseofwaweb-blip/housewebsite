@@ -24,7 +24,7 @@ export const GARDENING_SUBS: SubService[] = [
       "Cutting back of overgrown shrubs, hedges, and borders",
       "Removal of dead plants, debris, and green waste",
       "Light ground preparation for future planting",
-      "Photographic before-and-after in your HoWA record",
+      "Green waste removed by a licensed carrier",
     ],
     faq: [
       { q: "Do you remove and dispose of all garden waste?", a: "Yes. We are licensed waste carriers. Everything is removed, sorted, and disposed of responsibly, never fly-tipped." },
@@ -71,7 +71,7 @@ export const GARDENING_SUBS: SubService[] = [
     slug: "garden-maintenance-subscriptions",
     name: "Garden maintenance subscriptions",
     lede: "Scheduled seasonal care, the same gardener, on a rhythm. Weekly, fortnightly, or monthly.",
-    body: "Our subscription plans are the most popular way to keep a garden running. You pick the rhythm. We assign a named gardener who learns the space. Visits are scheduled through HoWA, photographed, and logged to your home record. No per-visit admin, no surprises.",
+    body: "A regular rhythm is the most popular way to keep a garden running. You pick how often. We assign a named gardener who gets to know the garden. Visits are booked and logged to your Home Record. No per-visit admin, no surprises.",
   },
   {
     slug: "jet-washing",
@@ -85,23 +85,21 @@ export const WINDOW_CLEANING_SUBS: SubService[] = [
     slug: "regular-window-cleaning",
     name: "Regular window cleaning",
     lede: "Scheduled monthly or bi-monthly cleans. The same team, the same day, text before arrival.",
-    body: "Pure-water pole cleaning for all exterior windows, frames, and sills. Scheduled on a cadence that suits the property, monthly for high-traffic streets, bi-monthly for quieter ones. You don't need to be home. We text the morning of, arrive when we said, and file a note to your HoWA record after each visit.",
+    body: "Pure water cleaning for all outside windows, frames and sills. Booked on a rhythm that suits the property, monthly for busier streets, every other month for quieter ones. You don't need to be home. We let you know before we come, arrive when we said, and file a note to your Home Record after each visit.",
     whyChoose: [
-      "Pure-water pole system, no detergents, no residue, no streaks",
-      "Frames and sills included as standard (not extra)",
-      "Up to four storeys from the ground, no ladders required",
-      "A rain guarantee: if it rains within 48 hours, we return free",
+      "Pure water, no harsh detergents, no residue, no streaks",
+      "Frames and sills included as standard",
+      "Upper floors reached from the ground, no ladders",
+      "Comprehensive public liability insurance",
     ],
     included: [
-      "All exterior windows, frames, and sills",
-      "Front and back elevations",
-      "Text reminder the day before",
-      "Condition note on cracked or failed glazing if spotted",
-      "Logged in HoWA after each visit",
+      "All outside windows, frames and sills",
+      "Front and back of the property",
+      "A reminder the day before we come",
+      "Logged in your Home Record after each visit",
     ],
     faq: [
-      { q: "Do I need to be at the property?", a: "No. Most clients pass on a gate code or leave access instructions. We text before arrival and photograph after." },
-      { q: "What if it rains right after you clean?", a: "Our 48-hour rain guarantee means we come back at no extra charge. Pure-water cleaning is more rain-resistant than traditional methods, though." },
+      { q: "Do I need to be at the property?", a: "No. Most clients pass on a gate code or leave access instructions. We let you know before we arrive." },
       { q: "How fast can I book?", a: "Usually within a few days. For urgent one-offs we can sometimes fit you in next-day." },
     ],
   },
@@ -113,19 +111,18 @@ export const WINDOW_CLEANING_SUBS: SubService[] = [
   {
     slug: "gutter-cleaning",
     name: "Gutter cleaning",
-    lede: "Vacuum-pole gutter clears, front and back. Photographic evidence of every run. Twice a year is ideal.",
-    body: "Blocked gutters cause damp, staining, and pest access. Our team clears all gutters by industrial vacuum pole, no ladders on your walls, no damage to fascia. We photograph every run before and after, note any loose brackets or splits, and file the whole thing to your HoWA record. Most homes need this twice a year: once after the last leaves, once before winter rain.",
+    lede: "Gutters cleared from the ground, front and back. Twice a year is ideal.",
+    body: "Blocked gutters cause damp, staining and pest access. We clear all gutters from the ground with a vacuum pole, so no ladders lean on your walls. We note any loose brackets or splits and file the visit to your Home Record. Most homes need this twice a year, once after the last leaves and once before the winter rain.",
     whyChoose: [
-      "Industrial vacuum pole, safe, efficient, no ladders on walls",
-      "Before/after photographic record filed to HoWA",
-      "Downpipe checks and minor blockage clearance included",
-      "Flags repairs early, before damp sets in",
+      "Cleared from the ground with a vacuum pole, no ladders on walls",
+      "Downpipe checks and blockage clearance included",
+      "Flags any repairs early, before damp sets in",
+      "Filed to your Home Record",
     ],
     included: [
-      "Full gutter clear, front and back elevations",
-      "Downpipe visual check + minor clearance",
-      "Photographic record filed to HoWA",
-      "Condition report on brackets, splits, and falls",
+      "Full gutter clear, front and back",
+      "Downpipes checked and cleared",
+      "A note on any brackets, splits or drainage that need attention",
       "Green waste bagged and removed",
     ],
     faq: [
@@ -152,19 +149,16 @@ export const WINDOW_CLEANING_SUBS: SubService[] = [
     slug: "commercial-gutter-cleaning",
     name: "Commercial gutter cleaning",
     lede: "Industrial SkyVac systems for commercial properties. Scheduled maintenance contracts with photographic reporting.",
-    comingSoon: true,
   },
   {
     slug: "commercial-softwashing",
     name: "Commercial softwashing",
     lede: "Low-pressure exterior cleaning for commercial facades, render, and cladding. Planned maintenance or one-off restoration.",
-    comingSoon: true,
   },
   {
     slug: "commercial-exterior-maintenance",
     name: "Commercial exterior maintenance",
     lede: "Full exterior care packages for businesses. Windows, gutters, fascias, and pressure washing on a managed schedule.",
-    comingSoon: true,
   },
 ];
 
@@ -172,24 +166,23 @@ export const CLEANING_SUBS: SubService[] = [
   {
     slug: "regular-cleaning",
     name: "Regular cleaning",
-    lede: "Weekly or fortnightly domestic care. Same team each visit, your preferences on file in HoWA.",
-    body: "Our regular cleaning service is built on consistency. We assign a named team who learns the home, your surfaces, your products, your preferences. Visits are scheduled through HoWA and logged with a short note after each one. If your regular cleaner is away, we send a cover team briefed from your record.",
+    lede: "Weekly or fortnightly domestic care. Same team each visit, your preferences on file in your Home Record.",
+    body: "Our regular cleaning service is built on consistency. We assign a named team who gets to know the home, your surfaces, your products, your preferences. Visits are booked and logged with a short note after each one. If your regular cleaner is away, we send a cover team briefed from your record.",
     whyChoose: [
-      "Named team who learns the home over time",
-      "Scheduled through HoWA, no per-visit admin",
-      "All products House-approved; fragrance-free on request",
-      "Vetted, insured, and DBS-checked as standard",
+      "The same trusted cleaner, getting to know your home",
+      "Plant-based, low-tox products, fragrance-free on request",
+      "DBS-checked, insured and reference-verified",
+      "No long contract, change or pause whenever you like",
     ],
     included: [
       "Full ground-floor and bedroom clean",
       "Kitchen surfaces, hob, and sink",
       "Bathroom descale and sanitisation",
-      "Floors vacuumed and mopped (surface-appropriate)",
-      "Logged in HoWA after each visit",
+      "Floors vacuumed and mopped, each the right way",
+      "Logged in your Home Record after each visit",
     ],
     faq: [
-      { q: "Can I use my own products?", a: "Of course. If you prefer specific brands or fragrance-free products, note it in HoWA and the team will follow it." },
-      { q: "What about bank holidays?", a: "Regular service clients get bank holiday coverage included. We'll reschedule around closures in advance." },
+      { q: "Can I use my own products?", a: "Of course. If you prefer specific brands or fragrance-free products, note it in your Home Record and the cleaner will follow it." },
     ],
   },
   {
@@ -232,7 +225,7 @@ export const HANDYMAN_SUBS: SubService[] = [
       "Assembly of all flat-pack and part-assembled furniture",
       "Wall-anchoring where safety requires it",
       "Packaging removal and recycling",
-      "Logged in your HoWA record",
+      "Logged in your Home Record",
     ],
     faq: [
       { q: "Can you assemble furniture I've already started?", a: "Yes. We'll assess what's been done and finish it properly." },
@@ -266,6 +259,7 @@ export const HANDYMAN_SUBS: SubService[] = [
     slug: "painting-and-decorating",
     name: "Painting & decorating",
     lede: "Touch-ups, single rooms, and feature walls. Clean edges, proper prep, dust sheets down.",
+    image: "/services/home/painting-and-decorating.webp",
   },
   {
     slug: "tv-wall-mounting",
@@ -324,9 +318,9 @@ export const REMOVALS_SUBS: SubService[] = [
     slug: "small-house-move",
     name: "Small house move",
     lede: "Flats, studios, and one-bed moves. Load, transport, unload. Blanket-wrapped, fully insured.",
-    body: "Our small move service covers everything from a studio flat to a one-bedroom home. A two-person team loads, transports, and unloads your belongings with blanket wrapping for all furniture. Beds and tables are dismantled and reassembled. Everything is insured in transit. We arrive on time, in uniform, and leave the new place ready to live in.",
+    body: "Our small move service covers everything from a studio flat to a one-bedroom home. Your belongings are loaded, transported and unloaded with blanket wrapping for all furniture. Beds and tables are dismantled and reassembled. Everything is insured in transit. We arrive on time, in uniform, and leave the new place ready to live in.",
     whyChoose: [
-      "Two-person team with a clean, electric van",
+      "A clean, electric van and careful handling",
       "Blanket wrapping and furniture protection included",
       "Dismantling and reassembly of beds and tables",
       "Fully insured in transit with certification on request",
@@ -336,7 +330,7 @@ export const REMOVALS_SUBS: SubService[] = [
       "Blanket wrapping for all furniture",
       "Dismantling and reassembly of key items",
       "Transit insurance for all items",
-      "Logged in your HoWA record",
+      "Logged in your Home Record",
     ],
     faq: [
       { q: "How long does a small move take?", a: "Most small moves are completed in half a day. We'll confirm timing at quoting stage based on volume and distance." },
@@ -374,16 +368,16 @@ export const ENERGY_SUBS: SubService[] = [
   {
     slug: "solar-installation",
     name: "Solar installation",
-    lede: "Roof-mounted and in-roof solar panel systems. Full survey, design, installation, and MCS certification.",
-    body: "We handle the complete solar journey: structural survey, panel layout design, scaffolding, installation, DNO grid connection application, and MCS certification. Battery storage systems (Tesla Powerwall, GivEnergy, Fox ESS) can be added at install or retrofitted later. Every system is designed for the specific property, not a generic template.",
+    lede: "Roof-mounted and in-roof solar panel systems. Full site assessment, design, installation, and MCS certification.",
+    body: "We handle the complete solar journey: structural assessment, panel layout design, scaffolding, installation, DNO grid connection application, and MCS certification. Battery storage systems (Tesla Powerwall, GivEnergy, Fox ESS) can be added at install or retrofitted later. Every system is designed for the specific property, not a generic template.",
     whyChoose: [
       "MCS-certified installation, qualifies for Smart Export Guarantee payments",
-      "Full structural and electrical survey before any work begins",
+      "Full structural and electrical assessment before any work begins",
       "Battery storage integration available at install or later",
       "DNO application and grid connection handled for you",
     ],
     included: [
-      "Site survey and system design",
+      "Site assessment and system design",
       "Scaffolding and installation",
       "Inverter, mounting, and all electrical work",
       "DNO notification and MCS certification",
@@ -398,7 +392,7 @@ export const ENERGY_SUBS: SubService[] = [
     slug: "ev-charging",
     name: "EV charger installation",
     lede: "Home and workplace EV charger installation. All major brands, OZEV grant applications handled where eligible.",
-    body: "We install Ohme, Pod Point, Wallbox, Tesla, Zappi, and other leading chargers. Installation includes dedicated circuit, consumer unit upgrade if needed, and full testing. We handle the OZEV grant application where your property qualifies, reducing the cost by up to £350.",
+    body: "We install Ohme, Pod Point, Wallbox, Tesla, Zappi, and other leading chargers. Installation includes dedicated circuit, consumer unit upgrade if needed, and full testing. We handle the OZEV grant application where your property qualifies.",
     whyChoose: [
       "All major charger brands installed and supported",
       "OZEV grant application handled where eligible",
@@ -431,7 +425,7 @@ export const ENERGY_SUBS: SubService[] = [
   {
     slug: "electrical-testing",
     name: "Electrical testing & inspections",
-    lede: "EICR reports, PAT testing, and pre-purchase electrical surveys. Certification filed to your HoWA record.",
+    lede: "EICR reports, PAT testing, and pre-purchase electrical inspections. Certification filed to your Home Record.",
   },
 ];
 
@@ -439,8 +433,9 @@ export const PET_CARE_SUBS: SubService[] = [
   {
     slug: "dog-walking",
     name: "Dog walking",
+    image: "/services/pet/dog-walking.webp",
     lede: "Solo walks by experienced, insured handlers. GPS-tracked routes, photo updates, and behaviour notes after every visit.",
-    body: "Every walk is solo unless you request otherwise. Your handler learns the dog's temperament, favourite routes, and recall level. Walks are GPS-tracked with a live map you can check from your phone. After each walk, you receive a photo, a route summary, and a short behaviour note, all filed to your HoWA record.",
+    body: "Every walk is solo unless you request otherwise. Your handler gets to know the dog's temperament, favourite routes, and recall level. Walks are GPS-tracked with a live map you can check from your phone. After each walk, you receive a photo, a route summary, and a short behaviour note, all filed to your Home Record.",
     whyChoose: [
       "Solo walks, your dog gets full attention, every time",
       "GPS-tracked with live route sharing",
@@ -451,8 +446,8 @@ export const PET_CARE_SUBS: SubService[] = [
       "30-minute or 60-minute solo walk",
       "GPS route tracking and live map",
       "Photo and behaviour update after each walk",
-      "Key access managed through HoWA",
-      "Logged in your HoWA record",
+      "Key access held on your Home Record",
+      "Logged in your Home Record",
     ],
     faq: [
       { q: "Can I track the walk live?", a: "Yes. You'll receive a live GPS link at the start of each walk." },
@@ -462,13 +457,14 @@ export const PET_CARE_SUBS: SubService[] = [
   {
     slug: "dog-sitting",
     name: "Dog sitting",
+    image: "/services/pet/dog-sitting.webp",
     lede: "In-home care while you're away. Feeding, walks, medication, and daily updates. Your home or the sitter's.",
     body: "Our sitters stay in your home or host your dog in theirs, whichever suits the dog's temperament. They follow your instructions for feeding, medication, exercise, and bedtime routine. You receive daily photo updates and can message the sitter directly through the platform. Emergency vet details are held on file.",
     whyChoose: [
       "In-home care, your dog stays in familiar surroundings",
       "Feeding, medication, and routine followed exactly",
       "Daily photo and status updates",
-      "Emergency vet instructions on file in HoWA",
+      "Emergency vet instructions on file in your Home Record",
     ],
     included: [
       "Overnight or daytime care",
@@ -484,36 +480,41 @@ export const PET_CARE_SUBS: SubService[] = [
   },
 ];
 
-export const SERVICE_TRUST_BADGES = [
-  "House & Garden 'The List'",
-  "Guild of Master Craftsmen",
-  "Carbon Neutral Certified",
-  "Fully Insured & Accredited",
-  "Safe Contractor Approved",
-];
+// The universal accreditation set (Guild of Master Craftsmen, Carbon Neutral,
+// Safe Contractor, "The List") was removed: those credentials belong to one
+// business at most and were being applied to every service, which is not true.
+// Per §7.4/§31 we show only real, per-service credentials. Services with no
+// confirmed credential show none rather than a fabricated shared badge, so the
+// default is empty. The three services with a confirmed credential set their
+// own badges inline in index.ts (gardening, window cleaning, cleaning).
+export const SERVICE_TRUST_BADGES: string[] = [];
 
-export const SERVICE_AREAS = [
-  "Chelsea",
+// Coverage is London AND Kent (plus the near Surrey border). Keep the two named
+// groups balanced so the map copy never reads as London-only and put off Kent
+// customers, who are squarely in the patch (BR / DA / TN postcodes).
+export const SERVICE_AREAS_LONDON = [
+  "Notting Hill",
   "Kensington",
   "Fulham",
-  "Hammersmith",
-  "Battersea",
-  "Clapham",
-  "Notting Hill",
-  "Chiswick",
-  "Kingston",
-  "Dulwich",
+  "Brixton",
   "Greenwich",
-  "Blackheath",
-  "Bromley",
-  "Beckenham",
-  "Sevenoaks",
-  "Orpington",
+  "Croydon",
 ];
+
+export const SERVICE_AREAS_KENT = [
+  "Bromley",
+  "Orpington",
+  "Bexley",
+  "Dartford",
+  "Sevenoaks",
+  "Westerham",
+];
+
+export const SERVICE_AREAS = [...SERVICE_AREAS_LONDON, ...SERVICE_AREAS_KENT];
 
 export const SERVICE_FAQ_SHARED = [
   { q: "Are you insured?", a: "Yes. Every team is fully insured, vetted, and accredited. Proof of cover is available on request." },
-  { q: "Do I need to be at the property?", a: "No. Most clients share access instructions or a key code. We text before arrival and file a note to your HoWA record after." },
+  { q: "Do I need to be at the property?", a: "No. Most clients share access instructions or a key code. We text before arrival and file a note to your Home Record after." },
   { q: "How fast can I book?", a: "Usually within a few days for regular services. Urgent one-offs can sometimes be fitted next-day." },
-  { q: "What writes into HoWA?", a: "Every visit is logged: date, team, notes, photographs on request, products used. It compounds into a record of care." },
+  { q: "What's kept in my Home Record?", a: "Every visit is logged: date, team, notes, photographs on request, products used. It compounds into a record of care." },
 ];

@@ -56,6 +56,8 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "cdn.sanity.io" },
       // Shopify image CDN
       { protocol: "https", hostname: "cdn.shopify.com" },
+      // YouTube thumbnails for the Cinema (auto-pulled from the video ID)
+      { protocol: "https", hostname: "i.ytimg.com" },
     ],
   },
   async redirects() {
@@ -64,15 +66,54 @@ const nextConfig: NextConfig = {
       // "Marketplace" is the public label for the Shop.
       { source: "/marketplace", destination: "/shop", permanent: true },
       { source: "/marketplace/:path*", destination: "/shop/:path*", permanent: true },
-      // The House overview hub was retired; the section's de-facto overview is
-      // the About page, so the bare route lands there (301, 2026-06-26).
-      { source: "/the-house", destination: "/the-house/about", permanent: true },
+      // Aug-17 rebuild: /the-house is now the real institution page (doc §15),
+      // so the old bare-route → /the-house/about redirect is removed and the
+      // page serves directly.
       // Companion folded into the free Assistant tier page (2026-06-17)
       { source: "/howa/companion", destination: "/howa/assistant", permanent: true },
       // HoWA+ retired; the consumer continuity tier is now Housekeeper (2026-06-18)
       { source: "/howa/plus", destination: "/howa/housekeeper", permanent: true },
       { source: "/protect/review", destination: "/protect/home-protection", permanent: true },
-      { source: "/insurance", destination: "/protect/insurance", permanent: true },
+      // Aug-17 rebuild: /insurance is now the Insurance & Cover hub (grafted from
+      // the strip-back build), so the old /insurance → /protect/insurance
+      // consolidation is reversed — funnel the old protect page to the hub.
+      { source: "/protect/insurance", destination: "/insurance", permanent: false },
+      // The whole legacy /protect tree is superseded by the grafted insurance
+      // hub — retire it so its old-direction copy ("Housekeeper members" etc.)
+      // is no longer reachable.
+      { source: "/protect", destination: "/insurance", permanent: false },
+      { source: "/protect/home-protection", destination: "/insurance/home-protection", permanent: false },
+      { source: "/protect/:path*", destination: "/insurance", permanent: false },
+
+      // --- Aug-17 rebuild TEMP bridges (permanent:false) ---------------------
+      // The nav + footer now use the doc's canonical routes; until those pages
+      // are built / slugs migrated, bridge them to the existing pages so the
+      // site is fully navigable. These get reversed as each target is built.
+      { source: "/services/gardeners", destination: "/services/gardening", permanent: false },
+      { source: "/services/cleaners", destination: "/services/cleaning", permanent: false },
+      { source: "/services/window-cleaners", destination: "/services/window-cleaning", permanent: false },
+      { source: "/services/repairs-handyman", destination: "/services/handyman", permanent: false },
+      { source: "/services/electrical-energy", destination: "/services/energy", permanent: false },
+      { source: "/services/dog-walkers", destination: "/services/pet-care", permanent: false },
+      { source: "/insurance-and-cover", destination: "/insurance", permanent: false },
+      { source: "/insurance-and-cover/:path*", destination: "/insurance", permanent: false },
+      { source: "/magazine", destination: "/the-hearth", permanent: false },
+      { source: "/magazine/:path*", destination: "/the-hearth", permanent: false },
+      // Aug-17 rebuild: /how-it-works, /house-approved-pro, /help and /my-house
+      // are now real pages (doc §16/§17/§20/§19), so their temp bridges are
+      // removed and the pages serve directly.
+      // HoWA is NOT a product on this site (doc): retire the HoWA product tree
+      // and the old consumer tiers. HoWA survives only as /how-it-works.
+      { source: "/howa", destination: "/how-it-works", permanent: false },
+      { source: "/howa/housekeeper", destination: "/offers", permanent: false },
+      { source: "/howa/steward", destination: "/offers", permanent: false },
+      { source: "/howa/plans", destination: "/offers", permanent: false },
+      { source: "/howa/assistant", destination: "/how-it-works", permanent: false },
+      { source: "/howa/faq", destination: "/how-it-works", permanent: false },
+      { source: "/steward-plans", destination: "/offers", permanent: false },
+      { source: "/house-credit", destination: "/offers", permanent: false },
+      // -----------------------------------------------------------------------
+
       { source: "/press", destination: "/news", permanent: true },
       // Journal renamed to The Hearth (2026-05-14)
       { source: "/journal", destination: "/the-hearth", permanent: true },
@@ -94,12 +135,26 @@ const nextConfig: NextConfig = {
       { source: "/our-story", destination: "/the-house/about", permanent: true },
       { source: "/accreditations", destination: "/the-house/standards", permanent: true },
       { source: "/sustainability", destination: "/the-house/sustainability", permanent: true },
-      { source: "/garden-design", destination: "/design/gardens", permanent: true },
-      { source: "/garden-design-3", destination: "/design/gardens", permanent: true },
-      { source: "/interior-design", destination: "/design/interiors", permanent: true },
-      { source: "/interior-design-2", destination: "/design/interiors", permanent: true },
-      { source: "/interior-design-5", destination: "/design/interiors", permanent: true },
-      { source: "/how-it-works", destination: "/howa/how-it-works", permanent: true },
+      // Aug-17 rebuild: the doc has no Design pillar or /partners page — design
+      // folds into the Interiors + Home & Garden services. Retire /design/* and
+      // /partners into the service pages.
+      { source: "/design/interiors", destination: "/services/interiors", permanent: false },
+      { source: "/design/studios", destination: "/services", permanent: false },
+      { source: "/design", destination: "/services", permanent: false },
+      // /design/gardens stays LIVE as the garden design page (packages), linked
+      // from the homepage design cards. Retire the other /design PAGE routes,
+      // excluding paths that start with "gardens" and any path with a file
+      // extension so static assets under /public/design/* still serve.
+      { source: "/design/:path((?!gardens|.*\\.).+)", destination: "/services", permanent: false },
+      { source: "/partners", destination: "/the-house/about", permanent: false },
+      // Exclude file-extension paths so static assets under /public/partners/*
+      // (e.g. /partners/hero.webp used by the newsletter split) still serve.
+      { source: "/partners/:path((?!.*\\.).+)", destination: "/the-house/about", permanent: false },
+      { source: "/garden-design", destination: "/services/home-and-garden", permanent: true },
+      { source: "/garden-design-3", destination: "/services/home-and-garden", permanent: true },
+      { source: "/interior-design", destination: "/services/interiors", permanent: true },
+      { source: "/interior-design-2", destination: "/services/interiors", permanent: true },
+      { source: "/interior-design-5", destination: "/services/interiors", permanent: true },
       { source: "/join-howa", destination: "/howa", permanent: true },
       { source: "/howa-membership", destination: "/howa/housekeeper", permanent: true },
       { source: "/house-member-subscriptions", destination: "/howa/housekeeper", permanent: true },
@@ -187,12 +242,12 @@ const nextConfig: NextConfig = {
     const OBF = "https://accounts.willowalexander.co.uk https://willowalexander.serviceos.com https://*.serviceos.com";
     const csp = [
       "default-src 'self'",
-      `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://accounts.willowalexander.co.uk https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://www.clarity.ms https://*.clarity.ms https://connect.facebook.net https://s.pinimg.com https://ct.pinterest.com https://challenges.cloudflare.com https://*.sentry.io https://va.vercel-scripts.com https://static.klaviyo.com https://*.klaviyo.com`,
+      `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://accounts.willowalexander.co.uk https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://www.clarity.ms https://*.clarity.ms https://connect.facebook.net https://s.pinimg.com https://ct.pinterest.com https://challenges.cloudflare.com https://www.youtube.com https://s.ytimg.com https://*.sentry.io https://va.vercel-scripts.com https://static.klaviyo.com https://*.klaviyo.com`,
       `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.willowalexander.co.uk`,
       "img-src 'self' data: blob: https:",
       "font-src 'self' data: https:",
-      `connect-src 'self' ${OBF} https://*.sanity.io https://cdn.sanity.io https://*.shopify.com https://*.supabase.co wss://*.supabase.co https://*.upstash.io https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://stats.g.doubleclick.net https://*.g.doubleclick.net https://www.google.com https://www.google.co.uk https://www.clarity.ms https://*.clarity.ms https://*.facebook.com https://ct.pinterest.com https://*.ingest.sentry.io https://vitals.vercel-insights.com https://va.vercel-scripts.com https://a.klaviyo.com https://static.klaviyo.com https://*.klaviyo.com`,
-      `frame-src 'self' ${OBF} https://challenges.cloudflare.com https://www.facebook.com`,
+      `connect-src 'self' ${OBF} https://*.sanity.io https://cdn.sanity.io https://*.shopify.com https://*.supabase.co wss://*.supabase.co https://*.upstash.io https://noembed.com https://www.youtube.com https://s.ytimg.com https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://stats.g.doubleclick.net https://*.g.doubleclick.net https://www.google.com https://www.google.co.uk https://www.clarity.ms https://*.clarity.ms https://*.facebook.com https://ct.pinterest.com https://*.ingest.sentry.io https://vitals.vercel-insights.com https://va.vercel-scripts.com https://a.klaviyo.com https://static.klaviyo.com https://*.klaviyo.com`,
+      `frame-src 'self' ${OBF} https://challenges.cloudflare.com https://www.facebook.com https://www.youtube-nocookie.com https://www.youtube.com`,
       "frame-ancestors 'none'",
       `form-action 'self' ${OBF}`,
       "base-uri 'self'",

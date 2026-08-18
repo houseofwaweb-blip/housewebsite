@@ -116,10 +116,8 @@ export default async function PlanDetailPage({
                   summary: "Where do you operate?",
                   body: (
                     <p>
-                      London and the Home Counties at launch: Chelsea,
-                      Kensington, Fulham, Hammersmith, Battersea, Clapham,
-                      Notting Hill, Chiswick, Kingston, Bromley, Sevenoaks, and
-                      surrounding areas.
+                      London and Kent at launch. Enter your postcode or write to
+                      us to confirm availability for your address.
                     </p>
                   ),
                 },
