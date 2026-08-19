@@ -24,7 +24,7 @@
   z-index: 2;
   margin-bottom: auto;
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(245, 240, 232, 0.7);
@@ -44,7 +44,7 @@
 }
 .heroEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-light);
@@ -54,7 +54,7 @@
 .heroTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(40px, 5.4vw, 76px);
+  font-size: clamp(43px, 5.4vw,79px);
   line-height: 1.05;
   letter-spacing: -0.018em;
   color: var(--color-house-cream);
@@ -63,7 +63,7 @@
 }
 .heroLede {
   font-family: var(--font-sans);
-  font-size: 17px;
+  font-size: 20px;
   line-height: 1.65;
   color: rgba(245, 240, 232, 0.86);
   margin: 0 0 28px;
@@ -78,14 +78,14 @@
 .heroPrice {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(36px, 4vw, 56px);
+  font-size: clamp(39px, 4vw,59px);
   color: var(--color-house-gold-light);
   line-height: 1;
   letter-spacing: -0.012em;
 }
 .heroPriceUnit {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 18px;
   color: rgba(245, 240, 232, 0.7);
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -96,7 +96,7 @@
   display: inline-flex; align-items: center; gap: 10px;
   padding: 14px 28px;
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
@@ -114,7 +114,7 @@
   display: inline-flex; align-items: center; gap: 10px;
   padding: 14px 28px;
   font-family: var(--font-sans);
-  font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+  font-size: 14px; letter-spacing: 0.22em; text-transform: uppercase;
   background: var(--color-house-gold-ink);
   color: var(--color-house-brown);
   border: 1px solid var(--color-house-gold-ink);
@@ -124,7 +124,7 @@
   display: inline-flex; align-items: center; gap: 10px;
   padding: 14px 28px;
   font-family: var(--font-sans);
-  font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+  font-size: 14px; letter-spacing: 0.22em; text-transform: uppercase;
   text-decoration: none;
   background: transparent;
   color: var(--color-house-cream);
@@ -143,7 +143,7 @@
 .bodyInner { max-width: 860px; margin: 0 auto; }
 .bodyCopy {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.75;
   color: rgba(48, 35, 28, 0.85);
   margin: 0 0 40px;
@@ -159,7 +159,7 @@
 .inclusionsTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: 28px;
+  font-size: 31px;
   line-height: 1.1;
   letter-spacing: -0.012em;
   color: var(--color-house-brown);
@@ -176,7 +176,7 @@
   position: relative;
   padding-left: 22px;
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.6;
   color: rgba(48, 35, 28, 0.85);
 }
@@ -202,7 +202,7 @@
 }
 .siblingsEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -212,7 +212,7 @@
 .siblingsTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(26px, 3vw, 38px);
+  font-size: clamp(29px, 3vw,41px);
   line-height: 1.1;
   letter-spacing: -0.012em;
   color: var(--color-house-brown);
@@ -248,7 +248,7 @@
 .siblingBody { display: flex; flex-direction: column; gap: 4px; }
 .siblingTier {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -258,19 +258,19 @@
 .siblingPrice {
   font-family: var(--font-hearth-serif);
   font-weight: 400;
-  font-size: 22px;
+  font-size: 25px;
   color: var(--color-house-brown);
   margin: 0;
   letter-spacing: -0.008em;
 }
 .siblingPrice span {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 18px;
   color: rgba(48, 35, 28, 0.72);
 }
 .siblingLede {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.5;
   color: rgba(48, 35, 28, 0.7);
   margin: 4px 0 0;
@@ -282,7 +282,7 @@
 .siblingsFootLink {
   display: inline-flex; align-items: center; gap: 12px;
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-house-brown);

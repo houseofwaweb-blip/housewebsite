@@ -14,7 +14,7 @@
 }
 .heroEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -32,7 +32,7 @@
 .heroTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(44px, 6vw, 80px);
+  font-size: clamp(47px, 6vw,83px);
   line-height: 1.04;
   letter-spacing: -0.018em;
   color: var(--color-house-brown);
@@ -41,7 +41,7 @@
 .heroTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .heroLede {
   font-family: var(--font-sans);
-  font-size: 17px;
+  font-size: 20px;
   line-height: 1.65;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;

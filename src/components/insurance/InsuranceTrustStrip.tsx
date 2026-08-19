@@ -17,8 +17,8 @@ export function InsuranceTrustStrip() {
       <div className="mx-auto grid max-w-[1120px] gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-4">
         {trust.map((t) => (
           <div key={t.h} className="flex flex-col">
-            <span className="font-sans text-[14.5px] font-semibold tracking-[0.01em] text-house-cream">{t.h}</span>
-            <span className="mt-0.5 font-sans text-[12.5px] leading-[1.45] text-house-cream/70">{t.p}</span>
+            <span className="font-sans text-[16.5px] font-semibold tracking-[0.01em] text-house-cream">{t.h}</span>
+            <span className="mt-0.5 font-sans text-[14.5px] leading-[1.45] text-house-cream/70">{t.p}</span>
           </div>
         ))}
       </div>

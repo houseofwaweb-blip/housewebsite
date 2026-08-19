@@ -43,7 +43,7 @@ const cell: React.CSSProperties = {
   padding: "12px 14px",
   borderBottom: "1px solid rgba(48,35,28,0.12)",
   fontFamily: "var(--font-sans)",
-  fontSize: 14,
+  fontSize: 16,
   lineHeight: 1.5,
   color: "var(--color-house-brown)",
   textAlign: "left",
@@ -61,7 +61,7 @@ export function CookieDisclosureTable() {
                 key={h}
                 style={{
                   ...cell,
-                  fontSize: 11,
+                  fontSize: 13,
                   letterSpacing: "0.14em",
                   textTransform: "uppercase",
                   color: "var(--color-house-stone)",
@@ -84,7 +84,7 @@ export function CookieDisclosureTable() {
                     paddingTop: 22,
                     fontFamily: "var(--font-display)",
                     fontStyle: "italic",
-                    fontSize: 18,
+                    fontSize: 20,
                     color: "var(--color-house-gold-ink)",
                     borderBottom: "none",
                   }}

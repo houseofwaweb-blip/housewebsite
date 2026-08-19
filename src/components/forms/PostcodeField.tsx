@@ -70,7 +70,7 @@ export function PostcodeField({
       <label
         htmlFor={inputId}
         className={cn(
-          "font-sans text-[11px] tracking-[0.2em] uppercase",
+          "font-sans text-[13px] tracking-[0.2em] uppercase",
           dark ? "text-house-cream/70" : "text-house-brown/60",
         )}
       >
@@ -102,7 +102,7 @@ export function PostcodeField({
         <button
           type="submit"
           className={cn(
-            "h-11 px-4 shrink-0 font-sans text-[11px] tracking-[0.16em] uppercase border no-underline",
+            "h-11 px-4 shrink-0 font-sans text-[13px] tracking-[0.16em] uppercase border no-underline",
             "transition-[filter] duration-[var(--t-base)] hover:brightness-110",
             // Primary House button: brown/ink ground, cream type (spec §7.1).
             "bg-house-brown text-house-cream border-house-brown",
@@ -116,7 +116,7 @@ export function PostcodeField({
           id={`${inputId}-error`}
           role="alert"
           className={cn(
-            "font-sans italic text-[13px]",
+            "font-sans italic text-[16px]",
             dark ? "text-house-cream/80" : "text-error",
           )}
         >

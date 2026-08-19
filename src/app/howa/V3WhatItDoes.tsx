@@ -38,11 +38,11 @@ export function V3WhatItDoes() {
       <div className="max-w-[1240px] mx-auto px-6 sm:px-10">
         {/* positioning, said once and plainly */}
         <div className="max-w-[760px] mb-12 lg:mb-14">
-          <h2 className="font-display text-[clamp(28px,3.2vw,46px)] leading-[1.08] tracking-[-0.01em]">
+          <h2 className="font-display text-[clamp(31px,3.2vw,49px)] leading-[1.08] tracking-[-0.01em]">
             Not another home app. The layer that{" "}
             <span className="font-italic-display text-[#c5a960]">knows your home</span> and tells you what to do about it.
           </h2>
-          <p className="mt-5 text-[17px] leading-[1.55] text-[color:var(--color-ink-soft)] max-w-[620px]">
+          <p className="mt-5 text-[20px] leading-[1.55] text-[color:var(--color-ink-soft)] max-w-[620px]">
             Three things you can do the moment you open HoWA. All of it works right now, then try it yourself in the demo just below.
           </p>
         </div>
@@ -55,25 +55,25 @@ export function V3WhatItDoes() {
                 <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[color:var(--color-gold)]/12 text-[color:var(--color-gold-deep)]">
                   {c.icon}
                 </span>
-                <span className="smallcaps inline-flex items-center gap-1.5 rounded-full bg-[color:var(--color-howa-green)]/10 px-2.5 py-1 text-[12px] tracking-[0.14em] text-[color:var(--color-howa-green)]">
+                <span className="smallcaps inline-flex items-center gap-1.5 rounded-full bg-[color:var(--color-howa-green)]/10 px-2.5 py-1 text-[14px] tracking-[0.14em] text-[color:var(--color-howa-green)]">
                   <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--color-howa-green)]" /> Live now
                 </span>
               </div>
-              <h3 className="font-display text-[22px] leading-[1.1]">{c.title}</h3>
+              <h3 className="font-display text-[25px] leading-[1.1]">{c.title}</h3>
               {c.kicker && (
-                <p className="smallcaps mt-1.5 text-[12px] tracking-[0.16em] text-[color:var(--color-gold-deep)]">{c.kicker}</p>
+                <p className="smallcaps mt-1.5 text-[14px] tracking-[0.16em] text-[color:var(--color-gold-deep)]">{c.kicker}</p>
               )}
-              <p className="mt-3 text-[16px] leading-[1.5] text-[color:var(--color-ink-soft)]">{c.body}</p>
+              <p className="mt-3 text-[19px] leading-[1.5] text-[color:var(--color-ink-soft)]">{c.body}</p>
               {c.examples && (
                 <ul className="mt-4 space-y-1.5">
                   {c.examples.map((e) => (
-                    <li key={e} className="font-italic-display text-[16px] leading-[1.3] text-[color:var(--color-ink)]/75">
+                    <li key={e} className="font-italic-display text-[19px] leading-[1.3] text-[color:var(--color-ink)]/75">
                       &ldquo;{e}&rdquo;
                     </li>
                   ))}
                 </ul>
               )}
-              <p className="mt-auto border-t border-[color:var(--color-ink)]/8 pt-4 text-[15px] leading-[1.45] text-[color:var(--color-ink-soft)]/80">
+              <p className="mt-auto border-t border-[color:var(--color-ink)]/8 pt-4 text-[18px] leading-[1.45] text-[color:var(--color-ink-soft)]/80">
                 {c.foot}
               </p>
             </div>

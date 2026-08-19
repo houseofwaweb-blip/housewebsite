@@ -43,22 +43,22 @@ function SecondaryArticle({ article }: { article: HearthArticle }) {
             className="w-full h-auto aspect-[3/2] object-cover transition-all duration-[var(--t-xslow)] ease-out group-hover:scale-[1.02]"
           />
         </div>
-        <span className="inline-block mb-[10px] font-hearth-sans text-[12px] tracking-[0.22em] uppercase text-house-black">
+        <span className="inline-block mb-[10px] font-hearth-sans text-[14px] tracking-[0.22em] uppercase text-house-black">
           {article.categoryLong ?? article.category}
           {article.flag ? (
-            <em className="not-italic ml-1.5 font-hearth-serif italic text-[15px] text-house-stone tracking-normal normal-case">
+            <em className="not-italic ml-1.5 font-hearth-serif italic text-[18px] text-house-stone tracking-normal normal-case">
               {article.flag}
             </em>
           ) : null}
         </span>
-        <h2 className="font-hearth-serif font-medium text-[26px] leading-[1.12] tracking-[-0.005em] text-house-black mb-[10px] transition-colors duration-[var(--t-slow)] ease-out group-hover:text-house-gold-ink">
+        <h2 className="font-hearth-serif font-medium text-[29px] leading-[1.12] tracking-[-0.005em] text-house-black mb-[10px] transition-colors duration-[var(--t-slow)] ease-out group-hover:text-house-gold-ink">
           <HearthTitle title={article.title} em={article.titleEm} />
         </h2>
-        <p className="font-hearth-serif italic text-[16px] leading-[1.5] text-house-stone mb-[10px]">
+        <p className="font-hearth-serif italic text-[19px] leading-[1.5] text-house-stone mb-[10px]">
           {article.dek}
         </p>
-        <p className="mt-auto font-hearth-sans text-[12px] tracking-[0.14em] uppercase text-house-stone">
-          <em className="not-italic font-hearth-serif italic text-[15px] text-house-black normal-case tracking-normal mr-1">
+        <p className="mt-auto font-hearth-sans text-[14px] tracking-[0.14em] uppercase text-house-stone">
+          <em className="not-italic font-hearth-serif italic text-[18px] text-house-black normal-case tracking-normal mr-1">
             {article.author}
           </em>
           · {formattedDate}

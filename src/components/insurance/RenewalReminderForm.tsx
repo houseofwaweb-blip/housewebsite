@@ -76,12 +76,12 @@ export function RenewalReminderForm({
   };
 
   // Mirror the Input primitive so the select lines up with the email field.
-  const selectCls = `w-full border px-4 py-3 font-sans text-[16px] leading-[1.4] outline-none transition-colors ${
+  const selectCls = `w-full border px-4 py-3 font-sans text-[19px] leading-[1.4] outline-none transition-colors focus-visible:outline-offset-2 ${
     dark
-      ? "bg-transparent border-house-cream/30 text-house-cream focus:border-house-cream"
-      : "bg-house-cream border-house-brown/30 text-house-brown focus:border-house-brown"
+      ? "bg-transparent border-house-cream/30 text-house-cream focus:border-house-cream focus-visible:[outline:2px_solid_var(--house-cream)]"
+      : "bg-house-cream border-house-brown/30 text-house-brown focus:border-house-brown focus-visible:[outline:2px_solid_var(--ins-ink)]"
   }`;
-  const labelCls = `font-sans text-[12px] tracking-[0.22em] uppercase ${dark ? "text-house-cream/70" : "text-house-brown/70"}`;
+  const labelCls = `font-sans text-[14px] tracking-[0.22em] uppercase ${dark ? "text-house-cream/70" : "text-house-brown/70"}`;
 
   return (
     // eslint-disable-next-line react-hooks/refs -- react-hook-form's handleSubmit owns its own refs
@@ -104,17 +104,17 @@ export function RenewalReminderForm({
             ))}
           </select>
           {errors.renewalMonth?.message ? (
-            <p className={`font-sans italic text-[16.5px] ${dark ? "text-red-300" : "text-red-700"}`}>{errors.renewalMonth.message}</p>
+            <p className={`font-sans italic text-[18.5px] ${dark ? "text-red-300" : "text-red-700"}`}>{errors.renewalMonth.message}</p>
           ) : null}
         </div>
       </div>
 
-      <label className={`flex items-start gap-2.5 font-sans text-[14.5px] leading-[1.5] ${dark ? "text-white/75" : "text-house-brown/75"}`}>
+      <label className={`flex items-start gap-2.5 font-sans text-[16.5px] leading-[1.5] ${dark ? "text-white/75" : "text-house-brown/75"}`}>
         <input type="checkbox" className="mt-1" {...register("consent")} />
         <span>Email me once, near my renewal. I understand this is not an insurance enquiry and my details are not passed on.</span>
       </label>
       {errors.consent?.message ? (
-        <p className={`font-sans text-[16.5px] ${dark ? "text-red-300" : "text-red-700"}`}>{errors.consent.message}</p>
+        <p className={`font-sans text-[18.5px] ${dark ? "text-red-300" : "text-red-700"}`}>{errors.consent.message}</p>
       ) : null}
 
       <TurnstileField
@@ -125,7 +125,7 @@ export function RenewalReminderForm({
         onExpire={() => setValue("turnstileToken", "")}
       />
       {errors.turnstileToken ? (
-        <p className={`font-sans text-[16.5px] ${dark ? "text-red-300" : "text-red-700"}`}>{errors.turnstileToken.message}</p>
+        <p className={`font-sans text-[18.5px] ${dark ? "text-red-300" : "text-red-700"}`}>{errors.turnstileToken.message}</p>
       ) : null}
 
       {/* Mandated disclosure sits directly above the primary action (spec rule 7 / A5). */}

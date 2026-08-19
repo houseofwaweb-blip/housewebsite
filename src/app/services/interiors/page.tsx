@@ -298,7 +298,7 @@ export default function InteriorsServicePage() {
             “A home that carries you. Not a statement you have to keep up with.”
           </em>
         </p>
-        <p className={s.quoteAttribution}>The House brief · 2025</p>
+        <p className={s.quoteAttribution}>The House</p>
       </section>
 
       {/* 7. Enquiry form — the consultation-led route in (no instant booking) */}

@@ -70,20 +70,12 @@ function mapSanityResults(data: SanitySearchResult): SearchResult[] {
     });
   }
 
-  for (const p of data.partners) {
-    results.push({
-      id: p._id,
-      type: "Partner",
-      title: p.name,
-      excerpt: p.shortBio,
-      href: `/partners/${p.slug}`,
-    });
-  }
+  // Partners are retired (no /partners route tree) — not surfaced in search.
 
   for (const a of data.articles) {
     results.push({
       id: a._id,
-      type: "Journal",
+      type: "The Hearth",
       title: a.title,
       excerpt: a.lede,
       href: `/the-hearth/${a.slug}`,

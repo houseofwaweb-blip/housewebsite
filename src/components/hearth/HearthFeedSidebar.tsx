@@ -20,9 +20,9 @@ export function HearthFeedSidebar({ popular }: { popular?: PopularItem[] }) {
   return (
     <aside className="sticky top-[88px] h-fit">
       <div className="border-t-[3px] border-house-black pt-[14px] mb-10">
-        <h3 className="font-hearth-sans font-medium text-[15px] tracking-[0.24em] uppercase text-house-black mb-[18px]">
+        <h3 className="font-hearth-sans font-medium text-[18px] tracking-[0.24em] uppercase text-house-black mb-[18px]">
           Most Popular
-          <em className="not-italic font-hearth-serif italic text-[15px] tracking-[0.02em] normal-case text-house-stone font-normal ml-1.5">
+          <em className="not-italic font-hearth-serif italic text-[18px] tracking-[0.02em] normal-case text-house-stone font-normal ml-1.5">
             this week
           </em>
         </h3>
@@ -32,14 +32,14 @@ export function HearthFeedSidebar({ popular }: { popular?: PopularItem[] }) {
               key={item.slug}
               className="grid grid-cols-[28px_1fr_72px] gap-3 items-start py-[14px] border-b border-house-brown/10 last:border-b-0"
             >
-              <span className="font-hearth-serif italic text-[28px] leading-none text-house-gold-ink">
+              <span className="font-hearth-serif italic text-[31px] leading-none text-house-gold-ink">
                 {i + 1}
               </span>
               <div className="min-w-0">
-                <span className="block mb-1 font-hearth-sans text-[12px] tracking-[0.22em] uppercase text-house-stone">
+                <span className="block mb-1 font-hearth-sans text-[14px] tracking-[0.22em] uppercase text-house-stone">
                   {item.tag}
                 </span>
-                <h5 className="font-hearth-serif font-medium text-[16px] leading-[1.2] tracking-[-0.005em] text-house-black">
+                <h5 className="font-hearth-serif font-medium text-[19px] leading-[1.2] tracking-[-0.005em] text-house-black">
                   <HearthTitle
                     title={item.title}
                     em={item.titleEm}
@@ -93,13 +93,13 @@ function SidebarNewsletter() {
 
   return (
     <div className="bg-howa-paper p-[20px_20px_24px] border border-house-brown/20">
-      <span className="block mb-[10px] font-hearth-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink">
+      <span className="block mb-[10px] font-hearth-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink">
         The Hearth · Weekly
       </span>
-      <h4 className="font-hearth-serif font-medium text-[22px] leading-[1.15] tracking-[-0.005em] text-house-black mb-2">
+      <h4 className="font-hearth-serif font-medium text-[25px] leading-[1.15] tracking-[-0.005em] text-house-black mb-2">
         A letter <em className="italic font-normal">from the House.</em>
       </h4>
-      <p className="font-hearth-serif italic text-[15px] leading-[1.5] text-house-stone mb-[14px]">
+      <p className="font-hearth-serif italic text-[18px] leading-[1.5] text-house-stone mb-[14px]">
         Our best reading from the week, plus seasonal notes and a standing
         invitation into HoWA. No clutter.
       </p>
@@ -107,7 +107,7 @@ function SidebarNewsletter() {
       {state === "success" ? (
         <p
           role="status"
-          className="font-hearth-serif italic text-[15px] leading-[1.5] text-house-black"
+          className="font-hearth-serif italic text-[18px] leading-[1.5] text-house-black"
         >
           Thank you. The next letter lands on Friday.
         </p>
@@ -128,12 +128,12 @@ function SidebarNewsletter() {
             placeholder="your@email.co.uk"
             autoComplete="email"
             aria-label="Your email"
-            className="flex-1 bg-transparent border-0 outline-none min-w-0 font-hearth-sans text-[15px] px-[14px] py-[11px] text-house-black placeholder:italic placeholder:font-hearth-serif placeholder:text-house-stone"
+            className="flex-1 bg-transparent border-0 outline-none min-w-0 font-hearth-sans text-[18px] px-[14px] py-[11px] text-house-black placeholder:italic placeholder:font-hearth-serif placeholder:text-house-stone"
           />
           <button
             type="submit"
             disabled={state === "submitting" || (!!siteKey && !turnstileToken)}
-            className="shrink-0 bg-house-black text-house-white font-hearth-sans text-[12px] tracking-[0.18em] uppercase px-[14px] py-[11px] border-0 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+            className="shrink-0 bg-house-black text-house-white font-hearth-sans text-[14px] tracking-[0.18em] uppercase px-[14px] py-[11px] border-0 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {state === "submitting" ? "…" : "Sign up"}
           </button>
@@ -152,7 +152,7 @@ function SidebarNewsletter() {
       {state === "error" ? (
         <p
           role="alert"
-          className="mt-2 font-hearth-serif italic text-[15px] text-error"
+          className="mt-2 font-hearth-serif italic text-[18px] text-error"
         >
           Something went wrong. Try again.
         </p>

@@ -13,16 +13,18 @@ import { PoweredByHowa } from "@/components/marketing/PoweredByHowa";
 import { PRIMARY_NAV } from "./navConfig";
 
 /**
- * Mobile menu grouping (spec §6.2): the drawer regroups the six primary panels
- * under five verbs — Do, Protect, Shop, Read, About. Offers folds into Shop
- * (footer col 3 keeps Shop / Magazine / Offers together).
+ * Mobile menu: mirrors the desktop nav exactly — same labels, same order
+ * (Services · Insurance & Cover · Shop · Magazine · Offers · The House) — so the
+ * two navigations read the same. (Earlier this regrouped under verbs; changed
+ * per direction that mobile and desktop must match.)
  */
 const MOBILE_GROUPS: { label: string; panelId: string }[] = [
-  { label: "Do", panelId: "services" },
-  { label: "Protect", panelId: "insurance" },
+  { label: "Services", panelId: "services" },
+  { label: "Insurance & Cover", panelId: "insurance" },
   { label: "Shop", panelId: "shop" },
-  { label: "Read", panelId: "magazine" },
-  { label: "About", panelId: "the-house" },
+  { label: "Magazine", panelId: "magazine" },
+  { label: "Offers", panelId: "offers" },
+  { label: "The House", panelId: "the-house" },
 ];
 
 /**
@@ -101,13 +103,14 @@ export function Header({
         />
       </Link>
 
-      {/* Desktop MegaMenu */}
-      <div className="hidden lg:block flex-1 px-10">
+      {/* Desktop MegaMenu — shown from xl (1280) so the dense nav never overflows
+          on 1024-1279 laptops; below that the mobile menu takes over. */}
+      <div className="hidden xl:block flex-1 px-4">
         <MegaMenu panels={navPanels} dark={dark} />
       </div>
 
       {/* Utility right */}
-      <div className="hidden lg:flex items-center gap-5 shrink-0">
+      <div className="hidden xl:flex items-center gap-4 shrink-0">
         <button
           type="button"
           aria-label="Search the site"
@@ -120,11 +123,16 @@ export function Header({
         >
           Search
         </button>
-        <PoweredByHowa size="compact" href="/how-it-works" dark={dark} />
+        {/* Held until 2xl so the header fits comfortably at 1280-1535. Both
+            remain reachable (Powered by HoWA is in the footer; My House via
+            footer + the mobile menu). */}
+        <span className="hidden 2xl:inline-flex">
+          <PoweredByHowa size="compact" href="/how-it-works" dark={dark} />
+        </span>
         <Link
           href="/my-house"
           className={cn(
-            "font-sans text-[12px] tracking-[0.16em] uppercase no-underline opacity-[0.55] hover:opacity-100",
+            "hidden 2xl:inline-block font-sans text-[12px] tracking-[0.16em] uppercase no-underline opacity-[0.55] hover:opacity-100",
             "transition-opacity duration-[var(--t-base)]",
             dark ? "text-house-cream" : "text-house-brown",
           )}
@@ -151,7 +159,7 @@ export function Header({
 
       {/* Mobile utility cluster — Search + account icons, then the menu trigger
           (spec §6.2). The full-label desktop cluster above stays lg-only. */}
-      <div className="lg:hidden flex items-center gap-1 shrink-0">
+      <div className="xl:hidden flex items-center gap-1 shrink-0">
         <Link
           href="/search"
           aria-label="Search the site"
@@ -203,7 +211,7 @@ export function Header({
           role="dialog"
           aria-modal="true"
           aria-label="Main menu"
-          className="lg:hidden fixed inset-0 z-50 bg-house-cream overflow-y-auto"
+          className="xl:hidden fixed inset-0 z-50 bg-house-cream overflow-y-auto"
         >
           <div className="sticky top-0 flex items-center justify-between px-[5vw] py-3 bg-house-cream border-b border-house-brown/10">
             <Link href="/" onClick={() => setMobileOpen(false)}>
@@ -219,7 +227,7 @@ export function Header({
               type="button"
               aria-label="Close menu"
               onClick={() => setMobileOpen(false)}
-              className="text-[28px] leading-none text-house-brown bg-transparent border-0"
+              className="text-[31px] leading-none text-house-brown bg-transparent border-0"
             >
               ×
             </button>
@@ -232,7 +240,7 @@ export function Header({
               data-ga-event="booking_intent"
               data-ga-cta={stickyCtaLabel}
               onClick={() => setMobileOpen(false)}
-              className="inline-block font-sans text-[15px] tracking-[0.18em] uppercase text-house-cream bg-house-brown px-6 py-4 text-center mb-6 no-underline"
+              className="inline-block font-sans text-[18px] tracking-[0.18em] uppercase text-house-cream bg-house-brown px-6 py-4 text-center mb-6 no-underline"
             >
               {stickyCtaLabel}
             </Link>
@@ -253,8 +261,7 @@ export function Header({
                   seen.add(l.href);
                   return true;
                 });
-              const extraLinks =
-                group.panelId === "shop" ? [{ label: "House Offers", href: "/offers" }] : [];
+              const extraLinks: { label: string; href: string }[] = [];
               return (
                 <div key={group.panelId} className="border-b border-house-brown/10">
                   <button
@@ -263,16 +270,11 @@ export function Header({
                     aria-expanded={expanded}
                     className="w-full flex items-center justify-between py-4 text-left bg-transparent border-0 cursor-pointer"
                   >
-                    <span className="flex items-baseline gap-3">
-                      <span className="font-display text-[22px] text-house-brown">{group.label}</span>
-                      <span className="font-sans text-[11px] tracking-[0.18em] uppercase text-house-brown/40">
-                        {panel.trigger}
-                      </span>
-                    </span>
+                    <span className="font-display text-[22px] text-house-brown">{group.label}</span>
                     <span
                       aria-hidden="true"
                       className={cn(
-                        "font-display text-[24px] text-house-gold-ink",
+                        "font-display text-[27px] text-house-gold-ink",
                         "transition-all duration-[var(--t-slow)] ease-out",
                         expanded && "rotate-45",
                       )}
@@ -307,7 +309,7 @@ export function Header({
                             key={link.href}
                             href={link.href}
                             onClick={() => setMobileOpen(false)}
-                            className="font-sans text-[17px] text-house-brown no-underline"
+                            className="font-sans text-[20px] text-house-brown no-underline"
                           >
                             {link.label}
                           </Link>
@@ -355,7 +357,7 @@ export function Header({
       href={stickyCtaHref}
       data-ga-event="booking_intent"
       data-ga-cta={stickyCtaLabel}
-      className="lg:hidden fixed bottom-0 left-0 right-0 z-30 flex items-center justify-center px-[5vw] py-4 pb-[calc(1rem+env(safe-area-inset-bottom))] bg-house-brown text-house-cream no-underline border-t border-house-gold/30 font-sans text-[13px] tracking-[0.18em] uppercase"
+      className="xl:hidden fixed bottom-0 left-0 right-0 z-30 flex items-center justify-center px-[5vw] py-4 pb-[calc(1rem+env(safe-area-inset-bottom))] bg-house-brown text-house-cream no-underline border-t border-house-gold/30 font-sans text-[16px] tracking-[0.18em] uppercase"
     >
       {stickyCtaLabel}
     </Link>

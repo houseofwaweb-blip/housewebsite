@@ -5,6 +5,8 @@ import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { StateBadge } from "@/components/primitives/StateBadge";
 import { WaitlistMini } from "@/components/marketing/WaitlistMini";
 import wpLongTail from "@/lib/services-data/wp-long-tail.json";
+import { getLocationPage, allLocationSlugs, LOCATION_SERVICES } from "@/lib/services-data/locations";
+import { LocationServiceDetail } from "@/components/marketing/LocationServiceDetail";
 
 /**
  * /services/local/[slug] — locality + task page.
@@ -39,19 +41,22 @@ function entryBySlug(slug: string): LongTailEntry | null {
   return ENTRIES.find((e) => e.slug === slug) ?? null;
 }
 
+/** Tokens that must stay fully uppercase when a slug is title-cased. */
+const ACRONYMS = new Set(["tv", "uk", "diy", "cctv", "uv", "led", "usb"]);
+
+function titleCaseToken(token: string): string {
+  if (!token) return token;
+  if (ACRONYMS.has(token.toLowerCase())) return token.toUpperCase();
+  return token.charAt(0).toUpperCase() + token.slice(1);
+}
+
 function prettyLocation(slug: string): string {
-  return slug
-    .split("-")
-    .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
-    .join(" ");
+  return slug.split("-").map(titleCaseToken).join(" ");
 }
 
 function prettyTask(slug: string | null): string {
   if (!slug) return "";
-  return slug
-    .split("-")
-    .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
-    .join(" ");
+  return slug.split("-").map(titleCaseToken).join(" ");
 }
 
 function prettyService(slug: string): string {
@@ -77,7 +82,11 @@ const LAUNCH_SERVICES = [
 ];
 
 export async function generateStaticParams() {
-  return ENTRIES.map((e) => ({ slug: e.slug }));
+  // New service × town local pages (152) + the legacy WP long-tail catalogue.
+  return [
+    ...allLocationSlugs().map((slug) => ({ slug })),
+    ...ENTRIES.map((e) => ({ slug: e.slug })),
+  ];
 }
 
 export async function generateMetadata({
@@ -86,6 +95,16 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+  // New service × town local pages take priority.
+  const loc = getLocationPage(slug);
+  if (loc) {
+    const { service, town, serviceSlug } = loc;
+    const pcs = town.postcodes.join(", ");
+    return {
+      title: `${service.name} in ${town.name} (${pcs})`,
+      description: `${LOCATION_SERVICES[serviceSlug].verb} in ${town.name} (${pcs}), by House of Willow Alexander's own team. Booked and recorded through HoWA. Request a ${town.name} quote.`,
+    };
+  }
   const entry = entryBySlug(slug);
   if (!entry) return { title: "Page not found" };
   const location = prettyLocation(entry.location);
@@ -93,6 +112,11 @@ export async function generateMetadata({
   return {
     title: taskLine,
     description: `${prettyService(entry.service)}: ${taskLine.toLowerCase()}. ${entry.live ? "Available now from House of Willow Alexander." : "Coming when our team launches in your area. Register interest below."}`,
+    // The live service × town pages (getLocationPage above) are indexable. These
+    // legacy WP long-tail entries are deferred (`live:false`) "coming soon"
+    // doorway pages — noindex until the service actually launches so thin
+    // placeholder content doesn't get indexed. Flip to indexable when live.
+    robots: entry.live ? undefined : { index: false, follow: true },
   };
 }
 
@@ -102,6 +126,10 @@ export default async function LocalServicePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  // New service × town local pages take priority over the legacy catalogue.
+  const loc = getLocationPage(slug);
+  if (loc) return <LocationServiceDetail page={loc} />;
+
   const entry = entryBySlug(slug);
   if (!entry) notFound();
 
@@ -119,7 +147,7 @@ export default async function LocalServicePage({
           ============================================================ */}
       <section className="px-[5vw] pt-[10vh] pb-16 border-b border-house-brown/10">
         <div className="max-w-[960px] mx-auto">
-          <nav aria-label="Breadcrumb" className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown/55 mb-7">
+          <nav aria-label="Breadcrumb" className="font-sans text-[14px] tracking-[0.18em] uppercase text-house-brown/55 mb-7">
             <Link href="/services" className="hover:text-house-brown">Services</Link>
             <span className="mx-2">/</span>
             <Link href={`/services/${entry.service}`} className="hover:text-house-brown">{serviceName}</Link>
@@ -136,11 +164,11 @@ export default async function LocalServicePage({
             )}
           </div>
 
-          <h1 className="em-accent font-display font-medium text-[clamp(40px,5.4vw,72px)] leading-[1.05] tracking-[-0.012em]">
+          <h1 className="em-accent font-display font-medium text-[clamp(43px,5.4vw,75px)] leading-[1.05] tracking-[-0.012em]">
             {taskLine}<span className="text-house-gold-ink">.</span>
           </h1>
 
-          <p className="font-display italic text-[clamp(18px,1.9vw,22px)] leading-[1.5] text-house-brown/80 mt-7 max-w-[44ch]">
+          <p className="font-display italic text-[clamp(21px,1.9vw,25px)] leading-[1.5] text-house-brown/80 mt-7 max-w-[44ch]">
             {entry.live ? (
               <>
                 A specialist {entry.task ? task.toLowerCase() : serviceName.toLowerCase()} job covered by our team in {location}.
@@ -162,12 +190,12 @@ export default async function LocalServicePage({
           <div className="max-w-[960px] mx-auto grid md:grid-cols-[1fr_1.3fr] gap-12 items-start">
             <div>
               <Eyebrow>Be first to hear</Eyebrow>
-              <h2 className="em-accent font-display font-medium text-[clamp(28px,3vw,40px)] leading-[1.1] mt-5">
+              <h2 className="em-accent font-display font-medium text-[clamp(31px,3vw,43px)] leading-[1.1] mt-5">
                 We&apos;ll write when {serviceName.toLowerCase()} <em>opens</em> in {location}.
               </h2>
             </div>
             <div>
-              <p className="font-sans text-[16px] leading-[1.7] text-house-brown/85 mb-6 max-w-[58ch]">
+              <p className="font-sans text-[19px] leading-[1.7] text-house-brown/85 mb-6 max-w-[58ch]">
                 Our handyman team is in setup, not booking yet. Leave your email and
                 we&apos;ll write the moment we&apos;re working in {location}.
               </p>
@@ -190,10 +218,10 @@ export default async function LocalServicePage({
         <div className="max-w-[1080px] mx-auto">
           <header className="text-center max-w-[600px] mx-auto mb-12">
             <Eyebrow>Available in {location} today</Eyebrow>
-            <h2 className="em-accent font-display font-medium text-[clamp(28px,3.2vw,40px)] leading-[1.1] tracking-[-0.005em] mt-5">
+            <h2 className="em-accent font-display font-medium text-[clamp(31px,3.2vw,43px)] leading-[1.1] tracking-[-0.005em] mt-5">
               What the House <em>does</em> cover in {location}.
             </h2>
-            <p className="font-sans text-[16px] leading-[1.7] text-house-brown/72 mt-5">
+            <p className="font-sans text-[19px] leading-[1.7] text-house-brown/72 mt-5">
               Four launch services, each delivered by House of Willow Alexander's own
               teams, each booked and recorded through HoWA.
             </p>
@@ -205,16 +233,16 @@ export default async function LocalServicePage({
                 href={`/services/${svc.slug}`}
                 className="group bg-house-cream p-7 no-underline text-house-brown transition-colors hover:bg-house-cream-dark"
               >
-                <p className="font-sans text-[12px] tracking-[0.32em] uppercase text-house-gold-ink mb-3">
+                <p className="font-sans text-[14px] tracking-[0.32em] uppercase text-house-gold-ink mb-3">
                   Service
                 </p>
-                <h3 className="em-accent font-display font-medium text-[22px] leading-[1.15] mb-3">
+                <h3 className="em-accent font-display font-medium text-[25px] leading-[1.15] mb-3">
                   {svc.name}
                 </h3>
-                <p className="font-sans text-[15px] leading-[1.55] text-house-brown/72 mb-4">
+                <p className="font-sans text-[18px] leading-[1.55] text-house-brown/72 mb-4">
                   {svc.blurb}
                 </p>
-                <p className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-ink border-t border-house-brown/10 pt-3">
+                <p className="font-sans text-[14px] tracking-[0.22em] uppercase text-house-gold-ink border-t border-house-brown/10 pt-3">
                   Available in {location} →
                 </p>
               </Link>
@@ -230,10 +258,10 @@ export default async function LocalServicePage({
         <section className="px-[5vw] py-20 border-b border-house-brown/10">
           <div className="max-w-[760px] mx-auto">
             <Eyebrow>About the job</Eyebrow>
-            <h2 className="em-accent font-display font-medium text-[clamp(28px,3vw,40px)] leading-[1.1] mt-5 mb-7">
+            <h2 className="em-accent font-display font-medium text-[clamp(31px,3vw,43px)] leading-[1.1] mt-5 mb-7">
               {task || serviceName}, <em>properly done.</em>
             </h2>
-            <div className="font-sans text-[16px] leading-[1.75] text-house-brown/85 whitespace-pre-line">
+            <div className="font-sans text-[19px] leading-[1.75] text-house-brown/85 whitespace-pre-line">
               {entry.body}
             </div>
           </div>
@@ -263,11 +291,11 @@ export default async function LocalServicePage({
             },
           ].map((c) => (
             <article key={c.n} className="bg-house-cream p-9">
-              <p className="font-display italic text-[15px] text-house-gold-ink mb-3">{c.n}</p>
-              <h3 className="font-sans font-medium text-[15px] tracking-[0.28em] uppercase text-house-brown mb-3">
+              <p className="font-display italic text-[18px] text-house-gold-ink mb-3">{c.n}</p>
+              <h3 className="font-sans font-medium text-[18px] tracking-[0.28em] uppercase text-house-brown mb-3">
                 {c.h}
               </h3>
-              <p className="font-sans text-[15px] leading-[1.65] text-house-brown/78">
+              <p className="font-sans text-[18px] leading-[1.65] text-house-brown/78">
                 {c.b}
               </p>
             </article>
@@ -280,25 +308,25 @@ export default async function LocalServicePage({
           ============================================================ */}
       <section className="px-[5vw] py-20 bg-house-brown text-house-cream text-center">
         <div className="max-w-[680px] mx-auto">
-          <p className="font-sans text-[12px] tracking-[0.32em] uppercase text-house-gold-light mb-5">
+          <p className="font-sans text-[14px] tracking-[0.32em] uppercase text-house-gold-light mb-5">
             Looking after homes in {location}
           </p>
-          <h2 className="em-accent font-display font-medium text-[clamp(28px,3.4vw,44px)] leading-[1.1]">
+          <h2 className="em-accent font-display font-medium text-[clamp(31px,3.4vw,47px)] leading-[1.1]">
             Step into <em>stewardship.</em>
           </h2>
-          <p className="font-display italic text-[clamp(17px,1.8vw,21px)] leading-[1.5] text-house-cream/85 mt-6">
+          <p className="font-display italic text-[clamp(20px,1.8vw,24px)] leading-[1.5] text-house-cream/85 mt-6">
             Two minutes to book. A lifetime of looking after.
           </p>
           <div className="flex items-center justify-center gap-4 flex-wrap mt-9">
             <Link
               href="#open-booking-form"
-              className="inline-block font-sans text-[15px] tracking-[0.22em] uppercase text-house-brown bg-house-cream border border-house-cream px-7 py-4 no-underline transition-all duration-200 ease-out hover:bg-house-gold hover:border-house-gold"
+              className="inline-block font-sans text-[18px] tracking-[0.22em] uppercase text-house-brown bg-house-cream border border-house-cream px-7 py-4 no-underline transition-all duration-200 ease-out hover:bg-house-gold hover:border-house-gold"
             >
               Book a service
             </Link>
             <Link
               href="/services"
-              className="font-sans text-[15px] tracking-[0.22em] uppercase text-house-cream/85 underline decoration-house-gold-light underline-offset-4 hover:text-house-cream"
+              className="font-sans text-[18px] tracking-[0.22em] uppercase text-house-cream/85 underline decoration-house-gold-light underline-offset-4 hover:text-house-cream"
             >
               All services →
             </Link>

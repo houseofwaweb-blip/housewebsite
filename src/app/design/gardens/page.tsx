@@ -38,7 +38,8 @@ const PLANS = [
   {
     name: "Planting Plans",
     tagline: "Light, soil and aspect, properly read.",
-    price: "Priced on enquiry",
+    price: "from £495",
+    handle: "planting-plans",
     inclusions: [
       "Site survey of light, soil and aspect",
       "Full plant list with seasonal palette",
@@ -50,7 +51,8 @@ const PLANS = [
   {
     name: "Concept Plans",
     tagline: "The whole garden, considered.",
-    price: "Priced on enquiry",
+    price: "from £1,495",
+    handle: "concept-plans",
     inclusions: [
       "Layout design and zoning",
       "Materials palette and hardscape",
@@ -64,7 +66,8 @@ const PLANS = [
   {
     name: "2D & 3D Plans",
     tagline: "Drawn, dimensioned, build-ready.",
-    price: "Priced on enquiry",
+    price: "from £2,995",
+    handle: "2d-3d-plans",
     inclusions: [
       "Fully dimensioned plans",
       "3D renders of key views",
@@ -79,7 +82,8 @@ const PLANS = [
 const SPECIALIST = [
   {
     name: "Lighting Plans",
-    price: "Priced on enquiry",
+    price: "from £395",
+    handle: "lighting-plans",
     body: "A professional lighting layout: fixture map, specification list and circuit guide.",
     image: "/design/gardens/lighting-plans.jpg",
   },
@@ -122,12 +126,14 @@ export default async function GardensPage() {
     inclusions: c.items && c.items.length ? c.items : base?.inclusions ?? [],
     image: pick(c.imageUrl, base?.image ?? ""),
     featured: base?.featured ?? false,
+    handle: (base as { handle?: string } | undefined)?.handle ?? "",
   }));
   const specialistCards = cmsCards(specialist, SPECIALIST, (c, base) => ({
     name: pick(c.title, base?.name ?? ""),
     price: pick(c.value, base?.price ?? ""),
     body: pick(c.body, base?.body ?? ""),
     image: pick(c.imageUrl, base?.image ?? ""),
+    handle: (base as { handle?: string } | undefined)?.handle ?? "",
   }));
 
   return (
@@ -152,10 +158,6 @@ export default async function GardensPage() {
             <div className={s.heroCtas}>
               <Link href={cms(hero, "ctaHref", "#plans")} className={s.btnFilled}>
                 {cms(hero, "ctaLabel", "See the plans")}
-              </Link>
-              <Link href={cms(hero, "cta2Href", "/partners/willow-alexander-gardens")} className={s.btnGhost}>
-                {cms(hero, "cta2Label", "The lead studio")}
-                <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
           </div>
@@ -234,8 +236,10 @@ export default async function GardensPage() {
                     <li key={inc}>{inc}</li>
                   ))}
                 </ul>
-                <Link href="#open-booking-form" className={s.planCta}>
-                  Enquire →
+                {/* Garden plans are Shopify products (own PDP); purchasable ones
+                    link to their product page, the rest fall back to enquiry. */}
+                <Link href={p.handle ? `/shop/${p.handle}` : "#open-booking-form"} className={s.planCta}>
+                  {p.handle ? "View package →" : "Enquire →"}
                 </Link>
               </div>
             </article>
@@ -269,6 +273,14 @@ export default async function GardensPage() {
                 <h3 className={s.specialistName}>{s2.name}</h3>
                 <p className={s.specialistPrice}>{s2.price}</p>
                 <p className={s.specialistBlurb}>{s2.body}</p>
+                {s2.handle ? (
+                  <Link
+                    href={`/shop/${s2.handle}`}
+                    className="mt-4 inline-flex font-sans text-[13px] tracking-[0.16em] uppercase text-house-gold-ink no-underline transition-colors hover:text-house-brown"
+                  >
+                    View package →
+                  </Link>
+                ) : null}
               </div>
             </article>
           ))}

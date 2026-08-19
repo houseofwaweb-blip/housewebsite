@@ -9,7 +9,6 @@ import { StoreOffers } from "@/components/home/StoreOffers";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { DesignShowcase } from "@/components/home/DesignShowcase";
 import { ProofBand } from "@/components/home/ProofBand";
-import { HouseInstitutionStrip } from "@/components/home/HouseInstitutionStrip";
 import { CinemaSpread } from "@/components/home/CinemaSpread";
 
 /**
@@ -95,9 +94,6 @@ export default async function HomePage() {
 
       {/* 6. Proof — spec §7 */}
       <ProofBand />
-
-      {/* 7. HoWA institutional strip */}
-      <HouseInstitutionStrip />
     </>
   );
 }

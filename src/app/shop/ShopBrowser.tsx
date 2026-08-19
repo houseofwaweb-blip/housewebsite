@@ -57,12 +57,12 @@ function FilterSection({
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between py-2.5 bg-transparent border-0 cursor-pointer"
       >
-        <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-ink">
+        <span className="font-sans text-[14px] tracking-[0.2em] uppercase text-house-gold-ink">
           {title}
         </span>
         <span
           aria-hidden="true"
-          className="font-sans text-[16px] leading-none text-house-gold-ink w-4 text-center select-none"
+          className="font-sans text-[19px] leading-none text-house-gold-ink w-4 text-center select-none"
         >
           {open ? "−" : "+"}
         </span>
@@ -95,7 +95,7 @@ function Toggle({
   label: string;
 }) {
   return (
-    <label className="flex items-center gap-2 font-sans text-[15px] text-house-stone cursor-pointer py-1">
+    <label className="flex items-center gap-2 font-sans text-[18px] text-house-stone cursor-pointer py-1">
       <button
         type="button"
         onClick={onToggle}
@@ -252,12 +252,12 @@ export function ShopBrowser({
       >
         {/* Drawer header (mobile only) */}
         <div className="md:hidden flex items-center justify-between mb-4 pb-3 border-b border-house-brown/10">
-          <span className="font-display text-[20px] text-house-brown">Filters</span>
+          <span className="font-display text-[23px] text-house-brown">Filters</span>
           <button
             type="button"
             onClick={() => setDrawerOpen(false)}
             aria-label="Close filters"
-            className="font-sans text-[22px] leading-none text-house-brown bg-transparent border-0 cursor-pointer w-8 h-8"
+            className="font-sans text-[25px] leading-none text-house-brown bg-transparent border-0 cursor-pointer w-8 h-8"
           >
             ×
           </button>
@@ -265,7 +265,7 @@ export function ShopBrowser({
 
         {/* Search */}
         <div className="mb-4">
-          <div className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-ink mb-2">
+          <div className="font-sans text-[14px] tracking-[0.2em] uppercase text-house-gold-ink mb-2">
             Search
           </div>
           <input
@@ -273,7 +273,7 @@ export function ShopBrowser({
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search products"
-            className="w-full px-3 py-2.5 border border-house-brown/15 bg-house-cream font-sans text-[15px] text-house-brown placeholder:text-house-stone focus:border-house-gold focus:outline-none transition-colors duration-[var(--t-base)]"
+            className="w-full px-3 py-2.5 border border-house-brown/15 bg-house-cream font-sans text-[18px] text-house-brown placeholder:text-house-stone focus:border-house-gold focus:outline-none transition-colors duration-[var(--t-base)]"
           />
         </div>
 
@@ -288,9 +288,9 @@ export function ShopBrowser({
                   key={sc.handle}
                   href={`/shop/collections/${sc.handle}`}
                   className={cn(
-                    "text-left py-1.5 font-sans text-[15px] no-underline cursor-pointer transition-all duration-[var(--t-base)]",
+                    "text-left py-1.5 font-sans text-[18px] no-underline cursor-pointer transition-all duration-[var(--t-base)]",
                     "text-house-stone hover:text-house-brown hover:pl-1 max-md:hover:pl-0",
-                    "max-md:px-3 max-md:py-1 max-md:border max-md:border-house-brown/10 max-md:text-[12px]",
+                    "max-md:px-3 max-md:py-1 max-md:border max-md:border-house-brown/10 max-md:text-[14px]",
                   )}
                 >
                   {sc.title}
@@ -308,14 +308,14 @@ export function ShopBrowser({
               type="button"
               onClick={() => setActiveCollections(new Set())}
               className={cn(
-                "text-left py-1.5 font-sans text-[15px] bg-transparent border-0 cursor-pointer transition-all duration-[var(--t-base)]",
-                "max-md:px-3 max-md:py-1 max-md:border max-md:border-house-brown/10 max-md:text-[12px]",
+                "text-left py-1.5 font-sans text-[18px] bg-transparent border-0 cursor-pointer transition-all duration-[var(--t-base)]",
+                "max-md:px-3 max-md:py-1 max-md:border max-md:border-house-brown/10 max-md:text-[14px]",
                 activeCollections.size === 0
                   ? "text-house-gold-ink font-normal max-md:border-house-gold"
                   : "text-house-stone hover:text-house-brown hover:pl-1 max-md:hover:pl-0",
               )}
             >
-              All <span className="text-[12px] text-house-stone ml-1">{products.length}</span>
+              All <span className="text-[14px] text-house-stone ml-1">{products.length}</span>
             </button>
             {collections.map((c) => {
               const subs = SUBS_BY_HANDLE.get(c.handle) ?? [];
@@ -325,14 +325,14 @@ export function ShopBrowser({
                     type="button"
                     onClick={() => setActiveCollections(toggleSet(activeCollections, c.handle))}
                     className={cn(
-                      "w-full text-left py-1.5 font-sans text-[15px] bg-transparent border-0 cursor-pointer transition-all duration-[var(--t-base)]",
-                      "max-md:w-auto max-md:px-3 max-md:py-1 max-md:border max-md:border-house-brown/10 max-md:text-[12px]",
+                      "w-full text-left py-1.5 font-sans text-[18px] bg-transparent border-0 cursor-pointer transition-all duration-[var(--t-base)]",
+                      "max-md:w-auto max-md:px-3 max-md:py-1 max-md:border max-md:border-house-brown/10 max-md:text-[14px]",
                       activeCollections.has(c.handle)
                         ? "text-house-gold-ink font-normal max-md:border-house-gold"
                         : "text-house-stone hover:text-house-brown max-md:hover:pl-0",
                     )}
                   >
-                    {c.title} <span className="text-[12px] text-house-stone ml-1">{c.productCount}</span>
+                    {c.title} <span className="text-[14px] text-house-stone ml-1">{c.productCount}</span>
                   </button>
 
                   {/* Product types — reveal on hover (desktop only) */}
@@ -344,7 +344,7 @@ export function ShopBrowser({
                             <Link
                               key={sub.handle}
                               href={`/shop/collections/${sub.handle}`}
-                              className="py-1 font-sans text-[15px] text-house-stone/80 no-underline hover:text-house-gold-ink transition-colors duration-[var(--t-base)]"
+                              className="py-1 font-sans text-[18px] text-house-stone/80 no-underline hover:text-house-gold-ink transition-colors duration-[var(--t-base)]"
                             >
                               {sub.title}
                             </Link>
@@ -367,7 +367,7 @@ export function ShopBrowser({
               type="button"
               onClick={() => setActiveBrands(new Set())}
               className={cn(
-                "text-left py-1 font-sans text-[15px] bg-transparent border-0 cursor-pointer transition-colors duration-[var(--t-base)]",
+                "text-left py-1 font-sans text-[18px] bg-transparent border-0 cursor-pointer transition-colors duration-[var(--t-base)]",
                 activeBrands.size === 0 ? "text-house-gold-ink" : "text-house-stone hover:text-house-brown",
               )}
             >
@@ -379,11 +379,11 @@ export function ShopBrowser({
                 type="button"
                 onClick={() => setActiveBrands(toggleSet(activeBrands, b.name))}
                 className={cn(
-                  "text-left py-1 font-sans text-[15px] bg-transparent border-0 cursor-pointer transition-colors duration-[var(--t-base)]",
+                  "text-left py-1 font-sans text-[18px] bg-transparent border-0 cursor-pointer transition-colors duration-[var(--t-base)]",
                   activeBrands.has(b.name) ? "text-house-gold-ink" : "text-house-stone hover:text-house-brown",
                 )}
               >
-                {b.name} <span className="text-[12px] text-house-stone ml-1">{b.count}</span>
+                {b.name} <span className="text-[14px] text-house-stone ml-1">{b.count}</span>
               </button>
             ))}
           </div>
@@ -398,7 +398,7 @@ export function ShopBrowser({
                 type="button"
                 onClick={() => setPriceIdx(i)}
                 className={cn(
-                  "text-left py-1 font-sans text-[15px] bg-transparent border-0 cursor-pointer transition-colors duration-[var(--t-base)]",
+                  "text-left py-1 font-sans text-[18px] bg-transparent border-0 cursor-pointer transition-colors duration-[var(--t-base)]",
                   priceIdx === i ? "text-house-gold-ink" : "text-house-stone hover:text-house-brown",
                 )}
               >
@@ -418,7 +418,7 @@ export function ShopBrowser({
           <button
             type="button"
             onClick={clearFilters}
-            className="mt-3 font-sans text-[12px] tracking-[0.14em] uppercase text-house-gold-ink bg-transparent border-0 cursor-pointer border-b border-dotted border-house-gold pb-0.5 hover:border-solid transition-all"
+            className="mt-3 font-sans text-[14px] tracking-[0.14em] uppercase text-house-gold-ink bg-transparent border-0 cursor-pointer border-b border-dotted border-house-gold pb-0.5 hover:border-solid transition-all"
           >
             Clear all filters ×
           </button>
@@ -429,7 +429,7 @@ export function ShopBrowser({
           <button
             type="button"
             onClick={() => setDrawerOpen(false)}
-            className="w-full font-sans text-[12px] tracking-[0.18em] uppercase text-house-cream bg-house-brown border border-house-brown px-6 py-3.5 cursor-pointer transition-colors hover:bg-house-gold hover:text-house-brown hover:border-house-gold"
+            className="w-full font-sans text-[14px] tracking-[0.18em] uppercase text-house-cream bg-house-brown border border-house-brown px-6 py-3.5 cursor-pointer transition-colors hover:bg-house-gold hover:text-house-brown hover:border-house-gold"
           >
             View {filtered.length} {filtered.length === 1 ? "piece" : "pieces"}
           </button>
@@ -440,13 +440,13 @@ export function ShopBrowser({
       <div className="px-[5vw] md:px-8 py-6 pb-16 w-full max-w-[1280px] mx-auto">
         {/* Utility bar */}
         <div className="flex items-center justify-between mb-5">
-          <span className="font-sans text-[15px] text-house-stone">
+          <span className="font-sans text-[18px] text-house-stone">
             {filtered.length} {filtered.length === 1 ? "piece" : "pieces"}
             {hasFilters ? (
               <button
                 type="button"
                 onClick={clearFilters}
-                className="ml-2 font-sans text-[12px] tracking-[0.12em] uppercase text-house-gold-ink bg-transparent border-0 cursor-pointer border-b border-dotted border-house-gold pb-px"
+                className="ml-2 font-sans text-[14px] tracking-[0.12em] uppercase text-house-gold-ink bg-transparent border-0 cursor-pointer border-b border-dotted border-house-gold pb-px"
               >
                 Clear ×
               </button>
@@ -456,7 +456,7 @@ export function ShopBrowser({
             <button
               type="button"
               onClick={() => setDrawerOpen(true)}
-              className="md:hidden inline-flex items-center gap-2 font-sans text-[12px] tracking-[0.14em] uppercase text-house-brown bg-transparent border border-house-brown/20 px-3.5 py-2 cursor-pointer"
+              className="md:hidden inline-flex items-center gap-2 font-sans text-[14px] tracking-[0.14em] uppercase text-house-brown bg-transparent border border-house-brown/20 px-3.5 py-2 cursor-pointer"
             >
               Filters
               {activeFilterCount > 0 ? (
@@ -468,7 +468,7 @@ export function ShopBrowser({
             <select
               value={sortIdx}
               onChange={(e) => setSortIdx(Number(e.target.value))}
-              className="font-sans text-[12px] tracking-[0.1em] uppercase text-house-brown/70 bg-transparent border-0 cursor-pointer focus:outline-none"
+              className="font-sans text-[14px] tracking-[0.1em] uppercase text-house-brown/70 bg-transparent border-0 cursor-pointer focus:outline-none"
             >
               {SORT_OPTIONS.map((o, i) => (
                 <option key={o.label} value={i}>{o.label}</option>
@@ -480,13 +480,13 @@ export function ShopBrowser({
         {/* Products */}
         {filtered.length === 0 ? (
           <div className="py-20 text-center">
-            <p className="font-display italic text-[18px] text-house-stone mb-4">
+            <p className="font-display italic text-[21px] text-house-stone mb-4">
               No products match your filters.
             </p>
             <button
               type="button"
               onClick={clearFilters}
-              className="font-sans text-[12px] tracking-[0.16em] uppercase text-house-gold-ink bg-transparent border-0 cursor-pointer border-b border-dotted border-house-gold pb-0.5"
+              className="font-sans text-[14px] tracking-[0.16em] uppercase text-house-gold-ink bg-transparent border-0 cursor-pointer border-b border-dotted border-house-gold pb-0.5"
             >
               Clear filters
             </button>
@@ -541,13 +541,13 @@ export function ShopBrowser({
                   {/* Maker / brand (spec §12 card), falls back to category
                       only when a product genuinely carries no vendor. Kept at a
                       legible eyebrow size (was 8px — illegible, read as absent). */}
-                  <div className="font-sans text-[11px] tracking-[0.16em] uppercase text-house-stone/70 mb-1">
+                  <div className="font-sans text-[13px] tracking-[0.16em] uppercase text-house-stone/70 mb-1">
                     {(p.brand && p.brand.trim()) || p.collection}
                   </div>
-                  <div className="font-display text-[15px] leading-snug text-house-brown group-hover:text-[var(--house-gold-dark)] transition-colors duration-[var(--t-base)] mb-1">
+                  <div className="font-display text-[18px] leading-snug text-house-brown group-hover:text-[var(--house-gold-dark)] transition-colors duration-[var(--t-base)] mb-1">
                     {p.title}
                   </div>
-                  <div className="font-sans text-[15px] text-house-brown/80">
+                  <div className="font-sans text-[18px] text-house-brown/80">
                     {p.compareAtPrice ? (
                       <>
                         <span className="text-house-stone line-through mr-1.5">
@@ -560,7 +560,7 @@ export function ShopBrowser({
                     )}
                   </div>
                   {/* Delivery / stock status (spec card) */}
-                  <div className="font-sans text-[12px] text-house-stone mt-1.5 flex items-center gap-1.5">
+                  <div className="font-sans text-[14px] text-house-stone mt-1.5 flex items-center gap-1.5">
                     <span
                       aria-hidden
                       className={cn(
@@ -568,7 +568,7 @@ export function ShopBrowser({
                         p.inStock ? "bg-house-gold-ink" : "bg-house-stone/50",
                       )}
                     />
-                    {p.inStock ? "In stock · ready to send" : "Available to order"}
+                    {p.inStock ? "In stock · Available at launch" : "Available at launch"}
                   </div>
                 </div>
                 <Link
@@ -616,8 +616,8 @@ function Pagination({
     }
   }
   const cell =
-    "min-w-[32px] h-[32px] flex items-center justify-center font-sans text-[15px] cursor-pointer transition-colors duration-[var(--t-base)] bg-transparent border-0";
-  const arrow = "px-3 tracking-[0.12em] uppercase text-[12px]";
+    "min-w-[32px] h-[32px] flex items-center justify-center font-sans text-[18px] cursor-pointer transition-colors duration-[var(--t-base)] bg-transparent border-0";
+  const arrow = "px-3 tracking-[0.12em] uppercase text-[14px]";
   return (
     <nav aria-label="Pagination" className="mt-16 flex items-center justify-center gap-1">
       <button
@@ -630,7 +630,7 @@ function Pagination({
       </button>
       {nums.map((n, i) =>
         n === "ellipsis" ? (
-          <span key={`e${i}`} className="min-w-[24px] text-center text-house-stone text-[15px]">…</span>
+          <span key={`e${i}`} className="min-w-[24px] text-center text-house-stone text-[18px]">…</span>
         ) : (
           <button
             key={n}

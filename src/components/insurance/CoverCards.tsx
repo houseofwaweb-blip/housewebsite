@@ -69,9 +69,9 @@ export function CoverCards() {
             />
           </div>
           <div className="flex flex-1 flex-col p-6">
-            <h3 className="font-display text-[22px] leading-[1.15] text-house-black transition-colors group-hover:text-[color:var(--ins-ink)]">{g.heading}</h3>
-            <p className="mt-2 mb-7 font-sans text-[16px] leading-[1.6] text-house-brown/85">{g.body}</p>
-            <span className="mt-auto inline-flex w-fit items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-6 py-3 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] transition-[filter] group-hover:brightness-110">
+            <h3 className="font-display text-[25px] leading-[1.15] text-house-black transition-colors group-hover:text-[color:var(--ins-ink)]">{g.heading}</h3>
+            <p className="mt-2 mb-7 font-sans text-[19px] leading-[1.6] text-house-brown/85">{g.body}</p>
+            <span className="mt-auto inline-flex w-fit items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-6 py-3 font-sans text-[14px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] transition-[filter] group-hover:brightness-110">
               {g.cta} →
             </span>
           </div>

@@ -72,35 +72,35 @@ export function Hero() {
 function HeroCopy() {
   return (
     <div className="max-w-[540px]">
-      <p className="smallcaps text-[15px] tracking-[0.2em] text-[color:var(--color-gold-deep)] mb-4">
+      <p className="smallcaps text-[18px] tracking-[0.2em] text-[color:var(--color-gold-deep)] mb-4">
         The Home Intelligence OS
       </p>
-      <h1 className="font-display text-[clamp(42px,3.4vw,68px)] leading-[0.98] tracking-[-0.015em] text-[color:var(--color-ink)]">
+      <h1 className="font-display text-[clamp(45px,3.4vw,71px)] leading-[0.98] tracking-[-0.015em] text-[color:var(--color-ink)]">
         Your house is
         <br />
         trying to
       </h1>
-      <p className="font-italic-display text-[clamp(42px,3.4vw,68px)] leading-[0.98] text-[#c5a960] mt-2.5">
+      <p className="font-italic-display text-[clamp(45px,3.4vw,71px)] leading-[0.98] text-[#c5a960] mt-2.5">
         tell you something.
       </p>
       <div className="flex items-center gap-3 my-6" aria-hidden>
         <span className="h-px w-12 bg-gradient-to-r from-transparent to-[color:var(--color-gold)]/55" />
         <LeafSprig />
       </div>
-      <p className="text-[18px] leading-[1.55] text-[color:var(--color-ink)]/85 max-w-[400px]">
+      <p className="text-[21px] leading-[1.55] text-[color:var(--color-ink)]/85 max-w-[400px]">
         HoWA gives your home a memory, so you always know what matters,
         what can wait, and what to do next.
       </p>
       <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
         <a
           href="/howa/coming-soon"
-          className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-md bg-[color:var(--color-howa-green)] text-[17px] text-white shadow-[0_4px_14px_-6px_rgba(31,58,43,0.45)] hover:bg-[color:var(--color-howa-green-deep)] transition-colors"
+          className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-md bg-[color:var(--color-howa-green)] text-[20px] text-white shadow-[0_4px_14px_-6px_rgba(31,58,43,0.45)] hover:bg-[color:var(--color-howa-green-deep)] transition-colors"
         >
           Join the waitlist <span aria-hidden>&rarr;</span>
         </a>
         <a
           href="/howa/how-it-works"
-          className="inline-flex items-center gap-1.5 text-[16px] transition-colors rounded-md border border-[color:var(--color-ink)]/30 bg-[#f3ede0]/80 px-5 py-3 backdrop-blur-[2px] text-[color:var(--color-ink)] hover:bg-[#f3ede0] lg:rounded-none lg:border-0 lg:bg-transparent lg:px-0 lg:py-0 lg:backdrop-blur-none lg:text-[color:var(--color-ink-soft)] lg:hover:bg-transparent lg:hover:text-[color:var(--color-ink)]"
+          className="inline-flex items-center gap-1.5 text-[19px] transition-colors rounded-md border border-[color:var(--color-ink)]/30 bg-[#f3ede0]/80 px-5 py-3 backdrop-blur-[2px] text-[color:var(--color-ink)] hover:bg-[#f3ede0] lg:rounded-none lg:border-0 lg:bg-transparent lg:px-0 lg:py-0 lg:backdrop-blur-none lg:text-[color:var(--color-ink-soft)] lg:hover:bg-transparent lg:hover:text-[color:var(--color-ink)]"
         >
           See how it works <span aria-hidden>&rarr;</span>
         </a>
@@ -123,14 +123,14 @@ function Card({ children }: { children: React.ReactNode }) {
 function HomeHealthCard() {
   return (
     <Card>
-      <p className="smallcaps text-[12px] tracking-[0.18em] text-[color:var(--color-ink)] flex items-center gap-1.5">
+      <p className="smallcaps text-[14px] tracking-[0.18em] text-[color:var(--color-ink)] flex items-center gap-1.5">
         <ShieldGlyph /> Home Health
       </p>
-      <p className="text-[15px] text-[color:var(--color-ink-soft)]/75 mt-1 mb-3.5">All systems normal</p>
+      <p className="text-[18px] text-[color:var(--color-ink-soft)]/75 mt-1 mb-3.5">All systems normal</p>
       <div className="flex items-center justify-between gap-3">
         <div className="flex flex-col items-center shrink-0">
           <HomeHealthGauge value={91} size={68} />
-          <span className="smallcaps text-[12px] tracking-[0.16em] text-[color:var(--color-gold-deep)] mt-1.5">Optimal</span>
+          <span className="smallcaps text-[14px] tracking-[0.16em] text-[color:var(--color-gold-deep)] mt-1.5">Optimal</span>
         </div>
         <div className="relative h-[78px] flex-1 max-w-[200px]">
           <Image src="/home-v4/card-graph.webp" alt="" fill sizes="200px" className="object-contain object-right" />
@@ -145,12 +145,12 @@ function LivingRecordCard() {
     <Card>
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="smallcaps text-[12px] tracking-[0.18em] text-[color:var(--color-ink)] flex items-center gap-1.5">
+          <p className="smallcaps text-[14px] tracking-[0.18em] text-[color:var(--color-ink)] flex items-center gap-1.5">
             <LeafGlyph /> Living Record
           </p>
-          <p className="text-[15px] text-[color:var(--color-ink-soft)]/75 mt-1">Updated today</p>
-          <p className="text-[15px] text-[color:var(--color-ink-soft)]/75">08:42</p>
-          <a href="#how" className="inline-flex items-center gap-1 text-[15px] text-[color:var(--color-gold-deep)] mt-3">
+          <p className="text-[18px] text-[color:var(--color-ink-soft)]/75 mt-1">Updated today</p>
+          <p className="text-[18px] text-[color:var(--color-ink-soft)]/75">08:42</p>
+          <a href="#how" className="inline-flex items-center gap-1 text-[18px] text-[color:var(--color-gold-deep)] mt-3">
             View record <span aria-hidden>→</span>
           </a>
         </div>
@@ -166,19 +166,19 @@ function NextActionCard() {
   const items = ["Service boiler", "Clean gutters", "Garden care"];
   return (
     <Card>
-      <p className="smallcaps text-[12px] tracking-[0.18em] text-[color:var(--color-ink)] flex items-center gap-1.5 mb-2">
+      <p className="smallcaps text-[14px] tracking-[0.18em] text-[color:var(--color-ink)] flex items-center gap-1.5 mb-2">
         <ClipboardGlyph /> Next Best Action
       </p>
-      <p className="text-[15px] text-[color:var(--color-ink)]">3 tasks scheduled</p>
-      <p className="text-[15px] text-[color:var(--color-ink-soft)]/70 mb-3">All systems on track</p>
+      <p className="text-[18px] text-[color:var(--color-ink)]">3 tasks scheduled</p>
+      <p className="text-[18px] text-[color:var(--color-ink-soft)]/70 mb-3">All systems on track</p>
       <ul className="space-y-1.5 mb-3">
         {items.map((t) => (
-          <li key={t} className="flex items-center gap-2 text-[15px] text-[color:var(--color-ink-soft)]">
+          <li key={t} className="flex items-center gap-2 text-[18px] text-[color:var(--color-ink-soft)]">
             <CheckGlyph /> {t}
           </li>
         ))}
       </ul>
-      <a href="#how" className="inline-flex items-center gap-1 text-[15px] text-[color:var(--color-gold-deep)]">
+      <a href="#how" className="inline-flex items-center gap-1 text-[18px] text-[color:var(--color-gold-deep)]">
         View plan <span aria-hidden>→</span>
       </a>
     </Card>
@@ -198,8 +198,8 @@ function HeroPhone() {
           {/* header */}
           <div className="flex items-center justify-between px-5 pt-[50px] pb-3">
             <div>
-              <p className="font-display text-[17px] leading-none text-[#1d2a40]">HoWA</p>
-              <p className="mt-1 text-[12px] text-[#1d2a40]/55">Home Overview</p>
+              <p className="font-display text-[20px] leading-none text-[#1d2a40]">HoWA</p>
+              <p className="mt-1 text-[14px] text-[#1d2a40]/55">Home Overview</p>
             </div>
             <span className="flex flex-col gap-[3px]" aria-hidden>
               <span className="block h-px w-[18px] bg-[#1d2a40]/45" />
@@ -218,7 +218,7 @@ function HeroPhone() {
           {/* tab bar */}
           <div className="flex items-center justify-around border-t border-[#1d2a40]/10 bg-[#ece6d8] py-3">
             {["Home", "Timeline", "Record", "Profile"].map((t, i) => (
-              <span key={t} className={"text-[12px] tracking-[0.04em] " + (i === 0 ? "font-semibold text-[color:var(--color-howa-green)]" : "text-[#1d2a40]/45")}>
+              <span key={t} className={"text-[14px] tracking-[0.04em] " + (i === 0 ? "font-semibold text-[color:var(--color-howa-green)]" : "text-[#1d2a40]/45")}>
                 {t}
               </span>
             ))}

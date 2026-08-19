@@ -34,8 +34,8 @@ export function V6HowItWorks() {
 
           {/* heading + the three plain, obvious steps */}
           <div>
-            <p className="smallcaps text-[15px] tracking-[0.18em] text-[color:var(--color-gold-deep)] mb-3">How HoWA works</p>
-            <h2 className="font-display text-[clamp(27px,2.6vw,40px)] leading-[1.05] tracking-[-0.01em]">
+            <p className="smallcaps text-[18px] tracking-[0.18em] text-[color:var(--color-gold-deep)] mb-3">How HoWA works</p>
+            <h2 className="font-display text-[clamp(30px,2.6vw,43px)] leading-[1.05] tracking-[-0.01em]">
               Three simple steps.
               <br />
               <span className="font-italic-display text-[#c5a960]">Then it looks after the rest.</span>
@@ -45,12 +45,12 @@ export function V6HowItWorks() {
               {steps.map((step, i) => (
                 <li key={step.n} className="flex gap-5">
                   <div className="flex flex-col items-center">
-                    <span className="font-display text-[29px] leading-none text-[#c5a960] tabular-nums">{step.n}</span>
+                    <span className="font-display text-[32px] leading-none text-[#c5a960] tabular-nums">{step.n}</span>
                     {i < steps.length - 1 && <span aria-hidden className="mt-2 w-px flex-1 bg-[color:var(--color-gold)]/30" />}
                   </div>
                   <div className={i < steps.length - 1 ? "pb-7" : ""}>
-                    <p className="font-display text-[21px] leading-[1.15] mb-1.5">{step.t}</p>
-                    <p className="text-[16px] leading-[1.55] text-[color:var(--color-ink-soft)] max-w-[360px]">{step.b}</p>
+                    <p className="font-display text-[24px] leading-[1.15] mb-1.5">{step.t}</p>
+                    <p className="text-[19px] leading-[1.55] text-[color:var(--color-ink-soft)] max-w-[360px]">{step.b}</p>
                   </div>
                 </li>
               ))}
@@ -58,7 +58,7 @@ export function V6HowItWorks() {
 
             <Link
               href="/howa/how-it-works"
-              className="mt-9 inline-flex items-center gap-2 rounded-md border border-[color:var(--color-gold)]/45 px-6 py-3 text-[16px] text-[color:var(--color-ink)] hover:border-[color:var(--color-gold-deep)] hover:bg-[color:var(--color-gold)]/8 transition-colors"
+              className="mt-9 inline-flex items-center gap-2 rounded-md border border-[color:var(--color-gold)]/45 px-6 py-3 text-[19px] text-[color:var(--color-ink)] hover:border-[color:var(--color-gold-deep)] hover:bg-[color:var(--color-gold)]/8 transition-colors"
             >
               See how it works <span aria-hidden>→</span>
             </Link>

@@ -21,7 +21,7 @@ export interface ButtonProps
 }
 
 const base =
-  "inline-block border font-sans text-[15px] tracking-[0.16em] uppercase " +
+  "inline-block border font-sans text-[18px] tracking-[0.16em] uppercase " +
   "cursor-pointer transition-all " +
   "duration-[var(--t-med)] ease-[var(--ease-out)] " +
   "disabled:opacity-40 disabled:cursor-not-allowed " +
@@ -29,7 +29,7 @@ const base =
 
 const sizes: Record<Size, string> = {
   md: "px-[26px] py-[13px]",
-  lg: "px-[32px] py-[16px] text-[15px]",
+  lg: "px-[32px] py-[16px] text-[18px]",
 };
 
 const variants: Record<Variant, string> = {

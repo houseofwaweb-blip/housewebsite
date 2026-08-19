@@ -5,12 +5,13 @@ import { useState } from "react";
 /**
  * FilmThumb — a YouTube poster image with graceful fallback.
  *
- * maxresdefault.jpg (1280x720) does not exist for every video: older uploads,
- * shorts and lower-resolution sources never get one, so it 404s and the tile
- * shows an empty placeholder. We step down to sddefault, then hqdefault, both
- * of which YouTube generates for every video. A plain <img> (not next/image)
- * so onError can retry the next resolution. The 4:3 fallbacks carry letterbox
- * bars, but the parent's aspect-video + object-cover crop them away.
+ * Thumbnails render at ~300-400px, so we lead with sddefault.jpg (640x480,
+ * ~40KB) instead of maxresdefault.jpg (1280x720, up to ~1.3MB) — a large
+ * bandwidth saving across a full grid of tiles, with no visible quality loss at
+ * this size. sddefault + hqdefault are both generated for every video (unlike
+ * maxres, which older uploads and shorts never get). A plain <img> (not
+ * next/image) so onError can retry the next resolution. The 4:3 sources carry
+ * letterbox bars, but the parent's aspect-video + object-cover crop them away.
  */
 export function FilmThumb({
   youtubeId,
@@ -26,7 +27,6 @@ export function FilmThumb({
   const chain = poster
     ? [poster]
     : [
-        `https://i.ytimg.com/vi/${youtubeId}/maxresdefault.jpg`,
         `https://i.ytimg.com/vi/${youtubeId}/sddefault.jpg`,
         `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`,
       ];

@@ -49,18 +49,18 @@ function FeedArticle({ article }: { article: HearthArticle }) {
             className="w-full h-auto aspect-[4/3] object-cover transition-all duration-[var(--t-xslow)] ease-out group-hover:scale-[1.02]"
           />
         </div>
-        <span className="inline-block mb-2 font-hearth-sans text-[12px] tracking-[0.22em] uppercase text-house-black">
+        <span className="inline-block mb-2 font-hearth-sans text-[14px] tracking-[0.22em] uppercase text-house-black">
           {article.categoryLong ?? article.category}
           {article.isPremium ? (
-            <span className="ml-1.5 text-house-gold-ink text-[12px] tracking-[0.22em] before:content-['◆'] before:text-[8px] before:mr-[2px]">
+            <span className="ml-1.5 text-house-gold-ink text-[14px] tracking-[0.22em] before:content-['◆'] before:text-[8px] before:mr-[2px]">
               Housekeeper
             </span>
           ) : null}
         </span>
-        <h4 className="font-hearth-serif font-medium text-[22px] leading-[1.15] tracking-[-0.005em] text-house-black mb-2 transition-colors duration-[var(--t-slow)] ease-out group-hover:text-house-gold-ink">
+        <h4 className="font-hearth-serif font-medium text-[25px] leading-[1.15] tracking-[-0.005em] text-house-black mb-2 transition-colors duration-[var(--t-slow)] ease-out group-hover:text-house-gold-ink">
           <HearthTitle title={article.title} em={article.titleEm} />
         </h4>
-        <p className="mt-auto font-hearth-serif italic text-[15px] leading-[1.5] text-house-stone">
+        <p className="mt-auto font-hearth-serif italic text-[18px] leading-[1.5] text-house-stone">
           {article.dek}
         </p>
       </Link>
@@ -79,14 +79,14 @@ export function SectionHead({
 }) {
   return (
     <div className="flex items-baseline justify-between gap-4 mb-7">
-      <h3 className="font-hearth-serif italic font-medium text-[30px] leading-[1.1] tracking-[-0.005em] text-house-black">
+      <h3 className="font-hearth-serif italic font-medium text-[33px] leading-[1.1] tracking-[-0.005em] text-house-black">
         {heading}
         {emText ? <em className="italic text-house-stone"> {emText}</em> : null}
       </h3>
       {viewAllHref ? (
         <Link
           href={viewAllHref}
-          className="font-hearth-sans text-[12px] tracking-[0.2em] uppercase text-house-black no-underline border-b border-house-gold pb-[3px]"
+          className="font-hearth-sans text-[14px] tracking-[0.2em] uppercase text-house-black no-underline border-b border-house-gold pb-[3px]"
         >
           View all →
         </Link>

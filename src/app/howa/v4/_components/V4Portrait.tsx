@@ -16,14 +16,14 @@ export function V4Portrait() {
     <section id="portrait" className="scroll-mt-20 bg-[#fbfaf5] py-16 lg:py-24">
       <div className="mx-auto max-w-[1100px] px-6 sm:px-10">
         <div className="mx-auto max-w-[680px] text-center">
-          <p className="smallcaps mb-3 text-[15px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">The first minute</p>
-          <h2 className="font-display text-[clamp(28px,3.2vw,46px)] leading-[1.08] tracking-[-0.01em]">
+          <p className="smallcaps mb-3 text-[18px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">The first minute</p>
+          <h2 className="font-display text-[clamp(31px,3.2vw,49px)] leading-[1.08] tracking-[-0.01em]">
             Meet your home. <span className="font-italic-display text-[#c5a960]">In sixty seconds.</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-[560px] text-[17px] leading-[1.55] text-[color:var(--color-ink-soft)]">
+          <p className="mx-auto mt-4 max-w-[560px] text-[20px] leading-[1.55] text-[color:var(--color-ink-soft)]">
             Type your address. HoWA introduces your home back to you: age, build, energy, ground, flood, history and a first HoWA Score. No forms. No guessing. The record starts with the house itself.
           </p>
-          <p className="mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-[15px] text-[color:var(--color-ink-soft)]/70">
+          <p className="mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-[18px] text-[color:var(--color-ink-soft)]/70">
             <span>No forms</span><span aria-hidden>·</span><span>No guessing</span><span aria-hidden>·</span><span>Free to start</span>
           </p>
         </div>
@@ -33,16 +33,16 @@ export function V4Portrait() {
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {facts.map((f) => (
               <div key={f.k} className="rounded-xl border border-[color:var(--color-gold)]/20 bg-white p-5">
-                <p className="smallcaps text-[12px] tracking-[0.14em] text-[color:var(--color-gold-deep)]">{f.k}</p>
-                <p className="mt-1 font-display text-[20px] leading-none text-[color:var(--color-ink)]">{f.v}</p>
-                <p className="mt-1.5 text-[15px] leading-snug text-[color:var(--color-ink-soft)]/80">{f.note}</p>
+                <p className="smallcaps text-[14px] tracking-[0.14em] text-[color:var(--color-gold-deep)]">{f.k}</p>
+                <p className="mt-1 font-display text-[23px] leading-none text-[color:var(--color-ink)]">{f.v}</p>
+                <p className="mt-1.5 text-[18px] leading-snug text-[color:var(--color-ink-soft)]/80">{f.note}</p>
               </div>
             ))}
             <div className="flex flex-col justify-center rounded-xl border border-[color:var(--color-gold)]/20 bg-white p-5">
-              <a href="/howa/coming-soon?tier=assistant" className="inline-flex items-center justify-center gap-2 rounded-md bg-[color:var(--color-howa-green)] px-5 py-3 text-[16px] text-white transition-colors hover:bg-[color:var(--color-howa-green-deep)]">
+              <a href="/howa/coming-soon?tier=assistant" className="inline-flex items-center justify-center gap-2 rounded-md bg-[color:var(--color-howa-green)] px-5 py-3 text-[19px] text-white transition-colors hover:bg-[color:var(--color-howa-green-deep)]">
                 Save this record <span aria-hidden>→</span>
               </a>
-              <p className="mt-2 text-center text-[15px] text-[color:var(--color-ink-soft)]/60">Free. The record begins with your address.</p>
+              <p className="mt-2 text-center text-[18px] text-[color:var(--color-ink-soft)]/60">Free. The record begins with your address.</p>
             </div>
           </div>
 
@@ -55,16 +55,16 @@ export function V4Portrait() {
               <div className="flex items-center gap-5">
                 <V4ScoreRing value={62} size={88} stroke={6} />
                 <div>
-                  <p className="smallcaps text-[12px] tracking-[0.18em] text-[#c5a960]">HoWA Score</p>
-                  <p className="font-display text-[26px] leading-tight">62</p>
-                  <p className="text-[15px] text-[#f3ede0]/80">In order, with gaps</p>
+                  <p className="smallcaps text-[14px] tracking-[0.18em] text-[#c5a960]">HoWA Score</p>
+                  <p className="font-display text-[29px] leading-tight">62</p>
+                  <p className="text-[18px] text-[#f3ede0]/80">In order, with gaps</p>
                 </div>
               </div>
-              <p className="mt-4 text-[15px] leading-[1.5] text-[#f3ede0]/75">
+              <p className="mt-4 text-[18px] leading-[1.5] text-[#f3ede0]/75">
                 One number for a house well kept. Provisional from the first portrait, it sharpens as documents, jobs and evidence are added.
               </p>
             </div>
-            <p className="font-mono text-[12px] tracking-[0.06em] text-[color:var(--color-ink-soft)]/50">
+            <p className="font-mono text-[14px] tracking-[0.06em] text-[color:var(--color-ink-soft)]/50">
               ILLUSTRATIVE · LIVE FACTS FROM UK PUBLIC RECORDS WHERE AVAILABLE, CORRECTABLE BY THE HOMEOWNER
             </p>
           </div>

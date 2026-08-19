@@ -17,18 +17,18 @@ export function HouseInstitutionStrip() {
           <p className="font-display text-[1.6rem] leading-[1.1] text-house-cream">
             An institution for the British home.
           </p>
-          <p className="mt-2 font-sans text-[14px] text-house-cream/70">
+          <p className="mt-2 font-sans text-[17px] text-house-cream/70">
             Service, pride and good order.
           </p>
         </div>
 
-        <p className="font-sans text-[15px] leading-relaxed text-house-cream/85 lg:text-center">
+        <p className="font-sans text-[18px] leading-relaxed text-house-cream/85 lg:text-center">
           HoWA powers the booking, Home Record and reminders that help keep useful household information together.
         </p>
 
         <div className="flex flex-col items-start lg:items-end gap-3">
-          <div className="font-sans text-[13px] text-house-cream/70 lg:text-right">
-            <p className="tracking-[0.14em] uppercase text-[11px] text-house-gold">Speak to the House</p>
+          <div className="font-sans text-[16px] text-house-cream/70 lg:text-right">
+            <p className="tracking-[0.14em] uppercase text-[13px] text-house-gold">Speak to the House</p>
             <p className="mt-1">
               <a href="tel:08000478738" className="text-house-cream/85 no-underline hover:text-house-cream">
                 0800 047 8738
@@ -42,7 +42,7 @@ export function HouseInstitutionStrip() {
           </div>
           <Link
             href="/the-house/about"
-            className="font-sans text-[11px] tracking-[0.16em] uppercase text-house-cream bg-house-brown border border-house-brown px-6 py-3 no-underline hover:brightness-125 transition"
+            className="font-sans text-[13px] tracking-[0.16em] uppercase text-house-cream bg-house-brown border border-house-brown px-6 py-3 no-underline hover:brightness-125 transition"
           >
             Explore the House
           </Link>

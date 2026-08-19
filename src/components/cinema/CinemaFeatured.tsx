@@ -84,11 +84,11 @@ export function CinemaFeatured({
         style={{ background: "linear-gradient(to top, rgba(15,12,9,0.85), rgba(15,12,9,0.05) 55%, rgba(15,12,9,0.25))" }}
       />
       <span className="absolute inset-x-0 bottom-0 p-[clamp(20px,4vw,48px)]">
-        <span className="inline-flex items-center gap-2.5 font-sans text-[12px] tracking-[0.22em] uppercase text-house-cream">
-          <span className="flex h-8 w-8 items-center justify-center rounded-full border border-house-cream/70 text-[11px]">▶</span>
+        <span className="inline-flex items-center gap-2.5 font-sans text-[14px] tracking-[0.22em] uppercase text-house-cream">
+          <span className="flex h-8 w-8 items-center justify-center rounded-full border border-house-cream/70 text-[13px]">▶</span>
           Watch · {category}
         </span>
-        <span className="mt-3 block max-w-[24ch] font-display text-[clamp(26px,3.6vw,50px)] leading-[1.05] text-house-cream">
+        <span className="mt-3 block max-w-[24ch] font-display text-[clamp(29px,3.6vw,53px)] leading-[1.05] text-house-cream">
           {title}
         </span>
       </span>

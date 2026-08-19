@@ -49,7 +49,7 @@ export function HeroServiceFinder() {
   return (
     <form onSubmit={onSubmit} className="mt-8 w-full max-w-[520px]">
       <div className="bg-house-white border border-house-brown/15 p-4 sm:p-5 flex flex-col gap-3">
-        <label className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-ink">
+        <label className="font-sans text-[13px] tracking-[0.22em] uppercase text-house-gold-ink">
           What does your home need?
         </label>
         <div className="flex flex-col sm:flex-row gap-3">
@@ -57,7 +57,7 @@ export function HeroServiceFinder() {
             aria-label="Choose a service"
             value={service}
             onChange={(e) => setService(e.target.value)}
-            className="flex-1 min-w-0 h-12 px-3 font-sans text-[15px] text-house-brown bg-house-cream border border-house-brown/20 focus:border-house-gold outline-none"
+            className="flex-1 min-w-0 h-12 px-3 font-sans text-[18px] text-house-brown bg-house-cream border border-house-brown/20 focus:border-house-gold outline-none"
           >
             <option value="">Choose a service</option>
             {LIVE_SERVICES.map((svc) => (
@@ -74,7 +74,7 @@ export function HeroServiceFinder() {
             placeholder="Your postcode"
             value={postcode}
             onChange={(e) => setPostcode(e.target.value)}
-            className="sm:w-[150px] h-12 px-3 font-sans text-[15px] text-house-brown bg-house-cream border border-house-brown/20 focus:border-house-gold outline-none placeholder:text-house-stone/70"
+            className="sm:w-[150px] h-12 px-3 font-sans text-[18px] text-house-brown bg-house-cream border border-house-brown/20 focus:border-house-gold outline-none placeholder:text-house-stone/70"
           />
         </div>
         {/* Primary House button (spec §7.1): brown/ink ground, cream type,
@@ -82,7 +82,7 @@ export function HeroServiceFinder() {
             never a generic transactional CTA colour. */}
         <button
           type="submit"
-          className="h-12 w-full font-sans text-[12px] tracking-[0.18em] uppercase text-house-cream bg-house-brown border border-house-brown transition-[filter] hover:brightness-125"
+          className="h-12 w-full font-sans text-[14px] tracking-[0.18em] uppercase text-house-cream bg-house-brown border border-house-brown transition-[filter] hover:brightness-125"
         >
           See prices &amp; availability
         </button>

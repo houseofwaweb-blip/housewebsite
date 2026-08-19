@@ -13,7 +13,7 @@ export function InsuranceDisclosure({ className = "" }: { className?: string }) 
     <div
       className={`border-l-2 border-[color:var(--ins-ink)] bg-house-cream-dark/50 px-4 py-3 ${className}`}
     >
-      <p className="m-0 font-sans text-[12.5px] leading-[1.55] text-house-brown/80">
+      <p className="m-0 font-sans text-[14.5px] leading-[1.55] text-house-brown/80">
         {DISCLOSURE_TEXT}{" "}
         <Link
           href="/insurance/how-this-works"

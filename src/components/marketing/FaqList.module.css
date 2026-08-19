@@ -21,7 +21,7 @@
   cursor: pointer;
   text-align: left;
   font-family: var(--font-hearth-serif);
-  font-size: clamp(18px, 1.6vw, 22px);
+  font-size: clamp(21px, 1.6vw,25px);
   font-weight: 400;
   line-height: 1.35;
   color: var(--color-house-brown);
@@ -29,7 +29,7 @@
 }
 .faqIcon {
   font-family: var(--font-sans);
-  font-size: 22px;
+  font-size: 25px;
   color: var(--color-house-gold-ink);
   flex-shrink: 0;
   width: 22px;
@@ -46,7 +46,7 @@
 }
 .faqA {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.65;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;

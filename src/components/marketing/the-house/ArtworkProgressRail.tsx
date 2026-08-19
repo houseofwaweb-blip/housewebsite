@@ -115,7 +115,7 @@ export function ArtworkProgressRail() {
                 >
                   <span
                     className={
-                      "font-display italic text-[15px] tabular-nums w-6 text-right transition-colors duration-200 " +
+                      "font-display italic text-[18px] tabular-nums w-6 text-right transition-colors duration-200 " +
                       (isActive
                         ? darkBg
                           ? "text-house-gold-ink"
@@ -142,7 +142,7 @@ export function ArtworkProgressRail() {
                   />
                   <span
                     className={
-                      "font-sans text-[12px] tracking-[0.2em] uppercase transition-colors duration-200 whitespace-nowrap " +
+                      "font-sans text-[14px] tracking-[0.2em] uppercase transition-colors duration-200 whitespace-nowrap " +
                       (isActive
                         ? darkBg
                           ? "text-house-cream font-medium"

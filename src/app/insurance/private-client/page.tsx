@@ -41,20 +41,20 @@ export default function PrivateClient() {
       <section className="px-[5vw] pt-20 pb-12">
         <div className="mx-auto grid max-w-[1120px] items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
           <div>
-            <p className="font-sans text-[12px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">Insurance · Private client & estate</p>
-            <h1 className="mt-4 font-display text-[clamp(32px,5vw,58px)] leading-[1.04] text-house-black">
+            <p className="font-sans text-[14px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">Insurance · Private client & estate</p>
+            <h1 className="mt-4 font-display text-[clamp(35px,5vw,61px)] leading-[1.04] text-house-black">
               A life this considered{" "}<br />
               shouldn&apos;t be insured{" "}<br />
               in separate pieces.
             </h1>
-            <p className="mt-6 max-w-[54ch] font-sans text-[18px] leading-[1.62] text-house-stone">
+            <p className="mt-6 max-w-[54ch] font-sans text-[21px] leading-[1.62] text-house-stone">
               Advised means three things: a named specialist, a real conversation about the house, and a policy built around it rather than around a comparison engine. One estate, one renewal date.
             </p>
-            <p className="mt-5 max-w-[48ch] font-display text-[clamp(18px,2vw,24px)] leading-[1.3] text-house-brown">
+            <p className="mt-5 max-w-[48ch] font-display text-[clamp(21px,2vw,27px)] leading-[1.3] text-house-brown">
               Insurance built around you. Structured properly, managed personally.
             </p>
             <div className="mt-8">
-              <a href="#enquire" className="inline-flex items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110">
+              <a href="#enquire" className="inline-flex items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[14px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110">
                 Speak to a specialist
               </a>
             </div>
@@ -76,8 +76,8 @@ export default function PrivateClient() {
       {/* Speak to a specialist — the conversion surface, on its own */}
       <section id="enquire" className="scroll-mt-24 px-[5vw] pb-14">
         <div className="mx-auto max-w-[680px] border border-house-brown/15 bg-house-white p-7 sm:p-9">
-          <h2 className="font-display text-[26px] leading-tight text-house-black">Speak to a specialist</h2>
-          <p className="mt-2 mb-6 font-sans text-[15px] leading-[1.55] text-house-stone">Five details, and a specialist will call. Nothing about sums insured or your current insurer.</p>
+          <h2 className="font-display text-[29px] leading-tight text-house-black">Speak to a specialist</h2>
+          <p className="mt-2 mb-6 font-sans text-[18px] leading-[1.55] text-house-stone">Five details, and a specialist will call. Nothing about sums insured or your current insurer.</p>
           <InsuranceEnquiryForm enquiryType="private-client" turnstileSiteKey={turnstileSiteKey} sourcePage="/insurance/private-client" />
         </div>
       </section>
@@ -88,8 +88,8 @@ export default function PrivateClient() {
       {/* What can be placed */}
       <section className="px-[5vw] py-12">
         <div className="mx-auto max-w-[1180px]">
-          <h2 className="font-display text-[clamp(22px,2.8vw,34px)] leading-[1.12] text-house-black">The estate, considered as one.</h2>
-          <p className="mb-9 mt-4 max-w-[60ch] font-sans text-[17px] leading-[1.7] text-house-brown/85">
+          <h2 className="font-display text-[clamp(25px,2.8vw,37px)] leading-[1.12] text-house-black">The estate, considered as one.</h2>
+          <p className="mb-9 mt-4 max-w-[60ch] font-sans text-[20px] leading-[1.7] text-house-brown/85">
             Depending on the policy and insurer, much of an estate can sit within one arranged relationship rather than a folder of separate policies. Each of these can often be included:
           </p>
           <ProvenanceLockup className="mb-9" />
@@ -101,9 +101,9 @@ export default function PrivateClient() {
       <section className="px-[5vw] py-12" style={{ background: "var(--color-house-cream-dark)" }}>
         <div className="mx-auto grid max-w-[1120px] items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <div className="max-w-[600px]">
-            <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-[color:var(--ins-ink)]">The difference the House brings</p>
-            <h2 className="mt-3 font-display text-[clamp(22px,2.8vw,34px)] leading-[1.12] text-house-black">A policy built on the house, not a form.</h2>
-            <p className="mt-4 font-sans text-[17px] leading-[1.7] text-house-brown/85">
+            <p className="font-sans text-[14px] tracking-[0.24em] uppercase text-[color:var(--ins-ink)]">The difference the House brings</p>
+            <h2 className="mt-3 font-display text-[clamp(25px,2.8vw,37px)] leading-[1.12] text-house-black">A policy built on the house, not a form.</h2>
+            <p className="mt-4 font-sans text-[20px] leading-[1.7] text-house-brown/85">
               A specialist can only insure a home as well as it is described. That is why the House introduces you to one who takes the time: the lime mortar, the rewire, the chimney lining, the things worth scheduling. Describing those properly is the difference between a home a specialist can price with confidence and one they have to guess at. And because a specialist relationship is ongoing, sums insured and reinstatement costs are reviewed every renewal, not only when a claim forces the question.
             </p>
           </div>
@@ -129,12 +129,12 @@ export default function PrivateClient() {
               { s: "Renewal", l: "Sums insured and reinstatement costs drift over time unless they are reviewed each year." },
             ].map((e) => (
               <div key={e.s}>
-                <p className="font-display text-[clamp(24px,2.8vw,36px)] leading-[1.1] text-house-gold-light">{e.s}</p>
-                <p className="mt-2 font-sans text-[14px] leading-[1.5] text-house-cream/75">{e.l}</p>
+                <p className="font-display text-[clamp(27px,2.8vw,39px)] leading-[1.1] text-house-gold-light">{e.s}</p>
+                <p className="mt-2 font-sans text-[17px] leading-[1.5] text-house-cream/75">{e.l}</p>
               </div>
             ))}
           </div>
-          <p className="mt-6 max-w-[60ch] font-sans text-[16px] leading-[1.6] text-house-cream/85">
+          <p className="mt-6 max-w-[60ch] font-sans text-[19px] leading-[1.6] text-house-cream/85">
             Listed buildings, high-value homes and extended properties are among the categories worst affected by under-insurance, and index-linking alone rarely keeps pace. A specialist sets the figure against the real cost of rebuilding your home.
           </p>
         </div>
@@ -143,13 +143,13 @@ export default function PrivateClient() {
       {/* Process */}
       <section className="border-t border-house-brown/10 px-[5vw] py-12">
         <div className="mx-auto max-w-[880px]">
-          <h2 className="mb-8 font-display text-[clamp(22px,2.8vw,34px)] leading-[1.12] text-house-black">How it works, in four steps.</h2>
+          <h2 className="mb-8 font-display text-[clamp(25px,2.8vw,37px)] leading-[1.12] text-house-black">How it works, in four steps.</h2>
           <ol className="grid list-none gap-x-8 gap-y-8 p-0 sm:grid-cols-2 lg:grid-cols-4">
             {PROCESS.map((s) => (
               <li key={s.n} className="border-t border-house-brown/15 pt-4">
-                <span className="font-display text-[20px] text-[color:var(--ins-ink)]">{s.n}</span>
-                <h3 className="mt-1 font-sans text-[15px] font-semibold text-house-brown">{s.h}</h3>
-                <p className="mt-2 font-sans text-[15px] leading-[1.55] text-house-brown/85">{s.p}</p>
+                <span className="font-display text-[23px] text-[color:var(--ins-ink)]">{s.n}</span>
+                <h3 className="mt-1 font-sans text-[18px] font-semibold text-house-brown">{s.h}</h3>
+                <p className="mt-2 font-sans text-[18px] leading-[1.55] text-house-brown/85">{s.p}</p>
               </li>
             ))}
           </ol>
@@ -159,12 +159,12 @@ export default function PrivateClient() {
       {/* FAQ */}
       <section className="border-t border-house-brown/10 px-[5vw] py-12">
         <div className="mx-auto max-w-[760px]">
-          <h2 className="mb-6 font-display text-[clamp(22px,2.8vw,34px)] leading-[1.12] text-house-black">Before you get in touch.</h2>
+          <h2 className="mb-6 font-display text-[clamp(25px,2.8vw,37px)] leading-[1.12] text-house-black">Before you get in touch.</h2>
           <dl className="space-y-6">
             {FAQ.map((f) => (
               <div key={f.q} className="border-t border-house-brown/12 pt-5">
-                <dt className="font-sans text-[16px] font-semibold text-house-brown">{f.q}</dt>
-                <dd className="mt-2 font-sans text-[16px] leading-[1.65] text-house-brown/85">{f.p}</dd>
+                <dt className="font-sans text-[19px] font-semibold text-house-brown">{f.q}</dt>
+                <dd className="mt-2 font-sans text-[19px] leading-[1.65] text-house-brown/85">{f.p}</dd>
               </div>
             ))}
           </dl>
@@ -174,8 +174,8 @@ export default function PrivateClient() {
       {/* Enquiry repeated at foot */}
       <section id="enquire" className="scroll-mt-20 border-t border-house-brown/10 px-[5vw] py-14" style={{ background: "var(--color-house-cream-dark)" }}>
         <div className="mx-auto max-w-[620px]">
-          <p className="font-sans text-[12px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">Speak to a specialist</p>
-          <h2 className="mt-3 mb-8 font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-black">A conversation about the house.</h2>
+          <p className="font-sans text-[14px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">Speak to a specialist</p>
+          <h2 className="mt-3 mb-8 font-display text-[clamp(27px,3vw,41px)] leading-[1.1] text-house-black">A conversation about the house.</h2>
           <InsuranceEnquiryForm enquiryType="private-client" turnstileSiteKey={turnstileSiteKey} sourcePage="/insurance/private-client" />
         </div>
       </section>

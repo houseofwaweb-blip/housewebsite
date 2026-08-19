@@ -122,7 +122,7 @@ export function InsuranceEnquiryForm({
   };
 
   const selectCls =
-    "w-full border border-house-brown/30 bg-white px-3 py-2.5 text-[16px] text-house-brown outline-none transition-colors focus:border-[color:var(--ins-accent)]";
+    "w-full border border-house-brown/30 bg-white px-3 py-2.5 text-[19px] text-house-brown outline-none transition-colors focus:border-[color:var(--ins-accent)] focus-visible:[outline:2px_solid_var(--ins-ink)] focus-visible:outline-offset-2";
 
   return (
     // eslint-disable-next-line react-hooks/refs -- react-hook-form's handleSubmit owns its own refs
@@ -148,7 +148,7 @@ export function InsuranceEnquiryForm({
           <Input label="Postcode" required autoComplete="postal-code" error={errors.postcode?.message} {...register("postcode")} />
         </div>
         <div className="flex-1">
-          <label htmlFor="ins-cover" className="mb-1.5 block font-sans text-[16.5px] tracking-[0.04em] text-house-brown/70">
+          <label htmlFor="ins-cover" className="mb-1.5 block font-sans text-[18.5px] tracking-[0.04em] text-house-brown/70">
             The cover you need
           </label>
           <select id="ins-cover" className={selectCls} {...register("cover")}>
@@ -162,13 +162,13 @@ export function InsuranceEnquiryForm({
             ))}
           </select>
           {errors.cover?.message ? (
-            <p className="mt-1 font-sans text-[16.5px] text-red-700">{errors.cover.message}</p>
+            <p className="mt-1 font-sans text-[18.5px] text-red-700">{errors.cover.message}</p>
           ) : null}
         </div>
       </div>
       {withProjectStart ? (
         <div>
-          <label htmlFor="ins-project-start" className="mb-1.5 block font-sans text-[16.5px] tracking-[0.04em] text-house-brown/70">
+          <label htmlFor="ins-project-start" className="mb-1.5 block font-sans text-[18.5px] tracking-[0.04em] text-house-brown/70">
             Project start month <span className="text-house-brown/45">(optional)</span>
           </label>
           <select id="ins-project-start" defaultValue="" className={selectCls} {...register("projectStartMonth")}>
@@ -181,19 +181,19 @@ export function InsuranceEnquiryForm({
       ) : null}
 
       <div>
-        <label htmlFor="ins-notes" className="mb-1.5 block font-sans text-[16.5px] tracking-[0.04em] text-house-brown/70">
+        <label htmlFor="ins-notes" className="mb-1.5 block font-sans text-[18.5px] tracking-[0.04em] text-house-brown/70">
           Additional information <span className="text-house-brown/45">(optional)</span>
         </label>
         <textarea
           id="ins-notes"
           rows={3}
           placeholder="Need cover for more than one thing, or anything else we should know? Add it here."
-          className="w-full resize-y border border-house-brown/30 bg-white px-3 py-2.5 text-[16px] leading-[1.5] text-house-brown outline-none transition-colors focus:border-[color:var(--ins-accent)]"
+          className="w-full resize-y border border-house-brown/30 bg-white px-3 py-2.5 text-[19px] leading-[1.5] text-house-brown outline-none transition-colors focus:border-[color:var(--ins-accent)] focus-visible:[outline:2px_solid_var(--ins-ink)] focus-visible:outline-offset-2"
           {...register("additionalInfo")}
         />
       </div>
 
-      <label className="flex items-start gap-2.5 font-sans text-[14.5px] leading-[1.5] text-house-brown/75">
+      <label className="flex items-start gap-2.5 font-sans text-[16.5px] leading-[1.5] text-house-brown/75">
         <input type="checkbox" className="mt-1" {...register("marketingOptIn")} />
         <span>Keep me posted with occasional notes from the House. You can stop any time.</span>
       </label>
@@ -206,7 +206,7 @@ export function InsuranceEnquiryForm({
         onExpire={() => setValue("turnstileToken", "")}
       />
       {errors.turnstileToken ? (
-        <p className="font-sans text-[16.5px] text-red-700">{errors.turnstileToken.message}</p>
+        <p className="font-sans text-[18.5px] text-red-700">{errors.turnstileToken.message}</p>
       ) : null}
 
       {/* Mandated disclosure sits directly above the primary action. */}

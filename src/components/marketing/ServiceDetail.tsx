@@ -2,13 +2,16 @@ import Link from "next/link";
 import fs from "node:fs";
 import path from "node:path";
 import { Accordion } from "@/components/primitives/Accordion";
+import { ScrollCarousel } from "@/components/primitives/ScrollCarousel";
 import { Gallery, type GalleryImage } from "@/components/primitives/Gallery";
-import { basisPhrase, type Service } from "@/lib/services-data";
+import { basisPhrase, serviceEnquiryOptions, type Service } from "@/lib/services-data";
 import s from "./ServiceDetail.module.css";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { EnquiryForm } from "@/components/marketing/EnquiryForm";
 import { ServiceCtaRow } from "@/components/marketing/ServiceCtaRow";
 import { HouseStandardStrip } from "@/components/marketing/HouseStandardStrip";
+import { ServiceWordmark } from "@/components/marketing/ServiceWordmark";
+import { LOCATION_SERVICE_SLUGS, townLinksForService, type LocationServiceSlug } from "@/lib/services-data/locations";
 import { BookingPanel } from "@/components/services/BookingPanel";
 import { buildBookingUrl } from "@/components/booking/postcode";
 import { SERVICEOS_SERVICE_ID } from "@/lib/serviceos-links";
@@ -141,7 +144,7 @@ export function ServiceDetail({
         <div className="mx-auto grid max-w-[1280px] items-start gap-[clamp(28px,4vw,56px)] lg:grid-cols-12">
           {/* Left — copy, proof, still-life (7 cols) */}
           <div className="lg:col-span-7">
-            <nav aria-label="Breadcrumb" className="mb-6 font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink">
+            <nav aria-label="Breadcrumb" className="mb-6 font-sans text-[14px] tracking-[0.24em] uppercase text-house-gold-ink">
               <Link href="/services" className="no-underline text-house-gold-ink hover:text-house-brown">
                 Services
               </Link>
@@ -149,10 +152,14 @@ export function ServiceDetail({
               <span className="text-house-brown/70">{service.name}</span>
             </nav>
 
-            <h1 className="mb-5 font-hearth-serif font-normal text-[clamp(40px,5.4vw,74px)] leading-[1.04] tracking-[-0.018em] text-house-brown [&_em]:italic [&_em]:text-house-gold-ink">
+            {/* Official service wordmark (spec §10) — the Willow Alexander-owned
+                brand behind this service. Renders only where artwork exists. */}
+            <ServiceWordmark slug={service.slug} className="mb-5" />
+
+            <h1 className="mb-5 font-hearth-serif font-normal text-[clamp(43px,5.4vw,77px)] leading-[1.04] tracking-[-0.018em] text-house-brown [&_em]:italic [&_em]:text-house-gold-ink">
               {withEm(service.headline, service.headlineEm)}
             </h1>
-            <p className="mb-6 max-w-[54ch] border-t border-house-brown/15 pt-5 font-sans text-[17px] leading-[1.65] text-house-brown/75">
+            <p className="mb-6 max-w-[54ch] border-t border-house-brown/15 pt-5 font-sans text-[20px] leading-[1.65] text-house-brown/75">
               {service.lede}
             </p>
 
@@ -161,12 +168,12 @@ export function ServiceDetail({
                 source, and there is none wired in yet, so we do not print a figure. */}
             <ul className="m-0 flex flex-wrap gap-x-8 gap-y-3 list-none p-0">
               {fromPrice ? (
-                <li className="font-sans text-[14px] text-house-brown/80">
+                <li className="font-sans text-[17px] text-house-brown/80">
                   <span className="mr-2 text-house-gold-ink" aria-hidden>◆</span>
                   {fromPrice}
                 </li>
               ) : null}
-              <li className="font-sans text-[14px] text-house-brown/80">
+              <li className="font-sans text-[17px] text-house-brown/80">
                 <span className="mr-2 text-house-gold-ink" aria-hidden>◆</span>
                 Serving London and Kent
               </li>
@@ -215,7 +222,7 @@ export function ServiceDetail({
               Everything under <em>{nameLower}.</em>
             </h2>
           </header>
-          <div className={s.subScroller}>
+          <ScrollCarousel className={s.subScroller} ariaLabel={`${nameLower} services`}>
             {service.subServices.map((sub) => {
               const requested = sub.image ?? `/services/photos/${service.slug}/${sub.slug}-hero.webp`;
               const img = fileOr(requested, PLACEHOLDER_HERO);
@@ -237,7 +244,7 @@ export function ServiceDetail({
                 </Link>
               );
             })}
-          </div>
+          </ScrollCarousel>
         </section>
       ) : null}
 
@@ -290,10 +297,10 @@ export function ServiceDetail({
                 }}
               />
               <div className="absolute inset-x-[clamp(24px,4vw,48px)] bottom-[clamp(20px,3vw,32px)] z-20">
-                <p className="font-sans text-[11px] tracking-[0.32em] uppercase text-house-gold-light">
+                <p className="font-sans text-[13px] tracking-[0.32em] uppercase text-house-gold-light">
                   Pricing and frequency
                 </p>
-                <h2 className="mt-2.5 font-hearth-serif text-[clamp(24px,2.8vw,34px)] leading-[1.1] text-house-cream [&_em]:italic [&_em]:text-house-gold-light">
+                <h2 className="mt-2.5 font-hearth-serif text-[clamp(27px,2.8vw,37px)] leading-[1.1] text-house-cream [&_em]:italic [&_em]:text-house-gold-light">
                   How we price <em>{nameLower}.</em>
                 </h2>
               </div>
@@ -307,19 +314,19 @@ export function ServiceDetail({
               >
                 {priced.map((pkg) => (
                   <article key={pkg.slug} className="flex flex-col gap-3 border-t border-house-cream/15 pt-6">
-                    <p className="font-sans text-[11px] tracking-[0.28em] uppercase text-house-gold-light">
+                    <p className="font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-light">
                       How you&apos;re charged
                     </p>
-                    <h3 className="font-hearth-serif text-[clamp(20px,2.2vw,26px)] leading-[1.15] text-house-cream">
+                    <h3 className="font-hearth-serif text-[clamp(23px,2.2vw,29px)] leading-[1.15] text-house-cream">
                       {pkg.name}
                     </h3>
-                    <p className="font-sans text-[20px] font-medium text-house-cream">{basisPhrase(pkg.basis)}</p>
+                    <p className="font-sans text-[23px] font-medium text-house-cream">{basisPhrase(pkg.basis)}</p>
                     {pkg.bestFor ? (
-                      <p className="font-sans text-[14px] text-house-cream/65">Best for {pkg.bestFor}</p>
+                      <p className="font-sans text-[17px] text-house-cream/65">Best for {pkg.bestFor}</p>
                     ) : null}
                     <ul className="m-0 mt-1 flex list-none flex-col gap-2 p-0">
                       {pkg.inclusions.map((inc) => (
-                        <li key={inc} className="flex gap-2.5 font-sans text-[14px] leading-[1.5] text-house-cream/90">
+                        <li key={inc} className="flex gap-2.5 font-sans text-[17px] leading-[1.5] text-house-cream/90">
                           <span
                             aria-hidden="true"
                             className="mt-[0.5em] block h-[5px] w-[5px] shrink-0 rotate-45 bg-house-gold-light"
@@ -330,14 +337,14 @@ export function ServiceDetail({
                     </ul>
                     <a
                       href={pkgCtaHref(pkg.cta)}
-                      className="mt-auto inline-block self-start bg-house-gold px-6 py-3 font-sans text-[11px] tracking-[0.16em] uppercase text-house-brown no-underline transition hover:brightness-110"
+                      className="mt-auto inline-block self-start bg-house-gold px-6 py-3 font-sans text-[13px] tracking-[0.16em] uppercase text-house-brown no-underline transition hover:brightness-110"
                     >
                       {pkgCtaLabel(pkg.cta)}
                     </a>
                   </article>
                 ))}
               </div>
-              <p className="mt-[clamp(24px,3vw,36px)] max-w-[64ch] font-sans text-[15px] leading-[1.65] text-house-cream/75">
+              <p className="mt-[clamp(24px,3vw,36px)] max-w-[64ch] font-sans text-[18px] leading-[1.65] text-house-cream/75">
                 Book a one-off, or set a regular rhythm, weekly, fortnightly or seasonal.
                 There is no subscription to hold; change, pause or stop it whenever you
                 like. Minimum booking values and any extras are shown before you confirm.
@@ -352,7 +359,7 @@ export function ServiceDetail({
         <div className="mx-auto grid max-w-[1180px] items-center gap-10 lg:grid-cols-[1fr_0.85fr] lg:gap-16">
           {/* Copy */}
           <div className="text-house-chalk">
-            <p className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-light">
+            <p className="font-sans text-[13px] tracking-[0.22em] uppercase text-house-gold-light">
               How the visit works
             </p>
             <h2 className="mt-3 font-display text-[clamp(1.9rem,2.8vw,2.8rem)] leading-[1.05] text-house-chalk">
@@ -364,7 +371,7 @@ export function ServiceDetail({
                   <span className="font-display text-[1.5rem] leading-none text-house-gold-light w-9 shrink-0">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="font-sans text-[16px] leading-relaxed text-house-chalk/90">{step}</span>
+                  <span className="font-sans text-[19px] leading-relaxed text-house-chalk/90">{step}</span>
                 </li>
               ))}
             </ol>
@@ -396,18 +403,36 @@ export function ServiceDetail({
         <EnquiryForm
           defaultService={service.slug}
           sourcePage={`/services/${service.slug}`}
-          eyebrow="Request a callback"
-          headline={`Prefer a callback about ${nameLower}?`}
-          body="Leave your number and a little about your home, and the House will call you back, usually within one working day. Or book online in a couple of minutes."
+          eyebrow="Ask the House"
+          headline={`Prefer to ask about ${nameLower} first?`}
+          body="Tell us a little about your home and what you need, and the House will come back to you, usually within one working day. Or book online in a couple of minutes."
+          serviceOptions={serviceEnquiryOptions(service)}
+          baseServiceType={service.slug}
         />
       </div>
 
-      {/* 8. Service area and availability */}
+      {/* 8. Service area — "where we work" + (for launch services) the town
+          links that make the service × town local pages crawlable from here,
+          all in ONE band so it isn't two location sections back to back. */}
       <section className={s.areas}>
         <p className={s.areasEy}>Where we work</p>
         <div className={s.areasList}>
           <span>London and Kent</span>
         </div>
+        {(LOCATION_SERVICE_SLUGS as readonly string[]).includes(service.slug) ? (
+          <ul className="mt-6 flex max-w-[1000px] flex-wrap gap-x-5 gap-y-2.5 list-none p-0">
+            {townLinksForService(service.slug as LocationServiceSlug).map((t) => (
+              <li key={t.href}>
+                <Link
+                  href={t.href}
+                  className="font-sans text-[15px] text-house-cream/70 underline decoration-house-cream/25 underline-offset-4 hover:text-house-cream hover:decoration-house-gold-light"
+                >
+                  {t.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ) : null}
         <p className={s.areasFoot}>
           Outside the area?{" "}
           <Link href="/contact" className={s.areasLink}>Write to us.</Link>{" "}
@@ -446,22 +471,22 @@ export function ServiceDetail({
         </header>
         <div className="mx-auto grid max-w-[1080px] gap-4 md:grid-cols-3">
           <Link href="/services" className="group flex flex-col border border-house-brown/15 bg-house-cream-light p-7 no-underline transition-colors hover:border-house-gold">
-            <p className="mb-2 font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-ink">Service</p>
-            <h3 className="mb-2.5 font-hearth-serif text-[21px] leading-tight text-house-brown">More home and garden care</h3>
-            <p className="mb-6 flex-1 font-sans text-[15px] leading-[1.55] text-house-brown/70">Browse every discipline the House keeps in good order, held to one standard.</p>
-            <span className="font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-ink group-hover:text-house-brown">See all services →</span>
+            <p className="mb-2 font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-ink">Service</p>
+            <h3 className="mb-2.5 font-hearth-serif text-[24px] leading-tight text-house-brown">More home and garden care</h3>
+            <p className="mb-6 flex-1 font-sans text-[18px] leading-[1.55] text-house-brown/70">Browse every discipline the House keeps in good order, held to one standard.</p>
+            <span className="font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-ink group-hover:text-house-brown">See all services →</span>
           </Link>
           <Link href="/insurance" className="group flex flex-col border border-house-brown/15 bg-house-cream-light p-7 no-underline transition-colors hover:border-house-gold">
-            <p className="mb-2 font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-ink">Cover</p>
-            <h3 className="mb-2.5 font-hearth-serif text-[21px] leading-tight text-house-brown">Insurance and cover</h3>
-            <p className="mb-6 flex-1 font-sans text-[15px] leading-[1.55] text-house-brown/70">Cover for the house and everyone who lives in it, a House proposition.</p>
-            <span className="font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-ink group-hover:text-house-brown">Explore cover →</span>
+            <p className="mb-2 font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-ink">Cover</p>
+            <h3 className="mb-2.5 font-hearth-serif text-[24px] leading-tight text-house-brown">Insurance and cover</h3>
+            <p className="mb-6 flex-1 font-sans text-[18px] leading-[1.55] text-house-brown/70">Cover for the house and everyone who lives in it, a House proposition.</p>
+            <span className="font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-ink group-hover:text-house-brown">Explore cover →</span>
           </Link>
           <Link href="/the-hearth" className="group flex flex-col border border-house-brown/15 bg-house-cream-light p-7 no-underline transition-colors hover:border-house-gold">
-            <p className="mb-2 font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-ink">Read</p>
-            <h3 className="mb-2.5 font-hearth-serif text-[21px] leading-tight text-house-brown">From the magazine</h3>
-            <p className="mb-6 flex-1 font-sans text-[15px] leading-[1.55] text-house-brown/70">Guides and ideas for looking after a home and garden, well.</p>
-            <span className="font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-ink group-hover:text-house-brown">Read the Hearth →</span>
+            <p className="mb-2 font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-ink">Read</p>
+            <h3 className="mb-2.5 font-hearth-serif text-[24px] leading-tight text-house-brown">From the magazine</h3>
+            <p className="mb-6 flex-1 font-sans text-[18px] leading-[1.55] text-house-brown/70">Guides and ideas for looking after a home and garden, well.</p>
+            <span className="font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-ink group-hover:text-house-brown">Read the Hearth →</span>
           </Link>
         </div>
       </section>

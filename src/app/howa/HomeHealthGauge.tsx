@@ -75,9 +75,9 @@ export function HomeHealthGauge({
         />
       </svg>
       <div className="absolute inset-0 flex items-center justify-center">
-        <span className="font-display text-[20px] leading-none text-[color:var(--color-ink)] tabular-nums">
+        <span className="font-display text-[23px] leading-none text-[color:var(--color-ink)] tabular-nums">
           {shown}
-          <span className="text-[15px] align-top">%</span>
+          <span className="text-[18px] align-top">%</span>
         </span>
       </div>
     </div>

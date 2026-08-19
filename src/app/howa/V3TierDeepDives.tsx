@@ -102,10 +102,10 @@ function TierCard({ t }: { t: Tier }) {
       <div className="relative aspect-[16/10] w-full">
         <Image src={t.image} alt={`HoWA ${t.name}, the dollhouse.`} fill sizes="(max-width:1024px) 92vw, 46vw" className="object-cover" />
         <div className="absolute left-4 top-1/2 hidden w-[158px] -translate-y-1/2 rounded-md border border-[color:var(--color-gold)]/35 bg-[#faf7f0] px-4 py-3.5 shadow-[0_16px_38px_-16px_rgba(20,15,5,0.5)] sm:block">
-          <p className="smallcaps mb-2.5 text-[12px] tracking-[0.16em] text-[color:var(--color-gold-deep)]">{t.card.title}</p>
+          <p className="smallcaps mb-2.5 text-[14px] tracking-[0.16em] text-[color:var(--color-gold-deep)]">{t.card.title}</p>
           <ul className="space-y-2">
             {t.card.items.map((it) => (
-              <li key={it} className="flex items-center gap-2 text-[15px] leading-[1.2] text-[color:var(--color-ink-soft)]">
+              <li key={it} className="flex items-center gap-2 text-[18px] leading-[1.2] text-[color:var(--color-ink-soft)]">
                 <CheckGlyph color={t.accent} small /> {it}
               </li>
             ))}
@@ -113,17 +113,17 @@ function TierCard({ t }: { t: Tier }) {
         </div>
       </div>
       <div className="flex flex-1 flex-col p-7">
-        <p className="mb-1 font-display text-[19px]" style={{ color: t.accent }}>{t.numeral}</p>
-        <h3 className="font-display text-[clamp(22px,1.8vw,28px)] leading-[1.1] tracking-[-0.005em]">HoWA {t.name}</h3>
-        <p className="smallcaps mb-3 mt-1 text-[12px] tracking-[0.16em]" style={{ color: t.accent }}>{t.price}</p>
-        <p className="mb-3 font-display text-[clamp(19px,1.6vw,24px)] leading-[1.15] text-[color:var(--color-ink)]">{t.title}</p>
-        <p className="mb-4 text-[16px] leading-[1.5] text-[color:var(--color-ink-soft)]">{t.body}</p>
+        <p className="mb-1 font-display text-[22px]" style={{ color: t.accent }}>{t.numeral}</p>
+        <h3 className="font-display text-[clamp(25px,1.8vw,31px)] leading-[1.1] tracking-[-0.005em]">HoWA {t.name}</h3>
+        <p className="smallcaps mb-3 mt-1 text-[14px] tracking-[0.16em]" style={{ color: t.accent }}>{t.price}</p>
+        <p className="mb-3 font-display text-[clamp(22px,1.6vw,27px)] leading-[1.15] text-[color:var(--color-ink)]">{t.title}</p>
+        <p className="mb-4 text-[19px] leading-[1.5] text-[color:var(--color-ink-soft)]">{t.body}</p>
         {t.plus && (
-          <p className="smallcaps mb-2.5 text-[12px] tracking-[0.16em] text-[color:var(--color-ink-soft)]/65">{t.plus}</p>
+          <p className="smallcaps mb-2.5 text-[14px] tracking-[0.16em] text-[color:var(--color-ink-soft)]/65">{t.plus}</p>
         )}
         <ul className="mb-6 space-y-2">
           {t.points.map((p) => (
-            <li key={p} className="flex items-start gap-2.5 text-[16px] leading-[1.4] text-[color:var(--color-ink-soft)]">
+            <li key={p} className="flex items-start gap-2.5 text-[19px] leading-[1.4] text-[color:var(--color-ink-soft)]">
               <span className="mt-1 shrink-0"><CheckGlyph color={t.accent} /></span>
               <span className="flex-1">{p}</span>
             </li>
@@ -131,7 +131,7 @@ function TierCard({ t }: { t: Tier }) {
         </ul>
         <a
           href="/howa/coming-soon"
-          className="mt-auto inline-flex w-fit items-center gap-2 rounded-md px-6 py-3 text-[16px] text-white transition-colors"
+          className="mt-auto inline-flex w-fit items-center gap-2 rounded-md px-6 py-3 text-[19px] text-white transition-colors"
           style={{ background: t.accent }}
         >
           Explore {t.name} <span aria-hidden>→</span>
@@ -150,22 +150,22 @@ function TierWide({ t }: { t: Tier }) {
     >
       <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
         <div className="lg:order-1 lg:col-span-5">
-          <p className="mb-2 font-display text-[21px]" style={{ color: t.accent }}>{t.numeral}</p>
-          <h3 className="mb-1 font-display text-[clamp(23px,2vw,32px)] leading-[1.1] tracking-[-0.005em] text-[#f3ede0]">HoWA {t.name}</h3>
-          <p className="smallcaps mb-3 text-[12px] tracking-[0.16em]" style={{ color: t.accent }}>{t.price}</p>
-          <p className="mb-4 font-display text-[clamp(21px,1.8vw,28px)] leading-[1.15] text-[#f3ede0]">{t.title}</p>
-          <p className="mb-5 max-w-[400px] text-[17px] leading-[1.55] text-[#f3ede0]/80">{t.body}</p>
-          {t.plus && <p className="smallcaps mb-2.5 text-[12px] tracking-[0.16em] text-[#f3ede0]/55">{t.plus}</p>}
-          {t.groupLabel && <p className="smallcaps mb-2.5 text-[12px] tracking-[0.18em]" style={{ color: t.accent }}>{t.groupLabel}</p>}
+          <p className="mb-2 font-display text-[24px]" style={{ color: t.accent }}>{t.numeral}</p>
+          <h3 className="mb-1 font-display text-[clamp(26px,2vw,35px)] leading-[1.1] tracking-[-0.005em] text-[#f3ede0]">HoWA {t.name}</h3>
+          <p className="smallcaps mb-3 text-[14px] tracking-[0.16em]" style={{ color: t.accent }}>{t.price}</p>
+          <p className="mb-4 font-display text-[clamp(24px,1.8vw,31px)] leading-[1.15] text-[#f3ede0]">{t.title}</p>
+          <p className="mb-5 max-w-[400px] text-[20px] leading-[1.55] text-[#f3ede0]/80">{t.body}</p>
+          {t.plus && <p className="smallcaps mb-2.5 text-[14px] tracking-[0.16em] text-[#f3ede0]/55">{t.plus}</p>}
+          {t.groupLabel && <p className="smallcaps mb-2.5 text-[14px] tracking-[0.18em]" style={{ color: t.accent }}>{t.groupLabel}</p>}
           <ul className="mb-6 space-y-2">
             {t.points.map((p) => (
-              <li key={p} className="flex items-start gap-2.5 text-[16px] leading-[1.4] text-[#f3ede0]/85">
+              <li key={p} className="flex items-start gap-2.5 text-[19px] leading-[1.4] text-[#f3ede0]/85">
                 <span className="mt-1 shrink-0"><CheckGlyph color={t.accent} /></span>
                 <span className="flex-1">{p}</span>
               </li>
             ))}
           </ul>
-          <a href="/howa/coming-soon" className="inline-flex items-center gap-2 rounded-md bg-[#c5a960] px-6 py-3 text-[16px] text-[#1d2a40] transition-colors hover:bg-[#d4ba78]">
+          <a href="/howa/coming-soon" className="inline-flex items-center gap-2 rounded-md bg-[#c5a960] px-6 py-3 text-[19px] text-[#1d2a40] transition-colors hover:bg-[#d4ba78]">
             Apply for Steward <span aria-hidden>→</span>
           </a>
         </div>
@@ -173,10 +173,10 @@ function TierWide({ t }: { t: Tier }) {
           <div className="relative aspect-[4/3] w-full">
             <Image src={t.image} alt={`HoWA ${t.name}, the dollhouse.`} fill sizes="(max-width:1024px) 92vw, 55vw" className="rounded-md object-cover" />
             <div className="absolute left-4 top-1/2 hidden w-[166px] -translate-y-1/2 rounded-md border border-[color:var(--color-gold)]/35 bg-[#faf7f0] px-4 py-4 shadow-[0_16px_38px_-16px_rgba(20,15,5,0.5)] sm:block lg:left-6">
-              <p className="smallcaps mb-2.5 text-[12px] tracking-[0.16em] text-[color:var(--color-gold-deep)]">{t.card.title}</p>
+              <p className="smallcaps mb-2.5 text-[14px] tracking-[0.16em] text-[color:var(--color-gold-deep)]">{t.card.title}</p>
               <ul className="space-y-2">
                 {t.card.items.map((it) => (
-                  <li key={it} className="flex items-center gap-2 text-[15px] leading-[1.25] text-[color:var(--color-ink-soft)]">
+                  <li key={it} className="flex items-center gap-2 text-[18px] leading-[1.25] text-[color:var(--color-ink-soft)]">
                     <CheckGlyph color={t.accent} small /> {it}
                   </li>
                 ))}

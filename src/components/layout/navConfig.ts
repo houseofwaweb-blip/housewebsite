@@ -57,10 +57,10 @@ const SERVICE_CATEGORIES: {
   { title: "Home & garden", href: "/services/home-and-garden", colour: "var(--service-home-garden)", subs: [] },
   {
     title: "Design",
-    href: "/services/interiors",
+    href: "/design",
     colour: "var(--house-brown)",
     subs: [
-      { label: "Interior design", href: "/services/interiors" },
+      { label: "Interior design", href: "/design/interiors" },
       { label: "Garden design", href: "/design/gardens" },
     ],
   },
@@ -109,7 +109,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
           { label: "Electrical & energy", href: "/services/energy", colour: "var(--service-energy)" },
           { label: "Dog walking & pet care", href: "/services/pet-care", colour: "var(--service-dog-walkers)" },
           { label: "Home & garden", href: "/services/home-and-garden", colour: "var(--service-home-garden)" },
-          { label: "Interior design", href: "/services/interiors", colour: "var(--house-brown)" },
+          { label: "Interior design", href: "/design/interiors", colour: "var(--house-brown)" },
           { label: "Garden design", href: "/design/gardens", colour: "var(--service-gardeners)" },
         ],
       },
@@ -239,7 +239,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
   {
     id: "the-house",
     trigger: "The House",
-    triggerHref: "/the-house/about",
+    triggerHref: "/the-house",
     groups: [
       {
         heading: "What we stand for",

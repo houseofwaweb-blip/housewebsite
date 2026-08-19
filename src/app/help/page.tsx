@@ -114,7 +114,7 @@ export default function HelpPage() {
           <p
             style={{
               fontFamily: sans,
-              fontSize: 11,
+              fontSize: 13,
               letterSpacing: "0.32em",
               textTransform: "uppercase",
               color: goldDark,
@@ -201,7 +201,7 @@ export default function HelpPage() {
               <p
                 style={{
                   fontFamily: sans,
-                  fontSize: 15,
+                  fontSize: 17,
                   lineHeight: 1.6,
                   color: "rgba(48, 35, 28, 0.78)",
                   margin: "0 0 20px",
@@ -215,7 +215,7 @@ export default function HelpPage() {
                     key={t}
                     style={{
                       fontFamily: sans,
-                      fontSize: 15,
+                      fontSize: 17,
                       lineHeight: 1.5,
                       color: brown,
                       padding: "10px 0",
@@ -243,7 +243,7 @@ export default function HelpPage() {
                     background: "transparent",
                     color: brown,
                     fontFamily: sans,
-                    fontSize: 12,
+                    fontSize: 14,
                     fontWeight: 600,
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
@@ -285,7 +285,7 @@ export default function HelpPage() {
           <p
             style={{
               fontFamily: sans,
-              fontSize: 17,
+              fontSize: 19,
               lineHeight: 1.6,
               color: "rgba(48, 35, 28, 0.82)",
               margin: "0 auto 32px",
@@ -305,7 +305,7 @@ export default function HelpPage() {
               background: brown,
               color: "var(--color-house-chalk)",
               fontFamily: sans,
-              fontSize: 13,
+              fontSize: 15,
               fontWeight: 600,
               letterSpacing: "0.14em",
               textTransform: "uppercase",

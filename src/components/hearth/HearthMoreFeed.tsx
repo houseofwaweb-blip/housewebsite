@@ -54,14 +54,14 @@ function MoreArticle({ article }: { article: HearthArticle }) {
             className="w-full h-auto aspect-[4/5] object-cover transition-all duration-[var(--t-xslow)] ease-out group-hover:scale-[1.02]"
           />
         </div>
-        <span className="block mb-2 font-hearth-sans text-[12px] tracking-[0.22em] uppercase text-house-black">
+        <span className="block mb-2 font-hearth-sans text-[14px] tracking-[0.22em] uppercase text-house-black">
           {article.categoryLong ?? article.category}
         </span>
-        <h4 className="font-hearth-serif font-medium text-[19px] leading-[1.15] tracking-[-0.005em] text-house-black mb-1.5 transition-colors duration-[var(--t-slow)] ease-out group-hover:text-house-gold-ink">
+        <h4 className="font-hearth-serif font-medium text-[22px] leading-[1.15] tracking-[-0.005em] text-house-black mb-1.5 transition-colors duration-[var(--t-slow)] ease-out group-hover:text-house-gold-ink">
           <HearthTitle title={article.title} em={article.titleEm} />
         </h4>
-        <p className="mt-auto font-hearth-sans text-[12px] tracking-[0.14em] uppercase text-house-stone">
-          <em className="not-italic font-hearth-serif italic text-[15px] text-house-black normal-case tracking-normal mr-1">
+        <p className="mt-auto font-hearth-sans text-[14px] tracking-[0.14em] uppercase text-house-stone">
+          <em className="not-italic font-hearth-serif italic text-[18px] text-house-black normal-case tracking-normal mr-1">
             {article.author}
           </em>
           · {formattedDate}

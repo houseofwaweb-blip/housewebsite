@@ -129,10 +129,10 @@ export function MegaMenu({
   return (
     <nav
       aria-label="Primary"
-      className={cn("relative", className)}
+      className={className}
       onMouseLeave={softHide}
     >
-      <ul className="flex items-center gap-8 list-none m-0 p-0">
+      <ul className="flex items-center gap-5 list-none m-0 p-0">
         {panels.map((panel) => {
           const isOpen = openId === panel.id;
           return (
@@ -167,14 +167,18 @@ export function MegaMenu({
             onMouseEnter={clearHide}
             onMouseLeave={() => setOpenId(null)}
             className={cn(
-              "absolute left-0 right-0 top-full z-30 bg-white border border-house-brown/10 border-t-0 overflow-hidden",
+              // Anchored to the full-width sticky <header> (the nav is no longer
+              // `relative`), so the panel spans the viewport and the multi-column
+              // content has room without shifting off-screen.
+              "absolute left-0 right-0 top-full z-30 bg-white border-y border-house-brown/10 overflow-hidden",
               "transition-[max-height,opacity,padding] ease-out",
               "[transition-duration:var(--t-xslow),var(--t-slow),var(--t-xslow)]",
               isOpen
-                ? cn(panel.twoLevel ? "max-h-[560px]" : "max-h-[520px]", "opacity-100 px-[40px] pt-[28px] pb-[40px] pointer-events-auto")
-                : "max-h-0 opacity-0 px-[40px] py-0 pointer-events-none",
+                ? cn(panel.twoLevel ? "max-h-[760px]" : "max-h-[640px]", "opacity-100 px-[5vw] pt-[28px] pb-[36px] pointer-events-auto")
+                : "max-h-0 opacity-0 px-[5vw] py-0 pointer-events-none",
             )}
           >
+            <div className="mx-auto w-full max-w-[1360px]">
             {panel.twoLevel ? (
               <TwoLevelMegaPanel data={panel.twoLevel} isOpen={isOpen} />
             ) : (
@@ -196,7 +200,7 @@ export function MegaMenu({
                         <li key={link.href}>
                           <Link
                             href={link.href}
-                            className="group inline-flex items-center font-sans text-[12px] tracking-[0.14em] uppercase text-house-brown no-underline transition-[color,padding-left] duration-[var(--t-base)] ease-out hover:text-house-gold-ink hover:pl-[4px]"
+                            className="group inline-flex items-center font-sans text-[14px] tracking-[0.14em] uppercase text-house-brown no-underline transition-[color,padding-left] duration-[var(--t-base)] ease-out hover:text-house-gold-ink hover:pl-[4px]"
                           >
                             {link.colour ? (
                               <span
@@ -232,6 +236,7 @@ export function MegaMenu({
               ) : null}
             </div>
             )}
+            </div>
           </div>
         );
       })}
@@ -253,8 +258,8 @@ function MegaTrigger({
   dark?: boolean;
 }) {
   const classes = cn(
-    "group/trigger relative inline-block py-2 px-0 bg-transparent border-0",
-    "font-sans text-[12px] tracking-[0.18em] uppercase cursor-pointer",
+    "group/trigger relative inline-block py-2 px-0 bg-transparent border-0 whitespace-nowrap",
+    "font-sans text-[12px] tracking-[0.09em] uppercase cursor-pointer",
     "transition-colors duration-[var(--t-slow)] ease-out",
     dark
       ? "text-house-cream hover:text-house-gold-light"
@@ -327,7 +332,7 @@ function TwoLevelMegaPanel({ data, isOpen }: { data: TwoLevelMega; isOpen: boole
               <Link
                 href={c.href}
                 className={cn(
-                  "group flex items-center justify-between py-[6px] font-sans text-[12px] tracking-[0.12em] uppercase no-underline transition-colors duration-[var(--t-base)]",
+                  "group flex items-center justify-between py-[6px] font-sans text-[14px] tracking-[0.12em] uppercase no-underline transition-colors duration-[var(--t-base)]",
                   i === active ? "text-house-gold-ink" : "text-house-brown hover:text-house-gold-ink",
                 )}
               >
@@ -337,7 +342,7 @@ function TwoLevelMegaPanel({ data, isOpen }: { data: TwoLevelMega; isOpen: boole
                   ) : null}
                   {c.title}
                 </span>
-                <span aria-hidden="true" className={cn("text-[15px] transition-opacity duration-[var(--t-base)]", i === active ? "opacity-100" : "opacity-0")}>→</span>
+                <span aria-hidden="true" className={cn("text-[18px] transition-opacity duration-[var(--t-base)]", i === active ? "opacity-100" : "opacity-0")}>→</span>
               </Link>
             </li>
           ))}
@@ -360,7 +365,7 @@ function TwoLevelMegaPanel({ data, isOpen }: { data: TwoLevelMega; isOpen: boole
                 <li key={s.href}>
                   <Link
                     href={s.href}
-                    className="group inline-flex font-sans text-[15px] text-house-brown no-underline transition-[color,padding-left] duration-[var(--t-base)] ease-out hover:text-house-gold-ink hover:pl-[4px]"
+                    className="group inline-flex font-sans text-[14px] text-house-brown no-underline transition-[color,padding-left] duration-[var(--t-base)] ease-out hover:text-house-gold-ink hover:pl-[4px]"
                   >
                     {s.label}
                   </Link>
@@ -368,7 +373,7 @@ function TwoLevelMegaPanel({ data, isOpen }: { data: TwoLevelMega; isOpen: boole
               ))}
             </ul>
           ) : (
-            <Link href={cat.href} className="font-display italic text-[16px] text-house-stone no-underline hover:text-house-gold-ink">
+            <Link href={cat.href} className="font-display italic text-[14px] text-house-stone no-underline hover:text-house-gold-ink">
               Browse all {cat.title} →
             </Link>
           )}
@@ -400,7 +405,7 @@ function TwoLevelMegaPanel({ data, isOpen }: { data: TwoLevelMega; isOpen: boole
                         </div>
                       ) : null}
                       {data.featured.heading ? (
-                        <div className="font-display text-[15px] leading-[1.25]">{data.featured.heading}</div>
+                        <div className="font-display text-[18px] leading-[1.25]">{data.featured.heading}</div>
                       ) : null}
                     </div>
                   </>
@@ -432,7 +437,7 @@ function TwoLevelMegaPanel({ data, isOpen }: { data: TwoLevelMega; isOpen: boole
             <Link
               key={f.href}
               href={f.href}
-              className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline hover:text-house-gold-ink transition-colors duration-[var(--t-base)]"
+              className="font-sans text-[14px] tracking-[0.18em] uppercase text-house-brown no-underline hover:text-house-gold-ink transition-colors duration-[var(--t-base)]"
             >
               {f.label}
               {f.description ? (
@@ -466,7 +471,7 @@ function PreviewBlock({ preview }: { preview: NonNullable<MegaPanel["preview"]> 
             {preview.tag}
           </div>
         ) : null}
-        <h5 className="font-display text-[16px] font-medium leading-[1.25] m-0">
+        <h5 className="font-display text-[19px] font-medium leading-[1.25] m-0">
           {preview.heading}
         </h5>
       </div>

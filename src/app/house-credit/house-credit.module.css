@@ -12,7 +12,7 @@
 .heroInner { max-width: 720px; margin: 0 auto; }
 .heroEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -22,7 +22,7 @@
 .heroTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(48px, 6.4vw, 88px);
+  font-size: clamp(51px, 6.4vw,91px);
   line-height: 1.04;
   letter-spacing: -0.018em;
   color: var(--color-house-brown);
@@ -31,7 +31,7 @@
 .heroTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .heroLede {
   font-family: var(--font-sans);
-  font-size: 17px;
+  font-size: 20px;
   line-height: 1.65;
   color: rgba(48, 35, 28, 0.72);
   margin: 0 auto;
@@ -51,7 +51,7 @@
 }
 .featuresEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -61,7 +61,7 @@
 .featuresTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(28px, 3.4vw, 44px);
+  font-size: clamp(31px, 3.4vw,47px);
   line-height: 1.1;
   letter-spacing: -0.012em;
   color: var(--color-house-brown);
@@ -87,7 +87,7 @@
   font-family: var(--font-hearth-serif);
   font-style: italic;
   font-weight: 400;
-  font-size: 22px;
+  font-size: 25px;
   line-height: 1.2;
   color: var(--color-house-brown);
   margin: 0;
@@ -113,7 +113,7 @@
 }
 .exampleEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -123,7 +123,7 @@
 .exampleTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(26px, 3.2vw, 40px);
+  font-size: clamp(29px, 3.2vw,43px);
   line-height: 1.1;
   letter-spacing: -0.012em;
   color: var(--color-house-brown);
@@ -132,7 +132,7 @@
 .exampleTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .exampleLede {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.7;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
@@ -157,7 +157,7 @@
 .exampleStatValue {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(28px, 3vw, 38px);
+  font-size: clamp(31px, 3vw,41px);
   color: var(--color-house-gold-ink);
   letter-spacing: -0.012em;
   line-height: 1;
@@ -165,7 +165,7 @@
 }
 .exampleStatLabel {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -181,7 +181,7 @@
 }
 .closingKicker {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -191,7 +191,7 @@
 .closingStatement {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(28px, 3.4vw, 44px);
+  font-size: clamp(31px, 3.4vw,47px);
   line-height: 1.2;
   color: var(--color-house-brown);
   margin: 0 auto 32px;
@@ -203,7 +203,7 @@
   display: inline-flex; align-items: center;
   padding: 14px 28px;
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
@@ -216,7 +216,7 @@
 .btnFilled:hover { background: var(--color-house-gold); border-color: var(--color-house-gold); }
 .closingFineprint {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.72);
   margin: 24px auto 0;

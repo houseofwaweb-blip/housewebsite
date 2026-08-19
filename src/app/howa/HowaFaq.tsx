@@ -24,8 +24,8 @@ export function HowaFaq() {
   return (
     <section id="faq" className="bg-[#f4f1e9] scroll-mt-20">
       <div className="mx-auto max-w-[860px] px-6 sm:px-10 py-20">
-        <p className="smallcaps mb-4 text-center text-[12px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">Questions</p>
-        <h2 className="mb-12 text-center font-display text-[clamp(29px,3.2vw,44px)] leading-[1.1] tracking-[-0.005em]">
+        <p className="smallcaps mb-4 text-center text-[14px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">Questions</p>
+        <h2 className="mb-12 text-center font-display text-[clamp(32px,3.2vw,47px)] leading-[1.1] tracking-[-0.005em]">
           Before <span className="font-italic-display text-[#c5a960]">you begin.</span>
         </h2>
         <div className="overflow-hidden rounded-2xl border border-[color:var(--color-gold)]/25 bg-white">
@@ -34,13 +34,13 @@ export function HowaFaq() {
               key={q}
               className={"group px-6 sm:px-8 " + (i > 0 ? "border-t border-[color:var(--color-ink)]/10" : "")}
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-[clamp(17px,1.6vw,20px)] font-display leading-snug text-[color:var(--color-ink)] [&::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-[clamp(20px,1.6vw,23px)] font-display leading-snug text-[color:var(--color-ink)] [&::-webkit-details-marker]:hidden">
                 <span>{q}</span>
-                <span aria-hidden className="shrink-0 text-[22px] leading-none text-[color:var(--color-gold-deep)] transition-transform duration-300 group-open:rotate-45">
+                <span aria-hidden className="shrink-0 text-[25px] leading-none text-[color:var(--color-gold-deep)] transition-transform duration-300 group-open:rotate-45">
                   +
                 </span>
               </summary>
-              <p className="pb-6 pr-8 text-[16px] leading-[1.6] text-[color:var(--color-ink-soft)]">{a}</p>
+              <p className="pb-6 pr-8 text-[19px] leading-[1.6] text-[color:var(--color-ink-soft)]">{a}</p>
             </details>
           ))}
         </div>

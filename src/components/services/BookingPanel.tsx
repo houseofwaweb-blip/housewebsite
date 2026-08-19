@@ -56,6 +56,7 @@ export function BookingPanel({
   accent,
   mode = "book",
   fromPrice,
+  initialPostcode,
 }: {
   serviceName: string;
   slug: string;
@@ -64,8 +65,15 @@ export function BookingPanel({
   mode?: "book" | "quote";
   /** "from" price shown under the panel title, where one is commercially true. */
   fromPrice?: string;
+  /** Prefill the postcode field (location pages pass the town's district). */
+  initialPostcode?: string;
 }) {
-  const [postcode, setPostcode] = useState("");
+  const [postcode, setPostcode] = useState(initialPostcode ?? "");
+  const [pcError, setPcError] = useState(false);
+  // A full UK postcode (with an incode). A partial like "BR6" makes the
+  // ServiceOS booking flow fail with "Init choice items are required", so we
+  // require the complete postcode before the CTA opens the booking flow.
+  const pcValid = /^[A-Za-z]{1,2}\d[A-Za-z\d]?\s*\d[A-Za-z]{2}$/.test(postcode.trim());
   const intake = INTAKE[slug];
   const quote = mode === "quote";
   const showTiming = !quote && !intake?.hideTiming;
@@ -83,33 +91,33 @@ export function BookingPanel({
   return (
     <aside className="lg:col-span-5 lg:sticky lg:top-24">
       <div className="border border-house-brown/15 bg-house-cream-light p-[clamp(24px,2.4vw,34px)]">
-        <p className="mb-1 font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink">
+        <p className="mb-1 font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink">
           {eyebrow}
         </p>
-        <h2 className="mb-2 font-hearth-serif text-[clamp(22px,2.4vw,28px)] leading-tight text-house-brown">
+        <h2 className="mb-2 font-hearth-serif text-[clamp(25px,2.4vw,31px)] leading-tight text-house-brown">
           {title}
         </h2>
         {fromPrice ? (
-          <p className="mb-5 font-sans text-[14px] text-house-brown/70">{fromPrice}</p>
+          <p className="mb-5 font-sans text-[17px] text-house-brown/70">{fromPrice}</p>
         ) : (
           <div className="mb-5" />
         )}
 
         <div className="grid gap-4">
           <div>
-            <label className="mb-1.5 block font-sans text-[12px] tracking-[0.12em] uppercase text-house-brown/70">
+            <label className="mb-1.5 block font-sans text-[14px] tracking-[0.12em] uppercase text-house-brown/70">
               Service
             </label>
             <div className="flex items-center gap-3 border border-house-brown/15 bg-house-cream px-4 py-3">
               <span aria-hidden className="inline-block h-3 w-3 shrink-0" style={{ background: accent }} />
-              <span className="font-sans text-[15px] text-house-brown">{serviceName}</span>
+              <span className="font-sans text-[18px] text-house-brown">{serviceName}</span>
             </div>
           </div>
 
           <div>
             <label
               htmlFor={`svc-postcode-${slug}`}
-              className="mb-1.5 block font-sans text-[12px] tracking-[0.12em] uppercase text-house-brown/70"
+              className="mb-1.5 block font-sans text-[14px] tracking-[0.12em] uppercase text-house-brown/70"
             >
               Your postcode
             </label>
@@ -121,16 +129,22 @@ export function BookingPanel({
               autoComplete="postal-code"
               placeholder="e.g. SW1A 1AA"
               value={postcode}
-              onChange={(e) => setPostcode(e.target.value)}
-              className="w-full border border-house-brown/25 bg-house-white px-4 py-3 font-sans text-[15px] text-house-brown placeholder:text-house-brown/40 focus:border-house-gold focus:outline-none"
+              onChange={(e) => { setPostcode(e.target.value); if (pcError) setPcError(false); }}
+              aria-invalid={pcError}
+              className="w-full border border-house-brown/25 bg-house-white px-4 py-3 font-sans text-[18px] text-house-brown placeholder:text-house-brown/40 focus:border-house-gold focus:outline-none"
             />
+            {pcError ? (
+              <p className="mt-1.5 font-sans text-[14px] leading-[1.5] text-[#8b3a3a]">
+                Enter your full postcode, including the last part (e.g. BR6&nbsp;0AA), so we can show the right times and prices.
+              </p>
+            ) : null}
           </div>
 
           {showTiming ? (
             <div>
               <label
                 htmlFor={`svc-timing-${slug}`}
-                className="mb-1.5 block font-sans text-[12px] tracking-[0.12em] uppercase text-house-brown/70"
+                className="mb-1.5 block font-sans text-[14px] tracking-[0.12em] uppercase text-house-brown/70"
               >
                 When
               </label>
@@ -138,7 +152,7 @@ export function BookingPanel({
                 id={`svc-timing-${slug}`}
                 name="timing"
                 defaultValue="next"
-                className="w-full border border-house-brown/25 bg-house-white px-4 py-3 font-sans text-[15px] text-house-brown focus:border-house-gold focus:outline-none"
+                className="w-full border border-house-brown/25 bg-house-white px-4 py-3 font-sans text-[18px] text-house-brown focus:border-house-gold focus:outline-none"
               >
                 <option value="next">Next available</option>
                 <option value="date">Choose a date</option>
@@ -148,10 +162,10 @@ export function BookingPanel({
 
           {intake ? (
             <div className="border border-house-brown/15 bg-house-cream px-4 py-3.5">
-              <p className="mb-1 font-sans text-[11px] tracking-[0.16em] uppercase text-house-gold-ink">
+              <p className="mb-1 font-sans text-[13px] tracking-[0.16em] uppercase text-house-gold-ink">
                 {intake.label}
               </p>
-              <p className="font-sans text-[13px] leading-[1.55] text-house-brown/75">
+              <p className="font-sans text-[16px] leading-[1.55] text-house-brown/75">
                 {intake.body}
               </p>
             </div>
@@ -164,25 +178,32 @@ export function BookingPanel({
               nothing" bug). */}
           <a
             href={buildBookingUrl(postcode, SERVICEOS_SERVICE_ID[slug])}
-            className="inline-flex w-full items-center justify-center gap-2.5 border border-house-brown bg-house-brown px-6 py-3.5 font-sans text-[12px] uppercase tracking-[0.22em] font-medium text-house-cream no-underline transition-colors hover:bg-house-brown/90"
+            onClick={(e) => {
+              if (!pcValid) {
+                e.preventDefault();
+                setPcError(true);
+                document.getElementById(`svc-postcode-${slug}`)?.focus();
+              }
+            }}
+            className="inline-flex w-full items-center justify-center gap-2.5 border border-house-brown bg-house-brown px-6 py-3.5 font-sans text-[14px] uppercase tracking-[0.22em] font-medium text-house-cream no-underline transition-colors hover:bg-house-brown/90"
           >
             {primaryLabel}
           </a>
         </div>
 
-        <p className="mt-4 font-sans text-[14px] leading-[1.5] text-house-brown/70">
+        <p className="mt-4 font-sans text-[17px] leading-[1.5] text-house-brown/70">
           Prefer to talk?{" "}
           <a href={PHONE_HREF} className="text-house-gold-ink underline underline-offset-[3px] hover:text-house-brown">
             Call {PHONE_DISPLAY}
           </a>{" "}
           or{" "}
           <a href="#service-enquiry" className="text-house-gold-ink underline underline-offset-[3px] hover:text-house-brown">
-            request a callback
+            ask the House
           </a>
           .
         </p>
 
-        <p className="mt-5 border-t border-house-brown/12 pt-4 font-sans text-[12px] tracking-[0.14em] uppercase text-house-brown/55">
+        <p className="mt-5 border-t border-house-brown/12 pt-4 font-sans text-[14px] tracking-[0.14em] uppercase text-house-brown/55">
           Powered by HoWA
         </p>
       </div>

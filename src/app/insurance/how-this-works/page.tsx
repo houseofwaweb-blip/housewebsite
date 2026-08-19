@@ -20,8 +20,8 @@ export const metadata: Metadata = {
 function Block({ eyebrow, children }: { eyebrow: string; children: React.ReactNode }) {
   return (
     <div className="border-t border-house-brown/10 py-8">
-      <p className="mb-3 font-sans text-[12px] tracking-[0.24em] uppercase text-[color:var(--ins-ink)]">{eyebrow}</p>
-      <div className="space-y-4 font-sans text-[17px] leading-[1.7] text-house-brown/85">{children}</div>
+      <p className="mb-3 font-sans text-[14px] tracking-[0.24em] uppercase text-[color:var(--ins-ink)]">{eyebrow}</p>
+      <div className="space-y-4 font-sans text-[20px] leading-[1.7] text-house-brown/85">{children}</div>
     </div>
   );
 }
@@ -32,11 +32,11 @@ export default function HowThisWorks() {
       <section className="px-[5vw] pt-20 pb-6">
         <div className="mx-auto grid max-w-[1120px] items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
-            <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-[color:var(--ins-ink)]">The House · Insurance</p>
-            <h1 className="mt-4 font-display text-[clamp(32px,5vw,58px)] leading-[1.04] text-house-black">
+            <p className="font-sans text-[14px] tracking-[0.3em] uppercase text-[color:var(--ins-ink)]">The House · Insurance</p>
+            <h1 className="mt-4 font-display text-[clamp(35px,5vw,61px)] leading-[1.04] text-house-black">
               How this works, and how we are paid.
             </h1>
-            <p className="mt-6 max-w-[46ch] font-sans text-[18px] leading-[1.62] text-house-stone">
+            <p className="mt-6 max-w-[46ch] font-sans text-[21px] leading-[1.62] text-house-stone">
               Almost nobody in this market explains this openly. We would rather you did not have to ask.
             </p>
           </div>
@@ -75,7 +75,7 @@ export default function HowThisWorks() {
             <p>Complaints about the arranged cover are handled by Provenance under its FCA permissions, and eligible complainants can refer a matter to the Financial Ombudsman Service. The full regulatory notice and complaints route are set out on the{" "}
               <Link href="/insurance/terms" className="text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">regulatory notice</Link> page.</p>
           </Block>
-          <p className="mt-8 font-sans text-[12px] text-house-stone/70">This page describes the regulatory relationship and is pending Provenance compliance sign-off.</p>
+          <p className="mt-8 font-sans text-[14px] text-house-stone/70">This page describes the regulatory relationship and is pending Provenance compliance sign-off.</p>
         </div>
       </section>
     </div>

@@ -132,16 +132,16 @@ export function CoverageMap() {
   return (
     <div className="grid gap-8 border border-house-brown/12 bg-house-white p-8 md:grid-cols-[1.05fr_0.95fr] md:items-center">
       <div>
-        <h3 className="font-display text-[26px] leading-[1.1] text-house-black">
+        <h3 className="font-display text-[29px] leading-[1.1] text-house-black">
           Where we work
         </h3>
-        <p className="mt-3 max-w-[38ch] text-[14px] leading-relaxed text-house-stone">
+        <p className="mt-3 max-w-[38ch] text-[17px] leading-relaxed text-house-stone">
           House teams and vetted specialists, out across London and Kent.
         </p>
 
         <label
           htmlFor="coverage-postcode"
-          className="mt-6 block font-sans text-[11px] uppercase tracking-[0.16em] text-house-gold-dark"
+          className="mt-6 block font-sans text-[13px] uppercase tracking-[0.16em] text-house-gold-dark"
         >
           Is your home in the patch?
         </label>
@@ -153,11 +153,11 @@ export function CoverageMap() {
           value={postcode}
           onChange={(e) => setPostcode(e.target.value.toUpperCase())}
           placeholder="Enter your postcode"
-          className="mt-2 w-full max-w-[260px] border border-house-brown/20 bg-house-cream px-4 py-3 font-sans text-[14px] text-house-brown outline-none transition placeholder:text-house-stone/60 focus:border-house-gold-dark"
+          className="mt-2 w-full max-w-[260px] border border-house-brown/20 bg-house-cream px-4 py-3 font-sans text-[17px] text-house-brown outline-none transition placeholder:text-house-stone/60 focus:border-house-gold-dark"
         />
 
         {/* Announced politely so a screen reader hears the verdict change. */}
-        <p aria-live="polite" className="mt-3 min-h-[20px] text-[13px] leading-relaxed">
+        <p aria-live="polite" className="mt-3 min-h-[20px] text-[16px] leading-relaxed">
           {lookup.state === "checking" && (
             <span className="text-house-stone">Checking&hellip;</span>
           )}
@@ -186,19 +186,19 @@ export function CoverageMap() {
           )}
         </p>
 
-        <div className="mt-5 max-w-[44ch] space-y-1.5 text-[13px] leading-relaxed text-house-stone">
+        <div className="mt-5 max-w-[44ch] space-y-1.5 text-[16px] leading-relaxed text-house-stone">
           <p>
-            <span className="font-sans text-[11px] uppercase tracking-[0.14em] text-house-gold-dark">London</span>
+            <span className="font-sans text-[13px] uppercase tracking-[0.14em] text-house-gold-dark">London</span>
             {" "}across Greater London, north and south of the river.
           </p>
           <p>
-            <span className="font-sans text-[11px] uppercase tracking-[0.14em] text-house-gold-dark">Kent</span>
+            <span className="font-sans text-[13px] uppercase tracking-[0.14em] text-house-gold-dark">Kent</span>
             {" "}and out into the wider county.
           </p>
         </div>
         <a
           href="#open-booking-form"
-          className="mt-4 inline-flex items-center gap-2 font-sans text-[12px] uppercase tracking-[0.14em] text-house-gold-dark transition hover:text-house-gold"
+          className="mt-4 inline-flex items-center gap-2 font-sans text-[14px] uppercase tracking-[0.14em] text-house-gold-dark transition hover:text-house-gold"
         >
           Book a service &rarr;
         </a>

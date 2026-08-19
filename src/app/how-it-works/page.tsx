@@ -21,7 +21,7 @@ const sans = "var(--font-sans)";
 
 const eyebrowStyle: React.CSSProperties = {
   fontFamily: sans,
-  fontSize: 11,
+  fontSize: 13,
   letterSpacing: "0.32em",
   textTransform: "uppercase",
   color: goldDark,
@@ -144,7 +144,7 @@ function ImagePlaceholder({
       <span
         style={{
           fontFamily: sans,
-          fontSize: 10,
+          fontSize: 12,
           letterSpacing: "0.3em",
           textTransform: "uppercase",
           color: goldDark,
@@ -156,7 +156,7 @@ function ImagePlaceholder({
       <span
         style={{
           fontFamily: sans,
-          fontSize: 13,
+          fontSize: 15,
           color: brown,
           fontWeight: 600,
           wordBreak: "break-word",
@@ -167,7 +167,7 @@ function ImagePlaceholder({
       <span
         style={{
           fontFamily: sans,
-          fontSize: 12,
+          fontSize: 14,
           letterSpacing: "0.12em",
           color: "rgba(48, 35, 28, 0.6)",
         }}
@@ -271,7 +271,7 @@ export default function HowItWorksPage() {
                 background: brown,
                 color: "var(--color-house-chalk)",
                 fontFamily: sans,
-                fontSize: 13,
+                fontSize: 15,
                 fontWeight: 600,
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
@@ -291,7 +291,7 @@ export default function HowItWorksPage() {
                 background: "transparent",
                 color: brown,
                 fontFamily: sans,
-                fontSize: 13,
+                fontSize: 15,
                 fontWeight: 600,
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
@@ -361,7 +361,7 @@ export default function HowItWorksPage() {
               { n: "03", h: "HoWA remembers it", b: "Records, reminders and relevant next steps stay with your home." },
             ].map((s) => (
               <div key={s.n}>
-                <span style={{ fontFamily: display, fontSize: 30, color: gold, letterSpacing: "0.04em" }}>{s.n}</span>
+                <span style={{ fontFamily: display, fontSize: 32, color: gold, letterSpacing: "0.04em" }}>{s.n}</span>
                 <h3
                   style={{
                     fontFamily: display,
@@ -377,7 +377,7 @@ export default function HowItWorksPage() {
                 <p
                   style={{
                     fontFamily: sans,
-                    fontSize: 15,
+                    fontSize: 17,
                     lineHeight: 1.65,
                     color: "rgba(255, 253, 248, 0.82)",
                     margin: 0,
@@ -412,7 +412,7 @@ export default function HowItWorksPage() {
                     aria-hidden
                     style={{
                       fontFamily: display,
-                      fontSize: 22,
+                      fontSize: 24,
                       color: gold,
                       letterSpacing: "0.04em",
                     }}
@@ -439,7 +439,7 @@ export default function HowItWorksPage() {
                       key={i}
                       style={{
                         fontFamily: sans,
-                        fontSize: 17,
+                        fontSize: 19,
                         lineHeight: 1.7,
                         color: "rgba(48, 35, 28, 0.82)",
                         margin: "0 0 16px",
@@ -524,7 +524,7 @@ export default function HowItWorksPage() {
                 background: brown,
                 color: "var(--color-house-chalk)",
                 fontFamily: sans,
-                fontSize: 13,
+                fontSize: 15,
                 fontWeight: 600,
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
@@ -544,7 +544,7 @@ export default function HowItWorksPage() {
                 background: "transparent",
                 color: brown,
                 fontFamily: sans,
-                fontSize: 13,
+                fontSize: 15,
                 fontWeight: 600,
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",

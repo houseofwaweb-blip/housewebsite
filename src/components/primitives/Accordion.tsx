@@ -69,7 +69,7 @@ export function Accordion({ items, multi = false, defaultOpen, dark, className }
               className={cn(
                 "w-full flex items-center justify-between gap-6 text-left",
                 "py-5 px-0 bg-transparent border-0 cursor-pointer",
-                "font-sans text-[20px] leading-[1.3]",
+                "font-sans text-[23px] leading-[1.3]",
                 "transition-colors duration-[var(--t-base)] ease-out",
                 dark ? "text-house-cream hover:text-house-gold-light" : "text-house-brown hover:text-house-gold-ink",
               )}
@@ -78,7 +78,7 @@ export function Accordion({ items, multi = false, defaultOpen, dark, className }
               <span
                 aria-hidden="true"
                 className={cn(
-                  "shrink-0 font-display text-[28px] leading-none text-house-gold-ink",
+                  "shrink-0 font-display text-[31px] leading-none text-house-gold-ink",
                   "transition-all duration-[var(--t-slow)] ease-out",
                   isOpen && "rotate-45",
                 )}
@@ -104,7 +104,7 @@ export function Accordion({ items, multi = false, defaultOpen, dark, className }
               >
                 <div
                   className={cn(
-                    "font-sans text-[16px] leading-[1.6] max-w-[640px]",
+                    "font-sans text-[19px] leading-[1.6] max-w-[640px]",
                     dark ? "text-house-cream/80" : "text-house-stone",
                   )}
                 >

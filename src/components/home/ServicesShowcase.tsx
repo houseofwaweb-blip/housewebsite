@@ -28,7 +28,7 @@ export function ServicesShowcase() {
       <div className="mx-auto max-w-[1360px]">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-dark">
+            <p className="font-sans text-[13px] tracking-[0.22em] uppercase text-house-gold-dark">
               The House · Services
             </p>
             <h2 className="mt-3 font-display text-[clamp(1.9rem,2.8vw,2.8rem)] leading-[1.03] text-house-ink">
@@ -37,7 +37,7 @@ export function ServicesShowcase() {
           </div>
           <Link
             href="/services"
-            className="font-sans text-[11px] tracking-[0.18em] uppercase text-house-brown no-underline border-b border-house-brown/40 pb-1 hover:border-house-brown"
+            className="font-sans text-[13px] tracking-[0.18em] uppercase text-house-brown no-underline border-b border-house-brown/40 pb-1 hover:border-house-brown"
           >
             All services
           </Link>
@@ -62,7 +62,7 @@ export function ServicesShowcase() {
               </div>
               <div className="mt-3 flex items-center gap-2">
                 <span className="inline-block w-3 h-3 shrink-0" style={{ backgroundColor: svc.colour }} aria-hidden />
-                <p className="font-sans text-[13.5px] text-house-brown group-hover:text-house-gold-dark transition-colors">
+                <p className="font-sans text-[15.5px] text-house-brown group-hover:text-house-gold-dark transition-colors">
                   {svc.name}
                 </p>
               </div>

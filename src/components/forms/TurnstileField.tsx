@@ -52,7 +52,7 @@ export const TurnstileField = React.forwardRef<
 
   if (!siteKey) {
     return (
-      <p className={`font-sans text-[12px] italic ${theme === "dark" ? "text-white/45" : "text-house-brown/50"}`}>
+      <p className={`font-sans text-[14px] italic ${theme === "dark" ? "text-white/45" : "text-house-brown/50"}`}>
         Turnstile not configured, submissions will fall back to honeypot only.
       </p>
     );

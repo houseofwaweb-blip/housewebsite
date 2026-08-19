@@ -29,7 +29,7 @@ export function ServiceCtaRow({
   return (
     <div className="bg-house-cream px-[5vw] py-[clamp(20px,3vw,32px)] border-t border-house-brown/10">
       <div className="mx-auto flex max-w-[1040px] flex-col items-center gap-3 text-center sm:flex-row sm:justify-center sm:gap-7">
-        <span className="font-hearth-serif italic text-[clamp(16px,1.8vw,19px)] leading-snug text-house-brown">
+        <span className="font-hearth-serif italic text-[clamp(19px,1.8vw,22px)] leading-snug text-house-brown">
           {quote
             ? `Ready to talk about ${service.toLowerCase()}?`
             : `Ready to book ${service.toLowerCase()}?`}
@@ -37,19 +37,19 @@ export function ServiceCtaRow({
         <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
           <a
             href={!quote && bookHref ? bookHref : "#open-booking-form"}
-            className="inline-flex items-center bg-house-gold-ink px-5 py-2.5 font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-[filter] hover:brightness-110"
+            className="inline-flex items-center bg-house-gold-ink px-5 py-2.5 font-sans text-[14px] tracking-[0.18em] uppercase text-house-brown no-underline transition-[filter] hover:brightness-110"
           >
             {quote ? "Request a survey" : "See times and prices"}
           </a>
           <a
             href={PHONE_HREF}
-            className="font-sans text-[15px] text-house-gold-ink underline underline-offset-[3px] transition-colors hover:text-house-brown"
+            className="font-sans text-[18px] text-house-gold-ink underline underline-offset-[3px] transition-colors hover:text-house-brown"
           >
             Call {PHONE_DISPLAY}
           </a>
           <a
             href="#service-enquiry"
-            className="font-sans text-[15px] text-house-gold-ink underline underline-offset-[3px] transition-colors hover:text-house-brown"
+            className="font-sans text-[18px] text-house-gold-ink underline underline-offset-[3px] transition-colors hover:text-house-brown"
           >
             Send an enquiry
           </a>

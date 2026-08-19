@@ -149,7 +149,7 @@ export default async function DesignLanding() {
             {cms(disciplines, "headline", "A small design world,")}{" "}
             <em>{cms(disciplines, "headlineEm", "growing carefully.", "headline")}</em>
           </h2>
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: 16, lineHeight: 1.7, color: "rgba(48,35,28,0.72)", margin: "18px auto 0", maxWidth: "64ch" }}>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: 18, lineHeight: 1.7, color: "rgba(48,35,28,0.72)", margin: "18px auto 0", maxWidth: "64ch" }}>
             {cms(
               disciplines,
               "body",
@@ -237,7 +237,7 @@ export default async function DesignLanding() {
       {/* Commission flow + Design Record (brief slide 13) */}
       <section className="px-[5vw] py-[clamp(56px,8vw,112px)] bg-house-cream-dark">
         <div className="mx-auto max-w-[1100px]">
-          <p className="text-center" style={{ fontFamily: "var(--font-sans)", fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--color-house-gold-ink)", margin: "0 0 14px", fontWeight: 500 }}>
+          <p className="text-center" style={{ fontFamily: "var(--font-sans)", fontSize: 12, letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--color-house-gold-ink)", margin: "0 0 14px", fontWeight: 500 }}>
             How a commission works
           </p>
           <h2 className="text-center" style={{ fontFamily: "var(--font-display)", fontWeight: 400, fontSize: "clamp(26px,3.4vw,42px)", lineHeight: 1.1, color: "var(--color-house-brown)", margin: "0 0 clamp(32px,4vw,56px)" }}>
@@ -252,14 +252,14 @@ export default async function DesignLanding() {
               { n: "05", t: "Handover", d: "The finished space, written to your Home Record." },
             ].map((step) => (
               <li key={step.n} className="text-center sm:text-left">
-                <span style={{ fontFamily: "var(--font-display)", fontStyle: "italic", fontSize: 28, color: "var(--color-house-gold-ink)", display: "block", marginBottom: 8 }}>{step.n}</span>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: 12, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--color-house-brown)", margin: "0 0 8px", fontWeight: 600 }}>{step.t}</p>
-                <p style={{ fontFamily: "var(--font-sans)", fontSize: 13.5, lineHeight: 1.55, color: "rgba(48,35,28,0.7)", margin: 0 }}>{step.d}</p>
+                <span style={{ fontFamily: "var(--font-display)", fontStyle: "italic", fontSize: 30, color: "var(--color-house-gold-ink)", display: "block", marginBottom: 8 }}>{step.n}</span>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: 14, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--color-house-brown)", margin: "0 0 8px", fontWeight: 600 }}>{step.t}</p>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: 15.5, lineHeight: 1.55, color: "rgba(48,35,28,0.7)", margin: 0 }}>{step.d}</p>
               </li>
             ))}
           </ol>
           <div style={{ marginTop: "clamp(36px,5vw,64px)", padding: "clamp(24px,3vw,40px)", background: "var(--color-house-forest)" }}>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--color-house-gold-light)", margin: "0 0 12px", fontWeight: 500 }}>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: 12, letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--color-house-gold-light)", margin: "0 0 12px", fontWeight: 500 }}>
               The Design Record
             </p>
             <p style={{ fontFamily: "var(--font-hearth-serif)", fontSize: "clamp(17px,1.7vw,21px)", lineHeight: 1.5, color: "var(--color-house-cream)", margin: 0, maxWidth: "62ch" }}>

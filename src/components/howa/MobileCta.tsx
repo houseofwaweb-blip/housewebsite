@@ -15,12 +15,12 @@ export function MobileCta({
     <div className="bg-[#fbfaf5] px-6 pt-3 pb-10 lg:hidden">
       <a
         href={href}
-        className="flex w-full items-center justify-center gap-2 rounded-md bg-[color:var(--color-howa-green)] px-6 py-4 text-[16.5px] text-white transition-colors hover:bg-[color:var(--color-howa-green-deep)]"
+        className="flex w-full items-center justify-center gap-2 rounded-md bg-[color:var(--color-howa-green)] px-6 py-4 text-[18.5px] text-white transition-colors hover:bg-[color:var(--color-howa-green-deep)]"
       >
         {label} <span aria-hidden>&rarr;</span>
       </a>
       {sub ? (
-        <p className="mt-2.5 text-center text-[15px] leading-[1.4] text-[color:var(--color-ink-soft)]/70">{sub}</p>
+        <p className="mt-2.5 text-center text-[18px] leading-[1.4] text-[color:var(--color-ink-soft)]/70">{sub}</p>
       ) : null}
     </div>
   );

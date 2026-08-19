@@ -5,6 +5,7 @@ import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { EnquiryForm } from "@/components/marketing/EnquiryForm";
 import { HouseStandardStrip } from "@/components/marketing/HouseStandardStrip";
 import { ServiceCtaRow } from "@/components/marketing/ServiceCtaRow";
+import { ServiceWordmark } from "@/components/marketing/ServiceWordmark";
 
 /**
  * /services/home-and-garden — the bundled recurring-care edition (doc §10
@@ -116,7 +117,7 @@ export default function HomeAndGardenPage() {
         <div className="mx-auto grid max-w-[1280px] items-start gap-[clamp(28px,4vw,56px)] lg:grid-cols-12">
           {/* Left — copy, proof, still-life (7 cols) */}
           <div className="lg:col-span-7">
-            <nav aria-label="Breadcrumb" className="mb-6 font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink">
+            <nav aria-label="Breadcrumb" className="mb-6 font-sans text-[14px] tracking-[0.24em] uppercase text-house-gold-ink">
               <Link href="/services" className="no-underline text-house-gold-ink hover:text-house-brown">
                 Services
               </Link>
@@ -124,13 +125,15 @@ export default function HomeAndGardenPage() {
               <span className="text-house-brown/70">Home &amp; Garden</span>
             </nav>
 
-            <p className="mb-5 font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink">
+            <ServiceWordmark slug="home-and-garden" className="mb-5" />
+
+            <p className="mb-5 font-sans text-[14px] tracking-[0.3em] uppercase text-house-gold-ink">
               Services · Home &amp; Garden
             </p>
-            <h1 className="mb-5 font-hearth-serif font-normal text-[clamp(40px,5.4vw,74px)] leading-[1.04] tracking-[-0.018em] text-house-brown [&_em]:italic [&_em]:text-house-gold-ink">
+            <h1 className="mb-5 font-hearth-serif font-normal text-[clamp(43px,5.4vw,77px)] leading-[1.04] tracking-[-0.018em] text-house-brown [&_em]:italic [&_em]:text-house-gold-ink">
               One plan for the <em>whole home and garden.</em>
             </h1>
-            <p className="mb-6 max-w-[54ch] border-t border-house-brown/15 pt-5 font-sans text-[17px] leading-[1.65] text-house-brown/75">
+            <p className="mb-6 max-w-[54ch] border-t border-house-brown/15 pt-5 font-sans text-[20px] leading-[1.65] text-house-brown/75">
               Gardening, window cleaning, cleaning and repairs, coordinated as a
               single recurring plan. One schedule, one point of contact and one
               record, so the whole property is looked after without you holding
@@ -139,15 +142,15 @@ export default function HomeAndGardenPage() {
             </p>
 
             <ul className="m-0 flex flex-wrap gap-x-8 gap-y-3 list-none p-0">
-              <li className="font-sans text-[14px] text-house-brown/80">
+              <li className="font-sans text-[17px] text-house-brown/80">
                 <span className="mr-2 text-house-gold-ink" aria-hidden>◆</span>
                 Four disciplines, one coordinated plan
               </li>
-              <li className="font-sans text-[14px] text-house-brown/80">
+              <li className="font-sans text-[17px] text-house-brown/80">
                 <span className="mr-2 text-house-gold-ink" aria-hidden>◆</span>
                 No lock-in, change the rhythm anytime
               </li>
-              <li className="font-sans text-[14px] text-house-brown/80">
+              <li className="font-sans text-[17px] text-house-brown/80">
                 <span className="mr-2 text-house-gold-ink" aria-hidden>◆</span>
                 Serving London and Kent
               </li>
@@ -167,26 +170,26 @@ export default function HomeAndGardenPage() {
           {/* Right — planning panel (5 cols) */}
           <aside className="lg:col-span-5 lg:sticky lg:top-24">
             <div className="border border-house-brown/15 bg-house-cream-light p-[clamp(24px,2.4vw,34px)]">
-              <p className="mb-1 font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink">
+              <p className="mb-1 font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink">
                 Plan your care
               </p>
-              <h2 className="mb-6 font-hearth-serif text-[clamp(22px,2.4vw,28px)] leading-tight text-house-brown">
+              <h2 className="mb-6 font-hearth-serif text-[clamp(25px,2.4vw,31px)] leading-tight text-house-brown">
                 See times and prices.
               </h2>
 
               <div className="grid gap-4">
                 <div>
-                  <label className="mb-1.5 block font-sans text-[12px] tracking-[0.12em] uppercase text-house-brown/70">
+                  <label className="mb-1.5 block font-sans text-[14px] tracking-[0.12em] uppercase text-house-brown/70">
                     Plan
                   </label>
                   <div className="flex items-center gap-3 border border-house-brown/15 bg-house-cream px-4 py-3">
                     <span aria-hidden className="inline-block h-3 w-3 shrink-0" style={{ background: ACCENT }} />
-                    <span className="font-sans text-[15px] text-house-brown">Home &amp; Garden</span>
+                    <span className="font-sans text-[18px] text-house-brown">Home &amp; Garden</span>
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="hg-postcode" className="mb-1.5 block font-sans text-[12px] tracking-[0.12em] uppercase text-house-brown/70">
+                  <label htmlFor="hg-postcode" className="mb-1.5 block font-sans text-[14px] tracking-[0.12em] uppercase text-house-brown/70">
                     Your postcode
                   </label>
                   <input
@@ -196,23 +199,23 @@ export default function HomeAndGardenPage() {
                     inputMode="text"
                     autoComplete="postal-code"
                     placeholder="e.g. SW1A 1AA"
-                    className="w-full border border-house-brown/25 bg-house-white px-4 py-3 font-sans text-[15px] text-house-brown placeholder:text-house-brown/40 focus:border-house-gold focus:outline-none"
+                    className="w-full border border-house-brown/25 bg-house-white px-4 py-3 font-sans text-[18px] text-house-brown placeholder:text-house-brown/40 focus:border-house-gold focus:outline-none"
                   />
                 </div>
 
-                <Link href="#open-booking-form" className="inline-flex items-center justify-center bg-house-gold-ink px-5 py-3.5 font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-[filter] hover:brightness-110">
+                <Link href="#open-booking-form" className="inline-flex items-center justify-center bg-house-gold-ink px-5 py-3.5 font-sans text-[14px] tracking-[0.18em] uppercase text-house-brown no-underline transition-[filter] hover:brightness-110">
                   See times and prices
                 </Link>
               </div>
 
-              <p className="mt-4 font-sans text-[14px] leading-[1.5] text-house-brown/70">
+              <p className="mt-4 font-sans text-[17px] leading-[1.5] text-house-brown/70">
                 Prefer to talk?{" "}
                 <a href={PHONE_HREF} className="text-house-gold-ink underline underline-offset-[3px] hover:text-house-brown">
                   Call {PHONE_DISPLAY}
                 </a>
               </p>
 
-              <p className="mt-5 border-t border-house-brown/12 pt-4 font-sans text-[12px] tracking-[0.14em] uppercase text-house-brown/55">
+              <p className="mt-5 border-t border-house-brown/12 pt-4 font-sans text-[14px] tracking-[0.14em] uppercase text-house-brown/55">
                 Powered by HoWA
               </p>
             </div>
@@ -223,10 +226,10 @@ export default function HomeAndGardenPage() {
       {/* 2. What's included — the four disciplines, coordinated */}
       <section className="bg-house-cream px-[5vw] py-[clamp(56px,6vw,96px)] border-b border-house-brown/10">
         <header className="mx-auto mb-[clamp(32px,4vw,52px)] max-w-[720px] text-center">
-          <p className="mb-3.5 font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink">
+          <p className="mb-3.5 font-sans text-[14px] tracking-[0.3em] uppercase text-house-gold-ink">
             What&apos;s in the plan
           </p>
-          <h2 className="font-hearth-serif text-[clamp(30px,3.6vw,50px)] leading-[1.1] text-house-brown [&_em]:italic [&_em]:text-house-gold-ink">
+          <h2 className="font-hearth-serif text-[clamp(33px,3.6vw,53px)] leading-[1.1] text-house-brown [&_em]:italic [&_em]:text-house-gold-ink">
             Four disciplines, <em>one household rhythm.</em>
           </h2>
         </header>
@@ -238,8 +241,8 @@ export default function HomeAndGardenPage() {
                 <img src={d.image} alt={d.name} className="h-full w-full object-cover" />
               </div>
               <div className="flex flex-1 flex-col gap-2.5 p-6">
-                <h3 className="font-hearth-serif text-[21px] leading-tight text-house-brown">{d.name}</h3>
-                <p className="font-sans text-[15px] leading-[1.55] text-house-brown/70">{d.blurb}</p>
+                <h3 className="font-hearth-serif text-[24px] leading-tight text-house-brown">{d.name}</h3>
+                <p className="font-sans text-[18px] leading-[1.55] text-house-brown/70">{d.blurb}</p>
               </div>
             </article>
           ))}
@@ -247,13 +250,13 @@ export default function HomeAndGardenPage() {
 
         <div className="mx-auto mt-[clamp(40px,5vw,64px)] grid max-w-[1080px] gap-[clamp(28px,4vw,56px)] md:grid-cols-2">
           <div>
-            <p className="mb-3 font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink">Included as standard</p>
-            <h3 className="mb-5 font-hearth-serif text-[clamp(22px,2.4vw,28px)] leading-tight text-house-brown">
+            <p className="mb-3 font-sans text-[14px] tracking-[0.3em] uppercase text-house-gold-ink">Included as standard</p>
+            <h3 className="mb-5 font-hearth-serif text-[clamp(25px,2.4vw,31px)] leading-tight text-house-brown">
               Everything <em className="italic text-house-gold-ink">coordinated.</em>
             </h3>
             <ul className="m-0 flex list-none flex-col gap-3 p-0">
               {INCLUDED.map((inc) => (
-                <li key={inc} className="relative pl-6 font-sans text-[15px] leading-[1.55] text-house-brown/75">
+                <li key={inc} className="relative pl-6 font-sans text-[18px] leading-[1.55] text-house-brown/75">
                   <span aria-hidden className="absolute left-0 text-house-gold-ink">◆</span>
                   {inc}
                 </li>
@@ -261,13 +264,13 @@ export default function HomeAndGardenPage() {
             </ul>
           </div>
           <div>
-            <p className="mb-3 font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink">Not included as standard</p>
-            <h3 className="mb-5 font-hearth-serif text-[clamp(22px,2.4vw,28px)] leading-tight text-house-brown">
+            <p className="mb-3 font-sans text-[14px] tracking-[0.3em] uppercase text-house-gold-ink">Not included as standard</p>
+            <h3 className="mb-5 font-hearth-serif text-[clamp(25px,2.4vw,31px)] leading-tight text-house-brown">
               Clear <em className="italic text-house-gold-ink">before you plan.</em>
             </h3>
             <ul className="m-0 flex list-none flex-col gap-3 p-0">
               {NOT_INCLUDED.map((inc) => (
-                <li key={inc} className="relative pl-6 font-sans text-[15px] leading-[1.55] text-house-brown/75">
+                <li key={inc} className="relative pl-6 font-sans text-[18px] leading-[1.55] text-house-brown/75">
                   <span aria-hidden className="absolute left-0 text-house-brown/40">—</span>
                   {inc}
                 </li>
@@ -280,25 +283,25 @@ export default function HomeAndGardenPage() {
       {/* 3. How it works */}
       <section className="bg-house-cream-dark/50 px-[5vw] py-[clamp(56px,6vw,96px)] border-b border-house-brown/10">
         <header className="mx-auto mb-[clamp(32px,4vw,52px)] max-w-[720px] text-center">
-          <p className="mb-3.5 font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink">
+          <p className="mb-3.5 font-sans text-[14px] tracking-[0.3em] uppercase text-house-gold-ink">
             How it works
           </p>
-          <h2 className="font-hearth-serif text-[clamp(30px,3.6vw,50px)] leading-[1.1] text-house-brown [&_em]:italic [&_em]:text-house-gold-ink">
+          <h2 className="font-hearth-serif text-[clamp(33px,3.6vw,53px)] leading-[1.1] text-house-brown [&_em]:italic [&_em]:text-house-gold-ink">
             One plan, <em>quietly kept.</em>
           </h2>
         </header>
         <ol className="mx-auto grid max-w-[1080px] list-none gap-[clamp(16px,2vw,28px)] p-0 sm:grid-cols-2 lg:grid-cols-4">
           {STEPS.map((step, i) => (
             <li key={step.title} className="border-t border-house-brown/18 pt-5">
-              <span className="font-hearth-serif italic text-[22px] leading-none text-house-gold-ink">
+              <span className="font-hearth-serif italic text-[25px] leading-none text-house-gold-ink">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <h3 className="mt-2.5 mb-2 font-hearth-serif text-[20px] leading-tight text-house-brown">{step.title}</h3>
-              <p className="font-sans text-[15px] leading-[1.6] text-house-brown/72">{step.body}</p>
+              <h3 className="mt-2.5 mb-2 font-hearth-serif text-[23px] leading-tight text-house-brown">{step.title}</h3>
+              <p className="font-sans text-[18px] leading-[1.6] text-house-brown/72">{step.body}</p>
             </li>
           ))}
         </ol>
-        <p className="mx-auto mt-[clamp(28px,3vw,40px)] max-w-[64ch] text-center font-sans text-[15px] leading-[1.65] text-house-brown/70">
+        <p className="mx-auto mt-[clamp(28px,3vw,40px)] max-w-[64ch] text-center font-sans text-[18px] leading-[1.65] text-house-brown/70">
           Recurring care is a rhythm, not a tier. Set it weekly, fortnightly or
           seasonal; there is nothing to lock into and you can change, pause or
           stop it whenever you like. Any minimum booking values and extras are
@@ -314,8 +317,8 @@ export default function HomeAndGardenPage() {
       {/* 5. FAQs */}
       <section className="bg-house-cream px-[5vw] py-[clamp(56px,6vw,96px)] border-b border-house-brown/10">
         <header className="mx-auto mb-[clamp(28px,3vw,44px)] max-w-[720px] text-center">
-          <p className="mb-3.5 font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink">Questions</p>
-          <h2 className="font-hearth-serif text-[clamp(30px,3.6vw,50px)] leading-[1.1] text-house-brown [&_em]:italic [&_em]:text-house-gold-ink">
+          <p className="mb-3.5 font-sans text-[14px] tracking-[0.3em] uppercase text-house-gold-ink">Questions</p>
+          <h2 className="font-hearth-serif text-[clamp(33px,3.6vw,53px)] leading-[1.1] text-house-brown [&_em]:italic [&_em]:text-house-gold-ink">
             Before you <em>plan.</em>
           </h2>
         </header>
@@ -344,16 +347,16 @@ export default function HomeAndGardenPage() {
       {/* 6. Final CTA */}
       <section className="relative overflow-hidden bg-house-brown px-[5vw] py-[clamp(64px,7vw,104px)] text-center">
         <FlowerWatermark color="gold" side="right" opacity={0.18} />
-        <p className="relative z-10 mx-auto mb-8 max-w-[24ch] font-hearth-serif text-[clamp(26px,3.4vw,42px)] leading-[1.2] text-house-cream [&_em]:italic [&_em]:text-house-gold-light">
+        <p className="relative z-10 mx-auto mb-8 max-w-[24ch] font-hearth-serif text-[clamp(29px,3.4vw,45px)] leading-[1.2] text-house-cream [&_em]:italic [&_em]:text-house-gold-light">
           <em>One conversation,</em> and the whole home is looked after.
         </p>
         <Link
           href="#open-booking-form"
-          className="relative z-10 inline-flex items-center bg-house-gold-ink px-7 py-4 font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown no-underline transition-[filter] hover:brightness-110"
+          className="relative z-10 inline-flex items-center bg-house-gold-ink px-7 py-4 font-sans text-[14px] tracking-[0.18em] uppercase text-house-brown no-underline transition-[filter] hover:brightness-110"
         >
           See times and prices
         </Link>
-        <p className="relative z-10 mx-auto mt-6 max-w-[52ch] font-sans text-[14px] leading-[1.6] text-house-cream/65">
+        <p className="relative z-10 mx-auto mt-6 max-w-[52ch] font-sans text-[17px] leading-[1.6] text-house-cream/65">
           Booking, scheduling and your Home Record are powered by HoWA, so every
           visit, note, invoice and service history stays in one place.
         </p>

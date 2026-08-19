@@ -17,10 +17,10 @@ export default function NotFound() {
     <section className="bg-house-cream text-house-brown px-[5vw] py-[16vh] min-h-[70vh] flex items-center">
       <div className="max-w-[720px] mx-auto w-full text-center">
         <Eyebrow>404 · Not found</Eyebrow>
-        <h1 className="em-accent font-display font-medium text-[clamp(48px,7vw,96px)] leading-[1.02] tracking-[-0.01em] mt-6">
+        <h1 className="em-accent font-display font-medium text-[clamp(51px,7vw,99px)] leading-[1.02] tracking-[-0.01em] mt-6">
           This <em>room</em> is empty.
         </h1>
-        <p className="font-sans text-[19px] leading-[1.6] text-house-brown/75 mt-6 max-w-[52ch] mx-auto">
+        <p className="font-sans text-[22px] leading-[1.6] text-house-brown/75 mt-6 max-w-[52ch] mx-auto">
           The page you asked for isn&apos;t here, or isn&apos;t here any more.
           If you followed a link from elsewhere, we&apos;d like to know:
           <Link
@@ -36,7 +36,7 @@ export default function NotFound() {
         <div className="mt-10 flex flex-wrap items-center justify-center gap-6">
           <Link
             href="/"
-            className="inline-block font-sans text-[15px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold px-6 py-3.5 no-underline transition-colors duration-[var(--t-slow)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
+            className="inline-block font-sans text-[18px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold px-6 py-3.5 no-underline transition-colors duration-[var(--t-slow)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
           >
             Back to the House
           </Link>

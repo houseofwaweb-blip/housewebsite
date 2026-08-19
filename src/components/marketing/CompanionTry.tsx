@@ -14,7 +14,7 @@ export function CompanionTry() {
 
   return (
     <form onSubmit={handleSubmit} className="max-w-[560px] mx-auto">
-      <label className="block font-sans text-[12px] tracking-[0.22em] uppercase text-howa-teal mb-3 text-center">
+      <label className="block font-sans text-[14px] tracking-[0.22em] uppercase text-howa-teal mb-3 text-center">
         Try it yourself
       </label>
       <div className="relative">
@@ -23,16 +23,16 @@ export function CompanionTry() {
           value={value}
           onChange={(e) => setValue(e.target.value)}
           placeholder="Describe something you've noticed in your home..."
-          className="w-full px-5 py-4 border border-house-brown/15 bg-house-white font-display text-[18px] font-normal italic text-house-brown placeholder:text-house-stone placeholder:italic focus:border-house-gold focus:outline-none transition-colors duration-[var(--t-base)]"
+          className="w-full px-5 py-4 border border-house-brown/15 bg-house-white font-display text-[21px] font-normal italic text-house-brown placeholder:text-house-stone placeholder:italic focus:border-house-gold focus:outline-none transition-colors duration-[var(--t-base)]"
         />
       </div>
       <button
         type="submit"
-        className="mt-3 w-full py-3.5 font-sans text-[15px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold cursor-pointer transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
+        className="mt-3 w-full py-3.5 font-sans text-[18px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold cursor-pointer transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
       >
         Coming soon →
       </button>
-      <p className="font-sans text-[12px] text-house-stone text-center mt-2 italic">
+      <p className="font-sans text-[14px] text-house-stone text-center mt-2 italic">
         Part of Housekeeper. We&apos;ll let you know the moment the Companion opens.
       </p>
     </form>

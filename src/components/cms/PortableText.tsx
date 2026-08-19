@@ -105,7 +105,7 @@ const components: PortableTextComponents = {
             className="w-full h-auto"
           />
           {value.caption ? (
-            <figcaption className="font-sans text-[15px] tracking-[0.04em] text-house-brown/60 mt-3 italic">
+            <figcaption className="font-sans text-[18px] tracking-[0.04em] text-house-brown/60 mt-3 italic">
               {value.caption}
             </figcaption>
           ) : null}
@@ -115,7 +115,7 @@ const components: PortableTextComponents = {
 
     videoEmbed: ({ value }: { value: VideoEmbedBlock }) => {
       const caption = value.caption ? (
-        <figcaption className="font-sans text-[15px] tracking-[0.04em] text-house-brown/60 mt-3 italic text-center">
+        <figcaption className="font-sans text-[18px] tracking-[0.04em] text-house-brown/60 mt-3 italic text-center">
           {value.caption}
         </figcaption>
       ) : null;
@@ -160,11 +160,11 @@ const components: PortableTextComponents = {
 
     pullQuote: ({ value }: { value: PullQuoteBlock }) => (
       <blockquote className="my-14 border-l border-house-gold pl-8">
-        <p className="font-display italic text-[clamp(24px,3vw,34px)] leading-[1.35] text-house-brown">
+        <p className="font-display italic text-[clamp(27px,3vw,37px)] leading-[1.35] text-house-brown">
           &ldquo;{value.quote}&rdquo;
         </p>
         {value.attribution ? (
-          <cite className="font-sans not-italic text-[12px] tracking-[0.2em] uppercase text-house-brown/55 mt-4 block">
+          <cite className="font-sans not-italic text-[14px] tracking-[0.2em] uppercase text-house-brown/55 mt-4 block">
             {value.attribution}
           </cite>
         ) : null}
@@ -172,7 +172,7 @@ const components: PortableTextComponents = {
     ),
 
     dropCapPara: ({ value }: { value: DropCapParaBlock }) => (
-      <p className="my-8 font-sans text-[18px] leading-[1.7] text-house-brown/90 first-letter:font-display first-letter:text-[64px] first-letter:leading-[0.9] first-letter:float-left first-letter:mr-3 first-letter:mt-1 first-letter:text-house-gold-ink">
+      <p className="my-8 font-sans text-[21px] leading-[1.7] text-house-brown/90 first-letter:font-display first-letter:text-[67px] first-letter:leading-[0.9] first-letter:float-left first-letter:mr-3 first-letter:mt-1 first-letter:text-house-gold-ink">
         {value.body}
       </p>
     ),
@@ -187,7 +187,7 @@ const components: PortableTextComponents = {
       return (
         <section className="my-14">
           {value.title ? (
-            <h3 className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-brown/60 mb-6">
+            <h3 className="font-sans text-[14px] tracking-[0.22em] uppercase text-house-brown/60 mb-6">
               {value.title}
             </h3>
           ) : null}
@@ -206,7 +206,7 @@ const components: PortableTextComponents = {
                     className="w-full h-auto"
                   />
                   {img.caption ? (
-                    <figcaption className="font-sans text-[12px] text-house-brown/55 italic">
+                    <figcaption className="font-sans text-[14px] text-house-brown/55 italic">
                       {img.caption}
                     </figcaption>
                   ) : null}
@@ -221,11 +221,11 @@ const components: PortableTextComponents = {
     marginNote: ({ value }: { value: MarginNoteBlock }) => (
       <aside className="my-10 md:float-right md:w-[32%] md:ml-8 md:mb-6 border-t border-b border-house-brown/15 py-6">
         {value.label ? (
-          <div className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-ink mb-2">
+          <div className="font-sans text-[14px] tracking-[0.22em] uppercase text-house-gold-ink mb-2">
             {value.label}
           </div>
         ) : null}
-        <p className="font-sans italic text-[16px] leading-[1.55] text-house-brown/85">
+        <p className="font-sans italic text-[19px] leading-[1.55] text-house-brown/85">
           {value.body}
         </p>
       </aside>
@@ -233,17 +233,17 @@ const components: PortableTextComponents = {
 
     inlineProduct: ({ value }: { value: InlineProductBlock }) => (
       <div className="my-10 border border-house-brown/12 p-6 flex flex-col gap-3">
-        <div className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-ink">
+        <div className="font-sans text-[14px] tracking-[0.22em] uppercase text-house-gold-ink">
           From the Shop
         </div>
         <Link
           href={`/shop/${value.handle}`}
-          className="font-sans text-[20px] no-underline text-house-brown hover:text-house-gold-ink transition-colors"
+          className="font-sans text-[23px] no-underline text-house-brown hover:text-house-gold-ink transition-colors"
         >
           {value.handle.replace(/-/g, " ")}
         </Link>
         {value.houseNote ? (
-          <p className="font-sans italic text-[16px] text-house-brown/70 leading-[1.55]">
+          <p className="font-sans italic text-[19px] text-house-brown/70 leading-[1.55]">
             {value.houseNote}
           </p>
         ) : null}
@@ -252,17 +252,17 @@ const components: PortableTextComponents = {
 
     inlineCollection: ({ value }: { value: InlineCollectionBlock }) => (
       <div className="my-10 border-t border-b border-house-brown/12 py-6">
-        <div className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-ink mb-2">
+        <div className="font-sans text-[14px] tracking-[0.22em] uppercase text-house-gold-ink mb-2">
           A House-approved collection
         </div>
         <Link
           href={`/shop/collections/${value.handle}`}
-          className="font-display text-[22px] no-underline text-house-brown hover:text-house-gold-ink transition-colors"
+          className="font-display text-[25px] no-underline text-house-brown hover:text-house-gold-ink transition-colors"
         >
           {value.handle.replace(/-/g, " ")}
         </Link>
         {value.introCopy ? (
-          <p className="font-sans text-[16px] leading-[1.6] text-house-brown/75 mt-2">
+          <p className="font-sans text-[19px] leading-[1.6] text-house-brown/75 mt-2">
             {value.introCopy}
           </p>
         ) : null}
@@ -272,27 +272,27 @@ const components: PortableTextComponents = {
 
   block: {
     normal: ({ children }) => (
-      <p className="font-sans text-[18px] leading-[1.7] text-house-brown/90 my-5">
+      <p className="font-sans text-[21px] leading-[1.7] text-house-brown/90 my-5">
         {children}
       </p>
     ),
     h2: ({ children }) => (
-      <h2 className="font-display text-[clamp(28px,3.5vw,42px)] font-medium leading-[1.15] mt-16 mb-4 text-house-brown">
+      <h2 className="font-display text-[clamp(31px,3.5vw,45px)] font-medium leading-[1.15] mt-16 mb-4 text-house-brown">
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="font-display text-[clamp(22px,2.6vw,30px)] font-medium leading-[1.2] mt-12 mb-3 text-house-brown">
+      <h3 className="font-display text-[clamp(25px,2.6vw,33px)] font-medium leading-[1.2] mt-12 mb-3 text-house-brown">
         {children}
       </h3>
     ),
     h4: ({ children }) => (
-      <h4 className="font-sans text-[15px] tracking-[0.2em] uppercase mt-10 mb-3 text-house-brown/80">
+      <h4 className="font-sans text-[18px] tracking-[0.2em] uppercase mt-10 mb-3 text-house-brown/80">
         {children}
       </h4>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="my-8 pl-6 border-l-2 border-house-brown/25 italic font-sans text-[19px] leading-[1.6] text-house-brown/80">
+      <blockquote className="my-8 pl-6 border-l-2 border-house-brown/25 italic font-sans text-[22px] leading-[1.6] text-house-brown/80">
         {children}
       </blockquote>
     ),

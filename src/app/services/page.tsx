@@ -407,8 +407,8 @@ export default async function ServicesLanding() {
           to the visit landing in your Home Record. */}
       <section className="border-t border-house-brown/10 px-[5vw] py-[clamp(44px,5.5vw,84px)]" style={{ background: "var(--color-house-white)" }}>
         <div className="mx-auto max-w-[1080px]">
-          <p className="mb-3 font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink">How booking works</p>
-          <h2 className="mb-9 font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-brown">
+          <p className="mb-3 font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink">How booking works</p>
+          <h2 className="mb-9 font-display text-[clamp(27px,3vw,41px)] leading-[1.1] text-house-brown">
             Four steps, <em>start to finish.</em>
           </h2>
           <ol className="grid list-none gap-6 p-0 md:grid-cols-4">
@@ -420,8 +420,8 @@ export default async function ServicesLanding() {
             ].map((step) => (
               <li key={step.n} className="border-t border-house-brown/20 pt-4">
                 <span className="font-display text-[1.5rem] leading-none text-house-gold-ink">{step.n}</span>
-                <h3 className="mb-2 mt-3 font-sans text-[16px] font-medium text-house-brown">{step.t}</h3>
-                <p className="font-sans text-[14px] leading-[1.55] text-house-stone">{step.b}</p>
+                <h3 className="mb-2 mt-3 font-sans text-[19px] font-medium text-house-brown">{step.t}</h3>
+                <p className="font-sans text-[17px] leading-[1.55] text-house-stone">{step.b}</p>
               </li>
             ))}
           </ol>
@@ -430,8 +430,8 @@ export default async function ServicesLanding() {
             href="/the-hearth"
             className="group mt-10 inline-flex items-baseline gap-3 border-t border-house-brown/15 pt-6 no-underline"
           >
-            <span className="font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-ink">From the Hearth</span>
-            <span className="font-hearth-serif text-[18px] text-house-brown transition-colors group-hover:text-house-gold-ink">
+            <span className="font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-ink">From the Hearth</span>
+            <span className="font-hearth-serif text-[21px] text-house-brown transition-colors group-hover:text-house-gold-ink">
               How to choose the right kind of help for your home.
               <span aria-hidden className="ml-2 text-house-gold-ink">&rarr;</span>
             </span>
@@ -448,37 +448,37 @@ export default async function ServicesLanding() {
           stated plainly rather than buried in small print. */}
       <section className="border-t border-house-brown/10 px-[5vw] py-[clamp(44px,5.5vw,84px)]" style={{ background: "var(--color-house-white)" }}>
         <div className="mx-auto max-w-[1080px]">
-          <p className="mb-3 font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink">Who turns up</p>
-          <h2 className="mb-8 font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-brown">
+          <p className="mb-3 font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink">Who turns up</p>
+          <h2 className="mb-8 font-display text-[clamp(27px,3vw,41px)] leading-[1.1] text-house-brown">
             Two kinds of hands, <em>one standard.</em>
           </h2>
           <div className="grid gap-5 md:grid-cols-2">
             <article className="border border-house-brown/15 bg-house-cream p-8">
-              <h3 className="mb-3 font-display text-[22px] leading-tight text-house-brown">A House of Willow Alexander team</h3>
-              <p className="mb-4 font-sans text-[15px] leading-[1.6] text-house-stone">
+              <h3 className="mb-3 font-display text-[25px] leading-tight text-house-brown">A House of Willow Alexander team</h3>
+              <p className="mb-4 font-sans text-[18px] leading-[1.6] text-house-stone">
                 Our own employed crews, in our own liveried electric vans,
                 trained to the House standard. Most garden, cleaning, window and
                 gutter work across our core postcodes is done this way.
               </p>
-              <p className="font-sans text-[14px] leading-[1.55] text-house-brown">
+              <p className="font-sans text-[17px] leading-[1.55] text-house-brown">
                 Delivered by House of Willow Alexander. Booking, scheduling and
                 Home Record powered by HoWA.
               </p>
             </article>
             <article className="border border-house-brown/15 bg-house-cream p-8">
-              <h3 className="mb-3 font-display text-[22px] leading-tight text-house-brown">A named House Approved professional</h3>
-              <p className="mb-4 font-sans text-[15px] leading-[1.6] text-house-stone">
+              <h3 className="mb-3 font-display text-[25px] leading-tight text-house-brown">A named House Approved professional</h3>
+              <p className="mb-4 font-sans text-[18px] leading-[1.6] text-house-stone">
                 For specialist and wider-area work, a vetted professional we
                 have approved and named. You are told who they are before you
                 pay or commit, never after.
               </p>
-              <p className="font-sans text-[14px] leading-[1.55] text-house-brown">
+              <p className="font-sans text-[17px] leading-[1.55] text-house-brown">
                 Delivered by a named House Approved professional. Booking and
                 Home Record powered by HoWA.
               </p>
             </article>
           </div>
-          <p className="mt-6 max-w-[70ch] font-sans text-[14px] leading-[1.6] text-house-stone/85">
+          <p className="mt-6 max-w-[70ch] font-sans text-[17px] leading-[1.6] text-house-stone/85">
             HoWA manages the booking and keeps the record of the work. It is not the
             physical service provider, and it never appears at your door.
           </p>
@@ -493,13 +493,13 @@ export default async function ServicesLanding() {
           soon". */}
       <section id="everything" className="border-t border-house-brown/10 px-[5vw] py-[clamp(48px,6vw,92px)]" style={{ background: "var(--color-house-cream)" }}>
         <div className="mx-auto max-w-[1180px]">
-          <p className="mb-3 font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink">
+          <p className="mb-3 font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink">
             Everything the House can arrange
           </p>
-          <h2 className="mb-4 font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-brown">
+          <h2 className="mb-4 font-display text-[clamp(27px,3vw,41px)] leading-[1.1] text-house-brown">
             If it belongs to the home, <em>ask us about it.</em>
           </h2>
-          <p className="mb-11 max-w-[64ch] font-sans text-[16px] leading-[1.65] text-house-stone">
+          <p className="mb-11 max-w-[64ch] font-sans text-[19px] leading-[1.65] text-house-stone">
             Some of this we do ourselves and you can see the price now. The rest
             we arrange through professionals we have approved. Either way, tell
             us what you need and you will have a real answer within one working
@@ -509,7 +509,7 @@ export default async function ServicesLanding() {
           <div className="grid gap-x-10 gap-y-11 md:grid-cols-2">
             {SERVICE_GROUPS.map((group) => (
               <div key={group}>
-                <h3 className="mb-4 border-b border-house-brown/20 pb-2 font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink">
+                <h3 className="mb-4 border-b border-house-brown/20 pb-2 font-sans text-[14px] tracking-[0.24em] uppercase text-house-gold-ink">
                   {group}
                 </h3>
                 <ul className="m-0 grid list-none gap-0 p-0">
@@ -519,10 +519,10 @@ export default async function ServicesLanding() {
                         href={sv.href ?? `/services/${sv.slug}`}
                         className="group flex items-baseline justify-between gap-4 py-3 no-underline"
                       >
-                        <span className="font-sans text-[16px] leading-[1.4] text-house-brown transition-colors group-hover:text-house-gold-ink">
+                        <span className="font-sans text-[19px] leading-[1.4] text-house-brown transition-colors group-hover:text-house-gold-ink">
                           {sv.name}
                         </span>
-                        <span className="shrink-0 font-sans text-[11px] tracking-[0.16em] uppercase text-house-stone/75 transition-colors group-hover:text-house-gold-ink">
+                        <span className="shrink-0 font-sans text-[13px] tracking-[0.16em] uppercase text-house-stone/75 transition-colors group-hover:text-house-gold-ink">
                           See prices
                         </span>
                       </Link>
@@ -533,46 +533,11 @@ export default async function ServicesLanding() {
             ))}
           </div>
 
-          <p className="mt-11 max-w-[64ch] font-sans text-[14px] leading-[1.6] text-house-stone/85">
+          <p className="mt-11 max-w-[64ch] font-sans text-[17px] leading-[1.6] text-house-stone/85">
             Where a job is carried out by a named House Approved professional
             rather than a House team, you are told who they are before you pay
             or commit to anything.
           </p>
-        </div>
-      </section>
-
-      {/* 3c. Help me choose (v3 §5 requirement 3) — problem-led help for
-          customers who do not know the service name. */}
-      <section id="help-me-choose" className="border-t border-house-brown/10 px-[5vw] py-[clamp(44px,5.5vw,84px)]" style={{ background: "var(--color-house-cream)" }}>
-        <div className="mx-auto max-w-[1080px]">
-          <p className="mb-3 font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink">Help me choose</p>
-          <h2 className="mb-4 font-display text-[clamp(24px,3vw,38px)] leading-[1.1] text-house-brown">
-            You do not have to know <em>what it is called.</em>
-          </h2>
-          <p className="mb-9 max-w-[62ch] font-sans text-[16px] leading-[1.65] text-house-stone">
-            Most people do not arrive knowing whether they need softwashing or
-            jet washing, a tidy or a clearance. Describe the problem in your own
-            words and we will name it for you.
-          </p>
-          <div className="grid gap-4 md:grid-cols-3">
-            {[
-              { t: "Describe a problem", b: "Tell us what is wrong, in plain words. The House tells you which service it is and what it costs.", href: "/contact", cta: "Ask the House" },
-              { t: "Diagnose an issue", b: "Photograph the repair and have it identified before anyone books a survey visit.", href: "/contact/repair", cta: "Diagnose the problem" },
-              { t: "Scan the garden", b: "Have the garden read back to you, then turn what it finds into a visit or a design brief.", href: "/contact/garden", cta: "Scan my garden" },
-            ].map((c) => (
-              <Link
-                key={c.t}
-                href={c.href}
-                className="group flex flex-col border border-house-brown/15 bg-house-white p-7 no-underline transition-colors hover:border-house-gold"
-              >
-                <h3 className="mb-2.5 font-display text-[21px] leading-tight text-house-brown">{c.t}</h3>
-                <p className="mb-7 flex-1 font-sans text-[15px] leading-[1.55] text-house-stone">{c.b}</p>
-                <span className="font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-ink transition-colors group-hover:text-house-brown">
-                  {c.cta} →
-                </span>
-              </Link>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -584,7 +549,7 @@ export default async function ServicesLanding() {
         <div className="mx-auto max-w-[1200px]">
           <p
             className="text-center"
-            style={{ fontFamily: "var(--font-sans)", fontSize: 10, letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--color-house-gold-light)", margin: "0 0 14px", fontWeight: 500 }}
+            style={{ fontFamily: "var(--font-sans)", fontSize: 12, letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--color-house-gold-light)", margin: "0 0 14px", fontWeight: 500 }}
           >
             On the road
           </p>
@@ -628,12 +593,12 @@ export default async function ServicesLanding() {
         <div className="mx-auto grid max-w-[1180px] gap-5 px-[5vw] md:grid-cols-3">
           {FREQUENCIES.map((f) => (
             <article key={f.name} className="flex flex-col border border-house-brown/15 bg-house-white p-8">
-              <h3 className="mb-2 font-display text-[24px] leading-tight text-house-brown">{f.name}</h3>
-              <p className="mb-3 font-sans text-[15px] leading-[1.5] text-house-brown">{f.lede}</p>
-              <p className="mb-6 flex-1 font-sans text-[14px] leading-[1.6] text-house-stone">{f.body}</p>
+              <h3 className="mb-2 font-display text-[27px] leading-tight text-house-brown">{f.name}</h3>
+              <p className="mb-3 font-sans text-[18px] leading-[1.5] text-house-brown">{f.lede}</p>
+              <p className="mb-6 flex-1 font-sans text-[17px] leading-[1.6] text-house-stone">{f.body}</p>
               <ul className="m-0 mb-7 grid list-none gap-1.5 p-0">
                 {f.examples.map((e) => (
-                  <li key={e} className="flex gap-2.5 font-sans text-[14px] leading-[1.45] text-house-stone">
+                  <li key={e} className="flex gap-2.5 font-sans text-[17px] leading-[1.45] text-house-stone">
                     <span aria-hidden className="text-house-gold-ink">·</span>
                     {e}
                   </li>

@@ -54,8 +54,8 @@ export function PoweredByHowa({
         "inline-flex items-center gap-2 font-sans no-underline",
         // Kept subordinate: small type, restrained tracking.
         size === "explanatory"
-          ? "text-[13px] tracking-[0.02em] normal-case leading-[1.4]"
-          : "text-[11px] tracking-[0.14em] uppercase",
+          ? "text-[16px] tracking-[0.02em] normal-case leading-[1.4]"
+          : "text-[13px] tracking-[0.14em] uppercase",
         dark ? "text-house-cream/70" : "text-house-brown/60",
         href && "transition-opacity duration-[var(--t-base)] hover:opacity-100",
         className,

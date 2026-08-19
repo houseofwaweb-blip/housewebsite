@@ -31,10 +31,10 @@ export default function ErrorPage({
     <section className="bg-house-cream text-house-brown px-[5vw] py-[16vh] min-h-[70vh] flex items-center">
       <div className="max-w-[720px] mx-auto w-full text-center">
         <Eyebrow>500 · Something is amiss</Eyebrow>
-        <h1 className="em-accent font-display font-medium text-[clamp(48px,7vw,96px)] leading-[1.02] tracking-[-0.01em] mt-6">
+        <h1 className="em-accent font-display font-medium text-[clamp(51px,7vw,99px)] leading-[1.02] tracking-[-0.01em] mt-6">
           A draught has <em>blown out</em> the candle.
         </h1>
-        <p className="font-sans text-[19px] leading-[1.6] text-house-brown/75 mt-6 max-w-[52ch] mx-auto">
+        <p className="font-sans text-[22px] leading-[1.6] text-house-brown/75 mt-6 max-w-[52ch] mx-auto">
           The House met an error rendering that page. Try again, or take
           another route. If it keeps happening,{" "}
           <Link
@@ -50,7 +50,7 @@ export default function ErrorPage({
           <button
             type="button"
             onClick={() => reset()}
-            className="inline-block font-sans text-[15px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold px-6 py-3.5 no-underline cursor-pointer transition-colors duration-[var(--t-slow)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
+            className="inline-block font-sans text-[18px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold px-6 py-3.5 no-underline cursor-pointer transition-colors duration-[var(--t-slow)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
           >
             Try again
           </button>

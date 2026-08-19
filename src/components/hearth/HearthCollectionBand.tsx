@@ -15,10 +15,10 @@ export function HearthCollectionBand() {
     >
       <div className="max-w-[1360px] mx-auto grid md:grid-cols-[1fr_1.2fr] gap-14 items-center">
         <div>
-          <span className="block mb-[14px] font-hearth-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink">
+          <span className="block mb-[14px] font-hearth-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink">
             ◆ The Hearth Collection · {COLLECTION.season}
           </span>
-          <h2 className="font-hearth-serif font-medium text-[clamp(32px,3.6vw,48px)] leading-[1.1] tracking-[-0.005em] text-house-black mb-3">
+          <h2 className="font-hearth-serif font-medium text-[clamp(35px,3.6vw,51px)] leading-[1.1] tracking-[-0.005em] text-house-black mb-3">
             {COLLECTION.titleEm && COLLECTION.title.includes(COLLECTION.titleEm) ? (
               <>
                 {COLLECTION.title.split(COLLECTION.titleEm)[0]}
@@ -29,12 +29,12 @@ export function HearthCollectionBand() {
               COLLECTION.title
             )}
           </h2>
-          <p className="font-hearth-serif italic text-[18px] leading-[1.55] text-house-stone mb-5 max-w-[460px]">
+          <p className="font-hearth-serif italic text-[21px] leading-[1.55] text-house-stone mb-5 max-w-[460px]">
             {COLLECTION.body}
           </p>
           <Link
             href={COLLECTION.ctaHref}
-            className="inline-block font-hearth-sans text-[12px] tracking-[0.2em] uppercase text-white bg-house-black px-6 py-[13px] no-underline transition-colors duration-[var(--t-slow)] ease-out hover:bg-house-brown"
+            className="inline-block font-hearth-sans text-[14px] tracking-[0.2em] uppercase text-white bg-house-black px-6 py-[13px] no-underline transition-colors duration-[var(--t-slow)] ease-out hover:bg-house-brown"
           >
             {COLLECTION.ctaLabel} →
           </Link>

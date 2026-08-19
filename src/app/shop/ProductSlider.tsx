@@ -36,7 +36,7 @@ export function ProductSlider({ title, slides }: { title: string; slides: Slide[
     <section className="px-[5vw] py-[clamp(44px,5.5vw,80px)] border-b border-house-brown/8">
       <div className="max-w-[1180px] mx-auto">
         <div className="flex items-end justify-between mb-9">
-          <h2 className="font-display italic text-[clamp(22px,2.6vw,32px)] text-house-brown">{title}</h2>
+          <h2 className="font-display italic text-[clamp(25px,2.6vw,35px)] text-house-brown">{title}</h2>
           <div className="flex gap-2">
             <button type="button" onClick={() => go(-1)} aria-label="Previous piece" className={arrow}>←</button>
             <button type="button" onClick={() => go(1)} aria-label="Next piece" className={arrow}>→</button>
@@ -46,15 +46,15 @@ export function ProductSlider({ title, slides }: { title: string; slides: Slide[
         <div className="grid md:grid-cols-2 gap-[clamp(24px,4vw,60px)] items-start">
           {/* Text — left */}
           <div className="order-2 md:order-1">
-            <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink mb-4">
+            <p className="font-sans text-[14px] tracking-[0.3em] uppercase text-house-gold-ink mb-4">
               {s.houseApproved ? "House Approved" : "From the collection"}
             </p>
-            <h3 className="font-display text-[clamp(26px,3vw,40px)] leading-[1.08] text-house-brown mb-3">
+            <h3 className="font-display text-[clamp(29px,3vw,43px)] leading-[1.08] text-house-brown mb-3">
               {s.title}
             </h3>
-            <p className="font-sans text-[16px] text-house-stone mb-5">{s.price}</p>
+            <p className="font-sans text-[19px] text-house-stone mb-5">{s.price}</p>
             {s.excerpt ? (
-              <p className="font-sans text-[15px] leading-[1.7] text-house-brown/70 max-w-[46ch] mb-7 line-clamp-3">
+              <p className="font-sans text-[18px] leading-[1.7] text-house-brown/70 max-w-[46ch] mb-7 line-clamp-3">
                 {s.excerpt}{" "}
                 <Link href={`/shop/${s.handle}`} className="text-house-gold-ink no-underline whitespace-nowrap hover:text-house-brown">
                   Read more →
@@ -70,7 +70,7 @@ export function ProductSlider({ title, slides }: { title: string; slides: Slide[
                 variantId={s.variantId}
                 multiVariant={s.multiVariant}
                 inStock={s.inStock}
-                className="inline-flex items-center justify-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown bg-house-gold border border-house-gold px-7 py-3.5 no-underline transition-colors hover:bg-house-gold-ink hover:border-house-gold-dark disabled:opacity-70 cursor-pointer"
+                className="inline-flex items-center justify-center font-sans text-[14px] tracking-[0.18em] uppercase text-house-brown bg-house-gold border border-house-gold px-7 py-3.5 no-underline transition-colors hover:bg-house-gold-ink hover:border-house-gold-dark disabled:opacity-70 cursor-pointer"
               />
             </div>
           </div>

@@ -71,7 +71,7 @@ export default function AccessibilityPage() {
           <p
             style={{
               fontFamily: sans,
-              fontSize: 11,
+              fontSize: 13,
               letterSpacing: "0.3em",
               textTransform: "uppercase",
               color: goldDark,
@@ -137,7 +137,7 @@ export default function AccessibilityPage() {
                 key={i}
                 style={{
                   fontFamily: sans,
-                  fontSize: 17,
+                  fontSize: 19,
                   lineHeight: 1.7,
                   color: "rgba(48, 35, 28, 0.82)",
                   margin: "0 0 16px",
@@ -153,7 +153,7 @@ export default function AccessibilityPage() {
                     key={li}
                     style={{
                       fontFamily: sans,
-                      fontSize: 16,
+                      fontSize: 18,
                       lineHeight: 1.5,
                       color: brown,
                       padding: "12px 0",
@@ -175,7 +175,7 @@ export default function AccessibilityPage() {
         <p
           style={{
             fontFamily: sans,
-            fontSize: 11,
+            fontSize: 13,
             letterSpacing: "0.22em",
             textTransform: "uppercase",
             color: "rgba(48, 35, 28, 0.6)",

@@ -73,7 +73,7 @@ export function SingleServiceDetail({ view }: { view: SingleServiceView }) {
         <div className="mx-auto grid max-w-[1280px] items-start gap-[clamp(28px,4vw,56px)] lg:grid-cols-12">
           {/* Left — copy, proof, still-life (7 cols) */}
           <div className="lg:col-span-7">
-            <nav aria-label="Breadcrumb" className="mb-6 font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink">
+            <nav aria-label="Breadcrumb" className="mb-6 font-sans text-[14px] tracking-[0.24em] uppercase text-house-gold-ink">
               {view.breadcrumb.map((c, i) => (
                 <span key={c.href}>
                   {i > 0 ? <span aria-hidden className="mx-2 text-house-stone">/</span> : null}
@@ -84,10 +84,10 @@ export function SingleServiceDetail({ view }: { view: SingleServiceView }) {
               ))}
             </nav>
 
-            <h1 className="mb-5 font-hearth-serif font-normal text-[clamp(40px,5.4vw,74px)] leading-[1.04] tracking-[-0.018em] text-house-brown">
+            <h1 className="mb-5 font-hearth-serif font-normal text-[clamp(43px,5.4vw,77px)] leading-[1.04] tracking-[-0.018em] text-house-brown">
               {view.name}<em className="italic text-house-gold-ink">.</em>
             </h1>
-            <p className="mb-6 max-w-[54ch] border-t border-house-brown/15 pt-5 font-sans text-[17px] leading-[1.65] text-house-brown/75">
+            <p className="mb-6 max-w-[54ch] border-t border-house-brown/15 pt-5 font-sans text-[20px] leading-[1.65] text-house-brown/75">
               {view.lede}
             </p>
 
@@ -95,7 +95,7 @@ export function SingleServiceDetail({ view }: { view: SingleServiceView }) {
                 renders only from a live, attributable source (§7.4, §27), and none
                 is wired in yet, so we do not print a placeholder figure. */}
             <ul className="m-0 flex flex-wrap gap-x-8 gap-y-3 list-none p-0">
-              <li className="font-sans text-[14px] text-house-brown/80">
+              <li className="font-sans text-[17px] text-house-brown/80">
                 <span className="mr-2 text-house-gold-ink" aria-hidden>◆</span>
                 Serving London and Kent
               </li>
@@ -115,7 +115,7 @@ export function SingleServiceDetail({ view }: { view: SingleServiceView }) {
               </div>
             </div>
 
-            <p className="mt-5 font-sans text-[13px] leading-[1.55] text-house-brown/70">
+            <p className="mt-5 font-sans text-[16px] leading-[1.55] text-house-brown/70">
               {quote
                 ? "Delivered by a House team or a named House Approved professional, disclosed before you commit. Booking and Home Record powered by HoWA."
                 : "Delivered by House of Willow Alexander. Booking, scheduling and Home Record powered by HoWA."}
@@ -203,9 +203,9 @@ export function SingleServiceDetail({ view }: { view: SingleServiceView }) {
         <EnquiryForm
           defaultService={view.enquiryService}
           sourcePage={view.enquirySource}
-          eyebrow="Request a callback"
-          headline={`Prefer a callback about ${view.name.toLowerCase()}?`}
-          body="Leave your number and a little about your home, and the House will call you back, usually within one working day. Or book online in a couple of minutes."
+          eyebrow="Ask the House"
+          headline={`Prefer to ask about ${view.name.toLowerCase()} first?`}
+          body="Tell us a little about your home and what you need, and the House will come back to you, usually within one working day. Or book online in a couple of minutes."
         />
       </div>
 

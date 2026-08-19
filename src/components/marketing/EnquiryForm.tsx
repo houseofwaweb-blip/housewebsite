@@ -7,6 +7,8 @@ import { cn } from "@/lib/cn";
 import { submitForm } from "@/components/forms/submitForm";
 import { TurnstileField } from "@/components/forms/TurnstileField";
 import type { TurnstileInstance } from "@marsidev/react-turnstile";
+import { buildBookingUrl } from "@/components/booking/postcode";
+import { SERVICEOS_SERVICE_ID } from "@/lib/serviceos-links";
 
 /**
  * EnquiryForm — the House's "get in touch / book a service" form.
@@ -55,6 +57,14 @@ export interface EnquiryFormProps {
   buttonLabel?: string;
   successMessage?: string;
   className?: string;
+  /** Scoped dropdown options (e.g. a service's own sub-services). When set, the
+   *  visible dropdown lists these instead of the full service list; the first
+   *  option should be an "unspecified" entry with value "". serviceType still
+   *  submits `baseServiceType` (a valid enum) — the chosen sub-service is
+   *  recorded in the notes, so a cleaning page never offers gardening/handyman. */
+  serviceOptions?: ReadonlyArray<{ value: string; label: string }>;
+  /** Enum serviceType submitted when serviceOptions is used (the parent service). */
+  baseServiceType?: string;
 }
 
 export function EnquiryForm({
@@ -67,6 +77,8 @@ export function EnquiryForm({
   buttonLabel = "Send enquiry",
   successMessage = "Thank you. Your enquiry is with the House, we will be in touch shortly.",
   className,
+  serviceOptions,
+  baseServiceType,
 }: EnquiryFormProps) {
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -76,6 +88,13 @@ export function EnquiryForm({
     ? defaultService
     : "general") as ServiceType;
   const [serviceType, setServiceType] = React.useState<ServiceType>(initialService);
+  // When a scoped sub-service list is passed, the dropdown drives `detail` and
+  // the submitted serviceType is fixed to the parent (a valid enum value).
+  const coercedBase = (SERVICE_OPTIONS.some((o) => o.value === baseServiceType)
+    ? baseServiceType
+    : initialService) as ServiceType;
+  const [detail, setDetail] = React.useState<string>(serviceOptions?.[0]?.value ?? "");
+  const effectiveServiceType = serviceOptions ? coercedBase : serviceType;
   const [notes, setNotes] = React.useState("");
   const [marketingOptIn, setMarketingOptIn] = React.useState(false);
   const [state, setState] = React.useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -92,13 +111,17 @@ export function EnquiryForm({
     e.preventDefault();
     setState("submitting");
     setError("");
+    // Record the chosen sub-service in the notes (serviceType stays the parent
+    // enum). Skip the leading "unspecified" option (value "").
+    const detailLabel = detail ? serviceOptions?.find((o) => o.value === detail)?.label : undefined;
+    const composedNotes = detailLabel ? `Service: ${detailLabel}\n\n${notes}` : notes;
     const result = await submitForm("consultation", {
       name,
       email,
       phone: phone || undefined,
       postcode: postcode || undefined,
-      serviceType,
-      notes: notes || undefined,
+      serviceType: effectiveServiceType,
+      notes: composedNotes || undefined,
       marketingOptIn,
       sourcePage,
       honey: honeyRef.current?.value ?? "",
@@ -117,7 +140,7 @@ export function EnquiryForm({
   };
 
   const field = cn(
-    "w-full border outline-none font-sans text-[15px] px-4 py-3.5 text-house-brown",
+    "w-full border outline-none font-sans text-[18px] px-4 py-3.5 text-house-brown",
     "placeholder:italic placeholder:font-display placeholder:text-house-brown/35",
     isDark ? "bg-house-white border-house-white" : "bg-house-white border-house-brown/15 focus:border-house-gold",
   );
@@ -133,18 +156,25 @@ export function EnquiryForm({
       <div className="mx-auto grid max-w-[1080px] items-start gap-[clamp(28px,4vw,64px)] md:grid-cols-2">
         {/* Copy */}
         <div>
-          <p className={cn("mb-4 font-sans text-[12px] tracking-[0.3em] uppercase", isDark ? "text-house-gold-light" : "text-house-gold-ink")}>
+          <p className={cn("mb-4 font-sans text-[14px] tracking-[0.3em] uppercase", isDark ? "text-house-gold-light" : "text-house-gold-ink")}>
             {eyebrow}
           </p>
-          <h2 className={cn("font-display text-[clamp(28px,3.2vw,44px)] leading-[1.08] mb-4", isDark ? "text-house-cream" : "text-house-brown")}>
+          <h2 className={cn("font-display text-[clamp(31px,3.2vw,47px)] leading-[1.08] mb-4", isDark ? "text-house-cream" : "text-house-brown")}>
             {headline}
           </h2>
-          <p className={cn("font-sans text-[16px] leading-[1.7] max-w-[44ch]", isDark ? "text-house-cream/70" : "text-house-stone")}>
+          <p className={cn("font-sans text-[19px] leading-[1.7] max-w-[44ch]", isDark ? "text-house-cream/70" : "text-house-stone")}>
             {body}
           </p>
-          <p className={cn("font-sans text-[15px] mt-6", isDark ? "text-house-cream/60" : "text-house-stone")}>
+          <p className={cn("font-sans text-[18px] mt-6", isDark ? "text-house-cream/60" : "text-house-stone")}>
             Prefer to book online?{" "}
-            <a href="#open-booking-form" className={cn("underline underline-offset-[3px]", isDark ? "text-house-gold-light" : "text-house-gold-ink")}>
+            <a
+              href={
+                SERVICEOS_SERVICE_ID[effectiveServiceType]
+                  ? buildBookingUrl("", SERVICEOS_SERVICE_ID[effectiveServiceType])
+                  : "#open-booking-form"
+              }
+              className={cn("underline underline-offset-[3px]", isDark ? "text-house-gold-light" : "text-house-gold-ink")}
+            >
               Book a service
             </a>
             .
@@ -154,7 +184,7 @@ export function EnquiryForm({
         {/* Form */}
         <div>
           {state === "success" ? (
-            <p className={cn("font-display italic text-[19px] leading-[1.5]", isDark ? "text-house-gold-light" : "text-house-gold-ink")}>
+            <p className={cn("font-display italic text-[22px] leading-[1.5]", isDark ? "text-house-gold-light" : "text-house-gold-ink")}>
               {successMessage}
             </p>
           ) : (
@@ -174,22 +204,37 @@ export function EnquiryForm({
               </div>
 
               <label className="sr-only" htmlFor="enquiry-service">Service of interest</label>
-              <select
-                id="enquiry-service"
-                value={serviceType}
-                onChange={(e) => setServiceType(e.target.value as ServiceType)}
-                aria-label="Service of interest"
-                className={cn(field, "cursor-pointer appearance-none bg-[length:12px] bg-[right_1rem_center] bg-no-repeat")}
-                style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none' stroke='%2330231c'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E\")" }}
-              >
-                {SERVICE_OPTIONS.map((o) => (
-                  <option key={o.value} value={o.value}>{o.label}</option>
-                ))}
-              </select>
+              {serviceOptions ? (
+                <select
+                  id="enquiry-service"
+                  value={detail}
+                  onChange={(e) => setDetail(e.target.value)}
+                  aria-label="Service of interest"
+                  className={cn(field, "cursor-pointer appearance-none bg-[length:12px] bg-[right_1rem_center] bg-no-repeat")}
+                  style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none' stroke='%2330231c'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E\")" }}
+                >
+                  {serviceOptions.map((o) => (
+                    <option key={o.value} value={o.value}>{o.label}</option>
+                  ))}
+                </select>
+              ) : (
+                <select
+                  id="enquiry-service"
+                  value={serviceType}
+                  onChange={(e) => setServiceType(e.target.value as ServiceType)}
+                  aria-label="Service of interest"
+                  className={cn(field, "cursor-pointer appearance-none bg-[length:12px] bg-[right_1rem_center] bg-no-repeat")}
+                  style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none' stroke='%2330231c'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E\")" }}
+                >
+                  {SERVICE_OPTIONS.map((o) => (
+                    <option key={o.value} value={o.value}>{o.label}</option>
+                  ))}
+                </select>
+              )}
 
               <textarea value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="How can we help? Tell us a little about your home." aria-label="Your message" rows={4} className={cn(field, "resize-y")} />
 
-              <label className={cn("mt-1 flex items-start gap-2.5 cursor-pointer font-sans text-[14px] leading-[1.5]", isDark ? "text-house-cream/75" : "text-house-stone")}>
+              <label className={cn("mt-1 flex items-start gap-2.5 cursor-pointer font-sans text-[17px] leading-[1.5]", isDark ? "text-house-cream/75" : "text-house-stone")}>
                 <input
                   type="checkbox"
                   checked={marketingOptIn}
@@ -210,19 +255,19 @@ export function EnquiryForm({
               </div>
 
               {state === "error" ? (
-                <p className="font-sans text-[15px] text-[#8b3a3a]" role="alert">{error}</p>
+                <p className="font-sans text-[18px] text-[#8b3a3a]" role="alert">{error}</p>
               ) : null}
 
               <button
                 type="submit"
                 disabled={state === "submitting" || (!!siteKey && !turnstileToken)}
-                className="w-full font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown border-0 px-5 py-4 cursor-pointer disabled:opacity-60 transition-colors"
+                className="w-full font-sans text-[14px] tracking-[0.18em] uppercase text-house-brown border-0 px-5 py-4 cursor-pointer disabled:opacity-60 transition-colors"
                 style={{ background: "var(--color-house-gold-ink)" }}
               >
                 {state === "submitting" ? "Sending…" : buttonLabel}
               </button>
 
-              <p className={cn("font-sans text-[12px] tracking-[0.1em] uppercase mt-1", isDark ? "text-house-cream/40" : "text-house-brown/40")}>
+              <p className={cn("font-sans text-[14px] tracking-[0.1em] uppercase mt-1", isDark ? "text-house-cream/40" : "text-house-brown/40")}>
                 We reply personally &middot;{" "}
                 <Link href="/legal/privacy" className="underline underline-offset-[3px]">Privacy Policy</Link>
               </p>

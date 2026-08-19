@@ -35,18 +35,18 @@ export function CinemaSpread() {
             }}
           />
           <span aria-hidden className="absolute inset-0 flex items-center justify-center">
-            <span className="is-round flex h-[76px] w-[76px] items-center justify-center border border-house-cream/70 bg-house-black/30 text-[18px] text-house-cream backdrop-blur-sm transition-colors duration-[var(--t-base)] ease-out group-hover:border-house-gold-light group-hover:text-house-gold-light">
+            <span className="is-round flex h-[76px] w-[76px] items-center justify-center border border-house-cream/70 bg-house-black/30 text-[21px] text-house-cream backdrop-blur-sm transition-colors duration-[var(--t-base)] ease-out group-hover:border-house-gold-light group-hover:text-house-gold-light">
               ▶
             </span>
           </span>
           <div className="absolute inset-x-0 bottom-0 p-[clamp(20px,3vw,44px)]">
-            <span className="mb-3 block font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-light">
+            <span className="mb-3 block font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-light">
               The House · Cinema
             </span>
-            <h2 className="max-w-[16ch] font-display font-medium text-[clamp(26px,3.2vw,46px)] leading-[1.05] text-house-cream">
+            <h2 className="max-w-[16ch] font-display font-medium text-[clamp(29px,3.2vw,49px)] leading-[1.05] text-house-cream">
               An evening in <em className="font-normal italic">the screening room.</em>
             </h2>
-            <span className="mt-4 inline-block border-b border-house-cream/40 pb-1 font-sans text-[12px] tracking-[0.2em] uppercase text-house-cream transition-colors duration-[var(--t-base)] ease-out group-hover:border-house-gold-light group-hover:text-house-gold-light">
+            <span className="mt-4 inline-block border-b border-house-cream/40 pb-1 font-sans text-[14px] tracking-[0.2em] uppercase text-house-cream transition-colors duration-[var(--t-base)] ease-out group-hover:border-house-gold-light group-hover:text-house-gold-light">
               Watch now →
             </span>
           </div>
@@ -77,7 +77,7 @@ export function CinemaSpread() {
                 }}
               />
               <span aria-hidden className="absolute inset-0 flex items-center justify-center">
-                <span className="is-round flex h-[52px] w-[52px] items-center justify-center border border-house-cream/70 bg-house-black/30 text-[13px] text-house-cream backdrop-blur-sm transition-colors group-hover:border-house-gold-light group-hover:text-house-gold-light">
+                <span className="is-round flex h-[52px] w-[52px] items-center justify-center border border-house-cream/70 bg-house-black/30 text-[16px] text-house-cream backdrop-blur-sm transition-colors group-hover:border-house-gold-light group-hover:text-house-gold-light">
                   ▶
                 </span>
               </span>
@@ -85,7 +85,7 @@ export function CinemaSpread() {
                 <span className="mb-1.5 block font-sans text-[10px] tracking-[0.24em] uppercase text-house-gold-light">
                   {film.category}
                 </span>
-                <h3 className="max-w-[24ch] font-display text-[clamp(17px,1.5vw,22px)] leading-[1.15] text-house-cream">
+                <h3 className="max-w-[24ch] font-display text-[clamp(20px,1.5vw,25px)] leading-[1.15] text-house-cream">
                   {film.shortTitle}
                 </h3>
               </div>

@@ -40,19 +40,19 @@ export function V6Features() {
     <section id="features" className="bg-[#f4f1e9] py-16 lg:py-20 scroll-mt-20">
       <div className="max-w-[1240px] mx-auto px-6 sm:px-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div>
-          <h2 className="font-display text-[clamp(29px,2.8vw,42px)] leading-[1.05] tracking-[-0.01em] mb-6">
+          <h2 className="font-display text-[clamp(32px,2.8vw,45px)] leading-[1.05] tracking-[-0.01em] mb-6">
             Everything for your home,
             <br />
             <span className="font-italic-display text-[#c5a960]">in one place.</span>
           </h2>
           <ul className="space-y-2.5 mb-7">
             {POINTS.map((p) => (
-              <li key={p} className="flex items-center gap-2.5 text-[16.5px] text-[color:var(--color-ink-soft)]">
+              <li key={p} className="flex items-center gap-2.5 text-[18.5px] text-[color:var(--color-ink-soft)]">
                 <Tick /> {p}
               </li>
             ))}
           </ul>
-          <Link href="/howa/coming-soon" className="inline-flex items-center gap-2 rounded-md bg-[color:var(--color-howa-green)] px-6 py-3 text-[16px] text-white hover:bg-[color:var(--color-howa-green-deep)] transition-colors">
+          <Link href="/howa/coming-soon" className="inline-flex items-center gap-2 rounded-md bg-[color:var(--color-howa-green)] px-6 py-3 text-[19px] text-white hover:bg-[color:var(--color-howa-green-deep)] transition-colors">
             See it in action <span aria-hidden>→</span>
           </Link>
         </div>
@@ -65,7 +65,7 @@ export function V6Features() {
                 type="button"
                 onClick={() => setActive(i)}
                 className={
-                  "relative text-[16px] pb-3 transition-colors " +
+                  "relative text-[19px] pb-3 transition-colors " +
                   (i === active ? "text-[color:var(--color-ink)]" : "text-[color:var(--color-ink-soft)]/60 hover:text-[color:var(--color-ink)]")
                 }
               >
@@ -77,7 +77,7 @@ export function V6Features() {
           <div key={`img-${active}`} className="relative w-full aspect-[4/3] features-fade">
             <Image src={f.img} alt={`HoWA ${f.tab} feature`} fill sizes="(max-width:1024px) 92vw, 48vw" className="object-contain" />
           </div>
-          <p key={`note-${active}`} className={`${hand.className} features-fade mt-2 text-right text-[20px] leading-[1.2] text-[color:var(--color-ink-soft)]/80`}>
+          <p key={`note-${active}`} className={`${hand.className} features-fade mt-2 text-right text-[23px] leading-[1.2] text-[color:var(--color-ink-soft)]/80`}>
             {f.note}
           </p>
         </div>

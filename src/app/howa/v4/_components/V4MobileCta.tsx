@@ -49,7 +49,7 @@ export function V4MobileCta() {
       <div className="border-t border-[color:var(--color-gold)]/25 bg-[#fbfaf5]/95 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur-md shadow-[0_-10px_28px_-14px_rgba(40,30,10,0.45)]">
         <a
           href="/howa/coming-soon"
-          className="flex items-center justify-center gap-2 rounded-md bg-[color:var(--color-howa-green)] py-3.5 text-[16px] text-white transition-colors active:bg-[color:var(--color-howa-green-deep)]"
+          className="flex items-center justify-center gap-2 rounded-md bg-[color:var(--color-howa-green)] py-3.5 text-[19px] text-white transition-colors active:bg-[color:var(--color-howa-green-deep)]"
         >
           {atTiers ? "Join the waitlist" : "Enter your address"} <span aria-hidden>→</span>
         </a>

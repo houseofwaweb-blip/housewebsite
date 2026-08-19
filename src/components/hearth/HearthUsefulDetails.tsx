@@ -38,16 +38,16 @@ export function HearthUsefulDetails({
       aria-label="The useful details"
       className="my-14 border border-house-brown/15 bg-house-cream/60 px-6 py-7 sm:px-8"
     >
-      <p className="font-hearth-sans text-[11px] tracking-[0.24em] uppercase text-house-gold-ink">
+      <p className="font-hearth-sans text-[13px] tracking-[0.24em] uppercase text-house-gold-ink">
         The useful details
       </p>
       <dl className="mt-5 grid gap-x-10 gap-y-4 sm:grid-cols-2">
         {rows.map((r) => (
           <div key={r.label} className="border-t border-house-brown/12 pt-3">
-            <dt className="font-hearth-sans text-[11px] tracking-[0.18em] uppercase text-house-stone">
+            <dt className="font-hearth-sans text-[13px] tracking-[0.18em] uppercase text-house-stone">
               {r.label}
             </dt>
-            <dd className="mt-1 font-hearth-serif text-[17px] leading-snug text-house-black">
+            <dd className="mt-1 font-hearth-serif text-[20px] leading-snug text-house-black">
               {r.value}
             </dd>
           </div>
@@ -55,14 +55,14 @@ export function HearthUsefulDetails({
       </dl>
       {filed.length > 0 ? (
         <div className="mt-6 border-t border-house-brown/12 pt-4">
-          <p className="font-hearth-sans text-[11px] tracking-[0.18em] uppercase text-house-stone">
+          <p className="font-hearth-sans text-[13px] tracking-[0.18em] uppercase text-house-stone">
             Filed under
           </p>
           <ul className="mt-2 flex flex-wrap gap-2 p-0">
             {filed.map((t) => (
               <li
                 key={t}
-                className="list-none border border-house-brown/20 px-3 py-1 font-hearth-sans text-[12px] tracking-[0.04em] text-house-brown/85"
+                className="list-none border border-house-brown/20 px-3 py-1 font-hearth-sans text-[14px] tracking-[0.04em] text-house-brown/85"
               >
                 {t}
               </li>

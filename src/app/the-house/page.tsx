@@ -21,7 +21,7 @@ const sans = "var(--font-sans)";
 
 const eyebrow: React.CSSProperties = {
   fontFamily: sans,
-  fontSize: 11,
+  fontSize: 13,
   letterSpacing: "0.32em",
   textTransform: "uppercase",
   color: goldDark,
@@ -44,7 +44,7 @@ const h2Style: React.CSSProperties = {
 };
 const para: React.CSSProperties = {
   fontFamily: sans,
-  fontSize: 17,
+  fontSize: 19,
   lineHeight: 1.7,
   color: "rgba(48, 35, 28, 0.82)",
   margin: "0 0 18px",
@@ -209,7 +209,7 @@ export default function TheHousePage() {
                 <p
                   style={{
                     fontFamily: sans,
-                    fontSize: 15,
+                    fontSize: 17,
                     lineHeight: 1.6,
                     color: "rgba(48, 35, 28, 0.78)",
                     margin: "0 0 24px",
@@ -217,7 +217,7 @@ export default function TheHousePage() {
                 >
                   {t.b}
                 </p>
-                <Link href={t.href} style={{ ...linkStyle, marginTop: "auto", fontFamily: sans, fontSize: 12, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", textDecoration: "none", color: goldDark }}>
+                <Link href={t.href} style={{ ...linkStyle, marginTop: "auto", fontFamily: sans, fontSize: 14, fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", textDecoration: "none", color: goldDark }}>
                   {t.cta} &rarr;
                 </Link>
                 </div>

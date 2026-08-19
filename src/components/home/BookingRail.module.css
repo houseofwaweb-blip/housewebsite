@@ -23,7 +23,7 @@
 }
 .eyebrow {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--house-gold-dark);
@@ -42,7 +42,7 @@
 }
 .sub {
   font-family: var(--font-sans);
-  font-size: clamp(15px, 1.3vw, 17px);
+  font-size: clamp(18px, 1.3vw,20px);
   line-height: 1.55;
   color: var(--house-brown);
   max-width: 52ch;
@@ -57,7 +57,7 @@
 }
 .chip {
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 16px;
   letter-spacing: 0.04em;
   color: var(--house-chalk);
   background: var(--chip-color, var(--house-brown));
@@ -93,7 +93,7 @@
 }
 .label {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--house-stone);
@@ -101,7 +101,7 @@
 .select,
 .input {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   color: var(--house-ink);
   background: var(--house-cream-light);
   border: 1px solid var(--house-line);
@@ -111,12 +111,22 @@
 }
 .select:focus,
 .input:focus {
-  outline: none;
   border-color: var(--house-gold-dark);
+}
+/* Keyboard users get a clear, sharp gold ring on the site's primary control.
+   Mouse/touch focus keeps the quiet border-colour change only. */
+.select:focus-visible,
+.input:focus-visible {
+  outline: 2px solid var(--house-gold-dark);
+  outline-offset: 2px;
+}
+.select:focus:not(:focus-visible),
+.input:focus:not(:focus-visible) {
+  outline: none;
 }
 .submit {
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;

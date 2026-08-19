@@ -47,7 +47,7 @@
 .heroCopyInner { max-width: 580px; }
 .heroEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-light);
@@ -66,7 +66,7 @@
 .heroTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(44px, 5.6vw, 84px);
+  font-size: clamp(47px, 5.6vw,87px);
   line-height: 1.0;
   letter-spacing: -0.02em;
   color: var(--color-house-cream);
@@ -78,7 +78,7 @@
 }
 .heroLede {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.65;
   color: rgba(245, 240, 232, 0.78);
   margin: 0 0 32px;
@@ -99,7 +99,7 @@
   gap: 10px;
   padding: 13px 26px;
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
@@ -144,7 +144,7 @@
 .statsLede { padding-right: clamp(24px, 3vw, 56px); }
 .statsLedeLine1 {
   font-family: var(--font-sans);
-  font-size: clamp(15px, 1.1vw, 15px);
+  font-size: clamp(18px, 1.1vw,18px);
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -154,7 +154,7 @@
 }
 .statsLedeLine2 {
   font-family: var(--font-sans);
-  font-size: clamp(12px, 0.9vw, 13px);
+  font-size: clamp(15px, 0.9vw,16px);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -172,7 +172,7 @@
 }
 .statValue {
   font-family: var(--font-display);
-  font-size: clamp(26px, 2.4vw, 36px);
+  font-size: clamp(29px, 2.4vw,39px);
   font-weight: 400;
   line-height: 1;
   color: var(--color-house-brown);
@@ -181,7 +181,7 @@
 }
 .statLabel {
   font-family: var(--font-sans);
-  font-size: clamp(12px, 0.75vw, 10px);
+  font-size: clamp(15px, 0.75vw,13px);
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -203,7 +203,7 @@
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(28px, 3.4vw, 48px);
+  font-size: clamp(31px, 3.4vw,51px);
   line-height: 1.3;
   color: var(--color-house-brown);
   max-width: 22ch;
@@ -216,7 +216,7 @@
 }
 .premiseBody {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.7;
   color: rgba(48, 35, 28, 0.72);
   max-width: 58ch;
@@ -243,7 +243,7 @@
 .twinDoesnt { background: var(--color-house-cream); }
 .twinKicker {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -254,7 +254,7 @@
 .twinTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(28px, 3vw, 42px);
+  font-size: clamp(31px, 3vw,45px);
   line-height: 1.1;
   color: var(--color-house-brown);
   margin: 0 0 20px;
@@ -264,7 +264,7 @@
 .twinLede {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.72);
   margin: 0 0 28px;
@@ -281,7 +281,7 @@
   position: relative;
   padding-left: 22px;
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.55;
   color: var(--color-house-brown);
 }
@@ -294,7 +294,7 @@
 .twinListExclude li { color: rgba(48, 35, 28, 0.65); }
 .twinListExclude li::before {
   content: "×";
-  font-size: 16px;
+  font-size: 19px;
   color: rgba(48, 35, 28, 0.4);
   top: -2px;
 }
@@ -316,7 +316,7 @@
 }
 .risksEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-oxblood);
@@ -326,7 +326,7 @@
 .risksTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(34px, 4vw, 54px);
+  font-size: clamp(37px, 4vw,57px);
   line-height: 1.1;
   color: var(--color-house-brown);
   margin: 0 0 18px;
@@ -338,7 +338,7 @@
 }
 .risksLede {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.7;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
@@ -365,13 +365,13 @@
 .riskNumeral {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 16px;
+  font-size: 19px;
   color: var(--color-house-gold-ink);
   margin: 0 0 12px;
 }
 .riskName {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--color-house-brown);
@@ -382,7 +382,7 @@
   font-family: var(--font-hearth-serif);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(20px, 1.8vw, 24px);
+  font-size: clamp(23px, 1.8vw,27px);
   line-height: 1.3;
   color: var(--color-house-brown);
   margin: 0 0 16px;
@@ -390,7 +390,7 @@
 }
 .riskBody {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.65;
   color: rgba(48, 35, 28, 0.72);
   margin: 0 0 20px;
@@ -409,7 +409,7 @@
   position: relative;
   padding-left: 18px;
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.78);
 }
@@ -418,7 +418,7 @@
   position: absolute;
   left: 4px;
   color: var(--color-house-gold-ink);
-  font-size: 18px;
+  font-size: 21px;
   line-height: 1.1;
 }
 
@@ -439,7 +439,7 @@
 }
 .stepsEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-oxblood);
@@ -449,7 +449,7 @@
 .stepsTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(34px, 4vw, 54px);
+  font-size: clamp(37px, 4vw,57px);
   line-height: 1.1;
   color: var(--color-house-brown);
   margin: 0 0 18px;
@@ -461,7 +461,7 @@
 }
 .stepsLede {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.7;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
@@ -486,13 +486,13 @@
 .stepNumeral {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 16px;
+  font-size: 19px;
   color: var(--color-house-gold-ink);
   margin: 0 0 12px;
 }
 .stepName {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--color-house-brown);
@@ -503,7 +503,7 @@
   font-family: var(--font-hearth-serif);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(20px, 1.8vw, 26px);
+  font-size: clamp(23px, 1.8vw,29px);
   line-height: 1.25;
   color: var(--color-house-brown);
   margin: 0 0 16px;
@@ -511,7 +511,7 @@
 }
 .stepBody {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.65;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
@@ -520,7 +520,7 @@
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(22px, 2.2vw, 30px);
+  font-size: clamp(25px, 2.2vw,33px);
   line-height: 1.4;
   color: var(--color-house-brown);
   text-align: center;
@@ -556,7 +556,7 @@
 }
 .audienceEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-oxblood);
@@ -566,7 +566,7 @@
 .audienceTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(30px, 3.4vw, 46px);
+  font-size: clamp(33px, 3.4vw,49px);
   line-height: 1.1;
   color: var(--color-house-brown);
   margin: 0 0 32px;
@@ -591,7 +591,7 @@
 }
 .audienceLabel {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   font-weight: 500;
@@ -601,7 +601,7 @@
 .audienceBody {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
@@ -610,7 +610,7 @@
   font-family: var(--font-hearth-serif);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(18px, 1.8vw, 22px);
+  font-size: clamp(21px, 1.8vw,25px);
   line-height: 1.4;
   color: var(--color-house-brown);
   margin: 28px 0 0;
@@ -637,7 +637,7 @@
 }
 .registerEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-oxblood);
@@ -647,7 +647,7 @@
 .registerTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(30px, 3.4vw, 46px);
+  font-size: clamp(33px, 3.4vw,49px);
   line-height: 1.1;
   color: var(--color-house-brown);
   margin: 0 0 18px;
@@ -657,7 +657,7 @@
 .registerLede {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 17px;
+  font-size: 20px;
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.75);
   margin: 0;
@@ -675,7 +675,7 @@
   position: relative;
   padding-left: 22px;
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.55;
   color: var(--color-house-brown);
 }
@@ -688,7 +688,7 @@
 .registerNote {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 15px;
+  font-size: 18px;
   color: rgba(48, 35, 28, 0.65);
   margin: 0 0 18px;
 }
@@ -719,7 +719,7 @@
 }
 .insuranceEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-oxblood);
@@ -729,7 +729,7 @@
 .insuranceTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(30px, 3.4vw, 46px);
+  font-size: clamp(33px, 3.4vw,49px);
   line-height: 1.1;
   color: var(--color-house-brown);
   margin: 0 0 18px;
@@ -742,14 +742,14 @@
 .insuranceLede {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 17px;
+  font-size: 20px;
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.78);
   margin: 0 0 18px;
 }
 .insuranceBody {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.65;
   color: rgba(48, 35, 28, 0.78);
   margin: 0 0 20px;
@@ -766,7 +766,7 @@
   position: relative;
   padding-left: 22px;
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.55;
   color: var(--color-house-brown);
 }
@@ -796,7 +796,7 @@
 .closingInner { max-width: 1080px; margin: 0 auto; }
 .closingEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-light);
@@ -806,7 +806,7 @@
 .closingTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(36px, 4vw, 56px);
+  font-size: clamp(39px, 4vw,59px);
   line-height: 1.1;
   color: var(--color-house-cream);
   margin: 0 0 24px;
@@ -818,7 +818,7 @@
 }
 .closingLede {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.7;
   color: rgba(245, 240, 232, 0.72);
   max-width: 56ch;
@@ -844,7 +844,7 @@
   display: block;
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: clamp(20px, 2vw, 26px);
+  font-size: clamp(23px, 2vw,29px);
   color: var(--color-house-cream);
   line-height: 1.15;
   margin-bottom: 10px;
@@ -853,7 +853,7 @@
 .closingServiceArrow {
   display: block;
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(245, 240, 232, 0.55);
@@ -872,7 +872,7 @@
   max-width: 880px;
   margin: 0 auto;
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.65;
 }
 .fca a {

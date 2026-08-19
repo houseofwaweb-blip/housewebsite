@@ -37,6 +37,7 @@ const PLANS = [
     name: "The House Edit",
     tagline: "A 90-minute studio session.",
     price: "£295",
+    handle: "the-house-edit-1",
     inclusions: [
       "A 90-minute one-to-one online styling session",
       "Thoughtful guidance on palette, layout and sourcing",
@@ -50,6 +51,7 @@ const PLANS = [
     name: "Additions to Your Edit",
     tagline: "À-la-carte top-ups.",
     price: "from £195",
+    handle: "additions-to-your-edit",
     inclusions: [
       "Shoppable moodboard",
       "Sourcing per room",
@@ -62,6 +64,7 @@ const PLANS = [
     name: "The Full House Edit",
     tagline: "A whole-home brief, fully held.",
     price: "from £795",
+    handle: "the-full-house-edit",
     inclusions: [
       "Initial 90-minute consultation",
       "Moodboards for up to three rooms",
@@ -125,6 +128,7 @@ export default async function InteriorsPage() {
     inclusions: c.items && c.items.length ? c.items : base?.inclusions ?? [],
     image: pick(c.imageUrl, base?.image ?? ""),
     featured: base?.featured ?? false,
+    handle: (base as { handle?: string } | undefined)?.handle ?? "",
   }));
 
   return (
@@ -149,10 +153,6 @@ export default async function InteriorsPage() {
             <div className={s.heroCtas}>
               <Link href={cms(hero, "ctaHref", "#plans")} className={s.btnFilled}>
                 {cms(hero, "ctaLabel", "See the plans")}
-              </Link>
-              <Link href={cms(hero, "cta2Href", "/partners/delve-interiors")} className={s.btnGhost}>
-                {cms(hero, "cta2Label", "Meet Delve Interiors")}
-                <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
           </div>
@@ -231,8 +231,11 @@ export default async function InteriorsPage() {
                     <li key={inc}>{inc}</li>
                   ))}
                 </ul>
-                <Link href="#open-booking-form" className={s.planCta}>
-                  Book this edit →
+                {/* Design packages are Shopify products (hidden from the shop
+                    grid, own PDP). Purchasable ones link to their product page;
+                    any without a product fall back to the booking enquiry. */}
+                <Link href={p.handle ? `/shop/${p.handle}` : "#open-booking-form"} className={s.planCta}>
+                  {p.handle ? "View package →" : "Book this edit →"}
                 </Link>
               </div>
             </article>
@@ -282,7 +285,7 @@ export default async function InteriorsPage() {
           </em>
         </p>
         <p className={s.quoteAttribution}>
-          {cms(quote, "caption", "The House brief · 2025")}
+          {cms(quote, "caption", "The House")}
         </p>
       </section>
 

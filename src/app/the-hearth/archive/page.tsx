@@ -26,13 +26,13 @@ export default async function HearthArchivePage() {
       <HearthCategoryStrip />
 
       <section className="max-w-[1360px] mx-auto px-[5vw] pt-12 pb-2 text-center">
-        <p className="font-hearth-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-ink mb-3">
+        <p className="font-hearth-sans text-[14px] tracking-[0.22em] uppercase text-house-gold-ink mb-3">
           The Hearth
         </p>
-        <h1 className="font-hearth-serif text-[clamp(32px,4vw,52px)] leading-[1.05] text-house-black">
+        <h1 className="font-hearth-serif text-[clamp(35px,4vw,55px)] leading-[1.05] text-house-black">
           The archive
         </h1>
-        <p className="mt-4 max-w-[60ch] mx-auto font-hearth-sans text-[16px] leading-[1.6] text-house-brown/70">
+        <p className="mt-4 max-w-[60ch] mx-auto font-hearth-sans text-[19px] leading-[1.6] text-house-brown/70">
           Every story the House has published, newest first. {articles.length}{" "}
           {articles.length === 1 ? "piece" : "pieces"} and counting.
         </p>
@@ -47,7 +47,7 @@ export default async function HearthArchivePage() {
             viewAllHref="/the-hearth"
           />
         ) : (
-          <p className="py-16 text-center font-hearth-sans text-[16px] text-house-brown/60">
+          <p className="py-16 text-center font-hearth-sans text-[19px] text-house-brown/60">
             The archive is being gathered. Please check back soon.
           </p>
         )}

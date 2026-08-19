@@ -47,7 +47,7 @@
 .heroCopyInner { max-width: 580px; }
 .heroEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-light);
@@ -66,7 +66,7 @@
 .heroTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(40px, 5vw, 72px);
+  font-size: clamp(43px, 5vw,75px);
   line-height: 1.04;
   letter-spacing: -0.02em;
   color: var(--color-house-cream);
@@ -78,7 +78,7 @@
 }
 .heroLede {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.65;
   color: rgba(245, 240, 232, 0.78);
   margin: 0 0 32px;
@@ -89,7 +89,7 @@
 .heroFootnote {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 15px;
+  font-size: 18px;
   color: rgba(245, 240, 232, 0.55);
   margin: 18px 0 0;
 }
@@ -108,7 +108,7 @@
   gap: 10px;
   padding: 13px 26px;
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
@@ -147,7 +147,7 @@
 .statsLede { padding-right: clamp(24px, 3vw, 56px); }
 .statsLedeLine1 {
   font-family: var(--font-sans);
-  font-size: clamp(15px, 1.1vw, 15px);
+  font-size: clamp(18px, 1.1vw,18px);
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -157,7 +157,7 @@
 }
 .statsLedeLine2 {
   font-family: var(--font-sans);
-  font-size: clamp(12px, 0.9vw, 13px);
+  font-size: clamp(15px, 0.9vw,16px);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -175,7 +175,7 @@
 }
 .statValue {
   font-family: var(--font-display);
-  font-size: clamp(26px, 2.4vw, 36px);
+  font-size: clamp(29px, 2.4vw,39px);
   font-weight: 400;
   line-height: 1;
   color: var(--color-house-brown);
@@ -184,7 +184,7 @@
 }
 .statLabel {
   font-family: var(--font-sans);
-  font-size: clamp(12px, 0.75vw, 10px);
+  font-size: clamp(15px, 0.75vw,13px);
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -210,7 +210,7 @@
 }
 .coversEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -220,7 +220,7 @@
 .coversTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(32px, 3.6vw, 48px);
+  font-size: clamp(35px, 3.6vw,51px);
   line-height: 1.1;
   color: var(--color-house-brown);
   margin: 0;
@@ -253,7 +253,7 @@
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(22px, 2vw, 28px);
+  font-size: clamp(25px, 2vw,31px);
   line-height: 1.2;
   color: var(--color-house-brown);
   margin: 0 0 14px;
@@ -261,7 +261,7 @@
 }
 .coverCardBody {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.65;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
@@ -281,7 +281,7 @@
 }
 .stepsEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -291,7 +291,7 @@
 .stepsTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(32px, 3.6vw, 48px);
+  font-size: clamp(35px, 3.6vw,51px);
   line-height: 1.1;
   color: var(--color-house-brown);
   margin: 0;
@@ -318,7 +318,7 @@
 .stepNumeral {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 15px;
+  font-size: 18px;
   color: var(--color-house-gold-ink);
   margin: 0;
 }
@@ -326,7 +326,7 @@
   font-family: var(--font-hearth-serif);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(20px, 1.8vw, 26px);
+  font-size: clamp(23px, 1.8vw,29px);
   line-height: 1.2;
   color: var(--color-house-brown);
   margin: 0;
@@ -334,7 +334,7 @@
 }
 .stepBody {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.65;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
@@ -366,7 +366,7 @@
 }
 .registerEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -376,7 +376,7 @@
 .registerTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(32px, 3.6vw, 48px);
+  font-size: clamp(35px, 3.6vw,51px);
   line-height: 1.1;
   color: var(--color-house-brown);
   margin: 0 0 18px;
@@ -388,7 +388,7 @@
 }
 .registerLede {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.7;
   color: rgba(48, 35, 28, 0.72);
   margin: 0 0 28px;
@@ -411,7 +411,7 @@
 }
 .crossEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -422,7 +422,7 @@
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(24px, 2.4vw, 32px);
+  font-size: clamp(27px, 2.4vw,35px);
   line-height: 1.2;
   color: var(--color-house-brown);
   margin: 0 0 14px;
@@ -430,14 +430,14 @@
 }
 .crossBody {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.65;
   color: rgba(48, 35, 28, 0.72);
   margin: 0 0 20px;
 }
 .crossLink {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -460,7 +460,7 @@
   font-family: var(--font-hearth-serif);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(20px, 2vw, 26px);
+  font-size: clamp(23px, 2vw,29px);
   line-height: 1.4;
   color: rgba(245, 240, 232, 0.85);
   margin: 0;

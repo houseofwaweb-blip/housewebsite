@@ -46,7 +46,7 @@ export default function GlobalError({
           <p
             style={{
               fontFamily: "Helvetica, Arial, sans-serif",
-              fontSize: 11,
+              fontSize: 13,
               letterSpacing: "0.26em",
               textTransform: "uppercase",
               color: "rgba(48, 35, 28, 0.72)",
@@ -68,7 +68,7 @@ export default function GlobalError({
           <p
             style={{
               fontFamily: "Helvetica, Arial, sans-serif",
-              fontSize: 17,
+              fontSize: 19,
               lineHeight: 1.6,
               color: "rgba(48, 35, 28, 0.72)",
               margin: "16px auto 32px",
@@ -84,7 +84,7 @@ export default function GlobalError({
             onClick={() => reset()}
             style={{
               fontFamily: "Helvetica, Arial, sans-serif",
-              fontSize: 12,
+              fontSize: 14,
               letterSpacing: "0.18em",
               textTransform: "uppercase",
               background: "#c2a660",

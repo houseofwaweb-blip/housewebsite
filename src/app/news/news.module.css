@@ -11,7 +11,7 @@
 .headInner { max-width: 960px; margin: 0 auto; }
 .eyebrow {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -29,7 +29,7 @@
 .headTitle {
   font-family: var(--font-hearth-serif);
   font-weight: 400;
-  font-size: clamp(48px, 6.4vw, 88px);
+  font-size: clamp(51px, 6.4vw,91px);
   line-height: 1.02;
   letter-spacing: -0.018em;
   color: var(--color-house-brown);
@@ -38,7 +38,7 @@
 .headTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .headLede {
   font-family: var(--font-sans);
-  font-size: 17px;
+  font-size: 20px;
   line-height: 1.65;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
@@ -74,7 +74,7 @@
 
 .rowDate {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -85,7 +85,7 @@
 .rowTitle {
   font-family: var(--font-hearth-serif);
   font-weight: 400;
-  font-size: clamp(22px, 2.4vw, 28px);
+  font-size: clamp(25px, 2.4vw,31px);
   line-height: 1.2;
   letter-spacing: -0.012em;
   color: var(--color-house-brown);
@@ -97,7 +97,7 @@
 .rowLede {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.7);
   margin: 0;
@@ -123,7 +123,7 @@
 .empty {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 19px;
+  font-size: 22px;
   color: rgba(48, 35, 28, 0.72);
   text-align: center;
   padding: 80px 0;

@@ -27,7 +27,7 @@ export function StewardPlanLadder({
         <button
           type="button"
           onClick={() => setTab("hg")}
-          className={`px-[24px] md:px-[32px] py-[12px] font-sans text-[15px] tracking-[0.18em] uppercase border border-house-cream/20 transition-all duration-[var(--t-base)] ease-out cursor-pointer ${
+          className={`px-[24px] md:px-[32px] py-[12px] font-sans text-[18px] tracking-[0.18em] uppercase border border-house-cream/20 transition-all duration-[var(--t-base)] ease-out cursor-pointer ${
             tab === "hg"
               ? "bg-house-cream/10 text-house-cream border-house-cream/30"
               : "bg-transparent text-house-cream/60"
@@ -39,7 +39,7 @@ export function StewardPlanLadder({
         <button
           type="button"
           onClick={() => setTab("apt")}
-          className={`px-[24px] md:px-[32px] py-[12px] font-sans text-[15px] tracking-[0.18em] uppercase border border-house-cream/20 transition-all duration-[var(--t-base)] ease-out cursor-pointer ${
+          className={`px-[24px] md:px-[32px] py-[12px] font-sans text-[18px] tracking-[0.18em] uppercase border border-house-cream/20 transition-all duration-[var(--t-base)] ease-out cursor-pointer ${
             tab === "apt"
               ? "bg-house-cream/10 text-house-cream border-house-cream/30"
               : "bg-transparent text-house-cream/60"
@@ -83,12 +83,12 @@ function PlanCard({ plan: p, mobile }: { plan: StewardPlan; mobile?: boolean }) 
       }
     >
       {isFeatured ? (
-        <span className="absolute top-[16px] left-1/2 -translate-x-1/2 bg-house-gold-ink text-house-brown font-sans text-[12px] tracking-[0.22em] px-[14px] py-[5px] z-20 shadow-[0_4px_14px_rgba(0,0,0,0.35)]">
+        <span className="absolute top-[16px] left-1/2 -translate-x-1/2 bg-house-gold-ink text-house-brown font-sans text-[14px] tracking-[0.22em] px-[14px] py-[5px] z-20 shadow-[0_4px_14px_rgba(0,0,0,0.35)]">
           RECOMMENDED
         </span>
       ) : null}
       {p.featured && mobile ? (
-        <span className="absolute top-[12px] right-[12px] bg-house-gold-ink text-house-brown font-sans text-[12px] tracking-[0.22em] px-[10px] py-[4px] z-20">
+        <span className="absolute top-[12px] right-[12px] bg-house-gold-ink text-house-brown font-sans text-[14px] tracking-[0.22em] px-[10px] py-[4px] z-20">
           RECOMMENDED
         </span>
       ) : null}
@@ -103,16 +103,16 @@ function PlanCard({ plan: p, mobile }: { plan: StewardPlan; mobile?: boolean }) 
       />
 
       <div className="flex flex-col flex-1 px-[28px] pt-[24px] pb-[36px]">
-        <span className={`font-sans text-[12px] tracking-[0.22em] uppercase mb-[12px] ${isFeatured ? "text-house-gold-ink" : "text-house-gold-light"}`}>
+        <span className={`font-sans text-[14px] tracking-[0.22em] uppercase mb-[12px] ${isFeatured ? "text-house-gold-ink" : "text-house-gold-light"}`}>
           {p.tier}
         </span>
-        <h4 className={`font-display font-medium text-[28px] tracking-[-0.005em] mb-[4px] ${isFeatured ? "text-house-brown" : "text-house-cream"}`}>
+        <h4 className={`font-display font-medium text-[31px] tracking-[-0.005em] mb-[4px] ${isFeatured ? "text-house-brown" : "text-house-cream"}`}>
           {p.tier}
         </h4>
-        <div className={`font-sans text-[15px] mb-[22px] ${isFeatured ? "text-house-stone" : "text-house-cream/60"}`}>
-          from <strong className={`font-medium text-[22px] ${isFeatured ? "text-house-brown" : "text-house-gold-light"}`}>{p.priceLabel}</strong> / month
+        <div className={`font-sans text-[18px] mb-[22px] ${isFeatured ? "text-house-stone" : "text-house-cream/60"}`}>
+          from <strong className={`font-medium text-[25px] ${isFeatured ? "text-house-brown" : "text-house-gold-light"}`}>{p.priceLabel}</strong> / month
         </div>
-        <ul className={`list-none pl-[16px] text-[15px] leading-[1.85] flex-1 ${isFeatured ? "text-house-brown" : "text-house-cream/78"}`}>
+        <ul className={`list-none pl-[16px] text-[18px] leading-[1.85] flex-1 ${isFeatured ? "text-house-brown" : "text-house-cream/78"}`}>
           {p.inclusions.map((inc) => (
             <li key={inc} className={`relative py-[2px] before:content-['—'] before:absolute before:-left-[16px] ${isFeatured ? "before:text-house-gold-ink" : "before:text-house-gold-light"}`}>
               {inc}
@@ -120,15 +120,15 @@ function PlanCard({ plan: p, mobile }: { plan: StewardPlan; mobile?: boolean }) 
           ))}
         </ul>
         <div className="mt-[22px] flex flex-col gap-[8px] items-start">
-          <span className="inline-block font-sans text-[12px] tracking-[0.16em] uppercase px-[20px] py-[10px] text-house-brown bg-house-gold-ink border border-house-gold cursor-default">
+          <span className="inline-block font-sans text-[14px] tracking-[0.16em] uppercase px-[20px] py-[10px] text-house-brown bg-house-gold-ink border border-house-gold cursor-default">
             Subscription coming soon
           </span>
           <Link
             href="#open-booking-form"
             className={
               isFeatured
-                ? "inline-block font-sans text-[12px] tracking-[0.16em] uppercase px-[20px] py-[10px] no-underline text-house-brown border border-house-brown/30 transition-all duration-[var(--t-base)] ease-out hover:border-house-gold hover:text-house-gold-ink"
-                : "inline-block font-sans text-[12px] tracking-[0.16em] uppercase px-[20px] py-[10px] no-underline text-house-cream border border-house-cream/35 transition-all duration-[var(--t-base)] ease-out hover:bg-house-cream/10"
+                ? "inline-block font-sans text-[14px] tracking-[0.16em] uppercase px-[20px] py-[10px] no-underline text-house-brown border border-house-brown/30 transition-all duration-[var(--t-base)] ease-out hover:border-house-gold hover:text-house-gold-ink"
+                : "inline-block font-sans text-[14px] tracking-[0.16em] uppercase px-[20px] py-[10px] no-underline text-house-cream border border-house-cream/35 transition-all duration-[var(--t-base)] ease-out hover:bg-house-cream/10"
             }
           >
             Book individual services →

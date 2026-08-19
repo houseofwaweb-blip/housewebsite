@@ -24,7 +24,7 @@ const TABS = [
   { id: "service", label: "Services" },
   { id: "shop", label: "Shop" },
   { id: "design", label: "Design" },
-  { id: "journal", label: "Journal" },
+  { id: "the hearth", label: "The Hearth" },
   { id: "the house", label: "The House" },
   { id: "howa", label: "HoWA" },
 ];
@@ -96,7 +96,7 @@ function SearchContent() {
       {/* Input */}
       <section className={s.head}>
         <div className={s.headInner}>
-          <p className={s.eyebrow}>Search the House</p>
+          <h1 className={s.eyebrow}>Search the House</h1>
           <div className={s.inputRow}>
             <svg
               aria-hidden="true"
@@ -161,7 +161,7 @@ function SearchContent() {
                   { label: "Services", href: "/services" },
                   { label: "Design", href: "/design/interiors" },
                   { label: "Shop", href: "/shop" },
-                  { label: "Journal", href: "/the-hearth" },
+                  { label: "The Hearth", href: "/the-hearth" },
                 ].map((link) => (
                   <Link key={link.href} href={link.href} className={s.chip}>
                     {link.label}

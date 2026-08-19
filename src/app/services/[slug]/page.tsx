@@ -212,7 +212,7 @@ export default async function ServicePage({
             </h1>
             <p className={s.heroLede}>{service.lede}</p>
             {/* DIRECTIVE §08 — a price method in the hero. */}
-            <p className={s.heroLede} style={{ fontSize: 14, fontWeight: 600, margin: "0 0 14px" }}>
+            <p className={s.heroLede} style={{ fontSize: 16, fontWeight: 600, margin: "0 0 14px" }}>
               Enter your postcode for prices and availability.
             </p>
             <div className={s.heroCtas}>
@@ -224,7 +224,7 @@ export default async function ServicePage({
               ) : null}
             </div>
             {/* DIRECTIVE §08 — provider disclosure in the hero. */}
-            <p className={s.heroLede} style={{ fontSize: 13, opacity: 0.85, marginTop: 12 }}>
+            <p className={s.heroLede} style={{ fontSize: 15, opacity: 0.85, marginTop: 12 }}>
               Delivered by House of Willow Alexander. Booking, scheduling and Home Record powered by HoWA.
             </p>
           </div>

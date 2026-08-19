@@ -10,7 +10,7 @@
    ────────────────────────────────────────────────────────── */
 .kicker {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.36em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -30,7 +30,7 @@
 .chapterRoman {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 15px;
+  font-size: 18px;
   letter-spacing: 0.04em;
   color: rgba(48, 35, 28, 0.72);
   margin: 0 0 14px;
@@ -38,7 +38,7 @@
 .headline {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(32px, 4.4vw, 56px);
+  font-size: clamp(35px, 4.4vw,59px);
   line-height: 1.05;
   letter-spacing: -0.018em;
   color: var(--color-house-brown);
@@ -51,7 +51,7 @@
 }
 .body {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.75;
   color: rgba(48, 35, 28, 0.82);
   margin: 0 0 18px;
@@ -96,7 +96,7 @@
 }
 .heroEyebrow {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.36em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -106,7 +106,7 @@
 .heroTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(48px, 7.2vw, 104px);
+  font-size: clamp(51px, 7.2vw,107px);
   line-height: 1.02;
   letter-spacing: -0.022em;
   color: var(--color-house-brown);
@@ -119,7 +119,7 @@
 .heroLede {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: clamp(18px, 1.8vw, 22px);
+  font-size: clamp(21px, 1.8vw,25px);
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.72);
   margin: 0 auto 56px;
@@ -127,7 +127,7 @@
 }
 .heroScrollCue {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.42em;
   text-transform: uppercase;
   color: var(--color-house-brown);
@@ -239,7 +239,7 @@
 }
 .patternRevealCap {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.7);
   display: flex;
@@ -250,7 +250,7 @@
   font-family: var(--font-hearth-serif);
   font-style: italic;
   color: var(--color-house-gold-ink);
-  font-size: 16px;
+  font-size: 19px;
 }
 
 /* ──────────────────────────────────────────────────────────
@@ -341,7 +341,7 @@
 .iconLabel {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 15px;
+  font-size: 18px;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
   text-align: center;
@@ -374,7 +374,7 @@
 .swatchArrow {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 24px;
+  font-size: 27px;
   color: var(--color-house-gold-ink);
   padding: 0 8px;
 }
@@ -402,7 +402,7 @@
 .pullQuoteText {
   font-family: var(--font-display);
   font-style: italic;
-  font-size: clamp(26px, 3.2vw, 40px);
+  font-size: clamp(29px, 3.2vw,43px);
   line-height: 1.32;
   letter-spacing: -0.005em;
   color: inherit;
@@ -448,7 +448,7 @@
 .philosophyInner .headline { max-width: 24ch; margin-left: auto; margin-right: auto; }
 .philosophyBody {
   font-family: var(--font-hearth-serif);
-  font-size: clamp(18px, 1.9vw, 22px);
+  font-size: clamp(21px, 1.9vw,25px);
   line-height: 1.65;
   color: rgba(48, 35, 28, 0.85);
   margin: 0 0 22px;
@@ -474,7 +474,7 @@
 }
 .closingKicker {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.42em;
   text-transform: uppercase;
   color: var(--color-house-gold-light);
@@ -494,7 +494,7 @@
 }
 .closingStatement {
   font-family: var(--font-display);
-  font-size: clamp(28px, 3.4vw, 44px);
+  font-size: clamp(31px, 3.4vw,47px);
   line-height: 1.2;
   letter-spacing: -0.012em;
   color: var(--color-house-cream);
@@ -515,7 +515,7 @@
 .btnFilled,
 .btnGhostLight {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   padding: 14px 26px;
@@ -563,7 +563,7 @@
 .tagline p {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: clamp(16px, 1.6vw, 18px);
+  font-size: clamp(19px, 1.6vw,21px);
   line-height: 1.5;
   color: rgba(243, 237, 225, 0.65);
   margin: 0;
@@ -607,7 +607,7 @@
   .patternRevealInner { grid-template-columns: 1fr; }
   .headline { max-width: 100%; }
   .body { max-width: 100%; }
-  .closingKicker { font-size: 12px; letter-spacing: 0.32em; }
+  .closingKicker { font-size: 14px; letter-spacing: 0.32em; }
   .closingKicker::before,
   .closingKicker::after { width: 20px; }
 }

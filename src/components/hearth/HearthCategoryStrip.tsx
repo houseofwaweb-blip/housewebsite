@@ -40,7 +40,7 @@ export function HearthCategoryStrip({ activeSlug = "all" }: { activeSlug?: strin
             href={c.href}
             aria-current={active ? "page" : undefined}
             className={cn(
-              "font-hearth-sans text-[12px] font-normal tracking-[0.18em] uppercase no-underline py-1 transition-colors duration-[var(--t-base)] ease-out",
+              "font-hearth-sans text-[14px] font-normal tracking-[0.18em] uppercase no-underline py-1 transition-colors duration-[var(--t-base)] ease-out",
               active
                 ? "text-house-gold-ink border-b border-house-gold"
                 : "text-house-black hover:text-house-gold-ink",

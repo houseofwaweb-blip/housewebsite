@@ -70,12 +70,12 @@ export default function PostcodeBooking({
 
   return (
     <form onSubmit={handleSubmit} className={className} noValidate>
-      <h2 className="font-display text-[24px] leading-[1.27] md:text-[30px] text-house-brown">
+      <h2 className="font-display text-[27px] leading-[1.27] md:text-[33px] text-house-brown">
         {heading}
       </h2>
 
       {hint ? (
-        <p className="mt-3 font-sans text-[15px] leading-[1.5] text-house-stone">
+        <p className="mt-3 font-sans text-[18px] leading-[1.5] text-house-stone">
           {hint}
         </p>
       ) : null}
@@ -103,7 +103,7 @@ export default function PostcodeBooking({
           aria-invalid={status.kind === 'invalid'}
           aria-describedby={status.kind === 'idle' ? undefined : messageId}
           className="w-full flex-1 border bg-house-white border-house-brown/15 px-4 py-3.5
-                     font-sans text-[15px] text-house-brown
+                     font-sans text-[18px] text-house-brown
                      placeholder:font-sans placeholder:text-house-brown/35
                      outline-none focus:border-house-gold
                      focus-visible:outline focus-visible:outline-2
@@ -114,7 +114,7 @@ export default function PostcodeBooking({
           type="submit"
           disabled={submitting}
           className="shrink-0 border border-house-ink bg-house-ink px-5 py-4 cursor-pointer
-                     font-sans text-[12px] tracking-[0.18em] uppercase text-house-cream
+                     font-sans text-[14px] tracking-[0.18em] uppercase text-house-cream
                      transition-[transform,filter,opacity] duration-[var(--t-base)]
                      motion-safe:hover:-translate-y-px hover:brightness-125
                      disabled:opacity-60 disabled:cursor-default
@@ -129,7 +129,7 @@ export default function PostcodeBooking({
         <p
           id={messageId}
           role="alert"
-          className="mt-3 font-sans text-[14px] leading-[1.5] text-house-brown"
+          className="mt-3 font-sans text-[17px] leading-[1.5] text-house-brown"
         >
           {status.kind === 'invalid' ? (
             <>Please enter a full UK postcode, for example BR8 8AU.</>

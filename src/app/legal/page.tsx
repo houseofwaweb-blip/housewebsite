@@ -18,15 +18,15 @@ export default function LegalIndex() {
       <section className="px-[5vw] pt-[12vh] pb-14">
         <div className="max-w-[720px] mx-auto">
           <Eyebrow>Legal</Eyebrow>
-          <h1 className="em-accent font-display font-medium text-[clamp(36px,5vw,64px)] leading-[1.08] tracking-[-0.01em] mt-4">
+          <h1 className="em-accent font-display font-medium text-[clamp(39px,5vw,67px)] leading-[1.08] tracking-[-0.01em] mt-4">
             Small print, <em>plainly written</em>.
           </h1>
-          <p className="font-sans text-[18px] leading-[1.6] text-house-brown/75 mt-5 max-w-[58ch]">
+          <p className="font-sans text-[21px] leading-[1.6] text-house-brown/75 mt-5 max-w-[58ch]">
             These pages are the legal backbone for how the House operates.
             We&apos;ve tried to keep them in plain English. Any question, write
             to us and we&apos;ll translate.
           </p>
-          <p className="font-sans text-[15px] leading-[1.6] text-house-brown/55 mt-6 max-w-[64ch]">
+          <p className="font-sans text-[18px] leading-[1.6] text-house-brown/55 mt-6 max-w-[64ch]">
             House services are provided by House of Willow Alexander and its
             approved partners. Online bookings, your account and the Home Record
             are powered by HoWA, a separate Home Intelligence OS for which House
@@ -45,16 +45,16 @@ export default function LegalIndex() {
               className="group flex items-baseline justify-between gap-6 py-6 border-t border-house-brown/10 last:border-b no-underline"
             >
               <div>
-                <h2 className="font-display font-medium text-[24px] leading-[1.2] text-house-brown group-hover:text-house-gold-ink transition-colors duration-[var(--t-slow)] ease-out">
+                <h2 className="font-display font-medium text-[27px] leading-[1.2] text-house-brown group-hover:text-house-gold-ink transition-colors duration-[var(--t-slow)] ease-out">
                   {p.title}
                 </h2>
-                <p className="font-sans italic text-[16px] leading-[1.5] text-house-stone mt-1">
+                <p className="font-sans italic text-[19px] leading-[1.5] text-house-stone mt-1">
                   {p.blurb}
                 </p>
               </div>
               <span
                 aria-hidden="true"
-                className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-ink transition-all duration-[var(--t-slow)] ease-out group-hover:translate-x-2"
+                className="font-sans text-[14px] tracking-[0.2em] uppercase text-house-gold-ink transition-all duration-[var(--t-slow)] ease-out group-hover:translate-x-2"
               >
                 Read →
               </span>

@@ -120,7 +120,7 @@ export function ContactForm({ turnstileSiteKey, sourcePage }: ContactFormProps) 
     <div className="space-y-10">
       {/* Step 1 — topic selection */}
       <fieldset>
-        <legend className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-brown/70 mb-4">
+        <legend className="font-sans text-[14px] tracking-[0.22em] uppercase text-house-brown/70 mb-4">
           What's this about?
         </legend>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -141,10 +141,10 @@ export function ContactForm({ turnstileSiteKey, sourcePage }: ContactFormProps) 
                     : "border-house-brown/12 hover:border-house-brown/30"
                 }`}
               >
-                <div className="font-sans text-[17px] font-medium mb-1.5">
+                <div className="font-sans text-[20px] font-medium mb-1.5">
                   {t.label}
                 </div>
-                <div className="font-sans text-[15px] text-house-brown/70 leading-[1.55]">
+                <div className="font-sans text-[18px] text-house-brown/70 leading-[1.55]">
                   {t.blurb}
                 </div>
               </button>
@@ -194,7 +194,7 @@ export function ContactForm({ turnstileSiteKey, sourcePage }: ContactFormProps) 
             {...register("message")}
           />
 
-          <label className="flex items-start gap-2.5 cursor-pointer font-sans text-[14px] leading-[1.5] text-house-stone">
+          <label className="flex items-start gap-2.5 cursor-pointer font-sans text-[17px] leading-[1.5] text-house-stone">
             <input
               type="checkbox"
               {...register("marketingOptIn")}
@@ -212,7 +212,7 @@ export function ContactForm({ turnstileSiteKey, sourcePage }: ContactFormProps) 
                 onExpire={() => setValue("turnstileToken", "")}
               />
               {errors.turnstileToken ? (
-                <p className="font-sans text-[15px] text-red-700">
+                <p className="font-sans text-[18px] text-red-700">
                   {errors.turnstileToken.message}
                 </p>
               ) : null}

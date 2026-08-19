@@ -33,13 +33,13 @@ export function ProofBand() {
         <div className="relative overflow-hidden flex flex-col justify-center py-4 lg:py-8 lg:pl-[clamp(32px,4vw,72px)]">
           <FlowerWatermark color="gold" side="right" opacity={0.1} />
           <div className="relative z-10">
-            <p className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-dark">
+            <p className="font-sans text-[13px] tracking-[0.22em] uppercase text-house-gold-dark">
               The proof
             </p>
             <h2 className="mt-3 font-display text-[clamp(1.9rem,2.6vw,2.7rem)] leading-[1.04] text-house-ink text-balance">
               Held to a standard you can check.
             </h2>
-            <p className="mt-4 font-sans text-[15.5px] leading-relaxed text-house-brown/80 max-w-[46ch]">
+            <p className="mt-4 font-sans text-[17.5px] leading-relaxed text-house-brown/80 max-w-[46ch]">
               Look for current reviews, service credentials, clear pricing or
               quotation terms, and the service area before you book.
             </p>
@@ -50,14 +50,14 @@ export function ProofBand() {
                   <span className="font-display text-[clamp(1.2rem,1.5vw,1.5rem)] text-house-ink leading-tight">
                     {i.stat}
                   </span>
-                  <span className="mt-1 font-sans text-[12px] tracking-[0.04em] text-house-stone max-w-[24ch]">
+                  <span className="mt-1 font-sans text-[14px] tracking-[0.04em] text-house-stone max-w-[24ch]">
                     {i.label}
                   </span>
                 </li>
               ))}
             </ul>
 
-            <p className="mt-9 font-sans text-[11px] leading-relaxed text-house-stone/90 max-w-[54ch]">
+            <p className="mt-9 font-sans text-[13px] leading-relaxed text-house-stone/90 max-w-[54ch]">
               House of Willow Alexander acts as an introducer for insurance, arranged by
               Provenance, which is authorised and regulated by the Financial Conduct
               Authority. Full details are provided before any purchase.

@@ -21,7 +21,7 @@
   font-family: var(--font-sans);
   text-transform: uppercase;
   letter-spacing: 0.22em;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--gold);
   margin-bottom: 1.75rem;
 }
@@ -51,7 +51,7 @@
   font-family: var(--font-sans);
   text-transform: uppercase;
   letter-spacing: 0.26em;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--gold);
   margin-bottom: 2rem;
 }
@@ -69,7 +69,7 @@
   margin-top: 2rem;
   max-width: 46ch;
   font-family: var(--font-sans);
-  font-size: clamp(16px, 1.2vw, 17px);
+  font-size: clamp(19px, 1.2vw,20px);
   line-height: 1.7;
   color: var(--ink-light);
 }
@@ -100,7 +100,7 @@
   justify-content: center;
   padding: 1rem 2.25rem;
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 18px;
   letter-spacing: 0.04em;
   color: var(--navy-deep);
   background: var(--gold);
@@ -144,7 +144,7 @@
   margin: 2.25rem auto 0;
   max-width: 52ch;
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.7;
   color: var(--ink-light);
 }
@@ -203,7 +203,7 @@
   margin-top: 1.5rem;
   max-width: 42ch;
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.7;
   color: var(--ink-light);
 }
@@ -253,14 +253,14 @@
 }
 .capBody {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.6;
   color: var(--ink-light);
 }
 .compliance {
   margin-top: 2.5rem;
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.6;
   color: var(--ink-faint);
   max-width: 60ch;
@@ -292,7 +292,7 @@
 .managedSub {
   margin-top: 1.5rem;
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.7;
   color: var(--ink-light);
 }
@@ -310,7 +310,7 @@
 .howLede {
   max-width: 56ch;
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.75;
   color: var(--ink-light);
 }
@@ -386,7 +386,7 @@
   margin-top: 1.5rem;
   max-width: 38ch;
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.7;
   color: var(--ink-light);
 }
@@ -446,7 +446,7 @@
 }
 .priceUnit {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   letter-spacing: 0.04em;
   color: var(--ink-light);
 }
@@ -465,7 +465,7 @@
   align-items: flex-start;
   gap: 0.7rem;
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.5;
   color: var(--ink-light);
 }
@@ -522,7 +522,7 @@
   font-family: var(--font-sans);
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--ink-light);
   transition: color 180ms ease;
 }
@@ -533,7 +533,7 @@
   font-family: var(--font-sans);
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--navy-deep);
   background: var(--gold);
   padding: 0.6rem 1.2rem;
@@ -590,31 +590,31 @@
 .heroBadgeTop {
   display: inline-flex; align-items: center; gap: 0.5rem;
   font-family: var(--font-sans); text-transform: uppercase;
-  letter-spacing: 0.2em; font-size: 12px; color: var(--gold);
+  letter-spacing: 0.2em; font-size: 14px; color: var(--gold);
 }
 .heroBadgeDot { width: 9px; height: 9px; background: var(--gold); display: inline-block; }
 .heroBadgeLive {
-  font-family: var(--font-sans); font-size: 12px; letter-spacing: 0.16em;
+  font-family: var(--font-sans); font-size: 14px; letter-spacing: 0.16em;
   text-transform: uppercase; color: #6fae8b;
 }
 .heroBadgeScore { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
-.heroBadgeScoreLabel { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.14em; font-size: 12px; color: var(--ink-light); }
+.heroBadgeScoreLabel { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.14em; font-size: 14px; color: var(--ink-light); }
 .heroBadgeScoreNum { font-family: var(--font-display); font-weight: 700; font-size: 2.6rem; line-height: 1; color: var(--gold); }
 .heroBadgeScoreNum span { font-size: 1.1rem; color: var(--ink-faint); }
 .heroBadge .scoreBarTrack { margin: 0.9rem 0 0.5rem; }
-.heroBadgeState { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.16em; font-size: 12px; color: var(--gold); margin-bottom: 1.1rem; }
+.heroBadgeState { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.16em; font-size: 14px; color: var(--gold); margin-bottom: 1.1rem; }
 .heroBadgeList { list-style: none; margin: 0; padding: 0; }
 .heroBadgeRow {
   display: flex; justify-content: space-between; gap: 1rem;
   padding: 0.7rem 0; border-top: 1px solid rgba(243,237,224,0.12);
-  font-family: var(--font-sans); font-size: 15px; color: var(--ink-light);
+  font-family: var(--font-sans); font-size: 18px; color: var(--ink-light);
 }
 .heroBadgeRow strong { color: var(--cream); font-weight: 600; }
 
 /* ghost button */
 .btnGhost {
   display: inline-flex; align-items: center; justify-content: center;
-  padding: 1rem 2rem; font-family: var(--font-sans); font-size: 15px;
+  padding: 1rem 2rem; font-family: var(--font-sans); font-size: 18px;
   letter-spacing: 0.04em; color: var(--cream);
   border: 1px solid rgba(243,237,224,0.4); background: transparent;
   transition: border-color 200ms ease, color 200ms ease;
@@ -636,13 +636,13 @@
 .statItem { display: flex; flex-direction: column; gap: 0.5rem; }
 @media (min-width: 760px) { .statItem + .statItem { border-left: 1px solid rgba(243,237,224,0.12); } }
 .statValue { font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 3.4vw, 3rem); color: var(--cream); line-height: 1; }
-.statLabel { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.16em; font-size: 12px; color: var(--ink-faint); }
+.statLabel { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.16em; font-size: 14px; color: var(--ink-faint); }
 
 /* 3b. Quote panel */
 .quotePanel { background: var(--navy-deep); padding: clamp(2.5rem, 5vh, 3.5rem) 1.5rem clamp(4rem, 9vh, 6.5rem); text-align: center; }
 .quoteText { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.6rem, 3vw, 2.6rem); line-height: 1.2; max-width: 22ch; margin: 0 auto; }
 .quoteText em { font-style: italic; color: var(--gold); font-family: var(--font-hearth-serif); font-weight: 400; }
-.quoteAttr { margin-top: 1.5rem; font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.18em; font-size: 12px; color: var(--ink-faint); }
+.quoteAttr { margin-top: 1.5rem; font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.18em; font-size: 14px; color: var(--ink-faint); }
 
 /* 4. Pillars */
 .pillars { max-width: 1180px; margin: 0 auto; padding: clamp(4rem, 9vh, 7rem) 1.5rem; display: grid; gap: clamp(3rem, 7vh, 5.5rem); }
@@ -652,27 +652,27 @@
   .pillarRowAlt .pillarText { order: 2; }
 }
 .pillarNum { font-family: var(--font-display); font-style: italic; font-size: 2rem; color: var(--gold); margin-bottom: 1rem; }
-.pillarSubLabel { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.2em; font-size: 12px; color: var(--gold); margin-bottom: 0.9rem; }
+.pillarSubLabel { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.2em; font-size: 14px; color: var(--gold); margin-bottom: 0.9rem; }
 .pillarHeading { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.01em; line-height: 1.1; font-size: clamp(1.6rem, 2.8vw, 2.3rem); margin-bottom: 1.1rem; }
-.pillarBody { font-family: var(--font-sans); font-size: 16px; line-height: 1.7; color: var(--ink-light); max-width: 46ch; }
-.scenarioCard { margin: 1.75rem 0 0; padding: 1.25rem 1.5rem; border-left: 2px solid var(--gold); background: rgba(38,52,76,0.4); font-family: var(--font-hearth-serif); font-style: italic; font-size: 16px; line-height: 1.6; color: var(--ink-light); }
+.pillarBody { font-family: var(--font-sans); font-size: 19px; line-height: 1.7; color: var(--ink-light); max-width: 46ch; }
+.scenarioCard { margin: 1.75rem 0 0; padding: 1.25rem 1.5rem; border-left: 2px solid var(--gold); background: rgba(38,52,76,0.4); font-family: var(--font-hearth-serif); font-style: italic; font-size: 19px; line-height: 1.6; color: var(--ink-light); }
 .pillarImage { position: relative; width: 100%; aspect-ratio: 4 / 3; overflow: hidden; box-shadow: 0 30px 80px -40px rgba(0,0,0,0.7); }
-.complianceWide { max-width: 60ch; margin: 0 auto; font-family: var(--font-sans); font-size: 15px; line-height: 1.6; color: var(--ink-faint); text-align: center; }
+.complianceWide { max-width: 60ch; margin: 0 auto; font-family: var(--font-sans); font-size: 18px; line-height: 1.6; color: var(--ink-faint); text-align: center; }
 
 /* 5. HoWA Score */
 .scoreSection { background: var(--navy-deep); padding: clamp(4.5rem, 10vh, 8rem) 1.5rem; }
 .scoreInner { max-width: 1080px; margin: 0 auto; display: grid; gap: 3rem; align-items: center; }
 @media (min-width: 960px) { .scoreInner { grid-template-columns: 1fr 1fr; gap: 4rem; } }
 .scoreCard { background: rgba(29,42,64,0.7); border: 1px solid rgba(197,169,96,0.3); padding: 1.75rem; box-shadow: 0 30px 70px -30px rgba(0,0,0,0.6); }
-.scoreCardHead { display: flex; justify-content: space-between; align-items: baseline; font-family: var(--font-sans); font-size: 15px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-light); }
+.scoreCardHead { display: flex; justify-content: space-between; align-items: baseline; font-family: var(--font-sans); font-size: 18px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-light); }
 .scoreCardScore { font-family: var(--font-display); font-weight: 700; font-size: 2.2rem; color: var(--gold); line-height: 1; }
 .scoreCardScore span { font-size: 1rem; color: var(--ink-faint); }
 .scoreBarTrack { height: 8px; background: rgba(243,237,224,0.12); margin: 1rem 0 0.5rem; }
 .scoreBarFill { display: block; height: 100%; background: var(--gold); }
-.scoreCardState { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.16em; font-size: 12px; color: var(--gold); margin-bottom: 1.5rem; }
-.scoreDriversLabel { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.16em; font-size: 12px; color: var(--ink-faint); margin-bottom: 0.9rem; }
+.scoreCardState { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.16em; font-size: 14px; color: var(--gold); margin-bottom: 1.5rem; }
+.scoreDriversLabel { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.16em; font-size: 14px; color: var(--ink-faint); margin-bottom: 0.9rem; }
 .scoreDrivers { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; }
-.driverRow { display: grid; grid-template-columns: 9px 1fr 90px 22px; align-items: center; gap: 0.6rem; font-family: var(--font-sans); font-size: 15px; color: var(--ink-light); }
+.driverRow { display: grid; grid-template-columns: 9px 1fr 90px 22px; align-items: center; gap: 0.6rem; font-family: var(--font-sans); font-size: 18px; color: var(--ink-light); }
 .driverDot { width: 7px; height: 7px; background: var(--gold); }
 .driverLabel { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .driverBar { height: 6px; background: rgba(243,237,224,0.12); position: relative; }
@@ -683,7 +683,7 @@
 .scoreStep { border-top: 1px solid rgba(197,169,96,0.3); padding-top: 1.25rem; }
 .scoreStepNum { font-family: var(--font-hearth-serif); font-style: italic; font-size: 1.4rem; color: var(--gold); }
 .scoreStepLabel { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; margin: 0.5rem 0 0.6rem; }
-.scoreStepBody { font-family: var(--font-sans); font-size: 15px; line-height: 1.6; color: var(--ink-light); }
+.scoreStepBody { font-family: var(--font-sans); font-size: 18px; line-height: 1.6; color: var(--ink-light); }
 
 /* 6. Value anchoring */
 .valueBand { padding: clamp(4.5rem, 10vh, 8rem) 1.5rem; }
@@ -693,7 +693,7 @@
 .valueStats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; }
 .valueStat { display: flex; flex-direction: column; gap: 0.4rem; }
 .valueStatBig { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--gold); line-height: 1; }
-.valueStatLabel { font-family: var(--font-sans); font-size: 15px; line-height: 1.5; color: var(--ink-light); }
+.valueStatLabel { font-family: var(--font-sans); font-size: 18px; line-height: 1.5; color: var(--ink-light); }
 .valueImage { position: relative; min-height: 300px; }
 
 /* 7. Comparison table */
@@ -702,22 +702,22 @@
 .compareScroll { overflow-x: auto; }
 .compareTable { width: 100%; border-collapse: collapse; min-width: 520px; }
 .compareTable th, .compareTable td { padding: 0.85rem 1rem; text-align: center; border-bottom: 1px solid rgba(243,237,224,0.1); }
-.compareTable thead th { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.14em; font-size: 12px; color: var(--ink-light); font-weight: 400; }
-.compareFeature { text-align: left; font-family: var(--font-sans); font-size: 15px; color: var(--cream); }
+.compareTable thead th { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.14em; font-size: 14px; color: var(--ink-light); font-weight: 400; }
+.compareFeature { text-align: left; font-family: var(--font-sans); font-size: 18px; color: var(--cream); }
 .compareColSteward { color: var(--gold); border-left: 1px solid rgba(197,169,96,0.35); border-right: 1px solid rgba(197,169,96,0.35); }
 .compareCellSteward { background: rgba(197,169,96,0.07); border-left: 1px solid rgba(197,169,96,0.35); border-right: 1px solid rgba(197,169,96,0.35); }
-.compareBadge { display: block; margin-top: 0.3rem; font-size: 12px; letter-spacing: 0.16em; color: var(--gold); }
+.compareBadge { display: block; margin-top: 0.3rem; font-size: 14px; letter-spacing: 0.16em; color: var(--gold); }
 .compareDash { color: var(--ink-faint); }
-.compareWord { font-family: var(--font-sans); font-size: 15px; color: var(--ink-light); }
+.compareWord { font-family: var(--font-sans); font-size: 18px; color: var(--ink-light); }
 .compareWordGold { font-family: var(--font-display); font-weight: 700; color: var(--gold); }
 .comparePriceRow td { border-top: 1px solid rgba(197,169,96,0.3); }
-.compareNote { margin-top: 1.5rem; font-family: var(--font-sans); font-size: 15px; color: var(--ink-faint); }
+.compareNote { margin-top: 1.5rem; font-family: var(--font-sans); font-size: 18px; color: var(--ink-faint); }
 .compareCell svg { vertical-align: middle; }
 
 /* 8. Grouped features */
 .incCopy { align-self: start; }
 .featureGroups { display: grid; gap: 2rem; }
-.featureGroupLabel { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.18em; font-size: 12px; color: var(--gold); margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid rgba(197,169,96,0.25); }
+.featureGroupLabel { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.18em; font-size: 14px; color: var(--gold); margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid rgba(197,169,96,0.25); }
 .featureGroupList { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.8rem; }
 
 /* 10. Managed Stewardship full-bleed */

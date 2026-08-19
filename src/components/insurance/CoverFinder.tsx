@@ -32,10 +32,10 @@ function CoverCard({ c, id, className }: { c: CoverIndexEntry; id?: string; clas
         <Image src={c.image} alt="" fill sizes="(max-width: 640px) 80vw, 360px" className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
       </div>
       <div className="flex flex-1 flex-col p-4 sm:p-5">
-        <p className="font-sans text-[10.5px] tracking-[0.2em] uppercase text-house-stone">{c.group}</p>
-        <h3 className="mt-1.5 font-display text-[18px] leading-tight text-house-black transition-colors group-hover:text-[color:var(--ins-ink)] sm:text-[20px]">{c.name}</h3>
-        <p className="mt-1.5 font-sans text-[14px] leading-[1.5] text-house-stone sm:text-[14.5px]">{c.blurb}</p>
-        <span className="mt-4 font-sans text-[11px] tracking-[0.16em] uppercase text-[color:var(--ins-ink)] sm:text-[12px]">View cover →</span>
+        <p className="font-sans text-[12.5px] tracking-[0.2em] uppercase text-house-stone">{c.group}</p>
+        <h3 className="mt-1.5 font-display text-[21px] leading-tight text-house-black transition-colors group-hover:text-[color:var(--ins-ink)] sm:text-[23px]">{c.name}</h3>
+        <p className="mt-1.5 font-sans text-[17px] leading-[1.5] text-house-stone sm:text-[16.5px]">{c.blurb}</p>
+        <span className="mt-4 font-sans text-[13px] tracking-[0.16em] uppercase text-[color:var(--ins-ink)] sm:text-[14px]">View cover →</span>
       </div>
     </Link>
   );
@@ -98,7 +98,7 @@ export function CoverFinder() {
 
   return (
     <div>
-      <label htmlFor="cover-finder" className="block font-sans text-[12px] tracking-[0.24em] uppercase text-[color:var(--ins-ink)]">
+      <label htmlFor="cover-finder" className="block font-sans text-[14px] tracking-[0.24em] uppercase text-[color:var(--ins-ink)]">
         Find your cover
       </label>
       <input
@@ -111,13 +111,13 @@ export function CoverFinder() {
           setQ(e.target.value);
         }}
         placeholder="Try ‘van’, ‘listed’, ‘necklace’, ‘toyota’, ‘plumber’…"
-        className="mt-3 w-full max-w-[560px] border border-house-brown/25 bg-house-white px-5 py-4 font-sans text-[17px] text-house-brown placeholder:text-house-stone/70 outline-none transition-colors focus:border-[color:var(--ins-ink)]"
+        className="mt-3 w-full max-w-[560px] border border-house-brown/25 bg-house-white px-5 py-4 font-sans text-[20px] text-house-brown placeholder:text-house-stone/70 outline-none transition-colors focus:border-[color:var(--ins-ink)] focus-visible:[outline:2px_solid_var(--ins-ink)] focus-visible:outline-offset-2"
         autoComplete="off"
       />
 
       {/* No-match */}
       {covers && searching && results.length === 0 ? (
-        <p className="mt-8 max-w-[52ch] font-sans text-[16px] leading-[1.65] text-house-stone">
+        <p className="mt-8 max-w-[52ch] font-sans text-[19px] leading-[1.65] text-house-stone">
           Nothing matches “{q}”.{" "}
           <Link href="/insurance/private-client" className="text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">
             Speak to a specialist
@@ -140,7 +140,7 @@ export function CoverFinder() {
         <div className="mt-8 flex flex-col gap-9 lg:hidden">
           {grouped.map(({ group, items }) => (
             <div key={group}>
-              <h3 className="mb-3 font-display text-[clamp(18px,2vw,22px)] leading-tight text-house-black">{group}</h3>
+              <h3 className="mb-3 font-display text-[clamp(21px,2vw,25px)] leading-tight text-house-black">{group}</h3>
               <div className="-mx-[5vw] flex snap-x snap-mandatory gap-4 overflow-x-auto px-[5vw] pb-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 {items.map((c) => (
                   <CoverCard key={c.href} c={c} className="w-[80vw] max-w-[300px] shrink-0 snap-start" />
@@ -159,7 +159,7 @@ export function CoverFinder() {
               <a
                 key={group}
                 href={`#cat-${catSlug(group)}`}
-                className="border border-house-brown/25 px-4 py-2 font-sans text-[11px] tracking-[0.14em] uppercase text-house-brown no-underline transition-colors hover:border-[color:var(--ins-ink)] hover:text-[color:var(--ins-ink)]"
+                className="border border-house-brown/25 px-4 py-2 font-sans text-[13px] tracking-[0.14em] uppercase text-house-brown no-underline transition-colors hover:border-[color:var(--ins-ink)] hover:text-[color:var(--ins-ink)]"
               >
                 {group}
               </a>

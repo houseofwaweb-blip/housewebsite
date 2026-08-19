@@ -58,14 +58,14 @@ export default async function HearthCategoryPage({
       <HearthCategoryStrip activeSlug={slug} />
 
       <section className="max-w-[1360px] mx-auto px-[5vw] pt-12 pb-2 text-center">
-        <p className="font-hearth-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-ink mb-3">
+        <p className="font-hearth-sans text-[14px] tracking-[0.22em] uppercase text-house-gold-ink mb-3">
           The Hearth
         </p>
-        <h1 className="font-hearth-serif text-[clamp(32px,4vw,52px)] leading-[1.05] text-house-black">
+        <h1 className="font-hearth-serif text-[clamp(35px,4vw,55px)] leading-[1.05] text-house-black">
           {label}
         </h1>
         {category.description ? (
-          <p className="mt-4 max-w-[60ch] mx-auto font-hearth-sans text-[16px] leading-[1.6] text-house-brown/70">
+          <p className="mt-4 max-w-[60ch] mx-auto font-hearth-sans text-[19px] leading-[1.6] text-house-brown/70">
             {category.description}
           </p>
         ) : null}
@@ -80,7 +80,7 @@ export default async function HearthCategoryPage({
             viewAllHref="/the-hearth"
           />
         ) : (
-          <p className="py-16 text-center font-hearth-sans text-[16px] text-house-brown/60">
+          <p className="py-16 text-center font-hearth-sans text-[19px] text-house-brown/60">
             No articles in this section yet. Please check back soon.
           </p>
         )}

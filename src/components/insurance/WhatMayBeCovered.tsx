@@ -36,38 +36,38 @@ export function WhatMayBeCovered() {
   return (
     <section className="px-[5vw] py-14" style={{ background: "var(--color-house-cream-dark)" }}>
       <div className="mx-auto max-w-[1080px]">
-        <p className="font-sans text-[12px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">
+        <p className="font-sans text-[14px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">
           What may be covered
         </p>
-        <h2 className="mt-3 max-w-[26ch] font-display text-[clamp(24px,3.4vw,40px)] leading-[1.1] text-house-black">
+        <h2 className="mt-3 max-w-[26ch] font-display text-[clamp(27px,3.4vw,43px)] leading-[1.1] text-house-black">
           The kinds of thing a good policy is there for.
         </h2>
-        <p className="mt-4 max-w-[62ch] font-sans text-[16.5px] leading-[1.65] text-house-brown/85">
+        <p className="mt-4 max-w-[62ch] font-sans text-[18.5px] leading-[1.65] text-house-brown/85">
           These are examples, to show the shape of cover, not a list of what your policy includes. What is actually covered, and to what limit, is set out in the policy wording. Read it before you rely on anything here.
         </p>
         <div className="mt-8 grid gap-x-10 gap-y-7 md:grid-cols-2 lg:grid-cols-3">
           {examples.map((e) => (
             <div key={e.h} className="border-t border-house-brown/20 pt-4">
-              <h3 className="font-sans text-[15px] font-semibold tracking-[0.01em] text-house-black">{e.h}</h3>
-              <p className="mt-2 font-sans text-[15.5px] leading-[1.55] text-house-brown/80">{e.p}</p>
+              <h3 className="font-sans text-[18px] font-semibold tracking-[0.01em] text-house-black">{e.h}</h3>
+              <p className="mt-2 font-sans text-[17.5px] leading-[1.55] text-house-brown/80">{e.p}</p>
             </div>
           ))}
         </div>
         <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
           <Link
             href="/insurance/everyday"
-            className="inline-flex w-fit items-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110"
+            className="inline-flex w-fit items-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[14px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110"
           >
             See what each cover includes →
           </Link>
           <Link
             href="/insurance/how-this-works"
-            className="inline-flex w-fit items-center font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-ink)] no-underline underline-offset-2 hover:text-house-brown hover:underline"
+            className="inline-flex w-fit items-center font-sans text-[14px] tracking-[0.16em] uppercase text-[color:var(--ins-ink)] no-underline underline-offset-2 hover:text-house-brown hover:underline"
           >
             Where to find the full policy wording →
           </Link>
         </div>
-        <p className="mt-5 font-sans text-[13.5px] leading-[1.6] text-house-brown/70">
+        <p className="mt-5 font-sans text-[15.5px] leading-[1.6] text-house-brown/70">
           The full policy wording, key facts and exclusions are provided by Provenance before you commit to anything.
         </p>
       </div>

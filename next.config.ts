@@ -85,20 +85,18 @@ const nextConfig: NextConfig = {
       { source: "/protect/home-protection", destination: "/insurance/home-protection", permanent: false },
       { source: "/protect/:path*", destination: "/insurance", permanent: false },
 
-      // --- Aug-17 rebuild TEMP bridges (permanent:false) ---------------------
-      // The nav + footer now use the doc's canonical routes; until those pages
-      // are built / slugs migrated, bridge them to the existing pages so the
-      // site is fully navigable. These get reversed as each target is built.
-      { source: "/services/gardeners", destination: "/services/gardening", permanent: false },
-      { source: "/services/cleaners", destination: "/services/cleaning", permanent: false },
-      { source: "/services/window-cleaners", destination: "/services/window-cleaning", permanent: false },
-      { source: "/services/repairs-handyman", destination: "/services/handyman", permanent: false },
-      { source: "/services/electrical-energy", destination: "/services/energy", permanent: false },
-      { source: "/services/dog-walkers", destination: "/services/pet-care", permanent: false },
-      { source: "/insurance-and-cover", destination: "/insurance", permanent: false },
-      { source: "/insurance-and-cover/:path*", destination: "/insurance", permanent: false },
-      { source: "/magazine", destination: "/the-hearth", permanent: false },
-      { source: "/magazine/:path*", destination: "/the-hearth", permanent: false },
+      // --- Aug-17 rebuild canonical-slug bridges -----------------------------
+      // The nav + footer use the doc's canonical routes; these 301 the old
+      // slugs to them. (The exact-duplicate /services/gardeners, /services/
+      // cleaners and bare /magazine rules that used to live here are the same
+      // as the permanent ones in the sections below, so they were dropped.)
+      { source: "/services/window-cleaners", destination: "/services/window-cleaning", permanent: true },
+      { source: "/services/repairs-handyman", destination: "/services/handyman", permanent: true },
+      { source: "/services/electrical-energy", destination: "/services/energy", permanent: true },
+      { source: "/services/dog-walkers", destination: "/services/pet-care", permanent: true },
+      { source: "/insurance-and-cover", destination: "/insurance", permanent: true },
+      { source: "/insurance-and-cover/:path*", destination: "/insurance", permanent: true },
+      { source: "/magazine/:path*", destination: "/the-hearth", permanent: true },
       // Aug-17 rebuild: /how-it-works, /house-approved-pro, /help and /my-house
       // are now real pages (doc §16/§17/§20/§19), so their temp bridges are
       // removed and the pages serve directly.
@@ -128,8 +126,8 @@ const nextConfig: NextConfig = {
       { source: "/service/:path*", destination: "/services/:path*", permanent: true },
       // Advice articles weren't migrated 1:1 yet — soft-land on the Hearth hub
       // (302) rather than hard-404 the old URLs / their backlinks.
-      { source: "/advice", destination: "/the-hearth", permanent: false },
-      { source: "/advice/:slug*", destination: "/the-hearth", permanent: false },
+      { source: "/advice", destination: "/the-hearth", permanent: true },
+      { source: "/advice/:slug*", destination: "/the-hearth", permanent: true },
       // Legacy WordPress pages → their new homes.
       { source: "/contact-us", destination: "/contact", permanent: true },
       { source: "/our-story", destination: "/the-house/about", permanent: true },
@@ -138,18 +136,25 @@ const nextConfig: NextConfig = {
       // Aug-17 rebuild: the doc has no Design pillar or /partners page — design
       // folds into the Interiors + Home & Garden services. Retire /design/* and
       // /partners into the service pages.
-      { source: "/design/interiors", destination: "/services/interiors", permanent: false },
+      // Design lives under /design consistently: /design/interiors + /design/gardens.
+      // The old /services/interiors folds into the design page.
+      { source: "/services/interiors", destination: "/design/interiors", permanent: false },
       { source: "/design/studios", destination: "/services", permanent: false },
-      { source: "/design", destination: "/services", permanent: false },
+      // /design renders the unified design landing (Interiors + Gardens, two
+      // paths). NOT redirected to /services.
       // /design/gardens stays LIVE as the garden design page (packages), linked
       // from the homepage design cards. Retire the other /design PAGE routes,
       // excluding paths that start with "gardens" and any path with a file
       // extension so static assets under /public/design/* still serve.
-      { source: "/design/:path((?!gardens|.*\\.).+)", destination: "/services", permanent: false },
-      { source: "/partners", destination: "/the-house/about", permanent: false },
+      { source: "/design/:path((?!gardens|interiors|.*\\.).+)", destination: "/services", permanent: false },
+      // Partners is retired: the Aug-17 spec has no partners page — the House
+      // owns its service brands (Willow Alexander Gardeners, Cleaners, etc.),
+      // it is not a third-party provider marketplace. The old profile routes
+      // are deleted; funnel any inbound links to the Services collective.
       // Exclude file-extension paths so static assets under /public/partners/*
       // (e.g. /partners/hero.webp used by the newsletter split) still serve.
-      { source: "/partners/:path((?!.*\\.).+)", destination: "/the-house/about", permanent: false },
+      { source: "/partners", destination: "/services", permanent: true },
+      { source: "/partners/:path((?!.*\\.).+)", destination: "/services", permanent: true },
       { source: "/garden-design", destination: "/services/home-and-garden", permanent: true },
       { source: "/garden-design-3", destination: "/services/home-and-garden", permanent: true },
       { source: "/interior-design", destination: "/services/interiors", permanent: true },

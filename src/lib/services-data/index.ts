@@ -122,7 +122,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
   gardening: {
     slug: "gardening",
     name: "Gardening",
-    lede: "Planting, maintenance, and seasonal care by gardeners who know the difference between a bay and a laurel.",
+    lede: "Planting, maintenance and seasonal garden care across London and Kent. A carbon-neutral service by our in-house team, with battery tools and licensed waste carriage.",
     eyebrow: "Services · Gardening",
     heroImage: "/services/photos/gardening-hero.webp",
     headline: "A garden you meant to have.",
@@ -205,7 +205,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
   "window-cleaning": {
     slug: "window-cleaning",
     name: "Window cleaning",
-    lede: "Pure water cleaning from the ground, powered by our electric fleet. No ladders, no harsh detergents, no streaks. Federation of Window Cleaners certified.",
+    lede: "Pure-water window cleaning and exterior care across London and Kent. Fully insured teams and a fully electric fleet, for a streak-free finish from the ground, no ladders or harsh detergents. Federation of Window Cleaners certified.",
     eyebrow: "Services · Window cleaning",
     heroImage: "/services/photos/window-cleaning-hero.webp",
     headline: "Light, properly let in.",
@@ -271,7 +271,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
   cleaning: {
     slug: "cleaning",
     name: "Cleaning",
-    lede: "Trained, uniformed cleaners using plant-based products that lift grime without leaving a chemical note in the air. Electric fleet, battery-powered tools, fragrance-free on request.",
+    lede: "Domestic and commercial cleaning across London and Kent. Regular, end-of-tenancy, spring, after-build and one-off cleans by vetted, DBS-checked teams, with the same trusted hands each visit.",
     eyebrow: "Services · Cleaning",
     heroImage: "/services/photos/cleaning-hero.webp",
     headline: "A house that feels cared for.",
@@ -355,7 +355,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
     slug: "gutter-cleaning",
     name: "Gutter cleaning",
     colour: "#3D123C",
-    lede: "Gutters cleared from the ground with a vacuum system and a camera check. Clears blockages, leaves, moss and bird mess. Safe and ladder-free.",
+    lede: "Ground-based gutter clearing across London and Kent. Cleared by vacuum with a camera check, safe and ladder-free, with a note on any repairs your gutters need.",
     eyebrow: "Services · Gutter cleaning",
     heroImage: "/services/photos/gutter-cleaning-hero.webp",
     headline: "A small job that saves a large one.",
@@ -418,7 +418,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
   handyman: {
     slug: "handyman",
     name: "Handyman",
-    lede: "General repairs, furniture assembly, picture hanging, shelf fitting, and the odd jobs a house always needs. Fully insured, on time.",
+    lede: "Repairs, assembly and the odd jobs a house always needs, across London and Kent. Fully insured tradespeople, fixed quotes, and every job filed to your Home Record.",
     eyebrow: "Services \u00b7 Handyman",
     heroImage: "/services/home/handyman.webp",
     headline: "The small fixes that keep a house running.",
@@ -502,7 +502,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
   removals: {
     slug: "removals",
     name: "Removals",
-    lede: "Carbon-neutral house moves, packing, and storage coordination. Uniformed teams, fully insured, careful with the things that matter.",
+    lede: "Carbon-neutral house moves, packing and storage across London and Kent. Uniformed, fully insured teams and an electric fleet, careful with the things that matter.",
     eyebrow: "Services \u00b7 Removals",
     heroImage: "/services/moving/removals.webp",
     headline: "Moving, without the dread.",
@@ -587,7 +587,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
     slug: "energy",
     name: "Energy & Electrical",
     colour: "#0F183D",
-    lede: "Solar installation, EV charging, electrical repairs, and safety inspections. NICEIC-registered, fully certified, electric fleet.",
+    lede: "Solar, EV charging, rewires and electrical safety across London and Kent. NICEIC-registered electricians, full certification, and an electric fleet.",
     eyebrow: "Services \u00b7 Energy & Electrical",
     heroImage: "/services/home/energy.webp",
     headline: "Power that works for the home.",
@@ -669,7 +669,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
   "pet-care": {
     slug: "pet-care",
     name: "Pet Care",
-    lede: "Trusted, insured dog walking and pet sitting by experienced handlers. GPS-tracked walks, photo updates, and visit notes filed to your Home Record.",
+    lede: "Trusted dog walking and pet sitting across London and Kent. DBS-checked, insured handlers, GPS-tracked walks and photo updates filed to your Home Record.",
     eyebrow: "Services \u00b7 Pet Care",
     headline: "Because the dog is part of the house.",
     heroImage: "/services/pet/pet-care.webp",
@@ -750,6 +750,23 @@ export const SERVICES: Record<ServiceSlug, Service> = {
     trustBadges: SERVICE_TRUST_BADGES,
   },
 };
+
+/**
+ * Scoped enquiry-form dropdown options for a service: a leading "general"
+ * option plus the service's own sub-services. Used so a service page's callback
+ * form offers that service's sub-services (deep clean, end-of-tenancy…) rather
+ * than the full list of unrelated services (gardening, handyman…). The value ""
+ * means "unspecified"; sub-service values carry the sub slug for the notes line.
+ */
+export function serviceEnquiryOptions(service: Service): Array<{ value: string; label: string }> {
+  const opts: Array<{ value: string; label: string }> = [
+    { value: "", label: `General ${service.name.toLowerCase()} enquiry` },
+  ];
+  for (const sub of service.subServices) {
+    opts.push({ value: sub.slug, label: sub.name });
+  }
+  return opts;
+}
 
 export const SERVICE_ORDER: ServiceSlug[] = [
   "gardening",

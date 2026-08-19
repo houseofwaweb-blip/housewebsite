@@ -25,7 +25,7 @@ export function V4Matrix() {
   return (
     <section id="compare" className="scroll-mt-20 bg-[#fbfaf5] py-16 lg:py-24 border-t border-[color:var(--color-ink)]/8">
       <div className="mx-auto max-w-[1100px] px-6 sm:px-10">
-        <h2 className="mb-10 text-center font-display text-[clamp(26px,3vw,42px)] leading-[1.08] tracking-[-0.01em]">
+        <h2 className="mb-10 text-center font-display text-[clamp(29px,3vw,45px)] leading-[1.08] tracking-[-0.01em]">
           Compare the tiers.
         </h2>
 
@@ -34,18 +34,18 @@ export function V4Matrix() {
           {TIERS.map((t, j) => (
             <div key={t.name} className="overflow-hidden rounded-2xl border border-[color:var(--color-gold)]/25 bg-white">
               <div className="flex items-baseline justify-between border-b border-[color:var(--color-ink)]/10 bg-[#faf8f3] px-5 py-4">
-                <p className="font-display text-[21px] leading-none" style={{ color: t.accent }}>{t.name}</p>
-                <p className="smallcaps text-[12px] tracking-[0.12em] text-[color:var(--color-ink-soft)]/70">{t.price}</p>
+                <p className="font-display text-[24px] leading-none" style={{ color: t.accent }}>{t.name}</p>
+                <p className="smallcaps text-[14px] tracking-[0.12em] text-[color:var(--color-ink-soft)]/70">{t.price}</p>
               </div>
               <ul className="space-y-2.5 px-5 py-4">
                 {ROWS.filter((r) => r.c[j] !== "no").map((r) => (
-                  <li key={r.f} className="flex items-start gap-2.5 text-[15px] leading-snug text-[color:var(--color-ink)]/85">
+                  <li key={r.f} className="flex items-start gap-2.5 text-[18px] leading-snug text-[color:var(--color-ink)]/85">
                     <span className="mt-0.5 shrink-0">{renderCell(r.c[j])}</span>{r.f}
                   </li>
                 ))}
               </ul>
               <div className="px-5 pb-5">
-                <a href={`/howa/coming-soon?tier=${t.slug}`} className="block rounded-md py-2.5 text-center text-[14.5px]" style={{ background: t.accent, color: t.accent === "#c5a960" ? "#1d2a40" : "#fff" }}>
+                <a href={`/howa/coming-soon?tier=${t.slug}`} className="block rounded-md py-2.5 text-center text-[16.5px]" style={{ background: t.accent, color: t.accent === "#c5a960" ? "#1d2a40" : "#fff" }}>
                   {t.name === "Assistant" ? "Choose Assistant" : `Start ${t.name}`}
                 </a>
               </div>
@@ -56,22 +56,22 @@ export function V4Matrix() {
         {/* desktop: the table */}
         <div className="hidden overflow-hidden rounded-2xl border border-[color:var(--color-gold)]/25 bg-white lg:block">
           <div className="grid grid-cols-[1.7fr_repeat(3,0.8fr)] items-end gap-2 border-b border-[color:var(--color-ink)]/10 px-6 py-4">
-            <span className="smallcaps text-[12px] tracking-[0.16em] text-[color:var(--color-ink-soft)]/60">Capability</span>
+            <span className="smallcaps text-[14px] tracking-[0.16em] text-[color:var(--color-ink-soft)]/60">Capability</span>
             {TIERS.map((t) => (
               <div key={t.name} className="text-center">
-                <p className="font-display text-[18px] leading-none" style={{ color: t.accent }}>{t.name}</p>
-                <p className="smallcaps mt-1 text-[12px] tracking-[0.1em] text-[color:var(--color-ink-soft)]/60">{t.price}</p>
+                <p className="font-display text-[21px] leading-none" style={{ color: t.accent }}>{t.name}</p>
+                <p className="smallcaps mt-1 text-[14px] tracking-[0.1em] text-[color:var(--color-ink-soft)]/60">{t.price}</p>
               </div>
             ))}
           </div>
           {ROWS.map((r, i) => (
             <div key={r.f} className={"grid grid-cols-[1.7fr_repeat(3,0.8fr)] items-center gap-2 px-6 py-2.5 " + (i % 2 ? "bg-[#1d2a40]/[0.02]" : "")}>
-              <span className="text-[15px] leading-snug text-[color:var(--color-ink)]/85">{r.f}</span>
+              <span className="text-[18px] leading-snug text-[color:var(--color-ink)]/85">{r.f}</span>
               {r.c.map((cell, j) => <span key={j} className="flex justify-center">{renderCell(cell)}</span>)}
             </div>
           ))}
         </div>
-        <p className="mt-5 text-center text-[15px] text-[color:var(--color-ink-soft)]/60">
+        <p className="mt-5 text-center text-[18px] text-[color:var(--color-ink-soft)]/60">
           &ldquo;Starter&rdquo; means a first version of the HoWA Score; the full drivers, risk register and improvement plan are Steward.
         </p>
       </div>

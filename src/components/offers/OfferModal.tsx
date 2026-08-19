@@ -27,7 +27,7 @@ function Meta({ label, children }: { label: string; children: React.ReactNode })
       <dt className="font-sans text-[10px] leading-[1.5] tracking-[0.16em] uppercase text-house-gold">
         {label}
       </dt>
-      <dd className="font-sans text-[13.5px] leading-[1.55] text-house-cream/85">{children}</dd>
+      <dd className="font-sans text-[15.5px] leading-[1.55] text-house-cream/85">{children}</dd>
     </div>
   );
 }
@@ -130,7 +130,7 @@ export function OfferModal({
           type="button"
           aria-label="Close offer"
           onClick={onClose}
-          className="absolute right-3 top-3 z-30 flex h-9 w-9 items-center justify-center border-0 bg-house-ink/40 text-[22px] leading-none text-house-cream transition-colors duration-[var(--t-base)] hover:bg-house-ink/70 hover:text-house-gold"
+          className="absolute right-3 top-3 z-30 flex h-9 w-9 items-center justify-center border-0 bg-house-ink/40 text-[25px] leading-none text-house-cream transition-colors duration-[var(--t-base)] hover:bg-house-ink/70 hover:text-house-gold"
         >
           <span aria-hidden="true">&times;</span>
         </button>
@@ -163,7 +163,7 @@ export function OfferModal({
                   "linear-gradient(to top, rgba(48,35,28,0.92) 0%, rgba(48,35,28,0.35) 45%, rgba(48,35,28,0) 72%)",
               }}
             />
-            <p className="absolute bottom-4 left-6 z-20 font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold">
+            <p className="absolute bottom-4 left-6 z-20 font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold">
               {offer.category}
             </p>
           </div>
@@ -175,7 +175,7 @@ export function OfferModal({
             >
               {offer.title}
             </h2>
-            <p className="mt-3 font-sans text-[15px] leading-[1.55] text-house-cream/80">
+            <p className="mt-3 font-sans text-[18px] leading-[1.55] text-house-cream/80">
               {offer.summary}
             </p>
 
@@ -187,7 +187,7 @@ export function OfferModal({
               {offer.included.map((item) => (
                 <li
                   key={item}
-                  className="flex gap-2.5 font-sans text-[14.5px] leading-[1.5] text-house-cream/90"
+                  className="flex gap-2.5 font-sans text-[16.5px] leading-[1.5] text-house-cream/90"
                 >
                   <span
                     aria-hidden="true"
@@ -211,13 +211,13 @@ export function OfferModal({
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <Link
                 href={offer.cta.href}
-                className="inline-block bg-house-gold px-6 py-3 font-sans text-[11px] tracking-[0.16em] uppercase text-house-brown no-underline transition hover:brightness-110"
+                className="inline-block bg-house-gold px-6 py-3 font-sans text-[13px] tracking-[0.16em] uppercase text-house-brown no-underline transition hover:brightness-110"
               >
                 {offer.cta.label}
               </Link>
               <Link
                 href={offer.termsHref}
-                className="font-sans text-[12px] tracking-[0.04em] text-house-cream/65 underline underline-offset-4 transition hover:text-house-cream"
+                className="font-sans text-[14px] tracking-[0.04em] text-house-cream/65 underline underline-offset-4 transition hover:text-house-cream"
               >
                 Offer terms
               </Link>

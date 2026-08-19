@@ -64,7 +64,7 @@
 
 .heroEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -85,7 +85,7 @@
 .heroTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(56px, 6.4vw, 100px);
+  font-size: clamp(59px, 6.4vw,103px);
   line-height: 0.92;
   letter-spacing: -0.022em;
   color: var(--color-house-brown);
@@ -104,7 +104,7 @@
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(22px, 2.4vw, 32px);
+  font-size: clamp(25px, 2.4vw,35px);
   line-height: 1.25;
   color: rgba(48, 35, 28, 0.78);
   margin: 0 0 28px;
@@ -113,7 +113,7 @@
 
 .heroLede {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.65;
   color: rgba(48, 35, 28, 0.72);
   margin: 0 0 36px;
@@ -136,7 +136,7 @@
   gap: 10px;
   padding: 13px 24px;
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
@@ -155,7 +155,7 @@
 }
 .btnGhost:hover { border-color: var(--color-house-brown); }
 .btnGhost small {
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   opacity: 0.55;
   margin-left: 8px;
@@ -163,7 +163,7 @@
   border-left: 1px solid rgba(48, 35, 28, 0.18);
 }
 .btnArrow {
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1;
   margin-left: 4px;
   letter-spacing: 0;
@@ -179,14 +179,14 @@
   padding-top: 8px;
 }
 .heroNextCare strong {
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
   font-weight: 500;
 }
 .heroNextCare span {
-  font-size: 15px;
+  font-size: 18px;
   color: rgba(48, 35, 28, 0.72);
 }
 
@@ -273,12 +273,12 @@
 .appHeaderTitle {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 16px;
+  font-size: 19px;
   color: var(--color-house-brown);
   letter-spacing: -0.005em;
 }
 .appHeaderDate {
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -292,7 +292,7 @@
   background: linear-gradient(180deg, rgba(245, 235, 218, 0.35), rgba(251, 246, 236, 0));
 }
 .appHeroLabel {
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -319,7 +319,7 @@
 }
 .appHeroScore {
   font-family: var(--font-display);
-  font-size: 52px;
+  font-size: 55px;
   line-height: 0.95;
   color: var(--color-house-brown);
   font-variant-numeric: tabular-nums;
@@ -328,14 +328,14 @@
   text-align: center;
 }
 .appHeroScoreUnit {
-  font-size: 18px;
+  font-size: 21px;
   color: rgba(48, 35, 28, 0.4);
   margin-left: 3px;
   font-style: italic;
 }
 .appHeroSub {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.06em;
   color: rgba(48, 35, 28, 0.78);
@@ -359,7 +359,7 @@
   align-items: center;
   gap: 12px;
   padding: 9px 20px;
-  font-size: 15px;
+  font-size: 18px;
   border-bottom: 1px solid rgba(48, 35, 28, 0.05);
 }
 .appRow:last-child { border-bottom: none; }
@@ -374,13 +374,13 @@
 .appStatusAttn { background: var(--color-house-gold-ink); box-shadow: 0 0 0 3px rgba(176, 138, 75, 0.18); }
 
 .appRowLabel {
-  font-size: 15px;
+  font-size: 18px;
   color: var(--color-house-brown);
   font-weight: 500;
   letter-spacing: 0;
 }
 .appRowValue {
-  font-size: 12px;
+  font-size: 14px;
   color: rgba(48, 35, 28, 0.72);
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.02em;
@@ -396,7 +396,7 @@
   background: linear-gradient(180deg, rgba(251, 246, 236, 0), rgba(245, 235, 218, 0.55));
 }
 .appFooterCta {
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -441,7 +441,7 @@
 }
 .statsLedeLine1 {
   font-family: var(--font-sans);
-  font-size: clamp(15px, 1.1vw, 15px);
+  font-size: clamp(18px, 1.1vw,18px);
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -451,7 +451,7 @@
 }
 .statsLedeLine2 {
   font-family: var(--font-sans);
-  font-size: clamp(12px, 0.9vw, 13px);
+  font-size: clamp(15px, 0.9vw,16px);
   font-weight: 400;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -471,7 +471,7 @@
 }
 .statValue {
   font-family: var(--font-display);
-  font-size: clamp(32px, 3vw, 44px);
+  font-size: clamp(35px, 3vw,47px);
   font-weight: 400;
   line-height: 1;
   color: var(--color-house-brown);
@@ -486,7 +486,7 @@
 }
 .statLabel {
   font-family: var(--font-sans);
-  font-size: clamp(12px, 0.75vw, 10px);
+  font-size: clamp(15px, 0.75vw,13px);
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -511,7 +511,7 @@
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(48px, 5.4vw, 80px);
+  font-size: clamp(51px, 5.4vw,83px);
   line-height: 1.05;
   color: var(--color-house-brown);
   margin: 0;
@@ -603,7 +603,7 @@
 }
 .tierMeta {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--color-house-gold-light);
@@ -614,7 +614,7 @@
   font-family: var(--font-hearth-serif);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(20px, 1.8vw, 26px);
+  font-size: clamp(23px, 1.8vw,29px);
   line-height: 1.2;
   color: var(--fg);
   margin: 0;
@@ -651,7 +651,7 @@
   gap: 10px;
   align-items: baseline;
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.4;
   color: var(--fg-muted);
 }
@@ -665,7 +665,7 @@
 }
 .tierLearn {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--fg);
@@ -739,7 +739,7 @@
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(52px, 6vw, 88px);
+  font-size: clamp(55px, 6vw,91px);
   line-height: 0.98;
   color: var(--os-fg);
   margin: 0 0 24px;
@@ -748,7 +748,7 @@
 }
 .oneSystemCopy p {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.65;
   color: var(--os-fg-muted);
   margin: 0 0 32px;
@@ -793,7 +793,7 @@
   opacity: 0.7;
 }
 .appStoreText strong {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 500;
   letter-spacing: 0.04em;
 }
@@ -854,7 +854,7 @@
 .intelligenceTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(34px, 3.6vw, 52px);
+  font-size: clamp(37px, 3.6vw,55px);
   line-height: 1.05;
   color: var(--color-house-cream);
   margin: 0;
@@ -877,7 +877,7 @@
 }
 .iStatTitle {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 500;
   letter-spacing: 0.02em;
   color: rgba(245, 240, 232, 0.85);
@@ -887,7 +887,7 @@
 }
 .iStatSub {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 18px;
   color: rgba(245, 240, 232, 0.6);
   margin: 0;
   line-height: 1.35;
@@ -895,7 +895,7 @@
 .iStatHighlight {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 24px;
+  font-size: 27px;
   color: var(--color-house-gold-light);
   margin-right: 6px;
   letter-spacing: -0.01em;
@@ -905,7 +905,7 @@
   top: 2px;
   right: -4px;
   color: var(--color-house-gold-light);
-  font-size: 20px;
+  font-size: 23px;
   line-height: 1.2;
   opacity: 0.8;
 }
@@ -971,7 +971,7 @@
 }
 .pillarLabel {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -980,7 +980,7 @@
 .pillarTitle {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 19px;
+  font-size: 22px;
   line-height: 1.3;
   font-weight: 400;
   color: var(--color-house-brown);
@@ -997,7 +997,7 @@
 }
 .poweredByEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -1007,7 +1007,7 @@
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(44px, 4.8vw, 68px);
+  font-size: clamp(47px, 4.8vw,71px);
   line-height: 1.02;
   color: var(--color-house-brown);
   margin: 0 0 56px;
@@ -1044,7 +1044,7 @@
 }
 .pillarLineText {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.72);
 }
@@ -1063,7 +1063,7 @@
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(48px, 5.6vw, 84px);
+  font-size: clamp(51px, 5.6vw,87px);
   line-height: 1.08;
   color: var(--color-house-cream);
   margin: 0 auto 48px;
@@ -1082,7 +1082,7 @@
   display: inline-block;
   padding: 14px 28px;
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
@@ -1298,7 +1298,7 @@
   font-family: var(--font-sans);
 }
 .heroAnnotationLabel {
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--color-house-gold-light);
@@ -1306,7 +1306,7 @@
   font-weight: 500;
 }
 .heroAnnotationValue {
-  font-size: 15px;
+  font-size: 18px;
   color: var(--color-house-cream);
   margin: 0;
   line-height: 1.3;
@@ -1329,7 +1329,7 @@
   min-width: 140px;
 }
 .heroBadgeKicker {
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -1338,14 +1338,14 @@
 }
 .heroBadgeTime {
   font-family: var(--font-hearth-serif);
-  font-size: 26px;
+  font-size: 29px;
   line-height: 1;
   color: var(--color-house-brown);
   margin: 4px 0 8px;
   letter-spacing: -0.015em;
 }
 .heroBadgeBody {
-  font-size: 12px;
+  font-size: 14px;
   color: rgba(48, 35, 28, 0.65);
   margin: 0;
   line-height: 1.3;
@@ -1367,7 +1367,7 @@
 .tierShowcaseTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(36px, 4vw, 56px);
+  font-size: clamp(39px, 4vw,59px);
   line-height: 1.1;
   color: var(--color-house-brown);
   margin: 0;
@@ -1403,7 +1403,7 @@
 }
 .tierShowcaseMeta {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -1414,7 +1414,7 @@
   font-family: var(--font-hearth-serif);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(18px, 1.5vw, 22px);
+  font-size: clamp(21px, 1.5vw,25px);
   line-height: 1.3;
   color: var(--color-house-brown);
   margin: 0;
@@ -1484,7 +1484,7 @@
   align-items: flex-start;
   gap: 12px;
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.4;
   color: rgba(48, 35, 28, 0.78);
 }
@@ -1501,7 +1501,7 @@
 
 .tierShowcaseLearn {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -1521,7 +1521,7 @@
    ============================================================ */
 .pillarCta {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -1541,7 +1541,7 @@
   font-family: var(--font-hearth-serif);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(20px, 1.8vw, 26px);
+  font-size: clamp(23px, 1.8vw,29px);
   line-height: 1.4;
   color: var(--color-house-brown);
   margin: 0 0 14px;
@@ -1549,7 +1549,7 @@
 }
 .quote figcaption {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -1596,7 +1596,7 @@
 }
 .faqEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -1607,7 +1607,7 @@
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(36px, 4.2vw, 60px);
+  font-size: clamp(39px, 4.2vw,63px);
   line-height: 1.1;
   color: var(--color-house-brown);
   margin: 0;
@@ -1621,7 +1621,7 @@
    ============================================================ */
 .closingKicker {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-light);
@@ -1645,7 +1645,7 @@
     padding: 10px 14px;
     min-width: 0;
   }
-  .heroBadgeTime { font-size: 20px; }
+  .heroBadgeTime { font-size: 23px; }
 
   .tierShowcase { padding: 56px 0 80px; }
   .tierShowcaseHead { padding: 0 24px; }
@@ -1693,7 +1693,7 @@
 }
 .benefitsEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -1703,7 +1703,7 @@
 .benefitsTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(34px, 4vw, 56px);
+  font-size: clamp(37px, 4vw,59px);
   line-height: 1.08;
   color: var(--color-house-brown);
   margin: 0;
@@ -1767,7 +1767,7 @@
   font-family: var(--font-hearth-serif);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(20px, 1.8vw, 26px);
+  font-size: clamp(23px, 1.8vw,29px);
   line-height: 1.25;
   color: var(--color-house-brown);
   margin: 0;
@@ -1775,7 +1775,7 @@
 }
 .benefitText {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.6;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
@@ -1784,7 +1784,7 @@
   margin-top: auto;
   padding-top: 6px;
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -1813,7 +1813,7 @@
 .compareTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(34px, 4vw, 52px);
+  font-size: clamp(37px, 4vw,55px);
   line-height: 1.08;
   color: var(--color-house-brown);
   margin: 0;
@@ -1848,7 +1848,7 @@
 }
 .compareColLabel {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   font-weight: 500;
@@ -1860,14 +1860,14 @@
 }
 .compareRowFeature {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 18px;
   color: var(--color-house-brown);
   font-weight: 500;
 }
 .compareRowFree,
 .compareRowPlus {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 18px;
   color: rgba(48, 35, 28, 0.7);
   text-align: center;
 }
@@ -1897,7 +1897,7 @@
 }
 .recordEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -1907,7 +1907,7 @@
 .recordTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(36px, 4.2vw, 56px);
+  font-size: clamp(39px, 4.2vw,59px);
   line-height: 1.08;
   color: var(--color-house-brown);
   margin: 0;
@@ -1929,7 +1929,7 @@
   font-family: var(--font-hearth-serif);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(16px, 1.4vw, 20px);
+  font-size: clamp(19px, 1.4vw,23px);
   line-height: 1.45;
   color: var(--color-house-brown);
   margin: 0 0 10px;
@@ -1938,7 +1938,7 @@
 }
 .testimonial figcaption {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -1976,9 +1976,9 @@
     grid-template-columns: 1.4fr 1fr 1fr;
     padding: 12px 16px;
   }
-  .compareRowFeature { font-size: 15px; }
+  .compareRowFeature { font-size: 18px; }
   .compareRowFree,
-  .compareRowPlus { font-size: 15px; }
+  .compareRowPlus { font-size: 18px; }
 
   .recordSection {
     grid-template-columns: 1fr;

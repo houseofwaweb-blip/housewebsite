@@ -111,9 +111,22 @@ function money(m: MoneyV): string {
   return `${body} ${m.currencyCode}`;
 }
 
+/**
+ * Repair imported Shopify descriptions where a sentence boundary was glued to
+ * the next sentence with no space, e.g. "…a recipe card.Printed and made…" →
+ * "…a recipe card. Printed and made…". Only fires on two lowercase letters +
+ * terminal punctuation immediately followed by a capital, so genuine
+ * abbreviations (U.K., e.g.), initials and decimals are left untouched.
+ */
+function deglueSentences(text: string): string {
+  return (text ?? "").replace(/([a-z]{2}[.!?])(?=[A-Z])/g, "$1 ");
+}
+
 function firstLine(desc: string, max = 150): string {
   const line = (desc ?? "").split("\n").map((l) => l.trim()).find(Boolean) ?? "";
-  return line.length > max ? `${line.slice(0, max - 1).trimEnd()}…` : line;
+  if (line.length <= max) return line;
+  // Trim back to the last word boundary so the lede never cuts mid-word.
+  return `${line.slice(0, max).replace(/\s+\S*$/, "").trimEnd()}…`;
 }
 
 function mapProduct(p: SfProduct, collection: string): CatalogueProduct {
@@ -127,6 +140,7 @@ function mapProduct(p: SfProduct, collection: string): CatalogueProduct {
       : p.featuredImage
         ? [p.featuredImage]
         : [];
+  const description = deglueSentences(p.description ?? "");
   return {
     handle: p.handle,
     title: p.title,
@@ -137,8 +151,8 @@ function mapProduct(p: SfProduct, collection: string): CatalogueProduct {
     collection,
     houseApproved: p.houseApprovedMeta?.value === "true",
     whyChosen: p.whyChosen?.value || undefined,
-    lede: firstLine(p.description),
-    body: p.description ?? "",
+    lede: firstLine(description),
+    body: description,
     seoTitle: p.seo?.title || undefined,
     seoDescription: p.seo?.description || undefined,
     brand: p.vendor ?? "",

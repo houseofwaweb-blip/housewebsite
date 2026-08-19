@@ -46,6 +46,7 @@ export default async function ProofPage() {
 
   return (
     <EditorialPage
+      related="proof"
       watermark="gold"
       eyebrow={cms(intro, "eyebrow", "The House · Proof")}
       title={cms(intro, "headline", "Testimony.")}

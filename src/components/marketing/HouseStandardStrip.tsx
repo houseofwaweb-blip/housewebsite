@@ -16,10 +16,10 @@ export function HouseStandardStrip({ points = POINTS }: { points?: string[] }) {
   return (
     <section className="bg-house-cream-dark/50 border-y border-house-brown/10 px-[5vw] py-[clamp(48px,5vw,76px)]">
       <div className="max-w-[920px] mx-auto text-center">
-        <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink mb-4">
+        <p className="font-sans text-[14px] tracking-[0.3em] uppercase text-house-gold-ink mb-4">
           The quiet bar
         </p>
-        <p className="font-display italic text-[clamp(21px,2.6vw,30px)] leading-[1.35] text-house-brown max-w-[34ch] mx-auto">
+        <p className="font-display italic text-[clamp(24px,2.6vw,33px)] leading-[1.35] text-house-brown max-w-[34ch] mx-auto">
           One test sits behind everything we approve: would we trust this in a
           home we love?
         </p>
@@ -27,7 +27,7 @@ export function HouseStandardStrip({ points = POINTS }: { points?: string[] }) {
           {points.map((p) => (
             <li
               key={p}
-              className="flex items-center gap-2.5 font-sans text-[15px] tracking-[0.06em] text-house-brown/70"
+              className="flex items-center gap-2.5 font-sans text-[18px] tracking-[0.06em] text-house-brown/70"
             >
               <span aria-hidden className="is-round w-1 h-1 bg-house-gold inline-block" />
               {p}

@@ -50,7 +50,7 @@ export function ServiceGrid({ cards }: { cards: ServiceGridCard[] }) {
               />
             </div>
             <span
-              className="absolute left-4 top-4 inline-flex items-center gap-2 px-3 py-1.5 font-sans text-[11px] tracking-[0.18em] uppercase text-house-cream"
+              className="absolute left-4 top-4 inline-flex items-center gap-2 px-3 py-1.5 font-sans text-[13px] tracking-[0.18em] uppercase text-house-cream"
               style={{ background: c.accent }}
             >
               <span aria-hidden className="inline-block h-2 w-2 bg-house-cream/85" />
@@ -59,19 +59,19 @@ export function ServiceGrid({ cards }: { cards: ServiceGridCard[] }) {
           </div>
 
           <div className="flex flex-1 flex-col p-6">
-            <h3 className="mb-2 font-hearth-serif text-[22px] leading-tight text-house-brown">
+            <h3 className="mb-2 font-hearth-serif text-[25px] leading-tight text-house-brown">
               {c.name}
             </h3>
-            <p className="mb-5 font-sans text-[15px] leading-[1.55] text-house-brown/75">
+            <p className="mb-5 font-sans text-[18px] leading-[1.55] text-house-brown/75">
               {c.tagline}
             </p>
             <div className="mt-auto grid gap-1 border-t border-house-brown/12 pt-4">
-              <p className="font-sans text-[13px] font-medium text-house-brown">
+              <p className="font-sans text-[16px] font-medium text-house-brown">
                 {c.fromPrice ?? "Priced on enquiry"}
               </p>
-              <p className="font-sans text-[13px] text-house-brown/65">{c.area}</p>
+              <p className="font-sans text-[16px] text-house-brown/65">{c.area}</p>
             </div>
-            <span className="mt-5 font-sans text-[11px] tracking-[0.2em] uppercase text-house-gold-ink transition-colors group-hover:text-house-brown">
+            <span className="mt-5 font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-ink transition-colors group-hover:text-house-brown">
               View service &rarr;
             </span>
           </div>

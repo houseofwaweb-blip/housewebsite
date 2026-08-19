@@ -19,7 +19,7 @@
 }
 .crumbs {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -35,7 +35,7 @@
 .crumbSep { margin: 0 10px; }
 .heroEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -45,7 +45,7 @@
 .heroTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(44px, 6vw, 80px);
+  font-size: clamp(47px, 6vw,83px);
   line-height: 1.04;
   letter-spacing: -0.018em;
   color: var(--color-house-brown);
@@ -53,7 +53,7 @@
 }
 .heroCount {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -84,7 +84,7 @@
 .othersHead { max-width: 1280px; margin: 0 auto 28px; }
 .othersEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -94,7 +94,7 @@
 .othersTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(26px, 3vw, 38px);
+  font-size: clamp(29px, 3vw,41px);
   line-height: 1.1;
   letter-spacing: -0.012em;
   color: var(--color-house-brown);
@@ -111,7 +111,7 @@
 }
 .othersChip {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-house-brown);
@@ -128,7 +128,7 @@
 .othersFootLink {
   display: inline-flex; align-items: center; gap: 12px;
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-house-brown);

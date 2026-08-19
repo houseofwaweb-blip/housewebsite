@@ -22,13 +22,13 @@ export default function OffersPage() {
       {/* Hero */}
       <section className="px-[5vw] pt-20 pb-10">
         <div className="mx-auto max-w-[1160px]">
-          <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-dark">
+          <p className="font-sans text-[14px] tracking-[0.24em] uppercase text-house-gold-dark">
             House Offers
           </p>
           <h1 className="mt-4 max-w-[16ch] font-display text-[clamp(2.4rem,5vw,4rem)] leading-[1.04] text-house-ink">
             Our current offers.
           </h1>
-          <p className="mt-6 max-w-[58ch] font-sans text-[18px] leading-[1.6] text-house-brown/80">
+          <p className="mt-6 max-w-[58ch] font-sans text-[21px] leading-[1.6] text-house-brown/80">
             Packages, plans and benefits from across the House, all in one place.
             Tap any offer to see exactly what you get, who it is for, how it is
             priced, when it runs and anything it does not cover. No countdowns, no
@@ -48,13 +48,13 @@ export default function OffersPage() {
         style={{ background: "var(--color-house-cream-dark)" }}
       >
         <div className="mx-auto max-w-[760px]">
-          <p className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-dark">
+          <p className="font-sans text-[14px] tracking-[0.2em] uppercase text-house-gold-dark">
             How these offers work
           </p>
           <h2 className="mt-3 font-display text-[clamp(1.6rem,3vw,2.4rem)] leading-[1.15] text-house-ink">
             Straightforward, and easy to check.
           </h2>
-          <p className="mt-5 font-sans text-[16.5px] leading-[1.65] text-house-brown/85">
+          <p className="mt-5 font-sans text-[18.5px] leading-[1.65] text-house-brown/85">
             We only put an offer here if it saves you money or effort: a season done
             in one visit, a few services booked together, or a perk that comes with a
             My House account. The terms are set out plainly, and anything an offer
@@ -65,13 +65,13 @@ export default function OffersPage() {
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
               href="/services"
-              className="inline-block border border-house-brown/30 px-7 py-3 font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown no-underline transition-colors hover:bg-house-brown hover:text-house-cream"
+              className="inline-block border border-house-brown/30 px-7 py-3 font-sans text-[14px] tracking-[0.16em] uppercase text-house-brown no-underline transition-colors hover:bg-house-brown hover:text-house-cream"
             >
               Explore services
             </Link>
             <Link
               href="/insurance"
-              className="inline-block border border-house-brown/30 px-7 py-3 font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown no-underline transition-colors hover:bg-house-brown hover:text-house-cream"
+              className="inline-block border border-house-brown/30 px-7 py-3 font-sans text-[14px] tracking-[0.16em] uppercase text-house-brown no-underline transition-colors hover:bg-house-brown hover:text-house-cream"
             >
               Insurance & cover
             </Link>

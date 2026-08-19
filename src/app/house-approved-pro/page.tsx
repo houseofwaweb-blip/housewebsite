@@ -22,7 +22,7 @@ const sans = "var(--font-sans)";
 
 const eyebrow: React.CSSProperties = {
   fontFamily: sans,
-  fontSize: 11,
+  fontSize: 13,
   letterSpacing: "0.3em",
   textTransform: "uppercase",
   color: goldDark,
@@ -89,7 +89,7 @@ const inputStyle: React.CSSProperties = {
   minHeight: 48,
   padding: "12px 16px",
   fontFamily: sans,
-  fontSize: 16,
+  fontSize: 18,
   color: ink,
   background: cream,
   border: `1px solid ${line}`,
@@ -98,7 +98,7 @@ const inputStyle: React.CSSProperties = {
 const labelStyle: React.CSSProperties = {
   display: "block",
   fontFamily: sans,
-  fontSize: 13,
+  fontSize: 15,
   fontWeight: 600,
   letterSpacing: "0.04em",
   color: brown,
@@ -186,7 +186,7 @@ export default function HouseApprovedProPage() {
               background: "var(--color-house-chalk)",
               color: brown,
               fontFamily: sans,
-              fontSize: 13,
+              fontSize: 15,
               fontWeight: 600,
               letterSpacing: "0.14em",
               textTransform: "uppercase",
@@ -320,7 +320,7 @@ export default function HouseApprovedProPage() {
         <div style={cardGrid}>
           {steps.map((s) => (
             <div key={s.n} style={{ ...card, background: cream }}>
-              <span aria-hidden style={{ fontFamily: display, fontSize: 20, color: gold }}>
+              <span aria-hidden style={{ fontFamily: display, fontSize: 22, color: gold }}>
                 {s.n}
               </span>
               <h3 style={{ ...cardHeading, marginTop: 12 }}>{s.h}</h3>
@@ -442,7 +442,7 @@ export default function HouseApprovedProPage() {
                 background: brown,
                 color: "var(--color-house-chalk)",
                 fontFamily: sans,
-                fontSize: 13,
+                fontSize: 15,
                 fontWeight: 600,
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
@@ -455,7 +455,7 @@ export default function HouseApprovedProPage() {
             </button>
           </form>
 
-          <p style={{ ...cardBody, textAlign: "center", marginTop: 28, fontSize: 14 }}>
+          <p style={{ ...cardBody, textAlign: "center", marginTop: 28, fontSize: 16 }}>
             Prefer to write directly? Email{" "}
             <a href={`mailto:${PRO_EMAIL}`} style={{ color: goldDark, textDecoration: "underline" }}>
               {PRO_EMAIL}
@@ -471,7 +471,7 @@ export default function HouseApprovedProPage() {
 /* ---- inline helpers ------------------------------------------------------ */
 const paraStyle: React.CSSProperties = {
   fontFamily: sans,
-  fontSize: 17,
+  fontSize: 19,
   lineHeight: 1.7,
   color: "rgba(48, 35, 28, 0.82)",
   margin: 0,
@@ -479,7 +479,7 @@ const paraStyle: React.CSSProperties = {
 };
 const cardBody: React.CSSProperties = {
   fontFamily: sans,
-  fontSize: 15,
+  fontSize: 17,
   lineHeight: 1.65,
   color: "rgba(48, 35, 28, 0.78)",
   margin: 0,
@@ -507,7 +507,7 @@ const card: React.CSSProperties = {
 const plainList: React.CSSProperties = { listStyle: "none", margin: 0, padding: 0, maxWidth: "62ch" };
 const listItem: React.CSSProperties = {
   fontFamily: sans,
-  fontSize: 16,
+  fontSize: 18,
   lineHeight: 1.5,
   color: brown,
   padding: "12px 0",

@@ -12,7 +12,7 @@ export function V4ScoreRing({ value = 62, size = 92, stroke = 6, numColor = "#f3
         <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="#c5a960" strokeWidth={stroke} strokeLinecap="round" strokeDasharray={c} strokeDashoffset={offset} />
       </svg>
       <div className="absolute inset-0 flex items-center justify-center">
-        <span className="font-display text-[clamp(22px,2vw,28px)] leading-none tabular-nums" style={{ color: numColor }}>{value}</span>
+        <span className="font-display text-[clamp(25px,2vw,31px)] leading-none tabular-nums" style={{ color: numColor }}>{value}</span>
       </div>
     </div>
   );

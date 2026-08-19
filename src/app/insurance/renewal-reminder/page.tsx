@@ -22,14 +22,14 @@ export default function RenewalReminder() {
       <section className="px-[5vw] pt-24 pb-16">
         <div className="mx-auto grid max-w-[1080px] items-start gap-10 lg:grid-cols-[1fr_0.85fr] lg:gap-16">
           <div>
-            <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-[color:var(--ins-ink)]">Insurance</p>
-            <h1 className="mt-4 font-display text-[clamp(30px,4.6vw,52px)] leading-[1.05] text-house-black">
+            <p className="font-sans text-[14px] tracking-[0.3em] uppercase text-[color:var(--ins-ink)]">Insurance</p>
+            <h1 className="mt-4 font-display text-[clamp(33px,4.6vw,55px)] leading-[1.05] text-house-black">
               Remind me before my renewal.
             </h1>
-            <p className="mt-6 max-w-[50ch] font-sans text-[18px] leading-[1.62] text-house-stone">
+            <p className="mt-6 max-w-[50ch] font-sans text-[21px] leading-[1.62] text-house-stone">
               Insurance is bought at exactly one moment in the year, and most people miss it. The unhurried, better-value window is roughly 15 to 25 days before renewal.
             </p>
-            <p className="mt-4 mb-8 max-w-[50ch] font-sans text-[16px] leading-[1.65] text-house-brown/85">
+            <p className="mt-4 mb-8 max-w-[50ch] font-sans text-[19px] leading-[1.65] text-house-brown/85">
               This is one email, once, at the right moment. Not a newsletter. And we will not pass your address to anyone until you ask us to.
             </p>
             <RenewalReminderForm turnstileSiteKey={turnstileSiteKey} sourcePage="/insurance/renewal-reminder" />

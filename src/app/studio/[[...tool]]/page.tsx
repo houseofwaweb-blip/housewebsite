@@ -11,8 +11,8 @@ export const dynamic = "force-static";
 export default function StudioPage() {
   if (!config.projectId) {
     return (
-      <div className="p-12 font-sans text-[15px]">
-        <h1 className="font-display text-[24px] mb-4">Sanity Studio</h1>
+      <div className="p-12 font-sans text-[18px]">
+        <h1 className="font-display text-[27px] mb-4">Sanity Studio</h1>
         <p>
           Set <code>SANITY_PROJECT_ID</code> (or <code>NEXT_PUBLIC_SANITY_PROJECT_ID</code>)
           in <code>.env.local</code> then restart the dev server.

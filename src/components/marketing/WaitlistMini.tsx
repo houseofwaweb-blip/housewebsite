@@ -72,7 +72,7 @@ export function WaitlistMini({
       <div
         role="status"
         className={cn(
-          "bg-success text-white px-5 py-4 font-sans italic text-[16px]",
+          "bg-success text-white px-5 py-4 font-sans italic text-[19px]",
           "[animation:howa-slide-up_var(--t-slow)_var(--ease-out)]",
           className,
         )}
@@ -84,8 +84,9 @@ export function WaitlistMini({
 
   const field = cn(
     "w-full bg-house-white border border-house-brown/15 outline-none px-4 py-3",
-    "font-sans text-[15px] text-house-brown",
+    "font-sans text-[18px] text-house-brown",
     "focus:border-house-gold transition-colors",
+    "focus-visible:[outline:2px_solid_var(--house-gold-dark)] focus-visible:outline-offset-2",
     "placeholder:font-display placeholder:italic placeholder:text-house-stone",
   );
 
@@ -121,7 +122,7 @@ export function WaitlistMini({
         className={field}
       />
 
-      <label className="flex items-start gap-2 cursor-pointer font-sans text-[13px] leading-[1.45] text-house-brown/70">
+      <label className="flex items-start gap-2 cursor-pointer font-sans text-[16px] leading-[1.45] text-house-brown/70">
         <input
           type="checkbox"
           checked={marketingOptIn}
@@ -143,7 +144,7 @@ export function WaitlistMini({
         disabled={state === "submitting" || (!!siteKey && !turnstileToken)}
         className={cn(
           "bg-house-gold-ink text-house-brown px-5 py-3.5",
-          "font-sans text-[12px] tracking-[0.2em] uppercase",
+          "font-sans text-[14px] tracking-[0.2em] uppercase",
           "transition-[filter] duration-[var(--t-slow)] ease-out hover:brightness-105",
           "disabled:opacity-60 disabled:cursor-not-allowed",
         )}
@@ -152,7 +153,7 @@ export function WaitlistMini({
       </button>
 
       {error ? (
-        <p role="alert" className="font-sans text-[14px] text-error">
+        <p role="alert" className="font-sans text-[17px] text-error">
           {error}
         </p>
       ) : null}

@@ -46,7 +46,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <label
           htmlFor={inputId}
           className={cn(
-            "font-sans text-[12px] tracking-[0.22em] uppercase",
+            "font-sans text-[14px] tracking-[0.22em] uppercase",
             dark ? "text-house-cream/70" : "text-house-brown/70",
           )}
         >
@@ -87,7 +87,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             }}
             className={cn(
               "w-full bg-transparent border-0 outline-none px-4 py-3",
-              "font-sans text-[16px] leading-[1.4]",
+              "font-sans text-[19px] leading-[1.4]",
               "placeholder:font-display placeholder:italic placeholder:transition-all",
               "placeholder:duration-[var(--t-slow)] placeholder:ease-out",
               dark
@@ -114,7 +114,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <p
             id={hintId}
             className={cn(
-              "font-sans italic text-[15px] leading-[1.4]",
+              "font-sans italic text-[18px] leading-[1.4]",
               dark ? "text-house-cream/55" : "text-house-stone",
             )}
           >
@@ -125,11 +125,11 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {/* Message slot — grid-row expand (0fr → 1fr) */}
         <MessageSlot open={state === "error" || state === "success"}>
           {state === "error" ? (
-            <p id={errorId} role="alert" className="font-sans italic text-[15px] text-error">
+            <p id={errorId} role="alert" className="font-sans italic text-[18px] text-error">
               {error}
             </p>
           ) : state === "success" ? (
-            <p id={successId} className="font-sans italic text-[15px] text-success">
+            <p id={successId} className="font-sans italic text-[18px] text-success">
               {success}
             </p>
           ) : null}
@@ -171,7 +171,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         <label
           htmlFor={inputId}
           className={cn(
-            "font-sans text-[12px] tracking-[0.22em] uppercase",
+            "font-sans text-[14px] tracking-[0.22em] uppercase",
             dark ? "text-house-cream/70" : "text-house-brown/70",
           )}
         >
@@ -211,7 +211,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             }}
             className={cn(
               "w-full bg-transparent border-0 outline-none px-4 py-3 resize-none",
-              "font-sans text-[16px] leading-[1.5]",
+              "font-sans text-[19px] leading-[1.5]",
               "placeholder:font-display placeholder:italic placeholder:transition-all",
               "placeholder:duration-[var(--t-slow)] placeholder:ease-out",
               dark
@@ -236,7 +236,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           <p
             id={hintId}
             className={cn(
-              "font-sans italic text-[15px] leading-[1.4]",
+              "font-sans italic text-[18px] leading-[1.4]",
               dark ? "text-house-cream/55" : "text-house-stone",
             )}
           >
@@ -246,11 +246,11 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 
         <MessageSlot open={state === "error" || state === "success"}>
           {state === "error" ? (
-            <p id={errorId} role="alert" className="font-sans italic text-[15px] text-error">
+            <p id={errorId} role="alert" className="font-sans italic text-[18px] text-error">
               {error}
             </p>
           ) : state === "success" ? (
-            <p id={successId} className="font-sans italic text-[15px] text-success">
+            <p id={successId} className="font-sans italic text-[18px] text-success">
               {success}
             </p>
           ) : null}

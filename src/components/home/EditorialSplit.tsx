@@ -54,15 +54,15 @@ export function EditorialSplit({
             imageSide === "left" ? "lg:order-2 lg:pl-[clamp(32px,4vw,72px)]" : "lg:order-1 lg:pr-[clamp(32px,4vw,72px)]"
           }`}
         >
-          <p className={`font-sans text-[11px] tracking-[0.22em] uppercase ${eyebrowC}`}>{eyebrow}</p>
+          <p className={`font-sans text-[13px] tracking-[0.22em] uppercase ${eyebrowC}`}>{eyebrow}</p>
           <h2 className={`mt-4 font-display text-[clamp(1.9rem,2.8vw,2.9rem)] leading-[1.04] text-balance ${headingC}`}>
             {heading}
           </h2>
-          <p className={`mt-5 font-sans text-[16px] leading-relaxed max-w-[44ch] ${bodyC}`}>{body}</p>
+          <p className={`mt-5 font-sans text-[19px] leading-relaxed max-w-[44ch] ${bodyC}`}>{body}</p>
           {ctaLabel && ctaHref ? (
             <Link
               href={ctaHref}
-              className={`mt-7 inline-block w-fit font-sans text-[11px] tracking-[0.16em] uppercase no-underline border px-7 py-3 transition-colors ${ctaC}`}
+              className={`mt-7 inline-block w-fit font-sans text-[13px] tracking-[0.16em] uppercase no-underline border px-7 py-3 transition-colors ${ctaC}`}
             >
               {ctaLabel}
             </Link>

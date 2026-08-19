@@ -124,7 +124,7 @@ export function BookingForm({
 
       <div>
         <span
-          className={`font-sans text-[12px] tracking-[0.22em] uppercase block mb-3 ${
+          className={`font-sans text-[14px] tracking-[0.22em] uppercase block mb-3 ${
             dark ? "text-house-cream/70" : "text-house-brown/70"
           }`}
         >
@@ -136,7 +136,7 @@ export function BookingForm({
             return (
               <label
                 key={opt.value}
-                className={`cursor-pointer border px-3 py-2.5 font-sans text-[15px] tracking-[0.08em] uppercase text-center transition-colors duration-[var(--t-base)] ease-[var(--ease-out)] ${
+                className={`cursor-pointer border px-3 py-2.5 font-sans text-[18px] tracking-[0.08em] uppercase text-center transition-colors duration-[var(--t-base)] ease-[var(--ease-out)] ${
                   checked
                     ? dark
                       ? "bg-house-cream text-house-brown border-house-cream"
@@ -185,7 +185,7 @@ export function BookingForm({
         onExpire={() => setValue("turnstileToken", "")}
       />
       {errors.turnstileToken ? (
-        <p className="font-sans text-[15px] text-red-700">
+        <p className="font-sans text-[18px] text-red-700">
           {errors.turnstileToken.message}
         </p>
       ) : null}
@@ -199,7 +199,7 @@ export function BookingForm({
         >
           Book a service
         </Button>
-        <p className={`font-sans text-[15px] leading-[1.6] mt-3 ${dark ? "text-house-cream/55" : "text-house-brown/55"}`}>
+        <p className={`font-sans text-[18px] leading-[1.6] mt-3 ${dark ? "text-house-cream/55" : "text-house-brown/55"}`}>
           Online bookings are handled through HoWA and kept in your Home Record.
           Prefer to speak to us? <a href="tel:08000478738" className="underline underline-offset-2">Call the House directly</a>.
         </p>

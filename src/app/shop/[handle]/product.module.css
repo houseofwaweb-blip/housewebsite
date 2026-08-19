@@ -6,7 +6,7 @@
 .crumbs {
   padding: 16px clamp(40px, 5vw, 88px);
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -114,7 +114,7 @@
 }
 .sealMark {
   font-family: var(--font-hearth-serif);
-  font-size: clamp(16px, 1.6vw, 20px);
+  font-size: clamp(19px, 1.6vw,23px);
   line-height: 1;
   color: var(--color-house-gold-ink);
   margin: 2px 0;
@@ -135,13 +135,13 @@
 }
 .plaqueMark {
   font-family: var(--font-hearth-serif);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1;
   color: var(--color-house-gold-ink);
 }
 .plaqueLabel {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   font-weight: 500;
@@ -150,7 +150,7 @@
 .plaqueText {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: clamp(16px, 1.4vw, 17px);
+  font-size: clamp(19px, 1.4vw,20px);
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.85);
   margin: 0;
@@ -167,7 +167,7 @@
 .eyebrowRow { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
 .collection {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -175,7 +175,7 @@
 }
 .seal {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -187,7 +187,7 @@
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(30px, 3.4vw, 44px);
+  font-size: clamp(33px, 3.4vw,47px);
   line-height: 1.08;
   letter-spacing: -0.01em;
   color: var(--color-house-brown);
@@ -196,7 +196,7 @@
 .price {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(22px, 2.2vw, 28px);
+  font-size: clamp(25px, 2.2vw,31px);
   color: var(--color-house-brown);
   letter-spacing: -0.008em;
   margin-bottom: 30px;
@@ -213,7 +213,7 @@
   display: inline-block;
   padding: 14px 26px;
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -248,7 +248,7 @@
 .relatedHead { max-width: 1320px; margin: 0 auto clamp(28px, 3vw, 40px); }
 .relatedEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -258,7 +258,7 @@
 .relatedTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(26px, 3vw, 38px);
+  font-size: clamp(29px, 3vw,41px);
   line-height: 1.1;
   letter-spacing: -0.012em;
   color: var(--color-house-brown);
@@ -276,7 +276,7 @@
 .relatedFootLink {
   display: inline-flex; align-items: center; gap: 12px;
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-house-brown);

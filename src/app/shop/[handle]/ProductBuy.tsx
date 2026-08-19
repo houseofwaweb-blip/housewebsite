@@ -42,7 +42,7 @@ export function ProductBuy({
 
   if (!selected) {
     return (
-      <span className="font-sans text-[15px] tracking-[0.16em] uppercase text-house-stone">
+      <span className="font-sans text-[18px] tracking-[0.16em] uppercase text-house-stone">
         Unavailable
       </span>
     );
@@ -56,7 +56,7 @@ export function ProductBuy({
       <div className="mb-3">
         {/* Buy action stand-in until checkout is live — same size as the Home
             Record button below it, distinct colour (brand brown vs gold) */}
-        <span className="inline-flex w-full items-center justify-center gap-2 px-6 py-4 font-sans text-[12px] tracking-[0.18em] uppercase text-house-cream bg-house-brown border border-house-brown">
+        <span className="inline-flex w-full items-center justify-center gap-2 px-6 py-4 font-sans text-[14px] tracking-[0.18em] uppercase text-house-cream bg-house-brown border border-house-brown">
           Available at launch
         </span>
       </div>
@@ -80,19 +80,19 @@ export function ProductBuy({
   }
 
   const stepBtn =
-    "w-9 h-11 flex items-center justify-center text-[18px] text-house-brown/70 hover:text-house-brown transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer select-none";
+    "w-9 h-11 flex items-center justify-center text-[21px] text-house-brown/70 hover:text-house-brown transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer select-none";
 
   return (
     <div className="flex flex-col gap-5 mb-9">
       {multi ? (
         <label className="flex flex-col gap-2">
-          <span className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-stone">
+          <span className="font-sans text-[14px] tracking-[0.18em] uppercase text-house-stone">
             Option
           </span>
           <select
             value={variantId}
             onChange={(e) => setVariantId(e.target.value)}
-            className="font-sans text-[15px] text-house-brown bg-house-white border border-house-brown/20 px-4 py-3 cursor-pointer focus:border-house-gold focus:outline-none"
+            className="font-sans text-[18px] text-house-brown bg-house-white border border-house-brown/20 px-4 py-3 cursor-pointer focus:border-house-gold focus:outline-none"
             aria-label="Choose an option"
           >
             {variants.map((v) => (
@@ -117,7 +117,7 @@ export function ProductBuy({
           >
             −
           </button>
-          <span className="w-7 text-center font-sans text-[15px] text-house-brown tabular-nums">
+          <span className="w-7 text-center font-sans text-[18px] text-house-brown tabular-nums">
             {qty}
           </span>
           <button
@@ -133,7 +133,7 @@ export function ProductBuy({
           type="button"
           onClick={handleAdd}
           disabled={soldOut || busy}
-          className="flex-1 px-6 font-sans text-[12px] tracking-[0.22em] uppercase text-house-brown bg-house-gold-ink border-0 transition-[filter] duration-[var(--t-base)] ease-out hover:brightness-110 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+          className="flex-1 px-6 font-sans text-[14px] tracking-[0.22em] uppercase text-house-brown bg-house-gold-ink border-0 transition-[filter] duration-[var(--t-base)] ease-out hover:brightness-110 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
         >
           {soldOut ? "Sold out" : busy ? "Adding…" : added ? "Added ✓" : "Add to basket"}
         </button>

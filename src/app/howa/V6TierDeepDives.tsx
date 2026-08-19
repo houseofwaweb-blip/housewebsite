@@ -135,34 +135,34 @@ export function V6TierDeepDives() {
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 {/* Copy */}
                 <div className={"lg:col-span-5 " + (t.imageRight ? "lg:order-1" : "lg:order-2")}>
-                  <p className="font-display text-[21px] mb-2" style={{ color: t.accent }}>
+                  <p className="font-display text-[24px] mb-2" style={{ color: t.accent }}>
                     {t.numeral}
                   </p>
-                  <h3 className={"font-display text-[clamp(23px,2vw,32px)] leading-[1.1] tracking-[-0.005em] mb-1 " + (dark ? "text-[#f3ede0]" : "")}>
+                  <h3 className={"font-display text-[clamp(26px,2vw,35px)] leading-[1.1] tracking-[-0.005em] mb-1 " + (dark ? "text-[#f3ede0]" : "")}>
                     HoWA {t.name}
                   </h3>
-                  <p className="smallcaps text-[12px] tracking-[0.16em] mb-3" style={{ color: t.accent }}>
+                  <p className="smallcaps text-[14px] tracking-[0.16em] mb-3" style={{ color: t.accent }}>
                     {t.price}
                   </p>
-                  <p className={"font-display text-[clamp(21px,1.8vw,28px)] leading-[1.15] mb-4 " + (dark ? "text-[#f3ede0]" : "text-[color:var(--color-ink)]")}>
+                  <p className={"font-display text-[clamp(24px,1.8vw,31px)] leading-[1.15] mb-4 " + (dark ? "text-[#f3ede0]" : "text-[color:var(--color-ink)]")}>
                     {t.title}
                   </p>
-                  <p className={"text-[17px] leading-[1.55] mb-5 max-w-[400px] " + (dark ? "text-[#f3ede0]/80" : "text-[color:var(--color-ink-soft)]")}>
+                  <p className={"text-[20px] leading-[1.55] mb-5 max-w-[400px] " + (dark ? "text-[#f3ede0]/80" : "text-[color:var(--color-ink-soft)]")}>
                     {t.body}
                   </p>
                   {t.plus && (
-                    <p className={"smallcaps text-[12px] tracking-[0.16em] mb-3 " + (dark ? "text-[#f3ede0]/55" : "text-[color:var(--color-ink-soft)]/65")}>
+                    <p className={"smallcaps text-[14px] tracking-[0.16em] mb-3 " + (dark ? "text-[#f3ede0]/55" : "text-[color:var(--color-ink-soft)]/65")}>
                       {t.plus}
                     </p>
                   )}
                   {t.groupLabel && (
-                    <p className="smallcaps text-[12px] tracking-[0.18em] mb-2.5" style={{ color: t.accent }}>
+                    <p className="smallcaps text-[14px] tracking-[0.18em] mb-2.5" style={{ color: t.accent }}>
                       {t.groupLabel}
                     </p>
                   )}
                   <ul className="space-y-2 mb-4">
                     {t.points.map((p) => (
-                      <li key={p.t} className={"flex items-start gap-2.5 text-[16px] leading-[1.4] " + (dark ? "text-[#f3ede0]/85" : "text-[color:var(--color-ink-soft)]")}>
+                      <li key={p.t} className={"flex items-start gap-2.5 text-[19px] leading-[1.4] " + (dark ? "text-[#f3ede0]/85" : "text-[color:var(--color-ink-soft)]")}>
                         <span className="mt-1 shrink-0">
                           <CheckGlyph color={t.accent} />
                         </span>
@@ -172,13 +172,13 @@ export function V6TierDeepDives() {
                     ))}
                   </ul>
                   {t.fine && (
-                    <p className={"text-[15px] leading-[1.45] mb-6 max-w-[390px] " + (dark ? "text-[#f3ede0]/45" : "text-[color:var(--color-ink-soft)]/55")}>
+                    <p className={"text-[18px] leading-[1.45] mb-6 max-w-[390px] " + (dark ? "text-[#f3ede0]/45" : "text-[color:var(--color-ink-soft)]/55")}>
                       {t.fine}
                     </p>
                   )}
                   <Link
                     href="/howa/coming-soon"
-                    className={"inline-flex items-center gap-2 rounded-md px-6 py-3 text-[16px] transition-colors " + (dark ? "bg-[#c5a960] text-[#27384c] hover:bg-[#d4ba78]" : "text-white")}
+                    className={"inline-flex items-center gap-2 rounded-md px-6 py-3 text-[19px] transition-colors " + (dark ? "bg-[#c5a960] text-[#27384c] hover:bg-[#d4ba78]" : "text-white")}
                     style={dark ? undefined : { background: t.accent }}
                   >
                     {dark ? "Apply for Steward" : `Explore ${t.name}`} <span aria-hidden>→</span>
@@ -192,10 +192,10 @@ export function V6TierDeepDives() {
                     {/* floating UI card — sits over the empty colour field beside the
                         house, so nothing in the cutaway gets covered */}
                     <div className="hidden sm:block absolute top-1/2 -translate-y-1/2 left-4 lg:left-6 w-[166px] rounded-md bg-[#faf7f0] border border-[color:var(--color-gold)]/35 shadow-[0_16px_38px_-16px_rgba(20,15,5,0.5)] px-4 py-4">
-                      <p className="smallcaps text-[12px] tracking-[0.16em] text-[color:var(--color-gold-deep)] mb-2.5">{t.card.title}</p>
+                      <p className="smallcaps text-[14px] tracking-[0.16em] text-[color:var(--color-gold-deep)] mb-2.5">{t.card.title}</p>
                       <ul className="space-y-2">
                         {t.card.items.map((it) => (
-                          <li key={it} className="flex items-center gap-2 text-[15px] leading-[1.25] text-[color:var(--color-ink-soft)]">
+                          <li key={it} className="flex items-center gap-2 text-[18px] leading-[1.25] text-[color:var(--color-ink-soft)]">
                             <CheckGlyph color={t.accent} small /> {it}
                           </li>
                         ))}
@@ -203,7 +203,7 @@ export function V6TierDeepDives() {
                     </div>
                   </div>
                   {/* handwritten note — in flow below the image so nothing is covered */}
-                  <p className={`${hand.className} mt-2 text-[20px] leading-[1.2] ` + (dark ? "text-[#c5a960] " : "text-[color:var(--color-ink-soft)]/80 ") + (t.imageRight ? "text-right" : "text-left")}>
+                  <p className={`${hand.className} mt-2 text-[23px] leading-[1.2] ` + (dark ? "text-[#c5a960] " : "text-[color:var(--color-ink-soft)]/80 ") + (t.imageRight ? "text-right" : "text-left")}>
                     {t.note}
                   </p>
                 </div>
@@ -218,7 +218,7 @@ export function V6TierDeepDives() {
 
 function ComingTag({ dark }: { dark?: boolean }) {
   return (
-    <span className={"shrink-0 mt-0.5 smallcaps text-[12px] tracking-[0.14em] rounded-full px-2 py-0.5 " + (dark ? "border border-[#f3ede0]/25 text-[#f3ede0]/55" : "border border-[color:var(--color-ink)]/15 text-[color:var(--color-ink-soft)]/60")}>
+    <span className={"shrink-0 mt-0.5 smallcaps text-[14px] tracking-[0.14em] rounded-full px-2 py-0.5 " + (dark ? "border border-[#f3ede0]/25 text-[#f3ede0]/55" : "border border-[color:var(--color-ink)]/15 text-[color:var(--color-ink-soft)]/60")}>
       Coming
     </span>
   );

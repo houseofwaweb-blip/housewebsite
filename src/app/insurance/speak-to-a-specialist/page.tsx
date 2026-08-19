@@ -37,15 +37,15 @@ export default async function SpeakToASpecialist({
       <section className="px-[5vw] pt-24 pb-16">
         <div className="mx-auto grid max-w-[1080px] items-start gap-10 lg:grid-cols-[1fr_0.85fr] lg:gap-16">
           <div>
-            <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-[color:var(--ins-ink)]">Insurance</p>
-            <h1 className="mt-4 font-display text-[clamp(30px,4.6vw,52px)] leading-[1.05] text-house-black">
+            <p className="font-sans text-[14px] tracking-[0.3em] uppercase text-[color:var(--ins-ink)]">Insurance</p>
+            <h1 className="mt-4 font-display text-[clamp(33px,4.6vw,55px)] leading-[1.05] text-house-black">
               Speak to a specialist.
             </h1>
-            <p className="mt-5 mb-4 max-w-[52ch] font-sans text-[17px] leading-[1.6] text-house-stone">
+            <p className="mt-5 mb-4 max-w-[52ch] font-sans text-[20px] leading-[1.6] text-house-stone">
               Leave your details and a specialist will call. We ask only what we need to make the introduction, nothing about sums insured, contents or your current insurer.
             </p>
             {chosen || postcode ? (
-              <p className="mb-8 inline-block border-l-2 border-[color:var(--ins-ink)] bg-house-cream-dark/50 px-4 py-2 font-sans text-[15px] text-house-brown">
+              <p className="mb-8 inline-block border-l-2 border-[color:var(--ins-ink)] bg-house-cream-dark/50 px-4 py-2 font-sans text-[18px] text-house-brown">
                 Starting {chosen ? `${/^[aeiou]/i.test(chosen.label) ? "an" : "a"} ${chosen.label} enquiry` : "your enquiry"}{postcode ? ` for ${postcode.toUpperCase()}` : ""}.
               </p>
             ) : null}

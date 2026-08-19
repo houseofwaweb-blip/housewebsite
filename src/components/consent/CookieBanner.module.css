@@ -25,7 +25,7 @@
 
 .bannerCopy {
   flex: 1 1 320px;
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.55;
   margin: 0;
   color: rgba(243, 237, 225, 0.85);
@@ -43,7 +43,7 @@
 .btnFilled,
 .btnGhost {
   font-family: var(--font-sans, sans-serif);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   padding: 12px 22px;
@@ -105,7 +105,7 @@
 
 .eyebrow {
   font-family: var(--font-sans, sans-serif);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: rgba(48, 35, 28, 0.72);
@@ -115,7 +115,7 @@
 .modalTitle {
   font-family: var(--font-hearth-serif, Georgia, serif);
   font-weight: 500;
-  font-size: clamp(28px, 3.2vw, 36px);
+  font-size: clamp(31px, 3.2vw,39px);
   line-height: 1.15;
   margin: 0;
   letter-spacing: -0.01em;
@@ -149,12 +149,12 @@
 
 .rowTitle {
   font-weight: 500;
-  font-size: 16px;
+  font-size: 19px;
   color: var(--color-house-brown, #30231c);
 }
 
 .rowDesc {
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.55;
   color: rgba(48, 35, 28, 0.65);
 }
@@ -212,7 +212,7 @@
      forced the copy to 320px tall and blew the banner up. Content height only. */
   .bannerCopy {
     flex: 0 0 auto;
-    font-size: 14px;
+    font-size: 17px;
   }
   .bannerActions {
     justify-content: stretch;

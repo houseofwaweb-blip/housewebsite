@@ -130,18 +130,18 @@ function Rail({
         <div className="flex items-end justify-between flex-wrap gap-3 mb-7">
           <div className="max-w-[560px]">
             {eyebrow ? (
-              <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink mb-2">
+              <p className="font-sans text-[14px] tracking-[0.3em] uppercase text-house-gold-ink mb-2">
                 {eyebrow}
               </p>
             ) : null}
-            <h2 className="font-display italic text-[clamp(22px,2.6vw,32px)] text-house-brown">{title}</h2>
+            <h2 className="font-display italic text-[clamp(25px,2.6vw,35px)] text-house-brown">{title}</h2>
             {intro ? (
-              <p className="font-sans text-[15px] leading-[1.6] text-house-stone mt-3">{intro}</p>
+              <p className="font-sans text-[18px] leading-[1.6] text-house-stone mt-3">{intro}</p>
             ) : null}
           </div>
           <Link
             href={viewAllHref}
-            className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-ink no-underline border-b border-house-gold/40 pb-1"
+            className="font-sans text-[14px] tracking-[0.18em] uppercase text-house-gold-ink no-underline border-b border-house-gold/40 pb-1"
           >
             View all →
           </Link>
@@ -163,10 +163,10 @@ function Rail({
                   </span>
                 ) : null}
               </div>
-              <p className="font-display text-[16px] leading-[1.25] text-house-brown group-hover:text-house-gold-ink transition-colors">
+              <p className="font-display text-[19px] leading-[1.25] text-house-brown group-hover:text-house-gold-ink transition-colors">
                 {c.title}
               </p>
-              <p className="font-sans text-[15px] text-house-stone mt-0.5">{c.price}</p>
+              <p className="font-sans text-[18px] text-house-stone mt-0.5">{c.price}</p>
             </Link>
           ))}
         </div>
@@ -195,11 +195,11 @@ function FeaturedProduct({ p }: { p: Slide | null }) {
           />
         </Link>
         <div className="text-house-cream">
-          <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink mb-5">The piece this week</p>
-          <h2 className="font-display text-[clamp(28px,3.4vw,46px)] leading-[1.06] mb-4">{p.title}</h2>
-          <p className="font-sans text-[16px] text-house-cream/70 mb-5">{p.price}</p>
+          <p className="font-sans text-[14px] tracking-[0.3em] uppercase text-house-gold-ink mb-5">The piece this week</p>
+          <h2 className="font-display text-[clamp(31px,3.4vw,49px)] leading-[1.06] mb-4">{p.title}</h2>
+          <p className="font-sans text-[19px] text-house-cream/70 mb-5">{p.price}</p>
           {p.excerpt ? (
-            <p className="font-sans text-[15px] leading-[1.7] text-house-cream/65 max-w-[46ch] mb-3 line-clamp-2">
+            <p className="font-sans text-[18px] leading-[1.7] text-house-cream/65 max-w-[46ch] mb-3 line-clamp-2">
               {p.excerpt}{" "}
               <Link href={`/shop/${p.handle}`} className="text-house-gold-ink no-underline whitespace-nowrap hover:text-house-cream">
                 Read more →
@@ -215,7 +215,7 @@ function FeaturedProduct({ p }: { p: Slide | null }) {
               variantId={p.variantId}
               multiVariant={p.multiVariant}
               inStock={p.inStock}
-              className="inline-flex items-center justify-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown bg-house-gold px-8 py-4 no-underline transition-colors hover:bg-house-cream disabled:opacity-70 cursor-pointer"
+              className="inline-flex items-center justify-center font-sans text-[14px] tracking-[0.18em] uppercase text-house-brown bg-house-gold px-8 py-4 no-underline transition-colors hover:bg-house-cream disabled:opacity-70 cursor-pointer"
             />
           </div>
         </div>
@@ -252,9 +252,9 @@ function TwoCollections() {
               style={{ background: "linear-gradient(to top, rgba(26,19,13,0.72), rgba(26,19,13,0.08) 60%)" }}
             />
             <div className="absolute inset-x-0 bottom-0 p-7">
-              <p className="font-display text-[clamp(22px,2.4vw,34px)] leading-tight text-white">{b.name}</p>
-              <p className="font-sans text-[15px] text-white/80 mt-1.5">{b.sub}</p>
-              <p className="font-sans text-[12px] tracking-[0.2em] uppercase text-white/90 mt-4 transition-colors group-hover:text-white">
+              <p className="font-display text-[clamp(25px,2.4vw,37px)] leading-tight text-white">{b.name}</p>
+              <p className="font-sans text-[18px] text-white/80 mt-1.5">{b.sub}</p>
+              <p className="font-sans text-[14px] tracking-[0.2em] uppercase text-white/90 mt-4 transition-colors group-hover:text-white">
                 Explore the collection →
               </p>
             </div>
@@ -277,10 +277,10 @@ function RelatedHearth({ articles }: { articles: HearthCard[] }) {
     <section className="px-[5vw] py-[clamp(44px,6vw,80px)] border-b border-house-brown/8">
       <div className="max-w-[1280px] mx-auto">
         <div className="mb-8">
-          <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink mb-2">
+          <p className="font-sans text-[14px] tracking-[0.3em] uppercase text-house-gold-ink mb-2">
             From The Hearth
           </p>
-          <h2 className="font-display italic text-[clamp(26px,3vw,40px)] leading-[1.05] text-house-brown">
+          <h2 className="font-display italic text-[clamp(29px,3vw,43px)] leading-[1.05] text-house-brown">
             Read before you choose.
           </h2>
         </div>
@@ -296,15 +296,15 @@ function RelatedHearth({ articles }: { articles: HearthCard[] }) {
               />
             </div>
             {lead.category ? (
-              <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-ink mb-2">
+              <p className="font-sans text-[14px] tracking-[0.24em] uppercase text-house-gold-ink mb-2">
                 {lead.category}
               </p>
             ) : null}
-            <p className="font-display text-[clamp(20px,2.4vw,30px)] leading-[1.15] text-house-brown group-hover:text-house-gold-ink transition-colors">
+            <p className="font-display text-[clamp(23px,2.4vw,33px)] leading-[1.15] text-house-brown group-hover:text-house-gold-ink transition-colors">
               {lead.title}
             </p>
             {lead.dek ? (
-              <p className="font-sans text-[15px] leading-[1.6] text-house-stone mt-2 max-w-[52ch] line-clamp-2">
+              <p className="font-sans text-[18px] leading-[1.6] text-house-stone mt-2 max-w-[52ch] line-clamp-2">
                 {lead.dek}
               </p>
             ) : null}
@@ -332,7 +332,7 @@ function RelatedHearth({ articles }: { articles: HearthCard[] }) {
                         {a.category}
                       </p>
                     ) : null}
-                    <p className="font-display text-[16px] leading-[1.25] text-house-brown group-hover:text-house-gold-ink transition-colors">
+                    <p className="font-display text-[19px] leading-[1.25] text-house-brown group-hover:text-house-gold-ink transition-colors">
                       {a.title}
                     </p>
                   </div>
@@ -340,7 +340,7 @@ function RelatedHearth({ articles }: { articles: HearthCard[] }) {
               ))}
               <Link
                 href="/the-hearth"
-                className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-ink no-underline border-b border-house-gold/40 pb-1 mt-5 self-start"
+                className="font-sans text-[14px] tracking-[0.18em] uppercase text-house-gold-ink no-underline border-b border-house-gold/40 pb-1 mt-5 self-start"
               >
                 Visit The Hearth →
               </Link>
@@ -434,16 +434,16 @@ export default async function ShopPage() {
       <section className="relative overflow-hidden border-b border-house-brown/8 px-[5vw] pt-12 pb-9 text-center">
         <FlowerWatermark color="gold" side="right" opacity={0.18} />
         <div className="relative z-10 max-w-[680px] mx-auto">
-          <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink mb-3">
+          <p className="font-sans text-[14px] tracking-[0.3em] uppercase text-house-gold-ink mb-3">
             The House · The {season} edit
           </p>
-          <h1 className="font-display text-[clamp(30px,3.4vw,48px)] leading-[1.05] tracking-[-0.01em] text-house-brown">
+          <h1 className="font-display text-[clamp(33px,3.4vw,51px)] leading-[1.05] tracking-[-0.01em] text-house-brown">
             The {seasonLabel}{" "}
             <em className="italic" style={{ fontFamily: "var(--font-display)" }}>
               collection.
             </em>
           </h1>
-          <p className="font-sans text-[15px] text-house-stone max-w-[460px] mx-auto mt-4 leading-[1.6]">
+          <p className="font-sans text-[18px] text-house-stone max-w-[460px] mx-auto mt-4 leading-[1.6]">
             The pieces we are reaching for this {season}. An edited cabinet, not
             a catalogue, gathered for how it is made, how long it lasts, and
             whether it can be mended rather than replaced.
@@ -451,13 +451,13 @@ export default async function ShopPage() {
           <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-4 mt-7">
             <Link
               href="/shop/collections/house-approved"
-              className="inline-flex items-center justify-center font-sans text-[12px] tracking-[0.18em] uppercase text-house-brown bg-house-gold border border-house-gold px-7 py-3.5 no-underline transition-colors hover:bg-house-gold-ink hover:border-house-gold-dark"
+              className="inline-flex items-center justify-center font-sans text-[14px] tracking-[0.18em] uppercase text-house-brown bg-house-gold border border-house-gold px-7 py-3.5 no-underline transition-colors hover:bg-house-gold-ink hover:border-house-gold-dark"
             >
               Explore the edit
             </Link>
             <Link
               href="/shop/all"
-              className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-ink no-underline border-b border-house-gold/40 pb-1"
+              className="font-sans text-[14px] tracking-[0.18em] uppercase text-house-gold-ink no-underline border-b border-house-gold/40 pb-1"
             >
               Shop all products →
             </Link>
@@ -469,10 +469,10 @@ export default async function ShopPage() {
       <section className="px-[5vw] py-[clamp(44px,6vw,80px)] border-b border-house-brown/8">
         <div className="max-w-[1280px] mx-auto">
           <div className="mb-8">
-            <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink mb-2">
+            <p className="font-sans text-[14px] tracking-[0.3em] uppercase text-house-gold-ink mb-2">
               Room by room
             </p>
-            <h2 className="font-display italic text-[clamp(26px,3vw,40px)] leading-[1.05] text-house-brown">
+            <h2 className="font-display italic text-[clamp(29px,3vw,43px)] leading-[1.05] text-house-brown">
               A place for everything.
             </h2>
           </div>
@@ -499,8 +499,8 @@ export default async function ShopPage() {
                     style={{ background: "linear-gradient(to top, rgba(26,19,13,0.72), rgba(26,19,13,0.05) 55%)" }}
                   />
                   <div className="absolute inset-x-0 bottom-0 p-5 text-center">
-                    <p className="font-display text-[clamp(19px,2.1vw,28px)] leading-[1.1] text-white">{r.name}</p>
-                    <p className="font-sans text-[12px] tracking-[0.2em] uppercase text-white/80 mt-2 transition-colors group-hover:text-white">
+                    <p className="font-display text-[clamp(22px,2.1vw,31px)] leading-[1.1] text-white">{r.name}</p>
+                    <p className="font-sans text-[14px] tracking-[0.2em] uppercase text-white/80 mt-2 transition-colors group-hover:text-white">
                       Shop the room →
                     </p>
                   </div>
@@ -512,13 +512,13 @@ export default async function ShopPage() {
                   className="group relative block aspect-[4/5] overflow-hidden bg-house-cream-dark no-underline"
                 >
                   <span aria-hidden className="absolute inset-4 border border-house-brown/15" />
-                  <span className="absolute top-6 left-0 right-0 text-center font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink">
+                  <span className="absolute top-6 left-0 right-0 text-center font-sans text-[14px] tracking-[0.3em] uppercase text-house-gold-ink">
                     Placeholder image
                   </span>
-                  <span className="absolute inset-0 flex items-center justify-center px-4 text-center font-display text-[clamp(19px,2.1vw,28px)] leading-[1.1] text-house-brown">
+                  <span className="absolute inset-0 flex items-center justify-center px-4 text-center font-display text-[clamp(22px,2.1vw,31px)] leading-[1.1] text-house-brown">
                     {r.name}
                   </span>
-                  <span className="absolute bottom-6 left-0 right-0 text-center font-sans text-[12px] tracking-[0.2em] uppercase text-house-stone transition-colors group-hover:text-house-gold-ink">
+                  <span className="absolute bottom-6 left-0 right-0 text-center font-sans text-[14px] tracking-[0.2em] uppercase text-house-stone transition-colors group-hover:text-house-gold-ink">
                     Shop the room →
                   </span>
                 </Link>

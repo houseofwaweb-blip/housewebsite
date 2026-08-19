@@ -29,14 +29,14 @@ export function CartToast() {
     >
       {toast ? (
         <>
-          <p className="font-sans italic text-[15px] leading-[1.45] pr-6">
+          <p className="font-sans italic text-[18px] leading-[1.45] pr-6">
             {toast.title}
           </p>
           {toast.href ? (
             <Link
               href={toast.href}
               onClick={clearToast}
-              className="inline-block mt-2 font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-light border-b border-house-gold-light/40 hover:border-house-gold-light pb-0.5 no-underline transition-colors"
+              className="inline-block mt-2 font-sans text-[14px] tracking-[0.2em] uppercase text-house-gold-light border-b border-house-gold-light/40 hover:border-house-gold-light pb-0.5 no-underline transition-colors"
             >
               {toast.linkLabel} →
             </Link>
@@ -45,7 +45,7 @@ export function CartToast() {
             type="button"
             aria-label="Dismiss"
             onClick={clearToast}
-            className="absolute top-2 right-2 text-house-cream/60 hover:text-house-cream font-sans text-[18px] leading-none"
+            className="absolute top-2 right-2 text-house-cream/60 hover:text-house-cream font-sans text-[21px] leading-none"
           >
             ×
           </button>

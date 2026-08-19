@@ -74,18 +74,18 @@ export function HearthNextAction({ categorySlug }: { categorySlug?: string }) {
       aria-label="What to do next"
       className="my-14 border-l-2 border-house-gold bg-house-cream/70 px-6 py-8 sm:px-9"
     >
-      <p className="font-hearth-sans text-[11px] tracking-[0.24em] uppercase text-house-gold-ink">
+      <p className="font-hearth-sans text-[13px] tracking-[0.24em] uppercase text-house-gold-ink">
         {action.eyebrow}
       </p>
-      <h2 className="mt-3 max-w-[22ch] font-hearth-serif font-medium text-[clamp(24px,3vw,34px)] leading-[1.1] text-house-black">
+      <h2 className="mt-3 max-w-[22ch] font-hearth-serif font-medium text-[clamp(27px,3vw,37px)] leading-[1.1] text-house-black">
         {action.heading}
       </h2>
-      <p className="mt-3 max-w-[56ch] font-hearth-serif text-[17px] leading-[1.6] text-house-black/80">
+      <p className="mt-3 max-w-[56ch] font-hearth-serif text-[20px] leading-[1.6] text-house-black/80">
         {action.body}
       </p>
       <Link
         href={action.href}
-        className="mt-6 inline-flex items-center gap-2 border border-house-brown/30 px-6 py-3 font-hearth-sans text-[12px] tracking-[0.16em] uppercase text-house-brown no-underline transition-colors hover:bg-house-brown hover:text-house-cream"
+        className="mt-6 inline-flex items-center gap-2 border border-house-brown/30 px-6 py-3 font-hearth-sans text-[14px] tracking-[0.16em] uppercase text-house-brown no-underline transition-colors hover:bg-house-brown hover:text-house-cream"
       >
         {action.cta} <span aria-hidden>→</span>
       </Link>

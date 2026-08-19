@@ -14,11 +14,11 @@ export function V4WhatItDoes() {
     <section id="does" className="scroll-mt-20 bg-[#fbfaf5] py-16 lg:py-24 border-t border-[color:var(--color-ink)]/8">
       <div className="mx-auto max-w-[1180px] px-6 sm:px-10">
         <div className="mb-9 max-w-[680px]">
-          <p className="smallcaps mb-3 text-[15px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">What HoWA does</p>
-          <h2 className="font-display text-[clamp(28px,3.2vw,46px)] leading-[1.08] tracking-[-0.01em]">
+          <p className="smallcaps mb-3 text-[18px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">What HoWA does</p>
+          <h2 className="font-display text-[clamp(31px,3.2vw,49px)] leading-[1.08] tracking-[-0.01em]">
             Know, ask, act, <span className="font-italic-display text-[#c5a960]">remember.</span>
           </h2>
-          <p className="mt-4 max-w-[560px] text-[17px] leading-[1.55] text-[color:var(--color-ink-soft)]">
+          <p className="mt-4 max-w-[560px] text-[20px] leading-[1.55] text-[color:var(--color-ink-soft)]">
             One system, not a drawer of disconnected tools. Each thing HoWA does writes back to the home record and sharpens what it knows.
           </p>
         </div>
@@ -32,10 +32,10 @@ export function V4WhatItDoes() {
           {steps.map((s) => (
             <div key={s.n} className="bg-white p-7">
               <div className="flex items-baseline gap-3">
-                <span className="font-display text-[20px] tabular-nums text-[#c5a960]">{s.n}</span>
-                <h3 className="font-display text-[22px] leading-none text-[color:var(--color-ink)]">{s.t}</h3>
+                <span className="font-display text-[23px] tabular-nums text-[#c5a960]">{s.n}</span>
+                <h3 className="font-display text-[25px] leading-none text-[color:var(--color-ink)]">{s.t}</h3>
               </div>
-              <p className="mt-3 text-[16px] leading-[1.55] text-[color:var(--color-ink-soft)]">{s.b}</p>
+              <p className="mt-3 text-[19px] leading-[1.55] text-[color:var(--color-ink-soft)]">{s.b}</p>
             </div>
           ))}
         </div>

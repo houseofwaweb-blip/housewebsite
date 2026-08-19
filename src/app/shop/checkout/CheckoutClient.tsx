@@ -22,15 +22,15 @@ export function CheckoutClient() {
     return (
       <article className="bg-house-cream text-house-brown">
         <section className="px-[5vw] py-[12vh] text-center max-w-[600px] mx-auto">
-          <h1 className="font-display font-medium text-[clamp(36px,5vw,52px)] leading-[1.08] mb-4">
+          <h1 className="font-display font-medium text-[clamp(39px,5vw,55px)] leading-[1.08] mb-4">
             Your basket is <em className="italic">empty.</em>
           </h1>
-          <p className="font-sans text-[16px] text-house-stone leading-[1.6] mb-8">
+          <p className="font-sans text-[19px] text-house-stone leading-[1.6] mb-8">
             There is nothing to check out yet. Browse the curation and add a piece or two.
           </p>
           <Link
             href="/shop"
-            className="inline-block px-8 py-4 font-sans text-[15px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
+            className="inline-block px-8 py-4 font-sans text-[18px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light"
           >
             Browse the shop
           </Link>
@@ -48,7 +48,7 @@ export function CheckoutClient() {
 
   return (
     <article className="bg-house-cream text-house-brown">
-      <nav aria-label="Breadcrumb" className="px-[5vw] pt-4 pb-2 font-sans text-[12px] tracking-[0.14em] uppercase text-house-stone">
+      <nav aria-label="Breadcrumb" className="px-[5vw] pt-4 pb-2 font-sans text-[14px] tracking-[0.14em] uppercase text-house-stone">
         <Link href="/shop" className="no-underline hover:text-house-gold-ink transition-colors">Shop</Link>
         <span className="mx-1.5">/</span>
         <Link href="/shop/basket" className="no-underline hover:text-house-gold-ink transition-colors">Basket</Link>
@@ -59,10 +59,10 @@ export function CheckoutClient() {
       <section className="max-w-[1200px] mx-auto px-[5vw] pb-16 grid grid-cols-1 md:grid-cols-[1fr_380px] gap-12 items-start">
         {/* Order review */}
         <div>
-          <h1 className="font-display font-medium text-[clamp(32px,4vw,48px)] leading-[1.08] mb-1">
+          <h1 className="font-display font-medium text-[clamp(35px,4vw,51px)] leading-[1.08] mb-1">
             Review your <em className="italic">order.</em>
           </h1>
-          <p className="font-sans text-[15px] text-house-stone mb-8">
+          <p className="font-sans text-[18px] text-house-stone mb-8">
             {count} {count === 1 ? "item" : "items"}
             <span className="mx-2 text-house-brown/30">·</span>
             <Link href="/shop/basket" className="underline underline-offset-4 decoration-house-brown/30 hover:decoration-house-gold transition-colors">
@@ -78,14 +78,14 @@ export function CheckoutClient() {
                 ) : null}
               </Link>
               <div>
-                <Link href={`/shop/${line.handle}`} className="block font-display font-medium text-[17px] mb-1 no-underline text-house-brown hover:text-house-gold-ink transition-colors">
+                <Link href={`/shop/${line.handle}`} className="block font-display font-medium text-[20px] mb-1 no-underline text-house-brown hover:text-house-gold-ink transition-colors">
                   {line.title}
                 </Link>
-                <p className="font-sans text-[15px] text-house-stone">
+                <p className="font-sans text-[18px] text-house-stone">
                   Quantity {line.quantity}
                 </p>
               </div>
-              <span className="font-display font-medium text-[17px] text-right">
+              <span className="font-display font-medium text-[20px] text-right">
                 {line.price}
               </span>
             </div>
@@ -96,12 +96,12 @@ export function CheckoutClient() {
         {/* Summary + pay */}
         <div className="md:sticky md:top-[100px]">
           <div className="bg-house-white border border-house-brown/8 p-7">
-            <h3 className="font-display font-medium text-[18px] mb-4">Order summary</h3>
-            <div className="flex justify-between items-baseline font-sans text-[15px] py-2 border-b border-house-brown/8">
+            <h3 className="font-display font-medium text-[21px] mb-4">Order summary</h3>
+            <div className="flex justify-between items-baseline font-sans text-[18px] py-2 border-b border-house-brown/8">
               <span className="text-house-stone">Subtotal</span>
-              <span className="font-display font-medium text-[18px]">{subtotal}</span>
+              <span className="font-display font-medium text-[21px]">{subtotal}</span>
             </div>
-            <p className="font-sans text-[12px] text-house-stone mt-2 mb-6 leading-[1.6]">
+            <p className="font-sans text-[14px] text-house-stone mt-2 mb-6 leading-[1.6]">
               Shipping &amp; taxes are calculated at the secure payment step.
             </p>
 
@@ -110,24 +110,24 @@ export function CheckoutClient() {
                 type="button"
                 onClick={handlePay}
                 disabled={busy || redirecting || !checkoutUrl}
-                className="block w-full py-4 font-sans text-[15px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold text-center transition-colors duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light disabled:opacity-60 disabled:cursor-wait cursor-pointer"
+                className="block w-full py-4 font-sans text-[18px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold text-center transition-colors duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light disabled:opacity-60 disabled:cursor-wait cursor-pointer"
               >
                 {redirecting ? "Redirecting…" : busy ? "Updating…" : "Continue to secure payment"}
               </button>
             ) : (
-              <p className="block w-full py-4 font-sans text-[15px] tracking-[0.18em] uppercase text-house-stone border border-house-brown/15 text-center">
+              <p className="block w-full py-4 font-sans text-[18px] tracking-[0.18em] uppercase text-house-stone border border-house-brown/15 text-center">
                 Checkout available at launch
               </p>
             )}
 
-            <p className="flex items-center justify-center gap-2 mt-4 font-sans text-[12px] text-house-stone">
+            <p className="flex items-center justify-center gap-2 mt-4 font-sans text-[14px] text-house-stone">
               <span aria-hidden="true">🔒</span>
               Payment is taken securely. We never see your card details.
             </p>
 
             <Link
               href="/shop/basket"
-              className="block text-center mt-4 font-sans text-[12px] tracking-[0.14em] uppercase text-house-stone no-underline hover:text-house-brown transition-colors duration-[var(--t-base)]"
+              className="block text-center mt-4 font-sans text-[14px] tracking-[0.14em] uppercase text-house-stone no-underline hover:text-house-brown transition-colors duration-[var(--t-base)]"
             >
               Return to basket
             </Link>
@@ -142,10 +142,10 @@ export function CheckoutClient() {
           aria-live="polite"
           className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-house-cream/95 backdrop-blur-sm"
         >
-          <span className="font-display italic text-[clamp(24px,3vw,34px)] text-house-brown animate-pulse">
+          <span className="font-display italic text-[clamp(27px,3vw,37px)] text-house-brown animate-pulse">
             Taking you to secure checkout…
           </span>
-          <span className="mt-3 font-sans text-[12px] tracking-[0.18em] uppercase text-house-stone">
+          <span className="mt-3 font-sans text-[14px] tracking-[0.18em] uppercase text-house-stone">
             One moment
           </span>
         </div>

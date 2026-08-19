@@ -35,7 +35,7 @@ export default function OpenGraphImage() {
             alignItems: "center",
             gap: 16,
             fontFamily: "sans-serif",
-            fontSize: 18,
+            fontSize: 20,
             letterSpacing: "0.32em",
             textTransform: "uppercase",
             color: "rgba(48, 35, 28, 0.65)",
@@ -65,7 +65,7 @@ export default function OpenGraphImage() {
           style={{
             display: "flex",
             fontFamily: "sans-serif",
-            fontSize: 24,
+            fontSize: 26,
             lineHeight: 1.5,
             color: "rgba(48, 35, 28, 0.7)",
             marginTop: 32,

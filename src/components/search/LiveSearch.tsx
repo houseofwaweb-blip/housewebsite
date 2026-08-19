@@ -90,7 +90,7 @@ export function LiveSearch({
           placeholder={placeholder}
           className={cn(
             "flex-1 bg-transparent border-0 outline-none min-w-0",
-            "font-display italic text-[28px] text-house-brown",
+            "font-display italic text-[31px] text-house-brown",
             "placeholder:text-house-stone placeholder:opacity-50",
             "placeholder:transition-[opacity] placeholder:duration-[var(--t-slow)] placeholder:ease-out",
             "focus:placeholder:opacity-20",
@@ -122,7 +122,7 @@ export function LiveSearch({
                   scheduleQuery(query, t.id);
                 }}
                 className={cn(
-                  "font-sans text-[12px] tracking-[0.22em] uppercase bg-transparent border-0 cursor-pointer py-1 transition-[color,border-color,opacity,padding] duration-[var(--t-base)] ease-out",
+                  "font-sans text-[14px] tracking-[0.22em] uppercase bg-transparent border-0 cursor-pointer py-1 transition-[color,border-color,opacity,padding] duration-[var(--t-base)] ease-out",
                   active
                     ? "text-house-gold-ink border-b border-house-gold opacity-100 pb-1.5"
                     : "text-house-brown/65 hover:text-house-brown hover:opacity-100",
@@ -142,11 +142,11 @@ export function LiveSearch({
         aria-busy={loading || undefined}
       >
         {loading && results.length === 0 ? (
-          <p className="font-sans italic text-[16px] text-house-stone py-10 text-center">
+          <p className="font-sans italic text-[19px] text-house-stone py-10 text-center">
             Searching…
           </p>
         ) : results.length === 0 && query.length > 0 ? (
-          <p className="font-sans italic text-[16px] text-house-stone py-10 text-center">
+          <p className="font-sans italic text-[19px] text-house-stone py-10 text-center">
             No matches for &ldquo;{query}&rdquo;.
           </p>
         ) : (
@@ -162,12 +162,12 @@ export function LiveSearch({
                 "opacity-0 [animation:howa-slide-in_var(--t-xslow)_var(--ease-out)_forwards]",
               )}
             >
-              <div className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-stone mb-1">
+              <div className="font-sans text-[14px] tracking-[0.22em] uppercase text-house-stone mb-1">
                 {r.type}
               </div>
-              <h5 className="font-sans text-[20px] text-house-brown m-0 mb-1">{r.title}</h5>
+              <h5 className="font-sans text-[23px] text-house-brown m-0 mb-1">{r.title}</h5>
               {r.excerpt ? (
-                <p className="font-sans italic text-[15px] text-house-stone m-0">
+                <p className="font-sans italic text-[18px] text-house-stone m-0">
                   {r.excerpt}
                 </p>
               ) : null}

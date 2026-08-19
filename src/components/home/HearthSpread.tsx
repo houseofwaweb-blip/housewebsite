@@ -31,7 +31,7 @@ export function HearthSpread({ articles }: { articles: HearthArticle[] }) {
       <div className="mx-auto max-w-[1360px] grid gap-x-10 gap-y-8 lg:grid-cols-12">
         {/* Title / issue marker (cols 1–2) */}
         <div className="lg:col-span-2 flex flex-col justify-start">
-          <p className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-dark">
+          <p className="font-sans text-[13px] tracking-[0.22em] uppercase text-house-gold-dark">
             The Hearth
           </p>
           <h2 className="mt-3 font-display text-[clamp(1.6rem,2.4vw,2.3rem)] leading-[1.05] text-house-ink">
@@ -42,7 +42,7 @@ export function HearthSpread({ articles }: { articles: HearthArticle[] }) {
           </p>
           <Link
             href="/the-hearth"
-            className="mt-5 inline-block font-sans text-[11px] tracking-[0.18em] uppercase text-house-brown no-underline border-b border-house-brown/40 pb-1 w-fit hover:border-house-brown"
+            className="mt-5 inline-block font-sans text-[13px] tracking-[0.18em] uppercase text-house-brown no-underline border-b border-house-brown/40 pb-1 w-fit hover:border-house-brown"
           >
             View the latest issue
           </Link>
@@ -66,7 +66,7 @@ export function HearthSpread({ articles }: { articles: HearthArticle[] }) {
         {/* Lead feature text (cols 8–9) */}
         <div className="lg:col-span-3 flex flex-col justify-center">
           {lead.category ? (
-            <p className="font-sans text-[11px] tracking-[0.18em] uppercase text-house-gold-dark">
+            <p className="font-sans text-[13px] tracking-[0.18em] uppercase text-house-gold-dark">
               {lead.category}
             </p>
           ) : null}
@@ -76,17 +76,17 @@ export function HearthSpread({ articles }: { articles: HearthArticle[] }) {
             </Link>
           </h3>
           {lead.dek ? (
-            <p className="mt-3 font-sans text-[15px] leading-relaxed text-house-brown/80 line-clamp-4">
+            <p className="mt-3 font-sans text-[18px] leading-relaxed text-house-brown/80 line-clamp-4">
               {lead.dek}
             </p>
           ) : null}
-          <p className="mt-4 font-sans text-[12px] tracking-[0.04em] text-house-stone">
+          <p className="mt-4 font-sans text-[14px] tracking-[0.04em] text-house-stone">
             {lead.author}
             {lead.readTimeMinutes ? ` · ${lead.readTimeMinutes} min read` : ""}
           </p>
           <Link
             href={href(lead)}
-            className="mt-4 inline-block font-sans text-[11px] tracking-[0.18em] uppercase text-house-brown no-underline border-b border-house-brown/40 pb-1 w-fit hover:border-house-brown"
+            className="mt-4 inline-block font-sans text-[13px] tracking-[0.18em] uppercase text-house-brown no-underline border-b border-house-brown/40 pb-1 w-fit hover:border-house-brown"
           >
             Read the feature
           </Link>

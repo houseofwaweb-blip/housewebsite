@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
+import { HouseEditorialFooter } from "@/components/marketing/HouseEditorialFooter";
 
 /**
  * EditorialPage — shared template for long-form editorial pages under
@@ -41,6 +42,9 @@ export interface EditorialPageProps {
   heroImage?: EditorialImage;
   /** Optional House floral watermark in the header (gold on the cream ground). */
   watermark?: "white" | "gold" | "black";
+  /** Slug of the current /the-house page. When set, renders the "keep reading"
+   *  cross-link + CTA footer so the page doesn't dead-end. Legal pages omit it. */
+  related?: string;
 }
 
 const headingStyle: React.CSSProperties = {
@@ -55,7 +59,7 @@ const headingStyle: React.CSSProperties = {
 };
 const paraStyle: React.CSSProperties = {
   fontFamily: "var(--font-sans)",
-  fontSize: 17,
+  fontSize: 19,
   lineHeight: 1.7,
   color: "rgba(48, 35, 28, 0.82)",
   margin: "0 0 18px",
@@ -63,7 +67,7 @@ const paraStyle: React.CSSProperties = {
 const captionStyle: React.CSSProperties = {
   fontFamily: "var(--font-hearth-serif)",
   fontStyle: "italic",
-  fontSize: 14,
+  fontSize: 16,
   color: "rgba(48, 35, 28, 0.72)",
   margin: "12px 0 0",
 };
@@ -98,7 +102,7 @@ function SectionText({ section }: { section: EditorialSection }) {
               style={{
                 fontFamily: "var(--font-sans)",
                 fontStyle: "normal",
-                fontSize: 11,
+                fontSize: 13,
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
                 color: "rgba(48, 35, 28, 0.72)",
@@ -139,7 +143,7 @@ function Figure({ image, priority }: { image: EditorialImage; priority?: boolean
   );
 }
 
-export function EditorialPage({ eyebrow, title, lede, sections, updatedAt, heroImage, watermark }: EditorialPageProps) {
+export function EditorialPage({ eyebrow, title, lede, sections, updatedAt, heroImage, watermark, related }: EditorialPageProps) {
   // Alternate which side each figure sits on. The lede figure (if any) takes
   // the first slot on the right; section figures zigzag from there.
   let imgSlot = heroImage ? 1 : 0;
@@ -150,6 +154,7 @@ export function EditorialPage({ eyebrow, title, lede, sections, updatedAt, heroI
   };
 
   return (
+    <>
     <article style={{ background: "var(--color-house-cream)", color: "var(--color-house-brown)" }}>
       {/* Hero — eyebrow + large editorial title */}
       <header
@@ -161,7 +166,7 @@ export function EditorialPage({ eyebrow, title, lede, sections, updatedAt, heroI
           <p
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: 11,
+              fontSize: 13,
               letterSpacing: "0.32em",
               textTransform: "uppercase",
               color: "var(--color-house-gold-ink)",
@@ -272,7 +277,7 @@ export function EditorialPage({ eyebrow, title, lede, sections, updatedAt, heroI
           <p
             style={{
               fontFamily: "var(--font-sans)",
-              fontSize: 11,
+              fontSize: 13,
               letterSpacing: "0.22em",
               textTransform: "uppercase",
               color: "rgba(48, 35, 28, 0.72)",
@@ -286,5 +291,7 @@ export function EditorialPage({ eyebrow, title, lede, sections, updatedAt, heroI
         </div>
       </div>
     </article>
+    {related ? <HouseEditorialFooter current={related} /> : null}
+    </>
   );
 }

@@ -16,7 +16,7 @@ const CARDS = [
     body: "Interior design for a room, a floor or a whole house, from the first brief through to specification and installation.",
     image: "/home-v4/v6-interior-design.webp",
     imageAlt: "A layered, considered British interior",
-    href: "/services/interiors",
+    href: "/design/interiors",
     cta: "Explore interior design",
   },
   {
@@ -36,11 +36,11 @@ export function DesignShowcase() {
       <FlowerWatermark color="gold" side="right" opacity={0.12} />
       <div className="relative mx-auto max-w-[1180px]">
         <div className="max-w-[48ch]">
-          <p className="font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-dark">House Design</p>
+          <p className="font-sans text-[13px] tracking-[0.22em] uppercase text-house-gold-dark">House Design</p>
           <h2 className="mt-4 font-display text-[clamp(1.9rem,3vw,3rem)] leading-[1.05] text-house-ink text-balance">
             Two studios, one standard of care.
           </h2>
-          <p className="mt-4 font-sans text-[16px] leading-relaxed text-house-brown/80">
+          <p className="mt-4 font-sans text-[19px] leading-relaxed text-house-brown/80">
             Interior and garden design, each led by people who understand how the
             space needs to work as well as how it should look.
           </p>
@@ -61,16 +61,16 @@ export function DesignShowcase() {
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                 />
               </div>
-              <p className="mt-5 font-sans text-[11px] tracking-[0.22em] uppercase text-house-gold-dark">
+              <p className="mt-5 font-sans text-[13px] tracking-[0.22em] uppercase text-house-gold-dark">
                 {c.eyebrow}
               </p>
               <h3 className="mt-2 font-display text-[clamp(1.4rem,2vw,1.9rem)] leading-[1.1] text-house-ink">
                 {c.title}
               </h3>
-              <p className="mt-3 max-w-[46ch] font-sans text-[15px] leading-relaxed text-house-brown/80">
+              <p className="mt-3 max-w-[46ch] font-sans text-[18px] leading-relaxed text-house-brown/80">
                 {c.body}
               </p>
-              <span className="mt-4 inline-block border-b border-house-brown/40 pb-1 font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown transition-colors group-hover:border-house-brown">
+              <span className="mt-4 inline-block border-b border-house-brown/40 pb-1 font-sans text-[14px] tracking-[0.16em] uppercase text-house-brown transition-colors group-hover:border-house-brown">
                 {c.cta}
               </span>
             </Link>

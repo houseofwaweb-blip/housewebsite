@@ -18,8 +18,8 @@ export function V4HeroPhone() {
           {/* header */}
           <div className="flex items-center justify-between px-4 pt-[38px] pb-3">
             <div>
-              <p className="font-display text-[17px] leading-none text-[#1d2a40]">HoWA</p>
-              <p className="mt-1 text-[12px] text-[#1d2a40]/55">Home Overview</p>
+              <p className="font-display text-[20px] leading-none text-[#1d2a40]">HoWA</p>
+              <p className="mt-1 text-[14px] text-[#1d2a40]/55">Home Overview</p>
             </div>
             <span className="flex flex-col gap-[3px]" aria-hidden>
               <span className="block h-px w-[18px] bg-[#1d2a40]/45" />
@@ -37,7 +37,7 @@ export function V4HeroPhone() {
           {/* tab bar */}
           <div className="flex items-center justify-around border-t border-[#1d2a40]/10 bg-[#ece6d8] py-3">
             {["Home", "Timeline", "Record", "Profile"].map((t, i) => (
-              <span key={t} className={"text-[12px] tracking-[0.04em] " + (i === 0 ? "font-semibold text-[#1f3a2b]" : "text-[#1d2a40]/45")}>
+              <span key={t} className={"text-[14px] tracking-[0.04em] " + (i === 0 ? "font-semibold text-[#1f3a2b]" : "text-[#1d2a40]/45")}>
                 {t}
               </span>
             ))}
@@ -60,14 +60,14 @@ function Card({ children }: { children: React.ReactNode }) {
 function ScoreCard() {
   return (
     <Card>
-      <p className="text-[12px] uppercase tracking-[0.18em] text-[#1a241d] flex items-center gap-1.5">
+      <p className="text-[14px] uppercase tracking-[0.18em] text-[#1a241d] flex items-center gap-1.5">
         <ShieldGlyph /> HoWA Score
       </p>
-      <p className="text-[15px] text-[#3a352c]/75 mt-1 mb-3.5">In order, with gaps</p>
+      <p className="text-[18px] text-[#3a352c]/75 mt-1 mb-3.5">In order, with gaps</p>
       <div className="flex items-center justify-between gap-3">
         <div className="flex flex-col items-center shrink-0">
           <ScoreGauge value={62} size={68} />
-          <span className="text-[12px] uppercase tracking-[0.16em] text-[#8a6f3f] mt-1.5">of 100</span>
+          <span className="text-[14px] uppercase tracking-[0.16em] text-[#8a6f3f] mt-1.5">of 100</span>
         </div>
         <div className="relative h-[78px] flex-1 max-w-[200px]">
           <Image src="/home-v4/card-graph.webp" alt="" fill sizes="200px" className="object-contain object-right" />
@@ -83,12 +83,12 @@ function RecordCard() {
     <Card>
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="text-[12px] uppercase tracking-[0.18em] text-[#1a241d] flex items-center gap-1.5">
+          <p className="text-[14px] uppercase tracking-[0.18em] text-[#1a241d] flex items-center gap-1.5">
             <LeafGlyph /> Living Record
           </p>
-          <p className="text-[15px] text-[#3a352c]/75 mt-1">Updated today</p>
-          <p className="text-[15px] text-[#3a352c]/75">08:42</p>
-          <a href="#demo" className="inline-flex items-center gap-1 text-[15px] text-[#8a6f3f] mt-3 hover:text-[#6f5832] transition-colors">View record →</a>
+          <p className="text-[18px] text-[#3a352c]/75 mt-1">Updated today</p>
+          <p className="text-[18px] text-[#3a352c]/75">08:42</p>
+          <a href="#demo" className="inline-flex items-center gap-1 text-[18px] text-[#8a6f3f] mt-3 hover:text-[#6f5832] transition-colors">View record →</a>
         </div>
         <div className="relative w-[124px] h-[104px] shrink-0 opacity-90">
           <Image src="/home-v4/card-house-sketch-v3.webp" alt="" fill sizes="124px" className="object-contain" />
@@ -103,19 +103,19 @@ function ActionCard() {
   const items = ["Boiler service · due in 14 days", "Gutter clean · before winter", "Smoke alarms · tested OK"];
   return (
     <Card>
-      <p className="text-[12px] uppercase tracking-[0.18em] text-[#1a241d] flex items-center gap-1.5 mb-2">
+      <p className="text-[14px] uppercase tracking-[0.18em] text-[#1a241d] flex items-center gap-1.5 mb-2">
         <ClipboardGlyph /> What matters first
       </p>
-      <p className="text-[15px] text-[#1a241d]">3 things need attention</p>
-      <p className="text-[15px] text-[#3a352c]/70 mb-3">HoWA tells you what matters first</p>
+      <p className="text-[18px] text-[#1a241d]">3 things need attention</p>
+      <p className="text-[18px] text-[#3a352c]/70 mb-3">HoWA tells you what matters first</p>
       <ul className="space-y-1.5 mb-3">
         {items.map((t) => (
-          <li key={t} className="flex items-center gap-2 text-[15px] text-[#3a352c]">
+          <li key={t} className="flex items-center gap-2 text-[18px] text-[#3a352c]">
             <CheckGlyph /> {t}
           </li>
         ))}
       </ul>
-      <a href="#tiers" className="inline-flex items-center gap-1 text-[15px] text-[#8a6f3f] hover:text-[#6f5832] transition-colors">View plan →</a>
+      <a href="#tiers" className="inline-flex items-center gap-1 text-[18px] text-[#8a6f3f] hover:text-[#6f5832] transition-colors">View plan →</a>
     </Card>
   );
 }
@@ -158,7 +158,7 @@ function ScoreGauge({ value = 62, size = 68, stroke = 5 }: { value?: number; siz
         <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="#b89968" strokeWidth={stroke} strokeLinecap="round" strokeDasharray={c} strokeDashoffset={offset} />
       </svg>
       <div className="absolute inset-0 flex items-center justify-center">
-        <span className="font-display text-[20px] leading-none text-[#1a241d] tabular-nums">{shown}</span>
+        <span className="font-display text-[23px] leading-none text-[#1a241d] tabular-nums">{shown}</span>
       </div>
     </div>
   );

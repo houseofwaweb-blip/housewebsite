@@ -9,7 +9,8 @@ import { Accordion } from "@/components/primitives/Accordion";
 import { Gallery } from "@/components/primitives/Gallery";
 import { SERVICE_CONTENT_DEFAULTS } from "@/lib/services-data/service-content-defaults";
 import { ServiceCtaRow } from "@/components/marketing/ServiceCtaRow";
-import { SERVICES, SERVICE_ORDER, type ServiceSlug } from "@/lib/services-data";
+import { ServiceWordmark } from "@/components/marketing/ServiceWordmark";
+import { SERVICES, SERVICE_ORDER, serviceEnquiryOptions, type ServiceSlug } from "@/lib/services-data";
 import { buildBookingUrl } from "@/components/booking/postcode";
 import { SERVICEOS_SERVICE_ID } from "@/lib/serviceos-links";
 import s from "./sub-service.module.css";
@@ -147,12 +148,16 @@ export default async function SubServicePage({
               </Link>
             </nav>
 
+            {/* Official parent-service wordmark (spec §10). Renders only where
+                artwork exists (keyed by the parent service). */}
+            <ServiceWordmark slug={parent.slug} className="mb-4" />
+
             <h1 className={s.heroTitle}>
               {service.name}<em>.</em>
             </h1>
             <p className={s.heroLede}>{service.lede}</p>
             {/* DIRECTIVE §08 — a price method in the hero. */}
-            <p className={s.heroLede} style={{ fontSize: 14, fontWeight: 600, margin: "0 0 14px" }}>
+            <p className={s.heroLede} style={{ fontSize: 16, fontWeight: 600, margin: "0 0 14px" }}>
               Enter your postcode for prices and availability.
             </p>
             <div className={s.heroCtas}>
@@ -165,7 +170,7 @@ export default async function SubServicePage({
               </Link>
             </div>
             {/* DIRECTIVE §08 — provider disclosure in the hero. */}
-            <p className={s.heroLede} style={{ fontSize: 13, opacity: 0.85, marginTop: 12 }}>
+            <p className={s.heroLede} style={{ fontSize: 15, opacity: 0.85, marginTop: 12 }}>
               Delivered by House of Willow Alexander. Booking, scheduling and Home Record powered by HoWA.
             </p>
           </div>
@@ -253,9 +258,11 @@ export default async function SubServicePage({
         <EnquiryForm
           defaultService={parent.slug}
           sourcePage={`/services/${parent.slug}/${service.slug}`}
-          eyebrow="Request a callback"
-          headline={`Prefer a callback about ${service.name.toLowerCase()}?`}
-          body="Leave your number and a little about your home, and the House will call you back, usually within one working day. Or book online in a couple of minutes."
+          eyebrow="Ask the House"
+          headline={`Prefer to ask about ${service.name.toLowerCase()} first?`}
+          body="Tell us a little about your home and what you need, and the House will come back to you, usually within one working day. Or book online in a couple of minutes."
+          serviceOptions={serviceEnquiryOptions(parent)}
+          baseServiceType={parent.slug}
         />
       </div>
 
@@ -347,6 +354,8 @@ export default async function SubServicePage({
           eyebrow="Still deciding?"
           headline={`Talk to us about ${service.name.toLowerCase()}.`}
           body="Prefer to ask before you book? Tell us about your home and we'll come back to you personally, usually within one working day."
+          serviceOptions={serviceEnquiryOptions(parent)}
+          baseServiceType={parent.slug}
         />
       </div>
 

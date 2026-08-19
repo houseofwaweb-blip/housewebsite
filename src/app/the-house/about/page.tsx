@@ -61,6 +61,7 @@ export default async function AboutPage() {
   return (
     <>
       <EditorialPage
+      related="about"
         watermark="gold"
         eyebrow={cms(intro, "eyebrow", "The House · About")}
         title={

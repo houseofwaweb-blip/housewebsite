@@ -12,7 +12,7 @@
 .heroInner { max-width: 720px; margin: 0 auto; }
 .heroEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -22,7 +22,7 @@
 .heroTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(44px, 6vw, 80px);
+  font-size: clamp(47px, 6vw,83px);
   line-height: 1.05;
   letter-spacing: -0.018em;
   color: var(--color-house-brown);
@@ -31,7 +31,7 @@
 .heroTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .heroLede {
   font-family: var(--font-sans);
-  font-size: 17px;
+  font-size: 20px;
   line-height: 1.65;
   color: rgba(48, 35, 28, 0.72);
   margin: 0 auto;
@@ -51,7 +51,7 @@
 }
 .denomsEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -61,7 +61,7 @@
 .denomsTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(28px, 3.4vw, 44px);
+  font-size: clamp(31px, 3.4vw,47px);
   line-height: 1.1;
   letter-spacing: -0.012em;
   color: var(--color-house-brown);
@@ -92,7 +92,7 @@
 .denomValue {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(28px, 2.8vw, 38px);
+  font-size: clamp(31px, 2.8vw,41px);
   color: var(--color-house-brown);
   letter-spacing: -0.012em;
   line-height: 1;
@@ -101,7 +101,7 @@
 .denomDesc {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.45;
   color: rgba(48, 35, 28, 0.72);
   margin: 6px 0 0;
@@ -120,7 +120,7 @@
 }
 .howEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -130,7 +130,7 @@
 .howTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(28px, 3.4vw, 44px);
+  font-size: clamp(31px, 3.4vw,47px);
   line-height: 1.1;
   letter-spacing: -0.012em;
   color: var(--color-house-brown);
@@ -153,13 +153,13 @@
 .howStepN {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: 16px;
+  font-size: 19px;
   color: var(--color-house-gold-ink);
 }
 .howStepName {
   font-family: var(--font-hearth-serif);
   font-weight: 400;
-  font-size: 22px;
+  font-size: 25px;
   line-height: 1.2;
   letter-spacing: -0.005em;
   color: var(--color-house-brown);
@@ -182,7 +182,7 @@
 }
 .closingKicker {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -192,7 +192,7 @@
 .closingStatement {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(28px, 3.4vw, 44px);
+  font-size: clamp(31px, 3.4vw,47px);
   line-height: 1.2;
   color: var(--color-house-brown);
   margin: 0 auto 32px;
@@ -203,7 +203,7 @@
 .btnGhost {
   display: inline-flex; align-items: center; gap: 12px;
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-house-brown);

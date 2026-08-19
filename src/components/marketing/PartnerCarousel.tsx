@@ -91,22 +91,22 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = 
         {/* Header */}
         <div className="flex items-end justify-between mb-10 gap-6 flex-wrap">
           <div>
-            <span className={cn("block font-sans text-[12px] tracking-[0.22em] uppercase mb-3", dark ? "text-house-gold-light" : "")} style={dark ? undefined : { color: "var(--house-gold-ink)" }}>
+            <span className={cn("block font-sans text-[14px] tracking-[0.22em] uppercase mb-3", dark ? "text-house-gold-light" : "")} style={dark ? undefined : { color: "var(--house-gold-ink)" }}>
               {eyebrow}
             </span>
-            <h2 className={cn("font-display font-medium text-[clamp(28px,3.6vw,46px)] leading-[1.1] tracking-[-0.01em]", dark && "text-house-cream")}>
+            <h2 className={cn("font-display font-medium text-[clamp(31px,3.6vw,49px)] leading-[1.1] tracking-[-0.01em]", dark && "text-house-cream")}>
               {headingEm ? (
                 <>{heading.split(headingEm)[0]}<em className="italic">{headingEm}</em>{heading.split(headingEm)[1] ?? ""}</>
               ) : heading}
             </h2>
             {lede && (
-              <p className={cn("font-sans text-[16px] leading-[1.65] mt-3 max-w-[52ch]", dark ? "text-house-cream/65" : "text-house-brown/70")}>{lede}</p>
+              <p className={cn("font-sans text-[19px] leading-[1.65] mt-3 max-w-[52ch]", dark ? "text-house-cream/65" : "text-house-brown/70")}>{lede}</p>
             )}
           </div>
           {/* Scroll arrows (desktop) */}
           <div className="hidden md:flex items-center gap-2">
             <button type="button" onClick={() => scroll("left")} disabled={!canLeft} aria-label="Scroll left"
-              className={cn("w-10 h-10 flex items-center justify-center border text-[18px] transition-all duration-[var(--t-base)]",
+              className={cn("w-10 h-10 flex items-center justify-center border text-[21px] transition-all duration-[var(--t-base)]",
                 dark
                   ? (canLeft ? "border-house-cream/30 text-house-cream hover:border-house-cream cursor-pointer" : "border-house-cream/10 text-house-cream/20 cursor-default")
                   : (canLeft ? "border-house-brown/20 text-house-brown hover:border-house-brown cursor-pointer" : "border-house-brown/8 text-house-brown/20 cursor-default")
@@ -114,7 +114,7 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = 
               &larr;
             </button>
             <button type="button" onClick={() => scroll("right")} disabled={!canRight} aria-label="Scroll right"
-              className={cn("w-10 h-10 flex items-center justify-center border text-[18px] transition-all duration-[var(--t-base)]",
+              className={cn("w-10 h-10 flex items-center justify-center border text-[21px] transition-all duration-[var(--t-base)]",
                 dark
                   ? (canRight ? "border-house-cream/30 text-house-cream hover:border-house-cream cursor-pointer" : "border-house-cream/10 text-house-cream/20 cursor-default")
                   : (canRight ? "border-house-brown/20 text-house-brown hover:border-house-brown cursor-pointer" : "border-house-brown/8 text-house-brown/20 cursor-default")
@@ -139,24 +139,24 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = 
             >
               {/* Type + seal */}
               <div className="flex items-center justify-between mb-4">
-                <span className="font-sans text-[12px] tracking-[0.2em] uppercase" style={{ color: "var(--house-gold-ink)" }}>
+                <span className="font-sans text-[14px] tracking-[0.2em] uppercase" style={{ color: "var(--house-gold-ink)" }}>
                   {typeLabel(p.type)}
                 </span>
                 {p.houseApprovedSeal && (
-                  <span className="font-sans text-[12px] tracking-[0.16em] uppercase text-house-moss border border-house-moss/30 px-2 py-0.5">
+                  <span className="font-sans text-[14px] tracking-[0.16em] uppercase text-house-moss border border-house-moss/30 px-2 py-0.5">
                     House Approved
                   </span>
                 )}
               </div>
 
               {/* Name + gold rule */}
-              <h3 className="font-display font-medium text-[26px] leading-[1.15] text-house-brown mb-1">
+              <h3 className="font-display font-medium text-[29px] leading-[1.15] text-house-brown mb-1">
                 {p.name}
               </h3>
               <div className="h-px w-7 mb-4 transition-[width] duration-[var(--t-slow)] ease-out group-hover:w-16" style={{ background: "var(--house-gold-dark)" }} />
 
               {/* Bio */}
-              <p className="font-sans text-[16px] leading-[1.6] text-house-brown/70 mb-5 flex-1">
+              <p className="font-sans text-[19px] leading-[1.6] text-house-brown/70 mb-5 flex-1">
                 {p.shortBio}
               </p>
 
@@ -164,7 +164,7 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = 
               {p.specialties && p.specialties.length > 0 && (
                 <div className="flex flex-wrap gap-1.5 mb-5">
                   {p.specialties.slice(0, 4).map((s) => (
-                    <span key={s} className="font-sans text-[12px] tracking-[0.06em] text-house-brown/55 border border-house-brown/12 px-2 py-0.5">
+                    <span key={s} className="font-sans text-[14px] tracking-[0.06em] text-house-brown/55 border border-house-brown/12 px-2 py-0.5">
                       {s}
                     </span>
                   ))}
@@ -172,7 +172,7 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = 
               )}
 
               {/* CTA */}
-              <span className="inline-flex items-center gap-2 font-sans text-[15px] tracking-[0.16em] uppercase" style={{ color: "var(--house-gold-ink)" }}>
+              <span className="inline-flex items-center gap-2 font-sans text-[18px] tracking-[0.16em] uppercase" style={{ color: "var(--house-gold-ink)" }}>
                 {bookingMode ? "Book a service" : "View profile"}
                 <span className="inline-block transition-transform duration-[var(--t-slow)] ease-out group-hover:translate-x-2">&rarr;</span>
               </span>
@@ -185,13 +185,13 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = 
               "flex-none w-[85vw] sm:w-[320px] snap-start border border-dashed p-8 flex flex-col items-center justify-center text-center",
               dark ? "border-house-cream/20" : "border-house-brown/15"
             )}>
-              <p className={cn("font-display italic text-[17px] mb-3", dark ? "text-house-cream/40" : "text-house-brown/40")}>
+              <p className={cn("font-display italic text-[20px] mb-3", dark ? "text-house-cream/40" : "text-house-brown/40")}>
                 More partners joining soon.
               </p>
               <Link
                 href="/contact"
                 className={cn(
-                  "font-sans text-[12px] tracking-[0.16em] uppercase no-underline pb-px border-b transition-colors",
+                  "font-sans text-[14px] tracking-[0.16em] uppercase no-underline pb-px border-b transition-colors",
                   dark ? "border-house-cream/25 text-house-cream/50 hover:text-house-cream" : "border-house-brown/30 text-house-brown/50 hover:text-house-brown"
                 )}
               >
@@ -206,7 +206,7 @@ export function PartnerCarousel({ partners, heading, headingEm, lede, eyebrow = 
           <Link
             href={bookingMode ? bookingHref : "/partners"}
             className={cn(
-              "inline-flex items-center gap-2 font-sans text-[15px] tracking-[0.18em] uppercase no-underline pb-1 border-b transition-[color,border-style] duration-[var(--t-slow)] ease-out hover:border-dotted",
+              "inline-flex items-center gap-2 font-sans text-[18px] tracking-[0.18em] uppercase no-underline pb-1 border-b transition-[color,border-style] duration-[var(--t-slow)] ease-out hover:border-dotted",
               dark ? "text-house-gold-light border-house-gold-light" : ""
             )}
             style={dark ? undefined : { color: "var(--house-gold-ink)", borderColor: "var(--house-gold-dark)" }}

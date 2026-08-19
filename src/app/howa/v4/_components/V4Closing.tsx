@@ -14,18 +14,18 @@ export function V4Faq() {
   return (
     <section id="faq" className="scroll-mt-20 bg-[#fbfaf5] py-16 lg:py-24 border-t border-[color:var(--color-ink)]/8">
       <div className="mx-auto max-w-[860px] px-6 sm:px-10">
-        <p className="smallcaps mb-3 text-center text-[15px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">Questions</p>
-        <h2 className="mb-10 text-center font-display text-[clamp(28px,3vw,44px)] leading-[1.1] tracking-[-0.01em]">
+        <p className="smallcaps mb-3 text-center text-[18px] tracking-[0.2em] text-[color:var(--color-gold-deep)]">Questions</p>
+        <h2 className="mb-10 text-center font-display text-[clamp(31px,3vw,47px)] leading-[1.1] tracking-[-0.01em]">
           Before <span className="font-italic-display text-[#c5a960]">you begin.</span>
         </h2>
         <div className="overflow-hidden rounded-2xl border border-[color:var(--color-gold)]/20 bg-white">
           {FAQS.map(([q, a], i) => (
             <details key={q} className={"group px-6 py-1 " + (i ? "border-t border-[color:var(--color-ink)]/8" : "")}>
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-[17px] text-[color:var(--color-ink)] [&::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-[20px] text-[color:var(--color-ink)] [&::-webkit-details-marker]:hidden">
                 {q}
                 <span aria-hidden className="text-[color:var(--color-gold-deep)] transition-transform group-open:rotate-45">+</span>
               </summary>
-              <p className="pb-5 text-[16px] leading-[1.6] text-[color:var(--color-ink-soft)]">{a}</p>
+              <p className="pb-5 text-[19px] leading-[1.6] text-[color:var(--color-ink-soft)]">{a}</p>
             </details>
           ))}
         </div>
@@ -38,17 +38,17 @@ export function V4Cta() {
   return (
     <section className="text-[#f3ede0]" style={{ background: "#5f6a49" }}>
       <div className="mx-auto max-w-[860px] px-6 py-16 text-center sm:px-10 lg:py-20">
-        <h2 className="font-display text-[clamp(30px,3.4vw,50px)] leading-[1.05]">
+        <h2 className="font-display text-[clamp(33px,3.4vw,53px)] leading-[1.05]">
           Start with your address.
         </h2>
-        <p className="mx-auto mt-4 max-w-[480px] text-[17px] leading-[1.55] text-[#f3ede0]/85">
+        <p className="mx-auto mt-4 max-w-[480px] text-[20px] leading-[1.55] text-[#f3ede0]/85">
           In sixty seconds, meet your home and see its first HoWA Score. Free to start, the record begins when you save.
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <a href="/howa/coming-soon" className="inline-flex items-center gap-2 rounded-md bg-[#f3ede0] px-8 py-4 text-[17px] text-[#1d2a40] transition-colors hover:bg-white">
+          <a href="/howa/coming-soon" className="inline-flex items-center gap-2 rounded-md bg-[#f3ede0] px-8 py-4 text-[20px] text-[#1d2a40] transition-colors hover:bg-white">
             Enter your address <span aria-hidden>→</span>
           </a>
-          <a href="#demo" className="inline-flex items-center gap-1.5 text-[16px] text-[#f3ede0]/85 hover:text-[#f3ede0] transition-colors">
+          <a href="#demo" className="inline-flex items-center gap-1.5 text-[19px] text-[#f3ede0]/85 hover:text-[#f3ede0] transition-colors">
             See sample record <span aria-hidden>→</span>
           </a>
         </div>

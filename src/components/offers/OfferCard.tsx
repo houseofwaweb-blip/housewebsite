@@ -89,11 +89,11 @@ export function OfferCard({
           <h3 className="mt-2.5 font-display text-[clamp(1.35rem,2vw,1.65rem)] leading-[1.12] text-house-ink">
             {offer.title}
           </h3>
-          <p className="mt-2 line-clamp-2 font-sans text-[14px] leading-[1.5] text-house-brown/75">
+          <p className="mt-2 line-clamp-2 font-sans text-[17px] leading-[1.5] text-house-brown/75">
             {offer.summary}
           </p>
 
-          <span className="mt-auto inline-flex items-center gap-2 pt-6 font-sans text-[11px] tracking-[0.16em] uppercase text-house-brown">
+          <span className="mt-auto inline-flex items-center gap-2 pt-6 font-sans text-[13px] tracking-[0.16em] uppercase text-house-brown">
             <span className="border-b border-house-gold pb-[3px] transition-colors group-hover:text-house-gold-ink">
               View offer
             </span>

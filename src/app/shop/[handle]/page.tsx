@@ -146,11 +146,14 @@ export default async function ProductPage({
     "inStock" in product && typeof product.inStock === "boolean"
       ? product.inStock
       : availability === "InStock";
+  // Pre-launch framing: the store is not live to buy yet, so in-stock items read
+  // simply "In stock" (no "ready to send") and everything else reads "Available
+  // at launch", matching the product page's purchase button.
   const deliveryStatus = inStock
-    ? "In stock · ready to send"
+    ? "In stock · Available at launch"
     : availability === "OutOfStock"
       ? "Currently unavailable"
-      : "Available to order";
+      : "Available at launch";
 
   // Related editorial for the store→magazine cross-link (spec §12 PDP order 8).
   const hearth = await getLatestHearthArticles(3).catch(() => []);
@@ -219,7 +222,7 @@ export default async function ProductPage({
           <h1 className={s.name}>{product.title}</h1>
 
           {maker ? (
-            <p className="mt-1.5 font-sans text-[15px] text-house-stone">
+            <p className="mt-1.5 font-sans text-[18px] text-house-stone">
               By <span className="text-house-brown">{maker}</span>
             </p>
           ) : null}
@@ -232,7 +235,7 @@ export default async function ProductPage({
           </div>
 
           {/* Delivery + stock, surfaced up front (not only in the accordion) */}
-          <div className="mb-6 flex items-center gap-2 font-sans text-[15px] text-house-stone">
+          <div className="mb-6 flex items-center gap-2 font-sans text-[18px] text-house-stone">
             <span
               aria-hidden
               className="inline-block w-1.5 h-1.5 is-round"
@@ -257,7 +260,7 @@ export default async function ProductPage({
             <div className="mb-3">
               {/* Buy action stand-in until checkout is live — same size as the
                   Home Record button, distinct colour (brand brown vs gold) */}
-              <span className="inline-flex w-full items-center justify-center gap-2 border border-house-brown bg-house-brown px-6 py-4 font-sans text-[12px] tracking-[0.18em] uppercase text-house-cream">
+              <span className="inline-flex w-full items-center justify-center gap-2 border border-house-brown bg-house-brown px-6 py-4 font-sans text-[14px] tracking-[0.18em] uppercase text-house-cream">
                 Available at launch
               </span>
             </div>
@@ -271,7 +274,7 @@ export default async function ProductPage({
               price={product.price}
               image={product.image}
             />
-            <p className="mt-2 font-sans text-[15px] leading-[1.5] text-house-stone">
+            <p className="mt-2 font-sans text-[18px] leading-[1.5] text-house-stone">
               Save it to your Home Record to keep its details, care notes and warranty in one place.
             </p>
           </div>
@@ -284,30 +287,30 @@ export default async function ProductPage({
               against, and its care/repairability position. Product-specific
               material claims appear only when the data carries them. */}
           <div className="mt-7 border-t border-house-brown/12 pt-6">
-            <p className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-ink mb-3">
+            <p className="font-sans text-[14px] tracking-[0.22em] uppercase text-house-gold-ink mb-3">
               Sustainability &amp; provenance
             </p>
             <ul className="m-0 p-0 list-none space-y-3">
               {maker ? (
-                <li className="font-sans text-[15px] leading-[1.6] text-house-brown/85">
+                <li className="font-sans text-[18px] leading-[1.6] text-house-brown/85">
                   <span className="text-house-stone">Maker.</span> Made by {maker}, a named
                   supplier we can trace and stand behind.
                 </li>
               ) : null}
               {product.houseApproved ? (
-                <li className="font-sans text-[15px] leading-[1.6] text-house-brown/85">
+                <li className="font-sans text-[18px] leading-[1.6] text-house-brown/85">
                   <span className="text-house-stone">House Approved.</span> Judged against
                   our standard for craft, provenance and honest materials before it earned a
                   place here.
                 </li>
               ) : null}
-              <li className="font-sans text-[15px] leading-[1.6] text-house-brown/85">
+              <li className="font-sans text-[18px] leading-[1.6] text-house-brown/85">
                 <span className="text-house-stone">Made to last.</span> Chosen so it can be
                 mended and kept rather than replaced, which is the most sustainable choice a
                 household can make.
               </li>
               {product.careNotes?.trim() ? (
-                <li className="font-sans text-[15px] leading-[1.6] text-house-brown/85">
+                <li className="font-sans text-[18px] leading-[1.6] text-house-brown/85">
                   <span className="text-house-stone">Care.</span> {product.careNotes.trim()}
                 </li>
               ) : null}
@@ -318,7 +321,7 @@ export default async function ProductPage({
               for this object (brief slide 9/10). Supplier is real product data;
               the rest is framed as what HoWA stores at and after purchase. */}
           <div className="mt-7 border-t border-house-brown/12 pt-6">
-            <p className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-ink mb-3">
+            <p className="font-sans text-[14px] tracking-[0.22em] uppercase text-house-gold-ink mb-3">
               Kept in your Home Record
             </p>
             <dl className="m-0 space-y-2.5">
@@ -328,7 +331,7 @@ export default async function ProductPage({
                 ["Warranty", "Receipt and any warranty stored at purchase."],
                 ["Replacement", "HoWA reminds you when it is due for renewal."],
               ].map(([k, v]) => (
-                <div key={k} className="flex gap-4 font-sans text-[15px] leading-[1.5]">
+                <div key={k} className="flex gap-4 font-sans text-[18px] leading-[1.5]">
                   <dt className="w-[92px] shrink-0 text-house-stone">{k}</dt>
                   <dd className="m-0 text-house-brown">{v}</dd>
                 </div>
@@ -340,7 +343,7 @@ export default async function ProductPage({
               wording adapts: installable/maintainable goods get the fitting line,
               everything else gets a calmer House-services line (a mug isn't
               "fitted or cleaned"). */}
-          <p className="mt-6 font-sans text-[15px] leading-[1.6] text-house-stone">
+          <p className="mt-6 font-sans text-[18px] leading-[1.6] text-house-stone">
             {serviceable
               ? "Need this fitted, hung, cleaned or maintained? "
               : "Planning work on your home? "}
@@ -379,10 +382,10 @@ export default async function ProductPage({
         <section className="px-[5vw] py-[clamp(44px,6vw,80px)] border-t border-house-brown/8">
           <div className="max-w-[1180px] mx-auto">
             <header className="mb-8">
-              <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-house-gold-ink mb-2">
+              <p className="font-sans text-[14px] tracking-[0.3em] uppercase text-house-gold-ink mb-2">
                 From The Hearth
               </p>
-              <h2 className="font-display italic text-[clamp(24px,2.8vw,36px)] leading-[1.05] text-house-brown">
+              <h2 className="font-display italic text-[clamp(27px,2.8vw,39px)] leading-[1.05] text-house-brown">
                 Read around it.
               </h2>
             </header>
@@ -403,11 +406,11 @@ export default async function ProductPage({
                       {a.category}
                     </p>
                   ) : null}
-                  <p className="font-display text-[18px] leading-[1.2] text-house-brown group-hover:text-house-gold-ink transition-colors">
+                  <p className="font-display text-[21px] leading-[1.2] text-house-brown group-hover:text-house-gold-ink transition-colors">
                     {a.title}
                   </p>
                   {a.dek ? (
-                    <p className="font-sans text-[15px] leading-[1.6] text-house-stone mt-1.5 line-clamp-2">
+                    <p className="font-sans text-[18px] leading-[1.6] text-house-stone mt-1.5 line-clamp-2">
                       {a.dek}
                     </p>
                   ) : null}

@@ -17,7 +17,7 @@ We bought our first homes not knowing much about how they were made, how they wa
 House of Willow Alexander exists so the next generation doesn't have to. The idea is simple: one calm institution that remembers your home, introduces the right people, keeps a proper record, and quietly gets things done on a schedule.`,
     quote: {
       text: "A home that carries you. Not a statement you have to keep up with.",
-      attribution: "The House brief · 2025",
+      attribution: "The House",
     },
   },
   {
@@ -67,6 +67,7 @@ export default async function PhilosophyPage() {
 
   return (
     <EditorialPage
+      related="philosophy"
       watermark="gold"
       eyebrow={cms(intro, "eyebrow", "The House · Philosophy")}
       title={

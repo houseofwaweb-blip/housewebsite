@@ -38,25 +38,25 @@ export function HearthHeroLead({ article }: { article: HearthArticle }) {
         </div>
 
         <div>
-          <span className="inline-block mb-[18px] font-hearth-sans text-[12px] tracking-[0.24em] uppercase text-house-black after:content-['_/'] after:text-house-stone after:ml-1">
+          <span className="inline-block mb-[18px] font-hearth-sans text-[14px] tracking-[0.24em] uppercase text-house-black after:content-['_/'] after:text-house-stone after:ml-1">
             {article.categoryLong ?? article.category}
             {article.flag ? (
-              <em className="not-italic ml-1.5 font-hearth-serif italic text-[15px] tracking-[0.02em] normal-case text-house-stone">
+              <em className="not-italic ml-1.5 font-hearth-serif italic text-[18px] tracking-[0.02em] normal-case text-house-stone">
                 {article.flag}
               </em>
             ) : null}
           </span>
 
-          <h1 className="font-hearth-serif font-medium leading-[1.04] tracking-[-0.01em] text-[clamp(42px,4.6vw,68px)] text-house-black mb-[18px] transition-colors duration-[var(--t-base)] ease-out group-hover:text-house-gold-ink">
+          <h1 className="font-hearth-serif font-medium leading-[1.04] tracking-[-0.01em] text-[clamp(45px,4.6vw,71px)] text-house-black mb-[18px] transition-colors duration-[var(--t-base)] ease-out group-hover:text-house-gold-ink">
             <HearthTitle title={article.title} em={article.titleEm} />
           </h1>
 
-          <p className="font-hearth-serif text-[19px] leading-[1.55] text-house-stone mb-[22px]">
+          <p className="font-hearth-serif text-[22px] leading-[1.55] text-house-stone mb-[22px]">
             {article.dek}
           </p>
 
-          <p className="font-hearth-sans text-[12px] tracking-[0.14em] uppercase text-house-stone">
-            <em className="not-italic font-hearth-serif italic text-[15px] tracking-[0.02em] normal-case text-house-black mr-1.5">
+          <p className="font-hearth-sans text-[14px] tracking-[0.14em] uppercase text-house-stone">
+            <em className="not-italic font-hearth-serif italic text-[18px] tracking-[0.02em] normal-case text-house-black mr-1.5">
               {article.author}
             </em>
             · {formattedDate}

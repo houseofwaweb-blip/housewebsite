@@ -149,18 +149,18 @@ export function ArtworkVolumesShelf() {
         {/* Caption — story line for the hovered volume */}
         <div className="min-h-[72px] text-center max-w-[640px] mx-auto">
           {hovered === null ? (
-            <p className="font-display italic text-[16px] leading-[1.6] text-house-brown/60">
+            <p className="font-display italic text-[19px] leading-[1.6] text-house-brown/60">
               The seven coloured volumes, the moving anthology of expertise.
             </p>
           ) : (
             <div className="animate-[fadeIn_0.3s_ease-out]">
               <p
-                className="font-sans text-[12px] tracking-[0.32em] uppercase mb-2 font-medium"
+                className="font-sans text-[14px] tracking-[0.32em] uppercase mb-2 font-medium"
                 style={{ color: VOLUMES[hovered].colour }}
               >
                 {VOLUMES[hovered].brand}
               </p>
-              <p className="font-display italic text-[19px] leading-[1.4] text-house-brown">
+              <p className="font-display italic text-[22px] leading-[1.4] text-house-brown">
                 {VOLUMES[hovered].story}
               </p>
             </div>

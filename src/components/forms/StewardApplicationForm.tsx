@@ -65,9 +65,9 @@ export function StewardApplicationForm({
   });
 
   const selectCls =
-    "w-full border border-white/30 bg-transparent px-3 py-2.5 text-[16px] text-white outline-none transition-colors focus:border-[color:var(--color-gold)]";
+    "w-full border border-white/30 bg-transparent px-3 py-2.5 text-[19px] text-white outline-none transition-colors focus:border-[color:var(--color-gold)]";
   const labelCls =
-    "block font-sans text-[15px] tracking-[0.04em] mb-1.5 text-white/70";
+    "block font-sans text-[18px] tracking-[0.04em] mb-1.5 text-white/70";
 
   const onSubmit = async (data: WaitlistInterestOutput) => {
     setStatus({ kind: "submitting" });
@@ -183,7 +183,7 @@ export function StewardApplicationForm({
         onExpire={() => setValue("turnstileToken", "")}
       />
       {errors.turnstileToken ? (
-        <p className="font-sans text-[15px] text-red-300">{errors.turnstileToken.message}</p>
+        <p className="font-sans text-[18px] text-red-300">{errors.turnstileToken.message}</p>
       ) : null}
 
       <FormStatus status={status} dark />

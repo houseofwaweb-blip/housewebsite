@@ -33,7 +33,7 @@ export function GhostLink({
 }: GhostLinkProps) {
   const classes = cn(
     "group inline-flex items-center gap-2 no-underline",
-    "font-sans text-[15px] tracking-[0.18em] uppercase pb-1",
+    "font-sans text-[18px] tracking-[0.18em] uppercase pb-1",
     "border-b border-solid border-house-gold",
     "transition-[color,border-style] duration-[var(--t-slow)] ease-out",
     "hover:border-dotted",

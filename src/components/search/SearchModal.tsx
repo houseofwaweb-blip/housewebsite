@@ -132,7 +132,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
         type="button"
         aria-label="Close search"
         onClick={onClose}
-        className="absolute top-5 right-[5vw] z-10 text-[28px] leading-none text-house-brown hover:text-house-gold-ink transition-colors duration-[var(--t-base)] bg-transparent border-0 cursor-pointer"
+        className="absolute top-5 right-[5vw] z-10 text-[31px] leading-none text-house-brown hover:text-house-gold-ink transition-colors duration-[var(--t-base)] bg-transparent border-0 cursor-pointer"
       >
         ×
       </button>
@@ -165,7 +165,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
               style={{ outline: "none", boxShadow: "none" }}
               className={cn(
                 "flex-1 bg-transparent border-0 min-w-0",
-                "font-display font-normal italic text-[clamp(24px,3.5vw,32px)] text-house-brown",
+                "font-display font-normal italic text-[clamp(27px,3.5vw,35px)] text-house-brown",
                 "placeholder:font-normal placeholder:text-house-brown/60 placeholder:opacity-50",
                 "placeholder:transition-opacity placeholder:duration-[var(--t-slow)] placeholder:ease-out",
                 "focus:placeholder:opacity-20",
@@ -191,7 +191,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
                 }}
                 className={cn(
                   "bg-transparent border-0 cursor-pointer py-[4px]",
-                  "font-sans text-[12px] tracking-[0.22em] uppercase",
+                  "font-sans text-[14px] tracking-[0.22em] uppercase",
                   "transition-all duration-[var(--t-base)] ease-out",
                   active
                     ? "text-house-gold-ink border-b border-house-gold opacity-100 pb-[6px]"
@@ -213,7 +213,7 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
             <Link
               href={`/search${query ? `?q=${encodeURIComponent(query)}` : ""}`}
               onClick={onClose}
-              className="group inline-flex items-center gap-[8px] font-sans text-[15px] tracking-[0.18em] uppercase no-underline text-house-brown border-b border-solid border-house-gold pb-[3px] transition-[color,border-style] duration-[var(--t-slow)] ease-out hover:text-house-gold-ink hover:border-dotted"
+              className="group inline-flex items-center gap-[8px] font-sans text-[18px] tracking-[0.18em] uppercase no-underline text-house-brown border-b border-solid border-house-gold pb-[3px] transition-[color,border-style] duration-[var(--t-slow)] ease-out hover:text-house-gold-ink hover:border-dotted"
             >
               <span>View all results</span>
               <span
@@ -228,15 +228,15 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
 
         <div key={refreshKey} className="flex flex-col">
           {loading ? (
-            <p className="font-display italic text-[16px] text-house-brown/50 py-[40px] text-center">
+            <p className="font-display italic text-[19px] text-house-brown/50 py-[40px] text-center">
               Searching&hellip;
             </p>
           ) : results.length === 0 && query.length > 0 ? (
-            <p className="font-display italic text-[17px] text-house-brown/50 py-[40px] text-center">
+            <p className="font-display italic text-[20px] text-house-brown/50 py-[40px] text-center">
               Nothing quite like &ldquo;{query}&rdquo; yet. Try different terms.
             </p>
           ) : results.length === 0 ? (
-            <p className="font-display italic text-[16px] text-house-brown/50 py-[40px] text-center">
+            <p className="font-display italic text-[19px] text-house-brown/50 py-[40px] text-center">
               Start typing to search across the House.
             </p>
           ) : (
@@ -262,14 +262,14 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
                   />
                 ) : null}
                 <div className="min-w-0">
-                  <div className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-brown/60 mb-[4px]">
+                  <div className="font-sans text-[14px] tracking-[0.22em] uppercase text-house-brown/60 mb-[4px]">
                     {r.type}
                   </div>
-                  <h5 className="font-display text-[20px] font-medium text-house-brown mb-[4px]">
+                  <h5 className="font-display text-[23px] font-medium text-house-brown mb-[4px]">
                     {r.title}
                   </h5>
                   {r.excerpt ? (
-                    <p className="font-sans text-[15px] text-house-brown/60 leading-[1.5]">
+                    <p className="font-sans text-[18px] text-house-brown/60 leading-[1.5]">
                       {r.excerpt}
                     </p>
                   ) : null}

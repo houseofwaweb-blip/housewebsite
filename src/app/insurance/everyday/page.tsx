@@ -39,17 +39,17 @@ export default function EverydayHub() {
       <section className="px-[5vw] pt-20 pb-12">
         <div className="mx-auto grid max-w-[1120px] items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
-            <p className="font-sans text-[12px] tracking-[0.3em] uppercase text-[color:var(--ins-ink)]">Insurance · Everyday cover</p>
-            <h1 className="mt-4 font-display text-[clamp(30px,4.6vw,52px)] leading-[1.05] text-house-black">
+            <p className="font-sans text-[14px] tracking-[0.3em] uppercase text-[color:var(--ins-ink)]">Insurance · Everyday cover</p>
+            <h1 className="mt-4 font-display text-[clamp(33px,4.6vw,55px)] leading-[1.05] text-house-black">
               For everything that does not need a conversation.
             </h1>
-            <p className="mt-6 max-w-[52ch] font-sans text-[18px] leading-[1.6] text-house-stone">
+            <p className="mt-6 max-w-[52ch] font-sans text-[21px] leading-[1.6] text-house-stone">
               Straightforward cover for the everyday things. Tell us what you need and a specialist will arrange it. The House introduces you; Provenance arranges the cover.
             </p>
             <div className="mt-8">
               <a
                 href="#choose-a-cover"
-                className="inline-flex items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110"
+                className="inline-flex items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[14px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110"
               >
                 Choose a cover
               </a>
@@ -75,7 +75,7 @@ export default function EverydayHub() {
       {/* 3. The product grid, near the top */}
       <section id="choose-a-cover" className="scroll-mt-24 px-[5vw] pt-14 pb-10">
         <div className="mx-auto max-w-[1120px]">
-          <h2 className="mb-8 font-display text-[clamp(22px,2.8vw,34px)] leading-[1.12] text-house-black">Choose a cover.</h2>
+          <h2 className="mb-8 font-display text-[clamp(25px,2.8vw,37px)] leading-[1.12] text-house-black">Choose a cover.</h2>
           <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2">
             {PRODUCTS.map((p) => (
               <Link
@@ -93,9 +93,9 @@ export default function EverydayHub() {
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-6">
-                  <h3 className="font-display text-[22px] leading-tight text-house-black transition-colors group-hover:text-[color:var(--ins-ink)]">{p.name}</h3>
-                  <p className="mt-2 mb-7 font-sans text-[16px] leading-[1.6] text-house-stone">{p.body}</p>
-                  <span className="mt-auto inline-flex w-fit items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-6 py-3 font-sans text-[12px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] transition-[filter] group-hover:brightness-110">
+                  <h3 className="font-display text-[25px] leading-tight text-house-black transition-colors group-hover:text-[color:var(--ins-ink)]">{p.name}</h3>
+                  <p className="mt-2 mb-7 font-sans text-[19px] leading-[1.6] text-house-stone">{p.body}</p>
+                  <span className="mt-auto inline-flex w-fit items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-6 py-3 font-sans text-[14px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] transition-[filter] group-hover:brightness-110">
                     View cover →
                   </span>
                 </div>
@@ -108,14 +108,14 @@ export default function EverydayHub() {
       {/* 4. How it works — cream-dark band */}
       <section className="px-[5vw] py-14" style={{ background: "var(--color-house-cream-dark)" }}>
         <div className="mx-auto max-w-[1120px]">
-          <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-[color:var(--ins-ink)]">How it works</p>
-          <h2 className="mt-3 mb-9 max-w-[26ch] font-display text-[clamp(22px,2.8vw,34px)] leading-[1.12] text-house-black">Simple to arrange, no comparison forms.</h2>
+          <p className="font-sans text-[14px] tracking-[0.24em] uppercase text-[color:var(--ins-ink)]">How it works</p>
+          <h2 className="mt-3 mb-9 max-w-[26ch] font-display text-[clamp(25px,2.8vw,37px)] leading-[1.12] text-house-black">Simple to arrange, no comparison forms.</h2>
           <ol className="grid list-none gap-x-10 gap-y-8 p-0 sm:grid-cols-3">
             {STEPS.map((s) => (
               <li key={s.n} className="border-t border-house-brown/15 pt-4">
-                <p className="font-display text-[22px] leading-none text-[color:var(--ins-ink)]">{s.n}</p>
-                <h3 className="mt-3 font-display text-[19px] leading-tight text-house-black">{s.h}</h3>
-                <p className="mt-2 font-sans text-[15.5px] leading-[1.6] text-house-brown/85">{s.p}</p>
+                <p className="font-display text-[25px] leading-none text-[color:var(--ins-ink)]">{s.n}</p>
+                <h3 className="mt-3 font-display text-[22px] leading-tight text-house-black">{s.h}</h3>
+                <p className="mt-2 font-sans text-[17.5px] leading-[1.6] text-house-brown/85">{s.p}</p>
               </li>
             ))}
           </ol>
@@ -125,7 +125,7 @@ export default function EverydayHub() {
       {/* 5. Burgundy anchor */}
       <section className="px-[5vw] py-12 text-house-cream" style={{ background: "var(--ins-accent)" }}>
         <div className="mx-auto max-w-[1120px]">
-          <p className="max-w-[52ch] font-display text-[clamp(20px,2.4vw,30px)] leading-[1.25] text-house-cream">
+          <p className="max-w-[52ch] font-display text-[clamp(23px,2.4vw,33px)] leading-[1.25] text-house-cream">
             No fear, no urgency, no pressure. The House introduces you; Provenance arranges and administers the cover.
           </p>
           <ProvenanceLockup variant="onDark" className="mt-8" />
@@ -135,7 +135,7 @@ export default function EverydayHub() {
       {/* 6. High-value routing */}
       <section className="px-[5vw] py-12">
         <div className="mx-auto max-w-[760px]">
-          <p className="font-sans text-[16.5px] leading-[1.65] text-house-brown/85">
+          <p className="font-sans text-[18.5px] leading-[1.65] text-house-brown/85">
             Insuring a listed, high-value or non-standard home? Everyday cover is not built for it.{" "}
             <Link href="/insurance/private-client" className="text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">Speak to a specialist instead →</Link>
           </p>

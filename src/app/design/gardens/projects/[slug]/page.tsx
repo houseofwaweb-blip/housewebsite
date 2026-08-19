@@ -42,31 +42,21 @@ export default async function GardenProjectPage({
   const restDims = await Promise.all(rest.map((src) => getPublicImageSize(src)));
   const others = GARDEN_PROJECTS.filter((p) => p.slug !== project.slug).slice(0, 3);
 
-  // Dev-only image-number badge so the file to remove can be named exactly.
-  const DEV = process.env.NODE_ENV === "development";
-  const fileNo = (s: string) => s.match(/(\d+)\.webp$/)?.[1] ?? "";
-  const Badge = ({ src }: { src: string }) =>
-    DEV ? (
-      <span className="absolute top-2 left-2 z-10 bg-black/75 text-white text-[15px] font-mono px-2 py-0.5 pointer-events-none">
-        {fileNo(src)}
-      </span>
-    ) : null;
-
   return (
     <article style={{ background: "var(--color-house-cream)", color: "var(--color-house-brown)" }}>
       {/* Header */}
       <header className="mx-auto max-w-[1100px] px-6 sm:px-10 pt-[clamp(72px,10vh,128px)] pb-[clamp(28px,4vw,48px)]">
-        <p className="font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink mb-5 flex items-center gap-3">
+        <p className="font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink mb-5 flex items-center gap-3">
           <span aria-hidden className="w-9 h-px bg-house-gold-ink/70" />
           Willow Alexander Gardens · {project.type}
         </p>
         <h1
-          className="font-display text-[clamp(40px,5.4vw,76px)] leading-[1.02] tracking-[-0.02em]"
+          className="font-display text-[clamp(43px,5.4vw,79px)] leading-[1.02] tracking-[-0.02em]"
           style={{ color: "var(--color-house-brown)" }}
         >
           {project.title}
         </h1>
-        <p className="mt-4 font-sans text-[15px] tracking-[0.18em] uppercase text-house-brown/55">
+        <p className="mt-4 font-sans text-[18px] tracking-[0.18em] uppercase text-house-brown/55">
           {project.location}
         </p>
       </header>
@@ -75,7 +65,6 @@ export default async function GardenProjectPage({
       {hero && heroDims ? (
         <div className="mx-auto max-w-[1120px] px-6 sm:px-10">
           <div className="relative">
-            <Badge src={hero} />
             <Image
               src={hero}
               alt={`${project.title}, ${project.location}`}
@@ -95,7 +84,7 @@ export default async function GardenProjectPage({
         {project.intro.split("\n\n").map((p, i) => (
           <p
             key={i}
-            className="font-sans text-[17px] leading-[1.7] text-house-brown/82 mb-5"
+            className="font-sans text-[20px] leading-[1.7] text-house-brown/82 mb-5"
             style={i === 0 ? { fontFamily: "var(--font-hearth-serif)", fontStyle: "italic", fontSize: "clamp(20px,2vw,24px)", lineHeight: 1.5, color: "rgba(48,35,28,0.82)" } : undefined}
           >
             {p}
@@ -109,7 +98,6 @@ export default async function GardenProjectPage({
           <div className="[column-gap:14px] sm:[column-gap:18px] columns-1 sm:columns-2 lg:columns-3">
             {rest.map((src, i) => (
               <div key={src} className="mb-[14px] sm:mb-[18px] break-inside-avoid relative">
-                <Badge src={src} />
                 <Image
                   src={src}
                   alt={`${project.title}, view ${i + 2}`}
@@ -127,17 +115,17 @@ export default async function GardenProjectPage({
 
       {/* CTA */}
       <section className="border-t border-house-brown/10 px-6 sm:px-10 py-[clamp(56px,7vw,104px)] text-center">
-        <h2 className="font-display text-[clamp(26px,3vw,40px)] leading-[1.1]" style={{ color: "var(--color-house-brown)" }}>
+        <h2 className="font-display text-[clamp(29px,3vw,43px)] leading-[1.1]" style={{ color: "var(--color-house-brown)" }}>
           Considering a garden of your own?
         </h2>
-        <p className="mt-4 font-sans text-[16px] leading-[1.6] text-house-brown/70 max-w-[46ch] mx-auto">
+        <p className="mt-4 font-sans text-[19px] leading-[1.6] text-house-brown/70 max-w-[46ch] mx-auto">
           The studio takes on a small number of commissions through the House.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-          <Link href="/design/gardens#open-booking-form" className="inline-flex items-center justify-center px-7 py-3.5 bg-house-gold text-house-brown text-[15px] tracking-[0.04em] hover:bg-house-gold-ink transition-colors">
+          <Link href="/design/gardens#open-booking-form" className="inline-flex items-center justify-center px-7 py-3.5 bg-house-gold text-house-brown text-[18px] tracking-[0.04em] hover:bg-house-gold-ink transition-colors">
             Enquire about a garden
           </Link>
-          <Link href="/design/gardens" className="inline-flex items-center gap-1.5 text-[16px] text-house-brown/70 hover:text-house-brown transition-colors">
+          <Link href="/design/gardens" className="inline-flex items-center gap-1.5 text-[19px] text-house-brown/70 hover:text-house-brown transition-colors">
             All garden work <span aria-hidden>&rarr;</span>
           </Link>
         </div>
@@ -147,15 +135,15 @@ export default async function GardenProjectPage({
       {others.length ? (
         <section className="bg-house-cream-dark/40 px-6 sm:px-10 py-[clamp(48px,6vw,88px)]">
           <div className="mx-auto max-w-[1240px]">
-            <p className="font-sans text-[12px] tracking-[0.28em] uppercase text-house-gold-ink mb-7">More from the studio</p>
+            <p className="font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink mb-7">More from the studio</p>
             <div className="grid gap-6 sm:grid-cols-3">
               {others.map((p) => (
                 <Link key={p.slug} href={`/design/gardens/projects/${p.slug}`} className="group block">
                   <div className="relative w-full overflow-hidden" style={{ aspectRatio: "4 / 3", border: "1px solid rgba(48,35,28,0.08)" }}>
                     <Image src={p.images[0]} alt={p.title} fill sizes="(min-width: 640px) 33vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
                   </div>
-                  <h3 className="mt-3 font-hearth-serif text-[20px] leading-tight" style={{ color: "var(--color-house-brown)" }}>{p.title}</h3>
-                  <p className="font-sans text-[15px] tracking-[0.16em] uppercase text-house-brown/55 mt-1">{p.location}</p>
+                  <h3 className="mt-3 font-hearth-serif text-[23px] leading-tight" style={{ color: "var(--color-house-brown)" }}>{p.title}</h3>
+                  <p className="font-sans text-[18px] tracking-[0.16em] uppercase text-house-brown/55 mt-1">{p.location}</p>
                 </Link>
               ))}
             </div>

@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { env } from "@/lib/env";
 import wpLongTail from "@/lib/services-data/wp-long-tail.json";
+import { allLocationSlugs } from "@/lib/services-data/locations";
 import { getCmsSitemapEntries } from "@/lib/sitemap-slugs";
 
 /**
@@ -80,9 +81,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/musings`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
     { url: `${base}/recipes`, lastModified: now, changeFrequency: "weekly", priority: 0.5 },
 
-    // ---- Partners ----
-    { url: `${base}/partners`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
-
     // ---- Utility ----
     { url: `${base}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/house-credit`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
@@ -94,6 +92,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/legal/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
     { url: `${base}/legal/cookies`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
   ];
+
+  // ---- Service × town local pages (152: 4 launch services × 38 towns) ----
+  const locationRoutes: MetadataRoute.Sitemap = allLocationSlugs().map((slug) => ({
+    url: `${base}/services/local/${slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.5,
+  }));
 
   // ---- WP long-tail SEO catalogue (175 service-area pages) ----
   const longTailRoutes: MetadataRoute.Sitemap = (
@@ -107,5 +113,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const cmsRoutes = await getCmsSitemapEntries(base);
 
-  return [...staticRoutes, ...longTailRoutes, ...cmsRoutes];
+  return [...staticRoutes, ...locationRoutes, ...longTailRoutes, ...cmsRoutes];
 }

@@ -65,7 +65,7 @@ export function ModesBands() {
   return (
     <section id="ways" className="relative scroll-mt-20">
       {/* Header pill straddles the hero/bands boundary (half on the hero image) */}
-      <span className="absolute z-30 top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-white border border-[color:var(--color-gold)]/25 shadow-[0_10px_28px_-12px_rgba(60,40,15,0.4)] px-7 py-3 font-italic-display text-[clamp(18px,1.6vw,24px)] text-[color:var(--color-ink)]">
+      <span className="absolute z-30 top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full bg-white border border-[color:var(--color-gold)]/25 shadow-[0_10px_28px_-12px_rgba(60,40,15,0.4)] px-7 py-3 font-italic-display text-[clamp(21px,1.6vw,27px)] text-[color:var(--color-ink)]">
         Three ways HoWA works for your home.
       </span>
 
@@ -97,30 +97,30 @@ export function ModesBands() {
             {/* Copy */}
             <div className="relative z-10 h-full flex flex-col px-7 lg:px-8 py-9 lg:py-11 max-w-[62%]">
               <div className="flex items-baseline gap-3 mb-4">
-                <span className="font-italic-display text-[27px] text-[#f3ede0]/70 leading-none">
+                <span className="font-italic-display text-[30px] text-[#f3ede0]/70 leading-none">
                   {m.numeral}.
                 </span>
-                <h3 className="font-display text-[clamp(23px,1.8vw,30px)] leading-[1.05]">
+                <h3 className="font-display text-[clamp(26px,1.8vw,33px)] leading-[1.05]">
                   HoWA{" "}
                   <span className="font-italic-display">{m.name}</span>
                 </h3>
               </div>
-              <p className="font-italic-display text-[clamp(18px,1.5vw,23px)] text-[#f3ede0] mb-4">
+              <p className="font-italic-display text-[clamp(21px,1.5vw,26px)] text-[#f3ede0] mb-4">
                 {m.tagline}
               </p>
-              <p className="text-[16px] leading-[1.5] text-[#f3ede0]/85 mb-6 max-w-[230px]">
+              <p className="text-[19px] leading-[1.5] text-[#f3ede0]/85 mb-6 max-w-[230px]">
                 {m.desc}
               </p>
               <ul className="space-y-2 mb-7">
                 {m.points.map((p) => (
-                  <li key={p} className="flex items-center gap-2.5 text-[16px] text-[#f3ede0]/90">
+                  <li key={p} className="flex items-center gap-2.5 text-[19px] text-[#f3ede0]/90">
                     <CheckGlyph /> {p}
                   </li>
                 ))}
               </ul>
               <Link
                 href={m.href}
-                className="mt-auto inline-flex items-center gap-2 self-start rounded-md border border-[#f3ede0]/45 px-5 py-2.5 text-[16px] text-[#f3ede0] hover:bg-[#f3ede0]/10 transition-colors"
+                className="mt-auto inline-flex items-center gap-2 self-start rounded-md border border-[#f3ede0]/45 px-5 py-2.5 text-[19px] text-[#f3ede0] hover:bg-[#f3ede0]/10 transition-colors"
               >
                 Explore {m.name} <span aria-hidden>→</span>
               </Link>

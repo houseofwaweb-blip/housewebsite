@@ -7,7 +7,7 @@
    ────────────────────────────────────────────────────────── */
 .sectionEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -17,7 +17,7 @@
 .sectionTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(28px, 3.4vw, 44px);
+  font-size: clamp(31px, 3.4vw,47px);
   line-height: 1.1;
   letter-spacing: -0.012em;
   color: var(--color-house-brown);
@@ -26,7 +26,7 @@
 .sectionTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .sectionLede {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.7;
   color: rgba(48, 35, 28, 0.72);
   margin: 0 auto;
@@ -45,7 +45,7 @@
   display: inline-flex; align-items: center; gap: 10px;
   padding: 13px 26px;
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
@@ -89,7 +89,7 @@
 .heroCopyInner { max-width: 580px; }
 .heroEy {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -116,7 +116,7 @@
 .heroTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(44px, 5.4vw, 80px);
+  font-size: clamp(47px, 5.4vw,83px);
   line-height: 1.02;
   letter-spacing: -0.02em;
   color: var(--color-house-brown);
@@ -125,7 +125,7 @@
 .heroTitle em { font-style: italic; color: var(--color-house-gold-ink); }
 .heroLede {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.65;
   color: rgba(48, 35, 28, 0.72);
   margin: 0 0 32px;
@@ -146,7 +146,7 @@
   background: rgba(30, 26, 20, 0.34);
   color: #fff;
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -172,7 +172,7 @@
 .aboutCol {}
 .aboutBody {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.75;
   color: rgba(48, 35, 28, 0.82);
   margin: 0;
@@ -220,7 +220,7 @@
   position: relative;
   padding-left: 22px;
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.65;
   color: rgba(48, 35, 28, 0.82);
 }
@@ -320,7 +320,7 @@
   font-family: var(--font-hearth-serif);
   font-style: italic;
   font-weight: 400;
-  font-size: 24px;
+  font-size: 27px;
   line-height: 1.2;
   color: var(--color-house-brown);
   margin: 0;
@@ -328,7 +328,7 @@
 }
 .relatedBlurb {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.6;
   color: rgba(48, 35, 28, 0.72);
   margin: 0;
@@ -337,7 +337,7 @@
 .relatedCta {
   margin-top: 12px;
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -354,7 +354,7 @@
 }
 .closingKicker {
   font-family: var(--font-sans);
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-house-gold-ink);
@@ -364,7 +364,7 @@
 .closingStatement {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(36px, 4.6vw, 64px);
+  font-size: clamp(39px, 4.6vw,67px);
   line-height: 1.08;
   color: var(--color-house-brown);
   margin: 0 auto 18px;
@@ -374,7 +374,7 @@
 .closingStatement em { font-style: italic; color: var(--color-house-gold-ink); }
 .closingLede {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.65;
   color: rgba(48, 35, 28, 0.7);
   margin: 0 auto 32px;

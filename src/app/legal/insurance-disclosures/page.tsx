@@ -80,7 +80,7 @@ export default function InsuranceDisclosuresPage() {
           <p
             style={{
               fontFamily: sans,
-              fontSize: 11,
+              fontSize: 13,
               letterSpacing: "0.3em",
               textTransform: "uppercase",
               color: goldDark,
@@ -135,7 +135,7 @@ export default function InsuranceDisclosuresPage() {
             marginBottom: "clamp(40px, 5vw, 64px)",
           }}
         >
-          <p style={{ fontFamily: sans, fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(48,35,28,0.6)", margin: "0 0 18px" }}>
+          <p style={{ fontFamily: sans, fontSize: 14, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(48,35,28,0.6)", margin: "0 0 18px" }}>
             At a glance
           </p>
           <dl style={{ margin: 0 }}>
@@ -146,8 +146,8 @@ export default function InsuranceDisclosuresPage() {
               ["Insurer / underwriter", "Named in your policy documents before you buy."],
             ].map(([k, v]) => (
               <div key={k} style={{ padding: "12px 0", borderBottom: `1px solid ${line}` }}>
-                <dt style={{ fontFamily: sans, fontSize: 13, fontWeight: 600, color: brown, margin: "0 0 4px", letterSpacing: "0.02em" }}>{k}</dt>
-                <dd style={{ fontFamily: sans, fontSize: 15, lineHeight: 1.55, color: "rgba(48,35,28,0.82)", margin: 0 }}>{v}</dd>
+                <dt style={{ fontFamily: sans, fontSize: 15, fontWeight: 600, color: brown, margin: "0 0 4px", letterSpacing: "0.02em" }}>{k}</dt>
+                <dd style={{ fontFamily: sans, fontSize: 17, lineHeight: 1.55, color: "rgba(48,35,28,0.82)", margin: 0 }}>{v}</dd>
               </div>
             ))}
           </dl>
@@ -173,7 +173,7 @@ export default function InsuranceDisclosuresPage() {
                 key={i}
                 style={{
                   fontFamily: sans,
-                  fontSize: 17,
+                  fontSize: 19,
                   lineHeight: 1.7,
                   color: "rgba(48, 35, 28, 0.82)",
                   margin: "0 0 16px",
@@ -188,7 +188,7 @@ export default function InsuranceDisclosuresPage() {
         <p
           style={{
             fontFamily: sans,
-            fontSize: 11,
+            fontSize: 13,
             letterSpacing: "0.22em",
             textTransform: "uppercase",
             color: "rgba(48, 35, 28, 0.6)",
