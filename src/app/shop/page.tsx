@@ -179,8 +179,9 @@ function Rail({
 function FeaturedProduct({ p }: { p: Slide | null }) {
   if (!p) return null;
   return (
-    <section style={{ background: "var(--color-house-brown)" }} className="px-[5vw] py-[clamp(48px,6vw,90px)]">
-      <div className="max-w-[1160px] mx-auto grid md:grid-cols-2 gap-[clamp(28px,4vw,64px)] items-center">
+    <section style={{ background: "var(--color-house-brown)" }} className="relative overflow-hidden px-[5vw] py-[clamp(48px,6vw,90px)]">
+      <FlowerWatermark variant="pattern" color="gold" side="left" opacity={0.2} />
+      <div className="relative z-10 max-w-[1160px] mx-auto grid md:grid-cols-2 gap-[clamp(28px,4vw,64px)] items-center">
         <Link
           href={`/shop/${p.handle}`}
           className="group relative block aspect-[4/5] overflow-hidden no-underline"

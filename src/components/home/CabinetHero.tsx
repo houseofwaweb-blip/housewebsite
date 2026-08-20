@@ -80,7 +80,7 @@ export function CabinetHero() {
             >
               Book a service
             </a>
-            <Link href="/the-house/about" className={`${styles.cta} ${styles.ctaGhost}`}>
+            <Link href="/the-house" className={`${styles.cta} ${styles.ctaGhost}`}>
               Explore the House
             </Link>
           </div>

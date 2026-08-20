@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 
 /**
  * EditorialSplit — a text/image split band (text one side, image the other),
@@ -38,8 +39,18 @@ export function EditorialSplit({
     : "text-house-brown border-house-brown/30 hover:bg-house-brown hover:text-house-cream";
 
   return (
-    <section className={`${bg} border-t border-house-line px-[5vw] py-[clamp(40px,5vw,76px)]`}>
-      <div className="mx-auto max-w-[1360px] grid lg:grid-cols-2 items-stretch gap-y-8 lg:gap-y-0">
+    <section className={`${bg} relative overflow-hidden border-t border-house-line px-[5vw] py-[clamp(40px,5vw,76px)]`}>
+      {/* Brand floral pattern hung off the copy-side edge (van-style), only on
+          the dark brown moment, kept faint so it reads as texture. */}
+      {brown ? (
+        <FlowerWatermark
+          variant="pattern"
+          color="gold"
+          side={imageSide === "right" ? "left" : "right"}
+          opacity={0.22}
+        />
+      ) : null}
+      <div className="relative z-10 mx-auto max-w-[1360px] grid lg:grid-cols-2 items-stretch gap-y-8 lg:gap-y-0">
         {/* Image */}
         <div
           className={`relative min-h-[320px] lg:min-h-[500px] ${

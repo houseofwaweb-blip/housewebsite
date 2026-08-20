@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 
 /**
  * ServicesShowcase — a homepage image band giving the Services pillar presence
@@ -18,14 +19,15 @@ const SERVICES: Svc[] = [
   { name: "Removals", href: "/services/removals", image: "/services/subbrands/removals.webp", colour: "var(--service-removals)" },
   { name: "Electrical & energy", href: "/services/energy", image: "/services/subbrands/electrical.webp", colour: "var(--service-energy)" },
   { name: "Dog walking", href: "/services/pet-care", image: "/services/subbrands/dog-walking.jpg", colour: "var(--service-dog-walkers)" },
-  { name: "Home & garden", href: "/services/home-and-garden", image: "/home-v4/design-garden-day.jpg", colour: "var(--service-home-garden)" },
+  { name: "Home & garden", href: "/services/home-and-garden", image: "/home-v4/home-garden-fleet.webp", colour: "var(--service-home-garden)" },
   { name: "Interiors", href: "/services/interiors", image: "/home-v4/design-portrait.webp", colour: "var(--house-brown)" },
 ];
 
 export function ServicesShowcase() {
   return (
-    <section className="bg-house-cream-light px-[5vw] py-[clamp(40px,4vw,68px)] border-t border-house-line">
-      <div className="mx-auto max-w-[1360px]">
+    <section className="relative overflow-hidden bg-house-cream-light px-[5vw] py-[clamp(40px,4vw,68px)] border-t border-house-line">
+      <FlowerWatermark variant="pattern" color="brown" side="right" opacity={0.16} />
+      <div className="relative z-10 mx-auto max-w-[1360px]">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="font-sans text-[13px] tracking-[0.22em] uppercase text-house-gold-dark">

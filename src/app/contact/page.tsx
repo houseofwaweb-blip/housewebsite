@@ -13,7 +13,7 @@ export default function ContactPage() {
   return (
     <div className={s.page}>
       <section className={s.hero}>
-        <FlowerWatermark color="gold" side="right" opacity={0.16} />
+        <FlowerWatermark variant="pattern" color="brown" side="right" opacity={0.14} />
         <div className={s.heroInner}>
           <p className={s.heroEy}>Contact</p>
           <h1 className={s.heroTitle}>
@@ -25,6 +25,16 @@ export default function ContactPage() {
           </p>
         </div>
       </section>
+
+      {/* Warm lifestyle image band */}
+      <div className="relative w-full overflow-hidden border-t border-house-line" style={{ aspectRatio: "16 / 6" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/lifestyle/writing-by-stove.webp"
+          alt="A quiet moment writing by a wood stove in a House interior"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+      </div>
 
       {/* Postcode → booking. Navigates into the ServiceOS booking form with the
           postcode (and service, when set) already applied. Works on any origin

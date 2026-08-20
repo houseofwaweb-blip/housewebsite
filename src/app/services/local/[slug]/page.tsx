@@ -7,6 +7,7 @@ import { WaitlistMini } from "@/components/marketing/WaitlistMini";
 import wpLongTail from "@/lib/services-data/wp-long-tail.json";
 import { getLocationPage, allLocationSlugs, LOCATION_SERVICES } from "@/lib/services-data/locations";
 import { LocationServiceDetail } from "@/components/marketing/LocationServiceDetail";
+import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 
 /**
  * /services/local/[slug] — locality + task page.
@@ -306,8 +307,9 @@ export default async function LocalServicePage({
       {/* ============================================================
           6. Final CTA
           ============================================================ */}
-      <section className="px-[5vw] py-20 bg-house-brown text-house-cream text-center">
-        <div className="max-w-[680px] mx-auto">
+      <section className="relative overflow-hidden px-[5vw] py-20 bg-house-brown text-house-cream text-center">
+        <FlowerWatermark variant="pattern" color="gold" side="left" opacity={0.2} />
+        <div className="relative z-10 max-w-[680px] mx-auto">
           <p className="font-sans text-[14px] tracking-[0.32em] uppercase text-house-gold-light mb-5">
             Looking after homes in {location}
           </p>

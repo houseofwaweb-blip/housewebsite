@@ -11,7 +11,7 @@ import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 export function HouseInstitutionStrip() {
   return (
     <section className="relative overflow-hidden bg-house-brown text-house-cream px-[5vw] py-[clamp(40px,5vw,72px)]">
-      <FlowerWatermark color="gold" side="right" opacity={0.16} />
+      <FlowerWatermark variant="pattern" color="gold" side="right" opacity={0.2} />
       <div className="relative z-10 mx-auto max-w-[1360px] grid gap-8 lg:grid-cols-[1.1fr_1fr_auto] lg:items-center">
         <div>
           <p className="font-display text-[1.6rem] leading-[1.1] text-house-cream">

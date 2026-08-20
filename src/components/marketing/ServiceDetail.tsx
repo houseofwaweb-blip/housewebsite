@@ -139,9 +139,11 @@ export function ServiceDetail({
 
   return (
     <div className={s.page}>
-      {/* 1. Hero + booking panel — 7/5 split, House cream first */}
-      <section className="bg-house-cream px-[5vw] pt-[clamp(40px,6vw,88px)] pb-[clamp(48px,6vw,96px)] border-b border-house-brown/10">
-        <div className="mx-auto grid max-w-[1280px] items-start gap-[clamp(28px,4vw,56px)] lg:grid-cols-12">
+      {/* 1. Hero + booking panel — 7/5 split, House cream first. Dark House
+          pattern hung down one side of the cream ground (deck treatment). */}
+      <section className="relative overflow-hidden bg-house-cream px-[5vw] pt-[clamp(40px,6vw,88px)] pb-[clamp(48px,6vw,96px)] border-b border-house-brown/10">
+        <FlowerWatermark variant="pattern" color="brown" side="right" opacity={0.1} />
+        <div className="relative z-10 mx-auto grid max-w-[1280px] items-start gap-[clamp(28px,4vw,56px)] lg:grid-cols-12">
           {/* Left — copy, proof, still-life (7 cols) */}
           <div className="lg:col-span-7">
             <nav aria-label="Breadcrumb" className="mb-6 font-sans text-[14px] tracking-[0.24em] uppercase text-house-gold-ink">
@@ -354,11 +356,13 @@ export function ServiceDetail({
         </section>
       ) : null}
 
-      {/* 5. How the visit works — contained split, copy left / image right, brown panel */}
-      <section className="bg-house-brown px-[5vw] py-[clamp(56px,7vw,112px)] border-b border-house-brown/10">
-        <div className="mx-auto grid max-w-[1180px] items-center gap-10 lg:grid-cols-[1fr_0.85fr] lg:gap-16">
-          {/* Copy */}
-          <div className="text-house-chalk">
+      {/* 5. How the visit works — contained split, copy left / image right, brown panel.
+          Gold House pattern hung off the copy-side edge (the homepage brown moment). */}
+      <section className="relative overflow-hidden bg-house-brown px-[5vw] py-[clamp(56px,7vw,112px)] border-b border-house-brown/10">
+        <FlowerWatermark variant="pattern" color="gold" side="left" opacity={0.2} />
+        <div className="relative z-10 mx-auto grid max-w-[1180px] items-start gap-10 lg:grid-cols-[1fr_0.9fr] lg:gap-16">
+          {/* Copy — header left, the steps underneath */}
+          <div className="text-house-chalk lg:order-1">
             <p className="font-sans text-[13px] tracking-[0.22em] uppercase text-house-gold-light">
               How the visit works
             </p>
@@ -376,12 +380,12 @@ export function ServiceDetail({
               ))}
             </ol>
           </div>
-          {/* Image */}
-          <div className="relative aspect-[4/5] w-full overflow-hidden lg:aspect-[3/4]" style={{ border: "1px solid rgba(190,169,106,0.35)" }}>
+          {/* Image — top right of the section */}
+          <div className="relative aspect-[16/11] w-full overflow-hidden lg:order-2 lg:self-start" style={{ border: "1px solid rgba(190,169,106,0.35)" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/home/visit-arrival.webp"
-              alt="A House professional arriving at a client's home for a first visit"
+              src="/home-v4/booking-lifestyle.webp"
+              alt="A Willow Alexander Home & Garden van outside a client's home, the door open onto a warm interior"
               className="absolute inset-0 h-full w-full object-cover"
             />
           </div>

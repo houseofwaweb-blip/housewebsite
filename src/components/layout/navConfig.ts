@@ -189,6 +189,14 @@ export const PRIMARY_NAV: MegaPanel[] = [
     ],
     twoLevel: {
       categories: SHOP_CATEGORIES,
+      featured: {
+        image: "/lifestyle/period-portrait.webp",
+        alt: "A woman in a warm period British interior",
+        tag: "The House Store",
+        heading: "Beautifully chosen.",
+        href: "/shop",
+      },
+      featuredSide: "left",
       footer: [
         { label: "House Approved", href: "/shop/collections/house-approved" },
         { label: "All products", href: "/shop" },

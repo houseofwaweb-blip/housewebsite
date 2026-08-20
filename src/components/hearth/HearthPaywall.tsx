@@ -13,7 +13,7 @@ export function HearthPaywall() {
       <aside
         className="relative bg-house-cream border border-house-gold/30 shadow-[0_24px_60px_rgba(48,35,28,0.12)] px-10 py-10 md:px-12 md:py-12 grid grid-cols-[64px_1fr] gap-7 max-md:grid-cols-1 max-md:gap-5 max-md:px-7 max-md:py-9"
         role="complementary"
-        aria-label="Continue with Housekeeper"
+        aria-label="Continue reading The Hearth"
       >
         {/* Thick gold top bar */}
         <span
@@ -28,7 +28,7 @@ export function HearthPaywall() {
 
         <div>
           <p className="font-hearth-sans text-[14px] tracking-[0.24em] uppercase text-house-gold-ink mb-2 flex items-center gap-2">
-            <span>Housekeeper · The Hearth</span>
+            <span>The Hearth</span>
             <span aria-hidden="true" className="text-house-gold-ink/40">·</span>
             <span className="text-house-stone">Members only</span>
           </p>
@@ -39,8 +39,8 @@ export function HearthPaywall() {
             </em>
           </h2>
           <p className="font-hearth-serif italic text-[20px] leading-[1.55] text-house-stone mb-7 max-w-[54ch]">
-            The Hearth publishes long-form writing every week. Members read in
-            full, plus the rest of Housekeeper.
+            The Hearth publishes long-form writing every week. Members read
+            every article in full.
           </p>
 
           <div className="grid grid-cols-2 gap-8 mb-7 py-6 border-t border-b border-house-brown/12 max-md:grid-cols-1 max-md:gap-4">
@@ -100,12 +100,6 @@ export function HearthPaywall() {
                 className="inline-block px-7 py-3.5 font-hearth-sans text-[18px] tracking-[0.18em] uppercase text-white bg-house-gold border border-house-gold no-underline transition-all duration-[var(--t-base)] ease-out hover:bg-house-gold-light hover:border-house-gold-light hover:shadow-[0_8px_24px_rgba(184,148,62,0.3)] max-md:flex-1 max-md:text-center"
               >
                 Coming soon
-              </Link>
-              <Link
-                href="/howa/plans"
-                className="font-hearth-sans text-[14px] tracking-[0.18em] uppercase text-house-brown no-underline border-b border-dotted border-house-brown pb-px transition-colors duration-[var(--t-base)] hover:text-house-gold-ink hover:border-house-gold"
-              >
-                Compare plans
               </Link>
             </div>
           </div>

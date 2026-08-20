@@ -67,8 +67,8 @@ export default async function HomePage() {
         body="House of Willow Alexander brings the many parts of home into one considered standard: gardens and rooms, services and objects, all held to a single test: would we trust this in a home we love?"
         ctaLabel="Discover the House"
         ctaHref="/the-house/philosophy"
-        image="/home-v4/house-library-peacock.webp"
-        imageAlt="A richly layered British library with peacock-blue walls and considered detail"
+        image="/home-v4/the-house-fleet.webp"
+        imageAlt="The House at dusk with the full Willow Alexander service fleet, each van in its service colour and floral pattern"
         imageSide="right"
         tone="brown"
       />

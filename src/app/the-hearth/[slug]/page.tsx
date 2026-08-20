@@ -78,7 +78,10 @@ export default async function ArticlePage({
     ? bodyBlocks.slice(0, PREVIEW_BLOCKS)
     : bodyBlocks;
   const lockedBlocks = article.isPremium ? bodyBlocks.slice(PREVIEW_BLOCKS) : [];
-  const showPaywall = article.isPremium && bodyBlocks.length > PREVIEW_BLOCKS;
+  // Premium articles always present the paywall CTA after the preview, so a
+  // members piece never dead-ends without a way to subscribe — even when the
+  // body is short (few blocks) and there is nothing left to blur/lock.
+  const showPaywall = article.isPremium && hasBody;
 
   return (
     <>
@@ -204,13 +207,15 @@ export default async function ArticlePage({
                   {showPaywall ? (
                     <>
                       <HearthPaywall />
-                      <div
-                        aria-hidden="true"
-                        className="relative font-hearth-serif text-[22px] leading-[1.75] text-house-black/90 select-none pointer-events-none [filter:blur(3px)] opacity-40 [&_p]:mb-[22px] [&_h2]:font-hearth-serif [&_h2]:font-medium [&_h2]:text-[clamp(31px,3.5vw,45px)] [&_h2]:leading-[1.15] [&_h2]:mt-14 [&_h2]:mb-4 [&_h3]:font-hearth-serif [&_h3]:font-medium [&_h3]:text-[clamp(25px,2.6vw,33px)] [&_h3]:mt-10 [&_h3]:mb-3"
-                      >
-                        <PortableText value={lockedBlocks} />
-                        <div className="absolute bottom-0 left-0 right-0 h-[200px] bg-gradient-to-b from-transparent to-house-white" />
-                      </div>
+                      {lockedBlocks.length > 0 ? (
+                        <div
+                          aria-hidden="true"
+                          className="relative font-hearth-serif text-[22px] leading-[1.75] text-house-black/90 select-none pointer-events-none [filter:blur(3px)] opacity-40 [&_p]:mb-[22px] [&_h2]:font-hearth-serif [&_h2]:font-medium [&_h2]:text-[clamp(31px,3.5vw,45px)] [&_h2]:leading-[1.15] [&_h2]:mt-14 [&_h2]:mb-4 [&_h3]:font-hearth-serif [&_h3]:font-medium [&_h3]:text-[clamp(25px,2.6vw,33px)] [&_h3]:mt-10 [&_h3]:mb-3"
+                        >
+                          <PortableText value={lockedBlocks} />
+                          <div className="absolute bottom-0 left-0 right-0 h-[200px] bg-gradient-to-b from-transparent to-house-white" />
+                        </div>
+                      ) : null}
                     </>
                   ) : null}
                 </>

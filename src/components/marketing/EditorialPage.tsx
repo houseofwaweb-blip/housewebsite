@@ -156,13 +156,16 @@ export function EditorialPage({ eyebrow, title, lede, sections, updatedAt, heroI
   return (
     <>
     <article style={{ background: "var(--color-house-cream)", color: "var(--color-house-brown)" }}>
-      {/* Hero — eyebrow + large editorial title */}
+      {/* Hero — eyebrow + large editorial title. The dark House pattern is hung
+          down one side of the cream ground (deck treatment), a whisper of texture. */}
       <header
+        className="relative overflow-hidden"
         style={{
           padding: "clamp(80px, 12vh, 140px) clamp(40px, 5vw, 96px) clamp(36px, 4vw, 56px)",
         }}
       >
-        <div style={{ maxWidth: 1140, margin: "0 auto" }}>
+        <FlowerWatermark variant="pattern" color="brown" side="right" opacity={0.1} />
+        <div className="relative z-10" style={{ maxWidth: 1140, margin: "0 auto" }}>
           <p
             style={{
               fontFamily: "var(--font-sans)",

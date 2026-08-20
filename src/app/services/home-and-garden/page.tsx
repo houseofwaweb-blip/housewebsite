@@ -346,7 +346,7 @@ export default function HomeAndGardenPage() {
 
       {/* 6. Final CTA */}
       <section className="relative overflow-hidden bg-house-brown px-[5vw] py-[clamp(64px,7vw,104px)] text-center">
-        <FlowerWatermark color="gold" side="right" opacity={0.18} />
+        <FlowerWatermark variant="pattern" color="gold" side="left" opacity={0.2} />
         <p className="relative z-10 mx-auto mb-8 max-w-[24ch] font-hearth-serif text-[clamp(29px,3.4vw,45px)] leading-[1.2] text-house-cream [&_em]:italic [&_em]:text-house-gold-light">
           <em>One conversation,</em> and the whole home is looked after.
         </p>

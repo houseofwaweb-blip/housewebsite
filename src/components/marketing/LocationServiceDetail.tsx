@@ -5,6 +5,7 @@ import { Accordion } from "@/components/primitives/Accordion";
 import { EnquiryForm } from "@/components/marketing/EnquiryForm";
 import { BookingPanel } from "@/components/services/BookingPanel";
 import { ServiceWordmark } from "@/components/marketing/ServiceWordmark";
+import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { buildBookingUrl } from "@/components/booking/postcode";
 import { SERVICEOS_SERVICE_ID } from "@/lib/serviceos-links";
 import { serviceEnquiryOptions } from "@/lib/services-data";
@@ -59,9 +60,11 @@ export function LocationServiceDetail({ page }: { page: LocationPage }) {
 
   return (
     <div className="bg-house-cream text-house-brown">
-      {/* 1. Hero + booking panel — 7/5 split, same architecture as the service page */}
-      <section className="bg-house-cream px-[5vw] pt-[clamp(40px,6vw,88px)] pb-[clamp(48px,6vw,96px)] border-b border-house-brown/10">
-        <div className="mx-auto grid max-w-[1280px] items-start gap-[clamp(28px,4vw,56px)] lg:grid-cols-12">
+      {/* 1. Hero + booking panel — 7/5 split, same architecture as the service page.
+          Dark House pattern hung down one side of the cream ground (deck treatment). */}
+      <section className="relative overflow-hidden bg-house-cream px-[5vw] pt-[clamp(40px,6vw,88px)] pb-[clamp(48px,6vw,96px)] border-b border-house-brown/10">
+        <FlowerWatermark variant="pattern" color="brown" side="right" opacity={0.1} />
+        <div className="relative z-10 mx-auto grid max-w-[1280px] items-start gap-[clamp(28px,4vw,56px)] lg:grid-cols-12">
           <div className="lg:col-span-7">
             <nav aria-label="Breadcrumb" className="mb-6 font-sans text-[14px] tracking-[0.24em] uppercase text-house-gold-ink">
               <Link href="/services" className="no-underline text-house-gold-ink hover:text-house-brown">
@@ -283,9 +286,10 @@ export function LocationServiceDetail({ page }: { page: LocationPage }) {
         </div>
       </section>
 
-      {/* 8. Closing CTA */}
-      <section className="bg-house-brown px-[5vw] py-[clamp(52px,6vw,96px)] text-center text-house-cream">
-        <div className="mx-auto max-w-[680px]">
+      {/* 8. Closing CTA — gold House pattern hung off the edge (brown moment). */}
+      <section className="relative overflow-hidden bg-house-brown px-[5vw] py-[clamp(52px,6vw,96px)] text-center text-house-cream">
+        <FlowerWatermark variant="pattern" color="gold" side="left" opacity={0.2} />
+        <div className="relative z-10 mx-auto max-w-[680px]">
           <p className="mb-5 font-sans text-[14px] tracking-[0.32em] uppercase text-house-gold-light">
             Looking after homes in {town.name}
           </p>

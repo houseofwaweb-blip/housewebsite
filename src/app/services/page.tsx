@@ -332,11 +332,11 @@ export default async function ServicesLanding() {
         </div>
         <div className={s.heroVisual}>
           <Image
-            src={cms(hero, "imageUrl", "/services/photos/window-cleaning/regular-window-cleaning-hero.webp")}
+            src={cms(hero, "imageUrl", "/services/services-hero.webp")}
             alt={cms(
               hero,
               "imageAlt",
-              "A hand cleaning a sash window in golden-hour light, with a plant on the sill inside",
+              "A woman in a period British hallway looking out to a liveried Willow Alexander Gardeners van in the garden",
             )}
             fill
             sizes="(min-width: 1024px) 55vw, 100vw"
@@ -406,11 +406,24 @@ export default async function ServicesLanding() {
       {/* 3a. How booking works (§9) — the step sequence from choosing a service
           to the visit landing in your Home Record. */}
       <section className="border-t border-house-brown/10 px-[5vw] py-[clamp(44px,5.5vw,84px)]" style={{ background: "var(--color-house-white)" }}>
-        <div className="mx-auto max-w-[1080px]">
-          <p className="mb-3 font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink">How booking works</p>
-          <h2 className="mb-9 font-display text-[clamp(27px,3vw,41px)] leading-[1.1] text-house-brown">
-            Four steps, <em>start to finish.</em>
-          </h2>
+        <div className="mx-auto max-w-[1120px]">
+          {/* Header left, lifestyle image top-right */}
+          <div className="mb-10 grid items-start gap-8 lg:grid-cols-[1fr_0.82fr] lg:gap-14">
+            <div>
+              <p className="mb-3 font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink">How booking works</p>
+              <h2 className="font-display text-[clamp(27px,3vw,41px)] leading-[1.1] text-house-brown">
+                Four steps, <em>start to finish.</em>
+              </h2>
+            </div>
+            <div className="relative aspect-[16/11] w-full overflow-hidden border border-house-brown/15">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/home-v4/booking-lifestyle.webp"
+                alt="A Willow Alexander Home & Garden van outside a client's home, the door open onto a warm interior"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
+          </div>
           <ol className="grid list-none gap-6 p-0 md:grid-cols-4">
             {[
               { n: "01", t: "Select the service", b: "Choose the service and enter your postcode, so everything after this is real for your address." },
@@ -541,12 +554,36 @@ export default async function ServicesLanding() {
         </div>
       </section>
 
+      {/* In the field — real House lifestyle photography. */}
+      <section className="border-t border-house-brown/10 bg-house-cream-light px-[5vw] py-[clamp(40px,5vw,72px)]">
+        <div className="mx-auto max-w-[1200px]">
+          <p className="mb-6 font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-ink">In the field</p>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {[
+              { cap: "A garden in good order", src: "/services/field/garden-in-good-order.webp" },
+              { cap: "A home, cared for", src: "/services/field/home-cared-for.webp" },
+              { cap: "The team at work", src: "/services/field/team-at-work.webp" },
+            ].map((f) => (
+              <figure key={f.cap} className="m-0">
+                <div className="relative aspect-[4/3] overflow-hidden border border-house-brown/12">
+                  <Image src={f.src} alt={f.cap} fill sizes="(min-width:640px) 33vw, 100vw" className="object-cover" />
+                </div>
+                <figcaption className="mt-2 font-sans text-[12px] tracking-[0.2em] uppercase text-house-brown/45">
+                  {f.cap}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <HouseStandardStrip />
 
       {/* Real teams on the road — real field photography (brief slide 5/7/8) on a
           forest-green House ground (moodboard section colour) */}
-      <section className="px-[5vw] py-[clamp(48px,7vw,96px)] bg-house-forest">
-        <div className="mx-auto max-w-[1200px]">
+      <section className="relative overflow-hidden px-[5vw] py-[clamp(48px,7vw,96px)] bg-house-forest">
+        <FlowerWatermark variant="pattern" color="gold" side="left" opacity={0.16} />
+        <div className="relative z-10 mx-auto max-w-[1200px]">
           <p
             className="text-center"
             style={{ fontFamily: "var(--font-sans)", fontSize: 12, letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--color-house-gold-light)", margin: "0 0 14px", fontWeight: 500 }}
@@ -577,10 +614,7 @@ export default async function ServicesLanding() {
       {/* 4. Frequency, not membership (v3 §9). */}
       <section id="plans" className={s.plans}>
         <header className={s.plansHead}>
-          <p className={s.plansEy}>
-            How often ·{" "}
-            <span className={s.plansEyHighlight}>Not a membership</span>
-          </p>
+          <p className={s.plansEy}>How often</p>
           <h2 className={s.plansTitle}>
             Choose how often, <em>not which plan to join.</em>
           </h2>
@@ -604,7 +638,10 @@ export default async function ServicesLanding() {
                   </li>
                 ))}
               </ul>
-              <Link href="/services#service-catalogue" className={s.btnGhostDark}>
+              <Link
+                href="/services#service-catalogue"
+                className="mt-auto inline-flex w-fit items-center border border-house-brown/25 px-6 py-3 font-sans text-[13px] tracking-[0.18em] uppercase text-house-brown no-underline transition-colors hover:bg-house-brown hover:text-house-cream"
+              >
                 See prices &amp; availability →
               </Link>
             </article>

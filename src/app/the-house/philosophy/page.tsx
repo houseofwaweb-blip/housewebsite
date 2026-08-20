@@ -82,8 +82,8 @@ export default async function PhilosophyPage() {
       )}
       sections={editorialSections}
       heroImage={{
-        src: "/the-house/editorial/wisteria-yellow-chair.webp",
-        alt: "A soft pink room with a yellow armchair and wisteria framing the window.",
+        src: "/lifestyle/fireside-portrait.webp",
+        alt: "A woman by a fireside in a warm, flower-papered room, lost in thought.",
       }}
     />
   );

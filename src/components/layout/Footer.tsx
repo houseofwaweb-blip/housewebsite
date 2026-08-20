@@ -123,7 +123,7 @@ export function Footer({ columns, tagline }: FooterProps) {
 
       {/* Body band — House brown */}
       <div className="relative overflow-hidden bg-house-brown text-house-cream px-[5vw] pt-14 pb-10">
-        <FlowerWatermark color="gold" side="left" opacity={0.13} />
+        <FlowerWatermark variant="pattern" color="gold" side="left" opacity={0.12} />
         <div className="relative z-10 mx-auto max-w-[1280px]">
           {/* Nav columns */}
           <div className={`grid grid-cols-1 gap-10 border-b ${DIVIDER} pb-12 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5`}>

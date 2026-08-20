@@ -33,7 +33,7 @@ const CARDS = [
 export function DesignShowcase() {
   return (
     <section className="relative overflow-hidden bg-house-cream-light border-t border-house-line px-[5vw] py-[clamp(48px,6vw,96px)]">
-      <FlowerWatermark color="gold" side="right" opacity={0.12} />
+      <FlowerWatermark color="gold" side="left" opacity={0.12} />
       <div className="relative mx-auto max-w-[1180px]">
         <div className="max-w-[48ch]">
           <p className="font-sans text-[13px] tracking-[0.22em] uppercase text-house-gold-dark">House Design</p>

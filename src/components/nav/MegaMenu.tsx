@@ -58,6 +58,8 @@ export interface TwoLevelMega {
    * trust statement. Rendered as a cream right rail; colour stays as swatches.
    */
   featured?: { image: string; alt: string; tag?: string; heading?: string; href?: string };
+  /** Which side the featured rail sits on. Default "right" (Services); Shop uses "left". */
+  featuredSide?: "left" | "right";
   postcode?: { label?: string; action?: string };
   trust?: string;
 }
@@ -310,6 +312,7 @@ function TwoLevelMegaPanel({ data, isOpen }: { data: TwoLevelMega; isOpen: boole
   }, [isOpen]);
   const cat = data.categories[active] ?? data.categories[0];
   const hasRail = Boolean(data.featured || data.postcode || data.trust);
+  const featLeft = Boolean(data.featured && data.featuredSide === "left");
   return (
     <div
       className={cn(
@@ -321,12 +324,14 @@ function TwoLevelMegaPanel({ data, isOpen }: { data: TwoLevelMega; isOpen: boole
         className={cn(
           "grid gap-[40px]",
           hasRail
-            ? "grid-cols-[minmax(160px,190px)_1fr] lg:grid-cols-[minmax(160px,190px)_1fr_minmax(220px,260px)]"
+            ? featLeft
+              ? "grid-cols-[190px_1fr] lg:grid-cols-[240px_190px_1fr]"
+              : "grid-cols-[minmax(160px,190px)_1fr] lg:grid-cols-[minmax(160px,190px)_1fr_minmax(220px,260px)]"
             : "grid-cols-[minmax(170px,210px)_1fr]",
         )}
       >
         {/* Main categories */}
-        <ul className="flex flex-col gap-[1px] list-none m-0 p-0 border-r border-house-brown/8 pr-[24px]">
+        <ul className={cn("flex flex-col gap-[1px] list-none m-0 p-0 border-r border-house-brown/8 pr-[24px]", featLeft && "lg:order-2")}>
           {data.categories.map((c, i) => (
             <li key={c.href} onMouseEnter={() => setActive(i)}>
               <Link
@@ -349,7 +354,7 @@ function TwoLevelMegaPanel({ data, isOpen }: { data: TwoLevelMega; isOpen: boole
         </ul>
 
         {/* Sub-categories of the active category */}
-        <div>
+        <div className={cn(featLeft && "lg:order-3")}>
           <div className="flex items-baseline justify-between mb-[14px]">
             <span className="font-sans text-[12px] tracking-[0.28em] uppercase text-house-stone">{cat.title}</span>
             <Link
@@ -382,11 +387,11 @@ function TwoLevelMegaPanel({ data, isOpen }: { data: TwoLevelMega; isOpen: boole
         {/* Cream right rail — featured still life, postcode finder, trust line
             (spec §6.1). Only rendered for menus that supply enrichments. */}
         {hasRail ? (
-          <aside className="hidden lg:flex flex-col gap-[16px] bg-house-cream-light border-l border-house-brown/8 pl-[28px]">
+          <aside className={cn("hidden lg:flex flex-col", featLeft ? "order-1" : "gap-[16px] bg-house-cream-light border-l border-house-brown/8 pl-[28px]")}>
             {data.featured ? (
               <Link
                 href={data.featured.href ?? cat.href}
-                className="group relative block aspect-[4/3] overflow-hidden no-underline"
+                className={cn("group relative block overflow-hidden no-underline", featLeft ? "flex-1 min-h-[300px]" : "aspect-[4/3]")}
               >
                 <Image
                   src={data.featured.image}

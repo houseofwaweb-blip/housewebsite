@@ -58,10 +58,10 @@ const wrap: React.CSSProperties = {
 const linkStyle: React.CSSProperties = { color: goldDark, textDecoration: "underline" };
 
 const today = [
-  { h: "Care", b: "Trusted home and garden services, each with its own expertise and all held to the same House standard.", href: "/services", cta: "See services", img: "/home-v4/origin-garden-studio.webp", alt: "A House professional tending a British garden" },
-  { h: "Cover", b: "Home and pet cover introduced by the House and arranged through Provenance.", href: "/insurance-and-cover", cta: "Insurance and cover", img: "/home-v4/protect-still-life.webp", alt: "A quiet still life representing home and pet cover" },
-  { h: "Shop", b: "The House Store: useful, well-made objects for home and garden, beautifully chosen.", href: "/shop", cta: "Visit the Store", img: "/home-v4/house-temperaments-still-life.webp", alt: "A considered still life of well-made objects for the home" },
-  { h: "Read", b: "The Hearth, the magazine of the House, for ideas worth keeping and good domestic sense.", href: "/magazine", cta: "Read The Hearth", img: "/home-v4/homepage-plant.webp", alt: "An editorial botanical still life from The Hearth" },
+  { h: "Care", b: "Trusted home and garden services, each with its own expertise and all held to the same House standard.", href: "/services", cta: "See services", img: "/lifestyle/garden-pond.webp", alt: "A considered English garden with a still pond and clipped hedges" },
+  { h: "Cover", b: "Home and pet cover introduced by the House and arranged through Provenance.", href: "/insurance-and-cover", cta: "Insurance and cover", img: "/insurance/hub-hero.webp", alt: "Home and pet cover, introduced by the House" },
+  { h: "Shop", b: "The House Store: useful, well-made objects for home and garden, beautifully chosen.", href: "/shop", cta: "Visit the Store", img: "/shop/rooms/kitchen.webp", alt: "A considered House Store kitchen setting" },
+  { h: "Read", b: "The Hearth, the magazine of the House, for ideas worth keeping and good domestic sense.", href: "/magazine", cta: "Read The Hearth", img: "/lifestyle/writing-by-stove.webp", alt: "A quiet moment writing by a wood stove, tea to hand" },
 ];
 
 export default function TheHousePage() {
@@ -115,6 +115,16 @@ export default function TheHousePage() {
           </p>
         </div>
       </header>
+
+      {/* Hero image band */}
+      <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16 / 7", borderTop: `1px solid ${line}`, borderBottom: `1px solid ${line}` }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/lifestyle/hearth-conversation.webp"
+          alt="A warm conversation by the fire in a House of Willow Alexander interior"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+      </div>
 
       {/* 2. Origin story */}
       <section style={{ background: creamLight, borderTop: `1px solid ${line}`, borderBottom: `1px solid ${line}` }}>
@@ -174,14 +184,8 @@ export default function TheHousePage() {
           </p>
           <h2 style={h2Style}>Care, Cover, Shop and Read.</h2>
           <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 250px), 1fr))",
-              gap: 1,
-              background: line,
-              border: `1px solid ${line}`,
-              marginTop: 8,
-            }}
+            className="mt-2 grid grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-4"
+            style={{ background: line, border: `1px solid ${line}` }}
           >
             {today.map((t) => (
               <div key={t.h} style={{ background: cream, display: "flex", flexDirection: "column" }}>
@@ -231,6 +235,8 @@ export default function TheHousePage() {
       <section className="relative overflow-hidden" style={{ background: creamLight, borderTop: `1px solid ${line}`, borderBottom: `1px solid ${line}` }}>
         <FlowerWatermark color="gold" side="right" opacity={0.1} />
         <div className="relative z-10" style={wrap}>
+          <div className="grid items-center gap-10 lg:grid-cols-[1fr_0.85fr] lg:gap-16">
+          <div>
           <p style={{ ...eyebrow, marginBottom: 24 }}>
             <span aria-hidden style={rule} />
             The House standard
@@ -258,6 +264,12 @@ export default function TheHousePage() {
             </Link>
             .
           </p>
+          </div>
+          <div className="relative aspect-[4/3] w-full overflow-hidden lg:self-stretch" style={{ border: `1px solid ${line}` }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/lifestyle/garden-steps.webp" alt="A man at rest on stone garden steps among lavender and roses" className="absolute inset-0 h-full w-full object-cover" />
+          </div>
+          </div>
         </div>
       </section>
 
@@ -290,30 +302,48 @@ export default function TheHousePage() {
       {/* 6. People */}
       <section style={{ background: creamLight, borderTop: `1px solid ${line}`, borderBottom: `1px solid ${line}` }}>
         <div style={wrap}>
-          <p style={{ ...eyebrow, marginBottom: 24 }}>
-            <span aria-hidden style={rule} />
-            People
-          </p>
-          <h2 style={h2Style}>A House is its people.</h2>
-          <p style={para}>
-            The House brings together its own team, specialist Willow Alexander
-            service teams and selected professional partners. Before work is agreed,
-            we tell you which delivery model applies to the service you are booking.
-            Where we can, we name the people who will look after your home.
-          </p>
-          <p style={para}>
-            Meet more of the House in{" "}
-            <Link href="/the-house/about" style={linkStyle}>
-              about the House
-            </Link>
-            .
-          </p>
+          <div className="grid items-center gap-10 lg:grid-cols-[1fr_0.9fr] lg:gap-16">
+            <div>
+              <p style={{ ...eyebrow, marginBottom: 24 }}>
+                <span aria-hidden style={rule} />
+                People
+              </p>
+              <h2 style={h2Style}>A House is its people.</h2>
+              <p style={para}>
+                The House brings together its own team, specialist Willow Alexander
+                service teams and selected professional partners. Before work is agreed,
+                we tell you which delivery model applies to the service you are booking.
+                Where we can, we name the people who will look after your home.
+              </p>
+              <p style={para}>
+                Meet more of the House in{" "}
+                <Link href="/the-house/about" style={linkStyle}>
+                  about the House
+                </Link>
+                .
+              </p>
+            </div>
+            <div className="relative aspect-[4/5] w-full overflow-hidden" style={{ border: `1px solid ${line}` }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/lifestyle/studio-table.webp"
+                alt="The House team at work around a studio table, plans, materials and moodboards spread out"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
       {/* 7. House Approved & standards */}
       <section>
         <div style={wrap}>
+          <div className="grid items-center gap-10 lg:grid-cols-[0.85fr_1fr] lg:gap-16">
+          <div className="relative aspect-[4/5] w-full overflow-hidden lg:self-stretch" style={{ border: `1px solid ${line}` }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/lifestyle/painter-studio.webp" alt="A maker at work at an easel in a light-filled studio" className="absolute inset-0 h-full w-full object-cover" />
+          </div>
+          <div>
           <p style={{ ...eyebrow, marginBottom: 24 }}>
             <span aria-hidden style={rule} />
             House Approved and professional standards
@@ -336,6 +366,8 @@ export default function TheHousePage() {
             </Link>
             .
           </p>
+          </div>
+          </div>
         </div>
       </section>
 

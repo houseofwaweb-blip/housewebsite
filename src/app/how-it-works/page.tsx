@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/lib/seo/jsonLd";
+import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 
 export const metadata: Metadata = {
   title: "How it works · Powered by HoWA",
@@ -327,14 +328,17 @@ export default function HowItWorksPage() {
       <section
         style={{
           position: "relative",
+          overflow: "hidden",
           background: "var(--color-house-brown)",
           borderTop: `1px solid ${line}`,
           borderBottom: `1px solid ${line}`,
         }}
       >
+        <FlowerWatermark variant="pattern" color="gold" side="left" opacity={0.2} />
         <div
           style={{
             position: "relative",
+            zIndex: 1,
             maxWidth: 1040,
             margin: "0 auto",
             padding: "clamp(64px, 9vw, 120px) clamp(24px, 5vw, 96px)",
