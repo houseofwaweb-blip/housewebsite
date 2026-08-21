@@ -13,7 +13,7 @@ import { insuranceOg } from "@/lib/insurance/og";
  */
 export const metadata: Metadata = {
   title: "How this works, and how we are paid",
-  description: "Plainly: the House introduces you to Provenance, who arranges the cover. Who Provenance and Benefact are, how the House is paid, and how to complain.",
+  description: "How House of Willow Alexander introduces insurance through Provenance, how the service is provided, how the House is paid and where to go if something goes wrong.",
   ...insuranceOg("how-this-works", "How this works, and how we are paid"),
 };
 
@@ -37,7 +37,7 @@ export default function HowThisWorks() {
               How this works, and how we are paid.
             </h1>
             <p className="mt-6 max-w-[46ch] font-sans text-[21px] leading-[1.62] text-house-stone">
-              Almost nobody in this market explains this openly. We would rather you did not have to ask.
+              The House is an introducer. Provenance provides the regulated insurance services. This page explains the relationship and how the House is paid.
             </p>
           </div>
           <div className="relative aspect-[4/5] w-full overflow-hidden">
@@ -63,13 +63,13 @@ export default function HowThisWorks() {
             <ProvenanceLockup className="mt-5" />
           </Block>
           <Block eyebrow="Why Benefact matters">
-            <p>Provenance places business with markets in the {PROVENANCE.backer} group, a charity-owned group. {PROVENANCE.backer} gives its available profits to charitable causes, so business placed through it supports good causes at no extra cost to you. It is an unusual arrangement, and one we are glad to put in writing.</p>
+            <p>Provenance is part of the {PROVENANCE.backer} group, a charity-owned group. {PROVENANCE.backer} gives its available profits to good causes, so business placed within the group can contribute to that wider charitable purpose.</p>
           </Block>
           <Block eyebrow="How the House is paid">
             <p>As the introducer, the House receives a share of Provenance's commission when a policy starts and at renewal. We would rather tell you that plainly than leave it unsaid.</p>
           </Block>
-          <Block eyebrow="What the House contributes in return">
-            <p>The House brings the part a comparison form cannot: a considered introduction to a genuine specialist, and the renewal timing kept in view. That is the work, and it is what earns the share.</p>
+          <Block eyebrow="What the House provides">
+            <p>The House provides the introduction and keeps the insurance route connected to the wider care of the home. Provenance provides the regulated insurance service.</p>
           </Block>
           <Block eyebrow="If something goes wrong">
             <p>Complaints about the arranged cover are handled by Provenance under its FCA permissions, and eligible complainants can refer a matter to the Financial Ombudsman Service. The full regulatory notice and complaints route are set out on the{" "}

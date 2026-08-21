@@ -11,7 +11,7 @@ import { insuranceOg } from "@/lib/insurance/og";
  */
 export const metadata: Metadata = {
   title: "Remind me before my renewal",
-  description: "Insurance is bought at one moment a year, and most people miss it. Tell us your renewal month and we will send a single email at the right time.",
+  description: "Tell us your renewal month and we will send one reminder before it is due.",
   ...insuranceOg("renewal-reminder", "Remind me before my renewal"),
 };
 
@@ -27,10 +27,10 @@ export default function RenewalReminder() {
               Remind me before my renewal.
             </h1>
             <p className="mt-6 max-w-[50ch] font-sans text-[21px] leading-[1.62] text-house-stone">
-              Insurance is bought at exactly one moment in the year, and most people miss it. The unhurried, better-value window is roughly 15 to 25 days before renewal.
+              Tell us when your insurance renews and we will send one reminder before it is due, giving you time to review the cover rather than leaving it until the last few days.
             </p>
             <p className="mt-4 mb-8 max-w-[50ch] font-sans text-[19px] leading-[1.65] text-house-brown/85">
-              This is one email, once, at the right moment. Not a newsletter. And we will not pass your address to anyone until you ask us to.
+              One reminder, not a newsletter. Your details are not passed on as an insurance enquiry unless you ask us to make an introduction.
             </p>
             <RenewalReminderForm turnstileSiteKey={turnstileSiteKey} sourcePage="/insurance/renewal-reminder" />
           </div>

@@ -9,8 +9,8 @@ export function InsuranceTrustStrip() {
   const trust = [
     { h: "FCA-regulated", p: `Arranged by ${PROVENANCE.legalName.split(" ").slice(0, 2).join(" ")} (FRN ${PROVENANCE.frn})` },
     { h: "Claims handled for you", p: "From first notification to settlement" },
-    { h: "A named specialist", p: "One person who knows the file, not a call centre" },
-    { h: "Charity-owned backing", p: `Provenance places business with markets in the ${PROVENANCE.backer} group` },
+    { h: "A named specialist", p: "One point of contact who knows the file" },
+    { h: "Part of Benefact", p: `Provenance places business with markets in the ${PROVENANCE.backer} group` },
   ];
   return (
     <section className="px-[5vw] py-7 text-house-cream" style={{ background: "var(--house-green)" }}>

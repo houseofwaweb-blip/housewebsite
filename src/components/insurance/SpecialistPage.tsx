@@ -23,12 +23,12 @@ import { SUPPORT_PHONE, SUPPORT_PHONE_HREF } from "./ClaimsHelp";
     motor and cover pages override via data.readiness / data.differenceIntro. */
 const READINESS_DEFAULT = [
   { h: "The roof", p: "What it is, and when it was last treated." },
-  { h: "What it's built of", p: "The fabric behind the walls, not a guess from a table." },
+  { h: "What it's built of", p: "The materials and construction that affect repair and reinstatement." },
   { h: "What's been added", p: "Every extension, rewire and works project." },
   { h: "The cost to rebuild", p: "The reinstatement figure, not the market value." },
 ];
 const DIFFERENCE_INTRO_DEFAULT =
-  "Most insurance is priced by people who never ask a single thing about the house. The House introduces you to a specialist who starts from what the home actually is, so the cover is built on the real risk rather than a guess.";
+  "Some properties and assets need more detailed underwriting. The useful starting point is accurate information about what is being insured, how it is used and what it would cost to put right after a loss.";
 
 /** Shared still-life for the burgundy "What Provenance can place" band, on every page. */
 const PROVENANCE_IMG = "/insurance/provenance-can-place.webp";
@@ -147,7 +147,7 @@ export function SpecialistPage({
             </div>
             <div className="lg:border-l lg:border-house-brown/15 lg:pl-12">
               <p className="max-w-[22ch] font-display text-[clamp(21px,2vw,27px)] leading-[1.25] text-house-black">
-                Find out where your own cover stands.
+                Review the cover against the risk you actually have.
               </p>
               <a
                 href="#enquire"
@@ -219,9 +219,9 @@ export function SpecialistPage({
         <div className="mx-auto max-w-[1120px]">
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div>
-              <p className="font-sans text-[14px] tracking-[0.24em] uppercase text-[color:var(--ins-ink)]">The difference</p>
+              <p className="font-sans text-[14px] tracking-[0.24em] uppercase text-[color:var(--ins-ink)]">What matters</p>
               <h2 className="mt-3 max-w-[26ch] font-display text-[clamp(27px,3vw,41px)] leading-[1.1] text-house-black">
-                The questions a comparison form never asks.
+                The details that shape the cover.
               </h2>
               <p className="mt-4 max-w-[52ch] font-sans text-[19px] leading-[1.7] text-house-brown/85">
                 {data.differenceIntro ?? DIFFERENCE_INTRO_DEFAULT}
@@ -252,7 +252,7 @@ export function SpecialistPage({
           </div>
           <div className="mt-7 flex flex-wrap items-center gap-x-8 gap-y-4">
             <p className="max-w-[44ch] font-display text-[clamp(22px,2.2vw,29px)] italic leading-[1.3] text-[color:var(--ins-ink)]">
-              A specialist asks. A comparison engine assumes.
+              The right cover starts with the right information.
             </p>
             <a
               href="#enquire"
@@ -351,10 +351,10 @@ export function SpecialistPage({
           <div className="max-w-[620px]">
             <p className="font-sans text-[14px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">{data.enquiry?.eyebrow ?? "Speak to a specialist"}</p>
             <h2 className="mt-3 font-display text-[clamp(27px,3vw,41px)] leading-[1.1] text-house-black">
-              {data.enquiry?.heading ?? "A short conversation, not a comparison engine."}
+              {data.enquiry?.heading ?? "Start with a few details."}
             </h2>
             <p className="mt-4 mb-8 max-w-[54ch] font-sans text-[19px] leading-[1.6] text-house-stone">
-              {data.enquiry?.body ?? "Leave your details and a specialist will call. We ask only what we need to make the introduction, nothing about sums insured, contents or your current insurer. That conversation belongs on your first call with Provenance."}
+              {data.enquiry?.body ?? "Leave the details needed for the introduction and a Provenance specialist will contact you to discuss the cover. The full insurance questions belong in that conversation."}
             </p>
             <InsuranceEnquiryForm
               enquiryType={data.enquiryType}

@@ -23,7 +23,7 @@ import { insuranceOg } from "@/lib/insurance/og";
 export const metadata: Metadata = {
   title: "Insurance from the House",
   description:
-    "Insurance introduced by House of Willow Alexander and arranged by Provenance. Advised cover for homes worth insuring properly, and everyday cover for everything that does not need a conversation.",
+    "Insurance introduced by House of Willow Alexander and arranged by Provenance, from home and personal cover to private-client and specialist risks.",
   ...insuranceOg("insurance", "Insurance from the House"),
 };
 
@@ -40,7 +40,7 @@ export default function InsuranceHub() {
               Cover for the house. <em className="italic">And everyone who lives in it.</em>
             </h1>
             <p className="mt-6 max-w-[52ch] font-sans text-[22px] leading-[1.6] text-house-stone">
-              Insuring a home well means understanding what it is made of and what has been done to it. The House introduces you to a specialist who takes the time to ask; the cover is arranged by Provenance.
+              From buildings and contents to private-client and specialist cover, the House helps you find the right route. The House makes the introduction and Provenance arranges the insurance.
             </p>
             <div className="mt-8 flex flex-col gap-4">
               <div className="flex flex-col gap-3 sm:flex-row sm:max-w-[460px]">
@@ -73,9 +73,9 @@ export default function InsuranceHub() {
           <p className="font-sans text-[14px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">Choose what to cover</p>
           <div className="mt-4 grid gap-4 sm:grid-cols-3">
             {[
-              { label: "Home", body: "Buildings and contents, from a standard house to a period one.", href: "/insurance/everyday/home" },
-              { label: "Pet", body: "Cover for the animal, shaped around it rather than a tick-box.", href: "/insurance/everyday/pet-and-travel" },
-              { label: "Home and pet", body: "Both in one conversation, on one renewal date.", href: "/insurance/speak-to-a-specialist" },
+              { label: "Home", body: "Buildings and contents cover for houses, flats, period homes and more specialist properties.", href: "/insurance/everyday/home" },
+              { label: "Pet", body: "Cover for cats, dogs and other eligible pets, with different levels to compare.", href: "/insurance/everyday/pet-and-travel" },
+              { label: "Home and pet", body: "Start with the home and the pet, then follow the right route for each.", href: "/insurance/speak-to-a-specialist" },
             ].map((c) => (
               <Link
                 key={c.label}
@@ -101,10 +101,10 @@ export default function InsuranceHub() {
             <div>
               <p className="font-sans text-[13px] tracking-[0.2em] uppercase text-[color:var(--ins-ink)]">Advised · Private client & estate</p>
               <h2 className="mt-3 font-display text-[clamp(27px,3vw,39px)] leading-[1.1] text-house-black group-hover:text-[color:var(--ins-ink)]">
-                For a home worth insuring properly.
+                For homes and assets that need specialist advice.
               </h2>
               <p className="mt-4 max-w-[48ch] font-sans text-[19px] leading-[1.6] text-house-stone">
-                A named specialist, a conversation about the house, and a policy built around it rather than around a comparison engine. One estate, one renewal date.
+                Provenance provides an advised Private Client service for high-value, period and more complex risks, with a broker who can look across the wider estate.
               </p>
             </div>
             <span className="mt-6 font-sans text-[14px] tracking-[0.16em] uppercase text-[color:var(--ins-ink)]">Speak to a specialist →</span>
@@ -114,10 +114,10 @@ export default function InsuranceHub() {
             <div>
               <p className="font-sans text-[13px] tracking-[0.2em] uppercase text-[color:var(--ins-ink)]">Everyday cover</p>
               <h2 className="mt-3 font-display text-[clamp(25px,2.6vw,33px)] leading-[1.1] text-house-black group-hover:text-[color:var(--ins-ink)]">
-                For everything that does not need a conversation.
+                For the insurance needs of everyday life.
               </h2>
               <p className="mt-4 font-sans text-[18.5px] leading-[1.6] text-house-stone">
-                Home, car, pet and travel. Tell us what you need and a specialist arranges it.
+                Home, car, pet, travel and other personal cover, with the House making the introduction and Provenance arranging the insurance.
               </p>
             </div>
             <span className="mt-6 font-sans text-[14px] tracking-[0.16em] uppercase text-[color:var(--ins-ink)]">Everyday cover →</span>
@@ -134,7 +134,7 @@ export default function InsuranceHub() {
       {/* Find your cover — self-serve search across every cover */}
       <section id="find-cover" className="scroll-mt-24 px-[5vw] py-14" style={{ background: "var(--color-house-cream-dark)" }}>
         <div className="mx-auto max-w-[1180px]">
-          <p className="mb-2 font-sans text-[18.5px] leading-[1.6] text-house-brown/85">Know what you are looking for? Search every cover the House introduces.</p>
+          <p className="mb-2 font-sans text-[18.5px] leading-[1.6] text-house-brown/85">Know what you need? Find the relevant cover and the route that applies.</p>
           <CoverFinder />
         </div>
       </section>
@@ -147,15 +147,15 @@ export default function InsuranceHub() {
             What is not covered, and what to check.
           </h2>
           <p className="mt-4 max-w-[64ch] font-sans text-[18.5px] leading-[1.65] text-house-brown/85">
-            Every policy has limits and exclusions. This is a general guide, never the full picture, so the policy wording is what to read before you commit. The specifics for each cover sit on its own page.
+            Every policy has limits and exclusions. The examples below are a guide only, and the policy wording is what matters when you choose cover or make a claim.
           </p>
           <div className="mt-8 grid gap-x-10 gap-y-7 md:grid-cols-2">
             {[
-              { h: "Wear, tear and gradual damage", p: "Ordinary ageing, gradual deterioration and a lack of maintenance are not insured events. Cover is for sudden and unforeseen loss." },
-              { h: "Anything already known", p: "A loss, fault or condition that already exists when cover starts is not picked up by a new policy." },
-              { h: "Under-insurance", p: "Set the sum insured too low and a claim can be reduced in proportion. The rebuild figure is not the market value." },
-              { h: "Limits and excesses", p: "Section limits, single-item limits and the excess all shape what is paid. Valuables above the limit usually need listing separately." },
-              { h: "Unoccupied and let homes", p: "Standard cover can fall away once a home is left empty beyond a set period, or let out, unless the policy is written for it." },
+              { h: "Wear, tear and gradual damage", p: "Wear, deterioration and damage that develops over time are generally maintenance matters rather than insured events." },
+              { h: "Anything already known", p: "A loss, fault or condition that already exists when cover begins may be excluded." },
+              { h: "Under-insurance", p: "If the sum insured is too low, a claim may be reduced. A home’s rebuild cost is different from its market value." },
+              { h: "Limits and excesses", p: "Section limits, single-item limits and the excess all affect what may be paid. Higher-value belongings may need to be listed separately." },
+              { h: "Unoccupied and let homes", p: "Cover can change when a home is left unoccupied for longer periods or is let to others, so the policy needs to reflect how the property is used." },
               { h: "The House does not advise", p: "The House introduces you to Provenance and does not advise on, arrange or decide your cover. The terms that bind are in the policy documents." },
             ].map((pt) => (
               <div key={pt.h} className="border-t border-[color:var(--ins-accent)]/40 pt-4">
@@ -179,11 +179,11 @@ export default function InsuranceHub() {
           <div className="flex flex-col gap-3">
             <p className="font-display text-[clamp(31px,4vw,47px)] leading-[1.1] text-[color:var(--house-green-soft)]">Rebuild cost</p>
             <p className="font-sans text-[18.5px] leading-[1.6] text-house-cream/80">
-              The cost of rebuilding a home is not the same as its market value. For specialist, period or altered properties, it is worth checking that the figure used for insurance reflects the property itself.
+              A home’s rebuild cost is not the same as its market value. Period, altered and specialist properties can need a more detailed reinstatement assessment.
             </p>
           </div>
           <p className="max-w-[42ch] font-display text-[clamp(23px,2.4vw,31px)] leading-[1.3] text-house-cream">
-            A specialist who understands what your home is made of is the difference between a guess and a figure. That is what the House introduces you to.
+            For homes that need specialist underwriting, accurate information about the building gives the broker and insurer a sound basis on which to assess the risk.
           </p>
         </div>
       </section>
@@ -206,7 +206,7 @@ export default function InsuranceHub() {
       <section className="px-[5vw] pb-14">
         <div className="mx-auto max-w-[760px] border-l-2 border-[color:var(--ins-ink)] pl-6">
           <p className="font-display text-[clamp(23px,2.6vw,33px)] leading-[1.3] text-house-brown">
-            No fear, no urgency, no pressure. We will not chase you or manufacture a deadline. Take the time to understand the cover, the exclusions and the policy documents before you decide.
+            Take the time to understand the cover, the exclusions and the policy documents before you decide. There is no need to rush the decision.
           </p>
         </div>
       </section>
@@ -218,7 +218,7 @@ export default function InsuranceHub() {
             Good to know
           </p>
           <h2 className="mt-3 mb-8 font-display text-[clamp(27px,3vw,41px)] leading-[1.1] text-house-black">
-            Questions people ask before they arrange cover.
+            What to know before you arrange cover.
           </h2>
           <Accordion
             items={[
@@ -227,9 +227,9 @@ export default function InsuranceHub() {
                 summary: "Who provides the insurance?",
                 body: (
                   <p>
-                    The House introduces you to Provenance, an FCA-authorised
-                    firm that arranges and administers the cover. The House does
-                    not underwrite or sell the policy itself.
+                    The House makes the introduction. Provenance is the
+                    FCA-authorised firm that provides the regulated insurance
+                    service and arranges the cover.
                   </p>
                 ),
               },
@@ -238,9 +238,9 @@ export default function InsuranceHub() {
                 summary: "What can I cover?",
                 body: (
                   <p>
-                    Home and pet, together or separately. Speak to a specialist
-                    about the whole estate, or choose an everyday cover and a
-                    specialist will arrange it for you.
+                    Home and pet, together or separately, plus motor, travel and
+                    other personal cover. Private-client and specialist routes are
+                    available where the risk needs a more detailed conversation.
                   </p>
                 ),
               },
@@ -271,9 +271,8 @@ export default function InsuranceHub() {
                 summary: "Is there any pressure to buy?",
                 body: (
                   <p>
-                    No. We will not chase you or manufacture a deadline. Take the
-                    time to understand the cover, the exclusions and the policy
-                    documents before you decide.
+                    No. Take the time to read the cover, exclusions and policy
+                    documents and decide whether it is right for you.
                   </p>
                 ),
               },
@@ -294,9 +293,9 @@ export default function InsuranceHub() {
 
       {/* Strong closing CTA band — always an action before the footer */}
       <InsuranceCtaBand
-        eyebrow="Insure it properly"
-        heading="Ready to arrange cover that understands your home?"
-        body="Speak to a specialist about the whole estate, or choose an everyday cover and a specialist will arrange it. The House introduces you; Provenance arranges and administers the cover."
+        eyebrow="Find the right cover"
+        heading="Start with what you need to insure."
+        body="Choose the cover you need or speak to a specialist about more complex risks. The House makes the introduction and Provenance arranges the insurance."
         primaryLabel="Request a quote"
         primaryHref="/insurance/private-client"
         tertiary={{ label: "Everyday cover", href: "/insurance/everyday" }}
@@ -308,7 +307,7 @@ export default function InsuranceHub() {
           <p className="font-sans text-[14px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">Not ready today?</p>
           <h2 className="mt-3 font-display text-[clamp(27px,3vw,39px)] leading-[1.1] text-house-black">Remind me before my renewal.</h2>
           <p className="mt-4 mb-7 max-w-[52ch] font-sans text-[19px] leading-[1.6] text-house-stone">
-            Insurance is bought at one moment in the year, and most people miss it. Tell us your renewal month and we will send one email at the right time. Not a newsletter.
+            Tell us your renewal month and we will send one email before it is due. It is a reminder, not a newsletter.
           </p>
           <RenewalReminderForm turnstileSiteKey={turnstileSiteKey} sourcePage="/insurance" />
         </div>

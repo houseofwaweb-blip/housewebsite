@@ -17,8 +17,8 @@ export const COVER_CARDS = [
     cta: "Listed & period homes",
   },
   {
-    heading: "The things in it",
-    body: "Fine art, jewellery, watches, wine and collections, scheduled and valued properly.",
+    heading: "Valuables and collections",
+    body: "Fine art, jewellery, watches, wine and collections, with individual items scheduled and valued where required.",
     image: "/insurance/cat-fine-art.webp",
     imageAlt: "Fine art and collected pieces, the contents a household policy tends to under-value.",
     href: "/insurance/fine-art-and-collections",
@@ -26,7 +26,7 @@ export const COVER_CARDS = [
   },
   {
     heading: "The cars",
-    body: "Classic, prestige and collection vehicles, on one renewal date with the home.",
+    body: "Classic, prestige and collection vehicles, arranged alongside the wider private-client relationship where appropriate.",
     image: "/insurance/cat-cars.webp",
     imageAlt: "A classic car, of the kind kept and valued on one renewal date with the home.",
     href: "/insurance/classic-and-prestige-motor",
@@ -34,7 +34,7 @@ export const COVER_CARDS = [
   },
   {
     heading: "The works",
-    body: "One policy over the existing structure and the contract works, for the life of a project.",
+    body: "Cover for the existing structure, contract works, contents and liability during a building project, subject to the policy arranged.",
     image: "/insurance/cat-works.webp",
     imageAlt: "A home under building work, insured under one policy over the existing structure and the contract works.",
     href: "/insurance/renovation-and-extension",
@@ -42,7 +42,7 @@ export const COVER_CARDS = [
   },
   {
     heading: "The boat, yacht or aircraft",
-    body: "Marine and aviation cover, from a family boat to complex Lloyd's placements, arranged alongside the home.",
+    body: "Marine and aviation insurance, from family boats to more complex specialist placements.",
     image: "/insurance/boat-yacht-aviation.webp",
     imageAlt: "A classic yacht's brass and teak detail, the kind of asset arranged on one policy with the home.",
     href: "/insurance/boat-yacht-aviation",

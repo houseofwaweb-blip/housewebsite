@@ -184,15 +184,15 @@ export function GuideLayout({
               <>
                 <h2 className="font-display text-[clamp(25px,2.6vw,33px)] leading-[1.15] text-house-black">Remind me before my renewal.</h2>
                 <p className="mt-3 mb-6 max-w-[52ch] font-sans text-[19px] leading-[1.6] text-house-stone">
-                  One email, at the right moment. Not a newsletter, and your details are not passed to anyone until you ask.
+                  One email before the renewal date. It is a reminder, not a newsletter, and your details are not passed on as an insurance enquiry unless you ask.
                 </p>
                 <RenewalReminderForm turnstileSiteKey={turnstileSiteKey} sourcePage={`/insurance/guides/${guide.slug}`} />
               </>
             ) : (
               <>
-                <h2 className="font-display text-[clamp(25px,2.6vw,33px)] leading-[1.15] text-house-black">When you want a figure you can trust.</h2>
+                <h2 className="font-display text-[clamp(25px,2.6vw,33px)] leading-[1.15] text-house-black">Want to review your own cover?</h2>
                 <p className="mt-3 mb-5 max-w-[54ch] font-sans text-[19px] leading-[1.6] text-house-stone">
-                  A specialist can review your cover against the real rebuild reality of your home. The House introduces you; Provenance arranges the cover.
+                  The House can introduce you to Provenance to review the insurance against the property and the risks you need to cover.
                 </p>
                 <InsuranceDisclosure className="mb-5 max-w-[62ch]" />
                 <Link href="/insurance/private-client" className="inline-flex items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[14px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110">

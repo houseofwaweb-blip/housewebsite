@@ -26,11 +26,11 @@ export function WhatMayBeCovered() {
     },
     {
       h: "Accidental damage",
-      p: "The dropped heirloom or the foot through the ceiling, where the cover is written to include it.",
+      p: "Accidental damage to the home or belongings, where that cover is included in the policy.",
     },
     {
       h: "Valuables and belongings away from home",
-      p: "Jewellery, art and personal items, at home and, where added, out in the world.",
+      p: "Jewellery, art and personal belongings at home and, where the policy includes it, away from home.",
     },
   ];
   return (
@@ -40,10 +40,10 @@ export function WhatMayBeCovered() {
           What may be covered
         </p>
         <h2 className="mt-3 max-w-[26ch] font-display text-[clamp(27px,3.4vw,43px)] leading-[1.1] text-house-black">
-          The kinds of thing a good policy is there for.
+          Examples of what a policy may protect against.
         </h2>
         <p className="mt-4 max-w-[62ch] font-sans text-[18.5px] leading-[1.65] text-house-brown/85">
-          These are examples, to show the shape of cover, not a list of what your policy includes. What is actually covered, and to what limit, is set out in the policy wording. Read it before you rely on anything here.
+          These examples show the kinds of insured events a policy may cover. The exact cover, limits and exclusions depend on the policy wording provided before you decide.
         </p>
         <div className="mt-8 grid gap-x-10 gap-y-7 md:grid-cols-2 lg:grid-cols-3">
           {examples.map((e) => (

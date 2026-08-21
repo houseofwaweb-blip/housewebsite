@@ -13,7 +13,7 @@ import { insuranceOg } from "@/lib/insurance/og";
 export const metadata: Metadata = {
   title: "Claims and help",
   description:
-    "Already insured through the House? How to make a claim, who to contact, and what to have ready. Claims are handled by Provenance; the House will make sure you reach the right person.",
+    "How to reach the right insurance contact, what to have ready and where to go if you need to make a claim.",
   ...insuranceOg("claims-and-help", "Claims and help"),
 };
 
@@ -30,7 +30,7 @@ export default function ClaimsAndHelp() {
               Claims and help.
             </h1>
             <p className="mt-6 max-w-[46ch] font-sans text-[21px] leading-[1.62] text-house-stone">
-              If something has happened, or you just need to reach the right person, start here. The House will point you to it, and Provenance handles the claim.
+              If you need help with existing cover or want to report a claim, start here and we will direct you to the right contact.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
@@ -67,13 +67,13 @@ export default function ClaimsAndHelp() {
       <section className="border-t border-house-brown/10 px-[5vw] py-12">
         <div className="mx-auto max-w-[760px]">
           <p className="font-sans text-[18.5px] leading-[1.7] text-house-brown/85">
-            Not yet insured through the House, and weighing it up? Start with the{" "}
+            If you are looking for new cover rather than help with an existing policy, start with the{" "}
             <Link href="/insurance" className="text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">
               insurance hub
             </Link>{" "}
-            or{" "}
+            or the{" "}
             <Link href="/insurance/private-client" className="text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">
-              speak to a specialist
+              private-client service
             </Link>
             .
           </p>

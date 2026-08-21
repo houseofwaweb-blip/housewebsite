@@ -68,9 +68,9 @@ export function EverydayPreframe({ data }: { data: EverydayPage }) {
           <p className="mt-3 max-w-[54ch] font-sans text-[17.5px] leading-[1.6] text-house-cream/75">{data.journey}</p>
           <ol className="mt-7 grid gap-6 p-0 sm:grid-cols-3">
             {[
-              { n: "1", h: "Choose your cover", p: "Pick the option that fits from the choices above." },
-              { n: "2", h: "Leave a few details", p: "A short introduction, nothing about sums insured, and no comparison forms." },
-              { n: "3", h: "A specialist arranges it", p: "Provenance calls, arranges the cover and handles it from there." },
+              { n: "1", h: "Choose your cover", p: "Choose the type of cover you need from the options above." },
+              { n: "2", h: "Leave a few details", p: "Leave the details needed for the House to make the introduction." },
+              { n: "3", h: "Provenance takes it from there", p: "A Provenance specialist contacts you and arranges the cover." },
             ].map((step) => (
               <li key={step.n} className="list-none">
                 <p className="font-display text-[33px] leading-none text-house-cream/35">{step.n}</p>
@@ -108,8 +108,8 @@ export function EverydayPreframe({ data }: { data: EverydayPage }) {
         <section className="px-[5vw] pb-16">
           <div className="mx-auto max-w-[760px]">
             <p className="font-sans text-[19px] leading-[1.65] text-house-brown/85">
-              Insuring a listed, high-value or non-standard home? Everyday cover is not built for it.{" "}
-              <Link href="/insurance/private-client" className="text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">Speak to a specialist instead →</Link>
+              Insuring a listed, high-value or otherwise specialist home?{" "}
+              <Link href="/insurance/private-client" className="text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">Speak to the Private Client team →</Link>
             </p>
           </div>
         </section>

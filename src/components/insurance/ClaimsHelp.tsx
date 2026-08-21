@@ -26,10 +26,10 @@ export function ClaimsHelpBand() {
             Already with us
           </p>
           <h2 className="mt-3 font-display text-[clamp(27px,3.2vw,41px)] leading-[1.1] text-house-cream">
-            Need to make a claim, or a hand with your cover?
+            Need to make a claim or get help with existing cover?
           </h2>
           <p className="mt-4 max-w-[52ch] font-sans text-[18.5px] leading-[1.65] text-house-cream/80">
-            If something has happened, or you simply need to reach the right person, the House will point you to it. Claims are handled by Provenance, and we will make sure you get there quickly.
+            If you need help with a policy or want to report a claim, the House can direct you to the right Provenance contact.
           </p>
           <Link
             href="/insurance/claims-and-help"
@@ -96,7 +96,7 @@ export function ClaimsHelpDetail() {
 
       <DetailBlock eyebrow="Who to contact">
         <p>
-          Talk to the House and we will connect you to your specialist and to Provenance.
+          Contact the House and we will connect you with the appropriate Provenance contact.
         </p>
         <p className="!mt-5">
           <a
@@ -120,7 +120,7 @@ export function ClaimsHelpDetail() {
       </DetailBlock>
 
       <DetailBlock eyebrow="What to have ready">
-        <p>Having a few things to hand makes the first call quicker.</p>
+        <p>A few details can help make the first conversation easier.</p>
         <ul className="space-y-2.5 pl-0">
           {ready.map((r) => (
             <li key={r} className="flex gap-3">

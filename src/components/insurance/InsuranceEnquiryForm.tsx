@@ -187,7 +187,7 @@ export function InsuranceEnquiryForm({
         <textarea
           id="ins-notes"
           rows={3}
-          placeholder="Need cover for more than one thing, or anything else we should know? Add it here."
+          placeholder="If you need cover for more than one thing, or there is useful context for the introduction, add it here."
           className="w-full resize-y border border-house-brown/30 bg-white px-3 py-2.5 text-[19px] leading-[1.5] text-house-brown outline-none transition-colors focus:border-[color:var(--ins-accent)] focus-visible:[outline:2px_solid_var(--ins-ink)] focus-visible:outline-offset-2"
           {...register("additionalInfo")}
         />
@@ -195,7 +195,7 @@ export function InsuranceEnquiryForm({
 
       <label className="flex items-start gap-2.5 font-sans text-[16.5px] leading-[1.5] text-house-brown/75">
         <input type="checkbox" className="mt-1" {...register("marketingOptIn")} />
-        <span>Keep me posted with occasional notes from the House. You can stop any time.</span>
+        <span>Send me occasional emails from the House about home, garden and relevant offers. I can unsubscribe at any time.</span>
       </label>
 
       <TurnstileField

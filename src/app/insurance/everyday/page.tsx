@@ -15,21 +15,21 @@ import { ProvenanceLockup } from "@/components/insurance/ProvenanceLockup";
  */
 export const metadata: Metadata = {
   title: "Everyday cover",
-  description: "Home, car, pet and travel cover for the everyday things. Introduced by the House, arranged by Provenance.",
+  description: "Home, car, pet, travel, breakdown and bicycle cover introduced by the House and arranged through Provenance.",
   ...insuranceOg("everyday", "Everyday cover"),
 };
 
 const PRODUCTS = [
-  { name: "Home", body: "Buildings and contents for a standard home.", slug: "home", image: "/insurance/ev-home.webp", imageAlt: "A well-kept everyday home." },
+  { name: "Home", body: "Buildings and contents cover for houses and flats.", slug: "home", image: "/insurance/ev-home.webp", imageAlt: "A well-kept everyday home." },
   { name: "Car, van and motorbike", body: "Including temporary cover from one hour to 28 days.", slug: "motor", image: "/insurance/ev-motor.webp", imageAlt: "A car and van outside a home." },
   { name: "Pet and travel", body: "Pet cover, and single-trip or annual travel.", slug: "pet-and-travel", image: "/insurance/ev-pet.webp", imageAlt: "A family pet's collar and travel things on a table." },
   { name: "Breakdown and bicycle", body: "Roadside and recovery, and cover for road, mountain and electric bikes.", slug: "breakdown-and-bicycle", image: "/insurance/ev-breakdown.webp", imageAlt: "A bicycle kept ready by the door." },
 ];
 
 const STEPS = [
-  { n: "1", h: "Choose a cover", p: "Pick the everyday cover you need, from home to bicycle." },
-  { n: "2", h: "A short introduction", p: "Leave a few details. Nothing about sums insured, and no comparison forms." },
-  { n: "3", h: "Provenance arranges it", p: "A specialist calls, arranges the cover and handles it from there." },
+  { n: "1", h: "Choose a cover", p: "Choose the type of personal insurance you need." },
+  { n: "2", h: "Tell us what you need", p: "Leave the details needed for the introduction, without trying to complete the insurance application here." },
+  { n: "3", h: "Provenance takes it from there", p: "A Provenance specialist contacts you and arranges the cover." },
 ];
 
 export default function EverydayHub() {
@@ -41,10 +41,10 @@ export default function EverydayHub() {
           <div>
             <p className="font-sans text-[14px] tracking-[0.3em] uppercase text-[color:var(--ins-ink)]">Insurance · Everyday cover</p>
             <h1 className="mt-4 font-display text-[clamp(33px,4.6vw,55px)] leading-[1.05] text-house-black">
-              For everything that does not need a conversation.
+              Personal insurance for home, motor, pet and travel.
             </h1>
             <p className="mt-6 max-w-[52ch] font-sans text-[21px] leading-[1.6] text-house-stone">
-              Straightforward cover for the everyday things. Tell us what you need and a specialist will arrange it. The House introduces you; Provenance arranges the cover.
+              Home, motor, pet, travel and other personal cover, with the House making the introduction and Provenance arranging the insurance.
             </p>
             <div className="mt-8">
               <a
@@ -109,7 +109,7 @@ export default function EverydayHub() {
       <section className="px-[5vw] py-14" style={{ background: "var(--color-house-cream-dark)" }}>
         <div className="mx-auto max-w-[1120px]">
           <p className="font-sans text-[14px] tracking-[0.24em] uppercase text-[color:var(--ins-ink)]">How it works</p>
-          <h2 className="mt-3 mb-9 max-w-[26ch] font-display text-[clamp(25px,2.8vw,37px)] leading-[1.12] text-house-black">Simple to arrange, no comparison forms.</h2>
+          <h2 className="mt-3 mb-9 max-w-[26ch] font-display text-[clamp(25px,2.8vw,37px)] leading-[1.12] text-house-black">A clear route from enquiry to cover.</h2>
           <ol className="grid list-none gap-x-10 gap-y-8 p-0 sm:grid-cols-3">
             {STEPS.map((s) => (
               <li key={s.n} className="border-t border-house-brown/15 pt-4">
@@ -126,7 +126,7 @@ export default function EverydayHub() {
       <section className="px-[5vw] py-12 text-house-cream" style={{ background: "var(--ins-accent)" }}>
         <div className="mx-auto max-w-[1120px]">
           <p className="max-w-[52ch] font-display text-[clamp(23px,2.4vw,33px)] leading-[1.25] text-house-cream">
-            No fear, no urgency, no pressure. The House introduces you; Provenance arranges and administers the cover.
+            The House makes the introduction. Provenance provides the regulated insurance service and arranges the cover.
           </p>
           <ProvenanceLockup variant="onDark" className="mt-8" />
         </div>
@@ -136,17 +136,17 @@ export default function EverydayHub() {
       <section className="px-[5vw] py-12">
         <div className="mx-auto max-w-[760px]">
           <p className="font-sans text-[18.5px] leading-[1.65] text-house-brown/85">
-            Insuring a listed, high-value or non-standard home? Everyday cover is not built for it.{" "}
-            <Link href="/insurance/private-client" className="text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">Speak to a specialist instead →</Link>
+            Insuring a listed, high-value or otherwise specialist home? Provenance's Private Client service may be the better route.{" "}
+            <Link href="/insurance/private-client" className="text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">Speak to a specialist →</Link>
           </p>
         </div>
       </section>
 
       {/* Strong closing CTA band — always an action before the footer */}
       <InsuranceCtaBand
-        eyebrow="Arrange everyday cover"
-        heading="Choose a cover and a specialist will arrange it."
-        body="Home, car, pet and travel. Tell us what you need and a specialist will arrange it. No comparison forms, and no pressure."
+        eyebrow="Personal insurance"
+        heading="Choose the cover you need."
+        body="Home, motor, pet, travel and other personal cover, introduced by the House and arranged through Provenance."
         primaryLabel="Choose a cover"
         primaryHref="#choose-a-cover"
         tertiary={{ label: "Speak to a specialist", href: "/insurance/private-client" }}

@@ -12,7 +12,7 @@ import { insuranceOg } from "@/lib/insurance/og";
  */
 export const metadata: Metadata = {
   title: "Speak to a specialist",
-  description: "Leave your details and an insurance specialist will call. Introduced by House of Willow Alexander, arranged by Provenance.",
+  description: "Leave your details and a Provenance insurance specialist will contact you. Introduced by House of Willow Alexander.",
   ...insuranceOg("speak-to-a-specialist", "Speak to a specialist"),
 };
 
@@ -42,7 +42,7 @@ export default async function SpeakToASpecialist({
               Speak to a specialist.
             </h1>
             <p className="mt-5 mb-4 max-w-[52ch] font-sans text-[20px] leading-[1.6] text-house-stone">
-              Leave your details and a specialist will call. We ask only what we need to make the introduction, nothing about sums insured, contents or your current insurer.
+              Leave the details needed for the introduction and a Provenance specialist will contact you to discuss the cover.
             </p>
             {chosen || postcode ? (
               <p className="mb-8 inline-block border-l-2 border-[color:var(--ins-ink)] bg-house-cream-dark/50 px-4 py-2 font-sans text-[18px] text-house-brown">

@@ -29,9 +29,9 @@ export const EVERYDAY_PAGES: EverydayPage[] = [
     title: "Home insurance",
     metaTitle: "Home insurance, everyday cover",
     metaDescription:
-      "Straightforward buildings and contents cover, arranged for you through Provenance. High-value and period homes are routed to the advised service.",
-    heading: "Home insurance, for a standard home.",
-    lede: "For a straightforward house or flat, everyday buildings and contents cover, arranged for you. Tell the House what you need and a specialist arranges it through Provenance on your behalf.",
+      "Buildings and contents insurance introduced by the House and arranged through Provenance, with specialist routes available for more complex homes.",
+    heading: "Home insurance that starts with the home itself.",
+    lede: "Buildings and contents cover for houses and flats, introduced by the House and arranged through Provenance.",
     image: "/insurance/ev-home.webp",
     imageAlt:
       "A well-kept everyday home, the kind covered by straightforward buildings and contents insurance.",
@@ -40,7 +40,7 @@ export const EVERYDAY_PAGES: EverydayPage[] = [
       "Contents cover for what is inside",
       "Optional add-ons such as accidental damage",
     ],
-    journey: "Tell the House what you need, and a specialist arranges your cover through Provenance.",
+    journey: "Tell the House what you need to cover and a Provenance specialist will take the insurance conversation from there.",
     highValueRouting: true,
   },
   {
@@ -49,8 +49,8 @@ export const EVERYDAY_PAGES: EverydayPage[] = [
     metaTitle: "Car, van and motorbike insurance, everyday cover",
     metaDescription:
       "Cover for car, van and motorbike, plus temporary cover from one hour to 28 days, arranged for you through Provenance.",
-    heading: "Car, van and motorbike.",
-    lede: "Everyday motor cover in one place, including the temporary cover that is genuinely useful and rarely marketed.",
+    heading: "Cover for the car, van or motorbike you rely on.",
+    lede: "Motor cover for everyday driving, including temporary insurance where you only need it for a short period.",
     image: "/insurance/ev-motor.webp",
     imageAlt:
       "A car and van at a home, standing for everyday motor cover including temporary use.",
@@ -59,9 +59,9 @@ export const EVERYDAY_PAGES: EverydayPage[] = [
       "Optional breakdown, legal and key cover",
       "Temporary cover from one hour to 28 days",
     ],
-    journey: "Tell the House which cover fits, and a specialist arranges it through Provenance.",
+    journey: "Tell the House which motor cover you need and Provenance will take the insurance conversation from there.",
     products: [
-      { name: "Car", body: "Standard private car cover." },
+      { name: "Car", body: "Private car insurance for everyday motoring." },
       { name: "Van", body: "Private and light commercial van use." },
       { name: "Motorbike", body: "Bikes and scooters." },
       { name: "Temporary cover", body: "From one hour to 28 days, for borrowing, lending or a short need." },
@@ -73,8 +73,8 @@ export const EVERYDAY_PAGES: EverydayPage[] = [
     metaTitle: "Pet and travel insurance, everyday cover",
     metaDescription:
       "Pet cover, and single-trip or annual travel including specialist medical, arranged for you through Provenance.",
-    heading: "Pet and travel.",
-    lede: "Two low-fuss covers in one place, both arranged for you through Provenance.",
+    heading: "Cover for the pet at home and the trips away.",
+    lede: "Pet insurance alongside single-trip, annual multi-trip and specialist travel cover, arranged through Provenance.",
     image: "/insurance/ev-pet.webp",
     imageAlt:
       "A family pet at home, standing for everyday pet and travel cover.",
@@ -97,15 +97,15 @@ export const EVERYDAY_PAGES: EverydayPage[] = [
     metaTitle: "Breakdown and bicycle cover, everyday",
     metaDescription:
       "Roadside, recovery and home-start breakdown cover, and cover for road, mountain, electric and high-value bicycles, arranged for you through Provenance.",
-    heading: "Breakdown and bicycle.",
-    lede: "The smaller everyday covers, arranged for you through Provenance.",
+    heading: "Breakdown and bicycle cover for everyday journeys.",
+    lede: "Roadside and recovery cover for the vehicle, alongside insurance for bicycles.",
     image: "/insurance/ev-breakdown.webp",
     imageAlt:
       "A bicycle kept ready by the door, standing for breakdown and bicycle cover.",
     covered: [
       "Roadside assistance, recovery and home start",
       "Cover for road, mountain, electric and high-value bikes",
-      "Arranged for you through Provenance",
+      "Introduced by the House and arranged through Provenance",
     ],
     journey: "Tell the House which cover you need, and a specialist arranges it through Provenance.",
     products: [

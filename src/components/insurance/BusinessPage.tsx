@@ -104,9 +104,9 @@ export function BusinessPage({
       <section id="enquire" className="scroll-mt-20 border-t border-house-brown/10 px-[5vw] py-14" style={{ background: "var(--color-house-cream-dark)" }}>
         <div className="mx-auto max-w-[620px]">
           <p className="font-sans text-[14px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">Request a review</p>
-          <h2 className="mt-3 font-display text-[clamp(27px,3vw,41px)] leading-[1.1] text-house-black">A free look at what you already hold.</h2>
+          <h2 className="mt-3 font-display text-[clamp(27px,3vw,41px)] leading-[1.1] text-house-black">Ask for a review of your existing cover.</h2>
           <p className="mt-4 mb-8 max-w-[54ch] font-sans text-[19px] leading-[1.6] text-house-stone">
-            Leave your details and a specialist will be in touch. We ask only what we need to make the introduction, nothing evaluative.
+            Leave the details needed for the introduction and a Provenance specialist will contact you about the review.
           </p>
           <InsuranceEnquiryForm
             enquiryType={data.enquiryType}

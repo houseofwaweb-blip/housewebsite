@@ -25,13 +25,13 @@ export default function InsuranceThankYou() {
           <div>
             <p className="font-sans text-[14px] tracking-[0.3em] uppercase text-[color:var(--ins-ink)]">Received</p>
             <h1 className="mt-4 font-display text-[clamp(37px,5.5vw,67px)] leading-[1.03] text-house-black">
-              Covered. <em className="italic">And remembered.</em>
+              Thank you. <em className="italic">Your enquiry is in.</em>
             </h1>
             <p className="mt-6 max-w-[46ch] font-sans text-[21px] leading-[1.65] text-house-stone">
-              Thank you. A specialist will be in touch to talk it through. The call will come from <strong>Provenance</strong>, the firm that arranges the cover, not from the House itself, so if an unfamiliar name rings, that is who it is.
+              A <strong>Provenance</strong> specialist will contact you about the enquiry. The call will come from Provenance rather than the House.
             </p>
             <p className="mt-4 max-w-[46ch] font-sans text-[20px] leading-[1.65] text-house-brown/85">
-              There is nothing you need to do in the meantime. No forms, no documents, no rush.
+              You do not need to send anything else unless the specialist asks for it.
             </p>
           </div>
           <div className="relative aspect-[4/5] w-full overflow-hidden">
@@ -48,16 +48,16 @@ export default function InsuranceThankYou() {
 
         <div className="mx-auto max-w-[680px]">
           <div className="mt-12 border-t border-house-brown/12 pt-8">
-            <p className="font-sans text-[14px] tracking-[0.24em] uppercase text-[color:var(--ins-ink)]">While you are here</p>
+            <p className="font-sans text-[14px] tracking-[0.24em] uppercase text-[color:var(--ins-ink)]">For next time</p>
             <h2 className="mt-2 font-display text-[clamp(23px,2.4vw,31px)] leading-[1.2] text-house-black">Set a reminder for your renewal.</h2>
             <p className="mt-3 mb-6 max-w-[52ch] font-sans text-[18.5px] leading-[1.6] text-house-stone">
-              If you told us your renewal month already, you are set. If not, one line here means we can write at the right moment next year.
+              If we do not already have your renewal month, you can add it here and receive one reminder before next year’s renewal.
             </p>
             <RenewalReminderForm turnstileSiteKey={turnstileSiteKey} sourcePage="/insurance/thank-you" />
           </div>
 
           <p className="mt-10 font-sans text-[18px] text-house-stone">
-            <Link href="/the-hearth" className="text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">Read something from the Hearth</Link> while you wait.
+            <Link href="/the-hearth" className="text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">Read The Hearth</Link>
           </p>
         </div>
       </section>

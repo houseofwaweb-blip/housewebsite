@@ -40,15 +40,15 @@ export const GUIDES: Guide[] = [
     takeaways: [
       "Many UK homes are insured below what it would actually cost to rebuild them.",
       "The error is almost always downward, and index-linking rarely keeps pace.",
-      "Listed, extended and non-standard homes are worst affected.",
+      "Listed, extended and non-standard construction can be especially difficult to insure at an accurate rebuild figure.",
       "A rebuild assessment sets the right figure, not a market valuation.",
     ],
     stat: { value: "Most homes", label: "are insured below what it would actually cost to rebuild them" },
     faqs: [
-      { q: "How do I know if I'm underinsured?", a: "Compare your sum insured against a professional rebuild (reinstatement) cost, not your home's market value. If you have never had a rebuild assessment, or your home is period, extended or non-standard, it is worth checking." },
+      { q: "How do I know if I'm underinsured?", a: "Compare the sum insured with a professional rebuild or reinstatement cost, not the market value of the home. If the property is listed, extended or built in less common materials, a professional assessment is especially useful." },
       { q: "Is being over-insured a problem too?", a: "Yes. Some properties are over-insured, paying for cover they will never need, which is premium wasted. The right figure saves as often as it protects." },
       { q: "Does index-linking keep my cover accurate?", a: "Not reliably. Index-linking is meant to track building costs but tends to run below actual reinstatement, especially when costs move quickly as they did between 2020 and 2024." },
-      { q: "Who works out the rebuild cost?", a: "For a standard home a professional reinstatement assessment sets the figure. For a listed, extended or non-standard home it is the only reliable way to get it right." },
+      { q: "Who works out the rebuild cost?", a: "A professional reinstatement assessment can establish the rebuild figure for the individual property. It is especially important for listed, extended and non-standard construction, where general estimates may be less reliable." },
     ],
     sources: [
       "Association of British Insurers (ABI)",
@@ -70,13 +70,13 @@ export const GUIDES: Guide[] = [
       ] },
       { heading: "Why it happens", paras: [
         "The usual mechanism is index-linking, which is meant to keep a sum insured in step with building costs but tends to run below actual reinstatement. And costs have moved fast: rebuild costs have risen sharply in recent years, faster than most policies tracked.",
-        "Listed, extended and non-standard homes are affected most, because their rebuild cost is hardest to estimate from a table in the first place.",
+        "Listed, extended and non-standard construction can be harder to estimate because materials, workmanship and previous alterations may not be reflected in a general rebuild-cost table.",
       ] },
       { heading: "The over-insurance counterpoint", paras: [
         "It runs both ways. Some properties are over-insured as well, which is simply money wasted on premium. A proper figure saves as often as it protects.",
       ] },
       { heading: "How to check", paras: [
-        "Start with the distinction that catches most people: rebuild cost is what it would cost to rebuild the house, not what it would sell for. For a standard home a professional rebuild assessment sets the figure; for a listed, extended or non-standard home it is the only reliable way to get it right.",
+        "Start with the distinction that matters most: rebuild cost is what it would cost to reinstate the house, not what it would sell for. A professional assessment can set that figure against the actual property and its construction.",
       ] },
     ],
     footCta: "specialist",
@@ -91,7 +91,7 @@ export const GUIDES: Guide[] = [
     takeaways: [
       "Rebuild cost is what it would cost to rebuild your home, not what it would sell for.",
       "The two numbers are rarely the same, and only rebuild cost belongs on your policy.",
-      "Listed, extended and non-standard homes cannot be estimated from a table.",
+      "Listed, extended and non-standard construction often need a more detailed reinstatement assessment than a general table can provide.",
       "Construction costs are still rising, so a figure from a few years ago is probably low.",
     ],
     stat: { value: "Rising", label: "rebuild costs have risen sharply in recent years, faster than most policies tracked" },
@@ -108,7 +108,7 @@ export const GUIDES: Guide[] = [
     faqs: [
       { q: "Why isn't market value the right figure?", a: "Market value includes the land and location, which you do not rebuild. In some areas rebuild cost is well below market value; for period and rural homes it is often well above it." },
       { q: "What is a reinstatement cost assessment?", a: "A professional measures the building and prices its actual construction: the fabric, finishes, fees and the cost of rebuilding to current regulations. It is the figure a specialist underwriter wants to see." },
-      { q: "Can I use an online calculator?", a: "For a standard home, calculators such as the ABI/BCIS tool give a starting point. For listed, extended or non-standard homes they are unreliable, because they assume standard construction." },
+      { q: "Can I use an online calculator?", a: "Calculators such as the ABI/BCIS tool can provide a starting point for many homes. Listed, extended and non-standard construction may need a professional assessment because general calculators cannot account for every material, alteration or heritage requirement." },
     ],
     sources: ["BCIS (Building Cost Information Service)", "Association of British Insurers (ABI)"],
     title: "What a rebuild cost actually is",
@@ -127,11 +127,11 @@ export const GUIDES: Guide[] = [
       { heading: "What a reinstatement assessment includes", paras: [
         "A professional reinstatement cost assessment measures the building and prices its actual construction: the fabric, the finishes, the fees, the cost of doing it under current regulations. It is the figure a specialist underwriter wants to see.",
       ] },
-      { heading: "Why some homes cannot be tabled", paras: [
-        "Listed, extended and non-standard homes cannot be estimated from a rebuild-cost table, because the table assumes standard construction. Heritage fabric, unusual materials and additions all move the figure in ways an average cannot capture.",
+      { heading: "Why some homes need a more detailed assessment", paras: [
+        "Listed, extended and non-standard construction can sit outside the assumptions used by general rebuild-cost tables. Heritage fabric, unusual materials and additions can all change the reinstatement figure.",
       ] },
       { heading: "Where costs are heading", paras: [
-        "Construction costs have kept rising in recent years, with services and fit-out among the fastest to move. A figure that was right two years ago is probably low now.",
+        "Construction costs have risen in recent years, including labour, services and fit-out. A rebuild figure should therefore be reviewed rather than assumed to remain accurate indefinitely.",
       ] },
     ],
     footCta: "specialist",
@@ -146,8 +146,8 @@ export const GUIDES: Guide[] = [
     takeaways: [
       "A listed building is insured differently because it is repaired differently.",
       "After a loss, reinstatement is usually like-for-like, under listed building consent.",
-      "Heritage fabric costs more than a standard rebuild table assumes.",
-      "A reinstatement assessment for a listed home is worth commissioning.",
+      "Heritage fabric can cost more to reinstate than a general rebuild estimate allows for.",
+      "A professional reinstatement assessment can be especially useful for a listed home.",
     ],
     stat: { value: "Underinsured", label: "listed homes are frequently insured below their true reinstatement cost" },
     table: {
@@ -163,7 +163,7 @@ export const GUIDES: Guide[] = [
     faqs: [
       { q: "Can I use modern materials to repair a listed building?", a: "Usually not. Listed building consent typically requires like-for-like reinstatement in original materials and methods, even after an insured loss. That is slower and dearer than a modern repair, which is why the rebuild cost is higher." },
       { q: "Do I need consent to repair after damage?", a: "For anything beyond like-for-like repair, yes, and consent does not pause for an insurance claim. The local conservation officer usually becomes part of the process." },
-      { q: "Why can't a standard rebuild calculator price my home?", a: "Lime mortar, hand-made brick, oak framing and specialist trades all cost more than modern equivalents, and a standard table does not know they are there. A reinstatement assessment prices what is actually there." },
+      { q: "Why can a general rebuild calculator be inaccurate for a listed home?", a: "Lime mortar, hand-made brick, oak framing and specialist trades can all change the cost of reinstatement. A general table cannot know which of those details apply to your property, while a professional assessment can." },
     ],
     sources: ["Historic England", "RebuildCostASSESSMENT listed-building data"],
     hasFigures: true,
@@ -184,10 +184,10 @@ export const GUIDES: Guide[] = [
         "Listed building consent governs alterations, and it does not pause for an insurance claim. After a loss, reinstatement usually has to be like for like, using original materials and methods, under the same consent regime. That is slower and dearer than a modern repair.",
       ] },
       { heading: "Rebuild cost for heritage fabric", paras: [
-        "Lime mortar, hand-made brick, oak framing and specialist trades all cost more than their modern equivalents, and a standard rebuild table does not know they are there. A reinstatement assessment for a listed home is worth commissioning.",
+        "Lime mortar, hand-made brick, oak framing and specialist trades can all increase reinstatement costs. A professional assessment can price the materials and workmanship that actually apply to the building.",
       ] },
       { heading: "Working with conservation officers", paras: [
-        "For anything significant, the local conservation officer becomes part of the process. A specialist policy and a broker who understands heritage risk make that conversation far smoother.",
+        "For significant work, the local conservation officer may become part of the process. A broker and insurer familiar with heritage risk can help ensure the insurance arrangement reflects those requirements.",
       ] },
     ],
     footCta: "specialist",
@@ -199,7 +199,7 @@ export const GUIDES: Guide[] = [
   {
     slug: "renovation-insurance",
     takeaways: [
-      "A home is most exposed while it is being worked on, and a standard policy may stop responding.",
+      "Building work can change the conditions of a household policy, so cover should be checked before the project begins.",
       "JCT building contracts set out who insures the existing structure and the works.",
       "Non-negligence cover responds to neighbour damage that is nobody's fault.",
       "Arrange one renovation policy before the contractor starts, not after.",
@@ -216,9 +216,9 @@ export const GUIDES: Guide[] = [
       caption: "One policy over all four, for the period of the works; then cover returns to a normal footing.",
     },
     faqs: [
-      { q: "Will my normal home insurance cover the building work?", a: "Often not. Standard cover assumes a finished, occupied house. Once the building is open, unoccupied for periods, or controlled by contractors, several conditions may no longer be met and cover can fall away." },
+      { q: "Will my normal home insurance cover the building work?", a: "Not always. Household cover is written around the property in its usual condition and occupancy. Opening up the building, leaving it unoccupied for periods or placing it under contractors’ control can change the policy terms." },
       { q: "Doesn't the builder's insurance cover it?", a: "A contractor's policy covers their liability, not necessarily your existing structure or the works. JCT contracts set out who insures what; checking that clause avoids the common gap where each party assumes the other has it." },
-      { q: "When should I arrange it?", a: "Before the contractor starts. A single renovation policy over the existing structure, the works, contents and liability, for the length of the job, is the clean way to do it." },
+      { q: "When should I arrange it?", a: "Before the contractor starts. Renovation cover can bring the existing structure, contract works, contents and liability into one arrangement for the period of the project." },
     ],
     sources: ["JCT (Joint Contracts Tribunal) standard building contract forms"],
     title: "Insurance during building work",
@@ -226,22 +226,22 @@ export const GUIDES: Guide[] = [
     metaDescription:
       "What happens to a household policy during works, who is responsible under a JCT contract, non-negligence cover explained, and when to arrange it.",
     intro:
-      "A home is at its most exposed while it is being worked on, and that is exactly when a standard household policy may stop responding. Here is what changes during works, and what to have in place before the contractor starts.",
+      "Building work changes the condition, occupancy and risk of a home. This guide explains what can happen to household insurance during a project, how the building contract affects responsibility and what to arrange before work begins.",
     image: "/insurance/guide-renovation.webp",
     imageAlt:
       "A home mid-renovation, the period when a standard household policy may no longer respond.",
     sections: [
       { heading: "What happens to a household policy", paras: [
-        "Standard home insurance assumes a finished, occupied house. Once the building is open, unoccupied for periods, or under the control of contractors, several of its conditions may no longer be met, and cover can quietly fall away.",
+        "Household insurance is written around a completed property in its usual occupancy. Once the building is open, unoccupied for periods or under the control of contractors, some policy conditions may change or no longer apply.",
       ] },
       { heading: "Who is responsible under a JCT contract", paras: [
-        "Building contracts, and the JCT forms in particular, set out who insures the existing structure and the works. A short read of that clause, checked against the contractor's own cover, avoids the common gap where each party assumes the other has it. This is factual, not advice.",
+        "Building contracts, including JCT forms, set out responsibility for insuring the existing structure and the works. Check that position against the contractor’s own insurance before the project starts. This is factual information, not legal advice.",
       ] },
       { heading: "Non-negligence cover", paras: [
-        "Where work happens close to a neighbour, non-negligence cover responds to damage that is nobody's fault, which ordinary liability cover will not. It matters more than its obscurity suggests.",
+        "Where work takes place close to a neighbouring property, non-negligence cover can respond to certain damage even when negligence has not been established. It needs to be included specifically where required.",
       ] },
       { heading: "When to arrange it", paras: [
-        "Before the contractor starts, not after. A single renovation policy over the existing structure, the works, contents and liability, for the period of the job, is the clean way to do it.",
+        "Arrange the insurance before the contractor starts. The cover should reflect the existing structure, the works, contents and liability for the period of the project.",
       ] },
     ],
     footCta: "specialist",
@@ -256,7 +256,7 @@ export const GUIDES: Guide[] = [
       "Home insurance is usually cheapest 5 to 25 days before renewal, best around 15 days out.",
       "Quoting more than about 28 days ahead often costs more, not less.",
       "Auto-renewal is convenient and rarely the cheapest option.",
-      "One diarised reminder a year is the whole discipline.",
+      "A yearly reminder gives you time to review the cover before renewal.",
     ],
     stat: { value: "~15 days", label: "before renewal is typically the cheapest moment to buy home insurance" },
     table: {
@@ -266,14 +266,14 @@ export const GUIDES: Guide[] = [
         ["More than ~28 days before", "Often costs more; insurers price a distant start date"],
         ["5 to 25 days before", "The cheapest window, best around 15 days out"],
         ["On renewal day", "Averages meaningfully more than buying at the right moment"],
-        ["Auto-renewal", "Convenient, rarely cheapest; worth a yearly look"],
+        ["Auto-renewal", "Convenient, but still worth reviewing each year for price and cover"],
       ],
-      caption: "Timing is one of the few genuinely free savings available.",
+      caption: "The timing of a quote can affect the price, so it is worth reviewing cover before the renewal date.",
     },
     faqs: [
       { q: "When is the cheapest time to renew?", a: "Between 5 and 25 days before your renewal date, with the optimum around 15 days out. Buying on the day itself averages meaningfully more." },
       { q: "Isn't earlier always better?", a: "Not past about 28 days. Quote too far ahead and the price often rises, because insurers price the extra uncertainty of a distant start date." },
-      { q: "Should I just let it auto-renew?", a: "Auto-renewal is convenient but rarely the cheapest, and it does not check the cover still fits. A diarised look each year is worth it." },
+      { q: "Should I just let it auto-renew?", a: "Auto-renewal is convenient, but it does not check whether the price or cover still suits you. Reviewing the policy each year gives you the chance to compare both." },
     ],
     sources: ["MoneySavingExpert renewal-timing analysis", "Consumer pricing studies, published market research"],
     title: "When to renew, and why timing pays",
@@ -281,22 +281,22 @@ export const GUIDES: Guide[] = [
     metaDescription:
       "Insurance is cheapest 5 to 25 days before renewal, with the optimum around 15 days out. Why quoting too early costs more, auto-renewal, and setting a reminder.",
     intro:
-      "Insurance is bought at exactly one moment in the year, and the price moves depending on when you buy. A little timing is one of the few genuinely free savings available.",
+      "The price of home insurance can vary depending on how far ahead of the renewal date you arrange it. Setting a reminder gives you time to review the cover and compare the options.",
     image: "/insurance/hub-hero.webp",
     imageAlt:
       "A cream Georgian townhouse in golden evening light, a home whose cover is worth timing well.",
     sections: [
       { heading: "The window", paras: [
-        "Cover tends to be cheapest between 5 and 25 days before renewal, with the sweet spot around 15 days out. Bought on renewal day itself it averages meaningfully more than bought at the right moment; the difference is real money for doing nothing but timing it.",
+        "Published pricing analysis suggests cover can be cheaper when arranged in the weeks before renewal rather than on the renewal day itself, with the best point often around 15 days ahead.",
       ] },
       { heading: "Why quoting too early costs more", paras: [
         "Quote more than about 28 days ahead and the price often rises, because insurers price the extra uncertainty of a distant start date. Earlier is not cheaper past that point.",
       ] },
       { heading: "Auto-renewal", paras: [
-        "Auto-renewal is convenient and rarely cheapest. It is worth a diarised look every year rather than a quiet roll-over, both for price and for whether the cover still fits.",
+        "Auto-renewal is convenient, but it may not give you the best price or confirm that the cover still fits. A yearly review lets you check both.",
       ] },
-      { heading: "The simplest move", paras: [
-        "Set a reminder for the right window and let it do the work. One note a year is the whole discipline.",
+      { heading: "Set a reminder", paras: [
+        "A reminder before renewal gives you time to review the existing policy and consider alternatives without leaving the decision until the last day.",
       ] },
     ],
     footCta: "renewal",

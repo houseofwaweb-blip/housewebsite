@@ -66,7 +66,7 @@ export function RenewalReminderForm({
     });
     if (result.ok) {
       gaEvent("renewal_reminder_submit", { renewal_month: data.renewalMonth });
-      setStatus({ kind: "success", message: "Done. We'll send one email at the right moment, and nothing else." });
+      setStatus({ kind: "success", message: "Done. We’ll send one email before your renewal." });
       reset({ turnstileToken: "", honey: "" });
       turnstileRef.current?.reset();
     } else {

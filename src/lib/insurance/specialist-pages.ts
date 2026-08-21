@@ -95,12 +95,12 @@ export type SpecialistPage = {
 export const DEFAULT_LIMITATIONS: NonNullable<SpecialistPage["limitations"]> = {
   heading: "What is not covered, and what to check",
   intro:
-    "Every policy has limits and exclusions, and this is a general guide rather than the policy itself. The cover, its limits and its exclusions are set out in the policy wording, which is what to read before you rely on any of it.",
+    "Every policy has limits and exclusions. This is a general guide only, and the policy wording is what governs the cover and any claim.",
   points: [
-    { h: "Wear, tear and gradual damage", p: "Ordinary ageing, gradual deterioration and a lack of maintenance are not insured events. Cover is for sudden and unforeseen loss, not upkeep." },
-    { h: "Anything already known", p: "A loss, fault or condition that already exists, or that you are aware of when cover starts, is not picked up by a new policy." },
-    { h: "Under-insurance", p: "If the sum insured is set too low, a claim can be reduced in proportion. Setting the rebuild figure and contents value correctly is what keeps a policy honest." },
-    { h: "Limits and excesses", p: "Section limits, single-item limits and the excess all shape what is actually paid. High-value items usually need listing separately to be covered in full." },
+    { h: "Wear, tear and gradual damage", p: "Ageing, gradual deterioration and damage caused by a lack of maintenance are generally outside insurance cover." },
+    { h: "Anything already known", p: "A loss, fault or condition that already exists, or that you already know about when cover begins, may be excluded." },
+    { h: "Under-insurance", p: "If the sum insured is too low, a claim may be reduced. Rebuild cost and contents values should reflect the amount actually at risk." },
+    { h: "Limits and excesses", p: "Section limits, single-item limits and the excess all affect what may be paid. Higher-value items may need to be listed separately." },
     { h: "The House does not advise", p: "The House introduces you to Provenance and does not advise on, arrange or decide your cover. The terms that bind are the ones in the policy documents, agreed with Provenance." },
   ],
   note: "The policy wording, key facts and exclusions are provided by Provenance before you commit to anything.",
@@ -115,8 +115,8 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       "Cover for Grade II, II* and I listed homes, built around like-for-like reinstatement and a rebuild cost that bears no relation to market value. Arranged by Provenance; introduced by the House.",
     hero: {
       eyebrow: "Specialist property",
-      heading: "A listed home is a different risk. It should be insured like one.",
-      lede: "Listed buildings are repaired with original materials and methods, under consent constraints, by specialist trades. A standard policy priced off a table rarely reflects that. There are 379,580 listed buildings in England, and most are not insured for what it would truly cost to put them back.",
+      heading: "Listed building insurance that starts with the building itself.",
+      lede: "Listed homes can require specialist materials, methods and trades when repairs are needed. There are 379,580 listed buildings in England, and the cost of reinstating one can differ significantly from its market value.",
     },
     image: "/insurance/listed.webp",
     imageAlt:
@@ -138,16 +138,16 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     whyDifferent: {
       heading: "Why a listed building is a different risk",
       body: [
-        "After a loss, a listed building must be reinstated like for like: the same stone, the same lime, the same joinery, done by trades who work to conservation standards and often under listed building consent. That is slower and dearer than a modern rebuild, and it is why the rebuild cost bears no relation to the market value.",
-        "Index-linking, the mechanism most policies use to keep pace, tends to run below actual reinstatement for heritage fabric. Listed and high-value homes are named among the categories worst affected by underinsurance.",
+        "Repairs to a listed building can involve matching historic materials and methods, specialist trades and listed-building consent. Those requirements can make reinstatement slower and more costly than a modern rebuild, so market value is not a reliable guide to the sum insured.",
+        "Index-linking does not replace a proper reinstatement figure. Heritage fabric, alterations and specialist workmanship can all move the real rebuild cost away from a general estimate.",
       ],
     },
     detail: {
       title: "What changes with the grade",
       points: [
-        { h: "The grades", p: "Grade II, Grade II* and Grade I each carry different repair obligations, and the premium reflects that. Listed property typically costs more than an equivalent unlisted home; the higher grades more so again. Figures are indicative and confirmed case by case." },
-        { h: "The rebuild assessment", p: "Because a listed rebuild cannot be estimated from a table, a proper reinstatement assessment is worth commissioning. The House can help you commission one; it is exactly what a heritage underwriter wants to see." },
-        { h: "The underinsurance trap", p: "Reinstatement for listed fabric can outrun index-linked cover by a meaningful margin. The point of the review is to find that gap before a claim does." },
+        { h: "The grades", p: "Grade II, Grade II* and Grade I buildings can carry different conservation requirements. The insurer will look at the property itself, its grade and the cost of reinstatement. Figures are indicative and confirmed case by case." },
+        { h: "The rebuild assessment", p: "A professional reinstatement assessment can give the underwriter a property-specific rebuild figure that accounts for heritage materials, workmanship and current requirements." },
+        { h: "The underinsurance trap", p: "Reinstating listed fabric can cost more than index-linked cover anticipates. A specialist review helps establish whether the rebuild figure still reflects the property." },
       ],
     },
     placed: {
@@ -157,20 +157,20 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     evidence: [
       { stat: "379,580", label: "listed buildings in England" },
       { stat: "Rebuild cost", label: "is what it costs to put a listed home back, not its market value" },
-      { stat: "Heritage fabric", label: "costs more to reinstate than a standard rebuild table assumes" },
+      { stat: "Heritage fabric", label: "can cost more to reinstate than a general rebuild estimate allows for" },
     ],
     crossLinks: [
       { label: "Thatched property insurance", href: "/insurance/thatched-properties" },
       { label: "Guide: insuring a listed building", href: "/insurance/guides/listed-building-insurance" },
     ],
     limitations: {
-      heading: "What listed cover does not stretch to",
+      heading: "What to check with listed-building cover",
       intro:
-        "Heritage cover is broad, but it is not unconditional. These are the usual limits; the policy wording is what governs any claim.",
+        "Listed-building insurance still has limits and conditions. These are common areas to check, but the policy wording is what governs any claim.",
       points: [
         { h: "The rebuild figure you give", p: "Cover follows the reinstatement sum insured. Set it below the true cost of a like-for-like heritage rebuild and a claim can be cut in proportion, which is exactly the trap a proper assessment avoids." },
         { h: "Gradual decay and known defects", p: "Rot, damp, movement and deterioration that build up over time, or a defect already known, are maintenance matters rather than insured events." },
-        { h: "Consent and unapproved work", p: "Work carried out without listed building consent, or repairs done in the wrong materials, can affect a claim. Cover assumes the building is kept lawfully and properly." },
+        { h: "Consent and unapproved work", p: "Listed-building consent and appropriate repair methods can matter to the claim. Work carried out without the required consent may affect the cover." },
         { h: "Not advice", p: "The House introduces you to Provenance and does not advise on cover. Grades, limits and exclusions are set out in the policy documents." },
       ],
       note: "The policy wording and exclusions come from Provenance before you commit.",
@@ -182,11 +182,11 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     title: "Thatched property insurance",
     metaTitle: "Thatched property insurance",
     metaDescription:
-      "Cover for thatched homes, built around the real risk factors underwriters look at. Around three-quarters are also listed. Arranged by Provenance; introduced by the House.",
+      "Insurance for thatched homes, with underwriting shaped by the roof, chimney, maintenance and wider property. Around three-quarters are also listed. Arranged by Provenance; introduced by the House.",
     hero: {
       eyebrow: "Specialist property",
-      heading: "Thatch is a specialist risk, and it should be underwritten by someone who understands it.",
-      lede: "There are around 60,000 thatched properties in Britain, and roughly three-quarters are also listed. Standard insurers often decline thatch or load it heavily. A specialist reads the actual risk instead.",
+      heading: "Thatched-home insurance built around the roof, chimney and wider property.",
+      lede: "There are around 60,000 thatched properties in Britain, and roughly three-quarters are also listed. Thatch brings specific fire, maintenance and reinstatement considerations that specialist underwriting can account for.",
     },
     image: "/insurance/thatched.webp",
     imageAlt:
@@ -198,7 +198,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     whyImageAlt:
       "A thatched roof detail with a brick chimney and an eyebrow window, the craft and maintenance a thatch underwriter reads.",
     differenceIntro:
-      "Most insurers see the word 'thatch' and either decline it or load it. The House introduces you to a specialist who asks the questions that actually price the risk.",
+      "The useful questions are specific: the type and condition of the thatch, chimney and flue, any wood-burner, sweeping records, electrical safety and the way the property is maintained.",
     readiness: [
       { h: "The thatch", p: "Its type, age and condition, and when it was last re-ridged." },
       { h: "The chimney", p: "Any wood-burner, its lining and a spark arrestor." },
@@ -217,15 +217,15 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       heading: "What underwriters actually look at",
       body: [
         "The concern with thatch is fire, and the questions that follow are specific: the chimney and any wood-burner, the presence of a lining and spark arrestor, sweeping records, an up-to-date electrical inspection, and the type and age of the thatch itself.",
-        "Documenting exactly these things is what can turn a risk a standard insurer declines into one a specialist will cover.",
+        "Clear maintenance records and accurate information about the roof, chimney and electrics give the underwriter a better basis on which to assess the risk.",
       ],
     },
     detail: {
-      title: "The reality of insuring thatch",
+      title: "What matters when insuring thatch",
       points: [
         { h: "The risk factors", p: "Lining, spark arrestors, sweeping frequency and electrical safety are what a specialist underwriter weighs. Documented maintenance is directly relevant to the terms offered." },
-        { h: "Premium reality", p: "Thatch typically adds to a household premium, and because most thatched homes are also listed, the two effects compound. Ranges are indicative and settled case by case." },
-        { h: "Fire, discussed plainly", p: "Fire is a factual underwriting matter, not a fear. No disaster imagery, no pressure." },
+        { h: "How the risk is assessed", p: "The type and age of the thatch, the property’s listed status and the fire-safety measures in place can all affect the terms and premium. Figures are confirmed case by case." },
+        { h: "Fire risk, treated as a practical detail", p: "Fire is one of the underwriting considerations for a thatched home. The useful response is accurate information and good maintenance, not alarmist language." },
       ],
     },
     placed: {
@@ -238,12 +238,12 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     ],
     crossLinks: [{ label: "Listed building insurance", href: "/insurance/listed-buildings" }],
     limitations: {
-      heading: "What thatch cover depends on",
+      heading: "The conditions that can apply to thatch",
       intro:
-        "A specialist will cover thatch, but the terms rest on how the fire risk is managed. These are the usual conditions and limits; the policy wording governs.",
+        "Thatched-home policies can include specific maintenance and fire-safety conditions. These are common areas to check, but the policy wording governs.",
       points: [
         { h: "Sweeping and maintenance conditions", p: "Cover typically requires the chimney swept to a stated frequency and the thatch kept in good order. Miss the conditions and a fire claim can be affected." },
-        { h: "The chimney and wood-burner", p: "An unlined flue, a missing spark arrestor or an unsafe wood-burner sit outside what an underwriter will accept, and can void a claim." },
+        { h: "The chimney and wood-burner", p: "The condition of the chimney, flue and any wood-burning appliance can affect the terms offered and the handling of a claim." },
         { h: "Electrics and known defects", p: "An out-of-date electrical inspection, or a defect already known, is a maintenance matter rather than an insured event." },
         { h: "Not advice", p: "The House introduces you to Provenance and does not advise on cover. Limits and exclusions are set out in the policy documents." },
       ],
@@ -256,11 +256,11 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     title: "Non-standard construction",
     metaTitle: "Non-standard construction insurance",
     metaDescription:
-      "Cover for timber frame, cob, stone, flint, single-skin, steel-frame and prefabricated homes, risks a comparison form cannot handle. Arranged by Provenance; introduced by the House.",
+      "Cover for timber frame, cob, stone, flint, single-skin, steel-frame and prefabricated homes where the construction needs specialist underwriting. Arranged by Provenance; introduced by the House.",
     hero: {
       eyebrow: "Specialist property",
-      heading: "Some homes do not fit the form. Yours may be one of them.",
-      lede: "Timber frame, cob, stone, flint, single-skin, steel frame, prefabricated: construction that resists standardisation is genuinely poorly served by an automated quote. It needs an underwriter who will read it.",
+      heading: "Specialist insurance for homes built in less common materials and systems.",
+      lede: "Timber frame, cob, stone, flint, single-skin, steel frame and prefabricated construction can all need a more detailed underwriting approach. The important thing is to describe the building accurately.",
     },
     image: "/insurance/non-standard.webp",
     imageAlt:
@@ -280,7 +280,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     differenceImageAlt:
       "A close view of non-standard construction, the kind of fabric a specialist reads individually rather than by category.",
     differenceIntro:
-      "A comparison engine asks a fixed set of questions and prices off the answers. Non-standard construction is exactly the case those questions were never written for.",
+      "Construction type changes the way a property is repaired, maintained and reinstated. A specialist underwriter can assess the actual materials and system rather than relying on broad assumptions.",
     readiness: [
       { h: "What it's built of", p: "Timber frame, cob, stone, flint, single-skin or steel, read individually, not by category." },
       { h: "The walls", p: "Solid-wall and single-skin construction that sits outside cavity-wall assumptions." },
@@ -288,23 +288,23 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       { h: "What's been done", p: "Repairs, retrofits and how the fabric has been kept sound." },
     ],
     whyDifferent: {
-      heading: "Why a form cannot handle it",
+      heading: "Why the construction needs a closer look",
       body: [
-        "A comparison engine asks a fixed set of questions and prices off the answers. Non-standard construction is, by definition, the case those questions were not written for, so the engine either declines it or prices it as though it were something it is not.",
-        "A specialist underwriter starts from what the building actually is, and what has been done to keep it sound.",
+        "Homes built with less common materials or structural systems do not always fit the assumptions used for mainstream household insurance. The construction itself needs to be understood before the risk can be priced accurately.",
+        "A specialist underwriter can start with the actual fabric of the building, its condition and any repairs or alterations already carried out.",
       ],
     },
     detail: {
       title: "The common constructions",
       points: [
         { h: "Timber frame and cob", p: "Traditional and modern timber frame, and earth-built walls such as cob, each behave differently in a loss and are read individually rather than by category." },
-        { h: "Stone, flint and single-skin", p: "Solid-wall and single-skin construction sit outside standard cavity-wall assumptions, which is where automated cover tends to fall down." },
+        { h: "Stone, flint and single-skin", p: "Solid-wall and single-skin properties need to be described as they are, rather than treated as though they use conventional cavity-wall construction." },
         { h: "Steel frame and prefabricated", p: "Non-traditional post-war construction, including certain prefabricated types, needs an underwriter familiar with the specific system." },
       ],
     },
     placed: {
       heading: "What Provenance can place",
-      body: "Provenance works with underwriters who assess non-standard construction on its merits rather than declining it by rule. The House introduces you and can supply what is known about the building; Provenance arranges and administers the cover.",
+      body: "Provenance works with underwriters who can assess non-standard construction on the individual property and its condition. The House makes the introduction; Provenance arranges and administers the cover.",
     },
     enquiryType: "non-standard-construction",
   },
@@ -313,11 +313,11 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     title: "Second and holiday homes",
     metaTitle: "Second and holiday home insurance",
     metaDescription:
-      "Cover for second homes, holiday homes and holiday lets, where standard policies most often decline a claim. Arranged by Provenance; introduced by the House.",
+      "Insurance for second homes, holiday homes and holiday lets, with cover arranged around the way the property is occupied and used. Introduced by the House and arranged by Provenance.",
     hero: {
       eyebrow: "Specialist property",
-      heading: "A second home is not a first home that happens to be empty sometimes.",
-      lede: "England has 268,152 second homes and 67,858 commercial holiday lets. Periods unoccupied, different security expectations, escape of water while nobody is there, and any letting activity all change the cover, and getting the distinction wrong is the commonest reason a claim is declined.",
+      heading: "Second-home insurance should reflect how the property is actually used.",
+      lede: "England has 268,152 second homes and 67,858 commercial holiday lets. Time left unoccupied, security, escape of water and any letting activity can all change the insurance requirement.",
     },
     image: "/insurance/holiday-home.webp",
     imageAlt:
@@ -332,9 +332,9 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     differenceImageAlt:
       "A quiet holiday home standing empty, the occupancy a comparison form never asks about.",
     differenceIntro:
-      "A comparison form prices a home that is lived in. A second home is empty for stretches, sometimes let, and that changes the risk entirely.",
+      "A second home may be empty for longer periods, checked less often or let to guests. The policy needs to reflect that pattern of use.",
     readiness: [
-      { h: "How often it's empty", p: "The stretches unoccupied, which most standard policies quietly limit." },
+      { h: "How often it's empty", p: "How long the property is left unoccupied between visits." },
       { h: "How it's used", p: "Second home, holiday home or holiday let, three different things to an insurer." },
       { h: "Security while away", p: "Alarms, key-holding and how the home is checked between visits." },
       { h: "Where it is", p: "Coastal, rural or overseas, each carrying its own exposure." },
@@ -347,15 +347,15 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     whyDifferent: {
       heading: "Why it is a different risk",
       body: [
-        "The core issue is time spent empty. Escape of water, weather damage and theft all read differently in a home that is not lived in day to day, and standard policies carry an unoccupancy clause that many owners never notice until they claim.",
-        "Then there is use. A second home, a holiday home and a holiday let are three different things to an insurer, and describing one as another can invalidate the policy entirely.",
+        "The main difference is occupancy. Escape of water, weather damage and theft can be treated differently when a property is not lived in day to day, and policies often set conditions around longer periods of unoccupancy.",
+        "A private second home and a holiday let are also different risks. The insurer needs an accurate description of how the property is used.",
       ],
     },
     detail: {
-      title: "The things that catch people out",
+      title: "What to get right",
       points: [
-        { h: "The unoccupancy clause", p: "Most standard policies stop responding after a home has been empty for a set period. It is the single commonest reason a second-home claim fails. A specialist policy is written around how the home is actually used." },
-        { h: "Second home vs holiday let", p: "Letting activity changes the cover completely. If the policy describes the wrong use, it may not pay. This is worth getting right before it matters." },
+        { h: "The unoccupancy clause", p: "Policies can restrict cover after a property has been unoccupied for a set period. A specialist policy can be arranged around the way the home is actually used." },
+        { h: "Second home vs holiday let", p: "Letting changes the risk and needs to be declared. A holiday let should be insured as a holiday let, not as a private second home." },
         { h: "Overseas properties", p: "Homes abroad can often be brought within the same arranged relationship, on one renewal date, rather than managed separately." },
       ],
     },
@@ -368,12 +368,12 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       { stat: "67,858", label: "commercial holiday lets in England" },
     ],
     limitations: {
-      heading: "Where second-home cover stops",
+      heading: "What to check with second-home cover",
       intro:
-        "Cover for a second or holiday home is written around how it is really used. Describe that wrongly and the gaps open up. These are the usual limits; the policy wording governs.",
+        "The policy should reflect the property’s real occupancy and use. These are common areas to check, but the policy wording governs.",
       points: [
-        { h: "Long periods empty", p: "Most policies limit or withdraw cover once a home is unoccupied beyond a set number of days, and escape of water while nobody is there is a common exclusion in that window." },
-        { h: "Letting not declared", p: "A home used as a holiday let is a different risk from a private second home. If letting is not declared, a claim may not be paid at all." },
+        { h: "Long periods empty", p: "Cover may change after a property has been unoccupied for a set number of days, particularly for risks such as escape of water." },
+        { h: "Letting not declared", p: "If the property is let, that use needs to be declared and insured on the correct basis." },
         { h: "Gradual damage and maintenance", p: "Slow leaks, damp and deterioration that go unnoticed between visits are maintenance matters, not insured events." },
         { h: "Not advice", p: "The House introduces you to Provenance and does not advise on cover. Occupancy conditions and exclusions are set out in the policy documents." },
       ],
@@ -386,11 +386,11 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     title: "Unoccupied and probate property",
     metaTitle: "Unoccupied and probate property insurance",
     metaDescription:
-      "Cover for empty homes, in probate, between owners, or empty during works. Calm, practical, no pressure. Arranged by Provenance; introduced by the House.",
+      "Insurance for homes left empty during probate, a move, a renovation or another period of unoccupancy. Introduced by the House and arranged by Provenance.",
     hero: {
       eyebrow: "Specialist property",
       heading: "An empty house is still a home, and it still needs cover.",
-      lede: "There are 309,856 long-term empty homes in England. Behind most of them is a difficult moment: probate, a move that has not completed, a house between phases of work. Calm and practical, with nothing to sell you.",
+      lede: "There are 309,856 long-term empty homes in England. Probate, a delayed move or building work can all leave a property unoccupied for longer than its existing household cover allows.",
     },
     image: "/insurance/probate.webp",
     imageAlt:
@@ -410,26 +410,26 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     differenceImageAlt:
       "A quiet, unoccupied home standing still, the condition and security a specialist asks about.",
     differenceIntro:
-      "A comparison form prices a home that is lived in. An empty house is a different risk, and the questions that matter are about how it is left and looked after.",
+      "When nobody is living in the property, insurers look closely at how long it will be empty, how it is secured, how the water and heating are managed and how often someone checks it.",
     readiness: [
-      { h: "How long it's empty", p: "The period unoccupied, which most standard policies stop covering." },
+      { h: "How long it's empty", p: "The period the property will be unoccupied and the cover needed during that time." },
       { h: "How it's secured", p: "Locks, boarding where needed, alarms and who holds a key." },
       { h: "Water and heating", p: "Systems drained, or heating kept on through winter to prevent burst pipes." },
-      { h: "How often it's checked", p: "Regular inspections, the condition insurers usually require." },
+      { h: "How often it's checked", p: "How often someone visits and checks the property while it is empty." },
     ],
     whyDifferent: {
       heading: "The three situations",
       body: [
-        "Probate: a home held while an estate is settled. If you are dealing with a death, we are sorry. The practical point is only that the existing policy has very likely lapsed, often without anyone realising.",
-        "A property between owners or tenants, and a house empty during works, both leave a home standing without the day-to-day presence a standard policy assumes.",
+        "Probate can leave a home unoccupied while an estate is settled. If you are dealing with a death, there is enough to manage already, so the practical insurance question is simply whether the existing cover still applies and what is needed next.",
+        "A property between owners or tenants, or one left empty during works, also needs cover written around the fact that nobody is living there day to day.",
       ],
     },
     detail: {
       title: "What an empty property needs",
       points: [
-        { h: "Why the old policy may have lapsed", p: "Standard cover typically ends once a home passes its unoccupancy limit, so a house that has been empty for a while is often uninsured exactly when it is most exposed." },
+        { h: "Why the old policy may have lapsed", p: "Household policies usually set a limit on how long a property can be left unoccupied. Once that limit is reached, separate unoccupied-property cover may be needed." },
         { h: "What insurers ask for", p: "Regular inspections, water systems drained down, secure boarding where needed, and heating managed through winter are the usual conditions. A specialist policy sets these out plainly." },
-        { h: "No urgency here", p: "There is no countdown here, and there never will be. When you are ready, a specialist will talk it through." },
+        { h: "Arrange it when you need it", p: "A specialist can explain the cover required for the period the property will be empty and the conditions that need to be followed." },
       ],
     },
     placed: {
@@ -440,14 +440,14 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     limitations: {
       heading: "What an empty-home policy asks of you",
       intro:
-        "Unoccupied cover is written for the situation, and it comes with conditions that keep it valid. These are the usual limits; the policy wording governs.",
+        "Unoccupied-property cover often comes with conditions around inspections, security, water and heating. These are common areas to check, but the policy wording governs.",
       points: [
         { h: "The conditions must be kept", p: "Regular inspections, water drained down or heating maintained through winter, and secure boarding where needed are typical requirements. A claim can rest on them being met." },
         { h: "Reduced perils while empty", p: "Cover on an unoccupied home is often narrower than a lived-in one, with theft, escape of water and malicious damage limited or excluded." },
         { h: "Gradual damage", p: "Slow deterioration in a home nobody is living in is a maintenance matter rather than an insured event." },
         { h: "Not advice", p: "The House introduces you to Provenance and does not advise on cover. The conditions and exclusions are set out in the policy documents." },
       ],
-      note: "The policy wording and conditions come from Provenance before you commit. There is no urgency here.",
+      note: "The policy wording and conditions come from Provenance before you commit.",
     },
     enquiryType: "unoccupied-property",
   },
@@ -459,8 +459,8 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       "One policy covering the existing structure, contract works, contents and liability for the period of building work. Arranged by Provenance; introduced by the House.",
     hero: {
       eyebrow: "Specialist property",
-      heading: "During building work, your home is at its most exposed, and often its least covered.",
-      lede: "While works are underway a home may be open to the weather, structurally in flux, vulnerable to theft and controlled by contractors, and a standard household policy may not respond. A single renovation policy is unusually clean to explain and unusually worth having.",
+      heading: "Building work changes the risk. The insurance needs to change with it.",
+      lede: "During a renovation or extension, parts of the home may be open, unoccupied or under the control of contractors. A renovation policy can cover the existing structure, contract works, contents and homeowner liability for the period of the project.",
     },
     image: "/insurance/renovation.webp",
     imageAlt:
@@ -480,7 +480,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     differenceImageAlt:
       "A house under building works, the contract and existing structure a specialist covers together.",
     differenceIntro:
-      "A comparison form prices a finished, occupied home. During building work almost none of those assumptions hold, and the questions that matter are about the works themselves.",
+      "A household policy is written for a completed home. Renovation cover is written for the period when the building and the works are changing.",
     readiness: [
       { h: "The works", p: "What is being done, and whether the home is open to the weather or structurally in flux." },
       { h: "Who is on site", p: "The contractors, their own cover, and the JCT contract position." },
@@ -488,17 +488,17 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       { h: "How long", p: "The length of the project, which sets the period cover is needed for." },
     ],
     whyDifferent: {
-      heading: "The gap most owners do not know exists",
+      heading: "Why the insurance changes during works",
       body: [
-        "Standard home insurance assumes a finished, occupied house. Once scaffolding goes up and walls come down, several of its assumptions no longer hold, and cover can quietly fall away at the very moment risk is highest.",
-        "A renovation policy is designed for exactly that period, and it is one of Provenance's cleanest products to set out.",
+        "Once a project begins, the building may be partly open, unoccupied for periods or in the hands of contractors. Those changes can affect the household insurance already in place.",
+        "A renovation policy is designed specifically for that period and can bring the existing structure, the contract works, contents and homeowner liability into one arrangement.",
       ],
     },
     detail: {
-      title: "What a renovation policy covers",
+      title: "What renovation cover can include",
       points: [
-        { h: "One policy, four things", p: "The existing structure, the contract works, contents and homeowner liability, all for the period of the works. When the job finishes, cover returns to a normal footing." },
-        { h: "JCT contracts, in plain English", p: "Building contracts set out who insures what. A short, plain explanation of the JCT position helps you check the contractor's arrangements line up with yours. This is factual, not advice." },
+        { h: "One policy, four things", p: "The existing structure, the contract works, contents and homeowner liability can be covered for the period of the project, subject to the policy terms." },
+        { h: "JCT contracts, in plain English", p: "The building contract sets out who is responsible for insuring different parts of the project. Provenance can explain how the insurance arrangement relates to the JCT position. This is factual information, not legal advice." },
         { h: "Non-negligence cover", p: "Where work happens close to a neighbour, non-negligence cover matters. Indicative costs sit around £550 for shorter projects and around £1,000 where non-negligence is included; figures are indicative and confirmed case by case." },
       ],
     },
@@ -510,7 +510,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     limitations: {
       heading: "What a works policy does not cover",
       intro:
-        "A renovation policy is unusually clean, but it has edges. These are the usual limits; the policy wording, and the building contract, govern.",
+        "Renovation cover has a defined scope, and the building contract also matters. These are common areas to check, but the policy wording and contract govern.",
       points: [
         { h: "The contractor's own liability", p: "A works policy is not a substitute for the contractor's public liability and their cover for their own work and workmanship. The JCT contract sets out who insures what." },
         { h: "Faulty design or workmanship", p: "Defective design, materials or workmanship, and putting right work that was done badly, sit outside the cover." },
@@ -530,8 +530,8 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       "Cover for scheduled items, art, jewellery, watches, wine and design, where general contents limits fall short. Arranged by Provenance; introduced by the House.",
     hero: {
       eyebrow: "Specialist assets",
-      heading: "The things worth insuring properly rarely fit a general contents limit.",
-      lede: "Scheduled items behave differently from general contents, and standard single-article limits bite quickly. The point is not only to cover what is under-insured, but to stop paying for what is over-insured.",
+      heading: "Valuable pieces need cover that recognises what they are.",
+      lede: "Fine art, jewellery, watches, wine and other collections can quickly exceed the single-item limits of general contents insurance. Scheduling and current valuations help place each item on the right basis.",
     },
     image: "/insurance/cat-fine-art.webp",
     imageAlt:
@@ -551,41 +551,41 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     differenceImageAlt:
       "A gilt-framed landscape painting, a bronze rearing horse on marble and a floral urn on dark wood, the kind of collected things a comparison form never asks about.",
     differenceIntro:
-      "Most contents cover is priced from a single figure and a postcode, and never asks what the valuable things actually are. The House introduces you to a specialist who starts from the pieces themselves.",
+      "The useful starting point is the piece itself: what it is, what it is worth now, where it is kept and whether it travels outside the home.",
     readiness: [
       { h: "What it is", p: "The maker, the period and the materials, not a line on a contents schedule." },
       { h: "What it is worth now", p: "A current valuation, because markets move, rather than the price you paid." },
       { h: "Where it lives", p: "On the wall, in a safe, worn daily or in storage, each a different risk." },
-      { h: "In and out of the home", p: "Whether it travels, is exhibited or lent, which standard cover rarely allows." },
+      { h: "In and out of the home", p: "Whether the item is worn, transported, exhibited or lent, and what cover applies away from home." },
     ],
     whyDifferent: {
       heading: "Why scheduled items are different",
       body: [
-        "General contents cover carries a per-item limit that fine art, jewellery and collections routinely exceed. Above that limit, items should be scheduled and valued individually.",
-        "Valuation runs both ways. Homes are often over-insured as well as under-insured, paying for cover they will never need, which is money wasted. A proper schedule saves as often as it protects.",
+        "General contents insurance usually applies a single-item limit. Fine art, jewellery and collections above that limit may need to be listed and valued individually.",
+        "Current valuations also help avoid insuring an item for too little or maintaining cover at a figure that no longer reflects its value.",
       ],
     },
     detail: {
       title: "How it is handled",
       points: [
-        { h: "Valuation", p: "Scheduled items should be valued, and revalued as markets move. The House does not appraise or advise on value; it simply introduces the specialist who can." },
+        { h: "Valuation", p: "Scheduled items should be valued and reviewed as markets move. The House does not appraise items; it introduces you to the insurance route and Provenance can work with appropriate valuation partners." },
         { h: "The ancillary network", p: "Provenance's proposition extends beyond the policy to collection management, restoration, security and valuation partners." },
-        { h: "Newer asset classes", p: "Watches, wine, streetwear and design are handled seriously and without condescension." },
+        { h: "Newer asset classes", p: "Watches, wine, design pieces and other modern collections can be handled alongside more traditional art and jewellery." },
       ],
     },
     placed: {
       heading: "What Provenance can place",
-      body: "Provenance arranges scheduled cover for art and collections, and can fold it into a household policy on one renewal date. The House introduces you to the specialist who schedules and values them properly; Provenance arranges and administers the cover.",
+      body: "Provenance arranges scheduled cover for art and collections and can bring it into a wider household arrangement where appropriate. The House makes the introduction; Provenance arranges and administers the cover.",
     },
-    evidence: [{ stat: "Both ways", label: "a proper schedule can save on over-insurance as often as it protects against under-insurance" }],
+    evidence: [{ stat: "Both ways", label: "a detailed schedule can identify over-insurance as well as gaps in cover" }],
     limitations: {
       heading: "What scheduled cover will and will not do",
       intro:
-        "Cover for valuables is precise, and the precision is the point. These are the usual limits; the policy wording and the schedule govern.",
+        "Scheduled cover depends on the item, the valuation and the terms agreed. These are common areas to check, but the policy wording and schedule govern.",
       points: [
-        { h: "Only what is scheduled", p: "Items above the general single-article limit are covered in full only once they are listed and valued. Leave a piece off the schedule and it falls back to the standard limit." },
+        { h: "Only what is scheduled", p: "Items above the general single-item limit may need to be listed and valued separately to receive the intended level of cover." },
         { h: "Valuations must be current", p: "Cover follows the valuation on file. An out-of-date figure can leave a piece under-insured as markets move, which is why revaluation matters." },
-        { h: "Wear, damage and known faults", p: "Gradual wear, inherent fragility and damage that already exists are not insured events, and some risks in transit or on loan need to be agreed in advance." },
+        { h: "Wear, damage and known faults", p: "Wear, inherent defects and damage that already exists are generally outside the policy, and some transit or loan arrangements need to be agreed in advance." },
         { h: "Not advice", p: "The House does not appraise or advise on value. Provenance and its valuation partners handle that; limits and exclusions are in the policy documents." },
       ],
       note: "The policy wording and schedule terms come from Provenance before you commit.",
@@ -600,8 +600,8 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       "Agreed-value cover for classic, collection and prestige vehicles, consolidated onto one renewal date with the home. Arranged by Provenance; introduced by the House.",
     hero: {
       eyebrow: "Specialist assets",
-      heading: "The car and the house, treated as one estate.",
-      lede: "There are 1.93 million registered historic vehicles in the UK, owned by 690,777 people. Specialist motor brokers do this well; the reason to come here is consolidation, one adviser, one renewal date, the car and the home managed together.",
+      heading: "Agreed-value and specialist motor cover for classic and prestige cars.",
+      lede: "There are 1.93 million registered historic vehicles in the UK, owned by 690,777 people. Provenance can arrange classic, prestige and collection motor cover, including agreed-value policies where appropriate.",
     },
     image: "/insurance/cat-cars.webp",
     imageAlt:
@@ -613,12 +613,12 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     whyImageAlt:
       "A classic green sports car in a manor garage with driving gloves on the bonnet and the house beyond, an estate rather than a showroom.",
     differenceIntro:
-      "Most motor quotes are priced off a table and a registration, and never ask what the car actually is or how it is used. The House introduces you to a specialist who starts from the vehicle.",
+      "For a classic or prestige car, the value, use, storage, security and condition of the vehicle all matter to the cover.",
     readiness: [
       { h: "What it is", p: "Make, model, year and condition, valued as the car it is rather than a category." },
       { h: "The agreed value", p: "The figure settled up front, not argued after a total loss." },
       { h: "How it is used", p: "Weekend, show, limited-mileage or daily, each priced on the real risk." },
-      { h: "Where it is kept", p: "Garaging and security, which a comparison form flattens to a postcode." },
+      { h: "Where it is kept", p: "Garaging, storage and security, which can be important underwriting details." },
     ],
     differenceImage: "/insurance/motor-difference.webp",
     differenceImageAlt:
@@ -629,10 +629,10 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       filename: "/insurance/motor-why.webp",
     },
     whyDifferent: {
-      heading: "One estate, one renewal date",
+      heading: "Specialist cover, brought into the wider relationship",
       body: [
-        "This is a mature, competitive niche, and the honest reason to arrange a prestige or classic vehicle through the House is not price. It is that the vehicle sits on the same renewal date as the home, with one specialist across the whole estate.",
-        "Agreed value is the mechanism that matters: the figure the vehicle is insured for is settled up front, not argued after a loss.",
+        "Classic and prestige motor is a specialist market in its own right. Through Provenance, the vehicle can also sit within the same broker relationship as the home and other private-client assets where appropriate.",
+        "Agreed value can be especially useful for vehicles whose worth is not well represented by a general market-value settlement.",
       ],
     },
     detail: {
@@ -640,7 +640,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       points: [
         { h: "The range", p: "Classic, collections, family fleet, supercar and hypercar, and 4x4, typically for vehicles from £50,000 upward." },
         { h: "Agreed value", p: "An agreed value is set at inception, so a total loss pays the figure agreed rather than a disputed market value." },
-        { h: "One renewal date", p: "The vehicle joins the home and the wider estate on a single renewal, which is the whole point of arranging it here." },
+        { h: "One renewal date", p: "Where the wider arrangement allows it, motor and household cover can be coordinated around the same renewal period." },
       ],
     },
     placed: {
@@ -658,11 +658,11 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     title: "Boat, yacht & aviation",
     metaTitle: "Boat, yacht and aviation insurance",
     metaDescription:
-      "Cover for boats, yachts and aircraft, from a family boat to complex Lloyd's placements, arranged alongside the home on one relationship. Introduced by the House, arranged by Provenance.",
+      "Cover for boats, yachts and aircraft, from a family boat to complex Lloyd's placements, arranged alongside the wider estate. Introduced by the House, arranged by Provenance.",
     hero: {
       eyebrow: "Specialist assets",
-      heading: "The boat, the yacht, the aircraft, on the same estate.",
-      lede: "Marine and aviation risks sit outside a household policy and are underwritten by specialist markets. The House introduces you to one, so the boat or aircraft is arranged alongside the home rather than managed apart.",
+      heading: "Marine and aviation cover, arranged alongside the wider estate.",
+      lede: "Boats, yachts and aircraft are insured through specialist markets with their own requirements around value, use, storage, surveys and who operates them. Provenance can arrange that cover alongside a private-client relationship.",
     },
     image: "/insurance/boat-yacht-aviation.webp",
     imageAlt: "A classic yacht's brass and teak detail, an asset arranged alongside the home on one policy.",
@@ -676,14 +676,14 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       filename: "/insurance/boat-yacht-aviation-why.webp",
     },
     whyDifferent: {
-      heading: "Why marine and aviation are their own world",
+      heading: "Specialist risks, specialist markets",
       body: [
-        "A boat, a yacht or an aircraft is not a possession a home insurer covers. Each is underwritten by specialist marine and aviation markets, on its own terms, with its own surveys, moorings, usage and crew considerations.",
-        "The reason to arrange it through the House is not price. It is that the asset sits within one relationship, on one renewal date, with the home and the rest of the estate, rather than as a separate policy nobody joins up.",
+        "Marine and aviation insurance sits outside ordinary household cover. The vessel or aircraft is assessed on its own value, use, location, surveys and operating arrangements.",
+        "The benefit of arranging it through the same broker is that the asset can sit alongside the home, vehicles and collections rather than being managed in isolation.",
       ],
     },
     differenceIntro:
-      "A household policy stops at the water's edge and the runway. The House introduces you to a specialist who prices the vessel or aircraft on what it is and how it is used.",
+      "Start with the vessel or aircraft itself, how it is used, where it is kept and who operates it.",
     readiness: [
       { h: "What it is", p: "The make, length or type, and value, surveyed rather than estimated." },
       { h: "How it's used", p: "Cruising ground, racing, charter or private flying, each a different risk." },
@@ -695,12 +695,12 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       points: [
         { h: "Boats and yachts", p: "From a family motorboat or sailing yacht to a bluewater cruiser, on agreed value." },
         { h: "Aviation", p: "Private aircraft and helicopters, through the specialist and Lloyd's markets." },
-        { h: "On one estate", p: "Arranged alongside the home, cars and collections on a single renewal date." },
+        { h: "Alongside the wider estate", p: "Arranged alongside the home, cars and collections on a single renewal date." },
       ],
     },
     placed: {
       heading: "What Provenance can place",
-      body: "Provenance works with the specialist marine and aviation markets, from the standard market through to complex Lloyd's of London placements, and can consolidate the vessel or aircraft with the household policy. The House introduces you; Provenance arranges and administers the cover.",
+      body: "Provenance works with specialist marine and aviation markets, including Lloyd’s of London where appropriate, and can coordinate the cover with a wider private-client arrangement. The House makes the introduction; Provenance arranges and administers the cover.",
     },
     crossLinks: [{ label: "Private client insurance", href: "/insurance/private-client" }],
     enquiryType: "boat-yacht-aviation",
@@ -713,8 +713,8 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       "Cover for when the boiler or central heating stops, with annual and monthly options. Introduced by the House, arranged by a regulated partner.",
     hero: {
       eyebrow: "Home cover",
-      heading: "When the heating stops, the cover should already be in place.",
-      lede: "A boiler that fails in the cold is one of the few home problems that cannot wait. Cover for the repair, and for the annual service that prevents most failures, arranged through a regulated partner.",
+      heading: "Cover for the boiler and central heating when something goes wrong.",
+      lede: "Boiler and central-heating cover can help with eligible repair costs when the system breaks down, with annual or monthly options depending on the plan.",
     },
     image: "/insurance/boiler-cover.webp",
     imageAlt:
@@ -734,7 +734,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       filename: "/insurance/boiler-why.webp",
     },
     differenceIntro:
-      "Most cover is sold on price alone and never asks about the system itself. What matters is the boiler and how it has been looked after.",
+      "The useful details are the age of the boiler, its service history, the parts of the heating system included and the limits of the plan.",
     readiness: [
       { h: "The boiler's age", p: "How old the system is, and whether it is still economically worth repairing." },
       { h: "The service history", p: "Whether it has been serviced, which keeps a system insurable and the terms sensible." },
@@ -742,18 +742,18 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       { h: "Controls and heating", p: "The controls and central heating, not the boiler in isolation." },
     ],
     whyDifferent: {
-      heading: "What boiler cover actually covers",
+      heading: "What to look for in boiler cover",
       body: [
-        "Boiler and central-heating cover pays for the engineer, the parts and the labour when the system fails, and most plans include an annual service that catches the faults that would otherwise become a mid-winter breakdown.",
-        "The detail that matters is the boiler's age and service history: a maintained record is what keeps a system insurable and the terms sensible.",
+        "Boiler and central-heating plans can cover eligible engineer visits, parts and labour when the system breaks down. Some plans also include an annual service.",
+        "Age, service history, existing faults and the condition of the system can affect what a plan will accept and what it will pay for.",
       ],
     },
     detail: {
-      title: "The options, in plain terms",
+      title: "The cover options",
       points: [
         { h: "Boiler and controls", p: "Cover for the boiler, the controls and the central heating, with the annual service usually included." },
         { h: "Annual or monthly", p: "Pay yearly or spread it monthly. The House introduces you; the plan is arranged and administered by the partner." },
-        { h: "Service history helps", p: "A documented service record keeps cover straightforward, so it is worth keeping the paperwork to hand." },
+        { h: "Service history helps", p: "A documented service history can help establish the condition and maintenance of the system, so keep the records to hand." },
       ],
     },
     placed: {
@@ -764,11 +764,11 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     limitations: {
       heading: "What boiler cover does not include",
       intro:
-        "Boiler and heating cover is straightforward, and so are its edges. These are the usual limits; the plan terms govern.",
+        "Boiler and heating cover has limits and exclusions. These are common areas to check, but the plan terms govern the cover.",
       points: [
         { h: "Old or unserviceable systems", p: "Very old boilers, or systems that cannot be economically repaired, are often excluded or capped. Age and service history decide what a plan will take on." },
         { h: "Pre-existing faults and no maintenance", p: "A fault that already exists when cover starts, and breakdowns caused by a lack of servicing, are not covered." },
-        { h: "Sludge, scale and parts availability", p: "Damage from system sludge or scale, and delays where obsolete parts cannot be sourced, sit outside a standard plan." },
+        { h: "Sludge, scale and parts availability", p: "System sludge, scale and obsolete parts can affect what a plan will pay for or whether a repair is possible." },
         { h: "Not advice", p: "The House introduces you to a regulated partner and does not advise on cover. Limits and exclusions are set out in the plan documents." },
       ],
       note: "The plan terms and exclusions come from the partner before you commit.",
@@ -783,8 +783,8 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       "Cover for the household appliances you rely on, a single item or the whole kitchen, from washing machines to ovens. Introduced by the House, arranged by a regulated partner.",
     hero: {
       eyebrow: "Home cover",
-      heading: "The appliances a home runs on, covered before they fail.",
-      lede: "A washing machine, an oven, a fridge-freezer: the everyday machines whose failure is an expensive surprise. Cover for repair or replacement, on a single item or across the home.",
+      heading: "Cover for the appliances a household relies on.",
+      lede: "Cover for eligible repair or replacement when a household appliance fails outside its manufacturer warranty, from a single appliance to several across the home.",
     },
     image: "/insurance/appliance-cover.webp",
     imageAlt:
@@ -804,18 +804,18 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       filename: "/insurance/appliance-why.webp",
     },
     differenceIntro:
-      "Most cover is sold per box with the small print unread. What matters is which appliances, how old they are, and what they would cost to replace.",
+      "Start with the appliances themselves, their age, warranty status and the basis on which a plan repairs or replaces them.",
     readiness: [
       { h: "Which appliances", p: "A single valued machine, or the whole kitchen and utility room together." },
       { h: "Age and warranty", p: "Whether each is in or out of its manufacturer warranty." },
       { h: "Repair or replace", p: "Repair where sensible, replacement where a machine cannot be economically fixed." },
-      { h: "The replacement cost", p: "What it would cost to put back, not what you paid." },
+      { h: "The replacement cost", p: "The amount the plan will pay towards repair or replacement, which may differ from the original purchase price." },
     ],
     whyDifferent: {
-      heading: "Single item or the whole kitchen",
+      heading: "One appliance or several",
       body: [
-        "Appliance cover pays for repair or replacement when a machine fails outside its manufacturer warranty. It can sit on a single valued item or across every appliance in the home.",
-        "Cover is simplest when you know what you own, when it was bought, and what it would cost to replace, so it is worth keeping the receipts and model details to hand.",
+        "Appliance cover can apply to a single item or several household appliances, depending on the plan. It is designed for eligible mechanical or electrical failure outside the manufacturer warranty.",
+        "Model details, purchase dates and warranty information make it easier to understand what is already protected and what additional cover may be useful.",
       ],
     },
     detail: {
@@ -823,7 +823,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       points: [
         { h: "One item or many", p: "Cover a single high-value appliance, or bundle the kitchen and utility room together." },
         { h: "Repair or replace", p: "Plans cover repair, and replacement where a machine cannot be economically fixed." },
-        { h: "Kept records help", p: "Purchase dates and values make cover simpler, so it is worth keeping receipts to hand." },
+        { h: "Keep the details to hand", p: "Receipts, model numbers and purchase dates make it easier to check warranties and understand the cover in place." },
       ],
     },
     placed: {
@@ -1034,11 +1034,11 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
     title: "Home insurance",
     metaTitle: "Home insurance",
     metaDescription:
-      "Straightforward buildings and contents cover, introduced by the House and arranged by Provenance. Period and high-value homes are routed to the advised service.",
+      "Buildings and contents insurance introduced by the House and arranged by Provenance, with specialist routes available for period, listed and high-value homes.",
     hero: {
       eyebrow: "Everyday cover",
-      heading: "Home insurance, for a standard home.",
-      lede: "For a straightforward house or flat, cover built around what the home actually is. The House introduces you; Provenance arranges the policy.",
+      heading: "Home insurance that starts with the home itself.",
+      lede: "Buildings and contents cover for houses and flats, arranged around the property and what you want to protect. The House makes the introduction and Provenance arranges the policy.",
     },
     image: "/insurance/ev-home.webp",
     imageAlt: "A well-kept everyday home, the kind covered by straightforward buildings and contents insurance.",
@@ -1054,45 +1054,45 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
       filename: "/insurance/home-why.webp",
     },
     whyDifferent: {
-      heading: "Cover built on the home, not a postcode",
+      heading: "Start with the home itself",
       body: [
-        "Most home cover is priced from a postcode and a short set of tick-boxes, then sold on price. It works, until a claim finds the gap between what was assumed and what is true.",
-        "A short conversation sets the buildings and contents at the right level, and flags the add-ons worth having before they are needed rather than after.",
+        "The right home cover depends on the building, the contents, the rebuild figure and how the property is used, not simply the address.",
+        "Provenance can arrange the buildings, contents and optional cover that fit the property, and route more specialist homes to its advised service where needed.",
       ],
     },
     differenceIntro:
-      "Even a standard home is priced by most insurers from a postcode and a few boxes. A short conversation catches the things a form skips.",
+      "The useful questions are practical: what needs covering, what the home would cost to rebuild, which belongings need separate limits and how the property is used.",
     readiness: [
       { h: "Buildings or contents", p: "What needs covering: the structure, what is inside, or both." },
       { h: "The rebuild figure", p: "What it would cost to rebuild, which is not the market value." },
-      { h: "The everyday risks", p: "Escape of water, accidental damage and the add-ons worth having." },
-      { h: "How it is lived in", p: "How the home is used day to day, which quietly changes the cover." },
+      { h: "The everyday risks", p: "Escape of water, accidental damage and any optional cover you may want to add." },
+      { h: "How it is lived in", p: "How the property is used day to day can affect the cover and terms." },
     ],
     detail: {
-      title: "What is covered",
+      title: "What can be covered",
       points: [
         { h: "Buildings", p: "Cover for the structure of the home itself." },
-        { h: "Contents", p: "Cover for what is inside, set at a level that fits." },
-        { h: "Sensible add-ons", p: "Accidental damage and similar, added only where they earn their place." },
+        { h: "Contents", p: "Cover for belongings in the home, set at an appropriate overall level." },
+        { h: "Optional cover", p: "Additional cover such as accidental damage, where it is wanted and available." },
       ],
     },
     placed: {
       heading: "What Provenance can place",
-      body: "Provenance arranges straightforward buildings and contents cover, and can route a period, listed or high-value home to the advised service where that fits better. The House introduces you; Provenance arranges and administers the cover.",
+      body: "Provenance arranges buildings and contents cover and can route period, listed or high-value homes to its advised Private Client service where that is more appropriate. The House makes the introduction.",
     },
     limitations: {
       heading: "What home cover does not include",
       intro:
-        "Even straightforward home cover has limits and exclusions. These are the usual ones; the policy wording governs.",
+        "Home insurance has limits and exclusions. These are common areas to check, but the policy wording is what governs the cover.",
       points: [
-        { h: "Wear, tear and gradual damage", p: "Ordinary ageing, damp, and slow leaks that build up over time are maintenance matters rather than insured events." },
-        { h: "Under-insurance", p: "Set the rebuild figure or contents value too low and a claim can be reduced in proportion. The rebuild figure is not the market value." },
-        { h: "Single-item and valuables limits", p: "High-value items above the single-article limit need listing separately, and some are only covered away from home if specified." },
+        { h: "Wear, tear and gradual damage", p: "Ageing, damp and leaks that develop gradually are generally treated as maintenance issues rather than insured events." },
+        { h: "Under-insurance", p: "If the rebuild figure or contents value is too low, a claim may be reduced. Rebuild cost is different from market value." },
+        { h: "Single-item and valuables limits", p: "Higher-value belongings may need to be listed separately, and cover away from the home may need to be added specifically." },
         { h: "Not advice", p: "The House introduces you to Provenance and does not advise on cover. Limits and exclusions are set out in the policy documents." },
       ],
       note: "The policy wording and exclusions come from Provenance before you commit.",
     },
-    crossLinks: [{ label: "A period or listed home? Speak to a specialist", href: "/insurance/private-client" }],
+    crossLinks: [{ label: "Period, listed or high-value home? Speak to a specialist", href: "/insurance/private-client" }],
     relatedCovers: EVERYDAY_COVERS_GRID,
     enquiryType: "home",
   },
@@ -1104,8 +1104,8 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
       "Everyday motor cover for car, van and motorbike, plus temporary cover from one hour to 28 days. Introduced by the House, arranged by Provenance.",
     hero: {
       eyebrow: "Everyday cover",
-      heading: "Car, van and motorbike.",
-      lede: "Everyday motor cover in one place, including the temporary cover that is genuinely useful and rarely marketed.",
+      heading: "Cover for the car, van or motorbike you rely on.",
+      lede: "Motor insurance for cars, vans and motorbikes, including temporary cover where you only need it for a short period.",
     },
     image: "/insurance/ev-motor.webp",
     imageAlt: "A car and van at a home, standing for everyday motor cover including temporary use.",
@@ -1121,24 +1121,24 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
       filename: "/insurance/motor-everyday-why.webp",
     },
     whyDifferent: {
-      heading: "Cover that fits how you actually drive",
+      heading: "Cover that reflects how the vehicle is used",
       body: [
-        "A comparison engine prices the vehicle and the postcode. It rarely asks how the car is used, who else drives it, or whether a short temporary policy would do the job better.",
-        "Everyday motor is quick to arrange, and a short conversation keeps the level of cover and the extras honest.",
+        "The vehicle, the drivers, where it is kept and how it is used all affect the cover. Those details matter more than a headline price on its own.",
+        "Provenance can arrange everyday motor cover and temporary options, with specialist routes available for classic, prestige and collection vehicles.",
       ],
     },
     differenceIntro:
-      "Most motor quotes are priced off a table and a registration. A short conversation makes sure the cover fits how the vehicle is actually used.",
+      "The useful questions are about the vehicle, the drivers, the class of use, where it is kept and whether the cover is needed for a year or only a short period.",
     readiness: [
-      { h: "Car, van or bike", p: "The vehicle and the class of use, priced on the real risk." },
+      { h: "Car, van or bike", p: "The vehicle and its class of use, which both affect the risk and premium." },
       { h: "Level of cover", p: "Third-party, third-party fire and theft, or comprehensive." },
       { h: "Temporary needs", p: "Cover from one hour to 28 days, for borrowing or lending." },
-      { h: "Extras worth having", p: "Breakdown, legal and key cover, added only where useful." },
+      { h: "Optional extras", p: "Breakdown, legal and key cover, where available and useful to you." },
     ],
     detail: {
       title: "What can be arranged",
       points: [
-        { h: "Car", p: "Standard private car cover." },
+        { h: "Car", p: "Private car insurance for everyday motoring." },
         { h: "Van and motorbike", p: "Private and light-commercial van use, and bikes and scooters." },
         { h: "Temporary cover", p: "From one hour to 28 days, for borrowing, lending or a short need." },
       ],
@@ -1150,11 +1150,11 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
     limitations: {
       heading: "What motor cover does not include",
       intro:
-        "Everyday motor cover is quick to arrange, and its limits are the standard ones. The policy wording governs.",
+        "Motor policies have clear limits and conditions. These are common areas to check, but the policy wording is what governs the cover.",
       points: [
         { h: "Wear and mechanical breakdown", p: "General wear, servicing and mechanical breakdown are not part of a motor policy unless breakdown cover is added separately." },
-        { h: "The wrong class of use", p: "Using a car for business or hire when it is insured for social use, or the wrong named drivers, can leave a claim unpaid." },
-        { h: "Excess and modifications", p: "The excess applies to each claim, and undeclared modifications can affect cover. Both are worth confirming up front." },
+        { h: "The wrong class of use", p: "The declared class of use and named drivers need to match how the vehicle is actually used. A mismatch can affect a claim." },
+        { h: "Excess and modifications", p: "An excess may apply to a claim, and modifications need to be declared where required by the insurer." },
         { h: "Not advice", p: "The House introduces you to Provenance and does not advise on cover. Limits and exclusions are set out in the policy documents." },
       ],
       note: "The policy wording and exclusions come from Provenance before you commit.",
@@ -1171,8 +1171,8 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
       "Pet cover, and single-trip or annual travel including specialist medical. Introduced by the House, arranged by Provenance.",
     hero: {
       eyebrow: "Everyday cover",
-      heading: "Pet and travel.",
-      lede: "Two low-fuss covers in one place, both built around the animal and the trip rather than a tick-box.",
+      heading: "Cover for the pet at home and the trips away.",
+      lede: "Pet insurance for cats and dogs, alongside single-trip, annual multi-trip and specialist travel cover arranged through Provenance.",
     },
     image: "/insurance/ev-pet.webp",
     imageAlt: "A pet's collar, leash and travel things on a table, standing for everyday pet and travel cover.",
@@ -1188,24 +1188,24 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
       filename: "/insurance/pet-why.webp",
     },
     whyDifferent: {
-      heading: "Cover shaped by the animal and the trip",
+      heading: "The details matter before you choose",
       body: [
-        "Pet and travel are the covers most often bought on price and regretted at claim time, usually over an excluded condition or a missing declaration.",
-        "A short conversation gets the vet-bill level and the travel declarations right, so the cover holds when it is needed.",
+        "For pet cover, age, breed, previous conditions and the level of veterinary fees can matter. For travel, the destination, length of trip and medical declarations can change what is available.",
+        "Getting those details right at the outset makes it easier to compare the cover on its terms, rather than discovering an exclusion only when you need to claim.",
       ],
     },
     differenceIntro:
-      "Most pet and travel cover is bought in a rush and the exclusions read later. A short conversation makes sure it fits the animal and the trip.",
+      "Start with the animal or the trip, then look closely at the limits, excesses and exclusions that apply to the cover.",
     readiness: [
-      { h: "The animal", p: "The pet, its age and breed, and the vet-bill cover that suits." },
-      { h: "Existing conditions", p: "Whether cover is needed where a condition already exists." },
+      { h: "The animal", p: "The pet, its age and breed, and the level of veterinary-fee cover required." },
+      { h: "Existing conditions", p: "Any previous or existing conditions that may affect the cover available." },
       { h: "One trip or many", p: "Single-trip, or annual multi-trip for several journeys a year." },
       { h: "Specialist medical", p: "Travel cover where existing medical conditions need declaring." },
     ],
     detail: {
       title: "What can be arranged",
       points: [
-        { h: "Pet", p: "Cover for vet bills and the usual pet risks, for cats and dogs." },
+        { h: "Pet", p: "Cover for eligible veterinary costs and other insured pet risks, subject to the policy terms." },
         { h: "Travel", p: "Single-trip for one holiday, or annual multi-trip for several a year." },
         { h: "Specialist medical travel", p: "Where existing medical conditions need covering." },
       ],
@@ -1217,11 +1217,11 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
     limitations: {
       heading: "What pet and travel cover does not include",
       intro:
-        "Pet and travel are the covers most often regretted at claim time, usually over an exclusion read too late. These are the usual ones; the policy wording governs.",
+        "Pet and travel policies can differ significantly in their limits and exclusions. These are common areas to check, but the policy wording governs the cover.",
       points: [
-        { h: "Pre-existing conditions", p: "An illness or injury a pet already has, or has had, is typically excluded unless a specialist policy specifically takes it on." },
-        { h: "Undeclared medical history (travel)", p: "Travel claims can fail where an existing medical condition was not declared. Specialist medical travel cover exists for exactly this." },
-        { h: "Time limits and excesses", p: "Vet-fee cover can be capped per condition or per year, and both pet and travel policies carry an excess. Routine, preventive and cosmetic treatment is excluded." },
+        { h: "Pre-existing conditions", p: "Existing or previous conditions may be excluded unless the policy specifically accepts them." },
+        { h: "Undeclared medical history (travel)", p: "Travel cover can be affected if an existing medical condition is not declared where the policy requires it. Specialist medical travel cover may be available." },
+        { h: "Time limits and excesses", p: "Veterinary-fee cover can have limits by condition or policy year, and pet and travel policies may carry an excess. Routine and preventive treatment is generally outside pet insurance." },
         { h: "Not advice", p: "The House introduces you to Provenance and does not advise on cover. Limits and exclusions are set out in the policy documents." },
       ],
       note: "The policy wording and exclusions come from Provenance before you commit.",
@@ -1237,8 +1237,8 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
       "Roadside, recovery and home-start breakdown cover, and cover for road, mountain, electric and high-value bicycles. Introduced by the House, arranged by Provenance.",
     hero: {
       eyebrow: "Everyday cover",
-      heading: "Breakdown and bicycle.",
-      lede: "The smaller everyday covers, arranged simply and set at the level that fits how you travel.",
+      heading: "Breakdown and bicycle cover for everyday journeys.",
+      lede: "Roadside and recovery cover for the vehicle, and insurance for road, mountain, electric and higher-value bicycles.",
     },
     image: "/insurance/ev-breakdown.webp",
     imageAlt: "A bicycle kept ready by the door, standing for breakdown and bicycle cover.",
@@ -1254,26 +1254,26 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
       filename: "/insurance/breakdown-why.webp",
     },
     whyDifferent: {
-      heading: "Small covers, set at the right level",
+      heading: "Choose the level that matches how you travel",
       body: [
-        "Breakdown and bicycle cover are cheap enough that most people pick a default and move on, then find the level does not match how they actually travel.",
-        "A short conversation matches the breakdown tier and the bicycle value to real use, so the cover is neither thin nor wasteful.",
+        "Breakdown cover can range from roadside assistance to home start and national recovery. Bicycle cover varies by value, use, security requirements and whether the bike is away from home.",
+        "The useful comparison is not just price, but whether the level of cover matches the journeys you make and the bicycle you own.",
       ],
     },
     differenceIntro:
-      "The smaller covers are the easiest to buy badly. A short conversation makes sure the level fits how you travel.",
+      "Start with where you travel, the level of roadside help you want and the type and value of bicycle that needs covering.",
     readiness: [
-      { h: "Level of breakdown", p: "Roadside, recovery and home start, matched to how far you go." },
-      { h: "Where you break down", p: "At home, roadside or national recovery, priced accordingly." },
-      { h: "The bike", p: "Road, mountain, electric or high-value, each a different figure." },
-      { h: "Away from home", p: "Whether the bike is covered away from home and in transit." },
+      { h: "Level of breakdown", p: "Roadside assistance, recovery and home start, depending on the level selected." },
+      { h: "Where you break down", p: "Whether you want roadside help only, recovery further afield or assistance at home." },
+      { h: "The bike", p: "Road, mountain, electric or higher-value, with the sum insured set accordingly." },
+      { h: "Away from home", p: "Whether the bicycle needs cover away from home, while travelling or in storage." },
     ],
     detail: {
       title: "What can be arranged",
       points: [
         { h: "Breakdown", p: "Roadside assistance, recovery and home start." },
         { h: "Bicycle", p: "Road, mountain, electric and high-value bikes." },
-        { h: "The right level", p: "Matched to how far and how often you travel, rather than a default." },
+        { h: "Match the level to the journey", p: "Choose the breakdown level and bicycle cover around how and where you actually travel." },
       ],
     },
     placed: {
@@ -1283,11 +1283,11 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
     limitations: {
       heading: "What breakdown and bicycle cover does not include",
       intro:
-        "The smaller covers are the easiest to buy badly, and their limits are where that shows. The policy wording governs.",
+        "Breakdown and bicycle cover both depend on the level selected. These are common areas to check, but the policy wording governs.",
       points: [
-        { h: "The level you chose", p: "Roadside-only cover does not include recovery or home start, and callouts beyond the policy limit are charged. The tier needs to match how far you travel." },
+        { h: "The level you chose", p: "Roadside-only cover does not include every recovery or home-start benefit. The level selected determines what help is available." },
         { h: "Pre-existing faults", p: "A known fault, or a vehicle already broken down when cover starts, is not covered." },
-        { h: "Bicycle limits and security", p: "Bike cover is capped to the sum insured and often requires an approved lock. Theft when a bike is left unsecured, and general wear, are excluded." },
+        { h: "Bicycle limits and security", p: "Bicycle cover is limited to the sum insured and may require an approved lock or other security conditions. Wear and unsecured theft are commonly excluded." },
         { h: "Not advice", p: "The House introduces you to Provenance and does not advise on cover. Limits and exclusions are set out in the policy documents." },
       ],
       note: "The policy wording and exclusions come from Provenance before you commit.",
@@ -1311,8 +1311,8 @@ export const EVERYDAY_SPECIALIST_SLUGS = EVERYDAY_SPECIALIST_PAGES.map((p) => p.
  */
 const BUSINESS_ENQUIRY = {
   eyebrow: "Request a review",
-  heading: "A free review, not a hard sell.",
-  body: "Leave your details and a specialist will call to arrange a free, no-obligation review of the cover you already hold. We ask only what we need to make the introduction; the detail belongs on your first call with Provenance.",
+  heading: "Ask for a review of your existing cover.",
+  body: "Leave your details and a Provenance specialist will contact you about a no-obligation review of the insurance you already hold. The House only collects what it needs to make the introduction.",
   submitLabel: "Request a review",
   withCompany: true,
 } as const;
@@ -1323,11 +1323,11 @@ export const BUSINESS_SPECIALIST_PAGES: SpecialistPage[] = [
     title: "Business insurance",
     metaTitle: "Business insurance broker introductions",
     metaDescription:
-      "Warm B2B insurance introductions for the House's contractor, supplier and member network. A free silent review of existing cover. Introduced by the House, arranged by Provenance.",
+      "Business insurance introduced by the House and arranged by Provenance, with a no-obligation review of existing cover for businesses in the House network.",
     hero: {
       eyebrow: "Business",
-      heading: "The cover a working business needs, without the aggregator guesswork.",
-      lede: "Brokers hold most of the UK commercial market for a reason: business risk does not fit a comparison form. These are introductions through a network the House already knows and trusts.",
+      heading: "Business insurance built around the business you actually run.",
+      lede: "Commercial insurance needs to reflect the work, the people, the premises and the risks behind the business. The House makes the introduction and Provenance reviews and arranges the cover.",
     },
     image: "/insurance/cat-business.webp",
     imageAlt: "The trades and studios in the House's own network, covered for commercial, liability and professional risk.",
@@ -1345,24 +1345,24 @@ export const BUSINESS_SPECIALIST_PAGES: SpecialistPage[] = [
     whyDifferent: {
       heading: "Who this is for",
       body: [
-        "The House's contractor and supplier network, members running their own businesses, and the House's own operating companies.",
-        "If you already work with the House, you are a known quantity, which is the strongest starting point a specialist broker can have.",
+        "Businesses, contractors, suppliers and members of the House network looking for a detailed review of their commercial insurance.",
+        "The starting point is the business as it operates today, including the cover already in place and any gaps or overlaps worth addressing.",
       ],
     },
     differenceIntro:
-      "Business risk is the one thing a comparison form genuinely cannot price. A broker reads the actual exposure of the actual business.",
+      "Commercial cover should follow the real activities and exposures of the business, rather than relying on a broad category alone.",
     readiness: [
-      { h: "What the business does", p: "The real activities, sites and headcount, not a category code." },
-      { h: "The liabilities", p: "Public, employers' and product liability, sized to the work." },
-      { h: "The moving parts", p: "Tools, stock, fleet, premises and cyber, wherever the exposure sits." },
-      { h: "What is already held", p: "The cover in place today, reviewed for gaps and overlaps." },
+      { h: "What the business does", p: "The activities, sites, people and customers that shape the risk." },
+      { h: "The liabilities", p: "Public, employers’ and product liability, set at levels appropriate to the work." },
+      { h: "The moving parts", p: "Tools, stock, vehicles, premises and cyber exposures, where relevant." },
+      { h: "What is already held", p: "The policies already in place, reviewed for gaps, duplication and suitability." },
     ],
     detail: {
-      title: "A free review of the cover you hold",
+      title: "A review of the cover you already hold",
       points: [
-        { h: "A free review of what you hold", p: "Provenance will review your existing arrangements and identify gaps, underinsurance and where the premium can be benchmarked. No obligation, and nothing changes unless you decide it should." },
-        { h: "Built for relationships, not rate", p: "The UK commercial market is soft, so this is built for a lasting relationship rather than a one-off saving. That is the honest position." },
-        { h: "One conversation across the estate", p: "Where a member's home and business both need cover, they can sit with one adviser rather than two." },
+        { h: "Review the existing cover", p: "Provenance can review the current arrangements for gaps, under-insurance, unnecessary cover and the level of premium. Nothing changes unless you choose to make a change." },
+        { h: "Built for the business, not a category", p: "The review starts with how the business operates and the risks it carries, then matches those needs to suitable commercial cover." },
+        { h: "Home and business, where relevant", p: "Where both personal and business risks need attention, Provenance can look at them within the same broker relationship." },
       ],
     },
     placed: {
@@ -1383,11 +1383,11 @@ export const BUSINESS_SPECIALIST_PAGES: SpecialistPage[] = [
     title: "Trades and contractors",
     metaTitle: "Tradesman and contractor insurance",
     metaDescription:
-      "Public and employers' liability, tools, contract works and professional indemnity for trades and contractors. The House's own supply chain. Introduced by the House, arranged by Provenance.",
+      "Insurance for trades and contractors, including liability, tools, contract works and professional indemnity where relevant. Introduced by the House and arranged by Provenance.",
     hero: {
       eyebrow: "Business",
-      heading: "Being properly insured and being House Approved are the same conversation.",
-      lede: "Construction is the largest single sector of UK small business, and these are the trades the House already works with, which makes the introduction a natural one.",
+      heading: "Insurance for the work, the tools and the liability that comes with the job.",
+      lede: "Trades and contractors can need several kinds of cover working together. The House introduces you to Provenance to review the work you do and arrange the cover around it.",
     },
     image: "/insurance/trades-hero.webp",
     imageAlt: "A House Approved trade at work, the kind of professional the House introduces for commercial cover.",
@@ -1405,23 +1405,23 @@ export const BUSINESS_SPECIALIST_PAGES: SpecialistPage[] = [
     whyDifferent: {
       heading: "What a trade actually needs",
       body: [
-        "Public and employers' liability, tools cover, contract works, and professional indemnity where design is part of the job. A specialist puts the right combination together rather than a one-size policy.",
-        "For anyone on, or applying to, the House Approved list, this is the same standard-and-cover conversation.",
+        "Public and employers' liability, tools cover, contract works, and professional indemnity where design is part of the job. A specialist can put the relevant covers together around the work the business actually does.",
+        "For House Approved professionals, insurance is part of the evidence required to show that the business is set up to take on the work responsibly.",
       ],
     },
     differenceIntro:
-      "A trade's risk changes with every job, site and hire. A comparison form prices a category; a specialist prices the work.",
+      "The right cover depends on the trade, the jobs undertaken, the sites worked on, the people employed and whether any design responsibility sits with the business.",
     readiness: [
       { h: "The work", p: "The trades carried out, and the sites and clients they are done for." },
       { h: "Liability limits", p: "Public and employers' liability set against real jobs and headcount." },
-      { h: "Tools and works", p: "The tools that earn the living, and the contract works while live." },
-      { h: "Design exposure", p: "Professional indemnity where any design or specification is involved." },
+      { h: "Tools and works", p: "Tools and equipment, plus contract works where the business is responsible for them." },
+      { h: "Design exposure", p: "Professional indemnity where the work includes design, specification or professional advice." },
     ],
     detail: {
       title: "The detail",
       points: [
-        { h: "Liability, sized to the work", p: "Public and employers' liability limits are set against the actual jobs, sites and headcount, not a default figure." },
-        { h: "Tools and contract works", p: "Cover for the tools that earn the living, and for the works themselves while a project is live." },
+        { h: "Liability, sized to the work", p: "Public and employers’ liability limits should reflect the jobs, sites and headcount of the business." },
+        { h: "Tools and contract works", p: "Cover can include tools and equipment, as well as contract works while a project is underway." },
         { h: "Indicative premiums", p: "Tradesperson cover typically runs around £360 to £540 a year. Figures are indicative and confirmed case by case, pending Provenance sign-off." },
       ],
     },
@@ -1446,8 +1446,8 @@ export const BUSINESS_SPECIALIST_PAGES: SpecialistPage[] = [
       "Professional indemnity for architects, designers, surveyors and consultants, with limits set against real exposure. Introduced by the House, arranged by Provenance.",
     hero: {
       eyebrow: "Business",
-      heading: "Cover for advice given, sized to the exposure that actually exists.",
-      lede: "Architects, designers, surveyors and consultants: exactly the professional network around a home-management business, and exactly where a standard limit is often the wrong one.",
+      heading: "Professional indemnity for the advice, design and expertise your clients rely on.",
+      lede: "For architects, designers, surveyors, consultants and other professionals whose advice or specifications can create liability after the work is complete.",
     },
     image: "/insurance/pi-hero.webp",
     imageAlt: "A professional's desk and drawings, the advice and specifications that carry lasting liability.",
@@ -1465,24 +1465,24 @@ export const BUSINESS_SPECIALIST_PAGES: SpecialistPage[] = [
     whyDifferent: {
       heading: "Who it is for",
       body: [
-        "The professions whose advice, drawings and specifications carry liability long after the job is done.",
-        "Provenance sets the limit against real exposure rather than a round number, which is where most policies are quietly wrong.",
+        "Professional indemnity is for businesses whose advice, design, specification or specialist service could lead to a claim if something goes wrong.",
+        "The level of cover should reflect the work, contracts, clients and potential exposure rather than an arbitrary round figure.",
       ],
     },
     differenceIntro:
-      "Professional indemnity is priced on advice and exposure, not a postcode. The right limit is a function of the work, never a round number.",
+      "The useful questions are about the professional service provided, the contracts accepted, the clients served and the financial exposure if an error leads to a claim.",
     readiness: [
       { h: "The advice given", p: "The drawings, specifications and consultancy the practice is liable for." },
-      { h: "The right limit", p: "Set against real exposure, contracts and clients, not a default figure." },
-      { h: "Design and construct", p: "Where designing and building overlap, and liability quietly grows." },
-      { h: "Claims-made cover", p: "Continuity across renewals, because gaps in cover bite later." },
+      { h: "The right limit", p: "Set against the work, contracts and clients, rather than a default figure." },
+      { h: "Design and construct", p: "Where design and construction overlap, responsibility needs to be understood clearly." },
+      { h: "Claims-made cover", p: "Professional indemnity is written on a claims-made basis, so continuity of cover matters." },
     ],
     detail: {
       title: "The detail",
       points: [
-        { h: "Limits against exposure", p: "How much cover is enough is a function of the work, the contracts and the clients, not a standard figure pulled from a table." },
-        { h: "The design-and-construct trap", p: "The overlap between designing and building catches architects out. A specialist reads where the liability actually sits." },
-        { h: "Renewal continuity", p: "Professional indemnity is claims-made, so continuity of cover matters. It is worth reviewing before, not at, renewal." },
+        { h: "Limits against exposure", p: "The right limit depends on the work, the contracts and the potential exposure if a claim is made." },
+        { h: "Where design and construction meet", p: "Where a business both designs and builds, a specialist can review how the professional liability is divided and what the policy needs to cover." },
+        { h: "Renewal continuity", p: "Because professional indemnity is claims-made, maintaining continuous cover can matter long after an individual job is finished." },
       ],
     },
     placed: {

@@ -9,20 +9,20 @@ import Link from "next/link";
 export function WhyHouseCover() {
   const pillars = [
     {
-      h: "A considered introduction",
-      p: "Not a comparison form. The House introduces you to a specialist who takes the time to understand the home before anything is arranged.",
+      h: "The right route from the start",
+      p: "The House makes the introduction to Provenance, helping you reach the personal, private-client or specialist route that fits what you need to insure.",
     },
     {
-      h: "One named specialist",
-      p: "One person who knows the file, from the first conversation to renewal. Not a call centre, and not a new name each time.",
+      h: "A named specialist",
+      p: "For broker-led cover, you have a point of contact who can understand the property, assets or business rather than starting again each time.",
     },
     {
       h: "Claims handled for you",
-      p: "Provenance handles the claim on your behalf, from first notification through to settlement, so you are not left to argue it alone.",
+      p: "Where Provenance handles the claim on your behalf, the same broker relationship can continue from first notification through to settlement.",
     },
     {
       h: "Profits to good causes",
-      p: "Cover is placed with markets in the Benefact group, which is charity-owned and gives its available profits to good causes, so business placed through it can support charitable causes at no extra cost to you.",
+      p: "Provenance is part of the Benefact group, which is charity-owned and gives its available profits to good causes.",
     },
   ];
   return (
@@ -32,7 +32,7 @@ export function WhyHouseCover() {
           Why House cover
         </p>
         <h2 className="mt-3 max-w-[24ch] font-display text-[clamp(27px,3.4vw,43px)] leading-[1.1] text-house-black">
-          What an introduction from the House is worth.
+          Why start with the House.
         </h2>
         <div className="mt-9 grid gap-x-10 gap-y-9 sm:grid-cols-2">
           {pillars.map((p) => (
@@ -53,7 +53,7 @@ export function WhyHouseCover() {
             href="/insurance/everyday"
             className="inline-flex w-fit items-center font-sans text-[14px] tracking-[0.16em] uppercase text-[color:var(--ins-ink)] no-underline underline-offset-2 hover:text-house-brown hover:underline"
           >
-            Or arrange everyday cover →
+            Or explore personal cover →
           </Link>
         </div>
       </div>

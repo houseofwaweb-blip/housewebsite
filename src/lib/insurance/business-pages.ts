@@ -32,31 +32,31 @@ export const BUSINESS_PAGES: BusinessPage[] = [
     title: "Business insurance",
     metaTitle: "Business insurance broker introductions",
     metaDescription:
-      "Warm B2B insurance introductions for the House's contractor, supplier and member network. A free silent review of existing cover. Introduced by the House, arranged by Provenance.",
+      "Business insurance introduced by the House and arranged by Provenance, with a no-obligation review of existing cover for businesses in the House network.",
     hero: {
       eyebrow: "Business",
-      heading: "The cover a working business needs, without the aggregator guesswork.",
-      lede: "Brokers hold most of the UK commercial market for a reason: business risk does not fit a comparison form. Introductions here are warm B2B, through a network the House already knows.",
+      heading: "Business insurance built around the business you actually run.",
+      lede: "Commercial insurance needs to reflect the work, the people, the premises and the risks behind the business. The House makes the introduction and Provenance reviews and arranges the cover.",
     },
     image: "/insurance/cat-business.webp",
     imageAlt:
       "The trades and studios in the House's own network, covered for commercial, liability and professional risk.",
     whoImage: "/insurance/house-record.webp",
     whoImageAlt:
-      "A leather ledger, brass sconce and a fountain pen on a sage surface, standing for the free silent review of the cover a working business already holds.",
+      "A leather ledger, brass sconce and fountain pen on a sage surface, representing a review of existing business insurance.",
     who: {
       heading: "Who this is for",
       body: [
-        "The House's contractor and supplier network, members running their own businesses, and the House's own operating companies.",
-        "If you already work with the House, you are a known quantity, which is the strongest starting point a specialist broker can have.",
+        "Businesses, contractors, suppliers and members of the House network looking for a detailed review of their commercial insurance.",
+        "The starting point is the business as it operates today, including the cover already in place and any gaps or overlaps worth addressing.",
       ],
     },
     detail: {
-      title: "The silent review",
+      title: "A review of the cover you already hold",
       points: [
-        { h: "A free review of what you hold", p: "Provenance will review your existing arrangements and identify gaps, underinsurance and where the premium can be benchmarked. No obligation, and nothing changes unless you decide it should." },
-        { h: "Built for relationships, not rate", p: "The UK commercial market is soft, so this is built for the long relationship and the cross-sell, not for a quick saving. That is the honest position." },
-        { h: "One conversation across the estate", p: "Where a member's home and business both need cover, they can sit with one adviser rather than two." },
+        { h: "Review the existing cover", p: "Provenance can review the current arrangements for gaps, under-insurance, unnecessary cover and the level of premium. Nothing changes unless you choose to make a change." },
+        { h: "Built for the business, not a category", p: "The review starts with how the business operates and the risks it carries, then matches those needs to suitable commercial cover." },
+        { h: "Home and business, where relevant", p: "Where both personal and business risks need attention, Provenance can look at them within the same broker relationship." },
       ],
     },
     placed: {
@@ -78,27 +78,27 @@ export const BUSINESS_PAGES: BusinessPage[] = [
       "Public and employers' liability, tools, contract works and professional indemnity for trades and contractors. The House's own supply chain. Introduced by the House, arranged by Provenance.",
     hero: {
       eyebrow: "Business",
-      heading: "Being properly insured and being House Approved are the same conversation.",
-      lede: "Construction is the largest single sector of UK small business, and it is the House's own supply chain, which makes it the warmest introduction route there is.",
+      heading: "Insurance for the work, the tools and the liability that comes with the job.",
+      lede: "Trades and contractors can need several kinds of cover working together. The House introduces you to Provenance to review the work you do and arrange the cover around it.",
     },
     image: "/insurance/interior-editorial.webp",
     imageAlt:
       "A sunlit period drawing room with a marble fireplace, gilt-framed pictures and armfuls of cut flowers, the kind of home a House Approved trade is trusted to work in.",
     whoImage: "/insurance/house-record.webp",
     whoImageAlt:
-      "A leather ledger and a fountain pen resting on a sage surface, standing for the liability, tools and contract-works cover a trade needs set down clearly.",
+      "A leather ledger and fountain pen on a sage surface, representing the insurance a trade or contracting business may need.",
     who: {
       heading: "What a trade actually needs",
       body: [
-        "Public and employers' liability, tools cover, contract works, and professional indemnity where design is part of the job. A specialist puts the right combination together rather than a one-size policy.",
-        "For anyone on, or applying to, the House Approved list, this is the same standard-and-cover conversation.",
+        "Public and employers' liability, tools cover, contract works, and professional indemnity where design is part of the job. A specialist can put the relevant covers together around the work the business actually does.",
+        "For House Approved professionals, insurance is part of the evidence required to show that the business is set up to take on the work responsibly.",
       ],
     },
     detail: {
       title: "The detail",
       points: [
-        { h: "Liability, sized to the work", p: "Public and employers' liability limits are set against the actual jobs, sites and headcount, not a default figure." },
-        { h: "Tools and contract works", p: "Cover for the tools that earn the living, and for the works themselves while a project is live." },
+        { h: "Liability, sized to the work", p: "Public and employers’ liability limits should reflect the jobs, sites and headcount of the business." },
+        { h: "Tools and contract works", p: "Cover can include tools and equipment, as well as contract works while a project is underway." },
         { h: "Indicative premiums", p: "Tradesperson cover typically runs around £360 to £540 a year. Figures are indicative and confirmed case by case, pending Provenance sign-off." },
       ],
     },
@@ -116,28 +116,28 @@ export const BUSINESS_PAGES: BusinessPage[] = [
       "Professional indemnity for architects, designers, surveyors and consultants, with limits set against real exposure. Introduced by the House, arranged by Provenance.",
     hero: {
       eyebrow: "Business",
-      heading: "Cover for advice given, sized to the exposure that actually exists.",
-      lede: "Architects, designers, surveyors and consultants: exactly the professional network around a home-management business, and exactly where a standard limit is often the wrong one.",
+      heading: "Professional indemnity for the advice, design and expertise your clients rely on.",
+      lede: "For architects, designers, surveyors, consultants and other professionals whose advice or specifications can create liability after the work is complete.",
     },
     image: "/insurance/interior-editorial.webp",
     imageAlt:
       "A refined period interior with a marble chimneypiece, framed pictures and abundant fresh flowers, the kind of work architects and designers carry lasting liability for.",
     whoImage: "/insurance/house-record.webp",
     whoImageAlt:
-      "A leather ledger and drawings on a sage sill, standing for the drawings and specifications whose professional-indemnity exposure outlives the job.",
+      "A leather ledger and drawings on a sage sill, representing professional work that can carry liability after a project is complete.",
     who: {
       heading: "Who it is for",
       body: [
-        "The professions whose advice, drawings and specifications carry liability long after the job is done.",
-        "Provenance sets the limit against real exposure rather than a round number, which is where most policies are quietly wrong.",
+        "Professional indemnity is for businesses whose advice, design, specification or specialist service could lead to a claim if something goes wrong.",
+        "The level of cover should reflect the work, contracts, clients and potential exposure rather than an arbitrary round figure.",
       ],
     },
     detail: {
       title: "The detail",
       points: [
-        { h: "Limits against exposure", p: "How much cover is enough is a function of the work, the contracts and the clients, not a standard figure pulled from a table." },
-        { h: "The design-and-construct trap", p: "The overlap between designing and building catches architects out. A specialist reads where the liability actually sits." },
-        { h: "Renewal continuity", p: "Professional indemnity is claims-made, so continuity of cover matters. It is worth reviewing before, not at, renewal." },
+        { h: "Limits against exposure", p: "The right limit depends on the work, the contracts and the potential exposure if a claim is made." },
+        { h: "Where design and construction meet", p: "Where a business both designs and builds, a specialist can review how the professional liability is divided and what the policy needs to cover." },
+        { h: "Renewal continuity", p: "Because professional indemnity is claims-made, maintaining continuous cover can matter long after an individual job is finished." },
       ],
     },
     placed: {

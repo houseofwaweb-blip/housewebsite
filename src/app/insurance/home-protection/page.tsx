@@ -37,11 +37,11 @@ const COVERS = [
   },
   {
     title: "Evidence pack",
-    body: "Photographs, detailed notes, and a prioritised works list. Everything documented, nothing left to memory. Yours to keep for ongoing reference.",
+    body: "Photographs, detailed notes and a prioritised list of works, gathered into a record you can refer back to.",
   },
   {
     title: "Insurance documentation",
-    body: "Insurance-ready reports that sit alongside your cover. When the underwriter asks questions, the answers are already prepared and properly evidenced.",
+    body: "Relevant information from the review can support later insurance conversations by giving the broker a clearer picture of the property.",
   },
 ];
 
@@ -49,7 +49,7 @@ const STEPS = [
   {
     n: "I.",
     title: "Book",
-    body: "Register interest and we'll arrange a date. The review fits into a single day: no disruption, no scaffolding.",
+    body: "Register interest and, when the service opens, the House will arrange a date for the review.",
   },
   {
     n: "II.",
@@ -59,7 +59,7 @@ const STEPS = [
   {
     n: "III.",
     title: "Report",
-    body: "Within a week, your evidence pack and prioritised works list arrive as a clear pack you keep. Clear, actionable, properly documented.",
+    body: "Your evidence pack and prioritised works list are then returned as a record you can keep and use.",
   },
   {
     n: "IV.",
@@ -159,8 +159,8 @@ export default async function HomeProtectionPage() {
         <header className={s.coversHead}>
           <p className={s.coversEy}>{cms(covers, "eyebrow", "What the review covers")}</p>
           <h2 className={s.coversTitle}>
-            {cms(covers, "headline", "Everything the home quietly needs,")}{" "}
-            <em>{cms(covers, "headlineEm", "surfaced in one day.", "headline")}</em>
+            {cms(covers, "headline", "A practical review of the home,")}{" "}
+            <em>{cms(covers, "headlineEm", "documented in one place.", "headline")}</em>
           </h2>
         </header>
         <div className={s.coversGrid}>
@@ -178,8 +178,8 @@ export default async function HomeProtectionPage() {
         <header className={s.stepsHead}>
           <p className={s.stepsEy}>{cms(steps, "eyebrow", "How it works")}</p>
           <h2 className={s.stepsTitle}>
-            {cms(steps, "headline", "Four steps to a")}{" "}
-            <em>{cms(steps, "headlineEm", "calmer home.", "headline")}</em>
+            {cms(steps, "headline", "Four steps from review to")}{" "}
+            <em>{cms(steps, "headlineEm", "a clearer record of the home.", "headline")}</em>
           </h2>
         </header>
         <div className={s.stepsGrid}>
@@ -240,7 +240,7 @@ export default async function HomeProtectionPage() {
             {cms(
               crossSell,
               "body",
-              "Cover that understands period homes, valuable contents, and the things a standard policy quietly excludes. Introduced by the House, underwritten by FCA-regulated specialists.",
+              "Home insurance introduced by the House and arranged through Provenance, with specialist routes available for period, high-value and more complex homes.",
             )}
           </p>
           <Link href={cms(crossSell, "ctaHref", "/insurance")} className={s.crossLink}>
@@ -248,13 +248,13 @@ export default async function HomeProtectionPage() {
           </Link>
         </article>
         <article className={s.crossCard}>
-          <p className={s.crossEy}>{cms(crossSell, "subheadline", "One pack, joined up")}</p>
-          <h3 className={s.crossTitle}>{cms(crossSell, "headlineEm", "Joined up, not repeated", "headline")}</h3>
+          <p className={s.crossEy}>{cms(crossSell, "subheadline", "Use the same information")}</p>
+          <h3 className={s.crossTitle}>{cms(crossSell, "headlineEm", "A better starting point for insurance", "headline")}</h3>
           <p className={s.crossBody}>
             {cms(
               crossSell,
               "body2",
-              "Your Home Protection evidence feeds directly into the insurance introduction. One conversation, one shared pack, no starting from scratch.",
+              "Where relevant, information from your Home Protection review can help inform the later insurance conversation, so useful property details do not need to be gathered again.",
             )}
           </p>
           <Link href={cms(crossSell, "cta2Href", "#register")} className={s.crossLink}>
@@ -266,8 +266,8 @@ export default async function HomeProtectionPage() {
       {/* 7. Closing tagline */}
       <section className={s.closing}>
         <p className={s.closingStatement}>
-          <em>{cms(closing, "headlineEm", "Prevention is quieter than repair.", "headline")}</em>{" "}
-          {cms(closing, "subheadline", "That's the point.")}
+          <em>{cms(closing, "headlineEm", "Know the condition before work becomes urgent.", "headline")}</em>{" "}
+          {cms(closing, "subheadline", "That is what the review is for.")}
         </p>
       </section>
     </div>
