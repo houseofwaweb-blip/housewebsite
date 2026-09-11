@@ -28,12 +28,28 @@ export default function GiftCardsPage() {
       <section className={s.hero}>
         <div className={s.heroInner}>
           <p className={s.heroEy}>The House · Gift Cards</p>
+          <span
+            style={{
+              display: "inline-block",
+              margin: "0 0 20px",
+              padding: "7px 16px",
+              border: "1px solid var(--color-house-gold-dark)",
+              color: "var(--color-house-gold-dark)",
+              fontFamily: "var(--font-sans)",
+              fontSize: 13,
+              letterSpacing: "0.24em",
+              textTransform: "uppercase",
+            }}
+          >
+            Coming soon
+          </span>
           <h1 className={s.heroTitle}>
             Give the gift of <em>a well-kept home.</em>
           </h1>
           <p className={s.heroLede}>
-            House gift cards work across everything: services, the shop, design
-            consultations, and HoWA memberships. Delivered by email, redeemed
+            House gift cards are <strong>coming soon</strong>. When they launch,
+            they will work across everything: services, the shop, design
+            consultations, and HoWA memberships, delivered by email and redeemed
             online or in person.
           </p>
         </div>

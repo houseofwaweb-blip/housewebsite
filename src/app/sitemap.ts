@@ -3,6 +3,13 @@ import { env } from "@/lib/env";
 import wpLongTail from "@/lib/services-data/wp-long-tail.json";
 import { allLocationSlugs } from "@/lib/services-data/locations";
 import { getCmsSitemapEntries } from "@/lib/sitemap-slugs";
+import { SERVICES, SERVICE_ORDER, type ServiceSlug } from "@/lib/services-data";
+import {
+  SPECIALIST_SLUGS,
+  EVERYDAY_SPECIALIST_SLUGS,
+  BUSINESS_SPECIALIST_SUB_SLUGS,
+} from "@/lib/insurance/specialist-pages";
+import { GUIDE_SLUGS } from "@/lib/insurance/guides";
 
 /**
  * Sitemap. Static routes + WP long-tail catalogue.
@@ -67,10 +74,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // ---- Steward Plans (managed recurring care) ----
     { url: `${base}/steward-plans`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
 
-    // ---- Protect ----
-    { url: `${base}/protect`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${base}/protect/home-protection`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${base}/protect/insurance`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    // ---- Insurance & Cover ----
+    // /protect/* now 301/307 to /insurance/*, so the canonical /insurance pages
+    // are listed here (never the redirecting /protect URLs). Dynamic covers
+    // (specialist / everyday / business / guides) are appended below.
+    { url: `${base}/insurance`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${base}/insurance/everyday`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}/insurance/private-client`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}/insurance/business`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${base}/insurance/home-protection`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${base}/insurance/how-this-works`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${base}/insurance/claims-and-help`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${base}/insurance/speak-to-a-specialist`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${base}/insurance/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
 
     // ---- Shop ----
     { url: `${base}/shop`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
@@ -111,7 +127,38 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.4,
   }));
 
+  // ---- Insurance covers (specialist property, everyday, business, guides) ----
+  const insurancePaths = [
+    ...SPECIALIST_SLUGS.map((s) => `/insurance/${s}`),
+    ...EVERYDAY_SPECIALIST_SLUGS.map((s) => `/insurance/everyday/${s}`),
+    ...BUSINESS_SPECIALIST_SUB_SLUGS.map((s) => `/insurance/business/${s}`),
+    ...GUIDE_SLUGS.map((s) => `/insurance/guides/${s}`),
+  ];
+  const insuranceRoutes: MetadataRoute.Sitemap = insurancePaths.map((p) => ({
+    url: `${base}${p}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.5,
+  }));
+
+  // ---- Service sub-services (/services/[slug]/[sub]) ----
+  const subServiceRoutes: MetadataRoute.Sitemap = SERVICE_ORDER.flatMap((slug: ServiceSlug) =>
+    (SERVICES[slug]?.subServices ?? []).map((sub) => ({
+      url: `${base}/services/${slug}/${sub.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
+    })),
+  );
+
   const cmsRoutes = await getCmsSitemapEntries(base);
 
-  return [...staticRoutes, ...locationRoutes, ...longTailRoutes, ...cmsRoutes];
+  return [
+    ...staticRoutes,
+    ...insuranceRoutes,
+    ...subServiceRoutes,
+    ...locationRoutes,
+    ...longTailRoutes,
+    ...cmsRoutes,
+  ];
 }

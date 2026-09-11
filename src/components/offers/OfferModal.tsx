@@ -209,12 +209,15 @@ export function OfferModal({
             </dl>
 
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <Link
-                href={offer.cta.href}
-                className="inline-block bg-house-gold px-6 py-3 font-sans text-[13px] tracking-[0.16em] uppercase text-house-brown no-underline transition hover:brightness-110"
+              {/* Offers are not buyable yet — the CTA is a non-clickable
+                  "Coming soon" state. The modal still opens and shows the full
+                  offer detail; only the action is disabled until launch. */}
+              <span
+                aria-disabled="true"
+                className="inline-flex select-none items-center gap-2 border border-house-gold/40 bg-house-gold/15 px-6 py-3 font-sans text-[13px] tracking-[0.16em] uppercase text-house-cream/60 cursor-default"
               >
-                {offer.cta.label}
-              </Link>
+                Coming soon
+              </span>
               <Link
                 href={offer.termsHref}
                 className="font-sans text-[14px] tracking-[0.04em] text-house-cream/65 underline underline-offset-4 transition hover:text-house-cream"
