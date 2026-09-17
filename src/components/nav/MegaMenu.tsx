@@ -449,6 +449,7 @@ function TwoLevelMegaPanel({ data, isOpen }: { data: TwoLevelMega; isOpen: boole
               <PostcodeField
                 label={data.postcode.label ?? "See services near you"}
                 action={data.postcode.action ?? "/services"}
+                stack
               />
             ) : null}
           </aside>

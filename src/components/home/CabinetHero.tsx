@@ -69,7 +69,9 @@ export function CabinetHero() {
           <p className={styles.eyebrow}>A modern British House for home and garden</p>
           <h1 className={styles.title}>Welcome to the House that looks after yours.</h1>
           <p className={styles.sub}>
-            Services, insurance, useful things and good ideas, all kept in order by HoWA.
+            Expert care for your home and garden. Thoughtful design. Useful
+            things, well chosen. The people, standards and good judgment to help
+            your home live well.
           </p>
           <div className={styles.ctas}>
             <a
@@ -84,7 +86,14 @@ export function CabinetHero() {
               Explore the House
             </Link>
           </div>
-          <p className={styles.trust}>House-vetted · clear service information · House support</p>
+          {/* COPY 5.1: HoWA subordinate to the House headline, present as a
+              supporting product endorsement + a returning-customer route. */}
+          <p className={styles.trust}>
+            Powered by HoWA Home Intelligence ·{" "}
+            <Link href="/howa" className={styles.trustLink}>
+              Already with the House? Meet HoWA →
+            </Link>
+          </p>
         </div>
       </div>
     </section>

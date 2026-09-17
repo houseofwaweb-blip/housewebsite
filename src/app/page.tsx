@@ -10,6 +10,7 @@ import { HowItWorks } from "@/components/home/HowItWorks";
 import { DesignShowcase } from "@/components/home/DesignShowcase";
 import { ProofBand } from "@/components/home/ProofBand";
 import { CinemaSpread } from "@/components/home/CinemaSpread";
+import { HowaHeroProduct } from "@/components/home/HowaHeroProduct";
 
 /**
  * Homepage — House-first (Aug-17 rebuild, spec §8).
@@ -85,6 +86,10 @@ export default async function HomePage() {
       {/* Services showcase — image cards, Services pillar presence (after the
           editorial + store, not directly under the booking rail per doc §8) */}
       <ServicesShowcase />
+
+      {/* HoWA hero-product reveal — after the service collection (doc Step 04
+          Block 4 / COPY 5.4). "The House runs on HoWA." */}
+      <HowaHeroProduct />
 
       {/* Design studios — Interiors + Garden design as two editorial cards */}
       <DesignShowcase />

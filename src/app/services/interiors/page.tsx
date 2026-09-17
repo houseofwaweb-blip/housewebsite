@@ -14,9 +14,9 @@ import { NewsletterInline } from "@/components/marketing/NewsletterInline";
  * restructured to the doc's Interiors shape:
  *   portfolio -> design stages -> budget -> scope -> enquiry form.
  *
- * Deliberately carries no HoWA "Assistant" section: Assistant is a retired HoWA
- * tier and HoWA is not a product on this site. The route into the studio is an
- * enquiry, held by the House.
+ * The route into the studio is an enquiry, held by the House. (Sept HoWA review
+ * v2: HoWA is a product again, but this page keeps a human-led enquiry as its
+ * primary route; the Ask HoWA / design-brief entry lives on the design pages.)
  */
 
 export const metadata: Metadata = {

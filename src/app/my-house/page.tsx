@@ -16,19 +16,22 @@ const areas: { name: string; blurb: string }[] = [
   { name: "Bookings", blurb: "Upcoming and past visits. Reschedule, repeat or cancel, with clear terms shown before you confirm." },
   { name: "Cover", blurb: "Home and pet policies, renewal dates, documents and a direct route to claims and help." },
   { name: "Orders", blurb: "Purchases from the House Store, delivery status, returns and receipts kept together." },
-  { name: "Home Record", blurb: "A useful, private record of your home: property details, past visits, warranties and access notes." },
+  { name: "Home Record", blurb: "The property's useful history: details, past visits, documents, warranties and what may need attention. It belongs to the home." },
+  { name: "Household Memory", blurb: "The context you choose to give HoWA: preferences, priorities and how you like things done. Personal to you, kept separate from the property record." },
   { name: "Saved", blurb: "Articles from The Hearth and objects from the Store you have set aside for later." },
   { name: "Profile & permissions", blurb: "Your contact details, marketing preferences and control over what information the House can use." },
 ];
 
+// Home Record = the property's history (transferable). Household Memory (below)
+// = your personal context, kept separate and not part of a property handover.
 const records = [
   "Property details and room notes",
   "Completed visits and professional notes",
   "Uploaded receipts and documents",
   "Policy references and renewal dates",
   "Product warranties",
+  "Systems and appliances",
   "Maintenance reminders",
-  "Preferences and access notes",
 ];
 
 const eyebrow =
@@ -101,23 +104,24 @@ export default function MyHousePage() {
               My House
             </h1>
             <p className="mt-7 max-w-[48ch] font-sans text-[clamp(20px,1.6vw,24px)] leading-[1.6] text-house-brown/84">
-              One place for everything the House looks after on your behalf: your
-              bookings, your cover, your orders and the record of your home. Sign
-              in to pick up where you left off.
+              Manage your current House bookings through the existing account
+              service. We are introducing HoWA to bring more of your home and
+              service information together, and will help you connect when access
+              is ready.
             </p>
-            <div className="mt-9 flex flex-wrap gap-4">
+            <div className="mt-9 flex max-w-[460px] flex-col items-stretch gap-4">
               <a
                 href={ACCOUNTS_URL}
-                className="inline-flex min-h-12 items-center border border-house-brown bg-house-brown px-8 font-sans text-[16px] font-semibold uppercase tracking-[0.14em] text-house-chalk no-underline transition-colors hover:bg-house-brown/90"
+                className="inline-flex min-h-12 w-full items-center justify-center whitespace-nowrap border border-house-brown bg-house-brown px-6 font-sans text-[15px] font-semibold uppercase tracking-[0.12em] text-house-chalk no-underline transition-colors hover:bg-house-brown/90"
               >
-                Sign in
+                Manage my House bookings
               </a>
-              <a
-                href="#open-booking-form"
-                className="inline-flex min-h-12 items-center border border-house-brown px-8 font-sans text-[16px] font-semibold uppercase tracking-[0.14em] text-house-brown no-underline transition-colors hover:bg-house-brown hover:text-house-chalk"
+              <Link
+                href="/howa/house-customers"
+                className="inline-flex min-h-12 w-full items-center justify-center whitespace-nowrap border border-house-brown px-6 font-sans text-[15px] font-semibold uppercase tracking-[0.12em] text-house-brown no-underline transition-colors hover:bg-house-brown hover:text-house-chalk"
               >
-                Book a service
-              </a>
+                HoWA for House customers
+              </Link>
             </div>
             <p className="mt-6 max-w-[46ch] font-sans text-[17px] leading-[1.6] text-house-brown/60">
               New to the House? You can book a service or get a quote as a guest.
@@ -183,7 +187,14 @@ export default function MyHousePage() {
               </li>
             ))}
           </ul>
-          <p className="mt-6 font-sans text-[18px] text-house-brown/70">
+          <p className="mt-6 font-sans text-[18px] leading-[1.6] text-house-brown/82">
+            That is your <strong className="font-semibold">Home Record</strong>,
+            the property&rsquo;s history. Kept separate is{" "}
+            <strong className="font-semibold">Household Memory</strong>: the
+            context you choose to give HoWA about how you live and what matters to
+            you. It stays personal to you and is not part of a property handover.
+          </p>
+          <p className="mt-4 font-sans text-[18px] text-house-brown/70">
             Read more about how the House uses HoWA on the{" "}
             <Link
               href="/how-it-works"
@@ -268,7 +279,7 @@ export default function MyHousePage() {
             href={ACCOUNTS_URL}
             className="mt-8 inline-flex min-h-12 items-center border border-house-chalk bg-house-chalk px-9 font-sans text-[16px] font-semibold uppercase tracking-[0.14em] text-house-brown no-underline transition-colors hover:bg-transparent hover:text-house-chalk"
           >
-            Sign in to My House
+            Manage my House bookings
           </a>
           <p className="mt-7 font-sans text-[13px] uppercase tracking-[0.24em] text-house-chalk/60">
             My House, powered by HoWA

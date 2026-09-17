@@ -191,15 +191,16 @@ export const SOON_SERVICE_CARDS: Array<{
 }> = [];
 
 /**
- * REVISIONS v3 §9 — the named monthly plan ladder ("Apartment Plan", "House
- * Essential", "House Comprehensive", "House Premium") is REMOVED. v3 forbids
- * maintenance plans, ongoing plans, House maintenance memberships, and Steward
- * or Housekeeper service plans on the House site, along with any plan that is
- * not operationally live, priced, staffed and contractually defined.
+ * The named monthly plan ladder ("Apartment Plan", "House Essential", etc.) is
+ * REMOVED (no plan that is not operationally live, priced, staffed and
+ * contractually defined).
  *
- * Recurring care is now presented as what it actually is: a booking frequency
- * chosen inside the service. These are frequencies, not memberships, and none
- * of them requires a subscription of any kind.
+ * Sept HoWA review v2 (COPY §3 / Step 16): distinguish three things clearly
+ * rather than deny subscriptions outright: a one-off visit, a recurring service
+ * schedule (which may be a paid subscription, e.g. garden maintenance), and an
+ * OPTIONAL HoWA membership. Per the Sept welcome directive §5, the "no paid HoWA
+ * plan required" line is scoped to non-plan-holders; regular garden maintenance,
+ * cleaning and full property plans move to HoWA Steward as their new arrangement.
  */
 const FREQUENCIES = [
   {
@@ -305,13 +306,13 @@ export default async function ServicesLanding() {
             <p className={s.heroEy}>{cms(hero, "eyebrow", "The House · Services")}</p>
             <h1 className={s.heroTitle}>
               {cms(hero, "headline", "A specialist for")}{" "}
-              <em>{cms(hero, "headlineEm", "every corner.", "headline")}</em>
+              <em>{cms(hero, "headlineEm", "what your home needs.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
               {cms(
                 hero,
                 "body",
-                "Trusted home and garden services, each with its own expertise and all held to the same House standard. Lawns cut and beds planted, windows and sills cleared, gutters seen to before the weather turns, small repairs put right. Delivered by House of Willow Alexander's own teams and named House Approved professionals, booked and written back to your Home Record so the house remembers what was done.",
+                "Everyday care, seasonal jobs and work that needs a particular skill. Explore the House service collection, check availability and find the right route for the job. Each service explains its scope, price basis and who will carry out the work before you commit.",
               )}
             </p>
             {/* DIRECTIVE §08 #1 — a literal service + postcode finder leads the
@@ -461,10 +462,26 @@ export default async function ServicesLanding() {
           stated plainly rather than buried in small print. */}
       <section className="border-t border-house-brown/10 px-[5vw] py-[clamp(44px,5.5vw,84px)]" style={{ background: "var(--color-house-white)" }}>
         <div className="mx-auto max-w-[1080px]">
-          <p className="mb-3 font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink">Who turns up</p>
-          <h2 className="mb-8 font-display text-[clamp(27px,3vw,41px)] leading-[1.1] text-house-brown">
-            Two kinds of hands, <em>one standard.</em>
-          </h2>
+          <div className="mb-8 grid items-center gap-8 lg:grid-cols-[0.8fr_1fr] lg:gap-12">
+            <figure className="relative m-0 aspect-[4/3] w-full overflow-hidden border border-house-brown/15 bg-[#f1ebe5]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/howa/new/proof-home-record.webp"
+                alt="The HoWA Home Record beside the house: correspondence, documents, bills, maintenance and reminders in one place"
+                className="absolute inset-0 h-full w-full object-contain"
+              />
+            </figure>
+            <div>
+              <p className="mb-3 font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink">Who turns up</p>
+              <h2 className="font-display text-[clamp(27px,3vw,41px)] leading-[1.1] text-house-brown">
+                Two kinds of hands, <em>one standard.</em>
+              </h2>
+              <p className="mt-4 font-sans text-[18px] leading-[1.6] text-house-stone">
+                Whoever knocks, the booking behind them and the record they leave
+                are the same, kept in your Home Record by HoWA.
+              </p>
+            </div>
+          </div>
           <div className="grid gap-5 md:grid-cols-2">
             <article className="border border-house-brown/15 bg-house-cream p-8">
               <h3 className="mb-3 font-display text-[25px] leading-tight text-house-brown">A House of Willow Alexander team</h3>
@@ -614,16 +631,40 @@ export default async function ServicesLanding() {
       {/* 4. Frequency, not membership (v3 §9). */}
       <section id="plans" className={s.plans}>
         <header className={s.plansHead}>
-          <p className={s.plansEy}>How often</p>
+          <p className={s.plansEy}>How care works</p>
           <h2 className={s.plansTitle}>
-            Choose how often, <em>not which plan to join.</em>
+            One visit, regular care, <em>or a bigger project.</em>
           </h2>
           <p className={s.plansLede}>
-            There is no House maintenance plan to sign up to and no subscription
-            to hold. You choose a service, then choose how often you want it.
-            That is the whole arrangement, and you can change it at any point.
+            Book a single visit, or arrange regular care where it is available,
+            with the frequency and terms made clear. A recurring service schedule
+            is separate from an optional HoWA membership. If you do not hold a
+            regular service plan, you do not need a paid HoWA plan to keep using
+            House services. Regular garden maintenance, cleaning and full property
+            plans move to HoWA Steward, at £29.99 a month for 12 months, with
+            visits billed separately.
           </p>
         </header>
+        <div className="mx-auto mb-[clamp(32px,4vw,56px)] grid max-w-[1180px] items-center gap-10 px-[5vw] lg:grid-cols-2">
+          <figure className="relative m-0 aspect-[3/2] w-full overflow-hidden border border-house-brown/12">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/howa/new/life-windowseat.webp"
+              alt="A woman with coffee and her dog on a sunlit window seat, the garden beyond"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          </figure>
+          <div className="max-w-[44ch]">
+            <p className="font-display text-[clamp(22px,2.4vw,32px)] leading-[1.2] text-house-brown">
+              The rhythm that suits the home.
+            </p>
+            <p className="mt-4 font-sans text-[17px] leading-[1.6] text-house-stone">
+              A single visit when something needs doing, or a standing arrangement
+              that quietly keeps the place in good order. You set the pace and
+              change it whenever life does.
+            </p>
+          </div>
+        </div>
         <div className="mx-auto grid max-w-[1180px] gap-5 px-[5vw] md:grid-cols-3">
           {FREQUENCIES.map((f) => (
             <article key={f.name} className="flex flex-col border border-house-brown/15 bg-house-white p-8">

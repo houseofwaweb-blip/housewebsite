@@ -4,9 +4,9 @@ import { BreadcrumbJsonLd } from "@/lib/seo/jsonLd";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 
 export const metadata: Metadata = {
-  title: "How it works · Powered by HoWA",
+  title: "How it works · Good care, with the details kept together",
   description:
-    "HoWA is the booking and home-intelligence system the House uses to keep services, records, reminders, cover and useful recommendations connected around your home.",
+    "The House arranges the right expertise for your home; HoWA supports the brief, the useful history and the record of what happens next. Understand the job before it begins and find the important details afterwards.",
 };
 
 /* ---- self-contained House styles (inline, token-first) ------------------- */
@@ -42,76 +42,95 @@ const sections: {
   n: string;
   heading: string;
   body: string[];
+  small?: string;
   image?: PlaceholderBrief;
 }[] = [
   {
     n: "01",
-    heading: "Book and manage House services.",
+    heading: "Tell us what needs attention.",
     body: [
-      "Choose a service, enter your postcode and see real availability and pricing. Everything you book, from a single gardener visit to a recurring housekeeping rhythm, is kept in one place so you can reschedule, repeat or cancel without starting again.",
-      "Because the House remembers your address and property details, the next booking is quicker than the first.",
+      "Choose a service or describe the problem. Add relevant photographs and priorities where helpful. If you already use HoWA, choose the information you want to bring into the brief.",
     ],
+    small: "Not sure which service you need? Ask the House for help.",
     image: {
       file: "how-book-services.webp",
       dims: "1200 × 900",
-      src: "/home/how-book-services.webp",
+      src: "/howa/new/hiw-01.webp",
       brief:
         "A gardener and housekeeper arriving at a British townhouse in soft morning light, calm and unhurried, the moment a service begins.",
     },
   },
   {
     n: "02",
-    heading: "Keep a Home Record.",
+    heading: "Agree the work.",
     body: [
-      "Your Home Record is a useful, private record of your home: its rooms, its quirks, the professionals who have visited and the notes worth keeping. It belongs to you.",
-      "Access instructions, the make of a boiler, a preferred cleaning product or where the stopcock lives all sit in one place, so the House can help without asking you to repeat yourself.",
+      "See the proposed scope, how it is priced, the delivery professional or partner, and the practical arrangements. Some jobs can be booked directly; others need a conversation, inspection or quote first.",
     ],
+    small: "The booking or quote explains who will carry out the work and who your agreement is with.",
     image: {
-      file: "how-home-record.webp",
-      dims: "1200 × 1500",
-      src: "/home/how-home-record.webp",
+      file: "proof-action.webp",
+      dims: "1600 × 1024",
+      src: "/howa/new/proof-action.webp",
       brief:
-        "A leather-bound household ledger open on a kitchen table beside a set of keys, editorial still life, the quiet keeping of a home.",
+        "A HoWA job moving from plan to quote and booking to completed on a tablet: agreed scope, price and provider before work begins.",
     },
   },
   {
     n: "03",
-    heading: "Store relevant policy, visit and purchase history.",
+    heading: "Give the visit a useful start.",
     body: [
-      "Cover documents, completed visits and things you have bought from the House Store are gathered together and easy to find. When a policy renews or a warranty matters, the detail is already to hand.",
-      "You decide what is kept. Every record shows where it came from and when it was added.",
+      "The person carrying out the work receives the information relevant to that job. You can check the priorities and the practical arrangements before the visit.",
     ],
+    small: "Access details need their own secure, limited sharing arrangement; they should not sit in a general property history.",
+    image: {
+      file: "life-windowseat.webp",
+      dims: "1536 × 1024",
+      src: "/howa/new/life-windowseat.webp",
+      brief:
+        "A calm, well-kept living room ready for the day, a quiet moment by the window before a visit.",
+    },
   },
   {
     n: "04",
-    heading: "Receive reminders and seasonal recommendations.",
+    heading: "Keep control of changes.",
     body: [
-      "Gutters before autumn, a boiler service before winter, the lawn in spring. HoWA keeps track of the rhythm of a home and reminds you before the moment passes, not after.",
-      "Reminders are yours to keep, snooze or turn off. Nothing is bought on your behalf, and nothing manufactures urgency.",
+      "If the work needs to change, the additional scope and any price change should come back to you before it proceeds. A note or suggestion from HoWA is not approval to spend on your behalf.",
     ],
     image: {
-      file: "how-seasonal-reminders.webp",
-      dims: "1200 × 900",
-      src: "/home/how-seasonal-reminders.webp",
+      file: "proof-app.webp",
+      dims: "1600 × 900",
+      src: "/howa/new/proof-app.webp",
       brief:
-        "An English garden turning from late summer to autumn, gutters and hedges catching low golden light, the rhythm of the year around a home.",
+        "The HoWA app beside the home: your record, tasks and the changes waiting for your approval, kept in one place.",
     },
   },
   {
     n: "05",
-    heading: "Understand what the home may need next.",
+    heading: "See what was done.",
     body: [
-      "Over time, the joined-up picture helps the House suggest the sensible next step: a service worth booking, cover worth reviewing or a small job worth doing before it becomes a large one.",
-      "Every suggestion explains why it appears, and you are always free to dismiss it.",
+      "Review the completion summary and any supporting photographs or documents included with the service. If something is missing or does not match the agreed work, raise it from the visit or contact the House.",
     ],
+    image: {
+      file: "life-flowers.webp",
+      dims: "1600 × 900",
+      src: "/howa/new/life-flowers.webp",
+      brief:
+        "A parent and child arranging flowers in a bright, well-kept home once the work is done and life resumes.",
+    },
   },
   {
     n: "06",
-    heading: "Privacy, permissions and control.",
+    heading: "Give the next visit a better starting point.",
     body: [
-      "Your home, access, pet, policy and schedule details are treated as sensitive. You can see what is held, edit or delete it, and control who within the House can use it.",
-      "Marketing consent is kept separate from the information needed to deliver a service. Your Home Record is never used to learn about your household for unrelated purposes.",
+      "Where connected, useful outcomes become part of the Home Record. Keep track of completed work, open items and suggestions for future care. A suggestion becomes a booking only when you choose to proceed.",
     ],
+    image: {
+      file: "how-home-record.webp",
+      dims: "1200 × 1500",
+      src: "/howa/new/hiw-06.webp",
+      brief:
+        "A leather-bound household ledger open on a kitchen table beside a set of keys, editorial still life, the quiet keeping of a home.",
+    },
   },
 ];
 
@@ -243,7 +262,7 @@ export default function HowItWorksPage() {
               maxWidth: "14ch",
             }}
           >
-            The House is powered by HoWA.
+            Good care, with the details kept together.
           </h1>
           <p
             style={{
@@ -255,15 +274,16 @@ export default function HowItWorksPage() {
               maxWidth: "58ch",
             }}
           >
-            HoWA is the booking and home-intelligence system the House uses to keep
-            services, records, reminders, cover and useful recommendations
-            connected around your home.
+            The House helps arrange the right expertise for your home. HoWA
+            supports the brief, the useful history and the record of what happens
+            next. You can understand the job before it begins and find the
+            important details afterwards.
           </p>
 
           {/* CTAs */}
           <div style={{ display: "flex", flexWrap: "wrap", gap: 16, marginTop: 40 }}>
             <Link
-              href="/my-house"
+              href="/services"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -280,7 +300,7 @@ export default function HowItWorksPage() {
                 border: `1px solid ${brown}`,
               }}
             >
-              Go to My House
+              Find a service
             </Link>
             <a
               href="#open-booking-form"
@@ -311,7 +331,7 @@ export default function HowItWorksPage() {
             <HowMedia
               file="how-hero-doorway.webp"
               dims="1600 × 900"
-              src="/home/how-hero-doorway.webp"
+              src="/howa/new/hiw-hero.webp"
               brief="A calm Georgian doorway at golden hour, keys in hand, the quiet moment before a first visit."
               minHeight={420}
             />
@@ -453,6 +473,20 @@ export default function HowItWorksPage() {
                       {p}
                     </p>
                   ))}
+                  {s.small ? (
+                    <p
+                      style={{
+                        fontFamily: sans,
+                        fontSize: 15,
+                        lineHeight: 1.6,
+                        color: goldDark,
+                        margin: "4px 0 0",
+                        maxWidth: "58ch",
+                      }}
+                    >
+                      {s.small}
+                    </p>
+                  ) : null}
                 </div>
               </div>
             );
@@ -515,11 +549,11 @@ export default function HowItWorksPage() {
               maxWidth: "20ch",
             }}
           >
-            One home, remembered.
+            Less repetition. More continuity.
           </h2>
           <div style={{ display: "inline-flex", flexWrap: "wrap", gap: 16, justifyContent: "center" }}>
-            <Link
-              href="/my-house"
+            <a
+              href="#open-booking-form"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -536,10 +570,10 @@ export default function HowItWorksPage() {
                 border: `1px solid ${brown}`,
               }}
             >
-              Go to My House
-            </Link>
-            <a
-              href="#open-booking-form"
+              Book a House service
+            </a>
+            <Link
+              href="/howa"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -556,8 +590,8 @@ export default function HowItWorksPage() {
                 border: `1px solid ${brown}`,
               }}
             >
-              Book a service
-            </a>
+              Explore HoWA
+            </Link>
           </div>
         </div>
       </div>

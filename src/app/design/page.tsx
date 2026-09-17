@@ -98,24 +98,24 @@ export default async function DesignLanding() {
         </div>
         <div className={s.heroCopy}>
           <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>{cms(hero, "eyebrow", "The House · Design")}</p>
+            <p className={s.heroEy}>{cms(hero, "eyebrow", "Design by the House")}</p>
             <h1 className={s.heroTitle}>
-              {cms(hero, "headline", "Design by the")}{" "}
-              <em>{cms(hero, "headlineEm", "House.", "headline")}</em>
+              {cms(hero, "headline", "Begin with a possibility.")}{" "}
+              <em>{cms(hero, "headlineEm", "Build a considered plan.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
               {cms(
                 hero,
                 "body",
-                "Rooms, gardens, and the quiet work of making a home feel properly known. Begin with a conversation through HoWA: we learn the home, the brief, the budget, the rhythm of the household and the feeling you are trying to create, then guide you towards the right design route.",
+                "Explore an idea with HoWA, work through a brief with a designer and find the right people to bring it into the real world. The decisions should stay useful as the space takes shape and begins to be lived in.",
               )}
             </p>
             <div className={s.heroCtas}>
-              <Link href={cms(hero, "ctaHref", "#open-booking-form")} className={s.btnFilled}>
-                {cms(hero, "ctaLabel", "Start a design brief")}
+              <Link href={cms(hero, "ctaHref", "/howa/design")} className={s.btnFilled}>
+                {cms(hero, "ctaLabel", "Start a design idea")}
               </Link>
               <Link href={cms(hero, "cta2Href", "#routes")} className={s.btnGhost}>
-                {cms(hero, "cta2Label", "Explore interiors and gardens")}
+                {cms(hero, "cta2Label", "Find a design specialist")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
@@ -278,11 +278,11 @@ export default async function DesignLanding() {
           <em>{cms(closing, "headlineEm", "A whole house, properly read.", "headline")}</em>
         </p>
         <div className={s.closingCtas}>
-          <Link href={cms(closing, "ctaHref", "#open-booking-form")} className={s.closingBtnFilled}>
-            {cms(closing, "ctaLabel", "Start a brief through HoWA")}
+          <Link href={cms(closing, "ctaHref", "/howa/design")} className={s.closingBtnFilled}>
+            {cms(closing, "ctaLabel", "Start a design idea")}
           </Link>
-          <Link href={cms(closing, "cta2Href", "/howa/assistant")} className={s.closingBtnGhost}>
-            {cms(closing, "cta2Label", "Or use the Assistant")} →
+          <Link href={cms(closing, "cta2Href", "/howa/ask")} className={s.closingBtnGhost}>
+            {cms(closing, "cta2Label", "Or ask HoWA")} →
           </Link>
         </div>
       </section>

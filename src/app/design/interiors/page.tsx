@@ -28,7 +28,7 @@ export const metadata = {
 const STAT_COLS = [
   { value: "3", label: "Plans to begin" },
   { value: "1:1", label: "Designer access" },
-  { value: "15%", label: "House Store discount" },
+  { value: "Delve", label: "Named design partner" },
   { value: "0", label: "Cookie-cutter schemes" },
 ];
 
@@ -71,7 +71,7 @@ const PLANS = [
       "Sourcing for two rooms",
       "A tactile material pack posted to you",
       "30-minute follow-up call",
-      "15% House Store discount",
+      "House Store benefit on eligible purchases",
     ],
     image: "/design/interiors/project-detail.webp",
   },
@@ -289,19 +289,19 @@ export default async function InteriorsPage() {
         </p>
       </section>
 
-      {/* 6. Assistant split */}
+      {/* 6. Ask HoWA split */}
       <section className={s.companion}>
         <div className={s.companionCopy}>
-          <p className={s.companionEy}>{cms(companion, "eyebrow", "HoWA · Assistant")}</p>
+          <p className={s.companionEy}>{cms(companion, "eyebrow", "HoWA · Ask HoWA")}</p>
           <h2 className={s.companionTitle}>
-            {cms(companion, "headline", "Start with the")}{" "}
-            <em>{cms(companion, "headlineEm", "Assistant.", "headline")}</em>
+            {cms(companion, "headline", "Start with")}{" "}
+            <em>{cms(companion, "headlineEm", "Ask HoWA.", "headline")}</em>
           </h2>
           <p className={s.companionLede}>
             {cms(
               companion,
               "body",
-              "Capture your room, ambition, timeline, budget and aesthetic direction. The Assistant builds a brief your designer can work from on day one, nothing lost, nothing repeated.",
+              "Capture your room, ambition, timeline, budget and aesthetic direction. Ask HoWA builds a brief your designer can work from on day one, nothing lost, nothing repeated.",
             )}
           </p>
           <p className={s.companionFootnote}>
@@ -320,7 +320,7 @@ export default async function InteriorsPage() {
             alt={cms(
               companion,
               "imageAlt",
-              "A living room project, the kind of room the Assistant helps you brief",
+              "A living room project, the kind of room Ask HoWA helps you brief",
             )}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"

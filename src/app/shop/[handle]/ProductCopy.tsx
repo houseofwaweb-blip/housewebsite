@@ -24,22 +24,27 @@ const SUMMARY = "font-sans text-[18px] tracking-[0.2em] uppercase";
  * a short lead paragraph, a Read more toggle, then hairline-divided
  * dropdowns. No price/CTA here — the buy column owns those.
  */
-export function ProductCopy({ product: p }: { product: ShopProduct }) {
+export function ProductCopy({ product: p, isDesign = false }: { product: ShopProduct; isDesign?: boolean }) {
   const [expanded, setExpanded] = React.useState(false);
 
-  const details = [
-    p.materials && { id: "details", summary: <span className={SUMMARY}>Product details</span>, body: <p>{p.materials}{p.dimensions ? ` ${p.dimensions}` : ""}</p> },
-    p.careNotes && { id: "care", summary: <span className={SUMMARY}>Care</span>, body: <p>{p.careNotes}</p> },
-    {
-      id: "delivery",
-      summary: <span className={SUMMARY}>Shipping &amp; returns</span>,
-      body: (
-        <p>
-          {p.delivery ?? "Delivery options and costs are shown at checkout."} Returns are handled in line with the store's current returns policy.
-        </p>
-      ),
-    },
-  ].filter(Boolean) as Array<{ id: string; summary: React.ReactNode; body: React.ReactNode }>;
+  // Design services have no physical care, dimensions, shipping or returns —
+  // suppress the whole spec accordion for them (Visual Review Step 09).
+  const details = (isDesign
+    ? []
+    : [
+        p.materials && { id: "details", summary: <span className={SUMMARY}>Product details</span>, body: <p>{p.materials}{p.dimensions ? ` ${p.dimensions}` : ""}</p> },
+        p.careNotes && { id: "care", summary: <span className={SUMMARY}>Care</span>, body: <p>{p.careNotes}</p> },
+        {
+          id: "delivery",
+          summary: <span className={SUMMARY}>Shipping &amp; returns</span>,
+          body: (
+            <p>
+              {p.delivery ?? "Delivery options and costs are shown at checkout."} Returns are handled in line with the store's current returns policy.
+            </p>
+          ),
+        },
+      ]
+  ).filter(Boolean) as Array<{ id: string; summary: React.ReactNode; body: React.ReactNode }>;
 
   const showLede = ledeIsDistinct(p.lede, p.body);
   const body = p.body ?? "";

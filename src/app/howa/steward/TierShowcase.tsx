@@ -111,9 +111,9 @@ const TIERS: {
   {
     slug: "housekeeper",
     numeral: "II.",
-    label: "Housekeeper",
+    label: "HoWA+",
     tagline: "The house, in order.",
-    visual: { kind: "phone", src: "/home-v4/steward-phone-housekeeper.webp", alt: "Today's Plan, Housekeeper phone" },
+    visual: { kind: "phone", src: "/home-v4/steward-phone-housekeeper.webp", alt: "Today's Plan, HoWA+ phone" },
     features: [
       { icon: TaskIcon, text: "Windows remembered" },
       { icon: CalendarSmallIcon, text: "Services in rhythm" },

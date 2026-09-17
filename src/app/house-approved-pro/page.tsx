@@ -31,12 +31,12 @@ const eyebrow: React.CSSProperties = {
 };
 
 const benefits = [
-  { h: "Steady, qualified demand", b: "Bookings routed from a trusted House brand, matched to your trade and service area, without you chasing leads." },
+  { h: "A recognised consumer brand", b: "A route for suitable enquiries or bookings where demand and coverage support them, without chasing cold leads." },
   { h: "Scheduling that fits", b: "Availability, visit windows and rebookings handled through House tools, so your diary stays your own." },
   { h: "A recognised standard", b: "Being House Approved is a mark customers understand. The House vouches for the people it lets through the door." },
   { h: "Support behind you", b: "A real team for scheduling questions, payment queries and the occasional difficult job." },
-  { h: "Tools that do the admin", b: "Booking, records, reminders and customer history, powered by HoWA, so less of your week is paperwork." },
-  { h: "A reputation you build", b: "Verified reviews follow good work, and good work brings the next booking." },
+  { h: "Tools that do the admin", b: "Booking, records and job context, powered by HoWA, so less of your week is paperwork. Access is limited to the work you are authorised to handle." },
+  { h: "A reputation you build", b: "Verified reviews follow good work, shown alongside the standard the House expects." },
 ];
 
 const forWhom = [
@@ -171,9 +171,9 @@ export default function HouseApprovedProPage() {
               maxWidth: "56ch",
             }}
           >
-            The House of Willow Alexander works with trusted independent
-            professionals and service businesses to care for homes and gardens to
-            one standard. If you do good work, we would like to send it your way.
+            Join a service network built around clear briefs, professional work
+            and continuing care for the home. Tell us what you do, where you work
+            and the standards you can demonstrate.
           </p>
           <a
             href="#apply"
@@ -194,7 +194,7 @@ export default function HouseApprovedProPage() {
               border: "1px solid var(--color-house-chalk)",
             }}
           >
-            Apply to become House Approved
+            Apply to join
           </a>
         </div>
       </header>
@@ -376,18 +376,19 @@ export default function HouseApprovedProPage() {
               textAlign: "center",
             }}
           >
-            Apply to become House Approved.
+            Tell us where your expertise fits.
           </h2>
           <p
             style={{
               ...cardBody,
               textAlign: "center",
               margin: "0 auto 40px",
-              maxWidth: "48ch",
+              maxWidth: "50ch",
             }}
           >
-            Send us the essentials and the House team will be in touch. Submitting
-            opens your email client so you can review before it sends.
+            Send us the essentials and the House team will be in touch. Applying
+            does not guarantee approval or work. Submitting opens your email
+            client so you can review before it sends.
           </p>
 
           <form
@@ -451,7 +452,7 @@ export default function HouseApprovedProPage() {
                 cursor: "pointer",
               }}
             >
-              Apply to become House Approved
+              Email an introduction
             </button>
           </form>
 

@@ -27,6 +27,9 @@ export interface PostcodeFieldProps {
   /** Optional handler instead of routing (e.g. inline availability check). */
   onSubmitPostcode?: (postcode: string) => void;
   dark?: boolean;
+  /** Stack the input above a full-width button (for narrow containers like the
+   *  mega-menu rail, where the inline input/button row squashes the field). */
+  stack?: boolean;
   className?: string;
 }
 
@@ -39,6 +42,7 @@ export function PostcodeField({
   ctaLabel = "See services",
   onSubmitPostcode,
   dark = false,
+  stack = false,
   className,
 }: PostcodeFieldProps) {
   const router = useRouter();
@@ -76,7 +80,7 @@ export function PostcodeField({
       >
         {label}
       </label>
-      <div className="flex items-stretch gap-2">
+      <div className={cn("gap-2", stack ? "flex flex-col" : "flex items-stretch")}>
         <input
           id={inputId}
           type="text"
@@ -92,7 +96,8 @@ export function PostcodeField({
             if (error) setError(null);
           }}
           className={cn(
-            "flex-1 min-w-0 h-11 px-3 font-sans text-[15px] outline-none",
+            "min-w-0 h-11 px-3 font-sans text-[15px] outline-none",
+            stack ? "w-full" : "flex-1",
             "border transition-colors duration-[var(--t-base)]",
             dark
               ? "bg-transparent text-house-cream border-house-cream/30 focus:border-house-gold placeholder:text-house-cream/40"
@@ -102,7 +107,8 @@ export function PostcodeField({
         <button
           type="submit"
           className={cn(
-            "h-11 px-4 shrink-0 font-sans text-[13px] tracking-[0.16em] uppercase border no-underline",
+            "h-11 px-4 font-sans text-[13px] tracking-[0.16em] uppercase border no-underline",
+            stack ? "w-full" : "shrink-0",
             "transition-[filter] duration-[var(--t-base)] hover:brightness-110",
             // Primary House button: brown/ink ground, cream type (spec §7.1).
             "bg-house-brown text-house-cream border-house-brown",

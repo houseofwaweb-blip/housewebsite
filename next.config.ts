@@ -100,14 +100,12 @@ const nextConfig: NextConfig = {
       // Aug-17 rebuild: /how-it-works, /house-approved-pro, /help and /my-house
       // are now real pages (doc §16/§17/§20/§19), so their temp bridges are
       // removed and the pages serve directly.
-      // HoWA is NOT a product on this site (doc): retire the HoWA product tree
-      // and the old consumer tiers. HoWA survives only as /how-it-works.
-      { source: "/howa", destination: "/how-it-works", permanent: false },
-      { source: "/howa/housekeeper", destination: "/offers", permanent: false },
-      { source: "/howa/steward", destination: "/offers", permanent: false },
-      { source: "/howa/plans", destination: "/offers", permanent: false },
-      { source: "/howa/assistant", destination: "/how-it-works", permanent: false },
-      { source: "/howa/faq", destination: "/how-it-works", permanent: false },
+      //
+      // Sept HoWA review v2 (14 Sep 2026) REVERSES the Aug-17 retirement of the
+      // HoWA product tree. HoWA is now the operating system + hero product, so
+      // /howa, /howa/plans, /howa/housekeeper, /howa/steward, /howa/assistant
+      // and /howa/faq serve their real pages again (Steps 07, 16). The Aug-17
+      // redirects that sent them to /how-it-works or /offers are removed.
       { source: "/steward-plans", destination: "/offers", permanent: false },
       { source: "/house-credit", destination: "/offers", permanent: false },
       // -----------------------------------------------------------------------

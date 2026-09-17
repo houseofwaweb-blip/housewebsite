@@ -41,9 +41,9 @@ const VERBS = [
       "The crack above the kitchen door appeared after the extension. It's settlement, not structural. Fill with flexible caulk and check in six months.",
       "Your garden faces north-west. The planting plan accounts for that, shade-tolerant perennials at the back, sun-loving herbs by the south wall.",
     ],
-    image: "/home-v4/howitworks-scan-v2.webp",
+    image: "/howa/new/dollhouse-full.webp",
     imageAlt:
-      "A phone scanning a room in the home, HoWA reading its fabric, services and contents to build the record",
+      "The HoWA Doll's House, a cutaway of a British home showing every room, system and detail HoWA comes to know",
   },
   {
     numeral: "II.",
@@ -55,9 +55,9 @@ const VERBS = [
       "Your Home Protection Review flagged the flat roof as a priority. HoWA routes that to your insurance record and recommends a surveyor quote before renewal.",
       "The cleaning team noted limescale buildup on the bathroom glass. HoWA recommends a descale visit and adjusts the quarterly schedule.",
     ],
-    image: "/home-v4/howa-remember.webp",
+    image: "/howa/new/proof-score.webp",
     imageAlt:
-      "The HoWA home record on a phone beside the cutaway dollhouse, surfacing what matters next",
+      "The HoWA home view on a phone beside the doll's house, surfacing what matters next: a boiler service due, energy use and an insurance renewal",
   },
   {
     numeral: "III.",
@@ -69,9 +69,9 @@ const VERBS = [
       "Your design brief needs an interiors specialist. HoWA connects you with Delve Interiors, whose studio focuses on period homes. First consultation this week.",
       "The garden needs seasonal pruning. HoWA schedules Willow Alexander Gardens for the next available slot. Same gardener as last time.",
     ],
-    image: "/home-v4/howa-connect.webp",
+    image: "/howa/new/proof-action.webp",
     imageAlt:
-      "HoWA matching the home with the right trusted hands, booked, billed and filed in one place",
+      "A HoWA job moving from plan to booked to completed on a tablet, connected and filed in one place",
   },
   {
     numeral: "IV.",
@@ -83,9 +83,9 @@ const VERBS = [
       "Your decorator arrives and checks HoWA before starting. Paint colours, finish types, last painted date, all there. No guessing.",
       "Insurance renewal is in 42 days. HoWA surfaces the Home Protection Review evidence pack, the maintenance log, and the claims history. Ready to go.",
     ],
-    image: "/home-v4/howa-understand.webp",
+    image: "/howa/new/proof-app.webp",
     imageAlt:
-      "The HoWA living record of the home, every service, decision and document kept and carried forward",
+      "The HoWA app holding the home's living record: its history, tasks, marketplace and documents, carried forward",
   },
 ];
 
@@ -107,8 +107,9 @@ export default async function HowItWorksPage() {
     title: pick(c.title, base?.title ?? ""),
     lede: pick(c.body, base?.lede ?? ""),
     examples: c.items && c.items.length ? c.items : base?.examples ?? [],
-    image: pick(c.imageUrl, base?.image ?? ""),
-    imageAlt: pick(c.imageAlt, base?.imageAlt ?? ""),
+    // Force the Sept-2026 new imagery (ignore any legacy CMS imageUrl override).
+    image: base?.image ?? "",
+    imageAlt: base?.imageAlt ?? pick(c.imageAlt, ""),
   }));
 
   return (
@@ -122,7 +123,7 @@ export default async function HowItWorksPage() {
       <section className={s.hero}>
         <div className={s.heroBg} aria-hidden="true">
           <Image
-            src={cms(hero, "imageUrl", "/home-v4/howa-dollhouse-scene.webp")}
+            src="/howa/new/dollhouse-hero.webp"
             alt=""
             fill
             sizes="100vw"
@@ -148,8 +149,8 @@ export default async function HowItWorksPage() {
               <Link href={cms(hero, "ctaHref", "/api/howa-bounce")} className={s.btnFilled}>
                 {cms(hero, "ctaLabel", "Join the waitlist")}
               </Link>
-              <Link href={cms(hero, "cta2Href", "/howa/housekeeper")} className={s.btnGhost}>
-                {cms(hero, "cta2Label", "See Housekeeper")}
+              <Link href={cms(hero, "cta2Href", "/howa/plans")} className={s.btnGhost}>
+                {cms(hero, "cta2Label", "See plans")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
@@ -221,14 +222,14 @@ export default async function HowItWorksPage() {
             "Each verb feeds the next. The more HoWA understands, the better it recommends. The more connections it makes, the richer the record. Over time the home goes from unknown to deeply known, and maintenance shifts from reactive to calm.",
           )}
         </p>
-        <Link href={cms(compound, "ctaHref", "/howa/housekeeper")} className={s.compoundLink}>
-          {cms(compound, "ctaLabel", "See what Housekeeper includes")} →
+        <Link href={cms(compound, "ctaHref", "/howa/plans")} className={s.compoundLink}>
+          {cms(compound, "ctaLabel", "See what HoWA+ includes")} →
         </Link>
       </section>
 
       {/* 8. Closing */}
       <section className={s.closing}>
-        <p className={s.closingKicker}>{cms(closing, "eyebrow", "Begin with the Assistant.")}</p>
+        <p className={s.closingKicker}>{cms(closing, "eyebrow", "Begin with Ask HoWA.")}</p>
         <p className={s.closingStatement}>
           <em>{cms(closing, "headlineEm", "Two minutes. The first piece of the record.", "headline")}</em>
         </p>

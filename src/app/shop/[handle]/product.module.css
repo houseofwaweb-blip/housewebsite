@@ -194,11 +194,15 @@
   margin: 0 0 20px;
 }
 .price {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(25px, 2.2vw,31px);
+  /* Sans + tabular figures: the Didot display face renders a tiny decimal
+     point, so "£34.99" mis-read as "£3499". Effra with lined tabular numerals
+     makes the pounds and pence unambiguous. */
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums lining-nums;
+  font-size: clamp(23px, 2vw, 28px);
   color: var(--color-house-brown);
-  letter-spacing: -0.008em;
+  letter-spacing: 0;
   margin-bottom: 30px;
   padding-bottom: 30px;
   border-bottom: 1px solid rgba(48, 35, 28, 0.1);

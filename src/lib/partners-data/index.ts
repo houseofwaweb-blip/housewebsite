@@ -293,7 +293,7 @@ export const LAUNCH_PARTNERS: Record<PartnerSlug, LaunchPartner> = {
     services: [
       { name: "The House Edit", price: "\u00a3295", description: "A 90-minute one-to-one online styling session. Personalised PDF moodboard with curated links. 10% House Store discount." },
       { name: "Additions to Your Edit", price: "from \u00a3195", description: "Shoppable moodboard, sourcing per room, material pack (swatches, samples, scents), 30-minute follow-up call." },
-      { name: "The Full House Edit", price: "from \u00a3795", description: "Initial 90-minute consultation, moodboards for up to three rooms, sourcing for two rooms, a tactile material pack, 30-minute follow-up, 15% House Store discount." },
+      { name: "The Full House Edit", price: "from \u00a3795", description: "Initial 90-minute consultation, moodboards for up to three rooms, sourcing for two rooms, a tactile material pack, 30-minute follow-up, House Store benefit on eligible purchases." },
       { name: "Room Edit", price: "from \u00a32,400", description: "A single-room refresh with full scheme, colour, fabric, light, and sourcing via House Approved." },
       { name: "Full House Edit (Studio)", price: "from \u00a312,000", description: "A coherent language across every room. Full architectural scheme, room-by-room sourcing, site visits, install coordination, aftercare." },
       { name: "The Style Diagnostic", price: "Coming Soon", description: "A guided style journey that reveals your personal home moodboard. Free mini style summary, shoppable digital moodboard, AI & designer session upgrade." },

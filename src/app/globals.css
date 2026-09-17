@@ -152,7 +152,10 @@
      cream-dark and white (was ~2.5:1, a fail). */
   --color-house-stone: #6a6458;
   --color-house-moss: #5a6b4a;
+  --color-house-sage: #6e7764;
   --color-house-black: #1d1d1b;
+  /* Steward Midnight — Ask HoWA demo scrim, user bubbles + the "H" avatar. */
+  --color-house-midnight: #102a39;
   /* Moodboard additions (2026-06-30): richer greens + the oxblood accent */
   --color-house-forest: #34402d;
   --color-house-olive: #6f6f43;
@@ -249,7 +252,10 @@
 .skin-v4 #demo { padding-top: 0 !important; padding-bottom: 0 !important; }
 
 html {
-  font-size: 16px;
+  /* Base bumped 16px -> 17px (Sept 2026) for a slightly larger, more readable
+     body voice per the "readable type" direction. One-line, reversible; scales
+     the base/rem-based type up ~6%. */
+  font-size: 17px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

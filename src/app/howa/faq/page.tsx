@@ -19,7 +19,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 export const metadata = {
   title: "HoWA FAQ: What people usually ask",
   description:
-    "Answers to the things people ask about Housekeeper and Steward, pricing, cancellation, privacy, the Assistant.",
+    "Answers to the things people ask about HoWA+ and Steward, pricing, cancellation, privacy, Ask HoWA.",
 };
 
 const STAT_COLS = [
@@ -35,11 +35,11 @@ const SECTIONS: { heading: string; items: { q: string; a: string }[] }[] = [
     items: [
       {
         q: "Who is HoWA for?",
-        a: "Anyone who lives in a home they mean to keep. You don't need to be commissioning a designer or booking a gardener to get value, the record and the Assistant work on day one.",
+        a: "Anyone who lives in a home they mean to keep. You don't need to be commissioning a designer or booking a gardener to get value, the record and Ask HoWA work on day one.",
       },
       {
-        q: "When does Housekeeper open?",
-        a: "Housekeeper opens alongside the new site. If you arrive before HoWA is reachable, “Start HoWA” routes to a waitlist and we'll write the moment it opens.",
+        q: "When does HoWA+ open?",
+        a: "HoWA+ opens alongside the new site. If you arrive before HoWA is reachable, “Start HoWA” routes to a waitlist and we'll write the moment it opens.",
       },
     ],
   },
@@ -47,7 +47,7 @@ const SECTIONS: { heading: string; items: { q: string; a: string }[] }[] = [
     heading: "Price & billing",
     items: [
       {
-        q: "How much is Housekeeper?",
+        q: "How much is HoWA+?",
         a: "£16.99 a month, VAT inclusive. No annual contract, cancel at the next billing date. Steward is £29.99 a month; Managed Stewardship, the bespoke layer for larger homes, is by application.",
       },
       {
@@ -61,10 +61,10 @@ const SECTIONS: { heading: string; items: { q: string; a: string }[] }[] = [
     ],
   },
   {
-    heading: "The Assistant",
+    heading: "Ask HoWA",
     items: [
       {
-        q: "How accurate is the Assistant?",
+        q: "How accurate is Ask HoWA?",
         a: "Useful for the 80% of home issues that recur across British housing stock. It will tell you when it isn't confident, and route you to a surveyor or trade when it should. It's a diagnostic, not a replacement for qualified eyes on site.",
       },
       {
@@ -78,7 +78,7 @@ const SECTIONS: { heading: string; items: { q: string; a: string }[] }[] = [
     items: [
       {
         q: "When does Steward open?",
-        a: "Soon after Housekeeper. We're starting with waitlist customers so we can set scheduling and cadence honestly. Register interest on the plans page.",
+        a: "Soon after HoWA+. We're starting with waitlist customers so we can set scheduling and cadence honestly. Register interest on the plans page.",
       },
       {
         q: "What does Steward cost?",
@@ -106,8 +106,8 @@ const SECTIONS: { heading: string; items: { q: string; a: string }[] }[] = [
         a: "The record belongs to you, not the house. You can export it as a PDF or hand it to the buyer as a provenance document. If the buyer joins HoWA, we can transfer the record to their account with your permission.",
       },
       {
-        q: "If I cancel Housekeeper, do I lose my data?",
-        a: "No. Your record stays with you on the free tier. You lose access to the Assistant, member pricing, and The Hearth, but the record of everything done to your home is yours to keep or export.",
+        q: "If I cancel HoWA+, do I lose my data?",
+        a: "No. Your record stays with you on the free tier. You lose access to Ask HoWA, member pricing, and The Hearth, but the record of everything done to your home is yours to keep or export.",
       },
     ],
   },
@@ -119,8 +119,8 @@ const SECTIONS: { heading: string; items: { q: string; a: string }[] }[] = [
         a: "UK and EU servers, subject to UK GDPR. We minimise what we collect, keep audit trails on who accessed your record, and never sell personal data.",
       },
       {
-        q: "What happens to the photos I upload to the Assistant?",
-        a: "Stored encrypted in your private record. We don't sell, share, or train public models on them. Used only to generate your Assistant answer and kept for reference unless you delete them.",
+        q: "What happens to the photos I upload to Ask HoWA?",
+        a: "Stored encrypted in your private record. We don't sell, share, or train public models on them. Used only to generate your Ask HoWA answer and kept for reference unless you delete them.",
       },
       {
         q: "Can I export my data?",
@@ -132,12 +132,12 @@ const SECTIONS: { heading: string; items: { q: string; a: string }[] }[] = [
     heading: "Member pricing & services",
     items: [
       {
-        q: "How much do Housekeeper members save?",
+        q: "How much do HoWA+ members save?",
         a: "Typically 10 to 15% off service bookings vs. calling direct, plus 10% off everything in the House shop. A single gutter clear and window clean often covers the monthly fee.",
       },
       {
         q: "What is The Hearth?",
-        a: "The Hearth is our editorial publication for Housekeeper members. Weekly writing on homes, gardens, design, seasonal care, and the craft of looking after a place properly.",
+        a: "The Hearth is our editorial publication for HoWA+ members. Weekly writing on homes, gardens, design, seasonal care, and the craft of looking after a place properly.",
       },
     ],
   },
@@ -175,7 +175,7 @@ export default async function FaqPage() {
               {cms(
                 hero,
                 "body",
-                "Questions grouped by topic, pricing, cancellation, privacy, the Assistant, the Steward roadmap. If yours isn't here, write to us; and if enough people ask the same one, it ends up on this page.",
+                "Questions grouped by topic, pricing, cancellation, privacy, Ask HoWA, the Steward roadmap. If yours isn't here, write to us; and if enough people ask the same one, it ends up on this page.",
               )}
             </p>
           </div>

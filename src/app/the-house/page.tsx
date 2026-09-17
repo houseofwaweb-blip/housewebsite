@@ -276,26 +276,42 @@ export default function TheHousePage() {
       {/* 5. Role of HoWA */}
       <section>
         <div style={wrap}>
+          <div className="grid items-center gap-10 lg:grid-cols-[0.85fr_1fr] lg:gap-16">
+          <div className="relative aspect-[16/9] w-full overflow-hidden lg:self-stretch" style={{ border: `1px solid ${line}`, background: "#f1ebe5" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/howa/new/proof-app.webp" alt="The HoWA app beside the House: Home Record, HoWA Score, tasks, Marketplace and Ask HoWA" className="absolute inset-0 h-full w-full object-contain" />
+          </div>
+          <div>
           <p style={{ ...eyebrow, marginBottom: 24 }}>
             <span aria-hidden style={rule} />
             The role of HoWA
           </p>
-          <h2 style={h2Style}>The system the House uses to remember and coordinate.</h2>
+          <h2 style={h2Style}>The House runs on HoWA.</h2>
           <p style={para}>
-            Beneath the House sits HoWA: the quiet infrastructure that powers
-            booking, scheduling, the Home Record, reminders and the joined-up
-            memory of every visit, policy and purchase. It is the technology the
-            House uses, not a product the customer is asked to join.
+            HoWA is the Home Intelligence platform behind the House&rsquo;s
+            developing connected service experience. It helps prepare the brief,
+            preserve useful knowledge and make the next action easier to
+            understand.
           </p>
           <p style={para}>
-            You feel HoWA as a remembered address, a pre-filled property detail, a
-            timely reminder before winter. You are always in control of what it
-            keeps. Learn more on the{" "}
-            <Link href="/how-it-works" style={linkStyle}>
-              How it works
+            The House is HoWA&rsquo;s founding service partner. Customers can use
+            HoWA directly as well as through House services, according to the
+            access and features available to them. As the platform grows,
+            supported providers and connections can contribute to the same
+            continuing understanding of home.
+          </p>
+          <p style={para}>
+            <Link href="/howa" style={linkStyle}>
+              Explore HoWA
             </Link>{" "}
-            page.
+            or see{" "}
+            <Link href="/how-it-works" style={linkStyle}>
+              how the House works
+            </Link>
+            .
           </p>
+          </div>
+          </div>
         </div>
       </section>
 
@@ -374,6 +390,8 @@ export default function TheHousePage() {
       {/* 8. Press & awards */}
       <section style={{ background: brown, color: "var(--color-house-chalk)" }}>
         <div style={wrap}>
+          <div className="grid items-center gap-10 lg:grid-cols-[1fr_0.9fr] lg:gap-16">
+          <div>
           <p style={{ ...eyebrow, color: gold, marginBottom: 24 }}>
             <span aria-hidden style={{ ...rule, background: gold, opacity: 0.8 }} />
             Press, awards and partnerships
@@ -394,6 +412,12 @@ export default function TheHousePage() {
             </Link>
             .
           </p>
+          </div>
+          <div className="relative aspect-[16/9] w-full overflow-hidden lg:self-stretch" style={{ border: "1px solid rgba(198,168,110,0.35)" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/howa/new/life-piano.webp" alt="A grandmother and grandchild at the piano in a warm family living room" className="absolute inset-0 h-full w-full object-cover" />
+          </div>
+          </div>
         </div>
       </section>
     </div>

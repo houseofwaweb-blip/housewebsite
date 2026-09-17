@@ -13,6 +13,7 @@ import { getProductVariants } from "@/lib/shop-data/shopify-catalogue";
 import { ProductBuy } from "./ProductBuy";
 import { ProductGallery } from "./ProductGallery";
 import { ProductCopy } from "./ProductCopy";
+import { DesignPackagePage } from "./DesignPackagePage";
 import { ProductJsonLd, BreadcrumbJsonLd } from "@/lib/seo/jsonLd";
 import { MetaViewContent } from "@/components/marketing/MetaViewContent";
 import { env } from "@/lib/env";
@@ -23,6 +24,24 @@ import s from "./product.module.css";
 function parsePrice(p: string): number {
   const n = Number(p.replace(/[^0-9.]/g, ""));
   return Number.isFinite(n) ? n : 0;
+}
+
+/**
+ * Design packages are a design SERVICE (a concept, a plan, a brief), not a
+ * physical object. The brief (Visual Review Step 09 / master brief Step 11)
+ * requires them NOT to read like goods: no care notes, warranty, replacement,
+ * repairability or "fitted/cleaned/maintained" content. They are Shopify
+ * products (hidden from the grid) sold via the Design pages, so we detect them
+ * by their known handles and render a design-appropriate PDP instead.
+ */
+const DESIGN_PACKAGE_HANDLES = new Set([
+  // Interiors (design/interiors)
+  "the-house-edit-1", "additions-to-your-edit", "the-full-house-edit",
+  // Gardens (design/gardens)
+  "planting-plans", "concept-plans", "2d-3d-plans", "lighting-plans",
+]);
+function isDesignPackage(handle: string, collection?: string): boolean {
+  return DESIGN_PACKAGE_HANDLES.has(handle) || /design/i.test(collection ?? "");
 }
 
 /**
@@ -112,6 +131,17 @@ export default async function ProductPage({
   const product = await resolveProduct(handle);
   if (!product) notFound();
 
+  // Design packages get their own bespoke layout, not the physical-object PDP
+  // (Visual Review Step 09 / brief Step 11).
+  if (isDesignPackage(product.handle, product.collection)) {
+    return <DesignPackagePage product={product} />;
+  }
+
+  // Physical products only past this point — design packages returned above,
+  // so the design-aware branches below are inert (kept false, not dead-removed,
+  // to avoid touching the surrounding JSX).
+  const isDesign = false;
+
   const variants = await getProductVariants(handle);
 
   // Recommended: real pieces from the same collection, topped up with other
@@ -149,11 +179,13 @@ export default async function ProductPage({
   // Pre-launch framing: the store is not live to buy yet, so in-stock items read
   // simply "In stock" (no "ready to send") and everything else reads "Available
   // at launch", matching the product page's purchase button.
-  const deliveryStatus = inStock
-    ? "In stock · Available at launch"
-    : availability === "OutOfStock"
-      ? "Currently unavailable"
-      : "Available at launch";
+  const deliveryStatus = isDesign
+    ? "A design service, delivered by a House studio"
+    : inStock
+      ? "In stock · Available at launch"
+      : availability === "OutOfStock"
+        ? "Currently unavailable"
+        : "Available at launch";
 
   // Related editorial for the store→magazine cross-link (spec §12 PDP order 8).
   const hearth = await getLatestHearthArticles(3).catch(() => []);
@@ -246,7 +278,18 @@ export default async function ProductPage({
             {deliveryStatus}
           </div>
 
-          {variants.length > 0 ? (
+          {isDesign ? (
+            /* Design services have a professional fulfilment route, not a
+               shop checkout: the primary action starts the brief with a studio. */
+            <div className="mb-3">
+              <Link
+                href="/design#routes"
+                className="inline-flex w-full items-center justify-center gap-2 border border-house-brown bg-house-brown px-6 py-4 font-sans text-[14px] tracking-[0.18em] uppercase text-house-cream no-underline transition-[filter] hover:brightness-125"
+              >
+                Start your design brief
+              </Link>
+            </div>
+          ) : variants.length > 0 ? (
             <ProductBuy
               variants={variants}
               product={{
@@ -275,12 +318,48 @@ export default async function ProductPage({
               image={product.image}
             />
             <p className="mt-2 font-sans text-[18px] leading-[1.5] text-house-stone">
-              Save it to your Home Record to keep its details, care notes and warranty in one place.
+              {isDesign
+                ? "Keep the direction and brief in your Home Record, ready to develop with a professional."
+                : "Save it to your Home Record to keep its details, care notes and warranty in one place."}
             </p>
           </div>
 
-          <ProductCopy product={product} />
+          <ProductCopy product={product} isDesign={isDesign} />
 
+          {/* Design packages: a design SERVICE, not a physical object. Show how it
+              is delivered and route to the professional, instead of care/warranty
+              /replacement content (Visual Review Step 09 / brief Step 11). */}
+          {isDesign ? (
+            <>
+              <div className="mt-7 border-t border-house-brown/12 pt-6">
+                <p className="font-sans text-[14px] tracking-[0.22em] uppercase text-house-gold-ink mb-3">
+                  How this design service works
+                </p>
+                <ul className="m-0 p-0 list-none space-y-3">
+                  {[
+                    ["A design, not a product.", "This is a design service. You receive a considered direction and a brief to develop, not a physical item to be delivered, maintained or replaced."],
+                    ["Delivered by a House studio.", "A House design professional develops the work from your brief. Any concept is a starting point for discussion, not a construction-ready drawing."],
+                    ["Yours to keep and take further.", "Keep the direction and decisions in your Home Record, refine them, and take a clearer brief to the professional when you are ready."],
+                  ].map(([k, v]) => (
+                    <li key={k} className="font-sans text-[18px] leading-[1.6] text-house-brown/85">
+                      <span className="text-house-stone">{k}</span> {v}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <p className="mt-6 font-sans text-[18px] leading-[1.6] text-house-stone">
+                Prefer to talk it through first?{" "}
+                <Link href="/design#routes" className="text-house-gold-ink underline underline-offset-[3px]">
+                  Choose a design specialist
+                </Link>{" "}
+                or{" "}
+                <Link href="/contact" className="text-house-gold-ink underline underline-offset-[3px]">
+                  speak to a designer
+                </Link>.
+              </p>
+            </>
+          ) : (
+          <>
           {/* Sustainability / provenance evidence (spec §12 PDP order 5). We do
               NOT invent eco claims — this surfaces only what is verifiable: the
               named maker, the House Approved standard the piece was judged
@@ -352,6 +431,8 @@ export default async function ProductPage({
             </a>{" "}
             and it is kept in your Home Record.
           </p>
+          </>
+          )}
         </div>
       </div>
 

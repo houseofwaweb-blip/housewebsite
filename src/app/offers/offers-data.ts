@@ -35,29 +35,32 @@ export const OFFERS: Offer[] = [
     accent: "var(--service-gardeners)",
   },
   {
-    slug: "whole-home-care-plan",
+    slug: "coordinated-regular-care",
     category: "Multi-service care",
-    title: "The whole-home care plan",
+    title: "Coordinated regular care",
     image: "/services/subbrands/cleaners.webp",
     imageAlt: "Cleaning materials and cloths arranged as a still life",
+    // Sept HoWA review v2 (COPY 15.6): removed the one-monthly-bill / whole-home
+    // "plan" claim until the actual payment, contracting and delivery model
+    // exists. A recurring schedule is separate from an optional HoWA plan.
     summary:
-      "Regular cleaning, gardening and window cleaning on one plan, with one point of contact and one monthly bill.",
+      "Arrange recurring cleaning, gardening and window cleaning with a single point of contact keeping the visits in step. Each service keeps its own scope, terms and charging basis.",
     included: [
-      "A recurring visit schedule across three or more House services",
+      "A recurring visit schedule across the House services you choose",
       "One coordinator who keeps the visits in step",
-      "A single monthly statement rather than separate invoices",
+      "Each service billed on its own basis, explained before you book",
       "Help rebooking through your coordinator when plans change",
     ],
     eligibility:
-      "Households booking three or more regular services in one plan, at a serviced postcode.",
+      "Households arranging two or more regular services, at a serviced postcode.",
     priceBasis:
-      "Priced per plan after a home visit. The value is in coordinating the visits under one point of contact, rather than a headline discount. Ask for current terms.",
+      "Each service is priced on its own basis and explained before you commit. The value is in coordinating the visits under one point of contact. Ask for current terms.",
     starts: "Open now",
     ends: "Reviewed each season",
     exclusions:
-      "One-off and survey-based work is quoted separately and sits outside the plan. A minimum term may apply; you can pause or change services with notice.",
+      "One-off and survey-based work is quoted separately. You can pause or change services with notice.",
     termsHref: "/legal/service-terms",
-    cta: { label: "Arrange a plan", href: "/services" },
+    cta: { label: "Arrange regular care", href: "/services" },
   },
   {
     slug: "my-house-member-benefits",

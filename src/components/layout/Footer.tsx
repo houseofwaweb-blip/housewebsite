@@ -40,21 +40,23 @@ const COLS: FooterColumn[] = [
     ],
   },
   {
-    heading: "Shop · Magazine · Offers",
+    heading: "Shop & culture",
     links: [
       { label: "The House Store", href: "/shop" },
-      { label: "The Hearth magazine", href: "/the-hearth" },
+      { label: "The Hearth", href: "/the-hearth" },
+      { label: "House Cinema", href: "/cinema" },
       { label: "House Offers", href: "/offers" },
       { label: "Gift cards", href: "/gift-cards" },
     ],
   },
   {
-    heading: "Help & account",
+    heading: "HoWA & account",
     links: [
-      { label: "Help centre", href: "/help" },
-      { label: "Contact", href: "/contact" },
+      { label: "Explore HoWA", href: "/howa" },
+      { label: "HoWA plans", href: "/howa/plans" },
+      { label: "HoWA Cinema", href: "/howa/cinema" },
       { label: "My House", href: "/my-house" },
-      { label: "How it works", href: "/how-it-works" },
+      { label: "Help centre", href: "/help" },
     ],
   },
   {
@@ -155,7 +157,7 @@ export function Footer({ columns, tagline }: FooterProps) {
               which is authorised and regulated by the Financial Conduct Authority.
             </p>
             <div className="pt-5">
-              <PoweredByHowa size="compact" href="/how-it-works" dark />
+              <PoweredByHowa size="compact" href="/howa" dark />
             </div>
           </div>
 

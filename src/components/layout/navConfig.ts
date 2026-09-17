@@ -66,25 +66,27 @@ const SERVICE_CATEGORIES: {
   },
 ];
 
-/** Bottom row of the Services mega-menu. Book action stays prominent. */
+/** Bottom row of the Services mega-menu. Book action stays prominent.
+ * Insurance lives here as well as in utility nav (Sept HoWA review, Step 02:
+ * "Put Insurance in the services mega-menu as well as utility navigation"). */
 const SERVICE_FOOTER = [
+  { label: "Insurance & Cover", href: "/insurance" },
   { label: "House Approved standards", href: "/the-house/standards" },
-  { label: "House Offers", href: "/offers" },
   { label: "Book a service", href: "#open-booking-form" },
 ];
 
 /**
- * Primary navigation — Aug-17 rebuild spec (L103, L390–395).
+ * Primary navigation — Sept HoWA review v2 (Step 02 / COPY §4).
  *
- * Order: Services · Insurance & Cover · Shop · Magazine · Offers · The House
+ * Order: Services · Design · Shop · The Hearth · HoWA · The House
  *
- * Governing rule (spec L10–29): "House of Willow Alexander is who we are.
- * HoWA is what we use." HoWA is NOT a primary-nav pillar. It appears only as a
- * small "Powered by HoWA" utility link in the header/footer (see Header.tsx).
- *
- * Temp hrefs pending Phase 2 route builds:
- *   - Insurance & Cover → /protect (repoints to /insurance-and-cover on graft)
- *   - Magazine          → /the-hearth (repoints to /magazine on remap)
+ * Governing rule (v2, 14 Sep 2026): "House is the star. HoWA is the operating
+ * system and hero product." HoWA IS now a primary-nav pillar (a named
+ * destination), reversing the Aug-17 rule that kept it out of the nav.
+ * Utility nav (in Header.tsx): Insurance · Offers · Help · My House.
+ * Insurance stays reachable in the Services mega-menu footer too; Offers moves
+ * out of the primary row into utility; Cinema lives inside The Hearth + footer,
+ * with HoWA Cinema its own destination inside the HoWA section.
  */
 export const PRIMARY_NAV: MegaPanel[] = [
   {
@@ -116,8 +118,8 @@ export const PRIMARY_NAV: MegaPanel[] = [
       {
         heading: "Recurring care",
         links: [
-          { label: "Home & garden care", href: "/services/home-and-garden", description: "The whole property, on one plan" },
-          { label: "House Offers", href: "/offers", description: "Packages & member benefits" },
+          { label: "Home & garden care", href: "/services/home-and-garden", description: "The whole property, one rhythm" },
+          { label: "Insurance & Cover", href: "/insurance", description: "Introductions via Provenance" },
           { label: "House Approved standards", href: "/the-house/standards", description: "How we vet" },
           { label: "Book a service", href: "#open-booking-form" },
         ],
@@ -132,7 +134,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
       // still life, one "See services near you" postcode field, and one House
       // Approved trust statement. The menu stays cream; colour is punctuation.
       featured: {
-        image: "/home-v4/house-temperaments-still-life.webp",
+        image: "/home-v4/the-house-fleet.webp",
         alt: "A still life of well-kept domestic objects on a linen surface",
         tag: "House Approved",
         heading: "Every visit, to the House standard.",
@@ -144,35 +146,31 @@ export const PRIMARY_NAV: MegaPanel[] = [
   },
 
   {
-    id: "insurance",
-    trigger: "Insurance & Cover",
-    triggerHref: "/insurance",
+    id: "design",
+    trigger: "Design",
+    triggerHref: "/design",
     groups: [
       {
-        heading: "Everyday cover",
+        heading: "Design by the House",
         links: [
-          { label: "Home & contents", href: "/insurance/everyday/home", description: "For everyday homes" },
-          { label: "Car, van & motorbike", href: "/insurance/everyday/motor", description: "Including temporary cover" },
-          { label: "Pet & travel", href: "/insurance/everyday/pet-and-travel", description: "The animal and the trip" },
-          { label: "Breakdown & bicycle", href: "/insurance/everyday/breakdown-and-bicycle", description: "Roadside and bikes" },
-          { label: "How this works", href: "/insurance/how-this-works", description: "Arranged by Provenance" },
+          { label: "Interior design", href: "/design/interiors", description: "Through our named partner" },
+          { label: "Garden design", href: "/design/gardens", description: "Planting, structure & flow" },
         ],
       },
       {
-        heading: "Specialist & private client",
+        heading: "Explore with HoWA",
         links: [
-          { label: "Private client & estate", href: "/insurance/private-client", description: "High-value homes & estates" },
-          { label: "Business & commercial", href: "/insurance/business", description: "Assets & liability" },
-          { label: "Home protection", href: "/protect/home-protection", description: "Register interest" },
+          { label: "Start a design idea", href: "/howa/design", description: "Explore a concept, keep the brief" },
+          { label: "How design works", href: "/design", description: "From an idea to a finished room" },
         ],
       },
     ],
     preview: {
-      image: "/insurance/hub-hero.webp",
-      alt: "A considered British home",
-      tag: "Insurance & Cover",
-      heading: "Cover for the house. And everyone who lives in it.",
-      href: "/insurance",
+      image: "/home/hero-georgian.webp",
+      alt: "A considered British interior",
+      tag: "Design",
+      heading: "From an idea to a finished room.",
+      href: "/design",
     },
   },
 
@@ -207,15 +205,15 @@ export const PRIMARY_NAV: MegaPanel[] = [
   },
 
   {
-    id: "magazine",
-    trigger: "Magazine",
+    id: "the-hearth",
+    trigger: "The Hearth",
     triggerHref: "/the-hearth",
     groups: [
       {
         heading: "The Hearth",
         links: [
           { label: "Read the magazine", href: "/the-hearth", description: "Homes, gardens & living well" },
-          { label: "Cinema", href: "/cinema", description: "Films from the House" },
+          { label: "House Cinema", href: "/cinema", description: "Films from the House" },
           { label: "Recipes", href: "/recipes", description: "Seasonal cooking" },
           { label: "News", href: "/news", description: "Press, awards & announcements" },
         ],
@@ -231,17 +229,37 @@ export const PRIMARY_NAV: MegaPanel[] = [
   },
 
   {
-    id: "offers",
-    trigger: "Offers",
-    triggerHref: "/offers",
+    // Sept HoWA review v2: HoWA returns as a named nav pillar. Links point only
+    // at pages that exist today; /howa/design and /howa/cinema are added here as
+    // their pages land in later phases (Steps 10, 14) so localhost never links
+    // to a 404.
+    id: "howa",
+    trigger: "HoWA",
+    triggerHref: "/howa",
     groups: [
       {
-        heading: "House Offers",
+        heading: "Home Intelligence",
         links: [
-          { label: "Current offers", href: "/offers", description: "Seasonal packages & member benefits" },
+          { label: "How the House uses HoWA", href: "/how-it-works", description: "Before, during and after a visit" },
+          { label: "Ask HoWA", href: "/howa/ask", description: "Questions about your home" },
+          { label: "HoWA Cinema", href: "/howa/cinema", description: "The Bureau's unOrdinary world" },
+        ],
+      },
+      {
+        heading: "Plans",
+        links: [
+          { label: "For House customers", href: "/howa/house-customers", description: "Connect the services you use" },
+          { label: "Plans", href: "/howa/plans", description: "HoWA Free, HoWA+ and HoWA Steward" },
         ],
       },
     ],
+    preview: {
+      image: "/howa/new/nav-howa.webp",
+      alt: "The HoWA Doll's House, a cutaway model of a British home",
+      tag: "HoWA · Home Intelligence",
+      heading: "The House runs on HoWA.",
+      href: "/howa",
+    },
   },
 
   {

@@ -1,401 +1,247 @@
-import Image from "next/image";
 import Link from "next/link";
-import s from "./plans.module.css";
-import { FaqList } from "@/components/marketing/FaqList";
-import { V3Matrix } from "../V3Matrix";
+import Image from "next/image";
 import { MetaViewContent } from "@/components/marketing/MetaViewContent";
 import { SoftwareApplicationJsonLd } from "@/lib/seo/jsonLd";
 import { env } from "@/lib/env";
-import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 
 /**
- * /howa/plans, Plans & pricing.
+ * /howa/plans — built from the Plans handover (Sept HoWA review v2, Step 14).
+ * One product, three levels of care: HoWA (Free) / HoWA+ (£16.99) / HoWA Steward
+ * (£29.99). Warm, calm, House canvas — not a hard pricing grid.
  *
- * Section order:
- *   1. Hero, Three ways to be stewarded
- *   2. Stats strip, Three tiers · One record
- *   3. Tier cards, Housekeeper (live) + Steward (coming-soon, navy)
- *   4. Comparison table, full feature row
- *   5. FAQ accordion
- *   6. Closing, write to the House
+ * Two rules: (1) same product, more help — never "a different app" per tier;
+ * (2) release honesty — where a figure isn't confirmed the table says "Shown at
+ * sign-up". CTAs go to early access (/howa/coming-soon); checkout is not live.
  */
 
+const SAGE = "#6E7764";
+const CLAY = "#B97866";
+const MIDNIGHT = "#102A39";
+
 export const metadata = {
-  title: "Plans & Pricing: Housekeeper and Steward",
+  title: { absolute: "HoWA Plans | House of Willow Alexander" },
   description:
-    "Assistant free, Housekeeper at £16.99 a month, Steward at £29.99 a month. One record, three depths of care.",
+    "Choose how much help you want with your home. HoWA is free, HoWA+ is £16.99 a month, HoWA Steward is £29.99 a month. One home, understood and looked after more deeply as you go.",
 };
 
-const STAT_COLS = [
-  { value: "3", label: "Tiers · One record" },
-  { value: "£16.99", label: "Housekeeper per month" },
-  { value: "0", label: "Minimum term" },
-  { value: "∞", label: "Cancellation rights" },
-];
-
-const ASSISTANT_INCLUSIONS = [
-  "The portrait, instant facts from your address",
-  "Ask anything about home, garden and paperwork",
-  "Repair, garden and room scans",
-  "Quotes, decoded",
-  "Your first save, the record begins",
-];
-
-const HOWAPLUS_INCLUSIONS = [
-  "10% off all House services, auto-applied at checkout",
-  "Full Living Record continuity and task centre with seasonal prompts",
-  "Richer document and home logbook history",
-  "Priority booking across House services",
-  "Full access to The Hearth magazine",
-  "Personal carbon offset fund",
-  "Saved guides and seasonal reminders",
-  "Early access to new HoWA features",
-  "Exclusive House events and drops",
-];
-
-const STEWARD_INCLUSIONS = [
-  "Everything in Housekeeper, plus",
-  "The HoWA Score, with full drivers and risk register",
-  "Proactive protection prompts before failure",
-  "Predictive maintenance and anomaly alerts",
-  "Sensor and smart-meter interpretation where connected",
-  "Evidence packs and the Annual Home Report",
-  "Transfer Pack foundations for when you sell",
-  "Insurance readiness, evidence not advice",
-  "Priority HoWA support channel",
-];
-
-const FAQS = [
+const PLANS = [
   {
-    q: "When does Housekeeper go live?",
-    a: "Housekeeper opens with the new site. HoWA itself (bookings, records, the Assistant) is the surface that unlocks the paid features. If HoWA isn't live at the moment you try to start, the “Start HoWA” button routes to a waitlist until we're ready.",
+    name: "HoWA",
+    tagline: "Know your home",
+    price: "Free",
+    image: "/howa/plans/plan-howa.webp",
+    accent: SAGE,
+    solid: true,
+    features: ["Home Record", "HoWA Score", "Ask HoWA", "Your first reminders", "Shop & Book access"],
   },
   {
-    q: "What about Steward plans?",
-    a: "Steward is the recurring managed-care layer on top of Housekeeper. Register interest and we'll write when it opens. Pricing varies by the services included and the size of the home, we'll build a quote with you.",
+    name: "HoWA+",
+    tagline: "Keep it organised",
+    price: "£16.99/month",
+    image: "/howa/plans/plan-plus.webp",
+    accent: CLAY,
+    solid: false,
+    features: ["Home Plan and shared tasks", "Seasonal reminders", "Household sharing", "More Ask HoWA use", "Running-cost and home-management tools"],
   },
   {
-    q: "Can I cancel any time?",
-    a: "Yes. Housekeeper is month to month and cancels at the next billing date. Anything saved to your living record stays yours, export or keep it in a downgraded free account.",
-  },
-  {
-    q: "Is there a family or household plan?",
-    a: "Not at launch. One Housekeeper account covers everyone in one home, additional users can be invited to contribute to the record at no extra cost. A multi-property tier is on the Steward roadmap.",
-  },
-  {
-    q: "What happens to existing House Membership?",
-    a: "House Membership is Housekeeper from now on. If you held a legacy membership, it has been converted on like-for-like terms, you don't need to do anything.",
+    name: "HoWA Steward",
+    tagline: "Stay ahead",
+    price: "£29.99/month",
+    image: "/howa/plans/plan-steward.webp",
+    accent: MIDNIGHT,
+    solid: false,
+    features: ["Annual home review", "Earlier prompts for upcoming priorities", "A deeper view of risks and missing evidence", "More control over approvals and shared actions", "Premium support and partner benefits where offered"],
   },
 ];
 
-export default async function PlansPage() {
-  const sections = await getPageSections("howa-plans");
-  const hero = sections.get("hero");
-  const stats = sections.get("stats");
-  const tiers = sections.get("tiers");
-  const tierAssistant = sections.get("tier-assistant");
-  const tierPlus = sections.get("tier-plus");
-  const tierSteward = sections.get("tier-steward");
-  const compare = sections.get("compare");
-  const faq = sections.get("faq");
-  const closing = sections.get("closing");
+const BRIEF = [
+  { t: "A letter to review", b: "A home-insurance renewal arrived on 9 September. The date found in the letter is ready for you to confirm." },
+  { t: "A renewal remembered", b: "The policy renews on 1 October. Once confirmed, the reminder stays linked to the original letter." },
+  { t: "A question answered with its source", b: "Ask when the boiler was last serviced and open the service record behind the answer." },
+  { t: "A task shared", b: "A garden task for 11 September can be kept in the Home Plan and shared with the household where supported." },
+  { t: "Costs brought into view", b: "See the bills and recurring costs HoWA has information for, together with their source and time period." },
+  { t: "Completed work kept", b: "When supported work is completed, keep the relevant record, invoice or warranty with the asset it belongs to." },
+];
 
-  const statCols = cmsCards(stats, STAT_COLS, (c, base) => ({
-    value: pick(c.value ?? c.label, base?.value ?? ""),
-    label: pick(c.title ?? c.body, base?.label ?? ""),
-  }));
-  const assistantInclusions = tierAssistant?.items ?? ASSISTANT_INCLUSIONS;
-  const plusInclusions = tierPlus?.items ?? HOWAPLUS_INCLUSIONS;
-  const stewardInclusions = tierSteward?.items ?? STEWARD_INCLUSIONS;
-  const faqItems = cmsCards(faq, FAQS, (c, base) => ({
-    q: pick(c.title, base?.q ?? ""),
-    a: pick(c.body, base?.a ?? ""),
-  }));
+const TABLE_ROWS = [
+  { label: "Price", cells: ["Free", "£16.99 per month", "£29.99 per month"] },
+  { label: "What you can do", cells: ["Start a Home Record, see the available HoWA Score experience, ask HoWA and use the free features confirmed for your account.", "Everything confirmed in HoWA, plus the HoWA+ features available to your account.", "Everything confirmed in HoWA+, plus the HoWA Steward features available to your account."] },
+  { label: "Household access", cells: ["Shown at sign-up", "Shown at sign-up", "Shown at sign-up"] },
+  { label: "Extra tools", cells: ["None beyond the free plan.", "Shown at sign-up", "Shown at sign-up"] },
+  { label: "Reminders and prompts", cells: ["Shown at sign-up", "Shown at sign-up", "Shown at sign-up"] },
+  { label: "Support", cells: ["Shown at sign-up", "Shown at sign-up", "Shown at sign-up"] },
+  { label: "Annual home review", cells: ["Not included", "Not included", "Shown at sign-up"] },
+  { label: "Availability", cells: ["Early access", "Early access", "Early access"] },
+  { label: "Cancellation", cells: ["Nothing to cancel", "Shown at sign-up", "Shown at sign-up"] },
+];
 
+const EARLY_ACCESS = "/howa/coming-soon";
+
+export default function PlansPage() {
   return (
-    <div className={s.page}>
-      <SoftwareApplicationJsonLd
-        url={`${env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "")}/howa/plans`}
-        monthlyPriceGBP={16.99}
-      />
-      <MetaViewContent
-        contentId="howa_plans"
-        contentName="HoWA plans &amp; pricing"
-        contentCategory="howa_pricing"
-        contentType="product"
-        value={16.99}
-      />
-      {/* 1. Hero */}
-      <section className={s.hero}>
-        <div className={s.heroCopy}>
-          <div className={s.heroCopyInner}>
-            <p className={s.heroEy}>{cms(hero, "eyebrow", "Plans & Pricing")}</p>
-            <h1 className={s.heroTitle}>
-              {cms(hero, "headline", "Three ways to be")}{" "}
-              <em>{cms(hero, "headlineEm", "stewarded.", "headline")}</em>
-            </h1>
-            <p className={s.heroLede}>
-              {cms(
-                hero,
-                "body",
-                "One platform. Three entitlement levels. Upgrading always preserves the same home record. Assistant is the free way in. Housekeeper is the connected continuity and savings layer. Steward is the premium managed-care layer.",
-              )}
-            </p>
-            <div className={s.heroCtas}>
-              <Link
-                href={cms(hero, "ctaHref", "/howa/coming-soon")}
-                className={s.btnFilled}
-              >
-                {cms(hero, "ctaLabel", "Join the waitlist")}
-              </Link>
-              <Link href={cms(hero, "cta2Href", "#steward")} className={s.btnGhost}>
-                {cms(hero, "cta2Label", "See Steward")}
-                <span aria-hidden="true" className={s.btnArrow}>→</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className={s.heroVisual}>
-          <Image
-            src={cms(hero, "imageUrl", "/home-v4/v6-one-record-v3.webp")}
-            alt={cms(
-              hero,
-              "imageAlt",
-              "Three phones in the Assistant, Housekeeper and Steward colourways, with the cutaway dollhouse softly behind.",
-            )}
-            fill
-            sizes="(min-width: 1024px) 55vw, 100vw"
-            priority
-            style={{ objectFit: "cover", objectPosition: "right center" }}
-          />
-        </div>
-      </section>
+    <main className="howa-surface relative overflow-x-hidden bg-house-cream text-house-brown">
+      <SoftwareApplicationJsonLd url={`${env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "")}/howa/plans`} />
+      <MetaViewContent contentId="howa_plans" contentName="HoWA plans" contentCategory="howa_marketing" />
 
-      {/* 2. Stats strip */}
-      <section className={s.statsStrip}>
-        <div className={s.statsLede}>
-          <p className={s.statsLedeLine1}>{cms(stats, "headline", "One record. Three tiers.")}</p>
-          <p className={s.statsLedeLine2}>
-            {cms(stats, "subheadline", "Entitlements are additive. Cancel anytime.")}
+      {/* Hero */}
+      <section className="border-b border-house-brown/10 bg-[#f6efe7]">
+        <div className="mx-auto max-w-[1000px] px-[5vw] py-[clamp(48px,7vw,96px)] text-center">
+          <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-dark">Plans</p>
+          <h1 className="mx-auto mt-4 max-w-[18ch] font-display text-[clamp(34px,5vw,72px)] leading-[1.02]">
+            Choose how much help you want with your home.
+          </h1>
+          <p className="mx-auto mt-6 max-w-[56ch] font-sans text-[clamp(17px,1.5vw,20px)] leading-[1.55] text-house-brown/80">
+            Start with the essentials, then add more organisation, reminders and
+            support as your home needs it.
           </p>
         </div>
-        {statCols.map((stat) => (
-          <div key={stat.label} className={s.stat}>
-            <span className={s.statValue}>{stat.value}</span>
-            <span className={s.statLabel}>{stat.label}</span>
+      </section>
+
+      {/* Plan cards */}
+      <section className="mx-auto max-w-[1240px] px-[5vw] py-[clamp(48px,6vw,88px)]">
+        <div className="grid gap-6 lg:grid-cols-3">
+          {PLANS.map((p) => (
+            <div key={p.name} className="flex flex-col border border-house-brown/12 bg-house-cream">
+              <div className="relative aspect-[4/5] w-full overflow-hidden">
+                <Image src={p.image} alt={`The HoWA house in the ${p.name} colourway`} fill sizes="(max-width: 1024px) 100vw, 400px" className="object-cover" />
+                <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1.5" style={{ background: p.accent }} />
+              </div>
+              <div className="flex flex-1 flex-col p-7">
+                <h2 className="font-display text-[26px] leading-tight">{p.name}</h2>
+                <p className="mt-1 font-sans text-[15px]" style={{ color: p.accent }}>{p.tagline}</p>
+                <p className="mt-3 font-sans text-[19px] font-semibold text-house-brown">{p.price}</p>
+                <ul className="mt-5 flex flex-1 flex-col gap-2">
+                  {p.features.map((f) => (
+                    <li key={f} className="flex gap-2.5 font-sans text-[15px] leading-[1.45] text-house-brown/80">
+                      <span aria-hidden="true" className="text-house-gold-ink">·</span>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href={EARLY_ACCESS}
+                  className={
+                    p.solid
+                      ? "mt-7 inline-block w-full whitespace-nowrap text-center font-sans text-[12px] tracking-[0.16em] uppercase text-house-cream bg-house-brown border border-house-brown px-6 py-3 no-underline transition-[filter] duration-[var(--t-slow)] ease-out hover:brightness-125"
+                      : "mt-7 inline-block w-full whitespace-nowrap text-center font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown border border-house-brown/40 px-6 py-3 no-underline transition-colors duration-[var(--t-base)] hover:border-house-brown"
+                  }
+                >
+                  Join early access
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Monthly Home Brief */}
+      <section className="border-y border-house-brown/10 bg-[#f6efe7]">
+        <div className="mx-auto max-w-[1240px] px-[5vw] py-[clamp(48px,6vw,88px)]">
+          <div className="grid items-center gap-10 lg:grid-cols-[1fr_0.8fr] lg:gap-14">
+            <div>
+              <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-dark">Month by month</p>
+              <h2 className="mt-4 max-w-[24ch] font-display text-[clamp(28px,3.6vw,46px)] leading-[1.08]">See what HoWA keeps track of.</h2>
+              <p className="mt-5 max-w-[62ch] font-sans text-[17px] leading-[1.6] text-house-brown/80">
+                The value is in the things that keep coming back: a letter to review, a
+                date to remember, a question to answer and useful work to keep with the
+                home.
+              </p>
+            </div>
+            <figure className="relative m-0 aspect-[16/9] w-full overflow-hidden bg-[#f1ebe5]">
+              <Image src="/howa/new/proof-score.webp" alt="The HoWA Score beside the house: a boiler service due, with energy and insurance in view" fill sizes="(max-width: 1024px) 100vw, 460px" className="object-contain" />
+            </figure>
           </div>
-        ))}
+
+          <div className="mt-8 border border-house-brown/15 bg-house-cream">
+            <div className="flex items-center justify-between border-b border-house-brown/12 px-6 py-4">
+              <p className="flex items-center gap-3 font-display text-[19px]">
+                <span aria-hidden="true" className="flex h-7 w-7 items-center justify-center bg-house-brown text-[13px] font-semibold text-house-cream">H</span>
+                Monthly Home Brief · 14 Elm Grove
+              </p>
+              <p className="font-sans text-[13px] text-house-brown/55">September 2026</p>
+            </div>
+            <div className="grid gap-px bg-house-brown/12 sm:grid-cols-2 lg:grid-cols-3">
+              {BRIEF.map((m) => (
+                <div key={m.t} className="bg-house-cream p-6">
+                  <h3 className="font-display text-[19px] leading-tight">{m.t}</h3>
+                  <p className="mt-2 font-sans text-[14px] leading-[1.5] text-house-brown/75">{m.b}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <p className="mt-4 font-sans text-[13px] italic text-house-brown/55">
+            Illustrative sample for 14 Elm Grove. What appears in a Home Brief
+            depends on the features and information available to your home.
+          </p>
+        </div>
       </section>
 
-      {/* 3. Tier cards */}
-      <section className={s.tiers}>
-        <header className={s.tiersHead}>
-          <p className={s.tiersEy}>{cms(tiers, "eyebrow", "Choose your tier")}</p>
-          <h2 className={s.tiersTitle}>
-            {cms(tiers, "headline", "One platform.")}{" "}
-            <em>{cms(tiers, "headlineEm", "Three valid entitlement levels.", "headline")}</em>
-          </h2>
-        </header>
-        <div className={s.tiersGrid}>
-          {/* Assistant, olive hat — the free tier */}
-          <article className={`${s.tierCard} ${s.tierAssistant}`}>
-            <div className={s.tierIllustration} aria-hidden="true">
-              <Image
-                src={cms(tierAssistant, "imageUrl", "/home-v4/assistant-dollhouse.webp")}
-                alt=""
-                width={1024}
-                height={1228}
-                sizes="(min-width: 1024px) 400px, 100vw"
-              />
-            </div>
-            <div className={s.tierContent}>
-              <div className={s.tierBadge} data-state="live">
-                {cms(tierAssistant, "eyebrow", "Free · the way in")}
-              </div>
-              <h3 className={s.tierName}>{cms(tierAssistant, "headline", "Assistant")}</h3>
-              <p className={s.tierTagline}>
-                {cms(
-                  tierAssistant,
-                  "subheadline",
-                  "The house, seen. Useful before you've paid a penny.",
-                )}
-              </p>
-              <div className={s.tierPrice}>
-                <span className={s.tierPriceAmount}>{cms(tierAssistant, "body", "Free")}</span>
-                <span className={s.tierPriceUnit}>{cms(tierAssistant, "body2", "/ start with an address")}</span>
-              </div>
-              <ul className={s.tierIncludes}>
-                {assistantInclusions.map((inc) => (
-                  <li key={inc}>{inc}</li>
+      {/* Comparison table */}
+      <section className="mx-auto max-w-[1240px] px-[5vw] py-[clamp(48px,6vw,88px)]">
+        <p className="font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-dark">Compare plans</p>
+        <h2 className="mt-4 max-w-[26ch] font-display text-[clamp(28px,3.6vw,46px)] leading-[1.08]">The same home. More help when you need it.</h2>
+        <div className="mt-8 overflow-x-auto">
+          <table className="w-full min-w-[720px] border-collapse text-left">
+            <thead>
+              <tr className="border-b border-house-brown/20">
+                <th className="py-4 pr-4 font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown/55">What you get</th>
+                {PLANS.map((p) => (
+                  <th key={p.name} className="py-4 pl-4 align-bottom">
+                    <span className="block font-display text-[20px] text-house-brown">{p.name}</span>
+                    <span className="block font-sans text-[14px] text-house-brown/60">{p.price}</span>
+                  </th>
                 ))}
-              </ul>
-              <div className={s.tierCtas}>
-                <Link
-                  href={cms(tierAssistant, "ctaHref", "/howa/coming-soon?tier=assistant")}
-                  className={s.btnFilled}
-                >
-                  {cms(tierAssistant, "ctaLabel", "Join the waitlist")}
-                </Link>
-                <Link href={cms(tierAssistant, "cta2Href", "/howa/how-it-works")} className={s.tierLink}>
-                  {cms(tierAssistant, "cta2Label", "See how it works")} →
-                </Link>
-              </div>
-            </div>
-          </article>
-
-          {/* Housekeeper, terracotta hat */}
-          <article className={`${s.tierCard} ${s.tierPlus}`}>
-            <div className={s.tierIllustration} aria-hidden="true">
-              <Image
-                src={cms(tierPlus, "imageUrl", "/home-v4/housekeeper-dollhouse.webp")}
-                alt=""
-                width={1024}
-                height={1228}
-                sizes="(min-width: 1024px) 540px, 100vw"
-              />
-            </div>
-            <div className={s.tierContent}>
-              <div className={s.tierBadge} data-state="live">
-                {cms(tierPlus, "eyebrow", "Live at launch")}
-              </div>
-              <h3 className={s.tierName}>
-                {cms(tierPlus, "headline", "HoWA")}<em>{cms(tierPlus, "headlineEm", "+", "headline")}</em>
-              </h3>
-              <p className={s.tierTagline}>
-                {cms(
-                  tierPlus,
-                  "subheadline",
-                  "The connected membership for a home you mean to keep.",
-                )}
-              </p>
-              <div className={s.tierPrice}>
-                <span className={s.tierPriceAmount}>{cms(tierPlus, "body", "£16.99")}</span>
-                <span className={s.tierPriceUnit}>{cms(tierPlus, "body2", "/ month")}</span>
-              </div>
-              <ul className={s.tierIncludes}>
-                {plusInclusions.map((inc) => (
-                  <li key={inc}>{inc}</li>
-                ))}
-              </ul>
-              <div className={s.tierCtas}>
-                <Link
-                  href={cms(tierPlus, "ctaHref", "/howa/coming-soon?tier=housekeeper")}
-                  className={s.btnFilled}
-                >
-                  {cms(tierPlus, "ctaLabel", "Join the waitlist")}
-                </Link>
-                <Link href={cms(tierPlus, "cta2Href", "/howa/assistant")} className={s.tierLink}>
-                  {cms(tierPlus, "cta2Label", "See the Assistant")} →
-                </Link>
-              </div>
-            </div>
-          </article>
-
-          {/* Steward, navy hat + body */}
-          <article id="steward" className={`${s.tierCard} ${s.tierSteward}`}>
-            <div className={s.tierIllustration} aria-hidden="true">
-              <Image
-                src={cms(tierSteward, "imageUrl", "/home-v4/steward-dollhouse.webp")}
-                alt=""
-                width={1024}
-                height={1228}
-                sizes="(min-width: 1024px) 540px, 100vw"
-              />
-            </div>
-            <div className={s.tierContent}>
-              <div className={s.tierBadge} data-state="live">
-                {cms(tierSteward, "eyebrow", "The standard")}
-              </div>
-              <h3 className={s.tierName}>{cms(tierSteward, "headline", "Steward")}</h3>
-              <p className={s.tierTagline}>
-                {cms(
-                  tierSteward,
-                  "subheadline",
-                  "Protected before failure.",
-                )}
-              </p>
-              <div className={s.tierPrice}>
-                <span className={s.tierPriceAmount}>{cms(tierSteward, "body", "£29.99")}</span>
-                <span className={s.tierPriceUnit}>{cms(tierSteward, "body2", "/ month")}</span>
-              </div>
-              <ul className={s.tierIncludes}>
-                {stewardInclusions.map((inc) => (
-                  <li key={inc}>{inc}</li>
-                ))}
-              </ul>
-              <div className={s.tierCtas}>
-                <Link
-                  href={cms(tierSteward, "ctaHref", "/howa/steward")}
-                  className={s.btnFilled}
-                >
-                  {cms(tierSteward, "ctaLabel", "Explore Steward")}
-                </Link>
-              </div>
-            </div>
-          </article>
+              </tr>
+            </thead>
+            <tbody>
+              {TABLE_ROWS.map((row) => (
+                <tr key={row.label} className="border-b border-house-brown/10 align-top">
+                  <th scope="row" className="py-4 pr-4 font-sans text-[15px] font-semibold text-house-brown">{row.label}</th>
+                  {row.cells.map((c, i) => (
+                    <td key={i} className="py-4 pl-4 font-sans text-[14px] leading-[1.5] text-house-brown/80">{c}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-
-        <p className={s.tiersFootnote}>
-          {cms(
-            tiers,
-            "body",
-            "Prices are VAT-inclusive for UK residents. Cancel any time. The record of your home stays yours either way.",
-          )}
+        <p className="mt-4 max-w-[70ch] font-sans text-[13px] leading-[1.55] text-house-brown/55">
+          Plan prices, limits, availability and cancellation terms must match the
+          current product configuration. Physical services are booked and priced
+          separately under the provider&rsquo;s own terms.
         </p>
       </section>
 
-      {/* 4. Comparison table */}
-      <section className={s.compare}>
-        <header className={s.compareHead}>
-          <p className={s.compareEy}>{cms(compare, "eyebrow", "Feature by feature")}</p>
-          <h2 className={s.compareTitle}>
-            {cms(compare, "headline", "Free.")}{" "}
-            <em>{cms(compare, "headlineEm", "Housekeeper", "headline")}</em>.{" "}
-            {cms(compare, "subheadline", "Steward.")}
-          </h2>
-        </header>
-        <div className="mx-auto mb-10 max-w-[860px] lg:mb-12">
-          <Image
-            src="/home-v4/v6-one-record-feature.webp"
-            alt="Three phones in the Assistant, Housekeeper and Steward colourways, showing one continuous home record across the tiers."
-            width={1448}
-            height={1086}
-            sizes="(min-width: 1024px) 860px, 100vw"
-            className="h-auto w-full"
-          />
-        </div>
-        <div className="howa-surface">
-          <V3Matrix middleLabel="Housekeeper" showTitle={false} />
+      {/* Lifestyle band */}
+      <section className="border-y border-house-brown/10 bg-[#f6efe7]">
+        <div className="mx-auto grid max-w-[1240px] items-center gap-10 px-[5vw] py-[clamp(48px,6vw,88px)] lg:grid-cols-2">
+          <div className="relative aspect-[16/9] w-full overflow-hidden">
+            <Image src="/howa/new/life-reading.webp" alt="Someone reading with their dog in a calm, well-kept living room" fill sizes="(max-width: 1024px) 100vw, 560px" className="object-cover" />
+          </div>
+          <div className="max-w-[46ch]">
+            <h2 className="font-display text-[clamp(26px,3vw,40px)] leading-[1.1]">The same home, more useful over time.</h2>
+            <p className="mt-5 font-sans text-[17px] leading-[1.6] text-house-brown/80">
+              Whichever plan you choose, the useful information you keep should stay
+              connected to the same home and household rather than starting again
+              each month.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* 5. FAQ */}
-      <section className={s.faqSection}>
-        <div className={s.faqInner}>
-          <header className={s.faqHead}>
-            <p className={s.faqEy}>{cms(faq, "eyebrow", "Questions")}</p>
-            <h2 className={s.faqTitle}>
-              {cms(faq, "headline", "What you'd")}{" "}
-              <em>{cms(faq, "headlineEm", "probably", "headline")}</em>{" "}
-              {cms(faq, "subheadline", "ask.")}
-            </h2>
-          </header>
-          <FaqList items={faqItems} />
-        </div>
-      </section>
-
-      {/* 6. Closing */}
-      <section className={s.closing}>
-        <p className={s.closingKicker}>{cms(closing, "eyebrow", "Still wondering?")}</p>
-        <p className={s.closingStatement}>
-          <em>{cms(closing, "headlineEm", "Write to the House.", "headline")}</em>
-        </p>
-        <div className={s.closingCtas}>
-          <Link href={cms(closing, "ctaHref", "/contact")} className={s.closingBtnFilled}>
-            {cms(closing, "ctaLabel", "Contact us")}
+      {/* Final CTA */}
+      <section className="relative overflow-hidden bg-house-brown text-house-cream">
+        <div className="mx-auto max-w-[1000px] px-[5vw] py-[clamp(52px,7vw,96px)] text-center">
+          <h2 className="mx-auto max-w-[20ch] font-display text-[clamp(30px,4vw,52px)] leading-[1.05]">Start with the home you have.</h2>
+          <p className="mx-auto mt-5 max-w-[56ch] font-sans text-[17px] leading-[1.6] text-house-cream/80">
+            Join early access and we will tell you when you can begin. Compare the
+            plans now to see the level of help each is designed to offer.
+          </p>
+          <Link href={EARLY_ACCESS} className="mt-8 inline-block whitespace-nowrap px-8 py-3 text-center font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown bg-house-cream border border-house-cream no-underline transition-[filter] duration-[var(--t-slow)] ease-out hover:brightness-95">
+            Join early access
           </Link>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

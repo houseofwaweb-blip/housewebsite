@@ -14,16 +14,16 @@ import { PRIMARY_NAV } from "./navConfig";
 
 /**
  * Mobile menu: mirrors the desktop nav exactly — same labels, same order
- * (Services · Insurance & Cover · Shop · Magazine · Offers · The House) — so the
- * two navigations read the same. (Earlier this regrouped under verbs; changed
- * per direction that mobile and desktop must match.)
+ * (Services · Design · Shop · The Hearth · HoWA · The House) — so the two
+ * navigations read the same. Utility links (Insurance · Offers · Help · My
+ * House) live in the drawer footer below. (Sept HoWA review v2, Step 02.)
  */
 const MOBILE_GROUPS: { label: string; panelId: string }[] = [
   { label: "Services", panelId: "services" },
-  { label: "Insurance & Cover", panelId: "insurance" },
+  { label: "Design", panelId: "design" },
   { label: "Shop", panelId: "shop" },
-  { label: "Magazine", panelId: "magazine" },
-  { label: "Offers", panelId: "offers" },
+  { label: "The Hearth", panelId: "the-hearth" },
+  { label: "HoWA", panelId: "howa" },
   { label: "The House", panelId: "the-house" },
 ];
 
@@ -34,9 +34,9 @@ const MOBILE_GROUPS: { label: string; panelId: string }[] = [
  * Desktop: brand wordmark → MegaMenu (hover panels) → utility (search, sign in, CTA).
  * Mobile:  brand → hamburger → full-screen drawer with accordion-style children.
  *
- * Primary CTA ("Book a service") opens the House booking modal. Per the Aug-17
- * rebuild, HoWA is NOT a nav pillar or CTA — it appears only as the small
- * "Powered by HoWA" utility link below (spec L104–109, L397–403).
+ * Primary CTA ("Book a service") opens the House booking modal. Per the Sept
+ * HoWA review v2, HoWA IS now a primary nav pillar; utility nav carries
+ * Insurance · Offers · Help · My House.
  */
 
 export interface HeaderProps {
@@ -123,22 +123,28 @@ export function Header({
         >
           Search
         </button>
-        {/* Held until 2xl so the header fits comfortably at 1280-1535. Both
-            remain reachable (Powered by HoWA is in the footer; My House via
-            footer + the mobile menu). */}
-        <span className="hidden 2xl:inline-flex">
-          <PoweredByHowa size="compact" href="/how-it-works" dark={dark} />
-        </span>
-        <Link
-          href="/my-house"
-          className={cn(
-            "hidden 2xl:inline-block font-sans text-[12px] tracking-[0.16em] uppercase no-underline opacity-[0.55] hover:opacity-100",
-            "transition-opacity duration-[var(--t-base)]",
-            dark ? "text-house-cream" : "text-house-brown",
-          )}
-        >
-          My House
-        </Link>
+        {/* Utility nav (Sept HoWA review v2, Step 02): Insurance · Offers · Help
+            · My House. Held until 2xl so the header fits comfortably at
+            1280-1535; below that they stay reachable via the mobile menu +
+            footer. */}
+        {[
+          { label: "Insurance", href: "/insurance" },
+          { label: "Offers", href: "/offers" },
+          { label: "Help", href: "/help" },
+          { label: "My House", href: "/my-house" },
+        ].map((u) => (
+          <Link
+            key={u.href}
+            href={u.href}
+            className={cn(
+              "hidden 2xl:inline-block font-sans text-[12px] tracking-[0.16em] uppercase no-underline opacity-[0.55] hover:opacity-100",
+              "transition-opacity duration-[var(--t-base)]",
+              dark ? "text-house-cream" : "text-house-brown",
+            )}
+          >
+            {u.label}
+          </Link>
+        ))}
         <CartIcon dark={dark} onClick={openDrawer} />
         <Link
           href={ctaHref}
@@ -329,16 +335,24 @@ export function Header({
               >
                 Search
               </button>
-              <Link
-                href="/my-house"
-                onClick={() => setMobileOpen(false)}
-                className="font-sans text-[12px] tracking-[0.16em] uppercase opacity-60 no-underline"
-              >
-                My House
-              </Link>
-              {/* HoWA sits in the menu footer, never the top line (spec §6.2) */}
+              {/* Utility nav (Sept HoWA review v2, Step 02) */}
+              {[
+                { label: "Insurance", href: "/insurance" },
+                { label: "Offers", href: "/offers" },
+                { label: "Help", href: "/help" },
+                { label: "My House", href: "/my-house" },
+              ].map((u) => (
+                <Link
+                  key={u.href}
+                  href={u.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="font-sans text-[12px] tracking-[0.16em] uppercase opacity-60 no-underline"
+                >
+                  {u.label}
+                </Link>
+              ))}
               <div className="pt-2">
-                <PoweredByHowa size="compact" href="/how-it-works" />
+                <PoweredByHowa size="compact" href="/howa" />
               </div>
             </div>
           </div>

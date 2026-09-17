@@ -164,6 +164,16 @@
   color: rgba(48, 35, 28, 0.62);
 }
 
+.trustLink {
+  color: var(--color-house-gold-ink, #8a6d3b);
+  text-decoration: none;
+  transition: color var(--t-base, 0.2s) ease;
+}
+
+.trustLink:hover {
+  color: rgba(48, 35, 28, 0.9);
+}
+
 /* ---- Mobile: image on top (4:5 crop), plaque as a real cream block below ---- */
 @media (max-width: 767px) {
   .hero {
