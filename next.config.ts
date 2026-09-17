@@ -29,6 +29,17 @@ const nextConfig: NextConfig = {
   // dev runtime, leaving the page non-interactive. localhost is allowed by
   // default; LAN IPs must be listed.
   allowedDevOrigins: ["192.168.1.149", "192.168.1.*", "*.local"],
+  // Vercel serverless function size: getPublicImageSize() and the services
+  // index read from `process.cwd()/public/…`, which made Next's file tracer
+  // bundle the ENTIRE public/ folder (all the garden photos + imagery) into the
+  // affected function — the /design/gardens/projects/[slug] function hit 273MB,
+  // over Vercel's 250MB limit, failing the deploy. Vercel serves /public from
+  // its CDN, so functions never need those files at runtime; exclude them from
+  // tracing. Build-time SSG (where public is present) still measures real image
+  // sizes; a runtime ISR re-render falls back to the 4:3 default gracefully.
+  outputFileTracingExcludes: {
+    "*": ["./public/**"],
+  },
   images: {
     // Vercel Image Optimization quota was exhausted (402
     // OPTIMIZED_IMAGE_REQUEST_PAYMENT_REQUIRED), which broke every uncached
