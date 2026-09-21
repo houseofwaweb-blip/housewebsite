@@ -76,17 +76,14 @@ const SERVICE_FOOTER = [
 ];
 
 /**
- * Primary navigation — Sept HoWA review v2 (Step 02 / COPY §4).
+ * Primary navigation — further-amendments brief §3.
  *
- * Order: Services · Design · Shop · The Hearth · HoWA · The House
+ * Order: Services · Design · Insurance · Shop · The House · The Hearth
  *
- * Governing rule (v2, 14 Sep 2026): "House is the star. HoWA is the operating
- * system and hero product." HoWA IS now a primary-nav pillar (a named
- * destination), reversing the Aug-17 rule that kept it out of the nav.
- * Utility nav (in Header.tsx): Insurance · Offers · Help · My House.
- * Insurance stays reachable in the Services mega-menu footer too; Offers moves
- * out of the primary row into utility; Cinema lives inside The Hearth + footer,
- * with HoWA Cinema its own destination inside the HoWA section.
+ * The brief is the authority for nav structure: Insurance is a primary pillar,
+ * HoWA is NOT a pillar (it is infrastructure), and "My HoWA" lives in the
+ * utility nav (Header.tsx: Search · My HoWA · Bag). HoWA marketing pages stay
+ * reachable from the homepage HoWA section and the footer.
  */
 export const PRIMARY_NAV: MegaPanel[] = [
   {
@@ -175,6 +172,28 @@ export const PRIMARY_NAV: MegaPanel[] = [
   },
 
   {
+    id: "insurance",
+    trigger: "Insurance",
+    triggerHref: "/insurance",
+    groups: [
+      {
+        heading: "Home & cover",
+        links: [
+          { label: "Home insurance", href: "/insurance", description: "Cover shaped around your home" },
+          { label: "Claims & help", href: "/insurance/claims-and-help", description: "Make a claim or get support" },
+        ],
+      },
+    ],
+    preview: {
+      image: "/insurance/hub-hero.webp",
+      alt: "A handsome British home, well protected",
+      tag: "Insurance",
+      heading: "Cover for the home you actually have.",
+      href: "/insurance",
+    },
+  },
+
+  {
     id: "shop",
     trigger: "Shop",
     triggerHref: "/shop",
@@ -201,64 +220,6 @@ export const PRIMARY_NAV: MegaPanel[] = [
         { label: "All collections", href: "/shop/collections" },
         { label: "Gift Cards", href: "/gift-cards" },
       ],
-    },
-  },
-
-  {
-    id: "the-hearth",
-    trigger: "The Hearth",
-    triggerHref: "/the-hearth",
-    groups: [
-      {
-        heading: "The Hearth",
-        links: [
-          { label: "Read the magazine", href: "/the-hearth", description: "Homes, gardens & living well" },
-          { label: "House Cinema", href: "/cinema", description: "Films from the House" },
-          { label: "Recipes", href: "/recipes", description: "Seasonal cooking" },
-          { label: "News", href: "/news", description: "Press, awards & announcements" },
-        ],
-      },
-    ],
-    preview: {
-      image: "/home/hero-georgian.webp",
-      alt: "The Hearth magazine",
-      tag: "The Hearth",
-      heading: "Writing worth keeping, for the home and garden.",
-      href: "/the-hearth",
-    },
-  },
-
-  {
-    // Sept HoWA review v2: HoWA returns as a named nav pillar. Links point only
-    // at pages that exist today; /howa/design and /howa/cinema are added here as
-    // their pages land in later phases (Steps 10, 14) so localhost never links
-    // to a 404.
-    id: "howa",
-    trigger: "HoWA",
-    triggerHref: "/howa",
-    groups: [
-      {
-        heading: "Home Intelligence",
-        links: [
-          { label: "How the House uses HoWA", href: "/how-it-works", description: "Before, during and after a visit" },
-          { label: "Ask HoWA", href: "/howa/ask", description: "Questions about your home" },
-          { label: "HoWA Cinema", href: "/howa/cinema", description: "The Bureau's unOrdinary world" },
-        ],
-      },
-      {
-        heading: "Plans",
-        links: [
-          { label: "For House customers", href: "/howa/house-customers", description: "Connect the services you use" },
-          { label: "Plans", href: "/howa/plans", description: "HoWA Free, HoWA+ and HoWA Steward" },
-        ],
-      },
-    ],
-    preview: {
-      image: "/howa/new/nav-howa.webp",
-      alt: "The HoWA Doll's House, a cutaway model of a British home",
-      tag: "HoWA · Home Intelligence",
-      heading: "The House runs on HoWA.",
-      href: "/howa",
     },
   },
 
@@ -291,6 +252,30 @@ export const PRIMARY_NAV: MegaPanel[] = [
       tag: "The Philosophy",
       heading: "Ownership is passive. Stewardship is intentional.",
       href: "/the-house/philosophy",
+    },
+  },
+
+  {
+    id: "the-hearth",
+    trigger: "The Hearth",
+    triggerHref: "/the-hearth",
+    groups: [
+      {
+        heading: "The Hearth",
+        links: [
+          { label: "Read the magazine", href: "/the-hearth", description: "Homes, gardens & living well" },
+          { label: "House Cinema", href: "/cinema", description: "Films from the House" },
+          { label: "Recipes", href: "/recipes", description: "Seasonal cooking" },
+          { label: "News", href: "/news", description: "Press, awards & announcements" },
+        ],
+      },
+    ],
+    preview: {
+      image: "/home/hero-georgian.webp",
+      alt: "The Hearth magazine",
+      tag: "The Hearth",
+      heading: "Writing worth keeping, for the home and garden.",
+      href: "/the-hearth",
     },
   },
 ];

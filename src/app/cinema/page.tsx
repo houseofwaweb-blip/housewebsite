@@ -74,14 +74,14 @@ export default async function CinemaPage() {
       <section className="bg-house-brown text-house-cream">
         <div className="mx-auto flex max-w-[1200px] flex-col items-start gap-5 px-[5vw] py-[clamp(44px,6vw,80px)] md:flex-row md:items-center md:justify-between">
           <div className="max-w-[52ch]">
-            <p className="font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-light">From the world of HoWA</p>
+            <p className="font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-light">The unOrdinary</p>
             <p className="mt-3 font-display text-[clamp(24px,2.8vw,36px)] leading-[1.15]">
-              The Bureau lives in HoWA&rsquo;s unOrdinary world: a fictional
+              The Bureau lives in the House&rsquo;s unOrdinary world: a fictional
               institution for the signals a home gives away.
             </p>
           </div>
-          <Link href="/howa/cinema" className="shrink-0 whitespace-nowrap font-sans text-[12px] tracking-[0.16em] uppercase text-house-cream border border-house-cream/40 px-6 py-3 no-underline transition-colors hover:border-house-cream">
-            Enter HoWA Cinema
+          <Link href="/the-unordinary" className="shrink-0 whitespace-nowrap font-sans text-[12px] tracking-[0.16em] uppercase text-house-cream border border-house-cream/40 px-6 py-3 no-underline transition-colors hover:border-house-cream">
+            Enter The unOrdinary
           </Link>
         </div>
       </section>

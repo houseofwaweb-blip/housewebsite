@@ -144,16 +144,16 @@ export default async function GardensPage() {
           <FlowerWatermark color="gold" side="left" opacity={0.16} className="!top-auto bottom-[-12%] h-[74%]" />
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>{cms(hero, "eyebrow", "Design · Gardens")}</p>
+            {/* Hero copy locked to the brief §18 (not from Sanity, which carried
+                earlier wording). */}
             <h1 className={s.heroTitle}>
-              {cms(hero, "headline", "Landscapes,")}{" "}
-              <em>{cms(hero, "headlineEm", "properly read.", "headline")}</em>
+              Garden design for <em>how you actually live.</em>
             </h1>
             <p className={s.heroLede}>
-              {cms(
-                hero,
-                "body",
-                "Designed around what the garden already wants to do: light, shade, drainage, the soil it has. The brief is to make the garden feel inevitable, ten years from now. Led by Willow Alexander Gardens, the House's own garden studio, with specialist partners brought in for build.",
-              )}
+              From a planting plan to a complete redesign, we create gardens that
+              feel settled, useful and distinctly yours. Led by Willow Alexander
+              Gardens, the House&rsquo;s own garden studio, with specialist
+              partners brought in for build.
             </p>
             <div className={s.heroCtas}>
               <Link href={cms(hero, "ctaHref", "#plans")} className={s.btnFilled}>

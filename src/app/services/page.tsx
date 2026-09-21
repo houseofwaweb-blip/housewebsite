@@ -305,14 +305,14 @@ export default async function ServicesLanding() {
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>{cms(hero, "eyebrow", "The House · Services")}</p>
             <h1 className={s.heroTitle}>
-              {cms(hero, "headline", "A specialist for")}{" "}
-              <em>{cms(hero, "headlineEm", "what your home needs.", "headline")}</em>
+              {cms(hero, "headline", "Help at home,")}{" "}
+              <em>{cms(hero, "headlineEm", "without the hassle.", "headline")}</em>
             </h1>
             <p className={s.heroLede}>
               {cms(
                 hero,
                 "body",
-                "Everyday care, seasonal jobs and work that needs a particular skill. Explore the House service collection, check availability and find the right route for the job. Each service explains its scope, price basis and who will carry out the work before you commit.",
+                "Book trusted home and garden services in a few taps. Each service explains its scope, price basis and who will carry out the work before you commit.",
               )}
             </p>
             {/* DIRECTIVE §08 #1 — a literal service + postcode finder leads the
@@ -466,9 +466,9 @@ export default async function ServicesLanding() {
             <figure className="relative m-0 aspect-[4/3] w-full overflow-hidden border border-house-brown/15 bg-[#f1ebe5]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/howa/new/proof-home-record.webp"
-                alt="The HoWA Home Record beside the house: correspondence, documents, bills, maintenance and reminders in one place"
-                className="absolute inset-0 h-full w-full object-contain"
+                src="/services/photos/vans/asher-348.webp"
+                alt="A liveried Willow Alexander Home & Garden electric van, arriving to a job"
+                className="absolute inset-0 h-full w-full object-cover"
               />
             </figure>
             <div>
@@ -693,6 +693,20 @@ export default async function ServicesLanding() {
           per item, per job or a quote. Booking, scheduling and your Home Record
           are powered by HoWA.
         </p>
+      </section>
+
+      {/* Multi-service CTA (brief §15) */}
+      <section className="bg-house-forest px-[5vw] py-[clamp(48px,6vw,80px)] text-house-cream">
+        <div className="mx-auto max-w-[820px] text-center">
+          <h2 className="font-display text-[clamp(28px,3.4vw,44px)] leading-[1.08]">Need more than one service?</h2>
+          <p className="mx-auto mt-4 max-w-[52ch] font-sans text-[18px] leading-[1.6] text-house-cream/85">
+            HoWA can organise work around your home rather than making you manage
+            every job separately.
+          </p>
+          <Link href="/howa/ask" className="mt-7 inline-flex h-12 items-center justify-center whitespace-nowrap border border-house-gold-light bg-house-gold-light px-7 font-sans text-[13px] uppercase tracking-[0.16em] text-house-ink no-underline transition-[filter] hover:brightness-105">
+            Ask HoWA →
+          </Link>
+        </div>
       </section>
 
       {/* 5. Brief builder */}

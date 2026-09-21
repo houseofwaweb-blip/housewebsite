@@ -139,16 +139,16 @@ export default async function InteriorsPage() {
           <FlowerWatermark color="gold" side="left" opacity={0.16} className="!top-auto bottom-[-12%] h-[74%]" />
           <div className={s.heroCopyInner}>
             <p className={s.heroEy}>{cms(hero, "eyebrow", "Design · Interiors")}</p>
+            {/* Hero copy locked to the brief §19 (not from Sanity, which carried
+                earlier wording). */}
             <h1 className={s.heroTitle}>
-              {cms(hero, "headline", "Consciously designed")}{" "}
-              <em>{cms(hero, "headlineEm", "interiors.", "headline")}</em>
+              Rooms that feel like <em>they belong to you.</em>
             </h1>
             <p className={s.heroLede}>
-              {cms(
-                hero,
-                "body",
-                "Rooms read for the people who live in them, not decorated at them. Worked out in plaster, paint, joinery and the light a room actually gets, with Delve Interiors, our House Approved studio who know period fabric and how a house wears over years.",
-              )}
+              Layout, colour, materials and pieces that work together, without
+              turning your home into somebody else&rsquo;s moodboard. With Delve
+              Interiors, our House Approved studio who know period fabric and how
+              a house wears over years.
             </p>
             <div className={s.heroCtas}>
               <Link href={cms(hero, "ctaHref", "#plans")} className={s.btnFilled}>

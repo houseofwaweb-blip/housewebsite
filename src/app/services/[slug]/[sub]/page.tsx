@@ -127,6 +127,12 @@ export default async function SubServicePage({
   const whyChoose = service.whyChoose?.length ? service.whyChoose : (defaults?.whyChoose ?? []);
   const included = service.included?.length ? service.included : parent.sections.included;
   const faq = service.faq?.length ? service.faq : parent.faq;
+  // §16 scope sections — inherited from the parent service defaults so every
+  // service page states its time basis, exclusions, waste and materials
+  // (brief UX Rule 2: never hide scope).
+  const howLong = defaults?.howLong ?? [];
+  const excluded = defaults?.excluded ?? [];
+  const waste = defaults?.waste ?? [];
 
   const hasAbout = Boolean(aboutBody) || whyChoose.length > 0;
   const hasIncluded = included.length > 0;
@@ -283,7 +289,56 @@ export default async function SubServicePage({
         </section>
       ) : null}
 
-      {/* Single booking CTA — after What's included, before the FAQ. */}
+      {/* §16 — How long do I need? (operational time basis) */}
+      {howLong.length > 0 ? (
+        <section className={s.included}>
+          <header className={s.sectionHead}>
+            <p className={s.sectionEy}>How long do I need?</p>
+            <h2 className={s.sectionTitle}>Time on <em>site.</em></h2>
+            <p className={s.sectionLede}>
+              A guide only. Your exact quote depends on the property and its
+              condition, confirmed by postcode.
+            </p>
+          </header>
+          <ul className={s.list}>
+            {howLong.map((h) => (
+              <li key={h.label}><strong>{h.label}</strong><br />{h.time}</li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      {/* §16 — What isn't included (explicit exclusions) */}
+      {excluded.length > 0 ? (
+        <section className={s.included}>
+          <header className={s.sectionHead}>
+            <p className={s.sectionEy}>What isn&rsquo;t included</p>
+            <h2 className={s.sectionTitle}>Out of <em>scope.</em></h2>
+            <p className={s.sectionLede}>
+              So there are no surprises. Anything here can often be arranged
+              separately, just ask.
+            </p>
+          </header>
+          <ul className={s.list}>
+            {excluded.map((x) => (<li key={x}>{x}</li>))}
+          </ul>
+        </section>
+      ) : null}
+
+      {/* §16 — Waste & materials */}
+      {waste.length > 0 ? (
+        <section className={s.included}>
+          <header className={s.sectionHead}>
+            <p className={s.sectionEy}>Waste &amp; materials</p>
+            <h2 className={s.sectionTitle}>What&rsquo;s included, <em>what&rsquo;s extra.</em></h2>
+          </header>
+          <ul className={s.list}>
+            {waste.map((w) => (<li key={w}>{w}</li>))}
+          </ul>
+        </section>
+      ) : null}
+
+      {/* Single booking CTA — after the scope detail, before the FAQ. */}
       <ServiceCtaRow service={service.name} bookHref={bookHref} />
 
       {/* 5. FAQ */}

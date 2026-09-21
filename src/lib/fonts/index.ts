@@ -1,5 +1,5 @@
 import localFont from "next/font/local";
-import { Cormorant_Garamond, Jost } from "next/font/google";
+import { Cormorant_Garamond, Jost, Petit_Formal_Script } from "next/font/google";
 
 /**
  * Didot — the House display face (Linotype Didot).
@@ -72,5 +72,17 @@ export const jost = Jost({
   subsets: ["latin"],
   weight: ["200", "300", "400", "500"],
   variable: "--font-jost",
+  display: "swap",
+});
+
+/**
+ * Petit Formal Script — the House signature hand. Used sparingly for the
+ * "For homes that do good." brand signature (footer + campaign accents),
+ * matching the handwritten script in the further-amendments mockup.
+ */
+export const script = Petit_Formal_Script({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-script",
   display: "swap",
 });

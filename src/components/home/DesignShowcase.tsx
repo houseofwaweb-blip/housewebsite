@@ -1,80 +1,60 @@
 import Link from "next/link";
 import Image from "next/image";
-import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 
 /**
- * DesignShowcase — the House's two design studios as a pair of editorial image
- * cards on the homepage: Interior design (/services/interiors) and Garden
- * design (/services/home-and-garden). Design folds into Services per the Aug-17
- * spec (no separate Design pillar), but the House still leads with its design
- * craft here. Floral watermark per spec §4.4.
+ * DesignShowcase — homepage Design section (brief §9), designed to the
+ * further-amendments mockup: a large interior image LEFT, the heading + copy +
+ * CTA in the CENTRE, and a three-image triptych RIGHT carrying the
+ * "beautiful / practical / always British" card. Copy from the brief.
  */
-const CARDS = [
-  {
-    eyebrow: "Interior design",
-    title: "Rooms that hold a life.",
-    body: "Interior design for a room, a floor or a whole house, from the first brief through to specification and installation.",
-    image: "/home-v4/v6-interior-design.webp",
-    imageAlt: "A layered, considered British interior",
-    href: "/design/interiors",
-    cta: "Explore interior design",
-  },
-  {
-    eyebrow: "Garden design",
-    title: "Gardens made to be lived in.",
-    body: "Garden design shaped around the site, the soil and how you want to use it, with planting, structure and build considered together.",
-    image: "/home/garden-design.webp",
-    imageAlt: "A designed English garden in considered planting",
-    href: "/design/gardens",
-    cta: "Explore garden design",
-  },
+const TRIPTYCH = [
+  { src: "/home/design-artwork.webp", alt: "Two people hanging a colour-confident abstract artwork in a British sitting room" },
+  { src: "/home/garden-design.webp", alt: "A designed English garden set for dining" },
+  { src: "/home-v4/design-portrait.webp", alt: "A considered interior detail" },
 ];
 
 export function DesignShowcase() {
   return (
-    <section className="relative overflow-hidden bg-house-cream-light border-t border-house-line px-[5vw] py-[clamp(48px,6vw,96px)]">
-      <FlowerWatermark color="gold" side="left" opacity={0.12} />
-      <div className="relative mx-auto max-w-[1180px]">
-        <div className="max-w-[48ch]">
-          <p className="font-sans text-[13px] tracking-[0.22em] uppercase text-house-gold-dark">House Design</p>
-          <h2 className="mt-4 font-display text-[clamp(1.9rem,3vw,3rem)] leading-[1.05] text-house-ink text-balance">
-            Two studios, one standard of care.
-          </h2>
-          <p className="mt-4 font-sans text-[19px] leading-relaxed text-house-brown/80">
-            Interior and garden design, each led by people who understand how the
-            space needs to work as well as how it should look.
-          </p>
+    <section aria-label="House Design" className="border-t border-house-line bg-house-cream-light px-[clamp(16px,3vw,40px)] py-[clamp(40px,5vw,80px)]">
+      <div className="mx-auto grid max-w-[1760px] items-stretch gap-4 lg:grid-cols-[0.85fr_0.85fr_1.3fr]">
+        {/* Left — large interior image */}
+        <div className="relative aspect-[4/3] w-full overflow-hidden lg:aspect-auto lg:min-h-[420px]">
+          <Image src="/home-v4/v6-interior-design.webp" alt="A layered, considered British interior" fill sizes="(min-width:1024px) 28vw, 100vw" className="object-cover" />
         </div>
 
-        <div className="mt-12 grid gap-8 md:grid-cols-2">
-          {CARDS.map((c) => (
-            <Link key={c.href} href={c.href} className="group block no-underline">
-              <div
-                className="relative aspect-[4/3] w-full overflow-hidden"
-                style={{ border: "1px solid var(--color-house-line)" }}
-              >
-                <Image
-                  src={c.image}
-                  alt={c.imageAlt}
-                  fill
-                  sizes="(min-width:768px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                />
-              </div>
-              <p className="mt-5 font-sans text-[13px] tracking-[0.22em] uppercase text-house-gold-dark">
-                {c.eyebrow}
-              </p>
-              <h3 className="mt-2 font-display text-[clamp(1.4rem,2vw,1.9rem)] leading-[1.1] text-house-ink">
-                {c.title}
-              </h3>
-              <p className="mt-3 max-w-[46ch] font-sans text-[18px] leading-relaxed text-house-brown/80">
-                {c.body}
-              </p>
-              <span className="mt-4 inline-block border-b border-house-brown/40 pb-1 font-sans text-[14px] tracking-[0.16em] uppercase text-house-brown transition-colors group-hover:border-house-brown">
-                {c.cta}
-              </span>
-            </Link>
+        {/* Centre — copy */}
+        <div className="flex flex-col justify-center px-[clamp(4px,1.5vw,28px)] py-4">
+          <p className="font-sans text-[13px] tracking-[0.22em] uppercase text-house-gold-dark">Interiors &amp; gardens</p>
+          <h2 className="mt-4 font-display text-[clamp(30px,3vw,50px)] leading-[1.03] text-house-ink text-balance">
+            Design for a kinder, calmer home.
+          </h2>
+          <p className="mt-4 max-w-[42ch] font-sans text-[clamp(16px,1.4vw,19px)] leading-[1.55] text-house-brown/80">
+            From a single room or neglected garden to a complete transformation,
+            the House brings together practical thinking, character and proper
+            design.
+          </p>
+          <Link href="/design" className="mt-6 inline-flex h-12 w-fit items-center justify-center whitespace-nowrap border border-house-gold-ink bg-house-gold-ink px-7 font-sans text-[13px] uppercase tracking-[0.16em] text-house-ink no-underline transition-[filter] hover:brightness-105">
+            Explore Design →
+          </Link>
+          <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 font-sans text-[14px] text-house-brown/70">
+            <Link href="/design/gardens" className="no-underline hover:text-house-gold-ink">Garden design →</Link>
+            <Link href="/design/interiors" className="no-underline hover:text-house-gold-ink">Home design →</Link>
+            <Link href="/howa/design" className="no-underline hover:text-house-gold-ink">Book a consultation →</Link>
+          </div>
+        </div>
+
+        {/* Right — triptych with the motif card */}
+        <div className="relative grid grid-cols-3 gap-3">
+          {TRIPTYCH.map((t) => (
+            <div key={t.src} className="relative aspect-[3/4] w-full overflow-hidden">
+              <Image src={t.src} alt={t.alt} fill sizes="(min-width:1024px) 15vw, 33vw" className="object-cover" />
+            </div>
           ))}
+          <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-house-cream px-5 py-4 text-center shadow-[0_18px_50px_-24px_rgba(29,29,27,0.6)]">
+            <p className="font-sans text-[clamp(10px,0.9vw,12px)] uppercase tracking-[0.22em] leading-[1.9] text-house-ink">
+              Beautiful<br />Practical<br />Always British
+            </p>
+          </div>
         </div>
       </div>
     </section>

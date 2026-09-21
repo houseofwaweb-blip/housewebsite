@@ -1,15 +1,12 @@
-import { getLatestHearthArticles } from "@/lib/cms/hearth";
 import { shopifyProvider } from "@/lib/commerce/shopify";
 import { CabinetHero } from "@/components/home/CabinetHero";
-import { BookingRail } from "@/components/home/BookingRail";
-import { ServicesShowcase } from "@/components/home/ServicesShowcase";
-import { EditorialSplit } from "@/components/home/EditorialSplit";
-import { HearthSpread } from "@/components/home/HearthSpread";
+import { TrustRail } from "@/components/home/TrustRail";
+import { CategoryStrip } from "@/components/home/CategoryStrip";
+import { PopularServices } from "@/components/home/PopularServices";
 import { StoreOffers } from "@/components/home/StoreOffers";
-import { HowItWorks } from "@/components/home/HowItWorks";
 import { DesignShowcase } from "@/components/home/DesignShowcase";
-import { ProofBand } from "@/components/home/ProofBand";
-import { CinemaSpread } from "@/components/home/CinemaSpread";
+import { InsuranceBand } from "@/components/home/InsuranceBand";
+import { UnordinaryHearthBand } from "@/components/home/UnordinaryHearthBand";
 import { HowaHeroProduct } from "@/components/home/HowaHeroProduct";
 
 /**
@@ -34,18 +31,26 @@ function formatMoney(m: { amount: string; currencyCode: string }) {
 }
 
 // Fallback objects if the Shopify edit is empty (cards tolerate null images).
-const FALLBACK_PRODUCTS = [
-  { name: "House Approved object", price: "", image: null, href: "/shop" },
-  { name: "House Approved object", price: "", image: null, href: "/shop" },
-  { name: "House Approved object", price: "", image: null, href: "/shop" },
-  { name: "House Approved object", price: "", image: null, href: "/shop" },
-];
+const FALLBACK_PRODUCTS = Array.from({ length: 6 }, () => ({
+  name: "House Approved object",
+  price: "",
+  image: null as string | null,
+  href: "/shop",
+}));
+
+// Design packages are services, not physical products, so they must not appear
+// in the homepage Shop row (they render as bespoke design pages, not objects).
+const DESIGN_PACKAGE_HANDLES = new Set([
+  "the-house-edit-1", "additions-to-your-edit", "the-full-house-edit",
+  "planting-plans", "concept-plans", "2d-3d-plans", "lighting-plans",
+]);
 
 export default async function HomePage() {
-  const hearthArticles = await getLatestHearthArticles(4).catch(() => []);
-  const shopProducts = await shopifyProvider.listFeaturedProducts(4).catch(() => []);
-  const marketCards = shopProducts.length
-    ? shopProducts.slice(0, 4).map((p) => ({
+  // Over-fetch so filtering out design packages still leaves six real products.
+  const shopProducts = await shopifyProvider.listFeaturedProducts(16).catch(() => []);
+  const physicalProducts = shopProducts.filter((p) => !DESIGN_PACKAGE_HANDLES.has(p.handle));
+  const marketCards = physicalProducts.length
+    ? physicalProducts.slice(0, 6).map((p) => ({
         name: p.title,
         price: formatMoney(p.price),
         image: p.images[0]?.url ?? null,
@@ -55,50 +60,32 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* 1. Cabinet-of-domestic-life hero — spec §2 */}
+      {/* 1. Split hero — copy + booking bar left, feature image right (amendments §4) */}
       <CabinetHero />
 
-      {/* 2. "What needs doing?" booking rail — spec §3 */}
-      <BookingRail />
+      {/* 2. Trust rail — four proof points under the hero (amendments §5) */}
+      <TrustRail />
 
-      {/* Split: the House standard (text left, image right) */}
-      <EditorialSplit
-        eyebrow="The House"
-        heading="Care, cover and good order, held to one standard."
-        body="House of Willow Alexander brings the many parts of home into one considered standard: gardens and rooms, services and objects, all held to a single test: would we trust this in a home we love?"
-        ctaLabel="Discover the House"
-        ctaHref="/the-house/philosophy"
-        image="/home-v4/the-house-fleet.webp"
-        imageAlt="The House at dusk with the full Willow Alexander service fleet, each van in its service colour and floral pattern"
-        imageSide="right"
-        tone="brown"
-      />
+      {/* 3. Category strip — five entrances (amendments §6) */}
+      <CategoryStrip />
 
-      {/* 3. The Hearth magazine spread — spec §4 */}
-      <HearthSpread articles={hearthArticles} />
+      {/* 4. Popular services — high-intent service cards (amendments §7) */}
+      <PopularServices />
 
-      {/* Cinema — the House screening room, directly under the Hearth */}
-      <CinemaSpread />
-
-      {/* 4. Store & Offers — spec §5 */}
-      <StoreOffers products={marketCards} />
-
-      {/* Services showcase — image cards, Services pillar presence (after the
-          editorial + store, not directly under the booking rail per doc §8) */}
-      <ServicesShowcase />
-
-      {/* HoWA hero-product reveal — after the service collection (doc Step 04
-          Block 4 / COPY 5.4). "The House runs on HoWA." */}
+      {/* 5. HoWA section — "Your home, in hand." (amendments §8) */}
       <HowaHeroProduct />
 
-      {/* Design studios — Interiors + Garden design as two editorial cards */}
+      {/* 6. Design section — kinder, calmer home (amendments §9) */}
       <DesignShowcase />
 
-      {/* 5. How the House works — spec §6 */}
-      <HowItWorks />
+      {/* 7. Shop the House (amendments §10) */}
+      <StoreOffers products={marketCards} />
 
-      {/* 6. Proof — spec §7 */}
-      <ProofBand />
+      {/* 8. Insurance, but better understood (amendments §11) */}
+      <InsuranceBand />
+
+      {/* 9. The unOrdinary + The Hearth — paired bottom band (amendments §12 + §13) */}
+      <UnordinaryHearthBand />
     </>
   );
 }

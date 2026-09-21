@@ -26,7 +26,7 @@ export function HearthMasthead({ className }: { className?: string }) {
         </span>
       </Link>
       <p className="font-hearth-serif italic text-[clamp(20px,1.8vw,25px)] text-house-gold-ink mt-[12px]">
-        The magazine of the House.
+        Homes, gardens, people and the useful business of living well.
       </p>
       <p className="font-hearth-sans text-[13px] tracking-[0.24em] uppercase text-house-stone mt-[10px]">
         Issue No. 01 · Late Summer 2026

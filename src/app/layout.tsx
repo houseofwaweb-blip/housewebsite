@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { didot, effra, cormorant, jost } from "@/lib/fonts";
+import { didot, effra, cormorant, jost, script } from "@/lib/fonts";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/lib/seo/jsonLd";
 import { env } from "@/lib/env";
 import { Header } from "@/components/layout/Header";
@@ -103,7 +103,7 @@ export default async function RootLayout({
     <html
       lang="en-GB"
       data-scroll-behavior="smooth"
-      className={`${didot.variable} ${effra.variable} ${cormorant.variable} ${jost.variable}`}
+      className={`${didot.variable} ${effra.variable} ${cormorant.variable} ${jost.variable} ${script.variable}`}
     >
       <head>
         {/*

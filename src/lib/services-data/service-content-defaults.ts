@@ -17,6 +17,12 @@
 export interface ServiceContentDefault {
   body: string;
   whyChoose: string[];
+  /** §16 "How long do I need?" — operational duration examples. */
+  howLong?: { label: string; time: string }[];
+  /** §16 "What isn't included" — explicit exclusions. */
+  excluded?: string[];
+  /** §16 "Waste & materials" — what's included, what's extra. */
+  waste?: string[];
 }
 
 export const SERVICE_CONTENT_DEFAULTS: Record<string, ServiceContentDefault> = {
@@ -29,6 +35,22 @@ export const SERVICE_CONTENT_DEFAULTS: Record<string, ServiceContentDefault> = {
       "Clean, quiet, and respectful of you and your neighbours",
       "Every visit photographed and filed to your Home Record",
     ],
+    howLong: [
+      { label: "A small courtyard or front garden", time: "Around half a day, one gardener" },
+      { label: "An average family garden that has got away from you", time: "A full day, a team of two" },
+      { label: "A large or heavily overgrown garden", time: "Two or more visits, a team of two" },
+    ],
+    excluded: [
+      "Tree surgery or any work above two storeys",
+      "Stump removal and heavy machinery",
+      "Hard landscaping, paving and construction",
+      "Chemical weed treatment unless agreed in advance",
+    ],
+    waste: [
+      "Green waste from the visit is removed and disposed of through licensed carriers, included in your quote.",
+      "A separate charge applies only for exceptional volumes, always agreed with you before we start.",
+      "Plants, bulbs and materials you ask us to supply are quoted separately.",
+    ],
   },
   "window-cleaning": {
     body:
@@ -38,6 +60,22 @@ export const SERVICE_CONTENT_DEFAULTS: Record<string, ServiceContentDefault> = {
       "Upper floors cleaned safely from the ground, no ladders",
       "Fixed quote by postcode and frontage, no surprises",
       "Every visit logged to your Home Record",
+    ],
+    howLong: [
+      { label: "A terraced or flat frontage", time: "Around 30 to 45 minutes" },
+      { label: "A typical semi-detached home", time: "Around 45 to 60 minutes" },
+      { label: "A large detached home", time: "An hour or more, sometimes a team of two" },
+    ],
+    excluded: [
+      "Internal glass unless booked as an add-on",
+      "Conservatory roofs and glass above three storeys",
+      "Painting, sealing or repair of frames",
+      "Removal of paint, render or builders' residue",
+    ],
+    waste: [
+      "Pure water and all equipment are included in your quote.",
+      "There is no waste to dispose of, the reach-and-wash system uses filtered water only.",
+      "No materials charge applies to standard window cleaning.",
     ],
   },
   cleaning: {
@@ -49,6 +87,22 @@ export const SERVICE_CONTENT_DEFAULTS: Record<string, ServiceContentDefault> = {
       "Room-by-room checklist, nothing missed",
       "Every visit logged to your Home Record",
     ],
+    howLong: [
+      { label: "A one-bed flat, regular clean", time: "Around 2 hours" },
+      { label: "A three-bed house, regular clean", time: "Around 3 hours" },
+      { label: "A deep or one-off clean", time: "Half to a full day, sometimes a team of two" },
+    ],
+    excluded: [
+      "Exterior windows (see Window Cleaning)",
+      "Clearing clutter or hoarded spaces",
+      "Moving heavy furniture or lifting hazards",
+      "Specialist stain, mould or biohazard removal",
+    ],
+    waste: [
+      "House-standard cleaning products and equipment are included.",
+      "Household rubbish is bagged and placed in your bins; we do not remove waste off-site.",
+      "Specialist products you request are quoted separately.",
+    ],
   },
   "gutter-cleaning": {
     body:
@@ -58,6 +112,22 @@ export const SERVICE_CONTENT_DEFAULTS: Record<string, ServiceContentDefault> = {
       "Camera-guided inspection, before-and-after photos",
       "Front and back elevations cleared as standard",
       "Condition report filed to your Home Record",
+    ],
+    howLong: [
+      { label: "A terraced or semi frontage", time: "Around 45 minutes" },
+      { label: "A typical detached home, front and back", time: "Around an hour" },
+      { label: "A large home, or blocked and heavily soiled gutters", time: "An hour or more" },
+    ],
+    excluded: [
+      "Gutter repair, resealing or replacement",
+      "Roof tile or fascia repair",
+      "Downpipe excavation below ground",
+      "Work above three storeys or requiring scaffold",
+    ],
+    waste: [
+      "Debris cleared from the gutters is bagged and removed, included in your quote.",
+      "A before-and-after camera inspection is included.",
+      "Any repairs found are quoted separately and never carried out without your agreement.",
     ],
   },
 };

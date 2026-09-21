@@ -14,17 +14,17 @@ import { PRIMARY_NAV } from "./navConfig";
 
 /**
  * Mobile menu: mirrors the desktop nav exactly — same labels, same order
- * (Services · Design · Shop · The Hearth · HoWA · The House) — so the two
- * navigations read the same. Utility links (Insurance · Offers · Help · My
- * House) live in the drawer footer below. (Sept HoWA review v2, Step 02.)
+ * (Services · Design · Insurance · Shop · The House · The Hearth) per the
+ * further-amendments brief §3. Utility links (My HoWA) live in the drawer
+ * footer; Search and Bag are in the top cluster.
  */
 const MOBILE_GROUPS: { label: string; panelId: string }[] = [
   { label: "Services", panelId: "services" },
   { label: "Design", panelId: "design" },
+  { label: "Insurance", panelId: "insurance" },
   { label: "Shop", panelId: "shop" },
-  { label: "The Hearth", panelId: "the-hearth" },
-  { label: "HoWA", panelId: "howa" },
   { label: "The House", panelId: "the-house" },
+  { label: "The Hearth", panelId: "the-hearth" },
 ];
 
 /**
@@ -34,9 +34,8 @@ const MOBILE_GROUPS: { label: string; panelId: string }[] = [
  * Desktop: brand wordmark → MegaMenu (hover panels) → utility (search, sign in, CTA).
  * Mobile:  brand → hamburger → full-screen drawer with accordion-style children.
  *
- * Primary CTA ("Book a service") opens the House booking modal. Per the Sept
- * HoWA review v2, HoWA IS now a primary nav pillar; utility nav carries
- * Insurance · Offers · Help · My House.
+ * Primary CTA ("Book a service") opens the House booking modal. Per the
+ * further-amendments brief §3, the utility nav carries Search · My HoWA · Bag.
  */
 
 export interface HeaderProps {
@@ -123,21 +122,16 @@ export function Header({
         >
           Search
         </button>
-        {/* Utility nav (Sept HoWA review v2, Step 02): Insurance · Offers · Help
-            · My House. Held until 2xl so the header fits comfortably at
-            1280-1535; below that they stay reachable via the mobile menu +
-            footer. */}
+        {/* Utility nav (brief §3): My HoWA. Search is the button to the left and
+            Bag is the cart icon to the right. */}
         {[
-          { label: "Insurance", href: "/insurance" },
-          { label: "Offers", href: "/offers" },
-          { label: "Help", href: "/help" },
-          { label: "My House", href: "/my-house" },
+          { label: "My HoWA", href: "/my-house" },
         ].map((u) => (
           <Link
             key={u.href}
             href={u.href}
             className={cn(
-              "hidden 2xl:inline-block font-sans text-[12px] tracking-[0.16em] uppercase no-underline opacity-[0.55] hover:opacity-100",
+              "font-sans text-[12px] tracking-[0.16em] uppercase no-underline opacity-[0.55] hover:opacity-100",
               "transition-opacity duration-[var(--t-base)]",
               dark ? "text-house-cream" : "text-house-brown",
             )}
@@ -146,17 +140,24 @@ export function Header({
           </Link>
         ))}
         <CartIcon dark={dark} onClick={openDrawer} />
+        {/* Brand line (brief §4). Not a promo bar. */}
+        <div
+          className={cn(
+            "hidden flex-col items-end border-l pl-4 font-sans text-[9px] leading-[1.6] tracking-[0.22em] uppercase 2xl:flex",
+            dark ? "border-house-cream/20 text-house-cream/70" : "border-house-brown/15 text-house-gold-dark",
+          )}
+        >
+          <span>Homes &middot; Gardens</span>
+          <span>A brighter tomorrow</span>
+        </div>
+        {/* Primary CTA — Book a service (restored per user). */}
         <Link
           href={ctaHref}
           data-ga-event="booking_intent"
           data-ga-cta={ctaLabel}
           className={cn(
-            "booknow-button",
-            // Primary House button (spec §7.1): brown/ink ground, cream type.
-            // Gold is ceremonial only, never a generic CTA colour (§4.1, §7.1).
-            "font-sans text-[12px] tracking-[0.16em] uppercase text-house-cream bg-house-brown border border-house-brown px-5 py-2.5 no-underline",
-            "transition-[filter] duration-[var(--t-slow)] ease-out",
-            "hover:brightness-125",
+            "booknow-button whitespace-nowrap font-sans text-[12px] tracking-[0.16em] uppercase text-house-cream bg-house-brown border border-house-brown px-5 py-2.5 no-underline",
+            "transition-[filter] duration-[var(--t-slow)] ease-out hover:brightness-125",
           )}
         >
           {ctaLabel}
@@ -182,7 +183,7 @@ export function Header({
         </Link>
         <Link
           href="/my-house"
-          aria-label="My House account"
+          aria-label="My HoWA account"
           className={cn(
             "flex items-center justify-center p-2 opacity-[0.7] hover:opacity-100",
             "transition-opacity duration-[var(--t-base)]",
@@ -335,12 +336,9 @@ export function Header({
               >
                 Search
               </button>
-              {/* Utility nav (Sept HoWA review v2, Step 02) */}
+              {/* Utility nav (brief §3): My HoWA */}
               {[
-                { label: "Insurance", href: "/insurance" },
-                { label: "Offers", href: "/offers" },
-                { label: "Help", href: "/help" },
-                { label: "My House", href: "/my-house" },
+                { label: "My HoWA", href: "/my-house" },
               ].map((u) => (
                 <Link
                   key={u.href}

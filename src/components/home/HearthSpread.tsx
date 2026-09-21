@@ -35,7 +35,7 @@ export function HearthSpread({ articles }: { articles: HearthArticle[] }) {
             The Hearth
           </p>
           <h2 className="mt-3 font-display text-[clamp(1.6rem,2.4vw,2.3rem)] leading-[1.05] text-house-ink">
-            The magazine of the House.
+            Useful stories for a more interesting home.
           </h2>
           <p className="mt-3 font-sans text-[10px] tracking-[0.18em] uppercase text-house-stone">
             {issueMarker}
@@ -44,7 +44,7 @@ export function HearthSpread({ articles }: { articles: HearthArticle[] }) {
             href="/the-hearth"
             className="mt-5 inline-block font-sans text-[13px] tracking-[0.18em] uppercase text-house-brown no-underline border-b border-house-brown/40 pb-1 w-fit hover:border-house-brown"
           >
-            View the latest issue
+            Read The Hearth →
           </Link>
         </div>
 

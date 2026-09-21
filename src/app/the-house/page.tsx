@@ -98,7 +98,7 @@ export default function TheHousePage() {
               maxWidth: "16ch",
             }}
           >
-            A modern British House for home and garden living.
+            We do more than you think.
           </h1>
           <p
             style={{
@@ -135,13 +135,15 @@ export default function TheHousePage() {
             <span aria-hidden style={rule} />
             Our story
           </p>
-          <h2 style={h2Style}>From specialist services to a House.</h2>
+          <h2 style={h2Style}>Born in a garden.</h2>
           <p style={para}>
-            The House of Willow Alexander began in the practical work of looking
-            after homes and gardens: gardeners, cleaners, window cleaners and the
-            trades a household relies on. Doing that work well, visit after visit,
-            taught us something simple. People do not want ten separate companies.
-            They want one they can trust.
+            House of Willow Alexander began with garden design and a simple
+            belief: the things that look after a home should be considered as
+            carefully as the things that furnish it.
+          </p>
+          <p style={{ ...para, fontFamily: display, fontStyle: "italic", color: brown }}>
+            Garden design &rarr; specialist services &rarr; design &rarr; retail
+            &rarr; insurance &rarr; HoWA.
           </p>
           <p style={para}>
             So we became a House. The same standard now runs through everything we
@@ -277,20 +279,20 @@ export default function TheHousePage() {
       <section>
         <div style={wrap}>
           <div className="grid items-center gap-10 lg:grid-cols-[0.85fr_1fr] lg:gap-16">
-          <div className="relative aspect-[16/9] w-full overflow-hidden lg:self-stretch" style={{ border: `1px solid ${line}`, background: "#f1ebe5" }}>
+          <div className="relative aspect-[4/5] w-full overflow-hidden lg:self-stretch" style={{ border: `1px solid ${line}`, background: "#f1ebe5" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/howa/new/proof-app.webp" alt="The HoWA app beside the House: Home Record, HoWA Score, tasks, Marketplace and Ask HoWA" className="absolute inset-0 h-full w-full object-contain" />
+            <img src="/the-house/relationship-howa.webp" alt="The relationship between the House and HoWA: the House presents it, HoWA powers it" className="absolute inset-0 h-full w-full object-cover" />
           </div>
           <div>
           <p style={{ ...eyebrow, marginBottom: 24 }}>
             <span aria-hidden style={rule} />
             The role of HoWA
           </p>
-          <h2 style={h2Style}>The House runs on HoWA.</h2>
+          <h2 style={h2Style}>The House presents it. HoWA powers it.</h2>
           <p style={para}>
-            HoWA is the Home Intelligence platform behind the House&rsquo;s
-            developing connected service experience. It helps prepare the brief,
-            preserve useful knowledge and make the next action easier to
+            The House is the name people see, trust and buy from. HoWA is the
+            intelligence that connects the home underneath: it helps prepare the
+            brief, preserve useful knowledge and make the next action easier to
             understand.
           </p>
           <p style={para}>

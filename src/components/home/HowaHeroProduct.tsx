@@ -1,99 +1,106 @@
 import Link from "next/link";
 import Image from "next/image";
-import { HowaScoreGauge } from "@/components/marketing/HowaScoreGauge";
 
 /**
- * Homepage HoWA hero-product module (Sept HoWA review v2, Step 04 / COPY 5.4).
+ * Homepage HoWA section (brief §8), designed to the further-amendments mockup:
+ * the phone-in-hand visual sits LEFT, the copy sits RIGHT with a row of four
+ * icon points and a pull-quote. The House sells; HoWA quietly powers.
  *
- * The House opens the homepage; this is the substantial product reveal AFTER the
- * service collection: "The House runs on HoWA." A bordered product-showcase
- * panel on a deeper warm ground so it reads as a product feature, not another
- * editorial band. The Doll's House sits on a matching rose panel (shown whole,
- * never cropped) with a baked HoWA Score dial over the empty backdrop.
+ * Copy is from the brief (headline, body, the four points, the two CTAs); the
+ * layout, icon row and pull-quote follow the mockup.
  *
- * Release state: transition (HOWA_APP_LIVE=false). Links use truthful
- * destinations; the Score dial is a labelled "Example home" demonstration
- * (COPY 6.7), not a live score.
+ * Release state: transition (HOWA_APP_LIVE=false), so "Open My HoWA" routes to
+ * /howa/coming-soon rather than a dead app link.
  */
 
-const PROOF = [
-  { when: "Before", copy: "A clearer brief, with less to explain again." },
-  { when: "During", copy: "The right information for the person doing the work." },
-  { when: "After", copy: "A record of what happened and what may need attention next." },
+type Point = { title: string; copy: string; icon: React.ReactNode };
+
+const iconClass = "h-6 w-6 text-house-gold-dark";
+const POINTS: Point[] = [
+  {
+    title: "Bookings",
+    copy: "Services in one place.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={iconClass}><rect x="3" y="4.5" width="18" height="16" rx="1" /><path d="M3 9h18M8 3v3M16 3v3" /></svg>
+    ),
+  },
+  {
+    title: "Home Record",
+    copy: "A history that stays with the property.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={iconClass}><path d="M4 10.5 12 4l8 6.5" /><path d="M6 9.5V20h12V9.5" /><path d="M10 20v-5h4v5" /></svg>
+    ),
+  },
+  {
+    title: "Reminders",
+    copy: "Know what needs attention.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={iconClass}><path d="M6 9a6 6 0 0 1 12 0c0 5 2 6 2 6H4s2-1 2-6Z" /><path d="M10 20a2 2 0 0 0 4 0" /></svg>
+    ),
+  },
+  {
+    title: "Ask HoWA",
+    copy: "Ask about your home rather than starting from scratch.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={iconClass}><path d="M4 5h16v11H8l-4 4V5Z" /><path d="M9 10h.01M12 10h.01M15 10h.01" /></svg>
+    ),
+  },
 ];
 
 export function HowaHeroProduct() {
   return (
     <section aria-labelledby="howa-module-heading" className="howa-surface bg-[#e9ddcd]">
-      <div className="mx-auto max-w-[1600px] px-[5vw] py-[clamp(56px,7vw,112px)]">
-        <div className="grid items-stretch overflow-hidden border border-house-brown/15 bg-[#f6efe7] lg:grid-cols-[0.78fr_1.22fr]">
-          {/* Copy — generous padding + rhythm so it doesn't feel cramped */}
-          <div className="flex flex-col justify-center gap-7 p-[clamp(32px,4.5vw,68px)]">
-            <p className="flex items-center gap-3 font-sans text-[13px] tracking-[0.24em] uppercase text-house-gold-dark">
-              <span aria-hidden="true" className="inline-block h-px w-8 bg-house-gold-dark/60" />
-              <Image src="/brand/howa/howa-black.svg" alt="HoWA" width={90} height={33} className="h-[28px] w-auto" />
-              <span>Home Intelligence</span>
+      <div className="mx-auto max-w-[1600px] px-[5vw] py-[clamp(48px,6vw,96px)]">
+        <div className="grid items-stretch overflow-hidden border border-house-brown/15 bg-[#f6efe7] lg:grid-cols-[0.82fr_1.18fr]">
+          {/* Visual — My HoWA in hand (LEFT, per mockup) */}
+          <div className="relative min-h-[360px] overflow-hidden bg-[#d9a9a2] lg:min-h-0">
+            <Image
+              src="/home/howa-in-hand.webp"
+              alt="My HoWA held in hand: a home's bookings, records and reminders in one place"
+              fill
+              sizes="(max-width: 1024px) 100vw, 560px"
+              className="object-cover object-center"
+            />
+          </div>
+
+          {/* Copy (RIGHT) */}
+          <div className="flex flex-col justify-center gap-6 p-[clamp(28px,4vw,64px)]">
+            <p className="font-sans text-[13px] tracking-[0.24em] uppercase text-house-gold-dark">
+              Powered by HoWA
             </p>
 
-            <h2 id="howa-module-heading" className="font-display text-[clamp(38px,4.6vw,62px)] leading-[1.02]">
-              The House runs on HoWA.
+            <h2 id="howa-module-heading" className="font-display text-[clamp(34px,4.2vw,60px)] leading-[1.02] text-house-ink">
+              Your home, <em className="italic">in hand.</em>
             </h2>
 
-            <p className="max-w-[46ch] font-sans text-[clamp(18px,1.5vw,21px)] leading-[1.65] text-house-brown/80">
-              The House brings the people, expertise and care. HoWA brings the
-              useful details together: your priorities before a visit, the
-              relevant history for the professional and a record of the work
-              afterwards.
+            <p className="max-w-[52ch] font-sans text-[clamp(17px,1.4vw,20px)] leading-[1.6] text-house-brown/80">
+              Every service you book through the House lives in HoWA, alongside
+              your home&rsquo;s history, jobs, documents, preferences and what
+              needs doing next.
             </p>
 
-            <ul className="divide-y divide-house-brown/12 border-y border-house-brown/12">
-              {PROOF.map((p) => (
-                <li key={p.when} className="flex flex-col gap-1 py-4 sm:flex-row sm:gap-6">
-                  <span className="shrink-0 font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-dark sm:w-[92px] sm:pt-1">{p.when}</span>
-                  <span className="font-sans text-[16px] leading-[1.5] text-house-brown/85">{p.copy}</span>
+            <ul className="grid gap-x-6 gap-y-6 sm:grid-cols-2 xl:grid-cols-4">
+              {POINTS.map((p) => (
+                <li key={p.title} className="flex flex-col gap-2">
+                  <span aria-hidden>{p.icon}</span>
+                  <p className="font-sans text-[14px] tracking-[0.08em] uppercase text-house-ink">{p.title}</p>
+                  <p className="font-sans text-[14.5px] leading-[1.45] text-house-brown/75">{p.copy}</p>
                 </li>
               ))}
             </ul>
 
-            {/* Stacked buttons must be equal length (brand rule). The long label
-                means these stay stacked + full-width rather than wrapping to
-                unequal widths. */}
-            <div className="flex flex-col items-stretch gap-3">
-              <Link href="/how-it-works" className="booknow-button w-full whitespace-nowrap text-center font-sans text-[13px] tracking-[0.16em] uppercase text-house-cream bg-house-brown border border-house-brown px-6 py-3 no-underline transition-[filter] duration-[var(--t-slow)] ease-out hover:brightness-125">
-                See how the House uses HoWA
-              </Link>
-              <Link href="/howa" className="w-full whitespace-nowrap text-center font-sans text-[13px] tracking-[0.16em] uppercase text-house-brown border border-house-brown/40 px-6 py-3 no-underline transition-colors duration-[var(--t-base)] hover:border-house-brown">
-                Explore HoWA
-              </Link>
-            </div>
-
-            <div className="flex flex-wrap gap-x-7 gap-y-2 font-sans text-[14px] text-house-brown/70">
-              <Link href="/howa/design" className="no-underline hover:text-house-gold-ink">Start a design idea →</Link>
-              <Link href="/howa" className="no-underline hover:text-house-gold-ink">Already with the House? Meet HoWA →</Link>
-              <Link href="/howa/house-customers" className="no-underline hover:text-house-gold-ink">On a regular service plan? See your HoWA Steward move →</Link>
-            </div>
-          </div>
-
-          {/* Visual — the Doll's House is always shown at its true 4:3, so its
-              WIDTH is never cropped (the house stays whole). Any vertical gap at
-              narrow two-column widths is filled by the pink sampled from the
-              image's own wall, so it reads as one continuous wall rather than a
-              painted panel. Baked HoWA Score dial over the empty wall left. */}
-          <div className="relative flex items-center justify-center overflow-hidden bg-[#d9a9a2]">
-            <div className="relative aspect-[4/3] w-full">
-              <Image
-                src="/howa/sept/howa-dollhouse-4x3.webp"
-                alt="The HoWA Doll's House: a cutaway model of a British home, room by room"
-                fill
-                sizes="(max-width: 1024px) 100vw, 900px"
-                className="object-contain object-bottom"
-              />
-              <div className="absolute left-[7%] top-1/2 -translate-y-1/2">
-                <HowaScoreGauge score={82} label="Example home" />
+            <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+              <div className="flex flex-1 flex-col gap-3 sm:flex-row">
+                <Link href="/howa" className="booknow-button flex-1 whitespace-nowrap text-center font-sans text-[13px] tracking-[0.16em] uppercase text-house-cream bg-house-brown border border-house-brown px-6 py-3 no-underline transition-[filter] duration-[var(--t-slow)] ease-out hover:brightness-125">
+                  Discover HoWA →
+                </Link>
+                <Link href="/howa/coming-soon" className="flex-1 whitespace-nowrap text-center font-sans text-[13px] tracking-[0.16em] uppercase text-house-brown border border-house-brown/40 px-6 py-3 no-underline transition-colors duration-[var(--t-base)] hover:border-house-brown">
+                  Open My HoWA →
+                </Link>
               </div>
-              <span className="absolute bottom-3 right-3 font-sans text-[10px] tracking-[0.14em] uppercase text-house-brown/60">
-                Product concept
-              </span>
+              <p className="hidden shrink-0 font-display text-[clamp(16px,1.3vw,20px)] italic leading-[1.3] text-house-gold-dark lg:block">
+                Less to worry about.<br />More home to enjoy.
+              </p>
             </div>
           </div>
         </div>
