@@ -196,6 +196,10 @@ export default function HouseCustomersPage() {
               Your individual service visits continue to be charged separately at
               your agreed, pro-rated House rate.
             </p>
+            <p className="mt-4 max-w-[46ch] font-sans text-[17px] leading-[1.6]" style={{ color: "rgba(255,255,255,0.82)" }}>
+              Steward includes premium support, 10% off the House shop and House
+              services, and faster responses to your requests.
+            </p>
             <div className="mt-8">
               <PrimaryBtn href={ACTIVATE} dark>Register for early access →</PrimaryBtn>
             </div>

@@ -55,7 +55,7 @@ const PLANS = [
     image: "/howa/plans/plan-steward.webp",
     accent: MIDNIGHT,
     solid: false,
-    features: ["Everything in HoWA+, plus:", "Ask HoWA — proactive prompts", "Predictive maintenance and asset lifespan", "Future home-cost forecasts", "Coordinate approved work and track completion"],
+    features: ["Everything in HoWA+, plus:", "Premium support", "10% off the House shop and House services", "Faster response across House and approved partners", "Proactive prompts, predictive maintenance and coordinated approved work"],
   },
 ];
 
@@ -91,6 +91,9 @@ const TABLE_ROWS = [
   { label: "Garden photo scan and care plan", cells: ["Initial scan and plan", "Ongoing seasonal reminders and history", "Plus garden-risk tracking"] },
   { label: "Repair-photo guidance", cells: ["Likely issue, urgency and indicative cost", "Warranty-aware guidance and repair history", "Plus recurring-fault tracking"] },
   { label: "Room and garden design inspiration", cells: ["First design direction", "Saved briefs, versions and project history", "Everything in HoWA+"] },
+  { label: "Premium support", cells: ["—", "—", "✓"] },
+  { label: "10% off the House shop and House services", cells: ["—", "—", "✓"] },
+  { label: "Faster response across House and approved partners", cells: ["—", "—", "✓"] },
   { label: "Availability", cells: ["Early access", "Early access", "Early access"] },
 ];
 
