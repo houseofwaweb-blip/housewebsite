@@ -57,7 +57,7 @@ const INCLUDED = [
   "One point of contact for the whole plan, not a different number per trade",
   "One Home Record, so every visit, note and invoice sits in one place",
   "Rated professionals, reviewed by clients after each visit",
-  "Change, pause or stop the rhythm whenever you like, with no lock-in",
+  "Adjust the frequency or the services as your home changes",
 ];
 
 const NOT_INCLUDED = [
@@ -148,7 +148,7 @@ export default function HomeAndGardenPage() {
               </li>
               <li className="font-sans text-[17px] text-house-brown/80">
                 <span className="mr-2 text-house-gold-ink" aria-hidden>◆</span>
-                No lock-in, change the rhythm anytime
+                Adjust the rhythm as your home changes
               </li>
               <li className="font-sans text-[17px] text-house-brown/80">
                 <span className="mr-2 text-house-gold-ink" aria-hidden>◆</span>

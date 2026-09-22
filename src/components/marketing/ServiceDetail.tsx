@@ -347,9 +347,10 @@ export function ServiceDetail({
                 ))}
               </div>
               <p className="mt-[clamp(24px,3vw,36px)] max-w-[64ch] font-sans text-[18px] leading-[1.65] text-house-cream/75">
-                Book a one-off, or set a regular rhythm, weekly, fortnightly or seasonal.
-                There is no subscription to hold; change, pause or stop it whenever you
-                like. Minimum booking values and any extras are shown before you confirm.
+                Book a one-off with no commitment, or set a regular rhythm, weekly,
+                fortnightly or seasonal. You can adjust the frequency or the services
+                as your home changes; your regular-care terms are set out when you
+                start. Minimum booking values and any extras are shown before you confirm.
               </p>
             </div>
           </div>

@@ -53,10 +53,10 @@ const WITH_HOWA = ["Your regular services", "Upcoming visits", "Changes", "Home 
 
 // §30 — what stays the same
 const STAYS = [
-  "Your agreed service rates stay frozen.",
+  "Your agreed House service rate is retained when you activate.",
   "Your existing House team continues to provide your services.",
   "You can still change the frequency, duration or type of service you receive.",
-  "You only pay for visits that take place.",
+  "Your visits are charged as before, at your agreed rate.",
 ];
 
 // §31 — Steward inclusions
@@ -92,6 +92,7 @@ const FAQ = [
   { q: "Does the £29.99 include my gardening or cleaning visits?", a: "No. Steward is the home-management membership. Your visits remain separately charged at your agreed service rate." },
   { q: "What happens to my current price?", a: "Your existing agreed House service rate is retained when you activate." },
   { q: "Can I change my visits?", a: "Yes. Frequency, duration and the services you use can change as your home changes." },
+  { q: "Does changing my visits cancel my membership?", a: "No. Changing or pausing visits does not, by itself, end your 12-month membership commitment. Membership and visit terms are separate, and we show both, including cancellation terms, before you activate." },
   { q: "What if I don't need a visit?", a: "You are not charged for a visit that does not take place, subject to the agreed cancellation terms." },
   { q: "Is House disappearing?", a: "No. House of Willow Alexander remains the service and design brand. HoWA is the system through which your home, bookings and records are managed." },
   { q: "Do I need another account?", a: "You have one HoWA household account and one Home Record. House services sit inside it." },
@@ -200,7 +201,7 @@ export default function HouseCustomersPage() {
             </div>
           </div>
           <div className="w-full rounded-[20px] p-7" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.16)" }}>
-            <p className="font-sans text-[12px] font-semibold uppercase tracking-[0.18em]" style={{ color: "#d8c9a6" }}>Steward gives you</p>
+            <p className="font-sans text-[12px] font-semibold uppercase tracking-[0.18em]" style={{ color: "#d8c9a6" }}>Your regular care in HoWA</p>
             <ul className="mt-4 grid gap-2.5 sm:grid-cols-2">
               {STEWARD.map((s) => (
                 <li key={s} className="flex gap-2.5 font-sans text-[16px] leading-[1.4]" style={{ color: PAPER_LIGHT }}><span aria-hidden style={{ color: "#d8c9a6" }}>·</span>{s}</li>

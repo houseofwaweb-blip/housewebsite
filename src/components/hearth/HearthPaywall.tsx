@@ -43,49 +43,30 @@ export function HearthPaywall() {
             every article in full.
           </p>
 
-          <div className="grid grid-cols-2 gap-8 mb-7 py-6 border-t border-b border-house-brown/12 max-md:grid-cols-1 max-md:gap-4">
-            <div>
-              <p className="font-hearth-sans text-[14px] tracking-[0.24em] uppercase text-house-gold-ink mb-3">
-                What you get
-              </p>
-              <ul className="list-none m-0 p-0">
-                {[
-                  "Every article, in full",
-                  "The weekly Hearth letter",
-                  "Full archive access",
-                  "10% off the House shop",
-                ].map((item) => (
-                  <li
-                    key={item}
-                    className="font-hearth-serif text-[19px] leading-[1.55] text-house-brown py-0.5 flex gap-2"
-                  >
-                    <span aria-hidden="true" className="text-house-gold-ink font-bold flex-shrink-0">·</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p className="font-hearth-sans text-[14px] tracking-[0.24em] uppercase text-house-gold-ink mb-3">
-                Why it&apos;s worth it
-              </p>
-              <ul className="list-none m-0 p-0">
-                {[
-                  "Member service rates",
-                  "Your home's Living Record",
-                  "Ask HoWA diagnostic",
-                  "Cancel any time",
-                ].map((item) => (
-                  <li
-                    key={item}
-                    className="font-hearth-serif text-[19px] leading-[1.55] text-house-brown py-0.5 flex gap-2"
-                  >
-                    <span aria-hidden="true" className="text-house-gold-ink font-bold flex-shrink-0">·</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Finding 06: an editorial subscription. It buys full access to the
+              writing, nothing more. Product benefits (shop discounts, member
+              service rates, the Home Record, Ask HoWA) belong to the HoWA plans,
+              not the magazine, and are not bundled here; the Home Record is free. */}
+          <div className="mb-7 py-6 border-t border-b border-house-brown/12">
+            <p className="font-hearth-sans text-[14px] tracking-[0.24em] uppercase text-house-gold-ink mb-3">
+              What you get
+            </p>
+            <ul className="list-none m-0 p-0 grid grid-cols-2 gap-x-8 max-md:grid-cols-1">
+              {[
+                "Every article, in full",
+                "The weekly Hearth letter",
+                "Full archive access",
+                "New long-form writing every week",
+              ].map((item) => (
+                <li
+                  key={item}
+                  className="font-hearth-serif text-[19px] leading-[1.55] text-house-brown py-0.5 flex gap-2"
+                >
+                  <span aria-hidden="true" className="text-house-gold-ink font-bold flex-shrink-0">·</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div className="flex items-center justify-between gap-5 flex-wrap max-md:flex-col max-md:items-start max-md:gap-4">
@@ -115,7 +96,7 @@ export function HearthPaywall() {
           </p>
 
           <div className="mt-6 pt-5 border-t border-house-brown/8 flex gap-5 justify-center flex-wrap font-hearth-sans text-[14px] tracking-[0.14em] uppercase text-house-stone">
-            {["14-day refund", "Cancel anytime", "Your record stays yours"].map(
+            {["New writing every week", "Written by the House", "Read anywhere"].map(
               (s) => (
                 <span key={s} className="flex items-center gap-1.5">
                   <span aria-hidden="true" className="is-round w-1 h-1 bg-house-gold inline-block" />

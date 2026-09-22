@@ -212,7 +212,7 @@ const FREQUENCIES = [
   {
     name: "Regular service",
     lede: "The same work, on a rhythm you set.",
-    body: "Weekly, fortnightly or monthly, with the same team where we can manage it. Change the frequency, pause it or stop it whenever you like.",
+    body: "Weekly, fortnightly or monthly, with the same team where we can manage it. Adjust the frequency or the services as your home changes; your regular-care terms are set out when you start.",
     examples: ["Weekly cleaning", "Fortnightly garden care", "Monthly window cleaning"],
   },
   {
