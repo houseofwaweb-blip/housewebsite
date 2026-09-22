@@ -24,6 +24,11 @@ export const metadata = {
     "Choose how much help you want with your home. HoWA is free, HoWA+ is £16.99 a month, HoWA Steward is £29.99 a month. One home, understood and looked after more deeply as you go.",
 };
 
+// Card + table content is drawn from the approved feature comparison
+// (HoWA_Membership_Features_Website.docx / Technical Entitlement Specification,
+// Aug 2026). Findings 04/05: state the real Free entitlement, describe Plus and
+// Steward through confirmed capabilities, and leave usage quantities, seat
+// numbers, support guarantees and the annual review off the page until confirmed.
 const PLANS = [
   {
     name: "HoWA",
@@ -32,7 +37,7 @@ const PLANS = [
     image: "/howa/plans/plan-howa.webp",
     accent: SAGE,
     solid: true,
-    features: ["Home Record", "HoWA Score", "Ask HoWA", "Your first reminders", "Shop & Book access"],
+    features: ["Home Record and HoWA Score", "Household profiles, invitations and access", "Ask HoWA — basic answers", "Documents, receipts and warranties", "Service bookings and history"],
   },
   {
     name: "HoWA+",
@@ -41,7 +46,7 @@ const PLANS = [
     image: "/howa/plans/plan-plus.webp",
     accent: CLAY,
     solid: false,
-    features: ["Home Plan and shared tasks", "Seasonal reminders", "Household sharing", "More Ask HoWA use", "Running-cost and home-management tools"],
+    features: ["Everything in HoWA, plus:", "Ask HoWA — personalised answers", "Smart email and document reading", "Intelligent capture and Household Memory", "Personalised recommendations"],
   },
   {
     name: "HoWA Steward",
@@ -50,7 +55,7 @@ const PLANS = [
     image: "/howa/plans/plan-steward.webp",
     accent: MIDNIGHT,
     solid: false,
-    features: ["Annual home review", "Earlier prompts for upcoming priorities", "A deeper view of risks and missing evidence", "More control over approvals and shared actions", "Premium support and partner benefits where offered"],
+    features: ["Everything in HoWA+, plus:", "Ask HoWA — proactive prompts", "Predictive maintenance and asset lifespan", "Future home-cost forecasts", "Coordinate approved work and track completion"],
   },
 ];
 
@@ -63,16 +68,30 @@ const BRIEF = [
   { t: "Completed work kept", b: "When supported work is completed, keep the relevant record, invoice or warranty with the asset it belongs to." },
 ];
 
+// Rows confirmed live in the approved feature comparison. Graded cells use the
+// document's own wording; "✓" / "—" mark included / not on that plan.
 const TABLE_ROWS = [
   { label: "Price", cells: ["Free", "£16.99 per month", "£29.99 per month"] },
-  { label: "What you can do", cells: ["Start a Home Record, see the available HoWA Score experience, ask HoWA and use the free features confirmed for your account.", "Everything confirmed in HoWA, plus the HoWA+ features available to your account.", "Everything confirmed in HoWA+, plus the HoWA Steward features available to your account."] },
-  { label: "Household access", cells: ["Shown at sign-up", "Shown at sign-up", "Shown at sign-up"] },
-  { label: "Extra tools", cells: ["None beyond the free plan.", "Shown at sign-up", "Shown at sign-up"] },
-  { label: "Reminders and prompts", cells: ["Shown at sign-up", "Shown at sign-up", "Shown at sign-up"] },
-  { label: "Support", cells: ["Shown at sign-up", "Shown at sign-up", "Shown at sign-up"] },
-  { label: "Annual home review", cells: ["Not included", "Not included", "Shown at sign-up"] },
+  { label: "Home Record", cells: ["✓", "✓", "✓"] },
+  { label: "HoWA Score", cells: ["✓", "✓", "✓"] },
+  { label: "Household profiles, invitations and access", cells: ["✓", "✓", "✓"] },
+  { label: "Documents, receipts and warranties", cells: ["✓", "✓", "✓"] },
+  { label: "Service bookings and history", cells: ["✓", "✓", "✓"] },
+  { label: "Ask HoWA", cells: ["Basic answers", "Personalised answers", "Personalised answers and proactive prompts"] },
+  { label: "Calendar, tasks, reminders and routines", cells: ["Basic", "Enhanced", "Enhanced"] },
+  { label: "Smart email and document reading", cells: ["—", "✓", "✓"] },
+  { label: "Intelligent capture", cells: ["Basic capture", "✓", "✓"] },
+  { label: "Learned Household Memory", cells: ["Saved preferences only", "✓", "✓"] },
+  { label: "Personalised recommendations", cells: ["—", "✓", "✓"] },
+  { label: "Predictive maintenance prompts", cells: ["—", "Limited", "✓"] },
+  { label: "Appliance and asset lifespan tracking", cells: ["—", "—", "✓"] },
+  { label: "Future home-cost forecasts", cells: ["—", "—", "✓"] },
+  { label: "Service coordination", cells: ["Book yourself", "Recommendations", "Coordinate approved work and track completion"] },
+  { label: "Smart-home actions", cells: ["View", "Limited", "Control where supported"] },
+  { label: "Garden photo scan and care plan", cells: ["Initial scan and plan", "Ongoing seasonal reminders and history", "Plus garden-risk tracking"] },
+  { label: "Repair-photo guidance", cells: ["Likely issue, urgency and indicative cost", "Warranty-aware guidance and repair history", "Plus recurring-fault tracking"] },
+  { label: "Room and garden design inspiration", cells: ["First design direction", "Saved briefs, versions and project history", "Everything in HoWA+"] },
   { label: "Availability", cells: ["Early access", "Early access", "Early access"] },
-  { label: "Cancellation", cells: ["Nothing to cancel", "Shown at sign-up", "Shown at sign-up"] },
 ];
 
 const EARLY_ACCESS = "/howa/coming-soon";
@@ -206,9 +225,10 @@ export default function PlansPage() {
           </table>
         </div>
         <p className="mt-4 max-w-[70ch] font-sans text-[13px] leading-[1.55] text-house-brown/55">
-          Plan prices, limits, availability and cancellation terms must match the
-          current product configuration. Physical services are booked and priced
-          separately under the provider&rsquo;s own terms.
+          Each paid plan includes everything in the plan below it. Connected
+          features depend on supported integrations and the permissions you grant.
+          Physical services are booked and priced separately under the
+          provider&rsquo;s own terms.
         </p>
       </section>
 
