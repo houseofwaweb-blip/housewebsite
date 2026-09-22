@@ -92,7 +92,7 @@ const STEPS = [
   {
     n: "III.",
     name: "Ongoing Protection Plan",
-    tagline: "Regular verification and recorded oversight via Housekeeper.",
+    tagline: "Regular verification and recorded oversight via HoWA+.",
     body:
       "Seasonal checks, reminders before they become urgent, and a quiet running record of the home's state. You don't need to remember everything. HoWA does that for you.",
   },
@@ -377,7 +377,7 @@ export default async function ProtectPage() {
         <div className={s.registerInner}>
           <header className={s.registerHead}>
             <p className={s.registerEy}>
-              {cms(register, "eyebrow", "Late 2026 · Priority for Housekeeper")}
+              {cms(register, "eyebrow", "Late 2026 · Priority for HoWA+")}
             </p>
             <h2 className={s.registerTitle}>
               {cms(register, "headline", "Home")}{" "}
@@ -404,7 +404,7 @@ export default async function ProtectPage() {
             </ul>
             <p className={s.registerNote}>
               Opening late 2026. Register interest and we'll write when it's
-              ready, with priority for Housekeeper members.
+              ready, with priority for HoWA+ members.
             </p>
             <WaitlistMini
               product="protect_review"

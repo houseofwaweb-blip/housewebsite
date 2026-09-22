@@ -21,7 +21,7 @@ export interface HearthArticle {
   category: string;
   categoryLong?: string;
   categorySlug?: string;
-  flag?: "Feature" | "Housekeeper";
+  flag?: "Feature" | "HoWA+";
   image: string;
   imageAlt?: string;
   dek: string;
