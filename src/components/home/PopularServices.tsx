@@ -33,7 +33,7 @@ const CARDS = [
     slug: "window-cleaning",
     href: "/services/window-cleaning",
     desc: "Clear windows, frames and external cleaning.",
-    includes: ["Interior & exterior", "Frames and sills", "Streak-free finish"],
+    includes: ["Exterior windows", "Frames and sills", "Interior glass on request"],
     image: "/services/subbrands/window-cleaner.webp",
     price: "From £49",
     cta: "Check my property",

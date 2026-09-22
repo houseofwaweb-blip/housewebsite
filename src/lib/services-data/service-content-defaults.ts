@@ -33,7 +33,7 @@ export const SERVICE_CONTENT_DEFAULTS: Record<string, ServiceContentDefault> = {
       "Horticulturally trained team, we assess, we don't just cut",
       "Licensed waste carriers, responsible disposal as standard",
       "Clean, quiet, and respectful of you and your neighbours",
-      "Every visit photographed and filed to your Home Record",
+      "Photographs on request, filed to your Home Record",
     ],
     howLong: [
       { label: "A small courtyard or front garden", time: "Around half a day, one gardener" },

@@ -133,7 +133,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
         "Garden tidies and clearance",
         "Lawn care, mowing and edging",
         "Hedge and boundary maintenance",
-        "Tree surgery and planting",
+        "Planting and seasonal work",
         "Green waste removed by a licensed carrier",
       ],
       how: [
@@ -438,7 +438,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
         "Describe the job, photos or a short video are usually enough",
         "A fixed quote, VAT included",
         "The team arrives with the tools and materials for the job",
-        "The work is photographed and filed to your Home Record",
+        "Photographs are available on request and filed to your Home Record",
       ],
     },
     recurring: false,
@@ -490,11 +490,13 @@ export const SERVICES: Record<ServiceSlug, Service> = {
     ],
     subServices: HANDYMAN_SUBS,
     faq: [
-      { q: "Do I need to be home?", a: "An adult should be present while work is carried out. If you have a regular key arrangement on file in your Home Record, we can discuss access for pre-agreed tasks." },
+      { q: "Do I need to be home?", a: "An adult should be present while work is carried out, unless a secure access arrangement has been agreed in advance for a suitable pre-agreed task. Access details are held separately, shared only with the assigned team for the visit, and are never part of your transferable Home Record." },
       { q: "Do you remove waste?", a: "Yes, waste removal can be arranged. We\u2019ll confirm at quoting stage whether it\u2019s included or charged separately." },
       { q: "Do you need to visit before quoting?", a: "Not usually. Photos or a short video are enough for most jobs. For larger or structural work, we\u2019ll arrange a site visit." },
       { q: "What\u2019s your cancellation policy?", a: "Cancellations must be made 48 hours before the booking. Refund terms apply, full details in your booking confirmation." },
-      ...SERVICE_FAQ_SHARED,
+      // Handyman keeps the adult-present rule above, so the shared "no presence
+      // needed" FAQ is excluded here (finding 20).
+      ...SERVICE_FAQ_SHARED.filter((f) => !f.q.startsWith("Do I need to be at the property")),
     ],
     trustBadges: SERVICE_TRUST_BADGES,
   },

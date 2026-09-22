@@ -254,8 +254,8 @@ export function ServiceDetail({
       <section className={s.what}>
         <div className={s.whatInner}>
           <div className={s.whatCol}>
-            <p className={s.whatEy}>What&apos;s included</p>
-            <h2 className={s.whatTitle}>Every <em>visit.</em></h2>
+            <p className={s.whatEy}>What we can help with</p>
+            <h2 className={s.whatTitle}>What we <em>cover.</em></h2>
             <ul className={s.whatList}>
               {service.sections.included.map((inc) => (
                 <li key={inc}>{inc}</li>

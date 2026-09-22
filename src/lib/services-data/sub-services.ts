@@ -84,7 +84,7 @@ export const WINDOW_CLEANING_SUBS: SubService[] = [
   {
     slug: "regular-window-cleaning",
     name: "Regular window cleaning",
-    lede: "Scheduled monthly or bi-monthly cleans. The same team, the same day, text before arrival.",
+    lede: "Scheduled monthly or bi-monthly cleans. The same team where possible, text before arrival.",
     body: "Pure water cleaning for all outside windows, frames and sills. Booked on a rhythm that suits the property, monthly for busier streets, every other month for quieter ones. You don't need to be home. We let you know before we come, arrive when we said, and file a note to your Home Record after each visit.",
     whyChoose: [
       "Pure water, no harsh detergents, no residue, no streaks",
@@ -166,7 +166,7 @@ export const CLEANING_SUBS: SubService[] = [
   {
     slug: "regular-cleaning",
     name: "Regular cleaning",
-    lede: "Weekly or fortnightly domestic care. Same team each visit, your preferences on file in your Home Record.",
+    lede: "Weekly or fortnightly domestic care. The same team where possible, your preferences on file in your Home Record.",
     body: "Our regular cleaning service is built on consistency. We assign a named team who gets to know the home, your surfaces, your products, your preferences. Visits are booked and logged with a short note after each one. If your regular cleaner is away, we send a cover team briefed from your record.",
     whyChoose: [
       "The same trusted cleaner, getting to know your home",

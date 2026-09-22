@@ -205,7 +205,7 @@ export default async function AssistantPage() {
             {cms(
               quote,
               "body",
-              "I photograph everything now. Ask HoWA told me the crack above the kitchen door was settlement, not structural. Saved me a surveyor's call-out fee and a week of worry.",
+              "I photograph everything now. When a crack appeared above the kitchen door, Ask HoWA helped me note what to watch for and suggested getting it checked. It didn't diagnose it for me, but it made the next step clear.",
             )}
           </blockquote>
           <figcaption>

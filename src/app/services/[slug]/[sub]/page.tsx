@@ -114,7 +114,10 @@ export default async function SubServicePage({
   // `included` + `faq` inherit from the parent service, `body` + `whyChoose`
   // from SERVICE_CONTENT_DEFAULTS. (Coming-soon subs stay minimal — gated on
   // !heroSoon below.)
-  const defaults = SERVICE_CONTENT_DEFAULTS[parent.slug];
+  // Prefer the sub-service's own defaults when its slug is itself a service with
+  // defaults (e.g. gutter-cleaning under window-cleaning), so it doesn't inherit
+  // the parent's scope/waste boilerplate (finding 16).
+  const defaults = SERVICE_CONTENT_DEFAULTS[service.slug] ?? SERVICE_CONTENT_DEFAULTS[parent.slug];
   // ServiceOS deep-link, preselected to THIS sub-service where we have a
   // matching id (falls back to a fresh booking otherwise). No postcode field in
   // the leaf hero, so the visitor enters it in the flow. Rendered as a plain <a>
@@ -278,7 +281,7 @@ export default async function SubServicePage({
           <header className={s.sectionHead}>
             <p className={s.sectionEy}>What's included</p>
             <h2 className={s.sectionTitle}>
-              Every <em>visit.</em>
+              In this <em>service.</em>
             </h2>
           </header>
           <ul className={s.includedList}>

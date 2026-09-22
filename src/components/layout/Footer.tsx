@@ -78,7 +78,7 @@ const COLS: FooterColumn[] = [
       { label: "Contact", href: "/contact" },
       { label: "FAQs", href: "/help" },
       { label: "My HoWA", href: "/my-house" },
-      { label: "Track a Booking", href: "/howa/coming-soon" },
+      { label: "Track a Booking", href: "/my-house" },
     ],
   },
 ];
