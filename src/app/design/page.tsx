@@ -111,11 +111,14 @@ export default async function DesignLanding() {
               )}
             </p>
             <div className={s.heroCtas}>
-              <Link href={cms(hero, "ctaHref", "/howa/design")} className={s.btnFilled}>
+              {/* Primary CTA goes to the live, bookable routes (gardens/interiors),
+                  not the in-development HoWA Design tool, which used to loop back
+                  here. Hardcoded so a stale CMS value can't re-introduce the loop. */}
+              <Link href="#routes" className={s.btnFilled}>
                 {cms(hero, "ctaLabel", "Start a design idea")}
               </Link>
-              <Link href={cms(hero, "cta2Href", "#routes")} className={s.btnGhost}>
-                {cms(hero, "cta2Label", "Find a design specialist")}
+              <Link href="/howa/design" className={s.btnGhost}>
+                {cms(hero, "cta2Label", "See HoWA Design")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>
             </div>
@@ -278,7 +281,7 @@ export default async function DesignLanding() {
           <em>{cms(closing, "headlineEm", "A whole house, properly read.", "headline")}</em>
         </p>
         <div className={s.closingCtas}>
-          <Link href={cms(closing, "ctaHref", "/howa/design")} className={s.closingBtnFilled}>
+          <Link href="#routes" className={s.closingBtnFilled}>
             {cms(closing, "ctaLabel", "Start a design idea")}
           </Link>
           <Link href={cms(closing, "cta2Href", "/howa/ask")} className={s.closingBtnGhost}>
