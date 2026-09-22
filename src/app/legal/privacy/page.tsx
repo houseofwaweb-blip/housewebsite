@@ -20,7 +20,7 @@ export default async function PrivacyPage() {
           heading: "Overview",
           body: `We collect only the data we need to provide the site, shop, and services, and we do not sell your personal data. Data you add to your Home Record remains yours; you can export or delete it at any time.
 
-We share your data with the service providers that operate the site (Sanity, Shopify, Supabase, Vercel, Sentry, Cloudflare) under contract. We use measurement and advertising services from Google, Microsoft, Meta and Pinterest only where you have consented via the cookie banner, and only with hashed identifiers, never raw email or phone. Detail is set out in the [Cookie policy](/legal/cookies).
+We share your data with the service providers that operate the site (Sanity, Shopify, Supabase, Vercel, Sentry, Cloudflare, Klaviyo) under contract. We use measurement and advertising services from Google, Microsoft, Meta and Pinterest only where you have consented via the cookie banner, and only with hashed identifiers, never raw email or phone. Detail is set out in the [Cookie policy](/legal/cookies).
 
 Data you add to HoWA, such as photos and notes, is held in your private record, encrypted at rest, and is not used to train public models.`,
         },
@@ -40,7 +40,7 @@ Photos, documents, and notes added to your record: to provide Ask HoWA and the r
 
 Measurement data: page views, performance metrics, and (if you consent) heatmaps. Used to understand what's working on the site. Held by Google Analytics, Microsoft Clarity, Vercel and Sentry. Opt-in via the cookie banner.
 
-Advertising and attribution data: if you consent to the Marketing category, we share a hashed (one-way scrambled) version of your email and phone with Google and Meta when you submit a form, so they can attribute the conversion to the right ad campaign. Raw email and phone never leave us. Click identifiers from ad URLs (gclid, fbclid) are stored for 90 days to support cross-session attribution. Opt-in via the cookie banner.`,
+Advertising and attribution data: if you consent to the Marketing category, we share a hashed (one-way scrambled) version of your email and phone with Google and Meta when you submit a form, so they can attribute the conversion to the right ad campaign. In this advertising workflow your raw email and phone are not sent to those services; only the hashed version is. Click identifiers from ad URLs (gclid, fbclid) are stored for 90 days to support cross-session attribution. Opt-in via the cookie banner.`,
         },
         {
           heading: "Your rights",

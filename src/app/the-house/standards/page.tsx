@@ -28,11 +28,11 @@ When something stops meeting the standard, it comes off the list. Quietly, witho
   },
   {
     heading: "What we refuse",
-    body: `We don't take undisclosed commission from partners. Introductions are introductions, not affiliate deals.
+    body: `We don't take undisclosed commission. Where an introduction earns the House a fee or commission, we tell you, and it never changes who we judge to be right for you.
 
 We don't recommend anything we wouldn't use in our own homes.
 
-We don't sell data. Your record, your photographs, your documents are yours; they're stored securely and never offered to third parties for any purpose.`,
+We don't sell data. Your record, your photographs and your documents are yours. They're stored securely and shared only with the contracted providers that run the service, or with a provider when you ask us to, as set out in our [Privacy policy](/legal/privacy).`,
     quote: {
       text: "Standards survive because somebody refuses to lower them. Usually quietly.",
     },

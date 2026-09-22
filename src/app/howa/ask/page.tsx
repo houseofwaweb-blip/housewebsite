@@ -228,7 +228,7 @@ export default async function AssistantPage() {
           {cms(
             closing,
             "body",
-            "Your photos and notes are stored in your private record, encrypted, never shared, never used to train public models. Everything you save here carries upward, stepping up never starts you over.",
+            "Your photos and notes are stored in your private record, encrypted, and are not sold or used to train public models. You choose who in your household can see them, and they go to a provider only when you ask. Everything you save here carries upward, stepping up never starts you over.",
           )}
         </p>
         <div className={s.closingCtas}>
