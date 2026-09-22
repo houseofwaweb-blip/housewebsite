@@ -60,7 +60,14 @@ export const GARDENING_SUBS: SubService[] = [
   {
     slug: "tree-work",
     name: "Tree work",
-    lede: "Crown reduction, deadwood removal, and light felling up to 4 metres. Larger jobs quoted on site.",
+    lede: "Crown reduction, deadwood removal, and light felling of trees up to 3 metres. Larger trees need a discussion first.",
+    included: [
+      "Crown reduction, thinning and shaping",
+      "Deadwood removal and light felling of trees up to 3 metres",
+      "Trees above 3 metres, or near structures and power lines, quoted after a discussion",
+      "An arborist route for larger or complex works",
+      "Green waste removed by a licensed carrier",
+    ],
   },
   {
     slug: "turf-laying",
@@ -77,6 +84,13 @@ export const GARDENING_SUBS: SubService[] = [
     slug: "jet-washing",
     name: "Jet washing",
     lede: "Paths, patios, decking, and driveways. Professional equipment, with pressure matched to each surface.",
+    included: [
+      "Patios, paths, driveways and decking",
+      "Surface preparation and pressure matched to each surface",
+      "Walls are cleaned by softwashing, not jet washing",
+      "Runoff managed, the area rinsed and left clean",
+      "Washings and loosened debris cleared as part of the job",
+    ],
   },
 ];
 

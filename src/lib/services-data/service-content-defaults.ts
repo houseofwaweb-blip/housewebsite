@@ -130,4 +130,58 @@ export const SERVICE_CONTENT_DEFAULTS: Record<string, ServiceContentDefault> = {
       "Any repairs found are quoted separately and never carried out without your agreement.",
     ],
   },
+  // Finding 15: jet washing and tree work must carry their own scope and time
+  // guides, not inherit the garden-maintenance inclusions and gardener estimates.
+  "jet-washing": {
+    body:
+      "Professional pressure washing for hard surfaces, with the technique and pressure matched to each surface so it is cleaned without being damaged. Patios, paths, driveways and decking brought back; walls, which need a gentler approach, are softwashed rather than jet washed. We manage runoff, clear the washings and leave the area rinsed and tidy.",
+    whyChoose: [
+      "Pressure matched to each surface, no guesswork",
+      "Walls softwashed, not blasted",
+      "Runoff managed and the area left clean",
+      "Washings and debris cleared as part of the job",
+    ],
+    howLong: [
+      { label: "A small patio or short path", time: "Around 1 to 2 hours" },
+      { label: "A typical driveway or patio", time: "Around half a day" },
+      { label: "A large or heavily soiled area", time: "A full day, sometimes a team of two" },
+    ],
+    excluded: [
+      "Repointing, resealing or resurfacing",
+      "Deep stains that will not lift safely",
+      "Roof and render cleaning",
+      "Work that needs access equipment, quoted separately",
+    ],
+    waste: [
+      "Loosened dirt and washings are cleared and the area rinsed, included in your quote.",
+      "Any resealing or resanding you ask for is quoted separately.",
+      "Water is drawn from your outdoor tap where available.",
+    ],
+  },
+  "tree-work": {
+    body:
+      "Careful tree work by trained hands, working to what the tree and the site allow. Crown reduction, thinning, shaping and deadwood removal, and light felling of smaller trees. Larger trees, and anything near a structure or power line, are looked at and quoted after a discussion, with an arborist route where the work needs one.",
+    whyChoose: [
+      "Trained, insured team working to the tree and the site",
+      "Clear limits, larger works quoted after a discussion",
+      "An arborist route for complex or high work",
+      "Green waste removed by a licensed carrier",
+    ],
+    howLong: [
+      { label: "A single small tree or light deadwooding", time: "A few hours" },
+      { label: "Several trees or a larger crown reduction", time: "Around a day, a team of two" },
+      { label: "Larger or complex works", time: "Quoted after a site discussion" },
+    ],
+    excluded: [
+      "Trees above 3 metres, or near structures and power lines, until discussed",
+      "Stump grinding and removal, quoted separately",
+      "Emergency or storm-damage call-outs",
+      "Protected trees without the necessary consents",
+    ],
+    waste: [
+      "Green waste and arisings are removed by a licensed carrier, included in your quote.",
+      "Logs or chippings can be left for you on request.",
+      "Stump grinding is quoted separately.",
+    ],
+  },
 };

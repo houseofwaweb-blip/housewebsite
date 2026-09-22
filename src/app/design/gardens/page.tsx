@@ -203,7 +203,7 @@ export default async function GardensPage() {
             {cms(
               plans,
               "body",
-              "From a planting plan that solves a single border to a fully dimensioned 3D design ready for build, the right entry point for the garden you have now.",
+              "From a planting plan that solves a single border to an illustrative 3D visual of the whole garden, the right entry point for the garden you have now.",
             )}
           </p>
         </header>

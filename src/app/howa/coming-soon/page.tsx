@@ -44,7 +44,7 @@ const COMING = [
   {
     icon: "III.",
     title: "Bookings & continuity",
-    body: "Book House services and approved partners from one place, with one contact and one invoice, and the same trade again when continuity matters. Plan pricing will be confirmed when the product opens.",
+    body: "Book House services and approved partners from one place, with the same trade again when continuity matters. Plan pricing will be confirmed when the product opens.",
   },
 ];
 
