@@ -71,6 +71,41 @@ const captionStyle: React.CSSProperties = {
   color: "rgba(48, 35, 28, 0.72)",
   margin: "12px 0 0",
 };
+const inlineLinkStyle: React.CSSProperties = {
+  color: "var(--color-house-gold-ink)",
+  textDecoration: "underline",
+  textUnderlineOffset: 3,
+};
+
+/**
+ * Render the small subset of inline Markdown our editorial/legal copy uses:
+ * `**bold**` and `[label](href)`. Plain text passes through untouched, so
+ * non-Markdown pages are unaffected. Fixes findings 27/40 (policy pages showed
+ * raw `**` and `[text](/path)` because body was printed as plain text).
+ */
+function renderInline(text: string, keyPrefix: string): React.ReactNode[] {
+  const nodes: React.ReactNode[] = [];
+  const pattern = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*/g;
+  let last = 0;
+  let i = 0;
+  let m: RegExpExecArray | null;
+  while ((m = pattern.exec(text)) !== null) {
+    if (m.index > last) nodes.push(text.slice(last, m.index));
+    if (m[1] !== undefined) {
+      nodes.push(
+        <a key={`${keyPrefix}-l${i}`} href={m[2]} style={inlineLinkStyle}>
+          {m[1]}
+        </a>,
+      );
+    } else if (m[3] !== undefined) {
+      nodes.push(<strong key={`${keyPrefix}-b${i}`}>{m[3]}</strong>);
+    }
+    last = pattern.lastIndex;
+    i += 1;
+  }
+  if (last < text.length) nodes.push(text.slice(last));
+  return nodes;
+}
 
 function SectionText({ section }: { section: EditorialSection }) {
   return (
@@ -78,7 +113,7 @@ function SectionText({ section }: { section: EditorialSection }) {
       {section.heading ? <h2 style={headingStyle}>{section.heading}</h2> : null}
       {section.body.split("\n\n").map((p, j) => (
         <p key={j} style={paraStyle}>
-          {p}
+          {renderInline(p, `s${j}`)}
         </p>
       ))}
       {section.quote ? (
