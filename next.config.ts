@@ -106,6 +106,11 @@ const nextConfig: NextConfig = {
       { source: "/services/electrical-energy", destination: "/services/energy", permanent: true },
       { source: "/services/dog-walkers", destination: "/services/pet-care", permanent: true },
       { source: "/insurance-and-cover", destination: "/insurance", permanent: true },
+      // Finding 38: legacy insurance action routes must reach the action they
+      // name, not the generic hub. Claims → claims help; quote/enquiry → the
+      // register-interest enquiry (insurance is introducer-only, no live quote).
+      { source: "/insurance-and-cover/help-and-claims", destination: "/insurance/claims-and-help", permanent: true },
+      { source: "/insurance-and-cover/quote", destination: "/insurance/speak-to-a-specialist", permanent: true },
       { source: "/insurance-and-cover/:path*", destination: "/insurance", permanent: true },
       { source: "/magazine/:path*", destination: "/the-hearth", permanent: true },
       // Aug-17 rebuild: /how-it-works, /house-approved-pro, /help and /my-house
@@ -155,6 +160,10 @@ const nextConfig: NextConfig = {
       // from the homepage design cards. Retire the other /design PAGE routes,
       // excluding paths that start with "gardens" and any path with a file
       // extension so static assets under /public/design/* still serve.
+      // Finding 38: a design consultation link must reach the design offer and
+      // its enquiry, not the generic Services hub. Keep this before the /design
+      // catch-all below.
+      { source: "/design/consultation", destination: "/design", permanent: false },
       { source: "/design/:path((?!gardens|interiors|.*\\.).+)", destination: "/services", permanent: false },
       // Partners is retired: the Aug-17 spec has no partners page — the House
       // owns its service brands (Willow Alexander Gardeners, Cleaners, etc.),
