@@ -59,8 +59,8 @@ export default function OffersPage() {
             in one visit, a few services booked together, or a perk that comes with a
             My House account. The terms are set out plainly, and anything an offer
             does not cover is written on the offer itself, not hidden in the small
-            print. Cover offers are introduced by Provenance. The House does not
-            advise on or sell insurance.
+            print. Cover offers are introduced by the House and arranged by
+            Provenance. The House does not advise on or sell insurance.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link

@@ -162,6 +162,13 @@ export default async function ProductPage({
   // installable/maintainable goods, not a mug or a book (brief slide 9).
   const cat = `${product.collection ?? ""}`.toLowerCase();
   const serviceable = /furnitur|lighting|soft.?furnish|outdoor|curtain|blind|shelv|wardrobe|\brug|mirror|cabinet|table|sofa|bed\b/.test(cat);
+  // Findings 32/33: consumables (things used up: wipes, soap, candles, seeds,
+  // foil, bags, cleaning products, toiletries) have no repair route and no
+  // renewal date, so they must not carry the "mended and kept" repairability
+  // line or an automatic renewal reminder. Conservative match on collection +
+  // title so durable goods (a candlestick HOLDER, a mug) keep their proposition.
+  const catAndTitle = `${cat} ${product.title?.toLowerCase() ?? ""}`;
+  const consumable = /cleaning|toiletr|fragrance|laundr|\bfoil\b|freezer|food.?bag|sandwich.?bag|wipe|\bsoap\b|\bseeds?\b|refill|detergent|consumable|stationery|\bcandle\b|tealight|\bbags?\b/.test(catAndTitle);
   const baseUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
   const productUrl = `${baseUrl}/shop/${product.handle}`;
 
@@ -389,11 +396,18 @@ export default async function ProductPage({
                   place here.
                 </li>
               ) : null}
-              <li className="font-sans text-[18px] leading-[1.6] text-house-brown/85">
-                <span className="text-house-stone">Made to last.</span> Chosen so it can be
-                mended and kept rather than replaced, which is the most sustainable choice a
-                household can make.
-              </li>
+              {consumable ? (
+                <li className="font-sans text-[18px] leading-[1.6] text-house-brown/85">
+                  <span className="text-house-stone">Chosen with care.</span> Selected against
+                  the House Approved standard for its materials and how it is made.
+                </li>
+              ) : (
+                <li className="font-sans text-[18px] leading-[1.6] text-house-brown/85">
+                  <span className="text-house-stone">Made to last.</span> Chosen so it can be
+                  mended and kept rather than replaced, which is the most sustainable choice a
+                  household can make.
+                </li>
+              )}
               {product.careNotes?.trim() ? (
                 <li className="font-sans text-[18px] leading-[1.6] text-house-brown/85">
                   <span className="text-house-stone">Care.</span> {product.careNotes.trim()}
@@ -414,7 +428,12 @@ export default async function ProductPage({
                 ["Supplier", product.brand?.trim() || "House Approved maker"],
                 ["Care", product.careNotes?.trim() || "Surface-appropriate care notes, saved with the item."],
                 ["Warranty", "Receipt and any warranty stored at purchase."],
-                ["Replacement", "HoWA reminds you when it is due for renewal."],
+                [
+                  consumable ? "Reorder" : "Replacement",
+                  consumable
+                    ? "The details stay on file so you can reorder the same again."
+                    : "The details stay on file so you can source the same again.",
+                ],
               ].map(([k, v]) => (
                 <div key={k} className="flex gap-4 font-sans text-[18px] leading-[1.5]">
                   <dt className="w-[92px] shrink-0 text-house-stone">{k}</dt>
