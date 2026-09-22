@@ -35,6 +35,9 @@ export function DesignPackagePage({ product }: { product: ShopProduct }) {
   // The delivering studio: interiors are delivered by Delve Interiors (finding 14),
   // gardens by the House garden design team.
   const studio = isGarden ? "House of Willow Alexander" : "Delve Interiors";
+  // "Additions to Your Edit" is an add-on to the House Edit / Full House Edit,
+  // chosen as extras in the booking platform, not a standalone package.
+  const isAddition = product.handle === "additions-to-your-edit";
   // Design packages are ServiceOS services: book directly rather than looping
   // the visitor back through /design (the "start a design" loop). Plain <a> so
   // the platform reads service_id on a full page load; postcode is entered in
@@ -104,7 +107,11 @@ export function DesignPackagePage({ product }: { product: ShopProduct }) {
             Speak to a designer
           </Link>
         </div>
-        <p className="mt-4 font-sans text-[13px] text-house-stone">A design service by {studio}. Booking it registers your brief; a consultation call is arranged after purchase.</p>
+        <p className="mt-4 font-sans text-[13px] text-house-stone">
+          {isAddition
+            ? "An add-on to The House Edit or Full House Edit, chosen as extras in the booking platform when you book either package."
+            : "A design service by " + studio + ". Booking it registers your brief; a consultation call is arranged after purchase."}
+        </p>
       </section>
 
       {/* 2. Full-width concept image (contained, editorial) */}

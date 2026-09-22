@@ -215,7 +215,7 @@ export function SingleServiceDetail({ view }: { view: SingleServiceView }) {
           <header className={s.sectionHead}>
             <p className={s.sectionEy}>What&apos;s included</p>
             <h2 className={s.sectionTitle}>
-              Every <em>visit.</em>
+              In this <em>service.</em>
             </h2>
           </header>
           <ul className={s.includedList}>

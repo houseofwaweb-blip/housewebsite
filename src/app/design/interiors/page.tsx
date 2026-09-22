@@ -45,20 +45,6 @@ const PLANS = [
       "10% off the House online store for 30 days",
     ],
     image: "/design/interiors/project-living-room.webp",
-    featured: true,
-  },
-  {
-    name: "Additions to Your Edit",
-    tagline: "À-la-carte top-ups.",
-    price: "from £195",
-    handle: "additions-to-your-edit",
-    inclusions: [
-      "Shoppable moodboard",
-      "Sourcing per room",
-      "Material pack: swatches, samples, scents",
-      "30-minute follow-up call",
-    ],
-    image: "/design/interiors/project-bedroom.webp",
   },
   {
     name: "The Full House Edit",
@@ -73,6 +59,21 @@ const PLANS = [
       "15% off the House online store for 60 days",
     ],
     image: "/design/interiors/project-detail.webp",
+    featured: true,
+  },
+  {
+    name: "Additions to Your Edit",
+    tagline: "Add-ons for either Edit.",
+    price: "from £195",
+    handle: "additions-to-your-edit",
+    inclusions: [
+      "Added to a House Edit or Full House Edit in the booking platform",
+      "Shoppable moodboard",
+      "Sourcing per room",
+      "Material pack: swatches, samples, scents",
+      "30-minute follow-up call",
+    ],
+    image: "/design/interiors/project-bedroom.webp",
   },
 ];
 
