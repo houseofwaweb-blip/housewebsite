@@ -35,14 +35,14 @@ const STAT_COLS = [
 const PLANS = [
   {
     name: "The House Edit",
-    tagline: "A 90-minute studio session.",
+    tagline: "A 90-minute session with Delve Interiors.",
     price: "£295",
     handle: "the-house-edit-1",
     inclusions: [
-      "A 90-minute one-to-one online styling session",
+      "A 90-minute one-to-one session with Delve Interiors, in your home in London and the South East, or virtual",
       "Thoughtful guidance on palette, layout and sourcing",
       "A personalised PDF moodboard with curated links",
-      "10% House Store discount",
+      "10% off the House online store for 30 days",
     ],
     image: "/design/interiors/project-living-room.webp",
     featured: true,
@@ -63,15 +63,14 @@ const PLANS = [
   {
     name: "The Full House Edit",
     tagline: "A whole-home brief, fully held.",
-    price: "from £795",
+    price: "£725",
     handle: "the-full-house-edit",
     inclusions: [
-      "Initial 90-minute consultation",
-      "Moodboards for up to three rooms",
+      "Everything in The House Edit, plus:",
+      "Moodboards for up to three rooms or areas",
       "Sourcing for two rooms",
-      "A tactile material pack posted to you",
-      "30-minute follow-up call",
-      "House Store benefit on eligible purchases",
+      "A Material Pack and a 30-minute follow-up call",
+      "15% off the House online store for 60 days",
     ],
     image: "/design/interiors/project-detail.webp",
   },
