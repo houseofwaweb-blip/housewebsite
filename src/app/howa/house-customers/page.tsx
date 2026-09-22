@@ -169,18 +169,23 @@ export default function HouseCustomersPage() {
 
       {/* 30 — What stays the same */}
       <section style={{ background: PAPER }}>
-        <div className={`${CONTAINER} py-[clamp(56px,8vw,96px)]`}>
-          <Eyebrow>What stays the same</Eyebrow>
-          <h2 className="font-display leading-[0.98] tracking-[-0.025em] text-[clamp(34px,3.8vw,54px)]" style={{ color: INK }}>Still the House you know.</h2>
-          <ul className="mt-8 grid gap-x-10 gap-y-5 md:grid-cols-2" style={{ borderTop: `1px solid ${RULE}` }}>
-            {STAYS.map((s) => (
-              <li key={s} className="flex gap-3 pt-5 font-sans text-[18px] leading-[1.45]" style={{ color: INK }}><span aria-hidden style={{ color: GOLD }}>·</span>{s}</li>
-            ))}
-          </ul>
-          <p className="mt-8 max-w-[62ch] font-sans text-[18px] leading-[1.6]" style={{ color: MUTED }}>
-            The difference is that HoWA now remembers the relationship around your
-            home, so the next visit doesn&rsquo;t begin from zero.
-          </p>
+        <div className={`${CONTAINER} grid items-center gap-[clamp(32px,5vw,72px)] py-[clamp(56px,8vw,96px)] lg:grid-cols-[0.9fr_1.1fr]`}>
+          <div className="relative order-2 aspect-[4/3] w-full overflow-hidden rounded-[20px] lg:order-1" style={{ border: `1px solid ${RULE}` }}>
+            <Image src="/howa/microsite/tools-table.webp" alt="House Approved tools laid out, the same standard of care" fill sizes="(max-width:1024px) 100vw, 520px" className="object-cover" />
+          </div>
+          <div className="order-1 lg:order-2">
+            <Eyebrow>What stays the same</Eyebrow>
+            <h2 className="font-display leading-[0.98] tracking-[-0.025em] text-[clamp(34px,3.8vw,54px)]" style={{ color: INK }}>Still the House you know.</h2>
+            <ul className="mt-8 grid gap-x-10 gap-y-5 sm:grid-cols-2" style={{ borderTop: `1px solid ${RULE}` }}>
+              {STAYS.map((s) => (
+                <li key={s} className="flex gap-3 pt-5 font-sans text-[18px] leading-[1.45]" style={{ color: INK }}><span aria-hidden style={{ color: GOLD }}>·</span>{s}</li>
+              ))}
+            </ul>
+            <p className="mt-8 max-w-[62ch] font-sans text-[18px] leading-[1.6]" style={{ color: MUTED }}>
+              The difference is that HoWA now remembers the relationship around your
+              home, so the next visit doesn&rsquo;t begin from zero.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -238,21 +243,26 @@ export default function HouseCustomersPage() {
 
       {/* 33 — Why we are doing it */}
       <section className="relative overflow-hidden" style={{ background: PAPER_LIGHT, borderTop: `1px solid ${RULE}` }}>
-        <div className={`${CONTAINER} py-[clamp(56px,8vw,104px)]`}>
-          <Eyebrow>Why we are doing it</Eyebrow>
-          <h2 className="max-w-[22ch] font-display leading-[0.98] tracking-[-0.025em] text-[clamp(34px,3.8vw,54px)]" style={{ color: INK }}>Because your home shouldn&rsquo;t start again every visit.</h2>
-          <ul className="mt-8 flex max-w-[60ch] flex-col gap-3">
-            {WHY.map((w) => (
-              <li key={w} className="font-sans text-[19px] leading-[1.5]" style={{ color: MUTED }}>{w}</li>
-            ))}
-          </ul>
-          <p className="mt-6 max-w-[60ch] font-sans text-[18px] leading-[1.6]" style={{ color: MUTED }}>
-            Today, those things can disappear between services. With HoWA, useful
-            information comes back to the home.
-          </p>
-          <p className="mt-8 font-display leading-[1.05] text-[clamp(26px,3.2vw,44px)]" style={{ color: INK }}>
-            The work gets done.<br />The home remembers.
-          </p>
+        <div className={`${CONTAINER} grid items-center gap-[clamp(32px,5vw,72px)] py-[clamp(56px,8vw,104px)] lg:grid-cols-[1fr_1fr]`}>
+          <div>
+            <Eyebrow>Why we are doing it</Eyebrow>
+            <h2 className="max-w-[22ch] font-display leading-[0.98] tracking-[-0.025em] text-[clamp(34px,3.8vw,54px)]" style={{ color: INK }}>Because your home shouldn&rsquo;t start again every visit.</h2>
+            <ul className="mt-8 flex max-w-[60ch] flex-col gap-3">
+              {WHY.map((w) => (
+                <li key={w} className="font-sans text-[19px] leading-[1.5]" style={{ color: MUTED }}>{w}</li>
+              ))}
+            </ul>
+            <p className="mt-6 max-w-[60ch] font-sans text-[18px] leading-[1.6]" style={{ color: MUTED }}>
+              Today, those things can disappear between services. With HoWA, useful
+              information comes back to the home.
+            </p>
+            <p className="mt-8 font-display leading-[1.05] text-[clamp(26px,3.2vw,44px)]" style={{ color: INK }}>
+              The work gets done.<br />The home remembers.
+            </p>
+          </div>
+          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[20px]" style={{ border: `1px solid ${RULE}` }}>
+            <Image src="/howa/microsite/garden-visit.webp" alt="A House gardener at work, noticing what the home needs" fill sizes="(max-width:1024px) 100vw, 560px" className="object-cover" />
+          </div>
         </div>
       </section>
 
