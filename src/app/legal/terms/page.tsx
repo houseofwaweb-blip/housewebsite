@@ -16,7 +16,7 @@ export default async function TermsPage() {
       sections={[
         {
           heading: "The basics",
-          body: `This site and HoWA are operated by House of Willow Alexander Ltd, registered in England & Wales (company number 15062693), registered office 12 Hatherley Road, Sidcup, Kent, DA14 4DT. You can reach us at sales@willowalexander.co.uk. By using the site, HoWA, or our services, you agree to these terms. If you do not agree, you should not use them.
+          body: `This website is operated by House of Willow Alexander Ltd, registered in England & Wales (company number 15062693), registered office 12 Hatherley Road, Sidcup, Kent, DA14 4DT. The HoWA platform and subscriptions are supplied by HoWA Living Ltd. You can reach us at sales@willowalexander.co.uk. By using the site, HoWA, or our services, you agree to these terms. If you do not agree, you should not use them.
 
 We may update these terms from time to time. We will notify you of significant changes in the product. The "Last updated" date at the foot of this page is the operative version.`,
         },
@@ -34,9 +34,9 @@ Cancellation terms for each service are published on the service's page and conf
         },
         {
           heading: "Payments",
-          body: `Payments for services, memberships and orders taken through HoWA are charged by HoWA Living Ltd. HoWA Living Ltd is the entity that takes the payment and is the name you should expect to see on your card or bank statement.
+          body: `Payments for service bookings and HoWA subscriptions are charged by HoWA Living Ltd. Payments for shop and Marketplace orders are charged by House of Willow Alexander Ltd. The name you see on your card or bank statement is the entity that took that payment.
 
-Being charged by HoWA Living Ltd does not change who is responsible for the work. As set out above, your contract for a physical service is with the named provider shown before you confirm, and that provider remains responsible for its contract and delivery unless checkout states otherwise.
+Who takes the payment does not change who is responsible for the work. As set out above, your contract for a physical service is with the named provider shown before you confirm, and that provider remains responsible for its contract and delivery unless checkout states otherwise.
 
 Memberships are a software subscription. Physical service visits are booked and paid for separately.`,
         },

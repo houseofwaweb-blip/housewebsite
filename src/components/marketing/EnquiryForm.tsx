@@ -42,8 +42,10 @@ const SERVICE_OPTIONS: ReadonlyArray<{ value: ServiceType; label: string }> = [
   { value: "gutter-cleaning", label: "Gutter cleaning" },
   { value: "design-gardens", label: "Garden design" },
   { value: "design-interiors", label: "Interior design" },
-  { value: "steward", label: "Steward (managed care)" },
-  { value: "protect", label: "Protect / home protection" },
+  // Finding 30: reserve "HoWA Steward" for the software tier; use a House
+  // regular-care label for physical managed care. Protect is removed from the
+  // selector until a defined service and provider are approved.
+  { value: "steward", label: "Regular home care" },
 ];
 
 export interface EnquiryFormProps {

@@ -26,7 +26,7 @@ Data you add to HoWA, such as photos and notes, is held in your private record, 
         },
         {
           heading: "Who we are",
-          body: `House of Willow Alexander Ltd (registered in England & Wales, company number 15062693) is the data controller. Registered office: 12 Hatherley Road, Sidcup, Kent, DA14 4DT.
+          body: `House of Willow Alexander Ltd (registered in England & Wales, company number 15062693) operates this website, the shop and Marketplace, and is the data controller for that data. HoWA Living Ltd supplies the HoWA platform and subscriptions, and is the data controller for the data you hold in HoWA. Each company is the controller for its own data. Registered office: 12 Hatherley Road, Sidcup, Kent, DA14 4DT.
 
 Contact: sales@willowalexander.co.uk`,
         },
@@ -49,7 +49,7 @@ Advertising and attribution data: if you consent to the Marketing category, we s
 You can complain to the ICO if you're unhappy with how we've handled your data. Their address is in their guidance.`,
         },
       ]}
-      updatedAt={sanityPage?.lastUpdated ?? "1 July 2026"}
+      updatedAt={sanityPage?.lastUpdated ?? "22 September 2026"}
     />
   );
 }

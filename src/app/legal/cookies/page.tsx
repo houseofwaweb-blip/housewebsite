@@ -30,9 +30,9 @@ export default async function CookiesPage() {
           },
           {
             heading: "What happens when you reject Measurement and Marketing",
-            body: `Google Analytics and Google Ads still load on the page, but with everything denied. They don't set tracking cookies, don't identify you, and don't follow you across sites. They do send anonymous, aggregated signals to Google so we can see overall traffic volume even from non-consenting visitors. This is called "Google Consent Mode v2" and is the standard privacy-forward setup as of 2024.
+            body: `If you reject Measurement and Marketing, nothing non-essential runs. We do not set analytics or advertising cookies, do not identify you, and do not send analytics or advertising signals about your visit.
 
-Meta Pixel, Pinterest Tag, Microsoft Clarity, Sentry and Vercel Analytics don't load at all without consent. They have no equivalent privacy mode.`,
+Meta Pixel, Pinterest Tag, Google Analytics, Google Ads, Microsoft Clarity, Sentry and Vercel Analytics do not load without consent. Only the essential first-party cookies (session, security, cart, your consent choice and the booking widget) run.`,
           },
           {
             heading: "Data we share with third parties (only with consent)",
@@ -44,7 +44,7 @@ We don't sell data. We don't share with anyone outside the providers listed in o
           },
           {
             heading: "If you arrived from an ad",
-            body: `When you click a Google, Meta, or Microsoft ad, the URL gains a small parameter (gclid, fbclid, msclkid). We save these for 90 days in a first-party cookie called wa_click_ids so that if you come back to convert later, the original ad still gets the attribution. Saving these is essential to running paid advertising, so there is no separate toggle; you can avoid it by not clicking on ads. The cookie is first-party only and contains no personal data.`,
+            body: `When you click a Google, Meta, or Microsoft ad, the URL gains a small parameter (gclid, fbclid, msclkid). If, and only if, you accept the Marketing category, we save these for 90 days in a first-party cookie called wa_click_ids so that if you come back to convert later, the original ad still gets the attribution. It is part of Marketing consent, not an essential cookie, and it is not saved if you reject Marketing. The cookie is first-party only and contains no personal data.`,
           },
           {
             heading: "Managing your choices",
@@ -57,7 +57,7 @@ When you change a preference, the change applies immediately to scripts already 
             body: `The table below lists the cookies and similar storage this site uses, grouped by the category above. Measurement and marketing entries are only set once you accept the matching category. If you spot something set that isn't listed, please email sales@willowalexander.co.uk and we'll investigate.`,
           },
         ]}
-        updatedAt={sanityPage?.lastUpdated ?? "1 July 2026"}
+        updatedAt={sanityPage?.lastUpdated ?? "22 September 2026"}
       />
       <section
         style={{

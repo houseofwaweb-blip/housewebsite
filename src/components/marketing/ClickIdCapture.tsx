@@ -2,19 +2,20 @@
 
 import { useEffect } from "react";
 import { captureClickIds } from "@/lib/google/gclid";
+import { useConsentGranted } from "@/components/consent/ConsentProvider";
 
 /**
- * Runs once on first client render. Reads any ad click IDs (gclid,
- * gbraid, wbraid, fbclid, msclkid) from the URL and persists them to
- * localStorage + first-party cookie for the 90-day attribution window.
+ * Reads any ad click IDs (gclid, gbraid, wbraid, fbclid, msclkid) from the URL
+ * and persists them for the 90-day attribution window.
  *
- * Not consent-gated — click IDs are essential first-party data with no
- * cookie set on third-party domains. They sit alongside the wa-consent
- * cookie itself in the essential category.
+ * Consent-gated (finding 27): wa_click_ids is part of the Marketing category,
+ * not an essential cookie. We only capture and store it once the visitor has
+ * accepted Marketing; nothing is stored if they reject.
  */
 export function ClickIdCapture() {
+  const marketing = useConsentGranted("marketing");
   useEffect(() => {
-    captureClickIds();
-  }, []);
+    if (marketing) captureClickIds();
+  }, [marketing]);
   return null;
 }
