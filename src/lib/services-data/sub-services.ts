@@ -193,7 +193,7 @@ export const CLEANING_SUBS: SubService[] = [
   {
     slug: "end-of-tenancy-cleaning",
     name: "End-of-tenancy cleaning",
-    lede: "Inventory-standard clean for landlords and tenants. Oven, carpets, and behind-furniture deep work included.",
+    lede: "Inventory-standard clean for landlords and tenants. Oven and behind-furniture deep work included; carpets vacuumed as standard, with professional carpet cleaning available at extra cost.",
   },
   {
     slug: "after-building-cleaning",

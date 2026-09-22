@@ -6,7 +6,7 @@ import { BreadcrumbJsonLd } from "@/lib/seo/jsonLd";
 export const metadata: Metadata = {
   title: "My HoWA",
   description:
-    "My HoWA is your account with the House of Willow Alexander. Manage bookings, cover, orders and your Home Record in one place.",
+    "My HoWA is your account with the House of Willow Alexander. Manage your House bookings today; your cover, orders and Home Record come together as HoWA connects.",
 };
 
 const ACCOUNTS_URL = "https://accounts.willowalexander.co.uk/";
@@ -152,9 +152,9 @@ export default function MyHousePage() {
           flip
         >
           <p>
-            Your next visit, your cover, your orders and the record of your home,
-            on a single page. No repeating yourself, no digging through email.
-            Sign in and everything is where you left it.
+            Your House bookings are here today. As HoWA connects, your cover, your
+            orders and the record of your home come together on a single page, so
+            you never repeat yourself or dig through email.
           </p>
         </Feature>
 
@@ -215,8 +215,8 @@ export default function MyHousePage() {
         >
           <p>
             Upcoming and past visits, together. Reschedule, repeat or cancel,
-            with clear terms shown before you confirm, and every visit written
-            back to your Home Record so the house remembers what was done.
+            with clear terms shown before you confirm. As HoWA connects, each
+            visit is kept in your Home Record so the house remembers what was done.
           </p>
         </Feature>
 
@@ -227,9 +227,11 @@ export default function MyHousePage() {
           alt="A soft pink room framed by wisteria"
         >
           <p>
-            Renewal dates and policy documents, Store orders and returns, and the
-            articles from The Hearth and objects from the Store you saved for
-            later, all kept in one calm place.
+            Saved things, the articles from The Hearth and objects from the Store
+            you set aside, are here now. As HoWA connects, your renewal dates and
+            policy documents, and your Store orders and returns, come together in
+            the same calm place. Insurance and order details are not aggregated
+            until that connection is live.
           </p>
         </Feature>
       </div>
