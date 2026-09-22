@@ -32,13 +32,9 @@ const SERVICES: Svc[] = [
 const ALL_SERVICES: Svc = { label: "All services", value: "all", color: "var(--house-brown)" };
 const CHIPS: Svc[] = [...SERVICES, ALL_SERVICES];
 
-type Timing = "next" | "date";
-
 export function BookingRail() {
   const [service, setService] = React.useState("");
   const [postcode, setPostcode] = React.useState("");
-  const [timing, setTiming] = React.useState<Timing>("next");
-  const [date, setDate] = React.useState("");
 
   return (
     <section className={styles.rail} aria-label="Book a service">
@@ -97,31 +93,6 @@ export function BookingRail() {
               onChange={(e) => setPostcode(e.target.value.toUpperCase())}
             />
           </label>
-
-          <label className={styles.field}>
-            <span className={styles.label}>When</span>
-            <select
-              className={styles.select}
-              value={timing}
-              onChange={(e) => setTiming(e.target.value as Timing)}
-            >
-              <option value="next">Next available</option>
-              <option value="date">Choose a date</option>
-            </select>
-          </label>
-
-          {timing === "date" ? (
-            <label className={styles.field}>
-              <span className={styles.label}>Date</span>
-              <input
-                className={styles.input}
-                type="date"
-                value={date}
-                min={new Date().toISOString().slice(0, 10)}
-                onChange={(e) => setDate(e.target.value)}
-              />
-            </label>
-          ) : null}
 
           {/* ServiceOS deep-link: opens the booking modal preselected to the
               chosen service (?book=1&service_id=N). Not the in-page

@@ -70,10 +70,10 @@ const tools = [
 ];
 
 const steps = [
-  { n: "01", h: "Apply", b: "Tell us your trade, your area and a little about your business using the form below." },
-  { n: "02", h: "Verification", b: "We check identity, qualifications, insurance and references, and review examples of your work." },
-  { n: "03", h: "Onboarding", b: "We agree the commercial model, set up your tools and brief you on the House standard." },
-  { n: "04", h: "Go live", b: "You start receiving matched bookings in your area, with support on hand." },
+  { n: "01", h: "Enquire", b: "Tell us your trade, your area and a little about your business using the form below." },
+  { n: "02", h: "Verification", b: "As the network develops we would check identity, qualifications, insurance and references, and review examples of your work." },
+  { n: "03", h: "Onboarding", b: "We would agree the commercial model, set up your tools and brief you on the House standard before you join." },
+  { n: "04", h: "Go live", b: "Once the network launches, you would start receiving matched bookings in your area, with support on hand." },
 ];
 
 const faqs = [
@@ -145,7 +145,7 @@ export default function HouseApprovedProPage() {
         >
           <p style={{ ...eyebrow, color: gold, display: "flex", alignItems: "center", gap: 14 }}>
             <span aria-hidden style={{ width: 36, height: 1, background: gold, opacity: 0.8 }} />
-            House Approved Pro
+            House Approved · Coming soon
           </p>
           <h1
             style={{
@@ -171,9 +171,12 @@ export default function HouseApprovedProPage() {
               maxWidth: "56ch",
             }}
           >
-            Join a service network built around clear briefs, professional work
-            and continuing care for the home. Tell us what you do, where you work
-            and the standards you can demonstrate.
+            Our wider contractor network is coming soon. We&rsquo;re looking for
+            the very best in the trade to join our network of professionals and
+            reach more customers. If you take pride in your work and share our
+            standards of care, reliability and craftsmanship, we&rsquo;d like to
+            hear from you. Enquiries are open now; approval, commercial terms and
+            the availability of work will be confirmed before you join.
           </p>
           <a
             href="#apply"
@@ -194,7 +197,7 @@ export default function HouseApprovedProPage() {
               border: "1px solid var(--color-house-chalk)",
             }}
           >
-            Apply to join
+            Enquire now
           </a>
         </div>
       </header>
@@ -364,7 +367,7 @@ export default function HouseApprovedProPage() {
             padding: "clamp(64px, 8vw, 112px) clamp(24px, 5vw, 64px)",
           }}
         >
-          <p style={{ ...eyebrow, marginBottom: 16, textAlign: "center" }}>Apply</p>
+          <p style={{ ...eyebrow, marginBottom: 16, textAlign: "center" }}>Enquire</p>
           <h2
             style={{
               fontFamily: display,
@@ -386,9 +389,10 @@ export default function HouseApprovedProPage() {
               maxWidth: "50ch",
             }}
           >
-            Send us the essentials and the House team will be in touch. Applying
-            does not guarantee approval or work. Submitting opens your email
-            client so you can review before it sends.
+            Send us the essentials and the House team will be in touch. An
+            enquiry does not guarantee approval or work; commercial terms and
+            availability are confirmed before you join. Submitting opens your
+            email client so you can review before it sends.
           </p>
 
           <form
@@ -452,7 +456,7 @@ export default function HouseApprovedProPage() {
                 cursor: "pointer",
               }}
             >
-              Email an introduction
+              Email your enquiry
             </button>
           </form>
 

@@ -30,10 +30,12 @@ export interface WaitlistFormProps {
   collectTier?: boolean;
 }
 
+// Labels use the current plan names (finding 03). Values are left unchanged so
+// existing ?tier= links, backend validation and Klaviyo mapping keep working.
 const TIER_OPTIONS = [
-  { value: "assistant", label: "Ask HoWA (free)" },
-  { value: "housekeeper", label: "Housekeeper, £16.99/mo" },
-  { value: "steward", label: "Steward, £29.99/mo" },
+  { value: "assistant", label: "HoWA Free" },
+  { value: "housekeeper", label: "HoWA+, £16.99/mo" },
+  { value: "steward", label: "HoWA Steward, £29.99/mo" },
 ] as const;
 
 export function WaitlistForm({

@@ -76,7 +76,6 @@ export function BookingPanel({
   const pcValid = /^[A-Za-z]{1,2}\d[A-Za-z\d]?\s*\d[A-Za-z]{2}$/.test(postcode.trim());
   const intake = INTAKE[slug];
   const quote = mode === "quote";
-  const showTiming = !quote && !intake?.hideTiming;
 
   const primaryLabel = intake
     ? intake.cta
@@ -139,26 +138,6 @@ export function BookingPanel({
               </p>
             ) : null}
           </div>
-
-          {showTiming ? (
-            <div>
-              <label
-                htmlFor={`svc-timing-${slug}`}
-                className="mb-1.5 block font-sans text-[14px] tracking-[0.12em] uppercase text-house-brown/70"
-              >
-                When
-              </label>
-              <select
-                id={`svc-timing-${slug}`}
-                name="timing"
-                defaultValue="next"
-                className="w-full border border-house-brown/25 bg-house-white px-4 py-3 font-sans text-[18px] text-house-brown focus:border-house-gold focus:outline-none"
-              >
-                <option value="next">Next available</option>
-                <option value="date">Choose a date</option>
-              </select>
-            </div>
-          ) : null}
 
           {intake ? (
             <div className="border border-house-brown/15 bg-house-cream px-4 py-3.5">
