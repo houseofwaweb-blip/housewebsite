@@ -191,10 +191,16 @@ export default async function ProductPage({
   const hearth = await getLatestHearthArticles(3).catch(() => []);
   const hearthStories = hearth.filter((a) => a.image).slice(0, 3);
 
+  // Collection links use the canonical slug (hyphenated, no "&"), matching the
+  // collection handles — not the display title, which produced "collection not
+  // found" links like /shop/collections/home accessories (finding 39).
+  const collectionSlug = product.collection
+    ? product.collection.toLowerCase().replace(/\s*&\s*/g, "-").replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "")
+    : "";
   const breadcrumbItems = [
     { name: "Shop", href: "/shop" },
     ...(product.collection
-      ? [{ name: product.collection, href: `/shop/collections/${product.collection.toLowerCase()}` }]
+      ? [{ name: product.collection, href: `/shop/collections/${collectionSlug}` }]
       : []),
     { name: product.title, href: `/shop/${product.handle}` },
   ];
@@ -224,7 +230,7 @@ export default async function ProductPage({
           <>
             <span className={s.crumbSep}>/</span>
             <Link
-              href={`/shop/collections/${product.collection.toLowerCase()}`}
+              href={`/shop/collections/${collectionSlug}`}
               className={s.crumbLink}
             >
               {product.collection}
