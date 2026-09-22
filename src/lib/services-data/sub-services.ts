@@ -129,13 +129,13 @@ export const WINDOW_CLEANING_SUBS: SubService[] = [
     body: "Blocked gutters cause damp, staining and pest access. We clear all gutters from the ground with a vacuum pole, so no ladders lean on your walls. We note any loose brackets or splits and file the visit to your Home Record. Most homes need this twice a year, once after the last leaves and once before the winter rain.",
     whyChoose: [
       "Cleared from the ground with a vacuum pole, no ladders on walls",
-      "Downpipe checks and blockage clearance included",
+      "Reaches up to second-floor window height",
       "Flags any repairs early, before damp sets in",
       "Filed to your Home Record",
     ],
     included: [
       "Full gutter clear, front and back",
-      "Downpipes checked and cleared",
+      "Cleared from the ground, up to second-floor window height",
       "A note on any brackets, splits or drainage that need attention",
       "Green waste bagged and removed",
     ],
@@ -207,7 +207,16 @@ export const CLEANING_SUBS: SubService[] = [
   {
     slug: "end-of-tenancy-cleaning",
     name: "End-of-tenancy cleaning",
-    lede: "Inventory-standard clean for landlords and tenants. Oven and behind-furniture deep work included; carpets vacuumed as standard, with professional carpet cleaning available at extra cost.",
+    lede: "A thorough, inventory-standard clean for the end of a tenancy: a fixed checklist covering the kitchen, bathrooms, floors and emptied storage.",
+    body: "An end-of-tenancy clean is a fixed checklist, cleaned to inventory standard so the deposit conversation is straightforward. We deep clean the kitchen, degreasing inside the oven, hob, extractor, fridge/freezer, microwave and cupboards, and clean emptied units inside and out. Heavy furniture is not moved, as a single cleaner cannot move it safely, so we clean around anything that stays. We confirm what is in the property when you book, as most end-of-tenancy homes are already cleared.",
+    included: [
+      "Inside the oven, hob, extractor, fridge/freezer, microwave and cupboards",
+      "Worktops, splashbacks, sink and all appliance exteriors degreased and polished",
+      "Emptied units cleaned inside and out: kitchen units, wardrobes, drawers and built-in storage",
+      "Bathrooms descaled and sanitised throughout",
+      "Floors vacuumed and mopped; carpets vacuumed as standard",
+      "Skirting, switches, sockets, doors and frames wiped down",
+    ],
   },
   {
     slug: "after-building-cleaning",

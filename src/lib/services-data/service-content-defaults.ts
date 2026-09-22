@@ -121,8 +121,8 @@ export const SERVICE_CONTENT_DEFAULTS: Record<string, ServiceContentDefault> = {
     excluded: [
       "Gutter repair, resealing or replacement",
       "Roof tile or fascia repair",
-      "Downpipe excavation below ground",
-      "Work above three storeys or requiring scaffold",
+      "Downpipe clearing, as not all downpipes are reachable from the ground; quoted where access allows",
+      "Anything above second-floor window height, or requiring scaffold",
     ],
     waste: [
       "Debris cleared from the gutters is bagged and removed, included in your quote.",
@@ -182,6 +182,34 @@ export const SERVICE_CONTENT_DEFAULTS: Record<string, ServiceContentDefault> = {
       "Green waste and arisings are removed by a licensed carrier, included in your quote.",
       "Logs or chippings can be left for you on request.",
       "Stump grinding is quoted separately.",
+    ],
+  },
+  // Finding 18: end-of-tenancy has its own checklist, an end-of-tenancy time
+  // guide (not the regular-clean one), and clear furniture/carpet rules.
+  "end-of-tenancy-cleaning": {
+    body:
+      "A fixed, inventory-standard checklist for the end of a tenancy, so the property is handed back properly and the deposit conversation is straightforward. A deep clean of the kitchen and bathrooms, emptied storage cleaned inside and out, and floors finished throughout.",
+    whyChoose: [
+      "A fixed end-of-tenancy checklist, cleaned to inventory standard",
+      "Kitchen deep clean: oven, hob, extractor, fridge/freezer and cupboards",
+      "Emptied units cleaned inside and out",
+      "Insured, vetted team",
+    ],
+    howLong: [
+      { label: "A one-bed flat, emptied", time: "Around 3 to 4 hours" },
+      { label: "A three-bed house, emptied", time: "Most of a day, often a team of two" },
+      { label: "A larger or heavily soiled property", time: "A full day, a team of two" },
+    ],
+    excluded: [
+      "Moving heavy furniture; we clean around anything a single cleaner cannot move safely",
+      "Units still holding personal items",
+      "Professional carpet cleaning, available at extra cost (standard is vacuuming)",
+      "Exterior windows (see Window Cleaning)",
+    ],
+    waste: [
+      "House-standard cleaning products and equipment are included.",
+      "Household rubbish is bagged and placed in your bins; we do not remove waste off-site.",
+      "Professional carpet cleaning is quoted separately if you want it.",
     ],
   },
 };

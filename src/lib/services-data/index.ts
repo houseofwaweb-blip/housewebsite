@@ -364,8 +364,8 @@ export const SERVICES: Record<ServiceSlug, Service> = {
     sections: {
       included: [
         "Full gutter clear from the ground, front and back",
+        "Cleared from the ground, up to second-floor window height",
         "A camera check to confirm every gutter is clear",
-        "Downpipes cleaned and checked for blockages",
         "A note on any repairs needed, loose brackets, splits or poor drainage",
       ],
       how: [
@@ -387,7 +387,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
         bestFor: "first visits, or after a big storm",
         inclusions: [
           "Full gutter clear, front and back",
-          "Downpipes cleaned and checked for blockages",
+          "Cleared from the ground, up to second-floor window height",
           "Filed to your Home Record",
         ],
         cta: "bookNow",
@@ -401,7 +401,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
         bestFor: "most British homes",
         inclusions: [
           "Autumn and spring visits",
-          "Downpipes cleaned and checked each visit",
+          "A camera check each visit, up to second-floor window height",
           "A note on any repairs the gutters need",
           "Filed to your Home Record",
         ],

@@ -64,7 +64,8 @@ const categories: Category[] = [
     intro: "Sign in, keep your Home Record up to date and manage what the House remembers.",
     tasks: [
       "Sign in to My House",
-      "Add or edit property and access details",
+      "Add or edit your property details",
+      "Set up access arrangements, shared securely with the assigned team and kept separate from your property history",
       "Upload documents, receipts and warranties",
       "Manage reminders and recommendations",
     ],
