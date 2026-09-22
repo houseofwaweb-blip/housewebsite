@@ -130,7 +130,7 @@ export default function HouseCustomersPage() {
               your home.
             </p>
             <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
-              <PrimaryBtn href={ACTIVATE}>Activate my home →</PrimaryBtn>
+              <PrimaryBtn href={ACTIVATE}>Register for early access →</PrimaryBtn>
               <SecondaryBtn href={SIGNIN}>I already use HoWA</SecondaryBtn>
             </div>
           </div>
@@ -197,7 +197,7 @@ export default function HouseCustomersPage() {
               your agreed, pro-rated House rate.
             </p>
             <div className="mt-8">
-              <PrimaryBtn href={ACTIVATE} dark>Activate HoWA Steward →</PrimaryBtn>
+              <PrimaryBtn href={ACTIVATE} dark>Register for early access →</PrimaryBtn>
             </div>
           </div>
           <div className="w-full rounded-[20px] p-7" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.16)" }}>
@@ -227,7 +227,7 @@ export default function HouseCustomersPage() {
           </div>
           <p className="mt-8 font-display text-[clamp(22px,2.4vw,30px)]" style={{ color: INK }}>That&rsquo;s it.</p>
           <div className="mt-6">
-            <PrimaryBtn href={ACTIVATE}>Activate my home →</PrimaryBtn>
+            <PrimaryBtn href={ACTIVATE}>Register for early access →</PrimaryBtn>
           </div>
         </div>
       </section>
@@ -275,7 +275,7 @@ export default function HouseCustomersPage() {
             Everything your House already knows. Finally in one place.
           </h2>
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <PrimaryBtn href={ACTIVATE} dark>Activate my home →</PrimaryBtn>
+            <PrimaryBtn href={ACTIVATE} dark>Register for early access →</PrimaryBtn>
             <SecondaryBtn href="/contact" dark>Speak to the House</SecondaryBtn>
           </div>
           <div className="mt-10 flex flex-col items-center gap-1 font-sans text-[15px]" style={{ color: "rgba(255,255,255,0.75)" }}>

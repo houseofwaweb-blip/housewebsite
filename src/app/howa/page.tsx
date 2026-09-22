@@ -76,7 +76,7 @@ function MemoryColumn({ d }: { d: typeof HOME_RECORD }) {
 // chapters from the HoWA handover: text placed in each image's empty side.
 type Chapter = { w: string; line: string; cta: string; href: string; img: string; alt: string; pos: string; side: "left" | "right"; dark: boolean };
 const CHAPTERS: Chapter[] = [
-  { w: "Plan.", line: "See what needs doing and what is coming next.", cta: "Open HoWA", href: OPEN_HOWA, img: "/howa/plan-ask-do-file/intray-cards.webp", alt: "The HoWA in-tray: cards for a boiler service, insurance renewal, EPC and garden maintenance, each ready to act on.", pos: "object-[68%_center]", side: "left", dark: true },
+  { w: "Plan.", line: "See what needs doing and what is coming next.", cta: "Join early access", href: OPEN_HOWA, img: "/howa/plan-ask-do-file/intray-cards.webp", alt: "The HoWA in-tray: cards for a boiler service, insurance renewal, EPC and garden maintenance, each ready to act on.", pos: "object-[68%_center]", side: "left", dark: true },
   { w: "Ask.", line: "Ask questions about your home in context.", cta: "Ask HoWA", href: "/howa/ask", img: "/howa/plan-ask-do-file/how-it-works-02-alt.webp", alt: "The doll's house beside an Ask HoWA answer about when the boiler was last serviced.", pos: "object-[8%_center]", side: "right", dark: false },
   { w: "Do.", line: "Book services, approve work and take action.", cta: "See HoWA in action", href: OPEN_HOWA, img: "/howa/plan-ask-do-file/do-booked-v2.webp", alt: "A boiler service booked and marked done, an engineer scheduled, shown against the doll's house.", pos: "object-[62%_center]", side: "left", dark: false },
   { w: "File.", line: "Keep documents, records, designs and evidence together.", cta: "Explore the Home Record", href: OPEN_HOWA, img: "/howa/plan-ask-do-file/file-tray.webp", alt: "A green filing tray of categorised cards, from Guarantees to Maintenance, with a boiler service marked completed.", pos: "object-[72%_center]", side: "left", dark: false },
@@ -106,7 +106,7 @@ export default function HowaPage() {
             </p>
             <div className="mt-[30px]">
               <Link href={OPEN_HOWA} className="inline-flex h-[58px] min-w-[220px] items-center justify-center whitespace-nowrap px-8 font-sans text-[13px] tracking-[0.16em] uppercase text-house-cream bg-house-brown border border-house-brown no-underline transition-[filter] hover:brightness-125">
-                Open HoWA →
+                Join early access →
               </Link>
             </div>
             <Link href="/howa/house-customers" className="mt-[18px] inline-block font-sans text-[15px] text-house-brown underline decoration-house-gold-dark/40 underline-offset-4 hover:decoration-house-brown">
@@ -206,10 +206,10 @@ export default function HowaPage() {
         <Image src="/photos/wa-flower-white.png" alt="" aria-hidden="true" width={210} height={260} className="pointer-events-none absolute bottom-[-30px] left-[-35px] w-[210px] opacity-[0.14]" />
         <Container className="relative z-10 flex min-h-[280px] flex-col items-start justify-center gap-6 py-[clamp(48px,6vw,88px)]">
           <h2 className="max-w-[18ch] font-display text-[clamp(32px,4vw,54px)] leading-[1.04]">Start with the home you have.</h2>
-          <p className="max-w-[52ch] font-sans text-[17px] leading-[1.6] text-house-cream/80">Open HoWA, connect your House services and see what becomes useful. Free to begin.</p>
+          <p className="max-w-[52ch] font-sans text-[17px] leading-[1.6] text-house-cream/80">HoWA is coming soon. Join early access and we&rsquo;ll tell you when your Home Record is ready. Free to begin.</p>
           <div className="flex flex-wrap items-center gap-4">
             <Link href={OPEN_HOWA} className="inline-flex h-[54px] items-center justify-center whitespace-nowrap px-8 font-sans text-[13px] tracking-[0.16em] uppercase text-house-ink bg-house-cream border border-house-cream no-underline transition-[filter] hover:brightness-105">
-              Open HoWA →
+              Join early access →
             </Link>
             <Link href="/how-it-works" className="font-sans text-[14px] text-house-cream underline decoration-house-gold-light/50 underline-offset-4 hover:decoration-house-cream">How the House works →</Link>
           </div>
