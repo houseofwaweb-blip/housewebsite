@@ -58,7 +58,7 @@ export const SERVICE_CONTENT_DEFAULTS: Record<string, ServiceContentDefault> = {
     whyChoose: [
       "Pure-water reach-and-wash, frames and sills included",
       "Upper floors cleaned safely from the ground, no ladders",
-      "Fixed quote by postcode and frontage, no surprises",
+      "A clear quote by postcode and frontage, no surprises",
       "Every visit kept in your Home Record where connected",
     ],
     howLong: [

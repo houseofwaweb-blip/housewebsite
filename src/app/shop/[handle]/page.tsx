@@ -5,7 +5,6 @@ import { ProductCard } from "@/components/commerce/ProductCard";
 import { PRODUCTS, findProduct } from "@/lib/shop-data";
 import { getShopProduct, getShopProducts } from "@/lib/shop-data/source";
 import { RecentlyViewed } from "./RecentlyViewed";
-import { HomeRecordButton } from "@/components/commerce/HomeRecordButton";
 import { getProductByHandle } from "@/lib/cms/products";
 import { getLatestHearthArticles } from "@/lib/cms/hearth";
 import Image from "next/image";
@@ -322,18 +321,13 @@ export default async function ProductPage({
             </div>
           )}
 
-          {/* Save / wishlist into the Home Record (brief slide 9/10) */}
+          {/* Finding 33: Home Record saving is coming soon, so the live
+              "Add to Home Record" action is removed until the app is reachable. */}
           <div className="mb-9">
-            <HomeRecordButton
-              handle={product.handle}
-              title={product.title}
-              price={product.price}
-              image={product.image}
-            />
-            <p className="mt-2 font-sans text-[18px] leading-[1.5] text-house-stone">
+            <p className="font-sans text-[18px] leading-[1.5] text-house-stone">
               {isDesign
-                ? "Keep the direction and brief in your Home Record, ready to develop with a professional."
-                : "Save it to your Home Record to keep its details, care notes and warranty in one place."}
+                ? "Saving the direction and brief to your Home Record is coming soon."
+                : "Saving to your Home Record, to keep an item's details, care notes and warranty in one place, is coming soon."}
             </p>
           </div>
 

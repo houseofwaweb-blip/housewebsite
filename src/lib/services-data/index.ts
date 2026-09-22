@@ -221,7 +221,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
       ],
       how: [
         "Tell us your postcode and a little about the property",
-        "A fixed price for your property",
+        "A clear price for your property",
         "Book a one-off, or a regular visit every month or two",
         "A reminder the day before, and the visit kept in your Home Record where connected",
       ],
@@ -370,7 +370,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
       ],
       how: [
         "Tell us about the property and how we get access",
-        "A fixed quote based on your postcode and the property",
+        "A clear quote based on your postcode and the property",
         "Typically seen within a week, twice a year if scheduled",
         "A text before we arrive, no need to be home",
       ],
@@ -419,7 +419,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
   handyman: {
     slug: "handyman",
     name: "Handyman",
-    lede: "Repairs, assembly and the odd jobs a house always needs, across London and Kent. Fully insured tradespeople, fixed quotes, and every job filed to your Home Record.",
+    lede: "Repairs, assembly and the odd jobs a house always needs, across London and Kent. Fully insured tradespeople, clear quotes, and every job photographed for your Home Record where connected.",
     eyebrow: "Services \u00b7 Handyman",
     heroImage: "/services/home/handyman.webp",
     headline: "The small fixes that keep a house running.",
@@ -437,7 +437,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
       ],
       how: [
         "Describe the job, photos or a short video are usually enough",
-        "A fixed quote, VAT included",
+        "A clear quote, VAT included",
         "The team arrives with the tools and materials for the job",
         "Every job photographed, kept in your Home Record where connected",
       ],
