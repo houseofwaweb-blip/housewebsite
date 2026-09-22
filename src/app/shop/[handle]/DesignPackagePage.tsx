@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import { HomeRecordButton } from "@/components/commerce/HomeRecordButton";
 import { BreadcrumbJsonLd } from "@/lib/seo/jsonLd";
 import { MetaViewContent } from "@/components/marketing/MetaViewContent";
+import { buildBookingUrl } from "@/components/booking/postcode";
+import { SERVICEOS_SERVICE_ID } from "@/lib/serviceos-links";
 import type { ShopProduct } from "@/lib/shop-data";
 
 /**
@@ -17,17 +18,28 @@ import type { ShopProduct } from "@/lib/shop-data";
 
 const GARDEN_HANDLES = new Set(["planting-plans", "concept-plans", "2d-3d-plans", "lighting-plans"]);
 
+// Findings 11/12/14: booking the package IS how you register your brief. No
+// separate paid scoping step. Plans are produced remotely and a consultation
+// call is booked after purchase.
 const STEPS = [
-  { n: "01", t: "Explore a direction", b: "Share the space, how you use it and what you want to change. Keep the ideas that feel right." },
-  { n: "02", t: "Shape the brief", b: "Refine the direction and the decisions that matter, into a brief you can take further." },
-  { n: "03", t: "A House studio develops it", b: "A design professional takes the brief on, with proper review, scope, measurements and price." },
-  { n: "04", t: "Keep it with your home", b: "The direction and decisions stay in your Home Record, ready for the work when you are." },
+  { n: "01", t: "Book your package", b: "Choose the design package that fits your space and book it in a couple of minutes." },
+  { n: "02", t: "Share your space", b: "Send the photographs, measurements and information you have, and tell us what you want to change." },
+  { n: "03", t: "Your designer develops it", b: "Your designer works up the plan remotely and books a consultation call to talk it through." },
+  { n: "04", t: "Keep it with your home", b: "The plan and brief stay in your Home Record where connected, ready for the work when you are." },
 ];
 
 export function DesignPackagePage({ product }: { product: ShopProduct }) {
   const isGarden = GARDEN_HANDLES.has(product.handle);
   const discipline = isGarden ? "Garden design" : "Interior design";
   const disciplineHref = isGarden ? "/design/gardens" : "/design/interiors";
+  // The delivering studio: interiors are delivered by Delve Interiors (finding 14),
+  // gardens by the House garden design team.
+  const studio = isGarden ? "House of Willow Alexander" : "Delve Interiors";
+  // Design packages are ServiceOS services: book directly rather than looping
+  // the visitor back through /design (the "start a design" loop). Plain <a> so
+  // the platform reads service_id on a full page load; postcode is entered in
+  // the flow. Falls back to a fresh booking if no id is mapped.
+  const bookHref = buildBookingUrl("", SERVICEOS_SERVICE_ID[product.handle]);
   // product.image is a string URL; product.images is an array of {src, alt}
   // objects (not valid for next/image src). Prefer the string.
   const firstImage = product.images?.[0];
@@ -64,7 +76,9 @@ export function DesignPackagePage({ product }: { product: ShopProduct }) {
           <span aria-hidden className="h-px w-8 bg-house-gold-dark/50" />
         </p>
         <h1 className="mt-5 font-display text-[clamp(38px,5.4vw,68px)] leading-[1.02]">{product.title}</h1>
-        <p className="mt-4 font-sans text-[15px] text-house-stone">By House of Willow Alexander</p>
+        <p className="mt-4 font-sans text-[15px] text-house-stone">
+          {isGarden ? "By House of Willow Alexander" : "By House of Willow Alexander, delivered by Delve Interiors"}
+        </p>
         <p
           className="mt-3 font-sans font-semibold text-[clamp(22px,2.4vw,28px)] text-house-brown"
           style={{ fontVariantNumeric: "tabular-nums lining-nums" }}
@@ -77,12 +91,12 @@ export function DesignPackagePage({ product }: { product: ShopProduct }) {
           </p>
         ) : null}
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Link
-            href="/design#routes"
+          <a
+            href={bookHref}
             className="inline-flex w-full items-center justify-center whitespace-nowrap border border-house-brown bg-house-brown px-8 py-4 font-sans text-[13px] tracking-[0.18em] uppercase text-house-cream no-underline transition-[filter] hover:brightness-125 sm:w-auto"
           >
-            Start your design brief
-          </Link>
+            Book this design service
+          </a>
           <Link
             href="/contact"
             className="inline-flex w-full items-center justify-center whitespace-nowrap border border-house-brown/40 px-8 py-4 font-sans text-[13px] tracking-[0.18em] uppercase text-house-brown no-underline transition-colors hover:border-house-brown sm:w-auto"
@@ -90,7 +104,7 @@ export function DesignPackagePage({ product }: { product: ShopProduct }) {
             Speak to a designer
           </Link>
         </div>
-        <p className="mt-4 font-sans text-[13px] text-house-stone">A design service, developed by a House studio. Not a physical product.</p>
+        <p className="mt-4 font-sans text-[13px] text-house-stone">A design service by {studio}. Booking it registers your brief; a consultation call is arranged after purchase.</p>
       </section>
 
       {/* 2. Full-width concept image (contained, editorial) */}
@@ -114,12 +128,17 @@ export function DesignPackagePage({ product }: { product: ShopProduct }) {
           </div>
         </div>
         <aside className="self-start border border-house-brown/15 bg-house-white p-7">
-          <p className="font-display text-[22px] leading-tight">Keep it with your home.</p>
+          <p className="font-display text-[22px] leading-tight">Ready when you are.</p>
           <p className="mt-2 font-sans text-[16px] leading-[1.6] text-house-stone">
-            Save the direction and brief to your Home Record, ready to develop with a professional when you are.
+            Book the package to register your brief and arrange your consultation. Saving the plan to your Home Record is coming soon.
           </p>
           <div className="mt-5">
-            <HomeRecordButton handle={product.handle} title={product.title} price={product.price} image={product.image} />
+            <a
+              href={bookHref}
+              className="inline-flex w-full items-center justify-center whitespace-nowrap border border-house-brown bg-house-brown px-6 py-3.5 font-sans text-[13px] tracking-[0.18em] uppercase text-house-cream no-underline transition-[filter] hover:brightness-125"
+            >
+              Book this design service
+            </a>
           </div>
         </aside>
       </section>
@@ -138,7 +157,9 @@ export function DesignPackagePage({ product }: { product: ShopProduct }) {
             ))}
           </div>
           <p className="mt-10 max-w-[70ch] font-sans text-[14px] leading-[1.6] text-house-stone">
-            A HoWA or studio concept is a starting point for discussion. It is not a measured design, structural advice, a construction drawing or a fixed cost. A professional studio develops a commissioned design from an agreed brief and survey.
+            {isGarden
+              ? "All garden design plans are created remotely from the photographs, measurements and information you provide, and delivered as a digital PDF. They communicate design intent. Measured surveys, technical construction drawings and on-site services are scoped separately with the appropriate professional."
+              : "Your Edit is a design-led direction and moodboard, delivered as a PDF. It communicates intent and helps you decide. Measured surveys, technical drawings and on-site services are scoped separately with the appropriate professional."}
           </p>
         </div>
       </section>
@@ -150,12 +171,12 @@ export function DesignPackagePage({ product }: { product: ShopProduct }) {
             Ready to begin your {isGarden ? "garden" : "interior"} design?
           </h2>
           <div className="flex flex-col gap-3 sm:flex-row">
-            <Link
-              href="/design#routes"
+            <a
+              href={bookHref}
               className="inline-flex items-center justify-center whitespace-nowrap border border-house-cream bg-house-cream px-8 py-4 font-sans text-[13px] tracking-[0.18em] uppercase text-house-brown no-underline transition-[filter] hover:brightness-95"
             >
-              Choose a design specialist
-            </Link>
+              Book this design service
+            </a>
             <Link
               href={disciplineHref}
               className="inline-flex items-center justify-center whitespace-nowrap border border-house-cream/40 px-8 py-4 font-sans text-[13px] tracking-[0.18em] uppercase text-house-cream no-underline transition-colors hover:border-house-cream"

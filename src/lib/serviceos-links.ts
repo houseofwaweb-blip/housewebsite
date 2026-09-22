@@ -94,4 +94,15 @@ export const SERVICEOS_SERVICE_ID: Record<string, number> = {
   // Pet care
   "dog-walking": 65, // Dog Walking
   "dog-sitting": 67, // Dog sitting
+
+  // Design packages — these ARE ServiceOS services (garden + interior design),
+  // so a design package books directly in the platform rather than looping the
+  // visitor back through /design. IDs from serviceos-all-service-links.csv.
+  "planting-plans": 138, // Garden Planting Plans
+  "lighting-plans": 139, // Garden Lighting Plans
+  "2d-3d-plans": 140, // Garden 2D & 3D Plans
+  "concept-plans": 141, // Garden Concept Plan
+  "the-house-edit-1": 133, // The House Edit (interior)
+  "the-full-house-edit": 133, // Full House Edit books the House Edit consultation with Delve
+  "additions-to-your-edit": 133, // Add-on to the House Edit
 };
