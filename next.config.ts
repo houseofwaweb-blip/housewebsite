@@ -106,11 +106,8 @@ const nextConfig: NextConfig = {
       { source: "/services/electrical-energy", destination: "/services/energy", permanent: true },
       { source: "/services/dog-walkers", destination: "/services/pet-care", permanent: true },
       { source: "/insurance-and-cover", destination: "/insurance", permanent: true },
-      // Finding 38: legacy insurance action routes must reach the action they
-      // name, not the generic hub. Claims → claims help; quote/enquiry → the
-      // register-interest enquiry (insurance is introducer-only, no live quote).
-      { source: "/insurance-and-cover/help-and-claims", destination: "/insurance/claims-and-help", permanent: true },
-      { source: "/insurance-and-cover/quote", destination: "/insurance/speak-to-a-specialist", permanent: true },
+      // Finding 38 (resolved): legacy insurance routes stay unchanged pending
+      // Provenance, so all /insurance-and-cover/* funnel to the hub for now.
       { source: "/insurance-and-cover/:path*", destination: "/insurance", permanent: true },
       { source: "/magazine/:path*", destination: "/the-hearth", permanent: true },
       // Aug-17 rebuild: /how-it-works, /house-approved-pro, /help and /my-house
