@@ -171,8 +171,8 @@ export function SingleServiceDetail({ view }: { view: SingleServiceView }) {
               Our team, <em>on the job.</em>
             </h2>
             <p className={s.sectionLede}>
-              A recent {view.name.toLowerCase()} visit. Every job is photographed
-              and filed to your HoWA record.
+              A recent {view.name.toLowerCase()} visit. Photographs are available
+              on request and filed to your HoWA record.
             </p>
           </header>
           <div className={s.workBeforeAfter}>
