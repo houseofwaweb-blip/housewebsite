@@ -33,7 +33,7 @@ export const SERVICE_CONTENT_DEFAULTS: Record<string, ServiceContentDefault> = {
       "Horticulturally trained team, we assess, we don't just cut",
       "Licensed waste carriers, responsible disposal as standard",
       "Clean, quiet, and respectful of you and your neighbours",
-      "Photographs on request, filed to your Home Record",
+      "Every visit photographed, kept in your Home Record where connected",
     ],
     howLong: [
       { label: "A small courtyard or front garden", time: "Around half a day, one gardener" },
@@ -59,7 +59,7 @@ export const SERVICE_CONTENT_DEFAULTS: Record<string, ServiceContentDefault> = {
       "Pure-water reach-and-wash, frames and sills included",
       "Upper floors cleaned safely from the ground, no ladders",
       "Fixed quote by postcode and frontage, no surprises",
-      "Every visit logged to your Home Record",
+      "Every visit kept in your Home Record where connected",
     ],
     howLong: [
       { label: "A terraced or flat frontage", time: "Around 30 to 45 minutes" },
@@ -82,10 +82,10 @@ export const SERVICE_CONTENT_DEFAULTS: Record<string, ServiceContentDefault> = {
     body:
       "A thorough, surface-appropriate clean by an insured, vetted team who treat your home as their own. We use House-standard products, work to a room-by-room checklist, and leave everything as it should be, no cut corners, no rushed finish. Book a one-off reset or a regular rhythm; either way the standard holds.",
     whyChoose: [
-      "Insured, vetted team, DBS-checked as standard",
+      "Insured, vetted team as standard",
       "House-standard products, appropriate to every surface",
       "Room-by-room checklist, nothing missed",
-      "Every visit logged to your Home Record",
+      "Every visit kept in your Home Record where connected",
     ],
     howLong: [
       { label: "A one-bed flat, regular clean", time: "Around 2 hours" },

@@ -242,7 +242,7 @@ const FAQ = [
   },
   {
     q: "What's kept in my Home Record?",
-    a: "Visits, notes, photographs on request, products used, team assigned. Kept in your Home Record where your services are connected to HoWA.",
+    a: "Visits, notes, photographs, products used, team assigned. Kept in your Home Record where your services are connected to HoWA.",
   },
   {
     q: "Do you cover my postcode?",

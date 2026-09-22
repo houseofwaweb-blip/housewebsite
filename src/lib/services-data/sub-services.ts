@@ -70,7 +70,7 @@ export const GARDENING_SUBS: SubService[] = [
   {
     slug: "garden-maintenance-subscriptions",
     name: "Garden maintenance subscriptions",
-    lede: "Scheduled seasonal care, the same gardener, on a rhythm. Weekly, fortnightly, or monthly.",
+    lede: "Scheduled seasonal care, the same gardener where we can, on a rhythm. Weekly, fortnightly, or monthly.",
     body: "A regular rhythm is the most popular way to keep a garden running. You pick how often. We assign a named gardener who gets to know the garden. Visits are booked and logged to your Home Record. No per-visit admin, no surprises.",
   },
   {
@@ -169,10 +169,10 @@ export const CLEANING_SUBS: SubService[] = [
     lede: "Weekly or fortnightly domestic care. The same team where possible, your preferences on file in your Home Record.",
     body: "Our regular cleaning service is built on consistency. We assign a named team who gets to know the home, your surfaces, your products, your preferences. Visits are booked and logged with a short note after each one. If your regular cleaner is away, we send a cover team briefed from your record.",
     whyChoose: [
-      "The same trusted cleaner, getting to know your home",
+      "A cleaner who gets to know your home",
       "Plant-based, low-tox products, fragrance-free on request",
-      "DBS-checked, insured and reference-verified",
-      "No long contract, change or pause whenever you like",
+      "Insured and reference-verified",
+      "Adjust the frequency as your home changes",
     ],
     included: [
       "Full ground-floor and bedroom clean",
@@ -368,10 +368,10 @@ export const ENERGY_SUBS: SubService[] = [
   {
     slug: "solar-installation",
     name: "Solar installation",
-    lede: "Roof-mounted and in-roof solar panel systems. Full site assessment, design, installation, and MCS certification.",
-    body: "We handle the complete solar journey: structural assessment, panel layout design, scaffolding, installation, DNO grid connection application, and MCS certification. Battery storage systems (Tesla Powerwall, GivEnergy, Fox ESS) can be added at install or retrofitted later. Every system is designed for the specific property, not a generic template.",
+    lede: "Roof-mounted and in-roof solar panel systems. Full site assessment, design and installation.",
+    body: "We handle the complete solar journey: structural assessment, panel layout design, scaffolding, installation and DNO grid connection application. Battery storage systems (Tesla Powerwall, GivEnergy, Fox ESS) can be added at install or retrofitted later. Every system is designed for the specific property, not a generic template.",
     whyChoose: [
-      "MCS-certified installation, qualifies for Smart Export Guarantee payments",
+      "Installation that qualifies for Smart Export Guarantee payments",
       "Full structural and electrical assessment before any work begins",
       "Battery storage integration available at install or later",
       "DNO application and grid connection handled for you",
@@ -380,7 +380,7 @@ export const ENERGY_SUBS: SubService[] = [
       "Site assessment and system design",
       "Scaffolding and installation",
       "Inverter, mounting, and all electrical work",
-      "DNO notification and MCS certification",
+      "DNO notification handled",
       "System monitoring setup and handover",
     ],
     faq: [
@@ -410,7 +410,7 @@ export const ENERGY_SUBS: SubService[] = [
   {
     slug: "electrical-repairs",
     name: "Electrical repairs",
-    lede: "Fault finding, socket and switch replacement, circuit repairs, and emergency call-outs. Same-day availability.",
+    lede: "Fault finding, socket and switch replacement, circuit repairs, and emergency call-outs.",
   },
   {
     slug: "commercial-electrical",
@@ -440,7 +440,7 @@ export const PET_CARE_SUBS: SubService[] = [
       "Solo walks, your dog gets full attention, every time",
       "GPS-tracked with live route sharing",
       "Same handler wherever possible for consistency",
-      "All handlers DBS-checked and fully insured",
+      "All handlers fully insured and experienced",
     ],
     included: [
       "30-minute or 60-minute solo walk",
@@ -513,8 +513,8 @@ export const SERVICE_AREAS_KENT = [
 export const SERVICE_AREAS = [...SERVICE_AREAS_LONDON, ...SERVICE_AREAS_KENT];
 
 export const SERVICE_FAQ_SHARED = [
-  { q: "Are you insured?", a: "Yes. Every team is fully insured, vetted, and accredited. Proof of cover is available on request." },
+  { q: "Are you insured?", a: "Yes. Every team is fully insured and vetted. Proof of cover is available on request." },
   { q: "Do I need to be at the property?", a: "No. Most clients share access instructions or a key code. We text before arrival and file a note to your Home Record after." },
   { q: "How fast can I book?", a: "Usually within a few days for regular services. Urgent one-offs can sometimes be fitted next-day." },
-  { q: "What's kept in my Home Record?", a: "Every visit is logged: date, team, notes, photographs on request, products used. It compounds into a record of care." },
+  { q: "What's kept in my Home Record?", a: "Every visit is photographed and logged: date, team, notes, photographs, products used, kept in your Home Record where your services are connected to HoWA." },
 ];

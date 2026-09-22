@@ -184,7 +184,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
         bestFor: "larger gardens, a fuller recurring rhythm",
         inclusions: [
           "A fuller recurring rhythm, fortnightly or weekly",
-          "The same gardener through the seasons",
+          "The same gardener where we can, through the seasons",
           "Coordinated with window, gutter and cleaning care",
           "Green waste composted, removed by a licensed carrier",
         ],
@@ -223,7 +223,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
         "Tell us your postcode and a little about the property",
         "A fixed price for your property",
         "Book a one-off, or a regular visit every month or two",
-        "A reminder the day before, and the visit filed to your Home Record",
+        "A reminder the day before, and the visit kept in your Home Record where connected",
       ],
     },
     recurring: true,
@@ -251,7 +251,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
         basis: "per hour",
         bestFor: "streets with regular rain or dust",
         inclusions: [
-          "The same trained team, visit after visit",
+          "A trained team, briefed on your property",
           "A confirmed visit window, with notice before we arrive",
           "Real-time arrival tracking",
         ],
@@ -271,7 +271,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
   cleaning: {
     slug: "cleaning",
     name: "Cleaning",
-    lede: "Domestic and commercial cleaning across London and Kent. Regular, end-of-tenancy, spring, after-build and one-off cleans by vetted, DBS-checked teams, with the same trusted hands each visit.",
+    lede: "Domestic and commercial cleaning across London and Kent. Regular, end-of-tenancy, spring, after-build and one-off cleans by vetted, insured teams.",
     eyebrow: "Services · Cleaning",
     heroImage: "/services/photos/cleaning-hero.webp",
     headline: "A house that feels cared for.",
@@ -318,10 +318,10 @@ export const SERVICES: Record<ServiceSlug, Service> = {
         basis: "per hour",
         bestFor: "working households and family homes",
         inclusions: [
-          "Weekly or fortnightly, the same trusted cleaner",
+          "Weekly or fortnightly, on a rhythm you choose",
           "Plant-based, low-tox products as standard",
-          "DBS-checked, insured and reference-verified",
-          "No long contract, change or pause whenever you like",
+          "Insured and reference-verified",
+          "Adjust the frequency as your home changes",
         ],
         cta: "bookNow",
       },
@@ -347,8 +347,9 @@ export const SERVICES: Record<ServiceSlug, Service> = {
       { q: "What about key access?", a: "Most clients share a key code or a lockbox code. We text before arrival and never share access with anyone outside the team." },
       ...SERVICE_FAQ_SHARED,
     ],
-    // Confirmed per-service credentials only (cleaners are DBS-checked, insured, reference-verified).
-    trustBadges: ["DBS-checked", "Insured", "Reference-verified"],
+    // Per-service credentials (finding 34: accreditation claims removed until
+    // substantiated for the delivering provider; insurance retained).
+    trustBadges: ["Insured", "Reference-verified"],
   },
 
   "gutter-cleaning": {
@@ -438,7 +439,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
         "Describe the job, photos or a short video are usually enough",
         "A fixed quote, VAT included",
         "The team arrives with the tools and materials for the job",
-        "Photographs are available on request and filed to your Home Record",
+        "Every job photographed, kept in your Home Record where connected",
       ],
     },
     recurring: false,
@@ -589,7 +590,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
     slug: "energy",
     name: "Energy & Electrical",
     colour: "#0F183D",
-    lede: "Solar, EV charging, rewires and electrical safety across London and Kent. NICEIC-registered electricians, full certification, and an electric fleet.",
+    lede: "Solar, EV charging, rewires and electrical safety across London and Kent. All work carried out to current regulations, with certification for notifiable work.",
     eyebrow: "Services \u00b7 Energy & Electrical",
     heroImage: "/services/home/energy.webp",
     headline: "Power that works for the home.",
@@ -605,8 +606,8 @@ export const SERVICES: Record<ServiceSlug, Service> = {
       how: [
         "Describe the job or send photos, we\u2019ll price it from those where we can",
         "A detailed, itemised quote once we have scoped the work",
-        "NICEIC-registered electrician assigned to the job",
-        "Certification and paperwork filed to your Home Record",
+        "An electrician assigned to the job",
+        "Certification and paperwork kept in your Home Record where connected",
       ],
     },
     recurring: false,
@@ -635,7 +636,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
         bestFor: "installations, rewires, and new builds",
         inclusions: [
           "Full project scoping and design",
-          "NICEIC-registered installation",
+          "Installation to current regulations",
           "Building control notification handled",
           "Completion certificate and Home Record update",
         ],
@@ -659,8 +660,8 @@ export const SERVICES: Record<ServiceSlug, Service> = {
     ],
     subServices: ENERGY_SUBS,
     faq: [
-      { q: "Are your electricians qualified?", a: "Yes. Every electrician is NICEIC-registered and fully insured. Certification is issued for all notifiable work." },
-      { q: "Can you install solar panels?", a: "Yes. We handle the full process: site assessment, design, installation, DNO notification, and MCS certification." },
+      { q: "Are your electricians qualified?", a: "Yes. Our electricians are experienced and fully insured, and certification is issued for all notifiable work." },
+      { q: "Can you install solar panels?", a: "Yes. We handle the full process: site assessment, design, installation and DNO notification." },
       { q: "Do I need an EICR?", a: "Landlords must have a valid EICR every five years. Homeowners should test every ten years or when buying a property." },
       { q: "Can you install an EV charger?", a: "Yes. We install all major brands (Ohme, Pod Point, Wallbox, Tesla) and handle the OZEV grant application where eligible." },
       ...SERVICE_FAQ_SHARED.slice(1),
@@ -671,7 +672,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
   "pet-care": {
     slug: "pet-care",
     name: "Pet Care",
-    lede: "Trusted dog walking and pet sitting across London and Kent. DBS-checked, insured handlers, GPS-tracked walks and photo updates filed to your Home Record.",
+    lede: "Trusted dog walking and pet sitting across London and Kent. Insured handlers, GPS-tracked walks and photo updates kept in your Home Record where connected.",
     eyebrow: "Services \u00b7 Pet Care",
     headline: "Because the dog is part of the house.",
     heroImage: "/services/pet/pet-care.webp",
@@ -683,7 +684,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
         "GPS-tracked walks with live route sharing",
         "Photo and behaviour updates after every visit",
         "Feeding, medication, and routine care as instructed",
-        "All handlers DBS-checked, insured, and experienced",
+        "All handlers insured and experienced",
       ],
       how: [
         "Tell us about your pet, breed, temperament, routine",
@@ -743,7 +744,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
     ],
     subServices: PET_CARE_SUBS,
     faq: [
-      { q: "Are your handlers insured?", a: "Yes. Every handler carries public liability insurance and is DBS-checked. Proof available on request." },
+      { q: "Are your handlers insured?", a: "Yes. Every handler carries public liability insurance. Proof available on request." },
       { q: "Can you walk reactive dogs?", a: "In some cases, yes. We\u2019ll assess during the meet-and-greet and match you with a handler experienced in reactive behaviour." },
       { q: "What happens if my dog is unwell?", a: "The handler contacts you immediately. If they can\u2019t reach you, they follow your emergency vet instructions on file in your Home Record." },
       { q: "Do you walk in groups?", a: "Solo walks only, unless you specifically request a group walk with a known companion dog." },

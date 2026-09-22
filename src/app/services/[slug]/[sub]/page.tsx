@@ -235,8 +235,8 @@ export default async function SubServicePage({
               Our team, <em>on the job.</em>
             </h2>
             <p className={s.sectionLede}>
-              A recent {service.name.toLowerCase()} visit. Photographs are
-              available on request and filed to your HoWA record.
+              A recent {service.name.toLowerCase()} visit. Every job is
+              photographed, and kept in your HoWA record where connected.
             </p>
           </header>
           <div className={s.workBeforeAfter}>

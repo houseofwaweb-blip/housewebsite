@@ -50,12 +50,13 @@ const SERVICES = [
   { name: "HoWA record", desc: "Every visit logged: team, notes, photographs, products used. The living memory of your home's care.", freq: "Always on" },
 ];
 
+// Finding 34/35: only substantiated claims, scoped to the House's own managed-care
+// team. Removed the unverified shared accreditations (Guild of Master Craftsmen,
+// Safe Contractor, "The List", "Accredited"). Carbon neutral is current for the
+// House's own team.
 const TRUST = [
-  "House & Garden 'The List'",
-  "Guild of Master Craftsmen",
-  "Carbon Neutral Certified",
-  "Fully Insured & Accredited",
-  "Safe Contractor Approved",
+  "Fully insured",
+  "Carbon neutral",
 ];
 
 const STEWARD_BENEFITS = [

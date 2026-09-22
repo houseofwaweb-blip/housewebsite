@@ -176,8 +176,8 @@ export function LocationServiceDetail({ page }: { page: LocationPage }) {
             </h2>
             <p className="font-sans text-[19px] leading-[1.7] text-house-brown/78">
               Our own team, working across {town.name} and {region === "Kent" ? "north Kent" : "south London"}.
-              Photographs are available on request and filed to your Home Record,
-              so the history of your {cfg.noun} stays in one place.
+              Every job is photographed, and kept in your Home Record where
+              connected, so the history of your {cfg.noun} stays in one place.
             </p>
           </div>
         </div>
