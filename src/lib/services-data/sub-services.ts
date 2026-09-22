@@ -76,7 +76,7 @@ export const GARDENING_SUBS: SubService[] = [
   {
     slug: "jet-washing",
     name: "Jet washing",
-    lede: "Paths, patios, decking, and driveways. Professional equipment, controlled pressure, no surface damage.",
+    lede: "Paths, patios, decking, and driveways. Professional equipment, with pressure matched to each surface.",
   },
 ];
 
@@ -138,7 +138,7 @@ export const WINDOW_CLEANING_SUBS: SubService[] = [
   {
     slug: "jet-washing",
     name: "Jet washing",
-    lede: "Paths, patios, driveways, and decking. Professional pressure washing with controlled technique. No surface damage.",
+    lede: "Paths, patios, driveways, and decking. Professional pressure washing, with technique matched to each surface.",
   },
   {
     slug: "commercial-window-cleaning",
@@ -284,7 +284,7 @@ export const HANDYMAN_SUBS: SubService[] = [
   {
     slug: "jet-washing",
     name: "Jet washing",
-    lede: "Paths, patios, driveways, and decking. Professional equipment, controlled pressure, no surface damage.",
+    lede: "Paths, patios, driveways, and decking. Professional equipment, with pressure matched to each surface.",
   },
   {
     slug: "alarm-installation",
