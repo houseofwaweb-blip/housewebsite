@@ -8,8 +8,10 @@ import { MetaViewContent } from "@/components/marketing/MetaViewContent";
  * customers into HoWA Steward with as little friction as possible. Tight and
  * minimal, NOT a general HoWA marketing site (§27). House design system kept.
  *
- * Release honesty (HOWA_APP_LIVE=false): "Activate my home" → /howa/coming-soon;
- * "I already use HoWA" → the accounts portal.
+ * Release honesty (HOWA_APP_LIVE=false): "Register for early access" →
+ * /howa/coming-soon; "Sign in to my account" → the existing House account
+ * portal (ServiceOS at accounts.willowalexander.co.uk), for customers who
+ * already manage their House bookings there.
  */
 
 const PAPER = "#f6f1e9";
@@ -131,7 +133,7 @@ export default function HouseCustomersPage() {
             </p>
             <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
               <PrimaryBtn href={ACTIVATE}>Register for early access →</PrimaryBtn>
-              <SecondaryBtn href={SIGNIN}>I already use HoWA</SecondaryBtn>
+              <SecondaryBtn href={SIGNIN}>Sign in to my account</SecondaryBtn>
             </div>
           </div>
         </div>
