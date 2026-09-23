@@ -3,23 +3,48 @@ import Link from "next/link";
 import { HeroBookingBar } from "@/components/home/HeroBookingBar";
 
 /**
- * CabinetHero — homepage hero (Sept-2026 "further amendments" mockup): a
- * full-stretch British hall image. Copy overlays the LEFT; the six coloured
- * service DOORS on the right are each a hotspot link; a cream booking bar spans
- * the bottom. On desktop the stage keeps the image's native aspect so the door
- * hotspots line up; on mobile the copy + booking bar stack under the image.
+ * CabinetHero — homepage hero (Sept-2026 "further amendments" mockup).
  *
- * Hotspot rectangles are % of the frame, best-effort over the painted doors.
+ * Desktop (xl+): a full-stretch British hall image; copy + booking bar overlay
+ * the LEFT as a flex column (justify-between + a min gap, so they never overlap
+ * or crowd each other however short the fixed-aspect stage gets); the six
+ * coloured service DOORS on the right are each a hotspot link.
+ *
+ * Below xl: a PORTRAIT cabinet image (hero-cabinet-mobile.webp) whose six doors
+ * are each a tappable hotspot, then the copy + booking bar underneath. The doors
+ * live on the image, so there is no separate text button grid.
+ *
+ * Hotspot rectangles are % of each frame, best-effort over the painted doors.
  */
 type Hotspot = { label: string; href: string; x: number; y: number; w: number; h: number };
 
+const SERVICES = [
+  { label: "Gardening", href: "/services/gardening" },
+  { label: "Cleaning", href: "/services/cleaning" },
+  { label: "Handyman", href: "/services/handyman" },
+  { label: "Windows", href: "/services/window-cleaning" },
+  { label: "Removals", href: "/services/removals" },
+  { label: "Design", href: "/design" },
+];
+
+// Wide hall image (desktop): doors on the right half.
 const DOORS: Hotspot[] = [
-  { label: "Gardening", href: "/services/gardening", x: 57, y: 24, w: 14, h: 16 },
-  { label: "Cleaning", href: "/services/cleaning", x: 72, y: 24, w: 15, h: 16 },
-  { label: "Handyman", href: "/services/handyman", x: 57, y: 42, w: 14, h: 17 },
-  { label: "Windows", href: "/services/window-cleaning", x: 72, y: 42, w: 15, h: 17 },
-  { label: "Removals", href: "/services/removals", x: 57, y: 61, w: 14, h: 18 },
-  { label: "Design", href: "/design", x: 72, y: 61, w: 15, h: 18 },
+  { ...SERVICES[0], x: 57, y: 24, w: 14, h: 16 },
+  { ...SERVICES[1], x: 72, y: 24, w: 15, h: 16 },
+  { ...SERVICES[2], x: 57, y: 42, w: 14, h: 17 },
+  { ...SERVICES[3], x: 72, y: 42, w: 15, h: 17 },
+  { ...SERVICES[4], x: 57, y: 61, w: 14, h: 18 },
+  { ...SERVICES[5], x: 72, y: 61, w: 15, h: 18 },
+];
+
+// Portrait cabinet image (mobile): a 2-col x 3-row grid of doors.
+const MOBILE_DOORS: Hotspot[] = [
+  { ...SERVICES[0], x: 13.5, y: 30, w: 34, h: 18.5 },
+  { ...SERVICES[1], x: 51.5, y: 30, w: 34, h: 18.5 },
+  { ...SERVICES[2], x: 13.5, y: 50, w: 34, h: 17 },
+  { ...SERVICES[3], x: 51.5, y: 50, w: 34, h: 17 },
+  { ...SERVICES[4], x: 13.5, y: 68.5, w: 34, h: 18 },
+  { ...SERVICES[5], x: 51.5, y: 68.5, w: 34, h: 18 },
 ];
 
 function Copy() {
@@ -42,8 +67,8 @@ function Copy() {
 export function CabinetHero() {
   return (
     <section aria-label="House of Willow Alexander" className="bg-house-forest">
-      {/* Full-stretch stage — native aspect so the door hotspots align */}
-      <div className="relative w-full" style={{ aspectRatio: "1916 / 821" }}>
+      {/* Desktop (xl+): wide hall stage — native aspect so the door hotspots align */}
+      <div className="relative hidden w-full xl:block" style={{ aspectRatio: "1916 / 821" }}>
         <Image
           src="/home/hero-hall-doors.webp"
           alt="A British hall with the House of Willow Alexander service cupboard: six coloured doors for gardening, cleaning, handyman, windows, removals and design, with a dog resting on the checkerboard floor."
@@ -52,11 +77,11 @@ export function CabinetHero() {
           sizes="100vw"
           className="object-cover"
         />
-        {/* Left scrim for legible overlay copy (desktop) */}
-        <div aria-hidden className="absolute inset-0 hidden xl:block" style={{ background: "linear-gradient(90deg, rgba(24,36,28,0.78) 0%, rgba(24,36,28,0.40) 30%, rgba(24,36,28,0) 55%)" }} />
+        {/* Left scrim for legible overlay copy */}
+        <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(24,36,28,0.78) 0%, rgba(24,36,28,0.40) 30%, rgba(24,36,28,0) 55%)" }} />
 
-        {/* Door hotspots (desktop) */}
-        <div className="absolute inset-0 hidden xl:block" aria-label="Choose a service from the cupboard">
+        {/* Door hotspots */}
+        <div className="absolute inset-0" aria-label="Choose a service from the cupboard">
           {DOORS.map((d) => (
             <Link
               key={d.label}
@@ -70,12 +95,12 @@ export function CabinetHero() {
           ))}
         </div>
 
-        {/* Copy + booking bar overlay (desktop), left column. A flex column with
-            justify-between keeps the copy pinned to the top and the booking bar to
-            the bottom, so the two blocks can never overlap each other however short
-            the fixed-aspect stage becomes. Container is pointer-events-none so the
-            door hotspots on the right stay clickable; the copy/bar re-enable it. */}
-        <div className="pointer-events-none absolute inset-0 hidden flex-col justify-between px-[clamp(24px,4vw,72px)] py-[clamp(36px,5vh,72px)] xl:flex">
+        {/* Copy + booking bar overlay (left column). Flex column with
+            justify-between AND a minimum gap keeps the copy at the top and the
+            booking bar at the bottom with clear space between them, so they never
+            overlap or crowd each other however short the stage becomes.
+            pointer-events-none lets the right-hand door hotspots stay clickable. */}
+        <div className="pointer-events-none absolute inset-0 flex flex-col justify-between gap-[clamp(28px,5vh,72px)] px-[clamp(24px,4vw,72px)] py-[clamp(32px,4.5vh,64px)]">
           <div className="pointer-events-auto max-w-[52%]">
             <Copy />
           </div>
@@ -86,28 +111,39 @@ export function CabinetHero() {
         </div>
       </div>
 
-      {/* Below xl: copy + booking bar stacked under the image (the fixed-aspect
-          stage is too short for the overlay to sit without the H1, subline and
-          booking bar colliding, so we stack until there is real vertical room). */}
-      <div className="px-6 py-8 xl:hidden">
-        <Copy />
-        <div className="mt-6">
-          <HeroBookingBar />
-          <p className="mt-2 font-sans text-[12px] uppercase tracking-[0.2em] text-house-cream/70">Booked through HoWA</p>
+      {/* Below xl: portrait cabinet image with tappable doors, then copy + booking bar */}
+      <div className="xl:hidden">
+        <div className="relative mx-auto w-full max-w-[480px]" style={{ aspectRatio: "1092 / 1440" }}>
+          <Image
+            src="/home/hero-cabinet-mobile.webp"
+            alt="The House of Willow Alexander service cabinet: six coloured doors for gardening, cleaning, handyman, windows, removals and design."
+            fill
+            priority
+            sizes="(max-width: 520px) 100vw, 480px"
+            className="object-cover"
+          />
+          <div className="absolute inset-0" aria-label="Choose a service from the cabinet">
+            {MOBILE_DOORS.map((d) => (
+              <Link
+                key={d.label}
+                href={d.href}
+                aria-label={d.label}
+                className="absolute rounded-sm transition-colors duration-200 hover:bg-house-gold-light/15 focus-visible:bg-house-gold-light/25"
+                style={{ left: `${d.x}%`, top: `${d.y}%`, width: `${d.w}%`, height: `${d.h}%` }}
+              >
+                <span className="sr-only">{d.label}</span>
+              </Link>
+            ))}
+          </div>
         </div>
 
-        {/* The six doors as tappable links (the image hotspots are desktop-only) */}
-        <nav aria-label="Choose a service" className="mt-7 grid grid-cols-2 gap-2.5">
-          {DOORS.map((d) => (
-            <Link
-              key={d.label}
-              href={d.href}
-              className="flex h-12 items-center justify-center border border-house-cream/30 bg-house-cream/5 px-3 text-center font-sans text-[13px] uppercase tracking-[0.12em] text-house-cream no-underline transition-colors hover:bg-house-cream/15"
-            >
-              {d.label}
-            </Link>
-          ))}
-        </nav>
+        <div className="px-6 py-8">
+          <Copy />
+          <div className="mt-6">
+            <HeroBookingBar />
+            <p className="mt-2 font-sans text-[12px] uppercase tracking-[0.2em] text-house-cream/70">Booked through HoWA</p>
+          </div>
+        </div>
       </div>
     </section>
   );
