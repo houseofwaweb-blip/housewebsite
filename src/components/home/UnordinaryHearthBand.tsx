@@ -38,14 +38,14 @@ const CARDS: Card[] = [
 
 export function UnordinaryHearthBand() {
   return (
-    <section aria-label="The unOrdinary and The Hearth" className="bg-house-ink px-[clamp(16px,3vw,40px)] py-[clamp(24px,3vw,44px)]">
-      <div className="mx-auto grid max-w-[1760px] gap-4 lg:grid-cols-2">
+    <section aria-label="The unOrdinary and The Hearth" className="bg-house-ink px-[clamp(16px,3vw,40px)] py-[clamp(28px,3.5vw,52px)]">
+      <div className="mx-auto grid max-w-[1760px] gap-8 lg:grid-cols-2 lg:gap-7">
         {CARDS.map((c) => (
           <Link
             key={c.href}
             href={c.href}
             aria-label={c.cta}
-            className="group relative block aspect-[16/10] overflow-hidden no-underline sm:aspect-[2/1] lg:aspect-[16/9]"
+            className="group relative block aspect-[16/10] overflow-hidden border border-house-cream/12 no-underline sm:aspect-[2/1] lg:aspect-[16/9]"
           >
             <Image src={c.image} alt={c.alt} fill sizes="(min-width:1024px) 50vw, 100vw" className="object-cover transition-transform duration-[var(--t-slow)] ease-out group-hover:scale-[1.03]" />
             <span aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(16,20,17,0.86) 0%, rgba(16,20,17,0.5) 45%, rgba(16,20,17,0.12) 82%)" }} />

@@ -64,13 +64,16 @@ export function MobileCarousel({
       <div
         ref={ref}
         className={cn(
-          "flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+          "flex snap-x snap-mandatory items-stretch gap-4 overflow-x-auto overscroll-x-contain pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
           "sm:grid sm:snap-none sm:gap-4 sm:overflow-visible sm:pb-0",
           gridClassName,
         )}
       >
         {items.map((child, i) => (
-          <div key={i} className={cn("shrink-0 snap-start", itemClassName, "sm:contents")}>
+          // Stretch each item to the tallest and force the card to fill it, so
+          // flex-col cards push their price/CTA to a common baseline (buttons
+          // align across the slider). sm:contents drops the wrapper on desktop.
+          <div key={i} className={cn("flex shrink-0 snap-start [&>*]:h-full [&>*]:w-full", itemClassName, "sm:contents")}>
             {child}
           </div>
         ))}
