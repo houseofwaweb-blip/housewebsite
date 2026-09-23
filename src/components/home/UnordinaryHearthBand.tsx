@@ -49,7 +49,7 @@ export function UnordinaryHearthBand() {
           >
             <Image src={c.image} alt={c.alt} fill sizes="(min-width:1024px) 50vw, 100vw" className="object-cover transition-transform duration-[var(--t-slow)] ease-out group-hover:scale-[1.03]" />
             <span aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(16,20,17,0.86) 0%, rgba(16,20,17,0.5) 45%, rgba(16,20,17,0.12) 82%)" }} />
-            <div className="absolute inset-y-0 left-0 flex max-w-[72%] flex-col justify-center px-[clamp(22px,3.5vw,56px)]">
+            <div className="absolute inset-y-0 left-0 flex max-w-[78%] flex-col justify-center px-[clamp(28px,4.5vw,56px)] sm:max-w-[72%]">
               <span className="mb-3 block font-sans text-[clamp(11px,1vw,13px)] tracking-[0.26em] uppercase text-house-gold-light">
                 {c.eyebrow}
               </span>

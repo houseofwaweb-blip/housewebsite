@@ -150,7 +150,7 @@ export default async function RootLayout({
               Skip to content
             </a>
             <Header ctaLabel={ctaLabel} ctaHref={ctaHref} nav={nav} />
-            <main id="main">{children}</main>
+            <main id="main" className="overflow-x-clip">{children}</main>
             <Footer />
             <CartToast />
             <CartDrawer />
