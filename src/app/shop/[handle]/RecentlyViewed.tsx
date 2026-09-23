@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 
 type Item = { handle: string; title: string; price: string; image: string };
 const KEY = "howa_recently_viewed";
@@ -42,7 +43,7 @@ export function RecentlyViewed({ current }: { current: Item }) {
       <div className="max-w-[1280px] mx-auto">
         <p className="font-sans text-[14px] tracking-[0.3em] uppercase text-house-gold-ink mb-2">Where you have been</p>
         <h2 className="font-display italic text-[clamp(25px,2.6vw,35px)] text-house-brown mb-8">Recently viewed.</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-5 gap-y-9">
+        <MobileCarousel ariaLabel="Recently viewed" gridClassName="sm:grid-cols-2 md:grid-cols-4 sm:gap-x-5 sm:gap-y-9" itemClassName="basis-[46%] min-[400px]:basis-[40%]">
           {items.map((p) => (
             <Link key={p.handle} href={`/shop/${p.handle}`} className="group block no-underline">
               <div className="relative aspect-[4/5] w-full overflow-hidden bg-house-cream-dark mb-3">
@@ -62,7 +63,7 @@ export function RecentlyViewed({ current }: { current: Item }) {
               <p className="font-sans text-[18px] text-house-stone mt-0.5">{p.price}</p>
             </Link>
           ))}
-        </div>
+        </MobileCarousel>
       </div>
     </section>
   );

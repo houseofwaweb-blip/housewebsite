@@ -5,6 +5,7 @@ import { ProductCard } from "@/components/commerce/ProductCard";
 import { PRODUCTS, findProduct } from "@/lib/shop-data";
 import { getShopProduct, getShopProducts } from "@/lib/shop-data/source";
 import { RecentlyViewed } from "./RecentlyViewed";
+import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 import { getProductByHandle } from "@/lib/cms/products";
 import { getLatestHearthArticles } from "@/lib/cms/hearth";
 import Image from "next/image";
@@ -489,7 +490,7 @@ export default async function ProductPage({
                 Read around it.
               </h2>
             </header>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-10">
+            <MobileCarousel ariaLabel="From the Hearth" gridClassName="md:grid-cols-3 sm:gap-x-8 sm:gap-y-10">
               {hearthStories.map((a) => (
                 <Link key={a.slug} href={`/the-hearth/${a.slug}`} className="group block no-underline">
                   <div className="relative aspect-[4/3] w-full overflow-hidden bg-house-cream-dark mb-3">
@@ -516,7 +517,7 @@ export default async function ProductPage({
                   ) : null}
                 </Link>
               ))}
-            </div>
+            </MobileCarousel>
           </div>
         </section>
       ) : null}

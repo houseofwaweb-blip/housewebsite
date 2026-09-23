@@ -4,6 +4,7 @@ import { MetaViewContent } from "@/components/marketing/MetaViewContent";
 import { SoftwareApplicationJsonLd } from "@/lib/seo/jsonLd";
 import { env } from "@/lib/env";
 import { HowaScanReveal } from "@/components/howa/HowaScanReveal";
+import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 
 /**
  * /howa — the HoWA page within the House site (further-amendments brief §24).
@@ -152,7 +153,7 @@ export default function HowaPage() {
             <h2 className="font-display text-[clamp(32px,4vw,64px)] leading-[0.96] tracking-[-0.02em]">Plan. Ask. Do. File.</h2>
           </div>
           <p className="mt-3 font-sans text-[clamp(16px,1.2vw,19px)] leading-[1.5] text-house-brown/65">One place, four behaviours.</p>
-          <div className="mt-9 grid gap-[clamp(20px,2.4vw,36px)] sm:grid-cols-2">
+          <MobileCarousel ariaLabel="Plan, Ask, Do, File" gridClassName="mt-9 sm:grid-cols-2 sm:gap-[clamp(20px,2.4vw,36px)]">
             {CHAPTERS.map((c) => {
               const light = c.dark;
               const ink = light ? "#F5F4EF" : "#16150F";
@@ -183,7 +184,7 @@ export default function HowaPage() {
                 </Link>
               );
             })}
-          </div>
+          </MobileCarousel>
         </Container>
       </section>
 

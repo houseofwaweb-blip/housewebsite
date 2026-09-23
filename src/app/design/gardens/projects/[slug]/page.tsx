@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { GARDEN_PROJECTS, getGardenProject } from "@/lib/gardens-projects";
 import { getPublicImageSize } from "@/lib/image-size";
+import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 
 /**
  * /design/gardens/projects/[slug] — a single garden commission, the design
@@ -136,7 +137,7 @@ export default async function GardenProjectPage({
         <section className="bg-house-cream-dark/40 px-6 sm:px-10 py-[clamp(48px,6vw,88px)]">
           <div className="mx-auto max-w-[1240px]">
             <p className="font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink mb-7">More from the studio</p>
-            <div className="grid gap-6 sm:grid-cols-3">
+            <MobileCarousel ariaLabel="More from the studio" gridClassName="sm:grid-cols-3 sm:gap-6">
               {others.map((p) => (
                 <Link key={p.slug} href={`/design/gardens/projects/${p.slug}`} className="group block">
                   <div className="relative w-full overflow-hidden" style={{ aspectRatio: "4 / 3", border: "1px solid rgba(48,35,28,0.08)" }}>
@@ -146,7 +147,7 @@ export default async function GardenProjectPage({
                   <p className="font-sans text-[18px] tracking-[0.16em] uppercase text-house-brown/55 mt-1">{p.location}</p>
                 </Link>
               ))}
-            </div>
+            </MobileCarousel>
           </div>
         </section>
       ) : null}

@@ -11,6 +11,7 @@ import { WhatMayBeCovered } from "@/components/insurance/WhatMayBeCovered";
 import { ClaimsHelpBand } from "@/components/insurance/ClaimsHelp";
 import { InsuranceCtaBand } from "@/components/insurance/InsuranceCtaBand";
 import { Accordion } from "@/components/primitives/Accordion";
+import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 import { PROVENANCE } from "@/lib/insurance/config";
 import { insuranceOg } from "@/lib/insurance/og";
 
@@ -71,7 +72,7 @@ export default function InsuranceHub() {
       <section className="px-[5vw] pb-4">
         <div className="mx-auto max-w-[1080px]">
           <p className="font-sans text-[14px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">Choose what to cover</p>
-          <div className="mt-4 grid gap-4 sm:grid-cols-3">
+          <MobileCarousel ariaLabel="What to cover" gridClassName="mt-4 sm:grid-cols-3 sm:gap-4">
             {[
               { label: "Home", body: "Buildings and contents cover for houses, flats, period homes and more specialist properties.", href: "/insurance/everyday/home" },
               { label: "Pet", body: "Cover for cats, dogs and other eligible pets, with different levels to compare.", href: "/insurance/everyday/pet-and-travel" },
@@ -89,7 +90,7 @@ export default function InsuranceHub() {
                 <span className="mt-5 font-sans text-[13px] tracking-[0.16em] uppercase text-[color:var(--ins-ink)]">Cover {c.label.toLowerCase()} →</span>
               </Link>
             ))}
-          </div>
+          </MobileCarousel>
         </div>
       </section>
 

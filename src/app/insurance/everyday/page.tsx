@@ -6,6 +6,7 @@ import { InsuranceTrustStrip } from "@/components/insurance/InsuranceTrustStrip"
 import { InsuranceDisclosure } from "@/components/insurance/InsuranceDisclosure";
 import { InsuranceCtaBand } from "@/components/insurance/InsuranceCtaBand";
 import { ProvenanceLockup } from "@/components/insurance/ProvenanceLockup";
+import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 
 /**
  * D1 · /insurance/everyday, the everyday-cover hub. Rebuilt to share the
@@ -76,7 +77,7 @@ export default function EverydayHub() {
       <section id="choose-a-cover" className="scroll-mt-24 px-[5vw] pt-14 pb-10">
         <div className="mx-auto max-w-[1120px]">
           <h2 className="mb-8 font-display text-[clamp(25px,2.8vw,37px)] leading-[1.12] text-house-black">Choose a cover.</h2>
-          <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2">
+          <MobileCarousel ariaLabel="Choose a cover" gridClassName="sm:grid-cols-2 sm:gap-x-8 sm:gap-y-10">
             {PRODUCTS.map((p) => (
               <Link
                 key={p.name}
@@ -101,7 +102,7 @@ export default function EverydayHub() {
                 </div>
               </Link>
             ))}
-          </div>
+          </MobileCarousel>
         </div>
       </section>
 

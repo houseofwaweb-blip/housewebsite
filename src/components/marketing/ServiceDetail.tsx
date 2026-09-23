@@ -4,6 +4,7 @@ import path from "node:path";
 import { Accordion } from "@/components/primitives/Accordion";
 import { ScrollCarousel } from "@/components/primitives/ScrollCarousel";
 import { Gallery, type GalleryImage } from "@/components/primitives/Gallery";
+import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 import { basisPhrase, serviceEnquiryOptions, type Service } from "@/lib/services-data";
 import s from "./ServiceDetail.module.css";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
@@ -474,7 +475,7 @@ export function ServiceDetail({
             One House, <em>many hands.</em>
           </h2>
         </header>
-        <div className="mx-auto grid max-w-[1080px] gap-4 md:grid-cols-3">
+        <MobileCarousel ariaLabel="Also from the House" gridClassName="mx-auto max-w-[1080px] md:grid-cols-3 sm:gap-4">
           <Link href="/services" className="group flex flex-col border border-house-brown/15 bg-house-cream-light p-7 no-underline transition-colors hover:border-house-gold">
             <p className="mb-2 font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-ink">Service</p>
             <h3 className="mb-2.5 font-hearth-serif text-[24px] leading-tight text-house-brown">More home and garden care</h3>
@@ -493,7 +494,7 @@ export function ServiceDetail({
             <p className="mb-6 flex-1 font-sans text-[18px] leading-[1.55] text-house-brown/70">Guides and ideas for looking after a home and garden, well.</p>
             <span className="font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-ink group-hover:text-house-brown">Read the Hearth →</span>
           </Link>
-        </div>
+        </MobileCarousel>
       </section>
 
       {/* Recent work gallery */}

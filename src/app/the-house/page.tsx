@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { BreadcrumbJsonLd } from "@/lib/seo/jsonLd";
+import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 
 export const metadata: Metadata = {
   title: "The House",
@@ -185,9 +186,9 @@ export default function TheHousePage() {
             The House today
           </p>
           <h2 style={h2Style}>Care, Cover, Shop and Read.</h2>
-          <div
-            className="mt-2 grid grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-4"
-            style={{ background: line, border: `1px solid ${line}` }}
+          <MobileCarousel
+            ariaLabel="The House today"
+            gridClassName="mt-2 sm:grid-cols-2 lg:grid-cols-4 sm:gap-px sm:bg-[var(--color-house-line)] sm:border sm:border-[var(--color-house-line)]"
           >
             {today.map((t) => (
               <div key={t.h} style={{ background: cream, display: "flex", flexDirection: "column" }}>
@@ -229,7 +230,7 @@ export default function TheHousePage() {
                 </div>
               </div>
             ))}
-          </div>
+          </MobileCarousel>
         </div>
       </section>
 

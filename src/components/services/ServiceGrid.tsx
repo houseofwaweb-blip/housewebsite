@@ -1,13 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
+import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 
 /**
  * ServiceGrid — the colour-coded editorial anthology from rebuild spec §9.
  *
- * A still-life grid, not a horizontal carousel: each card carries its own
- * service colour AND its name (never colour alone), and follows the §9 card
- * copy model, name, one-sentence job, from-price, service-area note, and a
- * "View service" action.
+ * A still-life grid on desktop that becomes an app-style horizontal carousel on
+ * phones (via MobileCarousel): each card carries its own service colour AND its
+ * name (never colour alone), and follows the §9 card copy model, name,
+ * one-sentence job, from-price, service-area note, and a "View service" action.
  */
 
 export interface ServiceGridCard {
@@ -29,7 +30,7 @@ export interface ServiceGridCard {
 
 export function ServiceGrid({ cards }: { cards: ServiceGridCard[] }) {
   return (
-    <div className="mx-auto grid max-w-[1340px] gap-7 px-[5vw] sm:grid-cols-2 lg:grid-cols-3">
+    <MobileCarousel ariaLabel="Services" gridClassName="mx-auto max-w-[1340px] px-[5vw] sm:grid-cols-2 lg:grid-cols-3 sm:gap-7">
       {cards.map((c) => (
         <Link
           key={c.slug}
@@ -77,6 +78,6 @@ export function ServiceGrid({ cards }: { cards: ServiceGridCard[] }) {
           </div>
         </Link>
       ))}
-    </div>
+    </MobileCarousel>
   );
 }

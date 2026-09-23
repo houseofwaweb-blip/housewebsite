@@ -4,6 +4,7 @@ import s from "./services.module.css";
 import { FaqList } from "@/components/marketing/FaqList";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 import { ServiceGrid } from "@/components/services/ServiceGrid";
+import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 import { serviceAccent } from "@/components/services/service-meta";
 import { SERVICES as SERVICE_DATA, basisPhrase, type ServiceSlug } from "@/lib/services-data";
 import { HouseStandardStrip } from "@/components/marketing/HouseStandardStrip";
@@ -575,7 +576,7 @@ export default async function ServicesLanding() {
       <section className="border-t border-house-brown/10 bg-house-cream-light px-[5vw] py-[clamp(40px,5vw,72px)]">
         <div className="mx-auto max-w-[1200px]">
           <p className="mb-6 font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-ink">In the field</p>
-          <div className="grid gap-4 sm:grid-cols-3">
+          <MobileCarousel ariaLabel="In the field" gridClassName="sm:grid-cols-3 sm:gap-4">
             {[
               { cap: "A garden in good order", src: "/services/field/garden-in-good-order.webp" },
               { cap: "A home, cared for", src: "/services/field/home-cared-for.webp" },
@@ -590,7 +591,7 @@ export default async function ServicesLanding() {
                 </figcaption>
               </figure>
             ))}
-          </div>
+          </MobileCarousel>
         </div>
       </section>
 
@@ -613,13 +614,13 @@ export default async function ServicesLanding() {
           >
             Real teams. Real vans. <em>One House standard.</em>
           </h2>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+          <MobileCarousel ariaLabel="On the road" gridClassName="sm:grid-cols-2 lg:grid-cols-4 sm:gap-3 md:gap-4">
             {REAL_WORK.map((t) => (
               <div key={t.src} className="relative aspect-[4/5] overflow-hidden bg-house-forest">
                 <Image src={t.src} alt={t.alt} fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover" />
               </div>
             ))}
-          </div>
+          </MobileCarousel>
           <div className="mt-[clamp(32px,4vw,52px)] flex justify-center">
             <Link href="#open-booking-form" className={s.btnFilled}>
               Book a service
@@ -665,7 +666,7 @@ export default async function ServicesLanding() {
             </p>
           </div>
         </div>
-        <div className="mx-auto grid max-w-[1180px] gap-5 px-[5vw] md:grid-cols-3">
+        <MobileCarousel ariaLabel="How care works" gridClassName="mx-auto max-w-[1180px] px-[5vw] md:grid-cols-3 sm:gap-5">
           {FREQUENCIES.map((f) => (
             <article key={f.name} className="flex flex-col border border-house-brown/15 bg-house-white p-8">
               <h3 className="mb-2 font-display text-[27px] leading-tight text-house-brown">{f.name}</h3>
@@ -687,7 +688,7 @@ export default async function ServicesLanding() {
               </Link>
             </article>
           ))}
-        </div>
+        </MobileCarousel>
         <p className={s.plansFootnote}>
           Every service carries its own charging basis: per visit, per hour,
           per item, per job or a quote. Booking, scheduling and your Home Record

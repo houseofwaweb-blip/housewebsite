@@ -6,6 +6,7 @@ import { EnquiryForm } from "@/components/marketing/EnquiryForm";
 import { HouseStandardStrip } from "@/components/marketing/HouseStandardStrip";
 import { ServiceCtaRow } from "@/components/marketing/ServiceCtaRow";
 import { ServiceWordmark } from "@/components/marketing/ServiceWordmark";
+import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 
 /**
  * /services/home-and-garden — the bundled recurring-care edition (doc §10
@@ -233,7 +234,7 @@ export default function HomeAndGardenPage() {
             Four disciplines, <em>one household rhythm.</em>
           </h2>
         </header>
-        <div className="mx-auto grid max-w-[1160px] gap-[clamp(16px,1.8vw,24px)] sm:grid-cols-2 lg:grid-cols-4">
+        <MobileCarousel ariaLabel="The four disciplines" gridClassName="mx-auto max-w-[1160px] sm:grid-cols-2 lg:grid-cols-4 sm:gap-[clamp(16px,1.8vw,24px)]">
           {DISCIPLINES.map((d) => (
             <article key={d.name} className="flex flex-col overflow-hidden border border-house-brown/10 bg-house-cream-light">
               <div className="relative aspect-[4/3] w-full overflow-hidden">
@@ -246,7 +247,7 @@ export default function HomeAndGardenPage() {
               </div>
             </article>
           ))}
-        </div>
+        </MobileCarousel>
 
         <div className="mx-auto mt-[clamp(40px,5vw,64px)] grid max-w-[1080px] gap-[clamp(28px,4vw,56px)] md:grid-cols-2">
           <div>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 
 /**
  * HouseEditorialFooter — a "keep reading" cross-link band + CTA for the
@@ -30,7 +31,7 @@ export function HouseEditorialFooter({ current }: { current: string }) {
           More from the House.
         </h2>
 
-        <div className="grid gap-px bg-house-brown/10 sm:grid-cols-3">
+        <MobileCarousel ariaLabel="More from the House" gridClassName="sm:bg-house-brown/10 sm:grid-cols-3 sm:gap-px">
           {others.map((p) => (
             <Link
               key={p.slug}
@@ -42,7 +43,7 @@ export function HouseEditorialFooter({ current }: { current: string }) {
               <span className="font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-ink">Read →</span>
             </Link>
           ))}
-        </div>
+        </MobileCarousel>
 
         <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
           <Link

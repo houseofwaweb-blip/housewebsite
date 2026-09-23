@@ -3,6 +3,7 @@ import Image from "next/image";
 import { MetaViewContent } from "@/components/marketing/MetaViewContent";
 import { SoftwareApplicationJsonLd } from "@/lib/seo/jsonLd";
 import { env } from "@/lib/env";
+import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 
 /**
  * /howa/plans — built from the Plans handover (Sept HoWA review v2, Step 14).
@@ -121,7 +122,7 @@ export default function PlansPage() {
 
       {/* Plan cards */}
       <section className="mx-auto max-w-[1240px] px-[5vw] py-[clamp(48px,6vw,88px)]">
-        <div className="grid gap-6 lg:grid-cols-3">
+        <MobileCarousel ariaLabel="Plans" gridClassName="lg:grid-cols-3 sm:gap-6">
           {PLANS.map((p) => (
             <div key={p.name} className="flex flex-col border border-house-brown/12 bg-house-cream">
               <div className="relative aspect-[4/5] w-full overflow-hidden">
@@ -153,7 +154,7 @@ export default function PlansPage() {
               </div>
             </div>
           ))}
-        </div>
+        </MobileCarousel>
       </section>
 
       {/* Monthly Home Brief */}

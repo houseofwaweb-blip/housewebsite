@@ -6,6 +6,7 @@ import { EnquiryForm } from "@/components/marketing/EnquiryForm";
 import { BookingPanel } from "@/components/services/BookingPanel";
 import { ServiceWordmark } from "@/components/marketing/ServiceWordmark";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
+import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 import { buildBookingUrl } from "@/components/booking/postcode";
 import { SERVICEOS_SERVICE_ID } from "@/lib/serviceos-links";
 import { serviceEnquiryOptions } from "@/lib/services-data";
@@ -254,7 +255,7 @@ export function LocationServiceDetail({ page }: { page: LocationPage }) {
               Also available in {town.name}.
             </h2>
           </header>
-          <div className="grid gap-6 sm:grid-cols-3">
+          <MobileCarousel ariaLabel={`Also available in ${town.name}`} gridClassName="sm:grid-cols-3 sm:gap-6">
             {siblings.map((sib) => (
               <Link
                 key={sib.href}
@@ -282,7 +283,7 @@ export function LocationServiceDetail({ page }: { page: LocationPage }) {
                 </div>
               </Link>
             ))}
-          </div>
+          </MobileCarousel>
         </div>
       </section>
 

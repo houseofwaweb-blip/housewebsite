@@ -10,6 +10,7 @@ import type { CatalogueProduct } from "@/lib/shop-data/catalogue";
 import { AddToCartButton } from "@/components/commerce/AddToCartButton";
 import { ProductSlider, type Slide } from "./ProductSlider";
 import { getLatestHearthArticles } from "@/lib/cms/hearth";
+import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 
 /**
  * Marketplace landing — "collections as rooms" (Designer Handover Guide, slide 25).
@@ -146,7 +147,7 @@ function Rail({
             View all →
           </Link>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-5 gap-y-9">
+        <MobileCarousel ariaLabel={title} gridClassName="sm:grid-cols-2 md:grid-cols-4 sm:gap-x-5 sm:gap-y-9" itemClassName="basis-[46%] min-[400px]:basis-[40%]">
           {cards.map((c) => (
             <Link key={c.handle} href={`/shop/${c.handle}`} className="group block no-underline">
               <div className="relative aspect-[4/5] w-full overflow-hidden bg-house-cream-dark mb-3">
@@ -169,7 +170,7 @@ function Rail({
               <p className="font-sans text-[18px] text-house-stone mt-0.5">{c.price}</p>
             </Link>
           ))}
-        </div>
+        </MobileCarousel>
       </div>
     </section>
   );
@@ -478,7 +479,7 @@ export default async function ShopPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <MobileCarousel ariaLabel="Shop by room" gridClassName="sm:grid-cols-2 md:grid-cols-4 sm:gap-3" itemClassName="basis-[46%] min-[400px]:basis-[40%]">
             {ROOMS.map((r, i) =>
               r.image ? (
                 <Link
@@ -525,7 +526,7 @@ export default async function ShopPage() {
                 </Link>
               ),
             )}
-          </div>
+          </MobileCarousel>
         </div>
       </section>
 

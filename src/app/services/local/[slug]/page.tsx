@@ -8,6 +8,7 @@ import wpLongTail from "@/lib/services-data/wp-long-tail.json";
 import { getLocationPage, allLocationSlugs, LOCATION_SERVICES } from "@/lib/services-data/locations";
 import { LocationServiceDetail } from "@/components/marketing/LocationServiceDetail";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
+import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 
 /**
  * /services/local/[slug] — locality + task page.
@@ -227,7 +228,7 @@ export default async function LocalServicePage({
               teams, each booked and recorded through HoWA.
             </p>
           </header>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-house-brown/10">
+          <MobileCarousel ariaLabel="Available services" gridClassName="sm:grid-cols-2 lg:grid-cols-4 sm:gap-px bg-house-brown/10">
             {LAUNCH_SERVICES.map((svc) => (
               <Link
                 key={svc.slug}
@@ -248,7 +249,7 @@ export default async function LocalServicePage({
                 </p>
               </Link>
             ))}
-          </div>
+          </MobileCarousel>
         </div>
       </section>
 

@@ -7,6 +7,7 @@ import { InsuranceTrustStrip } from "./InsuranceTrustStrip";
 import { PROVENANCE } from "@/lib/insurance/config";
 import { ProvenanceLockup } from "./ProvenanceLockup";
 import { SUPPORT_PHONE, SUPPORT_PHONE_HREF } from "./ClaimsHelp";
+import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 
 /**
  * SpecialistPage — shared template for specialist property/asset and home-cover
@@ -273,7 +274,7 @@ export function SpecialistPage({
             <h2 className="mb-8 font-display text-[clamp(25px,2.8vw,37px)] leading-[1.12] text-house-black">
               {data.relatedCovers.title}
             </h2>
-            <div className="grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+            <MobileCarousel ariaLabel="Related covers" gridClassName="sm:grid-cols-2 lg:grid-cols-3 sm:gap-x-6 sm:gap-y-8">
               {data.relatedCovers.items.filter((c) => !c.href.endsWith(`/${data.slug}`)).slice(0, 3).map((c) => (
                 <Link
                   key={c.name}
@@ -290,7 +291,7 @@ export function SpecialistPage({
                   </div>
                 </Link>
               ))}
-            </div>
+            </MobileCarousel>
           </div>
         </section>
       ) : null}
