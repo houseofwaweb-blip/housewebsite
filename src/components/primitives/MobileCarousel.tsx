@@ -65,7 +65,7 @@ export function MobileCarousel({
         ref={ref}
         className={cn(
           "flex snap-x snap-mandatory items-stretch gap-4 overflow-x-auto overscroll-x-contain pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
-          "sm:grid sm:snap-none sm:gap-4 sm:overflow-visible sm:pb-0",
+          "sm:grid sm:snap-none sm:overflow-visible sm:pb-0",
           gridClassName,
         )}
       >

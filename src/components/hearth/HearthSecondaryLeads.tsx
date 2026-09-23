@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { HearthTitle } from "./HearthTitle";
+import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 import type { HearthArticle } from "@/lib/hearth-data";
 
 /**
@@ -12,11 +13,11 @@ import type { HearthArticle } from "@/lib/hearth-data";
 export function HearthSecondaryLeads({ articles }: { articles: HearthArticle[] }) {
   return (
     <section className="max-w-[1360px] mx-auto mb-[72px] px-[5vw] border-t border-house-brown/12 pt-12">
-      <div className="grid md:grid-cols-3 gap-10">
+      <MobileCarousel ariaLabel="More from The Hearth" gridClassName="md:grid-cols-3 sm:gap-10">
         {articles.map((a) => (
           <SecondaryArticle key={a.slug} article={a} />
         ))}
-      </div>
+      </MobileCarousel>
     </section>
   );
 }

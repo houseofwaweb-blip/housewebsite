@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { GhostLink } from "@/components/primitives/GhostLink";
+import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 import { PortableText } from "@/components/cms/PortableText";
 import { HearthMasthead } from "@/components/hearth/HearthMasthead";
 import { HearthUsefulDetails } from "@/components/hearth/HearthUsefulDetails";
@@ -298,7 +299,7 @@ export default async function ArticlePage({
               <h3 className="font-hearth-serif font-medium italic text-[33px] leading-[1.1] mt-3 mb-8 text-house-black">
                 More from <em>{article.category}</em>
               </h3>
-              <div className="grid md:grid-cols-3 gap-10">
+              <MobileCarousel ariaLabel="Keep reading" gridClassName="md:grid-cols-3 sm:gap-10">
                 {related.map((a) => (
                   <Link
                     key={a.slug}
@@ -321,7 +322,7 @@ export default async function ArticlePage({
                     </h4>
                   </Link>
                 ))}
-              </div>
+              </MobileCarousel>
             </div>
           </aside>
         ) : null}

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { HearthTitle } from "./HearthTitle";
 import { SectionHead } from "./HearthMainFeed";
+import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 import type { HearthArticle } from "@/lib/hearth-data";
 
 /**
@@ -23,11 +24,11 @@ export function HearthMoreFeed({
   return (
     <section className="max-w-[1360px] mx-auto mt-12 mb-[72px] px-[5vw]">
       <SectionHead heading={heading} emText={emText} viewAllHref={viewAllHref} />
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-7 gap-y-8">
+      <MobileCarousel ariaLabel={heading} gridClassName="sm:grid-cols-2 lg:grid-cols-4 sm:gap-x-7 sm:gap-y-8">
         {articles.map((a) => (
           <MoreArticle key={a.slug} article={a} />
         ))}
-      </div>
+      </MobileCarousel>
     </section>
   );
 }
