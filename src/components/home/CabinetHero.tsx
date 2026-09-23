@@ -53,15 +53,15 @@ export function CabinetHero() {
           className="object-cover"
         />
         {/* Left scrim for legible overlay copy (desktop) */}
-        <div aria-hidden className="absolute inset-0 hidden lg:block" style={{ background: "linear-gradient(90deg, rgba(24,36,28,0.78) 0%, rgba(24,36,28,0.40) 30%, rgba(24,36,28,0) 55%)" }} />
+        <div aria-hidden className="absolute inset-0 hidden xl:block" style={{ background: "linear-gradient(90deg, rgba(24,36,28,0.78) 0%, rgba(24,36,28,0.40) 30%, rgba(24,36,28,0) 55%)" }} />
 
         {/* Copy overlay (desktop) */}
-        <div className="absolute left-[clamp(24px,4vw,72px)] top-[15%] hidden max-w-[52%] lg:block">
+        <div className="absolute left-[clamp(24px,4vw,72px)] top-[15%] hidden max-w-[52%] xl:block">
           <Copy />
         </div>
 
         {/* Door hotspots (desktop) */}
-        <div className="absolute inset-0 hidden lg:block" aria-label="Choose a service from the cupboard">
+        <div className="absolute inset-0 hidden xl:block" aria-label="Choose a service from the cupboard">
           {DOORS.map((d) => (
             <Link
               key={d.label}
@@ -77,14 +77,16 @@ export function CabinetHero() {
 
         {/* Booking bar, lower-left under the copy (desktop) — left half only, per
             the mockup, so it doesn't run under the door cupboard on the right */}
-        <div className="absolute left-[clamp(24px,4vw,72px)] bottom-[6%] hidden w-[min(760px,54%)] lg:block">
+        <div className="absolute left-[clamp(24px,4vw,72px)] bottom-[6%] hidden w-[min(760px,54%)] xl:block">
           <HeroBookingBar />
           <p className="mt-2 font-sans text-[12px] uppercase tracking-[0.2em] text-house-cream/80">Booked through HoWA</p>
         </div>
       </div>
 
-      {/* Mobile: copy + booking bar stacked under the image */}
-      <div className="px-6 py-8 lg:hidden">
+      {/* Below xl: copy + booking bar stacked under the image (the fixed-aspect
+          stage is too short for the overlay to sit without the H1, subline and
+          booking bar colliding, so we stack until there is real vertical room). */}
+      <div className="px-6 py-8 xl:hidden">
         <Copy />
         <div className="mt-6">
           <HeroBookingBar />
