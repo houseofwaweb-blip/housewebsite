@@ -51,7 +51,7 @@ export function HeroBookingBar({ className = "" }: { className?: string }) {
           <span className={FIELD_LABEL}>Postcode</span>
           <input type="text" inputMode="text" autoComplete="postal-code" placeholder="e.g. BR7 5AA" value={postcode} onChange={(e) => setPostcode(e.target.value)} className={`${FIELD_CTRL} placeholder:text-house-stone/70`} />
         </label>
-        <button type="submit" className="h-11 whitespace-nowrap bg-house-gold-ink px-6 font-sans text-[13px] uppercase tracking-[0.16em] text-house-ink transition-[filter] hover:brightness-105 lg:mt-0">
+        <button type="submit" className="h-11 whitespace-nowrap bg-house-gold-ink px-6 font-sans text-[13px] uppercase tracking-[0.16em] text-house-ink transition-[filter] hover:brightness-105 sm:col-span-2 lg:col-span-1 lg:mt-0">
           Check availability →
         </button>
       </div>

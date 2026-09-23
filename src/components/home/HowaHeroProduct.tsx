@@ -89,7 +89,7 @@ export function HowaHeroProduct() {
               ))}
             </ul>
 
-            <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+            <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <div className="flex flex-1 flex-col gap-3 sm:flex-row">
                 <Link href="/howa" className="booknow-button flex-1 whitespace-nowrap text-center font-sans text-[13px] tracking-[0.16em] uppercase text-house-cream bg-house-brown border border-house-brown px-6 py-3 no-underline transition-[filter] duration-[var(--t-slow)] ease-out hover:brightness-125">
                   Discover HoWA →
@@ -98,7 +98,7 @@ export function HowaHeroProduct() {
                   Open My HoWA →
                 </Link>
               </div>
-              <p className="hidden shrink-0 font-display text-[clamp(16px,1.3vw,20px)] italic leading-[1.3] text-house-gold-dark lg:block">
+              <p className="hidden shrink-0 font-display text-[clamp(16px,1.3vw,20px)] italic leading-[1.3] text-house-gold-dark xl:block">
                 Less to worry about.<br />More home to enjoy.
               </p>
             </div>

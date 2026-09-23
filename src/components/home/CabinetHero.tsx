@@ -111,38 +111,45 @@ export function CabinetHero() {
         </div>
       </div>
 
-      {/* Below xl: portrait cabinet image with tappable doors, then copy + booking bar */}
+      {/* Below xl: portrait cabinet with tappable doors. Phones stack (cabinet,
+          copy, booking bar); tablets (md-xl) place the cabinet and copy side by
+          side so the portrait image doesn't float in an empty band, with the
+          booking bar full-width beneath (so its fields never squash in a narrow
+          column). */}
       <div className="xl:hidden">
-        <div className="relative mx-auto w-full max-w-[480px]" style={{ aspectRatio: "1092 / 1440" }}>
-          <Image
-            src="/home/hero-cabinet-mobile.webp"
-            alt="The House of Willow Alexander service cabinet: six coloured doors for gardening, cleaning, handyman, windows, removals and design."
-            fill
-            priority
-            sizes="(max-width: 520px) 100vw, 480px"
-            className="object-cover"
-          />
-          <div className="absolute inset-0" aria-label="Choose a service from the cabinet">
-            {MOBILE_DOORS.map((d) => (
-              <Link
-                key={d.label}
-                href={d.href}
-                aria-label={d.label}
-                className="absolute rounded-sm transition-colors duration-200 hover:bg-house-gold-light/15 focus-visible:bg-house-gold-light/25"
-                style={{ left: `${d.x}%`, top: `${d.y}%`, width: `${d.w}%`, height: `${d.h}%` }}
-              >
-                <span className="sr-only">{d.label}</span>
-              </Link>
-            ))}
+        <div className="mx-auto grid max-w-[1120px] items-center gap-x-10 md:grid-cols-2 md:px-8 md:pt-10">
+          <div className="relative mx-auto w-full max-w-[480px]" style={{ aspectRatio: "1092 / 1440" }}>
+            <Image
+              src="/home/hero-cabinet-mobile.webp"
+              alt="The House of Willow Alexander service cabinet: six coloured doors for gardening, cleaning, handyman, windows, removals and design."
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 480px"
+              className="object-cover"
+            />
+            <div className="absolute inset-0" aria-label="Choose a service from the cabinet">
+              {MOBILE_DOORS.map((d) => (
+                <Link
+                  key={d.label}
+                  href={d.href}
+                  aria-label={d.label}
+                  className="absolute rounded-sm transition-colors duration-200 hover:bg-house-gold-light/15 focus-visible:bg-house-gold-light/25"
+                  style={{ left: `${d.x}%`, top: `${d.y}%`, width: `${d.w}%`, height: `${d.h}%` }}
+                >
+                  <span className="sr-only">{d.label}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="px-6 pt-8 md:p-0">
+            <Copy />
           </div>
         </div>
 
-        <div className="px-6 py-8">
-          <Copy />
-          <div className="mt-6">
-            <HeroBookingBar />
-            <p className="mt-2 font-sans text-[12px] uppercase tracking-[0.2em] text-house-cream/70">Booked through HoWA</p>
-          </div>
+        <div className="mx-auto max-w-[1120px] px-6 pb-9 pt-6 md:px-8 md:pb-10">
+          <HeroBookingBar />
+          <p className="mt-2 font-sans text-[12px] uppercase tracking-[0.2em] text-house-cream/70">Booked through HoWA</p>
         </div>
       </div>
     </section>

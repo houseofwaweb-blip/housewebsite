@@ -407,7 +407,7 @@ function TwoLevelMegaPanel({ data, isOpen }: { data: TwoLevelMega; isOpen: boole
         {/* Cream right rail — featured still life, postcode finder, trust line
             (spec §6.1). Only rendered for menus that supply enrichments. */}
         {hasRail ? (
-          <aside className={cn("hidden lg:flex flex-col", featLeft ? "order-1" : "gap-[16px] bg-house-cream-light border-l border-house-brown/8 pl-[28px]")}>
+          <aside className={cn("hidden lg:flex flex-col", featLeft ? "order-1" : "gap-[16px] bg-house-cream-light border-l border-house-brown/8 px-[28px]")}>
             {data.featured ? (
               <Link
                 href={data.featured.href ?? cat.href}

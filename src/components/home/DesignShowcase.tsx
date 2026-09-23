@@ -16,10 +16,12 @@ const TRIPTYCH = [
 export function DesignShowcase() {
   return (
     <section aria-label="House Design" className="border-t border-house-line bg-house-cream-light px-[clamp(16px,3vw,40px)] py-[clamp(40px,5vw,80px)]">
-      <div className="mx-auto grid max-w-[1760px] items-stretch gap-4 lg:grid-cols-[0.85fr_0.85fr_1.3fr]">
-        {/* Left — large interior image */}
-        <div className="relative aspect-[4/3] w-full overflow-hidden lg:aspect-auto lg:min-h-[420px]">
-          <Image src="/home-v4/v6-interior-design.webp" alt="A layered, considered British interior" fill sizes="(min-width:1024px) 28vw, 100vw" className="object-cover" />
+      <div className="mx-auto grid max-w-[1760px] items-center gap-4 lg:grid-cols-[0.85fr_0.85fr_1.3fr]">
+        {/* Left — large interior image. Keep the image's own 1168:784 aspect so
+            object-cover never crops the sides and cuts the "INTERIOR DESIGN"
+            wording baked into it (was forced to 4:3 / portrait and lost it). */}
+        <div className="relative aspect-[1168/784] w-full self-center overflow-hidden bg-house-cream-light">
+          <Image src="/home-v4/v6-interior-design.webp" alt="A layered, considered British interior" fill sizes="(min-width:1024px) 28vw, 100vw" className="object-contain" />
         </div>
 
         {/* Centre — copy */}

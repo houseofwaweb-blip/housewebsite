@@ -90,8 +90,9 @@ export function PopularServices() {
             </article>
           ))}
 
-          {/* Help card */}
-          <article className="flex flex-col justify-center bg-house-forest p-6 text-house-cream">
+          {/* Help card — when it's the odd one out in the 2-col grid, span the
+              row and centre it (with a cap) rather than sit alone on the left. */}
+          <article className="flex flex-col justify-center bg-house-forest p-6 text-house-cream sm:col-span-2 sm:mx-auto sm:w-full sm:max-w-[460px] lg:col-span-1 lg:mx-0 lg:max-w-none">
             <h3 className="font-display text-[clamp(22px,1.6vw,26px)] leading-tight">Not sure what you need?</h3>
             <p className="mt-3 font-sans text-[15px] leading-[1.55] text-house-cream/80">
               Tell HoWA what&rsquo;s happening and we&rsquo;ll point you in the right direction.

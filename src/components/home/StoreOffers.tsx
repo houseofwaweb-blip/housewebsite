@@ -55,7 +55,7 @@ export function StoreOffers({ products }: { products: Product[] }) {
                 Thoughtful pieces for a more beautiful, more sustainable everyday.
               </p>
             </div>
-            <Link href="/shop" className="mt-5 inline-flex h-10 w-fit items-center justify-center whitespace-nowrap border border-house-gold-light bg-house-gold-light px-5 font-sans text-[12px] uppercase tracking-[0.14em] text-house-ink no-underline transition-[filter] hover:brightness-105">
+            <Link href="/shop" className="mt-5 inline-flex h-10 w-full items-center justify-center whitespace-nowrap border border-house-gold-light bg-house-gold-light px-5 font-sans text-[12px] uppercase tracking-[0.14em] text-house-ink no-underline transition-[filter] hover:brightness-105">
               Shop now →
             </Link>
           </div>
