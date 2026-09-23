@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 
 /**
  * PopularServices — homepage "Get something sorted" (brief §7), designed to the
@@ -66,7 +67,7 @@ export function PopularServices() {
           </Link>
         </div>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        <MobileCarousel ariaLabel="Popular services" gridClassName="mt-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {CARDS.map((c) => (
             <article key={c.slug} className="flex flex-col border border-house-brown/12 bg-house-white">
               <div className="relative aspect-[4/3] w-full overflow-hidden">
@@ -105,7 +106,7 @@ export function PopularServices() {
               A happier home is a brighter tomorrow
             </div>
           </article>
-        </div>
+        </MobileCarousel>
       </div>
     </section>
   );

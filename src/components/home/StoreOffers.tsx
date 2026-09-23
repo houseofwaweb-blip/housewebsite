@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 
 type Product = { name: string; price: string; image: string | null; href: string };
 
@@ -27,7 +28,7 @@ export function StoreOffers({ products }: { products: Product[] }) {
           </Link>
         </div>
 
-        <div className="mt-9 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
+        <MobileCarousel ariaLabel="Shop the House" gridClassName="mt-9 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7" itemClassName="basis-[46%] min-[400px]:basis-[40%]">
           {edit.map((p, i) => (
             <Link key={`${p.href}-${i}`} href={p.href} className="group block no-underline">
               <div className="relative aspect-[4/5] w-full overflow-hidden bg-house-cream-dark">
@@ -59,7 +60,7 @@ export function StoreOffers({ products }: { products: Product[] }) {
               Shop now →
             </Link>
           </div>
-        </div>
+        </MobileCarousel>
       </div>
     </section>
   );

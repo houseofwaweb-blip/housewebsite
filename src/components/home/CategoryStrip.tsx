@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 
 /**
  * CategoryStrip — homepage five-entrance strip (brief §6), designed to the
@@ -50,7 +51,7 @@ const ENTRIES: Entry[] = [
 export function CategoryStrip() {
   return (
     <section aria-label="Explore the House" className="bg-house-cream px-[clamp(16px,3vw,40px)] py-[clamp(28px,3.5vw,48px)]">
-      <div className="mx-auto grid max-w-[1760px] grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
+      <MobileCarousel ariaLabel="Explore the House" gridClassName="mx-auto max-w-[1760px] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
         {ENTRIES.map((e) => (
           <Link
             key={e.href}
@@ -75,7 +76,7 @@ export function CategoryStrip() {
             </span>
           </Link>
         ))}
-      </div>
+      </MobileCarousel>
     </section>
   );
 }
