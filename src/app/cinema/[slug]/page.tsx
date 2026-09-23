@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { resolveFilm, resolveFilms } from "@/lib/cinema-data";
 import { FilmThumb } from "@/components/cinema/FilmThumb";
 import { CinemaPlayer } from "@/components/cinema/CinemaPlayer";
+import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 
 /**
  * /cinema/[slug] — a single film's page, laid out like a Hearth article: the
@@ -77,7 +78,7 @@ export default async function FilmPage({
         <section className="border-t border-house-brown/10 px-[5vw] py-16">
           <div className="mx-auto max-w-[1200px]">
             <p className="mb-6 font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink">More films</p>
-            <div className="grid gap-x-6 gap-y-10 sm:grid-cols-3">
+            <MobileCarousel ariaLabel="More films" gridClassName="sm:grid-cols-3 sm:gap-x-6 sm:gap-y-10">
               {others.map((f) => (
                 <Link key={f.slug} href={`/cinema/${f.slug}`} className="group no-underline">
                   <div className="relative aspect-video w-full overflow-hidden border border-house-brown/12 bg-house-cream-dark">
@@ -90,7 +91,7 @@ export default async function FilmPage({
                   <h3 className="mt-1 font-display text-[23px] leading-tight text-house-brown transition-colors group-hover:text-house-gold-ink">{f.title}</h3>
                 </Link>
               ))}
-            </div>
+            </MobileCarousel>
             <div className="mt-9">
               <Link href="/cinema" className="font-sans text-[14px] tracking-[0.18em] uppercase text-house-gold-ink no-underline hover:text-house-brown">
                 All films →

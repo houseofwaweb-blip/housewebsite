@@ -1,5 +1,6 @@
 import { FilmThumb } from "@/components/cinema/FilmThumb";
 import Link from "next/link";
+import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 import { resolveFilms, resolveFeatured } from "@/lib/cinema-data";
 import { CinemaFeatured } from "@/components/cinema/CinemaFeatured";
 
@@ -52,7 +53,7 @@ export default async function CinemaPage() {
       <section className="px-[5vw] pb-24">
         <div className="mx-auto max-w-[1200px]">
           <p className="mb-6 font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink">More films</p>
-          <div className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+          <MobileCarousel ariaLabel="More films" gridClassName="sm:grid-cols-2 lg:grid-cols-3 sm:gap-x-6 sm:gap-y-10">
             {rest.map((f) => (
               <Link key={f.slug} href={`/cinema/${f.slug}`} className="group no-underline">
                 <div className="relative aspect-video w-full overflow-hidden border border-house-brown/12 bg-house-cream-dark">
@@ -66,7 +67,7 @@ export default async function CinemaPage() {
                 <h3 className="mt-1 font-display text-[25px] leading-tight text-house-brown transition-colors group-hover:text-house-gold-ink">{f.title}</h3>
               </Link>
             ))}
-          </div>
+          </MobileCarousel>
         </div>
       </section>
 
