@@ -28,10 +28,10 @@ function Copy() {
       <p className="mb-4 font-sans text-[clamp(10px,0.9vw,12px)] uppercase tracking-[0.24em] text-house-gold-light">
         A British home &amp; garden institution
       </p>
-      <h1 className="font-display text-[clamp(52px,8vw,132px)] leading-[0.92] text-house-cream">
+      <h1 className="font-display text-[clamp(52px,7.4vw,128px)] leading-[0.92] text-house-cream">
         That feeling<br />you call <em className="italic">home.</em>
       </h1>
-      <p className="mt-6 max-w-[34ch] font-sans text-[clamp(18px,1.9vw,28px)] leading-[1.45] text-house-cream/90">
+      <p className="mt-5 max-w-[40ch] font-sans text-[clamp(16px,1.5vw,22px)] leading-[1.4] text-house-cream/90">
         Home and garden services, design, insurance and beautiful things for the
         home. All in one place, with people you can trust.
       </p>
@@ -55,11 +55,6 @@ export function CabinetHero() {
         {/* Left scrim for legible overlay copy (desktop) */}
         <div aria-hidden className="absolute inset-0 hidden xl:block" style={{ background: "linear-gradient(90deg, rgba(24,36,28,0.78) 0%, rgba(24,36,28,0.40) 30%, rgba(24,36,28,0) 55%)" }} />
 
-        {/* Copy overlay (desktop) */}
-        <div className="absolute left-[clamp(24px,4vw,72px)] top-[15%] hidden max-w-[52%] xl:block">
-          <Copy />
-        </div>
-
         {/* Door hotspots (desktop) */}
         <div className="absolute inset-0 hidden xl:block" aria-label="Choose a service from the cupboard">
           {DOORS.map((d) => (
@@ -75,11 +70,19 @@ export function CabinetHero() {
           ))}
         </div>
 
-        {/* Booking bar, lower-left under the copy (desktop) — left half only, per
-            the mockup, so it doesn't run under the door cupboard on the right */}
-        <div className="absolute left-[clamp(24px,4vw,72px)] bottom-[6%] hidden w-[min(760px,54%)] xl:block">
-          <HeroBookingBar />
-          <p className="mt-2 font-sans text-[12px] uppercase tracking-[0.2em] text-house-cream/80">Booked through HoWA</p>
+        {/* Copy + booking bar overlay (desktop), left column. A flex column with
+            justify-between keeps the copy pinned to the top and the booking bar to
+            the bottom, so the two blocks can never overlap each other however short
+            the fixed-aspect stage becomes. Container is pointer-events-none so the
+            door hotspots on the right stay clickable; the copy/bar re-enable it. */}
+        <div className="pointer-events-none absolute inset-0 hidden flex-col justify-between px-[clamp(24px,4vw,72px)] py-[clamp(36px,5vh,72px)] xl:flex">
+          <div className="pointer-events-auto max-w-[52%]">
+            <Copy />
+          </div>
+          <div className="pointer-events-auto w-[min(760px,52%)]">
+            <HeroBookingBar />
+            <p className="mt-2 font-sans text-[12px] uppercase tracking-[0.2em] text-house-cream/80">Booked through HoWA</p>
+          </div>
         </div>
       </div>
 
