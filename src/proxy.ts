@@ -42,10 +42,13 @@ export function proxy(request: NextRequest) {
     needsRedirect = true;
   }
 
-  // Uppercase path segments → lowercase
-  // Preserve exact query strings
+  // Uppercase path segments → lowercase (page routes only). Skip requests for
+  // static files (a dot-extension in the last segment): their names are
+  // case-sensitive on Linux/Vercel, e.g. carousel cover images named after
+  // mixed-case YouTube ids. Lowercasing those 404s the asset in production.
+  const isStaticFile = /\.[a-z0-9]+$/i.test(url.pathname);
   const lower = url.pathname.toLowerCase();
-  if (lower !== url.pathname) {
+  if (!isStaticFile && lower !== url.pathname) {
     url.pathname = lower;
     needsRedirect = true;
   }
