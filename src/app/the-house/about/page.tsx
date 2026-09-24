@@ -31,12 +31,20 @@ type Fig = { src: string; alt: string; caption: string; placeholder?: boolean };
 
 // PLACEHOLDER — replace with a recognisable founder portrait (Samuel & Alexander).
 const FOUNDER_PORTRAIT: Fig = {
-  src: "/lifestyle/period-portrait.webp",
-  alt: "Placeholder portrait, to be replaced with a founder portrait",
-  // IMAGE BRIEF (shown in the caption on localhost so you know what to send):
-  caption:
-    "IMAGE NEEDED: a landscape portrait of founders Samuel Collett and Alexander Oakley together, warm and editorial (a garden, studio or workshop setting suits). Will caption: “Samuel Collett and Alexander Oakley, founders of the House.”",
-  placeholder: true,
+  src: "/the-house/about/founders-hero.webp",
+  alt: "Samuel Collett and Alexander Oakley, founders of House of Willow Alexander",
+  caption: "Samuel Collett and Alexander Oakley, founders of the House.",
+};
+
+const FOUNDER_SAMUEL: Fig = {
+  src: "/the-house/about/founder-samuel.webp",
+  alt: "Samuel Collett, co-founder of House of Willow Alexander",
+  caption: "Samuel Collett",
+};
+const FOUNDER_ALEXANDER: Fig = {
+  src: "/the-house/about/founder-alexander.webp",
+  alt: "Alexander Oakley, co-founder of House of Willow Alexander",
+  caption: "Alexander Oakley",
 };
 
 // Real House editorial photography (the-house/editorial set) — reused here as
@@ -130,6 +138,26 @@ function FloatFigure({ fig, side }: { fig: Fig; side: "left" | "right" }) {
   );
 }
 
+function FoundersPair() {
+  return (
+    <div className="clear-both my-10 grid grid-cols-2 gap-4 md:gap-6">
+      {[FOUNDER_SAMUEL, FOUNDER_ALEXANDER].map((f) => (
+        <figure key={f.src}>
+          <div className="relative aspect-[4/5] w-full overflow-hidden border border-house-line bg-house-cream-dark">
+            <Image src={f.src} alt={f.alt} fill sizes="(min-width:820px) 400px, 45vw" className="object-cover" />
+          </div>
+          <figcaption className="mt-2.5 font-hearth-sans text-[13px] leading-[1.5] text-house-stone">
+            <span className="block font-hearth-serif italic text-[18px] text-house-black">
+              {f.caption}
+            </span>
+            <span className="text-[12px] tracking-[0.16em] uppercase">Co-founder</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  );
+}
+
 function Band({ fig }: { fig: Fig }) {
   return (
     <figure className="clear-both my-10 md:my-12">
@@ -193,7 +221,6 @@ export default async function AboutPage() {
             </div>
             <figcaption className="mt-2.5 font-hearth-sans text-[13px] leading-[1.5] text-house-stone">
               {FOUNDER_PORTRAIT.caption}
-              <span className="italic"> (placeholder portrait)</span>
             </figcaption>
           </figure>
         </div>
@@ -204,6 +231,7 @@ export default async function AboutPage() {
         <div className="mx-auto max-w-[820px]">
           {STORY.map((para, i) => (
             <React.Fragment key={i}>
+              {i === 1 ? <FoundersPair /> : null}
               {BAND_BEFORE[i] ? <Band fig={BAND_BEFORE[i]} /> : null}
               {FLOAT_BEFORE[i] ? (
                 <FloatFigure fig={FLOAT_BEFORE[i].fig} side={FLOAT_BEFORE[i].side} />
