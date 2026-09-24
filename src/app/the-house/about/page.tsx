@@ -1,6 +1,8 @@
+import * as React from "react";
 import Image from "next/image";
 import { EnquiryForm } from "@/components/marketing/EnquiryForm";
 import { getPageSections, cms } from "@/lib/cms/page-sections";
+import { cn } from "@/lib/cn";
 
 export const metadata = {
   title: "About House of Willow Alexander",
@@ -9,48 +11,46 @@ export const metadata = {
 };
 
 /**
- * /the-house/about — the full About Us story (final September brief §2).
+ * /the-house/about — the full About Us story, laid out as a magazine long-read
+ * (final September brief §2; the House & Garden / Hearth editorial model).
  *
- * One flowing narrative in a readable text column. Label "About House of
- * Willow Alexander", headline "Rooted in design. Devoted to home." Copy is the
- * supplied story, verbatim (em dashes removed per the brand rule).
+ * Uses the Hearth's editorial typography (hearth-serif/sans): a display
+ * masthead, an italic standfirst, a byline/credit line, a lead image, a drop
+ * cap, images floated to the side with text wrapping, and a pull-quote.
  *
- * IMAGERY: the founder portrait and supporting photographs below are
- * PLACEHOLDERS using existing House imagery. Replace `FOUNDER_PORTRAIT` and the
- * `FIGURES` with a real founder portrait and selected supporting photographs.
+ * IMAGERY: the founder portrait and side figures are PLACEHOLDERS using
+ * existing House imagery. Replace `FOUNDER_PORTRAIT` and the `FIGURE_*` with a
+ * real founder portrait and selected supporting photographs.
  *
- * RECOGNITION: press/recognition is kept as readable text. The brief asks for
- * links to the original sources; add them once the exact URLs are supplied
- * (House & Garden's The List, Great British Entrepreneur Awards, SME News,
- * Acquisition International, Global 100). We do not invent links.
+ * RECOGNITION is kept as readable text; add source links (House & Garden's The
+ * List, GBEA, SME News, Acquisition International, Global 100) once URLs are
+ * supplied. We do not invent links.
  */
 
+type Fig = { src: string; alt: string; caption: string; placeholder?: boolean };
+
 // PLACEHOLDER — replace with a recognisable founder portrait (Samuel & Alexander).
-const FOUNDER_PORTRAIT = {
+const FOUNDER_PORTRAIT: Fig = {
   src: "/lifestyle/period-portrait.webp",
   alt: "Placeholder portrait, to be replaced with a founder portrait",
   caption: "Samuel Collett and Alexander Oakley, founders of the House.",
   placeholder: true,
-} as const;
+};
 
-// PLACEHOLDER supporting photographs.
-const FIGURE_GARDEN = {
+const FIGURE_GARDEN: Fig = {
   src: "/design/gardens/hero.jpg",
   alt: "A garden designed and planted by Willow Alexander Gardens",
   caption: "Willow Alexander Gardens, the studio from which the House grew.",
   placeholder: true,
-} as const;
+};
 
-const FIGURE_VAN = {
+const FIGURE_VAN: Fig = {
   src: "/services/photos/vans/asher-347.webp",
   alt: "A House of Willow Alexander electric van",
   caption: "Electric vans, out across London and the South East.",
   placeholder: true,
-} as const;
+};
 
-// The supplied About story, as one flowing narrative. `lede` is the opening
-// line; the rest render as a readable column. A couple of figures are placed
-// mid-story by index.
 const LEDE =
   "We began with gardens, soil and seasons. Today, House of Willow Alexander brings together the design that shapes a home, the care that keeps it, and the intelligence that remembers it.";
 
@@ -74,27 +74,33 @@ const STORY: string[] = [
   "To begin a commission, arrange ongoing care or explore working with the House, speak to our team through the contact or consultation form. A finished brief is not required, just a question, an idea or a place you would like to make better.",
 ];
 
-// Figures placed AFTER these story paragraph indices (0-based).
-const FIGURE_AFTER: Record<number, typeof FIGURE_GARDEN> = {
-  3: FIGURE_GARDEN, // after the "garden design remains our foundation" paragraph
-  5: FIGURE_VAN, // after the sustainability / electric vans paragraph
+// Figures floated beside the text, keyed by the story-paragraph index they
+// sit before. Alternating sides for a magazine rhythm.
+const FLOAT_BEFORE: Record<number, { fig: Fig; side: "left" | "right" }> = {
+  3: { fig: FIGURE_GARDEN, side: "right" },
+  6: { fig: FIGURE_VAN, side: "left" },
 };
 
-function Figure({
-  fig,
-}: {
-  fig: { src: string; alt: string; caption: string; placeholder?: boolean };
-}) {
+// A pull-quote before this story-paragraph index (the House's recurring test).
+const PULL_BEFORE = 8;
+const PULL_QUOTE = "Would we trust this in a home we love?";
+
+function FloatFigure({ fig, side }: { fig: Fig; side: "left" | "right" }) {
   return (
-    <figure className="my-10">
-      <div className="relative aspect-[3/2] w-full overflow-hidden border border-house-line bg-house-cream-dark">
-        <Image src={fig.src} alt={fig.alt} fill sizes="(min-width:768px) 68ch, 100vw" className="object-cover" />
+    <figure
+      className={cn(
+        "my-6 w-full md:my-2 md:w-[44%]",
+        side === "right"
+          ? "md:float-right md:ml-9 md:clear-right"
+          : "md:float-left md:mr-9 md:clear-left",
+      )}
+    >
+      <div className="relative aspect-[4/5] w-full overflow-hidden border border-house-line bg-house-cream-dark">
+        <Image src={fig.src} alt={fig.alt} fill sizes="(min-width:768px) 360px, 100vw" className="object-cover" />
       </div>
-      <figcaption className="mt-3 font-sans text-[15px] italic leading-[1.5] text-house-stone">
+      <figcaption className="mt-2.5 font-hearth-sans text-[13px] leading-[1.5] text-house-stone">
         {fig.caption}
-        {fig.placeholder ? (
-          <span className="not-italic"> (placeholder imagery)</span>
-        ) : null}
+        {fig.placeholder ? <span className="italic"> (placeholder)</span> : null}
       </figcaption>
     </figure>
   );
@@ -104,29 +110,36 @@ export default async function AboutPage() {
   const sections = await getPageSections("the-house-about");
   const intro = sections.get("intro");
 
-  const eyebrow = cms(intro, "eyebrow", "About House of Willow Alexander");
+  const eyebrow = cms(intro, "eyebrow", "The House · About");
   const headline = cms(intro, "headline", "Rooted in design.");
   const headlineTail = cms(intro, "subheadline", "Devoted to home.");
   const lede = cms(intro, "body", LEDE);
 
   return (
-    <div className="bg-house-cream text-house-brown">
-      {/* Hero — label + headline + lede */}
-      <header className="px-[5vw] pt-[clamp(56px,9vh,120px)] pb-[clamp(28px,4vw,52px)]">
+    <div className="bg-house-cream text-house-black">
+      {/* Masthead */}
+      <header className="px-[5vw] pt-[clamp(48px,8vh,104px)] pb-[clamp(20px,3vw,36px)]">
         <div className="mx-auto max-w-[1100px]">
-          <p className="font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-ink">
+          <p className="font-hearth-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink">
             {eyebrow}
           </p>
-          <h1 className="mt-5 max-w-[16ch] font-display text-[clamp(44px,6vw,92px)] font-normal leading-[0.98] tracking-[-0.02em] text-house-brown text-balance">
+          <h1 className="mt-5 max-w-[14ch] font-hearth-serif font-medium text-[clamp(46px,7.4vw,108px)] leading-[0.96] tracking-[-0.015em] text-house-black text-balance">
             {headline} <em className="italic text-house-gold-ink">{headlineTail}</em>
           </h1>
-          <p className="mt-7 max-w-[62ch] font-sans text-[clamp(20px,1.7vw,25px)] leading-[1.55] text-house-brown/82">
+          <p className="mt-7 max-w-[58ch] font-hearth-serif italic text-[clamp(20px,1.9vw,27px)] leading-[1.5] text-house-stone">
             {lede}
+          </p>
+          <p className="mt-6 font-hearth-sans text-[13px] tracking-[0.18em] uppercase text-house-stone">
+            Founded 2019 by{" "}
+            <em className="not-italic font-hearth-serif italic text-[17px] tracking-normal normal-case text-house-black">
+              Samuel Collett &amp; Alexander Oakley
+            </em>{" "}
+            &middot; London, Kent &amp; UK-wide design
           </p>
         </div>
       </header>
 
-      {/* Founder portrait */}
+      {/* Lead image */}
       <div className="px-[5vw]">
         <div className="mx-auto max-w-[1100px]">
           <figure>
@@ -140,25 +153,39 @@ export default async function AboutPage() {
                 className="object-cover"
               />
             </div>
-            <figcaption className="mt-3 font-sans text-[15px] italic leading-[1.5] text-house-stone">
+            <figcaption className="mt-2.5 font-hearth-sans text-[13px] leading-[1.5] text-house-stone">
               {FOUNDER_PORTRAIT.caption}
-              <span className="not-italic"> (placeholder portrait)</span>
+              <span className="italic"> (placeholder portrait)</span>
             </figcaption>
           </figure>
         </div>
       </div>
 
-      {/* Story — one flowing narrative in a readable column */}
+      {/* Article — reading column with side figures, drop cap and a pull-quote */}
       <article className="px-[5vw] py-[clamp(40px,6vw,80px)]">
-        <div className="mx-auto max-w-[68ch]">
+        <div className="mx-auto max-w-[820px]">
           {STORY.map((para, i) => (
-            <div key={i}>
-              <p className="mb-6 font-sans text-[19px] leading-[1.75] text-house-brown/88">
+            <React.Fragment key={i}>
+              {FLOAT_BEFORE[i] ? (
+                <FloatFigure fig={FLOAT_BEFORE[i].fig} side={FLOAT_BEFORE[i].side} />
+              ) : null}
+              {PULL_BEFORE === i ? (
+                <blockquote className="clear-both my-12 border-l-2 border-house-gold pl-7 font-hearth-serif italic text-[clamp(26px,3vw,40px)] leading-[1.2] text-house-black">
+                  {PULL_QUOTE}
+                </blockquote>
+              ) : null}
+              <p
+                className={cn(
+                  "mb-[22px] font-hearth-serif text-[clamp(19px,1.4vw,22px)] leading-[1.75] text-house-black/90",
+                  i === 0 &&
+                    "first-letter:float-left first-letter:mr-3 first-letter:mt-1.5 first-letter:font-hearth-serif first-letter:text-[68px] first-letter:leading-[0.7] first-letter:text-house-gold-ink md:first-letter:text-[92px]",
+                )}
+              >
                 {para}
               </p>
-              {FIGURE_AFTER[i] ? <Figure fig={FIGURE_AFTER[i]} /> : null}
-            </div>
+            </React.Fragment>
           ))}
+          <div className="clear-both" />
         </div>
       </article>
 
