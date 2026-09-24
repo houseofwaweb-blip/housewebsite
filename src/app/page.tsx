@@ -9,6 +9,7 @@ import { InsuranceBand } from "@/components/home/InsuranceBand";
 import { UnordinaryHearthBand } from "@/components/home/UnordinaryHearthBand";
 import { HowaHeroProduct } from "@/components/home/HowaHeroProduct";
 import { HouseAtWork } from "@/components/home/HouseAtWork";
+import { HouseAboutIntro } from "@/components/home/HouseAboutIntro";
 
 /**
  * Homepage — House-first (Aug-17 rebuild, spec §8).
@@ -77,7 +78,11 @@ export default async function HomePage() {
           service cards (final September brief §1). */}
       <HouseAtWork />
 
-      {/* 6. HoWA section — "Your home, in hand." (amendments §8) */}
+      {/* 6. Short About introduction — immediately after The House at work,
+          links to the full story (final September brief §2). */}
+      <HouseAboutIntro />
+
+      {/* 7. HoWA section — "Your home, in hand." (amendments §8) */}
       <HowaHeroProduct />
 
       {/* 6. Design section — kinder, calmer home (amendments §9) */}
