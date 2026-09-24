@@ -284,17 +284,9 @@ export function SingleServiceDetail({ view }: { view: SingleServiceView }) {
         </section>
       ) : null}
 
-      {/* 8. Closing enquiry form */}
-      <div className="scroll-mt-24">
-        <EnquiryForm
-          defaultService={view.enquiryService}
-          sourcePage={view.enquirySource}
-          eyebrow="Still deciding?"
-          headline={`Talk to us about ${view.name.toLowerCase()}.`}
-          body="Prefer to ask before you book? Tell us about your home and we'll come back to you personally, usually within one working day."
-        />
-      </div>
-
+      {/* One enquiry form per page (the inline one above) + the clear booking
+          route below (brief §3: keep one well-placed form). Closing duplicate
+          enquiry form removed. */}
       <section className={s.closing}>
         <p className={s.closingKicker}>Ready when you are</p>
         <p className={s.closingStatement}>
