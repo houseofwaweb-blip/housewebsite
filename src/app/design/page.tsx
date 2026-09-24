@@ -231,7 +231,7 @@ export default async function DesignLanding() {
               </li>
             ))}
           </ul>
-          <Link href={cms(seal, "ctaHref", "/the-house/standards")} className={s.sealLink}>
+          <Link href={cms(seal, "ctaHref", "/house-approved-pro")} className={s.sealLink}>
             {cms(seal, "ctaLabel", "Read the standards")} →
           </Link>
         </div>

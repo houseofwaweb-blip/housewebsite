@@ -140,7 +140,7 @@ export default async function DesignStudiosPage() {
               <Link href={cms(hero, "ctaHref", "#studios")} className={s.btnFilled}>
                 {cms(hero, "ctaLabel", "Meet the studios")}
               </Link>
-              <Link href={cms(hero, "cta2Href", "/the-house/standards")} className={s.btnGhost}>
+              <Link href={cms(hero, "cta2Href", "/house-approved-pro")} className={s.btnGhost}>
                 {cms(hero, "cta2Label", "Read the standards")}
                 <span aria-hidden="true" className={s.btnArrow}>→</span>
               </Link>

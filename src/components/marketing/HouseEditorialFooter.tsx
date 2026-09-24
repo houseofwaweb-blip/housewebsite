@@ -12,9 +12,6 @@ import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 
 const PAGES = [
   { slug: "about", href: "/the-house/about", label: "About the House", blurb: "Who we are, and why the House exists." },
-  { slug: "philosophy", href: "/the-house/philosophy", label: "Philosophy", blurb: "What we believe about homes and stewardship." },
-  { slug: "standards", href: "/the-house/standards", label: "Standards", blurb: "How we vet, hold and keep the House standard." },
-  { slug: "sustainability", href: "/the-house/sustainability", label: "Sustainability", blurb: "How the House treats materials, waste and time." },
   { slug: "proof", href: "/the-house/proof", label: "Proof", blurb: "The evidence behind the promises." },
 ];
 

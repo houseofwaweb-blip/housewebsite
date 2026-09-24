@@ -30,8 +30,6 @@ const STATIC_PAGES: SearchResult[] = [
   { id: "sp-how", type: "The House", title: "How the House works", excerpt: "Ask the House, the House arranges it, your Home Record remembers it. Booking and home intelligence powered by HoWA.", href: "/how-it-works" },
   { id: "sp-services", type: "Services", title: "Home and garden services", excerpt: "A specialist for every corner. Gardeners, cleaners, window and gutter cleaning, repairs, and more.", href: "/services" },
   { id: "sp-offers", type: "The House", title: "House Offers", excerpt: "Seasonal packages, multi-service care, and member benefits, shown in full.", href: "/offers" },
-  { id: "sp-philosophy", type: "The House", title: "Philosophy", excerpt: "What a house is actually for.", href: "/the-house/philosophy" },
-  { id: "sp-standards", type: "The House", title: "Standards", excerpt: "How we work, and what House Approved means.", href: "/the-house/standards" },
   { id: "sp-contact", type: "The House", title: "Contact", excerpt: "Write to the House. Book a House service.", href: "/contact" },
 ];
 

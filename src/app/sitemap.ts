@@ -42,10 +42,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // ---- The House ----
     { url: `${base}/the-house`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${base}/the-house/philosophy`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${base}/the-house/standards`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/the-house/proof`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${base}/the-house/sustainability`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/the-house/about`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/the-house/artwork`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
 

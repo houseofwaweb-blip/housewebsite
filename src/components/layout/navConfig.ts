@@ -71,7 +71,7 @@ const SERVICE_CATEGORIES: {
  * "Put Insurance in the services mega-menu as well as utility navigation"). */
 const SERVICE_FOOTER = [
   { label: "Insurance & Cover", href: "/insurance" },
-  { label: "House Approved standards", href: "/the-house/standards" },
+  { label: "House Approved standards", href: "/house-approved-pro" },
   { label: "Book a service", href: "#open-booking-form" },
 ];
 
@@ -117,7 +117,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
         links: [
           { label: "Home & garden care", href: "/services/home-and-garden", description: "The whole property, one rhythm" },
           { label: "Insurance & Cover", href: "/insurance", description: "Introductions via Provenance" },
-          { label: "House Approved standards", href: "/the-house/standards", description: "How we vet" },
+          { label: "House Approved standards", href: "/house-approved-pro", description: "How we vet" },
           { label: "Book a service", href: "#open-booking-form" },
         ],
       },
@@ -135,7 +135,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
         alt: "A still life of well-kept domestic objects on a linen surface",
         tag: "House Approved",
         heading: "Every visit, to the House standard.",
-        href: "/the-house/standards",
+        href: "/house-approved-pro",
       },
       postcode: { label: "See services near you", action: "/services" },
       trust: "House standards, clear service information and support when you need it.",
@@ -229,17 +229,9 @@ export const PRIMARY_NAV: MegaPanel[] = [
     triggerHref: "/the-house",
     groups: [
       {
-        heading: "What we stand for",
-        links: [
-          { label: "Philosophy", href: "/the-house/philosophy", description: "Our founding idea" },
-          { label: "The Artwork of the House", href: "/the-house/artwork", description: "Heritage, craft, colour" },
-          { label: "Standards", href: "/the-house/standards", description: "How we work" },
-          { label: "Sustainability", href: "/the-house/sustainability", description: "Our commitments" },
-        ],
-      },
-      {
         heading: "How the House works",
         links: [
+          { label: "The Artwork of the House", href: "/the-house/artwork", description: "Heritage, craft, colour" },
           { label: "How it works", href: "/how-it-works", description: "Bookings, records and reminders" },
           { label: "House Approved Pro", href: "/house-approved-pro", description: "For trusted tradespeople" },
           { label: "About", href: "/the-house/about", description: "The team behind the House" },
@@ -249,9 +241,9 @@ export const PRIMARY_NAV: MegaPanel[] = [
     preview: {
       image: "/home/hero-georgian.webp",
       alt: "A Georgian terrace in Notting Hill",
-      tag: "The Philosophy",
-      heading: "Ownership is passive. Stewardship is intentional.",
-      href: "/the-house/philosophy",
+      tag: "The House",
+      heading: "Rooted in design. Devoted to home.",
+      href: "/the-house/about",
     },
   },
 

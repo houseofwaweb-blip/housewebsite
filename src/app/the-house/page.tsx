@@ -154,13 +154,9 @@ export default function TheHousePage() {
             family and answer to one standard.
           </p>
           <p style={para}>
-            Read more about what we believe in our{" "}
-            <Link href="/the-house/philosophy" style={linkStyle}>
-              philosophy
-            </Link>{" "}
-            and{" "}
+            Read more in our{" "}
             <Link href="/the-house/about" style={linkStyle}>
-              about the House
+              story
             </Link>
             .
           </p>
@@ -255,17 +251,6 @@ export default function TheHousePage() {
             We keep claims specific. Environmental credentials, professional checks
             and product information are shown only where we have evidence to support
             them.
-          </p>
-          <p style={para}>
-            More on our{" "}
-            <Link href="/the-house/standards" style={linkStyle}>
-              standards
-            </Link>{" "}
-            and{" "}
-            <Link href="/the-house/sustainability" style={linkStyle}>
-              sustainability commitments
-            </Link>
-            .
           </p>
           </div>
           <div className="relative aspect-[4/3] w-full overflow-hidden lg:self-stretch" style={{ border: `1px solid ${line}` }}>
@@ -380,7 +365,7 @@ export default function TheHousePage() {
               apply to become House Approved
             </Link>
             , and you can read about our approach to{" "}
-            <Link href="/the-house/standards" style={linkStyle}>
+            <Link href="/house-approved-pro" style={linkStyle}>
               standards and accreditation
             </Link>
             .

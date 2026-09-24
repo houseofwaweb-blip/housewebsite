@@ -441,10 +441,10 @@ export default async function ArtworkPage() {
           </p>
           <div className={s.closingCtas}>
             <Link
-              href={cmsPage?.closingCtaPrimaryHref ?? "/the-house/philosophy"}
+              href={cmsPage?.closingCtaPrimaryHref ?? "/the-house/about"}
               className={s.btnFilled}
             >
-              {cmsPage?.closingCtaPrimary ?? "Read our philosophy"}
+              {cmsPage?.closingCtaPrimary ?? "Read our story"}
             </Link>
             <Link
               href={cmsPage?.closingCtaSecondaryHref ?? "/the-house"}

@@ -77,6 +77,12 @@ const nextConfig: NextConfig = {
       // "Marketplace" is the public label for the Shop.
       { source: "/marketplace", destination: "/shop", permanent: true },
       { source: "/marketplace/:path*", destination: "/shop/:path*", permanent: true },
+      // The House editorial sub-pages Philosophy / Standards / Sustainability are
+      // temporarily withdrawn to be reworked in silo. Route files are preserved;
+      // these TEMPORARY (302) redirects make them unreachable in the meantime.
+      { source: "/the-house/philosophy", destination: "/the-house", permanent: false },
+      { source: "/the-house/standards", destination: "/the-house", permanent: false },
+      { source: "/the-house/sustainability", destination: "/the-house", permanent: false },
       // Aug-17 rebuild: /the-house is now the real institution page (doc §15),
       // so the old bare-route → /the-house/about redirect is removed and the
       // page serves directly.
@@ -142,8 +148,11 @@ const nextConfig: NextConfig = {
       // Legacy WordPress pages → their new homes.
       { source: "/contact-us", destination: "/contact", permanent: true },
       { source: "/our-story", destination: "/the-house/about", permanent: true },
-      { source: "/accreditations", destination: "/the-house/standards", permanent: true },
-      { source: "/sustainability", destination: "/the-house/sustainability", permanent: true },
+      // Standards & Sustainability are temporarily withdrawn (reworked in silo),
+      // so these legacy WP URLs point straight to /the-house for now (avoids a
+      // redirect chain). Repoint to the pages when they return.
+      { source: "/accreditations", destination: "/the-house", permanent: false },
+      { source: "/sustainability", destination: "/the-house", permanent: false },
       // Aug-17 rebuild: the doc has no Design pillar or /partners page — design
       // folds into the Interiors + Home & Garden services. Retire /design/* and
       // /partners into the service pages.
