@@ -78,14 +78,79 @@ const BAND_RECORD: Fig = {
 const LEDE =
   "We began with gardens, soil and seasons. Today, House of Willow Alexander brings together the design that shapes a home, the care that keeps it, and the intelligence that remembers it.";
 
-const STORY: string[] = [
+// External source link for a press/recognition reference.
+function Src({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-house-gold-ink underline underline-offset-[3px] hover:text-house-brown"
+    >
+      {children}
+    </a>
+  );
+}
+
+const STORY: React.ReactNode[] = [
   "Our story began in 2019, when Samuel Collett and Alexander Oakley established a garden design studio with a belief that beautiful spaces deserved an equally thoughtful way of being cared for. From planting, proportion and craftsmanship grew a broader ambition: to bring the same consideration to the whole of a home, and to the experience of the people living within it.",
   "Samuel brought a perspective shaped beyond the garden gate. His career across high-end fashion, lifestyle and entertainment had taken him onto a global stage, working with some of the world’s most recognisable names, including BBC Worldwide, Warner Bros., ITV, Mercedes and Fashion Rocks. That experience in brand communications, creativity and customer relationships informed the House from the beginning: not simply how it should look, but how it should make people feel, earn their trust and understand what matters to them.",
-  "Together, Samuel and Alexander set out to build a business in which a strong creative identity was matched by the work delivered in people’s homes. Their entrepreneurial journey brought recognition at the Great British Entrepreneur Awards in both 2024 and 2025, first in the Purpose Entrepreneur of the Year category and subsequently in Family Business of the Year. Samuel has also been named a Top 100 Influential People honouree for two consecutive years, 2025 and 2026.",
-  "Garden design remains our creative foundation. Our studio, Willow Alexander Gardens, continues the work from which the wider House grew, with our garden design expertise represented in House & Garden’s The List. The magazine has described House of Willow Alexander as “an endlessly useful name to know” for both designing beautiful gardens and maintaining them, a distinction that captures our interest in what happens long after a design is complete.",
+  (
+    <>
+      Together, Samuel and Alexander set out to build a business in which a strong
+      creative identity was matched by the work delivered in people&rsquo;s homes.
+      Their entrepreneurial journey brought recognition at the{" "}
+      <Src href="https://greatbritishentrepreneurawards.com/artist/alexander-oakley-samuel-collett-willow-alexander/">
+        Great British Entrepreneur Awards
+      </Src>{" "}
+      in both 2024 and 2025, first in the Purpose Entrepreneur of the Year
+      category and subsequently in Family Business of the Year. Samuel has also
+      been named a{" "}
+      <Src href="https://top100influentialpeople.com/winner/samuel-collett/">
+        Top 100 Influential People
+      </Src>{" "}
+      honouree for two consecutive years, 2025 and 2026.
+    </>
+  ),
+  (
+    <>
+      Garden design remains our creative foundation. Our studio, Willow Alexander
+      Gardens, continues the work from which the wider House grew, with our garden
+      design expertise represented in{" "}
+      <Src href="https://thelist.houseandgarden.com/united-kingdom/brought-to-you-by-the-house-of-willow-alexander/service/willow-alexander-gardens">
+        House &amp; Garden&rsquo;s The List
+      </Src>
+      . The magazine has described House of Willow Alexander as &ldquo;an
+      endlessly useful name to know&rdquo; for both designing beautiful gardens
+      and maintaining them, a distinction that captures our interest in what
+      happens long after a design is complete.
+    </>
+  ),
   "A garden is never truly finished. It matures, changes and asks for attention. The same is true of a home. As our work expanded into ongoing garden and home care, we became increasingly concerned with that continuity: ensuring that the thought invested in creating a place was carried through into looking after it.",
-  "Environmental responsibility developed alongside that ambition, expressed through our electric vans and a more considered approach to the materials and methods we use. Our home and garden care has since received sustainability recognition from SME News’s Southern Enterprise Awards and Acquisition International’s Business Excellence Awards. For us, thoughtful design and responsible care belong in the same conversation.",
-  "Today, the House brings together our own services, design expertise and a growing House Approved network, giving carefully selected independent trade professionals and specialists an avenue to work under the House brand. Alongside our garden studio, partners such as Delve Interiors extend our design conversation indoors. The wider business has also been recognised as Consumer Services Business of the Year at the Global 100 Awards 2026.",
+  (
+    <>
+      Environmental responsibility developed alongside that ambition, expressed
+      through our electric vans and a more considered approach to the materials
+      and methods we use. Our home and garden care has since received
+      sustainability recognition from{" "}
+      <Src href="https://willowalexander.co.uk/house-of-willow-alexander-wins-sme-news-southern-enterprise-award/">
+        SME News&rsquo;s Southern Enterprise Awards
+      </Src>{" "}
+      and Acquisition International&rsquo;s Business Excellence Awards. For us,
+      thoughtful design and responsible care belong in the same conversation.
+    </>
+  ),
+  (
+    <>
+      Today, the House brings together our own services, design expertise and a
+      growing House Approved network, giving carefully selected independent trade
+      professionals and specialists an avenue to work under the House brand.
+      Alongside our garden studio, partners such as Delve Interiors extend our
+      design conversation indoors. The wider business has also been recognised as
+      Consumer Services Business of the Year at the{" "}
+      <Src href="https://www.global100awards.com/">Global 100 Awards 2026</Src>.
+    </>
+  ),
   "House Approved is how we extend our standards beyond our own team. It brings skilled people into a shared approach to workmanship, communication and care, while giving customers a more considered way to find the expertise they need. The question behind every appointment and partnership remains the same: would we trust this in a home we love?",
   "Yet as the House grew, Samuel became increasingly interested in something less visible: the thread connecting a customer, their home and the way their needs were understood and resolved.",
   "An enquiry was rarely just a request for a gardener, a designer or somebody to repair a fault. Behind it were preferences, practical pressures, previous decisions and a particular way of living. Understanding those things could make the difference between completing a task and genuinely helping someone. But too often, that understanding was lost between conversations, visits and different professionals.",
