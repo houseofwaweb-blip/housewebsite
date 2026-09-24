@@ -4,7 +4,6 @@ import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/cn";
-import { CinemaPlayer } from "@/components/cinema/CinemaPlayer";
 import {
   WORK_FILTERS,
   WORK_POSTS,
@@ -18,11 +17,12 @@ import {
  * One reusable component: the homepage mixes all four disciplines with filters;
  * a service/design page passes that discipline's posts and showFilters={false}.
  *
- * Reels play via the Cinema-style YouTube player (Plyr) in a centred overlay —
- * House-branded still + gold play button at rest, clean playback on click, no
- * Instagram chrome and nothing heavy hosted on the site. The card's only link is
- * the relevant service/design page. Horizontal scroll-snap (proximity, so it
- * slides smoothly), a drag/click progress bar and prev/next arrows.
+ * Reels are YouTube-hosted and play IN PLACE inside the card (no popup, nothing
+ * heavy hosted on the site). House-branded still + gold play button at rest;
+ * on click the card swaps to a clean YouTube player (nocookie, modest chrome).
+ * Cards are 9:16 so vertical reels fit with no letterboxing. The card's only
+ * link is the relevant service/design page. Horizontal scroll-snap (proximity),
+ * with a smooth drag/click progress bar and prev/next arrows.
  */
 
 const DISCIPLINE_LABEL: Record<WorkDiscipline, string> = {
@@ -50,7 +50,7 @@ export function HouseAtWork({
   className,
 }: HouseAtWorkProps) {
   const [filter, setFilter] = React.useState<WorkDiscipline | "all">("all");
-  const [open, setOpen] = React.useState<WorkPost | null>(null);
+  const [playing, setPlaying] = React.useState<string | null>(null);
   const [showBar, setShowBar] = React.useState(false);
   const trackRef = React.useRef<HTMLDivElement>(null);
   const barRef = React.useRef<HTMLDivElement>(null);
@@ -62,8 +62,13 @@ export function HouseAtWork({
       ? posts.filter((p) => p.discipline === filter)
       : posts;
 
-  // Position the progress bar by writing to the DOM directly (no React state per
-  // scroll frame), so scrolling and dragging stay smooth even with many cards.
+  // Stop any playing reel when the filter changes (content swaps out).
+  React.useEffect(() => {
+    setPlaying(null);
+  }, [filter]);
+
+  // Position the progress bar via direct DOM writes (no React state per scroll
+  // frame), so scrolling and dragging stay smooth even with many cards.
   const measure = React.useCallback(() => {
     const el = trackRef.current;
     if (!el) return;
@@ -82,13 +87,21 @@ export function HouseAtWork({
     measure();
     const el = trackRef.current;
     if (!el) return;
-    el.addEventListener("scroll", measure, { passive: true });
-    window.addEventListener("resize", measure);
-    return () => {
-      el.removeEventListener("scroll", measure);
-      window.removeEventListener("resize", measure);
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        measure();
+      });
     };
-    // Re-measure when the visible set changes (filter switch).
+    el.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      el.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, [measure, shown.length]);
 
   const scrollByCards = (dir: 1 | -1) => {
@@ -124,21 +137,6 @@ export function HouseAtWork({
       /* already released */
     }
   };
-
-  // Modal: close on Escape, lock body scroll while open.
-  React.useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(null);
-    };
-    window.addEventListener("keydown", onKey);
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prevOverflow;
-    };
-  }, [open]);
 
   return (
     <section
@@ -195,50 +193,64 @@ export function HouseAtWork({
         >
           {shown.map((post) => {
             const playable = post.media === "reel" && Boolean(post.youtubeId);
+            const isPlaying = playing === post.id && playable;
+            // Reels use their own frame (small, accurate) as the cover; photos
+            // fall back to the `image` field.
+            const cover =
+              post.media === "reel" && post.youtubeId
+                ? `/home/house-at-work/${post.youtubeId}.jpg`
+                : post.image;
             return (
               <article
                 key={post.id}
                 data-card
-                className="flex shrink-0 basis-[82%] snap-start flex-col min-[560px]:basis-[46%] lg:basis-[31%] xl:basis-[23.5%]"
+                className="flex shrink-0 basis-[72%] snap-start flex-col min-[560px]:basis-[42%] lg:basis-[28%] xl:basis-[21%]"
               >
-                {/* Media */}
-                <div className="relative aspect-[4/5] w-full overflow-hidden bg-house-cream-dark">
-                  <Image
-                    src={post.image}
-                    alt={post.alt}
-                    fill
-                    sizes="(min-width:1280px) 24vw, (min-width:1024px) 31vw, (min-width:560px) 46vw, 82vw"
-                    className="object-cover"
-                  />
-                  {playable ? (
-                    <button
-                      type="button"
-                      onClick={() => setOpen(post)}
-                      aria-label={`Play: ${post.caption}`}
-                      className="absolute inset-0 grid place-items-center bg-house-black/10 transition-colors hover:bg-house-black/25"
-                    >
-                      <span
-                        aria-hidden
-                        className="is-round grid h-14 w-14 place-items-center rounded-full border border-house-cream/80 bg-house-black/40 text-house-cream backdrop-blur-sm transition-colors group-hover:border-house-gold"
-                      >
-                        &#9654;
-                      </span>
-                    </button>
-                  ) : null}
+                {/* Media — 9:16 so vertical reels fit with no letterboxing. */}
+                <div className="relative aspect-[9/16] w-full overflow-hidden bg-house-black">
+                  {isPlaying ? (
+                    <iframe
+                      src={`https://www.youtube-nocookie.com/embed/${post.youtubeId}?autoplay=1&rel=0&modestbranding=1&playsinline=1&color=white`}
+                      title={post.alt}
+                      className="absolute inset-0 h-full w-full"
+                      allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <>
+                      <Image
+                        src={cover}
+                        alt={post.alt}
+                        fill
+                        sizes="(min-width:1280px) 22vw, (min-width:1024px) 28vw, (min-width:560px) 42vw, 72vw"
+                        className="object-cover"
+                      />
+                      {playable ? (
+                        <button
+                          type="button"
+                          onClick={() => setPlaying(post.id)}
+                          aria-label={`Play: ${post.caption}`}
+                          className="absolute inset-0 grid place-items-center bg-house-black/10 transition-colors hover:bg-house-black/25"
+                        >
+                          <span
+                            aria-hidden
+                            className="is-round grid h-12 w-12 place-items-center rounded-full border border-house-cream/80 bg-house-black/40 text-house-cream backdrop-blur-sm"
+                          >
+                            &#9654;
+                          </span>
+                        </button>
+                      ) : null}
+                    </>
+                  )}
                 </div>
 
-                {/* Caption */}
+                {/* Category tag + service link (no description line). */}
                 <div className="mt-3 flex flex-1 flex-col">
                   <p className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-ink">
                     {DISCIPLINE_LABEL[post.discipline]}
                     {post.location ? <span className="text-house-stone"> · {post.location}</span> : null}
                   </p>
-                  <p className="mt-2 font-sans text-[16px] leading-[1.5] text-house-brown/85">
-                    {post.caption}
-                  </p>
-                  {/* mt-auto pins the link row to the card bottom so every card's
-                      service link aligns, whatever the caption length. */}
-                  <div className="mt-auto flex items-center gap-4 pt-3">
+                  <div className="mt-auto pt-2">
                     <Link
                       href={post.serviceHref}
                       className="font-sans text-[13px] tracking-[0.1em] uppercase text-house-brown underline underline-offset-[3px] hover:text-house-gold-ink"
@@ -255,7 +267,7 @@ export function HouseAtWork({
         {/* Slider controls — a smooth drag/click progress bar with prev/next
             arrows on the same row, directly under the cards. */}
         {showBar ? (
-          <div className="mt-5 flex items-center gap-4">
+          <div className="mt-5 flex items-center gap-3">
             <div
               ref={barRef}
               onPointerDown={onBarPointerDown}
@@ -263,9 +275,9 @@ export function HouseAtWork({
               onPointerUp={onBarPointerUp}
               onPointerCancel={onBarPointerUp}
               aria-hidden="true"
-              className="relative flex-1 cursor-pointer touch-none select-none py-2.5"
+              className="relative flex-1 cursor-pointer touch-none select-none py-2"
             >
-              <div className="relative h-[3px] w-full overflow-hidden bg-house-brown/12">
+              <div className="relative h-[2px] w-full overflow-hidden bg-house-brown/12">
                 <span
                   ref={thumbRef}
                   className="absolute top-0 h-full bg-house-gold-ink"
@@ -273,12 +285,12 @@ export function HouseAtWork({
                 />
               </div>
             </div>
-            <div className="flex shrink-0 gap-2">
+            <div className="flex shrink-0 gap-1.5">
               <button
                 type="button"
                 onClick={() => scrollByCards(-1)}
                 aria-label="Previous"
-                className="is-round grid h-10 w-10 place-items-center rounded-full border border-house-brown/30 text-house-brown transition-colors hover:border-house-brown hover:bg-house-brown hover:text-house-cream"
+                className="is-round grid h-8 w-8 place-items-center rounded-full border border-house-brown/25 text-[13px] text-house-brown transition-colors hover:border-house-brown hover:bg-house-brown hover:text-house-cream"
               >
                 <span aria-hidden>&larr;</span>
               </button>
@@ -286,7 +298,7 @@ export function HouseAtWork({
                 type="button"
                 onClick={() => scrollByCards(1)}
                 aria-label="Next"
-                className="is-round grid h-10 w-10 place-items-center rounded-full border border-house-brown/30 text-house-brown transition-colors hover:border-house-brown hover:bg-house-brown hover:text-house-cream"
+                className="is-round grid h-8 w-8 place-items-center rounded-full border border-house-brown/25 text-[13px] text-house-brown transition-colors hover:border-house-brown hover:bg-house-brown hover:text-house-cream"
               >
                 <span aria-hidden>&rarr;</span>
               </button>
@@ -294,32 +306,6 @@ export function HouseAtWork({
           </div>
         ) : null}
       </div>
-
-      {/* Reel player — centred, House-branded (Cinema Plyr), YouTube-hosted. */}
-      {open && open.youtubeId ? (
-        <div
-          className="fixed inset-0 z-[60] grid place-items-center bg-house-black/85 px-[5vw] py-[6vh]"
-          onClick={() => setOpen(null)}
-          role="dialog"
-          aria-modal="true"
-          aria-label={open.caption}
-        >
-          <div className="relative w-full max-w-[440px]" onClick={(e) => e.stopPropagation()}>
-            <button
-              type="button"
-              onClick={() => setOpen(null)}
-              aria-label="Close"
-              className="absolute -top-11 right-0 font-sans text-[13px] tracking-[0.16em] uppercase text-house-cream/80 hover:text-house-cream"
-            >
-              Close &times;
-            </button>
-            <CinemaPlayer youtubeId={open.youtubeId} orientation="portrait" className="overflow-hidden" />
-            <p className="mt-3 text-center font-sans text-[14px] leading-[1.5] text-house-cream/80">
-              {DISCIPLINE_LABEL[open.discipline]} &middot; {open.caption}
-            </p>
-          </div>
-        </div>
-      ) : null}
     </section>
   );
 }
