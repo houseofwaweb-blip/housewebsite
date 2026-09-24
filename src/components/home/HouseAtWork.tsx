@@ -58,6 +58,8 @@ export function HouseAtWork({
   const [playing, setPlaying] = React.useState<string | null>(null);
   const [bar, setBar] = React.useState({ show: false, w: 30, left: 0 });
   const trackRef = React.useRef<HTMLDivElement>(null);
+  const barRef = React.useRef<HTMLDivElement>(null);
+  const draggingRef = React.useRef(false);
 
   const shown =
     showFilters && filter !== "all"
@@ -105,6 +107,33 @@ export function HouseAtWork({
     const card = el.querySelector<HTMLElement>("[data-card]");
     const amount = card ? card.offsetWidth + 16 : el.clientWidth * 0.8;
     el.scrollBy({ left: dir * amount, behavior: "smooth" });
+  };
+
+  // Drag / click the progress bar to scroll the track to that position.
+  const seek = (clientX: number, smooth: boolean) => {
+    const barEl = barRef.current;
+    const el = trackRef.current;
+    if (!barEl || !el) return;
+    const rect = barEl.getBoundingClientRect();
+    const frac = Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
+    const max = el.scrollWidth - el.clientWidth;
+    el.scrollTo({ left: frac * max, behavior: smooth ? "smooth" : "auto" });
+  };
+  const onBarPointerDown = (e: React.PointerEvent) => {
+    draggingRef.current = true;
+    e.currentTarget.setPointerCapture(e.pointerId);
+    seek(e.clientX, true);
+  };
+  const onBarPointerMove = (e: React.PointerEvent) => {
+    if (draggingRef.current) seek(e.clientX, false);
+  };
+  const onBarPointerUp = (e: React.PointerEvent) => {
+    draggingRef.current = false;
+    try {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    } catch {
+      /* pointer already released */
+    }
   };
 
   // The Instagram link shown at the foot: the passed single link, or (on the
@@ -246,7 +275,9 @@ export function HouseAtWork({
                 <p className="mt-2 font-sans text-[16px] leading-[1.5] text-house-brown/85">
                   {post.caption}
                 </p>
-                <div className="mt-3 flex items-center gap-4">
+                {/* mt-auto pins the link row to the card bottom so every card's
+                    service link aligns, whatever the caption length. */}
+                <div className="mt-auto flex items-center gap-4 pt-3">
                   <Link
                     href={post.serviceHref}
                     className="font-sans text-[13px] tracking-[0.1em] uppercase text-house-brown underline underline-offset-[3px] hover:text-house-gold-ink"
@@ -275,13 +306,20 @@ export function HouseAtWork({
         {bar.show ? (
           <div className="mt-5 flex items-center gap-4">
             <div
-              className="relative h-[3px] flex-1 overflow-hidden bg-house-brown/12"
+              ref={barRef}
+              onPointerDown={onBarPointerDown}
+              onPointerMove={onBarPointerMove}
+              onPointerUp={onBarPointerUp}
+              onPointerCancel={onBarPointerUp}
               aria-hidden="true"
+              className="relative flex-1 cursor-pointer touch-none select-none py-2.5"
             >
-              <span
-                className="absolute top-0 h-full bg-house-gold-ink"
-                style={{ width: `${bar.w}%`, left: `${bar.left}%` }}
-              />
+              <div className="relative h-[3px] w-full overflow-hidden bg-house-brown/12">
+                <span
+                  className="absolute top-0 h-full bg-house-gold-ink"
+                  style={{ width: `${bar.w}%`, left: `${bar.left}%` }}
+                />
+              </div>
             </div>
             <div className="flex shrink-0 gap-2">
               <button
