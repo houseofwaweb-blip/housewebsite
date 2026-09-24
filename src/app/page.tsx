@@ -8,6 +8,7 @@ import { DesignShowcase } from "@/components/home/DesignShowcase";
 import { InsuranceBand } from "@/components/home/InsuranceBand";
 import { UnordinaryHearthBand } from "@/components/home/UnordinaryHearthBand";
 import { HowaHeroProduct } from "@/components/home/HowaHeroProduct";
+import { HouseAtWork } from "@/components/home/HouseAtWork";
 
 /**
  * Homepage — House-first (Aug-17 rebuild, spec §8).
@@ -72,7 +73,11 @@ export default async function HomePage() {
       {/* 4. Popular services — high-intent service cards (amendments §7) */}
       <PopularServices />
 
-      {/* 5. HoWA section — "Your home, in hand." (amendments §8) */}
+      {/* 5. The House at work — Instagram proof carousel, directly after the
+          service cards (final September brief §1). */}
+      <HouseAtWork />
+
+      {/* 6. HoWA section — "Your home, in hand." (amendments §8) */}
       <HowaHeroProduct />
 
       {/* 6. Design section — kinder, calmer home (amendments §9) */}

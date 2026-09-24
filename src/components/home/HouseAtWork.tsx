@@ -1,0 +1,289 @@
+"use client";
+
+import * as React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { cn } from "@/lib/cn";
+import {
+  WORK_FILTERS,
+  WORK_POSTS,
+  WORK_INSTAGRAM,
+  type WorkPost,
+  type WorkDiscipline,
+} from "@/lib/house-at-work";
+
+/**
+ * HouseAtWork — "The House at work" proof carousel (final September brief §1).
+ *
+ * One reusable component:
+ *   - Homepage: all four disciplines mixed, with filters.
+ *   - A service/design page: pass that discipline's `posts` and `showFilters={false}`
+ *     so it opens on its own relevant content.
+ *
+ * Instagram is the content SOURCE; the section keeps the House's own type,
+ * spacing and card treatment. Photos and reels (still + play, played only on
+ * selection, no autoplay). Horizontal scroll-snap: ~3-4 cards on desktop, one
+ * card with a peek of the next on mobile. Prev/next controls, native swipe and
+ * keyboard operation. Selected content stays visible (no external feed embed).
+ */
+
+const DISCIPLINE_LABEL: Record<WorkDiscipline, string> = {
+  gardeners: "Gardeners",
+  gardens: "Gardens",
+  cleaners: "Cleaners",
+  "window-cleaners": "Window Cleaners",
+};
+
+interface HouseAtWorkProps {
+  posts?: ReadonlyArray<WorkPost>;
+  showFilters?: boolean;
+  eyebrow?: string;
+  heading?: string;
+  intro?: string;
+  /** A single discipline's Instagram link (service pages). Homepage reads the map. */
+  instagram?: { handle: string; url: string } | null;
+  className?: string;
+}
+
+export function HouseAtWork({
+  posts = WORK_POSTS,
+  showFilters = true,
+  eyebrow = "The House",
+  heading = "The House at work.",
+  intro = "Our people, our projects and the everyday work of looking after homes and gardens.",
+  instagram,
+  className,
+}: HouseAtWorkProps) {
+  const [filter, setFilter] = React.useState<WorkDiscipline | "all">("all");
+  const [playing, setPlaying] = React.useState<string | null>(null);
+  const trackRef = React.useRef<HTMLDivElement>(null);
+
+  const shown =
+    showFilters && filter !== "all"
+      ? posts.filter((p) => p.discipline === filter)
+      : posts;
+
+  const hasPlaceholder = shown.some((p) => p.placeholder);
+
+  // Reset any playing reel when the filter changes (content is swapped out).
+  React.useEffect(() => {
+    setPlaying(null);
+  }, [filter]);
+
+  const scrollByCards = (dir: 1 | -1) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-card]");
+    const amount = card ? card.offsetWidth + 16 : el.clientWidth * 0.8;
+    el.scrollBy({ left: dir * amount, behavior: "smooth" });
+  };
+
+  // The Instagram link shown at the foot: the passed single link, or (on the
+  // homepage) whichever verified accounts exist in the map.
+  const igLinks =
+    instagram !== undefined
+      ? instagram
+        ? [instagram]
+        : []
+      : (Object.values(WORK_INSTAGRAM).filter(Boolean) as { handle: string; url: string }[]);
+
+  return (
+    <section
+      aria-label="The House at work"
+      className={cn(
+        "border-t border-house-line bg-house-cream px-[5vw] py-[clamp(44px,6vw,88px)]",
+        className,
+      )}
+    >
+      <div className="mx-auto max-w-[1360px]">
+        {/* Header + controls */}
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div className="max-w-[46ch]">
+            <p className="font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-ink">
+              {eyebrow}
+            </p>
+            <h2 className="mt-3 font-display text-[clamp(30px,3.4vw,52px)] leading-[1.04] text-house-brown text-balance">
+              {heading}
+            </h2>
+            <p className="mt-4 font-sans text-[clamp(16px,1.4vw,19px)] leading-[1.6] text-house-brown/75">
+              {intro}
+            </p>
+          </div>
+
+          {/* Prev/next — hidden on mobile (swipe); keyboard-operable buttons. */}
+          <div className="hidden shrink-0 gap-2 sm:flex">
+            <button
+              type="button"
+              onClick={() => scrollByCards(-1)}
+              aria-label="Previous"
+              className="is-round grid h-11 w-11 place-items-center rounded-full border border-house-brown/30 text-house-brown transition-colors hover:border-house-brown hover:bg-house-brown hover:text-house-cream"
+            >
+              <span aria-hidden>&larr;</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollByCards(1)}
+              aria-label="Next"
+              className="is-round grid h-11 w-11 place-items-center rounded-full border border-house-brown/30 text-house-brown transition-colors hover:border-house-brown hover:bg-house-brown hover:text-house-cream"
+            >
+              <span aria-hidden>&rarr;</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Filters */}
+        {showFilters ? (
+          <div
+            role="tablist"
+            aria-label="Filter by discipline"
+            className="mt-7 flex flex-wrap gap-2"
+          >
+            {WORK_FILTERS.map((f) => {
+              const active = filter === f.id;
+              return (
+                <button
+                  key={f.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={active}
+                  onClick={() => setFilter(f.id)}
+                  className={cn(
+                    "border px-4 py-2 font-sans text-[14px] tracking-[0.08em] transition-colors",
+                    active
+                      ? "border-house-brown bg-house-brown text-house-cream"
+                      : "border-house-brown/25 text-house-brown/80 hover:border-house-brown/60",
+                  )}
+                >
+                  {f.label}
+                </button>
+              );
+            })}
+          </div>
+        ) : null}
+
+        {hasPlaceholder ? (
+          <p className="mt-4 font-sans text-[13px] italic text-house-stone">
+            Placeholder imagery, shown to preview the layout. To be replaced with
+            selected Instagram posts and reels.
+          </p>
+        ) : null}
+
+        {/* Track */}
+        <div
+          ref={trackRef}
+          className="mt-7 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {shown.map((post) => (
+            <article
+              key={post.id}
+              data-card
+              className="flex shrink-0 basis-[82%] snap-start flex-col min-[560px]:basis-[46%] lg:basis-[31%] xl:basis-[23.5%]"
+            >
+              {/* Media */}
+              <div className="relative aspect-[4/5] w-full overflow-hidden bg-house-cream-dark">
+                {post.media === "reel" && playing === post.id && post.video ? (
+                  isEmbed(post.video) ? (
+                    <iframe
+                      src={post.video}
+                      title={post.alt}
+                      className="absolute inset-0 h-full w-full"
+                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <video
+                      src={post.video}
+                      poster={post.image}
+                      controls
+                      autoPlay
+                      playsInline
+                      className="absolute inset-0 h-full w-full object-cover"
+                    />
+                  )
+                ) : (
+                  <>
+                    <Image
+                      src={post.image}
+                      alt={post.alt}
+                      fill
+                      sizes="(min-width:1280px) 24vw, (min-width:1024px) 31vw, (min-width:560px) 46vw, 82vw"
+                      className="object-cover"
+                    />
+                    {post.media === "reel" ? (
+                      <button
+                        type="button"
+                        onClick={() => setPlaying(post.id)}
+                        aria-label={`Play: ${post.caption}`}
+                        className="absolute inset-0 grid place-items-center bg-house-black/10 transition-colors hover:bg-house-black/20"
+                      >
+                        <span
+                          aria-hidden
+                          className="is-round grid h-14 w-14 place-items-center rounded-full border border-house-cream/80 bg-house-black/40 text-house-cream backdrop-blur-sm"
+                        >
+                          &#9654;
+                        </span>
+                      </button>
+                    ) : null}
+                  </>
+                )}
+              </div>
+
+              {/* Caption */}
+              <div className="mt-3 flex flex-1 flex-col">
+                <p className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-ink">
+                  {DISCIPLINE_LABEL[post.discipline]}
+                  {post.location ? (
+                    <span className="text-house-stone"> · {post.location}</span>
+                  ) : null}
+                </p>
+                <p className="mt-2 font-sans text-[16px] leading-[1.5] text-house-brown/85">
+                  {post.caption}
+                </p>
+                <div className="mt-3 flex items-center gap-4">
+                  <Link
+                    href={post.serviceHref}
+                    className="font-sans text-[13px] tracking-[0.1em] uppercase text-house-brown underline underline-offset-[3px] hover:text-house-gold-ink"
+                  >
+                    {post.serviceLabel} &rarr;
+                  </Link>
+                  {post.instagramUrl ? (
+                    <a
+                      href={post.instagramUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-sans text-[13px] text-house-stone underline underline-offset-[3px] hover:text-house-brown"
+                    >
+                      Instagram
+                    </a>
+                  ) : null}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        {/* Foot — link out to the verified account(s), when set. */}
+        {igLinks.length > 0 ? (
+          <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+            {igLinks.map((ig) => (
+              <a
+                key={ig.url}
+                href={ig.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-sans text-[14px] tracking-[0.06em] text-house-gold-ink underline underline-offset-[3px] hover:text-house-brown"
+              >
+                {ig.handle} on Instagram &rarr;
+              </a>
+            ))}
+          </div>
+        ) : null}
+      </div>
+    </section>
+  );
+}
+
+/** Treat a video URL as an embed (iframe) when it isn't a direct video file. */
+function isEmbed(url: string): boolean {
+  return !/\.(mp4|webm|mov|m4v)(\?.*)?$/i.test(url);
+}
