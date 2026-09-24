@@ -55,9 +55,9 @@ const FIG_ROSES: Fig = {
   caption: "Roses at a House garden door.",
 };
 const FIG_BLOOMS: Fig = {
-  src: "/the-house/editorial/library-yellow-blooms.webp",
-  alt: "Yellow blooms in a House library",
-  caption: "Blooms, brought inside.",
+  src: "/the-house/editorial/approved-peony-plate.webp",
+  alt: "A House Approved niche with a peony",
+  caption: "The House Approved seal.",
 };
 const FIG_WISTERIA: Fig = {
   src: "/the-house/editorial/georgian-wisteria-garden.webp",
@@ -65,9 +65,9 @@ const FIG_WISTERIA: Fig = {
   caption: "Wisteria over a Georgian facade.",
 };
 const BAND_BLOSSOM: Fig = {
-  src: "/the-house/editorial/tools-apple-blossom.webp",
-  alt: "Garden tools among apple blossom",
-  caption: "The craft behind the care.",
+  src: "/lifestyle/garden-pond.webp",
+  alt: "A House garden with a still water rill at golden hour",
+  caption: "A garden matures with the years.",
 };
 const BAND_RECORD: Fig = {
   src: "/the-house/editorial/record-book-peony.webp",
