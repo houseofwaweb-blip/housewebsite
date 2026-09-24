@@ -72,7 +72,7 @@ export const metadata = {
 
 const STAT_COLS = [
   { value: "1", label: "House standard" },
-  { value: "17", label: "Published standards" },
+  { value: "Published", label: "Standards, in the open" },
   { value: "One", label: "Calendar, everything in step" },
   { value: "Every", label: "Professional House-vetted" },
 ];
@@ -554,7 +554,7 @@ export default async function ServicesLanding() {
                           {sv.name}
                         </span>
                         <span className="shrink-0 font-sans text-[13px] tracking-[0.16em] uppercase text-house-stone/75 transition-colors group-hover:text-house-gold-ink">
-                          See prices
+                          {sv.bookable ? "See prices" : "Request a quote"}
                         </span>
                       </Link>
                     </li>
