@@ -117,17 +117,6 @@ export const WORK_POSTS: ReadonlyArray<WorkPost> = [
     alt: "Seasonal garden work",
   },
   {
-    id: "r5Ex8R2OHPc",
-    discipline: "window-cleaners",
-    media: "reel",
-    image: "/services/photos/window-cleaner-van.jpg",
-    youtubeId: "r5Ex8R2OHPc",
-    caption: "Out across the homes of London and Kent.",
-    serviceHref: "/services/window-cleaning",
-    serviceLabel: "Window cleaning",
-    alt: "Homes across London and Kent from above",
-  },
-  {
     id: "CGVeesdySz8",
     discipline: "gardeners",
     media: "reel",
