@@ -7,7 +7,6 @@ import { cn } from "@/lib/cn";
 import {
   WORK_FILTERS,
   WORK_POSTS,
-  WORK_INSTAGRAM,
   type WorkPost,
   type WorkDiscipline,
 } from "@/lib/house-at-work";
@@ -40,8 +39,6 @@ interface HouseAtWorkProps {
   eyebrow?: string;
   heading?: string;
   intro?: string;
-  /** A single discipline's Instagram link (service pages). Homepage reads the map. */
-  instagram?: { handle: string; url: string } | null;
   className?: string;
 }
 
@@ -51,7 +48,6 @@ export function HouseAtWork({
   eyebrow = "The House",
   heading = "The House at work.",
   intro = "Our people, our projects and the everyday work of looking after homes and gardens.",
-  instagram,
   className,
 }: HouseAtWorkProps) {
   const [filter, setFilter] = React.useState<WorkDiscipline | "all">("all");
@@ -135,15 +131,6 @@ export function HouseAtWork({
       /* pointer already released */
     }
   };
-
-  // The Instagram link shown at the foot: the passed single link, or (on the
-  // homepage) whichever verified accounts exist in the map.
-  const igLinks =
-    instagram !== undefined
-      ? instagram
-        ? [instagram]
-        : []
-      : (Object.values(WORK_INSTAGRAM).filter(Boolean) as { handle: string; url: string }[]);
 
   return (
     <section
@@ -284,16 +271,6 @@ export function HouseAtWork({
                   >
                     {post.serviceLabel} &rarr;
                   </Link>
-                  {post.instagramUrl ? (
-                    <a
-                      href={post.instagramUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-sans text-[13px] text-house-stone underline underline-offset-[3px] hover:text-house-brown"
-                    >
-                      Instagram
-                    </a>
-                  ) : null}
                 </div>
               </div>
             </article>
@@ -339,23 +316,6 @@ export function HouseAtWork({
                 <span aria-hidden>&rarr;</span>
               </button>
             </div>
-          </div>
-        ) : null}
-
-        {/* Foot — link out to the verified account(s), when set. */}
-        {igLinks.length > 0 ? (
-          <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
-            {igLinks.map((ig) => (
-              <a
-                key={ig.url}
-                href={ig.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-sans text-[14px] tracking-[0.06em] text-house-gold-ink underline underline-offset-[3px] hover:text-house-brown"
-              >
-                {ig.handle} on Instagram &rarr;
-              </a>
-            ))}
           </div>
         ) : null}
       </div>

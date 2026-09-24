@@ -7,14 +7,18 @@
  * Before publishing:
  *   1. Replace `WORK_POSTS` with 8-12 selected real Instagram posts/reels,
  *      balanced across the four disciplines.
- *   2. Fill in `WORK_INSTAGRAM` with the VERIFIED account links (the brief is
- *      explicit: do not invent handles).
- *   3. For reels, set `media: "reel"` and provide `video` (a hosted mp4 or an
- *      embeddable URL) plus the poster `image`.
+ *   2. For reels, set `media: "reel"` and provide `video` (the reel plays ON
+ *      THE SITE, so prefer a hosted mp4; an embeddable URL also works) plus the
+ *      poster `image`. We do NOT link out to Instagram: the card's action is the
+ *      service/design page, and reels play in place. The Instagram post is only
+ *      needed as the source to obtain that video.
  *
  * "Gardens" = the garden DESIGN studio and its projects (Willow Alexander
  * Gardens). "Gardeners" = the care/maintenance SERVICE. Keep that distinction
  * clear in captions (brief §1).
+ *
+ * We deliberately do NOT link cards out to Instagram: the House keeps visitors
+ * on the site. Photos are stills; reels play in place from `video`.
  */
 
 export type WorkDiscipline = "gardeners" | "gardens" | "cleaners" | "window-cleaners";
@@ -26,16 +30,15 @@ export interface WorkPost {
   media: "image" | "reel";
   /** The still. Every post has one (a reel shows this until played). */
   image: string;
-  /** Reels only: hosted mp4 or an embeddable URL. Omitted for photos. */
+  /** Reels only: the video played IN PLACE on the site (hosted mp4 preferred,
+   *  or an embeddable URL). Omitted for photos. No outbound link. */
   video?: string;
   /** What the work was and what it achieved (brief: a useful visible caption). */
   caption: string;
   location?: string;
-  /** Where the card's primary action goes — the relevant service/design page. */
+  /** Where the card's action goes — the relevant service/design page. */
   serviceHref: string;
   serviceLabel: string;
-  /** Quieter link to the original Instagram post. Omit until real links exist. */
-  instagramUrl?: string;
   alt: string;
   /** True while using stand-in House imagery rather than a real IG post. */
   placeholder?: boolean;
@@ -50,20 +53,9 @@ export const WORK_FILTERS: ReadonlyArray<{ id: WorkDiscipline | "all"; label: st
 ];
 
 /**
- * Verified Instagram accounts per discipline — FILL IN before publishing.
- * `null` hides the "See more on Instagram" link for that discipline.
- */
-export const WORK_INSTAGRAM: Record<WorkDiscipline, { handle: string; url: string } | null> = {
-  gardeners: null,
-  gardens: null,
-  cleaners: null,
-  "window-cleaners": null,
-};
-
-/**
  * PLACEHOLDER SET — replace with real, curated Instagram content.
  * Uses existing House photography so the section renders and the interaction
- * can be reviewed. No `instagramUrl` (no invented links), all `placeholder`.
+ * can be reviewed. All `placeholder`; reels will carry a `video` to play in place.
  */
 export const WORK_POSTS: ReadonlyArray<WorkPost> = [
   // ── Gardeners (care & maintenance) ──────────────────────────────────────
