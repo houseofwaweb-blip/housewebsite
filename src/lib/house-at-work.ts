@@ -2,15 +2,17 @@
  * "The House at work" — data for the homepage + per-service Instagram-style
  * proof carousel (final September brief §1).
  *
- * WORK_POSTS holds the 10 supplied reels. Each plays via a Cinema-style YouTube
- * player (the reel uploaded to YouTube; `youtubeId` set here), so nothing heavy
- * is hosted on the site and there is no Instagram chrome. The card's only link
- * is the relevant service/design page. Covers use the service/design page
- * imagery, so the resting card is fully House-branded (still + gold play button).
+ * WORK_POSTS holds the supplied reels. Each plays via a Cinema-style YouTube
+ * player (`youtubeId`), so nothing heavy is hosted on the site and there is no
+ * Instagram chrome. The card's only link is the relevant service/design page.
+ * Covers use the service/design page imagery (portrait-friendly; YouTube's own
+ * thumbnails are 16:9 with black bars for Shorts, so they crop badly here).
+ *
+ * DISCIPLINES were derived from each video's content (auto-classified from the
+ * thumbnail), NOT the account, so a couple may need moving — confirm with Alex.
  *
  * "Gardens" = the garden DESIGN studio and its projects (Willow Alexander
- * Gardens). "Gardeners" = the care/maintenance SERVICE. Keep that distinction
- * clear in captions (brief §1).
+ * Gardens). "Gardeners" = the care/maintenance SERVICE. CAPTIONS are drafts.
  */
 
 export type WorkDiscipline = "gardeners" | "gardens" | "cleaners" | "window-cleaners";
@@ -20,7 +22,7 @@ export interface WorkPost {
   discipline: WorkDiscipline;
   /** "image" for a photo, "reel" for a video (still + play). */
   media: "image" | "reel";
-  /** The still. Every post has one (a reel shows this until played). */
+  /** The still cover. */
   image: string;
   /** Reels only: the YouTube id the reel plays (Cinema-style Plyr player, no
    *  site hosting, no Instagram chrome). Empty until the clip is uploaded. */
@@ -32,8 +34,6 @@ export interface WorkPost {
   serviceHref: string;
   serviceLabel: string;
   alt: string;
-  /** True while using stand-in House imagery rather than a real IG post. */
-  placeholder?: boolean;
 }
 
 export const WORK_FILTERS: ReadonlyArray<{ id: WorkDiscipline | "all"; label: string }> = [
@@ -45,121 +45,120 @@ export const WORK_FILTERS: ReadonlyArray<{ id: WorkDiscipline | "all"; label: st
 ];
 
 /**
- * The 10 supplied reels, mapped to disciplines by the account each sits on
- * (`id` is the Instagram shortcode, kept as a stable key + upload reference).
- * Fill each `youtubeId` once the reel is uploaded to YouTube (unlisted, blank-ish
- * title). CAPTIONS are drafts. Order is interleaved so "All" opens on a mix.
+ * The 10 supplied YouTube reels, interleaved so "All" opens on a mix. Disciplines
+ * are auto-classified from each video's content (see note above); captions are
+ * drafts. Covers reuse service/design page imagery per discipline.
  */
 export const WORK_POSTS: ReadonlyArray<WorkPost> = [
   {
-    id: "DaftjnZlMS1",
-    discipline: "gardeners",
-    media: "reel",
-    image: "/services/subbrands/gardeners.webp",
-    youtubeId: "", // TODO: instagram.com/p/DaftjnZlMS1
-    caption: "Our garden team on a recent visit.",
-    serviceHref: "/services/gardening",
-    serviceLabel: "Gardening",
-    alt: "A House gardener at work",
-  },
-  {
-    id: "DWYkUglj9Da",
-    discipline: "window-cleaners",
-    media: "reel",
-    image: "/services/photos/gutter-cleaning-skyvac.jpg",
-    youtubeId: "", // TODO: instagram.com/p/DWYkUglj9Da
-    caption: "Gutter clearance, photographed to your record.",
-    serviceHref: "/services/window-cleaning/gutter-cleaning",
-    serviceLabel: "Gutter cleaning",
-    alt: "Vacuum-pole gutter clearance",
-  },
-  {
-    id: "DDH2_wlJXQu",
-    discipline: "cleaners",
-    media: "reel",
-    image: "/services/photos/cleaner-team.jpg",
-    youtubeId: "", // TODO: instagram.com/p/DDH2_wlJXQu
-    caption: "A clean brought back to order.",
-    serviceHref: "/services/cleaning",
-    serviceLabel: "Cleaning",
-    alt: "A House cleaning team at work",
-  },
-  {
-    id: "DXopZQelB-c",
+    id: "nj-6x97JpDo",
     discipline: "gardens",
     media: "reel",
     image: "/design/gardens/hero.jpg",
-    youtubeId: "", // TODO: instagram.com/reel/DXopZQelB-c
-    caption: "A garden by Willow Alexander Gardens.",
+    youtubeId: "nj-6x97JpDo",
+    caption: "A garden design taking shape on paper.",
     serviceHref: "/design/gardens",
     serviceLabel: "Garden design",
-    alt: "A designed English garden",
+    alt: "A hand-drawn garden design plan",
   },
   {
-    id: "DV_cebnkRMA",
+    id: "wt6_fls_GPI",
     discipline: "gardeners",
     media: "reel",
-    image: "/services/field/team-at-work.webp",
-    youtubeId: "", // TODO: instagram.com/p/DV_cebnkRMA
-    caption: "Maintenance that keeps a garden in good order.",
+    image: "/services/subbrands/gardeners.webp",
+    youtubeId: "wt6_fls_GPI",
+    caption: "Autumn leaves cleared on a maintenance visit.",
     serviceHref: "/services/gardening",
     serviceLabel: "Gardening",
-    alt: "A House garden team on a maintenance round",
+    alt: "A gardener clearing leaves",
   },
   {
-    id: "DWn6R5LjN7o",
+    id: "3KDoUdsSMPs",
     discipline: "window-cleaners",
     media: "reel",
     image: "/services/photos/window-cleaning-hero.webp",
-    youtubeId: "", // TODO: instagram.com/p/DWn6R5LjN7o
-    caption: "Pure-water pole cleaning across a frontage.",
+    youtubeId: "3KDoUdsSMPs",
+    caption: "Pure-water pole cleaning, upstairs windows.",
     serviceHref: "/services/window-cleaning",
     serviceLabel: "Window cleaning",
-    alt: "Pure-water pole window cleaning",
+    alt: "Water-fed pole cleaning an upstairs window",
   },
   {
-    id: "C35l-PYp8_G",
+    id: "U6pngBgBoyU",
     discipline: "cleaners",
     media: "reel",
     image: "/services/photos/cleaning-gallery-1.webp",
-    youtubeId: "", // TODO: instagram.com/reel/C35l-PYp8_G
-    caption: "Detail work from our cleaning team.",
+    youtubeId: "U6pngBgBoyU",
+    caption: "A patio jet-washed back to clean.",
     serviceHref: "/services/cleaning",
     serviceLabel: "Cleaning",
-    alt: "A room detailed after a clean",
+    alt: "Jet-washing a patio",
   },
   {
-    id: "DNnw7uXhb5h",
+    id: "eQnolV90N60",
     discipline: "gardens",
     media: "reel",
     image: "/design/gardens/full-design.webp",
-    youtubeId: "", // TODO: instagram.com/reel/DNnw7uXhb5h
-    caption: "From plan to planting, in the studio’s work.",
+    youtubeId: "eQnolV90N60",
+    caption: "An established garden in full leaf.",
     serviceHref: "/design/gardens",
     serviceLabel: "Garden design",
-    alt: "A completed garden design project",
+    alt: "An established, planted garden",
   },
   {
-    id: "DXZekDmik-v",
+    id: "yhqwW2xqy94",
+    discipline: "gardeners",
+    media: "reel",
+    image: "/services/field/team-at-work.webp",
+    youtubeId: "yhqwW2xqy94",
+    caption: "Seasonal garden work with the team.",
+    serviceHref: "/services/gardening",
+    serviceLabel: "Gardening",
+    alt: "Seasonal garden work",
+  },
+  {
+    id: "r5Ex8R2OHPc",
+    discipline: "window-cleaners",
+    media: "reel",
+    image: "/services/photos/window-cleaner-van.jpg",
+    youtubeId: "r5Ex8R2OHPc",
+    caption: "Out across the homes of London and Kent.",
+    serviceHref: "/services/window-cleaning",
+    serviceLabel: "Window cleaning",
+    alt: "Homes across London and Kent from above",
+  },
+  {
+    id: "CGVeesdySz8",
     discipline: "gardeners",
     media: "reel",
     image: "/services/field/garden-in-good-order.webp",
-    youtubeId: "", // TODO: instagram.com/p/DXZekDmik-v
-    caption: "A tidy from our gardeners, start to finish.",
-    serviceHref: "/services/gardening/garden-tidy",
-    serviceLabel: "Garden Tidy",
-    alt: "A garden left in good order after a tidy",
+    youtubeId: "CGVeesdySz8",
+    caption: "Lawn edges cut clean.",
+    serviceHref: "/services/gardening",
+    serviceLabel: "Gardening",
+    alt: "Edging a lawn",
   },
   {
-    id: "DXwpr9CDlkj",
+    id: "-yeK0pT7CNo",
+    discipline: "gardens",
+    media: "reel",
+    image: "/design/gardens/planting-plans.jpg",
+    youtubeId: "-yeK0pT7CNo",
+    caption: "Planting chosen for structure and season.",
+    serviceHref: "/design/gardens",
+    serviceLabel: "Garden design",
+    alt: "Planting a border",
+  },
+  {
+    id: "XracxSjabNI",
     discipline: "gardeners",
     media: "reel",
     image: "/services/photos/gardening/gardening-team-action.jpg",
-    youtubeId: "", // TODO: instagram.com/reel/DXwpr9CDlkj
-    caption: "Seasonal care, out with the team.",
-    serviceHref: "/services/gardening",
-    serviceLabel: "Gardening",
-    alt: "Seasonal garden care by the House team",
+    youtubeId: "XracxSjabNI",
+    caption: "A garden clearance, bagged and taken away.",
+    serviceHref: "/services/gardening/garden-tidy",
+    serviceLabel: "Garden Tidy",
+    alt: "A garden clearance being bagged",
   },
 ];
 
