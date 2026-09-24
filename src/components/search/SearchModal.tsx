@@ -236,9 +236,26 @@ export function SearchModal({ open, onClose }: SearchModalProps) {
               Nothing quite like &ldquo;{query}&rdquo; yet. Try different terms.
             </p>
           ) : results.length === 0 ? (
-            <p className="font-display italic text-[19px] text-house-brown/50 py-[40px] text-center">
-              Start typing to search across the House.
-            </p>
+            <div className="py-[40px] text-center">
+              <p className="font-display italic text-[19px] text-house-brown/50">
+                Start typing to search across the House.
+              </p>
+              <div className="mt-5 flex flex-wrap justify-center gap-2">
+                {["Gardening", "Window cleaning", "Cleaning", "Garden design", "Insurance"].map((term) => (
+                  <button
+                    key={term}
+                    type="button"
+                    onClick={() => {
+                      setQuery(term);
+                      scheduleSearch(term, tab);
+                    }}
+                    className="border border-house-brown/25 px-4 py-2 font-sans text-[14px] tracking-[0.06em] text-house-brown/80 transition-colors hover:border-house-brown hover:text-house-brown"
+                  >
+                    {term}
+                  </button>
+                ))}
+              </div>
+            </div>
           ) : (
             results.map((r, i) => (
               <Link

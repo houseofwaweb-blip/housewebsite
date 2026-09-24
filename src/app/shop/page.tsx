@@ -542,7 +542,7 @@ export default async function ShopPage() {
       <Rail
         title="Useful staples."
         eyebrow="The everyday things"
-        intro="The quiet, well-made basics a household leans on. Bought once, kept for years."
+        intro="The quiet, well-made basics a household leans on, chosen for quality and honest value."
         cards={usefulStaples}
         viewAllHref="/shop/collections/household-essentials"
       />

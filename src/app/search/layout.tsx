@@ -1,5 +1,7 @@
 export const metadata = {
-  title: "Search | House of Willow Alexander",
+  // Just "Search" — the root layout's title template appends
+  // "| House of Willow Alexander" (avoids the duplicated site name).
+  title: "Search",
   robots: { index: false, follow: true },
 };
 

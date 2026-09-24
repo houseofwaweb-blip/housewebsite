@@ -5,13 +5,12 @@ import { cn } from "@/lib/cn";
  * HearthCategoryStrip — per variant-A: centred horizontal category nav.
  * Jost 11px, 0.18em tracking, uppercase. Active: gold text + gold underline.
  *
- * Sections follow the rebuild spec §13: House & Home, Garden, Living Well,
- * Pets, The Useful List. Each doc section is mapped onto an existing Sanity
- * `articleCategory` slug so the category routes still resolve to real content
- * (the WP taxonomy has no dedicated Pets or Useful List category yet, so those
- * two are soft-mapped to the nearest bucket — see OPEN ITEMS in the handover:
- * a Pets category + a Useful List/how-to category should be added in Sanity and
- * articles retagged, at which point these targets are updated).
+ * Labels match the ACTUAL category each link resolves to (final September brief:
+ * "align visible names with their actual contents"). The rebuild spec §13 also
+ * wanted dedicated "Pets" and "The Useful List" sections, but the taxonomy has
+ * no such categories yet, so we show the real category names for now. When a
+ * Pets category and a Useful List/how-to category are added in Sanity and
+ * articles retagged, add those entries and their real slugs here.
  */
 
 // `slug` must equal the real Sanity category slug so activeSlug highlighting and
@@ -21,8 +20,8 @@ const STRIP = [
   { slug: "interiors-and-styling", label: "House & Home", href: "/the-hearth/category/interiors-and-styling" },
   { slug: "gardens-and-exteriors", label: "Garden", href: "/the-hearth/category/gardens-and-exteriors" },
   { slug: "heritage-and-culture", label: "Living Well", href: "/the-hearth/category/heritage-and-culture" },
-  { slug: "trends-and-inspiration", label: "Pets", href: "/the-hearth/category/trends-and-inspiration" },
-  { slug: "design-and-architecture", label: "The Useful List", href: "/the-hearth/category/design-and-architecture" },
+  { slug: "trends-and-inspiration", label: "Trends & Inspiration", href: "/the-hearth/category/trends-and-inspiration" },
+  { slug: "design-and-architecture", label: "Design & Architecture", href: "/the-hearth/category/design-and-architecture" },
   { slug: "cinema", label: "Cinema", href: "/cinema" },
 ];
 
