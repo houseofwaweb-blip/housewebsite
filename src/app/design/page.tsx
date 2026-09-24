@@ -23,7 +23,7 @@ export const metadata = {
 };
 
 const STAT_COLS = [
-  { value: "2", label: "Live design routes" },
+  { value: "UK", label: "Design commissions nationwide" },
   { value: "1", label: "In-house garden studio" },
   { value: "1", label: "House Approved interiors partner" },
   { value: "+", label: "Invited by standard, not volume" },

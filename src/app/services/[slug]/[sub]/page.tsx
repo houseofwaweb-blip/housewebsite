@@ -272,6 +272,7 @@ export default async function SubServicePage({
           body="Tell us a little about your home and what you need, and the House will come back to you, usually within one working day. Or book online in a couple of minutes."
           serviceOptions={serviceEnquiryOptions(parent)}
           baseServiceType={parent.slug}
+          bookHref={bookHref}
         />
       </div>
 
@@ -414,6 +415,7 @@ export default async function SubServicePage({
           body="Prefer to ask before you book? Tell us about your home and we'll come back to you personally, usually within one working day."
           serviceOptions={serviceEnquiryOptions(parent)}
           baseServiceType={parent.slug}
+          bookHref={bookHref}
         />
       </div>
 

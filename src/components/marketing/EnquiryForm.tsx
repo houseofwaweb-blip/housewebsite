@@ -67,6 +67,11 @@ export interface EnquiryFormProps {
   serviceOptions?: ReadonlyArray<{ value: string; label: string }>;
   /** Enum serviceType submitted when serviceOptions is used (the parent service). */
   baseServiceType?: string;
+  /** Explicit "Book a service" target. When set, the book-online link uses this
+   *  instead of deriving one from the dropdown's serviceType. Needed on
+   *  sub-service pages so the enquiry's book link opens the SPECIFIC sub-service
+   *  (e.g. Garden Tidy) rather than the parent discipline. */
+  bookHref?: string;
 }
 
 export function EnquiryForm({
@@ -81,6 +86,7 @@ export function EnquiryForm({
   className,
   serviceOptions,
   baseServiceType,
+  bookHref,
 }: EnquiryFormProps) {
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -171,9 +177,10 @@ export function EnquiryForm({
             Prefer to book online?{" "}
             <a
               href={
-                SERVICEOS_SERVICE_ID[effectiveServiceType]
+                bookHref ??
+                (SERVICEOS_SERVICE_ID[effectiveServiceType]
                   ? buildBookingUrl("", SERVICEOS_SERVICE_ID[effectiveServiceType])
-                  : "#open-booking-form"
+                  : "#open-booking-form")
               }
               className={cn("underline underline-offset-[3px]", isDark ? "text-house-gold-light" : "text-house-gold-ink")}
             >

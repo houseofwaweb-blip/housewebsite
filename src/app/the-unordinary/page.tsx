@@ -90,7 +90,7 @@ export default function TheUnordinaryPage() {
               but. Films from the unOrdinary world of the House and HoWA.
             </p>
             <Link href="#films" className="mt-8 inline-block px-6 py-3 font-sans text-[12px] tracking-[0.16em] uppercase no-underline transition-[filter] hover:brightness-95" style={{ background: CREAM, color: "#17241C" }}>
-              Watch the films ↓
+              Preview the films ↓
             </Link>
           </div>
         </div>

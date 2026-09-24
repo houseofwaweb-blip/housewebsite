@@ -60,7 +60,7 @@ const COLS: FooterColumn[] = [
     links: [
       { label: "About", href: "/the-house/about" },
       { label: "Sustainability", href: "/the-house/sustainability" },
-      { label: "The unOrdinary", href: "/cinema" },
+      { label: "The unOrdinary", href: "/the-unordinary" },
     ],
   },
   {

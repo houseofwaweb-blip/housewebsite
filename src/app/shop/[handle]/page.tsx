@@ -314,11 +314,21 @@ export default async function ProductPage({
             />
           ) : (
             <div className="mb-3">
-              {/* Buy action stand-in until checkout is live — same size as the
-                  Home Record button, distinct colour (brand brown vs gold) */}
-              <span className="inline-flex w-full items-center justify-center gap-2 border border-house-brown bg-house-brown px-6 py-4 font-sans text-[14px] tracking-[0.18em] uppercase text-house-cream">
-                Available at launch
+              {/* Pre-launch: the online shop is not open to buy yet. Render a
+                  clear STATUS (muted, outlined, non-interactive), not a filled
+                  button with no action — so an item is never presented as
+                  available to buy when it isn't. A launch notification is
+                  offered beneath. */}
+              <span className="inline-flex w-full items-center justify-center gap-2 border border-house-brown/30 bg-house-cream-light px-6 py-4 font-sans text-[14px] tracking-[0.18em] uppercase text-house-brown/80">
+                Available to buy at launch
               </span>
+              <p className="mt-2 font-sans text-[16px] leading-[1.5] text-house-stone">
+                The online shop opens soon.{" "}
+                <Link href="/the-hearth" className="text-house-gold-ink underline underline-offset-[3px]">
+                  Join The Hearth
+                </Link>{" "}
+                and we&rsquo;ll let you know when it does.
+              </p>
             </div>
           )}
 
@@ -418,11 +428,17 @@ export default async function ProductPage({
             <p className="font-sans text-[14px] tracking-[0.22em] uppercase text-house-gold-ink mb-3">
               Kept in your Home Record
             </p>
+            {/* Home Record saving is coming soon (stated in the buy column), so
+                this section is framed as what the record WILL hold, not a
+                present guarantee — keeps the page consistent with itself. */}
+            <p className="mb-3 font-sans text-[16px] leading-[1.5] text-house-stone">
+              Once Home Record saving is live, each purchase will keep:
+            </p>
             <dl className="m-0 space-y-2.5">
               {[
                 ["Supplier", product.brand?.trim() || "House Approved maker"],
-                ["Care", product.careNotes?.trim() || "Surface-appropriate care notes, saved with the item."],
-                ["Warranty", "Receipt and any warranty stored at purchase."],
+                ["Care", product.careNotes?.trim() || "Surface-appropriate care notes for the item."],
+                ["Warranty", "Your receipt and any warranty from the purchase."],
                 [
                   consumable ? "Reorder" : "Replacement",
                   consumable
