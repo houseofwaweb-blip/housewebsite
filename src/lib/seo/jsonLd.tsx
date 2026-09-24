@@ -25,7 +25,9 @@ export function OrganizationJsonLd() {
     "@type": "Organization",
     "@id": `${base}#organization`,
     name: "House of Willow Alexander",
-    alternateName: ["HoWA", "The House"],
+    // HoWA is a distinct business (a defined partnership), not an alternate name
+    // for the House, so it is not listed here (final September brief §4).
+    alternateName: ["The House"],
     url: base,
     logo: `${base}/brand/logo-organization.png`,
     description:
