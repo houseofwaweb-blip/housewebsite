@@ -6,6 +6,8 @@ import { NewsletterInline } from "@/components/marketing/NewsletterInline";
 import { getNewsletterBlock } from "@/lib/cms/newsletter";
 import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 import { GARDEN_PROJECTS } from "@/lib/gardens-projects";
+import { HouseAtWork } from "@/components/home/HouseAtWork";
+import { workPostsFor } from "@/lib/house-at-work";
 
 /**
  * /design/gardens — lander framework.
@@ -112,6 +114,9 @@ export default async function GardensPage() {
   const quote = sections.get("quote");
   const companion = sections.get("companion");
 
+  // "The House at work" — the garden studio's reels only, no filters (brief §1).
+  const gardenWork = workPostsFor("gardens");
+
   const statCols = cmsCards(stats, STAT_COLS, (c, base) => ({
     value: pick(c.value ?? c.label, base?.value ?? ""),
     label: pick(c.title ?? c.body, base?.label ?? ""),
@@ -190,6 +195,20 @@ export default async function GardensPage() {
           </div>
         ))}
       </section>
+
+      {/* The House at work — the garden studio's reels, no filters (brief §1).
+          Placed after the studio introduction (hero + stats) and before the
+          plans/consultation action; kept clear of the Projects gallery below so
+          the same studio imagery isn't shown twice. */}
+      {gardenWork.length > 0 ? (
+        <HouseAtWork
+          posts={gardenWork}
+          showFilters={false}
+          eyebrow="The House at work"
+          heading="The studio at work."
+          intro="Short films from Willow Alexander Gardens: designs taking shape, borders planted and gardens settling into their setting."
+        />
+      ) : null}
 
       {/* 3. Three plans */}
       <section id="plans" className={s.plans}>

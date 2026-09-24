@@ -16,6 +16,42 @@ import { LOCATION_SERVICE_SLUGS, townLinksForService, type LocationServiceSlug }
 import { BookingPanel } from "@/components/services/BookingPanel";
 import { buildBookingUrl } from "@/components/booking/postcode";
 import { SERVICEOS_SERVICE_ID } from "@/lib/serviceos-links";
+import { HouseAtWork } from "@/components/home/HouseAtWork";
+import { workPostsFor, type WorkDiscipline } from "@/lib/house-at-work";
+
+/**
+ * "The House at work" per-discipline carousel (final September brief §1). Only
+ * the service categories with supplied reels map to a discipline; everything
+ * else (e.g. gutter-cleaning) resolves to nothing and the section is guarded out.
+ */
+const SLUG_TO_WORK_DISCIPLINE: Record<string, WorkDiscipline> = {
+  gardening: "gardeners",
+  cleaning: "cleaners",
+  "window-cleaning": "window-cleaners",
+};
+
+const WORK_COPY: Record<WorkDiscipline, { heading: string; intro: string }> = {
+  gardeners: {
+    heading: "Our gardeners, at work.",
+    intro:
+      "Real visits from our gardeners: seasonal work, clearances and the everyday care that keeps a garden in good order.",
+  },
+  cleaners: {
+    heading: "Our cleaners, at work.",
+    intro:
+      "Real jobs from our cleaning teams, from a routine clean to a patio brought back to life.",
+  },
+  "window-cleaners": {
+    heading: "Our window cleaners, at work.",
+    intro:
+      "Real visits from our window cleaners, using pure-water poles for a clean, streak-free finish.",
+  },
+  gardens: {
+    heading: "The studio at work.",
+    intro:
+      "Short films from Willow Alexander Gardens: designs taking shape and gardens settling into their setting.",
+  },
+};
 
 const PUBLIC = path.join(process.cwd(), "public");
 // Generic still-life fallback used only when a service's own photography is not
@@ -123,6 +159,11 @@ export function ServiceDetail({
 
   const primaryLabel = quote ? "Get a quote" : "See times and prices";
   const nameLower = service.name.toLowerCase();
+
+  // "The House at work" — this discipline's reels only, no filters. Guarded so a
+  // service with no matching reels (e.g. gutter-cleaning) shows nothing.
+  const workDiscipline = SLUG_TO_WORK_DISCIPLINE[service.slug];
+  const workPosts = workDiscipline ? workPostsFor(workDiscipline) : [];
 
   const pkgCtaLabel = (cta: "bookNow" | "quoteEntry" | "waitlist") => {
     if (cta === "quoteEntry") return "Get a quote";
@@ -402,6 +443,20 @@ export function ServiceDetail({
 
       {/* 6. Meet the House standard */}
       <HouseStandardStrip />
+
+      {/* The House at work — this discipline's reels, no filters (brief §1).
+          Placed after the service overview/inclusions and before the main
+          enquiry block; the "From the field" photo gallery stays further down
+          so the two proof blocks don't sit side by side. */}
+      {workPosts.length > 0 && workDiscipline ? (
+        <HouseAtWork
+          posts={workPosts}
+          showFilters={false}
+          eyebrow="The House at work"
+          heading={WORK_COPY[workDiscipline].heading}
+          intro={WORK_COPY[workDiscipline].intro}
+        />
+      ) : null}
 
       {/* 7. Request a callback — high-intent capture placed mid-page so it is
           easy to reach without scrolling to the foot of the page. */}
