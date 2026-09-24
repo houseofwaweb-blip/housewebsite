@@ -56,6 +56,7 @@ export function HouseAtWork({
 }: HouseAtWorkProps) {
   const [filter, setFilter] = React.useState<WorkDiscipline | "all">("all");
   const [playing, setPlaying] = React.useState<string | null>(null);
+  const [bar, setBar] = React.useState({ show: false, w: 30, left: 0 });
   const trackRef = React.useRef<HTMLDivElement>(null);
 
   const shown =
@@ -69,6 +70,34 @@ export function HouseAtWork({
   React.useEffect(() => {
     setPlaying(null);
   }, [filter]);
+
+  // Measure scroll position so a progress bar can show how far along the track
+  // the viewer is — the clearest signal that this row slides.
+  const measure = React.useCallback(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    if (max <= 1) {
+      setBar((b) => (b.show ? { show: false, w: 30, left: 0 } : b));
+      return;
+    }
+    const w = (el.clientWidth / el.scrollWidth) * 100;
+    const left = (el.scrollLeft / max) * (100 - w);
+    setBar({ show: true, w, left });
+  }, []);
+
+  React.useEffect(() => {
+    measure();
+    const el = trackRef.current;
+    if (!el) return;
+    el.addEventListener("scroll", measure, { passive: true });
+    window.addEventListener("resize", measure);
+    return () => {
+      el.removeEventListener("scroll", measure);
+      window.removeEventListener("resize", measure);
+    };
+    // Re-measure when the visible set changes (filter switch).
+  }, [measure, shown.length]);
 
   const scrollByCards = (dir: 1 | -1) => {
     const el = trackRef.current;
@@ -96,39 +125,17 @@ export function HouseAtWork({
       )}
     >
       <div className="mx-auto max-w-[1360px]">
-        {/* Header + controls */}
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <div className="max-w-[46ch]">
-            <p className="font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-ink">
-              {eyebrow}
-            </p>
-            <h2 className="mt-3 font-display text-[clamp(30px,3.4vw,52px)] leading-[1.04] text-house-brown text-balance">
-              {heading}
-            </h2>
-            <p className="mt-4 font-sans text-[clamp(16px,1.4vw,19px)] leading-[1.6] text-house-brown/75">
-              {intro}
-            </p>
-          </div>
-
-          {/* Prev/next — hidden on mobile (swipe); keyboard-operable buttons. */}
-          <div className="hidden shrink-0 gap-2 sm:flex">
-            <button
-              type="button"
-              onClick={() => scrollByCards(-1)}
-              aria-label="Previous"
-              className="is-round grid h-11 w-11 place-items-center rounded-full border border-house-brown/30 text-house-brown transition-colors hover:border-house-brown hover:bg-house-brown hover:text-house-cream"
-            >
-              <span aria-hidden>&larr;</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollByCards(1)}
-              aria-label="Next"
-              className="is-round grid h-11 w-11 place-items-center rounded-full border border-house-brown/30 text-house-brown transition-colors hover:border-house-brown hover:bg-house-brown hover:text-house-cream"
-            >
-              <span aria-hidden>&rarr;</span>
-            </button>
-          </div>
+        {/* Header */}
+        <div className="max-w-[52ch]">
+          <p className="font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-ink">
+            {eyebrow}
+          </p>
+          <h2 className="mt-3 font-display text-[clamp(30px,3.4vw,52px)] leading-[1.04] text-house-brown text-balance">
+            {heading}
+          </h2>
+          <p className="mt-4 max-w-[46ch] font-sans text-[clamp(16px,1.4vw,19px)] leading-[1.6] text-house-brown/75">
+            {intro}
+          </p>
         </div>
 
         {/* Filters */}
@@ -261,6 +268,41 @@ export function HouseAtWork({
             </article>
           ))}
         </div>
+
+        {/* Slider controls — a scroll-progress bar with prev/next arrows on the
+            same row, directly under the cards, so the row clearly reads as a
+            slider (and stays operable by keyboard). */}
+        {bar.show ? (
+          <div className="mt-5 flex items-center gap-4">
+            <div
+              className="relative h-[3px] flex-1 overflow-hidden bg-house-brown/12"
+              aria-hidden="true"
+            >
+              <span
+                className="absolute top-0 h-full bg-house-gold-ink"
+                style={{ width: `${bar.w}%`, left: `${bar.left}%` }}
+              />
+            </div>
+            <div className="flex shrink-0 gap-2">
+              <button
+                type="button"
+                onClick={() => scrollByCards(-1)}
+                aria-label="Previous"
+                className="is-round grid h-10 w-10 place-items-center rounded-full border border-house-brown/30 text-house-brown transition-colors hover:border-house-brown hover:bg-house-brown hover:text-house-cream"
+              >
+                <span aria-hidden>&larr;</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollByCards(1)}
+                aria-label="Next"
+                className="is-round grid h-10 w-10 place-items-center rounded-full border border-house-brown/30 text-house-brown transition-colors hover:border-house-brown hover:bg-house-brown hover:text-house-cream"
+              >
+                <span aria-hidden>&rarr;</span>
+              </button>
+            </div>
+          </div>
+        ) : null}
 
         {/* Foot — link out to the verified account(s), when set. */}
         {igLinks.length > 0 ? (

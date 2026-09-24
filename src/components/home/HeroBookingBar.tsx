@@ -55,6 +55,11 @@ export function HeroBookingBar({ className = "" }: { className?: string }) {
           Check availability →
         </button>
       </div>
+      {/* Coverage line beside the availability form (final September brief §3).
+          Design commissions run UK-wide; that message stays on the design pages. */}
+      <p className="mt-2.5 font-sans text-[13px] leading-[1.4] text-house-stone">
+        Home and garden services across London and Kent.
+      </p>
     </form>
   );
 }
