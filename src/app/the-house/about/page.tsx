@@ -33,7 +33,9 @@ type Fig = { src: string; alt: string; caption: string; placeholder?: boolean };
 const FOUNDER_PORTRAIT: Fig = {
   src: "/lifestyle/period-portrait.webp",
   alt: "Placeholder portrait, to be replaced with a founder portrait",
-  caption: "Samuel Collett and Alexander Oakley, founders of the House.",
+  // IMAGE BRIEF (shown in the caption on localhost so you know what to send):
+  caption:
+    "IMAGE NEEDED: a landscape portrait of founders Samuel Collett and Alexander Oakley together, warm and editorial (a garden, studio or workshop setting suits). Will caption: “Samuel Collett and Alexander Oakley, founders of the House.”",
   placeholder: true,
 };
 
