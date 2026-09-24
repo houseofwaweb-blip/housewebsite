@@ -194,7 +194,7 @@ export function HouseAtWork({
         {/* Track */}
         <div
           ref={trackRef}
-          className="mt-7 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="mt-7 flex snap-x snap-proximity gap-4 overflow-x-auto overscroll-x-contain pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {shown.map((post) => (
             <article

@@ -2,16 +2,11 @@
  * "The House at work" — data for the homepage + per-service Instagram-style
  * proof carousel (final September brief §1).
  *
- * IMPORTANT — this ships with PLACEHOLDER content using existing House
- * photography so the layout and interaction can be reviewed on localhost.
- * Before publishing:
- *   1. Replace `WORK_POSTS` with 8-12 selected real Instagram posts/reels,
- *      balanced across the four disciplines.
- *   2. For reels, set `media: "reel"` and provide `video` (the reel plays ON
- *      THE SITE, so prefer a hosted mp4; an embeddable URL also works) plus the
- *      poster `image`. We do NOT link out to Instagram: the card's action is the
- *      service/design page, and reels play in place. The Instagram post is only
- *      needed as the source to obtain that video.
+ * WORK_POSTS holds the 10 supplied reels. Each plays IN PLACE via the Instagram
+ * embed (`video` = the post's /embed/ URL); we do NOT link out to Instagram, so
+ * the card's only action is the relevant service/design page. Covers use the
+ * service/design page imagery, so the resting card is House-branded (still +
+ * play button, like Cinema) and Instagram's player only shows once played.
  *
  * "Gardens" = the garden DESIGN studio and its projects (Willow Alexander
  * Gardens). "Gardeners" = the care/maintenance SERVICE. Keep that distinction
@@ -52,153 +47,129 @@ export const WORK_FILTERS: ReadonlyArray<{ id: WorkDiscipline | "all"; label: st
   { id: "window-cleaners", label: "Window Cleaners" },
 ];
 
+/** Build the on-site playback URL (Instagram embed) from a post/reel path. */
+const ig = (path: string) => `https://www.instagram.com/${path}/embed/`;
+
 /**
- * PLACEHOLDER SET — replace with real, curated Instagram content.
- * Uses existing House photography so the section renders and the interaction
- * can be reviewed. All `placeholder`; reels will carry a `video` to play in place.
+ * The 10 real reels supplied, mapped to disciplines by the account each sits on
+ * (verified via the /embed/ endpoint). All are videos, played IN PLACE via the
+ * Instagram embed once the House-styled still + play button is clicked.
+ *
+ * COVERS use the relevant service/design page imagery (by direction), so the
+ * resting card is House-branded (still + gold play button, like Cinema) and the
+ * Instagram player only appears once played. CAPTIONS are drafts pending the
+ * real ones. Order is interleaved so the "All" view opens on a mix of disciplines.
  */
 export const WORK_POSTS: ReadonlyArray<WorkPost> = [
-  // ── Gardeners (care & maintenance) ──────────────────────────────────────
   {
-    id: "g1",
+    id: "DaftjnZlMS1",
     discipline: "gardeners",
-    media: "image",
+    media: "reel",
     image: "/services/subbrands/gardeners.webp",
-    caption: "A season of regular visits keeps this garden in good order.",
-    location: "Kent",
+    video: ig("p/DaftjnZlMS1"),
+    caption: "Our garden team on a recent visit.",
     serviceHref: "/services/gardening",
     serviceLabel: "Gardening",
-    alt: "A House gardener tending established planting",
-    placeholder: true,
+    alt: "A House gardener at work",
   },
   {
-    id: "g2",
-    discipline: "gardeners",
-    media: "image",
-    image: "/services/field/team-at-work.webp",
-    caption: "Our garden team on a maintenance round, everything left tidy.",
-    location: "London",
-    serviceHref: "/services/gardening",
-    serviceLabel: "Gardening",
-    alt: "A House garden team at work",
-    placeholder: true,
+    id: "DWYkUglj9Da",
+    discipline: "window-cleaners",
+    media: "reel",
+    image: "/services/photos/gutter-cleaning-skyvac.jpg",
+    video: ig("p/DWYkUglj9Da"),
+    caption: "Gutter clearance, photographed to your record.",
+    serviceHref: "/services/window-cleaning/gutter-cleaning",
+    serviceLabel: "Gutter cleaning",
+    alt: "Vacuum-pole gutter clearance",
   },
   {
-    id: "g3",
-    discipline: "gardeners",
-    media: "image",
-    image: "/services/field/garden-in-good-order.webp",
-    caption: "Beds edged, borders cleared and the lawn cut on a garden tidy.",
-    location: "London",
-    serviceHref: "/services/gardening/garden-tidy",
-    serviceLabel: "Garden Tidy",
-    alt: "A garden left in good order after a tidy",
-    placeholder: true,
+    id: "DDH2_wlJXQu",
+    discipline: "cleaners",
+    media: "reel",
+    image: "/services/photos/cleaner-team.jpg",
+    video: ig("p/DDH2_wlJXQu"),
+    caption: "A clean brought back to order.",
+    serviceHref: "/services/cleaning",
+    serviceLabel: "Cleaning",
+    alt: "A House cleaning team at work",
   },
-  // ── Gardens (design studio) ─────────────────────────────────────────────
   {
-    id: "d1",
+    id: "DXopZQelB-c",
     discipline: "gardens",
-    media: "image",
+    media: "reel",
     image: "/design/gardens/hero.jpg",
-    caption: "A garden designed and planted by Willow Alexander Gardens.",
-    location: "Kent",
+    video: ig("reel/DXopZQelB-c"),
+    caption: "A garden by Willow Alexander Gardens.",
     serviceHref: "/design/gardens",
     serviceLabel: "Garden design",
     alt: "A designed English garden",
-    placeholder: true,
   },
   {
-    id: "d2",
-    discipline: "gardens",
-    media: "image",
-    image: "/design/gardens/full-design.webp",
-    caption: "From plan to planting: a complete garden transformation.",
-    serviceHref: "/design/gardens",
-    serviceLabel: "Garden design",
-    alt: "A completed garden design project",
-    placeholder: true,
+    id: "DV_cebnkRMA",
+    discipline: "gardeners",
+    media: "reel",
+    image: "/services/field/team-at-work.webp",
+    video: ig("p/DV_cebnkRMA"),
+    caption: "Maintenance that keeps a garden in good order.",
+    serviceHref: "/services/gardening",
+    serviceLabel: "Gardening",
+    alt: "A House garden team on a maintenance round",
   },
   {
-    id: "d3",
-    discipline: "gardens",
-    media: "image",
-    image: "/design/gardens/planting-plans.jpg",
-    caption: "Considered planting plans, drawn for structure through the seasons.",
-    serviceHref: "/design/gardens",
-    serviceLabel: "Garden design",
-    alt: "A planting plan from the studio",
-    placeholder: true,
-  },
-  // ── Cleaners ────────────────────────────────────────────────────────────
-  {
-    id: "c1",
-    discipline: "cleaners",
-    media: "image",
-    image: "/services/photos/cleaner-team.jpg",
-    caption: "Our cleaning team, ready for a regular visit.",
-    location: "London",
-    serviceHref: "/services/cleaning",
-    serviceLabel: "Cleaning",
-    alt: "A House cleaning team",
-    placeholder: true,
-  },
-  {
-    id: "c2",
-    discipline: "cleaners",
-    media: "image",
-    image: "/services/photos/cleaning-gallery-1.webp",
-    caption: "A kitchen brought back to order on a deep clean.",
-    serviceHref: "/services/cleaning",
-    serviceLabel: "Cleaning",
-    alt: "A kitchen after a deep clean",
-    placeholder: true,
-  },
-  {
-    id: "c3",
-    discipline: "cleaners",
-    media: "image",
-    image: "/services/photos/cleaner-shower.jpg",
-    caption: "Bathrooms detailed, glass and tile left gleaming.",
-    serviceHref: "/services/cleaning",
-    serviceLabel: "Cleaning",
-    alt: "A bathroom detailed after cleaning",
-    placeholder: true,
-  },
-  // ── Window Cleaners ─────────────────────────────────────────────────────
-  {
-    id: "w1",
+    id: "DWn6R5LjN7o",
     discipline: "window-cleaners",
-    media: "image",
+    media: "reel",
     image: "/services/photos/window-cleaning-hero.webp",
-    caption: "Pure-water pole cleaning across a period frontage.",
-    location: "London",
+    video: ig("p/DWn6R5LjN7o"),
+    caption: "Pure-water pole cleaning across a frontage.",
     serviceHref: "/services/window-cleaning",
     serviceLabel: "Window cleaning",
     alt: "Pure-water pole window cleaning",
-    placeholder: true,
   },
   {
-    id: "w2",
-    discipline: "window-cleaners",
-    media: "image",
-    image: "/services/photos/window-cleaning-gallery-1.webp",
-    caption: "Glass and frames left clear and streak-free.",
-    serviceHref: "/services/window-cleaning",
-    serviceLabel: "Window cleaning",
-    alt: "Clean glass and frames after a visit",
-    placeholder: true,
+    id: "C35l-PYp8_G",
+    discipline: "cleaners",
+    media: "reel",
+    image: "/services/photos/cleaning-gallery-1.webp",
+    video: ig("reel/C35l-PYp8_G"),
+    caption: "Detail work from our cleaning team.",
+    serviceHref: "/services/cleaning",
+    serviceLabel: "Cleaning",
+    alt: "A room detailed after a clean",
   },
   {
-    id: "w3",
-    discipline: "window-cleaners",
-    media: "image",
-    image: "/services/photos/gutter-cleaning-skyvac.jpg",
-    caption: "SkyVac gutter clearance, photographed to your record.",
-    serviceHref: "/services/window-cleaning/gutter-cleaning",
-    serviceLabel: "Gutter cleaning",
-    alt: "SkyVac vacuum-pole gutter clearance",
-    placeholder: true,
+    id: "DNnw7uXhb5h",
+    discipline: "gardens",
+    media: "reel",
+    image: "/design/gardens/full-design.webp",
+    video: ig("reel/DNnw7uXhb5h"),
+    caption: "From plan to planting, in the studio’s work.",
+    serviceHref: "/design/gardens",
+    serviceLabel: "Garden design",
+    alt: "A completed garden design project",
+  },
+  {
+    id: "DXZekDmik-v",
+    discipline: "gardeners",
+    media: "reel",
+    image: "/services/field/garden-in-good-order.webp",
+    video: ig("p/DXZekDmik-v"),
+    caption: "A tidy from our gardeners, start to finish.",
+    serviceHref: "/services/gardening/garden-tidy",
+    serviceLabel: "Garden Tidy",
+    alt: "A garden left in good order after a tidy",
+  },
+  {
+    id: "DXwpr9CDlkj",
+    discipline: "gardeners",
+    media: "reel",
+    image: "/services/photos/gardening/gardening-team-action.jpg",
+    video: ig("reel/DXwpr9CDlkj"),
+    caption: "Seasonal care, out with the team.",
+    serviceHref: "/services/gardening",
+    serviceLabel: "Gardening",
+    alt: "Seasonal garden care by the House team",
   },
 ];
 
