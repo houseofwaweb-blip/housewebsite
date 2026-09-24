@@ -32,20 +32,12 @@ export function OrganizationJsonLd() {
     logo: `${base}/brand/logo-organization.png`,
     description:
       "A modern British House for the care, design and intelligence of home and garden. Design, care, protection, and curated commerce, connected by HoWA.",
-    foundingLocation: {
-      "@type": "Place",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "14 Willow Lane",
-        addressLocality: "Notting Hill",
-        addressRegion: "London",
-        postalCode: "W11",
-        addressCountry: "GB",
-      },
-    },
+    // Social profiles kept in sync with the footer's links (the House's own
+    // accounts). HoWA is a distinct business, so its handle is not listed here.
     sameAs: [
-      "https://instagram.com/howa.house",
-      "https://instagram.com/willowalexandergardens",
+      "https://www.instagram.com/world_of_willowalexander/",
+      "https://www.facebook.com/HouseOfWillowAlexander",
+      "https://www.youtube.com/@HouseOfWillowAlexander",
     ],
     contactPoint: {
       "@type": "ContactPoint",
