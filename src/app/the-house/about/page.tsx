@@ -37,18 +37,32 @@ const FOUNDER_PORTRAIT: Fig = {
   placeholder: true,
 };
 
-const FIGURE_GARDEN: Fig = {
-  src: "/design/gardens/hero.jpg",
-  alt: "A garden designed and planted by Willow Alexander Gardens",
-  caption: "Willow Alexander Gardens, the studio from which the House grew.",
-  placeholder: true,
+// Real House editorial photography (the-house/editorial set) — reused here as
+// imagery breaks through the story. Not placeholders.
+const FIG_ROSES: Fig = {
+  src: "/the-house/editorial/garden-doors-roses.webp",
+  alt: "Roses framing a House garden door",
+  caption: "Roses at a House garden door.",
 };
-
-const FIGURE_VAN: Fig = {
-  src: "/services/photos/vans/asher-347.webp",
-  alt: "A House of Willow Alexander electric van",
-  caption: "Electric vans, out across London and the South East.",
-  placeholder: true,
+const FIG_BLOOMS: Fig = {
+  src: "/the-house/editorial/library-yellow-blooms.webp",
+  alt: "Yellow blooms in a House library",
+  caption: "Blooms, brought inside.",
+};
+const FIG_WISTERIA: Fig = {
+  src: "/the-house/editorial/georgian-wisteria-garden.webp",
+  alt: "Wisteria over a Georgian garden",
+  caption: "Wisteria over a Georgian facade.",
+};
+const BAND_BLOSSOM: Fig = {
+  src: "/the-house/editorial/tools-apple-blossom.webp",
+  alt: "Garden tools among apple blossom",
+  caption: "The craft behind the care.",
+};
+const BAND_RECORD: Fig = {
+  src: "/the-house/editorial/record-book-peony.webp",
+  alt: "A Home Record book beside a peony",
+  caption: "The Home Record: a home’s history, kept in one place.",
 };
 
 const LEDE =
@@ -77,8 +91,16 @@ const STORY: string[] = [
 // Figures floated beside the text, keyed by the story-paragraph index they
 // sit before. Alternating sides for a magazine rhythm.
 const FLOAT_BEFORE: Record<number, { fig: Fig; side: "left" | "right" }> = {
-  3: { fig: FIGURE_GARDEN, side: "right" },
-  6: { fig: FIGURE_VAN, side: "left" },
+  3: { fig: FIG_ROSES, side: "right" },
+  9: { fig: FIG_BLOOMS, side: "left" },
+  15: { fig: FIG_WISTERIA, side: "right" },
+};
+
+// Full-width imagery breaks between story movements, keyed by the paragraph
+// index they sit before.
+const BAND_BEFORE: Record<number, Fig> = {
+  5: BAND_BLOSSOM,
+  12: BAND_RECORD,
 };
 
 // A pull-quote before this story-paragraph index (the House's recurring test).
@@ -97,6 +119,20 @@ function FloatFigure({ fig, side }: { fig: Fig; side: "left" | "right" }) {
     >
       <div className="relative aspect-[4/5] w-full overflow-hidden border border-house-line bg-house-cream-dark">
         <Image src={fig.src} alt={fig.alt} fill sizes="(min-width:768px) 360px, 100vw" className="object-cover" />
+      </div>
+      <figcaption className="mt-2.5 font-hearth-sans text-[13px] leading-[1.5] text-house-stone">
+        {fig.caption}
+        {fig.placeholder ? <span className="italic"> (placeholder)</span> : null}
+      </figcaption>
+    </figure>
+  );
+}
+
+function Band({ fig }: { fig: Fig }) {
+  return (
+    <figure className="clear-both my-10 md:my-12">
+      <div className="relative aspect-[16/9] w-full overflow-hidden border border-house-line bg-house-cream-dark">
+        <Image src={fig.src} alt={fig.alt} fill sizes="(min-width:820px) 820px, 100vw" className="object-cover" />
       </div>
       <figcaption className="mt-2.5 font-hearth-sans text-[13px] leading-[1.5] text-house-stone">
         {fig.caption}
@@ -166,6 +202,7 @@ export default async function AboutPage() {
         <div className="mx-auto max-w-[820px]">
           {STORY.map((para, i) => (
             <React.Fragment key={i}>
+              {BAND_BEFORE[i] ? <Band fig={BAND_BEFORE[i]} /> : null}
               {FLOAT_BEFORE[i] ? (
                 <FloatFigure fig={FLOAT_BEFORE[i].fig} side={FLOAT_BEFORE[i].side} />
               ) : null}
