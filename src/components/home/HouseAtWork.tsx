@@ -55,7 +55,7 @@ export function HouseAtWork({
   const trackRef = React.useRef<HTMLDivElement>(null);
   const barRef = React.useRef<HTMLDivElement>(null);
   const thumbRef = React.useRef<HTMLSpanElement>(null);
-  const draggingRef = React.useRef(false);
+  const dragRef = React.useRef<{ startX: number; startScroll: number; ratio: number } | null>(null);
 
   const shown =
     showFilters && filter !== "all"
@@ -112,30 +112,55 @@ export function HouseAtWork({
     el.scrollBy({ left: dir * amount, behavior: "smooth" });
   };
 
-  // Drag / click the bar to scroll — set scrollLeft directly (instant, smooth).
-  const seek = (clientX: number) => {
-    const barEl = barRef.current;
+  // Drag the bar to scroll. Snap is disabled during the drag (so scrollLeft
+  // isn't yanked to the nearest card mid-drag) and restored on release after a
+  // smooth glide to the nearest card. Relative dragging with a grab offset keeps
+  // the thumb tracking the pointer 1:1 (the thumb only travels bar - thumb).
+  const onBarPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    const bar = barRef.current;
     const el = trackRef.current;
-    if (!barEl || !el) return;
-    const rect = barEl.getBoundingClientRect();
-    const frac = Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
-    el.scrollLeft = frac * (el.scrollWidth - el.clientWidth);
-  };
-  const onBarPointerDown = (e: React.PointerEvent) => {
-    draggingRef.current = true;
+    const thumb = thumbRef.current;
+    if (!bar || !el || !thumb) return;
+    e.preventDefault();
     e.currentTarget.setPointerCapture(e.pointerId);
-    seek(e.clientX);
+    el.style.scrollSnapType = "none";
+    const barRect = bar.getBoundingClientRect();
+    const thumbRect = thumb.getBoundingClientRect();
+    const max = el.scrollWidth - el.clientWidth;
+    const travel = barRect.width - thumbRect.width;
+    const ratio = travel > 0 ? max / travel : 0; // scroll px per pointer px
+    // Clicked the rail rather than the thumb: centre the thumb on the pointer.
+    if (e.clientX < thumbRect.left || e.clientX > thumbRect.right) {
+      el.scrollLeft = (e.clientX - barRect.left - thumbRect.width / 2) * ratio;
+    }
+    dragRef.current = { startX: e.clientX, startScroll: el.scrollLeft, ratio };
   };
-  const onBarPointerMove = (e: React.PointerEvent) => {
-    if (draggingRef.current) seek(e.clientX);
+  const onBarPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const d = dragRef.current;
+    const el = trackRef.current;
+    if (!d || !el) return;
+    el.scrollLeft = d.startScroll + (e.clientX - d.startX) * d.ratio;
   };
-  const onBarPointerUp = (e: React.PointerEvent) => {
-    draggingRef.current = false;
+  const onBarPointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    const el = trackRef.current;
+    if (!dragRef.current) return;
+    dragRef.current = null;
     try {
       e.currentTarget.releasePointerCapture(e.pointerId);
     } catch {
       /* already released */
     }
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-card]");
+    const step = card ? card.offsetWidth + 16 : 0; // matches gap-4 / scrollByCards
+    const max = el.scrollWidth - el.clientWidth;
+    const target = step ? Math.min(max, Math.round(el.scrollLeft / step) * step) : el.scrollLeft;
+    const restore = () => {
+      el.style.scrollSnapType = "";
+    };
+    el.addEventListener("scrollend", restore, { once: true });
+    setTimeout(restore, 600); // fallback: no scrollend if already on target / older Safari
+    el.scrollTo({ left: target, behavior: "smooth" });
   };
 
   return (
