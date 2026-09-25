@@ -41,7 +41,7 @@ export function HearthVideoPoster({
             aria-label={caption ? `Play: ${caption}` : "Play video"}
             className="group absolute inset-0 h-full w-full cursor-pointer border-0 bg-transparent p-0"
           >
-            <Image src={poster} alt={alt} fill sizes="760px" className="object-cover object-top" />
+            <Image src={poster} alt={alt} fill sizes="760px" className="object-cover" />
             <span
               aria-hidden
               className="absolute inset-0 grid place-items-center bg-black/15 transition-colors group-hover:bg-black/30"
