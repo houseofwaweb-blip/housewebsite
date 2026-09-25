@@ -8,6 +8,7 @@ import {
 import type { PortableTextBlock } from "@portabletext/types";
 import { urlFor } from "@/lib/cms/image";
 import { env } from "@/lib/env";
+import { HearthVideoPoster } from "./HearthVideoPoster";
 
 /**
  * Portable text renderer with the House / HoWA block-kit.
@@ -69,6 +70,7 @@ interface VideoEmbedBlock {
   url?: string;
   caption?: string;
   file?: { asset?: { _ref?: string } };
+  poster?: { asset?: { _ref?: string }; alt?: string };
 }
 
 // Extract an 11-char YouTube id from watch / youtu.be / shorts / embed URLs.
@@ -123,6 +125,18 @@ const components: PortableTextComponents = {
       if (value.youtubeUrl) {
         const id = youtubeId(value.youtubeUrl);
         if (!id) return null;
+        // Custom poster + play button (House-branded facade). The player loads
+        // on click; without a poster we fall back to the plain YouTube embed.
+        if (value.poster?.asset) {
+          return (
+            <HearthVideoPoster
+              youtubeId={id}
+              poster={urlFor(value.poster as unknown as SanityImage).width(840).url()}
+              alt={value.poster.alt ?? value.caption ?? "Video"}
+              caption={value.caption}
+            />
+          );
+        }
         return (
           <figure className="my-12">
             <div className="relative mx-auto w-full max-w-[420px] aspect-[9/16] overflow-hidden rounded-sm border border-house-gold/30 bg-black">
