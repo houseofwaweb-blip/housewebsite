@@ -115,7 +115,7 @@ export function proxy(request: NextRequest) {
     "img-src 'self' data: blob: https:",
     "font-src 'self' data: https:",
     `connect-src 'self' https://*.supabase.co wss://*.supabase.co https://*.sanity.io https://cdn.sanity.io https://*.shopify.com https://*.upstash.io https://challenges.cloudflare.com https://*.sentry.io https://*.ingest.sentry.io ${measureConnect} ${obfHosts}`,
-    `frame-src 'self' https://challenges.cloudflare.com https://www.facebook.com ${obfHosts}`,
+    `frame-src 'self' https://challenges.cloudflare.com https://www.facebook.com https://www.youtube-nocookie.com https://www.youtube.com ${obfHosts}`,
     "frame-ancestors 'none'",
     `form-action 'self' ${obfHosts}`,
     "base-uri 'self'",
