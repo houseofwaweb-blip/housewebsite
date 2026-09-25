@@ -64,6 +64,7 @@ const SHORT_CATEGORY: Record<string, string> = {
   "HERITAGE & CULTURE": "Heritage",
   "INTERIORS & STYLING": "Interiors",
   "TRENDS & INSPIRATION": "Trends",
+  PEOPLE: "People",
 };
 
 const shortCategory = (long?: string) =>
@@ -85,6 +86,7 @@ const CATEGORY_BY_REF: Record<string, { name: string; slug: string }> = {
   "category.heritage-and-culture": { name: "HERITAGE & CULTURE", slug: "heritage-and-culture" },
   "category.interiors-and-styling": { name: "INTERIORS & STYLING", slug: "interiors-and-styling" },
   "category.trends-and-inspiration": { name: "TRENDS & INSPIRATION", slug: "trends-and-inspiration" },
+  "category.people": { name: "PEOPLE", slug: "people" },
 };
 const categoryBySlug = (slug: string) => CATEGORY_BY_REF[`category.${slug}`] ?? null;
 

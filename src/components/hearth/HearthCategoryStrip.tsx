@@ -12,6 +12,7 @@ import { cn } from "@/lib/cn";
 // Slugs match the Sanity `articleCategory` slugs so the category routes resolve.
 const STRIP = [
   { slug: "all", label: "The Latest", href: "/the-hearth" },
+  { slug: "people", label: "People", href: "/the-hearth/category/people" },
   { slug: "interiors-and-styling", label: "Interiors & Styling", href: "/the-hearth/category/interiors-and-styling" },
   { slug: "design-and-architecture", label: "Design & Architecture", href: "/the-hearth/category/design-and-architecture" },
   { slug: "gardens-and-exteriors", label: "Gardens & Exteriors", href: "/the-hearth/category/gardens-and-exteriors" },
