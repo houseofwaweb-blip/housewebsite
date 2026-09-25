@@ -139,7 +139,7 @@ const components: PortableTextComponents = {
         }
         return (
           <figure className="my-12">
-            <div className="relative mx-auto w-full max-w-[420px] aspect-[9/16] overflow-hidden rounded-sm border border-house-gold/30 bg-black">
+            <div className="relative mx-auto w-full max-w-[760px] aspect-video overflow-hidden rounded-sm border border-house-gold/30 bg-black">
               <iframe
                 src={`https://www.youtube-nocookie.com/embed/${id}`}
                 title={value.caption ?? "Video"}
@@ -163,7 +163,7 @@ const components: PortableTextComponents = {
             controls
             preload="metadata"
             playsInline
-            className="mx-auto h-auto w-full max-w-[420px] rounded-sm border border-house-gold/30 bg-black"
+            className="mx-auto h-auto w-full max-w-[760px] rounded-sm border border-house-gold/30 bg-black"
           >
             <source src={src} type="video/mp4" />
           </video>

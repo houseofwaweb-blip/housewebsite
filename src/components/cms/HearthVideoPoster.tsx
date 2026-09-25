@@ -25,7 +25,7 @@ export function HearthVideoPoster({
 
   return (
     <figure className="my-12">
-      <div className="relative mx-auto w-full max-w-[420px] aspect-[9/16] overflow-hidden rounded-sm border border-house-gold/30 bg-black">
+      <div className="relative mx-auto w-full max-w-[760px] aspect-video overflow-hidden rounded-sm border border-house-gold/30 bg-black">
         {playing ? (
           <iframe
             src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1`}
@@ -41,7 +41,7 @@ export function HearthVideoPoster({
             aria-label={caption ? `Play: ${caption}` : "Play video"}
             className="group absolute inset-0 h-full w-full cursor-pointer border-0 bg-transparent p-0"
           >
-            <Image src={poster} alt={alt} fill sizes="420px" className="object-cover" />
+            <Image src={poster} alt={alt} fill sizes="760px" className="object-cover object-top" />
             <span
               aria-hidden
               className="absolute inset-0 grid place-items-center bg-black/15 transition-colors group-hover:bg-black/30"
