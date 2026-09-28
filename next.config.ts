@@ -226,6 +226,16 @@ const nextConfig: NextConfig = {
       // the correct new product or collection. Permanent 301s pass equity.
       { source: "/product/:slug*", destination: "/shop/:slug*", permanent: true },
       { source: "/shop/product/:slug*", destination: "/shop/:slug*", permanent: true },
+      // Duplicate legacy musing (the "-2" copy is identical to the original) —
+      // 301 to the canonical post so there is no duplicate content (audit #21).
+      {
+        source: "/musings/how-to-make-a-stunning-early-spring-wreath-from-foraged-seasonal-blooms-2",
+        destination: "/musings/how-to-make-a-stunning-early-spring-wreath-from-foraged-seasonal-blooms",
+        permanent: true,
+      },
+      // This legacy category has no matching collection, so the generic rule
+      // below would 301 it to a 404. Send it to the shop instead (audit #21).
+      { source: "/product-category/house/household-supplies", destination: "/shop", permanent: true },
       // Nested WooCommerce category URLs (e.g. /product-category/outdoor-living/
       // garden-furniture) map to the FLAT child collection (the last segment),
       // since new-site collections are single-level. Must precede the generic
