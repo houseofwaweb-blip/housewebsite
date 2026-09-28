@@ -48,32 +48,32 @@ const FOUNDER_ALEXANDER: Fig = {
   caption: "Alexander Oakley",
 };
 
-// Real House editorial photography (the-house/editorial set) — reused here as
-// imagery breaks through the story. Not placeholders.
+// Real House photography — the fleet, the teams at work and finished designs
+// (from the services + design sets), so the story shows the actual House.
 const FIG_ROSES: Fig = {
-  src: "/the-house/editorial/garden-doors-roses.webp",
-  alt: "Roses framing a House garden door",
-  caption: "Roses at a House garden door.",
+  src: "/services/photos/vans/asher-345.webp",
+  alt: "A liveried House of Willow Alexander electric van",
+  caption: "The House fleet: liveried, electric.",
 };
 const FIG_BLOOMS: Fig = {
-  src: "/the-house/editorial/approved-peony-plate.webp",
-  alt: "A House Approved niche with a peony",
-  caption: "The House Approved seal.",
+  src: "/services/photos/cleaner-team.jpg",
+  alt: "A House of Willow Alexander cleaning team at work",
+  caption: "A House team at work.",
 };
 const FIG_WISTERIA: Fig = {
-  src: "/the-house/editorial/georgian-wisteria-garden.webp",
-  alt: "Wisteria over a Georgian garden",
-  caption: "Wisteria over a Georgian facade.",
+  src: "/services/photos/gardening-gallery-1.webp",
+  alt: "A garden designed and cared for by the House",
+  caption: "A garden, designed and cared for by the House.",
 };
 const BAND_BLOSSOM: Fig = {
-  src: "/lifestyle/garden-pond.webp",
-  alt: "A House garden with a still water rill at golden hour",
-  caption: "A garden matures with the years.",
+  src: "/design/interiors/project-living-room.webp",
+  alt: "A living room designed by the House",
+  caption: "A House interior design.",
 };
 const BAND_RECORD: Fig = {
-  src: "/the-house/editorial/record-book-peony.webp",
-  alt: "A Home Record book beside a peony",
-  caption: "The Home Record: a home’s history, kept in one place.",
+  src: "/services/photos/gardening-gallery-2.webp",
+  alt: "A House garden kept through the seasons",
+  caption: "A garden, kept through the seasons.",
 };
 
 const LEDE =
