@@ -65,6 +65,7 @@ function fromPriceFor(slug: string): string | undefined {
  */
 
 export const metadata = {
+  alternates: { canonical: "/services" },
   title: "Home and garden services",
   description:
     "Garden care, cleaning and housekeeping, window and gutter cleaning, handyman and repairs, clearance and specialist garden work. Delivered by our own House of Willow Alexander teams, powered by HoWA.",

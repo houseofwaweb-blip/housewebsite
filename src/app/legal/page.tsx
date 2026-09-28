@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Eyebrow } from "@/components/primitives/Eyebrow";
 
 export const metadata = {
+  alternates: { canonical: "/legal" },
   title: "Legal",
   description: "Privacy, terms, and cookie policy for House of Willow Alexander.",
 };

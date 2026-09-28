@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/legal/accessibility" },
   title: "Accessibility",
   description:
     "The House of Willow Alexander's accessibility statement: our commitment to WCAG 2.2 AA, what we have done, known limitations and how to get help.",

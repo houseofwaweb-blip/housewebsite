@@ -11,6 +11,7 @@ import { insuranceOg } from "@/lib/insurance/og";
  * silently by the form's first-touch tracking.
  */
 export const metadata: Metadata = {
+  alternates: { canonical: "/insurance/speak-to-a-specialist" },
   title: "Speak to a specialist",
   description: "Leave your details and a Provenance insurance specialist will contact you. Introduced by House of Willow Alexander.",
   ...insuranceOg("speak-to-a-specialist", "Speak to a specialist"),

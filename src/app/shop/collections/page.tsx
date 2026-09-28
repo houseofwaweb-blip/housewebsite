@@ -4,6 +4,7 @@ import { getShopCollections } from "@/lib/shop-data/source";
 import s from "./collections-index.module.css";
 
 export const metadata = {
+  alternates: { canonical: "/shop/collections" },
   title: "Collections | Shop",
   description:
     "Every curated edit in the House Shop. House Approved, garden, home, and the categories that follow.",

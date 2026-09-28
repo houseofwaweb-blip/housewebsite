@@ -24,6 +24,7 @@ import { workPostsFor } from "@/lib/house-at-work";
  */
 
 export const metadata = {
+  alternates: { canonical: "/design/gardens" },
   title: "Gardens: Landscapes, properly read.",
   description:
     "Planting plans, concept designs and full landscape commissions through the House. Led by our in-house garden studio, Willow Alexander Gardens.",

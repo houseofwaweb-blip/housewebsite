@@ -28,6 +28,7 @@ const PHONE = "0800 047 8738";
 const EMAIL = "sales@willowalexander.co.uk";
 
 export const metadata = {
+  alternates: { canonical: "/howa/house-customers" },
   title: { absolute: "Your House service is moving into HoWA | House of Willow Alexander" },
   description:
     "Your regular House service is moving into HoWA Steward: one place for visits, changes, records and everything we learn about your home. The people looking after your home aren't changing.",

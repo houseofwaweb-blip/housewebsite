@@ -5,6 +5,7 @@ import { getPageSections, cms } from "@/lib/cms/page-sections";
 import { cn } from "@/lib/cn";
 
 export const metadata = {
+  alternates: { canonical: "/the-house/about" },
   title: "About House of Willow Alexander",
   description:
     "Rooted in design. Devoted to home. Founded in 2019 by Samuel Collett and Alexander Oakley, House of Willow Alexander brings together the design that shapes a home, the care that keeps it, and the intelligence that remembers it.",

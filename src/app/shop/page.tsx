@@ -355,6 +355,7 @@ function RelatedHearth({ articles }: { articles: HearthCard[] }) {
 }
 
 export const metadata = {
+  alternates: { canonical: "/shop" },
   title: { absolute: "The House Marketplace | Shop home, garden and household" },
   description:
     "Objects with a place in the House. Shop by room, kitchen, table, garden and more, or browse House Approved goods, best sellers and new arrivals.",

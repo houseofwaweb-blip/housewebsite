@@ -1,613 +1,268 @@
-/* /the-house/artwork — text-first long-scroll, lander framework */
+/* /the-house/artwork — "Atmospheric" direction (Mockup 3, approved 2026-09-25).
+   Cinematic scroll: an immersive green + pattern hero, calm cream reading
+   blocks with ghosted Didot numerals, full-bleed image/pattern interludes, and
+   deep-green / ink colour beats. The coloured-volumes shelf and the ecosystem
+   stay as the original interactive, animated, clickable components. */
 
 .page {
-  background: var(--color-house-cream);
-  color: var(--color-house-brown);
+  --cream: var(--color-house-cream, #f5f0e8);
+  --cream-dark: var(--color-house-cream-dark, #ebe4d6);
+  --brown: var(--color-house-brown, #30231c);
+  --gold: var(--color-house-gold, #bea96a);
+  --gold-dark: var(--color-house-gold-dark, #7a6229);
+  --gold-ink: var(--color-house-gold-ink, #c5a960);
+  --green: #354a38;
+  --green-deep: #25352a;
+  --art: "http://localhost:4000"; /* dev-only note; real srcs are absolute /the-house paths */
+  background: var(--cream);
+  color: var(--brown);
+  overflow-x: clip;
 }
 
-/* ──────────────────────────────────────────────────────────
-   Shared typography
-   ────────────────────────────────────────────────────────── */
-.kicker {
-  font-family: var(--font-sans);
-  font-size: 14px;
-  letter-spacing: 0.36em;
-  text-transform: uppercase;
-  color: var(--color-house-gold-ink);
-  font-weight: 500;
-  margin: 0 0 14px;
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-}
-.kicker::before {
-  content: "";
-  width: 32px;
-  height: 1px;
-  background: var(--color-house-gold-ink);
-  opacity: 0.7;
-}
-.chapterRoman {
-  font-family: var(--font-hearth-serif);
-  font-style: italic;
-  font-size: 18px;
-  letter-spacing: 0.04em;
-  color: rgba(48, 35, 28, 0.72);
-  margin: 0 0 14px;
-}
-.headline {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(35px, 4.4vw,59px);
-  line-height: 1.05;
-  letter-spacing: -0.018em;
-  color: var(--color-house-brown);
-  margin: 0 0 28px;
-  max-width: 22ch;
-}
-.headline em {
-  font-style: italic;
-  color: var(--color-house-gold-ink);
-}
-.body {
-  font-family: var(--font-sans);
-  font-size: 19px;
-  line-height: 1.75;
-  color: rgba(48, 35, 28, 0.82);
-  margin: 0 0 18px;
-  max-width: 60ch;
-}
-.body:last-child { margin-bottom: 0; }
-
-.bgCream { background: var(--color-house-cream); }
-.bgCreamDark { background: var(--color-house-cream-dark); }
-
-/* ──────────────────────────────────────────────────────────
-   HERO — text-first title with quiet pattern atmosphere
-   ────────────────────────────────────────────────────────── */
+/* ── HERO — immersive green + pattern ─────────────────────────────────────── */
 .heroText {
   position: relative;
-  min-height: clamp(560px, 78vh, 760px);
+  min-height: 88vh;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  padding: clamp(80px, 9vw, 132px) clamp(28px, 5vw, 88px);
+  align-items: center;
+  text-align: center;
+  padding: 60px clamp(20px, 5vw, 48px);
+  background: var(--green-deep);
+  color: var(--cream);
   overflow: hidden;
-  background: var(--color-house-cream);
 }
-/* Pattern texture behind the title. Bigger tile + stronger opacity so it
-   reads as part of the composition, not just a watermark. */
 .heroTexture {
   position: absolute;
   inset: 0;
-  background-image: url("/the-house/artwork/pattern-tile-gold-on-cream.webp");
-  background-size: 560px auto;
-  background-repeat: repeat;
-  opacity: 0.22;
-  mask-image: radial-gradient(ellipse at center, black 10%, transparent 90%);
-  -webkit-mask-image: radial-gradient(ellipse at center, black 10%, transparent 90%);
-  pointer-events: none;
+  background: url("/the-house/artwork/pattern-master-gold-on-green.webp");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.5;
 }
-.heroInner {
-  position: relative;
-  z-index: 1;
-  max-width: 880px;
-  text-align: center;
+.heroText::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(37, 53, 42, 0.35), rgba(37, 53, 42, 0.9));
 }
+.heroInner { position: relative; z-index: 1; max-width: 900px; }
 .heroEyebrow {
   font-family: var(--font-sans);
-  font-size: 14px;
-  letter-spacing: 0.36em;
+  font-size: 12px;
+  letter-spacing: 0.34em;
   text-transform: uppercase;
-  color: var(--color-house-gold-ink);
-  margin: 0 0 28px;
+  color: var(--gold-ink);
   font-weight: 500;
+  margin: 0;
 }
 .heroTitle {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(51px, 7.2vw,107px);
-  line-height: 1.02;
-  letter-spacing: -0.022em;
-  color: var(--color-house-brown);
-  margin: 0 0 32px;
+  font-size: clamp(52px, 9vw, 118px);
+  line-height: 1;
+  margin: 28px 0;
+  color: var(--cream);
 }
-.heroTitle em {
-  font-style: italic;
-  color: var(--color-house-gold-ink);
-}
+.heroTitle em { font-style: italic; color: var(--gold-ink); }
 .heroLede {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: clamp(21px, 1.8vw,25px);
-  line-height: 1.55;
-  color: rgba(48, 35, 28, 0.72);
-  margin: 0 auto 56px;
-  max-width: 56ch;
+  font-size: clamp(20px, 2.2vw, 27px);
+  line-height: 1.5;
+  color: rgba(245, 240, 232, 0.85);
+  max-width: 30ch;
+  margin: 0 auto;
 }
 .heroScrollCue {
   font-family: var(--font-sans);
-  font-size: 14px;
-  letter-spacing: 0.42em;
+  font-size: 11px;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--color-house-brown);
-  background: rgba(245, 240, 232, 0.92);
-  padding: 10px 22px;
-  display: inline-block;
-  margin: 0;
-  font-weight: 500;
+  color: var(--gold-ink);
+  margin: 44px 0 0;
 }
 
-/* ──────────────────────────────────────────────────────────
-   SPLIT CHAPTER — text one side, single artefact image the other
-   ────────────────────────────────────────────────────────── */
-.split {
-  display: grid;
-  /* Visual gets ~58% of the width — image-led split that breathes. */
-  grid-template-columns: 1.4fr 1fr;
-  gap: 0;
-  align-items: stretch;
-  min-height: clamp(640px, 84vh, 920px);
-  border-bottom: 1px solid rgba(48, 35, 28, 0.08);
-  overflow: hidden;
-}
-.splitRight .splitVisual { order: 2; }
-.splitRight .splitCopy   { order: 1; }
-.splitLeft  .splitVisual { order: 1; }
-.splitLeft  .splitCopy   { order: 2; }
-
-.splitVisual {
+/* ── CHAPTER — cream reading block with a ghosted numeral ──────────────────── */
+.chapter {
   position: relative;
-  background: var(--color-house-cream-dark);
-  overflow: hidden;
-}
-.splitCopy {
-  display: flex;
-  align-items: center;
-  padding: clamp(64px, 7vw, 112px) clamp(28px, 5vw, 96px);
-}
-.splitCopyInner {
-  max-width: 560px;
-}
-
-/* ──────────────────────────────────────────────────────────
-   IMAGE CLUSTER — Chapter II: two artefacts as a still life
-   Used in place of splitVisual when we need to compose two
-   books overlapping. Lives in the same .split grid as the
-   regular splitVisual but with offset positioning.
-   ────────────────────────────────────────────────────────── */
-.cluster {
-  position: relative;
-  min-height: clamp(640px, 84vh, 920px);
-  background: var(--color-house-cream-dark);
-  overflow: hidden;
-  padding: clamp(32px, 5vw, 80px);
-}
-.clusterFront,
-.clusterBack {
-  position: absolute;
-  width: 76%;
-  aspect-ratio: 3 / 4;
-}
-.clusterBack {
-  top: 4%;
-  right: 2%;
-  transform: rotate(5deg);
-  z-index: 1;
-}
-.clusterFront {
-  bottom: 4%;
-  left: 2%;
-  transform: rotate(-4deg);
-  z-index: 2;
-}
-.clusterImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  box-shadow:
-    0 12px 36px -10px rgba(48, 35, 28, 0.32),
-    0 4px 12px -4px rgba(48, 35, 28, 0.24);
-}
-
-/* ──────────────────────────────────────────────────────────
-   PATTERN REVEAL — Chapter III: the source detail + the pattern
-   ────────────────────────────────────────────────────────── */
-.patternReveal {
-  padding: clamp(80px, 10vw, 144px) clamp(28px, 5vw, 64px);
-  border-bottom: 1px solid rgba(48, 35, 28, 0.08);
-}
-.patternRevealInner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(32px, 5vw, 80px);
-  max-width: 1600px;
-  margin: 0 auto;
-}
-.patternRevealItem {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-}
-.patternRevealImg {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  box-shadow: 0 14px 36px -12px rgba(48, 35, 28, 0.32);
-}
-.patternRevealCap {
-  font-family: var(--font-sans);
-  font-size: 18px;
-  line-height: 1.55;
-  color: rgba(48, 35, 28, 0.7);
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-}
-.patternRevealNum {
-  font-family: var(--font-hearth-serif);
-  font-style: italic;
-  color: var(--color-house-gold-ink);
-  font-size: 19px;
-}
-
-/* ──────────────────────────────────────────────────────────
-   COPY SECTION — text-only chapter, centred
-   ────────────────────────────────────────────────────────── */
-.copySection {
-  padding: clamp(80px, 9vw, 132px) clamp(28px, 5vw, 88px);
-  border-bottom: 1px solid rgba(48, 35, 28, 0.08);
-}
-.copySectionFirst {
-  padding-top: clamp(100px, 11vw, 168px);
-}
-.copySectionInner {
-  max-width: 720px;
-  margin: 0 auto;
-  text-align: center;
-}
-.copySectionInner .kicker { justify-content: center; }
-.copySectionInner .chapterRoman { text-align: center; }
-.copySectionInner .headline { max-width: 26ch; margin-left: auto; margin-right: auto; }
-.copySectionInner .body    { margin-left: auto; margin-right: auto; }
-
-/* Chapter VI sits over the busy master pattern — back the copy with an
-   off-white panel so it stays legible (a faint translucency lets the
-   pattern read at the edges without fighting the text). */
-.atmosphere .copySectionInner {
-  position: relative;
-  z-index: 1;
-  background: rgba(245, 240, 232, 0.95);
-  padding: clamp(44px, 5vw, 76px) clamp(28px, 4vw, 64px);
-  box-shadow: 0 36px 90px -54px rgba(48, 35, 28, 0.72);
-  border: 1px solid rgba(48, 35, 28, 0.06);
-}
-
-/* ──────────────────────────────────────────────────────────
-   ATMOSPHERE — Chapter VI: text over pattern-tile backdrop
-   ────────────────────────────────────────────────────────── */
-.atmosphere {
-  position: relative;
-  padding: clamp(120px, 14vw, 200px) clamp(28px, 5vw, 88px);
-  overflow: hidden;
-  border-bottom: 1px solid rgba(48, 35, 28, 0.08);
-}
-.atmospherePattern {
-  position: absolute;
-  inset: 0;
-  /* Use the full master pattern artwork here (not the tile) so the chapter
-     about the pattern's role is set against the pattern itself at scale. */
-  background-image: url("/the-house/artwork/pattern-master.webp");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.28;
-  pointer-events: none;
-}
-
-/* ──────────────────────────────────────────────────────────
-   ICON GRID — Chapter VII: 8 hand-drawn icons
-   ────────────────────────────────────────────────────────── */
-.iconGrid {
-  padding: clamp(56px, 8vw, 128px) clamp(28px, 5vw, 88px) clamp(96px, 11vw, 160px);
-  background: var(--color-house-cream-dark);
-  border-bottom: 1px solid rgba(48, 35, 28, 0.08);
-}
-.iconGridInner {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: clamp(28px, 4vw, 64px);
-  max-width: 1200px;
-  margin: 0 auto;
-}
-@media (max-width: 640px) {
-  .iconGridInner { grid-template-columns: repeat(2, 1fr); }
-}
-.iconCell {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
-  padding: 24px 16px;
-}
-.iconImg {
-  width: clamp(96px, 12vw, 144px);
-  height: auto;
-  filter: brightness(0) saturate(100%) invert(16%) sepia(8%) saturate(1280%) hue-rotate(351deg) brightness(96%) contrast(86%);
-  opacity: 0.9;
-}
-.iconLabel {
-  font-family: var(--font-hearth-serif);
-  font-style: italic;
-  font-size: 18px;
-  color: rgba(48, 35, 28, 0.72);
-  margin: 0;
-  text-align: center;
-}
-
-/* ──────────────────────────────────────────────────────────
-   PALETTE SHIFT — Chapter V: green/gold → cream + gold + brown
-   ────────────────────────────────────────────────────────── */
-.paletteShift {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  margin: 40px auto 0;
-  flex-wrap: wrap;
-}
-.swatch {
-  display: inline-block;
-  width: 56px;
-  height: 80px;
-  border-radius: 2px;
-  box-shadow: 0 4px 10px -4px rgba(48, 35, 28, 0.3);
-}
-.swatchGreen { background: #3a4a35; }
-.swatchGoldOnGreen {
-  background:
-    linear-gradient(135deg, transparent 40%, rgba(194, 166, 96, 0.55) 50%, transparent 60%),
-    #3a4a35;
-}
-.swatchArrow {
-  font-family: var(--font-hearth-serif);
-  font-style: italic;
-  font-size: 27px;
-  color: var(--color-house-gold-ink);
-  padding: 0 8px;
-}
-.swatchCream { background: #f3ede1; border: 1px solid rgba(48, 35, 28, 0.08); }
-.swatchGold  { background: #c2a660; }
-.swatchBrown { background: #30231c; }
-
-/* ──────────────────────────────────────────────────────────
-   PULL QUOTE — italic Cormorant, text only, no backdrop image
-   ────────────────────────────────────────────────────────── */
-.pullQuote {
-  padding: clamp(80px, 10vw, 144px) clamp(28px, 5vw, 88px);
-  background: var(--color-house-cream);
-  border-bottom: 1px solid rgba(48, 35, 28, 0.08);
-}
-.pullQuoteDark {
-  background: var(--color-house-brown);
-  color: var(--color-house-cream);
-}
-.pullQuoteInner {
-  max-width: 880px;
-  margin: 0 auto;
-  text-align: center;
-}
-.pullQuoteText {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: clamp(29px, 3.2vw,43px);
-  line-height: 1.32;
-  letter-spacing: -0.005em;
-  color: inherit;
-  margin: 0 0 28px;
-}
-.pullQuoteDark .pullQuoteText { color: var(--color-house-cream); }
-.pullQuoteRule {
-  width: 56px;
-  height: 1px;
-  background: var(--color-house-gold-ink);
-  margin: 0 auto;
-}
-.pullQuoteDark .pullQuoteRule { background: var(--color-house-gold-light); }
-
-/* ──────────────────────────────────────────────────────────
-   PHILOSOPHY — Chapter IX, text + pattern atmosphere
-   ────────────────────────────────────────────────────────── */
-.philosophy {
-  position: relative;
-  padding: clamp(96px, 11vw, 168px) clamp(28px, 5vw, 88px);
-  background: var(--color-house-cream-dark);
-  overflow: hidden;
-  border-bottom: 1px solid rgba(48, 35, 28, 0.08);
-}
-.philosophyPattern {
-  position: absolute;
-  inset: 0;
-  background-image: url("/the-house/artwork/pattern-tile-gold-on-cream.webp");
-  background-size: 480px auto;
-  background-repeat: repeat;
-  opacity: 0.32;
-  pointer-events: none;
-}
-.philosophyInner {
-  position: relative;
-  z-index: 1;
-  max-width: 720px;
-  margin: 0 auto;
-  text-align: center;
-}
-.philosophyInner .kicker { justify-content: center; }
-.philosophyInner .chapterRoman { text-align: center; }
-.philosophyInner .headline { max-width: 24ch; margin-left: auto; margin-right: auto; }
-.philosophyBody {
-  font-family: var(--font-hearth-serif);
-  font-size: clamp(21px, 1.9vw,25px);
-  line-height: 1.65;
-  color: rgba(48, 35, 28, 0.85);
-  margin: 0 0 22px;
-  max-width: 56ch;
-  margin-left: auto;
-  margin-right: auto;
-}
-.philosophyBody:last-child { margin-bottom: 0; }
-
-/* ──────────────────────────────────────────────────────────
-   CLOSING — text-led closing statement + CTAs
-   ────────────────────────────────────────────────────────── */
-.closingText {
-  padding: clamp(100px, 12vw, 168px) clamp(28px, 5vw, 88px);
-  background: var(--color-house-brown);
-  color: var(--color-house-cream);
-  text-align: center;
-  border-bottom: 1px solid rgba(48, 35, 28, 0.72);
-}
-.closingTextInner {
   max-width: 760px;
   margin: 0 auto;
+  padding: clamp(80px, 12vw, 130px) clamp(20px, 5vw, 32px);
+  overflow: hidden;
 }
-.closingKicker {
-  font-family: var(--font-sans);
-  font-size: 14px;
-  letter-spacing: 0.42em;
-  text-transform: uppercase;
-  color: var(--color-house-gold-light);
-  margin: 0 0 28px;
-  font-weight: 500;
-  display: inline-flex;
-  align-items: center;
-  gap: 16px;
-}
-.closingKicker::before,
-.closingKicker::after {
-  content: "";
-  width: 32px;
-  height: 1px;
-  background: var(--color-house-gold-light);
-  opacity: 0.6;
-}
-.closingStatement {
+.chapter[data-chapter]::before {
+  content: attr(data-chapter);
+  position: absolute;
+  top: 24px;
+  right: -8px;
   font-family: var(--font-display);
-  font-size: clamp(31px, 3.4vw,47px);
-  line-height: 1.2;
-  letter-spacing: -0.012em;
-  color: var(--color-house-cream);
-  margin: 0 0 56px;
-  font-weight: 400;
+  font-weight: 700;
+  font-size: clamp(120px, 20vw, 280px);
+  line-height: 0.8;
+  color: rgba(122, 98, 41, 0.08);
+  pointer-events: none;
+  z-index: 0;
 }
-.closingStatement em {
-  font-style: italic;
-  color: var(--color-house-gold-light);
-}
-.closingCtas {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-}
-.btnFilled,
-.btnGhostLight {
-  font-family: var(--font-sans);
-  font-size: 14px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  padding: 14px 26px;
-  cursor: pointer;
-  font-weight: 500;
-  text-decoration: none;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-.btnFilled {
-  background: var(--color-house-gold-light);
-  color: var(--color-house-brown);
-  border: 1px solid var(--color-house-gold-light);
-}
-.btnFilled:hover {
-  background: var(--color-house-cream);
-  border-color: var(--color-house-cream);
-}
-.btnGhostLight {
-  background: transparent;
-  color: var(--color-house-cream);
-  border: 1px solid rgba(243, 237, 225, 0.4);
-}
-.btnGhostLight:hover {
-  border-color: var(--color-house-cream);
-  background: rgba(243, 237, 225, 0.06);
-}
-.btnArrow {
-  display: inline-block;
-  transition: transform 0.2s ease;
-}
-.btnGhostLight:hover .btnArrow { transform: translateX(3px); }
+.chapterInner { position: relative; z-index: 1; }
 
-/* ──────────────────────────────────────────────────────────
-   FINAL TAGLINE — quiet stewardship line under the closing
-   ────────────────────────────────────────────────────────── */
-.tagline {
-  padding: clamp(48px, 6vw, 80px) clamp(28px, 5vw, 88px);
-  text-align: center;
-  background: var(--color-house-brown);
-  color: var(--color-house-cream);
+.kicker {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  font-weight: 500;
+  margin: 0 0 14px;
 }
-.tagline p {
+.chapterRoman {
   font-family: var(--font-hearth-serif);
   font-style: italic;
-  font-size: clamp(19px, 1.6vw,21px);
-  line-height: 1.5;
-  color: rgba(243, 237, 225, 0.65);
+  font-size: 16px;
+  color: rgba(48, 35, 28, 0.55);
+  margin: 0 0 10px;
+}
+.headline {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(34px, 5vw, 58px);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: var(--brown);
+  max-width: 18ch;
+  margin: 0 0 24px;
+}
+.headline em { font-style: italic; color: var(--gold-dark); }
+.body {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.8;
+  color: rgba(48, 35, 28, 0.9);
+  max-width: 62ch;
+  margin: 0 0 18px;
+}
+.body:last-child { margin-bottom: 0; }
+.dropcap .body:first-of-type::first-letter {
+  font-family: var(--font-display);
+  font-weight: 700;
+  float: left;
+  font-size: 76px;
+  line-height: 0.72;
+  padding: 8px 14px 0 0;
+  color: var(--gold-dark);
+}
+
+/* ── PULL QUOTE (inline, centred beat) ────────────────────────────────────── */
+.pullQuote { margin: clamp(36px, 5vw, 52px) auto 0; max-width: 32ch; text-align: center; }
+.pullQuoteRule { width: 52px; height: 2px; background: var(--gold-dark); margin: 0 auto 18px; }
+.pullQuoteText {
+  font-family: var(--font-hearth-serif);
+  font-style: italic;
+  font-size: clamp(24px, 3.4vw, 35px);
+  line-height: 1.28;
+  color: var(--brown);
   margin: 0;
 }
-.tagline em {
+
+/* ── IMAGE PAIR (4:5, numbered) ───────────────────────────────────────────── */
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 2.5vw, 24px); margin-top: clamp(36px, 5vw, 48px); }
+.pairFig { margin: 0; }
+.pairFrame { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: var(--cream-dark); border: 1px solid rgb(48 35 28 / 0.1); }
+.pairFrame :global(img) { object-fit: cover; }
+.cap { font-family: var(--font-hearth-serif); font-style: italic; font-size: 14px; color: rgba(48, 35, 28, 0.65); margin: 10px 0 0; }
+.capNum { font-family: var(--font-sans); font-style: normal; font-size: 11px; letter-spacing: 0.16em; color: var(--gold-dark); margin-right: 8px; }
+@media (max-width: 599px) { .pair { grid-template-columns: 1fr; } }
+
+/* ── FULL-BLEED INTERLUDE (image, with a caption beat) ─────────────────────
+   Mobile shows the WHOLE wide image (no crop) with the caption beneath;
+   desktop uses the cinematic cover crop with the caption overlaid. */
+.interlude { position: relative; overflow: hidden; }
+.interludeImg { display: block; width: 100%; height: auto; } /* mobile: full image, uncropped */
+.interludeVeil { display: none; }
+.interludeCap {
+  font-family: var(--font-hearth-serif);
   font-style: italic;
-  color: var(--color-house-gold-light);
+  font-size: clamp(17px, 2vw, 24px);
+  line-height: 1.4;
+  max-width: 46ch;
+  color: rgba(48, 35, 28, 0.7);
+  background: var(--cream);
+  padding: 14px clamp(20px, 5vw, 44px) 26px;
+}
+@media (min-width: 700px) {
+  .interlude { height: clamp(320px, 52vh, 560px); display: flex; align-items: flex-end; color: var(--cream); }
+  .interludeImg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .interludeVeil { display: block; position: absolute; inset: 0; background: linear-gradient(transparent 40%, rgba(37, 53, 42, 0.85)); }
+  .interludeCap { position: relative; z-index: 1; color: var(--cream); background: none; padding: clamp(24px, 4vw, 44px); }
 }
 
-/* ──────────────────────────────────────────────────────────
-   RESPONSIVE — collapse split layouts on mobile/tablet
-   ────────────────────────────────────────────────────────── */
-@media (max-width: 1023px) {
-  .split {
-    grid-template-columns: 1fr;
-    min-height: auto;
-  }
-  /* On mobile, always render the visual first then the copy. */
-  .splitRight .splitVisual,
-  .splitLeft  .splitVisual { order: 1; }
-  .splitRight .splitCopy,
-  .splitLeft  .splitCopy   { order: 2; }
-  .splitVisual {
-    aspect-ratio: 4 / 3;
-    min-height: 280px;
-  }
-  .cluster {
-    min-height: 0;
-    aspect-ratio: 4 / 3;
-    order: 1;
-  }
-  .clusterFront,
-  .clusterBack { width: 56%; }
-  .splitLeft .splitCopy,
-  .splitRight .splitCopy {
-    padding: clamp(48px, 8vw, 80px) clamp(24px, 6vw, 56px);
-  }
+/* ── PATTERN BAND (full-bleed pattern texture, no text over it) ───────────── */
+.patternBand {
+  height: clamp(200px, 32vh, 340px);
+  background: var(--green-deep) url("/the-house/artwork/pattern-master-gold-on-green.webp") center / cover;
 }
 
-@media (max-width: 768px) {
-  .patternRevealInner { grid-template-columns: 1fr; }
-  .headline { max-width: 100%; }
-  .body { max-width: 100%; }
-  .closingKicker { font-size: 14px; letter-spacing: 0.32em; }
-  .closingKicker::before,
-  .closingKicker::after { width: 20px; }
+/* ── PALETTE SHIFT (Ch V) — the palette evolution (green era → cream+gold) ──
+   Restored to the original treatment: tight colour blocks that read as one
+   graduated strip, with the gold-on-green sheen, split by an arrow. */
+.paletteShift { display: flex; align-items: center; justify-content: flex-start; gap: 14px; margin: clamp(32px, 4vw, 44px) 0 0; flex-wrap: wrap; }
+.swatch { display: inline-block; width: 56px; height: 80px; box-shadow: 0 4px 10px -4px rgba(48, 35, 28, 0.3); }
+.swatchGreen { background: #3a4a35; }
+.swatchGoldOnGreen { background: linear-gradient(135deg, transparent 40%, rgba(194, 166, 96, 0.55) 50%, transparent 60%), #3a4a35; }
+.swatchArrow { font-family: var(--font-hearth-serif); font-style: italic; font-size: 27px; color: var(--gold-dark); padding: 0 8px; }
+.swatchCream { background: #f3ede1; border: 1px solid rgba(48, 35, 28, 0.08); }
+.swatchGold { background: #c2a660; }
+.swatchBrown { background: #30231c; }
+
+/* ── ICON GRID (Ch VII) ───────────────────────────────────────────────────── */
+.iconGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(14px, 2vw, 24px); margin-top: clamp(36px, 5vw, 48px); }
+.iconCell { text-align: center; padding: clamp(16px, 2vw, 22px) 8px; background: var(--cream-dark); border: 1px solid rgb(48 35 28 / 0.08); }
+.iconImg { width: clamp(44px, 5vw, 64px); height: auto; margin: 0 auto; }
+.iconLabel { font-family: var(--font-sans); font-size: 12px; color: rgba(48, 35, 28, 0.72); margin: 12px 0 0; }
+@media (max-width: 640px) { .iconGrid { grid-template-columns: repeat(2, 1fr); } }
+
+/* ── COLOURED VOLUMES BAND (Ch IV) — deep green, clickable spines ─────────── */
+.volumesBand { background: var(--green-deep); padding: clamp(64px, 9vw, 90px) clamp(20px, 5vw, 32px); text-align: center; }
+.volumesLabel { font-family: var(--font-sans); font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-ink); margin: 0 0 clamp(28px, 4vw, 40px); }
+.volumes { display: flex; gap: clamp(16px, 2.5vw, 26px); justify-content: center; flex-wrap: wrap; max-width: 900px; margin: 0 auto; }
+.volumeLink { text-decoration: none; text-align: center; transition: transform 0.25s ease; }
+.volumeLink:hover { transform: translateY(-6px); }
+.volumeImg { width: clamp(56px, 7vw, 74px); height: auto; margin: 0 auto; filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.35)); }
+.volumeName { display: block; font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.02em; color: rgba(245, 240, 232, 0.7); margin-top: 12px; max-width: 84px; }
+
+/* ── ECOSYSTEM (Ch VIII) — ink section, clickable nodes ───────────────────── */
+.eco { background: var(--brown); color: var(--cream); padding: clamp(80px, 12vw, 120px) clamp(20px, 5vw, 32px); text-align: center; }
+.ecoInner { max-width: 940px; margin: 0 auto; }
+.ecoKicker { font-family: var(--font-sans); font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-ink); margin: 0 0 14px; }
+.ecoHeadline { font-family: var(--font-display); font-weight: 400; font-size: clamp(30px, 4.4vw, 52px); line-height: 1.08; color: var(--cream); margin: 0 0 18px; }
+.ecoIntro { font-family: var(--font-sans); font-size: 17px; line-height: 1.7; color: rgba(245, 240, 232, 0.75); max-width: 52ch; margin: 0 auto 14px; }
+.ecoCentre { border: 1px solid var(--gold); padding: clamp(22px, 3vw, 30px); margin: clamp(28px, 4vw, 40px) auto 16px; max-width: 520px; }
+.ecoNodes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; list-style: none; margin: 0; padding: 0; }
+.ecoNode { display: block; height: 100%; text-align: left; border: 1px solid rgba(197, 169, 96, 0.3); padding: 20px 16px; text-decoration: none; transition: border-color 0.2s ease, background 0.2s ease; }
+.ecoNode:hover { border-color: var(--gold-ink); background: rgba(197, 169, 96, 0.06); }
+.ecoNodeName { display: block; font-family: var(--font-display); font-size: clamp(16px, 1.4vw, 19px); color: var(--gold-ink); margin-bottom: 6px; }
+.ecoCentre .ecoNodeName { font-size: clamp(19px, 1.8vw, 23px); color: var(--cream); }
+.ecoNodeDesc { display: block; font-family: var(--font-sans); font-size: 13px; line-height: 1.5; color: rgba(245, 240, 232, 0.72); }
+@media (max-width: 899px) { .ecoNodes { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .ecoNodes { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .volumeLink, .ecoNode { transition: none; } }
+
+/* ── CLOSING (deep green) + tagline ───────────────────────────────────────── */
+.closingText { background: var(--green-deep); color: var(--cream); text-align: center; padding: clamp(90px, 14vh, 130px) clamp(20px, 5vw, 32px) 40px; }
+.closingKicker { font-family: var(--font-sans); font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-ink); margin: 0 0 22px; }
+.closingStatement { font-family: var(--font-display); font-weight: 400; font-size: clamp(30px, 4.4vw, 50px); line-height: 1.2; color: var(--cream); max-width: 20ch; margin: 0 auto; }
+.closingStatement em { font-style: italic; color: var(--gold-ink); }
+.closingCtas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: clamp(32px, 5vh, 44px); }
+.btnFilled { font-family: var(--font-sans); font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; background: var(--gold-ink); color: var(--brown); padding: 14px 28px; text-decoration: none; transition: background 0.2s ease; }
+.btnFilled:hover { background: #d8c184; }
+.btnGhostLight { font-family: var(--font-sans); font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cream); border: 1px solid rgb(245 240 232 / 0.4); padding: 14px 28px; text-decoration: none; transition: border-color 0.2s ease; }
+.btnGhostLight:hover { border-color: var(--gold-ink); }
+.btnArrow { margin-left: 8px; }
+.tagline { background: var(--green-deep); color: rgba(245, 240, 232, 0.8); text-align: center; padding: 24px clamp(20px, 5vw, 32px) 80px; }
+.tagline p { font-family: var(--font-hearth-serif); font-style: italic; font-size: clamp(19px, 2vw, 24px); margin: 0; }
+.tagline em { color: var(--gold-ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  .btnFilled, .btnGhostLight { transition: none; }
 }

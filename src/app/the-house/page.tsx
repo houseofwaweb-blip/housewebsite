@@ -5,6 +5,7 @@ import { BreadcrumbJsonLd } from "@/lib/seo/jsonLd";
 import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/the-house" },
   title: "The House",
   description:
     "The House of Willow Alexander: a modern British House for the care, protection and enjoyment of home and garden. Our story, our standard and the people behind it.",

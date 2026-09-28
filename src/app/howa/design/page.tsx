@@ -11,6 +11,7 @@ import { MetaViewContent } from "@/components/marketing/MetaViewContent";
  */
 
 export const metadata = {
+  alternates: { canonical: "/howa/design" },
   title: { absolute: "Design with HoWA | House of Willow Alexander" },
   description:
     "Show HoWA the space and tell it what you want to change. Explore a direction, refine what matters and keep a brief you can take to a House design professional.",

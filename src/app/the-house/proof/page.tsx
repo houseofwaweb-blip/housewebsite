@@ -2,6 +2,7 @@ import { EditorialPage, type EditorialSection } from "@/components/marketing/Edi
 import { getPageSections, cms } from "@/lib/cms/page-sections";
 
 export const metadata = {
+  alternates: { canonical: "/the-house/proof" },
   title: "Proof",
   description:
     "Press, testimony, and the institutions we keep company with. Updated as things happen.",

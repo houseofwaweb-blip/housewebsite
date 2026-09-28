@@ -2,6 +2,7 @@ import Link from "next/link";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 
 export const metadata = {
+  alternates: { canonical: "/thank-you" },
   title: "Thank you",
   description: "Your message is with the House. We reply personally, usually within one working day.",
   robots: { index: false, follow: true },

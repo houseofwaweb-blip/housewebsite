@@ -2,6 +2,7 @@ import { EditorialPage } from "@/components/marketing/EditorialPage";
 import { getLegalPage } from "@/lib/cms/legal";
 
 export const metadata = {
+  alternates: { canonical: "/legal/privacy" },
   title: "Privacy",
   description:
     "How House of Willow Alexander collects, uses, and protects your personal data.",

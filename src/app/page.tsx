@@ -19,6 +19,7 @@ import { HouseAboutIntro } from "@/components/home/HouseAboutIntro";
  * strip. HoWA appears only as supporting infrastructure, never the identity.
  */
 export const metadata = {
+  alternates: { canonical: "/" },
   title: {
     absolute:
       "House of Willow Alexander | Services, insurance and useful things for the British home",

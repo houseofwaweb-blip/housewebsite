@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/legal/insurance-disclosures" },
   title: "Insurance disclosures",
   description:
     "Regulatory disclosures for House of Willow Alexander home and pet cover, including our role as an introducer and the FCA-authorised intermediary.",

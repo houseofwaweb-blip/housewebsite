@@ -18,6 +18,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  */
 
 export const metadata = {
+  alternates: { canonical: "/insurance/home-protection" },
   title: "Home Protection. Know the home before the home needs you.",
   description:
     "A one-day in-person review by House-vetted specialists. Condition review, evidence pack, and insurance-ready documentation for your home.",

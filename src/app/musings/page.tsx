@@ -4,6 +4,7 @@ import s from "./musings.module.css";
 import { getMusingList } from "@/lib/cms/news-musings";
 
 export const metadata = {
+  alternates: { canonical: "/musings" },
   title: "Musings | Short notes from the House.",
   description:
     "The House's free blog: notes on gardens, rooms, seasons, and the keeping of a home.",

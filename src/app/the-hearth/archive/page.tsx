@@ -12,6 +12,7 @@ import { getAllHearthArticles } from "@/lib/cms/hearth";
  * archive; previously a dead 404).
  */
 export const metadata: Metadata = {
+  alternates: { canonical: "/the-hearth/archive" },
   title: "Archive | The Hearth",
   description:
     "Every story from The Hearth, the House of Willow Alexander journal on homes, gardens and living well.",

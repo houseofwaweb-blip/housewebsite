@@ -17,6 +17,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  */
 
 export const metadata = {
+  alternates: { canonical: "/howa/faq" },
   title: "HoWA FAQ: What people usually ask",
   description:
     "Answers to the things people ask about HoWA+ and Steward, pricing, cancellation, privacy, Ask HoWA.",

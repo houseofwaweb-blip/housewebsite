@@ -22,6 +22,7 @@ import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 const ACCENT = "var(--color-service-home-garden)";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/services/home-and-garden" },
   title: "Home & Garden",
   description:
     "One coordinated plan for the whole home and garden. Gardening, window cleaning, cleaning and repairs on one schedule, one point of contact, one record. Held to the House standard.",

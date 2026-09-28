@@ -2,6 +2,7 @@ import { EditorialPage } from "@/components/marketing/EditorialPage";
 import { getLegalPage } from "@/lib/cms/legal";
 
 export const metadata = {
+  alternates: { canonical: "/legal/terms" },
   title: "Terms",
   description: "Terms of use for the House of Willow Alexander website, products, and services.",
 };

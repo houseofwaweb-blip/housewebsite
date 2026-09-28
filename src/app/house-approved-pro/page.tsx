@@ -3,6 +3,7 @@ import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { FaqJsonLd, BreadcrumbJsonLd } from "@/lib/seo/jsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/house-approved-pro" },
   title: "House Approved Pro",
   description:
     "Bring your expertise into the House. House Approved Pro is the professional and contractor proposition of the House of Willow Alexander.",

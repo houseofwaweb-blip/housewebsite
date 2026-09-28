@@ -16,6 +16,7 @@ const MAIN_CATEGORY_HANDLES = new Set([
 ]);
 
 export const metadata = {
+  alternates: { canonical: "/shop/all" },
   title: { absolute: "All products | The House Marketplace" },
   description:
     "Every House Approved object in one place. Filter by category, brand and House Approved seal.",

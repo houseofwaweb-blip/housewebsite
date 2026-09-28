@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArtworkProgressRail } from "@/components/marketing/the-house/ArtworkProgressRail";
 import { ArtworkVolumesShelf } from "@/components/marketing/the-house/ArtworkVolumesShelf";
-import { ArtworkEcosystem } from "@/components/marketing/the-house/ArtworkEcosystem";
 import { ArtworkReveal } from "@/components/marketing/the-house/ArtworkReveal";
 import s from "./artwork.module.css";
 import { getArtworkPage } from "@/lib/cms/artwork";
@@ -10,26 +9,19 @@ import { getArtworkPage } from "@/lib/cms/artwork";
 /**
  * /the-house/artwork — The Artwork of the House.
  *
- * Editorial origin-story page. Built text-first so it reads correctly on
- * every viewport (no more text baked into PDF-render slides). Supporting
- * imagery is real artefacts only — the books that inspired the brand, the
- * pattern itself, the coloured volumes, the icons, the fleet. Each
- * illustration earns its place by being something the eye wants to dwell
- * on, not a slide that duplicates the body copy.
+ * "Atmospheric" direction (approved 2026-09-25, Mockup 3): a cinematic scroll —
+ * an immersive green + pattern hero, calm cream reading blocks with ghosted
+ * Didot numerals, full-bleed image/pattern interludes, deep-green colour beats.
+ * The coloured-volumes shelf and the ecosystem stay as the original
+ * interactive, animated, clickable components. Content-first: every chapter is
+ * readable with JS off; ArtworkReveal only enhances.
  *
- * Mechanics:
- *   - SplitChapter — text on one side, single artefact image on the other
- *   - ChapterCopy  — text-only chapter, centred
- *   - PullQuote    — italic Cormorant moment between chapters
- *   - ImageCluster — two artefacts composed as a still-life (Ch II only)
- *   - IconGrid     — the eight early hand-drawn icons (Ch VII)
- *   - ArtworkVolumesShelf — interactive seven-volume shelf
- *   - ArtworkEcosystem    — interactive ecosystem diagram
- *
- * Source words: THE ARTWORK OF THE HOUSE.pdf, Samuel Collett.
+ * Copy unchanged. Source words: THE ARTWORK OF THE HOUSE.pdf, Samuel Collett.
+ * Chapter text / hero / closing may be overridden via Sanity (getArtworkPage).
  */
 
 export const metadata = {
+  alternates: { canonical: "/the-house/artwork" },
   title: "The Artwork of the House",
   description:
     "A design-led story of heritage, craft, colour, and British domestic beauty. How the House of Willow Alexander was cultivated, not branded.",
@@ -83,7 +75,8 @@ const CHAPTERS: Chapter[] = [
       "Mrs Beeton's books came in coloured editions. Greens. Blues. Burgundies. Teals. Auburns. Magentas. A row of them looked like the rainbow of British housekeeping, each spine a different discipline of domestic life.",
       "Years later, those colours resurfaced as the perfect design system. Each Willow Alexander service became its own volume in the library of the House, wrapped in the same white floral pattern, transformed into a moving anthology of expertise.",
     ],
-    pullQuote: "This is not a rainbow. It is a system, a coded, crafted chromatic identity rooted in British publishing history.",
+    pullQuote:
+      "This is not a rainbow. It is a system, a coded, crafted chromatic identity rooted in British publishing history.",
   },
   {
     roman: "V",
@@ -142,7 +135,6 @@ const CHAPTERS: Chapter[] = [
   },
 ];
 
-// Hand-drawn icons that lived in the early brand. SVG files in /icons/.
 const EARLY_ICONS: Array<{ file: string; label: string }> = [
   { file: "shears", label: "Garden shears" },
   { file: "wateringcan", label: "Watering can" },
@@ -154,11 +146,20 @@ const EARLY_ICONS: Array<{ file: string; label: string }> = [
   { file: "earth", label: "Earth, in the round" },
 ];
 
+// The ecosystem (Ch VIII) — institution centre + five clickable nodes.
+const ECOSYSTEM_CENTRE = {
+  name: "House of Willow Alexander",
+  description: "The institution. The editorial centre. The mother brand.",
+};
+const ECOSYSTEM_NODES: Array<{ name: string; description: string; href: string }> = [
+  { name: "The Service Brands", description: "The coloured volumes. Specialist, bold, unmistakable.", href: "/services" },
+  { name: "Home & Garden", description: "The marketplace, the lifestyle universe, the curated home.", href: "/shop" },
+  { name: "The Hearth", description: "Lifestyle magazine. Where the pattern becomes atmosphere.", href: "/the-hearth" },
+  { name: "HoWA & HoWA+", description: "The modern intelligence of the House. Luminous, instrument-like.", href: "/howa" },
+];
+
 export default async function ArtworkPage() {
   const cmsPage = await getArtworkPage();
-
-  // Merge each fallback chapter with the matching CMS chapter (by index).
-  // Pull-quote stays from fallback unless the CMS chapter provides one.
   const chapters: Chapter[] = CHAPTERS.map((base, i) => {
     const c = cmsPage?.chapters?.[i];
     if (!c) return base;
@@ -183,11 +184,7 @@ export default async function ArtworkPage() {
     <div className={s.page}>
       <ArtworkProgressRail />
 
-      {/* ════════════════════════════════════════════════════════════
-          HERO — text-first title
-          A restrained opening: large serif title, lede, scroll cue,
-          quiet pattern-tile atmosphere behind. No baked-text slide.
-          ════════════════════════════════════════════════════════════ */}
+      {/* HERO — immersive green + pattern */}
       <section className={s.heroText}>
         <div className={s.heroTexture} aria-hidden="true" />
         <ArtworkReveal className={s.heroInner}>
@@ -200,225 +197,105 @@ export default async function ArtworkPage() {
         </ArtworkReveal>
       </section>
 
-      {/* ════════════════════════════════════════════════════════════
-          CHAPTER I — A name like a dedication
-          (no pullquote — body already lands on the same idea)
-          ════════════════════════════════════════════════════════════ */}
-      <ChapterCopy chapter={chapters[0]} bg="cream" first />
+      {/* I — text, drop cap, pull quote */}
+      <ChapterText chapter={chapters[0]} dropcap />
 
-      {/* ════════════════════════════════════════════════════════════
-          CHAPTER II — Garden studio, two artefacts
-          The Wizard of Oz cover + the gardening encyclopaedia,
-          composed as a still life next to the chapter copy.
-          ════════════════════════════════════════════════════════════ */}
-      <section
-        id="chapter-ii"
-        data-chapter="II"
-        className={`${s.split} ${s.bgCreamDark} ${s.splitLeft}`}
-      >
-        <ArtworkReveal className={s.splitCopy}>
-          <div className={s.splitCopyInner}>
-            <p className={s.kicker}>{chapters[1].kicker}</p>
-            <p className={s.chapterRoman}>Chapter {chapters[1].roman}</p>
-            <h2 className={s.headline}>{chapters[1].headline}</h2>
-            {chapters[1].body.map((p, i) => (
-              <p key={i} className={s.body}>
-                {p}
-              </p>
-            ))}
-          </div>
-        </ArtworkReveal>
-        <div className={s.cluster}>
-          <div className={s.clusterFront}>
-            <Image
-              src={`${ART}/gardening-encyclopaedia.jpg`}
-              alt="An antique British gardening encyclopaedia, bound in deep green and black"
-              width={1800}
-              height={2400}
-              sizes="(min-width: 1024px) 45vw, 90vw"
-              className={s.clusterImg}
-            />
-          </div>
-          <div className={s.clusterBack}>
-            <Image
-              src={`${ART}/wizard-of-oz.jpg`}
-              alt="A vintage edition of The Wizard of Oz"
-              width={1800}
-              height={2400}
-              sizes="(min-width: 1024px) 45vw, 90vw"
-              className={s.clusterImg}
-            />
-          </div>
+      {/* II — text + image pair */}
+      <ChapterText chapter={chapters[1]}>
+        <div className={s.pair}>
+          <Figure src={`${ART}/wizard-of-oz.jpg`} alt="A vintage edition of The Wizard of Oz" num="01" caption="Fantasy meeting serif authority." />
+          <Figure src={`${ART}/gardening-encyclopaedia.jpg`} alt="An antique British gardening encyclopaedia, bound in deep green and black" num="02" caption="Deep green and black." />
         </div>
-      </section>
+      </ChapterText>
 
-      {/* ════════════════════════════════════════════════════════════
-          CHAPTER III — Mrs Beeton + the first pattern
-          Two visuals: the Beeton spread on its own, then a closer look
-          at the pattern detail. Pull quote in between (text-only).
-          ════════════════════════════════════════════════════════════ */}
-      <section
-        id="chapter-iii"
-        data-chapter="III"
-        className={`${s.split} ${s.bgCream} ${s.splitRight}`}
-      >
-        <ArtworkReveal className={s.splitCopy}>
-          <div className={s.splitCopyInner}>
-            <p className={s.kicker}>{chapters[2].kicker}</p>
-            <p className={s.chapterRoman}>Chapter {chapters[2].roman}</p>
-            <h2 className={s.headline}>{chapters[2].headline}</h2>
-            {chapters[2].body.map((p, i) => (
-              <p key={i} className={s.body}>
-                {p}
-              </p>
-            ))}
-          </div>
-        </ArtworkReveal>
-        <div className={s.splitVisual}>
-          <Image
-            src={`${ART}/mrs-beeton-spread.jpg`}
-            alt="An open spread from Mrs Beeton's Book of Household Management, showing the engraved botanical frames"
-            fill
-            sizes="(min-width: 1024px) 55vw, 100vw"
-            style={{ objectFit: "cover", objectPosition: "center" }}
-          />
+      {/* III — text + source/pattern pair + pull quote */}
+      <ChapterText chapter={chapters[2]}>
+        <div className={s.pair}>
+          <Figure src={`${ART}/mrs-beeton-spread.jpg`} alt="An open spread from Mrs Beeton's Book of Household Management, showing the engraved botanical frames" num="01" caption="The source, Beeton's engraved botanical frame." />
+          <Figure src={`${ART}/pattern-master-gold-on-green.webp`} alt="The first Willow Alexander pattern, gold floral linework on deep green" num="02" caption="The pattern, gold on heritage green, our first." />
         </div>
-      </section>
+      </ChapterText>
 
-      <PatternReveal />
-
-      <PullQuote quote={chapters[2].pullQuote!} />
-
-      {/* ════════════════════════════════════════════════════════════
-          CHAPTER IV — The coloured volumes
-          Text intro, then the interactive shelf (the only volumes moment;
-          the static shelf-row composite was a duplicate of what the
-          interactive shelf already shows).
-          ════════════════════════════════════════════════════════════ */}
-      <ChapterCopy chapter={chapters[3]} bg="cream" />
+      {/* IV — text intro + the original coloured-volumes shelf (big, interactive) + pull quote */}
+      <ChapterText chapter={chapters[3]} pullAfter />
       <ArtworkVolumesShelf />
-      <PullQuote quote={chapters[3].pullQuote!} dark />
+      <PullBeat quote={chapters[3].pullQuote!} />
 
-      {/* ════════════════════════════════════════════════════════════
-          CHAPTER V — From studio to institution
-          Text-led, with a small colour-swatch row showing the
-          transformation (green & rough → cream + gold).
-          ════════════════════════════════════════════════════════════ */}
-      <ChapterCopy chapter={chapters[4]} bg="cream-dark">
-        <PaletteShift />
-      </ChapterCopy>
+      {/* V — text + palette evolution (green era → cream + gold) */}
+      <ChapterText chapter={chapters[4]}>
+        <div className={s.paletteShift} aria-label="Palette evolution: green and ornate era to cream and gold era">
+          <span className={`${s.swatch} ${s.swatchGreen}`} aria-label="Heritage green" />
+          <span className={`${s.swatch} ${s.swatchGoldOnGreen}`} aria-label="Gold on green" />
+          <span className={s.swatchArrow} aria-hidden="true">→</span>
+          <span className={`${s.swatch} ${s.swatchCream}`} aria-label="Editorial cream" />
+          <span className={`${s.swatch} ${s.swatchGold}`} aria-label="House gold" />
+          <span className={`${s.swatch} ${s.swatchBrown}`} aria-label="Ink brown" />
+        </div>
+      </ChapterText>
 
-      {/* ════════════════════════════════════════════════════════════
-          CHAPTER VI — The pattern today
-          Text against the pattern-tile atmospheric backdrop.
-          ════════════════════════════════════════════════════════════ */}
-      <section
-        id="chapter-vi"
-        data-chapter="VI"
-        className={`${s.atmosphere} ${s.bgCream}`}
-      >
-        <div className={s.atmospherePattern} aria-hidden="true" />
-        <ArtworkReveal className={s.copySectionInner}>
-          <p className={s.kicker}>{chapters[5].kicker}</p>
-          <p className={s.chapterRoman}>Chapter {chapters[5].roman}</p>
-          <h2 className={s.headline}>{chapters[5].headline}</h2>
-          {chapters[5].body.map((p, i) => (
-            <p key={i} className={s.body}>
-              {p}
-            </p>
-          ))}
-        </ArtworkReveal>
-      </section>
+      {/* VI — text + full-bleed pattern band */}
+      <ChapterText chapter={chapters[5]} />
+      <div className={s.patternBand} aria-hidden="true" />
 
-      {/* ════════════════════════════════════════════════════════════
-          CHAPTER VII — Early icons
-          Text intro, then a grid of the eight hand-drawn icons.
-          ════════════════════════════════════════════════════════════ */}
-      <ChapterCopy chapter={chapters[6]} bg="cream" />
-      <section className={s.iconGrid}>
-        <div className={s.iconGridInner}>
+      {/* VII — text + icon grid */}
+      <ChapterText chapter={chapters[6]}>
+        <div className={s.iconGrid}>
           {EARLY_ICONS.map(({ file, label }) => (
             <div key={file} className={s.iconCell}>
-              <Image
-                src={`${ART}/icons/${file}.svg`}
-                alt={label}
-                width={120}
-                height={120}
-                className={s.iconImg}
-              />
+              <Image src={`${ART}/icons/${file}.svg`} alt={label} width={64} height={64} className={s.iconImg} />
               <p className={s.iconLabel}>{label}</p>
             </div>
           ))}
         </div>
-      </section>
+      </ChapterText>
 
-      {/* ════════════════════════════════════════════════════════════
-          CHAPTER VIII — The ecosystem
-          Text intro + the interactive ecosystem diagram.
-          ════════════════════════════════════════════════════════════ */}
-      <ChapterCopy chapter={chapters[7]} bg="cream" />
-      <ArtworkEcosystem />
-
-      {/* ════════════════════════════════════════════════════════════
-          CHAPTER IX — Philosophy (text, with pattern atmosphere)
-          ════════════════════════════════════════════════════════════ */}
-      <section
-        className={s.philosophy}
-        data-chapter={chapters[8].roman}
-        id={`chapter-${chapters[8].roman.toLowerCase()}`}
-      >
-        <div className={s.philosophyPattern} aria-hidden="true" />
-        <ArtworkReveal className={s.philosophyInner}>
-          <p className={s.kicker}>{chapters[8].kicker}</p>
-          <p className={s.chapterRoman}>Chapter {chapters[8].roman}</p>
-          <h2 className={s.headline}>{chapters[8].headline}</h2>
-          {chapters[8].body.map((p, i) => (
-            <p key={i} className={s.philosophyBody}>
-              {p}
-            </p>
+      {/* VIII — the ecosystem, as an ink section with clickable nodes */}
+      <section className={s.eco} id="chapter-viii" data-chapter="VIII" data-tone="dark">
+        <ArtworkReveal className={s.ecoInner}>
+          <p className={s.ecoKicker}>Chapter VIII · {chapters[7].kicker}</p>
+          <h2 className={s.ecoHeadline}>{chapters[7].headline}</h2>
+          {chapters[7].body.map((p, i) => (
+            <p key={i} className={s.ecoIntro}>{p}</p>
           ))}
-        </ArtworkReveal>
-      </section>
-
-      {/* ════════════════════════════════════════════════════════════
-          CHAPTER X — A living story, with the fleet as the closing image
-          ════════════════════════════════════════════════════════════ */}
-      <section
-        id="chapter-x"
-        data-chapter="X"
-        className={`${s.split} ${s.bgCream} ${s.splitLeft}`}
-      >
-        <ArtworkReveal className={s.splitCopy}>
-          <div className={s.splitCopyInner}>
-            <p className={s.kicker}>{chapters[9].kicker}</p>
-            <p className={s.chapterRoman}>Chapter {chapters[9].roman}</p>
-            <h2 className={s.headline}>{chapters[9].headline}</h2>
-            {chapters[9].body.map((p, i) => (
-              <p key={i} className={s.body}>
-                {p}
-              </p>
-            ))}
+          <div className={s.ecoCentre}>
+            <p className={s.ecoNodeName}>{ECOSYSTEM_CENTRE.name}</p>
+            <p className={s.ecoNodeDesc}>{ECOSYSTEM_CENTRE.description}</p>
           </div>
+          <ul className={s.ecoNodes}>
+            {ECOSYSTEM_NODES.map((n) => (
+              <li key={n.name}>
+                <Link href={n.href} className={s.ecoNode}>
+                  <span className={s.ecoNodeName}>{n.name}</span>
+                  <span className={s.ecoNodeDesc}>{n.description}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </ArtworkReveal>
-        <div className={s.splitVisual}>
-          <Image
-            src={`${ART}/fleet-vans-row.webp`}
-            alt="The Willow Alexander electric fleet, a row of liveried vans, each carrying its volume's colour"
-            fill
-            sizes="(min-width: 1024px) 55vw, 100vw"
-            style={{ objectFit: "cover", objectPosition: "center" }}
-          />
-        </div>
       </section>
 
-      {/* ════════════════════════════════════════════════════════════
-          CLOSING — colophon statement + CTAs (text-led, no slide)
-          ════════════════════════════════════════════════════════════ */}
+      {/* IX — philosophy, text + pull quote */}
+      <ChapterText chapter={chapters[8]} />
+
+      {/* X — text + full-bleed fleet interlude (whole image on mobile) */}
+      <ChapterText chapter={chapters[9]} />
+      <figure className={s.interlude}>
+        <Image
+          src={`${ART}/fleet-vans-row.webp`}
+          alt="The Willow Alexander electric fleet, a row of liveried vans, each carrying its volume's colour"
+          width={2400}
+          height={900}
+          sizes="100vw"
+          className={s.interludeImg}
+        />
+        <div className={s.interludeVeil} aria-hidden="true" />
+        <figcaption className={s.interludeCap}>The fleet, each van a volume in the moving library.</figcaption>
+      </figure>
+
+      {/* CLOSING — deep green */}
       <section className={s.closingText} data-tone="dark">
-        <ArtworkReveal className={s.closingTextInner}>
-          <p className={s.closingKicker}>
-            {cmsPage?.closingKicker ?? "The House of Willow Alexander"}
-          </p>
+        <ArtworkReveal>
+          <p className={s.closingKicker}>{cmsPage?.closingKicker ?? "The House of Willow Alexander"}</p>
           <p className={s.closingStatement}>
             {cmsPage?.closingStatement ? (
               cmsPage.closingStatementEm ? (
@@ -432,28 +309,18 @@ export default async function ArtworkPage() {
               )
             ) : (
               <>
-                A modern British institution built on{" "}
-                <em>design, story, care</em>
-                <br />
-                and the extraordinary beauty of home.
+                A modern British institution built on <em>design, story, care</em> and the
+                extraordinary beauty of home.
               </>
             )}
           </p>
           <div className={s.closingCtas}>
-            <Link
-              href={cmsPage?.closingCtaPrimaryHref ?? "/the-house/about"}
-              className={s.btnFilled}
-            >
+            <Link href={cmsPage?.closingCtaPrimaryHref ?? "/the-house/about"} className={s.btnFilled}>
               {cmsPage?.closingCtaPrimary ?? "Read our story"}
             </Link>
-            <Link
-              href={cmsPage?.closingCtaSecondaryHref ?? "/the-house"}
-              className={s.btnGhostLight}
-            >
+            <Link href={cmsPage?.closingCtaSecondaryHref ?? "/the-house"} className={s.btnGhostLight}>
               {cmsPage?.closingCtaSecondary ?? "Back to The House"}
-              <span aria-hidden="true" className={s.btnArrow}>
-                →
-              </span>
+              <span aria-hidden="true" className={s.btnArrow}>→</span>
             </Link>
           </div>
         </ArtworkReveal>
@@ -482,28 +349,25 @@ export default async function ArtworkPage() {
   );
 }
 
-/* ────────────────────────────────────────────────────────────────────
-   Section primitives — all text-first, supporting images optional
-   ──────────────────────────────────────────────────────────────────── */
-
-function ChapterCopy({
+/* ── Chapter reading block (ghost numeral via data-chapter, animated) ──────── */
+function ChapterText({
   chapter,
-  bg = "cream",
-  first = false,
+  dropcap = false,
+  pullAfter = false,
   children,
 }: {
   chapter: Chapter;
-  bg?: "cream" | "cream-dark";
-  first?: boolean;
+  dropcap?: boolean;
+  pullAfter?: boolean; // pull quote is rendered separately after a following component
   children?: React.ReactNode;
 }) {
   return (
     <section
       id={`chapter-${chapter.roman.toLowerCase()}`}
       data-chapter={chapter.roman}
-      className={`${s.copySection} ${bg === "cream" ? s.bgCream : s.bgCreamDark} ${first ? s.copySectionFirst : ""}`}
+      className={`${s.chapter} ${dropcap ? s.dropcap : ""}`}
     >
-      <ArtworkReveal className={s.copySectionInner}>
+      <ArtworkReveal className={s.chapterInner}>
         <p className={s.kicker}>{chapter.kicker}</p>
         <p className={s.chapterRoman}>Chapter {chapter.roman}</p>
         <h2 className={s.headline}>{chapter.headline}</h2>
@@ -513,82 +377,42 @@ function ChapterCopy({
           </p>
         ))}
         {children}
+        {chapter.pullQuote && !pullAfter ? <Pull quote={chapter.pullQuote} /> : null}
       </ArtworkReveal>
     </section>
   );
 }
 
-function PullQuote({ quote, dark = false }: { quote: string; dark?: boolean }) {
+function Pull({ quote }: { quote: string }) {
   return (
-    <section className={`${s.pullQuote} ${dark ? s.pullQuoteDark : ""}`} data-tone={dark ? "dark" : undefined}>
-      <ArtworkReveal className={s.pullQuoteInner}>
-        <p className={s.pullQuoteText}>
-          {"“"}
-          {quote}
-          {"”"}
-        </p>
-        <div className={s.pullQuoteRule} aria-hidden="true" />
-      </ArtworkReveal>
-    </section>
-  );
-}
-
-/**
- * Pattern reveal — paired close-up of the Beeton spread's pattern detail
- * and the resulting Willow Alexander pattern (gold on green). Sits between
- * Chapter III split and the pull quote.
- */
-function PatternReveal() {
-  return (
-    <section className={`${s.patternReveal} ${s.bgCream}`}>
-      <ArtworkReveal className={s.patternRevealInner}>
-        <figure className={s.patternRevealItem}>
-          <Image
-            src={`${ART}/mrs-beeton-spread.jpg`}
-            alt="Mrs Beeton's engraved botanical frames and decorative covers, the source material for the first pattern"
-            width={1800}
-            height={1350}
-            sizes="(min-width: 768px) 45vw, 90vw"
-            className={s.patternRevealImg}
-          />
-          <figcaption className={s.patternRevealCap}>
-            <span className={s.patternRevealNum}>01</span>
-            The source, Beeton's engraved botanical frame.
-          </figcaption>
-        </figure>
-        <figure className={s.patternRevealItem}>
-          <Image
-            src={`${ART}/pattern-master-gold-on-green.webp`}
-            alt="The first Willow Alexander pattern, gold floral linework on deep green"
-            width={1600}
-            height={1200}
-            sizes="(min-width: 768px) 45vw, 90vw"
-            className={s.patternRevealImg}
-          />
-          <figcaption className={s.patternRevealCap}>
-            <span className={s.patternRevealNum}>02</span>
-            The pattern, gold on heritage green, our first.
-          </figcaption>
-        </figure>
-      </ArtworkReveal>
-    </section>
-  );
-}
-
-/**
- * Palette shift — a small CSS-only row of swatches that visualises the
- * brand's move from "green + ornate" → "cream + gold + restraint" during
- * Chapter V. Reads as a colour timeline.
- */
-function PaletteShift() {
-  return (
-    <div className={s.paletteShift} aria-label="Palette evolution: green era → cream and gold era">
-      <span className={`${s.swatch} ${s.swatchGreen}`} aria-label="Heritage green" />
-      <span className={`${s.swatch} ${s.swatchGoldOnGreen}`} aria-label="Gold on green" />
-      <span className={s.swatchArrow} aria-hidden="true">→</span>
-      <span className={`${s.swatch} ${s.swatchCream}`} aria-label="Editorial cream" />
-      <span className={`${s.swatch} ${s.swatchGold}`} aria-label="House gold" />
-      <span className={`${s.swatch} ${s.swatchBrown}`} aria-label="Ink brown" />
+    <div className={s.pullQuote}>
+      <div className={s.pullQuoteRule} aria-hidden="true" />
+      <p className={s.pullQuoteText}>&ldquo;{quote}&rdquo;</p>
     </div>
+  );
+}
+
+// A pull quote that stands as its own beat (used after the volumes shelf).
+function PullBeat({ quote }: { quote: string }) {
+  return (
+    <section className={s.chapter}>
+      <ArtworkReveal className={s.chapterInner}>
+        <Pull quote={quote} />
+      </ArtworkReveal>
+    </section>
+  );
+}
+
+function Figure({ src, alt, num, caption }: { src: string; alt: string; num: string; caption: string }) {
+  return (
+    <figure className={s.pairFig}>
+      <div className={s.pairFrame}>
+        <Image src={src} alt={alt} fill sizes="(min-width:768px) 360px, 45vw" />
+      </div>
+      <figcaption className={s.cap}>
+        <span className={s.capNum}>{num}</span>
+        {caption}
+      </figcaption>
+    </figure>
   );
 }

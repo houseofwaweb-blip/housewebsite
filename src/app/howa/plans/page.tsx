@@ -20,6 +20,7 @@ const CLAY = "#B97866";
 const MIDNIGHT = "#102A39";
 
 export const metadata = {
+  alternates: { canonical: "/howa/plans" },
   title: { absolute: "HoWA Plans | House of Willow Alexander" },
   description:
     "Choose how much help you want with your home. HoWA is free, HoWA+ is £16.99 a month, HoWA Steward is £29.99 a month. One home, understood and looked after more deeply as you go.",

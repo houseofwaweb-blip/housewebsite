@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/lib/seo/jsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/help" },
   title: "Help",
   description:
     "The House help centre. Find answers by task: bookings, insurance and claims, orders and returns, My House, payments and House Approved Pro.",

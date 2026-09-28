@@ -8,6 +8,7 @@ import { PROVENANCE, INTRODUCER_LEGAL_NAME } from "@/lib/insurance/config";
  * placeholder pending that copy, never improvised per page.
  */
 export const metadata: Metadata = {
+  alternates: { canonical: "/insurance/terms" },
   title: "Insurance, regulatory notice and complaints",
   description: "The regulatory notice for insurance introduced by House of Willow Alexander and arranged by Provenance, with the complaints route and FOS eligibility.",
 };

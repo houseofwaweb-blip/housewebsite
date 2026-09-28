@@ -3,6 +3,7 @@ import { CookieDisclosureTable } from "@/components/legal/CookieDisclosureTable"
 import { getLegalPage } from "@/lib/cms/legal";
 
 export const metadata = {
+  alternates: { canonical: "/legal/cookies" },
   title: "Cookies",
   description: "What cookies and similar tech the House site uses, and why.",
 };

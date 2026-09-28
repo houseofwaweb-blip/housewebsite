@@ -22,6 +22,7 @@ const DARK = "#30231a";
 const OPEN_HOWA = "/howa/coming-soon";
 
 export const metadata = {
+  alternates: { canonical: "/howa" },
   title: { absolute: "HoWA | House of Willow Alexander" },
   description:
     "Your home knows more than you think. HoWA brings the information, jobs, decisions and history of your home together in one place.",

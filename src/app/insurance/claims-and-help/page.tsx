@@ -11,6 +11,7 @@ import { insuranceOg } from "@/lib/insurance/og";
  * Content pending Provenance compliance sign-off.
  */
 export const metadata: Metadata = {
+  alternates: { canonical: "/insurance/claims-and-help" },
   title: "Claims and help",
   description:
     "How to reach the right insurance contact, what to have ready and where to go if you need to make a claim.",

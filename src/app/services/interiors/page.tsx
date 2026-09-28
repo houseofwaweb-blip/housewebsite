@@ -20,6 +20,7 @@ import { NewsletterInline } from "@/components/marketing/NewsletterInline";
  */
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/services/interiors" },
   title: "Interiors",
   description:
     "Consultation-led interior design, held by the House. Portfolio, design stages, budget guidance and scope, then a personal enquiry, every scheme House Approved.",

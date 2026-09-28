@@ -18,6 +18,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  */
 
 export const metadata = {
+  alternates: { canonical: "/howa/how-it-works" },
   title: "How HoWA works: Understand. Recommend. Connect. Remember.",
   description:
     "Four quiet jobs. Every home, every day. How HoWA stewards the home, from the first scan to the inherited record.",

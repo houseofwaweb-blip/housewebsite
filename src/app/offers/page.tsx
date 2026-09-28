@@ -9,6 +9,7 @@ import Link from "next/link";
  * offer has confirmed terms.
  */
 export const metadata: Metadata = {
+  alternates: { canonical: "/offers" },
   title: "House Offers",
   description:
     "House offers are being prepared, each with its own clear terms. In the meantime, explore the House services, design and cover.",

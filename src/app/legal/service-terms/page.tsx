@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/legal/service-terms" },
   title: "Service terms",
   description:
     "The terms on which House of Willow Alexander provides and arranges home and garden services, including booking, pricing, cancellation and liability.",

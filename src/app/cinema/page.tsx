@@ -10,6 +10,7 @@ import { CinemaFeatured } from "@/components/cinema/CinemaFeatured";
  * laid out like a Hearth article. Films are hosted free on YouTube.
  */
 export const metadata = {
+  alternates: { canonical: "/cinema" },
   title: "Cinema | Films and video from the House",
   description:
     "The House screening room: gardens through the seasons, rooms coming together, and the makers behind the objects we choose.",

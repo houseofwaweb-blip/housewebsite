@@ -26,6 +26,7 @@ import { ScanDoors } from "@/components/howa/scans/ScanDoors";
  */
 
 export const metadata = {
+  alternates: { canonical: "/howa/ask" },
   title: "Ask HoWA: the house, seen. Free, start with an address.",
   description:
     "The free way into HoWA. The portrait of your home in a minute, Ask HoWA for anything that bothers you, repair, garden and room scans, quotes decoded, and the first save.",

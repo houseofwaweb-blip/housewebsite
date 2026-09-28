@@ -14,6 +14,7 @@ import { insuranceOg } from "@/lib/insurance/og";
  * factual claim pending Provenance sign-off.
  */
 export const metadata: Metadata = {
+  alternates: { canonical: "/insurance/private-client" },
   title: "Private client & estate insurance, high-value homes",
   description: "Advised private-client insurance through Provenance for high-value, period and more complex homes, assets and estates. Introduced by the House.",
   ...insuranceOg("private-client", "Private client & estate insurance, high-value homes"),

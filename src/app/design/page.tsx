@@ -17,6 +17,7 @@ import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
  */
 
 export const metadata = {
+  alternates: { canonical: "/design" },
   title: "Design: Interiors and gardens, considered.",
   description:
     "Interiors and gardens by designers we've vetted and trust. Every project carries the House Approved seal.",

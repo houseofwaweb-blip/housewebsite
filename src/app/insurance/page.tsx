@@ -22,6 +22,7 @@ import { insuranceOg } from "@/lib/insurance/og";
  * appears nowhere. Renewal-reminder capture as a tertiary CTA.
  */
 export const metadata: Metadata = {
+  alternates: { canonical: "/insurance" },
   title: "Insurance from the House",
   description:
     "Insurance introduced by House of Willow Alexander and arranged by Provenance, from home and personal cover to private-client and specialist risks.",

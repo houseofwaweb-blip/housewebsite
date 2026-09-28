@@ -20,6 +20,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
  */
 
 export const metadata = {
+  alternates: { canonical: "/design/interiors" },
   title: "Interiors: Consciously designed.",
   description:
     "Consciously designed interiors through The House Edit. Digital plans, full-home edits, and styling sessions, every scheme House Approved.",

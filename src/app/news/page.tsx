@@ -4,6 +4,7 @@ import s from "./news.module.css";
 import { getNewsList } from "@/lib/cms/news-musings";
 
 export const metadata = {
+  alternates: { canonical: "/news" },
   title: "News | Announcements & press.",
   description:
     "Press, recognition, and announcements from the House of Willow Alexander.",

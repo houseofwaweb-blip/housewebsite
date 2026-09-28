@@ -15,6 +15,7 @@ import { MobileCarousel } from "@/components/primitives/MobileCarousel";
  * high-value homes routed to the advised service.
  */
 export const metadata: Metadata = {
+  alternates: { canonical: "/insurance/everyday" },
   title: "Everyday cover",
   description: "Home, car, pet, travel, breakdown and bicycle cover introduced by the House and arranged through Provenance.",
   ...insuranceOg("everyday", "Everyday cover"),

@@ -4,6 +4,7 @@ import { BreadcrumbJsonLd } from "@/lib/seo/jsonLd";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/how-it-works" },
   title: "How it works · Good care, with the details kept together",
   description:
     "The House arranges the right expertise for your home; HoWA supports the brief, the useful history and the record of what happens next. Understand the job before it begins and find the important details afterwards.",

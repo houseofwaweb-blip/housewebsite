@@ -5,6 +5,7 @@ import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import s from "./contact.module.css";
 
 export const metadata = {
+  alternates: { canonical: "/contact" },
   title: "Contact | Write to the House.",
   description: "Write to the House. We read every message.",
 };

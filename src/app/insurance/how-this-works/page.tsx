@@ -12,6 +12,7 @@ import { insuranceOg } from "@/lib/insurance/og";
  * points at. Content pending Provenance compliance sign-off.
  */
 export const metadata: Metadata = {
+  alternates: { canonical: "/insurance/how-this-works" },
   title: "How this works, and how we are paid",
   description: "How House of Willow Alexander introduces insurance through Provenance, how the service is provided, how the House is paid and where to go if something goes wrong.",
   ...insuranceOg("how-this-works", "How this works, and how we are paid"),

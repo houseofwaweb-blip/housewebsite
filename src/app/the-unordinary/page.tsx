@@ -15,6 +15,7 @@ const CREAM = "#F4F4F2";
 const GOLD = "#C9A96B";
 
 export const metadata = {
+  alternates: { canonical: "/the-unordinary" },
   title: { absolute: "The unOrdinary | House of Willow Alexander" },
   description:
     "Ordinary homes. Particular people. Films from the unOrdinary world of the House and HoWA: extraordinary attention to the everyday life of home.",
