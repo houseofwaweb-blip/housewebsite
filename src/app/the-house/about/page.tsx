@@ -50,15 +50,17 @@ const FOUNDER_ALEXANDER: Fig = {
 
 // Real House photography — the fleet, the teams at work and finished designs
 // (from the services + design sets), so the story shows the actual House.
+// Floats render 4:5 (portrait) — the liveried vans are shot 4:5 so they fit
+// exactly; the others are high-res and centre-crop cleanly. Bands render 16:9.
 const FIG_ROSES: Fig = {
   src: "/services/photos/vans/asher-345.webp",
   alt: "A liveried House of Willow Alexander electric van",
   caption: "The House fleet: liveried, electric.",
 };
 const FIG_BLOOMS: Fig = {
-  src: "/services/photos/cleaner-team.jpg",
-  alt: "A House of Willow Alexander cleaning team at work",
-  caption: "A House team at work.",
+  src: "/services/photos/cleaner-shower.jpg",
+  alt: "House cleaning to the House standard",
+  caption: "Cleaned to the House standard.",
 };
 const FIG_WISTERIA: Fig = {
   src: "/services/photos/gardening-gallery-1.webp",
@@ -66,14 +68,14 @@ const FIG_WISTERIA: Fig = {
   caption: "A garden, designed and cared for by the House.",
 };
 const BAND_BLOSSOM: Fig = {
+  src: "/services/photos/gardening-gallery-2.webp",
+  alt: "A House gardener at work",
+  caption: "A House team at work.",
+};
+const BAND_RECORD: Fig = {
   src: "/design/interiors/project-living-room.webp",
   alt: "A living room designed by the House",
   caption: "A House interior design.",
-};
-const BAND_RECORD: Fig = {
-  src: "/services/photos/gardening-gallery-2.webp",
-  alt: "A House garden kept through the seasons",
-  caption: "A garden, kept through the seasons.",
 };
 
 const LEDE =
