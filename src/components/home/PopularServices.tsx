@@ -46,7 +46,7 @@ const CARDS = [
     desc: "The jobs that have been waiting long enough.",
     includes: ["Furniture assembly", "Hanging and fitting", "Repairs and maintenance"],
     image: "/services/subbrands/handyman.webp",
-    price: "From £69",
+    price: "From £69/hour",
     cta: "Book a handyman",
   },
 ];

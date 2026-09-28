@@ -198,8 +198,8 @@ export default async function LocalServicePage({
             </div>
             <div>
               <p className="font-sans text-[19px] leading-[1.7] text-house-brown/85 mb-6 max-w-[58ch]">
-                Our handyman team is in setup, not booking yet. Leave your email and
-                we&apos;ll write the moment we&apos;re working in {location}.
+                We&apos;re not working in {location} just yet. Leave your email and
+                we&apos;ll write the moment {serviceName.toLowerCase()} opens there.
               </p>
               <WaitlistMini
                 product="other"
