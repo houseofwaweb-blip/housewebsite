@@ -137,7 +137,7 @@ export function DesignPackagePage({ product }: { product: ShopProduct }) {
         <aside className="self-start border border-house-brown/15 bg-house-white p-7">
           <p className="font-display text-[22px] leading-tight">Ready when you are.</p>
           <p className="mt-2 font-sans text-[16px] leading-[1.6] text-house-stone">
-            Book the package to register your brief and arrange your consultation. Saving the plan to your Home Record is coming soon.
+            Book the package to register your brief and arrange your consultation.
           </p>
           <div className="mt-5">
             <a

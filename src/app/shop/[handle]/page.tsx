@@ -332,15 +332,9 @@ export default async function ProductPage({
             </div>
           )}
 
-          {/* Finding 33: Home Record saving is coming soon, so the live
-              "Add to Home Record" action is removed until the app is reachable. */}
-          <div className="mb-9">
-            <p className="font-sans text-[18px] leading-[1.5] text-house-stone">
-              {isDesign
-                ? "Saving the direction and brief to your Home Record is coming soon."
-                : "Saving to your Home Record, to keep an item's details, care notes and warranty in one place, is coming soon."}
-            </p>
-          </div>
+          {/* Home Record saving is not launched yet, so the unlaunched "coming
+              soon" note is hidden from the product template (audit #25). It
+              returns when the HoWA app is reachable. */}
 
           <ProductCopy product={product} isDesign={isDesign} />
 
@@ -426,13 +420,7 @@ export default async function ProductPage({
               the rest is framed as what HoWA stores at and after purchase. */}
           <div className="mt-7 border-t border-house-brown/12 pt-6">
             <p className="font-sans text-[14px] tracking-[0.22em] uppercase text-house-gold-ink mb-3">
-              Kept in your Home Record
-            </p>
-            {/* Home Record saving is coming soon (stated in the buy column), so
-                this section is framed as what the record WILL hold, not a
-                present guarantee — keeps the page consistent with itself. */}
-            <p className="mb-3 font-sans text-[16px] leading-[1.5] text-house-stone">
-              Once Home Record saving is live, each purchase will keep:
+              Details
             </p>
             <dl className="m-0 space-y-2.5">
               {[
@@ -464,8 +452,8 @@ export default async function ProductPage({
               : "Planning work on your home? "}
             <a href="#open-booking-form" className="text-house-gold-ink underline underline-offset-[3px]">
               Book a service
-            </a>{" "}
-            and it is kept in your Home Record.
+            </a>
+            .
           </p>
           </>
           )}
