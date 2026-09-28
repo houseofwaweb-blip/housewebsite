@@ -47,15 +47,22 @@ const MOBILE_DOORS: Hotspot[] = [
   { ...SERVICES[5], x: 51.5, y: 68.5, w: 34, h: 18 },
 ];
 
-function Copy() {
+// The hero copy renders in both the desktop and mobile layouts (one hidden per
+// breakpoint). Only ONE should be a real <h1> in the DOM (audit #22: duplicate
+// H1). The other keeps heading semantics via role/aria-level without a 2nd <h1>.
+function Copy({ headingAs = "h1" }: { headingAs?: "h1" | "p" }) {
+  const Heading = headingAs;
   return (
     <>
       <p className="mb-4 font-sans text-[clamp(10px,0.9vw,12px)] uppercase tracking-[0.24em] text-house-gold-light">
         A British home &amp; garden institution
       </p>
-      <h1 className="font-display text-[clamp(52px,7.4vw,128px)] leading-[0.92] text-house-cream">
+      <Heading
+        className="font-display text-[clamp(52px,7.4vw,128px)] leading-[0.92] text-house-cream"
+        {...(headingAs === "p" ? { role: "heading", "aria-level": 1 } : {})}
+      >
         That feeling<br />you call <em className="italic">home.</em>
-      </h1>
+      </Heading>
       <p className="mt-5 max-w-[40ch] font-sans text-[clamp(16px,1.5vw,22px)] leading-[1.4] text-house-cream/90">
         Home and garden services, design, insurance and beautiful things for the
         home. All in one place, with people you can trust.
@@ -143,7 +150,7 @@ export function CabinetHero() {
           </div>
 
           <div className="px-6 pt-8 md:p-0">
-            <Copy />
+            <Copy headingAs="p" />
           </div>
         </div>
 
