@@ -77,6 +77,9 @@ const nextConfig: NextConfig = {
       // "Marketplace" is the public label for the Shop.
       { source: "/marketplace", destination: "/shop", permanent: true },
       { source: "/marketplace/:path*", destination: "/shop/:path*", permanent: true },
+      // Gift cards are a real Shopify collection now (14 products, published to
+      // the Headless channel), so /gift-cards points at the collection page.
+      { source: "/gift-cards", destination: "/shop/collections/gift-cards", permanent: true },
       // The House editorial sub-pages Philosophy / Standards / Sustainability are
       // temporarily withdrawn to be reworked in silo. Route files are preserved;
       // these TEMPORARY (302) redirects make them unreachable in the meantime.

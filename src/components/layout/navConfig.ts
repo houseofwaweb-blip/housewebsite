@@ -218,7 +218,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
         { label: "House Approved", href: "/shop/collections/house-approved" },
         { label: "All products", href: "/shop" },
         { label: "All collections", href: "/shop/collections" },
-        { label: "Gift Cards", href: "/gift-cards" },
+        { label: "Gift Cards", href: "/shop/collections/gift-cards" },
       ],
     },
   },

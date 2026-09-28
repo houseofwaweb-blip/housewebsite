@@ -52,7 +52,7 @@ const COLS: FooterColumn[] = [
       { label: "New", href: "/shop/all" },
       { label: "Home", href: "/shop" },
       { label: "Garden", href: "/shop" },
-      { label: "Gifts", href: "/gift-cards" },
+      { label: "Gifts", href: "/shop/collections/gift-cards" },
     ],
   },
   {
