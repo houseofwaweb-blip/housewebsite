@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo/meta";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -26,6 +27,7 @@ export async function generateMetadata({
   return {
     title: `${project.title}, ${project.location}, Gardens`,
     description: project.summary,
+    ...pageMeta(`/design/gardens/projects/${slug}`),
   };
 }
 

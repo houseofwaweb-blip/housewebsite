@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo/meta";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -89,22 +90,25 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+  const canonical = pageMeta(`/services/${slug}`);
   if (isLocalSlug(slug)) {
     const local = SERVICES[slug];
     return {
       title: local.name,
       description: local.lede,
+      ...canonical,
     };
   }
   const singleView = getSingleServiceView(slug);
   if (singleView) {
-    return { title: singleView.name, description: singleView.lede };
+    return { title: singleView.name, description: singleView.lede, ...canonical };
   }
   const service = await loadSanityService(slug);
-  if (!service) return { title: "Service not found" };
+  if (!service) return { title: "Service not found", ...canonical };
   return {
     title: service.seo?.title ?? service.name,
     description: service.seo?.description ?? service.lede,
+    ...canonical,
   };
 }
 

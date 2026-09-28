@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo/meta";
 import { notFound } from "next/navigation";
 import { HearthMasthead } from "@/components/hearth/HearthMasthead";
 import { HearthCategoryStrip } from "@/components/hearth/HearthCategoryStrip";
@@ -39,6 +40,7 @@ export async function generateMetadata({
     description:
       category.description ??
       `${label} from The Hearth, the House of Willow Alexander journal on homes and gardens.`,
+    ...pageMeta(`/the-hearth/category/${slug}`),
   };
 }
 

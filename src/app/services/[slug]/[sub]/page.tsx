@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo/meta";
 import Image from "next/image";
 import Link from "next/link";
 import { EnquiryForm } from "@/components/marketing/EnquiryForm";
@@ -72,6 +73,7 @@ export async function generateMetadata({
   return {
     title: `${result.sub.name}, ${result.parent.name}`,
     description: result.sub.lede,
+    ...pageMeta(`/services/${slug}/${sub}`),
   };
 }
 

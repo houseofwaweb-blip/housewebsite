@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { pageMeta } from "@/lib/seo/meta";
 import {
   getShopCollection,
   getShopCollections,
@@ -94,11 +95,12 @@ export async function generateMetadata({
   const { handle } = await params;
   if (isHiddenCollection(handle)) return { title: "Not found", robots: { index: false, follow: false } };
   const mainCat = NAV.find((c) => c.handle === handle);
-  if (mainCat) return { title: `${mainCat.title} | Shop` };
+  if (mainCat) return { title: `${mainCat.title} | Shop`, ...pageMeta(`/shop/collections/${handle}`) };
   const collection = await resolveCollection(handle);
   if (!collection) return { title: "Collection not found" };
   return {
     title: `${collection.title} | Shop`,
+    ...pageMeta(`/shop/collections/${handle}`),
   };
 }
 

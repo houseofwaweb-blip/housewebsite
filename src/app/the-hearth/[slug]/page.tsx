@@ -36,13 +36,16 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+  const cpath = `/the-hearth/${slug}`;
   const article = await getArticleBySlug(slug);
   if (!article) return { title: "Article not found" };
   return {
     title: article.seo?.title ?? article.title,
     description: article.seo?.description ?? article.dek,
+    alternates: { canonical: cpath },
     openGraph: {
       type: "article",
+      url: cpath,
       title: article.title,
       description: article.dek,
       publishedTime: article.publishedAt,
