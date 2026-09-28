@@ -1,6 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+
+// useLayoutEffect on the client, useEffect on the server (no SSR warning).
+const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 /* ──────────────────────────────────────────────────────────────────────
    HomeHealthGauge — a partial ring (fills to `value`%, not the full circle)
@@ -19,9 +22,16 @@ export function HomeHealthGauge({
   size?: number;
   stroke?: number;
 }) {
-  const [shown, setShown] = useState(0);
+  const [shown, setShown] = useState(value); // SSR / no-JS / crawlers see the real value
   const ref = useRef<HTMLDivElement | null>(null);
   const started = useRef(false);
+
+  // On the client, drop to 0 before first paint so the count-up can play; motion
+  // users only. SSR HTML keeps `value`, so crawlers never see a bare 0.
+  useIsoLayoutEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    setShown(0);
+  }, []);
 
   useEffect(() => {
     const node = ref.current;

@@ -25,6 +25,12 @@ function deriveBrands(products: CatalogueProduct[]) {
 type ShopNavCategory = { title: string; handle: string; subs: { title: string; handle: string }[] };
 const NAV = SHOP_NAV as ShopNavCategory[];
 
+// Back-office collections kept in Shopify but never public (mirror of the list
+// in ../page.tsx). A direct hit 404s so they can't be indexed or linked.
+const HIDDEN_COLLECTION_HANDLES = new Set(["services", "migration-review", "migration", "migration_review"]);
+const isHiddenCollection = (handle: string) =>
+  HIDDEN_COLLECTION_HANDLES.has(handle) || /migration[-_ ]?review/i.test(handle);
+
 type ResolvedCollection = {
   title: string;
   products: CatalogueProduct[];
@@ -86,6 +92,7 @@ export async function generateMetadata({
   params: Promise<{ handle: string }>;
 }) {
   const { handle } = await params;
+  if (isHiddenCollection(handle)) return { title: "Not found", robots: { index: false, follow: false } };
   const mainCat = NAV.find((c) => c.handle === handle);
   if (mainCat) return { title: `${mainCat.title} | Shop` };
   const collection = await resolveCollection(handle);
@@ -101,6 +108,7 @@ export default async function CollectionPage({
   params: Promise<{ handle: string }>;
 }) {
   const { handle } = await params;
+  if (isHiddenCollection(handle)) notFound();
   const mainCat = NAV.find((c) => c.handle === handle);
 
   // ── Main category page: full filter rail (Brand · Price · Stock · Sort),

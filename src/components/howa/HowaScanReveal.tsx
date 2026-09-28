@@ -121,7 +121,9 @@ export function HowaScanReveal() {
   const [step, setStep] = useState(-1);
   const [started, setStarted] = useState(false);
   const [runKey, setRunKey] = useState(0);
-  const [budget, setBudget] = useState({ lo: 0, hi: 0 });
+  // SSR / no-JS / crawlers see the real indicative range (not £0 – £0); the
+  // client resets to 0 and counts up when the budget beat lands.
+  const [budget, setBudget] = useState({ lo: DATA.Interior.budgetLo, hi: DATA.Interior.budgetHi });
   const rootRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef(0);
 

@@ -53,7 +53,7 @@ export default async function ProofPage() {
       lede={cms(
         intro,
         "body",
-        "Homes we've worked on. People we've written with. The occasional award. This page grows over time and once Sanity lands, every entry will carry a link.",
+        "Homes we've worked on. People we've written with. The occasional award. This page grows over time, and each entry links to the work behind it.",
       )}
       sections={editorialSections}
     />
