@@ -74,9 +74,10 @@ export function HowaHeroProduct() {
             </h2>
 
             <p className="max-w-[52ch] font-sans text-[clamp(17px,1.4vw,20px)] leading-[1.6] text-house-brown/80">
-              Every service you book through the House lives in HoWA, alongside
-              your home&rsquo;s history, jobs, documents, preferences and what
-              needs doing next.
+              HoWA is coming soon: every service you book through the House will
+              live here, alongside your home&rsquo;s history, jobs, documents,
+              preferences and what needs doing next. Join the launch list to be
+              first in.
             </p>
 
             <ul className="grid gap-x-6 gap-y-6 sm:grid-cols-2 xl:grid-cols-4">

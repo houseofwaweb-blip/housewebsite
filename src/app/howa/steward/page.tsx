@@ -198,7 +198,7 @@ export default async function StewardPage() {
           <aside className={s.heroBadge} aria-label="Steward HoWA Score preview">
             <div className={s.heroBadgeHead}>
               <span className={s.heroBadgeTop}><span className={s.heroBadgeDot} aria-hidden />Steward</span>
-              <span className={s.heroBadgeLive}>● Live</span>
+              <span className={s.heroBadgeLive}>● Preview</span>
             </div>
             <div className={s.heroBadgeScore}>
               <span className={s.heroBadgeScoreLabel}>HoWA Score</span>
@@ -219,7 +219,7 @@ export default async function StewardPage() {
       <section className={s.statsBar}>
         <div className={s.statsBarInner}>
           <div className={s.statItem}><span className={s.statValue}>£29.99</span><span className={s.statLabel}>Per month</span></div>
-          <div className={s.statItem}><span className={s.statValue}>Live</span><span className={s.statLabel}>Your HoWA Score, daily</span></div>
+          <div className={s.statItem}><span className={s.statValue}>Daily</span><span className={s.statLabel}>Your HoWA Score</span></div>
           <div className={s.statItem}><span className={s.statValue}>0</span><span className={s.statLabel}>Minimum term</span></div>
           <div className={s.statItem}><span className={s.statValue}>∞</span><span className={s.statLabel}>Living Record entries</span></div>
         </div>

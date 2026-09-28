@@ -29,7 +29,7 @@ export const metadata = {
 
 type Fig = { src: string; alt: string; caption: string; placeholder?: boolean };
 
-// PLACEHOLDER — replace with a recognisable founder portrait (Samuel & Alexander).
+// Founder portrait of Samuel & Alexander (2:3, shown at its natural ratio).
 const FOUNDER_PORTRAIT: Fig = {
   src: "/the-house/about/founders-hero.webp",
   alt: "Samuel Collett and Alexander Oakley, founders of House of Willow Alexander",
@@ -274,17 +274,17 @@ export default async function AboutPage() {
       <div className="px-[5vw]">
         <div className="mx-auto max-w-[1100px]">
           <figure>
-            <div className="relative aspect-[16/9] w-full overflow-hidden border border-house-line bg-house-cream-dark">
+            <div className="relative mx-auto aspect-[4/5] w-full max-w-[600px] overflow-hidden border border-house-line bg-house-cream-dark">
               <Image
                 src={FOUNDER_PORTRAIT.src}
                 alt={FOUNDER_PORTRAIT.alt}
                 fill
                 priority
-                sizes="(min-width:1100px) 1100px, 100vw"
+                sizes="(min-width:560px) 560px, 100vw"
                 className="object-cover"
               />
             </div>
-            <figcaption className="mt-2.5 font-hearth-sans text-[13px] leading-[1.5] text-house-stone">
+            <figcaption className="mt-2.5 text-center font-hearth-sans text-[13px] leading-[1.5] text-house-stone">
               {FOUNDER_PORTRAIT.caption}
             </figcaption>
           </figure>
