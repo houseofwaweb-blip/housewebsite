@@ -117,7 +117,7 @@ export function SingleServiceDetail({ view }: { view: SingleServiceView }) {
 
             <p className="mt-5 font-sans text-[16px] leading-[1.55] text-house-brown/70">
               {quote
-                ? "Delivered by a House team or a named House Approved professional, disclosed before you commit. Booking and Home Record powered by HoWA."
+                ? "Delivered by our own House of Willow Alexander team. Booking and Home Record powered by HoWA."
                 : "Delivered by House of Willow Alexander. Booking, scheduling and Home Record powered by HoWA."}
             </p>
           </div>

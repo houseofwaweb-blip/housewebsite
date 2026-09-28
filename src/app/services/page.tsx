@@ -55,7 +55,7 @@ function fromPriceFor(slug: string): string | undefined {
  *
  * §5 requires this page to carry: a service and postcode finder; the full live
  * catalogue; problem-led help for people who do not know the service name; a
- * clear distinction between House teams and House Approved professionals; a
+ * the family of in-house service teams under House of Willow Alexander; a
  * price method on every service; one-off and recurring frequency; proof,
  * coverage and reviews; how the booking is managed through HoWA; and a final
  * finder plus telephone route.
@@ -67,7 +67,7 @@ function fromPriceFor(slug: string): string | undefined {
 export const metadata = {
   title: "Home and garden services",
   description:
-    "Garden care, cleaning and housekeeping, window and gutter cleaning, handyman and repairs, clearance and specialist garden work. Delivered by House teams and named House Approved professionals, powered by HoWA.",
+    "Garden care, cleaning and housekeeping, window and gutter cleaning, handyman and repairs, clearance and specialist garden work. Delivered by our own House of Willow Alexander teams, powered by HoWA.",
 };
 
 const STAT_COLS = [
@@ -239,7 +239,7 @@ const FAQ = [
   },
   {
     q: "Who actually comes to the home?",
-    a: "Our own teams where we operate directly. Where we don't, a named House Approved professional, disclosed up front and held to the same standard.",
+    a: "Our own employed teams, one specialist crew per service, in our own liveried vans and all held to the House standard.",
   },
   {
     q: "What's kept in my Home Record?",
@@ -378,7 +378,7 @@ export default async function ServicesLanding() {
             {cms(
               servicesHead,
               "body",
-              "The whole home and garden, from one House. Some work is done by our own teams; some is done by a named House Approved professional. You are always told which before you commit.",
+              "The whole home and garden, from one House, delivered by our own teams and held to a single standard.",
             )}
           </p>
         </header>
@@ -430,7 +430,7 @@ export default async function ServicesLanding() {
             {[
               { n: "01", t: "Select the service", b: "Choose the service and enter your postcode, so everything after this is real for your address." },
               { n: "02", t: "See availability and price", b: "The charging basis and the next available times, or a short quote step where a job is priced on the details." },
-              { n: "03", t: "Confirm", b: "Pick the slot that suits you and confirm. You are told who is coming, House team or named House Approved professional." },
+              { n: "03", t: "Confirm", b: "Pick the slot that suits you and confirm. You are told which House team is coming, and when." },
               { n: "04", t: "Added to My House", b: "The booking, notes and history are written to your service record in My House, powered by HoWA." },
             ].map((step) => (
               <li key={step.n} className="border-t border-house-brown/20 pt-4">
@@ -458,9 +458,9 @@ export default async function ServicesLanding() {
           catalogue so visitors can confirm we cover them before reading on
           (user request 2026-08). */}
 
-      {/* 3b. Who actually turns up (v3 §5 requirement 4) — the distinction
-          between a House team and a disclosed House Approved professional,
-          stated plainly rather than buried in small print. */}
+      {/* 3b. The family of services under House of Willow Alexander — each its
+          own specialist team, all in-house, all to one standard (#8: the work is
+          delivered by our own teams). */}
       <section className="border-t border-house-brown/10 px-[5vw] py-[clamp(44px,5.5vw,84px)]" style={{ background: "var(--color-house-white)" }}>
         <div className="mx-auto max-w-[1080px]">
           <div className="mb-8 grid items-center gap-8 lg:grid-cols-[0.8fr_1fr] lg:gap-12">
@@ -473,41 +473,35 @@ export default async function ServicesLanding() {
               />
             </figure>
             <div>
-              <p className="mb-3 font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink">Who turns up</p>
+              <p className="mb-3 font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink">Our services</p>
               <h2 className="font-display text-[clamp(27px,3vw,41px)] leading-[1.1] text-house-brown">
-                Two kinds of hands, <em>one standard.</em>
+                A family of services, <em>under one House.</em>
               </h2>
               <p className="mt-4 font-sans text-[18px] leading-[1.6] text-house-stone">
-                Whoever knocks, the booking behind them and the record they leave
-                are the same, kept in your Home Record by HoWA.
+                Each service is its own specialist team, all employed by House of
+                Willow Alexander, in our own liveried electric vans and held to one
+                standard. Every booking and every visit is kept in your Home Record
+                by HoWA.
               </p>
             </div>
           </div>
-          <div className="grid gap-5 md:grid-cols-2">
-            <article className="border border-house-brown/15 bg-house-cream p-8">
-              <h3 className="mb-3 font-display text-[25px] leading-tight text-house-brown">A House of Willow Alexander team</h3>
-              <p className="mb-4 font-sans text-[18px] leading-[1.6] text-house-stone">
-                Our own employed crews, in our own liveried electric vans,
-                trained to the House standard. Most garden, cleaning, window and
-                gutter work across our core postcodes is done this way.
-              </p>
-              <p className="font-sans text-[17px] leading-[1.55] text-house-brown">
-                Delivered by House of Willow Alexander. Booking, scheduling and
-                Home Record powered by HoWA.
-              </p>
-            </article>
-            <article className="border border-house-brown/15 bg-house-cream p-8">
-              <h3 className="mb-3 font-display text-[25px] leading-tight text-house-brown">A named House Approved professional</h3>
-              <p className="mb-4 font-sans text-[18px] leading-[1.6] text-house-stone">
-                For specialist and wider-area work, a vetted professional we
-                have approved and named. You are told who they are before you
-                pay or commit, never after.
-              </p>
-              <p className="font-sans text-[17px] leading-[1.55] text-house-brown">
-                Delivered by a named House Approved professional. Booking and
-                Home Record powered by HoWA.
-              </p>
-            </article>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { n: "Gardeners", b: "Lawns, borders and seasonal upkeep, one-off or on a rhythm.", href: "/services/gardening" },
+              { n: "Cleaners", b: "Regular, one-off, spring and end-of-tenancy cleaning.", href: "/services/cleaning" },
+              { n: "Window Cleaners", b: "Windows, frames and sills, inside and out.", href: "/services/window-cleaning" },
+              { n: "Gutter Cleaning", b: "Gutters cleared, checked and flowing before the wet months.", href: "/services/gutter-cleaning" },
+              { n: "Handyman", b: "Hourly and half-day visits for the list that never gets done.", href: "/services/handyman" },
+            ].map((m) => (
+              <Link
+                key={m.n}
+                href={m.href}
+                className="group block border border-house-brown/15 bg-house-cream p-7 no-underline transition-colors hover:border-house-gold-ink"
+              >
+                <h3 className="mb-2 font-display text-[23px] leading-tight text-house-brown transition-colors group-hover:text-house-gold-ink">{m.n}</h3>
+                <p className="font-sans text-[16px] leading-[1.55] text-house-stone">{m.b}</p>
+              </Link>
+            ))}
           </div>
           <p className="mt-6 max-w-[70ch] font-sans text-[17px] leading-[1.6] text-house-stone/85">
             HoWA manages the booking and keeps the record of the work. It is not the
@@ -532,9 +526,9 @@ export default async function ServicesLanding() {
           </h2>
           <p className="mb-11 max-w-[64ch] font-sans text-[19px] leading-[1.65] text-house-stone">
             Some of this we do ourselves and you can see the price now. The rest
-            we arrange through professionals we have approved. Either way, tell
-            us what you need and you will have a real answer within one working
-            day, including an honest no if that is the answer.
+            we arrange for you through the House. Either way, tell us what you
+            need and you will have a real answer within one working day,
+            including an honest no if that is the answer.
           </p>
 
           <div className="grid gap-x-10 gap-y-11 md:grid-cols-2">
@@ -565,9 +559,9 @@ export default async function ServicesLanding() {
           </div>
 
           <p className="mt-11 max-w-[64ch] font-sans text-[17px] leading-[1.6] text-house-stone/85">
-            Where a job is carried out by a named House Approved professional
-            rather than a House team, you are told who they are before you pay
-            or commit to anything.
+            Every service is carried out by our own House of Willow Alexander
+            teams, with the booking and the record of the work kept in your Home
+            Record by HoWA.
           </p>
         </div>
       </section>
