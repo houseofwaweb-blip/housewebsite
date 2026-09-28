@@ -155,7 +155,16 @@ export function ServiceDetail({
   // Pricing — the retired "steward" tier never reaches the customer. Recurring
   // care is presented as a booking frequency, not a subscription tier.
   const priced = service.packages.filter((p) => p.tier !== "steward");
-  const fromPrice = priced[0]?.price ?? service.packages[0]?.price;
+  // Confirmed starting prices (2026-09-21, same figures as the homepage cards).
+  // Published on the service page so the hero shows a real "from" price instead
+  // of a bare "Priced per hour" / postcode prompt (audit #3).
+  const STARTING_PRICE: Record<string, string> = {
+    gardening: "From £79",
+    cleaning: "From £59",
+    "window-cleaning": "From £49",
+    handyman: "From £69/hour",
+  };
+  const fromPrice = STARTING_PRICE[service.slug] ?? priced[0]?.price ?? service.packages[0]?.price;
 
   const primaryLabel = quote ? "Get a quote" : "See times and prices";
   const nameLower = service.name.toLowerCase();
