@@ -129,7 +129,7 @@ export function Footer({ columns, tagline }: FooterProps) {
                     <li key={`${link.href}-${i}`}>
                       <Link
                         href={link.href}
-                        className="font-sans text-[15px] leading-snug text-house-brown/80 no-underline transition-colors duration-[var(--t-base)] hover:text-house-gold-ink"
+                        className="inline-block py-1 font-sans text-[15px] leading-snug text-house-brown/80 no-underline transition-colors duration-[var(--t-base)] hover:text-house-gold-ink"
                       >
                         {link.label}
                       </Link>

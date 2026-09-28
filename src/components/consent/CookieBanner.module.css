@@ -53,9 +53,10 @@
   font-weight: 500;
 }
 
+/* Ink text on gold (was #fff on gold ≈ 2.3:1, fails AA). Dark-on-gold clears it. */
 .btnFilled {
   background: var(--color-house-gold, #c2a660);
-  color: #fff;
+  color: var(--color-house-brown, #30231c);
   border: 1px solid var(--color-house-gold, #c2a660);
 }
 .btnFilled:hover {
