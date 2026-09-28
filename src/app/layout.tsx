@@ -32,11 +32,11 @@ const ctaHref = "#open-booking-form";
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL),
   title: {
-    default: "House of Willow Alexander",
+    default: "House of Willow Alexander — That feeling you call home",
     template: "%s | House of Willow Alexander",
   },
   description:
-    "A modern British institution for effortless intelligent living. Design, care, protection, and curated commerce, connected by HoWA.",
+    "The House that looks after yours. Design, care, protection and curated commerce for homes and gardens across London and Kent.",
   applicationName: "House of Willow Alexander",
   authors: [{ name: "House of Willow Alexander" }],
   creator: "House of Willow Alexander",
@@ -51,9 +51,9 @@ export const metadata: Metadata = {
     locale: "en_GB",
     url: env.NEXT_PUBLIC_SITE_URL,
     siteName: "House of Willow Alexander",
-    title: "House of Willow Alexander",
+    title: "House of Willow Alexander — That feeling you call home",
     description:
-      "A modern British institution for effortless intelligent living.",
+      "The House that looks after yours. Design, care and protection for homes and gardens across London and Kent.",
   },
   twitter: {
     card: "summary_large_image",

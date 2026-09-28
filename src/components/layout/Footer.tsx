@@ -102,7 +102,7 @@ export function Footer({ columns, tagline }: FooterProps) {
               <Image src="/brand/wordmark.svg" alt="House of Willow Alexander" width={296} height={125} className="h-[52px] w-auto" />
             </Link>
             <p className="mt-5 font-sans text-[11px] uppercase tracking-[0.22em] text-house-gold-dark">
-              Homes &middot; Gardens &middot; A brighter tomorrow
+              That feeling you call home
             </p>
             <div className="mt-5 flex items-center gap-3">
               <a href="https://www.instagram.com/world_of_willowalexander/" target="_blank" rel="noopener noreferrer" aria-label="House of Willow Alexander on Instagram" className="is-round flex h-9 w-9 items-center justify-center rounded-full border border-house-brown/25 text-house-brown transition-colors hover:border-house-brown hover:text-house-gold-ink">
