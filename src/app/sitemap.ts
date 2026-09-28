@@ -10,6 +10,7 @@ import {
   BUSINESS_SPECIALIST_SUB_SLUGS,
 } from "@/lib/insurance/specialist-pages";
 import { GUIDE_SLUGS } from "@/lib/insurance/guides";
+import { GARDEN_PROJECTS } from "@/lib/gardens-projects";
 
 /**
  * Sitemap. Static routes + WP long-tail catalogue.
@@ -58,7 +59,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/design`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/design/interiors`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/design/gardens`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${base}/design/studios`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
 
     // ---- Services (4 launch) ----
     { url: `${base}/services`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
@@ -67,8 +67,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/services/cleaning`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
     { url: `${base}/services/gutter-cleaning`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
 
-    // ---- Steward Plans (managed recurring care) ----
-    { url: `${base}/steward-plans`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
 
     // ---- Insurance & Cover ----
     // /protect/* now 301/307 to /insurance/*, so the canonical /insurance pages
@@ -93,10 +91,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/musings`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
     { url: `${base}/recipes`, lastModified: now, changeFrequency: "weekly", priority: 0.5 },
 
-    // ---- Utility ----
+    // ---- Utility & editorial (live pages; /house-credit + /gift-cards removed —
+    //      they now redirect, so they must not appear here) ----
     { url: `${base}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${base}/house-credit`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${base}/gift-cards`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${base}/offers`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
+    { url: `${base}/how-it-works`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${base}/help`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${base}/cinema`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${base}/the-unordinary`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
 
     // ---- Legal ----
     { url: `${base}/legal`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
@@ -113,14 +115,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5,
   }));
 
-  // ---- WP long-tail SEO catalogue (175 service-area pages) ----
+  // ---- WP long-tail SEO catalogue: ONLY the live ones. The rest render
+  //      noindex ("coming soon" doorway pages), so they must not be in the
+  //      sitemap (audit: 175 noindex URLs listed). ----
   const longTailRoutes: MetadataRoute.Sitemap = (
-    wpLongTail as Array<{ slug: string }>
-  ).map((e) => ({
-    url: `${base}/services/local/${e.slug}`,
+    wpLongTail as Array<{ slug: string; live?: boolean }>
+  )
+    .filter((e) => e.live)
+    .map((e) => ({
+      url: `${base}/services/local/${e.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.4,
+    }));
+
+  // ---- Garden design case studies (/design/gardens/projects/[slug]) ----
+  const gardenProjectRoutes: MetadataRoute.Sitemap = GARDEN_PROJECTS.map((p) => ({
+    url: `${base}/design/gardens/projects/${p.slug}`,
     lastModified: now,
     changeFrequency: "monthly",
-    priority: 0.4,
+    priority: 0.5,
   }));
 
   // ---- Insurance covers (specialist property, everyday, business, guides) ----
@@ -153,6 +167,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...staticRoutes,
     ...insuranceRoutes,
     ...subServiceRoutes,
+    ...gardenProjectRoutes,
     ...locationRoutes,
     ...longTailRoutes,
     ...cmsRoutes,
