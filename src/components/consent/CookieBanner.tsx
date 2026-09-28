@@ -32,12 +32,11 @@ export function CookieBanner() {
         <div className={s.banner} role="dialog" aria-label="Cookie preferences">
           <div className={s.bannerInner}>
             <p className={s.bannerCopy}>
-              The House uses cookies. Essential cookies keep the site working.
-              Functional and analytics cookies are optional. They help us run
-              the booking widget and understand which pages are useful.
+              The House uses essential cookies to run the site, plus optional
+              functional and analytics cookies.
             </p>
             <div className={s.bannerActions}>
-              <button type="button" className={s.btnGhost} onClick={() => openPreferences()}>
+              <button type="button" className={`${s.btnGhost} ${s.btnLink}`} onClick={() => openPreferences()}>
                 Customise
               </button>
               <button type="button" className={s.btnGhost} onClick={rejectAll}>
