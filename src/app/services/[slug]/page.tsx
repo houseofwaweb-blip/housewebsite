@@ -14,7 +14,7 @@ import { REQUESTABLE_SERVICES } from "@/lib/services-data/requestable";
 import { getSingleServiceView } from "@/lib/services-data/requestable-detail";
 import { PortableText } from "@/components/cms/PortableText";
 import type { PortableTextBlock } from "@portabletext/types";
-import { ServiceJsonLd } from "@/lib/seo/jsonLd";
+import { ServiceJsonLd, BreadcrumbJsonLd, FaqJsonLd } from "@/lib/seo/jsonLd";
 import { MetaViewContent } from "@/components/marketing/MetaViewContent";
 import { env } from "@/lib/env";
 import s from "./service-fallback.module.css";
@@ -60,6 +60,7 @@ interface ServiceDoc {
   recurring?: boolean;
   availableAreas?: string[];
   linkedPackages?: ServicePackage[];
+  faq?: Array<{ q: string; a: string }>;
   seo?: { title?: string; description?: string; noindex?: boolean };
 }
 
@@ -140,6 +141,16 @@ export default async function ServicePage({
           url={`${baseUrl}/services/${slug}`}
           serviceType={local.name}
         />
+        <BreadcrumbJsonLd
+          items={[
+            { name: "Home", href: "/" },
+            { name: "Services", href: "/services" },
+            { name: local.name, href: `/services/${slug}` },
+          ]}
+        />
+        {local.faq.length ? (
+          <FaqJsonLd items={local.faq.map((f) => ({ question: f.q, answer: f.a }))} />
+        ) : null}
         <MetaViewContent
           contentId={slug}
           contentName={local.name}
@@ -166,6 +177,13 @@ export default async function ServicePage({
           description={singleView.lede}
           url={`${baseUrl}/services/${slug}`}
           serviceType={singleView.name}
+        />
+        <BreadcrumbJsonLd
+          items={[
+            { name: "Home", href: "/" },
+            { name: "Services", href: "/services" },
+            { name: singleView.name, href: `/services/${slug}` },
+          ]}
         />
         <MetaViewContent
           contentId={slug}
@@ -200,6 +218,16 @@ export default async function ServicePage({
         }
         areaServed={service.availableAreas?.[0] ?? "London"}
       />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", href: "/" },
+          { name: "Services", href: "/services" },
+          { name: service.name, href: `/services/${slug}` },
+        ]}
+      />
+      {service.faq?.length ? (
+        <FaqJsonLd items={service.faq.map((f) => ({ question: f.q, answer: f.a }))} />
+      ) : null}
       <MetaViewContent
         contentId={slug}
         contentName={service.name}
