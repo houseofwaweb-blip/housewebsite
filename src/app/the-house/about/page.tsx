@@ -103,13 +103,13 @@ const STORY: React.ReactNode[] = [
       Together, Samuel and Alexander set out to build a business in which a strong
       creative identity was matched by the work delivered in people&rsquo;s homes.
       Their entrepreneurial journey brought recognition at the{" "}
-      <Src href="https://greatbritishentrepreneurawards.com/artist/alexander-oakley-samuel-collett-willow-alexander/">
+      <Src href="https://greatbritishentrepreneurawards.com/">
         Great British Entrepreneur Awards
       </Src>{" "}
       in both 2024 and 2025, first in the Purpose Entrepreneur of the Year
       category and subsequently in Family Business of the Year. Samuel has also
       been named a{" "}
-      <Src href="https://top100influentialpeople.com/winner/samuel-collett/">
+      <Src href="https://top100influentialpeople.com/">
         Top 100 Influential People
       </Src>{" "}
       honouree for two consecutive years, 2025 and 2026.
@@ -120,7 +120,7 @@ const STORY: React.ReactNode[] = [
       Garden design remains our creative foundation. Our studio, Willow Alexander
       Gardens, continues the work from which the wider House grew, with our garden
       design expertise represented in{" "}
-      <Src href="https://thelist.houseandgarden.com/united-kingdom/brought-to-you-by-the-house-of-willow-alexander/service/willow-alexander-gardens">
+      <Src href="https://www.houseandgarden.co.uk/the-list">
         House &amp; Garden&rsquo;s The List
       </Src>
       . The magazine has described House of Willow Alexander as &ldquo;an
@@ -136,7 +136,7 @@ const STORY: React.ReactNode[] = [
       through our electric vans and a more considered approach to the materials
       and methods we use. Our home and garden care has since received
       sustainability recognition from{" "}
-      <Src href="https://willowalexander.co.uk/house-of-willow-alexander-wins-sme-news-southern-enterprise-award/">
+      <Src href="https://www.sme-news.co.uk/">
         SME News&rsquo;s Southern Enterprise Awards
       </Src>{" "}
       and Acquisition International&rsquo;s Business Excellence Awards. For us,
