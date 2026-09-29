@@ -158,11 +158,11 @@ export function Footer({ columns, tagline }: FooterProps) {
             &copy; {year} House of Willow Alexander. House of Willow Alexander is a trading name of House of Willow Alexander Ltd, registered in England and Wales, company no. 15062693. Registered office: 12 Hatherley Road, Sidcup, Kent, DA14 4DT. {tag}
           </p>
           <nav aria-label="Legal" className="flex flex-wrap items-center gap-x-6 gap-y-2 font-sans text-[13.5px] text-house-brown/70">
-            <Link href="/legal/privacy" prefetch={false} className="no-underline hover:text-house-brown transition-colors">Privacy</Link>
-            <Link href="/legal/terms" prefetch={false} className="no-underline hover:text-house-brown transition-colors">Terms</Link>
-            <Link href="/legal/cookies" prefetch={false} className="no-underline hover:text-house-brown transition-colors">Cookies</Link>
-            <Link href="/legal/delivery" prefetch={false} className="no-underline hover:text-house-brown transition-colors">Delivery</Link>
-            <Link href="/legal/returns" prefetch={false} className="no-underline hover:text-house-brown transition-colors">Returns</Link>
+            <Link href="/legal/privacy" prefetch={false} className="inline-block py-1 no-underline hover:text-house-brown transition-colors">Privacy</Link>
+            <Link href="/legal/terms" prefetch={false} className="inline-block py-1 no-underline hover:text-house-brown transition-colors">Terms</Link>
+            <Link href="/legal/cookies" prefetch={false} className="inline-block py-1 no-underline hover:text-house-brown transition-colors">Cookies</Link>
+            <Link href="/legal/delivery" prefetch={false} className="inline-block py-1 no-underline hover:text-house-brown transition-colors">Delivery</Link>
+            <Link href="/legal/returns" prefetch={false} className="inline-block py-1 no-underline hover:text-house-brown transition-colors">Returns</Link>
             <CookiePreferencesLink />
           </nav>
         </div>
