@@ -335,16 +335,27 @@ export function FaqJsonLd({
  * currency). `aggregateRating` and `review` are intentionally left to the
  * caller — we don't fake reviews and Trustpilot import isn't wired yet.
  */
+type SchemaAvailability = "InStock" | "OutOfStock" | "PreOrder";
+type OfferInput = {
+  price: number;
+  url: string;
+  availability: SchemaAvailability;
+  sku?: string;
+  gtin?: string;
+};
+
 export function ProductJsonLd({
   name,
   description,
   image,
   url,
   sku,
+  gtin,
   brand = "House of Willow Alexander",
   price,
   priceCurrency = "GBP",
   availability,
+  offers,
 }: {
   name: string;
   description: string;
@@ -352,14 +363,29 @@ export function ProductJsonLd({
   image: string | string[];
   url: string;
   sku?: string;
+  /** Valid GTIN (barcode) for the default variant, if any. */
+  gtin?: string;
   brand?: string;
   /** Numeric price. Pass as a number for accurate decimal handling. */
   price: number;
   priceCurrency?: string;
   /** schema.org availability enum. Map Shopify availableForSale → InStock/OutOfStock. */
-  availability: "InStock" | "OutOfStock" | "PreOrder";
+  availability: SchemaAvailability;
+  /** One Offer per variant. When omitted, a single Offer is built from price/url. */
+  offers?: OfferInput[];
 }) {
   const base = env.NEXT_PUBLIC_SITE_URL;
+  const mkOffer = (o: OfferInput) => ({
+    "@type": "Offer",
+    url: o.url,
+    priceCurrency,
+    price: o.price.toFixed(2),
+    availability: `https://schema.org/${o.availability}`,
+    itemCondition: "https://schema.org/NewCondition",
+    ...(o.sku ? { sku: o.sku } : {}),
+    ...(o.gtin ? { gtin: o.gtin } : {}),
+    seller: { "@id": `${base}#organization` },
+  });
   return renderLd({
     "@context": "https://schema.org",
     "@type": "Product",
@@ -368,14 +394,11 @@ export function ProductJsonLd({
     image,
     url,
     ...(sku ? { sku } : {}),
+    ...(gtin ? { gtin13: gtin, gtin } : {}),
     brand: { "@type": "Brand", name: brand },
-    offers: {
-      "@type": "Offer",
-      url,
-      priceCurrency,
-      price: price.toFixed(2),
-      availability: `https://schema.org/${availability}`,
-      seller: { "@id": `${base}#organization` },
-    },
+    offers:
+      offers && offers.length
+        ? offers.map(mkOffer)
+        : mkOffer({ price, url, availability, sku, gtin }),
   });
 }

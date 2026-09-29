@@ -30,6 +30,8 @@ export interface CatalogueProduct {
   seoDescription?: string;
   brand: string;
   sku: string;
+  /** Valid GTIN (first variant's barcode, checksum-passed) for feed + JSON-LD. */
+  gtin?: string;
   inStock: boolean;
   onSale: boolean;
   /** Shopify default variant GID — enables one-click add from the grid. */

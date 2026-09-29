@@ -1,6 +1,7 @@
 import "server-only";
 import { cache } from "react";
 import { env } from "@/lib/env";
+import { isValidGtin } from "@/lib/commerce/gtin";
 import type {
   CatalogueProduct,
   CatalogueCollection,
@@ -41,7 +42,7 @@ const CAT_FIELDS = /* GraphQL */ `
     images(first: 8) { nodes { url altText } }
     priceRange { minVariantPrice { amount currencyCode } }
     compareAtPriceRange { minVariantPrice { amount currencyCode } }
-    variants(first: 2) { nodes { id sku } }
+    variants(first: 2) { nodes { id sku barcode } }
     whyChosen: metafield(namespace: "howa", key: "editorialCopy") { value }
     houseApprovedMeta: metafield(namespace: "howa", key: "houseApproved") { value }
   }
@@ -90,7 +91,7 @@ interface SfProduct {
   images: { nodes: Array<{ url: string; altText: string | null }> };
   priceRange: { minVariantPrice: MoneyV };
   compareAtPriceRange: { minVariantPrice: MoneyV };
-  variants: { nodes: Array<{ id: string; sku: string | null }> };
+  variants: { nodes: Array<{ id: string; sku: string | null; barcode: string | null }> };
   whyChosen: { value: string | null } | null;
   houseApprovedMeta: { value: string | null } | null;
 }
@@ -157,6 +158,9 @@ function mapProduct(p: SfProduct, collection: string): CatalogueProduct {
     seoDescription: p.seo?.description || undefined,
     brand: p.vendor ?? "",
     sku: p.variants.nodes[0]?.sku ?? "",
+    gtin: isValidGtin(p.variants.nodes[0]?.barcode)
+      ? p.variants.nodes[0]!.barcode!.trim()
+      : undefined,
     inStock: p.availableForSale,
     onSale,
     variantId: p.variants.nodes[0]?.id,

@@ -10,6 +10,7 @@ import { getProductByHandle } from "@/lib/cms/products";
 import { getLatestHearthArticles } from "@/lib/cms/hearth";
 import Image from "next/image";
 import { getProductVariants } from "@/lib/shop-data/shopify-catalogue";
+import { numericId } from "@/lib/commerce/gtin";
 import { ProductBuy } from "./ProductBuy";
 import { ProductGallery } from "./ProductGallery";
 import { ProductCopy } from "./ProductCopy";
@@ -124,10 +125,13 @@ export async function generateMetadata({
 
 export default async function ProductPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ handle: string }>;
+  searchParams: Promise<{ variant?: string }>;
 }) {
   const { handle } = await params;
+  const { variant: variantParam } = await searchParams;
   const product = await resolveProduct(handle);
   if (!product) notFound();
 
@@ -143,6 +147,11 @@ export default async function ProductPage({
   const isDesign = false;
 
   const variants = await getProductVariants(handle);
+  // Feed g:link carries ?variant={numeric id} for multi-variant products
+  // (Google Shopping brief, Task 2.1): preselect it so the page matches the feed.
+  const initialVariantId = variantParam
+    ? variants.find((v) => numericId(v.id) === variantParam)?.id
+    : undefined;
 
   // Recommended: real pieces from the same collection, topped up with other
   // House goods so the rail is always full. (relatedHandles is legacy/empty now.)
@@ -183,6 +192,14 @@ export default async function ProductPage({
     "inStock" in product && typeof product.inStock === "boolean"
       ? product.inStock
       : availability === "InStock";
+  // Feed-matching identifiers (Google Shopping brief, Task 2). Typed locals so the
+  // union `product` narrows cleanly to string | undefined for the JSON-LD.
+  const skuValue: string | undefined =
+    "sku" in product && typeof product.sku === "string" && product.sku ? product.sku : undefined;
+  const gtinValue: string | undefined =
+    "gtin" in product && typeof product.gtin === "string" && product.gtin ? product.gtin : undefined;
+  const brandValue: string | undefined =
+    "brand" in product && typeof product.brand === "string" && product.brand ? product.brand : undefined;
   // Pre-launch framing: the store is not live to buy yet, so in-stock items read
   // simply "In stock" (no "ready to send") and everything else reads "Available
   // at launch", matching the product page's purchase button.
@@ -220,9 +237,22 @@ export default async function ProductPage({
         description={product.lede}
         image={product.image}
         url={productUrl}
-        sku={product.handle}
+        sku={skuValue}
+        gtin={gtinValue}
+        brand={brandValue}
         price={parsePrice(product.price)}
-        availability={availability}
+        availability={inStock ? "InStock" : "OutOfStock"}
+        offers={
+          variants.length > 1
+            ? variants.map((v) => ({
+                price: parsePrice(v.price) || parsePrice(product.price),
+                url: `${productUrl}?variant=${numericId(v.id)}`,
+                availability: v.availableForSale
+                  ? ("InStock" as const)
+                  : ("OutOfStock" as const),
+              }))
+            : undefined
+        }
       />
       <MetaViewContent
         contentId={product.handle}
@@ -305,6 +335,7 @@ export default async function ProductPage({
           ) : variants.length > 0 ? (
             <ProductBuy
               variants={variants}
+              initialVariantId={initialVariantId}
               product={{
                 handle: product.handle,
                 title: product.title,

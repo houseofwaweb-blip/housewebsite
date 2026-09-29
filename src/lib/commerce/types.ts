@@ -16,17 +16,33 @@ export interface CommerceImage {
   height?: number;
 }
 
+export interface CommerceVariant {
+  /** Numeric-tail id kept as the full gid; use numericId() for the URL param. */
+  id: string;
+  title: string;
+  sku: string | null;
+  barcode: string | null;
+  availableForSale: boolean;
+  price: CommerceMoney;
+  compareAtPrice?: CommerceMoney;
+  image?: CommerceImage;
+}
+
 export interface CommerceProduct {
   id: string;
   handle: string;
   title: string;
   description: string;
   editorialCopy?: string;
+  /** Shopify vendor — used as the schema.org / feed brand. */
+  vendor?: string;
   price: CommerceMoney;
   compareAtPrice?: CommerceMoney;
   images: CommerceImage[];
   availableForSale: boolean;
   tags: string[];
+  /** Present when fetched via getProductByHandle; used for SKU/GTIN + ?variant. */
+  variants?: CommerceVariant[];
   metafields: {
     houseApproved?: boolean;
     careNotes?: string;

@@ -87,6 +87,20 @@ interface ShopifyProductNode {
   linkedPartner?: { value: string } | null;
   linkedService?: { value: string } | null;
   editorialCopy?: { value: string } | null;
+  // Only fetched by getProductByHandle (the PDP), not the lean listing fragment.
+  vendor?: string;
+  variants?: {
+    nodes: Array<{
+      id: string;
+      title: string;
+      sku: string | null;
+      barcode: string | null;
+      availableForSale: boolean;
+      price: CommerceMoney;
+      compareAtPrice: CommerceMoney | null;
+      image: { url: string; altText: string | null; width?: number; height?: number } | null;
+    }>;
+  };
 }
 
 function mapProduct(p: ShopifyProductNode): CommerceProduct {
@@ -101,6 +115,17 @@ function mapProduct(p: ShopifyProductNode): CommerceProduct {
     images: p.images.nodes,
     availableForSale: p.availableForSale,
     tags: p.tags,
+    vendor: p.vendor,
+    variants: p.variants?.nodes.map((v) => ({
+      id: v.id,
+      title: v.title,
+      sku: v.sku,
+      barcode: v.barcode,
+      availableForSale: v.availableForSale,
+      price: v.price,
+      compareAtPrice: v.compareAtPrice ?? undefined,
+      image: v.image ?? undefined,
+    })),
     metafields: {
       houseApproved: p.houseApproved?.value === "true",
       careNotes: p.careNotes?.value ?? undefined,
@@ -212,7 +237,22 @@ export const shopifyProvider: CommerceProvider = {
     const data = await storefront<{ product: ShopifyProductNode | null }>(
       `${PRODUCT_FRAGMENT}
       query ($handle: String!) {
-        product(handle: $handle) { ...ProductFields }
+        product(handle: $handle) {
+          ...ProductFields
+          vendor
+          variants(first: 100) {
+            nodes {
+              id
+              title
+              sku
+              barcode
+              availableForSale
+              price { amount currencyCode }
+              compareAtPrice { amount currencyCode }
+              image { url altText width height }
+            }
+          }
+        }
       }`,
       { handle },
       [`product:${handle}`],
