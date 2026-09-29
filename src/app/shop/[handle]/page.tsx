@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { redirect, permanentRedirect } from "next/navigation";
 import { ProductCard } from "@/components/commerce/ProductCard";
 import { PRODUCTS, findProduct } from "@/lib/shop-data";
 import { getShopProduct, getShopProducts } from "@/lib/shop-data/source";
@@ -133,7 +133,18 @@ export default async function ProductPage({
   const { handle } = await params;
   const { variant: variantParam } = await searchParams;
   const product = await resolveProduct(handle);
-  if (!product) notFound();
+  if (!product) {
+    // Smart fallback (Google Shopping brief, Task 4): the migration gave some
+    // products a -2/-3 suffix, so /shop/{slug} can 404 where /shop/{slug}-2
+    // exists. Try suffixes against the cached catalogue, then send the visitor
+    // to search rather than a dead 404.
+    const all = await getShopProducts().catch(() => []);
+    const handles = new Set(all.map((p) => p.handle));
+    for (let n = 2; n <= 5; n++) {
+      if (handles.has(`${handle}-${n}`)) permanentRedirect(`/shop/${handle}-${n}`);
+    }
+    redirect(`/search?q=${encodeURIComponent(handle.replace(/-/g, " "))}`);
+  }
 
   // Design packages get their own bespoke layout, not the physical-object PDP
   // (Visual Review Step 09 / brief Step 11).
@@ -308,6 +319,14 @@ export default async function ProductPage({
             ) : null}
             {product.price}
           </div>
+
+          {/* Delivery cost near the price (DMCCA drip-pricing rule, Google
+              Shopping brief, Task 5). */}
+          {!isDesign ? (
+            <p className="mt-1 mb-4 font-sans text-[15px] text-house-brown/70">
+              Free UK delivery over £50 · Standard £4.99
+            </p>
+          ) : null}
 
           {/* Delivery + stock, surfaced up front (not only in the accordion) */}
           <div className="mb-6 flex items-center gap-2 font-sans text-[18px] text-house-stone">

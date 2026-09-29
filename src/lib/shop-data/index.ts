@@ -27,6 +27,8 @@ export interface ShopProduct extends ProductCardData {
   materials?: string;
   dimensions?: string;
   delivery?: string;
+  /** Hygiene item — no change-of-mind return once opened (Google Shopping #5). */
+  nonReturnable?: boolean;
   relatedHandles?: string[];
 }
 

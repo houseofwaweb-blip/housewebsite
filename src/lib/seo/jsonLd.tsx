@@ -39,21 +39,22 @@ export function OrganizationJsonLd() {
       "https://www.facebook.com/HouseOfWillowAlexander",
       "https://www.youtube.com/@HouseOfWillowAlexander",
     ],
+    telephone: "+44 800 047 8738",
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
-      email: env.CONTACT_INBOX_DEFAULT,
+      telephone: "+44 800 047 8738",
+      email: "shop@willowalexander.co.uk",
       availableLanguage: "en",
     },
-    // Registered office (Companies House no. 15062693) — matches the footer and
-    // privacy page, and must match Merchant Center's business info (Google
-    // Shopping brief, Task 5).
+    // Trading address — must match Merchant Center's business info exactly
+    // (Google Shopping brief, Task 5, amended). The registered office (12
+    // Hatherley Road) stays in the footer's company statement.
     address: {
       "@type": "PostalAddress",
-      streetAddress: "12 Hatherley Road",
+      streetAddress: "Parker House, 5 Powerscroft Road",
       addressLocality: "Sidcup",
-      addressRegion: "Kent",
-      postalCode: "DA14 4DT",
+      postalCode: "DA14 5DT",
       addressCountry: "GB",
     },
   });

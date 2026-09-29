@@ -155,7 +155,7 @@ export function Footer({ columns, tagline }: FooterProps) {
         {/* Legal bar */}
         <div className="mt-6 flex flex-col gap-4 border-t border-house-brown/12 pt-6 md:flex-row md:items-center md:justify-between">
           <p className="font-sans text-[13.5px] text-house-stone">
-            &copy; {year} House of Willow Alexander. Company no. 15062693. Registered office: 12 Hatherley Road, Sidcup. {tag}
+            &copy; {year} House of Willow Alexander. House of Willow Alexander is a trading name of House of Willow Alexander Ltd, registered in England and Wales, company no. 15062693. Registered office: 12 Hatherley Road, Sidcup, Kent, DA14 4DT. {tag}
           </p>
           <nav aria-label="Legal" className="flex flex-wrap items-center gap-x-6 gap-y-2 font-sans text-[13.5px] text-house-brown/70">
             <Link href="/legal/privacy" prefetch={false} className="no-underline hover:text-house-brown transition-colors">Privacy</Link>

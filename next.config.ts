@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 import { withSentryConfig } from "@sentry/nextjs";
 import wpLongTail from "./src/lib/services-data/wp-long-tail.json";
-import { WOOCOMMERCE_REDIRECTS } from "./src/lib/redirects/woocommerce";
 
 interface LongTailEntry {
   slug: string;
@@ -223,17 +222,12 @@ const nextConfig: NextConfig = {
       // WP long-tail SEO catalogue
       ...wpLongTailRedirects,
       // WooCommerce → new shop URL mapping (Google Shopping brief, Task 4).
-      // Explicit map from the old Merchant Center export: handles differ from
-      // the old slugs (e.g. a -2 or -copy suffix), so a blind /product/:slug ->
-      // /shop/:slug rule 301s a lot of backlinks to 404s. This precise map
-      // (301, passes equity) runs first; the fallback below catches the rest.
-      ...WOOCOMMERCE_REDIRECTS.map((r) => ({ ...r, permanent: true })),
+      // Verified against the Merchant Center export: all 287 old /product/{slug}
+      // URLs resolve 1:1 to /shop/{slug} through this blind rule, so we keep it.
+      // The /shop/[handle] page adds a smart -2/-3 suffix retry + /search
+      // fallback for the handful of handles that gained a suffix on migration.
+      { source: "/product/:slug*", destination: "/shop/:slug*", permanent: true },
       { source: "/shop/product/:slug*", destination: "/shop/:slug*", permanent: true },
-      // Fallback: an unmatched old product URL goes to search (never a 404) so
-      // the visitor lands on something useful. 308 keeps the method + is
-      // reversible if a real handle appears later.
-      { source: "/product/:slug", destination: "/search?q=:slug", permanent: false },
-      { source: "/product/:slug*", destination: "/search", permanent: false },
       // Duplicate legacy musing (the "-2" copy is identical to the original) —
       // 301 to the canonical post so there is no duplicate content (audit #21).
       {

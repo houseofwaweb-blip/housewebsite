@@ -38,9 +38,21 @@ export function ProductCopy({ product: p, isDesign = false }: { product: ShopPro
           id: "delivery",
           summary: <span className={SUMMARY}>Shipping &amp; returns</span>,
           body: (
-            <p>
-              {p.delivery ?? "Delivery options and costs are shown at checkout."} Returns are handled in line with the store's current returns policy.
-            </p>
+            <>
+              <p>
+                Free UK delivery over £50, otherwise Standard £4.99 (2&ndash;3 working days) or Express £6.99.{" "}
+                <a href="/legal/delivery" className="underline underline-offset-2">Delivery</a>.
+              </p>
+              <p>
+                14-day right to cancel from delivery.{" "}
+                <a href="/legal/returns" className="underline underline-offset-2">Returns &amp; refunds</a>.
+              </p>
+              {p.nonReturnable ? (
+                <p>
+                  For hygiene reasons, this item can&rsquo;t be returned for a change of mind once opened. Faulty items are always covered.
+                </p>
+              ) : null}
+            </>
           ),
         },
       ]

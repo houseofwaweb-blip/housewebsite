@@ -5,14 +5,13 @@ export const metadata = {
   alternates: { canonical: "/legal/delivery" },
   title: "Delivery",
   description:
-    "UK delivery zones, rates, dispatch and delivery times for orders from the House of Willow Alexander shop.",
+    "UK delivery by Royal Mail: Standard £4.99 (free over £50) and Express £6.99, dispatch and delivery times, and lost or damaged parcels.",
 };
 
 /**
- * Delivery policy (Google Shopping brief, Task 5 — Merchant Center requires it).
- * TEMPLATE with clearly-bracketed placeholders: the business supplies the final
- * wording, either here or (preferred) in Sanity via getLegalPage("delivery").
- * Do NOT ship the bracketed figures to production as real policy — replace them.
+ * Delivery policy (Google Shopping brief, Task 5). Final wording from
+ * returns-and-delivery-policy-AMENDED.md Part 2, used word for word. Sanity
+ * (getLegalPage) may override the title, not the compliance-reviewed body.
  */
 export default async function DeliveryPage() {
   const sanityPage = await getLegalPage("delivery");
@@ -21,31 +20,25 @@ export default async function DeliveryPage() {
     <EditorialPage
       eyebrow="Legal · Delivery"
       title={sanityPage?.title ?? "Delivery."}
-      lede="Where we deliver, what it costs, and how long it takes. Final wording is being confirmed with the business; the figures in brackets are placeholders."
+      lede="We deliver to UK addresses only, using Royal Mail."
       sections={[
         {
-          heading: "Where we deliver",
-          body: `We deliver across [UK MAINLAND / the UK]. [State any excluded areas — e.g. Channel Islands, Scottish Highlands and Islands, Northern Ireland, BFPO — and whether international delivery is offered.]`,
+          heading: "Delivery options",
+          body: `**Standard** (Royal Mail Tracked 48): **£4.99, free on orders of £50 or more.** 2–3 working days.
+
+**Express** (Royal Mail Tracked 24): **£6.99.** 1–2 working days (we aim for next working day).`,
         },
         {
-          heading: "Rates",
-          body: `Standard UK delivery is [£RATE]. [List any other options — e.g. express — with their prices, and note that oversized or heavy items may carry a surcharge shown at checkout.]`,
+          heading: "Dispatch and timing",
+          body: `Orders are dispatched within **2 working days**, and delivery times count from dispatch. In the unlikely event of a longer delay, we'll let you know. If we can't deliver within 30 days, you can cancel for a full refund.`,
         },
         {
-          heading: "Free delivery",
-          body: `Orders over [£THRESHOLD] qualify for free standard UK delivery. [State any exclusions from the free-delivery threshold.]`,
+          heading: "Lost or damaged parcels",
+          body: `Your order is our responsibility until it reaches you. If it arrives damaged, or hasn't arrived 5 working days after the expected date, email **shop@willowalexander.co.uk** and we'll replace it or refund you.`,
         },
         {
-          heading: "Dispatch time",
-          body: `In-stock orders are dispatched within [X] working days. [State cut-off times and how made-to-order items differ.]`,
-        },
-        {
-          heading: "Delivery time",
-          body: `Once dispatched, standard delivery arrives within [X–Y] working days via [CARRIER]. [State how tracking is provided.]`,
-        },
-        {
-          heading: "Exclusions and notes",
-          body: `[Note anything specific — e.g. bulky furniture handled by a separate courier, plants delivered only in certain months, or items shipped directly by a maker.]`,
+          heading: "Business details",
+          body: `House of Willow Alexander is a trading name of **House of Willow Alexander Ltd**, registered in England and Wales, company number **15062693**. Registered office: 12 Hatherley Road, Sidcup, Kent, DA14 4DT.`,
         },
       ]}
     />

@@ -34,6 +34,9 @@ export interface CatalogueProduct {
   gtin?: string;
   inStock: boolean;
   onSale: boolean;
+  /** Hygiene item (toiletries/grooming/pet toiletries) — no change-of-mind
+      return once opened. Drives the product-page returns note (audit / GS #5). */
+  nonReturnable?: boolean;
   /** Shopify default variant GID — enables one-click add from the grid. */
   variantId?: string;
   /** True when the product has more than one variant (size/colour) — the

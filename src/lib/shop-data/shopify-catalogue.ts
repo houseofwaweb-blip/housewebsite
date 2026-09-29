@@ -36,6 +36,7 @@ const CAT_FIELDS = /* GraphQL */ `
     description
     seo { title description }
     vendor
+    productType
     availableForSale
     tags
     featuredImage { url altText }
@@ -85,6 +86,7 @@ interface SfProduct {
   description: string;
   seo: { title: string | null; description: string | null } | null;
   vendor: string;
+  productType: string;
   availableForSale: boolean;
   tags: string[];
   featuredImage: { url: string; altText: string | null } | null;
@@ -130,7 +132,14 @@ function firstLine(desc: string, max = 150): string {
   return `${line.slice(0, max).replace(/\s+\S*$/, "").trimEnd()}…`;
 }
 
+// Hygiene categories where the change-of-mind right lapses once opened
+// (Google Shopping brief, Task 5). Support the productType OR the Shopify tag.
+const HYGIENE_TYPES = new Set(["Toiletries", "Grooming", "Dog Toiletries"]);
+
 function mapProduct(p: SfProduct, collection: string): CatalogueProduct {
+  const nonReturnable =
+    HYGIENE_TYPES.has(p.productType) ||
+    p.tags.some((t) => t.toLowerCase() === "non-returnable-if-opened");
   const price = money(p.priceRange.minVariantPrice);
   const compareAmount = parseFloat(p.compareAtPriceRange?.minVariantPrice?.amount ?? "0");
   const priceAmount = parseFloat(p.priceRange.minVariantPrice.amount);
@@ -163,6 +172,7 @@ function mapProduct(p: SfProduct, collection: string): CatalogueProduct {
       : undefined,
     inStock: p.availableForSale,
     onSale,
+    nonReturnable,
     variantId: p.variants.nodes[0]?.id,
     multiVariant: p.variants.nodes.length > 1,
   };

@@ -81,6 +81,21 @@ export default function ContactPage() {
               so we can reach the professional directly. For a home emergency, contact the relevant emergency service first.
             </p>
           </div>
+          <div>
+            <p className="font-sans text-[13px] tracking-[0.22em] uppercase text-house-gold-dark">Write to us</p>
+            <address className="mt-2 not-italic font-sans text-[18px] leading-relaxed text-house-brown/85">
+              House of Willow Alexander Ltd<br />
+              Parker House, 5 Powerscroft Road<br />
+              Sidcup, DA14 5DT<br />
+              United Kingdom
+            </address>
+            <p className="mt-2 font-sans text-[17px] text-house-brown/70">
+              Shop orders and returns:{" "}
+              <a href="mailto:shop@willowalexander.co.uk" className="text-house-brown underline underline-offset-2">
+                shop@willowalexander.co.uk
+              </a>
+            </p>
+          </div>
         </div>
       </section>
 
