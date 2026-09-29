@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { numericId } from "@/lib/commerce/gtin";
 import { ProductCard } from "@/components/commerce/ProductCard";
 import { PRODUCTS, findProduct } from "@/lib/shop-data";
 import { getShopProduct, getShopProducts } from "@/lib/shop-data/source";
@@ -132,6 +133,23 @@ export default async function ProductPage({
   const serviceable = /furnitur|lighting|soft.?furnish|outdoor|curtain|blind|shelv|wardrobe|\brug|mirror|cabinet|table|sofa|bed\b/.test(cat);
   const baseUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
   const productUrl = `${baseUrl}/shop/${product.handle}`;
+  // One JSON-LD Offer per variant (feed check #1), each with its own price, real
+  // SKU, availability and ?variant URL, so Google matches every feed item to a
+  // landing-page offer. Server-side, iterating the variants already fetched — NO
+  // searchParams here (that breaks static generation of this ISR route; ?variant
+  // preselect is handled client-side in ProductBuy instead).
+  const skuValue = variants[0]?.sku || undefined;
+  const jsonLdOffers =
+    variants.length > 1
+      ? variants.map((v) => ({
+          price: parsePrice(v.price) || parsePrice(product.price),
+          url: `${productUrl}?variant=${numericId(v.id)}`,
+          availability: v.availableForSale
+            ? ("InStock" as const)
+            : ("OutOfStock" as const),
+          sku: v.sku || undefined,
+        }))
+      : undefined;
 
   // Pull availability from Sanity if we have it (the static fallback
   // doesn't carry an explicit status field — defaults to PreOrder).
@@ -154,10 +172,11 @@ export default async function ProductPage({
         description={product.lede}
         image={product.image}
         url={productUrl}
-        sku={product.handle}
+        sku={skuValue}
         brand={product.brand?.trim() || undefined}
         price={parsePrice(product.price)}
         availability={availability}
+        offers={jsonLdOffers}
       />
       <MetaViewContent
         contentId={product.handle}

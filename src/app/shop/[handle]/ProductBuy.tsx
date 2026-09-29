@@ -4,6 +4,7 @@ import * as React from "react";
 import { useCart } from "@/components/commerce/CartContext";
 import { gaEvent, parseAmount } from "@/lib/google/ga4";
 import type { ProductVariant } from "@/lib/shop-data/shopify-catalogue";
+import { numericId } from "@/lib/commerce/gtin";
 
 /**
  * ProductBuy — variant picker (when >1), a quantity stepper, and the
@@ -39,6 +40,19 @@ export function ProductBuy({
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [product.handle]);
+
+  // Preselect the variant from the feed's ?variant deep link (feed check #1),
+  // so the buy control + shown price match the variant Google sent the visitor
+  // to. Read client-side to avoid server searchParams, which would break this
+  // ISR page's static generation.
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+    const param = new URLSearchParams(window.location.search).get("variant");
+    if (!param) return;
+    const match = variants.find((v) => numericId(v.id) === param);
+    if (match) setVariantId(match.id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (!selected) {
     return (
