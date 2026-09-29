@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import fs from "node:fs";
 import path from "node:path";
@@ -286,8 +287,7 @@ export function ServiceDetail({
                   className={s.subCard}
                 >
                   <div className={s.subImage}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={img} alt={sub.name} />
+                    <Image src={img} alt={sub.name} fill sizes="(max-width: 640px) 80vw, 340px" />
                   </div>
                   <div className={s.subBody}>
                     <h3 className={s.subName}>{sub.name}</h3>

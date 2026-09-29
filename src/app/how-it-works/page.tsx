@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/lib/seo/jsonLd";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
@@ -218,10 +219,20 @@ function ImagePlaceholder({
 /** Renders the real image when its file exists, otherwise the briefed placeholder. */
 function HowMedia({ file, dims, brief, src, minHeight }: PlaceholderBrief & { minHeight?: number }) {
   if (src) {
+    // dims is a display string like "1600 × 900" — parse it for next/image's
+    // intrinsic ratio so it can emit a srcset. The width:100%/height:auto style
+    // keeps the same responsive display as before.
+    const [w, h] = dims.split(/[×x]/).map((n) => parseInt(n.trim(), 10));
     return (
       <div style={{ border: `1px solid ${line}`, overflow: "hidden", lineHeight: 0, alignSelf: "center" }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={src} alt={brief} style={{ width: "100%", height: "auto", display: "block" }} />
+        <Image
+          src={src}
+          alt={brief}
+          width={Number.isFinite(w) ? w : 1600}
+          height={Number.isFinite(h) ? h : 900}
+          sizes="(max-width: 1024px) 100vw, 720px"
+          style={{ width: "100%", height: "auto", display: "block" }}
+        />
       </div>
     );
   }

@@ -305,8 +305,7 @@ export default function HouseApprovedProPage() {
           </div>
           {/* Phone — anchored to the section's bottom edge so it reads as popping up */}
           <div className="hap-tools-phone">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/home/howa-app-pro.webp" alt="The HoWA app showing a Home Record and HoWA Score" />
+            <Image src="/home/howa-app-pro.webp" alt="The HoWA app showing a Home Record and HoWA Score" width={500} height={800} sizes="(max-width: 1200px) 26vw, 330px" />
           </div>
         </div>
         <style>{`
