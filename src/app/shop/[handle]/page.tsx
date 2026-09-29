@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { numericId } from "@/lib/commerce/gtin";
 import { ProductCard } from "@/components/commerce/ProductCard";
 import { PRODUCTS, findProduct } from "@/lib/shop-data";
 import { getShopProduct, getShopProducts } from "@/lib/shop-data/source";
@@ -104,13 +103,10 @@ export async function generateMetadata({
 
 export default async function ProductPage({
   params,
-  searchParams,
 }: {
   params: Promise<{ handle: string }>;
-  searchParams: Promise<{ variant?: string }>;
 }) {
   const { handle } = await params;
-  const { variant: variantParam } = await searchParams;
   const product = await resolveProduct(handle);
   if (!product) notFound();
 
@@ -136,29 +132,6 @@ export default async function ProductPage({
   const serviceable = /furnitur|lighting|soft.?furnish|outdoor|curtain|blind|shelv|wardrobe|\brug|mirror|cabinet|table|sofa|bed\b/.test(cat);
   const baseUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
   const productUrl = `${baseUrl}/shop/${product.handle}`;
-  // Feed g:link carries ?variant={numeric id} (feed check #1). Preselect it so the
-  // visible price + JSON-LD offer match the feed for that variant.
-  const selectedVariant = variantParam
-    ? variants.find((v) => numericId(v.id) === variantParam)
-    : undefined;
-  const initialVariantId = selectedVariant?.id;
-  // Real variant SKU for the JSON-LD (feed g:id), not the handle.
-  const skuValue = selectedVariant?.sku || variants[0]?.sku || undefined;
-  // Visible price reflects the chosen variant when ?variant is present.
-  const displayPrice = selectedVariant?.price || product.price;
-  // One JSON-LD Offer per variant, each with its own price, SKU, availability and
-  // ?variant URL, so Google matches every feed item to a landing-page offer.
-  const jsonLdOffers =
-    variants.length > 1
-      ? variants.map((v) => ({
-          price: parsePrice(v.price) || parsePrice(product.price),
-          url: `${productUrl}?variant=${numericId(v.id)}`,
-          availability: v.availableForSale
-            ? ("InStock" as const)
-            : ("OutOfStock" as const),
-          sku: v.sku || undefined,
-        }))
-      : undefined;
 
   // Pull availability from Sanity if we have it (the static fallback
   // doesn't carry an explicit status field — defaults to PreOrder).
@@ -181,11 +154,10 @@ export default async function ProductPage({
         description={product.lede}
         image={product.image}
         url={productUrl}
-        sku={skuValue}
+        sku={product.handle}
         brand={product.brand?.trim() || undefined}
-        price={parsePrice(displayPrice)}
+        price={parsePrice(product.price)}
         availability={availability}
-        offers={jsonLdOffers}
       />
       <MetaViewContent
         contentId={product.handle}
@@ -233,13 +205,12 @@ export default async function ProductPage({
             {product.compareAtPrice ? (
               <span className={s.compare}>{product.compareAtPrice}</span>
             ) : null}
-            {displayPrice}
+            {product.price}
           </div>
 
           {variants.length > 0 ? (
             <ProductBuy
               variants={variants}
-              initialVariantId={initialVariantId}
               product={{
                 handle: product.handle,
                 title: product.title,

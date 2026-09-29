@@ -341,14 +341,6 @@ export function FaqJsonLd({
  * currency). `aggregateRating` and `review` are intentionally left to the
  * caller — we don't fake reviews and Trustpilot import isn't wired yet.
  */
-type SchemaAvailability = "InStock" | "OutOfStock" | "PreOrder";
-type OfferInput = {
-  price: number;
-  url: string;
-  availability: SchemaAvailability;
-  sku?: string;
-};
-
 export function ProductJsonLd({
   name,
   description,
@@ -359,7 +351,6 @@ export function ProductJsonLd({
   price,
   priceCurrency = "GBP",
   availability,
-  offers,
 }: {
   name: string;
   description: string;
@@ -372,21 +363,9 @@ export function ProductJsonLd({
   price: number;
   priceCurrency?: string;
   /** schema.org availability enum. Map Shopify availableForSale → InStock/OutOfStock. */
-  availability: SchemaAvailability;
-  /** One Offer per variant (feed check #1). When omitted, a single Offer is built. */
-  offers?: OfferInput[];
+  availability: "InStock" | "OutOfStock" | "PreOrder";
 }) {
   const base = env.NEXT_PUBLIC_SITE_URL;
-  const mkOffer = (o: OfferInput) => ({
-    "@type": "Offer",
-    url: o.url,
-    priceCurrency,
-    price: o.price.toFixed(2),
-    availability: `https://schema.org/${o.availability}`,
-    itemCondition: "https://schema.org/NewCondition",
-    ...(o.sku ? { sku: o.sku } : {}),
-    seller: { "@id": `${base}#organization` },
-  });
   return renderLd({
     "@context": "https://schema.org",
     "@type": "Product",
@@ -396,9 +375,13 @@ export function ProductJsonLd({
     url,
     ...(sku ? { sku } : {}),
     brand: { "@type": "Brand", name: brand },
-    offers:
-      offers && offers.length
-        ? offers.map(mkOffer)
-        : mkOffer({ price, url, availability, sku }),
+    offers: {
+      "@type": "Offer",
+      url,
+      priceCurrency,
+      price: price.toFixed(2),
+      availability: `https://schema.org/${availability}`,
+      seller: { "@id": `${base}#organization` },
+    },
   });
 }
