@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Accordion } from "@/components/primitives/Accordion";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
@@ -239,8 +240,7 @@ export default function HomeAndGardenPage() {
           {DISCIPLINES.map((d) => (
             <article key={d.name} className="flex flex-col overflow-hidden border border-house-brown/10 bg-house-cream-light">
               <div className="relative aspect-[4/3] w-full overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={d.image} alt={d.name} className="h-full w-full object-cover" />
+                <Image src={d.image} alt={d.name} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" className="object-cover" />
               </div>
               <div className="flex flex-1 flex-col gap-2.5 p-6">
                 <h3 className="font-hearth-serif text-[24px] leading-tight text-house-brown">{d.name}</h3>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { FaqJsonLd, BreadcrumbJsonLd } from "@/lib/seo/jsonLd";
 
@@ -564,8 +565,7 @@ function Section({
   );
   const pic = image ? (
     <div className="relative aspect-[4/3] lg:aspect-[5/6] w-full overflow-hidden" style={{ border: `1px solid ${line}` }}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={image} alt="" className="absolute inset-0 w-full h-full object-cover" />
+      <Image src={image} alt="" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
     </div>
   ) : null;
   return (

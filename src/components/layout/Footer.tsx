@@ -129,6 +129,7 @@ export function Footer({ columns, tagline }: FooterProps) {
                     <li key={`${link.href}-${i}`}>
                       <Link
                         href={link.href}
+                        prefetch={false}
                         className="inline-block py-1 font-sans text-[15px] leading-snug text-house-brown/80 no-underline transition-colors duration-[var(--t-base)] hover:text-house-gold-ink"
                       >
                         {link.label}
@@ -157,9 +158,9 @@ export function Footer({ columns, tagline }: FooterProps) {
             &copy; {year} House of Willow Alexander. Company no. 15062693. Registered office: 12 Hatherley Road, Sidcup. {tag}
           </p>
           <nav aria-label="Legal" className="flex flex-wrap items-center gap-x-6 gap-y-2 font-sans text-[13.5px] text-house-brown/70">
-            <Link href="/legal/privacy" className="no-underline hover:text-house-brown transition-colors">Privacy</Link>
-            <Link href="/legal/terms" className="no-underline hover:text-house-brown transition-colors">Terms</Link>
-            <Link href="/legal/cookies" className="no-underline hover:text-house-brown transition-colors">Cookies</Link>
+            <Link href="/legal/privacy" prefetch={false} className="no-underline hover:text-house-brown transition-colors">Privacy</Link>
+            <Link href="/legal/terms" prefetch={false} className="no-underline hover:text-house-brown transition-colors">Terms</Link>
+            <Link href="/legal/cookies" prefetch={false} className="no-underline hover:text-house-brown transition-colors">Cookies</Link>
             <CookiePreferencesLink />
           </nav>
         </div>

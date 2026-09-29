@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { BreadcrumbJsonLd } from "@/lib/seo/jsonLd";
@@ -255,8 +256,7 @@ export default function TheHousePage() {
           </p>
           </div>
           <div className="relative aspect-[4/3] w-full overflow-hidden lg:self-stretch" style={{ border: `1px solid ${line}` }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/lifestyle/garden-steps.webp" alt="A man at rest on stone garden steps among lavender and roses" className="absolute inset-0 h-full w-full object-cover" />
+            <Image src="/lifestyle/garden-steps.webp" alt="A man at rest on stone garden steps among lavender and roses" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
           </div>
           </div>
         </div>
@@ -267,8 +267,7 @@ export default function TheHousePage() {
         <div style={wrap}>
           <div className="grid items-center gap-10 lg:grid-cols-[0.85fr_1fr] lg:gap-16">
           <div className="relative aspect-[4/5] w-full overflow-hidden lg:self-stretch" style={{ border: `1px solid ${line}`, background: "#f1ebe5" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/the-house/relationship-howa.webp" alt="The relationship between the House and HoWA: the House presents it, HoWA powers it" className="absolute inset-0 h-full w-full object-cover" />
+            <Image src="/the-house/relationship-howa.webp" alt="The relationship between the House and HoWA: the House presents it, HoWA powers it" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
           </div>
           <div>
           <p style={{ ...eyebrow, marginBottom: 24 }}>
@@ -345,8 +344,7 @@ export default function TheHousePage() {
         <div style={wrap}>
           <div className="grid items-center gap-10 lg:grid-cols-[0.85fr_1fr] lg:gap-16">
           <div className="relative aspect-[4/5] w-full overflow-hidden lg:self-stretch" style={{ border: `1px solid ${line}` }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/lifestyle/painter-studio.webp" alt="A maker at work at an easel in a light-filled studio" className="absolute inset-0 h-full w-full object-cover" />
+            <Image src="/lifestyle/painter-studio.webp" alt="A maker at work at an easel in a light-filled studio" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
           </div>
           <div>
           <p style={{ ...eyebrow, marginBottom: 24 }}>
@@ -403,8 +401,7 @@ export default function TheHousePage() {
           </p>
           </div>
           <div className="relative aspect-[16/9] w-full overflow-hidden lg:self-stretch" style={{ border: "1px solid rgba(198,168,110,0.35)" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/howa/new/life-piano.webp" alt="A grandmother and grandchild at the piano in a warm family living room" className="absolute inset-0 h-full w-full object-cover" />
+            <Image src="/howa/new/life-piano.webp" alt="A grandmother and grandchild at the piano in a warm family living room" fill sizes="100vw" className="object-cover" />
           </div>
           </div>
         </div>

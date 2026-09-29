@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import fs from "node:fs";
 import path from "node:path";
@@ -104,12 +105,13 @@ export function LocationServiceDetail({ page }: { page: LocationPage }) {
               </li>
             </ul>
 
-            <div className="mt-8 overflow-hidden border" style={{ borderColor: accent }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+            <div className="relative mt-8 aspect-[16/10] w-full overflow-hidden border" style={{ borderColor: accent }}>
+              <Image
                 src={heroImage}
                 alt={`${service.name} in ${town.name}`}
-                className="block aspect-[16/10] w-full object-cover"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
               />
             </div>
           </div>
@@ -164,9 +166,8 @@ export function LocationServiceDetail({ page }: { page: LocationPage }) {
       {/* 3. Local proof */}
       <section className="px-[5vw] py-[clamp(48px,6vw,88px)] border-b border-house-brown/10 bg-house-cream-light">
         <div className="mx-auto grid max-w-[1080px] items-center gap-[clamp(24px,4vw,56px)] md:grid-cols-2">
-          <div className="overflow-hidden border" style={{ borderColor: accent }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={heroImage} alt={`${cfg.proofLabel} in ${town.name}`} className="block aspect-[4/3] w-full object-cover" />
+          <div className="relative aspect-[4/3] w-full overflow-hidden border" style={{ borderColor: accent }}>
+            <Image src={heroImage} alt={`${cfg.proofLabel} in ${town.name}`} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
           </div>
           <div>
             <p className="mb-3 font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-ink">

@@ -6,6 +6,8 @@
  * (Designer Handover Guide, slide 19). Self-styled with brand Tailwind utilities
  * so it drops onto any page regardless of its CSS-module styling.
  */
+import Image from "next/image";
+
 const POINTS = [
   "Vetted against real family use",
   "Care notes for use and repair",
@@ -16,8 +18,7 @@ export function HouseStandardStrip({ points = POINTS }: { points?: string[] }) {
   return (
     <section className="relative overflow-hidden border-y border-house-brown/10 px-[5vw] py-[clamp(64px,7vw,104px)]">
       {/* Warm lifestyle image behind a cream scrim so the brown text stays legible. */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/lifestyle/cottage-hearth.webp" alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover object-center" />
+      <Image src="/lifestyle/cottage-hearth.webp" alt="" aria-hidden fill sizes="100vw" className="object-cover object-center" />
       <div aria-hidden className="absolute inset-0 bg-house-cream/82" />
       <div className="relative z-10 max-w-[920px] mx-auto text-center">
         <p className="font-sans text-[14px] tracking-[0.3em] uppercase text-house-gold-ink mb-4">

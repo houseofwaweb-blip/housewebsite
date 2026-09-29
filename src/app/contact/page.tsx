@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ContactForm } from "@/components/forms/ContactForm";
 import PostcodeBooking from "@/components/booking/PostcodeBooking";
 import { env } from "@/lib/env";
@@ -86,11 +87,12 @@ export default function ContactPage() {
       {/* Warm lifestyle image band — kept, but now BELOW the contact details so
           the phone/email/hours sit above it (brief §3, Contact and footer). */}
       <div className="relative w-full overflow-hidden border-t border-house-line" style={{ aspectRatio: "16 / 6" }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src="/lifestyle/writing-by-stove.webp"
           alt="A quiet moment writing by a wood stove in a House interior"
-          className="absolute inset-0 h-full w-full object-cover object-center"
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
         />
       </div>
 
