@@ -80,34 +80,54 @@ async function fetchShopifyHandles(): Promise<{
     return { products: [], collections: [] };
   }
   try {
-    // Single batched query — products + collections in one round-trip.
-    // first: 250 is the Storefront API max. If we exceed 250 of either,
-    // implement cursor-based pagination here.
+    // 250 is the Storefront API page max, and there are ~481 products — so we
+    // MUST paginate, or the sitemap silently drops everything past the first
+    // page (Google Shopping brief, Task 3). Products page through by cursor;
+    // collections fit in one page.
     const endpoint = `https://${env.SHOPIFY_STORE_DOMAIN}/api/2025-04/graphql.json`;
-    const res = await fetch(endpoint, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Shopify-Storefront-Access-Token": env.SHOPIFY_STOREFRONT_TOKEN,
-      },
-      body: JSON.stringify({
-        query: `query {
-          products(first: 250) { nodes { handle updatedAt } }
-          collections(first: 250) { nodes { handle updatedAt } }
-        }`,
-      }),
-      next: { tags: ["sitemap:shopify"], revalidate: 604800 },
-    });
-    if (!res.ok) throw new Error(`Shopify ${res.status}`);
-    const json = (await res.json()) as {
-      data?: {
-        products?: { nodes: ShopifyHandle[] };
-        collections?: { nodes: ShopifyHandle[] };
+    const call = (query: string) =>
+      fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Shopify-Storefront-Access-Token": env.SHOPIFY_STOREFRONT_TOKEN!,
+        },
+        body: JSON.stringify({ query }),
+        next: { tags: ["sitemap:shopify"], revalidate: 604800 },
+      });
+
+    const products: ShopifyHandle[] = [];
+    let cursor: string | null = null;
+    // Cap the loop so a pagination bug can't spin forever (50 pages = 12,500).
+    for (let i = 0; i < 50; i++) {
+      const after: string = cursor ? `, after: ${JSON.stringify(cursor)}` : "";
+      const res = await call(`query {
+        products(first: 250${after}) {
+          pageInfo { hasNextPage endCursor }
+          nodes { handle updatedAt }
+        }
+      }`);
+      if (!res.ok) throw new Error(`Shopify ${res.status}`);
+      const json = (await res.json()) as {
+        data?: { products?: { pageInfo: { hasNextPage: boolean; endCursor: string | null }; nodes: ShopifyHandle[] } };
       };
-    };
+      const page = json.data?.products;
+      if (!page) break;
+      products.push(...page.nodes);
+      if (!page.pageInfo.hasNextPage || !page.pageInfo.endCursor) break;
+      cursor = page.pageInfo.endCursor;
+    }
+
+    const colRes = await call(`query {
+      collections(first: 250) { nodes { handle updatedAt } }
+    }`);
+    const colJson = colRes.ok
+      ? ((await colRes.json()) as { data?: { collections?: { nodes: ShopifyHandle[] } } })
+      : { data: undefined };
+
     return {
-      products: json.data?.products?.nodes ?? [],
-      collections: json.data?.collections?.nodes ?? [],
+      products,
+      collections: colJson.data?.collections?.nodes ?? [],
     };
   } catch (e) {
     console.warn(`[sitemap] failed to fetch Shopify handles:`, e instanceof Error ? e.message : e);
