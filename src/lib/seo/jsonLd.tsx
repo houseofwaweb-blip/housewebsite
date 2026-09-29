@@ -45,6 +45,17 @@ export function OrganizationJsonLd() {
       email: env.CONTACT_INBOX_DEFAULT,
       availableLanguage: "en",
     },
+    // Registered office (Companies House no. 15062693) — matches the footer and
+    // privacy page, and must match Merchant Center's business info (Google
+    // Shopping brief, Task 5).
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "12 Hatherley Road",
+      addressLocality: "Sidcup",
+      addressRegion: "Kent",
+      postalCode: "DA14 4DT",
+      addressCountry: "GB",
+    },
   });
 }
 

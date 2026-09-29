@@ -161,6 +161,8 @@ export function Footer({ columns, tagline }: FooterProps) {
             <Link href="/legal/privacy" prefetch={false} className="no-underline hover:text-house-brown transition-colors">Privacy</Link>
             <Link href="/legal/terms" prefetch={false} className="no-underline hover:text-house-brown transition-colors">Terms</Link>
             <Link href="/legal/cookies" prefetch={false} className="no-underline hover:text-house-brown transition-colors">Cookies</Link>
+            <Link href="/legal/delivery" prefetch={false} className="no-underline hover:text-house-brown transition-colors">Delivery</Link>
+            <Link href="/legal/returns" prefetch={false} className="no-underline hover:text-house-brown transition-colors">Returns</Link>
             <CookiePreferencesLink />
           </nav>
         </div>
