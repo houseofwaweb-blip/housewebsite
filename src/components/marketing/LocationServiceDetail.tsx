@@ -15,6 +15,7 @@ import {
   LOCATION_SERVICES,
   siblingServicesInTown,
   townRegion,
+  townDetail,
   type LocationPage,
 } from "@/lib/services-data/locations";
 
@@ -48,6 +49,14 @@ export function LocationServiceDetail({ page }: { page: LocationPage }) {
   const region = townRegion(town);
   const accent = service.colour ?? "var(--color-house-brown)";
   const heroImage = fileOr(service.heroImage, PLACEHOLDER);
+  const detail = townDetail(town.slug);
+  // Human-readable "and around" list, e.g. "Bromley, Penge and West Wickham".
+  const nearbyList = detail?.nearby.length
+    ? detail.nearby.slice(0, 3).reduce((acc, n, i, arr) => {
+        if (i === 0) return n;
+        return i === arr.length - 1 ? `${acc} and ${n}` : `${acc}, ${n}`;
+      }, "")
+    : null;
 
   const cover =
     service.subServices.length > 0
@@ -88,8 +97,9 @@ export function LocationServiceDetail({ page }: { page: LocationPage }) {
             </h1>
 
             <p className="mb-6 max-w-[54ch] border-t border-house-brown/15 pt-5 font-sans text-[20px] leading-[1.65] text-house-brown/75">
-              {cfg.verb} across {town.name}. For the {town.character} of {pc0},
-              booked and recorded through HoWA.
+              {cfg.verb} across {town.name}. For the {town.character} of {pc0}
+              {nearbyList ? `, and out to ${nearbyList}` : ""}, booked and
+              recorded through HoWA.
             </p>
 
             <ul className="m-0 flex flex-wrap gap-x-8 gap-y-3 list-none p-0">
@@ -162,6 +172,43 @@ export function LocationServiceDetail({ page }: { page: LocationPage }) {
           </ul>
         </div>
       </section>
+
+      {/* 2b. About the area — wholly unique per town so no two location pages
+          read the same (audit #13). */}
+      {detail ? (
+        <section className="px-[5vw] py-[clamp(48px,6vw,88px)] border-b border-house-brown/10">
+          <div className="mx-auto grid max-w-[1080px] items-start gap-[clamp(24px,4vw,56px)] lg:grid-cols-[1.4fr_1fr]">
+            <div>
+              <p className="mb-3 font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-ink">
+                The area
+              </p>
+              <h2 className="mb-5 font-hearth-serif text-[clamp(29px,3.2vw,44px)] leading-[1.1] text-house-brown">
+                About {town.name}.
+              </h2>
+              <p className="max-w-[60ch] font-sans text-[18px] leading-[1.7] text-house-brown/80">
+                {detail.about}
+              </p>
+            </div>
+            {detail.areas.length ? (
+              <div className="border-t border-house-brown/15 pt-5 lg:border-0 lg:pt-0">
+                <p className="mb-4 font-sans text-[13px] tracking-[0.2em] uppercase text-house-brown/60">
+                  Areas we cover around {town.name}
+                </p>
+                <ul className="m-0 flex flex-wrap gap-2 list-none p-0">
+                  {[...detail.areas, ...detail.nearby].map((a) => (
+                    <li
+                      key={a}
+                      className="border border-house-brown/20 bg-house-cream px-3 py-1.5 font-sans text-[14px] text-house-brown/80"
+                    >
+                      {a}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+          </div>
+        </section>
+      ) : null}
 
       {/* 3. Local proof */}
       <section className="px-[5vw] py-[clamp(48px,6vw,88px)] border-b border-house-brown/10 bg-house-cream-light">
