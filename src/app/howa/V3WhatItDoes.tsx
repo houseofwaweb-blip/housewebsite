@@ -43,7 +43,7 @@ export function V3WhatItDoes() {
             <span className="font-italic-display text-[#c5a960]">knows your home</span> and tells you what to do about it.
           </h2>
           <p className="mt-5 text-[20px] leading-[1.55] text-[color:var(--color-ink-soft)] max-w-[620px]">
-            Three things you can do the moment you open HoWA. All of it works right now, then try it yourself in the demo just below.
+            Three things HoWA will do for your home. Try the interactive demo just below to see how it works.
           </p>
         </div>
 
