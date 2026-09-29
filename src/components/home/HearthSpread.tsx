@@ -37,7 +37,7 @@ export function HearthSpread({ articles }: { articles: HearthArticle[] }) {
           <h2 className="mt-3 font-display text-[clamp(1.6rem,2.4vw,2.3rem)] leading-[1.05] text-house-ink">
             Useful stories for a more interesting home.
           </h2>
-          <p className="mt-3 font-sans text-[10px] tracking-[0.18em] uppercase text-house-stone">
+          <p className="mt-3 font-sans text-[12px] tracking-[0.18em] uppercase text-house-stone">
             {issueMarker}
           </p>
           <Link
@@ -108,7 +108,7 @@ export function HearthSpread({ articles }: { articles: HearthArticle[] }) {
                 ) : null}
               </div>
               {a.category ? (
-                <p className="font-sans text-[10px] tracking-[0.16em] uppercase text-house-gold-dark">
+                <p className="font-sans text-[12px] tracking-[0.16em] uppercase text-house-gold-dark">
                   {a.category}
                 </p>
               ) : null}

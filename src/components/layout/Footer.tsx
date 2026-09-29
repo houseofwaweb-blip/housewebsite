@@ -101,7 +101,7 @@ export function Footer({ columns, tagline }: FooterProps) {
             <Link href="/" aria-label="House of Willow Alexander, home" className="inline-block">
               <Image src="/brand/wordmark.svg" alt="House of Willow Alexander" width={296} height={125} className="h-[52px] w-auto" />
             </Link>
-            <p className="mt-5 font-sans text-[11px] uppercase tracking-[0.22em] text-house-gold-dark">
+            <p className="mt-5 font-sans text-[12px] uppercase tracking-[0.22em] text-house-gold-dark">
               That feeling you call home
             </p>
             <div className="mt-5 flex items-center gap-3">

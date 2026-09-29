@@ -27,7 +27,7 @@ export function ProvenanceLockup({
   );
   return (
     <div className={`flex items-center gap-3 ${className}`}>
-      <span className={`font-sans text-[10px] tracking-[0.2em] uppercase ${labelCls}`}>{label}</span>
+      <span className={`font-sans text-[12px] tracking-[0.2em] uppercase ${labelCls}`}>{label}</span>
       {variant === "onDark" ? <span className="inline-flex bg-house-cream px-3.5 py-2">{logo}</span> : logo}
     </div>
   );

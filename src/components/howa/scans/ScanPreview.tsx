@@ -91,7 +91,7 @@ export function ScanPreview({
           }}
         >
           <span className="font-display text-[clamp(18px,2vw,24px)] leading-tight text-house-brown/70">{name}</span>
-          <span className="font-sans text-[11px] uppercase tracking-[0.22em] text-house-sage">
+          <span className="font-sans text-[12px] uppercase tracking-[0.22em] text-house-sage">
             {blueprint ? `Scanning ${subject}` : name}
           </span>
         </div>
@@ -113,7 +113,7 @@ export function ScanPreview({
       {pins.slice(0, 3).map((p, i) => (
         <span
           key={p}
-          className="absolute whitespace-nowrap border border-house-gold/50 bg-house-cream/95 px-2 py-1 font-sans text-[10px] uppercase tracking-[0.16em] text-house-brown"
+          className="absolute whitespace-nowrap border border-house-gold/50 bg-house-cream/95 px-2 py-1 font-sans text-[12px] uppercase tracking-[0.16em] text-house-brown"
           style={{
             ...PIN_POS[i],
             opacity: phase === "resolved" ? 1 : 0,
@@ -129,7 +129,7 @@ export function ScanPreview({
       {/* Status badge */}
       {started ? (
         <div
-          className="absolute left-3 top-3 px-2.5 py-1 font-sans text-[10px] uppercase tracking-[0.18em]"
+          className="absolute left-3 top-3 px-2.5 py-1 font-sans text-[12px] uppercase tracking-[0.18em]"
           style={{ background: blueprint ? "#132a3f" : "var(--color-house-gold-ink)", color: blueprint ? "#c5a960" : "var(--color-house-brown)", transition: "background .5s, color .5s" }}
         >
           {blueprint ? statusScanning : statusResolved}
@@ -151,7 +151,7 @@ export function ScanPreview({
             href={resolvedHref}
             tabIndex={phase === "resolved" ? 0 : -1}
             aria-hidden={phase !== "resolved"}
-            className="pointer-events-auto border border-house-gold-dark bg-house-gold-ink px-5 py-2.5 font-sans text-[11px] uppercase tracking-[0.16em] text-house-brown no-underline shadow-[0_10px_30px_-12px_rgba(40,30,10,0.6)] transition-[filter] hover:brightness-110"
+            className="pointer-events-auto border border-house-gold-dark bg-house-gold-ink px-5 py-2.5 font-sans text-[12px] uppercase tracking-[0.16em] text-house-brown no-underline shadow-[0_10px_30px_-12px_rgba(40,30,10,0.6)] transition-[filter] hover:brightness-110"
           >
             {resolvedLabel} →
           </Link>
@@ -166,7 +166,7 @@ export function ScanPreview({
           className="group absolute inset-0 z-20 flex items-center justify-center bg-black/20 transition-colors hover:bg-black/30"
           aria-label={`Start the ${name} scan`}
         >
-          <span className="flex items-center gap-2 border border-house-gold-dark bg-house-gold-ink px-5 py-2.5 font-sans text-[11px] uppercase tracking-[0.16em] text-house-brown shadow-[0_10px_30px_-12px_rgba(40,30,10,0.6)] transition-[filter] group-hover:brightness-110">
+          <span className="flex items-center gap-2 border border-house-gold-dark bg-house-gold-ink px-5 py-2.5 font-sans text-[12px] uppercase tracking-[0.16em] text-house-brown shadow-[0_10px_30px_-12px_rgba(40,30,10,0.6)] transition-[filter] group-hover:brightness-110">
             <span aria-hidden className="inline-block h-0 w-0 border-y-[5px] border-l-[8px] border-y-transparent border-l-house-brown" />
             Start the scan
           </span>

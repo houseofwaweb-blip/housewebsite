@@ -83,7 +83,7 @@ export function OfferCard({
         </div>
 
         <div className="flex flex-1 flex-col p-6">
-          <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-house-gold-dark">
+          <p className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-dark">
             {offer.category}
           </p>
           <h3 className="mt-2.5 font-display text-[clamp(1.35rem,2vw,1.65rem)] leading-[1.12] text-house-ink">

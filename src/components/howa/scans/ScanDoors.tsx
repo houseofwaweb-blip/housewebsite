@@ -111,7 +111,7 @@ export function ScanDoors() {
             <div className="mb-3 flex items-start justify-between gap-3">
               <h3 className="font-display text-[22px] leading-tight text-house-brown">{d.heading}</h3>
               {d.state !== "Available" ? (
-                <span className="shrink-0 border border-house-gold-dark/60 px-2 py-0.5 font-sans text-[10px] uppercase tracking-[0.14em] text-house-gold-dark">
+                <span className="shrink-0 border border-house-gold-dark/60 px-2 py-0.5 font-sans text-[12px] uppercase tracking-[0.14em] text-house-gold-dark">
                   {d.state}
                 </span>
               ) : null}

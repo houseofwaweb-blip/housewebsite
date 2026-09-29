@@ -112,7 +112,7 @@ export default async function AssistantPage() {
           {/* The promised sequence, shown literally */}
           <ul className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-2 p-0">
             {["Question", "Context", "Answer", "Source", "Confidence", "Next action", "Saved to the home"].map((step, i, arr) => (
-              <li key={step} className="flex items-center gap-2 font-sans text-[11px] uppercase tracking-[0.16em] text-house-brown/70">
+              <li key={step} className="flex items-center gap-2 font-sans text-[12px] uppercase tracking-[0.16em] text-house-brown/70">
                 <span className="border border-house-brown/20 bg-house-cream px-2.5 py-1">{step}</span>
                 {i < arr.length - 1 ? <span aria-hidden="true" className="text-house-gold-dark">→</span> : null}
               </li>
@@ -126,7 +126,7 @@ export default async function AssistantPage() {
 
           {/* You might ask */}
           <div className="mt-8">
-            <p className="font-sans text-[11px] uppercase tracking-[0.18em] text-house-sage">You might ask</p>
+            <p className="font-sans text-[12px] uppercase tracking-[0.18em] text-house-sage">You might ask</p>
             <ul className="mt-3 flex flex-wrap gap-2 p-0">
               {["Is this damp likely to be condensation?", "Is this builder's quote reasonable?", "What should happen before winter?", "Is the boiler still under warranty?"].map((q) => (
                 <li key={q} className="border border-house-brown/15 bg-house-cream px-3.5 py-2 font-sans text-[14px] leading-none text-house-brown/80">

@@ -460,7 +460,7 @@ export function ShopBrowser({
             >
               Filters
               {activeFilterCount > 0 ? (
-                <span className="inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 text-[10px] leading-none text-house-cream bg-house-gold-ink">
+                <span className="inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 text-[12px] leading-none text-house-cream bg-house-gold-ink">
                   {activeFilterCount}
                 </span>
               ) : null}

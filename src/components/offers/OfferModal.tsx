@@ -24,7 +24,7 @@ import type { Offer } from "./OfferCard";
 function Meta({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="grid grid-cols-[74px_1fr] gap-3 border-t border-house-cream/12 py-3 sm:grid-cols-[84px_1fr]">
-      <dt className="font-sans text-[10px] leading-[1.5] tracking-[0.16em] uppercase text-house-gold">
+      <dt className="font-sans text-[12px] leading-[1.5] tracking-[0.16em] uppercase text-house-gold">
         {label}
       </dt>
       <dd className="font-sans text-[15.5px] leading-[1.55] text-house-cream/85">{children}</dd>
@@ -180,7 +180,7 @@ export function OfferModal({
             </p>
 
             {/* What's included */}
-            <p className="mt-7 font-sans text-[10px] tracking-[0.18em] uppercase text-house-gold">
+            <p className="mt-7 font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold">
               What&apos;s included
             </p>
             <ul className="mt-3 flex list-none flex-col gap-2.5 p-0">

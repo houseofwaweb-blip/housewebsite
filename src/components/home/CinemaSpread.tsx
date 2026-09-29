@@ -82,7 +82,7 @@ export function CinemaSpread() {
                 </span>
               </span>
               <div className="absolute inset-x-0 bottom-0 p-[clamp(16px,1.6vw,24px)]">
-                <span className="mb-1.5 block font-sans text-[10px] tracking-[0.24em] uppercase text-house-gold-light">
+                <span className="mb-1.5 block font-sans text-[12px] tracking-[0.24em] uppercase text-house-gold-light">
                   {film.category}
                 </span>
                 <h3 className="max-w-[24ch] font-display text-[clamp(20px,1.5vw,25px)] leading-[1.15] text-house-cream">

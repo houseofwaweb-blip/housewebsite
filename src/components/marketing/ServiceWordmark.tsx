@@ -37,7 +37,7 @@ export function ServiceWordmark({
   if (!mark) return null;
   return (
     <div className={`flex items-center gap-3 ${className}`}>
-      <span className="font-sans text-[11px] tracking-[0.2em] uppercase text-house-brown/50">
+      <span className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-brown/50">
         Provided by
       </span>
       {/* Supplied wordmark artwork, its own service colour on transparent.

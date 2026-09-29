@@ -160,7 +160,7 @@ export function AskHowaDemo({ backgroundImage = "/howa/v5/ai-ask-scan.png" }: { 
             <span className="flex h-7 w-7 items-center justify-center rounded-full bg-house-midnight font-display text-[12px] text-house-gold-ink">H</span>
             <div className="leading-tight">
               <p className="font-display text-[15px] text-house-black">Ask HoWA</p>
-              <p className="text-[11px] text-house-stone/70">Answers from your Home Record</p>
+              <p className="text-[12px] text-house-stone/70">Answers from your Home Record</p>
             </div>
           </div>
 
@@ -204,10 +204,10 @@ export function AskHowaDemo({ backgroundImage = "/howa/v5/ai-ask-scan.png" }: { 
                 {/* Source or missing-context state shown beside the answer. */}
                 {!thinking && !isResultPhase && stage === "await" ? (
                   <span className="mt-2.5 flex flex-wrap items-center gap-2 border-t border-house-brown/10 pt-2">
-                    <span className="border border-house-brown/20 bg-house-white px-2 py-0.5 font-sans text-[11px] uppercase tracking-[0.12em] text-house-brown/70">
+                    <span className="border border-house-brown/20 bg-house-white px-2 py-0.5 font-sans text-[12px] uppercase tracking-[0.12em] text-house-brown/70">
                       {item.source}
                     </span>
-                    <span className="border border-house-brown/20 bg-house-white px-2 py-0.5 font-sans text-[11px] uppercase tracking-[0.12em] text-house-brown/70">
+                    <span className="border border-house-brown/20 bg-house-white px-2 py-0.5 font-sans text-[12px] uppercase tracking-[0.12em] text-house-brown/70">
                       Confidence: {CONFIDENCE[item.issue] ?? "Medium"}
                     </span>
                   </span>
@@ -247,7 +247,7 @@ export function AskHowaDemo({ backgroundImage = "/howa/v5/ai-ask-scan.png" }: { 
             )}
           </div>
 
-          <p className="border-t border-house-brown/8 px-5 py-2.5 font-sans text-[11px] uppercase tracking-[0.1em] text-house-stone/70">
+          <p className="border-t border-house-brown/8 px-5 py-2.5 font-sans text-[12px] uppercase tracking-[0.1em] text-house-stone/70">
             Illustrative example. Your answers come from your own Home Record once you start.
           </p>
         </div>

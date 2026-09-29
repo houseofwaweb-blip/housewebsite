@@ -153,7 +153,7 @@ export function ScanReveal({ data, fields }: { data: ScanRevealData; fields: Sca
             className="inline-block h-2 w-2 shrink-0 rounded-full"
             style={{ background: blueprint ? "#c5a960" : "var(--color-house-moss)", boxShadow: blueprint ? "0 0 0 3px rgba(197,169,96,.25)" : "none", transition: "background .4s" }}
           />
-          <p className="truncate font-sans text-[11px] uppercase tracking-[0.22em] text-house-brown">
+          <p className="truncate font-sans text-[12px] uppercase tracking-[0.22em] text-house-brown">
             {data.productName} <span className="text-house-stone/70">·</span>{" "}
             <span className="text-house-sage">{caption}</span>
           </p>
@@ -183,7 +183,7 @@ export function ScanReveal({ data, fields }: { data: ScanRevealData; fields: Sca
           {(data.pins ?? []).slice(0, 3).map((p, i) => (
             <span
               key={p}
-              className="absolute whitespace-nowrap border border-house-gold/50 bg-house-cream/95 px-2 py-1 font-sans text-[10px] uppercase tracking-[0.16em] text-house-brown"
+              className="absolute whitespace-nowrap border border-house-gold/50 bg-house-cream/95 px-2 py-1 font-sans text-[12px] uppercase tracking-[0.16em] text-house-brown"
               style={{ ...PIN_POS[i], ...reveal(2), transitionDelay: `${i * 140}ms` }}
             >
               <span className="mr-1 text-house-sage" aria-hidden>+</span>{p}
@@ -191,11 +191,11 @@ export function ScanReveal({ data, fields }: { data: ScanRevealData; fields: Sca
           ))}
 
           {/* Status badge */}
-          <div className="absolute left-3 top-3 px-2.5 py-1 font-sans text-[10px] uppercase tracking-[0.18em]"
+          <div className="absolute left-3 top-3 px-2.5 py-1 font-sans text-[12px] uppercase tracking-[0.18em]"
             style={{ background: blueprint ? "#132a3f" : "var(--color-house-gold-ink)", color: blueprint ? "#c5a960" : "var(--color-house-brown)", transition: "background .5s, color .5s" }}>
             {blueprint ? data.statusScanning : data.statusResolved}
           </div>
-          <div className="absolute bottom-3 right-3 bg-black/35 px-2 py-1 font-sans text-[10px] uppercase tracking-[0.16em] text-house-cream">
+          <div className="absolute bottom-3 right-3 bg-black/35 px-2 py-1 font-sans text-[12px] uppercase tracking-[0.16em] text-house-cream">
             {data.imageLabel}
           </div>
         </div>
@@ -205,12 +205,12 @@ export function ScanReveal({ data, fields }: { data: ScanRevealData; fields: Sca
           {(data.source || data.confidence) && (
             <div style={reveal(2)} className="flex flex-wrap items-center gap-2.5">
               {data.source ? (
-                <span className="border border-house-brown/20 bg-house-cream px-2.5 py-1 font-sans text-[10px] uppercase tracking-[0.14em] text-house-brown/70">
+                <span className="border border-house-brown/20 bg-house-cream px-2.5 py-1 font-sans text-[12px] uppercase tracking-[0.14em] text-house-brown/70">
                   Source: {data.source}
                 </span>
               ) : null}
               {data.confidence ? (
-                <span className="font-sans text-[11px] uppercase tracking-[0.14em] text-house-sage">
+                <span className="font-sans text-[12px] uppercase tracking-[0.14em] text-house-sage">
                   Confidence: {data.confidence}
                 </span>
               ) : null}
@@ -219,7 +219,7 @@ export function ScanReveal({ data, fields }: { data: ScanRevealData; fields: Sca
           {fields.map((f, i) => {
             const beat = beatOf(i);
             const labelEl = (
-              <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.22em] text-house-sage">{f.label}</p>
+              <p className="mb-2 font-sans text-[12px] uppercase tracking-[0.22em] text-house-sage">{f.label}</p>
             );
             if (f.kind === "text") {
               return (
@@ -249,8 +249,8 @@ export function ScanReveal({ data, fields }: { data: ScanRevealData; fields: Sca
                     {f.items.map((p, j) => (
                       <div key={p.name} className="flex flex-col items-start" style={{ ...reveal(beat, 8), transitionDelay: `${j * 110}ms` }}>
                         <span className="h-11 w-11 border border-house-brown/15" style={{ background: p.hex }} aria-hidden />
-                        <span className="mt-1.5 font-sans text-[11px] leading-tight text-house-brown">{p.name}</span>
-                        <span className="font-sans text-[10px] leading-tight text-house-stone/80">{p.note}</span>
+                        <span className="mt-1.5 font-sans text-[12px] leading-tight text-house-brown">{p.name}</span>
+                        <span className="font-sans text-[12px] leading-tight text-house-stone/80">{p.note}</span>
                       </div>
                     ))}
                   </div>

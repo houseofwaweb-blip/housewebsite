@@ -195,7 +195,7 @@ export function MegaMenu({
                 <span className="font-sans text-[13px] tracking-[0.18em] uppercase font-medium text-house-brown transition-colors duration-[var(--t-base)] group-hover:text-house-gold-ink">
                   {panel.trigger}
                 </span>
-                <span className="font-sans text-[11px] tracking-[0.16em] uppercase text-house-stone transition-colors duration-[var(--t-base)] group-hover:text-house-gold-ink">
+                <span className="font-sans text-[12px] tracking-[0.16em] uppercase text-house-stone transition-colors duration-[var(--t-base)] group-hover:text-house-gold-ink">
                   overview
                 </span>
                 <span aria-hidden className="text-house-gold-ink transition-[padding-left] duration-[var(--t-base)] group-hover:pl-[3px]">→</span>

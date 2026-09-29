@@ -44,7 +44,7 @@ export function HowaScoreGauge({
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <span className="font-sans text-[9px] tracking-[0.18em] uppercase text-house-brown/50">HoWA Score</span>
           <span className="font-display text-[clamp(34px,4.4vw,52px)] leading-none text-house-brown">{score}</span>
-          <span className="font-sans text-[10px] tracking-[0.06em] text-house-brown/55">out of 100</span>
+          <span className="font-sans text-[12px] tracking-[0.06em] text-house-brown/55">out of 100</span>
           <span className="mt-1 font-sans text-[8.5px] tracking-[0.18em] uppercase text-house-brown/40">{label}</span>
         </div>
       </div>

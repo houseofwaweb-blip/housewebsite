@@ -101,7 +101,7 @@ export function PopularServices() {
             <Link href="/howa/ask" className="mt-5 inline-flex h-11 items-center justify-center whitespace-nowrap border border-house-gold-light bg-house-gold-light px-5 font-sans text-[12px] uppercase tracking-[0.14em] text-house-ink no-underline transition-[filter] hover:brightness-105">
               Ask HoWA →
             </Link>
-            <div className="mt-6 flex items-center gap-2 border-t border-house-cream/20 pt-4 font-sans text-[10px] uppercase tracking-[0.18em] text-house-gold-light">
+            <div className="mt-6 flex items-center gap-2 border-t border-house-cream/20 pt-4 font-sans text-[12px] uppercase tracking-[0.18em] text-house-gold-light">
               <svg aria-hidden viewBox="0 0 24 24" className="h-3.5 w-3.5 shrink-0" fill="currentColor"><path d="M12 2C8 6 6 10 6 14a6 6 0 0 0 12 0c0-4-2-8-6-12Zm0 3c2.5 2.8 4 5.8 4 9a4 4 0 0 1-8 0c0-3.2 1.5-6.2 4-9Z"/></svg>
               A happier home is a brighter tomorrow
             </div>

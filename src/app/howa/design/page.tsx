@@ -47,7 +47,7 @@ export default function HowaDesignPage() {
           <div className="max-w-[52ch]">
             <Eyebrow>
               <span>HoWA · Design</span>
-              <span className="inline-block border border-house-gold-dark/40 px-2 py-0.5 text-[10px] text-house-gold-dark">In development</span>
+              <span className="inline-block border border-house-gold-dark/40 px-2 py-0.5 text-[12px] text-house-gold-dark">In development</span>
             </Eyebrow>
             <h1 className="font-display text-[clamp(36px,4.8vw,60px)] leading-[1.02]">
               Show HoWA the space. Tell it what you want to change.
@@ -73,7 +73,7 @@ export default function HowaDesignPage() {
           <figure className="relative m-0">
             <div className="relative aspect-[4/5] w-full overflow-hidden">
               <Image src="/howa/sept/howa-design-tray.webp" alt="A design tray: fabric swatches, garden photographs and a planting brief beside a model home" fill priority sizes="(max-width: 1024px) 100vw, 520px" className="object-cover" />
-              <span className="absolute left-3 top-3 bg-house-cream/95 px-3 py-1 font-sans text-[11px] tracking-[0.1em] uppercase text-house-brown/70">AI concept · For discussion</span>
+              <span className="absolute left-3 top-3 bg-house-cream/95 px-3 py-1 font-sans text-[12px] tracking-[0.1em] uppercase text-house-brown/70">AI concept · For discussion</span>
             </div>
           </figure>
         </div>

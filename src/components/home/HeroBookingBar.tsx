@@ -21,7 +21,7 @@ const SERVICES = [
   { label: "Dog walking & pet care", slug: "pet-care" },
 ];
 
-const FIELD_LABEL = "font-sans text-[11px] uppercase tracking-[0.16em] text-house-gold-dark";
+const FIELD_LABEL = "font-sans text-[12px] uppercase tracking-[0.16em] text-house-gold-dark";
 const FIELD_CTRL = "mt-1 h-11 w-full min-w-0 border border-house-brown/20 bg-house-white px-3 font-sans text-[15px] text-house-brown outline-none focus:border-house-gold";
 
 export function HeroBookingBar({ className = "" }: { className?: string }) {

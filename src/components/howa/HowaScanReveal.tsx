@@ -221,7 +221,7 @@ export function HowaScanReveal() {
       <div style={{ border: `1px solid ${LINE}`, background: WHITE }}>
         {/* Header */}
         <div className="flex items-center justify-between gap-4 px-5 py-4" style={{ borderBottom: `1px solid rgba(48,35,28,.12)`, background: CREAM }}>
-          <span className="flex min-w-0 items-center gap-2 font-sans text-[11px] uppercase tracking-[0.22em]">
+          <span className="flex min-w-0 items-center gap-2 font-sans text-[12px] uppercase tracking-[0.22em]">
             <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: bp ? GOLD : MOSS, boxShadow: bp ? "0 0 0 3px rgba(197,169,96,.25)" : "none", transition: "background .4s" }} />
             <span className="truncate" style={{ color: BROWN }}>
               {d.productName} · <span style={{ color: GOLD }}>{step >= 0 ? CAPTIONS[Math.min(step, 7)] : "Preparing"}</span>
@@ -262,24 +262,24 @@ export function HowaScanReveal() {
             </svg>
             {/* zone pins */}
             {d.zones.slice(0, 3).map((z, i) => (
-              <span key={z} className="absolute font-sans text-[10px] uppercase tracking-[0.16em] whitespace-nowrap" style={{ top: ZONE_POS[i].top, left: ZONE_POS[i].left, color: BROWN, background: "rgba(245,240,232,.95)", padding: "4px 8px", border: "1px solid rgba(197,169,96,.5)", opacity: step >= 3 ? 1 : 0, transform: step >= 3 ? "none" : "translateY(14px)", transition: "opacity .7s ease, transform .7s ease", transitionDelay: `${i * 140}ms` }}>
+              <span key={z} className="absolute font-sans text-[12px] uppercase tracking-[0.16em] whitespace-nowrap" style={{ top: ZONE_POS[i].top, left: ZONE_POS[i].left, color: BROWN, background: "rgba(245,240,232,.95)", padding: "4px 8px", border: "1px solid rgba(197,169,96,.5)", opacity: step >= 3 ? 1 : 0, transform: step >= 3 ? "none" : "translateY(14px)", transition: "opacity .7s ease, transform .7s ease", transitionDelay: `${i * 140}ms` }}>
                 <b className="mr-1 font-normal" style={{ color: GOLD }}>+</b>{z}
               </span>
             ))}
             {/* status badge */}
-            <span className="absolute left-3 top-3 font-sans text-[10px] uppercase tracking-[0.18em]" style={{ padding: "4px 10px", background: bp ? NAVY : GOLD, color: bp ? GOLD : BROWN, transition: "background .5s, color .5s" }}>{bp ? "HoWA · scanning" : "First direction"}</span>
+            <span className="absolute left-3 top-3 font-sans text-[12px] uppercase tracking-[0.18em]" style={{ padding: "4px 10px", background: bp ? NAVY : GOLD, color: bp ? GOLD : BROWN, transition: "background .5s, color .5s" }}>{bp ? "HoWA · scanning" : "First direction"}</span>
             {/* room label */}
-            <span className="absolute bottom-3 right-3 font-sans text-[10px] uppercase tracking-[0.16em]" style={{ color: WHITE, background: "rgba(0,0,0,.35)", padding: "4px 8px" }}>{d.roomLabel}</span>
+            <span className="absolute bottom-3 right-3 font-sans text-[12px] uppercase tracking-[0.16em]" style={{ color: WHITE, background: "rgba(0,0,0,.35)", padding: "4px 8px" }}>{d.roomLabel}</span>
           </div>
 
           {/* RIGHT output sheet */}
           <div className="flex flex-col gap-6 px-6 py-7">
             <div style={field(step >= 1)}>
-              <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.22em]" style={{ color: GOLD_DARK }}>The space, mapped</p>
+              <p className="mb-2 font-sans text-[12px] uppercase tracking-[0.22em]" style={{ color: GOLD_DARK }}>The space, mapped</p>
               <p className="font-sans text-[14px]" style={{ color: STONE }}>{d.dimW} · {d.dimH}</p>
             </div>
             <div style={field(step >= 3)}>
-              <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.22em]" style={{ color: GOLD_DARK }}>Layout &amp; zones</p>
+              <p className="mb-2 font-sans text-[12px] uppercase tracking-[0.22em]" style={{ color: GOLD_DARK }}>Layout &amp; zones</p>
               <div className="flex flex-wrap gap-2">
                 {d.zones.map((z) => (
                   <span key={z} className="font-sans text-[12px]" style={{ border: `1px solid ${LINE}`, background: CREAM, padding: "6px 12px", color: BROWN }}>{z}</span>
@@ -287,26 +287,26 @@ export function HowaScanReveal() {
               </div>
             </div>
             <div style={field(step >= 4)}>
-              <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.22em]" style={{ color: GOLD_DARK }}>Palette &amp; materials</p>
+              <p className="mb-2 font-sans text-[12px] uppercase tracking-[0.22em]" style={{ color: GOLD_DARK }}>Palette &amp; materials</p>
               <div className="flex flex-wrap gap-4">
                 {d.palette.map((p, i) => (
                   <div key={p.name} className="flex flex-col items-start" style={{ opacity: step >= 4 ? 1 : 0, transform: step >= 4 ? "none" : "translateY(8px)", transition: "opacity .7s ease, transform .7s ease", transitionDelay: `${i * 110}ms` }}>
                     <i className="block h-11 w-11" style={{ background: p.hex, border: `1px solid ${LINE}` }} />
-                    <span className="mt-1.5 font-sans text-[11px] leading-tight" style={{ color: BROWN }}>{p.name}</span>
-                    <span className="font-sans text-[10px] leading-tight" style={{ color: STONE }}>{p.note}</span>
+                    <span className="mt-1.5 font-sans text-[12px] leading-tight" style={{ color: BROWN }}>{p.name}</span>
+                    <span className="font-sans text-[12px] leading-tight" style={{ color: STONE }}>{p.note}</span>
                   </div>
                 ))}
               </div>
             </div>
             <div style={field(step >= 5)}>
-              <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.22em]" style={{ color: GOLD_DARK }}>Indicative budget</p>
+              <p className="mb-2 font-sans text-[12px] uppercase tracking-[0.22em]" style={{ color: GOLD_DARK }}>Indicative budget</p>
               <p className="font-display text-[clamp(24px,3vw,34px)] leading-none" style={{ color: BROWN }}>
                 {gbp(budget.lo)} <span style={{ color: "rgba(106,100,88,.6)" }}>–</span> {gbp(budget.hi)}
               </p>
               <p className="mt-1.5 font-sans text-[14px]" style={{ color: STONE }}>A range for the full commission, not a quote.</p>
             </div>
             <div style={field(step >= 6)}>
-              <p className="mb-2 font-sans text-[11px] uppercase tracking-[0.22em]" style={{ color: GOLD_DARK }}>The structured brief</p>
+              <p className="mb-2 font-sans text-[12px] uppercase tracking-[0.22em]" style={{ color: GOLD_DARK }}>The structured brief</p>
               <ul className="flex list-none flex-col gap-2 p-0">
                 {d.brief.map((b, i) => (
                   <li key={i} style={{ fontFamily: SERIF, fontSize: 16, lineHeight: 1.5, color: BROWN, opacity: step >= 6 ? 1 : 0, transform: step >= 6 ? "none" : "translateY(6px)", transition: "opacity .7s ease, transform .7s ease", transitionDelay: `${i * 160}ms` }}>{b}</li>

@@ -78,7 +78,7 @@ export function AskScanPreview({
       <div aria-hidden className="absolute inset-0" style={{ background: "rgba(19,39,64,0.55)" }} />
 
       {/* Badge */}
-      <div className="absolute left-3 top-3 z-10 flex items-center gap-1.5 px-2.5 py-1 font-sans text-[10px] uppercase tracking-[0.16em] text-white" style={{ background: "rgba(19,39,64,0.85)" }}>
+      <div className="absolute left-3 top-3 z-10 flex items-center gap-1.5 px-2.5 py-1 font-sans text-[12px] uppercase tracking-[0.16em] text-white" style={{ background: "rgba(19,39,64,0.85)" }}>
         <span className="inline-block h-1.5 w-1.5 rounded-full bg-house-gold-ink" />
         Ask HoWA
       </div>
@@ -110,7 +110,7 @@ export function AskScanPreview({
           className="group absolute inset-0 z-20 flex items-center justify-center transition-colors"
           aria-label="Ask HoWA a sample question"
         >
-          <span className="border border-house-gold-dark bg-house-gold-ink px-5 py-2.5 font-sans text-[11px] uppercase tracking-[0.16em] text-house-brown shadow-[0_10px_30px_-12px_rgba(40,30,10,0.6)] transition-[filter] group-hover:brightness-110">
+          <span className="border border-house-gold-dark bg-house-gold-ink px-5 py-2.5 font-sans text-[12px] uppercase tracking-[0.16em] text-house-brown shadow-[0_10px_30px_-12px_rgba(40,30,10,0.6)] transition-[filter] group-hover:brightness-110">
             Ask a question
           </span>
         </button>
@@ -130,7 +130,7 @@ export function AskScanPreview({
           href={href}
           tabIndex={stage === "done" ? 0 : -1}
           aria-hidden={stage !== "done"}
-          className="pointer-events-auto border border-house-gold-dark bg-house-gold-ink px-5 py-2.5 font-sans text-[11px] uppercase tracking-[0.16em] text-house-brown no-underline shadow-[0_10px_30px_-12px_rgba(40,30,10,0.6)] transition-[filter] hover:brightness-110"
+          className="pointer-events-auto border border-house-gold-dark bg-house-gold-ink px-5 py-2.5 font-sans text-[12px] uppercase tracking-[0.16em] text-house-brown no-underline shadow-[0_10px_30px_-12px_rgba(40,30,10,0.6)] transition-[filter] hover:brightness-110"
         >
           Ask your home →
         </Link>

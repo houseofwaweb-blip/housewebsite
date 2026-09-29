@@ -63,7 +63,7 @@ const FILMS = [
 function InProductionChip() {
   return (
     <span
-      className="absolute left-3 top-3 px-2.5 py-1 font-sans text-[10px] uppercase tracking-[0.14em] backdrop-blur-sm"
+      className="absolute left-3 top-3 px-2.5 py-1 font-sans text-[12px] uppercase tracking-[0.14em] backdrop-blur-sm"
       style={{ color: "rgba(244,244,242,0.8)", background: "rgba(16,42,57,0.7)", border: "1px solid rgba(244,244,242,0.25)" }}
     >
       In production

@@ -37,7 +37,7 @@ export const metadata = {
 const CONTAINER = "mx-auto w-[min(1200px,calc(100%-96px))] max-[767px]:w-[calc(100%-40px)]";
 
 function Eyebrow({ children, color = GOLD }: { children: React.ReactNode; color?: string }) {
-  return <p className="mb-4 font-sans text-[11px] font-semibold uppercase tracking-[0.22em]" style={{ color }}>{children}</p>;
+  return <p className="mb-4 font-sans text-[12px] font-semibold uppercase tracking-[0.22em]" style={{ color }}>{children}</p>;
 }
 function PrimaryBtn({ href, children, dark = false }: { href: string; children: React.ReactNode; dark?: boolean }) {
   return (

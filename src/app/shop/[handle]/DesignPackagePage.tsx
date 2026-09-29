@@ -119,7 +119,7 @@ export function DesignPackagePage({ product }: { product: ShopProduct }) {
         <section className="mx-auto mt-[clamp(32px,5vw,64px)] w-[min(1200px,calc(100%-8vw))]">
           <figure className="relative m-0 aspect-[16/9] w-full overflow-hidden bg-house-cream-dark">
             <Image src={heroImage} alt={product.title} fill priority sizes="(max-width: 1200px) 92vw, 1200px" className="object-cover" />
-            <figcaption className="absolute bottom-3 left-3 bg-house-cream/90 px-3 py-1 font-sans text-[11px] tracking-[0.14em] uppercase text-house-brown/70">
+            <figcaption className="absolute bottom-3 left-3 bg-house-cream/90 px-3 py-1 font-sans text-[12px] tracking-[0.14em] uppercase text-house-brown/70">
               Illustrative concept · For discussion
             </figcaption>
           </figure>
