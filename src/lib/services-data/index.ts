@@ -40,6 +40,27 @@ export function basisPhrase(basis?: ServiceBasis): string {
   return basis ? BASIS_PHRASE[basis] : "Priced on enquiry";
 }
 
+/**
+ * Confirmed "from" prices. Originally the House published no figures on service
+ * pages (the basis phrase above), but the homepage cards did — so the two
+ * disagreed. Alex's decision (launch audit, contradiction #3) is to publish the
+ * "from" figures on the service pages too. Single source of truth, shared by the
+ * homepage cards, ServiceDetail and the service route hero, so they can't drift.
+ * Only services with a confirmed figure appear here; the rest keep the
+ * postcode-quote method (no invented numbers).
+ */
+export const STARTING_PRICES: Partial<Record<ServiceSlug, string>> = {
+  gardening: "From £79",
+  cleaning: "From £59",
+  "window-cleaning": "From £49",
+  handyman: "From £69/hour",
+};
+
+/** The published "from" price for a service, or null if none is confirmed. */
+export function startingPriceFor(slug: ServiceSlug): string | null {
+  return STARTING_PRICES[slug] ?? null;
+}
+
 export interface ServicePackage {
   slug: string;
   name: string;

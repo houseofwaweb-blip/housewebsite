@@ -6,7 +6,7 @@ import { Accordion } from "@/components/primitives/Accordion";
 import { ScrollCarousel } from "@/components/primitives/ScrollCarousel";
 import { Gallery, type GalleryImage } from "@/components/primitives/Gallery";
 import { MobileCarousel } from "@/components/primitives/MobileCarousel";
-import { basisPhrase, serviceEnquiryOptions, type Service } from "@/lib/services-data";
+import { basisPhrase, serviceEnquiryOptions, startingPriceFor, type Service } from "@/lib/services-data";
 import s from "./ServiceDetail.module.css";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { EnquiryForm } from "@/components/marketing/EnquiryForm";
@@ -158,14 +158,9 @@ export function ServiceDetail({
   const priced = service.packages.filter((p) => p.tier !== "steward");
   // Confirmed starting prices (2026-09-21, same figures as the homepage cards).
   // Published on the service page so the hero shows a real "from" price instead
-  // of a bare "Priced per hour" / postcode prompt (audit #3).
-  const STARTING_PRICE: Record<string, string> = {
-    gardening: "From £79",
-    cleaning: "From £59",
-    "window-cleaning": "From £49",
-    handyman: "From £69/hour",
-  };
-  const fromPrice = STARTING_PRICE[service.slug] ?? priced[0]?.price ?? service.packages[0]?.price;
+  // of a bare "Priced per hour" / postcode prompt (audit contradiction #3).
+  // Single source of truth lives in services-data (shared with the homepage).
+  const fromPrice = startingPriceFor(service.slug) ?? priced[0]?.price ?? service.packages[0]?.price;
 
   const primaryLabel = quote ? "Get a quote" : "See times and prices";
   const nameLower = service.name.toLowerCase();
