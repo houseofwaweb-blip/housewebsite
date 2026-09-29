@@ -42,7 +42,12 @@ export function ProductBuy({
       currency: "GBP",
       value: parseAmount(product.price),
       items: [
-        { item_id: product.handle, item_name: product.title, price: parseAmount(product.price) },
+        {
+          // item_id must equal the feed's g:id (SKU) so GA4/Ads match the feed.
+          item_id: firstAvailable?.sku || product.handle,
+          item_name: product.title,
+          price: parseAmount(product.price),
+        },
       ],
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -80,6 +85,7 @@ export function ProductBuy({
         title: product.title,
         price: selected.price || product.price,
         image: product.image,
+        sku: selected.sku,
       },
       qty,
     );

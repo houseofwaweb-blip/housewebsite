@@ -34,6 +34,11 @@ export function GoogleTagSetup() {
   // component render nothing and GA never loads.
   const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-HN657RY0DT";
   const adsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
+  // The Shopify-hosted checkout domain the Buy button hands off to, for
+  // cross-domain linking. Defaults to the store's myshopify domain; override
+  // with NEXT_PUBLIC_CHECKOUT_DOMAIN if a custom checkout domain is configured.
+  const checkoutDomain =
+    process.env.NEXT_PUBLIC_CHECKOUT_DOMAIN || "pqyxq3-ex.myshopify.com";
 
   // Update Consent Mode v2 state whenever wa-consent changes. Maps our
   // 4-category model onto Google's 7 storage purposes. Functional maps to
@@ -86,8 +91,14 @@ export function GoogleTagSetup() {
           // Production (willowalexander.co.uk) stays out of DebugView so real
           // traffic isn't flagged as debug.
           var __waDebug = /(localhost|vercel\\.app)/.test(location.hostname);
-          ${gaId ? `gtag('config', '${gaId}', { anonymize_ip: true, debug_mode: __waDebug });` : ""}
-          ${adsId ? `gtag('config', '${adsId}');` : ""}
+          // Cross-domain linking (Google Shopping brief, Task 6.4): carry the
+          // GA client id + gclid across to the Shopify-hosted checkout so a
+          // conversion there is attributed to the same session/ad click. Lists
+          // both our domain and the checkout domain; accept_incoming reads the
+          // linker param when the visitor lands back on us.
+          var __linker = { domains: ['willowalexander.co.uk', ${JSON.stringify(checkoutDomain)}], accept_incoming: true };
+          ${gaId ? `gtag('config', '${gaId}', { anonymize_ip: true, debug_mode: __waDebug, linker: __linker });` : ""}
+          ${adsId ? `gtag('config', '${adsId}', { linker: __linker });` : ""}
         `}
       </Script>
     </>

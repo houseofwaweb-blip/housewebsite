@@ -68,6 +68,8 @@ export interface CommerceCart {
   lines: Array<{
     id: string;
     quantity: number;
+    /** Variant SKU — the GA4 item_id / feed g:id for begin_checkout. */
+    sku?: string | null;
     product: Pick<CommerceProduct, "id" | "handle" | "title" | "images" | "price">;
   }>;
 }

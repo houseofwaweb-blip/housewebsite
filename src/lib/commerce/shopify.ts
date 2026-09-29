@@ -161,6 +161,7 @@ const CART_FRAGMENT = /* GraphQL */ `
           ... on ProductVariant {
             id
             title
+            sku
             image { url altText }
             price { amount currencyCode }
             product { id handle title featuredImage { url altText } }
@@ -177,6 +178,7 @@ interface SfCartLine {
   merchandise: {
     id: string;
     title: string;
+    sku: string | null;
     image: { url: string; altText: string | null } | null;
     price: CommerceMoney;
     product: { id: string; handle: string; title: string; featuredImage: { url: string; altText: string | null } | null };
@@ -199,6 +201,7 @@ function mapCart(c: SfCart): CommerceCart {
     lines: c.lines.nodes.map((l) => ({
       id: l.id,
       quantity: l.quantity,
+      sku: l.merchandise.sku,
       product: {
         id: l.merchandise.product.id,
         handle: l.merchandise.product.handle,

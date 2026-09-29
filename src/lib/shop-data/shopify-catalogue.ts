@@ -274,13 +274,15 @@ export interface ProductVariant {
   title: string;
   availableForSale: boolean;
   price: string;
+  /** Variant SKU — the GA4 item_id / feed g:id, so events match the feed. */
+  sku: string | null;
 }
 
 const VARIANTS_QUERY = /* GraphQL */ `
   query ProductVariants($handle: String!) {
     product(handle: $handle) {
       variants(first: 50) {
-        nodes { id title availableForSale price { amount currencyCode } }
+        nodes { id title availableForSale sku price { amount currencyCode } }
       }
     }
   }
@@ -304,13 +306,14 @@ export const getProductVariants = cache(async (handle: string): Promise<ProductV
     );
     if (!res.ok) return [];
     const json = (await res.json()) as {
-      data?: { product?: { variants?: { nodes?: Array<{ id: string; title: string; availableForSale: boolean; price: MoneyV }> } } };
+      data?: { product?: { variants?: { nodes?: Array<{ id: string; title: string; availableForSale: boolean; sku: string | null; price: MoneyV }> } } };
     };
     const nodes = json.data?.product?.variants?.nodes ?? [];
     return nodes.map((v) => ({
       id: v.id,
       title: v.title,
       availableForSale: v.availableForSale,
+      sku: v.sku,
       price: money(v.price),
     }));
   } catch {

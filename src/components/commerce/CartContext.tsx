@@ -32,6 +32,8 @@ interface AddInfo {
   title: string;
   price: string;
   image: string;
+  /** Variant SKU — the GA4 item_id / feed g:id, so add_to_cart matches the feed. */
+  sku?: string | null;
 }
 
 interface CartContextValue {
@@ -75,6 +77,7 @@ interface ApiCart {
   lines: Array<{
     id: string;
     quantity: number;
+    sku?: string | null;
     product: { handle: string; title: string; images: Array<{ url: string }>; price: { amount: string; currencyCode: string } };
   }>;
 }
@@ -172,7 +175,7 @@ export function CartProvider({
         value: addPrice !== undefined ? addPrice * quantity : undefined,
         items: [
           {
-            item_id: info.handle,
+            item_id: info.sku || info.handle,
             item_name: info.title,
             price: addPrice,
             quantity,
@@ -242,7 +245,7 @@ export function CartProvider({
       currency: cart.subtotal?.currencyCode ?? "GBP",
       value: parseAmount(cart.subtotal?.amount),
       items: cart.lines.map((l) => ({
-        item_id: l.product.handle,
+        item_id: l.sku || l.product.handle,
         item_name: l.product.title,
         price: parseAmount(l.product.price?.amount),
         quantity: l.quantity,
