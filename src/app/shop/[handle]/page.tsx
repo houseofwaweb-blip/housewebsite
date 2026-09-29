@@ -155,6 +155,7 @@ export default async function ProductPage({
         image={product.image}
         url={productUrl}
         sku={product.handle}
+        brand={product.brand?.trim() || undefined}
         price={parsePrice(product.price)}
         availability={availability}
       />
