@@ -125,13 +125,10 @@ export async function generateMetadata({
 
 export default async function ProductPage({
   params,
-  searchParams,
 }: {
   params: Promise<{ handle: string }>;
-  searchParams: Promise<{ variant?: string }>;
 }) {
   const { handle } = await params;
-  const { variant: variantParam } = await searchParams;
   const product = await resolveProduct(handle);
   if (!product) {
     // Smart fallback (Google Shopping brief, Task 4): the migration gave some
@@ -159,10 +156,9 @@ export default async function ProductPage({
 
   const variants = await getProductVariants(handle);
   // Feed g:link carries ?variant={numeric id} for multi-variant products
-  // (Google Shopping brief, Task 2.1): preselect it so the page matches the feed.
-  const initialVariantId = variantParam
-    ? variants.find((v) => numericId(v.id) === variantParam)?.id
-    : undefined;
+  // (Google Shopping brief, Task 2.1). This is handled CLIENT-SIDE in ProductBuy
+  // (window.location) — a server-side `searchParams` here would force every
+  // statically-generated PDP dynamic and 500 the ISR build. Do not reintroduce it.
 
   // Recommended: real pieces from the same collection, topped up with other
   // House goods so the rail is always full. (relatedHandles is legacy/empty now.)
@@ -354,7 +350,6 @@ export default async function ProductPage({
           ) : variants.length > 0 ? (
             <ProductBuy
               variants={variants}
-              initialVariantId={initialVariantId}
               product={{
                 handle: product.handle,
                 title: product.title,

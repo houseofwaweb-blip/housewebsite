@@ -3,6 +3,7 @@
 import * as React from "react";
 import { useCart } from "@/components/commerce/CartContext";
 import { gaEvent, parseAmount } from "@/lib/google/ga4";
+import { numericId } from "@/lib/commerce/gtin";
 import type { ProductVariant } from "@/lib/shop-data/shopify-catalogue";
 
 /**
@@ -14,23 +15,27 @@ import type { ProductVariant } from "@/lib/shop-data/shopify-catalogue";
 export function ProductBuy({
   variants,
   product,
-  initialVariantId,
 }: {
   variants: ProductVariant[];
   product: { handle: string; title: string; price: string; image: string };
-  /** From the ?variant= deep link (Google feed g:link) — preselected on load. */
-  initialVariantId?: string;
 }) {
   const { add, busy, buyable } = useCart();
   const firstAvailable = variants.find((v) => v.availableForSale) ?? variants[0];
-  // Preselect the ?variant from the feed link when it resolves to a real variant.
-  const initial =
-    (initialVariantId && variants.find((v) => v.id === initialVariantId)?.id) ||
-    firstAvailable?.id ||
-    "";
-  const [variantId, setVariantId] = React.useState(initial);
+  const [variantId, setVariantId] = React.useState(firstAvailable?.id || "");
   const [qty, setQty] = React.useState(1);
   const [added, setAdded] = React.useState(false);
+
+  // Preselect the ?variant from the feed deep link (Google feed g:link carries
+  // ?variant={numeric id}). Read it CLIENT-SIDE: a server-side `searchParams`
+  // on the PDP forces every statically-generated page dynamic and 500s the ISR
+  // build. Do not move this back to the server.
+  React.useEffect(() => {
+    const param = new URLSearchParams(window.location.search).get("variant");
+    if (!param) return;
+    const match = variants.find((v) => numericId(v.id) === param);
+    if (match) setVariantId(match.id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const selected = variants.find((v) => v.id === variantId) ?? firstAvailable;
   const multi = variants.length > 1;
