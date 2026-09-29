@@ -14,13 +14,20 @@ import type { ProductVariant } from "@/lib/shop-data/shopify-catalogue";
 export function ProductBuy({
   variants,
   product,
+  initialVariantId,
 }: {
   variants: ProductVariant[];
   product: { handle: string; title: string; price: string; image: string };
+  /** From the ?variant= deep link (Google feed g:link) — preselected on load. */
+  initialVariantId?: string;
 }) {
   const { add, busy, buyable } = useCart();
   const firstAvailable = variants.find((v) => v.availableForSale) ?? variants[0];
-  const [variantId, setVariantId] = React.useState(firstAvailable?.id ?? "");
+  const initial =
+    (initialVariantId && variants.find((v) => v.id === initialVariantId)?.id) ||
+    firstAvailable?.id ||
+    "";
+  const [variantId, setVariantId] = React.useState(initial);
   const [qty, setQty] = React.useState(1);
   const [added, setAdded] = React.useState(false);
 
