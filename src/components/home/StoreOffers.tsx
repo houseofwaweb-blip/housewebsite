@@ -30,7 +30,7 @@ export function StoreOffers({ products }: { products: Product[] }) {
 
         <MobileCarousel ariaLabel="Shop the House" gridClassName="mt-9 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7" itemClassName="basis-[46%] min-[400px]:basis-[40%]">
           {edit.map((p, i) => (
-            <Link key={`${p.href}-${i}`} href={p.href} className="group block no-underline">
+            <Link key={`${p.href}-${i}`} href={p.href} prefetch={false} className="group block no-underline">
               <div className="relative aspect-[4/5] w-full overflow-hidden bg-house-cream-dark">
                 {p.image ? (
                   <Image src={p.image} alt={p.name} fill sizes="(min-width:1280px) 14vw, (min-width:640px) 30vw, 45vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
