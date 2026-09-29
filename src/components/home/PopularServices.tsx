@@ -84,7 +84,7 @@ export function PopularServices() {
                   ))}
                 </ul>
                 <p className="mt-4 font-display text-[22px] leading-none text-house-ink"><span className="font-sans text-[12px] uppercase tracking-[0.1em] text-house-stone">From </span><span className="font-sans tabular-nums font-medium text-house-ink">{c.price.replace("From ", "")}</span></p>
-                <Link href={c.href} prefetch={false} className="mt-3 inline-flex h-11 items-center justify-center whitespace-nowrap border border-house-gold-ink bg-house-gold-ink px-5 font-sans text-[12px] uppercase tracking-[0.14em] text-house-ink no-underline transition-[filter] hover:brightness-105">
+                <Link href={c.href} prefetch={false} className="mt-3 inline-flex h-11 items-center justify-center whitespace-nowrap border border-house-ink bg-house-ink px-5 font-sans text-[12px] uppercase tracking-[0.14em] text-house-cream no-underline transition-[filter] hover:brightness-125">
                   {c.cta} →
                 </Link>
               </div>

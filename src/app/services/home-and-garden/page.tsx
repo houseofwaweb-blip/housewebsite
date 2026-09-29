@@ -206,7 +206,7 @@ export default function HomeAndGardenPage() {
                   />
                 </div>
 
-                <Link href="#open-booking-form" className="inline-flex items-center justify-center bg-house-gold-ink px-5 py-3.5 font-sans text-[14px] tracking-[0.18em] uppercase text-house-brown no-underline transition-[filter] hover:brightness-110">
+                <Link href="#open-booking-form" className="inline-flex items-center justify-center bg-house-ink px-5 py-3.5 font-sans text-[14px] tracking-[0.18em] uppercase text-house-cream no-underline transition-[filter] hover:brightness-125">
                   See times and prices
                 </Link>
               </div>

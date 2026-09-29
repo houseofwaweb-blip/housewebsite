@@ -34,7 +34,7 @@ export default function ThankYouPage() {
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
           <Link
             href="/"
-            className="inline-flex items-center justify-center bg-house-gold-ink px-8 py-4 font-sans text-[14px] uppercase tracking-[0.18em] text-house-brown no-underline transition-[filter] hover:brightness-105"
+            className="inline-flex items-center justify-center bg-house-ink px-8 py-4 font-sans text-[14px] uppercase tracking-[0.18em] text-house-cream no-underline transition-[filter] hover:brightness-125"
           >
             Back to the House
           </Link>

@@ -45,7 +45,7 @@ export function InsuranceBand() {
             <p className="mt-4 max-w-[52ch] font-sans text-[clamp(16px,1.4vw,19px)] leading-[1.55] text-house-brown/80">
               Your home isn&rsquo;t generic. Its cover shouldn&rsquo;t feel generic either.
             </p>
-            <Link href="/insurance" className="mt-6 inline-flex h-12 w-fit items-center justify-center whitespace-nowrap border border-house-gold-ink bg-house-gold-ink px-7 font-sans text-[13px] uppercase tracking-[0.16em] text-house-ink no-underline transition-[filter] hover:brightness-105">
+            <Link href="/insurance" className="mt-6 inline-flex h-12 w-fit items-center justify-center whitespace-nowrap border border-house-ink bg-house-ink px-7 font-sans text-[13px] uppercase tracking-[0.16em] text-house-cream no-underline transition-[filter] hover:brightness-125">
               Explore home insurance →
             </Link>
             <ul className="mt-8 grid gap-6 border-t border-house-brown/12 pt-7 sm:grid-cols-3">

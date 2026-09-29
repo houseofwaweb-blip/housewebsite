@@ -35,7 +35,7 @@ export function DesignShowcase() {
             the House brings together practical thinking, character and proper
             design.
           </p>
-          <Link href="/design" className="mt-6 inline-flex h-12 w-fit items-center justify-center whitespace-nowrap border border-house-gold-ink bg-house-gold-ink px-7 font-sans text-[13px] uppercase tracking-[0.16em] text-house-ink no-underline transition-[filter] hover:brightness-105">
+          <Link href="/design" className="mt-6 inline-flex h-12 w-fit items-center justify-center whitespace-nowrap border border-house-ink bg-house-ink px-7 font-sans text-[13px] uppercase tracking-[0.16em] text-house-cream no-underline transition-[filter] hover:brightness-125">
             Explore Design →
           </Link>
           <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 font-sans text-[14px] text-house-brown/70">

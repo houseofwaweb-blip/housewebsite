@@ -89,11 +89,11 @@
   transition: all 0.25s ease;
 }
 .btnFilled {
-  background: var(--color-house-gold-ink);
-  color: var(--color-house-brown);
-  border: 1px solid var(--color-house-gold-ink);
+  background: var(--color-house-ink);
+  color: var(--color-house-cream);
+  border: 1px solid var(--color-house-ink);
 }
-.btnFilled:hover { background: var(--color-house-gold); border-color: var(--color-house-gold); }
+.btnFilled:hover { background: var(--color-house-brown); border-color: var(--color-house-brown); }
 .btnGhost {
   background: transparent;
   color: var(--color-house-brown);
