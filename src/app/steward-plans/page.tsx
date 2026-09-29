@@ -52,8 +52,9 @@ const SERVICES = [
 
 // Finding 34/35: only substantiated claims, scoped to the House's own managed-care
 // team. Removed the unverified shared accreditations (Guild of Master Craftsmen,
-// Safe Contractor, "The List", "Accredited"). Carbon neutral is current for the
-// House's own team.
+// Safe Contractor, "The List", "Accredited"). Carbon neutral is a current,
+// evidenced claim for the House's own team, certified by One Carbon World
+// (launch audit #9 — kept via the "evidence", not "remove", path).
 const TRUST = [
   "Fully insured",
   "Carbon neutral",
@@ -188,8 +189,8 @@ export default async function StewardPlansPage() {
           </h2>
           <p className={s.imageBandLede}>
             Every team is vetted, insured, and trained to the House standard.
-            Carbon neutral as standard. Products House-approved. The care is
-            the whole point.
+            Carbon neutral as standard, certified by One Carbon World. Products
+            House-approved. The care is the whole point.
           </p>
         </div>
       </section>

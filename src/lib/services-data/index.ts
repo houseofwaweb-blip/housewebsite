@@ -143,7 +143,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
   gardening: {
     slug: "gardening",
     name: "Gardening",
-    lede: "Planting, maintenance and seasonal garden care across London and Kent. A carbon-neutral service by our in-house team, with battery tools and licensed waste carriage.",
+    lede: "Planting, maintenance and seasonal garden care across London and Kent, by our in-house team with battery tools and licensed waste carriage. Carbon neutral, certified by One Carbon World.",
     eyebrow: "Services · Gardening",
     heroImage: "/services/photos/gardening-hero.webp",
     headline: "A garden you meant to have.",
@@ -526,7 +526,7 @@ export const SERVICES: Record<ServiceSlug, Service> = {
   removals: {
     slug: "removals",
     name: "Removals",
-    lede: "Carbon-neutral house moves, packing and storage across London and Kent. Uniformed, fully insured teams and an electric fleet, careful with the things that matter.",
+    lede: "House moves, packing and storage across London and Kent. Uniformed, fully insured teams and an electric fleet, careful with the things that matter. Carbon neutral, certified by One Carbon World.",
     eyebrow: "Services \u00b7 Removals",
     heroImage: "/services/moving/removals.webp",
     headline: "Moving, without the dread.",
