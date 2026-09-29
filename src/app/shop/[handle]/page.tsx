@@ -374,7 +374,7 @@ export default async function ProductPage({
               </span>
               <p className="mt-2 font-sans text-[16px] leading-[1.5] text-house-stone">
                 The online shop opens soon.{" "}
-                <Link href="/the-hearth" className="text-house-gold-ink underline underline-offset-[3px]">
+                <Link href="/the-hearth" className="text-house-gold-dark underline underline-offset-[3px]">
                   Join The Hearth
                 </Link>{" "}
                 and we&rsquo;ll let you know when it does.
@@ -394,7 +394,7 @@ export default async function ProductPage({
           {isDesign ? (
             <>
               <div className="mt-7 border-t border-house-brown/12 pt-6">
-                <p className="font-sans text-[14px] tracking-[0.22em] uppercase text-house-gold-ink mb-3">
+                <p className="font-sans text-[14px] tracking-[0.22em] uppercase text-house-gold-dark mb-3">
                   How this design service works
                 </p>
                 <ul className="m-0 p-0 list-none space-y-3">
@@ -411,11 +411,11 @@ export default async function ProductPage({
               </div>
               <p className="mt-6 font-sans text-[18px] leading-[1.6] text-house-stone">
                 Prefer to talk it through first?{" "}
-                <Link href="/design#routes" className="text-house-gold-ink underline underline-offset-[3px]">
+                <Link href="/design#routes" className="text-house-gold-dark underline underline-offset-[3px]">
                   Choose a design specialist
                 </Link>{" "}
                 or{" "}
-                <Link href="/contact" className="text-house-gold-ink underline underline-offset-[3px]">
+                <Link href="/contact" className="text-house-gold-dark underline underline-offset-[3px]">
                   speak to a designer
                 </Link>.
               </p>
@@ -428,7 +428,7 @@ export default async function ProductPage({
               against, and its care/repairability position. Product-specific
               material claims appear only when the data carries them. */}
           <div className="mt-7 border-t border-house-brown/12 pt-6">
-            <p className="font-sans text-[14px] tracking-[0.22em] uppercase text-house-gold-ink mb-3">
+            <p className="font-sans text-[14px] tracking-[0.22em] uppercase text-house-gold-dark mb-3">
               Sustainability &amp; provenance
             </p>
             <ul className="m-0 p-0 list-none space-y-3">
@@ -469,7 +469,7 @@ export default async function ProductPage({
               for this object (brief slide 9/10). Supplier is real product data;
               the rest is framed as what HoWA stores at and after purchase. */}
           <div className="mt-7 border-t border-house-brown/12 pt-6">
-            <p className="font-sans text-[14px] tracking-[0.22em] uppercase text-house-gold-ink mb-3">
+            <p className="font-sans text-[14px] tracking-[0.22em] uppercase text-house-gold-dark mb-3">
               Details
             </p>
             <dl className="m-0 space-y-2.5">
@@ -500,7 +500,7 @@ export default async function ProductPage({
             {serviceable
               ? "Need this fitted, hung, cleaned or maintained? "
               : "Planning work on your home? "}
-            <a href="#open-booking-form" className="text-house-gold-ink underline underline-offset-[3px]">
+            <a href="#open-booking-form" className="text-house-gold-dark underline underline-offset-[3px]">
               Book a service
             </a>
             .
@@ -537,7 +537,7 @@ export default async function ProductPage({
         <section className="px-[5vw] py-[clamp(44px,6vw,80px)] border-t border-house-brown/8">
           <div className="max-w-[1180px] mx-auto">
             <header className="mb-8">
-              <p className="font-sans text-[14px] tracking-[0.3em] uppercase text-house-gold-ink mb-2">
+              <p className="font-sans text-[14px] tracking-[0.3em] uppercase text-house-gold-dark mb-2">
                 From The Hearth
               </p>
               <h2 className="font-display italic text-[clamp(27px,2.8vw,39px)] leading-[1.05] text-house-brown">
@@ -557,11 +557,11 @@ export default async function ProductPage({
                     />
                   </div>
                   {a.category ? (
-                    <p className="font-sans text-[8px] tracking-[0.24em] uppercase text-house-gold-ink mb-1.5">
+                    <p className="font-sans text-[8px] tracking-[0.24em] uppercase text-house-gold-dark mb-1.5">
                       {a.category}
                     </p>
                   ) : null}
-                  <p className="font-display text-[21px] leading-[1.2] text-house-brown group-hover:text-house-gold-ink transition-colors">
+                  <p className="font-display text-[21px] leading-[1.2] text-house-brown group-hover:text-house-gold-dark transition-colors">
                     {a.title}
                   </p>
                   {a.dek ? (

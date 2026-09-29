@@ -94,7 +94,7 @@ export function OfferCard({
           </p>
 
           <span className="mt-auto inline-flex items-center gap-2 pt-6 font-sans text-[13px] tracking-[0.16em] uppercase text-house-brown">
-            <span className="border-b border-house-gold pb-[3px] transition-colors group-hover:text-house-gold-ink">
+            <span className="border-b border-house-gold pb-[3px] transition-colors group-hover:text-house-gold-dark">
               View offer
             </span>
             <span

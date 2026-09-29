@@ -137,7 +137,7 @@ export default function PlansPage() {
                 <ul className="mt-5 flex flex-1 flex-col gap-2">
                   {p.features.map((f) => (
                     <li key={f} className="flex gap-2.5 font-sans text-[15px] leading-[1.45] text-house-brown/80">
-                      <span aria-hidden="true" className="text-house-gold-ink">·</span>
+                      <span aria-hidden="true" className="text-house-gold-dark">·</span>
                       {f}
                     </li>
                   ))}

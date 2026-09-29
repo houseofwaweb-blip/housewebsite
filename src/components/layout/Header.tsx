@@ -281,7 +281,7 @@ export function Header({
                     <span
                       aria-hidden="true"
                       className={cn(
-                        "font-display text-[27px] text-house-gold-ink",
+                        "font-display text-[27px] text-house-gold-dark",
                         "transition-all duration-[var(--t-slow)] ease-out",
                         expanded && "rotate-45",
                       )}
@@ -306,7 +306,7 @@ export function Header({
                           <Link
                             href={panel.triggerHref}
                             onClick={() => setMobileOpen(false)}
-                            className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-ink no-underline mb-1"
+                            className="font-sans text-[12px] tracking-[0.2em] uppercase text-house-gold-dark no-underline mb-1"
                           >
                             See all {panel.trigger.toLowerCase()} →
                           </Link>

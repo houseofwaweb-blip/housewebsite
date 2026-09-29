@@ -21,7 +21,7 @@ export function HouseEditorialFooter({ current }: { current: string }) {
   return (
     <section className="border-t border-house-brown/10 bg-house-cream-dark px-[5vw] py-[clamp(52px,7vw,104px)]">
       <div className="mx-auto max-w-[1140px]">
-        <p className="mb-3 font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-ink">
+        <p className="mb-3 font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-dark">
           Keep reading
         </p>
         <h2 className="mb-10 font-display text-[clamp(28px,3.4vw,46px)] leading-[1.1] text-house-brown">
@@ -37,7 +37,7 @@ export function HouseEditorialFooter({ current }: { current: string }) {
             >
               <h3 className="mb-3 font-display text-[24px] leading-[1.15] text-house-brown">{p.label}</h3>
               <p className="mb-4 font-sans text-[16px] leading-[1.55] text-house-brown/70">{p.blurb}</p>
-              <span className="font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-ink">Read →</span>
+              <span className="font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-dark">Read →</span>
             </Link>
           ))}
         </MobileCarousel>

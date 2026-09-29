@@ -105,13 +105,13 @@ export function Footer({ columns, tagline }: FooterProps) {
               That feeling you call home
             </p>
             <div className="mt-5 flex items-center gap-3">
-              <a href="https://www.instagram.com/world_of_willowalexander/" target="_blank" rel="noopener noreferrer" aria-label="House of Willow Alexander on Instagram" className="is-round flex h-9 w-9 items-center justify-center rounded-full border border-house-brown/25 text-house-brown transition-colors hover:border-house-brown hover:text-house-gold-ink">
+              <a href="https://www.instagram.com/world_of_willowalexander/" target="_blank" rel="noopener noreferrer" aria-label="House of Willow Alexander on Instagram" className="is-round flex h-9 w-9 items-center justify-center rounded-full border border-house-brown/25 text-house-brown transition-colors hover:border-house-brown hover:text-house-gold-dark">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-4 w-4"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" /></svg>
               </a>
-              <a href="https://www.facebook.com/HouseOfWillowAlexander" target="_blank" rel="noopener noreferrer" aria-label="House of Willow Alexander on Facebook" className="is-round flex h-9 w-9 items-center justify-center rounded-full border border-house-brown/25 text-house-brown transition-colors hover:border-house-brown hover:text-house-gold-ink">
+              <a href="https://www.facebook.com/HouseOfWillowAlexander" target="_blank" rel="noopener noreferrer" aria-label="House of Willow Alexander on Facebook" className="is-round flex h-9 w-9 items-center justify-center rounded-full border border-house-brown/25 text-house-brown transition-colors hover:border-house-brown hover:text-house-gold-dark">
                 <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4"><path d="M14 8.5V7c0-.8.2-1.2 1.3-1.2H17V3h-2.5C11.9 3 11 4.4 11 6.6v1.9H9V11h2v10h3V11h2.2l.3-2.5H14Z"/></svg>
               </a>
-              <a href="https://www.youtube.com/@HouseOfWillowAlexander" target="_blank" rel="noopener noreferrer" aria-label="House of Willow Alexander on YouTube" className="is-round flex h-9 w-9 items-center justify-center rounded-full border border-house-brown/25 text-house-brown transition-colors hover:border-house-brown hover:text-house-gold-ink">
+              <a href="https://www.youtube.com/@HouseOfWillowAlexander" target="_blank" rel="noopener noreferrer" aria-label="House of Willow Alexander on YouTube" className="is-round flex h-9 w-9 items-center justify-center rounded-full border border-house-brown/25 text-house-brown transition-colors hover:border-house-brown hover:text-house-gold-dark">
                 <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8ZM10 15V9l5 3-5 3Z"/></svg>
               </a>
             </div>
@@ -130,7 +130,7 @@ export function Footer({ columns, tagline }: FooterProps) {
                       <Link
                         href={link.href}
                         prefetch={false}
-                        className="inline-block py-1 font-sans text-[15px] leading-snug text-house-brown/80 no-underline transition-colors duration-[var(--t-base)] hover:text-house-gold-ink"
+                        className="inline-block py-1 font-sans text-[15px] leading-snug text-house-brown/80 no-underline transition-colors duration-[var(--t-base)] hover:text-house-gold-dark"
                       >
                         {link.label}
                       </Link>

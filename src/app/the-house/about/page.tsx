@@ -88,7 +88,7 @@ function Src({ href, children }: { href: string; children: React.ReactNode }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-house-gold-ink underline underline-offset-[3px] hover:text-house-brown"
+      className="text-house-gold-dark underline underline-offset-[3px] hover:text-house-brown"
     >
       {children}
     </a>
@@ -254,11 +254,11 @@ export default async function AboutPage() {
       {/* Masthead */}
       <header className="px-[5vw] pt-[clamp(48px,8vh,104px)] pb-[clamp(20px,3vw,36px)]">
         <div className="mx-auto max-w-[1100px]">
-          <p className="font-hearth-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink">
+          <p className="font-hearth-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-dark">
             {eyebrow}
           </p>
           <h1 className="mt-5 max-w-[14ch] font-hearth-serif font-medium text-[clamp(46px,7.4vw,108px)] leading-[0.96] tracking-[-0.015em] text-house-black text-balance">
-            {headline} <em className="italic text-house-gold-ink">{headlineTail}</em>
+            {headline} <em className="italic text-house-gold-dark">{headlineTail}</em>
           </h1>
           <p className="mt-7 max-w-[58ch] font-hearth-serif italic text-[clamp(20px,1.9vw,27px)] leading-[1.5] text-house-stone">
             {lede}
@@ -313,7 +313,7 @@ export default async function AboutPage() {
                 className={cn(
                   "mb-[22px] font-hearth-serif text-[clamp(19px,1.4vw,22px)] leading-[1.75] text-house-black/90",
                   i === 0 &&
-                    "first-letter:float-left first-letter:mr-3 first-letter:mt-1.5 first-letter:font-hearth-serif first-letter:text-[68px] first-letter:leading-[0.7] first-letter:text-house-gold-ink md:first-letter:text-[92px]",
+                    "first-letter:float-left first-letter:mr-3 first-letter:mt-1.5 first-letter:font-hearth-serif first-letter:text-[68px] first-letter:leading-[0.7] first-letter:text-house-gold-dark md:first-letter:text-[92px]",
                 )}
               >
                 {para}

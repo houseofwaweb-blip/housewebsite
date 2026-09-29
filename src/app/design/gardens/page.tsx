@@ -293,7 +293,7 @@ export default async function GardensPage() {
                 {s2.handle ? (
                   <Link
                     href={`/shop/${s2.handle}`}
-                    className="mt-4 inline-flex font-sans text-[13px] tracking-[0.16em] uppercase text-house-gold-ink no-underline transition-colors hover:text-house-brown"
+                    className="mt-4 inline-flex font-sans text-[13px] tracking-[0.16em] uppercase text-house-gold-dark no-underline transition-colors hover:text-house-brown"
                   >
                     View package →
                   </Link>

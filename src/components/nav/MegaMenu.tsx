@@ -192,13 +192,13 @@ export function MegaMenu({
                   isOpen ? "opacity-100 translate-y-0 delay-[100ms]" : "opacity-0 translate-y-3",
                 )}
               >
-                <span className="font-sans text-[13px] tracking-[0.18em] uppercase font-medium text-house-brown transition-colors duration-[var(--t-base)] group-hover:text-house-gold-ink">
+                <span className="font-sans text-[13px] tracking-[0.18em] uppercase font-medium text-house-brown transition-colors duration-[var(--t-base)] group-hover:text-house-gold-dark">
                   {panel.trigger}
                 </span>
-                <span className="font-sans text-[12px] tracking-[0.16em] uppercase text-house-stone transition-colors duration-[var(--t-base)] group-hover:text-house-gold-ink">
+                <span className="font-sans text-[12px] tracking-[0.16em] uppercase text-house-stone transition-colors duration-[var(--t-base)] group-hover:text-house-gold-dark">
                   overview
                 </span>
-                <span aria-hidden className="text-house-gold-ink transition-[padding-left] duration-[var(--t-base)] group-hover:pl-[3px]">→</span>
+                <span aria-hidden className="text-house-gold-dark transition-[padding-left] duration-[var(--t-base)] group-hover:pl-[3px]">→</span>
               </Link>
             ) : null}
             {panel.twoLevel ? (
@@ -222,7 +222,7 @@ export function MegaMenu({
                         <li key={link.href}>
                           <Link
                             href={link.href}
-                            className="group inline-flex items-center font-sans text-[14px] tracking-[0.14em] uppercase text-house-brown no-underline transition-[color,padding-left] duration-[var(--t-base)] ease-out hover:text-house-gold-ink hover:pl-[4px]"
+                            className="group inline-flex items-center font-sans text-[14px] tracking-[0.14em] uppercase text-house-brown no-underline transition-[color,padding-left] duration-[var(--t-base)] ease-out hover:text-house-gold-dark hover:pl-[4px]"
                           >
                             {link.colour ? (
                               <span
@@ -285,14 +285,14 @@ function MegaTrigger({
     "transition-colors duration-[var(--t-slow)] ease-out",
     dark
       ? "text-house-cream hover:text-house-gold-light"
-      : "text-house-brown hover:text-house-gold-ink",
+      : "text-house-brown hover:text-house-gold-dark",
     // Underline that scales from left
     "after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full",
     dark ? "after:bg-house-gold-light" : "after:bg-house-gold",
     "after:origin-left after:scale-x-0 after:transition-all after:duration-[var(--t-slow)] after:ease-out",
     "hover:after:scale-x-100",
     isOpen && "after:scale-x-100",
-    isOpen && (dark ? "text-house-gold-light" : "text-house-gold-ink"),
+    isOpen && (dark ? "text-house-gold-light" : "text-house-gold-dark"),
   );
 
   if (triggerHref) {
@@ -358,7 +358,7 @@ function TwoLevelMegaPanel({ data, isOpen }: { data: TwoLevelMega; isOpen: boole
                 href={c.href}
                 className={cn(
                   "group flex items-center justify-between py-[6px] font-sans text-[14px] tracking-[0.12em] uppercase no-underline transition-colors duration-[var(--t-base)]",
-                  i === active ? "text-house-gold-ink" : "text-house-brown hover:text-house-gold-ink",
+                  i === active ? "text-house-gold-dark" : "text-house-brown hover:text-house-gold-dark",
                 )}
               >
                 <span className="inline-flex items-center">
@@ -379,7 +379,7 @@ function TwoLevelMegaPanel({ data, isOpen }: { data: TwoLevelMega; isOpen: boole
             <span className="font-sans text-[12px] tracking-[0.28em] uppercase text-house-stone">{cat.title}</span>
             <Link
               href={cat.href}
-              className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-ink no-underline hover:pl-[3px] transition-[padding-left] duration-[var(--t-base)]"
+              className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-dark no-underline hover:pl-[3px] transition-[padding-left] duration-[var(--t-base)]"
             >
               View all →
             </Link>
@@ -390,7 +390,7 @@ function TwoLevelMegaPanel({ data, isOpen }: { data: TwoLevelMega; isOpen: boole
                 <li key={s.href}>
                   <Link
                     href={s.href}
-                    className="group inline-flex font-sans text-[14px] text-house-brown no-underline transition-[color,padding-left] duration-[var(--t-base)] ease-out hover:text-house-gold-ink hover:pl-[4px]"
+                    className="group inline-flex font-sans text-[14px] text-house-brown no-underline transition-[color,padding-left] duration-[var(--t-base)] ease-out hover:text-house-gold-dark hover:pl-[4px]"
                   >
                     {s.label}
                   </Link>
@@ -398,7 +398,7 @@ function TwoLevelMegaPanel({ data, isOpen }: { data: TwoLevelMega; isOpen: boole
               ))}
             </ul>
           ) : (
-            <Link href={cat.href} className="font-display italic text-[14px] text-house-stone no-underline hover:text-house-gold-ink">
+            <Link href={cat.href} className="font-display italic text-[14px] text-house-stone no-underline hover:text-house-gold-dark">
               Browse all {cat.title} →
             </Link>
           )}
@@ -463,7 +463,7 @@ function TwoLevelMegaPanel({ data, isOpen }: { data: TwoLevelMega; isOpen: boole
             <Link
               key={f.href}
               href={f.href}
-              className="font-sans text-[14px] tracking-[0.18em] uppercase text-house-brown no-underline hover:text-house-gold-ink transition-colors duration-[var(--t-base)]"
+              className="font-sans text-[14px] tracking-[0.18em] uppercase text-house-brown no-underline hover:text-house-gold-dark transition-colors duration-[var(--t-base)]"
             >
               {f.label}
               {f.description ? (

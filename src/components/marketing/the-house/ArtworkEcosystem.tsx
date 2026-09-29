@@ -117,11 +117,11 @@ export function ArtworkEcosystem() {
     <div className="bg-house-cream px-[5vw] py-24 md:py-32">
       <div className="max-w-[1080px] mx-auto">
         <header className="text-center max-w-[640px] mx-auto mb-16">
-          <p className="font-sans text-[14px] tracking-[0.32em] uppercase text-house-gold-ink mb-5">
+          <p className="font-sans text-[14px] tracking-[0.32em] uppercase text-house-gold-dark mb-5">
             The Ecosystem
           </p>
           <h3 className="font-display font-medium text-[clamp(31px,3.4vw,45px)] leading-[1.15] tracking-[-0.005em] text-house-brown">
-            A living, design-led <em className="text-house-gold-ink">universe.</em>
+            A living, design-led <em className="text-house-gold-dark">universe.</em>
           </h3>
           <p className="font-sans text-[19px] leading-[1.7] text-house-brown/72 mt-6">
             Threaded together by name, colour, pattern, story. Nothing stands alone.
@@ -181,7 +181,7 @@ export function ArtworkEcosystem() {
                 <p
                   className={
                     "font-sans text-[14px] tracking-[0.28em] uppercase mb-1.5 " +
-                    (isCore ? "text-house-gold-light" : "text-house-gold-ink/80")
+                    (isCore ? "text-house-gold-light" : "text-house-gold-dark/80")
                   }
                 >
                   {n.tone === "core"

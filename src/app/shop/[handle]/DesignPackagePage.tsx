@@ -73,7 +73,7 @@ export function DesignPackagePage({ product }: { product: ShopProduct }) {
 
       {/* 1. Centred editorial intro */}
       <section className="mx-auto w-[min(760px,calc(100%-10vw))] pt-[clamp(28px,4vw,52px)] text-center">
-        <p className="flex items-center justify-center gap-3 font-sans text-[12px] tracking-[0.26em] uppercase text-house-gold-ink">
+        <p className="flex items-center justify-center gap-3 font-sans text-[12px] tracking-[0.26em] uppercase text-house-gold-dark">
           <span aria-hidden className="h-px w-8 bg-house-gold-dark/50" />
           Design service · {discipline}
           <span aria-hidden className="h-px w-8 bg-house-gold-dark/50" />
@@ -129,7 +129,7 @@ export function DesignPackagePage({ product }: { product: ShopProduct }) {
       {/* 3. What's included + Save */}
       <section className="mx-auto mt-[clamp(40px,6vw,80px)] grid w-[min(1200px,calc(100%-8vw))] gap-[clamp(32px,5vw,72px)] lg:grid-cols-[1.4fr_1fr]">
         <div>
-          <p className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-ink">What is included</p>
+          <p className="font-sans text-[12px] tracking-[0.22em] uppercase text-house-gold-dark">What is included</p>
           <div className="mt-4 max-w-[62ch] whitespace-pre-line font-sans text-[19px] leading-[1.75] text-house-brown/85">
             {body || "A considered, design-led direction for your space, and a brief you can develop with a professional."}
           </div>

@@ -90,7 +90,7 @@ export function BookingPanel({
   return (
     <aside className="lg:col-span-5 lg:sticky lg:top-24">
       <div className="border border-house-brown/15 bg-house-cream-light p-[clamp(24px,2.4vw,34px)]">
-        <p className="mb-1 font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink">
+        <p className="mb-1 font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-dark">
           {eyebrow}
         </p>
         <h2 className="mb-2 font-hearth-serif text-[clamp(25px,2.4vw,31px)] leading-tight text-house-brown">
@@ -141,7 +141,7 @@ export function BookingPanel({
 
           {intake ? (
             <div className="border border-house-brown/15 bg-house-cream px-4 py-3.5">
-              <p className="mb-1 font-sans text-[13px] tracking-[0.16em] uppercase text-house-gold-ink">
+              <p className="mb-1 font-sans text-[13px] tracking-[0.16em] uppercase text-house-gold-dark">
                 {intake.label}
               </p>
               <p className="font-sans text-[16px] leading-[1.55] text-house-brown/75">
@@ -172,11 +172,11 @@ export function BookingPanel({
 
         <p className="mt-4 font-sans text-[17px] leading-[1.5] text-house-brown/70">
           Prefer to talk?{" "}
-          <a href={PHONE_HREF} className="text-house-gold-ink underline underline-offset-[3px] hover:text-house-brown">
+          <a href={PHONE_HREF} className="text-house-gold-dark underline underline-offset-[3px] hover:text-house-brown">
             Call {PHONE_DISPLAY}
           </a>{" "}
           or{" "}
-          <a href="#service-enquiry" className="text-house-gold-ink underline underline-offset-[3px] hover:text-house-brown">
+          <a href="#service-enquiry" className="text-house-gold-dark underline underline-offset-[3px] hover:text-house-brown">
             ask the House
           </a>
           .

@@ -174,7 +174,7 @@ export function HouseAtWork({
       <div className="mx-auto max-w-[1360px]">
         {/* Header */}
         <div className="max-w-[52ch]">
-          <p className="font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-ink">
+          <p className="font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-dark">
             {eyebrow}
           </p>
           <h2 className="mt-3 font-display text-[clamp(30px,3.4vw,52px)] leading-[1.04] text-house-brown text-balance">
@@ -271,14 +271,14 @@ export function HouseAtWork({
 
                 {/* Category tag + service link (no description line). */}
                 <div className="mt-3 flex flex-1 flex-col">
-                  <p className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-ink">
+                  <p className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-dark">
                     {DISCIPLINE_LABEL[post.discipline]}
                     {post.location ? <span className="text-house-stone"> · {post.location}</span> : null}
                   </p>
                   <div className="mt-auto pt-2">
                     <Link
                       href={post.serviceHref}
-                      className="font-sans text-[13px] tracking-[0.1em] uppercase text-house-brown underline underline-offset-[3px] hover:text-house-gold-ink"
+                      className="font-sans text-[13px] tracking-[0.1em] uppercase text-house-brown underline underline-offset-[3px] hover:text-house-gold-dark"
                     >
                       {post.serviceLabel} &rarr;
                     </Link>

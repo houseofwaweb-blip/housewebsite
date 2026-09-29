@@ -164,7 +164,7 @@ export function EnquiryForm({
       <div className="mx-auto grid max-w-[1080px] items-start gap-[clamp(28px,4vw,64px)] md:grid-cols-2">
         {/* Copy */}
         <div>
-          <p className={cn("mb-4 font-sans text-[14px] tracking-[0.3em] uppercase", isDark ? "text-house-gold-light" : "text-house-gold-ink")}>
+          <p className={cn("mb-4 font-sans text-[14px] tracking-[0.3em] uppercase", isDark ? "text-house-gold-light" : "text-house-gold-dark")}>
             {eyebrow}
           </p>
           <h2 className={cn("font-display text-[clamp(31px,3.2vw,47px)] leading-[1.08] mb-4", isDark ? "text-house-cream" : "text-house-brown")}>
@@ -182,7 +182,7 @@ export function EnquiryForm({
                   ? buildBookingUrl("", SERVICEOS_SERVICE_ID[effectiveServiceType])
                   : "#open-booking-form")
               }
-              className={cn("underline underline-offset-[3px]", isDark ? "text-house-gold-light" : "text-house-gold-ink")}
+              className={cn("underline underline-offset-[3px]", isDark ? "text-house-gold-light" : "text-house-gold-dark")}
             >
               Book a service
             </a>
@@ -193,7 +193,7 @@ export function EnquiryForm({
         {/* Form */}
         <div>
           {state === "success" ? (
-            <p className={cn("font-display italic text-[22px] leading-[1.5]", isDark ? "text-house-gold-light" : "text-house-gold-ink")}>
+            <p className={cn("font-display italic text-[22px] leading-[1.5]", isDark ? "text-house-gold-light" : "text-house-gold-dark")}>
               {successMessage}
             </p>
           ) : (

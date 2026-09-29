@@ -49,7 +49,7 @@ export default async function GardenProjectPage({
     <article style={{ background: "var(--color-house-cream)", color: "var(--color-house-brown)" }}>
       {/* Header */}
       <header className="mx-auto max-w-[1100px] px-6 sm:px-10 pt-[clamp(72px,10vh,128px)] pb-[clamp(28px,4vw,48px)]">
-        <p className="font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink mb-5 flex items-center gap-3">
+        <p className="font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-dark mb-5 flex items-center gap-3">
           <span aria-hidden className="w-9 h-px bg-house-gold-ink/70" />
           Willow Alexander Gardens · {project.type}
         </p>
@@ -138,7 +138,7 @@ export default async function GardenProjectPage({
       {others.length ? (
         <section className="bg-house-cream-dark/40 px-6 sm:px-10 py-[clamp(48px,6vw,88px)]">
           <div className="mx-auto max-w-[1240px]">
-            <p className="font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink mb-7">More from the studio</p>
+            <p className="font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-dark mb-7">More from the studio</p>
             <MobileCarousel ariaLabel="More from the studio" gridClassName="sm:grid-cols-3 sm:gap-6">
               {others.map((p) => (
                 <Link key={p.slug} href={`/design/gardens/projects/${p.slug}`} className="group block">

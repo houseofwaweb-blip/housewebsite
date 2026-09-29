@@ -31,7 +31,7 @@ export function HearthCinemaBand() {
       <div className="max-w-[1360px] mx-auto grid md:grid-cols-[1fr_1.15fr] gap-14 items-center">
         {/* Copy + film list */}
         <div>
-          <span className="block mb-[14px] font-hearth-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink">
+          <span className="block mb-[14px] font-hearth-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-dark">
             ◆ The Hearth · Cinema
           </span>
           <h2 className="font-hearth-serif font-medium text-[clamp(35px,3.6vw,51px)] leading-[1.1] tracking-[-0.005em] text-house-black mb-3">
@@ -49,7 +49,7 @@ export function HearthCinemaBand() {
                   href="/cinema"
                   className="group flex items-baseline gap-4 py-[14px] no-underline"
                 >
-                  <span className="shrink-0 w-[84px] font-hearth-sans text-[13px] tracking-[0.18em] uppercase text-house-gold-ink">
+                  <span className="shrink-0 w-[84px] font-hearth-sans text-[13px] tracking-[0.18em] uppercase text-house-gold-dark">
                     {film.category}
                   </span>
                   <span className="font-hearth-serif text-[22px] leading-[1.25] text-house-black transition-colors duration-[var(--t-base)] ease-out group-hover:text-house-gold-dark">

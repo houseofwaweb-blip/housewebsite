@@ -46,7 +46,7 @@ export default async function FilmPage({
     <div className="bg-house-cream text-house-brown">
       {/* Player + copy in one wide, left-aligned column. */}
       <div className="mx-auto max-w-[1360px] px-[5vw] pt-10 pb-16">
-        <nav aria-label="Breadcrumb" className="font-sans text-[14px] tracking-[0.18em] uppercase text-house-gold-ink">
+        <nav aria-label="Breadcrumb" className="font-sans text-[14px] tracking-[0.18em] uppercase text-house-gold-dark">
           <Link href="/cinema" className="no-underline hover:text-house-brown">Cinema</Link>
           <span className="mx-2 text-house-stone/50">·</span>
           <span className="text-house-stone">{film.category}</span>
@@ -55,7 +55,7 @@ export default async function FilmPage({
 
         {/* Title + description — left-aligned reading column under the player */}
         <div className="mt-8 max-w-[820px]">
-          <p className="font-sans text-[14px] tracking-[0.2em] uppercase text-house-gold-ink">
+          <p className="font-sans text-[14px] tracking-[0.2em] uppercase text-house-gold-dark">
             {film.category}{film.duration ? ` · ${film.duration}` : ""}
           </p>
           <h1 className="mt-2 font-display text-[clamp(33px,3.6vw,55px)] leading-[1.06] text-house-black">
@@ -77,7 +77,7 @@ export default async function FilmPage({
       {others.length > 0 ? (
         <section className="border-t border-house-brown/10 px-[5vw] py-16">
           <div className="mx-auto max-w-[1200px]">
-            <p className="mb-6 font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink">More films</p>
+            <p className="mb-6 font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-dark">More films</p>
             <MobileCarousel ariaLabel="More films" gridClassName="sm:grid-cols-3 sm:gap-x-6 sm:gap-y-10">
               {others.map((f) => (
                 <Link key={f.slug} href={`/cinema/${f.slug}`} className="group no-underline">
@@ -87,13 +87,13 @@ export default async function FilmPage({
                       <span className="flex h-11 w-11 items-center justify-center rounded-full border border-house-cream/80 bg-house-black/35 text-house-cream backdrop-blur-sm transition-colors group-hover:border-house-gold group-hover:text-house-gold">▶</span>
                     </span>
                   </div>
-                  <p className="mt-3 font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-ink">{f.category}</p>
-                  <h3 className="mt-1 font-display text-[23px] leading-tight text-house-brown transition-colors group-hover:text-house-gold-ink">{f.title}</h3>
+                  <p className="mt-3 font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-dark">{f.category}</p>
+                  <h3 className="mt-1 font-display text-[23px] leading-tight text-house-brown transition-colors group-hover:text-house-gold-dark">{f.title}</h3>
                 </Link>
               ))}
             </MobileCarousel>
             <div className="mt-9">
-              <Link href="/cinema" className="font-sans text-[14px] tracking-[0.18em] uppercase text-house-gold-ink no-underline hover:text-house-brown">
+              <Link href="/cinema" className="font-sans text-[14px] tracking-[0.18em] uppercase text-house-gold-dark no-underline hover:text-house-brown">
                 All films →
               </Link>
             </div>

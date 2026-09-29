@@ -72,7 +72,7 @@ export function ServiceGrid({ cards }: { cards: ServiceGridCard[] }) {
               </p>
               <p className="font-sans text-[16px] text-house-brown/65">{c.area}</p>
             </div>
-            <span className="mt-5 font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-ink transition-colors group-hover:text-house-brown">
+            <span className="mt-5 font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-dark transition-colors group-hover:text-house-brown">
               View service &rarr;
             </span>
           </div>

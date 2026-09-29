@@ -52,7 +52,7 @@ function SecondaryArticle({ article }: { article: HearthArticle }) {
             </em>
           ) : null}
         </span>
-        <h2 className="font-hearth-serif font-medium text-[29px] leading-[1.12] tracking-[-0.005em] text-house-black mb-[10px] transition-colors duration-[var(--t-slow)] ease-out group-hover:text-house-gold-ink">
+        <h2 className="font-hearth-serif font-medium text-[29px] leading-[1.12] tracking-[-0.005em] text-house-black mb-[10px] transition-colors duration-[var(--t-slow)] ease-out group-hover:text-house-gold-dark">
           <HearthTitle title={article.title} em={article.titleEm} />
         </h2>
         <p className="font-hearth-serif italic text-[19px] leading-[1.5] text-house-stone mb-[10px]">

@@ -193,8 +193,8 @@ export function ServiceDetail({
         <div className="relative z-10 mx-auto grid max-w-[1280px] items-start gap-[clamp(28px,4vw,56px)] lg:grid-cols-12">
           {/* Left — copy, proof, still-life (7 cols) */}
           <div className="lg:col-span-7">
-            <nav aria-label="Breadcrumb" className="mb-6 font-sans text-[14px] tracking-[0.24em] uppercase text-house-gold-ink">
-              <Link href="/services" className="no-underline text-house-gold-ink hover:text-house-brown">
+            <nav aria-label="Breadcrumb" className="mb-6 font-sans text-[14px] tracking-[0.24em] uppercase text-house-gold-dark">
+              <Link href="/services" className="no-underline text-house-gold-dark hover:text-house-brown">
                 Services
               </Link>
               <span aria-hidden className="mx-2 text-house-stone">/</span>
@@ -205,7 +205,7 @@ export function ServiceDetail({
                 brand behind this service. Renders only where artwork exists. */}
             <ServiceWordmark slug={service.slug} className="mb-5" />
 
-            <h1 className="mb-5 font-hearth-serif font-normal text-[clamp(43px,5.4vw,77px)] leading-[1.04] tracking-[-0.018em] text-house-brown [&_em]:italic [&_em]:text-house-gold-ink">
+            <h1 className="mb-5 font-hearth-serif font-normal text-[clamp(43px,5.4vw,77px)] leading-[1.04] tracking-[-0.018em] text-house-brown [&_em]:italic [&_em]:text-house-gold-dark">
               {withEm(service.headline, service.headlineEm)}
             </h1>
             <p className="mb-6 max-w-[54ch] border-t border-house-brown/15 pt-5 font-sans text-[20px] leading-[1.65] text-house-brown/75">
@@ -218,12 +218,12 @@ export function ServiceDetail({
             <ul className="m-0 flex flex-wrap gap-x-8 gap-y-3 list-none p-0">
               {fromPrice ? (
                 <li className="font-sans text-[17px] text-house-brown/80">
-                  <span className="mr-2 text-house-gold-ink" aria-hidden>◆</span>
+                  <span className="mr-2 text-house-gold-dark" aria-hidden>◆</span>
                   {fromPrice}
                 </li>
               ) : null}
               <li className="font-sans text-[17px] text-house-brown/80">
-                <span className="mr-2 text-house-gold-ink" aria-hidden>◆</span>
+                <span className="mr-2 text-house-gold-dark" aria-hidden>◆</span>
                 Serving London and Kent
               </li>
             </ul>
@@ -536,22 +536,22 @@ export function ServiceDetail({
         </header>
         <MobileCarousel ariaLabel="Also from the House" gridClassName="mx-auto max-w-[1080px] md:grid-cols-3 sm:gap-4">
           <Link href="/services" className="group flex flex-col border border-house-brown/15 bg-house-cream-light p-7 no-underline transition-colors hover:border-house-gold">
-            <p className="mb-2 font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-ink">Service</p>
+            <p className="mb-2 font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-dark">Service</p>
             <h3 className="mb-2.5 font-hearth-serif text-[24px] leading-tight text-house-brown">More home and garden care</h3>
             <p className="mb-6 flex-1 font-sans text-[18px] leading-[1.55] text-house-brown/70">Browse every discipline the House keeps in good order, held to one standard.</p>
-            <span className="font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-ink group-hover:text-house-brown">See all services →</span>
+            <span className="font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-dark group-hover:text-house-brown">See all services →</span>
           </Link>
           <Link href="/insurance" className="group flex flex-col border border-house-brown/15 bg-house-cream-light p-7 no-underline transition-colors hover:border-house-gold">
-            <p className="mb-2 font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-ink">Cover</p>
+            <p className="mb-2 font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-dark">Cover</p>
             <h3 className="mb-2.5 font-hearth-serif text-[24px] leading-tight text-house-brown">Insurance and cover</h3>
             <p className="mb-6 flex-1 font-sans text-[18px] leading-[1.55] text-house-brown/70">Cover for the house and everyone who lives in it, a House proposition.</p>
-            <span className="font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-ink group-hover:text-house-brown">Explore cover →</span>
+            <span className="font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-dark group-hover:text-house-brown">Explore cover →</span>
           </Link>
           <Link href="/the-hearth" className="group flex flex-col border border-house-brown/15 bg-house-cream-light p-7 no-underline transition-colors hover:border-house-gold">
-            <p className="mb-2 font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-ink">Read</p>
+            <p className="mb-2 font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-dark">Read</p>
             <h3 className="mb-2.5 font-hearth-serif text-[24px] leading-tight text-house-brown">From the magazine</h3>
             <p className="mb-6 flex-1 font-sans text-[18px] leading-[1.55] text-house-brown/70">Guides and ideas for looking after a home and garden, well.</p>
-            <span className="font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-ink group-hover:text-house-brown">Read the Hearth →</span>
+            <span className="font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-dark group-hover:text-house-brown">Read the Hearth →</span>
           </Link>
         </MobileCarousel>
       </section>

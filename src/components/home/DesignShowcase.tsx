@@ -39,9 +39,9 @@ export function DesignShowcase() {
             Explore Design →
           </Link>
           <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 font-sans text-[14px] text-house-brown/70">
-            <Link href="/design/gardens" className="no-underline hover:text-house-gold-ink">Garden design →</Link>
-            <Link href="/design/interiors" className="no-underline hover:text-house-gold-ink">Home design →</Link>
-            <Link href="/design#routes" className="no-underline hover:text-house-gold-ink">Book a consultation →</Link>
+            <Link href="/design/gardens" className="no-underline hover:text-house-gold-dark">Garden design →</Link>
+            <Link href="/design/interiors" className="no-underline hover:text-house-gold-dark">Home design →</Link>
+            <Link href="/design#routes" className="no-underline hover:text-house-gold-dark">Book a consultation →</Link>
           </div>
         </div>
 

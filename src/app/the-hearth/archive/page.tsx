@@ -27,7 +27,7 @@ export default async function HearthArchivePage() {
       <HearthCategoryStrip />
 
       <section className="max-w-[1360px] mx-auto px-[5vw] pt-12 pb-2 text-center">
-        <p className="font-hearth-sans text-[14px] tracking-[0.22em] uppercase text-house-gold-ink mb-3">
+        <p className="font-hearth-sans text-[14px] tracking-[0.22em] uppercase text-house-gold-dark mb-3">
           The Hearth
         </p>
         <h1 className="font-hearth-serif text-[clamp(35px,4vw,55px)] leading-[1.05] text-house-black">

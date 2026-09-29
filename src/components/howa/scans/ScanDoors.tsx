@@ -117,7 +117,7 @@ export function ScanDoors() {
               ) : null}
             </div>
             <p className="flex-1 font-sans text-[15px] leading-[1.55] text-house-brown/75">{d.body}</p>
-            <span className="mt-5 inline-flex items-center gap-2 font-sans text-[13px] uppercase tracking-[0.14em] text-house-gold-ink">
+            <span className="mt-5 inline-flex items-center gap-2 font-sans text-[13px] uppercase tracking-[0.14em] text-house-gold-dark">
               {d.action} <span aria-hidden="true">→</span>
             </span>
           </button>

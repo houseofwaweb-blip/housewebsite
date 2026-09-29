@@ -21,11 +21,11 @@ export function HearthMasthead({ className }: { className?: string }) {
         {/* Brand/logo, not the page heading — the masthead recurs on every
             Hearth page, so it must not compete with each page's own <h1>
             (lead story on the landing, article headline, category title). */}
-        <span className="block font-hearth-serif font-medium uppercase leading-none text-[clamp(37px,4vw,57px)] tracking-[-0.005em] text-house-black transition-colors hover:text-house-gold-ink">
+        <span className="block font-hearth-serif font-medium uppercase leading-none text-[clamp(37px,4vw,57px)] tracking-[-0.005em] text-house-black transition-colors hover:text-house-gold-dark">
           Hearth
         </span>
       </Link>
-      <p className="font-hearth-serif italic text-[clamp(20px,1.8vw,25px)] text-house-gold-ink mt-[12px]">
+      <p className="font-hearth-serif italic text-[clamp(20px,1.8vw,25px)] text-house-gold-dark mt-[12px]">
         Homes, gardens, people and the useful business of living well.
       </p>
       <p className="font-hearth-sans text-[13px] tracking-[0.24em] uppercase text-house-stone mt-[10px]">

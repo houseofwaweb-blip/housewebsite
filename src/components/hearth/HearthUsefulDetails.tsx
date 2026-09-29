@@ -38,7 +38,7 @@ export function HearthUsefulDetails({
       aria-label="The useful details"
       className="my-14 border border-house-brown/15 bg-house-cream/60 px-6 py-7 sm:px-8"
     >
-      <p className="font-hearth-sans text-[13px] tracking-[0.24em] uppercase text-house-gold-ink">
+      <p className="font-hearth-sans text-[13px] tracking-[0.24em] uppercase text-house-gold-dark">
         The useful details
       </p>
       <dl className="mt-5 grid gap-x-10 gap-y-4 sm:grid-cols-2">

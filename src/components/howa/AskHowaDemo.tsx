@@ -157,7 +157,7 @@ export function AskHowaDemo({ backgroundImage = "/howa/v5/ai-ask-scan.png" }: { 
         <div className="mx-auto w-full max-w-[640px] overflow-hidden border border-house-gold/25 bg-house-white shadow-[0_28px_70px_-30px_rgba(16,37,52,0.7)]">
           {/* header */}
           <div className="flex items-center gap-2.5 border-b border-house-brown/8 bg-house-cream px-5 py-3.5">
-            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-house-midnight font-display text-[12px] text-house-gold-ink">H</span>
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-house-midnight font-display text-[12px] text-house-gold-dark">H</span>
             <div className="leading-tight">
               <p className="font-display text-[15px] text-house-black">Ask HoWA</p>
               <p className="text-[12px] text-house-stone/70">Answers from your Home Record</p>

@@ -74,7 +74,7 @@ export function HearthNextAction({ categorySlug }: { categorySlug?: string }) {
       aria-label="What to do next"
       className="my-14 border-l-2 border-house-gold bg-house-cream/70 px-6 py-8 sm:px-9"
     >
-      <p className="font-hearth-sans text-[13px] tracking-[0.24em] uppercase text-house-gold-ink">
+      <p className="font-hearth-sans text-[13px] tracking-[0.24em] uppercase text-house-gold-dark">
         {action.eyebrow}
       </p>
       <h2 className="mt-3 max-w-[22ch] font-hearth-serif font-medium text-[clamp(27px,3vw,37px)] leading-[1.1] text-house-black">

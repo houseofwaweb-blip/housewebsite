@@ -399,7 +399,7 @@ export default async function ServicesLanding() {
         />
         <p className={s.servicesFootnote}>
           Do not see the job you need?{" "}
-          <Link href="/contact" className="text-house-brown underline underline-offset-2 hover:text-house-gold-ink">
+          <Link href="/contact" className="text-house-brown underline underline-offset-2 hover:text-house-gold-dark">
             Tell the House
           </Link>{" "}
           and we will find who does it, what it costs and when we can come.
@@ -413,7 +413,7 @@ export default async function ServicesLanding() {
           {/* Header left, lifestyle image top-right */}
           <div className="mb-10 grid items-start gap-8 lg:grid-cols-[1fr_0.82fr] lg:gap-14">
             <div>
-              <p className="mb-3 font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink">How booking works</p>
+              <p className="mb-3 font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-dark">How booking works</p>
               <h2 className="font-display text-[clamp(27px,3vw,41px)] leading-[1.1] text-house-brown">
                 Four steps, <em>start to finish.</em>
               </h2>
@@ -435,7 +435,7 @@ export default async function ServicesLanding() {
               { n: "04", t: "Added to My House", b: "The booking, notes and history are written to your service record in My House, powered by HoWA." },
             ].map((step) => (
               <li key={step.n} className="border-t border-house-brown/20 pt-4">
-                <span className="font-display text-[1.5rem] leading-none text-house-gold-ink">{step.n}</span>
+                <span className="font-display text-[1.5rem] leading-none text-house-gold-dark">{step.n}</span>
                 <h3 className="mb-2 mt-3 font-sans text-[19px] font-medium text-house-brown">{step.t}</h3>
                 <p className="font-sans text-[17px] leading-[1.55] text-house-stone">{step.b}</p>
               </li>
@@ -446,10 +446,10 @@ export default async function ServicesLanding() {
             href="/the-hearth"
             className="group mt-10 inline-flex items-baseline gap-3 border-t border-house-brown/15 pt-6 no-underline"
           >
-            <span className="font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-ink">From the Hearth</span>
-            <span className="font-hearth-serif text-[21px] text-house-brown transition-colors group-hover:text-house-gold-ink">
+            <span className="font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-dark">From the Hearth</span>
+            <span className="font-hearth-serif text-[21px] text-house-brown transition-colors group-hover:text-house-gold-dark">
               How to choose the right kind of help for your home.
-              <span aria-hidden className="ml-2 text-house-gold-ink">&rarr;</span>
+              <span aria-hidden className="ml-2 text-house-gold-dark">&rarr;</span>
             </span>
           </Link>
         </div>
@@ -474,7 +474,7 @@ export default async function ServicesLanding() {
               />
             </figure>
             <div>
-              <p className="mb-3 font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink">Our services</p>
+              <p className="mb-3 font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-dark">Our services</p>
               <h2 className="font-display text-[clamp(27px,3vw,41px)] leading-[1.1] text-house-brown">
                 A family of services, <em>under one House.</em>
               </h2>
@@ -499,7 +499,7 @@ export default async function ServicesLanding() {
                 href={m.href}
                 className="group block border border-house-brown/15 bg-house-cream p-7 no-underline transition-colors hover:border-house-gold-ink"
               >
-                <h3 className="mb-2 font-display text-[23px] leading-tight text-house-brown transition-colors group-hover:text-house-gold-ink">{m.n}</h3>
+                <h3 className="mb-2 font-display text-[23px] leading-tight text-house-brown transition-colors group-hover:text-house-gold-dark">{m.n}</h3>
                 <p className="font-sans text-[16px] leading-[1.55] text-house-stone">{m.b}</p>
               </Link>
             ))}
@@ -519,7 +519,7 @@ export default async function ServicesLanding() {
           soon". */}
       <section id="everything" className="border-t border-house-brown/10 px-[5vw] py-[clamp(48px,6vw,92px)]" style={{ background: "var(--color-house-cream)" }}>
         <div className="mx-auto max-w-[1180px]">
-          <p className="mb-3 font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink">
+          <p className="mb-3 font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-dark">
             Everything the House can arrange
           </p>
           <h2 className="mb-4 font-display text-[clamp(27px,3vw,41px)] leading-[1.1] text-house-brown">
@@ -535,7 +535,7 @@ export default async function ServicesLanding() {
           <div className="grid gap-x-10 gap-y-11 md:grid-cols-2">
             {SERVICE_GROUPS.map((group) => (
               <div key={group}>
-                <h3 className="mb-4 border-b border-house-brown/20 pb-2 font-sans text-[14px] tracking-[0.24em] uppercase text-house-gold-ink">
+                <h3 className="mb-4 border-b border-house-brown/20 pb-2 font-sans text-[14px] tracking-[0.24em] uppercase text-house-gold-dark">
                   {group}
                 </h3>
                 <ul className="m-0 grid list-none gap-0 p-0">
@@ -545,10 +545,10 @@ export default async function ServicesLanding() {
                         href={sv.href ?? `/services/${sv.slug}`}
                         className="group flex items-baseline justify-between gap-4 py-3 no-underline"
                       >
-                        <span className="font-sans text-[19px] leading-[1.4] text-house-brown transition-colors group-hover:text-house-gold-ink">
+                        <span className="font-sans text-[19px] leading-[1.4] text-house-brown transition-colors group-hover:text-house-gold-dark">
                           {sv.name}
                         </span>
-                        <span className="shrink-0 font-sans text-[13px] tracking-[0.16em] uppercase text-house-stone/75 transition-colors group-hover:text-house-gold-ink">
+                        <span className="shrink-0 font-sans text-[13px] tracking-[0.16em] uppercase text-house-stone/75 transition-colors group-hover:text-house-gold-dark">
                           {sv.bookable ? "See prices" : "Request a quote"}
                         </span>
                       </Link>
@@ -570,7 +570,7 @@ export default async function ServicesLanding() {
       {/* In the field — real House lifestyle photography. */}
       <section className="border-t border-house-brown/10 bg-house-cream-light px-[5vw] py-[clamp(40px,5vw,72px)]">
         <div className="mx-auto max-w-[1200px]">
-          <p className="mb-6 font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-ink">In the field</p>
+          <p className="mb-6 font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-dark">In the field</p>
           <MobileCarousel ariaLabel="In the field" gridClassName="sm:grid-cols-3 sm:gap-4">
             {[
               { cap: "A garden in good order", src: "/services/field/garden-in-good-order.webp" },
@@ -670,7 +670,7 @@ export default async function ServicesLanding() {
               <ul className="m-0 mb-7 grid list-none gap-1.5 p-0">
                 {f.examples.map((e) => (
                   <li key={e} className="flex gap-2.5 font-sans text-[17px] leading-[1.45] text-house-stone">
-                    <span aria-hidden className="text-house-gold-ink">·</span>
+                    <span aria-hidden className="text-house-gold-dark">·</span>
                     {e}
                   </li>
                 ))}

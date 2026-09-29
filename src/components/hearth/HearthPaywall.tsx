@@ -27,9 +27,9 @@ export function HearthPaywall() {
         </div>
 
         <div>
-          <p className="font-hearth-sans text-[14px] tracking-[0.24em] uppercase text-house-gold-ink mb-2 flex items-center gap-2">
+          <p className="font-hearth-sans text-[14px] tracking-[0.24em] uppercase text-house-gold-dark mb-2 flex items-center gap-2">
             <span>The Hearth</span>
-            <span aria-hidden="true" className="text-house-gold-ink/40">·</span>
+            <span aria-hidden="true" className="text-house-gold-dark/40">·</span>
             <span className="text-house-stone">Members only</span>
           </p>
           <h2 className="font-hearth-serif font-medium text-[clamp(29px,3vw,37px)] leading-[1.15] text-house-black mb-3">
@@ -48,7 +48,7 @@ export function HearthPaywall() {
               service rates, the Home Record, Ask HoWA) belong to the HoWA plans,
               not the magazine, and are not bundled here; the Home Record is free. */}
           <div className="mb-7 py-6 border-t border-b border-house-brown/12">
-            <p className="font-hearth-sans text-[14px] tracking-[0.24em] uppercase text-house-gold-ink mb-3">
+            <p className="font-hearth-sans text-[14px] tracking-[0.24em] uppercase text-house-gold-dark mb-3">
               What you get
             </p>
             <ul className="list-none m-0 p-0 grid grid-cols-2 gap-x-8 max-md:grid-cols-1">
@@ -62,7 +62,7 @@ export function HearthPaywall() {
                   key={item}
                   className="font-hearth-serif text-[19px] leading-[1.55] text-house-brown py-0.5 flex gap-2"
                 >
-                  <span aria-hidden="true" className="text-house-gold-ink font-bold flex-shrink-0">·</span>
+                  <span aria-hidden="true" className="text-house-gold-dark font-bold flex-shrink-0">·</span>
                   {item}
                 </li>
               ))}
@@ -89,7 +89,7 @@ export function HearthPaywall() {
             Already a member?{" "}
             <a
               href="https://accounts.willowalexander.co.uk/"
-              className="font-hearth-sans text-[14px] tracking-[0.16em] uppercase text-house-brown no-underline border-b border-dotted border-house-brown pb-px transition-colors hover:text-house-gold-ink hover:border-house-gold"
+              className="font-hearth-sans text-[14px] tracking-[0.16em] uppercase text-house-brown no-underline border-b border-dotted border-house-brown pb-px transition-colors hover:text-house-gold-dark hover:border-house-gold"
             >
               Log in
             </a>

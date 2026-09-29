@@ -26,7 +26,7 @@ export default async function CinemaPage() {
       {/* Header */}
       <section className="px-[5vw] pt-16 pb-8">
         <div className="mx-auto max-w-[1200px]">
-          <p className="font-sans text-[14px] tracking-[0.3em] uppercase text-house-gold-ink">The House · Cinema</p>
+          <p className="font-sans text-[14px] tracking-[0.3em] uppercase text-house-gold-dark">The House · Cinema</p>
           <h1 className="mt-3 max-w-[16ch] font-display text-[clamp(37px,5vw,71px)] leading-[1.03] text-house-black">
             Films from <em>the House.</em>
           </h1>
@@ -53,7 +53,7 @@ export default async function CinemaPage() {
       {/* The rest — cards link to each film's page. */}
       <section className="px-[5vw] pb-24">
         <div className="mx-auto max-w-[1200px]">
-          <p className="mb-6 font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-ink">More films</p>
+          <p className="mb-6 font-sans text-[14px] tracking-[0.28em] uppercase text-house-gold-dark">More films</p>
           <MobileCarousel ariaLabel="More films" gridClassName="sm:grid-cols-2 lg:grid-cols-3 sm:gap-x-6 sm:gap-y-10">
             {rest.map((f) => (
               <Link key={f.slug} href={`/cinema/${f.slug}`} className="group no-underline">
@@ -64,8 +64,8 @@ export default async function CinemaPage() {
                   </span>
                   {f.duration ? <span className="absolute bottom-2 right-2 bg-house-black/70 px-2 py-1 font-sans text-[13px] tracking-[0.08em] text-house-cream/90">{f.duration}</span> : null}
                 </div>
-                <p className="mt-3 font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-ink">{f.category}</p>
-                <h3 className="mt-1 font-display text-[25px] leading-tight text-house-brown transition-colors group-hover:text-house-gold-ink">{f.title}</h3>
+                <p className="mt-3 font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-dark">{f.category}</p>
+                <h3 className="mt-1 font-display text-[25px] leading-tight text-house-brown transition-colors group-hover:text-house-gold-dark">{f.title}</h3>
               </Link>
             ))}
           </MobileCarousel>

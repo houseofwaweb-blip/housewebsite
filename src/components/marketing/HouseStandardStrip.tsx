@@ -21,7 +21,7 @@ export function HouseStandardStrip({ points = POINTS }: { points?: string[] }) {
       <Image src="/lifestyle/cottage-hearth.webp" alt="" aria-hidden fill sizes="100vw" className="object-cover object-center" />
       <div aria-hidden className="absolute inset-0 bg-house-cream/82" />
       <div className="relative z-10 max-w-[920px] mx-auto text-center">
-        <p className="font-sans text-[14px] tracking-[0.3em] uppercase text-house-gold-ink mb-4">
+        <p className="font-sans text-[14px] tracking-[0.3em] uppercase text-house-gold-dark mb-4">
           The quiet bar
         </p>
         <p className="font-display italic text-[clamp(24px,2.6vw,33px)] leading-[1.35] text-house-brown max-w-[34ch] mx-auto">

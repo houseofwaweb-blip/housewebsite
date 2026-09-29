@@ -77,12 +77,12 @@ export function LocationServiceDetail({ page }: { page: LocationPage }) {
         <FlowerWatermark variant="pattern" color="brown" side="right" opacity={0.1} />
         <div className="relative z-10 mx-auto grid max-w-[1280px] items-start gap-[clamp(28px,4vw,56px)] lg:grid-cols-12">
           <div className="lg:col-span-7">
-            <nav aria-label="Breadcrumb" className="mb-6 font-sans text-[14px] tracking-[0.24em] uppercase text-house-gold-ink">
-              <Link href="/services" className="no-underline text-house-gold-ink hover:text-house-brown">
+            <nav aria-label="Breadcrumb" className="mb-6 font-sans text-[14px] tracking-[0.24em] uppercase text-house-gold-dark">
+              <Link href="/services" className="no-underline text-house-gold-dark hover:text-house-brown">
                 Services
               </Link>
               <span aria-hidden className="mx-2 text-house-stone">/</span>
-              <Link href={`/services/${serviceSlug}`} className="no-underline text-house-gold-ink hover:text-house-brown">
+              <Link href={`/services/${serviceSlug}`} className="no-underline text-house-gold-dark hover:text-house-brown">
                 {service.name}
               </Link>
               <span aria-hidden className="mx-2 text-house-stone">/</span>
@@ -93,7 +93,7 @@ export function LocationServiceDetail({ page }: { page: LocationPage }) {
 
             <h1 className="mb-5 font-hearth-serif font-normal text-[clamp(38px,4.8vw,68px)] leading-[1.05] tracking-[-0.018em] text-house-brown">
               {service.name} in {town.name}{" "}
-              <span className="text-house-gold-ink">({postcodes})</span>
+              <span className="text-house-gold-dark">({postcodes})</span>
             </h1>
 
             <p className="mb-6 max-w-[54ch] border-t border-house-brown/15 pt-5 font-sans text-[20px] leading-[1.65] text-house-brown/75">
@@ -105,12 +105,12 @@ export function LocationServiceDetail({ page }: { page: LocationPage }) {
             <ul className="m-0 flex flex-wrap gap-x-8 gap-y-3 list-none p-0">
               {fromPrice ? (
                 <li className="font-sans text-[17px] text-house-brown/80">
-                  <span className="mr-2 text-house-gold-ink" aria-hidden>◆</span>
+                  <span className="mr-2 text-house-gold-dark" aria-hidden>◆</span>
                   {fromPrice}
                 </li>
               ) : null}
               <li className="font-sans text-[17px] text-house-brown/80">
-                <span className="mr-2 text-house-gold-ink" aria-hidden>◆</span>
+                <span className="mr-2 text-house-gold-dark" aria-hidden>◆</span>
                 Covering {town.name} and {region === "Kent" ? "north Kent" : "south London"}
               </li>
             </ul>
@@ -152,7 +152,7 @@ export function LocationServiceDetail({ page }: { page: LocationPage }) {
       <section className="px-[5vw] py-[clamp(48px,6vw,88px)] border-b border-house-brown/10">
         <div className="mx-auto max-w-[1080px]">
           <header className="mb-10 max-w-[640px]">
-            <p className="mb-3 font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-ink">
+            <p className="mb-3 font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-dark">
               In {town.name}
             </p>
             <h2 className="font-hearth-serif text-[clamp(29px,3.2vw,44px)] leading-[1.1] text-house-brown">
@@ -165,7 +165,7 @@ export function LocationServiceDetail({ page }: { page: LocationPage }) {
                 key={item}
                 className="flex items-start gap-3 border-t border-house-brown/10 py-3.5 font-sans text-[17px] leading-[1.5] text-house-brown/85"
               >
-                <span aria-hidden className="mt-[7px] text-[9px] text-house-gold-ink">◆</span>
+                <span aria-hidden className="mt-[7px] text-[9px] text-house-gold-dark">◆</span>
                 <span>{item}</span>
               </li>
             ))}
@@ -179,7 +179,7 @@ export function LocationServiceDetail({ page }: { page: LocationPage }) {
         <section className="px-[5vw] py-[clamp(48px,6vw,88px)] border-b border-house-brown/10">
           <div className="mx-auto grid max-w-[1080px] items-start gap-[clamp(24px,4vw,56px)] lg:grid-cols-[1.4fr_1fr]">
             <div>
-              <p className="mb-3 font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-ink">
+              <p className="mb-3 font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-dark">
                 The area
               </p>
               <h2 className="mb-5 font-hearth-serif text-[clamp(29px,3.2vw,44px)] leading-[1.1] text-house-brown">
@@ -217,7 +217,7 @@ export function LocationServiceDetail({ page }: { page: LocationPage }) {
             <Image src={heroImage} alt={`${cfg.proofLabel} in ${town.name}`} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
           </div>
           <div>
-            <p className="mb-3 font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-ink">
+            <p className="mb-3 font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-dark">
               {cfg.proofLabel} · {town.name}
             </p>
             <h2 className="mb-5 font-hearth-serif text-[clamp(27px,3vw,40px)] leading-[1.12] text-house-brown">
@@ -236,7 +236,7 @@ export function LocationServiceDetail({ page }: { page: LocationPage }) {
       <section className="px-[5vw] py-[clamp(48px,6vw,88px)] border-b border-house-brown/10">
         <div className="mx-auto max-w-[1080px]">
           <header className="mb-10 max-w-[640px]">
-            <p className="mb-3 font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-ink">
+            <p className="mb-3 font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-dark">
               How it works
             </p>
             <h2 className="font-hearth-serif text-[clamp(29px,3.2vw,44px)] leading-[1.1] text-house-brown">
@@ -246,7 +246,7 @@ export function LocationServiceDetail({ page }: { page: LocationPage }) {
           <ol className="grid gap-px bg-house-brown/10 sm:grid-cols-2 lg:grid-cols-4">
             {service.sections.how.map((step, i) => (
               <li key={step} className="bg-house-cream px-6 py-7">
-                <p className="mb-3 font-display italic text-[19px] text-house-gold-ink">
+                <p className="mb-3 font-display italic text-[19px] text-house-gold-dark">
                   {String(i + 1).padStart(2, "0")}
                 </p>
                 <p className="font-sans text-[17px] leading-[1.55] text-house-brown/85">{step}</p>
@@ -274,7 +274,7 @@ export function LocationServiceDetail({ page }: { page: LocationPage }) {
         <section className="px-[5vw] py-[clamp(48px,6vw,88px)] border-b border-house-brown/10 bg-house-cream-light">
           <div className="mx-auto max-w-[820px]">
             <header className="mb-8">
-              <p className="mb-3 font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-ink">
+              <p className="mb-3 font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-dark">
                 Questions
               </p>
               <h2 className="font-hearth-serif text-[clamp(29px,3.2vw,44px)] leading-[1.1] text-house-brown">
@@ -296,7 +296,7 @@ export function LocationServiceDetail({ page }: { page: LocationPage }) {
       <section className="px-[5vw] py-[clamp(48px,6vw,88px)] border-b border-house-brown/10">
         <div className="mx-auto max-w-[1080px]">
           <header className="mb-10 max-w-[640px]">
-            <p className="mb-3 font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-ink">
+            <p className="mb-3 font-sans text-[13px] tracking-[0.28em] uppercase text-house-gold-dark">
               More from the House in {town.name}
             </p>
             <h2 className="font-hearth-serif text-[clamp(29px,3.2vw,44px)] leading-[1.1] text-house-brown">
@@ -325,7 +325,7 @@ export function LocationServiceDetail({ page }: { page: LocationPage }) {
                   <p className="mb-4 font-sans text-[15px] leading-[1.5] text-house-brown/70">
                     {sib.verb}.
                   </p>
-                  <span className="font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-ink">
+                  <span className="font-sans text-[13px] tracking-[0.2em] uppercase text-house-gold-dark">
                     See {town.name} →
                   </span>
                 </div>

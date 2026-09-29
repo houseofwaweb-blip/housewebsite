@@ -49,7 +49,7 @@ export function HeroServiceFinder() {
   return (
     <form onSubmit={onSubmit} className="mt-8 w-full max-w-[520px]">
       <div className="bg-house-white border border-house-brown/15 p-4 sm:p-5 flex flex-col gap-3">
-        <label className="font-sans text-[13px] tracking-[0.22em] uppercase text-house-gold-ink">
+        <label className="font-sans text-[13px] tracking-[0.22em] uppercase text-house-gold-dark">
           What does your home need?
         </label>
         <div className="flex flex-col sm:flex-row gap-3">

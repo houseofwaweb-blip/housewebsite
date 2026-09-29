@@ -73,11 +73,11 @@ export function SingleServiceDetail({ view }: { view: SingleServiceView }) {
         <div className="mx-auto grid max-w-[1280px] items-start gap-[clamp(28px,4vw,56px)] lg:grid-cols-12">
           {/* Left — copy, proof, still-life (7 cols) */}
           <div className="lg:col-span-7">
-            <nav aria-label="Breadcrumb" className="mb-6 font-sans text-[14px] tracking-[0.24em] uppercase text-house-gold-ink">
+            <nav aria-label="Breadcrumb" className="mb-6 font-sans text-[14px] tracking-[0.24em] uppercase text-house-gold-dark">
               {view.breadcrumb.map((c, i) => (
                 <span key={c.href}>
                   {i > 0 ? <span aria-hidden className="mx-2 text-house-stone">/</span> : null}
-                  <Link href={c.href} className="no-underline text-house-gold-ink hover:text-house-brown">
+                  <Link href={c.href} className="no-underline text-house-gold-dark hover:text-house-brown">
                     {c.label}
                   </Link>
                 </span>
@@ -85,7 +85,7 @@ export function SingleServiceDetail({ view }: { view: SingleServiceView }) {
             </nav>
 
             <h1 className="mb-5 font-hearth-serif font-normal text-[clamp(43px,5.4vw,77px)] leading-[1.04] tracking-[-0.018em] text-house-brown">
-              {view.name}<em className="italic text-house-gold-ink">.</em>
+              {view.name}<em className="italic text-house-gold-dark">.</em>
             </h1>
             <p className="mb-6 max-w-[54ch] border-t border-house-brown/15 pt-5 font-sans text-[20px] leading-[1.65] text-house-brown/75">
               {view.lede}
@@ -96,7 +96,7 @@ export function SingleServiceDetail({ view }: { view: SingleServiceView }) {
                 is wired in yet, so we do not print a placeholder figure. */}
             <ul className="m-0 flex flex-wrap gap-x-8 gap-y-3 list-none p-0">
               <li className="font-sans text-[17px] text-house-brown/80">
-                <span className="mr-2 text-house-gold-ink" aria-hidden>◆</span>
+                <span className="mr-2 text-house-gold-dark" aria-hidden>◆</span>
                 Serving London and Kent
               </li>
             </ul>

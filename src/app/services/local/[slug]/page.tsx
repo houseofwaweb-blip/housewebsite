@@ -167,7 +167,7 @@ export default async function LocalServicePage({
           </div>
 
           <h1 className="em-accent font-display font-medium text-[clamp(43px,5.4vw,75px)] leading-[1.05] tracking-[-0.012em]">
-            {taskLine}<span className="text-house-gold-ink">.</span>
+            {taskLine}<span className="text-house-gold-dark">.</span>
           </h1>
 
           <p className="font-display italic text-[clamp(21px,1.9vw,25px)] leading-[1.5] text-house-brown/80 mt-7 max-w-[44ch]">
@@ -235,7 +235,7 @@ export default async function LocalServicePage({
                 href={`/services/${svc.slug}`}
                 className="group bg-house-cream p-7 no-underline text-house-brown transition-colors hover:bg-house-cream-dark"
               >
-                <p className="font-sans text-[14px] tracking-[0.32em] uppercase text-house-gold-ink mb-3">
+                <p className="font-sans text-[14px] tracking-[0.32em] uppercase text-house-gold-dark mb-3">
                   Service
                 </p>
                 <h3 className="em-accent font-display font-medium text-[25px] leading-[1.15] mb-3">
@@ -244,7 +244,7 @@ export default async function LocalServicePage({
                 <p className="font-sans text-[18px] leading-[1.55] text-house-brown/72 mb-4">
                   {svc.blurb}
                 </p>
-                <p className="font-sans text-[14px] tracking-[0.22em] uppercase text-house-gold-ink border-t border-house-brown/10 pt-3">
+                <p className="font-sans text-[14px] tracking-[0.22em] uppercase text-house-gold-dark border-t border-house-brown/10 pt-3">
                   Available in {location} →
                 </p>
               </Link>
@@ -293,7 +293,7 @@ export default async function LocalServicePage({
             },
           ].map((c) => (
             <article key={c.n} className="bg-house-cream p-9">
-              <p className="font-display italic text-[18px] text-house-gold-ink mb-3">{c.n}</p>
+              <p className="font-display italic text-[18px] text-house-gold-dark mb-3">{c.n}</p>
               <h3 className="font-sans font-medium text-[18px] tracking-[0.28em] uppercase text-house-brown mb-3">
                 {c.h}
               </h3>

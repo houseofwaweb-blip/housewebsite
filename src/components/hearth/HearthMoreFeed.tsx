@@ -58,7 +58,7 @@ function MoreArticle({ article }: { article: HearthArticle }) {
         <span className="block mb-2 font-hearth-sans text-[14px] tracking-[0.22em] uppercase text-house-black">
           {article.categoryLong ?? article.category}
         </span>
-        <h4 className="font-hearth-serif font-medium text-[22px] leading-[1.15] tracking-[-0.005em] text-house-black mb-1.5 transition-colors duration-[var(--t-slow)] ease-out group-hover:text-house-gold-ink">
+        <h4 className="font-hearth-serif font-medium text-[22px] leading-[1.15] tracking-[-0.005em] text-house-black mb-1.5 transition-colors duration-[var(--t-slow)] ease-out group-hover:text-house-gold-dark">
           <HearthTitle title={article.title} em={article.titleEm} />
         </h4>
         <p className="mt-auto font-hearth-sans text-[14px] tracking-[0.14em] uppercase text-house-stone">
