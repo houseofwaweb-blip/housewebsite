@@ -33,7 +33,12 @@ export function GoogleTagSetup() {
   // must still fall back to the baked ID, otherwise gaId="" makes this whole
   // component render nothing and GA never loads.
   const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-HN657RY0DT";
-  const adsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
+  // Google Ads (account 680-377-5494) — public conversion/remarketing tag id,
+  // same status as the GA4 id above (it ships in client HTML anyway).
+  // NEXT_PUBLIC_GOOGLE_ADS_ID overrides per-environment. Consent Mode v2 still
+  // gates it: nothing fires until marketing consent is granted. The Purchase
+  // conversion itself fires from the Shopify Custom Pixel (Shopify-side).
+  const adsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || "AW-10957066467";
 
   // Update Consent Mode v2 state whenever wa-consent changes. Maps our
   // 4-category model onto Google's 7 storage purposes. Functional maps to
