@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { useConsentGranted } from "@/components/consent/ConsentProvider";
 
 /**
  * Embed the ServiceOS Online Booking Form (OBF) as it currently runs on
@@ -90,16 +91,24 @@ const TRIGGER_HREF = "#open-booking-form";
 const TRIGGER_SELECTOR = 'a[href="#open-booking-form"],[data-obf-trigger]';
 
 export function BookingWidget() {
-  // ServiceOS is the booking platform — ESSENTIAL / strictly necessary, so it
-  // is NOT consent-gated. BUT its client bundle is ~800KB, and loading it
-  // eagerly on every page starved the hero image of bandwidth on mobile and
-  // tanked LCP (Lighthouse). So we DEFER the load:
-  //   - Load on the visitor's first interaction (scroll / pointer / key /
-  //     touch), by which point they may be about to click "Book".
-  //   - If someone clicks a "Book" CTA before it has finished loading, load it
-  //     and replay the click once ready, so booking still opens on first click.
-  // A passive page view (e.g. a Lighthouse run, or a bounce) never downloads
-  // the 800KB — it only loads when a real visitor engages.
+  // ServiceOS's client bundle sets a `__sosint_uid` identifier cookie the
+  // moment it loads. Booking is a service the visitor actively requests, so
+  // when they CLICK a "Book" CTA that cookie is strictly necessary (PECR: it
+  // supports a service the user asked for) and needs no consent. What is NOT
+  // permitted is setting it on a passive page interaction — a scroll or a
+  // mouse move — before any booking intent (audit #8 / PECR). So we split the
+  // two load paths by consent:
+  //   - PRE-EMPTIVE load on first passive interaction (scroll / pointer / key /
+  //     touch): only when FUNCTIONAL consent is granted. This is purely a
+  //     latency optimisation (warm the ~800KB bundle before the click), so it
+  //     is fair to treat it as functional and hold it until consent.
+  //   - ON-CLICK load (a real "Book" CTA, or a ?book=1 deep link): ALWAYS
+  //     armed, consent or not — that click is the affirmative request for the
+  //     booking service, so the cookie is strictly necessary from that point.
+  // Net effect: booking still opens first-click for everyone; ServiceOS never
+  // sets `__sosint_uid` on a bounce/scroll before consent; and the 800KB is
+  // still deferred off the LCP path either way.
+  const functionalConsent = useConsentGranted("functional");
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (window.__obfLoaded) return;
@@ -171,17 +180,24 @@ export function BookingWidget() {
       }, 100);
     };
 
-    // 1) First real interaction → load the widget ahead of any Book click.
-    const events: Array<keyof WindowEventMap> = [
-      "pointerdown",
-      "touchstart",
-      "keydown",
-      "scroll",
-      "mousemove",
-    ];
-    for (const ev of events) {
-      window.addEventListener(ev, loadObf, { once: true, passive: true });
-      cleanups.push(() => window.removeEventListener(ev, loadObf));
+    // 1) First real interaction → warm the widget ahead of any Book click.
+    //    GATED on functional consent: this pre-emptive load exists only to hide
+    //    the ~800KB download behind idle time, so setting `__sosint_uid` here
+    //    (before any booking intent) needs consent. Without it, we simply skip
+    //    the warm-up and rely on the always-armed click path below — booking
+    //    still works first-click, it just isn't pre-loaded.
+    if (functionalConsent) {
+      const events: Array<keyof WindowEventMap> = [
+        "pointerdown",
+        "touchstart",
+        "keydown",
+        "scroll",
+        "mousemove",
+      ];
+      for (const ev of events) {
+        window.addEventListener(ev, loadObf, { once: true, passive: true });
+        cleanups.push(() => window.removeEventListener(ev, loadObf));
+      }
     }
 
     // 2) Book CTA clicked before the script is ready → load now and replay the
@@ -267,7 +283,10 @@ export function BookingWidget() {
     }
 
     return runCleanups;
-  }, []);
+    // Re-run when functional consent flips so the warm-up listeners get armed
+    // the moment the visitor accepts (the click + ?book=1 paths are set up
+    // regardless).
+  }, [functionalConsent]);
 
   // The widget injects its own DOM. No visible markup needed — clicks on any
   // `href="#open-booking-form"` anchor open the modal, and a `?book=1` link
