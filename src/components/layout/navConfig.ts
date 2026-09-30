@@ -116,7 +116,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
         heading: "Recurring care",
         links: [
           { label: "Home & garden care", href: "/services/home-and-garden", description: "The whole property, one rhythm" },
-          { label: "Insurance & Cover", href: "/insurance", description: "Introductions via Provenance" },
+          { label: "Insurance & Cover", href: "/insurance", description: "Coming soon" },
           { label: "House Approved standards", href: "/house-approved-pro", description: "How we vet" },
           { label: "Book a service", href: "#open-booking-form" },
         ],

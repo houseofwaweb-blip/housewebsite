@@ -3,7 +3,7 @@ import Link from "next/link";
 /**
  * Claims & help, spec §11.7. A prominent, unmissable route for people who
  * already hold cover, not only prospects. The House is an introducer, so the
- * claim itself is handled by Provenance under its FCA permissions; the House
+ * claim itself is handled by our insurance partner under its FCA permissions; the House
  * line simply helps an existing customer reach the right place. These contact
  * points are the House's, shared across the hub band and the dedicated page.
  */

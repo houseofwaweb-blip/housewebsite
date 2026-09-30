@@ -241,7 +241,7 @@ export default async function HomeProtectionPage() {
             {cms(
               crossSell,
               "body",
-              "Home insurance introduced by the House and arranged through Provenance, with specialist routes available for period, high-value and more complex homes.",
+              "Home insurance from the House is coming soon, with specialist routes for period, high-value and more complex homes. Register your interest to hear when it opens.",
             )}
           </p>
           <Link href={cms(crossSell, "ctaHref", "/insurance")} className={s.crossLink}>

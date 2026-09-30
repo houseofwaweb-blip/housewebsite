@@ -11,7 +11,7 @@ const ITEMS = [
   { stat: "Reviews", label: "Verified ratings where available" },
   { stat: "House standard", label: "Clear expectations for every service" },
   { stat: "Postcode check", label: "Availability varies by service" },
-  { stat: "Provenance", label: "FCA-authorised and regulated broker" },
+  { stat: "Introducer only", label: "Insurance from the House is coming soon" },
 ];
 
 export function ProofBand() {
@@ -58,9 +58,10 @@ export function ProofBand() {
             </ul>
 
             <p className="mt-9 font-sans text-[13px] leading-relaxed text-house-stone/90 max-w-[54ch]">
-              House of Willow Alexander acts as an introducer for insurance, arranged by
-              Provenance, which is authorised and regulated by the Financial Conduct
-              Authority. Full details are provided before any purchase.
+              Insurance from the House is coming soon. The House acts as an introducer
+              only; when cover opens it will be arranged by an insurance specialist
+              authorised and regulated by the Financial Conduct Authority, with full
+              details provided before any purchase.
             </p>
           </div>
         </div>

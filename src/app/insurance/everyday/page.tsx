@@ -5,7 +5,6 @@ import { insuranceOg } from "@/lib/insurance/og";
 import { InsuranceTrustStrip } from "@/components/insurance/InsuranceTrustStrip";
 import { InsuranceDisclosure } from "@/components/insurance/InsuranceDisclosure";
 import { InsuranceCtaBand } from "@/components/insurance/InsuranceCtaBand";
-import { ProvenanceLockup } from "@/components/insurance/ProvenanceLockup";
 import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 
 /**
@@ -17,7 +16,7 @@ import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 export const metadata: Metadata = {
   alternates: { canonical: "/insurance/everyday" },
   title: "Everyday cover",
-  description: "Home, car, pet, travel, breakdown and bicycle cover introduced by the House and arranged through Provenance.",
+  description: "Home, car, pet, travel, breakdown and bicycle cover from the House. Coming soon, register your interest to hear when it opens.",
   ...insuranceOg("everyday", "Everyday cover"),
 };
 
@@ -31,7 +30,7 @@ const PRODUCTS = [
 const STEPS = [
   { n: "1", h: "Choose a cover", p: "Choose the type of personal insurance you need." },
   { n: "2", h: "Tell us what you need", p: "Leave the details needed for the introduction, without trying to complete the insurance application here." },
-  { n: "3", h: "Provenance takes it from there", p: "A Provenance specialist contacts you and arranges the cover." },
+  { n: "3", h: "We take it from there", p: "When insurance opens, a specialist contacts you and arranges the cover." },
 ];
 
 export default function EverydayHub() {
@@ -46,7 +45,7 @@ export default function EverydayHub() {
               Personal insurance for home, motor, pet and travel.
             </h1>
             <p className="mt-6 max-w-[52ch] font-sans text-[21px] leading-[1.6] text-house-stone">
-              Home, motor, pet, travel and other personal cover, with the House making the introduction and Provenance arranging the insurance.
+              Home, motor, pet, travel and other personal cover from the House. Coming soon — register your interest to hear when it opens.
             </p>
             <div className="mt-8">
               <a
@@ -56,7 +55,6 @@ export default function EverydayHub() {
                 Choose a cover
               </a>
             </div>
-            <ProvenanceLockup className="mt-6" />
           </div>
           <div className="relative aspect-[4/5] w-full overflow-hidden">
             <Image
@@ -128,9 +126,8 @@ export default function EverydayHub() {
       <section className="px-[5vw] py-12 text-house-cream" style={{ background: "var(--ins-accent)" }}>
         <div className="mx-auto max-w-[1120px]">
           <p className="max-w-[52ch] font-display text-[clamp(23px,2.4vw,33px)] leading-[1.25] text-house-cream">
-            The House makes the introduction. Provenance provides the regulated insurance service and arranges the cover.
+            Insurance from the House is coming soon. Register your interest and we’ll tell you the moment cover opens.
           </p>
-          <ProvenanceLockup variant="onDark" className="mt-8" />
         </div>
       </section>
 
@@ -138,8 +135,8 @@ export default function EverydayHub() {
       <section className="px-[5vw] py-12">
         <div className="mx-auto max-w-[760px]">
           <p className="font-sans text-[18.5px] leading-[1.65] text-house-brown/85">
-            Insuring a listed, high-value or otherwise specialist home? Provenance's Private Client service may be the better route.{" "}
-            <Link href="/insurance/private-client" className="text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">Speak to a specialist →</Link>
+            Insuring a listed, high-value or otherwise specialist home? The private-client route may suit you better.{" "}
+            <Link href="/insurance/private-client" className="text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">Register interest →</Link>
           </p>
         </div>
       </section>
@@ -148,10 +145,10 @@ export default function EverydayHub() {
       <InsuranceCtaBand
         eyebrow="Personal insurance"
         heading="Choose the cover you need."
-        body="Home, motor, pet, travel and other personal cover, introduced by the House and arranged through Provenance."
+        body="Home, motor, pet, travel and other personal cover from the House. Coming soon."
         primaryLabel="Choose a cover"
         primaryHref="#choose-a-cover"
-        tertiary={{ label: "Speak to a specialist", href: "/insurance/private-client" }}
+        tertiary={{ label: "Register interest", href: "/insurance/private-client" }}
       />
 
       {/* 7. Disclosure */}

@@ -4,7 +4,7 @@ import type { EverydayPage } from "@/lib/insurance/everyday-pages";
 
 /**
  * EverydayPreframe, the thin Group D pages. Explain, set expectation, then route
- * to a specialist who arranges the cover through Provenance. Enquiry-led, no
+ * to a specialist who arranges the cover through our insurance partner. Enquiry-led, no
  * form, no "compare", and (for home) a route to the advised service.
  */
 export function EverydayPreframe({ data }: { data: EverydayPage }) {

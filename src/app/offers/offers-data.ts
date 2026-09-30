@@ -122,17 +122,17 @@ export const OFFERS: Offer[] = [
     included: [
       "A no-obligation review of your existing home and contents cover",
       "A check for the common under-insurance gaps, rebuild figure included",
-      "An introduction to Provenance, who arrange and administer any cover",
+      "An introduction to our insurance partner, who arrange and administer any cover",
       "A written summary of what was discussed, yours to keep",
     ],
     eligibility:
       "Homeowners in the United Kingdom. The review is free and carries no obligation to switch.",
     priceBasis:
-      "The review is free. Any cover is arranged and administered by Provenance; the House does not advise on, sell or underwrite the policy.",
+      "The review is free. Any cover is arranged and administered by our insurance partner; the House does not advise on, sell or underwrite the policy.",
     starts: "Open now",
     ends: "Ongoing",
     exclusions:
-      "Not advice. The House introduces you to Provenance; the terms that bind are set out in the policy documents, and cover is subject to Provenance's acceptance.",
+      "Not advice. The House introduces you to our insurance partner; the terms that bind are set out in the policy documents, and cover is subject to our insurance partner's acceptance.",
     termsHref: "/legal/insurance-disclosures",
     cta: { label: "Request a review", href: "/insurance" },
   },

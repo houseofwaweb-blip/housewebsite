@@ -7,8 +7,8 @@ import { insuranceOg } from "@/lib/insurance/og";
 /**
  * §11.7 · /insurance/claims-and-help, the prominent route for people who already
  * hold cover. How to make a claim, who to contact, what to have ready, and the
- * introducer disclosure. The House connects; Provenance handles the claim.
- * Content pending Provenance compliance sign-off.
+ * introducer disclosure. The House connects; the regulated specialist handles
+ * the claim. Insurance from the House is coming soon.
  */
 export const metadata: Metadata = {
   alternates: { canonical: "/insurance/claims-and-help" },
@@ -79,7 +79,7 @@ export default function ClaimsAndHelp() {
             .
           </p>
           <p className="mt-6 font-sans text-[14px] text-house-stone/70">
-            This page describes how to reach us and how claims are handled, and is pending Provenance compliance sign-off.
+            This page describes how to reach us and how claims will be handled. Insurance from the House is coming soon.
           </p>
         </div>
       </section>

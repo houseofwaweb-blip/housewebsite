@@ -51,7 +51,7 @@ export default function OffersPage() {
           <p className="mt-5 font-sans text-[18.5px] leading-[1.65] text-house-brown/85">
             You don&rsquo;t need an offer to get started. Book any House service,
             explore garden and interior design, or ask us about cover, introduced
-            by the House and arranged by Provenance.
+            by the House and arranged by our insurance partner.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link

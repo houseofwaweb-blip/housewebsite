@@ -188,7 +188,7 @@ export default function InsuranceHub() {
       </section>
 
       {/* The published commitment */}
-      <section className="px-[5vw] pb-14">
+      <section className="px-[5vw] py-14">
         <div className="mx-auto max-w-[760px] border-l-2 border-[color:var(--ins-ink)] pl-6">
           <p className="font-display text-[clamp(23px,2.6vw,33px)] leading-[1.3] text-house-brown">
             Take the time to understand the cover, the exclusions and the policy documents before you decide. There is no need to rush the decision.

@@ -5,7 +5,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/legal/insurance-disclosures" },
   title: "Insurance disclosures",
   description:
-    "Regulatory disclosures for House of Willow Alexander home and pet cover, including our role as an introducer and the FCA-authorised intermediary.",
+    "Regulatory disclosures for insurance from House of Willow Alexander, including our role as an introducer. Insurance is coming soon; the full disclosures are published when cover opens.",
+  robots: { index: false, follow: false },
 };
 
 const cream = "var(--color-house-cream)";
@@ -28,8 +29,8 @@ const sections: { heading: string; body: string[] }[] = [
   {
     heading: "2. The authorised intermediary",
     body: [
-      "Insurance introduced by the House is arranged by Provenance, an insurance intermediary authorised and regulated by the Financial Conduct Authority (FCA). Provenance's Firm Reference Number (FRN) is 804047. You can check this on the FCA Financial Services Register at register.fca.org.uk.",
-      "Provenance is responsible for the regulated activities relating to your policy, including arranging cover, providing the required pre-sale information and handling the sale. The terms of your relationship with the intermediary are set out in the documents they provide to you.",
+      "Insurance from the House is coming soon. When cover opens, insurance introduced by the House will be arranged by an insurance intermediary authorised and regulated by the Financial Conduct Authority (FCA). The intermediary's name and Firm Reference Number (FRN) will be published here so you can check them on the FCA Financial Services Register at register.fca.org.uk.",
+      "The intermediary will be responsible for the regulated activities relating to your policy, including arranging cover, providing the required pre-sale information and handling the sale. The terms of your relationship with the intermediary will be set out in the documents they provide to you.",
     ],
   },
   {
@@ -120,8 +121,9 @@ export default function InsuranceDisclosuresPage() {
               borderTop: `1px solid ${line}`,
             }}
           >
-            The regulatory information you need before taking home or pet cover
-            introduced by the House.
+            Insurance from the House is coming soon. The regulatory information
+            you will need before taking cover introduced by the House is set out
+            here.
           </p>
         </div>
       </header>
@@ -142,8 +144,8 @@ export default function InsuranceDisclosuresPage() {
           <dl style={{ margin: 0 }}>
             {[
               ["The House's role", "Introducer only. Not the insurer, underwriter or adviser."],
-              ["Authorised intermediary", "Provenance, authorised and regulated by the FCA."],
-              ["FCA Firm Reference Number", "804047 (check at register.fca.org.uk)."],
+              ["Status", "Coming soon. Insurance from the House is not yet open."],
+              ["Authorised intermediary", "An FCA-authorised specialist, named here when cover opens."],
               ["Insurer / underwriter", "Named in your policy documents before you buy."],
             ].map(([k, v]) => (
               <div key={k} style={{ padding: "12px 0", borderBottom: `1px solid ${line}` }}>

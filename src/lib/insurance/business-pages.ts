@@ -1,7 +1,7 @@
 /**
  * Business insurance pages (spec Group E). Warm B2B referral through the House's
  * contractor, supplier and member network, no aggregator problem. Introducer
- * boundary is identical to retail: the House introduces, Provenance arranges.
+ * boundary is identical to retail: the House introduces, our insurance partner arranges.
  * "Request a review" (the silent-review device), 6-field form with company.
  */
 
@@ -32,11 +32,11 @@ export const BUSINESS_PAGES: BusinessPage[] = [
     title: "Business insurance",
     metaTitle: "Business insurance broker introductions",
     metaDescription:
-      "Business insurance introduced by the House and arranged by Provenance, with a no-obligation review of existing cover for businesses in the House network.",
+      "Business insurance introduced by the House and arranged by our insurance partner, with a no-obligation review of existing cover for businesses in the House network.",
     hero: {
       eyebrow: "Business",
       heading: "Business insurance built around the business you actually run.",
-      lede: "Commercial insurance needs to reflect the work, the people, the premises and the risks behind the business. The House makes the introduction and Provenance reviews and arranges the cover.",
+      lede: "Commercial insurance needs to reflect the work, the people, the premises and the risks behind the business. The House makes the introduction and our insurance partner reviews and arranges the cover.",
     },
     image: "/insurance/cat-business.webp",
     imageAlt:
@@ -54,14 +54,14 @@ export const BUSINESS_PAGES: BusinessPage[] = [
     detail: {
       title: "A review of the cover you already hold",
       points: [
-        { h: "Review the existing cover", p: "Provenance can review the current arrangements for gaps, under-insurance, unnecessary cover and the level of premium. Nothing changes unless you choose to make a change." },
+        { h: "Review the existing cover", p: "Our insurance partner can review the current arrangements for gaps, under-insurance, unnecessary cover and the level of premium. Nothing changes unless you choose to make a change." },
         { h: "Built for the business, not a category", p: "The review starts with how the business operates and the risks it carries, then matches those needs to suitable commercial cover." },
-        { h: "Home and business, where relevant", p: "Where both personal and business risks need attention, Provenance can look at them within the same broker relationship." },
+        { h: "Home and business, where relevant", p: "Where both personal and business risks need attention, our insurance partner can look at them within the same broker relationship." },
       ],
     },
     placed: {
-      heading: "What Provenance can place",
-      body: "Business combined, professional indemnity, directors' and officers', property owners, fleet from two vehicles, motor trade and cyber. The House introduces you; Provenance arranges and administers the cover.",
+      heading: "What our insurance partner can place",
+      body: "Business combined, professional indemnity, directors' and officers', property owners, fleet from two vehicles, motor trade and cyber. The House introduces you; our insurance partner arranges and administers the cover.",
     },
     silentReview: true,
     subLinks: [
@@ -75,11 +75,11 @@ export const BUSINESS_PAGES: BusinessPage[] = [
     title: "Trades and contractors",
     metaTitle: "Tradesman and contractor insurance",
     metaDescription:
-      "Public and employers' liability, tools, contract works and professional indemnity for trades and contractors. The House's own supply chain. Introduced by the House, arranged by Provenance.",
+      "Public and employers' liability, tools, contract works and professional indemnity for trades and contractors. The House's own supply chain. Introduced by the House, arranged by our insurance partner.",
     hero: {
       eyebrow: "Business",
       heading: "Insurance for the work, the tools and the liability that comes with the job.",
-      lede: "Trades and contractors can need several kinds of cover working together. The House introduces you to Provenance to review the work you do and arrange the cover around it.",
+      lede: "Trades and contractors can need several kinds of cover working together. The House introduces you to our insurance partner to review the work you do and arrange the cover around it.",
     },
     image: "/insurance/interior-editorial.webp",
     imageAlt:
@@ -99,12 +99,12 @@ export const BUSINESS_PAGES: BusinessPage[] = [
       points: [
         { h: "Liability, sized to the work", p: "Public and employers’ liability limits should reflect the jobs, sites and headcount of the business." },
         { h: "Tools and contract works", p: "Cover can include tools and equipment, as well as contract works while a project is underway." },
-        { h: "Indicative premiums", p: "Tradesperson cover typically runs around £360 to £540 a year. Figures are indicative and confirmed case by case, pending Provenance sign-off." },
+        { h: "Indicative premiums", p: "Tradesperson cover typically runs around £360 to £540 a year. Figures are indicative and confirmed case by case, confirmed on application." },
       ],
     },
     placed: {
-      heading: "What Provenance can place",
-      body: "Liability, tools, contract works, professional indemnity and the wider commercial combined cover a trade needs. The House introduces you; Provenance arranges and administers the cover.",
+      heading: "What our insurance partner can place",
+      body: "Liability, tools, contract works, professional indemnity and the wider commercial combined cover a trade needs. The House introduces you; our insurance partner arranges and administers the cover.",
     },
     enquiryType: "trades-and-contractors",
   },
@@ -113,7 +113,7 @@ export const BUSINESS_PAGES: BusinessPage[] = [
     title: "Professional indemnity",
     metaTitle: "Professional indemnity insurance",
     metaDescription:
-      "Professional indemnity for architects, designers, surveyors and consultants, with limits set against real exposure. Introduced by the House, arranged by Provenance.",
+      "Professional indemnity for architects, designers, surveyors and consultants, with limits set against real exposure. Introduced by the House, arranged by our insurance partner.",
     hero: {
       eyebrow: "Business",
       heading: "Professional indemnity for the advice, design and expertise your clients rely on.",
@@ -141,8 +141,8 @@ export const BUSINESS_PAGES: BusinessPage[] = [
       ],
     },
     placed: {
-      heading: "What Provenance can place",
-      body: "Professional indemnity across the built-environment and consulting professions, alongside the wider business cover a practice needs. The House introduces you; Provenance arranges and administers the cover.",
+      heading: "What our insurance partner can place",
+      body: "Professional indemnity across the built-environment and consulting professions, alongside the wider business cover a practice needs. The House introduces you; our insurance partner arranges and administers the cover.",
     },
     enquiryType: "professional-indemnity",
   },

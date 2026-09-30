@@ -1,6 +1,6 @@
 /**
  * Insurance guides (spec Group G). Organic search support: editorial tone, not
- * an ad. Every statistic is indicative and pending Provenance sign-off. Soft
+ * an ad. Every statistic is indicative and confirmed on application. Soft
  * route to the advised service at the foot only. No calculators (that edges
  * toward advice). No urgency.
  */

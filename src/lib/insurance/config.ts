@@ -1,47 +1,18 @@
 /**
  * Insurance build, shared config and the regulatory perimeter in code.
  *
- * The House is an INTRODUCER ONLY. Provenance (FRN 804047, part of Lloyd &
- * Whyte, Benefact-owned) arranges and administers all cover. Nothing on this
- * domain may describe the House as advising on, arranging, administering,
+ * Insurance from the House is COMING SOON. The House is an INTRODUCER ONLY: an
+ * FCA-regulated insurance specialist will arrange and administer all cover when
+ * it opens, and that partner is not named on the site until then. Nothing on
+ * this domain may describe the House as advising on, arranging, administering,
  * COMPARING or transacting insurance. No advice language. No urgency. Forms
  * never ask pre-purchase questions (sums insured, contents value, claims
  * history, existing insurer), Article 33B limits the House to passing
  * information it already holds.
- *
- * ALL regulatory wording here is INDICATIVE and pending Provenance compliance
- * sign-off before publish. Do not treat as final.
  */
-
-export const PROVENANCE = {
-  legalName: "Provenance Insurance Brokers Ltd",
-  frn: "804047",
-  group: "Lloyd & Whyte",
-  backer: "Benefact",
-} as const;
 
 /** The introducer legal entity (the selling party). HoWA appears nowhere. */
 export const INTRODUCER_LEGAL_NAME = "House of Willow Alexander";
-
-/**
- * Mandated disclosure, INDICATIVE wording from the spec, pending Provenance
- * compliance's verbatim version. Rendered directly above every primary action,
- * never buried in the site footer.
- */
-export const DISCLOSURE_TEXT =
-  `Insurance from the House is arranged and administered by ${PROVENANCE.legalName}, ` +
-  `authorised and regulated by the Financial Conduct Authority (FRN ${PROVENANCE.frn}). ` +
-  `${INTRODUCER_LEGAL_NAME} acts solely as an introducer.`;
-
-/**
- * Reference link to Provenance for everyday cover. The everyday journey is
- * enquiry-led, not self-serve: the House takes the enquiry and a specialist
- * arranges the cover through Provenance. The House hosts no quote form and does
- * not run a quote-and-buy handoff. This must point at PROVENANCE, never at HoWA.
- * Defaults to the Provenance site; override via NEXT_PUBLIC_INSURANCE_QUOTE_URL.
- */
-export const QUOTE_SERVICE_URL =
-  process.env.NEXT_PUBLIC_INSURANCE_QUOTE_URL ?? "https://www.provenanceinsurance.co.uk/";
 
 /**
  * The forthcoming online portal the House will send enquirers into. Not live at

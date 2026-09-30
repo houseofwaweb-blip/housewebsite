@@ -3,7 +3,7 @@
  * TYPE, not per product. All render from the SpecialistPage template.
  *
  * Copy rules baked in: no "compare" as a House action, no advice language, no
- * urgency, premium ranges labelled indicative and pending Provenance sign-off.
+ * urgency, premium ranges labelled indicative and confirmed on application.
  * The 5-field enquiry form carries the disclosure above its button.
  */
 
@@ -19,7 +19,7 @@ export type SpecialistPage = {
   image?: string;
   imageAlt?: string;
   /**
-   * Shared "House Record" still-life, rendered in the burgundy "What Provenance
+   * Shared "House Record" still-life, rendered in the burgundy "What our insurance partner
    * can place" section on every page (book text edited to drop the literal
    * "House Record" wording).
    */
@@ -101,9 +101,9 @@ export const DEFAULT_LIMITATIONS: NonNullable<SpecialistPage["limitations"]> = {
     { h: "Anything already known", p: "A loss, fault or condition that already exists, or that you already know about when cover begins, may be excluded." },
     { h: "Under-insurance", p: "If the sum insured is too low, a claim may be reduced. Rebuild cost and contents values should reflect the amount actually at risk." },
     { h: "Limits and excesses", p: "Section limits, single-item limits and the excess all affect what may be paid. Higher-value items may need to be listed separately." },
-    { h: "The House does not advise", p: "The House introduces you to Provenance and does not advise on, arrange or decide your cover. The terms that bind are the ones in the policy documents, agreed with Provenance." },
+    { h: "The House does not advise", p: "The House introduces you to our insurance partner and does not advise on, arrange or decide your cover. The terms that bind are the ones in the policy documents, agreed with our insurance partner." },
   ],
-  note: "The policy wording, key facts and exclusions are provided by Provenance before you commit to anything.",
+  note: "The policy wording, key facts and exclusions are provided by our insurance partner before you commit to anything.",
 };
 
 export const SPECIALIST_PAGES: SpecialistPage[] = [
@@ -112,7 +112,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     title: "Listed building insurance",
     metaTitle: "Listed building insurance",
     metaDescription:
-      "Cover for Grade II, II* and I listed homes, built around like-for-like reinstatement and a rebuild cost that bears no relation to market value. Arranged by Provenance; introduced by the House.",
+      "Cover for Grade II, II* and I listed homes, built around like-for-like reinstatement and a rebuild cost that bears no relation to market value. Arranged by our insurance partner; introduced by the House.",
     hero: {
       eyebrow: "Specialist property",
       heading: "Listed building insurance that starts with the building itself.",
@@ -151,8 +151,8 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       ],
     },
     placed: {
-      heading: "What Provenance can place",
-      body: "Provenance works with the specialist markets that underwrite heritage risk, so a listed home can sit within one arranged policy alongside contents, outbuildings and, where relevant, the rest of the estate. The House introduces you; Provenance arranges and administers the cover.",
+      heading: "What our insurance partner can place",
+      body: "Our insurance partner works with the specialist markets that underwrite heritage risk, so a listed home can sit within one arranged policy alongside contents, outbuildings and, where relevant, the rest of the estate. The House introduces you; our insurance partner arranges and administers the cover.",
     },
     evidence: [
       { stat: "379,580", label: "listed buildings in England" },
@@ -171,9 +171,9 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
         { h: "The rebuild figure you give", p: "Cover follows the reinstatement sum insured. Set it below the true cost of a like-for-like heritage rebuild and a claim can be cut in proportion, which is exactly the trap a proper assessment avoids." },
         { h: "Gradual decay and known defects", p: "Rot, damp, movement and deterioration that build up over time, or a defect already known, are maintenance matters rather than insured events." },
         { h: "Consent and unapproved work", p: "Listed-building consent and appropriate repair methods can matter to the claim. Work carried out without the required consent may affect the cover." },
-        { h: "Not advice", p: "The House introduces you to Provenance and does not advise on cover. Grades, limits and exclusions are set out in the policy documents." },
+        { h: "Not advice", p: "The House introduces you to our insurance partner and does not advise on cover. Grades, limits and exclusions are set out in the policy documents." },
       ],
-      note: "The policy wording and exclusions come from Provenance before you commit.",
+      note: "The policy wording and exclusions come from our insurance partner before you commit.",
     },
     enquiryType: "listed-buildings",
   },
@@ -182,7 +182,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     title: "Thatched property insurance",
     metaTitle: "Thatched property insurance",
     metaDescription:
-      "Insurance for thatched homes, with underwriting shaped by the roof, chimney, maintenance and wider property. Around three-quarters are also listed. Arranged by Provenance; introduced by the House.",
+      "Insurance for thatched homes, with underwriting shaped by the roof, chimney, maintenance and wider property. Around three-quarters are also listed. Arranged by our insurance partner; introduced by the House.",
     hero: {
       eyebrow: "Specialist property",
       heading: "Thatched-home insurance built around the roof, chimney and wider property.",
@@ -229,8 +229,8 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       ],
     },
     placed: {
-      heading: "What Provenance can place",
-      body: "Provenance works with markets that understand thatch and heritage construction, so the roof, the building and its contents sit within one arranged policy. The House introduces you; Provenance arranges and administers the cover.",
+      heading: "What our insurance partner can place",
+      body: "Our insurance partner works with markets that understand thatch and heritage construction, so the roof, the building and its contents sit within one arranged policy. The House introduces you; our insurance partner arranges and administers the cover.",
     },
     evidence: [
       { stat: "~60,000", label: "thatched properties in Britain" },
@@ -245,9 +245,9 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
         { h: "Sweeping and maintenance conditions", p: "Cover typically requires the chimney swept to a stated frequency and the thatch kept in good order. Miss the conditions and a fire claim can be affected." },
         { h: "The chimney and wood-burner", p: "The condition of the chimney, flue and any wood-burning appliance can affect the terms offered and the handling of a claim." },
         { h: "Electrics and known defects", p: "An out-of-date electrical inspection, or a defect already known, is a maintenance matter rather than an insured event." },
-        { h: "Not advice", p: "The House introduces you to Provenance and does not advise on cover. Limits and exclusions are set out in the policy documents." },
+        { h: "Not advice", p: "The House introduces you to our insurance partner and does not advise on cover. Limits and exclusions are set out in the policy documents." },
       ],
-      note: "The policy wording and conditions come from Provenance before you commit.",
+      note: "The policy wording and conditions come from our insurance partner before you commit.",
     },
     enquiryType: "thatched-properties",
   },
@@ -256,7 +256,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     title: "Non-standard construction",
     metaTitle: "Non-standard construction insurance",
     metaDescription:
-      "Cover for timber frame, cob, stone, flint, single-skin, steel-frame and prefabricated homes where the construction needs specialist underwriting. Arranged by Provenance; introduced by the House.",
+      "Cover for timber frame, cob, stone, flint, single-skin, steel-frame and prefabricated homes where the construction needs specialist underwriting. Arranged by our insurance partner; introduced by the House.",
     hero: {
       eyebrow: "Specialist property",
       heading: "Specialist insurance for homes built in less common materials and systems.",
@@ -303,8 +303,8 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       ],
     },
     placed: {
-      heading: "What Provenance can place",
-      body: "Provenance works with underwriters who can assess non-standard construction on the individual property and its condition. The House makes the introduction; Provenance arranges and administers the cover.",
+      heading: "What our insurance partner can place",
+      body: "Our insurance partner works with underwriters who can assess non-standard construction on the individual property and its condition. The House makes the introduction; our insurance partner arranges and administers the cover.",
     },
     enquiryType: "non-standard-construction",
   },
@@ -313,7 +313,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     title: "Second and holiday homes",
     metaTitle: "Second and holiday home insurance",
     metaDescription:
-      "Insurance for second homes, holiday homes and holiday lets, with cover arranged around the way the property is occupied and used. Introduced by the House and arranged by Provenance.",
+      "Insurance for second homes, holiday homes and holiday lets, with cover arranged around the way the property is occupied and used. Introduced by the House and arranged by our insurance partner.",
     hero: {
       eyebrow: "Specialist property",
       heading: "Second-home insurance should reflect how the property is actually used.",
@@ -360,8 +360,8 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       ],
     },
     placed: {
-      heading: "What Provenance can place",
-      body: "Provenance arranges cover for second, holiday and overseas homes that reflects real occupancy and use, and can consolidate them onto one renewal date with the main home. The House introduces you; Provenance arranges and administers the cover.",
+      heading: "What our insurance partner can place",
+      body: "Our insurance partner arranges cover for second, holiday and overseas homes that reflects real occupancy and use, and can consolidate them onto one renewal date with the main home. The House introduces you; our insurance partner arranges and administers the cover.",
     },
     evidence: [
       { stat: "268,152", label: "second homes in England" },
@@ -375,9 +375,9 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
         { h: "Long periods empty", p: "Cover may change after a property has been unoccupied for a set number of days, particularly for risks such as escape of water." },
         { h: "Letting not declared", p: "If the property is let, that use needs to be declared and insured on the correct basis." },
         { h: "Gradual damage and maintenance", p: "Slow leaks, damp and deterioration that go unnoticed between visits are maintenance matters, not insured events." },
-        { h: "Not advice", p: "The House introduces you to Provenance and does not advise on cover. Occupancy conditions and exclusions are set out in the policy documents." },
+        { h: "Not advice", p: "The House introduces you to our insurance partner and does not advise on cover. Occupancy conditions and exclusions are set out in the policy documents." },
       ],
-      note: "The policy wording and occupancy conditions come from Provenance before you commit.",
+      note: "The policy wording and occupancy conditions come from our insurance partner before you commit.",
     },
     enquiryType: "second-homes",
   },
@@ -386,7 +386,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     title: "Unoccupied and probate property",
     metaTitle: "Unoccupied and probate property insurance",
     metaDescription:
-      "Insurance for homes left empty during probate, a move, a renovation or another period of unoccupancy. Introduced by the House and arranged by Provenance.",
+      "Insurance for homes left empty during probate, a move, a renovation or another period of unoccupancy. Introduced by the House and arranged by our insurance partner.",
     hero: {
       eyebrow: "Specialist property",
       heading: "An empty house is still a home, and it still needs cover.",
@@ -433,8 +433,8 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       ],
     },
     placed: {
-      heading: "What Provenance can place",
-      body: "Provenance arranges unoccupied and probate cover written for the situation, for the period it is needed. The House introduces you; Provenance arranges and administers the cover.",
+      heading: "What our insurance partner can place",
+      body: "Our insurance partner arranges unoccupied and probate cover written for the situation, for the period it is needed. The House introduces you; our insurance partner arranges and administers the cover.",
     },
     evidence: [{ stat: "309,856", label: "long-term empty homes in England" }],
     limitations: {
@@ -445,9 +445,9 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
         { h: "The conditions must be kept", p: "Regular inspections, water drained down or heating maintained through winter, and secure boarding where needed are typical requirements. A claim can rest on them being met." },
         { h: "Reduced perils while empty", p: "Cover on an unoccupied home is often narrower than a lived-in one, with theft, escape of water and malicious damage limited or excluded." },
         { h: "Gradual damage", p: "Slow deterioration in a home nobody is living in is a maintenance matter rather than an insured event." },
-        { h: "Not advice", p: "The House introduces you to Provenance and does not advise on cover. The conditions and exclusions are set out in the policy documents." },
+        { h: "Not advice", p: "The House introduces you to our insurance partner and does not advise on cover. The conditions and exclusions are set out in the policy documents." },
       ],
-      note: "The policy wording and conditions come from Provenance before you commit.",
+      note: "The policy wording and conditions come from our insurance partner before you commit.",
     },
     enquiryType: "unoccupied-property",
   },
@@ -456,7 +456,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     title: "Renovation, extension and contract works",
     metaTitle: "Renovation and contract works insurance",
     metaDescription:
-      "One policy covering the existing structure, contract works, contents and liability for the period of building work. Arranged by Provenance; introduced by the House.",
+      "One policy covering the existing structure, contract works, contents and liability for the period of building work. Arranged by our insurance partner; introduced by the House.",
     hero: {
       eyebrow: "Specialist property",
       heading: "Building work changes the risk. The insurance needs to change with it.",
@@ -498,13 +498,13 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       title: "What renovation cover can include",
       points: [
         { h: "One policy, four things", p: "The existing structure, the contract works, contents and homeowner liability can be covered for the period of the project, subject to the policy terms." },
-        { h: "JCT contracts, in plain English", p: "The building contract sets out who is responsible for insuring different parts of the project. Provenance can explain how the insurance arrangement relates to the JCT position. This is factual information, not legal advice." },
+        { h: "JCT contracts, in plain English", p: "The building contract sets out who is responsible for insuring different parts of the project. Our insurance partner can explain how the insurance arrangement relates to the JCT position. This is factual information, not legal advice." },
         { h: "Non-negligence cover", p: "Where work happens close to a neighbour, non-negligence cover matters. Indicative costs sit around £550 for shorter projects and around £1,000 where non-negligence is included; figures are indicative and confirmed case by case." },
       ],
     },
     placed: {
-      heading: "What Provenance can place",
-      body: "Provenance arranges renovation and contract works cover for the life of a project, and the House can route straight in from the works it already manages. The House introduces you; Provenance arranges and administers the cover.",
+      heading: "What our insurance partner can place",
+      body: "Our insurance partner arranges renovation and contract works cover for the life of a project, and the House can route straight in from the works it already manages. The House introduces you; our insurance partner arranges and administers the cover.",
     },
     crossLinks: [{ label: "Guide: insurance during building work", href: "/insurance/guides/renovation-insurance" }],
     limitations: {
@@ -515,9 +515,9 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
         { h: "The contractor's own liability", p: "A works policy is not a substitute for the contractor's public liability and their cover for their own work and workmanship. The JCT contract sets out who insures what." },
         { h: "Faulty design or workmanship", p: "Defective design, materials or workmanship, and putting right work that was done badly, sit outside the cover." },
         { h: "Neighbours, without non-negligence cover", p: "Damage to an adjoining property caused without negligence is only covered where non-negligence cover is specifically included." },
-        { h: "Not advice", p: "The House introduces you to Provenance and does not advise on cover. Scope, limits and exclusions are set out in the policy documents." },
+        { h: "Not advice", p: "The House introduces you to our insurance partner and does not advise on cover. Scope, limits and exclusions are set out in the policy documents." },
       ],
-      note: "The policy wording and the JCT position come from Provenance before you commit.",
+      note: "The policy wording and the JCT position come from our insurance partner before you commit.",
     },
     enquiry: { withProjectStart: true },
     enquiryType: "renovation-and-extension",
@@ -527,7 +527,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     title: "Fine art, jewellery and collections",
     metaTitle: "Fine art, jewellery and collections insurance",
     metaDescription:
-      "Cover for scheduled items, art, jewellery, watches, wine and design, where general contents limits fall short. Arranged by Provenance; introduced by the House.",
+      "Cover for scheduled items, art, jewellery, watches, wine and design, where general contents limits fall short. Arranged by our insurance partner; introduced by the House.",
     hero: {
       eyebrow: "Specialist assets",
       heading: "Valuable pieces need cover that recognises what they are.",
@@ -568,14 +568,14 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     detail: {
       title: "How it is handled",
       points: [
-        { h: "Valuation", p: "Scheduled items should be valued and reviewed as markets move. The House does not appraise items; it introduces you to the insurance route and Provenance can work with appropriate valuation partners." },
-        { h: "The ancillary network", p: "Provenance's proposition extends beyond the policy to collection management, restoration, security and valuation partners." },
+        { h: "Valuation", p: "Scheduled items should be valued and reviewed as markets move. The House does not appraise items; it introduces you to the insurance route and our insurance partner can work with appropriate valuation partners." },
+        { h: "The ancillary network", p: "Our insurance partner's proposition extends beyond the policy to collection management, restoration, security and valuation partners." },
         { h: "Newer asset classes", p: "Watches, wine, design pieces and other modern collections can be handled alongside more traditional art and jewellery." },
       ],
     },
     placed: {
-      heading: "What Provenance can place",
-      body: "Provenance arranges scheduled cover for art and collections and can bring it into a wider household arrangement where appropriate. The House makes the introduction; Provenance arranges and administers the cover.",
+      heading: "What our insurance partner can place",
+      body: "Our insurance partner arranges scheduled cover for art and collections and can bring it into a wider household arrangement where appropriate. The House makes the introduction; our insurance partner arranges and administers the cover.",
     },
     evidence: [{ stat: "Both ways", label: "a detailed schedule can identify over-insurance as well as gaps in cover" }],
     limitations: {
@@ -586,9 +586,9 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
         { h: "Only what is scheduled", p: "Items above the general single-item limit may need to be listed and valued separately to receive the intended level of cover." },
         { h: "Valuations must be current", p: "Cover follows the valuation on file. An out-of-date figure can leave a piece under-insured as markets move, which is why revaluation matters." },
         { h: "Wear, damage and known faults", p: "Wear, inherent defects and damage that already exists are generally outside the policy, and some transit or loan arrangements need to be agreed in advance." },
-        { h: "Not advice", p: "The House does not appraise or advise on value. Provenance and its valuation partners handle that; limits and exclusions are in the policy documents." },
+        { h: "Not advice", p: "The House does not appraise or advise on value. Our insurance partner and its valuation partners handle that; limits and exclusions are in the policy documents." },
       ],
-      note: "The policy wording and schedule terms come from Provenance before you commit.",
+      note: "The policy wording and schedule terms come from our insurance partner before you commit.",
     },
     enquiryType: "fine-art-and-collections",
   },
@@ -597,11 +597,11 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     title: "Classic and prestige motor",
     metaTitle: "Classic and prestige motor insurance",
     metaDescription:
-      "Agreed-value cover for classic, collection and prestige vehicles, consolidated onto one renewal date with the home. Arranged by Provenance; introduced by the House.",
+      "Agreed-value cover for classic, collection and prestige vehicles, consolidated onto one renewal date with the home. Arranged by our insurance partner; introduced by the House.",
     hero: {
       eyebrow: "Specialist assets",
       heading: "Agreed-value and specialist motor cover for classic and prestige cars.",
-      lede: "There are 1.93 million registered historic vehicles in the UK, owned by 690,777 people. Provenance can arrange classic, prestige and collection motor cover, including agreed-value policies where appropriate.",
+      lede: "There are 1.93 million registered historic vehicles in the UK, owned by 690,777 people. Our insurance partner can arrange classic, prestige and collection motor cover, including agreed-value policies where appropriate.",
     },
     image: "/insurance/cat-cars.webp",
     imageAlt:
@@ -631,7 +631,7 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     whyDifferent: {
       heading: "Specialist cover, brought into the wider relationship",
       body: [
-        "Classic and prestige motor is a specialist market in its own right. Through Provenance, the vehicle can also sit within the same broker relationship as the home and other private-client assets where appropriate.",
+        "Classic and prestige motor is a specialist market in its own right. Through our insurance partner, the vehicle can also sit within the same broker relationship as the home and other private-client assets where appropriate.",
         "Agreed value can be especially useful for vehicles whose worth is not well represented by a general market-value settlement.",
       ],
     },
@@ -644,8 +644,8 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       ],
     },
     placed: {
-      heading: "What Provenance can place",
-      body: "Provenance arranges classic and prestige motor cover and consolidates it with the household policy. The House introduces you; Provenance arranges and administers the cover.",
+      heading: "What our insurance partner can place",
+      body: "Our insurance partner arranges classic and prestige motor cover and consolidates it with the household policy. The House introduces you; our insurance partner arranges and administers the cover.",
     },
     evidence: [
       { stat: "1.93m", label: "registered historic vehicles in the UK" },
@@ -658,11 +658,11 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
     title: "Boat, yacht & aviation",
     metaTitle: "Boat, yacht and aviation insurance",
     metaDescription:
-      "Cover for boats, yachts and aircraft, from a family boat to complex Lloyd's placements, arranged alongside the wider estate. Introduced by the House, arranged by Provenance.",
+      "Cover for boats, yachts and aircraft, from a family boat to complex Lloyd's placements, arranged alongside the wider estate. Introduced by the House, arranged by our insurance partner.",
     hero: {
       eyebrow: "Specialist assets",
       heading: "Marine and aviation cover, arranged alongside the wider estate.",
-      lede: "Boats, yachts and aircraft are insured through specialist markets with their own requirements around value, use, storage, surveys and who operates them. Provenance can arrange that cover alongside a private-client relationship.",
+      lede: "Boats, yachts and aircraft are insured through specialist markets with their own requirements around value, use, storage, surveys and who operates them. Our insurance partner can arrange that cover alongside a private-client relationship.",
     },
     image: "/insurance/boat-yacht-aviation.webp",
     imageAlt: "A classic yacht's brass and teak detail, an asset arranged alongside the home on one policy.",
@@ -699,8 +699,8 @@ export const SPECIALIST_PAGES: SpecialistPage[] = [
       ],
     },
     placed: {
-      heading: "What Provenance can place",
-      body: "Provenance works with specialist marine and aviation markets, including Lloyd’s of London where appropriate, and can coordinate the cover with a wider private-client arrangement. The House makes the introduction; Provenance arranges and administers the cover.",
+      heading: "What our insurance partner can place",
+      body: "Our insurance partner works with specialist marine and aviation markets, including Lloyd’s of London where appropriate, and can coordinate the cover with a wider private-client arrangement. The House makes the introduction; our insurance partner arranges and administers the cover.",
     },
     crossLinks: [{ label: "Private client insurance", href: "/insurance/private-client" }],
     enquiryType: "boat-yacht-aviation",
@@ -913,7 +913,7 @@ function withRelated(page: SpecialistPage | undefined): SpecialistPage | undefin
 }
 
 /**
- * The two contextual links under each page's "What Provenance can place" band:
+ * The two contextual links under each page's "What our insurance partner can place" band:
  * one relevant sibling cover and one relevant guide. Centralised so every page
  * carries the same pair (a cover + a guide), not an ad-hoc single link.
  */
@@ -1034,11 +1034,11 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
     title: "Home insurance",
     metaTitle: "Home insurance",
     metaDescription:
-      "Buildings and contents insurance introduced by the House and arranged by Provenance, with specialist routes available for period, listed and high-value homes.",
+      "Buildings and contents insurance introduced by the House and arranged by our insurance partner, with specialist routes available for period, listed and high-value homes.",
     hero: {
       eyebrow: "Everyday cover",
       heading: "Home insurance that starts with the home itself.",
-      lede: "Buildings and contents cover for houses and flats, arranged around the property and what you want to protect. The House makes the introduction and Provenance arranges the policy.",
+      lede: "Buildings and contents cover for houses and flats, arranged around the property and what you want to protect. The House makes the introduction and our insurance partner arranges the policy.",
     },
     image: "/insurance/ev-home.webp",
     imageAlt: "A well-kept everyday home, the kind covered by straightforward buildings and contents insurance.",
@@ -1057,7 +1057,7 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
       heading: "Start with the home itself",
       body: [
         "The right home cover depends on the building, the contents, the rebuild figure and how the property is used, not simply the address.",
-        "Provenance can arrange the buildings, contents and optional cover that fit the property, and route more specialist homes to its advised service where needed.",
+        "Our insurance partner can arrange the buildings, contents and optional cover that fit the property, and route more specialist homes to its advised service where needed.",
       ],
     },
     differenceIntro:
@@ -1077,8 +1077,8 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
       ],
     },
     placed: {
-      heading: "What Provenance can place",
-      body: "Provenance arranges buildings and contents cover and can route period, listed or high-value homes to its advised Private Client service where that is more appropriate. The House makes the introduction.",
+      heading: "What our insurance partner can place",
+      body: "Our insurance partner arranges buildings and contents cover and can route period, listed or high-value homes to its advised Private Client service where that is more appropriate. The House makes the introduction.",
     },
     limitations: {
       heading: "What home cover does not include",
@@ -1088,9 +1088,9 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
         { h: "Wear, tear and gradual damage", p: "Ageing, damp and leaks that develop gradually are generally treated as maintenance issues rather than insured events." },
         { h: "Under-insurance", p: "If the rebuild figure or contents value is too low, a claim may be reduced. Rebuild cost is different from market value." },
         { h: "Single-item and valuables limits", p: "Higher-value belongings may need to be listed separately, and cover away from the home may need to be added specifically." },
-        { h: "Not advice", p: "The House introduces you to Provenance and does not advise on cover. Limits and exclusions are set out in the policy documents." },
+        { h: "Not advice", p: "The House introduces you to our insurance partner and does not advise on cover. Limits and exclusions are set out in the policy documents." },
       ],
-      note: "The policy wording and exclusions come from Provenance before you commit.",
+      note: "The policy wording and exclusions come from our insurance partner before you commit.",
     },
     crossLinks: [{ label: "Period, listed or high-value home? Speak to a specialist", href: "/insurance/private-client" }],
     relatedCovers: EVERYDAY_COVERS_GRID,
@@ -1101,7 +1101,7 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
     title: "Car, van and motorbike",
     metaTitle: "Car, van and motorbike insurance",
     metaDescription:
-      "Everyday motor cover for car, van and motorbike, plus temporary cover from one hour to 28 days. Introduced by the House, arranged by Provenance.",
+      "Everyday motor cover for car, van and motorbike, plus temporary cover from one hour to 28 days. Introduced by the House, arranged by our insurance partner.",
     hero: {
       eyebrow: "Everyday cover",
       heading: "Cover for the car, van or motorbike you rely on.",
@@ -1124,7 +1124,7 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
       heading: "Cover that reflects how the vehicle is used",
       body: [
         "The vehicle, the drivers, where it is kept and how it is used all affect the cover. Those details matter more than a headline price on its own.",
-        "Provenance can arrange everyday motor cover and temporary options, with specialist routes available for classic, prestige and collection vehicles.",
+        "Our insurance partner can arrange everyday motor cover and temporary options, with specialist routes available for classic, prestige and collection vehicles.",
       ],
     },
     differenceIntro:
@@ -1144,8 +1144,8 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
       ],
     },
     placed: {
-      heading: "What Provenance can place",
-      body: "Provenance arranges everyday motor cover across car, van, motorbike and temporary use. The House introduces you; Provenance arranges and administers the cover.",
+      heading: "What our insurance partner can place",
+      body: "Our insurance partner arranges everyday motor cover across car, van, motorbike and temporary use. The House introduces you; our insurance partner arranges and administers the cover.",
     },
     limitations: {
       heading: "What motor cover does not include",
@@ -1155,9 +1155,9 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
         { h: "Wear and mechanical breakdown", p: "General wear, servicing and mechanical breakdown are not part of a motor policy unless breakdown cover is added separately." },
         { h: "The wrong class of use", p: "The declared class of use and named drivers need to match how the vehicle is actually used. A mismatch can affect a claim." },
         { h: "Excess and modifications", p: "An excess may apply to a claim, and modifications need to be declared where required by the insurer." },
-        { h: "Not advice", p: "The House introduces you to Provenance and does not advise on cover. Limits and exclusions are set out in the policy documents." },
+        { h: "Not advice", p: "The House introduces you to our insurance partner and does not advise on cover. Limits and exclusions are set out in the policy documents." },
       ],
-      note: "The policy wording and exclusions come from Provenance before you commit.",
+      note: "The policy wording and exclusions come from our insurance partner before you commit.",
     },
     crossLinks: [{ label: "A classic or prestige vehicle? Speak to a specialist", href: "/insurance/classic-and-prestige-motor" }],
     relatedCovers: EVERYDAY_COVERS_GRID,
@@ -1168,11 +1168,11 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
     title: "Pet and travel",
     metaTitle: "Pet and travel insurance",
     metaDescription:
-      "Pet cover, and single-trip or annual travel including specialist medical. Introduced by the House, arranged by Provenance.",
+      "Pet cover, and single-trip or annual travel including specialist medical. Introduced by the House, arranged by our insurance partner.",
     hero: {
       eyebrow: "Everyday cover",
       heading: "Cover for the pet at home and the trips away.",
-      lede: "Pet insurance for cats and dogs, alongside single-trip, annual multi-trip and specialist travel cover arranged through Provenance.",
+      lede: "Pet insurance for cats and dogs, alongside single-trip, annual multi-trip and specialist travel cover arranged through our insurance partner.",
     },
     image: "/insurance/ev-pet.webp",
     imageAlt: "A pet's collar, leash and travel things on a table, standing for everyday pet and travel cover.",
@@ -1211,8 +1211,8 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
       ],
     },
     placed: {
-      heading: "What Provenance can place",
-      body: "Provenance arranges pet cover and single-trip or annual travel, including specialist medical travel. The House introduces you; Provenance arranges and administers the cover.",
+      heading: "What our insurance partner can place",
+      body: "Our insurance partner arranges pet cover and single-trip or annual travel, including specialist medical travel. The House introduces you; our insurance partner arranges and administers the cover.",
     },
     limitations: {
       heading: "What pet and travel cover does not include",
@@ -1222,9 +1222,9 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
         { h: "Pre-existing conditions", p: "Existing or previous conditions may be excluded unless the policy specifically accepts them." },
         { h: "Undeclared medical history (travel)", p: "Travel cover can be affected if an existing medical condition is not declared where the policy requires it. Specialist medical travel cover may be available." },
         { h: "Time limits and excesses", p: "Veterinary-fee cover can have limits by condition or policy year, and pet and travel policies may carry an excess. Routine and preventive treatment is generally outside pet insurance." },
-        { h: "Not advice", p: "The House introduces you to Provenance and does not advise on cover. Limits and exclusions are set out in the policy documents." },
+        { h: "Not advice", p: "The House introduces you to our insurance partner and does not advise on cover. Limits and exclusions are set out in the policy documents." },
       ],
-      note: "The policy wording and exclusions come from Provenance before you commit.",
+      note: "The policy wording and exclusions come from our insurance partner before you commit.",
     },
     relatedCovers: EVERYDAY_COVERS_GRID,
     enquiryType: "pet-and-travel",
@@ -1234,7 +1234,7 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
     title: "Breakdown and bicycle",
     metaTitle: "Breakdown and bicycle cover",
     metaDescription:
-      "Roadside, recovery and home-start breakdown cover, and cover for road, mountain, electric and high-value bicycles. Introduced by the House, arranged by Provenance.",
+      "Roadside, recovery and home-start breakdown cover, and cover for road, mountain, electric and high-value bicycles. Introduced by the House, arranged by our insurance partner.",
     hero: {
       eyebrow: "Everyday cover",
       heading: "Breakdown and bicycle cover for everyday journeys.",
@@ -1277,8 +1277,8 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
       ],
     },
     placed: {
-      heading: "What Provenance can place",
-      body: "Provenance arranges breakdown cover and bicycle cover across the full range of bikes. The House introduces you; Provenance arranges and administers the cover.",
+      heading: "What our insurance partner can place",
+      body: "Our insurance partner arranges breakdown cover and bicycle cover across the full range of bikes. The House introduces you; our insurance partner arranges and administers the cover.",
     },
     limitations: {
       heading: "What breakdown and bicycle cover does not include",
@@ -1288,9 +1288,9 @@ export const EVERYDAY_SPECIALIST_PAGES: SpecialistPage[] = [
         { h: "The level you chose", p: "Roadside-only cover does not include every recovery or home-start benefit. The level selected determines what help is available." },
         { h: "Pre-existing faults", p: "A known fault, or a vehicle already broken down when cover starts, is not covered." },
         { h: "Bicycle limits and security", p: "Bicycle cover is limited to the sum insured and may require an approved lock or other security conditions. Wear and unsecured theft are commonly excluded." },
-        { h: "Not advice", p: "The House introduces you to Provenance and does not advise on cover. Limits and exclusions are set out in the policy documents." },
+        { h: "Not advice", p: "The House introduces you to our insurance partner and does not advise on cover. Limits and exclusions are set out in the policy documents." },
       ],
-      note: "The policy wording and exclusions come from Provenance before you commit.",
+      note: "The policy wording and exclusions come from our insurance partner before you commit.",
     },
     relatedCovers: EVERYDAY_COVERS_GRID,
     enquiryType: "breakdown-and-bicycle",
@@ -1312,7 +1312,7 @@ export const EVERYDAY_SPECIALIST_SLUGS = EVERYDAY_SPECIALIST_PAGES.map((p) => p.
 const BUSINESS_ENQUIRY = {
   eyebrow: "Request a review",
   heading: "Ask for a review of your existing cover.",
-  body: "Leave your details and a Provenance specialist will contact you about a no-obligation review of the insurance you already hold. The House only collects what it needs to make the introduction.",
+  body: "Leave your details and an insurance specialist will contact you about a no-obligation review of the insurance you already hold. The House only collects what it needs to make the introduction.",
   submitLabel: "Request a review",
   withCompany: true,
 } as const;
@@ -1323,11 +1323,11 @@ export const BUSINESS_SPECIALIST_PAGES: SpecialistPage[] = [
     title: "Business insurance",
     metaTitle: "Business insurance broker introductions",
     metaDescription:
-      "Business insurance introduced by the House and arranged by Provenance, with a no-obligation review of existing cover for businesses in the House network.",
+      "Business insurance introduced by the House and arranged by our insurance partner, with a no-obligation review of existing cover for businesses in the House network.",
     hero: {
       eyebrow: "Business",
       heading: "Business insurance built around the business you actually run.",
-      lede: "Commercial insurance needs to reflect the work, the people, the premises and the risks behind the business. The House makes the introduction and Provenance reviews and arranges the cover.",
+      lede: "Commercial insurance needs to reflect the work, the people, the premises and the risks behind the business. The House makes the introduction and our insurance partner reviews and arranges the cover.",
     },
     image: "/insurance/cat-business.webp",
     imageAlt: "The trades and studios in the House's own network, covered for commercial, liability and professional risk.",
@@ -1360,14 +1360,14 @@ export const BUSINESS_SPECIALIST_PAGES: SpecialistPage[] = [
     detail: {
       title: "A review of the cover you already hold",
       points: [
-        { h: "Review the existing cover", p: "Provenance can review the current arrangements for gaps, under-insurance, unnecessary cover and the level of premium. Nothing changes unless you choose to make a change." },
+        { h: "Review the existing cover", p: "Our insurance partner can review the current arrangements for gaps, under-insurance, unnecessary cover and the level of premium. Nothing changes unless you choose to make a change." },
         { h: "Built for the business, not a category", p: "The review starts with how the business operates and the risks it carries, then matches those needs to suitable commercial cover." },
-        { h: "Home and business, where relevant", p: "Where both personal and business risks need attention, Provenance can look at them within the same broker relationship." },
+        { h: "Home and business, where relevant", p: "Where both personal and business risks need attention, our insurance partner can look at them within the same broker relationship." },
       ],
     },
     placed: {
-      heading: "What Provenance can place",
-      body: "Business combined, professional indemnity, directors' and officers', property owners, fleet from two vehicles, motor trade and cyber. The House introduces you; Provenance arranges and administers the cover.",
+      heading: "What our insurance partner can place",
+      body: "Business combined, professional indemnity, directors' and officers', property owners, fleet from two vehicles, motor trade and cyber. The House introduces you; our insurance partner arranges and administers the cover.",
     },
     crossLinks: [
       { label: "Trades & contractors", href: "/insurance/business/trades-and-contractors" },
@@ -1383,11 +1383,11 @@ export const BUSINESS_SPECIALIST_PAGES: SpecialistPage[] = [
     title: "Trades and contractors",
     metaTitle: "Tradesman and contractor insurance",
     metaDescription:
-      "Insurance for trades and contractors, including liability, tools, contract works and professional indemnity where relevant. Introduced by the House and arranged by Provenance.",
+      "Insurance for trades and contractors, including liability, tools, contract works and professional indemnity where relevant. Introduced by the House and arranged by our insurance partner.",
     hero: {
       eyebrow: "Business",
       heading: "Insurance for the work, the tools and the liability that comes with the job.",
-      lede: "Trades and contractors can need several kinds of cover working together. The House introduces you to Provenance to review the work you do and arrange the cover around it.",
+      lede: "Trades and contractors can need several kinds of cover working together. The House introduces you to our insurance partner to review the work you do and arrange the cover around it.",
     },
     image: "/insurance/trades-hero.webp",
     imageAlt: "A House Approved trade at work, the kind of professional the House introduces for commercial cover.",
@@ -1422,12 +1422,12 @@ export const BUSINESS_SPECIALIST_PAGES: SpecialistPage[] = [
       points: [
         { h: "Liability, sized to the work", p: "Public and employers’ liability limits should reflect the jobs, sites and headcount of the business." },
         { h: "Tools and contract works", p: "Cover can include tools and equipment, as well as contract works while a project is underway." },
-        { h: "Indicative premiums", p: "Tradesperson cover typically runs around £360 to £540 a year. Figures are indicative and confirmed case by case, pending Provenance sign-off." },
+        { h: "Indicative premiums", p: "Tradesperson cover typically runs around £360 to £540 a year. Figures are indicative and confirmed case by case, confirmed on application." },
       ],
     },
     placed: {
-      heading: "What Provenance can place",
-      body: "Liability, tools, contract works, professional indemnity and the wider commercial combined cover a trade needs. The House introduces you; Provenance arranges and administers the cover.",
+      heading: "What our insurance partner can place",
+      body: "Liability, tools, contract works, professional indemnity and the wider commercial combined cover a trade needs. The House introduces you; our insurance partner arranges and administers the cover.",
     },
     crossLinks: [
       { label: "Professional indemnity", href: "/insurance/business/professional-indemnity" },
@@ -1443,7 +1443,7 @@ export const BUSINESS_SPECIALIST_PAGES: SpecialistPage[] = [
     title: "Professional indemnity",
     metaTitle: "Professional indemnity insurance",
     metaDescription:
-      "Professional indemnity for architects, designers, surveyors and consultants, with limits set against real exposure. Introduced by the House, arranged by Provenance.",
+      "Professional indemnity for architects, designers, surveyors and consultants, with limits set against real exposure. Introduced by the House, arranged by our insurance partner.",
     hero: {
       eyebrow: "Business",
       heading: "Professional indemnity for the advice, design and expertise your clients rely on.",
@@ -1486,8 +1486,8 @@ export const BUSINESS_SPECIALIST_PAGES: SpecialistPage[] = [
       ],
     },
     placed: {
-      heading: "What Provenance can place",
-      body: "Professional indemnity across the built-environment and consulting professions, alongside the wider business cover a practice needs. The House introduces you; Provenance arranges and administers the cover.",
+      heading: "What our insurance partner can place",
+      body: "Professional indemnity across the built-environment and consulting professions, alongside the wider business cover a practice needs. The House introduces you; our insurance partner arranges and administers the cover.",
     },
     crossLinks: [
       { label: "Trades & contractors", href: "/insurance/business/trades-and-contractors" },

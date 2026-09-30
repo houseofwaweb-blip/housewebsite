@@ -286,7 +286,7 @@ export default async function ProtectInsurancePage() {
           {cms(
             fca,
             "body",
-            "HoWA acts as an introducer only. Insurance products arranged via Provenance Insurance Brokers, authorised and regulated by the FCA. We do not advise on, arrange, or conduct regulated insurance activity. Introductions are passed to FCA-authorised partners for any subsequent discussion, quotation, or contract.",
+            "HoWA acts as an introducer only. Insurance products arranged via an FCA-authorised insurance broker. We do not advise on, arrange, or conduct regulated insurance activity. Introductions are passed to FCA-authorised partners for any subsequent discussion, quotation, or contract.",
           )}{" "}
           See our <Link href="/legal/privacy">privacy page</Link> for how your details are handled.
         </p>

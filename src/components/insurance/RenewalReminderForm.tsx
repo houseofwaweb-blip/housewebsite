@@ -19,7 +19,7 @@ import { RENEWAL_MONTHS } from "@/lib/insurance/config";
  * RenewalReminderForm, two fields only (email, renewal month). The single most
  * valuable data point on the site: it is what makes triggered email possible.
  * Consent is explicit and separate. NOT an insurance enquiry, the House passes
- * nothing to Provenance until the person asks it to.
+ * nothing to our insurance partner until the person asks it to.
  */
 const schema = z.object({
   email: z.string().trim().toLowerCase().email("Enter a valid email address").max(254),

@@ -8,7 +8,7 @@ import { ThankYouConversion } from "@/components/insurance/ThankYouConversion";
 /**
  * A4 · /insurance/thank-you, confirmation. The conversion event fires here, so
  * it must exist before any media spend. Sets the expectation that the call
- * comes from Provenance (the commonest referral drop-off). No upsell.
+ * comes from our insurance partner (the commonest referral drop-off). No upsell.
  */
 export const metadata: Metadata = {
   title: "Thank you",
@@ -25,13 +25,13 @@ export default function InsuranceThankYou() {
           <div>
             <p className="font-sans text-[14px] tracking-[0.3em] uppercase text-[color:var(--ins-ink)]">Received</p>
             <h1 className="mt-4 font-display text-[clamp(37px,5.5vw,67px)] leading-[1.03] text-house-black">
-              Thank you. <em className="italic">Your enquiry is in.</em>
+              Thank you. <em className="italic">You’re on the list.</em>
             </h1>
             <p className="mt-6 max-w-[46ch] font-sans text-[21px] leading-[1.65] text-house-stone">
-              A <strong>Provenance</strong> specialist will contact you about the enquiry. The call will come from Provenance rather than the House.
+              Insurance from the House is coming soon. We’ll be in touch when cover opens; there’s nothing else you need to do for now.
             </p>
             <p className="mt-4 max-w-[46ch] font-sans text-[20px] leading-[1.65] text-house-brown/85">
-              You do not need to send anything else unless the specialist asks for it.
+              You do not need to send anything else in the meantime.
             </p>
           </div>
           <div className="relative aspect-[4/5] w-full overflow-hidden">

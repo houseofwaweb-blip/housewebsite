@@ -2,9 +2,9 @@ import Link from "next/link";
 
 /**
  * What may be covered, spec §11.4. Scannable, plain-language examples with a
- * clear route to fuller cover detail and to the policy wording Provenance
+ * clear route to fuller cover detail and to the policy wording our insurance partner
  * provides. Deliberately framed as examples, never a promise: the policy wording
- * is what decides any claim, and that lives with Provenance.
+ * is what decides any claim, and that lives with our insurance partner.
  */
 export function WhatMayBeCovered() {
   const examples = [

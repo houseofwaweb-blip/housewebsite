@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import { PROVENANCE, INTRODUCER_LEGAL_NAME } from "@/lib/insurance/config";
 
 /**
- * F2 · /insurance/terms, the full regulatory wording in one place, so every
- * other page carries a short disclosure and links here. The definitive wording
- * is ISSUED BY PROVENANCE COMPLIANCE VERBATIM. Everything below is a structural
- * placeholder pending that copy, never improvised per page.
+ * F2 · /insurance/terms. Insurance from the House is coming soon. The full
+ * regulatory notice (introducer arrangement, the regulated specialist's FCA
+ * registration, complaints and FOS route) is published here before cover opens.
  */
 export const metadata: Metadata = {
   alternates: { canonical: "/insurance/terms" },
   title: "Insurance, regulatory notice and complaints",
-  description: "The regulatory notice for insurance introduced by House of Willow Alexander and arranged by Provenance, with the complaints route and FOS eligibility.",
+  description: "The regulatory notice for insurance from House of Willow Alexander will be published here when cover opens. Insurance is coming soon.",
+  robots: { index: false, follow: false },
 };
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
@@ -33,24 +32,24 @@ export default function InsuranceTerms() {
           </h1>
 
           <div className="mt-6 border-l-2 border-[color:var(--ins-ink)] bg-house-cream-dark/50 px-4 py-3">
-            <p className="m-0 font-sans text-[14px] tracking-[0.06em] uppercase text-[color:var(--ins-ink)]">Pending Provenance compliance</p>
+            <p className="m-0 font-sans text-[14px] tracking-[0.06em] uppercase text-[color:var(--ins-ink)]">Coming soon</p>
             <p className="mt-1 mb-0 font-sans text-[16.5px] leading-[1.55] text-house-brown/80">
-              The wording below is indicative. The published version is issued by Provenance compliance verbatim before launch.
+              Insurance from the House is coming soon. The full regulatory notice below is published in its final form before cover opens.
             </p>
           </div>
 
           <div className="mt-4">
             <Section title="The introducer arrangement">
-              <p>{INTRODUCER_LEGAL_NAME} acts solely as an introducer. It does not advise on, arrange, administer, compare or transact insurance. Insurance is arranged and administered by {PROVENANCE.legalName}.</p>
+              <p>House of Willow Alexander acts solely as an introducer. It does not advise on, arrange, administer, compare or transact insurance. When cover opens, insurance will be arranged and administered by an FCA-regulated insurance specialist.</p>
             </Section>
-            <Section title="Provenance's FCA registration">
-              <p>{PROVENANCE.legalName} is authorised and regulated by the Financial Conduct Authority, firm reference number {PROVENANCE.frn}. You can verify this on the FCA Register at register.fca.org.uk.</p>
+            <Section title="The regulated specialist's FCA registration">
+              <p>When insurance opens, the specialist arranging your cover will be authorised and regulated by the Financial Conduct Authority. Their firm reference number will be published here so you can verify it on the FCA Register at register.fca.org.uk.</p>
             </Section>
             <Section title="Complaints and the Financial Ombudsman Service">
-              <p>Complaints about the arranged cover are handled by Provenance under its FCA permissions. Where a matter cannot be resolved, eligible complainants may refer it to the Financial Ombudsman Service. The full complaints procedure is issued by Provenance compliance.</p>
+              <p>Once cover is live, complaints about the arranged cover will be handled by the regulated specialist under its FCA permissions. Where a matter cannot be resolved, eligible complainants may refer it to the Financial Ombudsman Service. The full complaints procedure will be published here before launch.</p>
             </Section>
             <Section title="How your information is handled">
-              <p>Under the introducer arrangement, the House passes only the information you provide or ask it to pass, and only when you ask it to. What is passed, when, and on what basis is set out here in the wording Provenance compliance issues, and in the House privacy notice.</p>
+              <p>Under the introducer arrangement, the House will pass only the information you provide or ask it to pass, and only when you ask it to. What is passed, when, and on what basis is set out in the House privacy notice and in the wording published here when cover opens.</p>
             </Section>
           </div>
         </div>

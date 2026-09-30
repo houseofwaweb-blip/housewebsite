@@ -4,27 +4,26 @@ import { env } from "@/lib/env";
 import { InsuranceEnquiryForm } from "@/components/insurance/InsuranceEnquiryForm";
 import { CoverCards } from "@/components/insurance/CoverCards";
 import { InsuranceTrustStrip } from "@/components/insurance/InsuranceTrustStrip";
-import { ProvenanceLockup } from "@/components/insurance/ProvenanceLockup";
 import { insuranceOg } from "@/lib/insurance/og";
 
 /**
  * A2 · /insurance/private-client, the single most important conversion surface.
  * Built for one person: someone with a house worth insuring properly who has
  * never been asked a question about it. No advice language, no urgency; every
- * factual claim pending Provenance sign-off.
+ * factual claim confirmed on application.
  */
 export const metadata: Metadata = {
   alternates: { canonical: "/insurance/private-client" },
   title: "Private client & estate insurance, high-value homes",
-  description: "Advised private-client insurance through Provenance for high-value, period and more complex homes, assets and estates. Introduced by the House.",
+  description: "Advised private-client insurance from the House for high-value, period and more complex homes, assets and estates. Coming soon.",
   ...insuranceOg("private-client", "Private client & estate insurance, high-value homes"),
 };
 
 const PROCESS = [
-  { n: "01", h: "Send your current documents", p: "Your current schedule gives Provenance a useful starting point for the review." },
-  { n: "02", h: "A specialist reviews the cover", p: "Provenance reviews the existing arrangements, the property and the assets that need protecting, then considers the available market." },
+  { n: "01", h: "Send your current documents", p: "Your current schedule gives a useful starting point for the review." },
+  { n: "02", h: "A specialist reviews the cover", p: "A specialist reviews the existing arrangements, the property and the assets that need protecting, then considers the available market." },
   { n: "03", h: "The market is searched", p: "Relevant specialist insurers can then be approached for terms suited to the risk." },
-  { n: "04", h: "Claims handled on your behalf", p: "If the day comes, Provenance manages the claim for you, from first notification to settlement." },
+  { n: "04", h: "Claims handled on your behalf", p: "If the day comes, your insurer manages the claim for you, from first notification to settlement." },
 ];
 
 const FAQ = [
@@ -48,7 +47,7 @@ export default function PrivateClient() {
               and the wider estate.
             </h1>
             <p className="mt-6 max-w-[54ch] font-sans text-[21px] leading-[1.62] text-house-stone">
-              Provenance provides an advised service for private clients with more complex insurance needs, bringing the home, vehicles, collections and other assets into one broker relationship where appropriate.
+              An advised service for private clients with more complex insurance needs, bringing the home, vehicles, collections and other assets into one broker relationship where appropriate. Coming soon.
             </p>
             <p className="mt-5 max-w-[48ch] font-display text-[clamp(21px,2vw,27px)] leading-[1.3] text-house-brown">
               A named broker. A detailed review. Cover arranged around the risks you actually have.
@@ -58,7 +57,6 @@ export default function PrivateClient() {
                 Speak to a specialist
               </a>
             </div>
-            <ProvenanceLockup className="mt-6" />
           </div>
           <div className="relative aspect-[4/5] w-full overflow-hidden">
             <Image
@@ -77,7 +75,7 @@ export default function PrivateClient() {
       <section id="enquire" className="scroll-mt-24 px-[5vw] pb-14">
         <div className="mx-auto max-w-[680px] border border-house-brown/15 bg-house-white p-7 sm:p-9">
           <h2 className="font-display text-[29px] leading-tight text-house-black">Speak to a specialist</h2>
-          <p className="mt-2 mb-6 font-sans text-[18px] leading-[1.55] text-house-stone">Leave a few details and a Provenance specialist will contact you to begin the review.</p>
+          <p className="mt-2 mb-6 font-sans text-[18px] leading-[1.55] text-house-stone">Insurance from the House is coming soon. Leave a few details to join the waitlist and we’ll be in touch when it opens.</p>
           <InsuranceEnquiryForm enquiryType="private-client" turnstileSiteKey={turnstileSiteKey} sourcePage="/insurance/private-client" />
         </div>
       </section>
@@ -90,9 +88,8 @@ export default function PrivateClient() {
         <div className="mx-auto max-w-[1180px]">
           <h2 className="font-display text-[clamp(25px,2.8vw,37px)] leading-[1.12] text-house-black">One broker across the wider estate.</h2>
           <p className="mb-9 mt-4 max-w-[60ch] font-sans text-[20px] leading-[1.7] text-house-brown/85">
-            Provenance’s private-client approach can bring several assets into one broker relationship, and in some cases one lifestyle policy and renewal date. The exact structure depends on the risks and insurer.
+            A private-client approach can bring several assets into one broker relationship, and in some cases one lifestyle policy and renewal date. The exact structure depends on the risks and insurer.
           </p>
-          <ProvenanceLockup className="mb-9" />
           <CoverCards />
         </div>
       </section>
@@ -104,7 +101,7 @@ export default function PrivateClient() {
             <p className="font-sans text-[14px] tracking-[0.24em] uppercase text-[color:var(--ins-ink)]">Why use a private-client broker</p>
             <h2 className="mt-3 font-display text-[clamp(25px,2.8vw,37px)] leading-[1.12] text-house-black">The detail of the home matters.</h2>
             <p className="mt-4 font-sans text-[20px] leading-[1.7] text-house-brown/85">
-              Period fabric, previous works, rebuild cost, valuable contents and other assets can all change the insurance requirement. Provenance’s Private Client service is advised, so a broker can assess those details, recommend suitable cover and review it again at renewal.
+              Period fabric, previous works, rebuild cost, valuable contents and other assets can all change the insurance requirement. The private-client service is advised, so a broker can assess those details, recommend suitable cover and review it again at renewal.
             </p>
           </div>
           <div className="relative aspect-[4/5] w-full overflow-hidden">

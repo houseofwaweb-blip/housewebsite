@@ -62,7 +62,7 @@ const linkStyle: React.CSSProperties = { color: goldDark, textDecoration: "under
 
 const today = [
   { h: "Care", b: "Trusted home and garden services, each with its own expertise and all held to the same House standard.", href: "/services", cta: "See services", img: "/lifestyle/garden-pond.webp", alt: "A considered English garden with a still pond and clipped hedges" },
-  { h: "Cover", b: "Home and pet cover introduced by the House and arranged through Provenance.", href: "/insurance-and-cover", cta: "Insurance and cover", img: "/insurance/hub-hero.webp", alt: "Home and pet cover, introduced by the House" },
+  { h: "Cover", b: "Home and pet cover introduced by the House. Coming soon.", href: "/insurance-and-cover", cta: "Insurance and cover", img: "/insurance/hub-hero.webp", alt: "Home and pet cover, introduced by the House" },
   { h: "Shop", b: "The House Store: useful, well-made objects for home and garden, beautifully chosen.", href: "/shop", cta: "Visit the Store", img: "/shop/rooms/kitchen.webp", alt: "A considered House Store kitchen setting" },
   { h: "Read", b: "The Hearth, the magazine of the House, for ideas worth keeping and good domestic sense.", href: "/magazine", cta: "Read The Hearth", img: "/lifestyle/writing-by-stove.webp", alt: "A quiet moment writing by a wood stove, tea to hand" },
 ];

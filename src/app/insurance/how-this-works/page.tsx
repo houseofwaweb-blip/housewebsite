@@ -1,21 +1,20 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { PROVENANCE } from "@/lib/insurance/config";
-import { ProvenanceLockup } from "@/components/insurance/ProvenanceLockup";
 import { insuranceOg } from "@/lib/insurance/og";
 
 /**
- * F1 · /insurance/how-this-works, a compliance requirement turned into a brand
- * asset. Almost nobody explains their commission openly; doing it plainly is the
- * House's voice, pre-empts the obvious question, and is what the fair-value file
- * points at. Content pending Provenance compliance sign-off.
+ * F1 · /insurance/how-this-works. Insurance from the House is coming soon, so
+ * this page sets out the plan in principle (the House introduces; a regulated
+ * specialist provides the cover) without naming a partner or making regulated
+ * claims. The full regulatory detail is published when cover opens.
  */
 export const metadata: Metadata = {
   alternates: { canonical: "/insurance/how-this-works" },
-  title: "How this works, and how we are paid",
-  description: "How House of Willow Alexander introduces insurance through Provenance, how the service is provided, how the House is paid and where to go if something goes wrong.",
-  ...insuranceOg("how-this-works", "How this works, and how we are paid"),
+  title: "How insurance from the House will work",
+  description: "How insurance from the House is intended to work when it opens: the House introduces, a regulated specialist provides the cover. Coming soon.",
+  robots: { index: false, follow: false },
+  ...insuranceOg("how-this-works", "How insurance from the House will work"),
 };
 
 function Block({ eyebrow, children }: { eyebrow: string; children: React.ReactNode }) {
@@ -35,16 +34,16 @@ export default function HowThisWorks() {
           <div>
             <p className="font-sans text-[14px] tracking-[0.3em] uppercase text-[color:var(--ins-ink)]">The House · Insurance</p>
             <h1 className="mt-4 font-display text-[clamp(35px,5vw,61px)] leading-[1.04] text-house-black">
-              How this works, and how we are paid.
+              How insurance from the House will work.
             </h1>
             <p className="mt-6 max-w-[46ch] font-sans text-[21px] leading-[1.62] text-house-stone">
-              The House is an introducer. Provenance provides the regulated insurance services. This page explains the relationship and how the House is paid.
+              Insurance from the House is coming soon. This page explains, in principle, how it is intended to work. The full detail is published when cover opens.
             </p>
           </div>
           <div className="relative aspect-[4/5] w-full overflow-hidden">
             <Image
               src="/insurance/provenance-can-place.webp"
-              alt="A ledger lettered Provenance Insurance beside architectural drawings, a brass globe sconce and a pink peony, a quiet still life for a page about how the arrangement works."
+              alt="A ledger beside architectural drawings, a brass globe sconce and a pink peony, a quiet still life for a page about how insurance from the House will work."
               fill
               sizes="(min-width: 1120px) 540px, 90vw"
               priority
@@ -56,27 +55,25 @@ export default function HowThisWorks() {
 
       <section className="px-[5vw] pb-16">
         <div className="mx-auto max-w-[720px]">
-          <Block eyebrow="What the House does">
-            <p>The House <strong>introduces</strong> you to a specialist. That is all it does. It does not advise on, arrange, administer, compare or transact insurance. Those are regulated activities, and they belong to Provenance.</p>
+          <Block eyebrow="What the House will do">
+            <p>The House <strong>introduces</strong>. It does not advise on, arrange, administer, compare or transact insurance. Those are regulated activities, and when insurance opens they will be carried out by an FCA-regulated specialist, not by the House.</p>
           </Block>
-          <Block eyebrow="Who arranges the cover">
-            <p>{PROVENANCE.legalName} is authorised and regulated by the Financial Conduct Authority, firm reference number {PROVENANCE.frn}, and is part of {PROVENANCE.group}. Provenance advises, arranges, administers and, when the time comes, handles claims on your behalf.</p>
-            <ProvenanceLockup className="mt-5" />
+          <Block eyebrow="Who will arrange the cover">
+            <p>When insurance opens, the cover will be advised, arranged and administered by an insurance specialist authorised and regulated by the Financial Conduct Authority. Their name and registration details will be published here before the service goes live.</p>
           </Block>
-          <Block eyebrow="Why Benefact matters">
-            <p>Provenance is part of the {PROVENANCE.backer} group, a charity-owned group. {PROVENANCE.backer} gives its available profits to good causes, so business placed within the group can contribute to that wider charitable purpose.</p>
-          </Block>
-          <Block eyebrow="How the House is paid">
-            <p>As the introducer, the House receives a share of Provenance's commission when a policy starts and at renewal. We would rather tell you that plainly than leave it unsaid.</p>
-          </Block>
-          <Block eyebrow="What the House provides">
-            <p>The House provides the introduction and keeps the insurance route connected to the wider care of the home. Provenance provides the regulated insurance service.</p>
+          <Block eyebrow="How the House keeps it connected">
+            <p>The House provides the introduction and keeps the insurance route connected to the wider care of the home. The regulated insurance service is provided by the specialist.</p>
           </Block>
           <Block eyebrow="If something goes wrong">
-            <p>Complaints about the arranged cover are handled by Provenance under its FCA permissions, and eligible complainants can refer a matter to the Financial Ombudsman Service. The full regulatory notice and complaints route are set out on the{" "}
+            <p>When cover is live, complaints about the arranged cover will be handled by the regulated specialist under its FCA permissions, and eligible complainants will be able to refer a matter to the Financial Ombudsman Service. The full regulatory notice and complaints route will be published on the{" "}
               <Link href="/insurance/terms" className="text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">regulatory notice</Link> page.</p>
           </Block>
-          <p className="mt-8 font-sans text-[14px] text-house-stone/70">This page describes the regulatory relationship and is pending Provenance compliance sign-off.</p>
+          <Block eyebrow="Register your interest">
+            <p>Insurance from the House is not yet open. You can{" "}
+              <Link href="/insurance/private-client" className="text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">register your interest</Link>{" "}
+              and we will be in touch when cover opens.</p>
+          </Block>
+          <p className="mt-8 font-sans text-[14px] text-house-stone/70">Insurance from the House is coming soon. The regulatory detail on this page will be completed before the service goes live.</p>
         </div>
       </section>
     </div>

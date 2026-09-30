@@ -1,7 +1,7 @@
 /**
  * Everyday cover pre-frames (spec Group D, D2, D5). Thin pages: explain, set the
  * expectation, and route the enquiry to a House specialist who arranges cover
- * for you through Provenance. The House hosts no quote form and never says
+ * for you through our insurance partner. The House hosts no quote form and never says
  * "compare". High-value homes are routed to advised.
  */
 
@@ -29,9 +29,9 @@ export const EVERYDAY_PAGES: EverydayPage[] = [
     title: "Home insurance",
     metaTitle: "Home insurance, everyday cover",
     metaDescription:
-      "Buildings and contents insurance introduced by the House and arranged through Provenance, with specialist routes available for more complex homes.",
+      "Buildings and contents insurance introduced by the House and arranged through our insurance partner, with specialist routes available for more complex homes.",
     heading: "Home insurance that starts with the home itself.",
-    lede: "Buildings and contents cover for houses and flats, introduced by the House and arranged through Provenance.",
+    lede: "Buildings and contents cover for houses and flats, introduced by the House and arranged through our insurance partner.",
     image: "/insurance/ev-home.webp",
     imageAlt:
       "A well-kept everyday home, the kind covered by straightforward buildings and contents insurance.",
@@ -40,7 +40,7 @@ export const EVERYDAY_PAGES: EverydayPage[] = [
       "Contents cover for what is inside",
       "Optional add-ons such as accidental damage",
     ],
-    journey: "Tell the House what you need to cover and a Provenance specialist will take the insurance conversation from there.",
+    journey: "Tell the House what you need to cover and an insurance specialist will take the insurance conversation from there.",
     highValueRouting: true,
   },
   {
@@ -48,7 +48,7 @@ export const EVERYDAY_PAGES: EverydayPage[] = [
     title: "Car, van and motorbike",
     metaTitle: "Car, van and motorbike insurance, everyday cover",
     metaDescription:
-      "Cover for car, van and motorbike, plus temporary cover from one hour to 28 days, arranged for you through Provenance.",
+      "Cover for car, van and motorbike, plus temporary cover from one hour to 28 days, arranged for you through our insurance partner.",
     heading: "Cover for the car, van or motorbike you rely on.",
     lede: "Motor cover for everyday driving, including temporary insurance where you only need it for a short period.",
     image: "/insurance/ev-motor.webp",
@@ -59,7 +59,7 @@ export const EVERYDAY_PAGES: EverydayPage[] = [
       "Optional breakdown, legal and key cover",
       "Temporary cover from one hour to 28 days",
     ],
-    journey: "Tell the House which motor cover you need and Provenance will take the insurance conversation from there.",
+    journey: "Tell the House which motor cover you need and our insurance partner will take the insurance conversation from there.",
     products: [
       { name: "Car", body: "Private car insurance for everyday motoring." },
       { name: "Van", body: "Private and light commercial van use." },
@@ -72,9 +72,9 @@ export const EVERYDAY_PAGES: EverydayPage[] = [
     title: "Pet and travel",
     metaTitle: "Pet and travel insurance, everyday cover",
     metaDescription:
-      "Pet cover, and single-trip or annual travel including specialist medical, arranged for you through Provenance.",
+      "Pet cover, and single-trip or annual travel including specialist medical, arranged for you through our insurance partner.",
     heading: "Cover for the pet at home and the trips away.",
-    lede: "Pet insurance alongside single-trip, annual multi-trip and specialist travel cover, arranged through Provenance.",
+    lede: "Pet insurance alongside single-trip, annual multi-trip and specialist travel cover, arranged through our insurance partner.",
     image: "/insurance/ev-pet.webp",
     imageAlt:
       "A family pet at home, standing for everyday pet and travel cover.",
@@ -83,7 +83,7 @@ export const EVERYDAY_PAGES: EverydayPage[] = [
       "Single-trip and annual multi-trip travel",
       "Travel cover where existing conditions apply",
     ],
-    journey: "Tell the House whether you need pet or travel cover, and a specialist arranges it through Provenance.",
+    journey: "Tell the House whether you need pet or travel cover, and a specialist arranges it through our insurance partner.",
     products: [
       { name: "Pet", body: "Cover for vet bills and the usual pet risks." },
       { name: "Single-trip travel", body: "One holiday or trip." },
@@ -96,7 +96,7 @@ export const EVERYDAY_PAGES: EverydayPage[] = [
     title: "Breakdown and bicycle",
     metaTitle: "Breakdown and bicycle cover, everyday",
     metaDescription:
-      "Roadside, recovery and home-start breakdown cover, and cover for road, mountain, electric and high-value bicycles, arranged for you through Provenance.",
+      "Roadside, recovery and home-start breakdown cover, and cover for road, mountain, electric and high-value bicycles, arranged for you through our insurance partner.",
     heading: "Breakdown and bicycle cover for everyday journeys.",
     lede: "Roadside and recovery cover for the vehicle, alongside insurance for bicycles.",
     image: "/insurance/ev-breakdown.webp",
@@ -105,9 +105,9 @@ export const EVERYDAY_PAGES: EverydayPage[] = [
     covered: [
       "Roadside assistance, recovery and home start",
       "Cover for road, mountain, electric and high-value bikes",
-      "Introduced by the House and arranged through Provenance",
+      "Introduced by the House and arranged through our insurance partner",
     ],
-    journey: "Tell the House which cover you need, and a specialist arranges it through Provenance.",
+    journey: "Tell the House which cover you need, and a specialist arranges it through our insurance partner.",
     products: [
       { name: "Breakdown", body: "Roadside assistance, recovery and home start." },
       { name: "Bicycle", body: "Road, mountain, electric and high-value bikes." },
