@@ -133,7 +133,11 @@ export function ShopBrowser({
   const [inStockOnly, setInStockOnly] = React.useState(false);
   const [approvedOnly, setApprovedOnly] = React.useState(false);
   const [transitioning, setTransitioning] = React.useState(false);
-  const [page, setPage] = React.useState(1);
+  const [page, setPage] = React.useState(() => {
+    if (typeof window === "undefined") return 1;
+    const p = parseInt(new URLSearchParams(window.location.search).get("page") ?? "1", 10);
+    return Number.isFinite(p) && p > 0 ? p : 1;
+  });
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const prevFilterRef = React.useRef("");
 
@@ -146,6 +150,29 @@ export function ShopBrowser({
       document.body.style.overflow = prev;
     };
   }, [drawerOpen]);
+
+  // Reflect the current page in the URL (?page=N) so the browser Back/Forward
+  // step through pages instead of leaping out of the shop, and a page is
+  // shareable. Client-only (window.history) — the server page stays static and
+  // the filters, which live in component state, are untouched.
+  const changePage = React.useCallback((n: number) => {
+    setPage(n);
+    if (typeof window === "undefined") return;
+    const url = new URL(window.location.href);
+    if (n <= 1) url.searchParams.delete("page");
+    else url.searchParams.set("page", String(n));
+    if (url.href !== window.location.href) window.history.pushState(null, "", url);
+  }, []);
+
+  // Restore the page from the URL when the user presses Back/Forward.
+  React.useEffect(() => {
+    const onPop = () => {
+      const p = parseInt(new URLSearchParams(window.location.search).get("page") ?? "1", 10);
+      setPage(Number.isFinite(p) && p > 0 ? p : 1);
+    };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
 
   function toggleSet<T>(set: Set<T>, value: T): Set<T> {
     const next = new Set(set);
@@ -199,11 +226,26 @@ export function ShopBrowser({
     return result;
   }, [products, search, activeCollections, activeBrands, priceIdx, sortIdx, inStockOnly, approvedOnly]);
 
+  // Clamp the page so a stale or shared ?page beyond the current result set
+  // (e.g. a deep link into a filtered collection) still shows products, not a
+  // blank grid.
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
+  const safePage = Math.min(Math.max(1, page), totalPages);
+
   const filterKey = `${[...activeCollections].join(",")}-${[...activeBrands].join(",")}-${priceIdx}-${inStockOnly}-${approvedOnly}-${search}`;
   React.useEffect(() => {
     if (prevFilterRef.current && prevFilterRef.current !== filterKey) {
       setTransitioning(true);
       setPage(1); // back to page 1 whenever the filters change
+      // Drop ?page from the URL on a filter change without adding a history
+      // entry (a filter reset isn't a Back step).
+      if (typeof window !== "undefined") {
+        const url = new URL(window.location.href);
+        if (url.searchParams.has("page")) {
+          url.searchParams.delete("page");
+          window.history.replaceState(null, "", url);
+        }
+      }
       const t = setTimeout(() => setTransitioning(false), 80);
       return () => clearTimeout(t);
     }
@@ -500,7 +542,7 @@ export function ShopBrowser({
               transitioning ? "opacity-0" : "opacity-100",
             )}
           >
-            {filtered.slice((page - 1) * PER_PAGE, page * PER_PAGE).map((p, i) => (
+            {filtered.slice((safePage - 1) * PER_PAGE, safePage * PER_PAGE).map((p, i) => (
               <div
                 key={p.handle}
                 className={cn(
@@ -580,9 +622,9 @@ export function ShopBrowser({
             ))}
           </div>
           <Pagination
-            page={page}
-            totalPages={Math.ceil(filtered.length / PER_PAGE)}
-            onChange={setPage}
+            page={safePage}
+            totalPages={totalPages}
+            onChange={changePage}
           />
           </>
         )}
