@@ -143,7 +143,7 @@ export function Header({
         {/* Brand line (brief §4). Not a promo bar. */}
         <div
           className={cn(
-            "hidden flex-col items-end border-l pl-4 font-sans text-[9px] leading-[1.6] tracking-[0.22em] uppercase 2xl:flex",
+            "hidden flex-col items-end border-l pl-4 font-sans text-[12px] leading-[1.35] tracking-[0.18em] uppercase 2xl:flex",
             dark ? "border-house-cream/20 text-house-cream/70" : "border-house-brown/15 text-house-gold-dark",
           )}
         >

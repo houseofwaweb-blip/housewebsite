@@ -263,7 +263,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
       },
     ],
     preview: {
-      image: "/home/hearth-card.webp",
+      image: "/home/hearth-card-still.webp",
       alt: "The Hearth magazine",
       tag: "The Hearth",
       heading: "Writing worth keeping, for the home and garden.",

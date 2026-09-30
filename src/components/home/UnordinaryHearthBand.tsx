@@ -31,7 +31,7 @@ const CARDS: Card[] = [
     copy: "Homes, gardens, people, food, design and the useful business of everyday life.",
     cta: "Read The Hearth →",
     href: "/the-hearth",
-    image: "/home/hearth-card.webp",
+    image: "/home/hearth-card-still.webp",
     alt: "An editorial still life from The Hearth",
   },
 ];

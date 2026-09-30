@@ -43,7 +43,7 @@ const ENTRIES: Entry[] = [
     title: "The Hearth",
     sub: "Ideas for living well.",
     href: "/the-hearth",
-    image: "/home/hearth-card.webp",
+    image: "/home/hearth-card-still.webp",
     alt: "An editorial still life from The Hearth",
   },
 ];
@@ -64,7 +64,7 @@ export function CategoryStrip() {
               <h3 className="font-display text-[clamp(22px,1.7vw,30px)] leading-[1.02] text-house-cream">
                 {e.title}
               </h3>
-              <p className="mt-2 max-w-[16ch] font-sans text-[clamp(10px,0.72vw,11.5px)] uppercase tracking-[0.14em] leading-[1.5] text-house-cream/80">
+              <p className="mt-2 max-w-[16ch] font-sans text-[12px] uppercase tracking-[0.14em] leading-[1.5] text-house-cream/80">
                 {e.sub}
               </p>
             </div>

@@ -425,7 +425,7 @@ function TwoLevelMegaPanel({ data, isOpen }: { data: TwoLevelMega; isOpen: boole
                     <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,rgba(29,29,27,0.6)_100%)]" />
                     <div className="absolute left-[12px] right-[12px] bottom-[12px] z-10 text-house-cream">
                       {data.featured.tag ? (
-                        <div className="font-sans text-[9px] tracking-[0.22em] uppercase text-house-gold-light mb-[3px]">
+                        <div className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-light mb-[3px]">
                           {data.featured.tag}
                         </div>
                       ) : null}
@@ -493,7 +493,7 @@ function PreviewBlock({ preview }: { preview: NonNullable<MegaPanel["preview"]> 
       />
       <div className="absolute left-[16px] right-[16px] bottom-[16px] z-10 text-house-cream">
         {preview.tag ? (
-          <div className="font-sans text-[8px] tracking-[0.22em] uppercase text-house-gold-light mb-[4px]">
+          <div className="font-sans text-[12px] tracking-[0.18em] uppercase text-house-gold-light mb-[4px]">
             {preview.tag}
           </div>
         ) : null}
