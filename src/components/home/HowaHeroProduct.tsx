@@ -96,7 +96,7 @@ export function HowaHeroProduct() {
                   Discover HoWA →
                 </Link>
                 <Link href="/howa/coming-soon" className="flex-1 whitespace-nowrap text-center font-sans text-[13px] tracking-[0.16em] uppercase text-house-brown border border-house-brown/40 px-6 py-3 no-underline transition-colors duration-[var(--t-base)] hover:border-house-brown">
-                  Join the HoWA launch list →
+                  Join the waitlist →
                 </Link>
               </div>
               <p className="hidden shrink-0 font-display text-[clamp(16px,1.3vw,20px)] italic leading-[1.3] text-house-gold-dark xl:block">

@@ -150,7 +150,7 @@ export default function PlansPage() {
                       : "mt-7 inline-block w-full whitespace-nowrap text-center font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown border border-house-brown/40 px-6 py-3 no-underline transition-colors duration-[var(--t-base)] hover:border-house-brown"
                   }
                 >
-                  Join early access
+                  Join the waitlist
                 </Link>
               </div>
             </div>
@@ -259,11 +259,11 @@ export default function PlansPage() {
         <div className="mx-auto max-w-[1000px] px-[5vw] py-[clamp(52px,7vw,96px)] text-center">
           <h2 className="mx-auto max-w-[20ch] font-display text-[clamp(30px,4vw,52px)] leading-[1.05]">Start with the home you have.</h2>
           <p className="mx-auto mt-5 max-w-[56ch] font-sans text-[17px] leading-[1.6] text-house-cream/80">
-            Join early access and we will tell you when you can begin. Compare the
+            Join the waitlist and we will tell you when you can begin. Compare the
             plans now to see the level of help each is designed to offer.
           </p>
           <Link href={EARLY_ACCESS} className="mt-8 inline-block whitespace-nowrap px-8 py-3 text-center font-sans text-[12px] tracking-[0.16em] uppercase text-house-brown bg-house-cream border border-house-cream no-underline transition-[filter] duration-[var(--t-slow)] ease-out hover:brightness-95">
-            Join early access
+            Join the waitlist
           </Link>
         </div>
       </section>

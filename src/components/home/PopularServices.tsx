@@ -37,7 +37,7 @@ const CARDS = [
     includes: ["Exterior windows", "Frames and sills", "Interior glass on request"],
     image: "/services/subbrands/window-cleaner.webp",
     price: "From £49",
-    cta: "Check my property",
+    cta: "Book now",
   },
   {
     name: "Handyman",
@@ -47,7 +47,7 @@ const CARDS = [
     includes: ["Furniture assembly", "Hanging and fitting", "Repairs and maintenance"],
     image: "/services/subbrands/handyman.webp",
     price: "From £69/hour",
-    cta: "Book a handyman",
+    cta: "Book now",
   },
 ];
 

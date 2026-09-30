@@ -19,7 +19,7 @@ import { getPageSections, cms, cmsCards, pick } from "@/lib/cms/page-sections";
 export const metadata = {
   title: "HoWA: Coming soon",
   description:
-    "HoWA is where stewardship becomes operational: home records, Ask HoWA, bookings, and a single place for the House to reach you. Join early access.",
+    "HoWA is where stewardship becomes operational: home records, Ask HoWA, bookings, and a single place for the House to reach you. Join the waitlist.",
   robots: { index: false, follow: true },
 };
 

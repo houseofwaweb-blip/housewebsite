@@ -234,7 +234,7 @@ export default async function AssistantPage() {
         </p>
         <div className={s.closingCtas}>
           <Link href={cms(closing, "ctaHref", "/howa/coming-soon?tier=assistant")} className={s.closingBtnFilled}>
-            {cms(closing, "ctaLabel", "Join early access")}
+            {cms(closing, "ctaLabel", "Join the waitlist")}
           </Link>
         </div>
       </section>
