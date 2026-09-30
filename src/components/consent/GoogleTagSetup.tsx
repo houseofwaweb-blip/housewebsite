@@ -40,6 +40,11 @@ export function GoogleTagSetup() {
   // NEXT_PUBLIC_CHECKOUT_DOMAIN if it ever changes.
   const checkoutDomain =
     process.env.NEXT_PUBLIC_CHECKOUT_DOMAIN || "checkout.willowalexander.co.uk";
+  // Shopify customer-accounts (shop orders) domain, also cross-domain-linked so
+  // GA4/Ads sessions carry into the orders area. Host only, no scheme.
+  const ordersDomain = (
+    process.env.NEXT_PUBLIC_SHOPIFY_ACCOUNT_URL || "https://orders.willowalexander.co.uk"
+  ).replace(/^https?:\/\//, "").replace(/\/.*$/, "");
 
   // Update Consent Mode v2 state whenever wa-consent changes. Maps our
   // 4-category model onto Google's 7 storage purposes. Functional maps to
@@ -97,7 +102,7 @@ export function GoogleTagSetup() {
           // conversion there is attributed to the same session/ad click. Lists
           // both our domain and the checkout domain; accept_incoming reads the
           // linker param when the visitor lands back on us.
-          var __linker = { domains: ['willowalexander.co.uk', ${JSON.stringify(checkoutDomain)}], accept_incoming: true };
+          var __linker = { domains: ['willowalexander.co.uk', ${JSON.stringify(checkoutDomain)}, ${JSON.stringify(ordersDomain)}], accept_incoming: true };
           ${gaId ? `gtag('config', '${gaId}', { anonymize_ip: true, debug_mode: __waDebug, linker: __linker });` : ""}
           ${adsId ? `gtag('config', '${adsId}', { linker: __linker });` : ""}
         `}

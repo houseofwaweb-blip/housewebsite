@@ -18,6 +18,14 @@ const schema = z.object({
   // Site core
   NEXT_PUBLIC_SITE_URL: z.string().url().default("http://localhost:4000"),
 
+  // Shopify customer accounts (shop orders) front door, shown on /account and
+  // linked from the header account icon. Defaults to the orders subdomain being
+  // connected; until DNS is live it can be pointed at the shopify.com/<id>/account URL.
+  NEXT_PUBLIC_SHOPIFY_ACCOUNT_URL: z
+    .string()
+    .url()
+    .default("https://orders.willowalexander.co.uk"),
+
   // HoWA Product app (external). Fed straight into `new URL()` by
   // /api/howa-bounce, so we validate here to fail at boot, not request time.
   // Empty string in .env.local is treated as "not set" (Alex wires it later).

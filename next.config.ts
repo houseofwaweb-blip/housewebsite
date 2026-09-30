@@ -217,10 +217,12 @@ const nextConfig: NextConfig = {
       { source: "/checkout/order-received/:path*", destination: "/", permanent: true },
       { source: "/basket", destination: "/shop/basket", permanent: true },
       { source: "/checkout", destination: "/shop/checkout", permanent: true },
-      { source: "/my-account", destination: "https://accounts.willowalexander.co.uk/", permanent: true },
+      // Old WooCommerce account URL → the new /account front door (which routes
+      // to ServiceOS for services and Shopify for shop orders).
+      { source: "/my-account", destination: "/account", permanent: true },
       { source: "/:s([^/]*-shop)", destination: "/shop", permanent: true },
       // Sign-in moved to external accounts subdomain
-      { source: "/sign-in", destination: "https://accounts.willowalexander.co.uk/", permanent: true },
+      { source: "/sign-in", destination: "/account", permanent: true },
       // Booking is a modal triggered by `#open-booking-form` from any page;
       // legacy /book-consultation now redirects to homepage with the trigger.
       { source: "/book-consultation", destination: "/#open-booking-form", permanent: true },

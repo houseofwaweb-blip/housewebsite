@@ -182,8 +182,8 @@ export function Header({
           </svg>
         </Link>
         <Link
-          href="/my-house"
-          aria-label="My HoWA account"
+          href="/account"
+          aria-label="Your account"
           className={cn(
             "flex items-center justify-center p-2 opacity-[0.7] hover:opacity-100",
             "transition-opacity duration-[var(--t-base)]",
