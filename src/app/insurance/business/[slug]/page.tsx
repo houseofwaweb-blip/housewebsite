@@ -26,7 +26,7 @@ export async function generateMetadata({
   return {
     title: page?.metaTitle ?? "Business insurance",
     description: page?.metaDescription,
-    ...(page ? insuranceOg(`business-${page.slug}`, page.metaTitle) : {}),
+    ...(page ? insuranceOg(`business-${page.slug}`, page.metaTitle, `/insurance/business/${slug}`) : {}),
   };
 }
 

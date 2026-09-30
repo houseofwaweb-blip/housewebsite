@@ -33,7 +33,7 @@ const ENTRIES: Entry[] = [
     alt: "Fine art and treasured possessions, protected by specialist cover",
   },
   {
-    title: "Shop the House",
+    title: "Shop",
     sub: "A more beautiful everyday.",
     href: "/shop",
     image: "/home/shop-objects.webp",

@@ -14,12 +14,15 @@ export async function generateMetadata({
   const { slug } = await params;
   const item = await getRecipeBySlug(slug);
   if (!item) return { title: "Recipes · not found" };
+  const canonical = `/recipes/${slug}`;
   return {
     title: item.seo?.title ?? item.title,
     description: item.seo?.description ?? item.lede,
     robots: item.seo?.noindex ? { index: false, follow: true } : undefined,
+    alternates: { canonical },
     openGraph: {
       type: "article",
+      url: canonical,
       title: item.title,
       description: item.lede,
       publishedTime: item.publishedAt,

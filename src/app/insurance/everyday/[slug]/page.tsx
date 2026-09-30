@@ -29,7 +29,7 @@ export async function generateMetadata({
   return {
     title: p?.metaTitle ?? "Everyday cover",
     description: p?.metaDescription,
-    ...(p ? insuranceOg(`everyday-${p.slug}`, p.metaTitle) : {}),
+    ...(p ? insuranceOg(`everyday-${p.slug}`, p.metaTitle, `/insurance/everyday/${slug}`) : {}),
   };
 }
 

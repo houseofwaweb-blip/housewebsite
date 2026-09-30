@@ -25,7 +25,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const page = getSpecialistPage(slug);
   if (!page) return { title: "Insurance" };
-  return { title: page.metaTitle, description: page.metaDescription, ...insuranceOg(slug, page.metaTitle) };
+  return { title: page.metaTitle, description: page.metaDescription, ...insuranceOg(slug, page.metaTitle, `/insurance/${slug}`) };
 }
 
 export default async function InsuranceSpecialistPage({

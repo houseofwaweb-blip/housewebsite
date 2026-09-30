@@ -22,7 +22,7 @@ export async function generateMetadata({
   return {
     title: g?.metaTitle ?? "Insurance guide",
     description: g?.metaDescription,
-    ...(g ? insuranceOg(`guide-${g.slug}`, g.metaTitle) : {}),
+    ...(g ? insuranceOg(`guide-${g.slug}`, g.metaTitle, `/insurance/guides/${slug}`) : {}),
   };
 }
 

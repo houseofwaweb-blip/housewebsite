@@ -97,6 +97,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+  const canonical = `/services/local/${slug}`;
   // New service × town local pages take priority.
   const loc = getLocationPage(slug);
   if (loc) {
@@ -105,6 +106,8 @@ export async function generateMetadata({
     return {
       title: `${service.name} in ${town.name} (${pcs})`,
       description: `${LOCATION_SERVICES[serviceSlug].verb} in ${town.name} (${pcs}), by House of Willow Alexander's own team. Booked and recorded through HoWA. Request a ${town.name} quote.`,
+      alternates: { canonical },
+      openGraph: { url: canonical },
     };
   }
   const entry = entryBySlug(slug);
@@ -114,6 +117,8 @@ export async function generateMetadata({
   return {
     title: taskLine,
     description: `${prettyService(entry.service)}: ${taskLine.toLowerCase()}. ${entry.live ? "Available now from House of Willow Alexander." : "Coming when our team launches in your area. Register interest below."}`,
+    alternates: { canonical },
+    openGraph: { url: canonical },
     // The live service × town pages (getLocationPage above) are indexable. These
     // legacy WP long-tail entries are deferred (`live:false`) "coming soon"
     // doorway pages — noindex until the service actually launches so thin

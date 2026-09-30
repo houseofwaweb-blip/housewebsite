@@ -34,6 +34,7 @@ export default function SearchPage() {
     <React.Suspense
       fallback={
         <div className={s.loading}>
+          <h1 className={s.eyebrow}>Search the House</h1>
           <p>Loading search&hellip;</p>
         </div>
       }

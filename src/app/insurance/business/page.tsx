@@ -12,7 +12,7 @@ export function generateMetadata(): Metadata {
   return {
     title: page?.metaTitle ?? "Business insurance",
     description: page?.metaDescription,
-    ...insuranceOg("business", page?.metaTitle ?? "Business insurance"),
+    ...insuranceOg("business", page?.metaTitle ?? "Business insurance", "/insurance/business"),
   };
 }
 

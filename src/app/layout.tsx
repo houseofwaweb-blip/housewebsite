@@ -54,10 +54,15 @@ export const metadata: Metadata = {
     title: "House of Willow Alexander — That feeling you call home",
     description:
       "The House that looks after yours. Design, care and protection for homes and gardens across London and Kent.",
+    // Default share image (resolved against metadataBase → production domain).
+    // Any page that sets its own openGraph.images overrides this; pages that
+    // don't now inherit a branded card instead of shipping no image.
+    images: [{ url: "/og/default.jpg", width: 1200, height: 630, alt: "House of Willow Alexander" }],
   },
   twitter: {
     card: "summary_large_image",
     site: "@howahouse",
+    images: ["/og/default.jpg"],
   },
   robots: {
     index: true,
