@@ -93,7 +93,9 @@ async function fetchShopifyHandles(): Promise<{
           "X-Shopify-Storefront-Access-Token": env.SHOPIFY_STOREFRONT_TOKEN!,
         },
         body: JSON.stringify({ query }),
-        next: { tags: ["sitemap:shopify"], revalidate: 604800 },
+        // Short TTL so a redeploy / on-demand revalidation refreshes the product
+        // list promptly at launch (the feed expects ~481, not a week-old cache).
+        next: { tags: ["sitemap:shopify"], revalidate: 3600 },
       });
 
     const products: ShopifyHandle[] = [];

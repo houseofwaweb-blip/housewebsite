@@ -62,6 +62,8 @@ const COLLECTIONS_QUERY = /* GraphQL */ `
       nodes {
         handle
         title
+        descriptionHtml
+        seo { title description }
         products(first: 250) { nodes { handle } }
       }
     }
@@ -102,7 +104,13 @@ interface SfProduct {
 interface CatalogueData {
   collections: {
     // Collections carry only product handles now; full records join via byHandle.
-    nodes: Array<{ handle: string; title: string; products: { nodes: Array<{ handle: string }> } }>;
+    nodes: Array<{
+      handle: string;
+      title: string;
+      descriptionHtml: string | null;
+      seo: { title: string | null; description: string | null } | null;
+      products: { nodes: Array<{ handle: string }> };
+    }>;
   };
 }
 
@@ -255,6 +263,9 @@ export const loadShopifyCatalogue = cache(async (): Promise<ShopifyCatalogue | n
       handle: c.handle,
       title: c.title,
       productCount: c.products.nodes.length,
+      descriptionHtml: c.descriptionHtml || undefined,
+      seoTitle: c.seo?.title || undefined,
+      seoDescription: c.seo?.description || undefined,
     }));
     // Join collection product handles back to the full records from byHandle
     // (rather than re-mapping duplicated embedded data, which we no longer fetch).

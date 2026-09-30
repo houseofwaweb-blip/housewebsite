@@ -207,16 +207,20 @@ export default async function ProductPage({
     "gtin" in product && typeof product.gtin === "string" && product.gtin ? product.gtin : undefined;
   const brandValue: string | undefined =
     "brand" in product && typeof product.brand === "string" && product.brand ? product.brand : undefined;
-  // Pre-launch framing: the store is not live to buy yet, so in-stock items read
-  // simply "In stock" (no "ready to send") and everything else reads "Available
-  // at launch", matching the product page's purchase button.
+  // Stock line by the title. Before go-live (SHOP_BUYABLE off) the store is
+  // browse-only, so items read "Available at launch"; once buying is live they
+  // read as real stock, matching the purchase button.
   const deliveryStatus = isDesign
     ? "A design service, delivered by a House studio"
     : inStock
-      ? "In stock · Available at launch"
+      ? env.SHOP_BUYABLE
+        ? "In stock"
+        : "In stock · Available at launch"
       : availability === "OutOfStock"
         ? "Currently unavailable"
-        : "Available at launch";
+        : env.SHOP_BUYABLE
+          ? "Currently unavailable"
+          : "Available at launch";
 
   // Related editorial for the store→magazine cross-link (spec §12 PDP order 8).
   const hearth = await getLatestHearthArticles(3).catch(() => []);

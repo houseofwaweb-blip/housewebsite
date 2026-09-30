@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { pageMeta } from "@/lib/seo/meta";
 import {
   getShopCollection,
   getShopCollections,
+  getShopCollectionMeta,
   getShopProducts,
 } from "@/lib/shop-data/source";
 import { COLLECTIONS, PRODUCTS } from "@/lib/shop-data";
@@ -26,11 +26,24 @@ function deriveBrands(products: CatalogueProduct[]) {
 type ShopNavCategory = { title: string; handle: string; subs: { title: string; handle: string }[] };
 const NAV = SHOP_NAV as ShopNavCategory[];
 
-// Back-office collections kept in Shopify but never public (mirror of the list
-// in ../page.tsx). A direct hit 404s so they can't be indexed or linked.
-const HIDDEN_COLLECTION_HANDLES = new Set(["services", "migration-review", "migration", "migration_review"]);
+// Back-office / non-product collections kept in Shopify but never public
+// (mirror of the list in ../page.tsx). A direct hit 404s so they can't be
+// indexed or linked. gift-cards lives at its own /gift-cards route, not here.
+const HIDDEN_COLLECTION_HANDLES = new Set([
+  "services",
+  "migration-review",
+  "migration",
+  "migration_review",
+  "gift-cards",
+  "gift-card",
+]);
 const isHiddenCollection = (handle: string) =>
   HIDDEN_COLLECTION_HANDLES.has(handle) || /migration[-_ ]?review/i.test(handle);
+
+/** Plain-text first line of a Shopify descriptionHtml, for meta fallbacks. */
+function stripHtml(html: string): string {
+  return html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+}
 
 type ResolvedCollection = {
   title: string;
@@ -94,13 +107,28 @@ export async function generateMetadata({
 }) {
   const { handle } = await params;
   if (isHiddenCollection(handle)) return { title: "Not found", robots: { index: false, follow: false } };
+
+  // Prefer the Shopify collection's own "Search engine listing" (seo.title /
+  // seo.description), then its intro paragraph, then the display title.
+  const meta = await getShopCollectionMeta(handle);
   const mainCat = NAV.find((c) => c.handle === handle);
-  if (mainCat) return { title: `${mainCat.title} | Shop`, ...pageMeta(`/shop/collections/${handle}`) };
-  const collection = await resolveCollection(handle);
-  if (!collection) return { title: "Collection not found" };
+  const displayTitle =
+    mainCat?.title ?? meta?.title ?? (await resolveCollection(handle))?.title;
+  if (!displayTitle) return { title: "Collection not found" };
+
+  // Bare title; the root layout template appends " | House of Willow Alexander".
+  const title = meta?.seoTitle?.trim() || displayTitle;
+  const description =
+    meta?.seoDescription?.trim() ||
+    (meta?.descriptionHtml ? stripHtml(meta.descriptionHtml).slice(0, 155) : undefined);
+  const canonical = `/shop/collections/${handle}`;
+  const brandedTitle = `${title} | House of Willow Alexander`;
   return {
-    title: `${collection.title} | Shop`,
-    ...pageMeta(`/shop/collections/${handle}`),
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: { url: canonical, title: brandedTitle, description },
+    twitter: { title: brandedTitle, description },
   };
 }
 
@@ -112,6 +140,15 @@ export default async function CollectionPage({
   const { handle } = await params;
   if (isHiddenCollection(handle)) notFound();
   const mainCat = NAV.find((c) => c.handle === handle);
+  const meta = await getShopCollectionMeta(handle);
+  const intro = meta?.descriptionHtml ? (
+    <section className="px-[5vw] pb-2">
+      <div
+        className="mx-auto max-w-[760px] font-sans text-[17.5px] leading-[1.7] text-house-brown/85 [&_a]:underline [&_a]:underline-offset-2 [&_p]:mb-3"
+        dangerouslySetInnerHTML={{ __html: meta.descriptionHtml }}
+      />
+    </section>
+  ) : null;
 
   // ── Main category page: full filter rail (Brand · Price · Stock · Sort),
   //    scoped to this category, with the sub-categories as navigation links. ──
@@ -133,6 +170,8 @@ export default async function CollectionPage({
           <p className={s.heroEy}>The House · Shop</p>
           <h1 className={s.heroTitle}>{mainCat.title}.</h1>
         </section>
+
+        {intro}
 
         <ShopBrowser
           products={products}
@@ -177,6 +216,8 @@ export default async function CollectionPage({
           {collection.title}.
         </h1>
       </section>
+
+      {intro}
 
       {/* Full filter rail (no categories section), scoped to this product type */}
       <ShopBrowser products={products} collections={[]} brands={brands} />

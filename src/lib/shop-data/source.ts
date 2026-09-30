@@ -163,6 +163,19 @@ export async function getShopCollections(): Promise<CatalogueCollection[]> {
   return CATALOGUE_COLLECTIONS;
 }
 
+/**
+ * Collection metadata (title + Shopify SEO fields + intro HTML) for one handle.
+ * Used by the collection page for its <title>/description and the intro
+ * paragraph above the grid. Returns null when the handle isn't a real
+ * Shopify/Sanity collection (e.g. NAV categories, virtual collections).
+ */
+export async function getShopCollectionMeta(
+  handle: string,
+): Promise<CatalogueCollection | null> {
+  const all = await getShopCollections();
+  return all.find((c) => c.handle === handle) ?? null;
+}
+
 /** Brand list. Shopify vendors first, then the static brand list. */
 export async function getShopBrands(): Promise<CatalogueBrand[]> {
   const shopify = await loadShopifyCatalogue();

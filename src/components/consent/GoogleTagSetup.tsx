@@ -35,10 +35,11 @@ export function GoogleTagSetup() {
   const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-HN657RY0DT";
   const adsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
   // The Shopify-hosted checkout domain the Buy button hands off to, for
-  // cross-domain linking. Defaults to the store's myshopify domain; override
-  // with NEXT_PUBLIC_CHECKOUT_DOMAIN if a custom checkout domain is configured.
+  // cross-domain linking (GA4 + Ads sessions/click IDs must carry into
+  // checkout). Defaults to the live checkout subdomain; override with
+  // NEXT_PUBLIC_CHECKOUT_DOMAIN if it ever changes.
   const checkoutDomain =
-    process.env.NEXT_PUBLIC_CHECKOUT_DOMAIN || "pqyxq3-ex.myshopify.com";
+    process.env.NEXT_PUBLIC_CHECKOUT_DOMAIN || "checkout.willowalexander.co.uk";
 
   // Update Consent Mode v2 state whenever wa-consent changes. Maps our
   // 4-category model onto Google's 7 storage purposes. Functional maps to

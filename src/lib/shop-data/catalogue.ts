@@ -48,6 +48,11 @@ export interface CatalogueCollection {
   handle: string;
   title: string;
   productCount: number;
+  /** Shopify collection body (short intro paragraph), rendered above the grid. */
+  descriptionHtml?: string;
+  /** Shopify "Search engine listing" title / description for the collection. */
+  seoTitle?: string;
+  seoDescription?: string;
 }
 
 export interface CatalogueBrand {

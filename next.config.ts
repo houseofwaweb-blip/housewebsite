@@ -210,8 +210,13 @@ const nextConfig: NextConfig = {
       // Legacy WooCommerce shop pages → the marketplace.
       { source: "/shop-all", destination: "/shop", permanent: true },
       { source: "/sale", destination: "/shop", permanent: true },
-      { source: "/basket", destination: "/shop", permanent: true },
-      { source: "/checkout", destination: "/shop", permanent: true },
+      // Legacy WooCommerce basket/checkout → the in-site cart flow. The old
+      // thank-you page (with a trailing order id + key) has no equivalent now
+      // Shopify hosts its own, so it goes home.
+      { source: "/checkout/order-received", destination: "/", permanent: true },
+      { source: "/checkout/order-received/:path*", destination: "/", permanent: true },
+      { source: "/basket", destination: "/shop/basket", permanent: true },
+      { source: "/checkout", destination: "/shop/checkout", permanent: true },
       { source: "/my-account", destination: "https://accounts.willowalexander.co.uk/", permanent: true },
       { source: "/:s([^/]*-shop)", destination: "/shop", permanent: true },
       // Sign-in moved to external accounts subdomain
