@@ -17,7 +17,9 @@ import type {
  * Shopify without touching any page.
  *
  * Read-only: never writes to the store. Cached per-request via React
- * `cache()` and across requests via the Next fetch cache (revalidate 1 week).
+ * `cache()` and across requests via the Next fetch cache (1-hour safety-net
+ * revalidate; the products/update webhook makes changes instant, this is the
+ * backstop so new photos/prices never lag more than an hour).
  */
 
 const API_VERSION = "2025-04";
@@ -203,7 +205,7 @@ export const loadShopifyCatalogue = cache(async (): Promise<ShopifyCatalogue | n
           "X-Shopify-Storefront-Access-Token": env.SHOPIFY_STOREFRONT_TOKEN as string,
         },
         body: JSON.stringify({ query, variables }),
-        next: { tags: ["shopify:catalogue"], revalidate: 604800 },
+        next: { tags: ["shopify:catalogue"], revalidate: 3600 },
       });
       if (!res.ok) return null;
       const json = (await res.json()) as { data?: unknown };

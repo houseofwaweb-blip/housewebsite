@@ -586,7 +586,13 @@ export default async function ProductPage({
 
 // Pages not listed here (the 500+ Sanity/catalogue products) render on first
 // request and are then cached. dynamicParams defaults to true.
-export const revalidate = 604800;
+//
+// 1-hour safety-net revalidate: new Shopify photos/prices appear within the hour
+// even if the products/update webhook (api/webhooks/shopify → revalidateTag) is
+// not yet registered in Shopify admin. Pages still serve instantly from cache
+// (stale-while-revalidate), so this does not slow responses. When the webhook is
+// live it makes updates instant and this is just the backstop.
+export const revalidate = 3600;
 
 // Prebuild only the curated showpieces at build time. Prebuilding all 500+
 // products exhausted build memory; the rest are served on-demand via ISR.
