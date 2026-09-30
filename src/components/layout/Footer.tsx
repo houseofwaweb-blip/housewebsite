@@ -149,7 +149,7 @@ export function Footer({ columns, tagline }: FooterProps) {
 
         {/* Disclosure */}
         <p className="mt-8 max-w-[80ch] font-sans text-[12.5px] leading-[1.6] text-house-stone">
-          Booking and home intelligence powered by HoWA. Insurance is arranged by Provenance, which is authorised and regulated by the Financial Conduct Authority. House of Willow Alexander is an introducer only and does not advise on or arrange insurance.
+          Booking and home intelligence powered by HoWA. Insurance from the House is coming soon.
         </p>
 
         {/* Legal bar */}

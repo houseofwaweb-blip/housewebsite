@@ -50,7 +50,7 @@ export function InsuranceEnquiryForm({
   enquiryType,
   turnstileSiteKey,
   sourcePage,
-  submitLabel = "Speak to a specialist",
+  submitLabel = "Register interest",
   withCompany = false,
   withProjectStart = false,
   initialPostcode,
@@ -187,7 +187,7 @@ export function InsuranceEnquiryForm({
         <textarea
           id="ins-notes"
           rows={3}
-          placeholder="If you need cover for more than one thing, or there is useful context for the introduction, add it here."
+          placeholder="If you need cover for more than one thing, or there is useful context, add it here."
           className="w-full resize-y border border-house-brown/30 bg-white px-3 py-2.5 text-[19px] leading-[1.5] text-house-brown outline-none transition-colors focus:border-[color:var(--ins-accent)] focus-visible:[outline:2px_solid_var(--ins-ink)] focus-visible:outline-offset-2"
           {...register("additionalInfo")}
         />

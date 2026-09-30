@@ -43,10 +43,10 @@ export function InsuranceBand() {
               Home insurance, but better understood.
             </h2>
             <p className="mt-4 max-w-[52ch] font-sans text-[clamp(16px,1.4vw,19px)] leading-[1.55] text-house-brown/80">
-              Your home isn&rsquo;t generic. Its cover shouldn&rsquo;t feel generic either.
+              Your home isn&rsquo;t generic. Its cover shouldn&rsquo;t feel generic either. House insurance is coming soon &mdash; register your interest and we&rsquo;ll tell you the moment it opens.
             </p>
-            <Link href="/insurance" className="mt-6 inline-flex h-12 w-fit items-center justify-center whitespace-nowrap border border-house-ink bg-house-ink px-7 font-sans text-[13px] uppercase tracking-[0.16em] text-house-cream no-underline transition-[filter] hover:brightness-125">
-              Explore home insurance →
+            <Link href="/insurance/speak-to-a-specialist" className="mt-6 inline-flex h-12 w-fit items-center justify-center whitespace-nowrap border border-house-ink bg-house-ink px-7 font-sans text-[13px] uppercase tracking-[0.16em] text-house-cream no-underline transition-[filter] hover:brightness-125">
+              Register your interest →
             </Link>
             <ul className="mt-8 grid gap-6 border-t border-house-brown/12 pt-7 sm:grid-cols-3">
               {POINTS.map((p) => (
@@ -68,9 +68,10 @@ export function InsuranceBand() {
           </div>
         </div>
 
-        {/* Regulatory disclosure — immediately below (brief) */}
+        {/* Coming-soon note — insurance is not live yet (waitlist only), so no
+            introducer/FCA disclosure is made here. */}
         <p className="mt-7 max-w-[80ch] font-sans text-[12.5px] leading-[1.6] text-house-stone">
-          House of Willow Alexander acts as an introducer for insurance, arranged by Provenance, which is authorised and regulated by the Financial Conduct Authority. Full details are provided before any purchase.
+          Insurance from the House is coming soon. Registering your interest adds you to the waitlist; it is not an application for cover or advice.
         </p>
       </div>
     </section>

@@ -12,9 +12,9 @@ import { insuranceOg } from "@/lib/insurance/og";
  */
 export const metadata: Metadata = {
   alternates: { canonical: "/insurance/speak-to-a-specialist" },
-  title: "Speak to a specialist",
-  description: "Leave your details and a Provenance insurance specialist will contact you. Introduced by House of Willow Alexander.",
-  ...insuranceOg("speak-to-a-specialist", "Speak to a specialist"),
+  title: "Register your interest",
+  description: "Insurance from the House is coming soon. Leave your details to join the waitlist and we'll be in touch when cover opens.",
+  ...insuranceOg("speak-to-a-specialist", "Register your interest"),
 };
 
 const COVER: Record<string, { label: string; type: string }> = {
@@ -40,17 +40,17 @@ export default async function SpeakToASpecialist({
           <div>
             <p className="font-sans text-[14px] tracking-[0.3em] uppercase text-[color:var(--ins-ink)]">Insurance</p>
             <h1 className="mt-4 font-display text-[clamp(33px,4.6vw,55px)] leading-[1.05] text-house-black">
-              Speak to a specialist.
+              Register your interest.
             </h1>
             <p className="mt-5 mb-4 max-w-[52ch] font-sans text-[20px] leading-[1.6] text-house-stone">
-              Leave the details needed for the introduction and a Provenance specialist will contact you to discuss the cover.
+              Insurance from the House is coming soon. Leave your details to join the waitlist and we&rsquo;ll be in touch when cover opens.
             </p>
             {chosen || postcode ? (
               <p className="mb-8 inline-block border-l-2 border-[color:var(--ins-ink)] bg-house-cream-dark/50 px-4 py-2 font-sans text-[18px] text-house-brown">
-                Starting {chosen ? `${/^[aeiou]/i.test(chosen.label) ? "an" : "a"} ${chosen.label} enquiry` : "your enquiry"}{postcode ? ` for ${postcode.toUpperCase()}` : ""}.
+                Registering interest in {chosen ? chosen.label : "insurance"}{postcode ? ` for ${postcode.toUpperCase()}` : ""}.
               </p>
             ) : null}
-            <InsuranceEnquiryForm enquiryType={chosen?.type ?? "general"} turnstileSiteKey={turnstileSiteKey} sourcePage="/insurance/speak-to-a-specialist" submitLabel="Send" initialPostcode={postcode} />
+            <InsuranceEnquiryForm enquiryType={chosen?.type ?? "general"} turnstileSiteKey={turnstileSiteKey} sourcePage="/insurance/speak-to-a-specialist" submitLabel="Register interest" initialPostcode={postcode} />
           </div>
           <div className="relative aspect-[4/5] w-full overflow-hidden lg:mt-2">
             <Image
