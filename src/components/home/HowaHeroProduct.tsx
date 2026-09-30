@@ -76,7 +76,7 @@ export function HowaHeroProduct() {
             <p className="max-w-[52ch] font-sans text-[clamp(17px,1.4vw,20px)] leading-[1.6] text-house-brown/80">
               HoWA is coming soon: every service you book through the House will
               live here, alongside your home&rsquo;s history, jobs, documents,
-              preferences and what needs doing next. Join the launch list to be
+              preferences and what needs doing next. Join the waitlist to be
               first in.
             </p>
 
