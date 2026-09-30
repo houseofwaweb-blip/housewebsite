@@ -28,7 +28,7 @@ export const metadata = {
  * supplied. We do not invent links.
  */
 
-type Fig = { src: string; alt: string; caption: string; placeholder?: boolean };
+type Fig = { src: string; alt: string; caption: string; placeholder?: boolean; ratio?: string };
 
 // Founder portrait of Samuel & Alexander (2:3, shown at its natural ratio).
 const FOUNDER_PORTRAIT: Fig = {
@@ -48,34 +48,38 @@ const FOUNDER_ALEXANDER: Fig = {
   caption: "Alexander Oakley",
 };
 
-// Real House photography — the fleet, the teams at work and finished designs
-// (from the services + design sets), so the story shows the actual House.
-// Floats render 4:5 (portrait) — the liveried vans are shot 4:5 so they fit
-// exactly; the others are high-res and centre-crop cleanly. Bands render 16:9.
+// Real House photography — the fleet, the teams at work and the studio.
+// Floats render 4:5 (portrait) by default; a figure can override with `ratio`
+// (the studio shots are landscape, so they render ~3:2). Bands render 16:9.
 const FIG_ROSES: Fig = {
   src: "/services/photos/vans/asher-345.webp",
   alt: "A liveried House of Willow Alexander electric van",
   caption: "The House fleet: liveried, electric.",
-};
-const FIG_BLOOMS: Fig = {
-  src: "/services/photos/cleaner-shower.jpg",
-  alt: "House cleaning to the House standard",
-  caption: "Cleaned to the House standard.",
-};
-const FIG_WISTERIA: Fig = {
-  src: "/services/photos/gardening-gallery-1.webp",
-  alt: "A garden designed and cared for by the House",
-  caption: "A garden, designed and cared for by the House.",
 };
 const BAND_BLOSSOM: Fig = {
   src: "/services/photos/gardening-gallery-2.webp",
   alt: "A House gardener at work",
   caption: "A House team at work.",
 };
-const BAND_RECORD: Fig = {
-  src: "/design/interiors/project-living-room.webp",
-  alt: "A living room designed by the House",
-  caption: "A House interior design.",
+// The Willow Alexander studio — the team at work, the design process and HoWA
+// on screen. Shot landscape (~3:2), so the floats carry `ratio` to render wide
+// rather than centre-cropped tall.
+const STUDIO_DESIGN: Fig = {
+  src: "/the-house/about/studio-design.webp",
+  alt: "The House design team reviewing materials and mood boards in the studio",
+  caption: "A design taking shape in the studio.",
+  ratio: "3 / 2",
+};
+const STUDIO_HOWA: Fig = {
+  src: "/the-house/about/studio-howa.webp",
+  alt: "Two members of the House team reviewing a HoWA design in the Willow Alexander studio",
+  caption: "At work in the House studio.",
+};
+const STUDIO_TEAM: Fig = {
+  src: "/the-house/about/studio-team.webp",
+  alt: "The House team at work in the Willow Alexander studio",
+  caption: "Inside the Willow Alexander studio.",
+  ratio: "3 / 2",
 };
 
 const LEDE =
@@ -170,15 +174,15 @@ const STORY: React.ReactNode[] = [
 // sit before. Alternating sides for a magazine rhythm.
 const FLOAT_BEFORE: Record<number, { fig: Fig; side: "left" | "right" }> = {
   3: { fig: FIG_ROSES, side: "right" },
-  9: { fig: FIG_BLOOMS, side: "left" },
-  15: { fig: FIG_WISTERIA, side: "right" },
+  9: { fig: STUDIO_DESIGN, side: "left" },
+  15: { fig: STUDIO_TEAM, side: "right" },
 };
 
 // Full-width imagery breaks between story movements, keyed by the paragraph
 // index they sit before.
 const BAND_BEFORE: Record<number, Fig> = {
   5: BAND_BLOSSOM,
-  12: BAND_RECORD,
+  12: STUDIO_HOWA,
 };
 
 // A pull-quote before this story-paragraph index (the House's recurring test).
@@ -195,8 +199,11 @@ function FloatFigure({ fig, side }: { fig: Fig; side: "left" | "right" }) {
           : "md:float-left md:mr-9 md:clear-left",
       )}
     >
-      <div className="relative aspect-[4/5] w-full overflow-hidden border border-house-line bg-house-cream-dark">
-        <Image src={fig.src} alt={fig.alt} fill sizes="(min-width:768px) 360px, 100vw" className="object-cover" />
+      <div
+        className="relative aspect-[4/5] w-full overflow-hidden border border-house-line bg-house-cream-dark"
+        style={fig.ratio ? { aspectRatio: fig.ratio } : undefined}
+      >
+        <Image src={fig.src} alt={fig.alt} fill sizes="(min-width:768px) 460px, 100vw" className="object-cover" />
       </div>
       <figcaption className="mt-2.5 font-hearth-sans text-[13px] leading-[1.5] text-house-stone">
         {fig.caption}
