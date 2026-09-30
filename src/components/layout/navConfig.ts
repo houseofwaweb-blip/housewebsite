@@ -163,7 +163,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
       },
     ],
     preview: {
-      image: "/home/hero-georgian.webp",
+      image: "/home-v4/design-portrait.webp",
       alt: "A considered British interior",
       tag: "Design",
       heading: "From an idea to a finished room.",
@@ -263,7 +263,7 @@ export const PRIMARY_NAV: MegaPanel[] = [
       },
     ],
     preview: {
-      image: "/home/hero-georgian.webp",
+      image: "/home/hearth-card.webp",
       alt: "The Hearth magazine",
       tag: "The Hearth",
       heading: "Writing worth keeping, for the home and garden.",
