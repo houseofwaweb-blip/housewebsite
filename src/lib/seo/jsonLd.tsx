@@ -79,6 +79,40 @@ export function WebSiteJsonLd() {
   });
 }
 
+/**
+ * LocalBusiness (HomeAndConstructionBusiness subtype) for the House's own home
+ * and garden services. Gives service pages a local-business rich result with
+ * NAP + areaServed and links back to the Organization. Audit #15: no
+ * LocalBusiness existed anywhere. Render one per service page.
+ */
+export function HomeServiceBusinessJsonLd({
+  areaServed = ["London", "Kent"],
+}: {
+  areaServed?: string[];
+} = {}) {
+  const base = env.NEXT_PUBLIC_SITE_URL;
+  return renderLd({
+    "@context": "https://schema.org",
+    "@type": "HomeAndConstructionBusiness",
+    "@id": `${base}#localbusiness`,
+    name: "House of Willow Alexander",
+    parentOrganization: { "@id": `${base}#organization` },
+    url: base,
+    logo: `${base}/brand/logo-organization.png`,
+    image: `${base}/og/default.jpg`,
+    telephone: "+44 800 047 8738",
+    priceRange: "££",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Parker House, 5 Powerscroft Road",
+      addressLocality: "Sidcup",
+      postalCode: "DA14 5DT",
+      addressCountry: "GB",
+    },
+    areaServed: areaServed.map((n) => ({ "@type": "City", name: n })),
+  });
+}
+
 /** BreadcrumbList schema from a segment array. */
 export function BreadcrumbJsonLd({
   items,

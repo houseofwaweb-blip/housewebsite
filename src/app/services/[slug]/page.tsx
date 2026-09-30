@@ -14,7 +14,7 @@ import { REQUESTABLE_SERVICES } from "@/lib/services-data/requestable";
 import { getSingleServiceView } from "@/lib/services-data/requestable-detail";
 import { PortableText } from "@/components/cms/PortableText";
 import type { PortableTextBlock } from "@portabletext/types";
-import { ServiceJsonLd, BreadcrumbJsonLd, FaqJsonLd } from "@/lib/seo/jsonLd";
+import { ServiceJsonLd, BreadcrumbJsonLd, FaqJsonLd, HomeServiceBusinessJsonLd } from "@/lib/seo/jsonLd";
 import { MetaViewContent } from "@/components/marketing/MetaViewContent";
 import { env } from "@/lib/env";
 import s from "./service-fallback.module.css";
@@ -141,6 +141,7 @@ export default async function ServicePage({
           url={`${baseUrl}/services/${slug}`}
           serviceType={local.name}
         />
+        <HomeServiceBusinessJsonLd />
         <BreadcrumbJsonLd
           items={[
             { name: "Home", href: "/" },
@@ -178,6 +179,7 @@ export default async function ServicePage({
           url={`${baseUrl}/services/${slug}`}
           serviceType={singleView.name}
         />
+        <HomeServiceBusinessJsonLd />
         <BreadcrumbJsonLd
           items={[
             { name: "Home", href: "/" },
@@ -218,6 +220,7 @@ export default async function ServicePage({
         }
         areaServed={service.availableAreas?.[0] ?? "London"}
       />
+      <HomeServiceBusinessJsonLd areaServed={service.availableAreas ?? ["London", "Kent"]} />
       <BreadcrumbJsonLd
         items={[
           { name: "Home", href: "/" },
