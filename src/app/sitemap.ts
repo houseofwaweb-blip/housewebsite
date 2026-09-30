@@ -199,10 +199,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const cmsRoutes = (await getCmsSitemapEntries(base)).filter((e) => {
     const u = e.url;
     // Non-product / back-office collections that must never be indexed.
+    // (gift-cards is a real product collection — it stays in the sitemap.)
     if (u.endsWith("/shop/collections/services")) return false;
     if (u.endsWith("/shop/collections/migration-review")) return false;
-    if (u.endsWith("/shop/collections/gift-cards")) return false;
-    if (u.endsWith("/shop/collections/gift-card")) return false;
     if (u.includes("-foraged-seasonal-blooms-2")) return false;
     return true;
   });

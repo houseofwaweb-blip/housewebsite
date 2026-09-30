@@ -243,6 +243,11 @@ const nextConfig: NextConfig = {
       // This legacy category has no matching collection, so the generic rule
       // below would 301 it to a 404. Send it to the shop instead (audit #21).
       { source: "/product-category/house/household-supplies", destination: "/shop", permanent: true },
+      // Internal / non-product collections (services, migration-review) are not
+      // public. They're in the current live sitemap, so 301 them to the shop —
+      // deindexes them AND avoids a 404 for anyone/Google hitting the old URL.
+      { source: "/shop/collections/services", destination: "/shop", permanent: true },
+      { source: "/shop/collections/migration-review", destination: "/shop", permanent: true },
       // Nested WooCommerce category URLs (e.g. /product-category/outdoor-living/
       // garden-furniture) map to the FLAT child collection (the last segment),
       // since new-site collections are single-level. Must precede the generic

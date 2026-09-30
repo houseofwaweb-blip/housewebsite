@@ -28,14 +28,13 @@ const NAV = SHOP_NAV as ShopNavCategory[];
 
 // Back-office / non-product collections kept in Shopify but never public
 // (mirror of the list in ../page.tsx). A direct hit 404s so they can't be
-// indexed or linked. gift-cards lives at its own /gift-cards route, not here.
+// indexed or linked. NB: gift-cards is NOT hidden — it's a real, populated
+// collection (14 gift-card products) and the target of the /gift-cards route.
 const HIDDEN_COLLECTION_HANDLES = new Set([
   "services",
   "migration-review",
   "migration",
   "migration_review",
-  "gift-cards",
-  "gift-card",
 ]);
 const isHiddenCollection = (handle: string) =>
   HIDDEN_COLLECTION_HANDLES.has(handle) || /migration[-_ ]?review/i.test(handle);
