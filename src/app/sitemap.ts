@@ -54,18 +54,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/howa/plans`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/howa/steward`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
     { url: `${base}/howa/faq`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${base}/howa/house-customers`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
 
     // ---- Design ----
     { url: `${base}/design`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/design/interiors`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/design/gardens`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
 
-    // ---- Services (4 launch) ----
+    // ---- Services ----
+    // The hub; all main service pages are generated below from SERVICE_ORDER
+    // (every /services/[slug] is an indexable canonical page). The standalone
+    // /services/home-and-garden route is added there too.
     { url: `${base}/services`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${base}/services/gardening`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
-    { url: `${base}/services/window-cleaning`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
-    { url: `${base}/services/cleaning`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
-    { url: `${base}/services/gutter-cleaning`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
 
 
     // ---- Insurance & Cover ----
@@ -84,6 +84,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // ---- Shop ----
     { url: `${base}/shop`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
+    { url: `${base}/shop/all`, lastModified: now, changeFrequency: "daily", priority: 0.7 },
+    { url: `${base}/shop/collections`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
 
     // ---- The Hearth (Journal + free reading) ----
     { url: `${base}/the-hearth`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
@@ -94,6 +96,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // ---- Utility & editorial (live pages; /house-credit + /gift-cards removed —
     //      they now redirect, so they must not appear here) ----
     { url: `${base}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${base}/my-house`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: `${base}/offers`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
     { url: `${base}/how-it-works`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/help`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
@@ -105,6 +108,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/legal/privacy`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
     { url: `${base}/legal/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
     { url: `${base}/legal/cookies`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${base}/legal/delivery`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${base}/legal/returns`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
   ];
 
   // ---- Service × town local pages (152: 4 launch services × 38 towns) ----
@@ -161,10 +166,48 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   );
 
-  const cmsRoutes = await getCmsSitemapEntries(base);
+  // ---- Main service pages (every /services/[slug] is indexable) ----
+  const serviceRoutes: MetadataRoute.Sitemap = [
+    ...SERVICE_ORDER.map((slug) => `/services/${slug}`),
+    "/services/home-and-garden",
+  ].map((p) => ({
+    url: `${base}${p}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
+  // ---- The Hearth category pages ----
+  const HEARTH_CATEGORY_SLUGS = [
+    "colour-and-materials",
+    "design-and-architecture",
+    "gardens-and-exteriors",
+    "heritage-and-culture",
+    "interiors-and-styling",
+    "trends-and-inspiration",
+  ];
+  const hearthCategoryRoutes: MetadataRoute.Sitemap = HEARTH_CATEGORY_SLUGS.map((s) => ({
+    url: `${base}/the-hearth/category/${s}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.5,
+  }));
+
+  // CMS/Shopify slugs, minus URLs that 404 or redirect (audit #5): two derived
+  // collections with no page, and the duplicate "-2" wreath musing (301s to the
+  // canonical post).
+  const cmsRoutes = (await getCmsSitemapEntries(base)).filter((e) => {
+    const u = e.url;
+    if (u.endsWith("/shop/collections/services")) return false;
+    if (u.endsWith("/shop/collections/migration-review")) return false;
+    if (u.includes("-foraged-seasonal-blooms-2")) return false;
+    return true;
+  });
 
   return [
     ...staticRoutes,
+    ...serviceRoutes,
+    ...hearthCategoryRoutes,
     ...insuranceRoutes,
     ...subServiceRoutes,
     ...gardenProjectRoutes,
