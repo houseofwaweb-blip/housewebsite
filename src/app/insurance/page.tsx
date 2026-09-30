@@ -5,14 +5,12 @@ import { env } from "@/lib/env";
 import { RenewalReminderForm } from "@/components/insurance/RenewalReminderForm";
 import { InsuranceDisclosure } from "@/components/insurance/InsuranceDisclosure";
 import { CoverFinder } from "@/components/insurance/CoverFinder";
-import { ProvenanceLockup } from "@/components/insurance/ProvenanceLockup";
 import { WhyHouseCover } from "@/components/insurance/WhyHouseCover";
 import { WhatMayBeCovered } from "@/components/insurance/WhatMayBeCovered";
 import { ClaimsHelpBand } from "@/components/insurance/ClaimsHelp";
 import { InsuranceCtaBand } from "@/components/insurance/InsuranceCtaBand";
 import { Accordion } from "@/components/primitives/Accordion";
 import { MobileCarousel } from "@/components/primitives/MobileCarousel";
-import { PROVENANCE } from "@/lib/insurance/config";
 import { insuranceOg } from "@/lib/insurance/og";
 
 /**
@@ -25,7 +23,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/insurance" },
   title: "Insurance from the House",
   description:
-    "Insurance introduced by House of Willow Alexander and arranged by Provenance, from home and personal cover to private-client and specialist risks.",
+    "Insurance from House of Willow Alexander is coming soon, from home and contents to private-client and specialist cover. Register your interest to hear when it opens.",
   ...insuranceOg("insurance", "Insurance from the House"),
 };
 
@@ -42,18 +40,17 @@ export default function InsuranceHub() {
               Cover for the house. <em className="italic">And everyone who lives in it.</em>
             </h1>
             <p className="mt-6 max-w-[52ch] font-sans text-[22px] leading-[1.6] text-house-stone">
-              From buildings and contents to private-client and specialist cover, the House helps you find the right route. The House makes the introduction and Provenance arranges the insurance.
+              From buildings and contents to private-client and specialist cover, insurance from the House is coming soon. Register your interest and we&rsquo;ll tell you the moment it opens.
             </p>
             <div className="mt-8 flex flex-col gap-4">
               <div className="flex flex-col gap-3 sm:flex-row sm:max-w-[460px]">
-                <Link href="/insurance/private-client" className="inline-flex w-full items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[14px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110 sm:flex-1">
-                  Speak to a specialist
+                <Link href="/insurance/speak-to-a-specialist" className="inline-flex w-full items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[14px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110 sm:flex-1">
+                  Register your interest
                 </Link>
                 <Link href="/insurance/everyday" className="inline-flex w-full items-center justify-center whitespace-nowrap border border-house-brown/30 px-7 py-3.5 font-sans text-[14px] tracking-[0.16em] uppercase text-house-brown no-underline transition-colors hover:border-[color:var(--ins-ink)] sm:flex-1">
                   Everyday cover
                 </Link>
               </div>
-              <ProvenanceLockup className="mt-2" />
             </div>
           </div>
           <div className="relative aspect-[4/5] w-full overflow-hidden">
@@ -106,10 +103,10 @@ export default function InsuranceHub() {
                 For homes and assets that need specialist advice.
               </h2>
               <p className="mt-4 max-w-[48ch] font-sans text-[19px] leading-[1.6] text-house-stone">
-                Provenance provides an advised Private Client service for high-value, period and more complex risks, with a broker who can look across the wider estate.
+                An advised private-client service for high-value, period and more complex risks, with a specialist who can look across the wider estate. Coming soon.
               </p>
             </div>
-            <span className="mt-6 font-sans text-[14px] tracking-[0.16em] uppercase text-[color:var(--ins-ink)]">Speak to a specialist →</span>
+            <span className="mt-6 font-sans text-[14px] tracking-[0.16em] uppercase text-[color:var(--ins-ink)]">Register interest →</span>
           </Link>
           {/* Everyday, enquiry-led, secondary */}
           <Link href="/insurance/everyday" className="group flex flex-col justify-between border border-house-brown/15 bg-house-cream-dark/40 p-8 no-underline lg:col-span-2">
@@ -119,7 +116,7 @@ export default function InsuranceHub() {
                 For the insurance needs of everyday life.
               </h2>
               <p className="mt-4 font-sans text-[18.5px] leading-[1.6] text-house-stone">
-                Home, car, pet, travel and other personal cover, with the House making the introduction and Provenance arranging the insurance.
+                Home, car, pet, travel and other personal cover from the House. Coming soon &mdash; register your interest to hear when it opens.
               </p>
             </div>
             <span className="mt-6 font-sans text-[14px] tracking-[0.16em] uppercase text-[color:var(--ins-ink)]">Everyday cover →</span>
@@ -158,7 +155,7 @@ export default function InsuranceHub() {
               { h: "Under-insurance", p: "If the sum insured is too low, a claim may be reduced. A home’s rebuild cost is different from its market value." },
               { h: "Limits and excesses", p: "Section limits, single-item limits and the excess all affect what may be paid. Higher-value belongings may need to be listed separately." },
               { h: "Unoccupied and let homes", p: "Cover can change when a home is left unoccupied for longer periods or is let to others, so the policy needs to reflect how the property is used." },
-              { h: "The House does not advise", p: "The House introduces you to Provenance and does not advise on, arrange or decide your cover. The terms that bind are in the policy documents." },
+              { h: "The House does not advise", p: "The House does not advise on, arrange or decide your cover. When insurance opens, the terms that bind will be in the policy documents." },
             ].map((pt) => (
               <div key={pt.h} className="border-t border-[color:var(--ins-accent)]/40 pt-4">
                 <h3 className="font-sans text-[17px] font-semibold tracking-[0.02em] text-[color:var(--ins-ink)]">{pt.h}</h3>
@@ -167,7 +164,7 @@ export default function InsuranceHub() {
             ))}
           </div>
           <p className="mt-7 font-sans text-[15.5px] leading-[1.6] text-house-brown/70">
-            The policy wording, key facts and exclusions are provided by Provenance before you commit to anything.
+            The policy wording, key facts and exclusions will be provided before you commit to anything.
           </p>
         </div>
       </section>
@@ -187,20 +184,6 @@ export default function InsuranceHub() {
           <p className="max-w-[42ch] font-display text-[clamp(23px,2.4vw,31px)] leading-[1.3] text-house-cream">
             For homes that need specialist underwriting, accurate information about the building gives the broker and insurer a sound basis on which to assess the risk.
           </p>
-        </div>
-      </section>
-
-      {/* Who arranges it */}
-      <section className="border-t border-house-brown/10 px-[5vw] py-12">
-        <div className="mx-auto max-w-[760px]">
-          <p className="font-sans text-[14px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">Who arranges it</p>
-          <p className="mt-4 font-sans text-[20px] leading-[1.7] text-house-brown/85">
-            Cover is arranged and administered by {PROVENANCE.legalName}, authorised and regulated by the FCA (FRN {PROVENANCE.frn}), part of {PROVENANCE.group} and the {PROVENANCE.backer} group. {PROVENANCE.backer} is charity-owned and gives its available profits to good causes. The House introduces you; it does not advise on, arrange, administer or compare insurance.
-          </p>
-          <ProvenanceLockup className="mt-6" />
-          <Link href="/insurance/how-this-works" className="mt-6 inline-block font-sans text-[17px] tracking-[0.04em] text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">
-            How this works, and how we are paid →
-          </Link>
         </div>
       </section>
 
@@ -229,9 +212,10 @@ export default function InsuranceHub() {
                 summary: "Who provides the insurance?",
                 body: (
                   <p>
-                    The House makes the introduction. Provenance is the
-                    FCA-authorised firm that provides the regulated insurance
-                    service and arranges the cover.
+                    Insurance from the House is coming soon. When it opens, an
+                    FCA-authorised specialist will provide the regulated insurance
+                    and arrange the cover; the House does not advise on or arrange
+                    insurance.
                   </p>
                 ),
               },
@@ -251,9 +235,9 @@ export default function InsuranceHub() {
                 summary: "How do I make a claim?",
                 body: (
                   <p>
-                    Claims and existing-policy help go directly to Provenance.
-                    The claims route and contact details are set out in your
-                    policy documents and in the Claims and help section.
+                    Once insurance is live, claims and existing-policy help go
+                    directly to your insurer, with the route and contact details
+                    set out in your policy documents.
                   </p>
                 ),
               },
@@ -297,9 +281,9 @@ export default function InsuranceHub() {
       <InsuranceCtaBand
         eyebrow="Find the right cover"
         heading="Start with what you need to insure."
-        body="Choose the cover you need or speak to a specialist about more complex risks. The House makes the introduction and Provenance arranges the insurance."
-        primaryLabel="Request a quote"
-        primaryHref="/insurance/private-client"
+        body="Insurance from the House is coming soon. Register your interest and we'll tell you the moment cover opens."
+        primaryLabel="Register your interest"
+        primaryHref="/insurance/speak-to-a-specialist"
         tertiary={{ label: "Everyday cover", href: "/insurance/everyday" }}
       />
 
