@@ -20,7 +20,10 @@ import { env } from "@/lib/env";
  * anthropic-ai, Google-Extended [Gemini training, NOT AI Overviews], CCBot,
  * Applebot-Extended, Bytespider, Meta AI, Omgilibot, Diffbot, ImagesiftBot,
  * Timpibot), SEO-tool + low-value scrapers, and foreign engines we don't serve.
- * (The team's own Ahrefs/Semrush audits still run via a verified-site override.)
+ * (The team's OWN Ahrefs/Semrush site audits use distinct audit-crawler
+ * user-agents — AhrefsSiteAudit / SiteAuditBot / SemrushBot-SA — explicitly
+ * ALLOWED above, so internal audits keep working; only the competitor-facing
+ * web-index crawlers AhrefsBot / SemrushBot are blocked.)
  *
  * NOTE: robots.txt is advisory — polite bots obey it, but some ignore it.
  * Enforce the hard blocks + a /shop rate-limit in the Vercel Firewall as well
@@ -39,6 +42,15 @@ const ALLOWED_BOTS = [
   "Perplexity-User",
   "Claude-SearchBot",
   "Claude-User",
+  // Our OWN SEO team's site-audit crawlers. These are DISTINCT user-agents from
+  // the web-wide index crawlers (AhrefsBot / SemrushBot) blocked below: the index
+  // crawlers feed the public database competitors use to study our backlinks; the
+  // audit crawlers are the ones the team points at our own site. Allowing these
+  // explicitly (longest-match wins) keeps internal audits working while the
+  // competitor-facing index crawlers stay blocked.
+  "AhrefsSiteAudit",
+  "SiteAuditBot",
+  "SemrushBot-SA",
 ];
 const BLOCKED_BOTS = [
   // Low-value / aggressive search + tool crawlers
