@@ -92,7 +92,7 @@ export function BusinessPage({
         </div>
       </section>
 
-      {/* What Provenance places */}
+      {/* What may be covered */}
       <section className="border-t border-house-brown/10 px-[5vw] py-12">
         <div className="mx-auto max-w-[760px]">
           <h2 className="font-display text-[clamp(25px,2.8vw,37px)] leading-[1.12] text-house-black">{data.placed.heading}</h2>
@@ -106,7 +106,7 @@ export function BusinessPage({
           <p className="font-sans text-[14px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">Request a review</p>
           <h2 className="mt-3 font-display text-[clamp(27px,3vw,41px)] leading-[1.1] text-house-black">Ask for a review of your existing cover.</h2>
           <p className="mt-4 mb-8 max-w-[54ch] font-sans text-[19px] leading-[1.6] text-house-stone">
-            Leave the details needed for the introduction and a Provenance specialist will contact you about the review.
+            Insurance from the House is coming soon. Leave your details to join the waitlist and we&rsquo;ll be in touch when cover opens.
           </p>
           <InsuranceEnquiryForm
             enquiryType={data.enquiryType}

@@ -70,7 +70,7 @@ export function EverydayPreframe({ data }: { data: EverydayPage }) {
             {[
               { n: "1", h: "Choose your cover", p: "Choose the type of cover you need from the options above." },
               { n: "2", h: "Leave a few details", p: "Leave the details needed for the House to make the introduction." },
-              { n: "3", h: "Provenance takes it from there", p: "A Provenance specialist contacts you and arranges the cover." },
+              { n: "3", h: "We take it from there", p: "When insurance opens, a specialist contacts you and arranges the cover." },
             ].map((step) => (
               <li key={step.n} className="list-none">
                 <p className="font-display text-[33px] leading-none text-house-cream/35">{step.n}</p>
@@ -87,9 +87,9 @@ export function EverydayPreframe({ data }: { data: EverydayPage }) {
               data-ga-product={data.slug}
               className="inline-flex items-center justify-center whitespace-nowrap border border-house-cream bg-house-cream px-7 py-3.5 font-sans text-[14px] tracking-[0.16em] uppercase text-[color:var(--ins-dark)] no-underline transition-[filter] hover:brightness-95"
             >
-              Speak to a specialist →
+              Register interest →
             </Link>
-            <p className="mt-3 font-sans text-[14.5px] text-house-cream/55">The House introduces you; Provenance arranges and administers the cover.</p>
+            <p className="mt-3 font-sans text-[14.5px] text-house-cream/55">Insurance from the House is coming soon; register your interest to hear when it opens.</p>
           </div>
         </div>
       </section>
@@ -98,7 +98,7 @@ export function EverydayPreframe({ data }: { data: EverydayPage }) {
       <section className="px-[5vw] pb-8">
         <div className="mx-auto max-w-[760px] border-l-2 border-[color:var(--ins-ink)] bg-house-cream-dark/50 px-5 py-4">
           <p className="m-0 font-sans text-[18px] leading-[1.6] text-house-brown/85">
-            Cover is arranged and administered by Provenance, authorised and regulated by the FCA. The House is an introducer only: it does not advise on, arrange, administer or compare insurance.
+            Insurance from the House is coming soon. The House does not advise on or arrange insurance; registering your interest adds you to the waitlist.
           </p>
         </div>
       </section>

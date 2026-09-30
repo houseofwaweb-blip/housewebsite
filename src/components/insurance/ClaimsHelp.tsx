@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { PROVENANCE } from "@/lib/insurance/config";
-import { ProvenanceLockup } from "@/components/insurance/ProvenanceLockup";
 
 /**
  * Claims & help, spec §11.7. A prominent, unmissable route for people who
@@ -23,19 +21,19 @@ export function ClaimsHelpBand() {
       <div className="mx-auto grid max-w-[1080px] items-center gap-8 md:grid-cols-[1.2fr_1fr]">
         <div>
           <p className="font-sans text-[14px] tracking-[0.28em] uppercase text-house-cream/70">
-            Already with us
+            Coming soon
           </p>
           <h2 className="mt-3 font-display text-[clamp(27px,3.2vw,41px)] leading-[1.1] text-house-cream">
-            Need to make a claim or get help with existing cover?
+            Questions about insurance from the House?
           </h2>
           <p className="mt-4 max-w-[52ch] font-sans text-[18.5px] leading-[1.65] text-house-cream/80">
-            If you need help with a policy or want to report a claim, the House can direct you to the right Provenance contact.
+            Insurance from the House is coming soon. Register your interest to hear when it opens, or talk to the House using the details here.
           </p>
           <Link
-            href="/insurance/claims-and-help"
+            href="/insurance/speak-to-a-specialist"
             className="mt-6 inline-flex w-fit items-center whitespace-nowrap border border-house-cream/40 px-7 py-3.5 font-sans text-[14px] tracking-[0.16em] uppercase text-house-cream no-underline transition-colors hover:border-house-cream"
           >
-            Make a claim or get help →
+            Register your interest →
           </Link>
         </div>
         <div className="border-l border-house-cream/20 pl-6 md:pl-8">
@@ -85,18 +83,18 @@ export function ClaimsHelpDetail() {
   ];
   return (
     <div className="mx-auto max-w-[760px]">
-      <DetailBlock eyebrow="If you need to make a claim">
+      <DetailBlock eyebrow="When you need to make a claim">
         <p>
-          Claims on your policy are handled by {PROVENANCE.legalName} under its FCA permissions, from the first notification through to settlement. The sooner a claim is reported the better, so please get in touch as soon as it is safe to.
+          Insurance from the House is coming soon. When cover is live, claims on your policy will be handled by your insurer under its FCA permissions, from the first notification through to settlement, and the sooner a claim is reported the better.
         </p>
         <p>
-          If you are not sure where to start, talk to the House on the numbers below and we will make sure you reach the right person at Provenance quickly. We do not assess or settle claims ourselves.
+          In the meantime, talk to the House on the numbers below and we will point you in the right direction. The House does not assess or settle claims.
         </p>
       </DetailBlock>
 
       <DetailBlock eyebrow="Who to contact">
         <p>
-          Contact the House and we will connect you with the appropriate Provenance contact.
+          Contact the House and we will help you reach the right place.
         </p>
         <p className="!mt-5">
           <a
@@ -131,17 +129,12 @@ export function ClaimsHelpDetail() {
         </ul>
       </DetailBlock>
 
-      <DetailBlock eyebrow="How the House and Provenance fit">
+      <DetailBlock eyebrow="How this will work">
         <p>
-          The House introduces you to a specialist and stays alongside you. Provenance advises on, arranges and administers the cover, and handles claims on your behalf. The House does not advise on, arrange, administer, compare or transact insurance, and it does not settle claims.
+          When insurance is live, an FCA-authorised specialist will advise on, arrange and administer the cover and handle claims on your behalf. The House does not advise on, arrange, administer, compare or transact insurance, and it does not settle claims.
         </p>
-        <ProvenanceLockup className="mt-5" />
         <p className="!mt-5 text-[18px] text-house-brown/70">
-          Complaints about your cover or a claim are handled by Provenance under its FCA permissions, and eligible complainants can refer a matter to the Financial Ombudsman Service. The full route is set out on the{" "}
-          <Link href="/insurance/terms" className="text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">
-            regulatory notice
-          </Link>{" "}
-          page.
+          When cover is live, complaints about a policy or a claim will be handled by your insurer under its FCA permissions, with eligible complainants able to refer a matter to the Financial Ombudsman Service.
         </p>
       </DetailBlock>
     </div>

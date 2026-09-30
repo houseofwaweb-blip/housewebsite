@@ -10,7 +10,7 @@ export function WhyHouseCover() {
   const pillars = [
     {
       h: "The right route from the start",
-      p: "The House makes the introduction to Provenance, helping you reach the personal, private-client or specialist route that fits what you need to insure.",
+      p: "The House helps you reach the personal, private-client or specialist route that fits what you need to insure.",
     },
     {
       h: "A named specialist",
@@ -18,11 +18,11 @@ export function WhyHouseCover() {
     },
     {
       h: "Claims handled for you",
-      p: "Where Provenance handles the claim on your behalf, the same broker relationship can continue from first notification through to settlement.",
+      p: "When cover is live, the same specialist relationship can continue from first notification through to settlement.",
     },
     {
-      h: "Profits to good causes",
-      p: "Provenance is part of the Benefact group, which is charity-owned and gives its available profits to good causes.",
+      h: "Coming soon",
+      p: "Insurance from the House opens soon. Register your interest and we'll tell you the moment cover is available.",
     },
   ];
   return (
@@ -47,7 +47,7 @@ export function WhyHouseCover() {
             href="/insurance/private-client"
             className="inline-flex w-fit items-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[14px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110"
           >
-            Speak to a specialist →
+            Register interest →
           </Link>
           <Link
             href="/insurance/everyday"

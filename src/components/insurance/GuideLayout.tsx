@@ -169,7 +169,7 @@ export function GuideLayout({
             ) : null}
             {guide.hasFigures ? (
               <p className="mt-3 font-sans text-[14px] leading-[1.6] text-house-stone/70">
-                Figures are indicative and pending Provenance compliance sign-off. This is general information, not advice.
+                Figures are indicative. Insurance from the House is coming soon. This is general information, not advice.
               </p>
             ) : null}
           </article>
@@ -192,11 +192,11 @@ export function GuideLayout({
               <>
                 <h2 className="font-display text-[clamp(25px,2.6vw,33px)] leading-[1.15] text-house-black">Want to review your own cover?</h2>
                 <p className="mt-3 mb-5 max-w-[54ch] font-sans text-[19px] leading-[1.6] text-house-stone">
-                  The House can introduce you to Provenance to review the insurance against the property and the risks you need to cover.
+                  Insurance from the House is coming soon. Register your interest to review cover against your property and risks when it opens.
                 </p>
                 <InsuranceDisclosure className="mb-5 max-w-[62ch]" />
                 <Link href="/insurance/private-client" className="inline-flex items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[14px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110">
-                  Speak to a specialist
+                  Register interest
                 </Link>
               </>
             )}

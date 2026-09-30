@@ -4,8 +4,6 @@ import type { SpecialistPage as SpecialistPageData } from "@/lib/insurance/speci
 import { DEFAULT_LIMITATIONS } from "@/lib/insurance/specialist-pages";
 import { InsuranceEnquiryForm } from "./InsuranceEnquiryForm";
 import { InsuranceTrustStrip } from "./InsuranceTrustStrip";
-import { PROVENANCE } from "@/lib/insurance/config";
-import { ProvenanceLockup } from "./ProvenanceLockup";
 import { SUPPORT_PHONE, SUPPORT_PHONE_HREF } from "./ClaimsHelp";
 import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 
@@ -31,10 +29,10 @@ const READINESS_DEFAULT = [
 const DIFFERENCE_INTRO_DEFAULT =
   "Some properties and assets need more detailed underwriting. The useful starting point is accurate information about what is being insured, how it is used and what it would cost to put right after a loss.";
 
-/** Shared still-life for the burgundy "What Provenance can place" band, on every page. */
-const PROVENANCE_IMG = "/insurance/provenance-can-place.webp";
-const PROVENANCE_IMG_ALT =
-  "A worn ledger lettered Provenance Insurance beside architectural drawings, a brass globe sconce, a fountain pen and a pink peony on a sage sill.";
+/** Shared still-life for the burgundy "what may be covered" band, on every page. */
+const PLACED_IMG = "/insurance/period-home.webp";
+const PLACED_IMG_ALT =
+  "A handsome period British home, the kind of property the House's insurance will be shaped around.";
 
 /** On-page brief for an image not yet supplied: description, size, filename. */
 function ImagePlaceholder({
@@ -86,7 +84,7 @@ export function SpecialistPage({
                 data-ga-cta="speak_to_specialist"
                 className="inline-flex items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[14px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110"
               >
-                {data.heroCta ?? "Speak to a specialist"}
+                {data.heroCta ?? "Register interest"}
               </a>
               <a
                 href={SUPPORT_PHONE_HREF}
@@ -97,7 +95,6 @@ export function SpecialistPage({
                 Call {SUPPORT_PHONE}
               </a>
             </div>
-            <ProvenanceLockup className="mt-6" />
           </div>
           {data.image ? (
             <div className="relative aspect-[4/5] w-full overflow-hidden">
@@ -144,7 +141,7 @@ export function SpecialistPage({
                   </div>
                 ))}
               </div>
-              <p className="mt-5 font-sans text-[13.5px] text-house-brown/55">Figures are indicative and pending Provenance compliance sign-off.</p>
+              <p className="mt-5 font-sans text-[13.5px] text-house-brown/55">Figures are indicative. Insurance from the House is coming soon.</p>
             </div>
             <div className="lg:border-l lg:border-house-brown/15 lg:pl-12">
               <p className="max-w-[22ch] font-display text-[clamp(21px,2vw,27px)] leading-[1.25] text-house-black">
@@ -156,7 +153,7 @@ export function SpecialistPage({
                 data-ga-cta="speak_to_specialist"
                 className="mt-4 inline-flex items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[14px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110"
               >
-                Speak to a specialist
+                Register interest
               </a>
             </div>
           </div>
@@ -261,7 +258,7 @@ export function SpecialistPage({
               data-ga-cta="speak_to_specialist"
               className="inline-flex items-center justify-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[14px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110"
             >
-              {data.heroCta ?? "Speak to a specialist"}
+              {data.heroCta ?? "Register interest"}
             </a>
           </div>
         </div>
@@ -296,8 +293,8 @@ export function SpecialistPage({
         </section>
       ) : null}
 
-      {/* 7. What Provenance can place — dark burgundy band, the bottom anchor.
-          Split with the shared "Provenance Insurance" still-life on every page. */}
+      {/* 7. What may be covered — dark burgundy band, the bottom anchor.
+          Split with a period-home still-life on every page. */}
       <section className="px-[5vw] py-14 text-house-cream" style={{ background: "var(--ins-accent)" }}>
         <div className="mx-auto grid max-w-[1120px] items-center gap-10 lg:grid-cols-[1fr_0.66fr] lg:gap-16">
           <div className="max-w-[64ch]">
@@ -306,7 +303,7 @@ export function SpecialistPage({
             </h2>
             <p className="mt-5 font-sans text-[20px] leading-[1.7] text-house-cream/85">{data.placed.body}</p>
             <p className="mt-5 font-sans text-[18px] leading-[1.6] text-house-cream/70">
-              Provenance is authorised and regulated by the FCA (FRN {PROVENANCE.frn}), and part of the {PROVENANCE.group} group, within the {PROVENANCE.backer} group, which is charity-owned and gives its available profits to good causes.
+              Insurance from the House is coming soon. Register your interest and we&rsquo;ll tell you the moment cover opens. The House does not advise on or arrange insurance.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
@@ -315,7 +312,7 @@ export function SpecialistPage({
                 data-ga-cta="speak_to_specialist"
                 className="inline-flex items-center justify-center whitespace-nowrap border border-house-cream bg-house-cream px-7 py-3.5 font-sans text-[14px] tracking-[0.16em] uppercase text-[color:var(--ins-accent)] no-underline transition-[filter] hover:brightness-95"
               >
-                {data.heroCta ?? "Speak to a specialist"}
+                {data.heroCta ?? "Register interest"}
               </a>
               <a
                 href={SUPPORT_PHONE_HREF}
@@ -337,11 +334,9 @@ export function SpecialistPage({
                 ))}
               </ul>
             ) : null}
-            {/* Provenance lockup — cream chip so the navy mark reads on burgundy */}
-            <ProvenanceLockup variant="onDark" className="mt-8" />
           </div>
           <div className="relative aspect-[4/5] w-full overflow-hidden">
-            <Image src={PROVENANCE_IMG} alt={PROVENANCE_IMG_ALT} fill sizes="(min-width: 1120px) 420px, 90vw" style={{ objectFit: "cover", objectPosition: "center" }} />
+            <Image src={PLACED_IMG} alt={PLACED_IMG_ALT} fill sizes="(min-width: 1120px) 420px, 90vw" style={{ objectFit: "cover", objectPosition: "center" }} />
           </div>
         </div>
       </section>
@@ -350,12 +345,12 @@ export function SpecialistPage({
       <section id="enquire" className="scroll-mt-20 px-[5vw] py-14" style={{ background: "var(--color-house-cream-dark)" }}>
         <div className="mx-auto max-w-[1120px]">
           <div className="max-w-[620px]">
-            <p className="font-sans text-[14px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">{data.enquiry?.eyebrow ?? "Speak to a specialist"}</p>
+            <p className="font-sans text-[14px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">{data.enquiry?.eyebrow ?? "Register your interest"}</p>
             <h2 className="mt-3 font-display text-[clamp(27px,3vw,41px)] leading-[1.1] text-house-black">
               {data.enquiry?.heading ?? "Start with a few details."}
             </h2>
             <p className="mt-4 mb-8 max-w-[54ch] font-sans text-[19px] leading-[1.6] text-house-stone">
-              {data.enquiry?.body ?? "Leave the details needed for the introduction and a Provenance specialist will contact you to discuss the cover. The full insurance questions belong in that conversation."}
+              {data.enquiry?.body ?? "Insurance from the House is coming soon. Leave your details to join the waitlist and we'll be in touch when cover opens."}
             </p>
             <InsuranceEnquiryForm
               enquiryType={data.enquiryType}

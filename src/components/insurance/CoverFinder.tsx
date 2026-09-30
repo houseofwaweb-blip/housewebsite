@@ -120,7 +120,7 @@ export function CoverFinder() {
         <p className="mt-8 max-w-[52ch] font-sans text-[19px] leading-[1.65] text-house-stone">
           Nothing matches “{q}”.{" "}
           <Link href="/insurance/private-client" className="text-[color:var(--ins-ink)] underline underline-offset-2 hover:text-house-brown">
-            Speak to a specialist
+            Register interest
           </Link>{" "}
           and we will point you the right way.
         </p>

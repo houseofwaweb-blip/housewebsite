@@ -68,7 +68,7 @@ export function WhatMayBeCovered() {
           </Link>
         </div>
         <p className="mt-5 font-sans text-[15.5px] leading-[1.6] text-house-brown/70">
-          The full policy wording, key facts and exclusions are provided by Provenance before you commit to anything.
+          The full policy wording, key facts and exclusions will be provided before you commit to anything.
         </p>
       </div>
     </section>
