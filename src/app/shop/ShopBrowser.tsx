@@ -610,7 +610,7 @@ export function ShopBrowser({
                         p.inStock ? "bg-house-gold-ink" : "bg-house-stone/50",
                       )}
                     />
-                    {p.inStock ? "In stock · Available at launch" : "Available at launch"}
+                    {p.inStock ? "In stock" : "Out of stock"}
                   </div>
                 </div>
                 <Link

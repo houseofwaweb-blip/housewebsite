@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { klaviyoTrack } from "@/lib/klaviyo/client";
+import { numericId } from "@/lib/commerce/gtin";
 import { gaEvent, parseAmount } from "@/lib/google/ga4";
 
 /**
@@ -78,7 +79,7 @@ interface ApiCart {
     id: string;
     quantity: number;
     sku?: string | null;
-    product: { handle: string; title: string; images: Array<{ url: string }>; price: { amount: string; currencyCode: string } };
+    product: { id: string; handle: string; title: string; images: Array<{ url: string }>; price: { amount: string; currencyCode: string } };
   }>;
 }
 
@@ -188,33 +189,47 @@ export function CartProvider({
       // Shopify cart link, which recovers the basket cross-device from the email.
       try {
         if (updated) {
-          const origin = window.location.origin;
+          // Absolute production URLs so links in the abandoned-cart email always
+          // resolve to the live site, even if an event fires from a preview.
+          const shopBase = "https://willowalexander.co.uk";
           const cartLines = updated.lines ?? [];
-          const Items = cartLines.map((l) => ({
-            ProductName: l.product?.title,
-            Quantity: l.quantity,
-            ItemPrice: l.product?.price ? parseFloat(l.product.price.amount) : undefined,
-            ImageURL: l.product?.images?.[0]?.url,
-            ProductURL: l.product?.handle ? `${origin}/shop/${l.product.handle}` : undefined,
-          }));
+          // Full per-line detail (KLAVIYO-onsite-tracking brief §3). VariantName
+          // isn't carried on the cart line, so it's omitted.
+          const Items = cartLines.map((l) => {
+            const unit = l.product?.price ? parseFloat(l.product.price.amount) : undefined;
+            return {
+              ProductID: l.product?.id ? numericId(l.product.id) : undefined,
+              SKU: l.sku ?? undefined,
+              ProductName: l.product?.title,
+              Quantity: l.quantity,
+              ItemPrice: unit,
+              RowTotal: unit !== undefined ? unit * l.quantity : undefined,
+              ProductURL: l.product?.handle ? `${shopBase}/shop/${l.product.handle}` : undefined,
+              ImageURL: l.product?.images?.[0]?.url,
+            };
+          });
           const subTotal = updated.subtotal ? parseFloat(updated.subtotal.amount) : undefined;
-          // Canonical Klaviyo "Added to Cart" shape (matches Shopify onsite
-          // tracking): top-level AddedItem* + ItemNames/$value, cart detail
-          // under `extra`. extra.CheckoutURL is the cross-device recovery link.
+          // The just-added line, for the top-level AddedItem* fields.
+          const addedLine = cartLines.find((l) => l.product?.handle === info.handle);
+          const addedUnit = addedLine?.product?.price
+            ? parseFloat(addedLine.product.price.amount)
+            : addPrice;
+          // Canonical Klaviyo "Added to Cart" shape. CheckoutURL and Items are
+          // TOP-LEVEL (not under `extra`) because the email templates read them
+          // there. CheckoutURL is the cross-device basket-recovery link.
           klaviyoTrack("Added to Cart", {
             $value: subTotal,
             AddedItemProductName: info.title,
-            AddedItemImageURL: info.image,
-            AddedItemURL: `${origin}/shop/${info.handle}`,
+            AddedItemProductID: addedLine?.product?.id ? numericId(addedLine.product.id) : undefined,
+            AddedItemSKU: info.sku ?? addedLine?.sku ?? undefined,
+            AddedItemImageURL: info.image || addedLine?.product?.images?.[0]?.url,
+            AddedItemURL: `${shopBase}/shop/${info.handle}`,
+            AddedItemPrice: addedUnit,
             AddedItemQuantity: quantity,
             ItemNames: Items.map((i) => i.ProductName).filter(Boolean),
             ItemCount: cartLines.reduce((n, l) => n + l.quantity, 0),
-            extra: {
-              Items,
-              SubTotal: subTotal,
-              GrandTotal: subTotal,
-              CheckoutURL: updated.checkoutUrl,
-            },
+            CheckoutURL: updated.checkoutUrl,
+            Items,
           });
         }
       } catch {

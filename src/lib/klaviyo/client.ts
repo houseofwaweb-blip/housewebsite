@@ -26,9 +26,18 @@ function push(args: KlaviyoArgs): void {
   }
 }
 
-/** Track a custom Klaviyo metric (e.g. "Added to Cart"). */
+/** Track a custom Klaviyo metric (e.g. "Added to Cart", "Viewed Product"). */
 export function klaviyoTrack(event: string, properties: Record<string, unknown> = {}): void {
   push(["track", event, properties]);
+}
+
+/**
+ * Record a product view for Klaviyo's "recently viewed" / browse-abandonment
+ * catalog matching. `ItemId` should be the Shopify product id so it lines up
+ * with the Shopify-synced Klaviyo catalog.
+ */
+export function klaviyoTrackViewedItem(item: Record<string, unknown>): void {
+  push(["trackViewedItem", item]);
 }
 
 /** Associate the current browser with a profile once an email is known. */

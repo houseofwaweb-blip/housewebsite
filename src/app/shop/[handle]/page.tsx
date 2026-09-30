@@ -12,6 +12,7 @@ import Image from "next/image";
 import { getProductVariants } from "@/lib/shop-data/shopify-catalogue";
 import { numericId } from "@/lib/commerce/gtin";
 import { ProductBuy } from "./ProductBuy";
+import { ProductViewTracking } from "./ProductViewTracking";
 import { ProductGallery } from "./ProductGallery";
 import { ProductCopy } from "./ProductCopy";
 import { DesignPackagePage } from "./DesignPackagePage";
@@ -207,20 +208,26 @@ export default async function ProductPage({
     "gtin" in product && typeof product.gtin === "string" && product.gtin ? product.gtin : undefined;
   const brandValue: string | undefined =
     "brand" in product && typeof product.brand === "string" && product.brand ? product.brand : undefined;
-  // Stock line by the title. Before go-live (SHOP_BUYABLE off) the store is
-  // browse-only, so items read "Available at launch"; once buying is live they
-  // read as real stock, matching the purchase button.
+  // Klaviyo "Viewed Product" fields (KLAVIYO-onsite-tracking brief). ProductID is
+  // the Shopify product GID → numericId in the client component.
+  const productIdValue: string | undefined =
+    "id" in product && typeof product.id === "string" && product.id ? product.id : undefined;
+  const klaviyoImage = product.image
+    ? product.image.startsWith("http")
+      ? product.image
+      : `${baseUrl}${product.image}`
+    : undefined;
+  const klaviyoCategories = product.collection ? [product.collection] : [];
+  const compareAtValue: number | undefined =
+    "compareAtPrice" in product && typeof product.compareAtPrice === "string" && product.compareAtPrice
+      ? parsePrice(product.compareAtPrice)
+      : undefined;
+  // Stock line by the title, matching the purchase button.
   const deliveryStatus = isDesign
     ? "A design service, delivered by a House studio"
     : inStock
-      ? env.SHOP_BUYABLE
-        ? "In stock"
-        : "In stock · Available at launch"
-      : availability === "OutOfStock"
-        ? "Currently unavailable"
-        : env.SHOP_BUYABLE
-          ? "Currently unavailable"
-          : "Available at launch";
+      ? "In stock"
+      : "Currently unavailable";
 
   // Related editorial for the store→magazine cross-link (spec §12 PDP order 8).
   const hearth = await getLatestHearthArticles(3).catch(() => []);
@@ -270,6 +277,17 @@ export default async function ProductPage({
         contentName={product.title}
         contentCategory={product.collection}
         value={parsePrice(product.price)}
+      />
+      <ProductViewTracking
+        productId={productIdValue}
+        title={product.title}
+        handle={product.handle}
+        sku={skuValue}
+        brand={brandValue}
+        categories={klaviyoCategories}
+        imageUrl={klaviyoImage}
+        price={parsePrice(product.price)}
+        compareAtPrice={compareAtValue}
       />
       {/* Breadcrumb */}
       <nav aria-label="Breadcrumb" className={s.crumbs}>

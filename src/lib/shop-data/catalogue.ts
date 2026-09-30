@@ -8,6 +8,10 @@
 import catalogueData from "./woo-catalogue.json";
 
 export interface CatalogueProduct {
+  /** Shopify product GID (e.g. gid://shopify/Product/123). Optional: the 8
+      curated local showpieces and the static fallback don't carry it. Used for
+      the Klaviyo product id (numericId) so onsite events match the catalog. */
+  id?: string;
   handle: string;
   title: string;
   price: string;

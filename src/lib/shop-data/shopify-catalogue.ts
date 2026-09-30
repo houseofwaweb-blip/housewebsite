@@ -33,6 +33,7 @@ const MAIN_COLLECTION_HANDLES = new Set([
 
 const CAT_FIELDS = /* GraphQL */ `
   fragment CatFields on Product {
+    id
     handle
     title
     description
@@ -85,6 +86,7 @@ interface MoneyV {
   currencyCode: string;
 }
 interface SfProduct {
+  id: string;
   handle: string;
   title: string;
   description: string;
@@ -162,6 +164,7 @@ function mapProduct(p: SfProduct, collection: string): CatalogueProduct {
         : [];
   const description = deglueSentences(p.description ?? "");
   return {
+    id: p.id,
     handle: p.handle,
     title: p.title,
     price,

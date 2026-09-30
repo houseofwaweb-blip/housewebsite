@@ -9,6 +9,7 @@ import {
 import { trackGoogleAdsConversion } from "@/lib/google/conversions";
 import { readClickIds } from "@/lib/google/gclid";
 import { gaEvent } from "@/lib/google/ga4";
+import { klaviyoIdentify } from "@/lib/klaviyo/client";
 
 /**
  * Thin client-side wrapper around the /api/forms/[type] endpoint.
@@ -39,6 +40,12 @@ export async function submitForm(
       metaEventId?: string;
     };
     if (res.ok && body.ok) {
+      // Link the browser's Klaviyo profile now the visitor has submitted an
+      // email (KLAVIYO-onsite-tracking brief §4). Fires even when `already`, so
+      // a returning subscriber's browser is still associated. No-ops without
+      // marketing consent (klaviyo.js isn't loaded). Only from a submitted form.
+      const email = typeof payload.email === "string" ? payload.email : undefined;
+      if (email) klaviyoIdentify({ email });
       if (!body.already) {
         if (body.metaEventId) fireMetaPixelEvent(type, body.metaEventId);
         void fireGoogleAdsConversion(type, payload, body.metaEventId);
