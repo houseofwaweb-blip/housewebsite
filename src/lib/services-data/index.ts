@@ -782,6 +782,16 @@ export const SERVICES: Record<ServiceSlug, Service> = {
  * than the full list of unrelated services (gardening, handyman…). The value ""
  * means "unspecified"; sub-service values carry the sub slug for the notes line.
  */
+/**
+ * Lowercase a service name for mid-sentence use, but keep all-caps acronyms
+ * (e.g. "TV wall mounting" stays "TV …", not "tv …").
+ */
+export function serviceNameLower(name: string): string {
+  return name.replace(/[A-Za-z]+/g, (w) =>
+    w.length > 1 && w === w.toUpperCase() ? w : w.toLowerCase(),
+  );
+}
+
 export function serviceEnquiryOptions(service: Service): Array<{ value: string; label: string }> {
   const opts: Array<{ value: string; label: string }> = [
     { value: "", label: `General ${service.name.toLowerCase()} enquiry` },

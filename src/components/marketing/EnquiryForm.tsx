@@ -29,10 +29,25 @@ type ServiceType =
   | "window-cleaning"
   | "cleaning"
   | "gutter-cleaning"
+  | "handyman"
+  | "removals"
+  | "energy"
+  | "pet-care"
   | "design-gardens"
   | "design-interiors"
   | "steward"
   | "protect";
+
+// Every valid consultation serviceType (matches the zod enum). Used to decide
+// whether a page-provided defaultService/baseServiceType is kept or coerced to
+// "general" — the *visible* dropdown stays SERVICE_OPTIONS below, but a service
+// page (e.g. /services/handyman) must still SUBMIT its real serviceType so the
+// ServiceOS lead routes, even when it's not in the generic dropdown.
+const VALID_SERVICE_TYPES = new Set<ServiceType>([
+  "general", "gardening", "window-cleaning", "cleaning", "gutter-cleaning",
+  "handyman", "removals", "energy", "pet-care",
+  "design-gardens", "design-interiors", "steward", "protect",
+]);
 
 const SERVICE_OPTIONS: ReadonlyArray<{ value: ServiceType; label: string }> = [
   { value: "general", label: "General enquiry" },
@@ -67,6 +82,10 @@ export interface EnquiryFormProps {
   serviceOptions?: ReadonlyArray<{ value: string; label: string }>;
   /** Enum serviceType submitted when serviceOptions is used (the parent service). */
   baseServiceType?: string;
+  /** The specific sub-service slug to pre-select in the scoped dropdown (so a
+   *  sub-service page lands with ITS service chosen, not "General …"). Must be
+   *  one of serviceOptions' values. */
+  defaultDetail?: string;
   /** Explicit "Book a service" target. When set, the book-online link uses this
    *  instead of deriving one from the dropdown's serviceType. Needed on
    *  sub-service pages so the enquiry's book link opens the SPECIFIC sub-service
@@ -86,22 +105,32 @@ export function EnquiryForm({
   className,
   serviceOptions,
   baseServiceType,
+  defaultDetail,
   bookHref,
 }: EnquiryFormProps) {
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [phone, setPhone] = React.useState("");
   const [postcode, setPostcode] = React.useState("");
-  const initialService = (SERVICE_OPTIONS.some((o) => o.value === defaultService)
+  // Keep a page-provided serviceType if it's a valid enum value (so a service
+  // page like /services/handyman submits "handyman" and the ServiceOS lead
+  // routes), only falling back to "general" for genuinely unknown values.
+  const initialService = (VALID_SERVICE_TYPES.has(defaultService as ServiceType)
     ? defaultService
     : "general") as ServiceType;
   const [serviceType, setServiceType] = React.useState<ServiceType>(initialService);
   // When a scoped sub-service list is passed, the dropdown drives `detail` and
   // the submitted serviceType is fixed to the parent (a valid enum value).
-  const coercedBase = (SERVICE_OPTIONS.some((o) => o.value === baseServiceType)
+  const coercedBase = (VALID_SERVICE_TYPES.has(baseServiceType as ServiceType)
     ? baseServiceType
     : initialService) as ServiceType;
-  const [detail, setDetail] = React.useState<string>(serviceOptions?.[0]?.value ?? "");
+  // Pre-select the page's own sub-service when provided (and valid), so the
+  // specific service is captured instead of defaulting to "General …".
+  const [detail, setDetail] = React.useState<string>(
+    defaultDetail && serviceOptions?.some((o) => o.value === defaultDetail)
+      ? defaultDetail
+      : (serviceOptions?.[0]?.value ?? ""),
+  );
   const effectiveServiceType = serviceOptions ? coercedBase : serviceType;
   const [notes, setNotes] = React.useState("");
   const [marketingOptIn, setMarketingOptIn] = React.useState(false);

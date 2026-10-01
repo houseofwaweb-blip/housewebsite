@@ -71,6 +71,10 @@ const SERVICE_ID_BY_TYPE: Record<string, number> = {
   "window-cleaning": 76, // "Window Cleaning [NEW] - UK"
   "gutter-cleaning": 77, // "Gutter Cleaning - UK"
   cleaning: 14, // "Cleaning services - UK" (broad bucket; cf. 72 Regular Domestic, 73 Deep)
+  handyman: 56, // "Handyman - UK"
+  removals: 18, // "Removals - UK"
+  energy: 25, // "Energy - UK"
+  "pet-care": 84, // no clean ServiceOS match -> Undefined/triage (service named in comment)
 };
 
 /**
@@ -81,10 +85,37 @@ const SERVICE_ID_BY_TYPE: Record<string, number> = {
  * Keys are the real sub.slug values from lib/services-data.
  */
 const SUBSERVICE_ID_BY_SLUG: Record<string, number> = {
-  tidy: 11, // Gardening · One-off tidy -> "Garden Tidy"
-  "estate-garden-care": 82, // Gardening · Estate care -> "Garden Maintenance Subscription"
-  "weekly-clean": 72, // Cleaning · Weekly -> "Regular Domestic Cleaning"
-  "whole-home-clean": 73, // Cleaning · Whole-home -> "Deep Cleaning"
+  // Gardening (sub.slug from lib/services-data/sub-services.ts)
+  "garden-clearance": 96, // Garden Clearance
+  "garden-tidy": 11, // Garden Tidy
+  "lawn-mowing": 13, // Lawn mowing
+  "lawn-care": 2, // Lawn Care
+  "hedge-and-boundary-maintenance": 5, // Hedge & Boundary
+  "tree-work": 6, // Tree work
+  "garden-maintenance-subscriptions": 82, // Garden Maintenance Subscription
+  "jet-washing": 78, // Jet Washing [NEW] (shared: gardening / window / handyman)
+  // Window cleaning
+  "gutter-cleaning": 77, // Gutter Cleaning
+  softwashing: 95, // Soft Washing
+  // Cleaning
+  "regular-cleaning": 72, // Regular Domestic Cleaning
+  "end-of-tenancy-cleaning": 74, // End of Tenancy Cleaning
+  "after-building-cleaning": 73, // Deep Cleaning
+  "spring-clean": 73, // Deep Cleaning
+  // Handyman
+  "shelving-installation": 44, // Shelving Installation
+  "door-hanging": 50, // Door Hanging
+  "baby-proofing": 42, // Baby Proofing
+  "alarm-installation": 43, // Alarm Installation
+  "bed-assembly": 51, // Bed Assembly
+  "cat-flap-installation": 47, // Cat Flap Installation
+  "christmas-lights": 53, // Christmas Light Installation & Removal
+  "loft-organisation": 45, // Loft Organisation
+  // Removals
+  "home-organising": 54, // Home Organisation
+  "large-item-collection": 29, // Collection
+  // Pet care
+  "dog-walking": 24, // Dog walking
 };
 
 /** Human label for the comment's "Service:" line. */
@@ -95,6 +126,10 @@ const SERVICE_LABEL: Record<string, string> = {
   "window-cleaning": "Window Cleaning",
   cleaning: "Cleaning",
   "gutter-cleaning": "Gutter Cleaning",
+  handyman: "Handyman",
+  removals: "Removals",
+  energy: "Energy",
+  "pet-care": "Pet Care",
   steward: "Steward Plan",
   protect: "Home Protection",
   general: "General enquiry",

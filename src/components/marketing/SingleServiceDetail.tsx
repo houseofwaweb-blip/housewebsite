@@ -7,6 +7,7 @@ import { ServiceCtaRow } from "@/components/marketing/ServiceCtaRow";
 import { BookingPanel } from "@/components/services/BookingPanel";
 import { buildBookingUrl } from "@/components/booking/postcode";
 import { SERVICEOS_SERVICE_ID } from "@/lib/serviceos-links";
+import { serviceNameLower } from "@/lib/services-data";
 import { serviceAccent } from "@/components/services/service-meta";
 import s from "@/app/services/[slug]/[sub]/sub-service.module.css";
 
@@ -171,7 +172,7 @@ export function SingleServiceDetail({ view }: { view: SingleServiceView }) {
               Our team, <em>on the job.</em>
             </h2>
             <p className={s.sectionLede}>
-              A recent {view.name.toLowerCase()} visit. Every job is photographed,
+              A recent {serviceNameLower(view.name)} visit. Every job is photographed,
               and kept in your HoWA record where connected.
             </p>
           </header>
@@ -204,7 +205,7 @@ export function SingleServiceDetail({ view }: { view: SingleServiceView }) {
           defaultService={view.enquiryService}
           sourcePage={view.enquirySource}
           eyebrow="Ask the House"
-          headline={`Prefer to ask about ${view.name.toLowerCase()} first?`}
+          headline={`Prefer to ask about ${serviceNameLower(view.name)} first?`}
           body="Tell us a little about your home and what you need, and the House will come back to you, usually within one working day. Or book online in a couple of minutes."
         />
       </div>
@@ -238,7 +239,7 @@ export function SingleServiceDetail({ view }: { view: SingleServiceView }) {
           <header className={s.sectionHead}>
             <p className={s.sectionEy}>Questions</p>
             <h2 className={s.sectionTitle}>
-              About <em>{view.name.toLowerCase()}.</em>
+              About <em>{serviceNameLower(view.name)}.</em>
             </h2>
           </header>
           <div className={s.faqInner}>
@@ -290,7 +291,7 @@ export function SingleServiceDetail({ view }: { view: SingleServiceView }) {
       <section className={s.closing}>
         <p className={s.closingKicker}>Ready when you are</p>
         <p className={s.closingStatement}>
-          Book <em>{view.name.toLowerCase()}.</em>
+          Book <em>{serviceNameLower(view.name)}.</em>
         </p>
         <p className={s.closingLede}>
           A short consultation, a fair quote, and a team that arrives when we

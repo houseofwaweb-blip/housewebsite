@@ -11,7 +11,7 @@ import { Gallery } from "@/components/primitives/Gallery";
 import { SERVICE_CONTENT_DEFAULTS } from "@/lib/services-data/service-content-defaults";
 import { ServiceCtaRow } from "@/components/marketing/ServiceCtaRow";
 import { ServiceWordmark } from "@/components/marketing/ServiceWordmark";
-import { SERVICES, SERVICE_ORDER, serviceEnquiryOptions, type ServiceSlug } from "@/lib/services-data";
+import { SERVICES, SERVICE_ORDER, serviceEnquiryOptions, serviceNameLower, type ServiceSlug } from "@/lib/services-data";
 import { buildBookingUrl } from "@/components/booking/postcode";
 import { SERVICEOS_SERVICE_ID } from "@/lib/serviceos-links";
 import s from "./sub-service.module.css";
@@ -270,10 +270,11 @@ export default async function SubServicePage({
           defaultService={parent.slug}
           sourcePage={`/services/${parent.slug}/${service.slug}`}
           eyebrow="Ask the House"
-          headline={`Prefer to ask about ${service.name.toLowerCase()} first?`}
+          headline={`Prefer to ask about ${serviceNameLower(service.name)} first?`}
           body="Tell us a little about your home and what you need, and the House will come back to you, usually within one working day. Or book online in a couple of minutes."
           serviceOptions={serviceEnquiryOptions(parent)}
           baseServiceType={parent.slug}
+          defaultDetail={service.slug}
           bookHref={bookHref}
         />
       </div>

@@ -6,7 +6,7 @@ import { Accordion } from "@/components/primitives/Accordion";
 import { ScrollCarousel } from "@/components/primitives/ScrollCarousel";
 import { Gallery, type GalleryImage } from "@/components/primitives/Gallery";
 import { MobileCarousel } from "@/components/primitives/MobileCarousel";
-import { basisPhrase, serviceEnquiryOptions, startingPriceFor, type Service } from "@/lib/services-data";
+import { basisPhrase, serviceEnquiryOptions, serviceNameLower, startingPriceFor, type Service } from "@/lib/services-data";
 import s from "./ServiceDetail.module.css";
 import { FlowerWatermark } from "@/components/marketing/FlowerWatermark";
 import { EnquiryForm } from "@/components/marketing/EnquiryForm";
@@ -163,7 +163,7 @@ export function ServiceDetail({
   const fromPrice = startingPriceFor(service.slug) ?? priced[0]?.price ?? service.packages[0]?.price;
 
   const primaryLabel = quote ? "Get a quote" : "See times and prices";
-  const nameLower = service.name.toLowerCase();
+  const nameLower = serviceNameLower(service.name);
 
   // "The House at work" — this discipline's reels only, no filters. Guarded so a
   // service with no matching reels (e.g. gutter-cleaning) shows nothing.
