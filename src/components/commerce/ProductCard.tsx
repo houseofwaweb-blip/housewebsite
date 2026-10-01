@@ -28,6 +28,8 @@ export interface ProductCardData {
   imageAlt?: string;
   houseApproved?: boolean;
   collection?: string;
+  /** Variant SKU — the GA4/feed item_id, so quick-add matches the feed. */
+  sku?: string;
   /** Shopify default variant GID — enables one-click add. */
   variantId?: string;
   /** More than one variant → "Choose options" instead of quick-add. */
@@ -71,6 +73,7 @@ export function ProductCard({
           title={product.title}
           price={product.price}
           image={product.image}
+          sku={product.sku}
           variantId={product.variantId}
           multiVariant={product.multiVariant}
           inStock={product.inStock}

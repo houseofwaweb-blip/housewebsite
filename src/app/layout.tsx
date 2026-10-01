@@ -130,13 +130,26 @@ export default async function RootLayout({
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
+              // Read the stored choice (wa-consent cookie: e1f<0|1>m<0|1>k<0|1>|ts)
+              // synchronously so a returning visitor's consent IS the default.
+              // Without this the client flips denied->granted after hydration,
+              // which ends wait_for_update early and sends the first page_view
+              // as denied (gcs=G100).
+              var __wc = null;
+              try {
+                var __m = document.cookie.match(/(?:^|;\\s*)wa-consent=([^;]+)/);
+                if (__m) {
+                  var __mm = decodeURIComponent(__m[1]).match(/^e1f([01])m([01])k([01])/);
+                  if (__mm) __wc = { f: __mm[1] === '1', m: __mm[2] === '1', k: __mm[3] === '1' };
+                }
+              } catch (e) {}
               gtag('consent', 'default', {
-                'ad_storage': 'denied',
-                'ad_user_data': 'denied',
-                'ad_personalization': 'denied',
-                'analytics_storage': 'denied',
-                'functionality_storage': 'denied',
-                'personalization_storage': 'denied',
+                'ad_storage': __wc && __wc.k ? 'granted' : 'denied',
+                'ad_user_data': __wc && __wc.k ? 'granted' : 'denied',
+                'ad_personalization': __wc && __wc.k ? 'granted' : 'denied',
+                'analytics_storage': __wc && __wc.m ? 'granted' : 'denied',
+                'functionality_storage': __wc && __wc.f ? 'granted' : 'denied',
+                'personalization_storage': __wc && __wc.f ? 'granted' : 'denied',
                 'security_storage': 'granted',
                 'wait_for_update': 500
               });

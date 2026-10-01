@@ -574,6 +574,7 @@ export function ShopBrowser({
                     title={p.title}
                     price={p.price}
                     image={p.image}
+                    sku={p.sku}
                     variantId={p.variantId}
                     multiVariant={p.multiVariant}
                     inStock={p.inStock}

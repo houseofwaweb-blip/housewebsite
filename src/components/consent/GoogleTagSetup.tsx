@@ -61,11 +61,13 @@ export function GoogleTagSetup() {
     // even before gtag.js finishes loading.
     const gtag = (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag;
     if (!gtag) return;
-    const granted = consent ?? {
-      functional: false,
-      measurement: false,
-      marketing: false,
-    };
+    // Don't push an update until consent is resolved. During hydration the
+    // store's first snapshot is null (matches SSR), and pushing a denied update
+    // then would end wait_for_update early and send the first page_view denied.
+    // The head script already set the correct default from the cookie; a
+    // first-time visitor with no choice stays on that default until they pick.
+    if (consent === null) return;
+    const granted = consent;
     gtag("consent", "update", {
       ad_storage: granted.marketing ? "granted" : "denied",
       ad_user_data: granted.marketing ? "granted" : "denied",

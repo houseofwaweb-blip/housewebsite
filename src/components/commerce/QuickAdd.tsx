@@ -21,6 +21,7 @@ export function QuickAdd({
   title,
   price,
   image,
+  sku,
   variantId,
   multiVariant,
   inStock = true,
@@ -29,6 +30,7 @@ export function QuickAdd({
   title: string;
   price: string;
   image: string;
+  sku?: string;
   variantId?: string;
   multiVariant?: boolean;
   inStock?: boolean;
@@ -64,7 +66,7 @@ export function QuickAdd({
     e.preventDefault();
     e.stopPropagation();
     if (soldOut || !variantId) return;
-    await add(variantId, { handle, title, price, image }, 1);
+    await add(variantId, { handle, title, price, image, sku }, 1);
     setAdded(true);
     window.setTimeout(() => setAdded(false), 1600);
   }
