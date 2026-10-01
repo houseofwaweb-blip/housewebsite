@@ -130,7 +130,7 @@ export function BookingPanel({
               value={postcode}
               onChange={(e) => { setPostcode(e.target.value); if (pcError) setPcError(false); }}
               aria-invalid={pcError}
-              className="w-full border border-house-brown/25 bg-house-white px-4 py-3 font-sans text-[18px] text-house-brown placeholder:text-house-brown/40 focus:border-house-gold focus:outline-none"
+              className="w-full border border-house-brown/25 bg-house-white px-4 py-3 font-sans text-[18px] text-house-brown placeholder:text-house-brown/80 placeholder:opacity-100 focus:border-house-gold focus:outline-none"
             />
             {pcError ? (
               <p className="mt-1.5 font-sans text-[14px] leading-[1.5] text-[#8b3a3a]">

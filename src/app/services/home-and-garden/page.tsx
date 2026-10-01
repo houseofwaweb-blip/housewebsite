@@ -202,7 +202,7 @@ export default function HomeAndGardenPage() {
                     inputMode="text"
                     autoComplete="postal-code"
                     placeholder="e.g. SW1A 1AA"
-                    className="w-full border border-house-brown/25 bg-house-white px-4 py-3 font-sans text-[18px] text-house-brown placeholder:text-house-brown/40 focus:border-house-gold focus:outline-none"
+                    className="w-full border border-house-brown/25 bg-house-white px-4 py-3 font-sans text-[18px] text-house-brown placeholder:text-house-brown/80 placeholder:opacity-100 focus:border-house-gold focus:outline-none"
                   />
                 </div>
 
