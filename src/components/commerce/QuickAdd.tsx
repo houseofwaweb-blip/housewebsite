@@ -66,7 +66,9 @@ export function QuickAdd({
     e.preventDefault();
     e.stopPropagation();
     if (soldOut || !variantId) return;
-    await add(variantId, { handle, title, price, image, sku }, 1);
+    const ok = await add(variantId, { handle, title, price, image, sku }, 1);
+    // Sold-out items surface their own toast from the cart — don't flash "Added".
+    if (!ok) return;
     setAdded(true);
     window.setTimeout(() => setAdded(false), 1600);
   }

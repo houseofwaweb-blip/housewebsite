@@ -83,7 +83,7 @@ export function ProductBuy({
 
   async function handleAdd() {
     if (!selected || soldOut) return;
-    await add(
+    const ok = await add(
       selected.id,
       {
         handle: product.handle,
@@ -94,6 +94,9 @@ export function ProductBuy({
       },
       qty,
     );
+    // Only confirm when it actually added — a sold-out item surfaces its own
+    // "sold out" toast from the cart, so don't flash "Added ✓".
+    if (!ok) return;
     setAdded(true);
     window.setTimeout(() => setAdded(false), 1800);
   }

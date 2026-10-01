@@ -47,7 +47,8 @@ interface CartContextValue {
   busy: boolean;
   toast: CartToastT | null;
   drawerOpen: boolean;
-  add: (merchandiseId: string, info: AddInfo, quantity?: number) => Promise<void>;
+  /** Resolves true when the item was added, false if it was sold out / failed. */
+  add: (merchandiseId: string, info: AddInfo, quantity?: number) => Promise<boolean>;
   remove: (lineId: string) => Promise<void>;
   updateQty: (lineId: string, quantity: number) => Promise<void>;
   checkout: () => void;
@@ -143,7 +144,7 @@ export function CartProvider({
 
   const add = React.useCallback(
     async (merchandiseId: string, info: AddInfo, quantity = 1) => {
-      if (!buyable) return; // catalog mode — browse only
+      if (!buyable) return false; // catalog mode — browse only
       let updated: ApiCart | undefined;
       try {
         updated = await call({ action: "add", merchandiseId, quantity });
@@ -156,7 +157,20 @@ export function CartProvider({
         setToast({ id: crypto.randomUUID(), title: "Couldn't add to basket. Please try again." });
         if (hideTimer.current) window.clearTimeout(hideTimer.current);
         hideTimer.current = window.setTimeout(() => setToast(null), 3000);
-        return;
+        return false;
+      }
+      // Sold-out guard: the cart API can "succeed" yet add the item at quantity 0
+      // when the variant is actually out of stock (e.g. a stale "in stock" state
+      // after it sold out). Surface "sold out" instead of a false "added", and
+      // skip the drawer + add-to-cart events.
+      const soldOutLine = (updated.lines ?? []).find(
+        (l) => (info.sku && l.sku === info.sku) || l.product?.handle === info.handle,
+      );
+      if (!soldOutLine || soldOutLine.quantity < 1) {
+        setToast({ id: crypto.randomUUID(), title: `${info.title} is sold out.` });
+        if (hideTimer.current) window.clearTimeout(hideTimer.current);
+        hideTimer.current = window.setTimeout(() => setToast(null), 3000);
+        return false;
       }
       setToast({
         id: crypto.randomUUID(),
@@ -235,6 +249,7 @@ export function CartProvider({
       } catch {
         /* tracking must never break add-to-cart */
       }
+      return true;
     },
     [call, buyable],
   );
