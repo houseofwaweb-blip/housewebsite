@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 /**
@@ -27,34 +28,47 @@ export function WhyHouseCover() {
   ];
   return (
     <section className="px-[5vw] py-14">
-      <div className="mx-auto max-w-[1080px]">
-        <p className="font-sans text-[14px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">
-          Why House cover
-        </p>
-        <h2 className="mt-3 max-w-[24ch] font-display text-[clamp(27px,3.4vw,43px)] leading-[1.1] text-house-black">
-          Why start with the House.
-        </h2>
-        <div className="mt-9 grid gap-x-10 gap-y-9 sm:grid-cols-2">
-          {pillars.map((p) => (
-            <div key={p.h} className="border-t border-[color:var(--ins-ink)]/25 pt-5">
-              <h3 className="font-display text-[24px] leading-tight text-house-black">{p.h}</h3>
-              <p className="mt-2.5 font-sans text-[19px] leading-[1.6] text-house-brown/85">{p.p}</p>
-            </div>
-          ))}
+      <div className="mx-auto grid max-w-[1180px] items-center gap-10 lg:grid-cols-2 lg:gap-16">
+        {/* Text */}
+        <div>
+          <p className="font-sans text-[14px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">
+            Why House cover
+          </p>
+          <h2 className="mt-3 max-w-[20ch] font-display text-[clamp(27px,3.4vw,43px)] leading-[1.1] text-house-black">
+            Why start with the House.
+          </h2>
+          <div className="mt-8 flex flex-col gap-6">
+            {pillars.map((p) => (
+              <div key={p.h} className="border-t border-[color:var(--ins-ink)]/25 pt-4">
+                <h3 className="font-display text-[22px] leading-tight text-house-black">{p.h}</h3>
+                <p className="mt-2 font-sans text-[18px] leading-[1.6] text-house-brown/85">{p.p}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <Link
+              href="/insurance/private-client"
+              className="inline-flex w-fit items-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[14px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110"
+            >
+              Register interest →
+            </Link>
+            <Link
+              href="/insurance/everyday"
+              className="inline-flex w-fit items-center font-sans text-[14px] tracking-[0.16em] uppercase text-[color:var(--ins-ink)] no-underline underline-offset-2 hover:text-house-brown hover:underline"
+            >
+              Or explore personal cover →
+            </Link>
+          </div>
         </div>
-        <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-          <Link
-            href="/insurance/private-client"
-            className="inline-flex w-fit items-center whitespace-nowrap border border-[color:var(--ins-dark)] bg-[var(--ins-accent)] px-7 py-3.5 font-sans text-[14px] tracking-[0.16em] uppercase text-[color:var(--ins-on)] no-underline transition-[filter] hover:brightness-110"
-          >
-            Register interest →
-          </Link>
-          <Link
-            href="/insurance/everyday"
-            className="inline-flex w-fit items-center font-sans text-[14px] tracking-[0.16em] uppercase text-[color:var(--ins-ink)] no-underline underline-offset-2 hover:text-house-brown hover:underline"
-          >
-            Or explore personal cover →
-          </Link>
+        {/* Image */}
+        <div className="relative aspect-[4/5] w-full overflow-hidden lg:sticky lg:top-24">
+          <Image
+            src="/insurance/protection.webp"
+            alt="A quiet still life of home protection and stewardship."
+            fill
+            sizes="(min-width: 1180px) 540px, 90vw"
+            style={{ objectFit: "cover", objectPosition: "center" }}
+          />
         </div>
       </div>
     </section>

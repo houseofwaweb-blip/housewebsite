@@ -172,27 +172,54 @@ export default function InsuranceHub() {
       {/* Claims and help — prominent route for existing customers, spec §11.7 */}
       <ClaimsHelpBand />
 
-      {/* The argument, once — dark burgundy anchor */}
+      {/* The argument, once — dark burgundy anchor, image + text split */}
       <section className="px-[5vw] py-14 text-house-cream" style={{ background: "var(--ins-accent)" }}>
-        <div className="mx-auto grid max-w-[980px] items-center gap-10 md:grid-cols-2">
-          <div className="flex flex-col gap-3">
-            <p className="font-display text-[clamp(31px,4vw,47px)] leading-[1.1] text-[color:var(--house-green-soft)]">Rebuild cost</p>
-            <p className="font-sans text-[18.5px] leading-[1.6] text-house-cream/80">
-              A home’s rebuild cost is not the same as its market value. Period, altered and specialist properties can need a more detailed reinstatement assessment.
+        <div className="mx-auto grid max-w-[1080px] items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          {/* Image */}
+          <div className="relative aspect-[4/3] w-full overflow-hidden">
+            <Image
+              src="/insurance/period-home.webp"
+              alt="A period property whose rebuild cost bears little relation to its market value."
+              fill
+              sizes="(min-width: 1080px) 520px, 90vw"
+              style={{ objectFit: "cover", objectPosition: "center" }}
+            />
+          </div>
+          {/* Text */}
+          <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-3">
+              <p className="font-display text-[clamp(31px,4vw,47px)] leading-[1.1] text-[color:var(--house-green-soft)]">Rebuild cost</p>
+              <p className="font-sans text-[18.5px] leading-[1.6] text-house-cream/80">
+                A home’s rebuild cost is not the same as its market value. Period, altered and specialist properties can need a more detailed reinstatement assessment.
+              </p>
+            </div>
+            <p className="max-w-[46ch] font-display text-[clamp(21px,2.2vw,29px)] leading-[1.3] text-house-cream">
+              For homes that need specialist underwriting, accurate information about the building gives the broker and insurer a sound basis on which to assess the risk.
             </p>
           </div>
-          <p className="max-w-[42ch] font-display text-[clamp(23px,2.4vw,31px)] leading-[1.3] text-house-cream">
-            For homes that need specialist underwriting, accurate information about the building gives the broker and insurer a sound basis on which to assess the risk.
-          </p>
         </div>
       </section>
 
-      {/* The published commitment */}
+      {/* The published commitment — text + image split */}
       <section className="px-[5vw] py-14">
-        <div className="mx-auto max-w-[760px] border-l-2 border-[color:var(--ins-ink)] pl-6">
-          <p className="font-display text-[clamp(23px,2.6vw,33px)] leading-[1.3] text-house-brown">
-            Take the time to understand the cover, the exclusions and the policy documents before you decide. There is no need to rush the decision.
-          </p>
+        <div className="mx-auto grid max-w-[1080px] items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          {/* Text */}
+          <div className="border-l-2 border-[color:var(--ins-ink)] pl-6">
+            <p className="font-sans text-[14px] tracking-[0.28em] uppercase text-[color:var(--ins-ink)]">No pressure to decide</p>
+            <p className="mt-4 font-display text-[clamp(23px,2.6vw,33px)] leading-[1.3] text-house-brown">
+              Take the time to understand the cover, the exclusions and the policy documents before you decide. There is no need to rush the decision.
+            </p>
+          </div>
+          {/* Image */}
+          <div className="relative aspect-[4/3] w-full overflow-hidden">
+            <Image
+              src="/insurance/house-record.webp"
+              alt="Policy documents and a home record laid out to read before deciding."
+              fill
+              sizes="(min-width: 1080px) 520px, 90vw"
+              style={{ objectFit: "cover", objectPosition: "center" }}
+            />
+          </div>
         </div>
       </section>
 
