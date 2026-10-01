@@ -29,8 +29,10 @@ import { env } from "@/lib/env";
 
 const REVISION = "2024-10-15";
 
-/** Master list — double opt-in, the long-running newsletter list. */
-const NEWSLETTER_LIST_ID = "Xbs4GL";
+/** "House Newsletter Sign Ups" — the list every site newsletter sign-up
+ *  (incl. The Hearth) lands on. Opt-in behaviour follows the list's own
+ *  setting in Klaviyo (the consent-aware endpoint adapts). */
+const NEWSLETTER_LIST_ID = "RggxpN";
 
 /**
  * Form-facing interest IDs → Klaviyo `interest` property values.
@@ -87,7 +89,7 @@ export async function subscribeToNewsletter(
 
   // profile-subscription-bulk-create-jobs is the consent-aware endpoint —
   // it sets marketing-consent + adds to the list in one call, and triggers
-  // the double-opt-in flow when the target list requires it (Xbs4GL does).
+  // the double-opt-in flow only when the target list is configured for it.
   const body = {
     data: {
       type: "profile-subscription-bulk-create-job",
