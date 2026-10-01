@@ -20,8 +20,10 @@ const STRIP = [
   { slug: "interiors-and-styling", label: "House & Home", href: "/the-hearth/category/interiors-and-styling" },
   { slug: "gardens-and-exteriors", label: "Garden", href: "/the-hearth/category/gardens-and-exteriors" },
   { slug: "heritage-and-culture", label: "Living Well", href: "/the-hearth/category/heritage-and-culture" },
-  { slug: "trends-and-inspiration", label: "Trends & Inspiration", href: "/the-hearth/category/trends-and-inspiration" },
+  { slug: "people", label: "People", href: "/the-hearth/category/people" },
   { slug: "design-and-architecture", label: "Design & Architecture", href: "/the-hearth/category/design-and-architecture" },
+  { slug: "colour-and-materials", label: "Colour & Materials", href: "/the-hearth/category/colour-and-materials" },
+  { slug: "trends-and-inspiration", label: "Trends & Inspiration", href: "/the-hearth/category/trends-and-inspiration" },
   { slug: "cinema", label: "Cinema", href: "/cinema" },
 ];
 

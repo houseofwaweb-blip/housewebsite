@@ -85,13 +85,15 @@ export const WORK_POSTS: ReadonlyArray<WorkPost> = [
   },
   {
     id: "U6pngBgBoyU",
-    discipline: "cleaners",
+    // Jet/pressure washing is exterior cleaning — it lives under window-cleaners
+    // (its page is /services/window-cleaning/jet-washing), not interior cleaning.
+    discipline: "window-cleaners",
     media: "reel",
-    image: "/services/photos/cleaning-gallery-1.webp",
+    image: "/services/photos/gardening/jet-washing-hero.webp",
     youtubeId: "U6pngBgBoyU",
     caption: "A patio jet-washed back to clean.",
-    serviceHref: "/services/cleaning",
-    serviceLabel: "Cleaning",
+    serviceHref: "/services/window-cleaning/jet-washing",
+    serviceLabel: "Jet washing",
     alt: "Jet-washing a patio",
   },
   {

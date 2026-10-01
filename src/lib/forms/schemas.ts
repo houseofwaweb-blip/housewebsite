@@ -99,6 +99,10 @@ export const consultationBookingSchema = z.object({
       "general",
     ])
     .default("general"),
+  // Chosen sub-service slug (e.g. "hedge-and-boundary-maintenance") from the
+  // scoped enquiry dropdown. Routes the ServiceOS Hot Lead to the specific
+  // service; stripped before the Supabase insert (no column for it).
+  serviceDetail: z.string().trim().max(80).optional(),
   preferredDates: z.string().trim().max(240).optional(),
   notes: z.string().trim().max(2000).optional(),
   marketingOptIn,

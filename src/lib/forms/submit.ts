@@ -9,6 +9,7 @@ import { notifyFormSubmission } from "./notify";
 import { subscribeToNewsletter, subscribeToWaitlist, trackEvent, type InterestSurface, SURFACE_TO_INTEREST } from "@/lib/klaviyo";
 import { sendMetaCapiEvent, extractMetaIdentifiers, type MetaEventName } from "@/lib/meta/capi";
 import { readConsentFromCookieHeader } from "@/lib/consent";
+import { syncLeadToServiceOs, shouldSyncServiceType } from "./serviceos-leads";
 import { randomUUID } from "node:crypto";
 
 // Form-type → Meta standard event mapping. Lead is the catch-all for
@@ -85,14 +86,16 @@ export async function handleFormSubmission(
     );
   }
 
-  // Strip client-only fields before insert.
-  const { turnstileToken: _t, honey: _h, tracking: _tr, sourcePage, marketingOptIn: _mo, ...rest } =
+  // Strip client-only fields before insert. serviceDetail is the consultation
+  // sub-service slug — used for ServiceOS routing, not a Supabase column.
+  const { turnstileToken: _t, honey: _h, tracking: _tr, sourcePage, marketingOptIn: _mo, serviceDetail: _sd, ...rest } =
     parsed as Record<string, unknown> & {
       turnstileToken: string;
       honey?: string;
       tracking?: unknown;
       sourcePage?: string;
       marketingOptIn?: boolean;
+      serviceDetail?: string;
     };
 
   const row: Record<string, unknown> = { ...rest, source_page: sourcePage ?? null };
@@ -238,6 +241,76 @@ export async function handleFormSubmission(
           signup_page: w.sourcePage,
         },
       }).catch(() => {});
+    }
+
+    // Service enquiries -> ServiceOS Hot Lead. Only the `consultation` form is a
+    // service enquiry, and within it only real services sync (shouldSyncServiceType
+    // excludes steward/protect/general — membership, insurance, plain contact).
+    // Every service form on the site (service pages, the two design pages,
+    // location pages, the booking modal) posts here, so this one place covers
+    // them all. Fail-soft: the Supabase row + sales email already happened.
+    if (type === "consultation") {
+      const c = submission as {
+        name?: string;
+        email?: string;
+        phone?: string;
+        postcode?: string;
+        serviceType?: string;
+        serviceDetail?: string;
+        notes?: string;
+        preferredDates?: string;
+        sourcePage?: string;
+        tracking?: Record<string, string | undefined>;
+      };
+      if (shouldSyncServiceType(c.serviceType) && typeof c.name === "string" && typeof c.email === "string") {
+        const tr = c.tracking ?? {};
+        const clickIds = ["gclid", "gbraid", "wbraid", "msclkid", "fbclid"]
+          .map((k) => tr[k])
+          .filter(Boolean)
+          .join(" ");
+        const message = [
+          typeof c.notes === "string" ? c.notes : "",
+          typeof c.preferredDates === "string" && c.preferredDates
+            ? `Preferred dates/times: ${c.preferredDates}`
+            : "",
+        ]
+          .filter(Boolean)
+          .join("\n\n");
+        const result = await syncLeadToServiceOs({
+          name: c.name,
+          email: c.email,
+          phone: c.phone,
+          postcode: c.postcode,
+          serviceType: c.serviceType,
+          serviceDetail: c.serviceDetail,
+          message: message || undefined,
+          sourceForm: "consultation",
+          pageUrl: c.sourcePage,
+          submittedAt: new Date(),
+          utm: {
+            source: tr.utmSource,
+            medium: tr.utmMedium,
+            campaign: tr.utmCampaign,
+            content: tr.utmContent,
+            term: tr.utmTerm,
+          },
+          clickIds: clickIds || undefined,
+          referrer: tr.referrer,
+          landingPage: tr.landingPage,
+        }).catch((e): { status: string; error?: string } => ({
+          status: "failed",
+          error: e instanceof Error ? e.message : "threw",
+        }));
+        if (result.status === "failed") {
+          // Loud, with the enquirer's details, so a human can key it into
+          // ServiceOS. The lead is NOT lost: it is in Supabase and emailed.
+          console.error(
+            `[serviceos] service Hot Lead NOT created for "${c.name}" <${c.email}> ` +
+              `${c.phone ?? "-"} service=${c.serviceType}: ${result.error}. ` +
+              `Enquiry is saved in Supabase + emailed to sales; enter it manually.`,
+          );
+        }
+      }
     }
 
     if (marketingConsent) {

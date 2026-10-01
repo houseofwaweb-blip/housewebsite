@@ -129,6 +129,9 @@ export function EnquiryForm({
       phone: phone || undefined,
       postcode: postcode || undefined,
       serviceType: effectiveServiceType,
+      // The chosen sub-service slug (if any) so the ServiceOS Hot Lead can file
+      // under the specific service; "" (unspecified) becomes undefined.
+      serviceDetail: detail || undefined,
       notes: composedNotes || undefined,
       marketingOptIn,
       sourcePage,
