@@ -25,6 +25,118 @@ const EXCLUDED_TYPES = new Set([
   "Design Voucher",
 ]);
 
+/**
+ * Feed-only description overrides, by handle. The Shopify copy is left as-is;
+ * this only changes what goes to Merchant Center, for policy reasons.
+ */
+const FEED_DESCRIPTION_OVERRIDES: Record<string, string> = {
+  // Google disapproved the herb-seed copy as a healthcare/misleading claim
+  // ("found to support a good night's sleep", "hypnotics/nervines"). Neutral,
+  // feed-only rewrite (launch-day feed follow-ups doc §2a).
+  "sweet-dreams-garden-organic-herb-seeds":
+    "A collection of six organic herb seeds, chamomile among them, chosen for a calm evening garden. Grow them on a sunny windowsill or in the border. Earthsong Seeds.",
+};
+
+/**
+ * productType -> Google product taxonomy. Fallback used only when the Shopify
+ * `google.google_product_category` metafield is absent (the metafield wins).
+ * Without a category Google guesses, which filed the wearables under Apparel and
+ * demanded age_group/gender/colour/size (launch-day feed follow-ups doc §2b).
+ * Unmapped types keep the prior behaviour (metafield or none).
+ */
+const PRODUCT_TYPE_TO_GOOGLE_CATEGORY: Record<string, string> = {
+  // Clothing (see APPAREL_TYPES — these also get age_group/gender/colour/size)
+  Hats: "Apparel & Accessories > Clothing Accessories > Hats",
+  Jackets: "Apparel & Accessories > Clothing > Outerwear > Coats & Jackets",
+  Gilets: "Apparel & Accessories > Clothing > Outerwear > Coats & Jackets",
+  // Named like clothing but NOT apparel -> Home & Garden, so no apparel attrs
+  Aprons: "Home & Garden > Kitchen & Dining > Kitchen Tools & Utensils > Aprons",
+  "Bags & Accessories": "Apparel & Accessories > Handbags, Wallets & Cases > Handbags",
+  // Decor
+  "Home Décor": "Home & Garden > Decor",
+  Decor: "Home & Garden > Decor",
+  Decorations: "Home & Garden > Decor",
+  "Home Accessories": "Home & Garden > Decor",
+  Ornaments: "Home & Garden > Decor",
+  "Sculptures & Statues": "Home & Garden > Decor > Sculptures & Statues",
+  "Artificial Flora": "Home & Garden > Decor > Artificial Flora",
+  "Vases & Planters": "Home & Garden > Decor > Vases",
+  Vases: "Home & Garden > Decor > Vases",
+  Throws: "Home & Garden > Linens & Bedding > Bedding > Blankets",
+  Rugs: "Home & Garden > Decor > Rugs",
+  Runners: "Home & Garden > Decor > Rugs",
+  "Chair & Sofa Cushions": "Home & Garden > Decor > Throw Pillows",
+  // Fragrance & candles
+  "Home Fragrance": "Home & Garden > Decor > Home Fragrances",
+  "Candles & Candle Holders": "Home & Garden > Decor > Home Fragrances > Candles",
+  // Lighting
+  "Ceiling Lights": "Home & Garden > Lighting > Light Fixtures > Ceiling Light Fixtures",
+  Lighting: "Home & Garden > Lighting > Light Fixtures",
+  "Table & Desk Lamps": "Home & Garden > Lighting > Lamps",
+  "Table Lamps": "Home & Garden > Lighting > Lamps",
+  "Floor Lamps": "Home & Garden > Lighting > Lamps",
+  // Kitchen & dining
+  Serverware: "Home & Garden > Kitchen & Dining > Tableware > Serveware",
+  "Serving Bowls": "Home & Garden > Kitchen & Dining > Tableware > Dinnerware > Bowls",
+  Mugs: "Home & Garden > Kitchen & Dining > Tableware > Coffee & Tea Cups",
+  "Pantry & Kitchen Storage": "Home & Garden > Kitchen & Dining > Food Storage",
+  "Food Storage": "Home & Garden > Kitchen & Dining > Food Storage",
+  // Bath
+  "Bathroom Accessories": "Home & Garden > Bathroom Accessories",
+  Toiletries: "Health & Beauty > Personal Care > Cosmetics > Bath & Body",
+  Grooming: "Health & Beauty > Personal Care",
+  // Household supplies / cleaning
+  "Cleaning Products": "Home & Garden > Household Supplies > Household Cleaning Supplies",
+  "Kitchen Cleaners": "Home & Garden > Household Supplies > Household Cleaning Supplies",
+  "Bathroom Cleaners": "Home & Garden > Household Supplies > Household Cleaning Supplies",
+  "Glass Cleaners": "Home & Garden > Household Supplies > Household Cleaning Supplies > Glass & Surface Cleaners",
+  "Floor cleaners": "Home & Garden > Household Supplies > Household Cleaning Supplies > Floor Cleaners",
+  "Washing Up Liquid": "Home & Garden > Household Supplies > Household Cleaning Supplies > Dishwashing Supplies > Dish Soap",
+  "Dishwasher Tabs": "Home & Garden > Household Supplies > Household Cleaning Supplies > Dishwashing Supplies > Dishwasher Detergent",
+  "Cloths & Scrubbers": "Home & Garden > Household Supplies > Household Cleaning Supplies",
+  "Laundry Liquid & Sheets": "Home & Garden > Household Supplies > Laundry Supplies > Laundry Detergent",
+  "Fabric Conditioner & Refreshers": "Home & Garden > Household Supplies > Laundry Supplies > Fabric Softeners & Dryer Sheets",
+  "Waste Bags & Sundries": "Home & Garden > Household Supplies",
+  "Household Essentials": "Home & Garden > Household Supplies",
+  "Storage & Shelving": "Home & Garden > Household Supplies > Storage & Organization",
+  "Storage & Utilities": "Home & Garden > Household Supplies > Storage & Organization",
+  Organisers: "Home & Garden > Household Supplies > Storage & Organization",
+  // Garden & outdoor
+  "Garden Tools": "Home & Garden > Lawn & Garden > Gardening > Gardening Tools",
+  "Gifts For Gardeners": "Home & Garden > Lawn & Garden > Gardening > Gardening Tools",
+  "Plant Food": "Home & Garden > Lawn & Garden > Gardening > Plant Care, Soil & Seed Starting Supplies > Fertilizers",
+  "Plant Pots": "Home & Garden > Lawn & Garden > Gardening > Pots & Planters",
+  Seeds: "Home & Garden > Plants > Seeds",
+  Wildlife: "Home & Garden > Lawn & Garden > Outdoor Living",
+  "Garden Furniture": "Furniture > Outdoor Furniture",
+  // Furniture
+  "Ottomans & Pouffes": "Furniture > Ottomans",
+  "Coffee & Side Tables": "Furniture > Tables > Accent Tables > Coffee Tables",
+  // Media / stationery / gifting
+  Books: "Media > Books",
+  "Note Pads": "Office Supplies > General Office Supplies > Notebooks & Notepads",
+  "Greeting Cards": "Arts & Entertainment > Party & Celebration > Gift Giving > Greeting & Note Cards",
+  "Wrapping & Ribbon": "Arts & Entertainment > Party & Celebration > Gift Wrapping Supplies",
+  // Pet
+  "Dog Toys": "Animals & Pet Supplies > Pet Supplies > Dog Supplies > Dog Toys",
+  "Dog Toiletries": "Animals & Pet Supplies > Pet Supplies > Dog Supplies > Dog Grooming Supplies",
+  "Pet Care": "Animals & Pet Supplies > Pet Supplies",
+};
+
+/** Clothing productTypes needing age_group/gender/colour/size for Merchant. */
+const APPAREL_TYPES = new Set(["Hats", "Jackets", "Gilets"]);
+
+/** A selected-option value by option name (case-insensitive). */
+function optionValue(v: FeedVariant, names: string[]): string | null {
+  const want = names.map((n) => n.toLowerCase());
+  for (const o of v.selectedOptions ?? []) {
+    if (want.includes(o.name.toLowerCase()) && o.value && o.value !== "Default Title") {
+      return o.value;
+    }
+  }
+  return null;
+}
+
 interface Money {
   amount: string;
   currencyCode: string;
@@ -43,6 +155,7 @@ interface FeedVariant {
   price: Money;
   compareAtPrice: Money | null;
   image: { url: string } | null;
+  selectedOptions: Array<{ name: string; value: string }>;
   legacyId: FeedMetafield | null;
 }
 interface FeedProduct {
@@ -102,6 +215,7 @@ const FEED_QUERY = /* GraphQL */ `
             price { amount currencyCode }
             compareAtPrice { amount currencyCode }
             image { url }
+            selectedOptions { name value }
             legacyId: metafield(namespace: "google", key: "legacy_id") { value }
           }
         }
@@ -202,7 +316,10 @@ function itemXml(p: FeedProduct, v: FeedVariant, siteUrl: string): string {
   const vid = numericId(v.id);
   const id = v.legacyId?.value || v.sku || vid;
   const title = clean(v.title !== "Default Title" ? `${p.title} - ${v.title}` : p.title, 150);
-  const description = clean(p.descriptionHtml || p.description || p.title, 5000);
+  const description = clean(
+    FEED_DESCRIPTION_OVERRIDES[p.handle] || p.descriptionHtml || p.description || p.title,
+    5000,
+  );
   const link =
     `${siteUrl}/shop/${p.handle}` + (multi ? `?variant=${vid}` : "");
   const imageLink = v.image?.url || p.featuredImage?.url || "";
@@ -232,7 +349,25 @@ function itemXml(p: FeedProduct, v: FeedVariant, siteUrl: string): string {
   if (gtinOk) lines.push(tag("g:gtin", v.barcode!.trim()));
   else lines.push(tag("g:identifier_exists", "no"));
   if (p.productType) lines.push(tag("g:product_type", p.productType));
-  if (p.googleCategory?.value) lines.push(tag("g:google_product_category", p.googleCategory.value));
+  // Category: the Shopify metafield wins; otherwise map from productType so
+  // Google isn't left guessing (which mis-filed wearables under Apparel).
+  const googleCategory = p.googleCategory?.value || PRODUCT_TYPE_TO_GOOGLE_CATEGORY[p.productType] || "";
+  if (googleCategory) lines.push(tag("g:google_product_category", googleCategory));
+  // Clothing items must carry age_group/gender/colour/size (and size variants
+  // are already sent per variant with item_group_id below).
+  if (APPAREL_TYPES.has(p.productType)) {
+    lines.push(tag("g:age_group", "adult"));
+    const gender = /\b(women|woman|ladies|female|her)\b/i.test(p.title)
+      ? "female"
+      : /\b(men|man|male|his)\b/i.test(p.title)
+        ? "male"
+        : "unisex";
+    lines.push(tag("g:gender", gender));
+    const color = optionValue(v, ["colour", "color"]);
+    if (color) lines.push(tag("g:color", color));
+    const size = optionValue(v, ["size"]) || (v.title !== "Default Title" ? v.title : null);
+    if (size) lines.push(tag("g:size", size));
+  }
   if (multi) lines.push(tag("g:item_group_id", numericId(p.id)));
   if (v.weight && v.weight > 0 && v.weightUnit && WEIGHT_UNIT[v.weightUnit]) {
     lines.push(tag("g:shipping_weight", `${v.weight} ${WEIGHT_UNIT[v.weightUnit]}`));

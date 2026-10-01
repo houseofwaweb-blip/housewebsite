@@ -107,9 +107,9 @@ export function proxy(request: NextRequest) {
   // here — keep in sync with next.config.ts. Omitting them silently blocks
   // GA4, Clarity, Meta Pixel, etc. for every visitor.
   const measureScript =
-    "https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://www.clarity.ms https://*.clarity.ms https://connect.facebook.net https://s.pinimg.com https://ct.pinterest.com https://va.vercel-scripts.com https://static.klaviyo.com https://*.klaviyo.com";
+    "https://www.googletagmanager.com https://*.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com https://www.google-analytics.com https://*.google-analytics.com https://www.clarity.ms https://*.clarity.ms https://connect.facebook.net https://s.pinimg.com https://ct.pinterest.com https://va.vercel-scripts.com https://static.klaviyo.com https://*.klaviyo.com";
   const measureConnect =
-    "https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://stats.g.doubleclick.net https://*.g.doubleclick.net https://www.google.com https://www.google.co.uk https://www.clarity.ms https://*.clarity.ms https://*.facebook.com https://ct.pinterest.com https://vitals.vercel-insights.com https://va.vercel-scripts.com https://a.klaviyo.com https://static.klaviyo.com https://*.klaviyo.com";
+    "https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://stats.g.doubleclick.net https://googleads.g.doubleclick.net https://*.g.doubleclick.net https://www.googleadservices.com https://pagead2.googlesyndication.com https://www.google.com https://*.google.com https://www.google.co.uk https://*.google.co.uk https://www.clarity.ms https://*.clarity.ms https://*.facebook.com https://ct.pinterest.com https://vitals.vercel-insights.com https://va.vercel-scripts.com https://a.klaviyo.com https://static.klaviyo.com https://*.klaviyo.com";
 
   const csp = [
     "default-src 'self'",
@@ -118,7 +118,7 @@ export function proxy(request: NextRequest) {
     "img-src 'self' data: blob: https:",
     "font-src 'self' data: https:",
     `connect-src 'self' https://*.supabase.co wss://*.supabase.co https://*.sanity.io https://cdn.sanity.io https://*.shopify.com https://*.upstash.io https://noembed.com https://www.youtube.com https://s.ytimg.com https://challenges.cloudflare.com https://*.sentry.io https://*.ingest.sentry.io ${measureConnect} ${obfHosts}`,
-    `frame-src 'self' https://challenges.cloudflare.com https://www.facebook.com https://www.instagram.com https://www.youtube-nocookie.com https://www.youtube.com ${obfHosts}`,
+    `frame-src 'self' https://challenges.cloudflare.com https://td.doubleclick.net https://www.googletagmanager.com https://www.facebook.com https://www.instagram.com https://www.youtube-nocookie.com https://www.youtube.com ${obfHosts}`,
     "frame-ancestors 'none'",
     `form-action 'self' ${obfHosts}`,
     "base-uri 'self'",
