@@ -300,7 +300,7 @@ export interface ProductVariant {
   title: string;
   availableForSale: boolean;
   price: string;
-  /** Variant SKU — the GA4 item_id / feed g:id, so events match the feed. */
+  /** Variant SKU — the GA4 item_id / feed g:id / per-variant JSON-LD offer id, so events, feed and structured data all match. */
   sku: string | null;
 }
 

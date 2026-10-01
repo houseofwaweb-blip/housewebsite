@@ -25,6 +25,15 @@ export const videoEmbed = defineType({
     }),
     defineField({ name: "caption", title: "Caption", type: "string" }),
     defineField({
+      name: "poster",
+      title: "Poster image",
+      type: "image",
+      options: { hotspot: true },
+      fields: [{ name: "alt", type: "string" }],
+      description:
+        "Optional. With a YouTube URL, shows this image + a play button; the video loads on click. Leave blank to use the plain YouTube embed.",
+    }),
+    defineField({
       name: "url",
       title: "Resolved URL",
       type: "url",

@@ -50,6 +50,7 @@ interface FeedProduct {
   handle: string;
   title: string;
   description: string;
+  descriptionHtml: string;
   productType: string;
   vendor: string;
   isGiftCard: boolean;
@@ -75,6 +76,7 @@ const FEED_QUERY = /* GraphQL */ `
         handle
         title
         description
+        descriptionHtml
         productType
         vendor
         isGiftCard
@@ -180,7 +182,14 @@ function escapeXml(s: string): string {
 
 /** Plain-text, whitespace-collapsed, length-capped. */
 function clean(s: string, max: number): string {
-  const flat = (s ?? "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+  // Turn block-level tags into spaces BEFORE stripping, so paragraphs don't run
+  // together ("home.Natural") when the HTML is flattened (feed check #1, Fix 2).
+  const flat = (s ?? "")
+    .replace(/<\/(p|div|li|h[1-6]|tr|blockquote|section)>/gi, " ")
+    .replace(/<br\s*\/?>/gi, " ")
+    .replace(/<[^>]*>/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
   return flat.length > max ? flat.slice(0, max) : flat;
 }
 
@@ -193,7 +202,7 @@ function itemXml(p: FeedProduct, v: FeedVariant, siteUrl: string): string {
   const vid = numericId(v.id);
   const id = v.legacyId?.value || v.sku || vid;
   const title = clean(v.title !== "Default Title" ? `${p.title} - ${v.title}` : p.title, 150);
-  const description = clean(p.description || p.title, 5000);
+  const description = clean(p.descriptionHtml || p.description || p.title, 5000);
   const link =
     `${siteUrl}/shop/${p.handle}` + (multi ? `?variant=${vid}` : "");
   const imageLink = v.image?.url || p.featuredImage?.url || "";

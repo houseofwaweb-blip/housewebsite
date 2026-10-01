@@ -58,6 +58,19 @@ export function ProductBuy({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [product.handle]);
 
+  // Preselect the variant from the feed's ?variant deep link (feed check #1),
+  // so the buy control + shown price match the variant Google sent the visitor
+  // to. Read client-side to avoid server searchParams, which would break this
+  // ISR page's static generation.
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+    const param = new URLSearchParams(window.location.search).get("variant");
+    if (!param) return;
+    const match = variants.find((v) => numericId(v.id) === param);
+    if (match) setVariantId(match.id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   if (!selected) {
     return (
       <span className="font-sans text-[18px] tracking-[0.16em] uppercase text-house-stone">

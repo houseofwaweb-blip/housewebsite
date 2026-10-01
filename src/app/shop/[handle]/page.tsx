@@ -188,6 +188,23 @@ export default async function ProductPage({
   const consumable = /cleaning|toiletr|fragrance|laundr|\bfoil\b|freezer|food.?bag|sandwich.?bag|wipe|\bsoap\b|\bseeds?\b|refill|detergent|consumable|stationery|\bcandle\b|tealight|\bbags?\b/.test(catAndTitle);
   const baseUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
   const productUrl = `${baseUrl}/shop/${product.handle}`;
+  // One JSON-LD Offer per variant (feed check #1), each with its own price, real
+  // SKU, availability and ?variant URL, so Google matches every feed item to a
+  // landing-page offer. Server-side, iterating the variants already fetched — NO
+  // searchParams here (that breaks static generation of this ISR route; ?variant
+  // preselect is handled client-side in ProductBuy instead).
+  const skuValue = variants[0]?.sku || undefined;
+  const jsonLdOffers =
+    variants.length > 1
+      ? variants.map((v) => ({
+          price: parsePrice(v.price) || parsePrice(product.price),
+          url: `${productUrl}?variant=${numericId(v.id)}`,
+          availability: v.availableForSale
+            ? ("InStock" as const)
+            : ("OutOfStock" as const),
+          sku: v.sku || undefined,
+        }))
+      : undefined;
 
   // Pull availability from Sanity if we have it (the static fallback
   // doesn't carry an explicit status field — defaults to PreOrder).
@@ -202,8 +219,7 @@ export default async function ProductPage({
       : availability === "InStock";
   // Feed-matching identifiers (Google Shopping brief, Task 2). Typed locals so the
   // union `product` narrows cleanly to string | undefined for the JSON-LD.
-  const skuValue: string | undefined =
-    "sku" in product && typeof product.sku === "string" && product.sku ? product.sku : undefined;
+  // (skuValue is derived above from variants[0].sku — the feed-canonical primary SKU.)
   const gtinValue: string | undefined =
     "gtin" in product && typeof product.gtin === "string" && product.gtin ? product.gtin : undefined;
   const brandValue: string | undefined =
@@ -260,17 +276,7 @@ export default async function ProductPage({
         brand={brandValue}
         price={parsePrice(product.price)}
         availability={inStock ? "InStock" : "OutOfStock"}
-        offers={
-          variants.length > 1
-            ? variants.map((v) => ({
-                price: parsePrice(v.price) || parsePrice(product.price),
-                url: `${productUrl}?variant=${numericId(v.id)}`,
-                availability: v.availableForSale
-                  ? ("InStock" as const)
-                  : ("OutOfStock" as const),
-              }))
-            : undefined
-        }
+        offers={jsonLdOffers}
       />
       <MetaViewContent
         contentId={product.handle}
