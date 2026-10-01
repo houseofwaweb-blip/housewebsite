@@ -11,6 +11,8 @@ declare global {
   interface Window {
     klaviyo?: { push: (args: KlaviyoArgs) => void };
     _learnq?: { push: (args: KlaviyoArgs) => void };
+    /** Klaviyo's onsite queue — drained by klaviyo.js once it loads. */
+    _klOnsite?: KlaviyoArgs[];
   }
 }
 
@@ -23,6 +25,16 @@ function push(args: KlaviyoArgs): void {
     } catch {
       /* tracking must never throw into the caller */
     }
+    return;
+  }
+  // klaviyo.js hasn't finished loading yet (e.g. "Viewed Product" fires on a
+  // product-page mount just as the consent-gated script is still fetching).
+  // Queue to Klaviyo's own _klOnsite array, which klaviyo.js drains on load, so
+  // the event isn't dropped. Without this, the first on-load event is lost.
+  try {
+    (window._klOnsite = window._klOnsite || []).push(args);
+  } catch {
+    /* tracking must never throw into the caller */
   }
 }
 
