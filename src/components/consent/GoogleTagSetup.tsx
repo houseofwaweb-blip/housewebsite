@@ -33,7 +33,9 @@ export function GoogleTagSetup() {
   // must still fall back to the baked ID, otherwise gaId="" makes this whole
   // component render nothing and GA never loads.
   const gaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-HN657RY0DT";
-  const adsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
+  // Baked fallback like gaId above — the Preview scope value was empty, which
+  // dropped the Ads tag from preview builds. Env still wins when set.
+  const adsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || "AW-10957066467";
   // The Shopify-hosted checkout domain the Buy button hands off to, for
   // cross-domain linking (GA4 + Ads sessions/click IDs must carry into
   // checkout). Defaults to the live checkout subdomain; override with

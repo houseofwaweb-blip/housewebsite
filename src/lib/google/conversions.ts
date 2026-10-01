@@ -17,18 +17,25 @@
  * modelled. Either way we fire the event — Google handles the rest.
  */
 
-const ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
+// Google Ads account tag. Env wins; the literal is the fallback so the Ads tag
+// + conversions work even where the env isn't set (e.g. the Preview scope was
+// empty). Public value (NEXT_PUBLIC, inlined into the client bundle anyway).
+const ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || "AW-10957066467";
 
 type ConversionName = "lead" | "schedule" | "registration";
 
+// Conversion labels from Google Ads (account 680-377-5494, tag AW-10957066467),
+// created 2026-10-01. Env wins; literals are the fallback. These are public
+// (NEXT_PUBLIC). Verify against the Ads account if ever changed — note the
+// I/l and O/0 lookalikes (every 0 here is a zero; EOO is two capital O's).
 function labelFor(name: ConversionName): string | undefined {
   switch (name) {
     case "lead":
-      return process.env.NEXT_PUBLIC_GADS_CONVERSION_LEAD;
+      return process.env.NEXT_PUBLIC_GADS_CONVERSION_LEAD || "yIkgCNDb04wdEOOh3ugo";
     case "schedule":
-      return process.env.NEXT_PUBLIC_GADS_CONVERSION_SCHEDULE;
+      return process.env.NEXT_PUBLIC_GADS_CONVERSION_SCHEDULE || "ox-jCMHx3IwdEOOh3ugo";
     case "registration":
-      return process.env.NEXT_PUBLIC_GADS_CONVERSION_REGISTRATION;
+      return process.env.NEXT_PUBLIC_GADS_CONVERSION_REGISTRATION || "u8XpCNPb04wdEOOh3ugo";
   }
 }
 
