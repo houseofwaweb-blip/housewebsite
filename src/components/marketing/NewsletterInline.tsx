@@ -226,7 +226,7 @@ export function NewsletterInline({
                     aria-label="Your name"
                     className={cn(
                       "border outline-none font-sans text-[18px] px-4 py-3.5 text-house-brown w-full",
-                      "placeholder:italic placeholder:font-display placeholder:text-house-brown/35",
+                      "placeholder:italic placeholder:font-display placeholder:text-house-brown/60",
                       isDark
                         ? "bg-house-white border-house-white"
                         : "bg-house-white border-house-brown/12",
@@ -242,7 +242,7 @@ export function NewsletterInline({
                     aria-label="Your email"
                     className={cn(
                       "border outline-none font-sans text-[18px] px-4 py-3.5 text-house-brown w-full",
-                      "placeholder:italic placeholder:font-display placeholder:text-house-brown/35",
+                      "placeholder:italic placeholder:font-display placeholder:text-house-brown/60",
                       isDark
                         ? "bg-house-white border-house-white"
                         : "bg-house-white border-house-brown/12",

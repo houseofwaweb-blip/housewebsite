@@ -21,16 +21,16 @@ const ukPhone = z
   .optional()
   .or(z.literal("").transform(() => undefined));
 
-const ukPostcode = z
+const UK_POSTCODE_RE = /^[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}$/u;
+
+// Required UK postcode (consultation/service enquiries). We route the ServiceOS
+// lead + quote by area, so a service enquiry must carry a postcode.
+const ukPostcodeRequired = z
   .string()
   .trim()
+  .min(1, "Please enter your postcode")
   .toUpperCase()
-  .regex(
-    /^[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}$/u,
-    "Please enter a valid UK postcode",
-  )
-  .optional()
-  .or(z.literal("").transform(() => undefined));
+  .regex(UK_POSTCODE_RE, "Please enter a valid UK postcode");
 
 const turnstileToken = z.string().min(1, "Verification required");
 
@@ -85,7 +85,8 @@ export const consultationBookingSchema = z.object({
   name,
   email,
   phone: ukPhone,
-  postcode: ukPostcode,
+  // Postcode is required on service enquiries (phone stays optional).
+  postcode: ukPostcodeRequired,
   serviceType: z
     .enum([
       "design-interiors",

@@ -117,6 +117,13 @@ export function EnquiryForm({
 
   const handle = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Postcode is required (we route the enquiry by area). The form is
+    // noValidate, so check it here for a clear message rather than a server 400.
+    if (!postcode.trim()) {
+      setState("error");
+      setError("Please enter your postcode so we can check your area.");
+      return;
+    }
     setState("submitting");
     setError("");
     // Record the chosen sub-service in the notes (serviceType stays the parent
@@ -152,7 +159,7 @@ export function EnquiryForm({
 
   const field = cn(
     "w-full border outline-none font-sans text-[18px] px-4 py-3.5 text-house-brown",
-    "placeholder:italic placeholder:font-display placeholder:text-house-brown/35",
+    "placeholder:italic placeholder:font-display placeholder:text-house-brown/60",
     isDark ? "bg-house-white border-house-white" : "bg-house-white border-house-brown/15 focus:border-house-gold",
   );
 
@@ -212,7 +219,7 @@ export function EnquiryForm({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone (optional)" autoComplete="tel" aria-label="Phone" className={field} />
-                <input type="text" value={postcode} onChange={(e) => setPostcode(e.target.value)} placeholder="Postcode (optional)" autoComplete="postal-code" aria-label="Postcode" className={field} />
+                <input type="text" required value={postcode} onChange={(e) => setPostcode(e.target.value)} placeholder="Postcode" autoComplete="postal-code" aria-label="Postcode" className={field} />
               </div>
 
               <label className="sr-only" htmlFor="enquiry-service">Service of interest</label>
