@@ -104,7 +104,7 @@ export default function PostcodeBooking({
           aria-describedby={status.kind === 'idle' ? undefined : messageId}
           className="w-full flex-1 border bg-house-white border-house-brown/15 px-4 py-3.5
                      font-sans text-[18px] text-house-brown
-                     placeholder:font-sans placeholder:text-house-brown/60
+                     placeholder:font-sans placeholder:text-house-brown/80 placeholder:opacity-100
                      outline-none focus:border-house-gold
                      focus-visible:outline focus-visible:outline-2
                      focus-visible:outline-offset-2 focus-visible:outline-house-brown"

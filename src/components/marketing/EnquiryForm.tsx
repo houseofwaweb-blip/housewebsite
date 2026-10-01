@@ -159,7 +159,7 @@ export function EnquiryForm({
 
   const field = cn(
     "w-full border outline-none font-sans text-[18px] px-4 py-3.5 text-house-brown",
-    "placeholder:italic placeholder:font-display placeholder:text-house-brown/60",
+    "placeholder:italic placeholder:font-display placeholder:text-house-brown/80 placeholder:opacity-100",
     isDark ? "bg-house-white border-house-white" : "bg-house-white border-house-brown/15 focus:border-house-gold",
   );
 
