@@ -1,7 +1,7 @@
 "use client";
 
 import Script from "next/script";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useConsent } from "./ConsentProvider";
 
 /**
@@ -26,6 +26,14 @@ import { useConsent } from "./ConsentProvider";
  */
 export function GoogleTagSetup() {
   const { consent } = useConsent();
+  // Load the Google tags (GA4 + Ads) ONLY on the production host. On Vercel
+  // preview builds (*.vercel.app) and localhost the Ads tag would otherwise
+  // load and pollute GA4/Ads with test traffic. Checked client-side after mount
+  // to stay SSR/hydration-safe.
+  const [prodHost, setProdHost] = useState(false);
+  useEffect(() => {
+    setProdHost(/(^|\.)willowalexander\.co\.uk$/i.test(window.location.hostname));
+  }, []);
   // GA4 measurement ID is public (it ships in the client HTML). Default to the
   // Willow Alexander GA4 stream so analytics fire on launch even if the Vercel
   // env isn't set; NEXT_PUBLIC_GA_MEASUREMENT_ID overrides it per-environment.
@@ -79,6 +87,9 @@ export function GoogleTagSetup() {
       personalization_storage: granted.functional ? "granted" : "denied",
     });
   }, [consent]);
+
+  // Production host only — never load the Google tags on preview/localhost.
+  if (!prodHost) return null;
 
   // No GA4 ID configured → don't load gtag at all (dev / preview without
   // analytics). Google Ads alone without GA4 is fine, but if neither is
