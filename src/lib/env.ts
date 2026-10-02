@@ -118,6 +118,11 @@ const schema = z.object({
   // Single shared HoWA waitlist list (same id as askhowa.co.uk) — the waitlist
   // form subscribes here with a `tier_interest` profile property.
   KLAVIYO_LIST_ID: z.string().optional(),
+  // Newsletter list every site + Hearth + /newsletter sign-up lands on. When
+  // unset we fall back to the current "House Newsletter Sign Ups" list id so
+  // behaviour never regresses; set it to point sign-ups at a dedicated
+  // "The Hearth" list without a code change.
+  KLAVIYO_NEWSLETTER_LIST_ID: z.string().optional(),
 
   // Meta Conversions API. Pixel ID is read from NEXT_PUBLIC_META_PIXEL_ID
   // (also useful server-side). Access token is server-only; never expose.

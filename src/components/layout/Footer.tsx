@@ -69,6 +69,7 @@ const COLS: FooterColumn[] = [
       { label: "Gardens", href: "/the-hearth/category/gardens-and-exteriors" },
       { label: "Design", href: "/the-hearth/category/design-and-architecture" },
       { label: "Living", href: "/the-hearth/category/heritage-and-culture" },
+      { label: "Newsletter", href: "/newsletter" },
     ],
   },
   {

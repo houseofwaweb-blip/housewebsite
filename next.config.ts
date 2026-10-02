@@ -80,6 +80,8 @@ const nextConfig: NextConfig = {
       // Gift cards are a real Shopify collection now (14 products, published to
       // the Headless channel), so /gift-cards points at the collection page.
       { source: "/gift-cards", destination: "/shop/collections/gift-cards", permanent: true },
+      // Newsletter sign-up: /newsletter is canonical; /subscribe 301s to it.
+      { source: "/subscribe", destination: "/newsletter", permanent: true },
       // The House editorial sub-pages Philosophy / Standards / Sustainability are
       // temporarily withdrawn to be reworked in silo. Route files are preserved;
       // these TEMPORARY (302) redirects make them unreachable in the meantime.

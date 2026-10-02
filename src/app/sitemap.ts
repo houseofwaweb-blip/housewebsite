@@ -96,6 +96,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // ---- Utility & editorial (live pages; /house-credit + /gift-cards removed —
     //      they now redirect, so they must not appear here) ----
     { url: `${base}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${base}/newsletter`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/my-house`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: `${base}/offers`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
     { url: `${base}/how-it-works`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },

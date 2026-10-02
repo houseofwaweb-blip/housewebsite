@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { cn } from "@/lib/cn";
 import { submitForm } from "@/components/forms/submitForm";
 import { TurnstileField } from "@/components/forms/TurnstileField";
 import type { TurnstileInstance } from "@marsidev/react-turnstile";
@@ -10,8 +11,21 @@ import type { TurnstileInstance } from "@marsidev/react-turnstile";
  * HearthFullWidthNewsletter — per variant-A: full-bleed black band.
  * Jost 11px tracking 0.32em gold kicker, Cormorant h2 with italic accent,
  * italic p, white pill form (input + black button), legal fine print below.
+ *
+ * Reused by /the-hearth (default `sourcePage`/anchor) and the standalone
+ * /newsletter landing page (passes sourcePage="/newsletter" + className to
+ * drop the magazine top-margin). The default `id="subscribe"` is what makes
+ * /the-hearth#subscribe jump straight to the form.
  */
-export function HearthFullWidthNewsletter() {
+export function HearthFullWidthNewsletter({
+  sourcePage = "/the-hearth",
+  id = "subscribe",
+  className,
+}: {
+  sourcePage?: string;
+  id?: string;
+  className?: string;
+} = {}) {
   const [email, setEmail] = React.useState("");
   const [state, setState] = React.useState<"idle" | "submitting" | "success" | "error">("idle");
   const honeyRef = React.useRef<HTMLInputElement>(null);
@@ -24,7 +38,7 @@ export function HearthFullWidthNewsletter() {
     setState("submitting");
     const result = await submitForm("newsletter", {
       email,
-      sourcePage: "/the-hearth",
+      sourcePage,
       honey: honeyRef.current?.value ?? "",
       turnstileToken: turnstileToken || (siteKey ? "" : "no-turnstile"),
     });
@@ -38,7 +52,7 @@ export function HearthFullWidthNewsletter() {
   };
 
   return (
-    <section className="bg-house-black text-house-white text-center px-[5vw] py-20 mt-12">
+    <section id={id} className={cn("bg-house-black text-house-white text-center px-[5vw] py-20 mt-12", className)}>
       <span className="block mb-5 font-hearth-sans text-[14px] tracking-[0.32em] uppercase text-house-gold-light">
         Subscribe to The Hearth
       </span>

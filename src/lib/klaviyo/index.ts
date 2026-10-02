@@ -29,10 +29,12 @@ import { env } from "@/lib/env";
 
 const REVISION = "2024-10-15";
 
-/** "House Newsletter Sign Ups" — the list every site newsletter sign-up
- *  (incl. The Hearth) lands on. Opt-in behaviour follows the list's own
- *  setting in Klaviyo (the consent-aware endpoint adapts). */
-const NEWSLETTER_LIST_ID = "RggxpN";
+/** The list every site newsletter sign-up (The Hearth band, /newsletter,
+ *  the split block) lands on. Defaults to "House Newsletter Sign Ups"
+ *  (RggxpN); override with KLAVIYO_NEWSLETTER_LIST_ID to point sign-ups at a
+ *  dedicated "The Hearth" list. Opt-in behaviour follows the list's own
+ *  setting in Klaviyo (the consent-aware endpoint adapts: single or double). */
+const NEWSLETTER_LIST_ID = env.KLAVIYO_NEWSLETTER_LIST_ID || "RggxpN";
 
 /**
  * Form-facing interest IDs → Klaviyo `interest` property values.
@@ -114,8 +116,11 @@ export async function subscribeToNewsletter(
           ],
         },
         // Custom source string surfaces in the Klaviyo dashboard's
-        // "subscription source" column — useful when triaging volume.
-        custom_source: "marketing-site",
+        // "subscription source" column — useful when triaging volume. Include
+        // the signup page so "Website: /newsletter" vs "/the-hearth" is visible.
+        custom_source: input.sourcePage
+          ? `Website: ${input.sourcePage}`
+          : "marketing-site",
       },
       relationships: {
         list: { data: { type: "list", id: NEWSLETTER_LIST_ID } },
