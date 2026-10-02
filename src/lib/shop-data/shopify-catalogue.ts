@@ -346,3 +346,50 @@ export const getProductVariants = cache(async (handle: string): Promise<ProductV
     return [];
   }
 });
+
+/**
+ * Ordered product handles from the manually-sorted "Shop All (Curated)"
+ * collection, used to order /shop/all. Lightweight (handles only), ISR-cached
+ * hourly — a few requests per hour, not per visitor. Returns [] if the
+ * collection is absent, so the caller falls back to the default order.
+ */
+export const getCuratedShopAllOrder = cache(async (): Promise<string[]> => {
+  if (!env.SHOPIFY_STORE_DOMAIN || !env.SHOPIFY_STOREFRONT_TOKEN) return [];
+  const endpoint = `https://${env.SHOPIFY_STORE_DOMAIN}/api/${API_VERSION}/graphql.json`;
+  const query = /* GraphQL */ `
+    query CuratedShopAll($cursor: String) {
+      collection(handle: "shop-all-curated") {
+        products(first: 250, after: $cursor, sortKey: COLLECTION_DEFAULT) {
+          pageInfo { hasNextPage endCursor }
+          nodes { handle }
+        }
+      }
+    }`;
+  const handles: string[] = [];
+  let cursor: string | null = null;
+  try {
+    for (let i = 0; i < 20; i++) {
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Shopify-Storefront-Access-Token": env.SHOPIFY_STOREFRONT_TOKEN,
+        },
+        body: JSON.stringify({ query, variables: { cursor } }),
+        next: { tags: ["shopify:catalogue"], revalidate: 3600 },
+      });
+      if (!res.ok) break;
+      const json = (await res.json()) as {
+        data?: { collection?: { products: { pageInfo: { hasNextPage: boolean; endCursor: string | null }; nodes: Array<{ handle: string }> } } | null };
+      };
+      const coll = json.data?.collection;
+      if (!coll) break;
+      for (const n of coll.products.nodes) handles.push(n.handle);
+      if (!coll.products.pageInfo.hasNextPage || !coll.products.pageInfo.endCursor) break;
+      cursor = coll.products.pageInfo.endCursor;
+    }
+  } catch {
+    return handles;
+  }
+  return handles;
+});

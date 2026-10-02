@@ -16,7 +16,7 @@ import {
   type CatalogueCollection,
   type CatalogueBrand,
 } from "./catalogue";
-import { loadShopifyCatalogue } from "./shopify-catalogue";
+import { loadShopifyCatalogue, getCuratedShopAllOrder } from "./shopify-catalogue";
 
 /**
  * Unified shop-data source. Precedence: live Shopify (the system of record
@@ -117,6 +117,22 @@ export async function getShopProducts(): Promise<CatalogueProduct[]> {
   const sanity = await getAllProducts();
   if (sanity.length > 0) return sanity.map(sanityToCatalogue).filter((p) => !isPlanProduct(p));
   return CATALOGUE_PRODUCTS.filter((p) => !isPlanProduct(p));
+}
+
+/**
+ * All marketplace products in the owner's curated order (the manually-sorted
+ * "Shop All (Curated)" Shopify collection), for /shop/all. Products not yet in
+ * the collection (e.g. newly created) are appended at the end so nothing is
+ * dropped. Falls back to the default order if the collection is unavailable.
+ */
+export async function getShopProductsCurated(): Promise<CatalogueProduct[]> {
+  const [products, order] = await Promise.all([getShopProducts(), getCuratedShopAllOrder()]);
+  if (order.length === 0) return products;
+  const rank = new Map(order.map((handle, i) => [handle, i]));
+  const inCollection = products.filter((p) => rank.has(p.handle));
+  const missing = products.filter((p) => !rank.has(p.handle));
+  inCollection.sort((a, b) => rank.get(a.handle)! - rank.get(b.handle)!);
+  return [...inCollection, ...missing];
 }
 
 /** Single product by handle. Shopify-first, then Sanity, then static. */

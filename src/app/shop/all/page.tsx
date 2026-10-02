@@ -1,7 +1,7 @@
 import Link from "next/link";
 import s from "../shop.module.css";
 import {
-  getShopProducts,
+  getShopProductsCurated,
   getShopCollections,
   getShopBrands,
 } from "@/lib/shop-data/source";
@@ -24,7 +24,7 @@ export const metadata = {
 
 export default async function ShopAllPage() {
   const [products, collections, brands] = await Promise.all([
-    getShopProducts(),
+    getShopProductsCurated(),
     getShopCollections(),
     getShopBrands(),
   ]);
