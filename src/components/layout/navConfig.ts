@@ -71,7 +71,6 @@ const SERVICE_CATEGORIES: {
  * "Put Insurance in the services mega-menu as well as utility navigation"). */
 const SERVICE_FOOTER = [
   { label: "Insurance & Cover", href: "/insurance" },
-  { label: "House Approved standards", href: "/house-approved-pro" },
   { label: "Book a service", href: "#open-booking-form" },
 ];
 
@@ -117,7 +116,6 @@ export const PRIMARY_NAV: MegaPanel[] = [
         links: [
           { label: "Home & garden care", href: "/services/home-and-garden", description: "The whole property, one rhythm" },
           { label: "Insurance & Cover", href: "/insurance", description: "Coming soon" },
-          { label: "House Approved standards", href: "/house-approved-pro", description: "How we vet" },
           { label: "Book a service", href: "#open-booking-form" },
         ],
       },
@@ -135,7 +133,9 @@ export const PRIMARY_NAV: MegaPanel[] = [
         alt: "A still life of well-kept domestic objects on a linen surface",
         tag: "House Approved",
         heading: "Every visit, to the House standard.",
-        href: "/house-approved-pro",
+        // The House Approved Pro page is hidden from nav, so the featured card
+        // leads to the Services hub instead of /house-approved-pro.
+        href: "/services",
       },
       postcode: { label: "See services near you", action: "/services" },
       trust: "House standards, clear service information and support when you need it.",
@@ -232,8 +232,6 @@ export const PRIMARY_NAV: MegaPanel[] = [
         heading: "How the House works",
         links: [
           { label: "The Artwork of the House", href: "/the-house/artwork", description: "Heritage, craft, colour" },
-          { label: "How it works", href: "/how-it-works", description: "Bookings, records and reminders" },
-          { label: "House Approved Pro", href: "/house-approved-pro", description: "For trusted tradespeople" },
           { label: "About", href: "/the-house/about", description: "The team behind the House" },
         ],
       },
