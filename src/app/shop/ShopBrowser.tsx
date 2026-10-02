@@ -130,7 +130,9 @@ export function ShopBrowser({
   const [activeBrands, setActiveBrands] = React.useState<Set<string>>(new Set());
   const [priceIdx, setPriceIdx] = React.useState(0);
   const [sortIdx, setSortIdx] = React.useState(0);
-  const [inStockOnly, setInStockOnly] = React.useState(false);
+  // Default ON: hide out-of-stock products from the shop browse (they reappear
+  // automatically when restocked). Customers can untick to show sold-out items.
+  const [inStockOnly, setInStockOnly] = React.useState(true);
   const [approvedOnly, setApprovedOnly] = React.useState(false);
   const [transitioning, setTransitioning] = React.useState(false);
   const [page, setPage] = React.useState(() => {
