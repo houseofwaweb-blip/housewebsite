@@ -73,7 +73,7 @@ export function HearthFullWidthNewsletter({
 
       {state === "success" ? (
         <p className="font-hearth-serif italic text-[20px] text-house-gold-light">
-          Thank you for signing up. Look out for The Hearth in your inbox.
+          You&rsquo;re subscribed. Welcome to The Hearth.
         </p>
       ) : (
         <form
@@ -89,9 +89,10 @@ export function HearthFullWidthNewsletter({
           {collectName && (
             <input
               type="text"
+              required
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Your name (optional)"
+              placeholder="Your name"
               autoComplete="given-name"
               aria-label="Your name"
               className="bg-house-white border border-house-white outline-none font-hearth-sans text-[18px] px-[18px] py-[14px] text-house-black placeholder:italic placeholder:font-hearth-serif placeholder:text-house-stone"
@@ -110,7 +111,7 @@ export function HearthFullWidthNewsletter({
           />
           <button
             type="submit"
-            disabled={state === "submitting" || (!!siteKey && !turnstileToken)}
+            disabled={state === "submitting" || (!!siteKey && !turnstileToken) || (collectName && !name.trim())}
             className="shrink-0 bg-house-black text-house-white font-hearth-sans text-[14px] tracking-[0.2em] uppercase px-6 py-[14px] border-0 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {state === "submitting" ? "…" : "Sign up"}

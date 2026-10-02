@@ -89,9 +89,25 @@ export async function subscribeToNewsletter(
 
   const interest = surfacesToInterestString(input.surfaces);
 
-  // profile-subscription-bulk-create-jobs is the consent-aware endpoint —
-  // it sets marketing-consent + adds to the list in one call, and triggers
-  // the double-opt-in flow only when the target list is configured for it.
+  // 1) Upsert the full profile (name + custom properties). The subscription
+  //    endpoint below only accepts email + subscriptions — it 400s on
+  //    first_name/properties ("not a valid field for the resource 'profile'")
+  //    and that rejects the WHOLE job, so nobody subscribes. The name and the
+  //    `interest` tag that builds the House Newsletter segment therefore have
+  //    to be set on the profile resource here.
+  await upsertProfile({
+    email: input.email,
+    firstName: input.firstName,
+    properties: {
+      ...(interest ? { interest } : {}),
+      signup_source: "marketing-site",
+      ...(input.sourcePage ? { signup_page: input.sourcePage } : {}),
+    },
+  });
+
+  // 2) Subscribe for marketing consent + add to the list. On a single-opt-in
+  //    list this marks the profile SUBSCRIBED immediately; a double-opt-in list
+  //    sends the confirmation email. Email + subscriptions ONLY.
   const body = {
     data: {
       type: "profile-subscription-bulk-create-job",
@@ -102,22 +118,15 @@ export async function subscribeToNewsletter(
               type: "profile",
               attributes: {
                 email: input.email,
-                ...(input.firstName ? { first_name: input.firstName } : {}),
                 subscriptions: {
                   email: { marketing: { consent: "SUBSCRIBED" } },
-                },
-                properties: {
-                  ...(interest ? { interest } : {}),
-                  signup_source: "marketing-site",
-                  ...(input.sourcePage ? { signup_page: input.sourcePage } : {}),
                 },
               },
             },
           ],
         },
-        // Custom source string surfaces in the Klaviyo dashboard's
-        // "subscription source" column — useful when triaging volume. Include
-        // the signup page so "Website: /newsletter" vs "/the-hearth" is visible.
+        // Surfaces in the dashboard's "subscription source" column — include the
+        // signup page so "Website: /newsletter" vs "/the-hearth" is visible.
         custom_source: input.sourcePage
           ? `Website: ${input.sourcePage}`
           : "marketing-site",
@@ -133,12 +142,7 @@ export async function subscribeToNewsletter(
       "https://a.klaviyo.com/api/profile-subscription-bulk-create-jobs",
       {
         method: "POST",
-        headers: {
-          Authorization: `Klaviyo-API-Key ${env.KLAVIYO_PRIVATE_KEY}`,
-          revision: REVISION,
-          "Content-Type": "application/json",
-          accept: "application/vnd.api+json",
-        },
+        headers: klaviyoHeaders(),
         body: JSON.stringify(body),
       },
     );
@@ -154,6 +158,67 @@ export async function subscribeToNewsletter(
   } catch (e) {
     console.error("[klaviyo:exception]", e);
     return { ok: false, error: "network" };
+  }
+}
+
+/** Shared auth headers for the private-key JSON:API endpoints. */
+function klaviyoHeaders(): Record<string, string> {
+  return {
+    Authorization: `Klaviyo-API-Key ${env.KLAVIYO_PRIVATE_KEY}`,
+    revision: REVISION,
+    "Content-Type": "application/json",
+    accept: "application/vnd.api+json",
+  };
+}
+
+/**
+ * Create-or-update a single profile with its name + custom properties.
+ * POST /api/profiles 201s on create and 409s if the email already exists (the
+ * body carries the existing id in meta.duplicate_profile_id), so we PATCH that
+ * id to merge. Non-fatal everywhere: the subscribe call is the consent source
+ * of truth, so a profile-write blip never breaks the sign-up.
+ */
+async function upsertProfile(p: {
+  email: string;
+  firstName?: string;
+  properties?: Record<string, unknown>;
+}): Promise<void> {
+  const attributes: Record<string, unknown> = { email: p.email };
+  if (p.firstName) attributes.first_name = p.firstName;
+  if (p.properties && Object.keys(p.properties).length) {
+    attributes.properties = p.properties;
+  }
+
+  try {
+    const res = await fetch("https://a.klaviyo.com/api/profiles/", {
+      method: "POST",
+      headers: klaviyoHeaders(),
+      body: JSON.stringify({ data: { type: "profile", attributes } }),
+    });
+    if (res.ok) return; // 201 created
+
+    if (res.status === 409) {
+      const dup = (await res.json().catch(() => null)) as
+        | { errors?: Array<{ meta?: { duplicate_profile_id?: string } }> }
+        | null;
+      const id = dup?.errors?.[0]?.meta?.duplicate_profile_id;
+      if (!id) return;
+      const patch = await fetch(`https://a.klaviyo.com/api/profiles/${id}/`, {
+        method: "PATCH",
+        headers: klaviyoHeaders(),
+        body: JSON.stringify({ data: { type: "profile", id, attributes } }),
+      });
+      if (!patch.ok) {
+        const detail = await patch.text().catch(() => "<no body>");
+        console.error(`[klaviyo:profile-patch:failed] ${patch.status} — ${detail.slice(0, 240)}`);
+      }
+      return;
+    }
+
+    const detail = await res.text().catch(() => "<no body>");
+    console.error(`[klaviyo:profile-upsert:failed] ${res.status} — ${detail.slice(0, 240)}`);
+  } catch (e) {
+    console.error("[klaviyo:profile-upsert:exception]", e);
   }
 }
 
