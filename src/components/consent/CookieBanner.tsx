@@ -37,7 +37,11 @@ export function CookieBanner() {
               the site is used, and marketing cookies to measure and improve our
               advertising (including Google Ads). Your choice applies across
               willowalexander.co.uk and our checkout, and you can change it any
-              time in Cookie preferences.
+              time in Cookie preferences. See our{" "}
+              <a href="/legal/cookies" style={{ textDecoration: "underline" }}>
+                Cookie policy
+              </a>
+              .
             </p>
             <div className={s.bannerActions}>
               <button type="button" className={`${s.btnGhost} ${s.btnLink}`} onClick={() => openPreferences()}>

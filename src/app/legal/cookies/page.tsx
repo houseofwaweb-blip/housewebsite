@@ -18,6 +18,10 @@ export default async function CookiesPage() {
         lede="What cookies we set in your browser, what we share and with whom, and how to manage your choices."
         sections={[
           {
+            heading: "What cookies are",
+            body: `Cookies are small files a website stores in your browser. Similar technologies, such as pixels and local storage, do much the same job. We use them to run the site and checkout, to remember your choices, and, only if you agree, to understand how the site is used and to measure our advertising.`,
+          },
+          {
             heading: "The four categories",
             body: `The banner asks you to pick from four categories. You can accept all, reject everything non-essential, or open "Customise" to mix and match.
 
@@ -60,7 +64,7 @@ When you change a preference, the change applies immediately to scripts already 
             body: `The table below lists the cookies and similar storage this site uses, grouped by the category above. Measurement and marketing entries are only set once you accept the matching category. If you spot something set that isn't listed, please email sales@willowalexander.co.uk and we'll investigate.`,
           },
         ]}
-        updatedAt={sanityPage?.lastUpdated ?? "22 September 2026"}
+        updatedAt={sanityPage?.lastUpdated ?? "2 October 2026"}
       />
       <section
         style={{
