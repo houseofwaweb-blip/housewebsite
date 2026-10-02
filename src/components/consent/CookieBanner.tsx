@@ -32,8 +32,12 @@ export function CookieBanner() {
         <div className={s.banner} role="dialog" aria-label="Cookie preferences">
           <div className={s.bannerInner}>
             <p className={s.bannerCopy}>
-              The House uses essential cookies to run the site, plus optional
-              functional and analytics cookies.
+              We use essential cookies to run this site and checkout. With your
+              permission we&rsquo;d also like analytics cookies to understand how
+              the site is used, and marketing cookies to measure and improve our
+              advertising (including Google Ads). Your choice applies across
+              willowalexander.co.uk and our checkout, and you can change it any
+              time in Cookie preferences.
             </p>
             <div className={s.bannerActions}>
               <button type="button" className={`${s.btnGhost} ${s.btnLink}`} onClick={() => openPreferences()}>
@@ -110,7 +114,7 @@ function PreferencesModal({
           />
           <Row
             title="Marketing"
-            description="Advertising and retargeting pixels: Meta, Pinterest, LinkedIn. Off by default. Turn on if you'd rather see relevant House ads than random ones."
+            description="Advertising and measurement: Google Ads (including conversion tracking, enhanced conversions and remarketing), Meta and Pinterest pixels, and Klaviyo on-site tracking. Off by default. Turn on to help us measure and improve our advertising."
             checked={marketing}
             onChange={setMarketing}
           />

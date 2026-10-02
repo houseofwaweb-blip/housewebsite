@@ -48,25 +48,39 @@ export interface Consent {
   marketing: boolean;
   /** ISO timestamp of the choice — handy for audit + re-prompt logic. */
   decidedAt: string;
+  /** Banner version the choice was given under (for evidence + re-prompts). */
+  version: number;
 }
 
 const COOKIE_NAME = "wa-consent";
 const STORAGE_KEY = "wa-consent";
 const MAX_AGE_SECONDS = 60 * 60 * 24 * 365;
 
+/**
+ * Consent banner version. Bump this whenever the disclosure materially changes,
+ * which invalidates every stored choice and re-prompts all visitors once.
+ * v2 (2 Oct 2026): advertising / Google Ads is now disclosed in the banner, so
+ * every v1 choice (given before advertising was named) must be re-collected to
+ * be valid under UK PECR / ICO guidance.
+ */
+export const CONSENT_VERSION = 2;
+
 function encode(c: Consent): string {
-  return `e1f${c.functional ? 1 : 0}m${c.measurement ? 1 : 0}k${c.marketing ? 1 : 0}|${c.decidedAt}`;
+  return `v${CONSENT_VERSION}|e1f${c.functional ? 1 : 0}m${c.measurement ? 1 : 0}k${c.marketing ? 1 : 0}|${c.decidedAt}`;
 }
 
 function decode(raw: string): Consent | null {
-  const match = /^e1f([01])m([01])k([01])\|(.+)$/.exec(raw);
+  const match = /^v(\d+)\|e1f([01])m([01])k([01])\|(.+)$/.exec(raw);
   if (!match) return null;
+  // A choice from an older banner version is no longer valid — re-prompt.
+  if (Number(match[1]) !== CONSENT_VERSION) return null;
   return {
     essential: true,
-    functional: match[1] === "1",
-    measurement: match[2] === "1",
-    marketing: match[3] === "1",
-    decidedAt: match[4],
+    functional: match[2] === "1",
+    measurement: match[3] === "1",
+    marketing: match[4] === "1",
+    decidedAt: match[5],
+    version: CONSENT_VERSION,
   };
 }
 
@@ -93,7 +107,7 @@ export function readConsent(): Consent | null {
   return cachedValue;
 }
 
-export type ConsentChoice = Omit<Consent, "essential" | "decidedAt">;
+export type ConsentChoice = Omit<Consent, "essential" | "decidedAt" | "version">;
 
 /** Persist to both localStorage and cookie. Client-only. */
 export function writeConsent(input: ConsentChoice): Consent {
@@ -103,6 +117,7 @@ export function writeConsent(input: ConsentChoice): Consent {
     measurement: input.measurement,
     marketing: input.marketing,
     decidedAt: new Date().toISOString(),
+    version: CONSENT_VERSION,
   };
   if (typeof window === "undefined") return consent;
   const encoded = encode(consent);

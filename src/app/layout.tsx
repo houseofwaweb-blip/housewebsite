@@ -14,6 +14,7 @@ import { CookieBanner } from "@/components/consent/CookieBanner";
 import { AnalyticsLoader } from "@/components/consent/AnalyticsLoader";
 import { SpeedInsightsLoader } from "@/components/consent/SpeedInsightsLoader";
 import { GoogleTagSetup } from "@/components/consent/GoogleTagSetup";
+import { ShopifyConsentSync } from "@/components/consent/ShopifyConsentSync";
 import { GaClickEvents } from "@/components/analytics/GaClickEvents";
 import { MicrosoftClarity } from "@/components/consent/loaders/MicrosoftClarity";
 import { MetaPixel } from "@/components/consent/loaders/MetaPixel";
@@ -177,6 +178,7 @@ export default async function RootLayout({
             <AnalyticsLoader />
             <SpeedInsightsLoader />
             <GoogleTagSetup />
+            <ShopifyConsentSync storefrontToken={env.SHOPIFY_STOREFRONT_TOKEN ?? ""} />
             <GaClickEvents />
             <MicrosoftClarity />
             <MetaPixel />
