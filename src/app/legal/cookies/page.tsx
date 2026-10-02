@@ -27,7 +27,7 @@ export default async function CookiesPage() {
 
 **Measurement**: first-party understanding of the site. Google Analytics 4, Microsoft Clarity, Vercel Speed Insights, Sentry. We use them to see which pages are useful, find broken things, and improve speed. Default off.
 
-**Marketing**: advertising and retargeting. Meta (Facebook / Instagram), Pinterest, Google Ads. If you turn this on, you'll see relevant House ads on those platforms instead of random ones. Default off.`,
+**Marketing**: advertising and measurement. Google Ads (conversion tracking, enhanced conversions and remarketing), Meta (Facebook / Instagram), Pinterest, and Klaviyo on-site tracking. If you turn this on, we can measure which ads lead to enquiries and orders, and you'll see relevant House ads instead of random ones. Default off.`,
           },
           {
             heading: "What happens when you reject Measurement and Marketing",
@@ -37,7 +37,7 @@ Meta Pixel, Pinterest Tag, Google Analytics, Google Ads, Microsoft Clarity, Sent
           },
           {
             heading: "Data we share with third parties (only with consent)",
-            body: `If you consent to Marketing and submit a form, we send a hashed version of your email and phone number to Google and Meta. "Hashed" means the value is one-way scrambled before it leaves us. It lets Google and Meta match you against their existing user base for ad attribution, but the raw email/phone is never shared. This is called "Enhanced Conversions" (Google) and "Conversions API" (Meta), the industry-standard way to measure ad performance under iOS and modern browser privacy.
+            body: `If you consent to Marketing and either submit a form or complete a purchase at checkout, we send a hashed version of your email and phone number to Google (and to Meta) so the enquiry or order can be matched to the ad that led to it. "Hashed" means the value is one-way scrambled before it leaves us. It lets Google and Meta match you against their existing user base for ad attribution, but the raw email/phone is never shared. This is called "Enhanced Conversions" (Google) and "Conversions API" (Meta), the industry-standard way to measure ad performance under iOS and modern browser privacy. Hashed data is still personal data.
 
 If you don't consent to Marketing, none of this happens.
 
@@ -50,6 +50,8 @@ We don't sell data. We don't share with anyone outside the providers listed in o
           {
             heading: "Managing your choices",
             body: `Use the "Cookie preferences" link in the footer to change your choice at any time. You can also clear cookies from your browser. If you reject everything non-essential, the site still works: sign-in, the cart, form submissions, and security all run on first-party essential cookies.
+
+Your choice is shared with our checkout and order pages, so you only choose once: it applies across willowalexander.co.uk, checkout.willowalexander.co.uk and orders.willowalexander.co.uk. We pass your choice to our checkout provider (Shopify) so the checkout respects it too; we do not show a separate cookie banner at checkout.
 
 When you change a preference, the change applies immediately to scripts already loaded. Some third-party cookies set in previous sessions may still exist in your browser until they expire. Clearing your cookies is the surest way to start fresh.`,
           },

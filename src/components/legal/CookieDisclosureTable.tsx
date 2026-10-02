@@ -17,6 +17,8 @@ const GROUPS: { category: string; rows: Row[] }[] = [
       { name: "wa_cart_id", provider: "House of Willow Alexander", purpose: "Keeps your shopping basket between visits", duration: "Local storage, until cleared" },
       { name: "Turnstile / cf_*", provider: "Cloudflare", purpose: "Anti-bot verification on forms", duration: "Session" },
       { name: "ServiceOS booking", provider: "ServiceOS", purpose: "Runs the booking widget when you book a service", duration: "Session" },
+      { name: "_tracking_consent", provider: "Shopify", purpose: "Stores your cookie choice so the checkout respects it", duration: "12 months" },
+      { name: "cart / _shopify_* / checkout", provider: "Shopify", purpose: "Runs the basket and the hosted checkout", duration: "Session to 1 year" },
     ],
   },
   {
