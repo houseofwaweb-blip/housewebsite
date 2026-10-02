@@ -189,7 +189,13 @@ export async function handleFormSubmission(
         interests?: string[];
         sourcePage?: string;
       };
-      const surfaces = (p.interests ?? []) as InterestSurface[];
+      const picked = (p.interests ?? []) as InterestSurface[];
+      // Bare newsletter forms (the Hearth band + /newsletter page) collect email
+      // only, so nothing tags the profile. Default those to the House interest
+      // so `interest` contains "howa" and they land in the House Newsletter
+      // segment (Klaviyo: interest contains "howa" AND can receive email
+      // marketing). The inline form's explicit picks are respected as-is.
+      const surfaces = picked.length ? picked : (["the-house"] as InterestSurface[]);
       await subscribeToNewsletter({
         email: p.email,
         firstName: p.name,
