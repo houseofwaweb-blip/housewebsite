@@ -41,9 +41,11 @@ export function QuickAdd({
   if (!buyable) return null;
 
   const wrap =
-    "absolute inset-x-0 bottom-0 z-20 p-2.5 opacity-0 translate-y-2 transition-all duration-[var(--t-base)] ease-out group-hover:opacity-100 group-hover:translate-y-0 max-md:opacity-100 max-md:translate-y-0";
+    "absolute inset-x-0 bottom-0 z-20 p-2.5 max-md:p-1.5 opacity-0 translate-y-2 transition-all duration-[var(--t-base)] ease-out group-hover:opacity-100 group-hover:translate-y-0 max-md:opacity-100 max-md:translate-y-0";
+  // On mobile, keep it a slim single-line bar (smaller text + tighter tracking,
+  // no-wrap) so it doesn't balloon to two lines and cover the product image.
   const base =
-    "block w-full py-2.5 text-center font-sans text-[14px] tracking-[0.18em] uppercase no-underline transition-colors duration-[var(--t-base)] ease-out";
+    "block w-full py-2.5 text-center font-sans text-[14px] tracking-[0.18em] uppercase whitespace-nowrap no-underline transition-colors duration-[var(--t-base)] ease-out max-md:py-2 max-md:text-[11px] max-md:tracking-[0.08em]";
 
   // Multi-variant → send them to the product page to pick options.
   if (multiVariant) {
