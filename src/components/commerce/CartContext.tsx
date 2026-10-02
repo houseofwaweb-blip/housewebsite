@@ -142,6 +142,18 @@ export function CartProvider({
     [cart, persist],
   );
 
+  // When the visitor changes their cookie choice, re-query the cart so the NEXT
+  // checkoutUrl carries the updated consent (Shopify encodes it as `_cs`). No-op
+  // if there's no cart yet.
+  React.useEffect(() => {
+    function onConsentChange() {
+      const id = cart?.id ?? (typeof window !== "undefined" ? localStorage.getItem(CART_KEY) : null);
+      if (id) void call({ action: "get" });
+    }
+    window.addEventListener("wa-consent-changed", onConsentChange);
+    return () => window.removeEventListener("wa-consent-changed", onConsentChange);
+  }, [cart, call]);
+
   const add = React.useCallback(
     async (merchandiseId: string, info: AddInfo, quantity = 1) => {
       if (!buyable) return false; // catalog mode — browse only

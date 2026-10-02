@@ -74,6 +74,19 @@ export interface CommerceCart {
   }>;
 }
 
+/**
+ * Visitor consent passed on cart ops via the Storefront `@inContext`
+ * directive (API 2025-10+). Shopify encodes it into `cart.checkoutUrl` as a
+ * `_cs` parameter, which the hosted checkout applies — the supported headless
+ * way to carry banner consent into checkout. Before any choice, all false.
+ */
+export interface VisitorConsent {
+  analytics: boolean;
+  marketing: boolean;
+  preferences: boolean;
+  saleOfData: boolean;
+}
+
 export interface CommerceProvider {
   getProductByHandle(handle: string): Promise<CommerceProduct | null>;
   getCollection(handle: string, limit?: number): Promise<CommerceCollection | null>;
@@ -81,9 +94,9 @@ export interface CommerceProvider {
   listBestSellers(limit?: number): Promise<CommerceProduct[]>;
   listNewArrivals(limit?: number): Promise<CommerceProduct[]>;
   searchProducts(query: string, limit?: number): Promise<CommerceProduct[]>;
-  createCart(): Promise<CommerceCart>;
-  getCart(cartId: string): Promise<CommerceCart | null>;
-  addLine(cartId: string, merchandiseId: string, quantity: number): Promise<CommerceCart>;
-  removeLine(cartId: string, lineId: string): Promise<CommerceCart>;
-  updateLine(cartId: string, lineId: string, quantity: number): Promise<CommerceCart>;
+  createCart(consent: VisitorConsent): Promise<CommerceCart>;
+  getCart(cartId: string, consent: VisitorConsent): Promise<CommerceCart | null>;
+  addLine(cartId: string, merchandiseId: string, quantity: number, consent: VisitorConsent): Promise<CommerceCart>;
+  removeLine(cartId: string, lineId: string, consent: VisitorConsent): Promise<CommerceCart>;
+  updateLine(cartId: string, lineId: string, quantity: number, consent: VisitorConsent): Promise<CommerceCart>;
 }

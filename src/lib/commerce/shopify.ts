@@ -6,6 +6,7 @@ import type {
   CommerceMoney,
   CommerceProduct,
   CommerceProvider,
+  VisitorConsent,
 } from "./types";
 
 /**
@@ -15,9 +16,25 @@ import type {
  * API version pinned — bump explicitly when testing new Storefront fields.
  */
 const API_VERSION = "2025-04";
+// Cart ops run on a newer version: `@inContext(visitorConsent: …)` (which
+// encodes consent into checkoutUrl as `_cs`) requires Storefront API 2025-10+.
+const CART_API_VERSION = "2025-10";
 
 function endpoint() {
   return `https://${env.SHOPIFY_STORE_DOMAIN}/api/${API_VERSION}/graphql.json`;
+}
+
+function cartEndpoint() {
+  return `https://${env.SHOPIFY_STORE_DOMAIN}/api/${CART_API_VERSION}/graphql.json`;
+}
+
+// Carry banner consent into the cart (and therefore checkoutUrl) via @inContext.
+const CONSENT_DECL =
+  "$analytics: Boolean!, $marketing: Boolean!, $preferences: Boolean!, $saleOfData: Boolean!";
+const CONSENT_CTX =
+  "@inContext(country: GB, visitorConsent: { analytics: $analytics, marketing: $marketing, preferences: $preferences, saleOfData: $saleOfData })";
+function consentVars(c: VisitorConsent) {
+  return { analytics: c.analytics, marketing: c.marketing, preferences: c.preferences, saleOfData: c.saleOfData };
 }
 
 async function storefront<T>(
@@ -220,7 +237,7 @@ async function cartRequest<T>(query: string, variables: Record<string, unknown>)
   if (!env.SHOPIFY_STORE_DOMAIN || !env.SHOPIFY_STOREFRONT_TOKEN) {
     throw new Error("Shopify env not configured");
   }
-  const res = await fetch(endpoint(), {
+  const res = await fetch(cartEndpoint(), {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -358,50 +375,51 @@ export const shopifyProvider: CommerceProvider = {
     return dropPlans(data.products.nodes.map(mapProduct)).slice(0, limit);
   },
 
-  // Cart — Storefront Cart API. Returns a cart carrying `checkoutUrl`.
-  async createCart(): Promise<CommerceCart> {
+  // Cart — Storefront Cart API. Returns a cart carrying `checkoutUrl`. Consent
+  // is passed via @inContext so it rides into checkoutUrl as `_cs`.
+  async createCart(consent: VisitorConsent): Promise<CommerceCart> {
     const data = await cartRequest<{ cartCreate: { cart: SfCart } }>(
       `${CART_FRAGMENT}
-      mutation { cartCreate { cart { ...CartFields } } }`,
-      {},
+      mutation (${CONSENT_DECL}) ${CONSENT_CTX} { cartCreate { cart { ...CartFields } } }`,
+      { ...consentVars(consent) },
     );
     return mapCart(data.cartCreate.cart);
   },
-  async getCart(cartId: string): Promise<CommerceCart | null> {
+  async getCart(cartId: string, consent: VisitorConsent): Promise<CommerceCart | null> {
     const data = await cartRequest<{ cart: SfCart | null }>(
       `${CART_FRAGMENT}
-      query ($id: ID!) { cart(id: $id) { ...CartFields } }`,
-      { id: cartId },
+      query (${CONSENT_DECL}, $id: ID!) ${CONSENT_CTX} { cart(id: $id) { ...CartFields } }`,
+      { id: cartId, ...consentVars(consent) },
     );
     return data.cart ? mapCart(data.cart) : null;
   },
-  async addLine(cartId: string, merchandiseId: string, quantity: number): Promise<CommerceCart> {
+  async addLine(cartId: string, merchandiseId: string, quantity: number, consent: VisitorConsent): Promise<CommerceCart> {
     const data = await cartRequest<{ cartLinesAdd: { cart: SfCart } }>(
       `${CART_FRAGMENT}
-      mutation ($id: ID!, $lines: [CartLineInput!]!) {
+      mutation (${CONSENT_DECL}, $id: ID!, $lines: [CartLineInput!]!) ${CONSENT_CTX} {
         cartLinesAdd(cartId: $id, lines: $lines) { cart { ...CartFields } }
       }`,
-      { id: cartId, lines: [{ merchandiseId, quantity }] },
+      { id: cartId, lines: [{ merchandiseId, quantity }], ...consentVars(consent) },
     );
     return mapCart(data.cartLinesAdd.cart);
   },
-  async removeLine(cartId: string, lineId: string): Promise<CommerceCart> {
+  async removeLine(cartId: string, lineId: string, consent: VisitorConsent): Promise<CommerceCart> {
     const data = await cartRequest<{ cartLinesRemove: { cart: SfCart } }>(
       `${CART_FRAGMENT}
-      mutation ($id: ID!, $lineIds: [ID!]!) {
+      mutation (${CONSENT_DECL}, $id: ID!, $lineIds: [ID!]!) ${CONSENT_CTX} {
         cartLinesRemove(cartId: $id, lineIds: $lineIds) { cart { ...CartFields } }
       }`,
-      { id: cartId, lineIds: [lineId] },
+      { id: cartId, lineIds: [lineId], ...consentVars(consent) },
     );
     return mapCart(data.cartLinesRemove.cart);
   },
-  async updateLine(cartId: string, lineId: string, quantity: number): Promise<CommerceCart> {
+  async updateLine(cartId: string, lineId: string, quantity: number, consent: VisitorConsent): Promise<CommerceCart> {
     const data = await cartRequest<{ cartLinesUpdate: { cart: SfCart } }>(
       `${CART_FRAGMENT}
-      mutation ($id: ID!, $lines: [CartLineUpdateInput!]!) {
+      mutation (${CONSENT_DECL}, $id: ID!, $lines: [CartLineUpdateInput!]!) ${CONSENT_CTX} {
         cartLinesUpdate(cartId: $id, lines: $lines) { cart { ...CartFields } }
       }`,
-      { id: cartId, lines: [{ id: lineId, quantity }] },
+      { id: cartId, lines: [{ id: lineId, quantity }], ...consentVars(consent) },
     );
     return mapCart(data.cartLinesUpdate.cart);
   },

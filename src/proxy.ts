@@ -117,7 +117,7 @@ export function proxy(request: NextRequest) {
     `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com ${obfHosts}`,
     "img-src 'self' data: blob: https:",
     "font-src 'self' data: https:",
-    `connect-src 'self' https://*.supabase.co wss://*.supabase.co https://*.sanity.io https://cdn.sanity.io https://*.shopify.com https://checkout.willowalexander.co.uk https://*.upstash.io https://noembed.com https://www.youtube.com https://s.ytimg.com https://challenges.cloudflare.com https://*.sentry.io https://*.ingest.sentry.io ${measureConnect} ${obfHosts}`,
+    `connect-src 'self' https://*.supabase.co wss://*.supabase.co https://*.sanity.io https://cdn.sanity.io https://*.shopify.com https://checkout.willowalexander.co.uk https://monorail-edge.shopifysvc.com https://*.upstash.io https://noembed.com https://www.youtube.com https://s.ytimg.com https://challenges.cloudflare.com https://*.sentry.io https://*.ingest.sentry.io ${measureConnect} ${obfHosts}`,
     `frame-src 'self' https://challenges.cloudflare.com https://td.doubleclick.net https://www.googletagmanager.com https://www.facebook.com https://www.instagram.com https://www.youtube-nocookie.com https://www.youtube.com ${obfHosts}`,
     "frame-ancestors 'none'",
     `form-action 'self' ${obfHosts}`,
