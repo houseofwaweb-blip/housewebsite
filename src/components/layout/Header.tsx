@@ -379,17 +379,28 @@ export function Header({
     {/* Sticky bottom CTA bar — mobile only, persistent (spec §6.2). Rendered
         outside <header> so the header's backdrop-filter does not become the
         containing block for this fixed element. Book a service on service
-        routes; Get a quote on Insurance & Cover routes. Hidden everywhere else
-        (home, shop, Hearth, etc.) so ad/shop landers aren't distracted. */}
+        routes; on Insurance & Cover routes it stays but reads "coming soon"
+        (insurance isn't live yet), so it's a static label, not a link. Hidden
+        everywhere else (home, shop, Hearth, etc.) so ad/shop landers aren't
+        distracted. */}
     {showStickyCta && (
-      <Link
-        href={stickyCtaHref}
-        data-ga-event="booking_intent"
-        data-ga-cta={stickyCtaLabel}
-        className="xl:hidden fixed bottom-0 left-0 right-0 z-30 flex items-center justify-center px-[5vw] py-4 pb-[calc(1rem+env(safe-area-inset-bottom))] bg-house-brown text-house-cream no-underline border-t border-house-gold/30 font-sans text-[16px] tracking-[0.18em] uppercase"
-      >
-        {stickyCtaLabel}
-      </Link>
+      isInsuranceRoute ? (
+        <div
+          aria-live="polite"
+          className="xl:hidden fixed bottom-0 left-0 right-0 z-30 flex items-center justify-center px-[5vw] py-4 pb-[calc(1rem+env(safe-area-inset-bottom))] bg-house-brown text-house-cream/80 border-t border-house-gold/30 font-sans text-[16px] tracking-[0.18em] uppercase cursor-default"
+        >
+          Insurance coming soon
+        </div>
+      ) : (
+        <Link
+          href={stickyCtaHref}
+          data-ga-event="booking_intent"
+          data-ga-cta={stickyCtaLabel}
+          className="xl:hidden fixed bottom-0 left-0 right-0 z-30 flex items-center justify-center px-[5vw] py-4 pb-[calc(1rem+env(safe-area-inset-bottom))] bg-house-brown text-house-cream no-underline border-t border-house-gold/30 font-sans text-[16px] tracking-[0.18em] uppercase"
+        >
+          {stickyCtaLabel}
+        </Link>
+      )
     )}
     </>
   );
