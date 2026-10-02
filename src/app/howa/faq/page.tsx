@@ -138,7 +138,7 @@ const SECTIONS: { heading: string; items: { q: string; a: string }[] }[] = [
       },
       {
         q: "What is The Hearth?",
-        a: "The Hearth is our editorial publication for HoWA+ members. Weekly writing on homes, gardens, design, seasonal care, and the craft of looking after a place properly.",
+        a: "The Hearth is our editorial publication for HoWA+ members. Writing on homes, gardens, design, seasonal care, and the craft of looking after a place properly.",
       },
     ],
   },

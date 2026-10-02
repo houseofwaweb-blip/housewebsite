@@ -64,11 +64,11 @@ export function HearthFullWidthNewsletter({
         Subscribe to The Hearth
       </span>
       <h2 className="font-hearth-serif font-medium text-[clamp(37px,4vw,59px)] leading-[1.08] tracking-[-0.005em] max-w-[720px] mx-auto mb-3.5">
-        Seasonal notes on home and garden,{" "}
-        <em className="italic font-normal text-house-gold-light">delivered weekly.</em>
+        Seasonal notes on{" "}
+        <em className="italic font-normal text-house-gold-light">home and garden.</em>
       </h2>
       <p className="font-hearth-serif italic text-[21px] leading-[1.5] text-house-white/80 max-w-[520px] mx-auto mb-7">
-        A single letter from the editors each week. Unsubscribe at any time.
+        A single letter from the editors. Unsubscribe at any time.
       </p>
 
       {state === "success" ? (

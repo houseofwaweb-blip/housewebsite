@@ -14,11 +14,11 @@ export const metadata = {
   alternates: { canonical: "/newsletter" },
   title: { absolute: "Subscribe to The Hearth | House of Willow Alexander" },
   description:
-    "Seasonal notes on home and garden from the House of Willow Alexander, delivered every Friday.",
+    "Seasonal notes on home and garden from the House of Willow Alexander.",
   openGraph: {
     title: "Subscribe to The Hearth | House of Willow Alexander",
     description:
-      "Seasonal notes on home and garden from the House of Willow Alexander, delivered every Friday.",
+      "Seasonal notes on home and garden from the House of Willow Alexander.",
     url: "/newsletter",
     images: [{ url: "/home/hearth-card-still.webp" }],
   },

@@ -110,7 +110,7 @@ export function NewsletterInline({
 
   const defaultEyebrow = eyebrow ?? "The Hearth";
   const defaultHeadline = headline ?? "Seasonal notes on home and garden.";
-  const defaultBody = body ?? "A single letter from the editors, each week. The craft of looking after a place properly, written for people who care about where they live.";
+  const defaultBody = body ?? "A single letter from the editors. The craft of looking after a place properly, written for people who care about where they live.";
   const defaultSuccess = successMessage ?? "You're subscribed. Welcome to The Hearth.";
   const defaultLegal = legalNote ?? "Free \u00b7 GDPR compliant";
 
