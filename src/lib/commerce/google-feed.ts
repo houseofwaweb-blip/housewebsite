@@ -372,8 +372,12 @@ function itemXml(p: FeedProduct, v: FeedVariant, siteUrl: string): string {
   if (v.weight && v.weight > 0 && v.weightUnit && WEIGHT_UNIT[v.weightUnit]) {
     lines.push(tag("g:shipping_weight", `${v.weight} ${WEIGHT_UNIT[v.weightUnit]}`));
   }
-  [p.label0, p.label1, p.label2, p.label3, p.label4].forEach((mf, i) => {
-    if (mf?.value) lines.push(tag(`g:custom_label_${i}`, mf.value));
+  // custom_label_0 = "feed" on EVERY item, so Ads can target all feed products
+  // with one label. This overrides any per-product custom_label_0 metafield;
+  // custom_label_1–4 still come from their metafields.
+  lines.push(tag("g:custom_label_0", "feed"));
+  [p.label1, p.label2, p.label3, p.label4].forEach((mf, i) => {
+    if (mf?.value) lines.push(tag(`g:custom_label_${i + 1}`, mf.value));
   });
 
   return `  <item>\n${lines.join("\n")}\n  </item>`;
