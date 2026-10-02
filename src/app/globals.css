@@ -446,9 +446,10 @@ body {
 
 
 /* Sticky mobile CTA bar (Header.tsx, spec §6.2) is a persistent fixed element
-   on small screens. Reserve room at the foot of the page so it never covers
-   footer links or legal/validation copy (spec §21). Cleared at the lg header
-   breakpoint where the bar is hidden. */
+   on small screens — but only on service + insurance routes now. Reserve room
+   at the foot of the page so it never covers footer links or legal/validation
+   copy (spec §21), and ONLY where the bar renders (body.has-sticky-cta, toggled
+   by the Header). Cleared at the lg header breakpoint where the bar is hidden. */
 @media (max-width: 1023.98px) {
-  body { padding-bottom: calc(60px + env(safe-area-inset-bottom)); }
+  body.has-sticky-cta { padding-bottom: calc(60px + env(safe-area-inset-bottom)); }
 }

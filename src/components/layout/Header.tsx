@@ -70,6 +70,21 @@ export function Header({
   const isInsuranceRoute = pathname.startsWith("/insurance");
   const stickyCtaLabel = isInsuranceRoute ? "Get a quote" : ctaLabel;
   const stickyCtaHref = isInsuranceRoute ? "/insurance-and-cover/quote" : ctaHref;
+  // The persistent bottom "Book a service" bar is distracting on pages people
+  // land on from ads (home, shop, Hearth), so limit it to the pages where
+  // booking is the point: the services hub, every /services/[slug] and
+  // /services/[slug]/[sub], and the /services/local/[slug] (service+location)
+  // pages. Insurance keeps its contextual "Get a quote" bar.
+  const isServiceRoute = pathname === "/services" || pathname.startsWith("/services/");
+  const showStickyCta = isServiceRoute || isInsuranceRoute;
+
+  // The global mobile body padding that reserves room for the sticky bar
+  // (globals.css) should only apply where the bar actually renders, otherwise
+  // pages without it get an empty gap under the footer. Toggle a body class.
+  React.useEffect(() => {
+    document.body.classList.toggle("has-sticky-cta", showStickyCta);
+    return () => document.body.classList.remove("has-sticky-cta");
+  }, [showStickyCta]);
 
   const panelById = (id: string) => navPanels.find((p) => p.id === id);
 
@@ -363,16 +378,19 @@ export function Header({
 
     {/* Sticky bottom CTA bar — mobile only, persistent (spec §6.2). Rendered
         outside <header> so the header's backdrop-filter does not become the
-        containing block for this fixed element. Book a service on most routes;
-        Get a quote on Insurance & Cover routes. */}
-    <Link
-      href={stickyCtaHref}
-      data-ga-event="booking_intent"
-      data-ga-cta={stickyCtaLabel}
-      className="xl:hidden fixed bottom-0 left-0 right-0 z-30 flex items-center justify-center px-[5vw] py-4 pb-[calc(1rem+env(safe-area-inset-bottom))] bg-house-brown text-house-cream no-underline border-t border-house-gold/30 font-sans text-[16px] tracking-[0.18em] uppercase"
-    >
-      {stickyCtaLabel}
-    </Link>
+        containing block for this fixed element. Book a service on service
+        routes; Get a quote on Insurance & Cover routes. Hidden everywhere else
+        (home, shop, Hearth, etc.) so ad/shop landers aren't distracted. */}
+    {showStickyCta && (
+      <Link
+        href={stickyCtaHref}
+        data-ga-event="booking_intent"
+        data-ga-cta={stickyCtaLabel}
+        className="xl:hidden fixed bottom-0 left-0 right-0 z-30 flex items-center justify-center px-[5vw] py-4 pb-[calc(1rem+env(safe-area-inset-bottom))] bg-house-brown text-house-cream no-underline border-t border-house-gold/30 font-sans text-[16px] tracking-[0.18em] uppercase"
+      >
+        {stickyCtaLabel}
+      </Link>
+    )}
     </>
   );
 }
