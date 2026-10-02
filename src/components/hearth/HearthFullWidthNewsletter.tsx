@@ -21,11 +21,17 @@ export function HearthFullWidthNewsletter({
   sourcePage = "/the-hearth",
   id = "subscribe",
   className,
+  collectName = false,
 }: {
   sourcePage?: string;
   id?: string;
   className?: string;
+  /** Show an optional first-name field (feeds Klaviyo first_name). Off by
+   *  default to keep the Hearth magazine band a compact email-only pill;
+   *  the standalone /newsletter page turns it on. */
+  collectName?: boolean;
 } = {}) {
+  const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [state, setState] = React.useState<"idle" | "submitting" | "success" | "error">("idle");
   const honeyRef = React.useRef<HTMLInputElement>(null);
@@ -37,6 +43,7 @@ export function HearthFullWidthNewsletter({
     e.preventDefault();
     setState("submitting");
     const result = await submitForm("newsletter", {
+      name: collectName && name.trim() ? name.trim() : undefined,
       email,
       sourcePage,
       honey: honeyRef.current?.value ?? "",
@@ -61,22 +68,36 @@ export function HearthFullWidthNewsletter({
         <em className="italic font-normal text-house-gold-light">delivered weekly.</em>
       </h2>
       <p className="font-hearth-serif italic text-[21px] leading-[1.5] text-house-white/80 max-w-[520px] mx-auto mb-7">
-        A single letter from the editors every Friday. Unsubscribe at any time.
+        A single letter from the editors each week. Unsubscribe at any time.
       </p>
 
       {state === "success" ? (
         <p className="font-hearth-serif italic text-[20px] text-house-gold-light">
-          Thank you. The next letter will land on Friday.
+          Thank you for signing up. Look out for The Hearth in your inbox.
         </p>
       ) : (
         <form
           onSubmit={handle}
-          className="max-w-[480px] mx-auto flex bg-house-white border border-house-white"
+          className={collectName
+            ? "max-w-[480px] mx-auto flex flex-col gap-3"
+            : "max-w-[480px] mx-auto flex bg-house-white border border-house-white"}
           noValidate
         >
           <div aria-hidden="true" className="absolute -left-[9999px] w-px h-px overflow-hidden">
             <input ref={honeyRef} type="text" tabIndex={-1} autoComplete="off" />
           </div>
+          {collectName && (
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Your name (optional)"
+              autoComplete="given-name"
+              aria-label="Your name"
+              className="bg-house-white border border-house-white outline-none font-hearth-sans text-[18px] px-[18px] py-[14px] text-house-black placeholder:italic placeholder:font-hearth-serif placeholder:text-house-stone"
+            />
+          )}
+          <div className={collectName ? "flex bg-house-white border border-house-white" : "contents"}>
           <input
             type="email"
             required
@@ -94,6 +115,7 @@ export function HearthFullWidthNewsletter({
           >
             {state === "submitting" ? "…" : "Sign up"}
           </button>
+          </div>
         </form>
       )}
 

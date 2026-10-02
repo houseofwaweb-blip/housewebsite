@@ -30,6 +30,7 @@ export default function NewsletterPage() {
       <HearthFullWidthNewsletter
         sourcePage="/newsletter"
         id="subscribe"
+        collectName
         className="mt-0 flex min-h-[calc(100svh-var(--header-h,72px))] flex-col justify-center py-14 md:py-20"
       />
     </main>

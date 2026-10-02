@@ -110,8 +110,8 @@ export function NewsletterInline({
 
   const defaultEyebrow = eyebrow ?? "The Hearth";
   const defaultHeadline = headline ?? "Seasonal notes on home and garden.";
-  const defaultBody = body ?? "A single letter from the editors. Every Friday. The craft of looking after a place properly, written for people who care about where they live.";
-  const defaultSuccess = successMessage ?? "Welcome to The Hearth. The first letter arrives Friday.";
+  const defaultBody = body ?? "A single letter from the editors, each week. The craft of looking after a place properly, written for people who care about where they live.";
+  const defaultSuccess = successMessage ?? "Thank you for signing up. Look out for The Hearth in your inbox.";
   const defaultLegal = legalNote ?? "Free \u00b7 GDPR compliant";
 
   // Image for split layout (cream/paper use the drawing room, dark uses Georgian terrace)
