@@ -57,8 +57,15 @@ const CAT_FIELDS = /* GraphQL */ `
 // avoids re-sending every product's description + images for each of the ~45
 // collections it belongs to — the duplication that blew the response past
 // Next's 2MB data-cache limit (the "items over 2MB can not be cached" error).
+// Bump to force a one-off catalogue refresh (new product images/data) on the
+// next deploy. It's a GraphQL comment, so Shopify ignores it, but changing it
+// changes the request body — a new Next Data Cache key — so the hourly-cached
+// catalogue fetch is re-run immediately instead of waiting out its revalidate.
+const CATALOGUE_CACHE_VERSION = "2026-10-02-images-1";
+
 const COLLECTIONS_QUERY = /* GraphQL */ `
   query ShopCollections {
+    # catalogue-cache: ${CATALOGUE_CACHE_VERSION}
     collections(first: 100) {
       nodes {
         handle
@@ -74,6 +81,7 @@ const COLLECTIONS_QUERY = /* GraphQL */ `
 const PRODUCTS_QUERY = /* GraphQL */ `
   ${CAT_FIELDS}
   query ShopProducts($cursor: String) {
+    # catalogue-cache: ${CATALOGUE_CACHE_VERSION}
     products(first: 100, after: $cursor) {
       nodes { ...CatFields }
       pageInfo { hasNextPage endCursor }
