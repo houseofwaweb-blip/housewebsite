@@ -194,6 +194,7 @@ interface FeedProduct {
   googleColorMeta: FeedMetafield | null;
   googleAgeGroup: FeedMetafield | null;
   googleGender: FeedMetafield | null;
+  googleShippingLabel: FeedMetafield | null;
   label0: FeedMetafield | null;
   label1: FeedMetafield | null;
   label2: FeedMetafield | null;
@@ -225,6 +226,7 @@ const FEED_QUERY = /* GraphQL */ `
         googleColorMeta: metafield(namespace: "google", key: "color") { value }
         googleAgeGroup: metafield(namespace: "google", key: "age_group") { value }
         googleGender: metafield(namespace: "google", key: "gender") { value }
+        googleShippingLabel: metafield(namespace: "google", key: "shipping_label") { value }
         label0: metafield(namespace: "google", key: "custom_label_0") { value }
         label1: metafield(namespace: "google", key: "custom_label_1") { value }
         label2: metafield(namespace: "google", key: "custom_label_2") { value }
@@ -416,6 +418,12 @@ function itemXml(p: FeedProduct, v: FeedVariant, siteUrl: string): string {
     // option/variant (a tote has neither, so this stays absent for it).
     const size = optionValue(v, ["size"]) || (v.title !== "Default Title" ? v.title : null);
     if (size) lines.push(tag("g:size", size));
+  }
+  // Shipping label (large / furniture) so Merchant Center applies the right
+  // rate. Only emitted when set; everyday items carry no label.
+  const shipLabel = p.googleShippingLabel?.value?.trim().toLowerCase();
+  if (shipLabel === "large" || shipLabel === "furniture") {
+    lines.push(tag("g:shipping_label", shipLabel));
   }
   if (multi) lines.push(tag("g:item_group_id", numericId(p.id)));
   if (v.weight && v.weight > 0 && v.weightUnit && WEIGHT_UNIT[v.weightUnit]) {

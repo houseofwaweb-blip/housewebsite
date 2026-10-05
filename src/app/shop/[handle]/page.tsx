@@ -9,7 +9,8 @@ import { MobileCarousel } from "@/components/primitives/MobileCarousel";
 import { getProductByHandle } from "@/lib/cms/products";
 import { getLatestHearthArticles } from "@/lib/cms/hearth";
 import Image from "next/image";
-import { getProductVariants } from "@/lib/shop-data/shopify-catalogue";
+import { getProductVariants, getShippingLabel } from "@/lib/shop-data/shopify-catalogue";
+import { deliveryLine } from "@/lib/shop-data/delivery";
 import { numericId } from "@/lib/commerce/gtin";
 import { ProductBuy } from "./ProductBuy";
 import { ProductViewTracking } from "./ProductViewTracking";
@@ -158,6 +159,9 @@ export default async function ProductPage({
   const isDesign = false;
 
   const variants = await getProductVariants(handle);
+  // Delivery rate band from the google.shipping_label metafield ("large" /
+  // "furniture" / everyday), so the PDP copy matches what checkout charges.
+  const shippingLabel = await getShippingLabel(handle);
   // Feed g:link carries ?variant={numeric id} for multi-variant products
   // (Google Shopping brief, Task 2.1). This is handled CLIENT-SIDE in ProductBuy
   // (window.location) — a server-side `searchParams` here would force every
@@ -350,7 +354,7 @@ export default async function ProductPage({
               Shopping brief, Task 5). */}
           {!isDesign ? (
             <p className="mt-1 mb-4 font-sans text-[15px] text-house-brown/70">
-              Free UK delivery over £50 · Standard £4.99
+              {deliveryLine(shippingLabel)}
             </p>
           ) : null}
 
@@ -411,7 +415,7 @@ export default async function ProductPage({
               soon" note is hidden from the product template (audit #25). It
               returns when the HoWA app is reachable. */}
 
-          <ProductCopy product={product} isDesign={isDesign} />
+          <ProductCopy product={product} isDesign={isDesign} shippingLabel={shippingLabel} />
 
           {/* Design packages: a design SERVICE, not a physical object. Show how it
               is delivered and route to the professional, instead of care/warranty

@@ -355,6 +355,45 @@ export const getProductVariants = cache(async (handle: string): Promise<ProductV
   }
 });
 
+const SHIPPING_LABEL_QUERY = /* GraphQL */ `
+  query ProductShippingLabel($handle: String!) {
+    product(handle: $handle) {
+      shippingLabel: metafield(namespace: "google", key: "shipping_label") { value }
+    }
+  }
+`;
+
+/**
+ * The `google.shipping_label` metafield for a product: "large" | "furniture" |
+ * null (everyday). Decides the delivery rate at checkout and the PDP delivery
+ * copy. Null (empty / not configured / Shopify down) → everyday-item behaviour.
+ */
+export const getShippingLabel = cache(async (handle: string): Promise<"large" | "furniture" | null> => {
+  if (!env.SHOPIFY_STORE_DOMAIN || !env.SHOPIFY_STOREFRONT_TOKEN) return null;
+  try {
+    const res = await fetch(
+      `https://${env.SHOPIFY_STORE_DOMAIN}/api/${API_VERSION}/graphql.json`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Shopify-Storefront-Access-Token": env.SHOPIFY_STOREFRONT_TOKEN,
+        },
+        body: JSON.stringify({ query: SHIPPING_LABEL_QUERY, variables: { handle } }),
+        next: { tags: [`variants:${handle}`, "shopify:catalogue"], revalidate: 3600 },
+      },
+    );
+    if (!res.ok) return null;
+    const json = (await res.json()) as {
+      data?: { product?: { shippingLabel?: { value: string | null } | null } };
+    };
+    const v = json.data?.product?.shippingLabel?.value?.trim().toLowerCase();
+    return v === "large" || v === "furniture" ? v : null;
+  } catch {
+    return null;
+  }
+});
+
 /**
  * Ordered product handles from the manually-sorted "Shop All (Curated)"
  * collection, used to order /shop/all. Lightweight (handles only), ISR-cached

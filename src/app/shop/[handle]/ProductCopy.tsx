@@ -3,6 +3,7 @@
 import * as React from "react";
 import { Accordion } from "@/components/primitives/Accordion";
 import type { ShopProduct } from "@/lib/shop-data";
+import { deliveryAccordionText, type ShippingLabel } from "@/lib/shop-data/delivery";
 
 /**
  * True when `lede` is genuinely distinct editorial, not just the truncated
@@ -24,7 +25,15 @@ const SUMMARY = "font-sans text-[18px] tracking-[0.2em] uppercase";
  * a short lead paragraph, a Read more toggle, then hairline-divided
  * dropdowns. No price/CTA here — the buy column owns those.
  */
-export function ProductCopy({ product: p, isDesign = false }: { product: ShopProduct; isDesign?: boolean }) {
+export function ProductCopy({
+  product: p,
+  isDesign = false,
+  shippingLabel = null,
+}: {
+  product: ShopProduct;
+  isDesign?: boolean;
+  shippingLabel?: ShippingLabel;
+}) {
   const [expanded, setExpanded] = React.useState(false);
 
   // Design services have no physical care, dimensions, shipping or returns —
@@ -40,7 +49,7 @@ export function ProductCopy({ product: p, isDesign = false }: { product: ShopPro
           body: (
             <>
               <p>
-                Free UK delivery over £50, otherwise Standard £4.99 (2&ndash;3 working days) or Express £6.99.{" "}
+                {deliveryAccordionText(shippingLabel)}{" "}
                 <a href="/legal/delivery" className="underline underline-offset-2">Delivery</a>.
               </p>
               <p>
