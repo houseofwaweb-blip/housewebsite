@@ -38,6 +38,15 @@ const FILM_META: Record<string, FilmMeta> = {
   RVx47CNdcco: { category: "Gardens", slug: "the-world-garden-tom-hart-dyke" },
 };
 
+/**
+ * The featured (top, autoplaying) film on /cinema. Paste a YouTube id to pin it
+ * as the feature, whatever the source (Sanity or channel auto-pull) — it wins
+ * over any `featured` flag. Set to "" to fall back to the featured flag / newest.
+ * The video must appear in the Cinema (a visible Sanity film, or on the
+ * @HouseOfWillowAlexander channel so the auto-pull includes it).
+ */
+const FEATURED_YOUTUBE_ID = "ydfFognD8xM";
+
 export type Film = {
   slug: string;
   category: string;
@@ -264,5 +273,9 @@ export async function resolveFilm(slug: string): Promise<Film | undefined> {
 
 export async function resolveFeatured(): Promise<Film> {
   const all = await resolveFilms();
+  if (FEATURED_YOUTUBE_ID) {
+    const pinned = all.find((f) => f.youtubeId === FEATURED_YOUTUBE_ID);
+    if (pinned) return { ...pinned, featured: true };
+  }
   return all.find((f) => f.featured) ?? all[0];
 }
