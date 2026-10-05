@@ -28,20 +28,23 @@ export function CartDrawer() {
 
   return (
     <>
-      {/* Overlay */}
+      {/* Overlay. Open/closed state is set via inline style as well as classes,
+          so a slow mobile load (CSS/JS not ready) can never show it. */}
       <div
         aria-hidden="true"
         onClick={closeDrawer}
         className={cn(
           "fixed inset-0 z-40 bg-house-brown/40",
           "transition-opacity duration-[var(--t-slow)] ease-out",
-          drawerOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none",
         )}
+        style={{
+          opacity: drawerOpen ? 1 : 0,
+          pointerEvents: drawerOpen ? "auto" : "none",
+        }}
       />
 
-      {/* Drawer */}
+      {/* Drawer. Inline transform guarantees it starts off-screen on arrival,
+          even before Tailwind CSS loads (Fix 2). */}
       <aside
         role="dialog"
         aria-modal="true"
@@ -51,8 +54,8 @@ export function CartDrawer() {
           "bg-house-white flex flex-col",
           "shadow-[-8px_0_40px_rgba(48,35,28,0.12)]",
           "transition-transform duration-[var(--t-xslow)] ease-out",
-          drawerOpen ? "translate-x-0" : "translate-x-full",
         )}
+        style={{ transform: drawerOpen ? "translateX(0)" : "translateX(100%)" }}
       >
         {/* Head */}
         <div className="flex justify-between items-center px-6 py-[18px] border-b border-house-brown/8">
