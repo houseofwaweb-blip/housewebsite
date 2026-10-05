@@ -51,3 +51,22 @@ export function gaEvent(name: string, params: Record<string, unknown> = {}): voi
     /* analytics must never break the page */
   }
 }
+
+/**
+ * Fire a GA4 event once gtag.js has been CONFIGURED (GoogleTagSetup sets
+ * `window.__waGtagReady` + dispatches `wa-gtag-ready` after its gtag('config')
+ * call). Use this for events that run on page load — e.g. view_item. Firing
+ * those straight from a React effect races the config call on a first/direct
+ * load (an `event` queued before `config` is dropped), which is why view_item
+ * landed on SPA navigations but not on direct ad landings. On SPA navigation
+ * the flag is already set, so it fires immediately.
+ */
+export function gaEventReady(name: string, params: Record<string, unknown> = {}): void {
+  if (typeof window === "undefined") return;
+  const w = window as unknown as { __waGtagReady?: boolean };
+  if (w.__waGtagReady) {
+    gaEvent(name, params);
+    return;
+  }
+  window.addEventListener("wa-gtag-ready", () => gaEvent(name, params), { once: true });
+}

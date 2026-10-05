@@ -120,6 +120,10 @@ export function GoogleTagSetup() {
           var __linker = { domains: ['willowalexander.co.uk', ${JSON.stringify(checkoutDomain)}, ${JSON.stringify(ordersDomain)}], accept_incoming: true };
           ${gaId ? `gtag('config', '${gaId}', { anonymize_ip: true, debug_mode: __waDebug, linker: __linker });` : ""}
           ${adsId ? `gtag('config', '${adsId}', { linker: __linker });` : ""}
+          // Signal that gtag is configured, so on-load events (view_item) fire
+          // AFTER config and aren't dropped on a first/direct ad landing.
+          window.__waGtagReady = true;
+          window.dispatchEvent(new Event('wa-gtag-ready'));
         `}
       </Script>
     </>

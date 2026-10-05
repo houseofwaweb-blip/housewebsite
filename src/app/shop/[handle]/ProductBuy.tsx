@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { useCart } from "@/components/commerce/CartContext";
-import { gaEvent, parseAmount } from "@/lib/google/ga4";
 import { numericId } from "@/lib/commerce/gtin";
 import type { ProductVariant } from "@/lib/shop-data/shopify-catalogue";
 
@@ -40,23 +39,8 @@ export function ProductBuy({
   const selected = variants.find((v) => v.id === variantId) ?? firstAvailable;
   const multi = variants.length > 1;
 
-  // GA4 view_item — once per product view. Same measurement ID as the WP site
-  // so shop reporting stays continuous across the cutover.
-  React.useEffect(() => {
-    gaEvent("view_item", {
-      currency: "GBP",
-      value: parseAmount(product.price),
-      items: [
-        {
-          // item_id must equal the feed's g:id (SKU) so GA4/Ads match the feed.
-          item_id: firstAvailable?.sku || product.handle,
-          item_name: product.title,
-          price: parseAmount(product.price),
-        },
-      ],
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [product.handle]);
+  // GA4 view_item now fires in ProductViewTracking (single source, full payload,
+  // config-race-safe). It is intentionally NOT fired here to avoid double-counts.
 
   // Preselect the variant from the feed's ?variant deep link (feed check #1),
   // so the buy control + shown price match the variant Google sent the visitor
