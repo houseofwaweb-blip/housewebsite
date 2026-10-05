@@ -34,7 +34,8 @@ type FilmMeta = {
 
 /** Per-video tweaks. Category defaults to "Film" when not set here. */
 const FILM_META: Record<string, FilmMeta> = {
-  uPeHiJd2DCc: { category: "Interiors", featured: true, slug: "inside-a-beckenham-home" },
+  ydfFognD8xM: { category: "Homes & Gardens", featured: true, slug: "talliston-house-and-gardens" },
+  uPeHiJd2DCc: { category: "Interiors", slug: "inside-a-beckenham-home" },
   RVx47CNdcco: { category: "Gardens", slug: "the-world-garden-tom-hart-dyke" },
 };
 
@@ -46,6 +47,32 @@ const FILM_META: Record<string, FilmMeta> = {
  * @HouseOfWillowAlexander channel so the auto-pull includes it).
  */
 const FEATURED_YOUTUBE_ID = "ydfFognD8xM";
+
+/**
+ * Hard fallback for the pinned feature, so it shows on /cinema the moment this
+ * deploys — even before the hourly channel pull refreshes, or if the YouTube
+ * API key is down (auto-pull then returns nothing). Once the channel pull
+ * includes the video, the real (YouTube-sourced) entry supersedes this. The
+ * slug matches FILM_META so the /cinema/[slug] URL is stable either way.
+ */
+const FEATURED_FALLBACK: Film = {
+  slug: "talliston-house-and-gardens",
+  youtubeId: FEATURED_YOUTUBE_ID,
+  title: "That Feeling You Call Home | Inside Talliston House & Gardens with John Tarrow",
+  description:
+    "A film from the House: inside Talliston House & Gardens with John Tarrow, a hand-made home of many worlds, and what it means to make a place your own.",
+  category: "Homes & Gardens",
+  orientation: "landscape",
+  featured: true,
+};
+
+/** Guarantee the pinned feature is in the list (prepend the fallback if the
+ *  source hasn't surfaced it yet), so it features and its page resolves. */
+function ensureFeatured(films: Film[]): Film[] {
+  if (!FEATURED_YOUTUBE_ID) return films;
+  if (films.some((f) => f.youtubeId === FEATURED_YOUTUBE_ID)) return films;
+  return [FEATURED_FALLBACK, ...films];
+}
 
 export type Film = {
   slug: string;
@@ -227,7 +254,7 @@ export async function resolveFilms(): Promise<Film[]> {
 
   // 1. Sanity-curated films take precedence (the "Show on site" tickbox).
   const sanityDocs = await fetchSanityFilms();
-  if (sanityDocs.length) return buildFromSanity(sanityDocs, key);
+  if (sanityDocs.length) return ensureFeatured(await buildFromSanity(sanityDocs, key));
 
   // 2. Fallback: channel auto-pull, or the hand-picked list.
   let raw: RawVideo[];
@@ -264,7 +291,7 @@ export async function resolveFilms(): Promise<Film[]> {
       featured: m.featured === true,
     });
   }
-  return films;
+  return ensureFeatured(films);
 }
 
 export async function resolveFilm(slug: string): Promise<Film | undefined> {
