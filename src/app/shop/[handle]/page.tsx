@@ -12,7 +12,7 @@ import Image from "next/image";
 import { getProductVariants, getShippingLabel } from "@/lib/shop-data/shopify-catalogue";
 import { deliveryLine } from "@/lib/shop-data/delivery";
 import { numericId } from "@/lib/commerce/gtin";
-import { ProductBuy } from "./ProductBuy";
+import { ProductBuyPanel } from "./ProductBuyPanel";
 import { ProductViewTracking } from "./ProductViewTracking";
 import { ProductGallery } from "./ProductGallery";
 import { ProductCopy } from "./ProductCopy";
@@ -343,72 +343,75 @@ export default async function ProductPage({
             </p>
           ) : null}
 
-          <div className={s.price}>
-            {product.compareAtPrice ? (
-              <span className={s.compare}>{product.compareAtPrice}</span>
-            ) : null}
-            {product.price}
-          </div>
-
-          {/* Delivery cost near the price (DMCCA drip-pricing rule, Google
-              Shopping brief, Task 5). */}
-          {!isDesign ? (
-            <p className="mt-1 mb-4 font-sans text-[15px] text-house-brown/70">
-              {deliveryLine(shippingLabel)}
-            </p>
-          ) : null}
-
-          {/* Delivery + stock, surfaced up front (not only in the accordion) */}
-          <div className="mb-6 flex items-center gap-2 font-sans text-[18px] text-house-stone">
-            <span
-              aria-hidden
-              className="inline-block w-1.5 h-1.5 is-round"
-              style={{
-                background: inStock ? "var(--house-gold-ink)" : "var(--color-house-stone)",
-              }}
-            />
-            {deliveryStatus}
-          </div>
-
           {isDesign ? (
-            /* Design services have a professional fulfilment route, not a
-               shop checkout: the primary action starts the brief with a studio. */
-            <div className="mb-3">
-              <Link
-                href="/design#routes"
-                className="inline-flex w-full items-center justify-center gap-2 border border-house-brown bg-house-brown px-6 py-4 font-sans text-[14px] tracking-[0.18em] uppercase text-house-cream no-underline transition-[filter] hover:brightness-125"
-              >
-                Start your design brief
-              </Link>
-            </div>
+            <>
+              <div className={s.price}>
+                {product.compareAtPrice ? (
+                  <span className={s.compare}>{product.compareAtPrice}</span>
+                ) : null}
+                {product.price}
+              </div>
+              <div className="mb-6 mt-4 flex items-center gap-2 font-sans text-[18px] text-house-stone">
+                <span aria-hidden className="inline-block w-1.5 h-1.5 is-round" style={{ background: "var(--house-gold-ink)" }} />
+                {deliveryStatus}
+              </div>
+              {/* Design services have a professional fulfilment route, not a
+                  shop checkout: the primary action starts the brief with a studio. */}
+              <div className="mb-3">
+                <Link
+                  href="/design#routes"
+                  className="inline-flex w-full items-center justify-center gap-2 border border-house-brown bg-house-brown px-6 py-4 font-sans text-[14px] tracking-[0.18em] uppercase text-house-cream no-underline transition-[filter] hover:brightness-125"
+                >
+                  Start your design brief
+                </Link>
+              </div>
+            </>
           ) : variants.length > 0 ? (
-            <ProductBuy
+            // Variant-aware buy column (Fix 1): price, delivery, stock, options,
+            // qty and Add to basket all follow the selected variant, which is
+            // preselected from ?variant on load (defaulting to first in stock).
+            <ProductBuyPanel
               variants={variants}
-              product={{
-                handle: product.handle,
-                title: product.title,
-                price: product.price,
-                image: product.image,
-              }}
+              handle={product.handle}
+              title={product.title}
+              image={product.image}
+              fallbackPrice={product.price}
+              fallbackCompareAt={product.compareAtPrice}
+              shippingLabel={shippingLabel}
+              brand={brandValue}
+              category={product.collection}
             />
           ) : (
-            <div className="mb-3">
-              {/* Pre-launch: the online shop is not open to buy yet. Render a
-                  clear STATUS (muted, outlined, non-interactive), not a filled
-                  button with no action — so an item is never presented as
-                  available to buy when it isn't. A launch notification is
-                  offered beneath. */}
-              <span className="inline-flex w-full items-center justify-center gap-2 border border-house-brown/30 bg-house-cream-light px-6 py-4 font-sans text-[14px] tracking-[0.18em] uppercase text-house-brown/80">
-                Available to buy at launch
-              </span>
-              <p className="mt-2 font-sans text-[16px] leading-[1.5] text-house-stone">
-                The online shop opens soon.{" "}
-                <Link href="/the-hearth" className="text-house-gold-dark underline underline-offset-[3px]">
-                  Join The Hearth
-                </Link>{" "}
-                and we&rsquo;ll let you know when it does.
+            <>
+              <div className={s.price}>
+                {product.compareAtPrice ? (
+                  <span className={s.compare}>{product.compareAtPrice}</span>
+                ) : null}
+                {product.price}
+              </div>
+              <p className="mt-1 mb-4 font-sans text-[15px] text-house-brown/70">
+                {deliveryLine(shippingLabel)}
               </p>
-            </div>
+              <div className="mb-6 flex items-center gap-2 font-sans text-[18px] text-house-stone">
+                <span aria-hidden className="inline-block w-1.5 h-1.5 is-round" style={{ background: inStock ? "var(--house-gold-ink)" : "var(--color-house-stone)" }} />
+                {deliveryStatus}
+              </div>
+              <div className="mb-3">
+                {/* Pre-launch: the online shop is not open to buy yet. Render a
+                    clear STATUS (muted, outlined, non-interactive), not a filled
+                    button with no action. */}
+                <span className="inline-flex w-full items-center justify-center gap-2 border border-house-brown/30 bg-house-cream-light px-6 py-4 font-sans text-[14px] tracking-[0.18em] uppercase text-house-brown/80">
+                  Available to buy at launch
+                </span>
+                <p className="mt-2 font-sans text-[16px] leading-[1.5] text-house-stone">
+                  The online shop opens soon.{" "}
+                  <Link href="/the-hearth" className="text-house-gold-dark underline underline-offset-[3px]">
+                    Join The Hearth
+                  </Link>{" "}
+                  and we&rsquo;ll let you know when it does.
+                </p>
+              </div>
+            </>
           )}
 
           {/* Home Record saving is not launched yet, so the unlaunched "coming

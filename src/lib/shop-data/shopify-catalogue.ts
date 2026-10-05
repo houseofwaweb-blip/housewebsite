@@ -310,13 +310,22 @@ export interface ProductVariant {
   price: string;
   /** Variant SKU — the GA4 item_id / feed g:id / per-variant JSON-LD offer id, so events, feed and structured data all match. */
   sku: string | null;
+  /** Formatted was-price for this variant, when on sale. */
+  compareAtPrice?: string;
+  /** This variant's own image, if it has one (for variant-aware galleries). */
+  image?: string;
 }
 
 const VARIANTS_QUERY = /* GraphQL */ `
   query ProductVariants($handle: String!) {
     product(handle: $handle) {
       variants(first: 50) {
-        nodes { id title availableForSale sku price { amount currencyCode } }
+        nodes {
+          id title availableForSale sku
+          price { amount currencyCode }
+          compareAtPrice { amount currencyCode }
+          image { url }
+        }
       }
     }
   }
@@ -340,7 +349,7 @@ export const getProductVariants = cache(async (handle: string): Promise<ProductV
     );
     if (!res.ok) return [];
     const json = (await res.json()) as {
-      data?: { product?: { variants?: { nodes?: Array<{ id: string; title: string; availableForSale: boolean; sku: string | null; price: MoneyV }> } } };
+      data?: { product?: { variants?: { nodes?: Array<{ id: string; title: string; availableForSale: boolean; sku: string | null; price: MoneyV; compareAtPrice?: MoneyV | null; image?: { url: string } | null }> } } };
     };
     const nodes = json.data?.product?.variants?.nodes ?? [];
     return nodes.map((v) => ({
@@ -349,6 +358,8 @@ export const getProductVariants = cache(async (handle: string): Promise<ProductV
       availableForSale: v.availableForSale,
       sku: v.sku,
       price: money(v.price),
+      compareAtPrice: v.compareAtPrice ? money(v.compareAtPrice) : undefined,
+      image: v.image?.url,
     }));
   } catch {
     return [];
