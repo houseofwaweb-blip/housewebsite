@@ -188,6 +188,12 @@ interface FeedProduct {
   variants: { nodes: FeedVariant[] };
   exclude: FeedMetafield | null;
   googleCategory: FeedMetafield | null;
+  googleTitle: FeedMetafield | null;
+  googleDescription: FeedMetafield | null;
+  googleMaterial: FeedMetafield | null;
+  googleColorMeta: FeedMetafield | null;
+  googleAgeGroup: FeedMetafield | null;
+  googleGender: FeedMetafield | null;
   label0: FeedMetafield | null;
   label1: FeedMetafield | null;
   label2: FeedMetafield | null;
@@ -213,6 +219,12 @@ const FEED_QUERY = /* GraphQL */ `
         images(first: 11) { nodes { url } }
         exclude: metafield(namespace: "google", key: "exclude") { value }
         googleCategory: metafield(namespace: "google", key: "google_product_category") { value }
+        googleTitle: metafield(namespace: "google", key: "title") { value }
+        googleDescription: metafield(namespace: "google", key: "description") { value }
+        googleMaterial: metafield(namespace: "google", key: "material") { value }
+        googleColorMeta: metafield(namespace: "google", key: "color") { value }
+        googleAgeGroup: metafield(namespace: "google", key: "age_group") { value }
+        googleGender: metafield(namespace: "google", key: "gender") { value }
         label0: metafield(namespace: "google", key: "custom_label_0") { value }
         label1: metafield(namespace: "google", key: "custom_label_1") { value }
         label2: metafield(namespace: "google", key: "custom_label_2") { value }
@@ -330,9 +342,18 @@ function itemXml(p: FeedProduct, v: FeedVariant, siteUrl: string): string {
   const multi = p.variants.nodes.length > 1;
   const vid = numericId(v.id);
   const id = v.legacyId?.value || v.sku || vid;
-  const title = clean(v.title !== "Default Title" ? `${p.title} - ${v.title}` : p.title, 150);
+  // google.title metafield wins over the product title (B3); the per-variant
+  // suffix is kept so multi-variant feed items stay distinct.
+  const baseTitle = p.googleTitle?.value?.trim() || p.title;
+  const title = clean(v.title !== "Default Title" ? `${baseTitle} - ${v.title}` : baseTitle, 150);
+  // Precedence: policy override (e.g. herb seeds) → google.description metafield
+  // → product description → title.
   const description = clean(
-    FEED_DESCRIPTION_OVERRIDES[p.handle] || p.descriptionHtml || p.description || p.title,
+    FEED_DESCRIPTION_OVERRIDES[p.handle] ||
+      p.googleDescription?.value?.trim() ||
+      p.descriptionHtml ||
+      p.description ||
+      p.title,
     5000,
   );
   const link =
@@ -368,18 +389,29 @@ function itemXml(p: FeedProduct, v: FeedVariant, siteUrl: string): string {
   // Google isn't left guessing (which mis-filed wearables under Apparel).
   const googleCategory = p.googleCategory?.value || PRODUCT_TYPE_TO_GOOGLE_CATEGORY[p.productType] || "";
   if (googleCategory) lines.push(tag("g:google_product_category", googleCategory));
-  // Clothing items must carry age_group/gender/colour/size (and size variants
-  // are already sent per variant with item_group_id below).
+
+  // Material + colour apply to ANY product (B3), not just apparel. Colour
+  // precedence: the variant's own Colour option wins, then the google.color
+  // metafield, then a per-handle override for apparel that has neither.
+  if (p.googleMaterial?.value?.trim()) lines.push(tag("g:material", p.googleMaterial.value.trim()));
+  const color =
+    optionValue(v, ["colour", "color"]) ||
+    p.googleColorMeta?.value?.trim() ||
+    FEED_COLOR_OVERRIDES[p.handle];
+  if (color) lines.push(tag("g:color", color));
+
+  // Clothing/accessories must also carry age_group/gender (+ size for clothing).
+  // The google.age_group / google.gender metafields win over the title guess.
   if (APPAREL_TYPES.has(p.productType)) {
-    lines.push(tag("g:age_group", "adult"));
-    const gender = /\b(women|woman|ladies|female|her)\b/i.test(p.title)
-      ? "female"
-      : /\b(men|man|male|his)\b/i.test(p.title)
-        ? "male"
-        : "unisex";
+    lines.push(tag("g:age_group", p.googleAgeGroup?.value?.trim() || "adult"));
+    const gender =
+      p.googleGender?.value?.trim() ||
+      (/\b(women|woman|ladies|female|her)\b/i.test(p.title)
+        ? "female"
+        : /\b(men|man|male|his)\b/i.test(p.title)
+          ? "male"
+          : "unisex");
     lines.push(tag("g:gender", gender));
-    const color = optionValue(v, ["colour", "color"]) || FEED_COLOR_OVERRIDES[p.handle];
-    if (color) lines.push(tag("g:color", color));
     // Size applies to clothing, not bags — only emit when there's a real size
     // option/variant (a tote has neither, so this stays absent for it).
     const size = optionValue(v, ["size"]) || (v.title !== "Default Title" ? v.title : null);
