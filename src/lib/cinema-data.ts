@@ -59,8 +59,21 @@ const FEATURED_FALLBACK: Film = {
   slug: "talliston-house-and-gardens",
   youtubeId: FEATURED_YOUTUBE_ID,
   title: "That Feeling You Call Home | Inside Talliston House & Gardens with John Tarrow",
-  description:
-    "A film from the House: inside Talliston House & Gardens with John Tarrow, a hand-made home of many worlds, and what it means to make a place your own.",
+  // Full YouTube caption (hashtags stripped), so the feature reads correctly even
+  // before the channel pull supersedes this entry.
+  description: `What makes a house truly feel like home?
+
+At Talliston House & Gardens in Great Dunmow, Essex, author John Tarrow has spent more than two decades exploring that question through one of Britain’s most extraordinary homes. What began as an ordinary three-bedroom semi-detached house became a series of immersive rooms and gardens, each shaped around a different place, period, story and feeling.
+
+Rather than beginning with how a room should look, John began with a more personal question: how should it feel? The writing room, kitchen, dining spaces and gardens were created around imagined perfect moments, from the ideal place to write to the perfect setting for a Sunday morning breakfast.
+
+The result is a remarkable example of interior storytelling, creative home design and the emotional relationship we have with the places we live. Talliston is filled with influences gathered through travel, memory and imagination, but beneath the extraordinary interiors is a simple idea: home should be a place you genuinely want to return to.
+
+Read the full article, The Feeling You Call Home: Inside Talliston House & Gardens with John Tarrow:
+https://www.willowalexander.co.uk/the-hearth/the-feeling-you-call-home-talliston-house-gardens
+
+Visit Talliston House & Gardens and discover current tours and experiences:
+https://www.talliston.com/`,
   category: "Homes & Gardens",
   orientation: "landscape",
   featured: true,
