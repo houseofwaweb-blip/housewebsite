@@ -123,8 +123,23 @@ const PRODUCT_TYPE_TO_GOOGLE_CATEGORY: Record<string, string> = {
   "Pet Care": "Animals & Pet Supplies > Pet Supplies",
 };
 
-/** Clothing productTypes needing age_group/gender/colour/size for Merchant. */
-const APPAREL_TYPES = new Set(["Hats", "Jackets", "Gilets"]);
+/** Apparel/accessory productTypes needing age_group/gender/colour (+ size for
+ *  clothing) for Merchant. "Bags & Accessories" is included so the Rei tote gets
+ *  the attributes Google requires for Handbags. */
+const APPAREL_TYPES = new Set(["Hats", "Jackets", "Gilets", "Bags & Accessories"]);
+
+/**
+ * Colour overrides for apparel that has NO Shopify "Colour" option and no colour
+ * in its copy, so the feed can still emit g:color (Merchant disapproves apparel
+ * without it). Keyed by product handle. The bucket hat is NOT here — it carries
+ * a real Colour=Brown variant option, which optionValue() already reads.
+ * CONFIRM these against the actual products before relying on them.
+ */
+const FEED_COLOR_OVERRIDES: Record<string, string> = {
+  // "wax-padded-jacket": "Olive",
+  // "unisex-wax-stockman-coat-with-hood": "Olive",
+  // "rei-slouch-tote-bag": "Tan",
+};
 
 /** A selected-option value by option name (case-insensitive). */
 function optionValue(v: FeedVariant, names: string[]): string | null {
@@ -363,8 +378,10 @@ function itemXml(p: FeedProduct, v: FeedVariant, siteUrl: string): string {
         ? "male"
         : "unisex";
     lines.push(tag("g:gender", gender));
-    const color = optionValue(v, ["colour", "color"]);
+    const color = optionValue(v, ["colour", "color"]) || FEED_COLOR_OVERRIDES[p.handle];
     if (color) lines.push(tag("g:color", color));
+    // Size applies to clothing, not bags — only emit when there's a real size
+    // option/variant (a tote has neither, so this stays absent for it).
     const size = optionValue(v, ["size"]) || (v.title !== "Default Title" ? v.title : null);
     if (size) lines.push(tag("g:size", size));
   }
