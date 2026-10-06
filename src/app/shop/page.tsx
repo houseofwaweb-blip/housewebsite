@@ -8,6 +8,7 @@ import type { CommerceProduct } from "@/lib/commerce/types";
 import { getShopProducts } from "@/lib/shop-data/source";
 import type { CatalogueProduct } from "@/lib/shop-data/catalogue";
 import { AddToCartButton } from "@/components/commerce/AddToCartButton";
+import { ProductCard } from "@/components/commerce/ProductCard";
 import { ProductSlider, type Slide } from "./ProductSlider";
 import { getLatestHearthArticles } from "@/lib/cms/hearth";
 import { MobileCarousel } from "@/components/primitives/MobileCarousel";
@@ -49,20 +50,18 @@ function currentSeason(d = new Date()): string {
   return "autumn";
 }
 
-type Card = { handle: string; title: string; price: string; image: string; alt: string; houseApproved?: boolean };
-
-function toCards(products: CommerceProduct[]): Card[] {
-  return products
-    .map((p) => ({
-      handle: p.handle,
-      title: p.title,
-      price: formatMoney(p.price),
-      image: p.images[0]?.url ?? "",
-      alt: p.images[0]?.altText ?? p.title,
-      houseApproved: p.metafields?.houseApproved,
-    }))
-    .filter((c) => c.image);
-}
+type Card = {
+  handle: string;
+  title: string;
+  price: string;
+  image: string;
+  alt: string;
+  houseApproved?: boolean;
+  /** Buy data so the rail cards add to basket in place (no detour to the PDP). */
+  variantId?: string;
+  multiVariant?: boolean;
+  inStock?: boolean;
+};
 
 /** Curated section picker — products in any of `handles` (matched by collection
     handle or by the slugified collection name), skipping anything already shown.
@@ -90,6 +89,9 @@ function pickByCollection(
       image: p.image,
       alt: p.title,
       houseApproved: p.houseApproved,
+      variantId: p.variantId,
+      multiVariant: p.multiVariant ?? false,
+      inStock: p.inStock ?? true,
     });
   }
   return out;
@@ -149,26 +151,20 @@ function Rail({
         </div>
         <MobileCarousel ariaLabel={title} gridClassName="sm:grid-cols-2 md:grid-cols-4 sm:gap-x-5 sm:gap-y-9" itemClassName="basis-[46%] min-[400px]:basis-[40%]">
           {cards.map((c) => (
-            <Link key={c.handle} href={`/shop/${c.handle}`} className="group block no-underline">
-              <div className="relative aspect-[4/5] w-full overflow-hidden bg-house-cream-dark mb-3">
-                <Image
-                  src={c.image}
-                  alt={c.alt}
-                  fill
-                  sizes="(min-width: 1024px) 22vw, 45vw"
-                  className="object-cover transition-transform duration-[var(--t-xslow)] ease-out group-hover:scale-[1.03]"
-                />
-                {c.houseApproved ? (
-                  <span className="absolute top-3 left-3 font-sans text-[8px] tracking-[0.18em] uppercase text-white bg-house-brown/70 px-2 py-1">
-                    House Approved
-                  </span>
-                ) : null}
-              </div>
-              <p className="font-display text-[19px] leading-[1.25] text-house-brown group-hover:text-house-gold-dark transition-colors">
-                {c.title}
-              </p>
-              <p className="font-sans text-[18px] text-house-stone mt-0.5">{c.price}</p>
-            </Link>
+            <ProductCard
+              key={c.handle}
+              product={{
+                handle: c.handle,
+                title: c.title,
+                price: c.price,
+                image: c.image,
+                imageAlt: c.alt,
+                houseApproved: c.houseApproved,
+                variantId: c.variantId,
+                multiVariant: c.multiVariant,
+                inStock: c.inStock,
+              }}
+            />
           ))}
         </MobileCarousel>
       </div>
@@ -239,7 +235,7 @@ function TwoCollections() {
           <Link
             key={b.handle}
             href={`/shop/collections/${b.handle}`}
-            className="group relative block aspect-[16/11] overflow-hidden bg-house-cream-dark no-underline"
+            className="group relative block aspect-[4/5] overflow-hidden bg-house-cream-dark no-underline"
           >
             <Image
               src={b.image}
@@ -362,12 +358,25 @@ export const metadata = {
 };
 
 export default async function ShopPage() {
-  const [shopProducts, best, fresh, hearth] = await Promise.all([
+  const [shopProductsRaw, bestRaw, freshRaw, hearth] = await Promise.all([
     getShopProducts().catch(() => []),
     shopifyProvider.listBestSellers(40).catch(() => []),
     shopifyProvider.listNewArrivals(40).catch(() => []),
     getLatestHearthArticles(3).catch(() => []),
   ]);
+
+  // Design packages are design SERVICES sold via the Design pages, not storefront
+  // goods. Keep them off the shop landing entirely — they otherwise leak into the
+  // feature + "More worth keeping" slider via Shopify best-sellers.
+  const DESIGN_PACKAGE_HANDLES = new Set([
+    "the-house-edit-1", "additions-to-your-edit", "the-full-house-edit",
+    "planting-plans", "concept-plans", "2d-3d-plans", "lighting-plans",
+  ]);
+  const notDesign = (handle: string, collection?: string) =>
+    !DESIGN_PACKAGE_HANDLES.has(handle) && !/design/i.test(collection ?? "");
+  const shopProducts = shopProductsRaw.filter((p) => notDesign(p.handle, p.collection));
+  const best = bestRaw.filter((b) => notDesign(b.handle));
+  const fresh = freshRaw.filter((f) => notDesign(f.handle));
 
   const season = currentSeason();
   const seasonLabel = season.charAt(0).toUpperCase() + season.slice(1);
@@ -387,14 +396,40 @@ export default async function ShopPage() {
     }
     return out;
   };
+  const catByHandle = new Map(shopProducts.map((p) => [p.handle, p] as const));
+  // Build a rail card from a catalogue product, carrying the buy data (variant id,
+  // stock, multi-variant) so the card can add to basket in place.
+  const catalogueCard = (cp: CatalogueProduct): Card => ({
+    handle: cp.handle,
+    title: cp.title,
+    price: cp.price,
+    image: cp.image || cp.images?.[0]?.src || "",
+    alt: cp.title,
+    houseApproved: cp.houseApproved,
+    variantId: cp.variantId,
+    multiVariant: cp.multiVariant ?? false,
+    inStock: cp.inStock ?? true,
+  });
+  // Best/new arrive from Shopify in merchandised order; enrich each with the
+  // catalogue's buy data, falling back to the basic card when not in the catalogue.
+  const commerceCard = (p: CommerceProduct): Card => {
+    const cp = catByHandle.get(p.handle);
+    if (cp) return catalogueCard(cp);
+    return {
+      handle: p.handle,
+      title: p.title,
+      price: formatMoney(p.price),
+      image: p.images[0]?.url ?? "",
+      alt: p.images[0]?.altText ?? p.title,
+      houseApproved: p.metafields?.houseApproved,
+    };
+  };
+
   // House Approved rail from the curated seal (the "house-approved" collection is empty).
-  const haCards: Card[] = shopProducts
-    .filter((p) => p.houseApproved && p.image)
-    .map((p) => ({ handle: p.handle, title: p.title, price: p.price, image: p.image, alt: p.title, houseApproved: true }));
-  const bestCards = toCards(best);
+  const haCards: Card[] = shopProducts.filter((p) => p.houseApproved && p.image).map(catalogueCard);
+  const bestCards = best.map(commerceCard).filter((c) => c.image);
   // Rich, buyable feature/slider data: best-seller order matched to the catalogue
   // (which carries variant IDs + the short lede excerpt).
-  const catByHandle = new Map(shopProducts.map((p) => [p.handle, p] as const));
   const richBest: Slide[] = best
     .map((b) => catByHandle.get(b.handle))
     .filter((cp): cp is CatalogueProduct => Boolean(cp && cp.image))
@@ -412,7 +447,7 @@ export default async function ShopPage() {
     sliderSlides.push(r);
   }
   const bestSellers = take(bestCards, 8);
-  const newIn = take(toCards(fresh), 8);
+  const newIn = take(fresh.map(commerceCard).filter((c) => c.image), 8);
 
   // Curated spec sections (§12). Each draws from a category, skipping anything
   // already shown above so the rails stay distinct. All return null when empty.
@@ -453,7 +488,7 @@ export default async function ShopPage() {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-4 mt-7">
             <Link
-              href="/shop/collections/house-approved"
+              href="/shop/collections/seasonal-home-edit"
               className="inline-flex items-center justify-center font-sans text-[14px] tracking-[0.18em] uppercase text-house-brown bg-house-gold border border-house-gold px-7 py-3.5 no-underline transition-colors hover:bg-house-gold-ink hover:border-house-gold-dark"
             >
               Explore the edit
@@ -468,8 +503,8 @@ export default async function ShopPage() {
         </div>
       </section>
 
-      {/* Shop by room — leads the page */}
-      <section className="px-[5vw] py-[clamp(44px,6vw,80px)] border-b border-house-brown/8">
+      {/* Shop by room — leads the page (id for deep-links, e.g. from email) */}
+      <section id="room-by-room" className="scroll-mt-24 px-[5vw] py-[clamp(44px,6vw,80px)] border-b border-house-brown/8">
         <div className="max-w-[1280px] mx-auto">
           <div className="mb-8">
             <p className="font-sans text-[14px] tracking-[0.3em] uppercase text-house-gold-dark mb-2">
