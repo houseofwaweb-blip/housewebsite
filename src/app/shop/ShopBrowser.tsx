@@ -316,8 +316,8 @@ export function ShopBrowser({
             type="search"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search products"
-            className="w-full px-3 py-2.5 border border-house-brown/15 bg-house-cream font-sans text-[18px] text-house-brown placeholder:text-house-stone focus:border-house-gold focus:outline-none transition-colors duration-[var(--t-base)]"
+            placeholder="Search"
+            className="w-full px-3 py-2.5 border border-house-brown/15 bg-house-cream font-sans text-[16px] leading-normal text-house-brown placeholder:text-house-stone focus:border-house-gold focus:outline-none transition-colors duration-[var(--t-base)]"
           />
         </div>
 

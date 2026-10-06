@@ -189,6 +189,10 @@ export default async function CollectionPage({
   if (!collection) notFound();
 
   const products = collection.products;
+  // Prefer the collection's OWN name (Shopify meta) over resolveCollection's
+  // fallback, which uses the first product's primary collection — that made the
+  // Autumn Edit show "Home Accessories".
+  const displayTitle = meta?.title?.trim() || collection.title;
   const otherCollections = await getShopCollections();
   const parentCat = NAV.find((c) => c.subs.some((sub) => sub.handle === handle));
   const brands = deriveBrands(products);
@@ -208,11 +212,11 @@ export default async function CollectionPage({
               <span className={s.crumbSep}>/</span>
             </>
           ) : null}
-          <span>{collection.title}</span>
+          <span>{displayTitle}</span>
         </nav>
         <p className={s.heroEy}>The House · Shop</p>
         <h1 className={s.heroTitle}>
-          {collection.title}.
+          {displayTitle}.
         </h1>
       </section>
 
