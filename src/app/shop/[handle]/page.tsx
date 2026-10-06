@@ -170,13 +170,16 @@ export default async function ProductPage({
   // Recommended: real pieces from the same collection, topped up with other
   // House goods so the rail is always full. (relatedHandles is legacy/empty now.)
   const catalogue = await getShopProducts().catch(() => []);
+  // Don't recommend sold-out goods (inStock === false), matching the shop grid
+  // + landing rails. Unknown stock is kept in so the rail is never starved.
+  const buyable = (p: (typeof catalogue)[number]) => p.inStock !== false;
   const sameCollection = catalogue.filter(
-    (p) => p.handle !== product.handle && p.image && p.collection === product.collection,
+    (p) => p.handle !== product.handle && p.image && buyable(p) && p.collection === product.collection,
   );
   let related = sameCollection.slice(0, 4);
   if (related.length < 4) {
     const fill = catalogue
-      .filter((p) => p.handle !== product.handle && p.image && !related.some((r) => r.handle === p.handle))
+      .filter((p) => p.handle !== product.handle && p.image && buyable(p) && !related.some((r) => r.handle === p.handle))
       .slice(0, 4 - related.length);
     related = [...related, ...fill];
   }

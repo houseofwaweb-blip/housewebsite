@@ -374,9 +374,20 @@ export default async function ShopPage() {
   ]);
   const notDesign = (handle: string, collection?: string) =>
     !DESIGN_PACKAGE_HANDLES.has(handle) && !/design/i.test(collection ?? "");
-  const shopProducts = shopProductsRaw.filter((p) => notDesign(p.handle, p.collection));
-  const best = bestRaw.filter((b) => notDesign(b.handle));
-  const fresh = freshRaw.filter((f) => notDesign(f.handle));
+  // Hide sold-out goods from every landing rail, matching the grid's default
+  // "In stock only" filter. We drop only products the catalogue KNOWS are sold
+  // out (inStock === false); an item we can't find / can't judge is left in, so
+  // a Shopify best-seller missing from the static catalogue is never wrongly
+  // culled. The PDP itself stays reachable (shows "Sold out") for SEO + links.
+  const soldOutHandles = new Set(
+    shopProductsRaw.filter((p) => p.inStock === false).map((p) => p.handle),
+  );
+  const inStockRail = (handle: string) => !soldOutHandles.has(handle);
+  const shopProducts = shopProductsRaw.filter(
+    (p) => notDesign(p.handle, p.collection) && inStockRail(p.handle),
+  );
+  const best = bestRaw.filter((b) => notDesign(b.handle) && inStockRail(b.handle));
+  const fresh = freshRaw.filter((f) => notDesign(f.handle) && inStockRail(f.handle));
 
   const season = currentSeason();
   const seasonLabel = season.charAt(0).toUpperCase() + season.slice(1);
