@@ -3,8 +3,7 @@ import { pageMeta } from "@/lib/seo/meta";
 import Image from "next/image";
 import Link from "next/link";
 import { EnquiryForm } from "@/components/marketing/EnquiryForm";
-import fs from "node:fs";
-import path from "node:path";
+import SERVICE_IMAGE_MANIFEST from "@/lib/services-data/service-image-manifest.json";
 import { notFound } from "next/navigation";
 import { Accordion } from "@/components/primitives/Accordion";
 import { Gallery } from "@/components/primitives/Gallery";
@@ -16,23 +15,21 @@ import { buildBookingUrl } from "@/components/booking/postcode";
 import { SERVICEOS_SERVICE_ID } from "@/lib/serviceos-links";
 import s from "./sub-service.module.css";
 
-const PUBLIC = path.join(process.cwd(), "public");
-// Sub-services without their own photography get the "Coming Soon" placeholder
-// with a "Service Coming Soon" label over the hero.
+// Sentinel fallback used to detect + drop missing gallery/work images below.
 const COMING_SOON = "/services/service-placeholder.webp";
 // v4 §5 — no coming-soon sub-services. The neutral House still-life stands in
 // where a photograph is missing; the "Coming Soon" card image must never be a hero.
 const PLACEHOLDER_HERO = "/services/subbrands/handyman.webp";
 
+// Build-time manifest, not runtime fs: public/ isn't on the Vercel serverless
+// filesystem, so fs.existsSync returned false in production and every sub-service
+// fell back to the handyman photo. See scripts/gen-service-image-manifest.mjs.
+const EXISTING_IMAGES = new Set(SERVICE_IMAGE_MANIFEST as string[]);
+
 /** Return the path if the file exists in /public, otherwise the fallback. */
 function fileOr(localPath: string, fallback: string) {
   if (!localPath || localPath.startsWith("http")) return localPath || fallback;
-  const abs = path.join(PUBLIC, localPath.replace(/^\//, ""));
-  try {
-    return fs.existsSync(abs) ? localPath : fallback;
-  } catch {
-    return fallback;
-  }
+  return EXISTING_IMAGES.has(localPath) ? localPath : fallback;
 }
 
 /**

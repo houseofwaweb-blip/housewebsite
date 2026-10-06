@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import fs from "node:fs";
-import path from "node:path";
+import SERVICE_IMAGE_MANIFEST from "@/lib/services-data/service-image-manifest.json";
 import { Accordion } from "@/components/primitives/Accordion";
 import { EnquiryForm } from "@/components/marketing/EnquiryForm";
 import { BookingPanel } from "@/components/services/BookingPanel";
@@ -19,18 +18,16 @@ import {
   type LocationPage,
 } from "@/lib/services-data/locations";
 
-const PUBLIC = path.join(process.cwd(), "public");
 const PLACEHOLDER = "/services/service-placeholder.webp";
+
+// Build-time manifest, not runtime fs — public/ isn't on the Vercel function FS.
+// See ServiceDetail.tsx / scripts/gen-service-image-manifest.mjs.
+const EXISTING_IMAGES = new Set(SERVICE_IMAGE_MANIFEST as string[]);
 
 function fileOr(localPath: string | undefined, fallback: string) {
   if (!localPath) return fallback;
   if (localPath.startsWith("http")) return localPath;
-  const abs = path.join(PUBLIC, localPath.replace(/^\//, ""));
-  try {
-    return fs.existsSync(abs) ? localPath : fallback;
-  } catch {
-    return fallback;
-  }
+  return EXISTING_IMAGES.has(localPath) ? localPath : fallback;
 }
 
 /**

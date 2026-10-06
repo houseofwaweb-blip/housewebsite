@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import fs from "node:fs";
-import path from "node:path";
+import SERVICE_IMAGE_MANIFEST from "@/lib/services-data/service-image-manifest.json";
 import { Accordion } from "@/components/primitives/Accordion";
 import { ScrollCarousel } from "@/components/primitives/ScrollCarousel";
 import { Gallery, type GalleryImage } from "@/components/primitives/Gallery";
@@ -54,22 +53,23 @@ const WORK_COPY: Record<WorkDiscipline, { heading: string; intro: string }> = {
   },
 };
 
-const PUBLIC = path.join(process.cwd(), "public");
 // Generic still-life fallback used only when a service's own photography is not
 // yet on disk. There is no "coming soon" state: every service is live and
 // bookable, so a missing file is a photography gap, never a trading status.
 const PLACEHOLDER_HERO = "/services/service-placeholder.webp";
 const PLACEHOLDER_GALLERY = "/services/service-placeholder.webp";
 
+// Existence check via a build-time manifest (scripts/gen-service-image-manifest.mjs),
+// NOT runtime fs: public/ assets are served from Vercel's CDN and are not on the
+// serverless function's filesystem, so fs.existsSync returned false in production
+// and every service fell back to the placeholder. The manifest is generated at
+// build (public/ is on disk then) and bundled, so the check works everywhere.
+const EXISTING_IMAGES = new Set(SERVICE_IMAGE_MANIFEST as string[]);
+
 function fileOr(localPath: string | undefined, fallback: string) {
   if (!localPath) return fallback;
   if (localPath.startsWith("http")) return localPath;
-  const abs = path.join(PUBLIC, localPath.replace(/^\//, ""));
-  try {
-    return fs.existsSync(abs) ? localPath : fallback;
-  } catch {
-    return fallback;
-  }
+  return EXISTING_IMAGES.has(localPath) ? localPath : fallback;
 }
 
 /** Splits a headline at `em` and italicises the tail in the lander-framework
