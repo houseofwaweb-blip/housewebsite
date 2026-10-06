@@ -104,6 +104,30 @@ const PLAN_TITLE = /apartment\s*\+|home\s*&\s*garden\s*\+|full house edit|\bplan
 function isPlanProduct(p: CatalogueProduct): boolean {
   return PLAN_TITLE.test(p.title);
 }
+
+/**
+ * Non-marketplace Shopify product types. These are design services, vouchers,
+ * memberships and gift cards sold through their own pages (Design, Steward
+ * Plans, /gift-cards), not the general shop grid / rails. They were leaking
+ * onto /shop/all's later pages (the title regex only caught "plans"/"full house
+ * edit"). Matched by Shopify productType so new items of these kinds are caught
+ * automatically. They stay fully buyable at /shop/{handle} and on their own
+ * collection pages — getShopCollection() is intentionally NOT filtered by this,
+ * so /gift-cards and the design-package pages still populate.
+ */
+const NON_MARKETPLACE_TYPES = new Set([
+  "Design Voucher",
+  "Interior Design",
+  "Services",
+  "Memberships",
+  "Gift Cards",
+]);
+function isNonMarketplace(p: CatalogueProduct): boolean {
+  return (
+    isPlanProduct(p) ||
+    (p.productType ? NON_MARKETPLACE_TYPES.has(p.productType) : false)
+  );
+}
 function isPlanCollection(c: CatalogueCollection): boolean {
   return /plan|apartment\+|home-?\s*&?-?\s*garden-?\s*\+/i.test(`${c.handle} ${c.title}`);
 }
@@ -113,10 +137,10 @@ function isPlanCollection(c: CatalogueCollection): boolean {
 /** All marketplace products. Shopify-first, then Sanity, then static. Plans hidden. */
 export async function getShopProducts(): Promise<CatalogueProduct[]> {
   const shopify = await loadShopifyCatalogue();
-  if (shopify && shopify.products.length > 0) return shopify.products.filter((p) => !isPlanProduct(p));
+  if (shopify && shopify.products.length > 0) return shopify.products.filter((p) => !isNonMarketplace(p));
   const sanity = await getAllProducts();
-  if (sanity.length > 0) return sanity.map(sanityToCatalogue).filter((p) => !isPlanProduct(p));
-  return CATALOGUE_PRODUCTS.filter((p) => !isPlanProduct(p));
+  if (sanity.length > 0) return sanity.map(sanityToCatalogue).filter((p) => !isNonMarketplace(p));
+  return CATALOGUE_PRODUCTS.filter((p) => !isNonMarketplace(p));
 }
 
 /**

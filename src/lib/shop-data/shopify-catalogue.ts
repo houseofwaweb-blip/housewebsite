@@ -187,6 +187,7 @@ function mapProduct(p: SfProduct, collection: string): CatalogueProduct {
     seoTitle: p.seo?.title || undefined,
     seoDescription: p.seo?.description || undefined,
     brand: p.vendor ?? "",
+    productType: p.productType,
     sku: p.variants.nodes[0]?.sku ?? "",
     gtin: isValidGtin(p.variants.nodes[0]?.barcode)
       ? p.variants.nodes[0]!.barcode!.trim()

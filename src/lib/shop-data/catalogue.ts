@@ -33,6 +33,10 @@ export interface CatalogueProduct {
   seoTitle?: string;
   seoDescription?: string;
   brand: string;
+  /** Shopify product type (e.g. "Lighting", "Gift Cards", "Design Voucher").
+      Used to keep non-marketplace items (design vouchers, services,
+      memberships, gift cards) out of the general shop grid + rails. */
+  productType?: string;
   sku: string;
   /** Valid GTIN (first variant's barcode, checksum-passed) for feed + JSON-LD. */
   gtin?: string;
