@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -25,6 +26,15 @@ function deriveBrands(products: CatalogueProduct[]) {
 
 type ShopNavCategory = { title: string; handle: string; subs: { title: string; handle: string }[] };
 const NAV = SHOP_NAV as ShopNavCategory[];
+
+// Optional full-bleed editorial banner at the top of a collection page, keyed by
+// handle. Only collections listed here get one; everything else renders as before.
+const COLLECTION_HERO: Record<string, { src: string; alt: string }> = {
+  "seasonal-home-edit": {
+    src: "/shop/collections/seasonal-home-edit-hero.webp",
+    alt: "An autumn sitting room by firelight, with candles, a reed diffuser, a textured table lamp and dried thistles",
+  },
+};
 
 // Back-office / non-product collections kept in Shopify but never public
 // (mirror of the list in ../page.tsx). A direct hit 404s so they can't be
@@ -193,12 +203,26 @@ export default async function CollectionPage({
   // fallback, which uses the first product's primary collection — that made the
   // Autumn Edit show "Home Accessories".
   const displayTitle = meta?.title?.trim() || collection.title;
+  const heroBanner = COLLECTION_HERO[handle];
   const otherCollections = await getShopCollections();
   const parentCat = NAV.find((c) => c.subs.some((sub) => sub.handle === handle));
   const brands = deriveBrands(products);
 
   return (
     <div className={s.page}>
+      {heroBanner ? (
+        <div className={s.banner}>
+          <Image
+            src={heroBanner.src}
+            alt={heroBanner.alt}
+            fill
+            priority
+            sizes="100vw"
+            className={s.bannerImg}
+          />
+        </div>
+      ) : null}
+
       {/* Hero */}
       <section className={s.hero}>
         <nav aria-label="Breadcrumb" className={s.crumbs}>

@@ -2,6 +2,19 @@
 
 .page { background: var(--color-house-cream); color: var(--color-house-brown); }
 
+/* Optional full-bleed editorial banner above the hero (per-collection). */
+.banner {
+  position: relative;
+  width: 100%;
+  height: clamp(220px, 42vw, 520px);
+  overflow: hidden;
+  background: #cfc7b8;
+}
+.bannerImg {
+  object-fit: cover;
+  object-position: center;
+}
+
 /* Hero */
 .hero {
   background: var(--color-house-cream);
