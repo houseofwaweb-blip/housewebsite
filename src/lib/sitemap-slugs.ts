@@ -27,10 +27,10 @@ interface ShopifyHandle {
   updatedAt?: string;
 }
 
-async function fetchSanitySlugs(type: string): Promise<Slug[]> {
+async function fetchSanitySlugs(type: string, extraFilter = ""): Promise<Slug[]> {
   if (!env.SANITY_PROJECT_ID) return [];
   try {
-    const query = `*[_type == $type && defined(slug.current) && !(_id in path("drafts.**"))]{ "slug": slug.current, _updatedAt }`;
+    const query = `*[_type == $type && defined(slug.current) && !(_id in path("drafts.**"))${extraFilter}]{ "slug": slug.current, _updatedAt }`;
     return await sanityClient.fetch<Slug[]>(query, { type });
   } catch (e) {
     console.warn(`[sitemap] failed to fetch Sanity slugs for ${type}:`, e instanceof Error ? e.message : e);
@@ -149,7 +149,12 @@ export async function getCmsSitemapEntries(base: string): Promise<SitemapEntry[]
   // brands rather than listing third-party providers).
   const [articles, musings, newsItems, recipes, stewardPlans, shopify, sanityProducts] =
     await Promise.all([
-      fetchSanitySlugs("article"),
+      // Both sites share one dataset; keep HoWA-only "First Light" posts out of
+      // the House sitemap (own showOn + category._ref safety net).
+      fetchSanitySlugs(
+        "article",
+        ` && (!defined(showOn) || showOn != "howa") && category._ref != "category.first-light"`,
+      ),
       fetchSanitySlugs("musing"),
       fetchSanitySlugs("newsItem"),
       fetchSanitySlugs("recipe"),

@@ -19,6 +19,16 @@ import type { HearthArticle, PopularItem } from "@/lib/hearth-data";
 // ---------------------------------------------------------------------------
 // GROQ
 // ---------------------------------------------------------------------------
+// Both willowalexander.co.uk and howa.co.uk read the SAME Sanity dataset, so
+// HoWA's own posts (the "First Light" founder launch category) would otherwise
+// appear here. Every article query must exclude them. Filter on the article's
+// own `showOn` (missing = "both", so nothing live today changes) plus a
+// category._ref safety net for First Light posts someone forgot to flag. We
+// can't use category->showOn: the site's read token can't read category docs,
+// so the deref returns null and the filter would silently pass everything
+// (same reason CATEGORY_BY_REF exists below).
+const HOUSE_VISIBLE = /* groq */ `(!defined(showOn) || showOn != "howa") && category._ref != "category.first-light"`;
+
 const ARTICLE_PROJECTION = /* groq */ `{
   "slug": slug.current,
   title,
@@ -34,10 +44,10 @@ const ARTICLE_PROJECTION = /* groq */ `{
 }`;
 
 const journalIndexQuery = /* groq */ `{
-  "all": *[_type == "article"] | order(publishedAt desc) ${ARTICLE_PROJECTION}
+  "all": *[_type == "article" && ${HOUSE_VISIBLE}] | order(publishedAt desc) ${ARTICLE_PROJECTION}
 }`;
 
-const articleBySlugFullQuery = /* groq */ `*[_type == "article" && slug.current == $slug][0]{
+const articleBySlugFullQuery = /* groq */ `*[_type == "article" && slug.current == $slug && ${HOUSE_VISIBLE}][0]{
   "slug": slug.current,
   title,
   "dek": lede,
@@ -52,7 +62,7 @@ const articleBySlugFullQuery = /* groq */ `*[_type == "article" && slug.current 
   tags
 }`;
 
-const allSlugsQuery = /* groq */ `*[_type == "article"].slug.current`;
+const allSlugsQuery = /* groq */ `*[_type == "article" && ${HOUSE_VISIBLE}].slug.current`;
 
 // ---------------------------------------------------------------------------
 // Short category labels (mirrors transform.mjs)
@@ -229,7 +239,7 @@ export async function getHearthIndex(): Promise<HearthIndexSections> {
 }
 
 export async function getLatestHearthArticles(limit = 3): Promise<HearthArticle[]> {
-  const query = /* groq */ `*[_type == "article"] | order(publishedAt desc)[0...$limit] ${ARTICLE_PROJECTION}`;
+  const query = /* groq */ `*[_type == "article" && ${HOUSE_VISIBLE}] | order(publishedAt desc)[0...$limit] ${ARTICLE_PROJECTION}`;
   const raw = await sanityFetch<RawSanityArticle[]>({
     query,
     params: { limit },
@@ -240,7 +250,7 @@ export async function getLatestHearthArticles(limit = 3): Promise<HearthArticle[
 
 /** Every article, newest first — for the full archive index. */
 export async function getAllHearthArticles(): Promise<HearthArticle[]> {
-  const query = /* groq */ `*[_type == "article"] | order(publishedAt desc) ${ARTICLE_PROJECTION}`;
+  const query = /* groq */ `*[_type == "article" && ${HOUSE_VISIBLE}] | order(publishedAt desc) ${ARTICLE_PROJECTION}`;
   const raw = await sanityFetch<RawSanityArticle[]>({
     query,
     tags: ["type:article"],
@@ -278,7 +288,7 @@ export async function relatedArticlesFromSanity(
 ): Promise<HearthArticle[]> {
   if (!category) return [];
   const ref = `category.${category}`;
-  const query = /* groq */ `*[_type == "article" && slug.current != $slug && category._ref == $ref] | order(publishedAt desc)[0...$limit] ${ARTICLE_PROJECTION}`;
+  const query = /* groq */ `*[_type == "article" && slug.current != $slug && category._ref == $ref && ${HOUSE_VISIBLE}] | order(publishedAt desc)[0...$limit] ${ARTICLE_PROJECTION}`;
   const raw = await sanityFetch<RawSanityArticle[]>({
     query,
     params: { slug, ref, limit },
@@ -297,7 +307,7 @@ export async function getHearthByCategory(categorySlug: string): Promise<HearthC
   const meta = categoryBySlug(categorySlug);
   if (!meta) return { category: null, articles: [] };
   const ref = `category.${categorySlug}`;
-  const query = /* groq */ `*[_type == "article" && category._ref == $ref] | order(publishedAt desc) ${ARTICLE_PROJECTION}`;
+  const query = /* groq */ `*[_type == "article" && category._ref == $ref && ${HOUSE_VISIBLE}] | order(publishedAt desc) ${ARTICLE_PROJECTION}`;
   const raw = await sanityFetch<RawSanityArticle[]>({
     query,
     params: { ref },
@@ -321,7 +331,7 @@ export async function getAdjacentArticles(
   slug: string,
 ): Promise<{ prev: AdjacentArticle | null; next: AdjacentArticle | null }> {
   const list = await sanityFetch<AdjacentArticle[]>({
-    query: /* groq */ `*[_type == "article" && defined(slug.current)] | order(publishedAt desc){ "slug": slug.current, title }`,
+    query: /* groq */ `*[_type == "article" && defined(slug.current) && ${HOUSE_VISIBLE}] | order(publishedAt desc){ "slug": slug.current, title }`,
     tags: ["type:article"],
   });
   const i = list.findIndex((a) => a.slug === slug);

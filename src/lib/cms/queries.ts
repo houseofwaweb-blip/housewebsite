@@ -214,13 +214,19 @@ export const allLegalPagesQuery = /* groq */ `*[_type == "legalPage"]{
 }`;
 
 // ─── Articles (Hearth) ────────────────────────────────────────────────────
-export const articleBySlugQuery = /* groq */ `*[_type == "article" && slug.current == $slug][0]{
+// Both sites share one Sanity dataset. Exclude HoWA-only posts (the "First
+// Light" founder category) from everything the House site renders. Missing
+// `showOn` = "both", so nothing live today changes. category._ref is a safety
+// net; category->showOn can't be used (the site token can't read category docs).
+const HOUSE_VISIBLE_ARTICLE = /* groq */ `(!defined(showOn) || showOn != "howa") && category._ref != "category.first-light"`;
+
+export const articleBySlugQuery = /* groq */ `*[_type == "article" && slug.current == $slug && ${HOUSE_VISIBLE_ARTICLE}][0]{
   title, lede, hero, body,
   "category": category->{name, "slug": slug.current},
   author, tags, publishedAt, isPremium, season, seo
 }`;
 
-export const recentArticlesQuery = /* groq */ `*[_type == "article"] | order(publishedAt desc)[0...$limit]{
+export const recentArticlesQuery = /* groq */ `*[_type == "article" && ${HOUSE_VISIBLE_ARTICLE}] | order(publishedAt desc)[0...$limit]{
   _id, title, "slug": slug.current, lede, hero, isPremium, publishedAt,
   "category": category->{name, "slug": slug.current}
 }`;
@@ -292,7 +298,7 @@ export const unifiedSearchQuery = /* groq */ `{
   "partners": *[_type == "partner" && (name match $q || shortBio match $q)] | order(order asc)[0...10]{
     _id, name, "slug": slug.current, shortBio, "type": "Partner"
   },
-  "articles": *[_type == "article" && (title match $q || lede match $q)] | order(publishedAt desc)[0...10]{
+  "articles": *[_type == "article" && (title match $q || lede match $q) && ${HOUSE_VISIBLE_ARTICLE}] | order(publishedAt desc)[0...10]{
     _id, title, "slug": slug.current, lede, isPremium, "type": "Journal",
     "category": category->{name, "slug": slug.current}
   },

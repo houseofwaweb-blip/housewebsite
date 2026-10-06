@@ -39,6 +39,22 @@ export const article = defineType({
       to: [{ type: "articleCategory" }],
     }),
     defineField({
+      name: "showOn",
+      title: "Show on",
+      type: "string",
+      description:
+        "Which website shows this article. Both sites read the same content.",
+      options: {
+        list: [
+          { title: "Both sites", value: "both" },
+          { title: "HoWA only (howa.co.uk)", value: "howa" },
+          { title: "House only (willowalexander.co.uk)", value: "house" },
+        ],
+        layout: "radio",
+      },
+      initialValue: "both",
+    }),
+    defineField({
       name: "author",
       type: "string",
       description: "Byline — House voice or named contributor.",
