@@ -153,7 +153,7 @@ export default async function CollectionPage({
   const intro = meta?.descriptionHtml ? (
     <section className="px-[5vw] pb-2">
       <div
-        className="mx-auto max-w-[760px] font-sans text-[17.5px] leading-[1.7] text-house-brown/85 [&_a]:underline [&_a]:underline-offset-2 [&_p]:mb-3"
+        className="mx-auto max-w-[760px] text-center font-sans text-[17.5px] leading-[1.7] text-house-brown/85 [&_a]:underline [&_a]:underline-offset-2 [&_p]:mb-3"
         dangerouslySetInnerHTML={{ __html: meta.descriptionHtml }}
       />
     </section>
@@ -212,14 +212,16 @@ export default async function CollectionPage({
     <div className={s.page}>
       {heroBanner ? (
         <div className={s.banner}>
-          <Image
-            src={heroBanner.src}
-            alt={heroBanner.alt}
-            fill
-            priority
-            sizes="100vw"
-            className={s.bannerImg}
-          />
+          <div className={s.bannerInner}>
+            <Image
+              src={heroBanner.src}
+              alt={heroBanner.alt}
+              fill
+              priority
+              sizes="(max-width: 1120px) 100vw, 1120px"
+              className={s.bannerImg}
+            />
+          </div>
         </div>
       ) : null}
 
