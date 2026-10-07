@@ -49,9 +49,9 @@ const COLS: FooterColumn[] = [
   {
     heading: "Shop",
     links: [
-      { label: "New", href: "/shop/all" },
-      { label: "Home", href: "/shop" },
-      { label: "Garden", href: "/shop" },
+      { label: "Autumn Edit", href: "/shop/collections/seasonal-home-edit" },
+      { label: "Home", href: "/shop/collections/home-accessories" },
+      { label: "Garden", href: "/shop/collections/gardening" },
       { label: "Gifts", href: "/shop/collections/gift-cards" },
     ],
   },
