@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
+import { shopifyWidth, shopifySrcSet } from "@/lib/shop-data/shopify-image";
 import s from "./product.module.css";
 
 /**
@@ -64,7 +64,18 @@ export function ProductGallery({
                 onClick={() => setActive(i)}
                 className={i === active ? `${s.thumb} ${s.thumbActive}` : s.thumb}
               >
-                <Image src={img.src} alt="" width={160} height={160} className={s.thumbImg} />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={shopifyWidth(img.src, 160)}
+                  srcSet={shopifySrcSet(img.src, [96, 160, 240, 320])}
+                  sizes="80px"
+                  alt=""
+                  width={160}
+                  height={160}
+                  loading="lazy"
+                  decoding="async"
+                  className={s.thumbImg}
+                />
               </button>
             ))}
           </div>
@@ -75,12 +86,16 @@ export function ProductGallery({
               so preloading it would waste bandwidth on phones (140/154 of the
               paid clicks). The mobile LCP image (slide 0 below) carries priority
               instead. On desktop this still loads eagerly, high in the DOM. */}
-          <Image
-            src={main.src}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={shopifyWidth(main.src, 960)}
+            srcSet={shopifySrcSet(main.src)}
+            sizes="52vw"
             alt={main.alt}
             width={1400}
             height={1750}
-            sizes="52vw"
+            loading="lazy"
+            decoding="async"
             className={s.mainImg}
           />
           {seal}
@@ -98,13 +113,17 @@ export function ProductGallery({
         >
           {images.map((img, i) => (
             <div className={s.mobileSlide} key={img.src + i}>
-              <Image
-                src={img.src}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={shopifyWidth(img.src, 800)}
+                srcSet={shopifySrcSet(img.src)}
+                sizes="100vw"
                 alt={img.alt}
                 width={1400}
                 height={1750}
-                priority={i === 0}
-                sizes="100vw"
+                loading={i === 0 ? "eager" : "lazy"}
+                fetchPriority={i === 0 ? "high" : "auto"}
+                decoding="async"
                 className={s.mobileSlideImg}
               />
               {i === 0 ? seal : null}
