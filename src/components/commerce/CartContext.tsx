@@ -4,6 +4,8 @@ import * as React from "react";
 import { klaviyoTrack } from "@/lib/klaviyo/client";
 import { numericId } from "@/lib/commerce/gtin";
 import { gaEvent, parseAmount } from "@/lib/google/ga4";
+import { getAttributionAttributes } from "@/lib/attribution";
+import { readConsent } from "@/lib/consent";
 
 /**
  * Cart — backed by the Shopify Storefront Cart (via /api/cart). The cart id
@@ -158,8 +160,11 @@ export function CartProvider({
     async (merchandiseId: string, info: AddInfo, quantity = 1) => {
       if (!buyable) return false; // catalog mode — browse only
       let updated: ApiCart | undefined;
+      // Ad-source attribution → Shopify order (landing page + UTMs always; click
+      // ids only with marketing consent). Attached when the cart is created.
+      const attributes = getAttributionAttributes(readConsent()?.marketing ?? false);
       try {
-        updated = await call({ action: "add", merchandiseId, quantity });
+        updated = await call({ action: "add", merchandiseId, quantity, attributes });
       } catch {
         updated = undefined;
       }

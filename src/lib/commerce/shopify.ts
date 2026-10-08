@@ -377,11 +377,18 @@ export const shopifyProvider: CommerceProvider = {
 
   // Cart — Storefront Cart API. Returns a cart carrying `checkoutUrl`. Consent
   // is passed via @inContext so it rides into checkoutUrl as `_cs`.
-  async createCart(consent: VisitorConsent): Promise<CommerceCart> {
+  async createCart(
+    consent: VisitorConsent,
+    attributes?: Array<{ key: string; value: string }>,
+  ): Promise<CommerceCart> {
+    const attrs = (attributes ?? []).filter((a) => a && a.key && a.value);
+    const hasAttrs = attrs.length > 0;
     const data = await cartRequest<{ cartCreate: { cart: SfCart } }>(
       `${CART_FRAGMENT}
-      mutation (${CONSENT_DECL}) ${CONSENT_CTX} { cartCreate { cart { ...CartFields } } }`,
-      { ...consentVars(consent) },
+      mutation (${CONSENT_DECL}${hasAttrs ? ", $attributes: [AttributeInput!]" : ""}) ${CONSENT_CTX} {
+        cartCreate${hasAttrs ? "(input: { attributes: $attributes })" : ""} { cart { ...CartFields } }
+      }`,
+      { ...consentVars(consent), ...(hasAttrs ? { attributes: attrs } : {}) },
     );
     return mapCart(data.cartCreate.cart);
   },

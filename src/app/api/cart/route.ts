@@ -42,14 +42,17 @@ export async function POST(req: NextRequest) {
       }
       case "add": {
         let cartId = body.cartId as string | undefined;
+        // Ad-source attributes (landing page, UTMs, consented click ids) ride
+        // onto the cart at creation, so they reach the Shopify order.
+        const attributes = Array.isArray(body.attributes) ? body.attributes : undefined;
         // No cart yet (or it expired) → create one first.
-        if (!cartId) cartId = (await p.createCart(consent)).id;
+        if (!cartId) cartId = (await p.createCart(consent, attributes)).id;
         try {
           const cart = await p.addLine(cartId, body.merchandiseId, body.quantity ?? 1, consent);
           return NextResponse.json({ cart });
         } catch {
           // Stale cart id → start a fresh cart and retry once.
-          const fresh = await p.createCart(consent);
+          const fresh = await p.createCart(consent, attributes);
           const cart = await p.addLine(fresh.id, body.merchandiseId, body.quantity ?? 1, consent);
           return NextResponse.json({ cart });
         }

@@ -166,12 +166,14 @@ export default async function ProductPage({
   // not the first-variant default. Google reads the source when it checks prices,
   // so a feed g:link to the Medium variant must render Medium's price/SKU here.
   //
-  // We only read ?variant for MULTI-VARIANT products. Awaiting searchParams opts
-  // the render into dynamic rendering (Next 16), so single-variant products never
-  // touch it and stay static/ISR (fast). Multi-variant products render
-  // dynamically; their heavy Shopify fetches stay on the Next data cache, so it's
-  // cheap. Accept the numeric id (feed format) or the full GID; fall back to the
-  // first in-stock variant when absent or invalid.
+  // We only READ ?variant for multi-variant products. NOTE: in Next 16 the mere
+  // reachability of `await searchParams` makes the whole route dynamic (verified
+  // via cache headers: single-variant PDPs also return no-store), so this does
+  // NOT make single-variant pages static — true per-product static needs PPR
+  // (partial prerendering), proposed separately. The dynamic TTFB is small and
+  // not the LCP driver (the image is), and the heavy Shopify fetches stay on the
+  // Next data cache. Accept the numeric id (feed format) or full GID; fall back
+  // to the first in-stock variant when absent or invalid.
   const firstInStockVariant = variants.find((v) => v.availableForSale) ?? variants[0];
   let variantParam: string | undefined;
   if (variants.length > 1) {
@@ -666,13 +668,10 @@ export default async function ProductPage({
   );
 }
 
-// Single-variant PDPs render statically (ISR, revalidate below); only
-// multi-variant PDPs read ?variant and render dynamically (variant resolution
-// near the top). This limits the dynamic-rendering cost to the products that
-// actually need it, so the single-variant majority keep a fast cached TTFB.
-//
-// No generateStaticParams: prebuilding at build + a page that may read
-// searchParams can conflict, and on-demand ISR caches single-variant pages on
-// first hit anyway. 1-hour safety-net revalidate (the Shopify webhook makes
-// updates instant; this is the backstop); serves from cache meanwhile.
+// The PDP reads ?variant so the linked variant is in the page source for Google
+// (Fix 1). In Next 16 that makes the route dynamic for ALL products (verified) —
+// a true "static for single-variant, dynamic for multi-variant" split needs PPR,
+// proposed separately. revalidate keeps the Shopify data on the 1-hour data
+// cache so each dynamic render only reassembles cached data. No
+// generateStaticParams (prebuild + searchParams conflict at build).
 export const revalidate = 3600;

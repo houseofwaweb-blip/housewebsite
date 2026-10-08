@@ -21,6 +21,7 @@ import { MetaPixel } from "@/components/consent/loaders/MetaPixel";
 import { PinterestTag } from "@/components/consent/loaders/PinterestTag";
 import { Klaviyo } from "@/components/consent/loaders/Klaviyo";
 import { ClickIdCapture } from "@/components/marketing/ClickIdCapture";
+import { AttributionCapture } from "@/components/AttributionCapture";
 import "./globals.css";
 
 // The primary header CTA is House-led (Aug-17 rebuild, spec L397–403): the
@@ -185,6 +186,7 @@ export default async function RootLayout({
             <PinterestTag />
             <Klaviyo />
             <ClickIdCapture />
+            <AttributionCapture />
           </CartProvider>
         </ConsentProvider>
       </body>

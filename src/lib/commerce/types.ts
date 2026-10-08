@@ -94,7 +94,10 @@ export interface CommerceProvider {
   listBestSellers(limit?: number): Promise<CommerceProduct[]>;
   listNewArrivals(limit?: number): Promise<CommerceProduct[]>;
   searchProducts(query: string, limit?: number): Promise<CommerceProduct[]>;
-  createCart(consent: VisitorConsent): Promise<CommerceCart>;
+  createCart(
+    consent: VisitorConsent,
+    attributes?: Array<{ key: string; value: string }>,
+  ): Promise<CommerceCart>;
   getCart(cartId: string, consent: VisitorConsent): Promise<CommerceCart | null>;
   addLine(cartId: string, merchandiseId: string, quantity: number, consent: VisitorConsent): Promise<CommerceCart>;
   removeLine(cartId: string, lineId: string, consent: VisitorConsent): Promise<CommerceCart>;
