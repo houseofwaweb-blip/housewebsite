@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { shopifyWidth, shopifySrcSet, isShopifyImage } from "@/lib/shop-data/shopify-image";
+import { shopifyWidth, shopifySrcSet } from "@/lib/shop-data/shopify-image";
 import s from "./product.module.css";
 
 /**
@@ -50,23 +50,6 @@ export function ProductGallery({
 
   return (
     <div className={s.galleryCol}>
-      {/* Preload the mobile LCP image (first slide) early. The plain <img>
-          below is discovered during body parse; this responsive preload — React
-          19 hoists it into <head> — gives the LCP image the head start that
-          next/image's `priority` used to. imageSizes matches the mobile slide
-          (100vw); on desktop it preloads a slightly larger candidate, which is
-          an acceptable trade since mobile is the target. */}
-      {isShopifyImage(images[0].src) ? (
-        <link
-          rel="preload"
-          as="image"
-          // React 19 responsive-image preload attributes
-          imageSrcSet={shopifySrcSet(images[0].src)}
-          imageSizes="100vw"
-          fetchPriority="high"
-        />
-      ) : null}
-
       {/* Desktop: thumbnail rail + main image */}
       <div className={`${s.gallery} ${s.galleryDesktop}`}>
         {multi ? (
