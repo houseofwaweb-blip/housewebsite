@@ -482,9 +482,11 @@ export function ShopBrowser({
 
       {/* ══════ GRID ══════ */}
       <div className="px-[5vw] md:px-8 py-6 pb-16 w-full max-w-[1280px] mx-auto">
-        {/* Utility bar */}
-        <div className="flex items-center justify-between mb-5">
-          <span className="font-sans text-[18px] text-house-stone">
+        {/* Utility bar — wraps as whole groups on narrow phones (count on one
+            line, Filters + sort drop to a second right-aligned row) instead of
+            cramming and wrapping mid-phrase. */}
+        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 mb-5">
+          <span className="font-sans text-[18px] text-house-stone whitespace-nowrap shrink-0">
             {filtered.length} {filtered.length === 1 ? "piece" : "pieces"}
             {hasFilters ? (
               <button
@@ -496,7 +498,7 @@ export function ShopBrowser({
               </button>
             ) : null}
           </span>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4 ml-auto">
             <button
               type="button"
               onClick={() => setDrawerOpen(true)}
