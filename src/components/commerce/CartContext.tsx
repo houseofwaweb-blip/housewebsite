@@ -207,7 +207,11 @@ export function CartProvider({
         value: addPrice !== undefined ? addPrice * quantity : undefined,
         items: [
           {
+            // `item_id` for GA4; `id` (= feed g:id / SKU) + google_business_vertical
+            // for Google Ads retail dynamic remarketing (basket-abandoner audience).
             item_id: info.sku || info.handle,
+            id: info.sku || info.handle,
+            google_business_vertical: "retail",
             item_name: info.title,
             price: addPrice,
             quantity,
@@ -292,7 +296,10 @@ export function CartProvider({
       currency: cart.subtotal?.currencyCode ?? "GBP",
       value: parseAmount(cart.subtotal?.amount),
       items: cart.lines.map((l) => ({
+        // GA4 item_id + Google Ads id/vertical (retail) — see add_to_cart.
         item_id: l.sku || l.product.handle,
+        id: l.sku || l.product.handle,
+        google_business_vertical: "retail",
         item_name: l.product.title,
         price: parseAmount(l.product.price?.amount),
         quantity: l.quantity,

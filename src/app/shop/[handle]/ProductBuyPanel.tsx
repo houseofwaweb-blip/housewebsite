@@ -88,7 +88,11 @@ export function ProductBuyPanel({
         value: parseAmount(chosen.price),
         items: [
           {
+            // GA4 item_id + Google Ads id/vertical (retail) so the same event
+            // feeds both GA4 and the Ads product-viewers audience consistently.
             item_id: chosen.sku || handle,
+            id: chosen.sku || handle,
+            google_business_vertical: "retail",
             item_name: title,
             item_brand: brand,
             item_category: category,
