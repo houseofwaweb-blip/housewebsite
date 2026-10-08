@@ -135,7 +135,6 @@ export default async function ProductPage({
   searchParams: Promise<{ variant?: string }>;
 }) {
   const { handle } = await params;
-  const { variant: variantParam } = await searchParams;
   const product = await resolveProduct(handle);
   if (!product) {
     // Smart fallback (Google Shopping brief, Task 4): the migration gave some
@@ -165,12 +164,19 @@ export default async function ProductPage({
   // Fix 1 (server render): resolve the variant from ?variant so the JSON-LD,
   // pixels and the buy column all reflect the LINKED variant IN THE PAGE SOURCE,
   // not the first-variant default. Google reads the source when it checks prices,
-  // so a feed g:link to the Medium variant must render Medium's price/SKU here,
-  // not Small's. Accept the numeric id (feed format) or the full GID; fall back
-  // to the first in-stock variant when absent or invalid. (This makes the PDP
-  // render dynamically — see `export const dynamic` at the foot of the file. The
-  // heavy Shopify fetches stay on the Next data cache, so it stays cheap.)
+  // so a feed g:link to the Medium variant must render Medium's price/SKU here.
+  //
+  // We only read ?variant for MULTI-VARIANT products. Awaiting searchParams opts
+  // the render into dynamic rendering (Next 16), so single-variant products never
+  // touch it and stay static/ISR (fast). Multi-variant products render
+  // dynamically; their heavy Shopify fetches stay on the Next data cache, so it's
+  // cheap. Accept the numeric id (feed format) or the full GID; fall back to the
+  // first in-stock variant when absent or invalid.
   const firstInStockVariant = variants.find((v) => v.availableForSale) ?? variants[0];
+  let variantParam: string | undefined;
+  if (variants.length > 1) {
+    variantParam = (await searchParams).variant;
+  }
   const selectedVariant =
     (variantParam
       ? variants.find((v) => numericId(v.id) === variantParam || v.id === variantParam)
@@ -660,11 +666,13 @@ export default async function ProductPage({
   );
 }
 
-// Dynamic render so the PDP can read ?variant and put the LINKED variant's
-// price/SKU into the page source for Google (Fix 1). The route was ISR before;
-// reading searchParams on a statically-generated route errors the build, so we
-// opt the whole route into dynamic rendering. The heavy Shopify/Sanity reads
-// still come from the Next data cache (each fetch sets `next: { revalidate }`),
-// so dynamic rendering only reassembles cached data and stays fast. No
-// generateStaticParams: prebuilding + searchParams can't coexist.
-export const dynamic = "force-dynamic";
+// Single-variant PDPs render statically (ISR, revalidate below); only
+// multi-variant PDPs read ?variant and render dynamically (variant resolution
+// near the top). This limits the dynamic-rendering cost to the products that
+// actually need it, so the single-variant majority keep a fast cached TTFB.
+//
+// No generateStaticParams: prebuilding at build + a page that may read
+// searchParams can conflict, and on-demand ISR caches single-variant pages on
+// first hit anyway. 1-hour safety-net revalidate (the Shopify webhook makes
+// updates instant; this is the backstop); serves from cache meanwhile.
+export const revalidate = 3600;

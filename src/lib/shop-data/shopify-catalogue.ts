@@ -127,7 +127,10 @@ interface CatalogueData {
 function money(m: MoneyV): string {
   const n = parseFloat(m.amount);
   if (!Number.isFinite(n)) return "";
-  const body = n.toFixed(2).replace(/\.00$/, "");
+  // Always show two decimals so the page matches the feed, JSON-LD and checkout
+  // exactly (e.g. "£74.00", not "£74"). We never round: a 73.99 price stays
+  // 73.99. Whole-pound prices here are genuinely whole in Shopify.
+  const body = n.toFixed(2);
   if (m.currencyCode === "GBP") return `£${body}`;
   if (m.currencyCode === "USD") return `$${body}`;
   if (m.currencyCode === "EUR") return `€${body}`;

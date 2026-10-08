@@ -66,7 +66,8 @@ function sanityToCatalogue(p: SanityProduct): CatalogueProduct {
 }
 
 function formatPrice(minor: number, currency: string): string {
-  const major = (minor / 100).toFixed(2).replace(/\.00$/, "");
+  // Always two decimals (never strip ".00"), to match the feed/JSON-LD/checkout.
+  const major = (minor / 100).toFixed(2);
   if (currency === "GBP") return `£${major}`;
   if (currency === "USD") return `$${major}`;
   if (currency === "EUR") return `€${major}`;
