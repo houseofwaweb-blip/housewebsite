@@ -1,5 +1,4 @@
 import localFont from "next/font/local";
-import { Cormorant_Garamond, Jost } from "next/font/google";
 
 /**
  * Didot — the House display face (Linotype Didot).
@@ -57,10 +56,16 @@ export const effra = localFont({
  * Used only inside the /journal tree. The Hearth is a product of the House
  * with its own typography, per approved variant-A.
  */
-export const cormorant = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
+// Self-hosted (next/font/local) rather than next/font/google: Turbopack's
+// Google-font loader intermittently fails on Vercel when the build cache is
+// restored across a tooling change. These are the Google Fonts latin variable
+// woff2 files, downloaded into public/fonts, so the build never depends on the
+// next/font/google module. Normal + italic variable faces cover 400-700.
+export const cormorant = localFont({
+  src: [
+    { path: "../../../public/fonts/cormorant.woff2", weight: "400 700", style: "normal" },
+    { path: "../../../public/fonts/cormorant-italic.woff2", weight: "400 700", style: "italic" },
+  ],
   variable: "--font-cormorant",
   display: "swap",
 });
@@ -68,9 +73,9 @@ export const cormorant = Cormorant_Garamond({
 /**
  * Jost — the Hearth magazine sans. Small-caps labels, bylines, utility.
  */
-export const jost = Jost({
-  subsets: ["latin"],
-  weight: ["200", "300", "400", "500"],
+// Self-hosted variable Jost (latin), covering weights 200-500. See cormorant.
+export const jost = localFont({
+  src: [{ path: "../../../public/fonts/jost.woff2", weight: "200 500", style: "normal" }],
   variable: "--font-jost",
   display: "swap",
 });
