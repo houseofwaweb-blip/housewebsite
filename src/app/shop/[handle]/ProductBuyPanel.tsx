@@ -44,7 +44,7 @@ export function ProductBuyPanel({
   brand?: string;
   category?: string;
 }) {
-  const { add, busy, buyable } = useCart();
+  const { add, busy, buyable, drawerOpen } = useCart();
   const firstInStock = variants.find((v) => v.availableForSale) ?? variants[0];
   const [variantId, setVariantId] = React.useState(
     initialVariantId ?? firstInStock?.id ?? "",
@@ -52,6 +52,22 @@ export function ProductBuyPanel({
   const [qty, setQty] = React.useState(1);
   const [added, setAdded] = React.useState(false);
   const firedRef = React.useRef(false);
+
+  // Sticky bottom bar (Fix 3, mobile): show once the main Add to basket button
+  // has scrolled out of view. Hidden again when it scrolls back, and while the
+  // basket drawer is open (drawerOpen); the mobile menu sits above it by z-index.
+  const addBtnRef = React.useRef<HTMLDivElement>(null);
+  const [addOutOfView, setAddOutOfView] = React.useState(false);
+  React.useEffect(() => {
+    const el = addBtnRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(
+      ([entry]) => setAddOutOfView(!entry.isIntersecting),
+      { threshold: 0 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [buyable]);
 
   // On load: apply ?variant (numeric id, as the feed g:link sends it, or a full
   // GID), then fire exactly one view_item for the resolved variant.
@@ -173,7 +189,7 @@ export function ProductBuyPanel({
             </label>
           ) : null}
 
-          <div className="flex items-stretch border border-house-brown/25">
+          <div ref={addBtnRef} className="flex items-stretch border border-house-brown/25">
             <div className="flex items-center shrink-0 border-r border-house-brown/25">
               <button type="button" onClick={() => setQty((q) => Math.max(1, q - 1))} disabled={qty <= 1} aria-label="Decrease quantity" className={stepBtn}>
                 −
@@ -194,6 +210,27 @@ export function ProductBuyPanel({
           </div>
         </div>
       )}
+
+      {/* Sticky bottom bar (mobile only, via CSS). Uses the selected variant. */}
+      {selected && buyable ? (
+        <div
+          className={`${s.sticky} ${addOutOfView && !drawerOpen ? s.stickyOn : ""}`}
+          aria-hidden={!(addOutOfView && !drawerOpen)}
+        >
+          <div className={s.stickyInner}>
+            <span className={s.stickyPrice}>{price}</span>
+            <button
+              type="button"
+              onClick={handleAdd}
+              disabled={soldOut || busy}
+              className={s.stickyBtn}
+              tabIndex={addOutOfView && !drawerOpen ? 0 : -1}
+            >
+              {soldOut ? "Sold out" : busy ? "Adding…" : added ? "Added ✓" : "Add to basket"}
+            </button>
+          </div>
+        </div>
+      ) : null}
     </>
   );
 }

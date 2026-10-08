@@ -566,6 +566,19 @@ export default async function ProductPage({
           </>
           )}
         </div>
+
+        {/* Mobile only: "Why the House chose it" below the buy box, so the price
+            and Add to basket come first on phones (Fix 3). Desktop renders it
+            under the gallery (ProductGallery, plaqueDesktop). */}
+        {product.whyChosen ? (
+          <figure className={`${s.plaque} ${s.plaqueMobile}`}>
+            <figcaption className={s.plaqueHead}>
+              <span className={s.plaqueMark} aria-hidden="true">&#10022;</span>
+              <span className={s.plaqueLabel}>Why the House chose it</span>
+            </figcaption>
+            <p className={s.plaqueText}>{product.whyChosen}</p>
+          </figure>
+        ) : null}
       </div>
 
       {/* Related */}
