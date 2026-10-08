@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect, permanentRedirect } from "next/navigation";
 import { ProductCard } from "@/components/commerce/ProductCard";
-import { PRODUCTS, findProduct } from "@/lib/shop-data";
+import { findProduct } from "@/lib/shop-data";
 import { getShopProduct, getShopProducts } from "@/lib/shop-data/source";
 import { RecentlyViewed } from "./RecentlyViewed";
 import { MobileCarousel } from "@/components/primitives/MobileCarousel";
@@ -129,10 +129,13 @@ export async function generateMetadata({
 
 export default async function ProductPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ handle: string }>;
+  searchParams: Promise<{ variant?: string }>;
 }) {
   const { handle } = await params;
+  const { variant: variantParam } = await searchParams;
   const product = await resolveProduct(handle);
   if (!product) {
     // Smart fallback (Google Shopping brief, Task 4): the migration gave some
@@ -159,13 +162,26 @@ export default async function ProductPage({
   const isDesign = false;
 
   const variants = await getProductVariants(handle);
+  // Fix 1 (server render): resolve the variant from ?variant so the JSON-LD,
+  // pixels and the buy column all reflect the LINKED variant IN THE PAGE SOURCE,
+  // not the first-variant default. Google reads the source when it checks prices,
+  // so a feed g:link to the Medium variant must render Medium's price/SKU here,
+  // not Small's. Accept the numeric id (feed format) or the full GID; fall back
+  // to the first in-stock variant when absent or invalid. (This makes the PDP
+  // render dynamically — see `export const dynamic` at the foot of the file. The
+  // heavy Shopify fetches stay on the Next data cache, so it stays cheap.)
+  const firstInStockVariant = variants.find((v) => v.availableForSale) ?? variants[0];
+  const selectedVariant =
+    (variantParam
+      ? variants.find((v) => numericId(v.id) === variantParam || v.id === variantParam)
+      : undefined) ?? firstInStockVariant;
   // Delivery rate band from the google.shipping_label metafield ("large" /
   // "furniture" / everyday), so the PDP copy matches what checkout charges.
   const shippingLabel = await getShippingLabel(handle);
   // Feed g:link carries ?variant={numeric id} for multi-variant products
-  // (Google Shopping brief, Task 2.1). This is handled CLIENT-SIDE in ProductBuy
-  // (window.location) — a server-side `searchParams` here would force every
-  // statically-generated PDP dynamic and 500 the ISR build. Do not reintroduce it.
+  // (Google Shopping brief, Task 2.1). Resolved server-side above (selectedVariant)
+  // AND client-side in ProductBuyPanel for interactive switching; the route is
+  // force-dynamic so reading ?variant here is safe.
 
   // Recommended: real pieces from the same collection, topped up with other
   // House goods so the rail is always full. (relatedHandles is legacy/empty now.)
@@ -226,6 +242,12 @@ export default async function ProductPage({
     "inStock" in product && typeof product.inStock === "boolean"
       ? product.inStock
       : availability === "InStock";
+  // Server-side selected-variant values for the source-level markup (Fix 1).
+  const selectedPrice = selectedVariant
+    ? parsePrice(selectedVariant.price) || parsePrice(product.price)
+    : parsePrice(product.price);
+  const selectedSku = selectedVariant?.sku || skuValue;
+  const selectedInStock = selectedVariant ? selectedVariant.availableForSale : inStock;
   // Feed-matching identifiers (Google Shopping brief, Task 2). Typed locals so the
   // union `product` narrows cleanly to string | undefined for the JSON-LD.
   // (skuValue is derived above from variants[0].sku — the feed-canonical primary SKU.)
@@ -280,28 +302,28 @@ export default async function ProductPage({
         description={product.lede}
         image={product.image}
         url={productUrl}
-        sku={skuValue}
+        sku={selectedSku}
         gtin={gtinValue}
         brand={brandValue}
-        price={parsePrice(product.price)}
-        availability={inStock ? "InStock" : "OutOfStock"}
+        price={selectedPrice}
+        availability={selectedInStock ? "InStock" : "OutOfStock"}
         offers={jsonLdOffers}
       />
       <MetaViewContent
         contentId={product.handle}
         contentName={product.title}
         contentCategory={product.collection}
-        value={parsePrice(product.price)}
+        value={selectedPrice}
       />
       <ProductViewTracking
         productId={productIdValue}
         title={product.title}
         handle={product.handle}
-        sku={skuValue}
+        sku={selectedSku}
         brand={brandValue}
         categories={klaviyoCategories}
         imageUrl={klaviyoImage}
-        price={parsePrice(product.price)}
+        price={selectedPrice}
         compareAtPrice={compareAtValue}
       />
       {/* Breadcrumb */}
@@ -378,6 +400,7 @@ export default async function ProductPage({
               handle={product.handle}
               title={product.title}
               image={product.image}
+              initialVariantId={selectedVariant?.id}
               fallbackPrice={product.price}
               fallbackCompareAt={product.compareAtPrice}
               shippingLabel={shippingLabel}
@@ -624,18 +647,11 @@ export default async function ProductPage({
   );
 }
 
-// Pages not listed here (the 500+ Sanity/catalogue products) render on first
-// request and are then cached. dynamicParams defaults to true.
-//
-// 1-hour safety-net revalidate: new Shopify photos/prices appear within the hour
-// even if the products/update webhook (api/webhooks/shopify → revalidateTag) is
-// not yet registered in Shopify admin. Pages still serve instantly from cache
-// (stale-while-revalidate), so this does not slow responses. When the webhook is
-// live it makes updates instant and this is just the backstop.
-export const revalidate = 3600;
-
-// Prebuild only the curated showpieces at build time. Prebuilding all 500+
-// products exhausted build memory; the rest are served on-demand via ISR.
-export async function generateStaticParams() {
-  return PRODUCTS.map((p) => ({ handle: p.handle }));
-}
+// Dynamic render so the PDP can read ?variant and put the LINKED variant's
+// price/SKU into the page source for Google (Fix 1). The route was ISR before;
+// reading searchParams on a statically-generated route errors the build, so we
+// opt the whole route into dynamic rendering. The heavy Shopify/Sanity reads
+// still come from the Next data cache (each fetch sets `next: { revalidate }`),
+// so dynamic rendering only reassembles cached data and stays fast. No
+// generateStaticParams: prebuilding + searchParams can't coexist.
+export const dynamic = "force-dynamic";

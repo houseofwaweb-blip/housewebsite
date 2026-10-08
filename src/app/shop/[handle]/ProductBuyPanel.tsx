@@ -24,6 +24,7 @@ export function ProductBuyPanel({
   handle,
   title,
   image,
+  initialVariantId,
   fallbackPrice,
   fallbackCompareAt,
   shippingLabel = null,
@@ -34,6 +35,9 @@ export function ProductBuyPanel({
   handle: string;
   title: string;
   image: string;
+  /** Variant preselected on the server from ?variant, so the first paint
+   *  already shows the linked variant (no flash) and matches the JSON-LD. */
+  initialVariantId?: string;
   fallbackPrice: string;
   fallbackCompareAt?: string;
   shippingLabel?: ShippingLabel;
@@ -42,7 +46,9 @@ export function ProductBuyPanel({
 }) {
   const { add, busy, buyable } = useCart();
   const firstInStock = variants.find((v) => v.availableForSale) ?? variants[0];
-  const [variantId, setVariantId] = React.useState(firstInStock?.id ?? "");
+  const [variantId, setVariantId] = React.useState(
+    initialVariantId ?? firstInStock?.id ?? "",
+  );
   const [qty, setQty] = React.useState(1);
   const [added, setAdded] = React.useState(false);
   const firedRef = React.useRef(false);
