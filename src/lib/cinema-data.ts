@@ -224,6 +224,12 @@ async function fetchSanityFilms(): Promise<SanityFilmDoc[]> {
       `*[_type == "cinemaFilm" && visible == true] | order(order asc, _createdAt desc){
         youtubeUrl, category, featured, orientation, titleOverride, descriptionOverride
       }`,
+      {},
+      // Tag + hourly revalidate so adding/featuring a film in the Studio shows on
+      // /cinema: the Sanity webhook revalidates `type:cinemaFilm`, and the
+      // revalidate window is a safety net. Without the tag the fetch was
+      // force-cached and never refreshed on cinemaFilm changes.
+      { next: { revalidate: 3600, tags: ["type:cinemaFilm"] } },
     );
   } catch {
     return [];

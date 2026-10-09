@@ -16,6 +16,10 @@ export const metadata = {
     "The House screening room: gardens through the seasons, rooms coming together, and the makers behind the objects we choose.",
 };
 
+// Re-render at most hourly so a newly added or newly featured film appears
+// without waiting on a deploy (the Sanity data fetch is also webhook-tagged).
+export const revalidate = 3600;
+
 export default async function CinemaPage() {
   const films = await resolveFilms();
   const FEATURED = await resolveFeatured();
