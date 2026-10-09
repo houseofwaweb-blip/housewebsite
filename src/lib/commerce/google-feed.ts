@@ -141,6 +141,26 @@ const FEED_COLOR_OVERRIDES: Record<string, string> = {
   // "rei-slouch-tote-bag": "Tan",
 };
 
+/** An AI editorial image (vs an old supplier photo), by filename convention. */
+function isAiEditorial(url: string): boolean {
+  return /-howa-editorial/i.test(url);
+}
+
+/**
+ * Rewrite a Shopify CDN image URL to our tag route (/feeds/ai-image/...), which
+ * re-injects the IPTC DigitalSourceType=trainedAlgorithmicMedia XMP that Shopify
+ * strips. Only used for AI editorial images; supplier photos are left direct.
+ */
+function aiImageRoute(siteUrl: string, cdnUrl: string): string {
+  try {
+    const u = new URL(cdnUrl);
+    if (u.hostname !== "cdn.shopify.com") return cdnUrl;
+    return `${siteUrl}/feeds/ai-image${u.pathname}${u.search}`;
+  } catch {
+    return cdnUrl;
+  }
+}
+
 /** A selected-option value by option name (case-insensitive). */
 function optionValue(v: FeedVariant, names: string[]): string | null {
   const want = names.map((n) => n.toLowerCase());
@@ -360,7 +380,22 @@ function itemXml(p: FeedProduct, v: FeedVariant, siteUrl: string): string {
   );
   const link =
     `${siteUrl}/shop/${p.handle}` + (multi ? `?variant=${vid}` : "");
-  const imageLink = v.image?.url || p.featuredImage?.url || "";
+  // g:image_link must match the FIRST image the product page shows — the new AI
+  // lifestyle shot, which is images[0] (= featuredImage). Many products still
+  // carry the OLD supplier photo as every variant's `image`, so preferring
+  // v.image (as before) fed the old picture. Only use a variant's own image
+  // when variants genuinely DIFFER from each other (true per-variant imagery,
+  // e.g. distinct colourways where the colour must match the variant);
+  // otherwise use the product's first image.
+  const variantImageUrls = p.variants.nodes
+    .map((x) => x.image?.url)
+    .filter((u): u is string => Boolean(u));
+  const hasDistinctVariantImages = new Set(variantImageUrls).size > 1;
+  const mainImageRaw = (hasDistinctVariantImages && v.image?.url ? v.image.url : p.images.nodes[0]?.url) || p.featuredImage?.url || "";
+  // AI editorial images are served via the tag route (re-adds the AI metadata
+  // Shopify strips); supplier photos stay as their direct Shopify URL, untagged.
+  // If a product has no AI image, mainImageRaw is a supplier photo and is kept.
+  const imageLink = isAiEditorial(mainImageRaw) ? aiImageRoute(siteUrl, mainImageRaw) : mainImageRaw;
   const price = Number(v.price.amount);
   const compareAt = v.compareAtPrice ? Number(v.compareAtPrice.amount) : 0;
   const onSale = compareAt > price;
@@ -377,10 +412,12 @@ function itemXml(p: FeedProduct, v: FeedVariant, siteUrl: string): string {
   ];
   if (onSale) lines.push(tag("g:sale_price", `${price.toFixed(2)} GBP`));
   if (imageLink) lines.push(tag("g:image_link", imageLink));
-  // Additional images: other product images, excluding the main one, up to 10.
+  // Additional images: the OTHER product images (the old supplier photos),
+  // excluding whichever raw image became the main one, up to 10. These stay as
+  // their direct Shopify URL, untagged (per the brief).
   p.images.nodes
     .map((n) => n.url)
-    .filter((u) => u && u !== imageLink)
+    .filter((u) => u && u !== mainImageRaw)
     .slice(0, 10)
     .forEach((u) => lines.push(tag("g:additional_image_link", u)));
   if (p.vendor) lines.push(tag("g:brand", p.vendor));
