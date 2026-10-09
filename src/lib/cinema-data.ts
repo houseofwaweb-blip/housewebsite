@@ -34,7 +34,8 @@ type FilmMeta = {
 
 /** Per-video tweaks. Category defaults to "Film" when not set here. */
 const FILM_META: Record<string, FilmMeta> = {
-  ydfFognD8xM: { category: "Homes & Gardens", featured: true, slug: "talliston-house-and-gardens" },
+  "9J_0bjnivx4": { category: "Homes", slug: "stephen-wright-house-of-dreams" },
+  ydfFognD8xM: { category: "Homes & Gardens", slug: "talliston-house-and-gardens" },
   uPeHiJd2DCc: { category: "Interiors", slug: "inside-a-beckenham-home" },
   RVx47CNdcco: { category: "Gardens", slug: "the-world-garden-tom-hart-dyke" },
 };
@@ -46,7 +47,7 @@ const FILM_META: Record<string, FilmMeta> = {
  * The video must appear in the Cinema (a visible Sanity film, or on the
  * @HouseOfWillowAlexander channel so the auto-pull includes it).
  */
-const FEATURED_YOUTUBE_ID = "ydfFognD8xM";
+const FEATURED_YOUTUBE_ID = "9J_0bjnivx4";
 
 /**
  * Hard fallback for the pinned feature, so it shows on /cinema the moment this
@@ -56,25 +57,18 @@ const FEATURED_YOUTUBE_ID = "ydfFognD8xM";
  * slug matches FILM_META so the /cinema/[slug] URL is stable either way.
  */
 const FEATURED_FALLBACK: Film = {
-  slug: "talliston-house-and-gardens",
+  slug: "stephen-wright-house-of-dreams",
   youtubeId: FEATURED_YOUTUBE_ID,
-  title: "That Feeling You Call Home | Inside Talliston House & Gardens with John Tarrow",
-  // Full YouTube caption (hashtags stripped), so the feature reads correctly even
-  // before the channel pull supersedes this entry.
+  title: "That Feeling You Call Home | Inside Stephen Wright's House of Dreams Museum",
+  // Shown until the channel/Sanity entry supersedes this, so the feature reads
+  // correctly on first paint.
   description: `What makes a house truly feel like home?
 
-At Talliston House & Gardens in Great Dunmow, Essex, author John Tarrow has spent more than two decades exploring that question through one of Britain’s most extraordinary homes. What began as an ordinary three-bedroom semi-detached house became a series of immersive rooms and gardens, each shaped around a different place, period, story and feeling.
+Artist Stephen Wright has spent more than two decades turning his East Dulwich home into the House of Dreams Museum, an immersive world of mosaics, found objects, memory boards and personal relics. In this conversation he reflects on home, love, loss, play and the freedom to make.
 
-Rather than beginning with how a room should look, John began with a more personal question: how should it feel? The writing room, kitchen, dining spaces and gardens were created around imagined perfect moments, from the ideal place to write to the perfect setting for a Sunday morning breakfast.
-
-The result is a remarkable example of interior storytelling, creative home design and the emotional relationship we have with the places we live. Talliston is filled with influences gathered through travel, memory and imagination, but beneath the extraordinary interiors is a simple idea: home should be a place you genuinely want to return to.
-
-Read the full article, The Feeling You Call Home: Inside Talliston House & Gardens with John Tarrow:
-https://www.willowalexander.co.uk/the-hearth/the-feeling-you-call-home-talliston-house-gardens
-
-Visit Talliston House & Gardens and discover current tours and experiences:
-https://www.talliston.com/`,
-  category: "Homes & Gardens",
+Read the full feature, A House for Love, Loss and Moving On: Inside Stephen Wright's House of Dreams Museum:
+https://www.willowalexander.co.uk/the-hearth/stephen-wright-house-of-dreams-museum`,
+  category: "Homes",
   orientation: "landscape",
   featured: true,
 };
@@ -131,7 +125,9 @@ function stripHashtags(s: string): string {
   return s
     .replace(/#[\p{L}\p{N}_]+/gu, "")
     .replace(/[ \t]{2,}/g, " ")
-    .replace(/[ \t]+([.,!?|·])/g, "$1")
+    // Tidy space before sentence punctuation only. NOT before "|" or "·": those
+    // are title separators that must keep their surrounding spaces ("Home | Inside").
+    .replace(/[ \t]+([.,!?])/g, "$1")
     .replace(/[\s|·\-–—]+$/g, "")
     .trim();
 }
