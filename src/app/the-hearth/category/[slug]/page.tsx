@@ -79,7 +79,10 @@ export default async function HearthCategoryPage({
             articles={articles}
             heading="In this section"
             emText={label}
-            viewAllHref="/the-hearth"
+            // No "View all" on a category page: this page already lists every
+            // article in the category. Empty string hides the link (SectionHead
+            // only renders it when viewAllHref is truthy).
+            viewAllHref=""
           />
         ) : (
           <p className="py-16 text-center font-hearth-sans text-[19px] text-house-brown/60">
