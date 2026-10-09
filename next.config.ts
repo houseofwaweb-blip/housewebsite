@@ -252,13 +252,40 @@ const nextConfig: NextConfig = {
       // deindexes them AND avoids a 404 for anyone/Google hitting the old URL.
       { source: "/shop/collections/services", destination: "/shop", permanent: true },
       { source: "/shop/collections/migration-review", destination: "/shop", permanent: true },
-      // Nested WooCommerce category URLs (e.g. /product-category/outdoor-living/
-      // garden-furniture) map to the FLAT child collection (the last segment),
-      // since new-site collections are single-level. Must precede the generic
-      // rule below, which would otherwise produce a 2-level path that 404s.
-      { source: "/product-category/:a/:b/:c", destination: "/shop/collections/:c", permanent: true },
-      { source: "/product-category/:a/:b", destination: "/shop/collections/:b", permanent: true },
-      { source: "/product-category/:slug*", destination: "/shop/collections/:slug*", permanent: true },
+      // WooCommerce category URLs → the nearest EXISTING collection (Search
+      // Console audit, Part 2b). The old rules mapped to the LAST path segment
+      // (a Woo sub-category like "washing-up-liquid" or "candles-candle-holders"),
+      // which has no collection on the flat new shop, so they 301'd straight into
+      // a 404 — and the paginated "/page/N" variants 404'd too. We map the
+      // TOP-LEVEL Woo category (its first segment) to the matching collection,
+      // which does exist, and send everything unmapped to /shop. `:path*` soaks
+      // up deeper segments and trailing "/page/N". Keep these in handle order so
+      // a longer, specific match wins before the catch-all.
+      ...[
+        "apparel",
+        "home-accessories",
+        "household-essentials",
+        "gardening",
+        "outdoor-living",
+        "pet-care",
+        "gifts-stationery",
+        "books",
+        "soft-furnishings",
+        "furniture-storage",
+        "lighting",
+      ].flatMap((cat) => [
+        { source: `/product-category/${cat}`, destination: `/shop/collections/${cat}`, permanent: true as const },
+        { source: `/product-category/${cat}/:path*`, destination: `/shop/collections/${cat}`, permanent: true as const },
+      ]),
+      // Any OTHER /product-category/* path (unmapped top-level, or Woo-only
+      // sub-taxonomy) is intentionally left to 404 — no catch-all to /shop
+      // (Alex, 9 Oct: unmapped category URLs stay 404). The one legacy exception
+      // /product-category/house/household-supplies -> /shop is kept above
+      // (audit #21).
+      // Old WooCommerce brand archives (/brand/*) are left to 404 too: there are
+      // no brand-named collections on the new shop, so there is no 1:1 target
+      // (Alex, 9 Oct). If a brand collection is created in Shopify later, add an
+      // explicit /brand/<brand> -> /shop/collections/<handle> rule here.
       // Old WooCommerce product URLs carried the category in the path
       // (/shop/<category>/<product>); the new shop is flat (/shop/<handle>).
       // Redirect to the last segment. The (?!collections|rooms) guard keeps the
@@ -275,6 +302,13 @@ const nextConfig: NextConfig = {
       { source: "/services/gutter-cleaners", destination: "/services/gutter-cleaning", permanent: true },
       // (Handyman renders its own coming-soon page like removals/energy/pet-care,
       //  so it is NOT redirected to the hub — the nav links straight to it.)
+      // Three removed handyman sub-pages 301 to the handyman hub (Search Console
+      // audit, Part 2c). These are OLD slugs only — the live handyman subs
+      // (handyman-hour, painting-and-decorating, etc.) are left untouched, so we
+      // list the removed three explicitly rather than a blanket rule.
+      { source: "/services/handyman/painting", destination: "/services/handyman", permanent: true },
+      { source: "/services/handyman/gutter-cleaning", destination: "/services/handyman", permanent: true },
+      { source: "/services/handyman/wall-mounting-tv", destination: "/services/handyman", permanent: true },
       // Legacy location × service SEO pages that weren't migrated 1:1 (the
       // migrated set is handled by wp-long-tail above, which wins by order).
       // Route by service keyword to the right hub; anything else → /services.
