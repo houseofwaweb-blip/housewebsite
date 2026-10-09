@@ -95,6 +95,8 @@ const DISALLOW_ALL = [
   "/api/",
   "/studio/",
   "/howa/coming-soon",
+  // Basket-restore recovery endpoint (Klaviyo email links) — transient, noindex.
+  "/shop/basket/restore",
   // Faceted/sort/paginated listing variants — the /shop crawl explosion.
   "/shop?",
   "/*?sort=",

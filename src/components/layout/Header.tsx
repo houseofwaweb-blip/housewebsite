@@ -60,7 +60,7 @@ export function Header({
   const DARK_ROUTES = new Set(["/howa/steward"]);
   const dark = darkProp ?? DARK_ROUTES.has(pathname);
 
-  const { openDrawer } = useCart();
+  const { openDrawer, count } = useCart();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [mobileExpanded, setMobileExpanded] = React.useState<string | null>(null);
   const [searchOpen, setSearchOpen] = React.useState(false);
@@ -210,6 +210,36 @@ export function Header({
             <path d="M4.75 19.25c0-3.6 3.25-5.75 7.25-5.75s7.25 2.15 7.25 5.75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
           </svg>
         </Link>
+
+        {/* Basket — opens the drawer; count badge when the basket isn't empty.
+            Order per spec: search, account, basket, menu. 44x44 tap target. */}
+        <button
+          type="button"
+          onClick={openDrawer}
+          aria-label={`Basket, ${count} ${count === 1 ? "item" : "items"}`}
+          className={cn(
+            "relative flex items-center justify-center min-w-[44px] min-h-[44px] p-2 bg-transparent border-0 cursor-pointer opacity-[0.7] hover:opacity-100",
+            "transition-opacity duration-[var(--t-base)]",
+            dark ? "text-house-cream" : "text-house-brown",
+          )}
+        >
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6.5 8.5h11l-.85 10.1a1.5 1.5 0 0 1-1.5 1.4H8.85a1.5 1.5 0 0 1-1.5-1.4L6.5 8.5z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+            <path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          </svg>
+          {count > 0 ? (
+            <span
+              key={count}
+              className={cn(
+                "is-round absolute top-1 right-1 inline-flex items-center justify-center min-w-[16px] h-4 px-1",
+                "bg-house-gold-ink text-house-brown font-sans text-[11px] leading-none tracking-normal",
+                "[animation:howa-bump_var(--t-slow)_var(--ease-settle)]",
+              )}
+            >
+              {count}
+            </span>
+          ) : null}
+        </button>
 
         {/* Menu trigger */}
         <button

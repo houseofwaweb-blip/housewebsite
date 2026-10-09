@@ -219,6 +219,7 @@ function mapCart(c: SfCart): CommerceCart {
       id: l.id,
       quantity: l.quantity,
       sku: l.merchandise.sku,
+      variantId: l.merchandise.id,
       product: {
         id: l.merchandise.product.id,
         handle: l.merchandise.product.handle,

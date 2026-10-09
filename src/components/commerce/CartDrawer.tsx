@@ -7,8 +7,24 @@ import { cn } from "@/lib/cn";
 import { useCart } from "./CartContext";
 
 export function CartDrawer() {
-  const { lines, count, subtotal, drawerOpen, closeDrawer, updateQty, remove, buyable } =
-    useCart();
+  const {
+    lines,
+    count,
+    subtotal,
+    drawerOpen,
+    closeDrawer,
+    updateQty,
+    remove,
+    buyable,
+    restoreNote,
+    clearRestoreNote,
+  } = useCart();
+
+  // A restore note only makes sense while the drawer it belongs to is open;
+  // drop it once the drawer closes so it doesn't resurface later.
+  React.useEffect(() => {
+    if (!drawerOpen && restoreNote) clearRestoreNote();
+  }, [drawerOpen, restoreNote, clearRestoreNote]);
 
   React.useEffect(() => {
     if (!drawerOpen) return;
@@ -77,6 +93,13 @@ export function CartDrawer() {
             ×
           </button>
         </div>
+
+        {/* Restore note — shown after a Klaviyo restore link skipped an item. */}
+        {restoreNote ? (
+          <p className="px-6 py-3 border-b border-house-brown/8 bg-house-cream font-sans text-[14px] leading-[1.5] text-house-brown/80">
+            {restoreNote}
+          </p>
+        ) : null}
 
         {/* Body */}
         <div className="flex-1 overflow-y-auto px-6">

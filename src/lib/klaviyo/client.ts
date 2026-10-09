@@ -7,32 +7,32 @@
 
 type KlaviyoArgs = unknown[];
 
+type KlaviyoQueue = { push: (args: KlaviyoArgs) => void };
+
 declare global {
   interface Window {
-    klaviyo?: { push: (args: KlaviyoArgs) => void };
-    _learnq?: { push: (args: KlaviyoArgs) => void };
-    /** Klaviyo's onsite queue — drained by klaviyo.js once it loads. */
-    _klOnsite?: KlaviyoArgs[];
+    // Before klaviyo.js loads this is a plain array; klaviyo.js replaces it
+    // with its SDK object on load and replays whatever was queued. Both expose
+    // `.push`, so we can always push to it.
+    klaviyo?: KlaviyoArgs[] | KlaviyoQueue;
+    _learnq?: KlaviyoArgs[] | KlaviyoQueue;
   }
 }
 
 function push(args: KlaviyoArgs): void {
   if (typeof window === "undefined") return;
-  const k = window.klaviyo ?? window._learnq;
-  if (k && typeof k.push === "function") {
-    try {
-      k.push(args);
-    } catch {
-      /* tracking must never throw into the caller */
-    }
-    return;
-  }
-  // klaviyo.js hasn't finished loading yet (e.g. "Viewed Product" fires on a
-  // product-page mount just as the consent-gated script is still fetching).
-  // Queue to Klaviyo's own _klOnsite array, which klaviyo.js drains on load, so
-  // the event isn't dropped. Without this, the first on-load event is lost.
+  // Queue onto `window.klaviyo`, creating the array if the consent-gated
+  // klaviyo.js hasn't executed yet. This is Klaviyo's documented pattern:
+  // klaviyo.js adopts a pre-existing `window.klaviyo` array and replays every
+  // queued call on load, so an event fired *before* the script finishes (e.g.
+  // add-to-cart on the same page where cookies were just accepted) is never
+  // dropped. NB: the previous `_klOnsite` fallback was a dead queue klaviyo.js
+  // never drained, which silently lost those early events (notably "Added to
+  // Cart"), while later "Viewed Product" views survived because the script had
+  // loaded by then. Fixed Oct 2026.
   try {
-    (window._klOnsite = window._klOnsite || []).push(args);
+    const kl = (window.klaviyo = window.klaviyo || []);
+    kl.push(args);
   } catch {
     /* tracking must never throw into the caller */
   }

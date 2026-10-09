@@ -49,14 +49,21 @@ interface CartContextValue {
   busy: boolean;
   toast: CartToastT | null;
   drawerOpen: boolean;
+  /** Short note shown in the drawer after a restore skipped an unavailable item. */
+  restoreNote: string | null;
   /** Resolves true when the item was added, false if it was sold out / failed. */
   add: (merchandiseId: string, info: AddInfo, quantity?: number) => Promise<boolean>;
   remove: (lineId: string) => Promise<void>;
   updateQty: (lineId: string, quantity: number) => Promise<void>;
+  /** Rebuild the basket from an email link's lines; opens the drawer. */
+  restore: (
+    lines: Array<{ merchandiseId: string; quantity: number }>,
+  ) => Promise<{ restored: number; skipped: number }>;
   checkout: () => void;
   openDrawer: () => void;
   closeDrawer: () => void;
   clearToast: () => void;
+  clearRestoreNote: () => void;
 }
 
 const CART_KEY = "wa_cart_id";
@@ -82,8 +89,29 @@ interface ApiCart {
     id: string;
     quantity: number;
     sku?: string | null;
+    variantId?: string;
     product: { id: string; handle: string; title: string; images: Array<{ url: string }>; price: { amount: string; currencyCode: string } };
   }>;
+}
+
+const SHOP_BASE = "https://willowalexander.co.uk";
+
+/**
+ * Basket-restore link for Klaviyo emails: rebuilds the whole basket on our site
+ * from variant ids + quantities (/shop/basket/restore). Returns null when no
+ * line carries a variant id, so callers can fall back to the Shopify checkout
+ * URL and the CheckoutURL field is never empty.
+ */
+function buildRestoreUrl(
+  lines: Array<{ variantId?: string; quantity: number }>,
+): string | null {
+  const parts = lines
+    .map((l) => {
+      const id = l.variantId ? numericId(l.variantId) : null;
+      return id ? `${id}:${l.quantity}` : null;
+    })
+    .filter((x): x is string => Boolean(x));
+  return parts.length ? `${SHOP_BASE}/shop/basket/restore?lines=${parts.join(",")}` : null;
 }
 
 export function CartProvider({
@@ -97,6 +125,7 @@ export function CartProvider({
   const [busy, setBusy] = React.useState(false);
   const [toast, setToast] = React.useState<CartToastT | null>(null);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const [restoreNote, setRestoreNote] = React.useState<string | null>(null);
   const hideTimer = React.useRef<number | null>(null);
 
   const persist = React.useCallback((c: ApiCart | null) => {
@@ -234,6 +263,7 @@ export function CartProvider({
             const unit = l.product?.price ? parseFloat(l.product.price.amount) : undefined;
             return {
               ProductID: l.product?.id ? numericId(l.product.id) : undefined,
+              VariantID: l.variantId ? numericId(l.variantId) : undefined,
               SKU: l.sku ?? undefined,
               ProductName: l.product?.title,
               Quantity: l.quantity,
@@ -263,7 +293,11 @@ export function CartProvider({
             AddedItemQuantity: quantity,
             ItemNames: Items.map((i) => i.ProductName).filter(Boolean),
             ItemCount: cartLines.reduce((n, l) => n + l.quantity, 0),
-            CheckoutURL: updated.checkoutUrl,
+            // CheckoutURL is the on-site basket-restore link for the whole
+            // current basket (Klaviyo email templates read it as
+            // {{ event.CheckoutURL }}). Falls back to the Shopify checkout URL
+            // if no variant id is available, so it is never empty.
+            CheckoutURL: buildRestoreUrl(cartLines) ?? updated.checkoutUrl,
             Items,
           });
         }
@@ -285,6 +319,40 @@ export function CartProvider({
       else await call({ action: "update", lineId, quantity });
     },
     [call],
+  );
+
+  // Rebuild a basket from a Klaviyo email's restore link. Calls the cart API's
+  // "restore" action (get-or-create + add only missing variants, so no
+  // duplicates) and opens the drawer. Does NOT fire add_to_cart / Added to Cart
+  // events — a restore is not a fresh user add. UTMs on the inbound URL are
+  // captured by AttributionCapture and ride onto the cart via `attributes`.
+  const restore = React.useCallback(
+    async (restoreLines: Array<{ merchandiseId: string; quantity: number }>) => {
+      const attributes = getAttributionAttributes(readConsent()?.marketing ?? false);
+      const cartId =
+        cart?.id ?? (typeof window !== "undefined" ? localStorage.getItem(CART_KEY) : null) ?? undefined;
+      let restored = 0;
+      let skipped = 0;
+      try {
+        const r = await fetch("/api/cart", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action: "restore", lines: restoreLines, attributes, cartId }),
+        });
+        const j = await r.json();
+        if (j.cart) {
+          persist(j.cart);
+          restored = j.cart.totalQuantity ?? 0;
+        }
+        skipped = Array.isArray(j.skipped) ? j.skipped.length : 0;
+      } catch {
+        /* leave restored/skipped at 0 — caller sends the visitor to /shop */
+      }
+      if (skipped > 0) setRestoreNote("One item in your basket is no longer available.");
+      if (restored > 0) setDrawerOpen(true);
+      return { restored, skipped };
+    },
+    [cart, persist],
   );
 
   const checkout = React.useCallback(() => {
@@ -314,6 +382,7 @@ export function CartProvider({
     if (hideTimer.current) window.clearTimeout(hideTimer.current);
     setToast(null);
   }, []);
+  const clearRestoreNote = React.useCallback(() => setRestoreNote(null), []);
 
   const lines: CartLine[] = cart
     ? cart.lines.map((l) => ({
@@ -335,13 +404,16 @@ export function CartProvider({
     busy,
     toast,
     drawerOpen,
+    restoreNote,
     add,
     remove,
     updateQty,
+    restore,
     checkout,
     openDrawer,
     closeDrawer,
     clearToast,
+    clearRestoreNote,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

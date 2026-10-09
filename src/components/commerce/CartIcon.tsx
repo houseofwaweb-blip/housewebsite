@@ -29,17 +29,19 @@ export function CartIcon({ dark = false, className, onClick }: CartIconProps) {
       )}
     >
       <span>Basket</span>
-      <span
-        key={count}
-        className={cn(
-          "is-round inline-flex items-center justify-center",
-          "min-w-[20px] h-5 px-1.5 bg-house-gold-ink text-house-brown",
-          "font-sans text-[14px] tracking-normal leading-none",
-          count > 0 && "[animation:howa-bump_var(--t-slow)_var(--ease-settle)]",
-        )}
-      >
-        {count}
-      </span>
+      {count > 0 ? (
+        <span
+          key={count}
+          className={cn(
+            "is-round inline-flex items-center justify-center",
+            "min-w-[20px] h-5 px-1.5 bg-house-gold-ink text-house-brown",
+            "font-sans text-[14px] tracking-normal leading-none",
+            "[animation:howa-bump_var(--t-slow)_var(--ease-settle)]",
+          )}
+        >
+          {count}
+        </span>
+      ) : null}
     </button>
   );
 }

@@ -293,8 +293,8 @@ const nextConfig: NextConfig = {
       // (/shop/rooms/<name>.webp) working. The `:handle([^/.]+)` constraint
       // excludes any segment with a file extension, so static assets under
       // /shop/<dir>/ (e.g. .webp images) are never swallowed by this redirect.
-      { source: "/shop/:category((?!collections|rooms)[^/]+)/page/:n", destination: "/shop", permanent: true },
-      { source: "/shop/:category((?!collections|rooms)[^/]+)/:handle([^/.]+)", destination: "/shop/:handle", permanent: true },
+      { source: "/shop/:category((?!collections|rooms|basket|checkout)[^/]+)/page/:n", destination: "/shop", permanent: true },
+      { source: "/shop/:category((?!collections|rooms|basket|checkout)[^/]+)/:handle([^/.]+)", destination: "/shop/:handle", permanent: true },
       // Old / alternate service slugs → the launch service hubs.
       { source: "/services/cleaners", destination: "/services/cleaning", permanent: true },
       { source: "/services/gardeners", destination: "/services/gardening", permanent: true },

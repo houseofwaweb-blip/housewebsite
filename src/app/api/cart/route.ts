@@ -57,6 +57,37 @@ export async function POST(req: NextRequest) {
           return NextResponse.json({ cart });
         }
       }
+      case "restore": {
+        // Rebuild a basket from an email link (/shop/basket/restore). Each
+        // requested line is { merchandiseId (variant GID), quantity }. We
+        // get-or-create the browser's cart and add only variants not already in
+        // it (so clicking the link twice, or on a device that still has the
+        // cart, never duplicates lines). Variants that are gone or sold out are
+        // reported back as `skipped` so the UI can show a short note.
+        const reqLines: Array<{ merchandiseId?: string; quantity?: number }> = Array.isArray(body.lines)
+          ? body.lines
+          : [];
+        const attributes = Array.isArray(body.attributes) ? body.attributes : undefined;
+        const cartId = body.cartId as string | undefined;
+        let cart = cartId ? await p.getCart(cartId, consent).catch(() => null) : null;
+        if (!cart) cart = await p.createCart(consent, attributes);
+        const present = new Set((cart.lines ?? []).map((l) => l.variantId).filter(Boolean));
+        for (const l of reqLines) {
+          if (!l?.merchandiseId || present.has(l.merchandiseId)) continue;
+          try {
+            cart = await p.addLine(cart.id, l.merchandiseId, Math.max(1, l.quantity ?? 1), consent);
+          } catch {
+            /* invalid/removed variant — reported as skipped below */
+          }
+        }
+        // A requested variant that isn't in the final cart at quantity >= 1 was
+        // sold out or no longer exists.
+        const finalQty = new Map((cart.lines ?? []).map((l) => [l.variantId, l.quantity]));
+        const skipped = reqLines
+          .map((l) => l.merchandiseId)
+          .filter((id): id is string => Boolean(id) && (finalQty.get(id) ?? 0) < 1);
+        return NextResponse.json({ cart, skipped });
+      }
       case "update": {
         const cart = await p.updateLine(body.cartId, body.lineId, body.quantity, consent);
         return NextResponse.json({ cart });
