@@ -15,6 +15,7 @@ import {
   siblingServicesInTown,
   townRegion,
   townDetail,
+  townSlugByName,
   type LocationPage,
 } from "@/lib/services-data/locations";
 
@@ -192,7 +193,11 @@ export function LocationServiceDetail({ page }: { page: LocationPage }) {
                   Areas we cover around {town.name}
                 </p>
                 <ul className="m-0 flex flex-wrap gap-2 list-none p-0">
-                  {[...detail.areas, ...detail.nearby].map((a) => (
+                  {/* Neighbourhoods within the town stay plain text; surrounding
+                      places that are themselves town pages become crawlable
+                      links to the SAME service there, so neighbouring town
+                      pages interlink (Search Console audit, Part 4). */}
+                  {detail.areas.map((a) => (
                     <li
                       key={a}
                       className="border border-house-brown/20 bg-house-cream px-3 py-1.5 font-sans text-[14px] text-house-brown/80"
@@ -200,6 +205,25 @@ export function LocationServiceDetail({ page }: { page: LocationPage }) {
                       {a}
                     </li>
                   ))}
+                  {detail.nearby.map((a) => {
+                    const nSlug = townSlugByName(a);
+                    const liClass =
+                      "border border-house-brown/20 bg-house-cream px-3 py-1.5 font-sans text-[14px] text-house-brown/80";
+                    return nSlug && nSlug !== town.slug ? (
+                      <li key={a}>
+                        <Link
+                          href={`/services/local/${serviceSlug}-in-${nSlug}`}
+                          className={`${liClass} block no-underline transition-colors hover:border-house-gold hover:text-house-brown`}
+                        >
+                          {a}
+                        </Link>
+                      </li>
+                    ) : (
+                      <li key={a} className={liClass}>
+                        {a}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             ) : null}

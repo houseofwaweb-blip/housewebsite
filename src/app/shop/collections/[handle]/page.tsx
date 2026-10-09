@@ -28,16 +28,6 @@ function deriveBrands(products: CatalogueProduct[]) {
 type ShopNavCategory = { title: string; handle: string; subs: { title: string; handle: string }[] };
 const NAV = SHOP_NAV as ShopNavCategory[];
 
-// H1 overrides, keyed by handle, where the on-page heading should differ from
-// the collection's Shopify display title. seasonal-home-edit is titled "Autumn
-// Home Edit" (its SEO/page title) but its Shopify display name is "The Autumn
-// Edit", so the H1 and <title> disagreed (Search Console audit, Part 1.4). We
-// align the H1 here, keeping the "seasonal" URL untouched. Reported to the
-// Shopify agent so the collection's own title can be aligned and this dropped.
-const DISPLAY_TITLE_OVERRIDE: Record<string, string> = {
-  "seasonal-home-edit": "The Autumn Home Edit",
-};
-
 // Parse a ?page value into a positive integer, defaulting to 1.
 function parsePageParam(sp: Record<string, string | string[] | undefined>): number {
   const raw = Array.isArray(sp.page) ? sp.page[0] : sp.page;
@@ -182,7 +172,7 @@ export default async function CollectionPage({
   const intro = meta?.descriptionHtml ? (
     <section className="px-[5vw] pb-2">
       <div
-        className="mx-auto max-w-[920px] text-center font-sans text-[17.5px] leading-[1.7] text-house-brown/85 [&_a]:underline [&_a]:underline-offset-2 [&_p]:mb-3"
+        className="mx-auto max-w-[920px] text-center font-sans text-[17.5px] leading-[1.7] text-house-brown/85 [&_a]:underline [&_a]:underline-offset-2 [&_p]:mb-3 [&_h2]:font-display [&_h2]:text-[clamp(22px,3vw,30px)] [&_h2]:leading-[1.2] [&_h2]:text-house-black [&_h2]:mt-8 [&_h2]:mb-3 [&_h3]:font-display [&_h3]:text-[clamp(18px,2.4vw,23px)] [&_h3]:leading-[1.25] [&_h3]:text-house-black [&_h3]:mt-6 [&_h3]:mb-2 [&_ul]:mx-auto [&_ul]:max-w-[56ch] [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:text-left [&_li]:mb-1"
         dangerouslySetInnerHTML={{ __html: meta.descriptionHtml }}
       />
     </section>
@@ -238,10 +228,10 @@ export default async function CollectionPage({
   const products = collection.products;
   // Prefer the collection's OWN name (Shopify meta) over resolveCollection's
   // fallback, which uses the first product's primary collection — that made the
-  // Autumn Edit show "Home Accessories". A per-handle override wins over both,
-  // to keep the H1 in step with the <title> (Part 1.4).
-  const displayTitle =
-    DISPLAY_TITLE_OVERRIDE[handle] ?? (meta?.title?.trim() || collection.title);
+  // Autumn Edit show "Home Accessories". The seasonal-home-edit title is now
+  // correct in Shopify ("The Autumn Home Edit"), so the earlier code override
+  // was removed (Alex, 9 Oct).
+  const displayTitle = meta?.title?.trim() || collection.title;
   const heroBanner = COLLECTION_HERO[handle];
   const otherCollections = await getShopCollections();
   const parentCat = NAV.find((c) => c.subs.some((sub) => sub.handle === handle));

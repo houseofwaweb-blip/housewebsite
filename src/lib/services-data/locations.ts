@@ -234,6 +234,21 @@ export function townLinksForService(serviceSlug: LocationServiceSlug): Array<{
   }));
 }
 
+/** Resolve a free-text place name (as used in TOWN_DETAIL.nearby, e.g.
+ *  "Clapham" or "Greenwich (across the river)") to a town slug we have pages
+ *  for, or null. Strips any parenthetical qualifier before matching. Used to
+ *  turn the "areas we cover around <town>" list into crawlable same-service
+ *  links to neighbouring towns (Search Console audit, Part 4). */
+export function townSlugByName(name: string): string | null {
+  const slug = name
+    .replace(/\(.*?\)/g, "")
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+  return TOWN_BY_SLUG.has(slug) ? slug : null;
+}
+
 /** The other launch services in the same town (the "Also available in <town>"
  *  cross-links that build the internal mesh). */
 export function siblingServicesInTown(
