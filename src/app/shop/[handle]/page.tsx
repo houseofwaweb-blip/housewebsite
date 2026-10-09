@@ -316,6 +316,7 @@ export default async function ProductPage({
         price={selectedPrice}
         availability={selectedInStock ? "InStock" : "OutOfStock"}
         offers={jsonLdOffers}
+        shippingBand={shippingLabel}
       />
       <MetaViewContent
         contentId={product.handle}
@@ -603,10 +604,20 @@ export default async function ProductPage({
               <ProductCard key={p.handle} product={p} />
             ))}
           </div>
-          <Link href="/shop" className={s.relatedFootLink}>
-            All products
-            <span aria-hidden="true">→</span>
-          </Link>
+          {/* "More from [collection]" — a crawlable link from every product to
+              its main collection, so Google can reach the collection pages
+              through products, not only the nav (Search Console audit, Part 1.2). */}
+          {product.collection && collectionSlug ? (
+            <Link href={`/shop/collections/${collectionSlug}`} className={s.relatedFootLink}>
+              More from {product.collection}
+              <span aria-hidden="true">→</span>
+            </Link>
+          ) : (
+            <Link href="/shop" className={s.relatedFootLink}>
+              All products
+              <span aria-hidden="true">→</span>
+            </Link>
+          )}
         </section>
       ) : null}
 

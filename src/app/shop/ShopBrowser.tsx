@@ -117,6 +117,8 @@ export function ShopBrowser({
   collections,
   brands,
   subNav,
+  basePath = "",
+  initialPage = 1,
 }: {
   products: CatalogueProduct[];
   collections: CatalogueCollection[];
@@ -124,6 +126,13 @@ export function ShopBrowser({
   /** Optional sub-category links shown at the top of the rail (used on category
       pages, where in-page collection toggles would be redundant). */
   subNav?: { title: string; handle: string }[];
+  /** Page path these results live on (e.g. /shop/collections/<handle>), used to
+      build crawlable <a href> pagination links. */
+  basePath?: string;
+  /** Page to render first. The server passes the ?page value so paginated
+      pages (?page=2) server-render the right slice and Google can crawl every
+      product, not just the first 20 (Search Console audit, Part 1). */
+  initialPage?: number;
 }) {
   const [search, setSearch] = React.useState("");
   const [activeCollections, setActiveCollections] = React.useState<Set<string>>(new Set());
@@ -135,11 +144,10 @@ export function ShopBrowser({
   const [inStockOnly, setInStockOnly] = React.useState(true);
   const [approvedOnly, setApprovedOnly] = React.useState(false);
   const [transitioning, setTransitioning] = React.useState(false);
-  const [page, setPage] = React.useState(() => {
-    if (typeof window === "undefined") return 1;
-    const p = parseInt(new URLSearchParams(window.location.search).get("page") ?? "1", 10);
-    return Number.isFinite(p) && p > 0 ? p : 1;
-  });
+  // Seed from the server-provided initialPage (the ?page value) so SSR and the
+  // first client render agree (no hydration mismatch) and a ?page=N request
+  // renders that slice in the HTML for crawlers.
+  const [page, setPage] = React.useState(initialPage);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const prevFilterRef = React.useRef("");
 
@@ -630,6 +638,7 @@ export function ShopBrowser({
             page={safePage}
             totalPages={totalPages}
             onChange={changePage}
+            basePath={basePath}
           />
           </>
         )}
@@ -642,16 +651,31 @@ function Pagination({
   page,
   totalPages,
   onChange,
+  basePath,
 }: {
   page: number;
   totalPages: number;
   onChange: (p: number) => void;
+  /** Path the links point at; page 1 is the bare path, page N is ?page=N. */
+  basePath: string;
 }) {
   if (totalPages <= 1) return null;
   const go = (p: number) => {
     const next = Math.min(Math.max(1, p), totalPages);
     onChange(next);
     if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  // Crawlable href for each page: page 1 is the canonical bare path, later
+  // pages carry ?page=N. Relative when no basePath is supplied.
+  const hrefFor = (p: number) =>
+    p <= 1 ? basePath || "?" : `${basePath}?page=${p}`;
+  // Intercept plain left-clicks for in-place SPA paging, but let the browser
+  // handle modified clicks (new tab) and, crucially, let crawlers follow the
+  // real href. preventDefault only on an unmodified primary click.
+  const onNav = (p: number) => (e: React.MouseEvent) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    e.preventDefault();
+    go(p);
   };
   const delta = 1;
   const nums: (number | "ellipsis")[] = [];
@@ -663,41 +687,49 @@ function Pagination({
     }
   }
   const cell =
-    "min-w-[32px] h-[32px] flex items-center justify-center font-sans text-[18px] cursor-pointer transition-colors duration-[var(--t-base)] bg-transparent border-0";
+    "min-w-[32px] h-[32px] flex items-center justify-center font-sans text-[18px] no-underline cursor-pointer transition-colors duration-[var(--t-base)] bg-transparent border-0";
   const arrow = "px-3 tracking-[0.12em] uppercase text-[14px]";
   return (
     <nav aria-label="Pagination" className="mt-16 flex items-center justify-center gap-1">
-      <button
-        type="button"
-        onClick={() => go(page - 1)}
-        disabled={page === 1}
-        className={cn(cell, arrow, page === 1 ? "text-house-stone/40 cursor-default" : "text-house-brown hover:text-house-gold-dark")}
-      >
-        ← Prev
-      </button>
+      {page === 1 ? (
+        <span className={cn(cell, arrow, "text-house-stone/40 cursor-default")}>← Prev</span>
+      ) : (
+        <a
+          href={hrefFor(page - 1)}
+          rel="prev"
+          onClick={onNav(page - 1)}
+          className={cn(cell, arrow, "text-house-brown hover:text-house-gold-dark")}
+        >
+          ← Prev
+        </a>
+      )}
       {nums.map((n, i) =>
         n === "ellipsis" ? (
           <span key={`e${i}`} className="min-w-[24px] text-center text-house-stone text-[18px]">…</span>
         ) : (
-          <button
+          <a
             key={n}
-            type="button"
-            onClick={() => go(n)}
+            href={hrefFor(n)}
+            onClick={onNav(n)}
             aria-current={n === page ? "page" : undefined}
             className={cn(cell, n === page ? "text-house-gold-dark border-b border-house-gold" : "text-house-brown hover:text-house-gold-dark")}
           >
             {n}
-          </button>
+          </a>
         ),
       )}
-      <button
-        type="button"
-        onClick={() => go(page + 1)}
-        disabled={page === totalPages}
-        className={cn(cell, arrow, page === totalPages ? "text-house-stone/40 cursor-default" : "text-house-brown hover:text-house-gold-dark")}
-      >
-        Next →
-      </button>
+      {page === totalPages ? (
+        <span className={cn(cell, arrow, "text-house-stone/40 cursor-default")}>Next →</span>
+      ) : (
+        <a
+          href={hrefFor(page + 1)}
+          rel="next"
+          onClick={onNav(page + 1)}
+          className={cn(cell, arrow, "text-house-brown hover:text-house-gold-dark")}
+        >
+          Next →
+        </a>
+      )}
     </nav>
   );
 }

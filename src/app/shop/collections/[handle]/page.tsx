@@ -11,6 +11,7 @@ import { COLLECTIONS, PRODUCTS } from "@/lib/shop-data";
 import type { CatalogueProduct } from "@/lib/shop-data/catalogue";
 import SHOP_NAV from "@/lib/shop-data/shop-nav.generated.json";
 import { ShopBrowser } from "../../ShopBrowser";
+import { BreadcrumbJsonLd } from "@/lib/seo/jsonLd";
 import s from "./collection.module.css";
 
 /** Brand list with counts, derived from a product set (for the filter rail). */
@@ -26,6 +27,23 @@ function deriveBrands(products: CatalogueProduct[]) {
 
 type ShopNavCategory = { title: string; handle: string; subs: { title: string; handle: string }[] };
 const NAV = SHOP_NAV as ShopNavCategory[];
+
+// H1 overrides, keyed by handle, where the on-page heading should differ from
+// the collection's Shopify display title. seasonal-home-edit is titled "Autumn
+// Home Edit" (its SEO/page title) but its Shopify display name is "The Autumn
+// Edit", so the H1 and <title> disagreed (Search Console audit, Part 1.4). We
+// align the H1 here, keeping the "seasonal" URL untouched. Reported to the
+// Shopify agent so the collection's own title can be aligned and this dropped.
+const DISPLAY_TITLE_OVERRIDE: Record<string, string> = {
+  "seasonal-home-edit": "The Autumn Home Edit",
+};
+
+// Parse a ?page value into a positive integer, defaulting to 1.
+function parsePageParam(sp: Record<string, string | string[] | undefined>): number {
+  const raw = Array.isArray(sp.page) ? sp.page[0] : sp.page;
+  const n = parseInt(raw ?? "1", 10);
+  return Number.isFinite(n) && n > 0 ? n : 1;
+}
 
 // Optional full-bleed editorial banner at the top of a collection page, keyed by
 // handle. Only collections listed here get one; everything else renders as before.
@@ -111,8 +129,10 @@ async function resolveCollection(handle: string): Promise<ResolvedCollection | n
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: {
   params: Promise<{ handle: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const { handle } = await params;
   if (isHiddenCollection(handle)) return { title: "Not found", robots: { index: false, follow: false } };
@@ -130,7 +150,12 @@ export async function generateMetadata({
   const description =
     meta?.seoDescription?.trim() ||
     (meta?.descriptionHtml ? stripHtml(meta.descriptionHtml).slice(0, 155) : undefined);
-  const canonical = `/shop/collections/${handle}`;
+  // Self-referencing canonical: a paginated page (?page=N) canonicalises to
+  // itself, not to page 1, so each page's products get indexed (Search Console
+  // audit, Part 1.1). Page 1 keeps the bare collection URL.
+  const pageNum = parsePageParam(await searchParams);
+  const canonical =
+    pageNum > 1 ? `/shop/collections/${handle}?page=${pageNum}` : `/shop/collections/${handle}`;
   const brandedTitle = `${title} | House of Willow Alexander`;
   return {
     title,
@@ -143,11 +168,15 @@ export async function generateMetadata({
 
 export default async function CollectionPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ handle: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const { handle } = await params;
   if (isHiddenCollection(handle)) notFound();
+  const pageNum = parsePageParam(await searchParams);
+  const basePath = `/shop/collections/${handle}`;
   const mainCat = NAV.find((c) => c.handle === handle);
   const meta = await getShopCollectionMeta(handle);
   const intro = meta?.descriptionHtml ? (
@@ -170,6 +199,12 @@ export default async function CollectionPage({
 
     return (
       <div className={s.page}>
+        <BreadcrumbJsonLd
+          items={[
+            { name: "Shop", href: "/shop" },
+            { name: mainCat.title, href: basePath },
+          ]}
+        />
         <section className={s.hero}>
           <nav aria-label="Breadcrumb" className={s.crumbs}>
             <Link href="/shop" className={s.crumbLink}>Shop</Link>
@@ -187,6 +222,8 @@ export default async function CollectionPage({
           collections={[]}
           brands={brands}
           subNav={mainCat.subs}
+          basePath={basePath}
+          initialPage={pageNum}
         />
       </div>
     );
@@ -201,15 +238,26 @@ export default async function CollectionPage({
   const products = collection.products;
   // Prefer the collection's OWN name (Shopify meta) over resolveCollection's
   // fallback, which uses the first product's primary collection — that made the
-  // Autumn Edit show "Home Accessories".
-  const displayTitle = meta?.title?.trim() || collection.title;
+  // Autumn Edit show "Home Accessories". A per-handle override wins over both,
+  // to keep the H1 in step with the <title> (Part 1.4).
+  const displayTitle =
+    DISPLAY_TITLE_OVERRIDE[handle] ?? (meta?.title?.trim() || collection.title);
   const heroBanner = COLLECTION_HERO[handle];
   const otherCollections = await getShopCollections();
   const parentCat = NAV.find((c) => c.subs.some((sub) => sub.handle === handle));
   const brands = deriveBrands(products);
+  // Breadcrumb trail mirrors the visible crumbs: Shop / [parent] / this.
+  const crumbItems = [
+    { name: "Shop", href: "/shop" },
+    ...(parentCat
+      ? [{ name: parentCat.title, href: `/shop/collections/${parentCat.handle}` }]
+      : []),
+    { name: displayTitle, href: basePath },
+  ];
 
   return (
     <div className={s.page}>
+      <BreadcrumbJsonLd items={crumbItems} />
       {heroBanner ? (
         <div className={s.banner}>
           <div className={s.bannerInner}>
@@ -249,7 +297,13 @@ export default async function CollectionPage({
       {intro}
 
       {/* Full filter rail (no categories section), scoped to this product type */}
-      <ShopBrowser products={products} collections={[]} brands={brands} />
+      <ShopBrowser
+        products={products}
+        collections={[]}
+        brands={brands}
+        basePath={basePath}
+        initialPage={pageNum}
+      />
 
       {/* Other collections */}
       <section className={s.others}>

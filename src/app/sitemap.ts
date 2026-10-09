@@ -11,6 +11,7 @@ import {
 } from "@/lib/insurance/specialist-pages";
 import { GUIDE_SLUGS } from "@/lib/insurance/guides";
 import { GARDEN_PROJECTS } from "@/lib/gardens-projects";
+import SITEMAP_LASTMOD from "@/lib/sitemap-lastmod.generated.json";
 
 /**
  * Sitemap. Static routes + WP long-tail catalogue.
@@ -36,6 +37,22 @@ import { GARDEN_PROJECTS } from "@/lib/gardens-projects";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
   const now = new Date();
+
+  // Real per-page last-edited dates from git history (scripts/gen-sitemap-
+  // lastmod.mjs), so sitemap lastmod reflects when each page actually changed
+  // instead of every static/templated URL sharing the build time (Search
+  // Console audit, Part 3.4). `lm` takes one or more route keys and returns the
+  // first that resolves (e.g. the concrete path, then its template pattern),
+  // falling back to `now` for anything not in the manifest.
+  const lastmodMap = SITEMAP_LASTMOD as Record<string, string>;
+  const lm = (...keys: string[]): Date => {
+    for (const k of keys) {
+      const iso = lastmodMap[k];
+      if (iso) return new Date(iso);
+    }
+    return now;
+  };
+  const pathOf = (u: string) => u.slice(base.length) || "/";
 
   const staticRoutes: MetadataRoute.Sitemap = [
     // ---- Homepage ----
@@ -103,6 +120,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/help`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: `${base}/cinema`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: `${base}/the-unordinary`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    // Public trade/pro page — indexed but was missing from the sitemap
+    // (Search Console audit, Part 3.3).
+    { url: `${base}/house-approved-pro`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
 
     // ---- Legal ----
     { url: `${base}/legal`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
@@ -116,7 +136,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // ---- Service × town local pages (152: 4 launch services × 38 towns) ----
   const locationRoutes: MetadataRoute.Sitemap = allLocationSlugs().map((slug) => ({
     url: `${base}/services/local/${slug}`,
-    lastModified: now,
+    lastModified: lm("/services/local/[slug]"),
     changeFrequency: "monthly",
     priority: 0.5,
   }));
@@ -130,7 +150,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .filter((e) => e.live)
     .map((e) => ({
       url: `${base}/services/local/${e.slug}`,
-      lastModified: now,
+      lastModified: lm("/services/local/[slug]"),
       changeFrequency: "monthly",
       priority: 0.4,
     }));
@@ -138,21 +158,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // ---- Garden design case studies (/design/gardens/projects/[slug]) ----
   const gardenProjectRoutes: MetadataRoute.Sitemap = GARDEN_PROJECTS.map((p) => ({
     url: `${base}/design/gardens/projects/${p.slug}`,
-    lastModified: now,
+    lastModified: lm("/design/gardens/projects/[slug]"),
     changeFrequency: "monthly",
     priority: 0.5,
   }));
 
   // ---- Insurance covers (specialist property, everyday, business, guides) ----
-  const insurancePaths = [
-    ...SPECIALIST_SLUGS.map((s) => `/insurance/${s}`),
-    ...EVERYDAY_SPECIALIST_SLUGS.map((s) => `/insurance/everyday/${s}`),
-    ...BUSINESS_SPECIALIST_SUB_SLUGS.map((s) => `/insurance/business/${s}`),
-    ...GUIDE_SLUGS.map((s) => `/insurance/guides/${s}`),
+  // Each insurance bucket is one template, so its pages share that template's
+  // real last-edited date (Part 3.4).
+  const insurancePaths: Array<{ path: string; tmpl: string }> = [
+    ...SPECIALIST_SLUGS.map((s) => ({ path: `/insurance/${s}`, tmpl: "/insurance/[slug]" })),
+    ...EVERYDAY_SPECIALIST_SLUGS.map((s) => ({ path: `/insurance/everyday/${s}`, tmpl: "/insurance/everyday/[slug]" })),
+    ...BUSINESS_SPECIALIST_SUB_SLUGS.map((s) => ({ path: `/insurance/business/${s}`, tmpl: "/insurance/business/[slug]" })),
+    ...GUIDE_SLUGS.map((s) => ({ path: `/insurance/guides/${s}`, tmpl: "/insurance/guides/[slug]" })),
   ];
-  const insuranceRoutes: MetadataRoute.Sitemap = insurancePaths.map((p) => ({
-    url: `${base}${p}`,
-    lastModified: now,
+  const insuranceRoutes: MetadataRoute.Sitemap = insurancePaths.map(({ path, tmpl }) => ({
+    url: `${base}${path}`,
+    lastModified: lm(tmpl),
     changeFrequency: "monthly",
     priority: 0.5,
   }));
@@ -161,7 +183,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const subServiceRoutes: MetadataRoute.Sitemap = SERVICE_ORDER.flatMap((slug: ServiceSlug) =>
     (SERVICES[slug]?.subServices ?? []).map((sub) => ({
       url: `${base}/services/${slug}/${sub.slug}`,
-      lastModified: now,
+      lastModified: lm("/services/[slug]/[sub]"),
       changeFrequency: "monthly" as const,
       priority: 0.5,
     })),
@@ -173,7 +195,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/services/home-and-garden",
   ].map((p) => ({
     url: `${base}${p}`,
-    lastModified: now,
+    // Prefer the page's own file date (home-and-garden has its own page);
+    // the [slug] pages share the service template's date.
+    lastModified: lm(p, "/services/[slug]"),
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));
@@ -189,7 +213,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
   const hearthCategoryRoutes: MetadataRoute.Sitemap = HEARTH_CATEGORY_SLUGS.map((s) => ({
     url: `${base}/the-hearth/category/${s}`,
-    lastModified: now,
+    lastModified: lm("/the-hearth/category/[slug]"),
     changeFrequency: "weekly" as const,
     priority: 0.5,
   }));
@@ -207,8 +231,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return true;
   });
 
+  // Stamp each static route with its real page date (the literals above carry a
+  // `now` placeholder; this replaces it from the git manifest). Part 3.4.
+  const staticRoutesDated: MetadataRoute.Sitemap = staticRoutes.map((r) => ({
+    ...r,
+    lastModified: lm(pathOf(r.url)),
+  }));
+
   return [
-    ...staticRoutes,
+    ...staticRoutesDated,
     ...serviceRoutes,
     ...hearthCategoryRoutes,
     ...insuranceRoutes,

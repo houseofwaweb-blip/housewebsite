@@ -83,6 +83,13 @@ const BLOCKED_BOTS = [
   "Timpibot",
 ];
 
+// Paths allowed above the broad disallows. Collection pagination (?page=N) is
+// re-opened here so Google can crawl every product in a collection, not just
+// the first 20 (Search Console audit, Part 1.1). A longer, more specific Allow
+// wins over the broad "/*?page=" Disallow, so only /shop/collections/* pages
+// escape the page-param block; /shop and /shop/all deep pages stay blocked.
+const ALLOW_PATHS = ["/", "/shop/collections/*?page="];
+
 // Crawl traps + old WordPress/WooCommerce probe paths (all 404 today).
 const DISALLOW_ALL = [
   "/api/",
@@ -108,12 +115,12 @@ export default function robots(): MetadataRoute.Robots {
       // Approved search + AI-answer bots — explicitly allowed (crawl traps still hidden).
       {
         userAgent: ALLOWED_BOTS,
-        allow: "/",
+        allow: ALLOW_PATHS,
         disallow: DISALLOW_ALL,
       },
       {
         userAgent: "*",
-        allow: "/",
+        allow: ALLOW_PATHS,
         disallow: DISALLOW_ALL,
       },
       {

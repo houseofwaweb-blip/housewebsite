@@ -390,6 +390,108 @@ type OfferInput = {
   gtin?: string;
 };
 
+/**
+ * Shipping label for the product, mirroring src/lib/shop-data/delivery.ts.
+ * `null` = standard carriage; "large"/"furniture" = the two surcharge bands.
+ */
+type ShippingBand = "large" | "furniture" | null;
+
+/**
+ * Build OfferShippingDetails matching the delivery line shown on the page
+ * (Search Console audit, Part 3.1). Standard carriage is £4.99 and free from
+ * a £75 order value, so we emit two shipping entries: the flat rate, plus a
+ * £0 rate gated by eligibleTransactionVolume (order value ≥ £75). The two
+ * surcharge bands are never free, so they emit a single rate each.
+ *
+ * Delivery times follow the shipping policy: Standard 2–3 working days,
+ * large items 2–5, two-person furniture arranged 3–14. Handling 0–1 days.
+ */
+function shippingDetailsFor(band: ShippingBand) {
+  const gb = { "@type": "DefinedRegion", addressCountry: "GB" };
+  const money = (value: string) => ({
+    "@type": "MonetaryAmount",
+    value,
+    currency: "GBP",
+  });
+  const deliveryTime = (transitMin: number, transitMax: number) => ({
+    "@type": "ShippingDeliveryTime",
+    handlingTime: {
+      "@type": "QuantitativeValue",
+      minValue: 0,
+      maxValue: 1,
+      unitCode: "DAY",
+    },
+    transitTime: {
+      "@type": "QuantitativeValue",
+      minValue: transitMin,
+      maxValue: transitMax,
+      unitCode: "DAY",
+    },
+  });
+
+  if (band === "large") {
+    return [
+      {
+        "@type": "OfferShippingDetails",
+        shippingRate: money("12.99"),
+        shippingDestination: gb,
+        deliveryTime: deliveryTime(2, 5),
+      },
+    ];
+  }
+  if (band === "furniture") {
+    return [
+      {
+        "@type": "OfferShippingDetails",
+        shippingRate: money("39.99"),
+        shippingDestination: gb,
+        deliveryTime: deliveryTime(3, 14),
+      },
+    ];
+  }
+  // Standard carriage: £4.99, free from £75 order value.
+  return [
+    {
+      "@type": "OfferShippingDetails",
+      shippingRate: money("4.99"),
+      shippingDestination: gb,
+      deliveryTime: deliveryTime(2, 3),
+    },
+    {
+      "@type": "OfferShippingDetails",
+      shippingRate: money("0"),
+      shippingDestination: gb,
+      eligibleTransactionVolume: {
+        "@type": "PriceSpecification",
+        minPrice: 75,
+        priceCurrency: "GBP",
+      },
+      deliveryTime: deliveryTime(2, 3),
+    },
+  ];
+}
+
+/**
+ * Merchant return policy matching /legal/returns: 14-day change-of-mind
+ * window, returned by post, with the customer responsible for return
+ * carriage (faulty items are handled separately off-schema). Kept as a
+ * single shared object since the policy is the same for every product.
+ */
+function merchantReturnPolicy() {
+  return {
+    "@type": "MerchantReturnPolicy",
+    applicableCountry: "GB",
+    returnPolicyCountry: "GB",
+    returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+    merchantReturnDays: 14,
+    returnMethod: "https://schema.org/ReturnByMail",
+    // Customer arranges and pays return carriage for change-of-mind returns
+    // (/legal/returns). This enum needs no fixed fee amount, unlike
+    // ReturnShippingFees, so Rich Results stays error-free.
+    returnFees: "https://schema.org/ReturnFeesCustomerResponsibility",
+  };
+}
+
 export function ProductJsonLd({
   name,
   description,
@@ -402,6 +504,7 @@ export function ProductJsonLd({
   priceCurrency = "GBP",
   availability,
   offers,
+  shippingBand = null,
 }: {
   name: string;
   description: string;
@@ -419,8 +522,17 @@ export function ProductJsonLd({
   availability: SchemaAvailability;
   /** One Offer per variant. When omitted, a single Offer is built from price/url. */
   offers?: OfferInput[];
+  /**
+   * Delivery band for shippingDetails — matches getShippingLabel(handle).
+   * null = standard carriage (£4.99 / free £75); "large"/"furniture" bands.
+   */
+  shippingBand?: ShippingBand;
 }) {
   const base = env.NEXT_PUBLIC_SITE_URL;
+  // Shipping + returns are the same for every variant of a product, so build
+  // once and attach to each Offer (Search Console audit, Part 3.1).
+  const shippingDetails = shippingDetailsFor(shippingBand);
+  const returnPolicy = merchantReturnPolicy();
   const mkOffer = (o: OfferInput) => ({
     "@type": "Offer",
     url: o.url,
@@ -431,6 +543,8 @@ export function ProductJsonLd({
     ...(o.sku ? { sku: o.sku } : {}),
     ...(o.gtin ? { gtin: o.gtin } : {}),
     seller: { "@id": `${base}#organization` },
+    shippingDetails,
+    hasMerchantReturnPolicy: returnPolicy,
   });
   return renderLd({
     "@context": "https://schema.org",

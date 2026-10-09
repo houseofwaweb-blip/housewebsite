@@ -22,7 +22,15 @@ export const metadata = {
     "Every House Approved object in one place. Filter by category, brand and House Approved seal.",
 };
 
-export default async function ShopAllPage() {
+export default async function ShopAllPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const sp = await searchParams;
+  const rawPage = Array.isArray(sp.page) ? sp.page[0] : sp.page;
+  const parsedPage = parseInt(rawPage ?? "1", 10);
+  const pageNum = Number.isFinite(parsedPage) && parsedPage > 0 ? parsedPage : 1;
   const [products, collections, brands] = await Promise.all([
     getShopProductsCurated(),
     getShopCollections(),
@@ -53,6 +61,8 @@ export default async function ShopAllPage() {
         products={products}
         collections={collections.filter((c) => MAIN_CATEGORY_HANDLES.has(c.handle))}
         brands={brands.filter((b) => b.count >= 3)}
+        basePath="/shop/all"
+        initialPage={pageNum}
       />
     </div>
   );

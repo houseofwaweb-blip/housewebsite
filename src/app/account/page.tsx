@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   title: "Your account",
   description:
     "Manage your House of Willow Alexander account: bookings, visits, membership and your home record, plus shop orders, past purchases and returns.",
+  // A signed-out doorway to two external account systems — no unique indexable
+  // content of its own, so keep it out of the index (Search Console audit).
+  robots: { index: false, follow: true },
   ...pageMeta("/account"),
 };
 
