@@ -19,6 +19,10 @@ import { getHearthIndex } from "@/lib/cms/hearth";
  * src/lib/cms/hearth.ts).
  */
 
+// Re-render at most hourly so a newly featured/published article shows without
+// waiting on a deploy (the Sanity fetches are also webhook-tagged).
+export const revalidate = 3600;
+
 export const metadata = {
   alternates: { canonical: "/the-hearth" },
   title: { absolute: "The Hearth | Journal for homes and gardens" },

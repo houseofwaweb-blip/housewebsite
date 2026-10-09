@@ -18,6 +18,10 @@ export async function sanityFetch<T>({
   const client = preview ? sanityPreviewClient : sanityClient;
   return client.fetch<T>(query, params, {
     cache: preview ? "no-store" : "force-cache",
-    next: { tags, revalidate: preview ? 0 : 604800 },
+    // 1-hour safety net (was 1 week). The Sanity webhook revalidates by tag for
+    // instant updates; this bounds how long a CMS change can lag if the webhook
+    // doesn't fire, so featuring an article / adding content shows within the
+    // hour instead of being force-cached for a week.
+    next: { tags, revalidate: preview ? 0 : 3600 },
   });
 }
